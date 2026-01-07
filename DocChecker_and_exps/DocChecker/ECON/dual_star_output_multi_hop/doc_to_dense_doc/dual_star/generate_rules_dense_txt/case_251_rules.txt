@@ -1,0 +1,63 @@
+Source: dense_text.txt (Index 251)
+S1: The average adult horse weighs up to 2,000 lbs
+S2: The average adult horse weighs less than 500 lbs
+
+Predicates:
+1. Horse.average_weight ≤ 2000 lbs
+2. Horse.average_weight < 500 lbs
+3. M_NLI(S1, S2)
+4. Factual(Horse.average_weight, 2000 lbs)
+5. Factual(Horse.average_weight, 500 lbs)
+6. violate(Horse.average_weight, 2000 lbs)
+7. violate(Horse.average_weight, 500 lbs)
+8. Horse.weight_limit ≤ 2000 lbs
+9. Horse.weight_limit < 500 lbs
+10. M_NLI(Horse.weight_limit, Horse.average_weight)
+11. Factual(Horse.weight_limit, 2000 lbs)
+12. Factual(Horse.weight_limit, 500 lbs)
+13. violate(Horse.weight_limit, 2000 lbs)
+14. violate(Horse.weight_limit, 500 lbs)
+15. Adult_Horse.average_weight ≤ 2000 lbs
+16. Adult_Horse.average_weight < 500 lbs
+17. M_NLI(Adult_Horse.average_weight, Horse.average_weight)
+18. Factual(Adult_Horse.average_weight, 2000 lbs)
+19. Factual(Adult_Horse.average_weight, 500 lbs)
+20. violate(Adult_Horse.average_weight, 2000 lbs)
+21. violate(Adult_Horse.average_weight, 500 lbs)
+22. Weight_Comparison.horse_2000 ≤ 2000 lbs
+23. Weight_Comparison.horse_500 < 500 lbs
+24. M_NLI(Weight_Comparison.horse_2000, Weight_Comparison.horse_500)
+25. Factual(Weight_Comparison.horse_2000, 2000 lbs)
+26. Factual(Weight_Comparison.horse_500, 500 lbs)
+27. violate(Weight_Comparison.horse_2000, 2000 lbs)
+28. violate(Weight_Comparison.horse_500, 500 lbs)
+29. Average_Horse_Weight.max ≤ 2000 lbs
+30. Average_Horse_Weight.min < 500 lbs
+
+Rules:
+1. Q[The, Horse.average_weight ≤ 2000 lbs, Horse.average_weight < 500 lbs](Horse.average_weight ≤ 2000 lbs ∧ Horse.average_weight < 500 lbs → Factual(Horse.average_weight, 2000 lbs))
+2. Q[The, Horse.average_weight < 500 lbs, Horse.average_weight ≤ 2000 lbs](Horse.average_weight < 500 lbs ∧ Horse.average_weight ≤ 2000 lbs → Factual(Horse.average_weight, 500 lbs))
+3. Q[The, Adult_Horse.average_weight ≤ 2000 lbs, Adult_Horse.average_weight < 500 lbs](Adult_Horse.average_weight ≤ 2000 lbs ∧ Adult_Horse.average_weight < 500 lbs → Factual(Adult_Horse.average_weight, 2000 lbs))
+4. Q[The, Adult_Horse.average_weight < 500 lbs, Adult_Horse.average_weight ≤ 2000 lbs](Adult_Horse.average_weight < 500 lbs ∧ Adult_Horse.average_weight ≤ 2000 lbs → Factual(Adult_Horse.average_weight, 500 lbs))
+5. Q[The, Weight_Comparison.horse_2000 ≤ 2000 lbs, Weight_Comparison.horse_500 < 500 lbs](Weight_Comparison.horse_2000 ≤ 2000 lbs ∧ Weight_Comparison.horse_500 < 500 lbs → Factual(Weight_Comparison.horse_2000, 2000 lbs))
+6. Q[The, Weight_Comparison.horse_500 < 500 lbs, Weight_Comparison.horse_2000 ≤ 2000 lbs](Weight_Comparison.horse_500 < 500 lbs ∧ Weight_Comparison.horse_2000 ≤ 2000 lbs → Factual(Weight_Comparison.horse_500, 500 lbs))
+7. Q[The, Horse.weight_limit ≤ 2000 lbs, Horse.weight_limit < 500 lbs](Horse.weight_limit ≤ 2000 lbs ∧ Horse.weight_limit < 500 lbs → Factual(Horse.weight_limit, 2000 lbs))
+8. Q[The, Horse.weight_limit < 500 lbs, Horse.weight_limit ≤ 2000 lbs](Horse.weight_limit < 500 lbs ∧ Horse.weight_limit ≤ 2000 lbs → Factual(Horse.weight_limit, 500 lbs))
+9. Q[The, Average_Horse_Weight.max ≤ 2000 lbs, Average_Horse_Weight.min < 500 lbs](Average_Horse_Weight.max ≤ 2000 lbs ∧ Average_Horse_Weight.min < 500 lbs → Factual(Average_Horse_Weight.max, 2000 lbs))
+10. Q[The, Average_Horse_Weight.min < 500 lbs, Average_Horse_Weight.max ≤ 2000 lbs](Average_Horse_Weight.min < 500 lbs ∧ Average_Horse_Weight.max ≤ 2000 lbs → Factual(Average_Horse_Weight.min, 500 lbs))
+11. Q[The, M_NLI(S1, S2), Horse.average_weight ≤ 2000 lbs](M_NLI(S1, S2) → Factual(Horse.average_weight, 2000 lbs))
+12. Q[The, M_NLI(S1, S2), Horse.average_weight < 500 lbs](M_NLI(S1, S2) → Factual(Horse.average_weight, 500 lbs))
+13. Q[The, M_NLI(S1, S2), Adult_Horse.average_weight ≤ 2000 lbs](M_NLI(S1, S2) → Factual(Adult_Horse.average_weight, 2000 lbs))
+14. Q[The, M_NLI(S1, S2), Adult_Horse.average_weight < 500 lbs](M_NLI(S1, S2) → Factual(Adult_Horse.average_weight, 500 lbs))
+15. Q[The, M_NLI(S1, S2), Weight_Comparison.horse_2000 ≤ 2000 lbs](M_NLI(S1, S2) → Factual(Weight_Comparison.horse_2000, 2000 lbs))
+16. Q[The, M_NLI(S1, S2), Weight_Comparison.horse_500 < 500 lbs](M_NLI(S1, S2) → Factual(Weight_Comparison.horse_500, 500 lbs))
+17. Q[The, M_NLI(S1, S2), Horse.weight_limit ≤ 2000 lbs](M_NLI(S1, S2) → Factual(Horse.weight_limit, 2000 lbs))
+18. Q[The, M_NLI(S1, S2), Horse.weight_limit < 500 lbs](M_NLI(S1, S2) → Factual(Horse.weight_limit, 500 lbs))
+19. Q[The, M_NLI(S1, S2), Average_Horse_Weight.max ≤ 2000 lbs](M_NLI(S1, S2) → Factual(Average_Horse_Weight.max, 2000 lbs))
+20. Q[The, M_NLI(S1, S2), Average_Horse_Weight.min < 500 lbs](M_NLI(S1, S2) → Factual(Average_Horse_Weight.min, 500 lbs))
+21. Q[The, violate(Horse.average_weight, 2000 lbs), Horse.average_weight < 500 lbs](violate(Horse.average_weight, 2000 lbs) ∧ Horse.average_weight < 500 lbs → Factual(Horse.average_weight, 2000 lbs))
+22. Q[The, violate(Horse.average_weight, 500 lbs), Horse.average_weight ≤ 2000 lbs](violate(Horse.average_weight, 500 lbs) ∧ Horse.average_weight ≤ 2000 lbs → Factual(Horse.average_weight, 500 lbs))
+23. Q[The, violate(Adult_Horse.average_weight, 2000 lbs), Adult_Horse.average_weight < 500 lbs](violate(Adult_Horse.average_weight, 2000 lbs) ∧ Adult_Horse.average_weight < 500 lbs → Factual(Adult_Horse.average_weight, 2000 lbs))
+24. Q[The, violate(Adult_Horse.average_weight, 500 lbs), Adult_Horse.average_weight ≤ 2000 lbs](violate(Adult_Horse.average_weight, 500 lbs) ∧ Adult_Horse.average_weight ≤ 2000 lbs → Factual(Adult_Horse.average_weight, 500 lbs))
+25. Q[The, violate(Weight_Comparison.horse_2000, 2000 lbs), Weight_Comparison.horse_500 < 500 lbs](violate(Weight_Comparison.horse_2000, 2000 lbs) ∧ Weight_Comparison.horse_500 < 500 lbs → Factual(Weight_Comparison.horse_2000, 2000 lbs))
+26. Q[The, violate(Weight_Comparison.horse_500, 500 lbs), Weight_Comparison.horse_2000 ≤ 2000 lbs](violate(Weight_Comparison.horse_

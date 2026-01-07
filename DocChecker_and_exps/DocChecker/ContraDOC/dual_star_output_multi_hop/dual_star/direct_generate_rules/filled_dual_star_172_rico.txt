@@ -1,0 +1,35 @@
+Predicates:
+Chris Baldry.label != "Person"
+Chris Baldry.label = "Person"
+Chris Baldry.name != "Chris Baldry"
+Chris Baldry.name = "Chris Baldry"
+Kitty Baldry.label != "Person"
+Kitty Baldry.label = "Person"
+Kitty Baldry.name != "Kitty Baldry"
+Kitty Baldry.name != Chris Baldry.name
+Kitty Baldry.name = "Kitty Baldry"
+Margaret Grey.label != "Person"
+Margaret Grey.label = "Person"
+Margaret Grey.name != "Margaret Grey"
+Margaret Grey.name != Chris Baldry.name
+Margaret Grey.name != Kitty Baldry.name
+Margaret Grey.name = "Margaret Grey"
+Margaret Grey___Chris Baldry.doc_id = "3488771834_5"
+Margaret Grey___Chris Baldry.relationship = "Margaret delivers news from the War Office regarding Chris's injury."
+Margaret Grey___Kitty Baldry.doc_id = "3488771834_5"
+Margaret Grey___Kitty Baldry.relationship != Margaret Grey___Chris Baldry.relationship
+Margaret Grey___Kitty Baldry.relationship = "Margaret arrives at the Baldry estate to bear news to Kitty."
+None_ML(Margaret Grey.attrs, Chris Baldry.attrs)
+None_ML(Margaret Grey___Chris Baldry.attrs, Margaret Grey___Kitty Baldry.attrs)
+
+Rules:
+Q[Margaret Grey,Margaret Grey] (Kitty Baldry.name != Chris Baldry.name ∧ Margaret Grey.name != Kitty Baldry.name ∧ Margaret Grey___Chris Baldry.relationship = "Margaret delivers news from the War Office regarding Chris's injury." ∧ Kitty Baldry.label != "Person" ∧ None_ML(Margaret Grey___Chris Baldry.attrs, Margaret Grey___Kitty Baldry.attrs) ∧ Margaret Grey___Kitty Baldry.doc_id = "3488771834_5" → Margaret Grey___Kitty Baldry.relationship = "Margaret arrives at the Baldry estate to bear news to Kitty.")
+Q[Margaret Grey,Margaret Grey] (Margaret Grey.name = "Margaret Grey" ∧ Margaret Grey___Kitty Baldry.relationship != Margaret Grey___Chris Baldry.relationship ∧ Chris Baldry.name != "Chris Baldry" ∧ Kitty Baldry.name != "Kitty Baldry" ∧ Margaret Grey.name != "Margaret Grey" → Margaret Grey___Chris Baldry.relationship = "Margaret delivers news from the War Office regarding Chris's injury.")
+Q[Margaret Grey,Margaret Grey] (Kitty Baldry.name = "Kitty Baldry" ∧ Margaret Grey.name = "Margaret Grey" ∧ Margaret Grey.label != "Person" ∧ Chris Baldry.name = "Chris Baldry" → Chris Baldry.name != "Chris Baldry")
+Q[Margaret Grey,Margaret Grey] (Margaret Grey.label != "Person" ∧ Margaret Grey.name != Chris Baldry.name ∧ None_ML(Margaret Grey.attrs, Chris Baldry.attrs) → Margaret Grey___Kitty Baldry.doc_id = "3488771834_5")
+Q[Margaret Grey,Margaret Grey] (Margaret Grey.name != "Margaret Grey" ∧ Margaret Grey.label = "Person" → Chris Baldry.label = "Person")
+Q[Margaret Grey,Margaret Grey] (Chris Baldry.label != "Person" ∧ Margaret Grey.name != Chris Baldry.name ∧ Margaret Grey.name != "Margaret Grey" ∧ Kitty Baldry.label != "Person" ∧ Chris Baldry.name != "Chris Baldry" → Kitty Baldry.name = "Kitty Baldry")
+Q[Margaret Grey,Margaret Grey] (Chris Baldry.label != "Person" ∧ Kitty Baldry.name = "Kitty Baldry" ∧ Kitty Baldry.name != "Kitty Baldry" ∧ None_ML(Margaret Grey___Chris Baldry.attrs, Margaret Grey___Kitty Baldry.attrs) → Margaret Grey___Kitty Baldry.relationship != Margaret Grey___Chris Baldry.relationship)
+Q[Margaret Grey,Margaret Grey] (Kitty Baldry.name != "Kitty Baldry" ∧ Kitty Baldry.label = "Person" ∧ Chris Baldry.label = "Person" ∧ Margaret Grey.name != "Margaret Grey" ∧ Margaret Grey.name != Kitty Baldry.name ∧ Chris Baldry.name != "Chris Baldry" → None_ML(Margaret Grey___Chris Baldry.attrs, Margaret Grey___Kitty Baldry.attrs))
+Q[Margaret Grey,Margaret Grey] (Margaret Grey.name != Chris Baldry.name ∧ Margaret Grey.name != Kitty Baldry.name → Margaret Grey___Chris Baldry.doc_id = "3488771834_5")
+Q[Margaret Grey,Margaret Grey] (Kitty Baldry.name = "Kitty Baldry" ∧ Margaret Grey___Kitty Baldry.relationship != Margaret Grey___Chris Baldry.relationship ∧ Margaret Grey.label = "Person" → Chris Baldry.label != "Person")

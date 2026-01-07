@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 135)
+S1: Harry would put Tom into his cage and every morning Harry would take Tom out of his cage.
+S2: Then one day Harry woke and to find that Tom was not in his cage.
+
+Predicates:
+1. Harry.routine
+2. Tom.in_cage
+3. Harry.wakes_up
+4. Tom.missing
+5. Harry.takes_out
+6. Harry.puts_in
+7. Harry.cage
+8. Tom.cage
+9. Harry.morning
+10. Tom.is_in_cage
+11. Harry.finds(Tom)
+12. Tom.is_missing
+13. Harry.has(Tom)
+14. Tom.is_pet
+15. Harry.cares_for(Tom)
+16. Harry.wakes_up_to_find
+17. Tom.is_not_in_cage
+18. Harry.routine_contradiction
+19. Tom.is_not_found
+20. Harry.expects(Tom)
+21. Tom.is_in(Harry.cage)
+22. Harry.checks(cage)
+23. Tom.is_out
+24. Harry.is_confused
+25. Harry.is_surprised
+26. Tom.is_unexpected
+27. Harry.has_routine
+28. Tom.is_displaced
+29. Harry.is_concerned
+30. Tom.is_unaccounted
+
+Rules:
+1. Q[Harry, Harry.routine == "putting Tom in cage" → Causal(Harry, Tom.missing)]
+2. Q[Harry, Harry.wakes_up → Causal(Harry, Tom.is_not_in_cage)]
+3. Q[Harry, Harry.puts_in == "Tom" → Causal(Harry, Tom.is_missing)]
+4. Q[Harry, Harry.takes_out == "Tom" → Causal(Harry, Tom.is_not_found)]
+5. Q[Harry, Harry.morning == "routine" → Causal(Harry, Tom.is_unexpected)]
+6. Q[Harry, Tom.in_cage == true → Causal(Harry, Tom.is_not_in_cage)]
+7. Q[Harry, Harry.finds(Tom) == false → Causal(Harry, Tom.is_missing)]
+8. Q[Harry, Harry.checks(cage) → Causal(Harry, Tom.is_not_found)]
+9. Q[Harry, Tom.is_in_cage == true → Causal(Harry, Tom.is_not_in_cage)]
+10. Q[Harry, Harry.has(Tom) == true → Causal(Harry, Tom.is_unaccounted)]
+11. Q[Harry, Harry.cares_for(Tom) → Causal(Harry, Tom.is_displaced)]
+12. Q[Harry, Harry.wakes_up_to_find == "Tom missing" → Causal(Harry, Tom.is_not_found)]
+13. Q[Harry, Tom.is_pet == true → Causal(Harry, Tom.is_unexpected)]
+14. Q[Harry, Harry.is_confused == true → Causal(Harry, Tom.is_not_in_cage)]
+15. Q[Harry, Harry.is_surprised == true → Causal(Harry, Tom.is_missing)]
+16. Q[Harry, Harry.has_routine == true → Causal(Harry, Tom.is_not_found)]
+17. Q[Harry, Tom.is_out == true → Causal(Harry, Tom.is_not_in_cage)]
+18. Q[Harry, Tom.is_not_in_cage == true → Causal(Harry, Tom.is_missing)]
+19. Q[Harry, Harry.expects(Tom) == true → Causal(Harry, Tom.is_unaccounted)]
+20. Q[Harry, Tom.is_unaccounted == true → Causal(Harry, Tom.is_missing)]
+21. Q[Harry, Tom.is_not_found == true → Causal(Harry, Tom.is_missing)]
+22. Q[Harry, Tom.is_displaced == true → Causal(Harry, Tom.is_not_in_cage)]
+23. Q[Harry, Tom.is_unexpected == true → Causal(Harry, Tom.is_missing)]
+24. Q[Harry, Harry.routine_contradiction == true → Causal(Harry, Tom.is_not_found)]
+25. Q[Harry, Tom.is_in(Harry.cage) == false → Causal(Harry, Tom.is_missing)]
+26. Q[Harry, Harry.wakes_up_to_find == "Tom not in cage" → Causal(Harry, Tom.is_unaccounted)]
+27. Q[Harry, Harry.is_concerned == true → Causal(Harry, Tom.is_missing)]
+28. Q[Harry, Tom.is_not_in_cage == true → Causal(Harry, Tom.is_displaced)]
+29. Q[Harry, Harry.routine == "taking Tom out" → Causal(Harry, Tom.is_not_found)]
+30. Q[Harry, Harry.puts_in == "Tom" and Tom.is_not_in_cage == true → Causal(Harry, Tom.is_missing)]

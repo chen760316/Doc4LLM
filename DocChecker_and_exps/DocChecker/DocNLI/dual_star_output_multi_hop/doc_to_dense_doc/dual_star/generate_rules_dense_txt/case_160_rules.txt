@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 160)
+S1: Others are trying to divide blacks and Rush Limbaugh.
+S2: Others are trying to divide blacks and Latinos.
+
+Predicates:
+1. Others.division
+2. blacks.division
+3. Rush_Limbaugh.division
+4. Latinos.division
+5. M_NLI(S1, S2)
+6. Relation(Others, blacks)
+7. Relation(Others, Latinos)
+8. violate(Others, Rush_Limbaugh)
+9. violate(Others, Latinos)
+10. blacks.conflict
+11. Latinos.conflict
+12. Rush_Limbaugh.conflict
+13. Others.attempt
+14. blacks.attempt
+15. Latinos.attempt
+16. M_NLI(S2, S1)
+17. Relation(blacks, Rush_Limbaugh)
+18. Relation(blacks, Latinos)
+19. violate(blacks, Rush_Limbaugh)
+20. violate(blacks, Latinos)
+21. Others.intent
+22. Rush_Limbaugh.intent
+23. Latinos.intent
+24. blacks.intent
+25. M_NLI(S1, S1)
+26. Relation(Rush_Limbaugh, blacks)
+27. Relation(Latinos, blacks)
+28. violate(Rush_Limbaugh, Latinos)
+29. violate(Latinos, Rush_Limbaugh)
+30. Others.conflict
+
+Rules:
+1. Q[Others, Others.division, blacks.division](Others.division == "true" → Relation(Others, blacks))
+2. Q[Others, Others.division, Latinos.division](Others.division == "true" → Relation(Others, Latinos))
+3. Q[Others, violate(Others, Rush_Limbaugh), blacks.division](violate(Others, Rush_Limbaugh) == "true" → Relation(Others, blacks))
+4. Q[Others, violate(Others, Latinos), blacks.division](violate(Others, Latinos) == "true" → Relation(Others, blacks))
+5. Q[Others, blacks.conflict, Rush_Limbaugh.conflict](blacks.conflict == "true" → Relation(blacks, Rush_Limbaugh))
+6. Q[Others, blacks.conflict, Latinos.conflict](blacks.conflict == "true" → Relation(blacks, Latinos))
+7. Q[Others, Others.attempt, blacks.division](Others.attempt == "true" → Relation(Others, blacks))
+8. Q[Others, Others.attempt, Latinos.division](Others.attempt == "true" → Relation(Others, Latinos))
+9. Q[Others, blacks.intent, Rush_Limbaugh.intent](blacks.intent == "true" → Relation(blacks, Rush_Limbaugh))
+10. Q[Others, blacks.intent, Latinos.intent](blacks.intent == "true" → Relation(blacks, Latinos))
+11. Q[Others, M_NLI(S1, S2), blacks.division](M_NLI(S1, S2) == "true" → Relation(Others, blacks))
+12. Q[Others, M_NLI(S1, S2), Latinos.division](M_NLI(S1, S2) == "true" → Relation(Others, Latinos))
+13. Q[Others, violate(blacks, Rush_Limbaugh), blacks.division](violate(blacks, Rush_Limbaugh) == "true" → Relation(Others, blacks))
+14. Q[Others, violate(blacks, Latinos), blacks.division](violate(blacks, Latinos) == "true" → Relation(Others, blacks))
+15. Q[Others, Relation(Others, blacks), Rush_Limbaugh.conflict](Relation(Others, blacks) == "true" → Relation(Others, Rush_Limbaugh))
+16. Q[Others, Relation(Others, Latinos), blacks.conflict](Relation(Others, Latinos) == "true" → Relation(Others, blacks))
+17. Q[Others, Rush_Limbaugh.intent, blacks.division](Rush_Limbaugh.intent == "true" → Relation(Others, blacks))
+18. Q[Others, Latinos.intent, blacks.division](Latinos.intent == "true" → Relation(Others, blacks))
+19. Q[Others, blacks.conflict, Rush_Limbaugh.intent](blacks.conflict == "true" → Relation(blacks, Rush_Limbaugh))
+20. Q[Others, blacks.conflict, Latinos.intent](blacks.conflict == "true" → Relation(blacks, Latinos))
+21. Q[Others, M_NLI(S2, S1), blacks.division](M_NLI(S2, S1) == "true" → Relation(Others, blacks))
+22. Q[Others, M_NLI(S2, S1), Latinos.division](M_NLI(S2, S1) == "true" → Relation(Others, Latinos))
+23. Q[Others, violate(Others, Rush_Limbaugh), Latinos.division](violate(Others, Rush_Limbaugh) == "true" → Relation(Others, Latinos))
+24. Q[Others, violate(Others, Latinos), Rush_Limbaugh.division](violate(Others, Latinos) == "true" → Relation(Others, Rush_Limbaugh))
+25. Q[Others, blacks.attempt, Rush_Limbaugh.intent](blacks.attempt == "true" → Relation(blacks, Rush_Limbaugh))
+26. Q[Others, blacks.attempt, Latinos.intent](blacks.attempt == "true" → Relation(blacks, Latinos))
+27. Q[Others, Relation(blacks, Rush_Limbaugh), Latinos.conflict](Relation(blacks, Rush_Limbaugh) == "true" → Relation(blacks, Latinos))
+28. Q[Others, Relation(blacks, Latinos), Rush_Limbaugh.conflict](Relation(blacks, Latinos) == "true" → Relation(blacks, Rush_Limbaugh))
+29. Q[Others, blacks.intent, Rush_Limbaugh.conflict](blacks.intent == "true" → Relation(blacks, Rush_Limbaugh))
+30. Q[Others, Latinos.intent, blacks.conflict](Latinos.intent == "true" → Relation(blacks, Latinos))

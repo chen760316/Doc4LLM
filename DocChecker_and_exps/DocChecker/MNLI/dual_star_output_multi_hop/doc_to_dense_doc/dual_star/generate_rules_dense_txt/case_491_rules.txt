@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 491)
+S1: My husband is still working.
+S2: my husband retired a little over a year ago
+
+Predicates:
+1. Husband.status
+2. Husband.work_status
+3. Husband.retirement_status
+4. Husband.retirement_date
+5. Husband.employment_status
+6. Husband.current_job
+7. Husband.last_work_date
+8. Husband.retirement_duration
+9. Husband.is_working
+10. Husband.is_retired
+11. Husband.working_since
+12. Husband.retired_since
+13. Husband.employment_history
+14. Husband.job_title
+15. Husband.company_name
+16. Husband.hours_per_week
+17. Husband.salary
+18. Husband.industry
+19. Husband.skills
+20. Husband.experience_years
+21. "is".working
+22. "is".retired
+23. "has".retirement_plan
+24. "has".job_offer
+25. "has".work_experience
+26. "has".current_employer
+27. "has".previous_employer
+28. "has".work_schedule
+29. "has".career_path
+30. "has".job_satisfaction
+
+Rules:
+1. Q[husband, Husband.is_working, Husband.is_retired](Husband.is_working == true ∧ Husband.is_retired == true → Factual(x0, y0))
+2. Q[husband, Husband.work_status, Husband.retirement_status](Husband.work_status == "employed" ∧ Husband.retirement_status == "retired" → Factual(x0, y0))
+3. Q[husband, Husband.current_job, Husband.retirement_date](Husband.current_job != null ∧ Husband.retirement_date < current_date → Factual(x0, y0))
+4. Q[husband, Husband.employment_status, Husband.retirement_duration](Husband.employment_status == "active" ∧ Husband.retirement_duration > 1 year → Factual(x0, y0))
+5. Q[husband, Husband.working_since, Husband.retired_since](Husband.working_since > Husband.retired_since → Factual(x0, y0))
+6. Q[husband, Husband.last_work_date, Husband.retirement_date](Husband.last_work_date > Husband.retirement_date → Factual(x0, y0))
+7. Q[husband, Husband.hours_per_week, Husband.is_retired](Husband.hours_per_week > 0 ∧ Husband.is_retired == true → Factual(x0, y0))
+8. Q[husband, Husband.salary, Husband.is_retired](Husband.salary > 0 ∧ Husband.is_retired == true → Factual(x0, y0))
+9. Q[husband, Husband.industry, Husband.retirement_status](Husband.industry != null ∧ Husband.retirement_status == "retired" → Factual(x0, y0))
+10. Q[husband, Husband.skills, Husband.is_working](Husband.skills != null ∧ Husband.is_working == false → Factual(x0, y0))
+11. Q[husband, Husband.experience_years, Husband.retirement_status](Husband.experience_years > 0 ∧ Husband.retirement_status == "retired" → Factual(x0, y0))
+12. Q[husband, Husband.job_title, Husband.is_retired](Husband.job_title != null ∧ Husband.is_retired == true → Factual(x0, y0))
+13. Q[husband, Husband.company_name, Husband.is_working](Husband.company_name != null ∧ Husband.is_working == false → Factual(x0, y0))
+14. Q[husband, Husband.has.job_offer, Husband.is_retired](Husband.has.job_offer == true ∧ Husband.is_retired == true → Factual(x0, y0))
+15. Q[husband, Husband.has.work_experience, Husband.is_working](Husband.has.work_experience == true ∧ Husband.is_working == false → Factual(x0, y0))
+16. Q[husband, Husband.has.current_employer, Husband.retirement_status](Husband.has.current_employer == true ∧ Husband.retirement_status == "retired" → Factual(x0, y0))
+17. Q[husband, Husband.has.previous_employer, Husband.is_working](Husband.has.previous_employer == true ∧ Husband.is_working == false → Factual(x0, y0))
+18. Q[husband, Husband.has.work_schedule, Husband.is_retired](Husband.has.work_schedule == true ∧ Husband.is_retired == true → Factual(x0, y0))
+19. Q[husband, Husband.has.career_path, Husband.is_working](Husband.has.career_path == true ∧ Husband.is_working == false → Factual(x0, y0))
+20. Q[husband, Husband.has.job_satisfaction, Husband.is_retired](Husband.has.job_satisfaction == true ∧ Husband.is_retired == true → Factual(x0, y0))
+21. Q[husband, Husband.retirement_duration, Husband.is_working](Husband.retirement_duration > 1 year ∧ Husband.is_working == true → Factual(x0, y0))
+22. Q[husband, Husband.retirement_date, Husband.is_working](Husband.retirement_date < current_date ∧ Husband.is_working == true → Factual(x0, y0))
+23. Q[husband, Husband.retired_since, Husband.is_working](Husband.retired_since < current_date ∧ Husband.is_working == true → Factual(x0, y0))
+24. Q[husband, Husband.retirement_status, Husband.is_working](Husband.retirement_status == "retired" ∧ Husband.is_working == true → Factual(x0, y0))
+25. Q[husband, Husband.employment_status, Husband.is_retired](Husband.employment_status == "unemployed" ∧ Husband.is_retired == false → Factual(x0, y0))
+26. Q[husband, Husband.working_since, Husband.retired_since](Husband.working_since > Husband.retired_since ∧ Husband.is_retired == true → Factual(x0, y0))
+27. Q[husband, Husband.last_work_date, Husband.is_retired](Husband.last_work_date < Husband.retirement_date ∧ Husband.is_retired == true → Factual(x0, y0))
+28. Q[husband, Husband.current_job, Husband.is_retired](Husband.current_job != null ∧ Husband.is_retired == true → Factual(x0, y0))
+29. Q[husband, Husband.salary, Husband.is_working](Husband.salary > 0 ∧ Husband.is_working == false → Factual(x0, y0))
+30. Q[husband, Husband.industry, Husband.is_working](Husband.industry != null ∧ Husband.is_working == false → Factual(x0, y0))

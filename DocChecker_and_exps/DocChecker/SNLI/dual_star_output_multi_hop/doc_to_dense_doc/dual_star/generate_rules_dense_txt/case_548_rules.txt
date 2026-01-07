@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 548)
+S1: T h r e e m e n a r e s a i l i n g n e a r t h e s h o r e.
+S2: T h r e e p e o p l e a r e s a i l i n g n e a r t h e s h o r e.
+
+Predicates:
+1. S1.entity.three_men
+2. S2.entity.three_people
+3. S1.location.near_shore
+4. S2.location.near_shore
+5. S1.activity.sailing
+6. S2.activity.sailing
+7. S1.gender.men
+8. S2.gender.people
+9. S1.count.three
+10. S2.count.three
+11. S1.subject.men
+12. S2.subject.people
+13. S1.context.sailing_activity
+14. S2.context.sailing_activity
+15. S1.time.present
+16. S2.time.present
+17. S1.relationship.sailing_near
+18. S2.relationship.sailing_near
+19. S1.meta.M_NLI(S1, S2)
+20. S1.meta.Factual(S1, S2)
+21. S1.meta.violate(S1, S2)
+22. S1.entity.men_count
+23. S2.entity.people_count
+24. S1.activity.location
+25. S2.activity.location
+26. S1.subject_count.men
+27. S2.subject_count.people
+28. S1.gender_difference
+29. S2.gender_difference
+30. S1.context.comparison(S1, S2)
+
+Rules:
+1. Q[three_men, x0, y0](S1.entity.three_men == true → Factual(x0, y0))
+2. Q[three_people, x0, y0](S2.entity.three_people == true → Factual(x0, y0))
+3. Q[near_shore, x0, y0](S1.location.near_shore == true → Factual(x0, y0))
+4. Q[near_shore, x0, y0](S2.location.near_shore == true → Factual(x0, y0))
+5. Q[sailing, x0, y0](S1.activity.sailing == true → Factual(x0, y0))
+6. Q[sailing, x0, y0](S2.activity.sailing == true → Factual(x0, y0))
+7. Q[men, x0, y0](S1.gender.men == true → Factual(x0, y0))
+8. Q[people, x0, y0](S2.gender.people == true → Factual(x0, y0))
+9. Q[count.three, x0, y0](S1.count.three == true → Factual(x0, y0))
+10. Q[count.three, x0, y0](S2.count.three == true → Factual(x0, y0))
+11. Q[men, x0, y0](S1.subject.men == true → Factual(x0, y0))
+12. Q[people, x0, y0](S2.subject.people == true → Factual(x0, y0))
+13. Q[sailing_activity, x0, y0](S1.context.sailing_activity == true → Factual(x0, y0))
+14. Q[sailing_activity, x0, y0](S2.context.sailing_activity == true → Factual(x0, y0))
+15. Q[present, x0, y0](S1.time.present == true → Factual(x0, y0))
+16. Q[present, x0, y0](S2.time.present == true → Factual(x0, y0))
+17. Q[sailing_near, x0, y0](S1.relationship.sailing_near == true → Factual(x0, y0))
+18. Q[sailing_near, x0, y0](S2.relationship.sailing_near == true → Factual(x0, y0))
+19. Q[M_NLI, x0, y0](S1.meta.M_NLI(S1, S2) == true → Factual(x0, y0))
+20. Q[Factual, x0, y0](S1.meta.Factual(S1, S2) == true → Factual(x0, y0))
+21. Q[violate, x0, y0](S1.meta.violate(S1, S2) == true → Factual(x0, y0))
+22. Q[men_count, x0, y0](S1.entity.men_count == 3 → Factual(x0, y0))
+23. Q[people_count, x0, y0](S2.entity.people_count == 3 → Factual(x0, y0))
+24. Q[activity_location, x0, y0](S1.activity.location == S1.location.near_shore → Factual(x0, y0))
+25. Q[activity_location, x0, y0](S2.activity.location == S2.location.near_shore → Factual(x0, y0))
+26. Q[subject_count.men, x0, y0](S1.subject_count.men == 3 → Factual(x0, y0))
+27. Q[subject_count.people, x0, y0](S2.subject_count.people == 3 → Factual(x0, y0))
+28. Q[gender_difference, x0, y0](S1.gender_difference == true → Factual(x0, y0))
+29. Q[gender_difference, x0, y0](S2.gender_difference == true → Factual(x0, y0))
+30. Q[comparison, x0, y0](S1.context.comparison(S1, S2) == true → Factual(x0, y0))

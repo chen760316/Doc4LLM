@@ -1,0 +1,56 @@
+Predicates:
+ICRC.label != "Organization"
+ICRC.label != flights.label
+ICRC.label != wounded.label
+ICRC.label = "Organization"
+ICRC.location != "Sanaa"
+ICRC.location = "Sanaa"
+ICRC.name != "ICRC"
+ICRC.name != flights.name
+ICRC.name != wounded.name
+ICRC.name = "ICRC"
+ICRC.role != "spokeswoman"
+ICRC.role = "spokeswoman"
+ICRC.spokeswoman_name != "Marie-Claire Feghali"
+ICRC.spokeswoman_name = "Marie-Claire Feghali"
+ICRC___flights.contradiction_type != ICRC___wounded.contradiction_type
+ICRC___flights.contradiction_type = "Causal"
+ICRC___flights.method = "air travel"
+ICRC___flights.relationship != ICRC___wounded.relationship
+ICRC___flights.relationship = "ICRC is hoping to fly out while flights are canceled"
+ICRC___flights.source_id = "3489738279_7"
+ICRC___wounded.context = "statement about medical supplies"
+ICRC___wounded.contradiction_type = "Content (Opinion/Emotion)"
+ICRC___wounded.relationship = "Marie-Claire Feghali from ICRC stated that medical supplies are not urgently needed."
+ICRC___wounded.source_id = "3489738279_7"
+None_ML(ICRC___wounded.attrs, ICRC___flights.attrs)
+None_ML(wounded.attrs, flights.attrs)
+flights.label != "Transportation"
+flights.label != wounded.label
+flights.label = "Transportation"
+flights.name != "flights"
+flights.name != wounded.name
+flights.name = "flights"
+flights.reason != "airstrikes have taken out many airfields"
+flights.reason = "airstrikes have taken out many airfields"
+flights.status != "canceled"
+flights.status != wounded.status
+flights.status = "canceled"
+wounded.label != "Entity"
+wounded.label = "Entity"
+wounded.name != "wounded"
+wounded.name = "wounded"
+wounded.status != "in need of medical supplies"
+wounded.status = "in need of medical supplies"
+
+Rules:
+Q[ICRC,ICRC] (ICRC.role = "spokeswoman" ∧ ICRC.label != "Organization" ∧ ICRC___flights.relationship != ICRC___wounded.relationship ∧ flights.status != wounded.status ∧ ICRC.spokeswoman_name = "Marie-Claire Feghali" → flights.status = "canceled")
+Q[ICRC,ICRC] (flights.reason = "airstrikes have taken out many airfields" ∧ flights.status != wounded.status ∧ ICRC___wounded.contradiction_type = "Content (Opinion/Emotion)" ∧ ICRC.name != flights.name ∧ flights.label != wounded.label ∧ ICRC___flights.method = "air travel" → wounded.name != "wounded")
+Q[ICRC,ICRC] (ICRC___flights.relationship = "ICRC is hoping to fly out while flights are canceled" ∧ wounded.status != "in need of medical supplies" ∧ ICRC.name != wounded.name → ICRC.label != "Organization")
+Q[ICRC,ICRC] (ICRC.spokeswoman_name != "Marie-Claire Feghali" ∧ wounded.name != "wounded" → flights.label = "Transportation")
+Q[ICRC,ICRC] (ICRC.label != "Organization" ∧ wounded.status = "in need of medical supplies" ∧ ICRC.label != flights.label ∧ ICRC.spokeswoman_name != "Marie-Claire Feghali" → ICRC___wounded.contradiction_type = "Content (Opinion/Emotion)")
+Q[ICRC,ICRC] (ICRC.name != flights.name ∧ flights.status != "canceled" ∧ flights.label != "Transportation" → ICRC.role != "spokeswoman")
+Q[ICRC,ICRC] (ICRC.label != "Organization" ∧ flights.label != wounded.label → ICRC.spokeswoman_name = "Marie-Claire Feghali")
+Q[ICRC,ICRC] (ICRC.label != "Organization" ∧ ICRC___wounded.context = "statement about medical supplies" ∧ ICRC___flights.contradiction_type = "Causal" ∧ flights.label = "Transportation" ∧ wounded.name = "wounded" ∧ ICRC.name != flights.name → ICRC___wounded.relationship = "Marie-Claire Feghali from ICRC stated that medical supplies are not urgently needed.")
+Q[ICRC,ICRC] (flights.label != "Transportation" ∧ ICRC.name != "ICRC" ∧ flights.reason != "airstrikes have taken out many airfields" ∧ wounded.name != "wounded" ∧ flights.status != wounded.status → flights.name != wounded.name)
+Q[ICRC,ICRC] (ICRC.location != "Sanaa" ∧ flights.name != wounded.name ∧ ICRC___flights.relationship != ICRC___wounded.relationship ∧ ICRC.name != "ICRC" → flights.reason = "airstrikes have taken out many airfields")

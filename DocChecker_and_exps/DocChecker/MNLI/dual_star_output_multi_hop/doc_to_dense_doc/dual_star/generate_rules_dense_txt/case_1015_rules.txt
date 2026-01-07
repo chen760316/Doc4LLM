@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 1015)
+S1: The place was willed to her for the rest of her life.
+S2: He had been completely under his wife's ascendancy, so much so that, on dying, he left the place to her for her lifetime.
+
+Predicates:
+1. Place.ownership
+2. Place.conditional_ownership
+3. Person.wife
+4. Person.husband
+5. Person.lifetime
+6. Person.ascendancy
+7. Event.dying
+8. Event.will
+9. Ownership.permanent_transfer
+10. Ownership.conditional_transfer
+11. Relationship.marriage
+12. Relationship.influence
+13. Transfer.to
+14. Transfer.from
+15. Legal.document
+16. Legal.condition
+17. Life.termination
+18. Life.duration
+19. Ownership.rights
+20. Ownership.lifetime
+21. Person.decision
+22. Person.inheritance
+23. Event.legal_transfer
+24. Event.death
+25. Condition.on_death
+26. Condition.for_lifetime
+27. Influence.extent
+28. Influence.on_decision
+29. Ownership.type
+30. Ownership.status
+
+Rules:
+1. Q[The, Place.ownership, Ownership.permanent_transfer](Place.ownership == "willed" → Negation(Ownership.permanent_transfer, Ownership.conditional_transfer))
+2. Q[The, Place.conditional_ownership, Ownership.lifetime](Place.conditional_ownership == "for her lifetime" → Negation(Ownership.lifetime, Ownership.permanent_transfer))
+3. Q[He, Person.husband, Person.wife](Person.husband == "under ascendancy" → Negation(Person.wife, Person.husband))
+4. Q[He, Event.dying, Event.legal_transfer](Event.dying == "left the place" → Negation(Event.legal_transfer, Ownership.permanent_transfer))
+5. Q[He, Ownership.conditional_transfer, Ownership.permanent_transfer](Ownership.conditional_transfer == "to her for her lifetime" → Negation(Ownership.permanent_transfer, Ownership.conditional_transfer))
+6. Q[He, Person.decision, Person.inheritance](Person.decision == "left the place" → Negation(Person.inheritance, Ownership.permanent_transfer))
+7. Q[He, Condition.on_death, Ownership.conditional_transfer](Condition.on_death == "on dying" → Negation(Ownership.conditional_transfer, Ownership.permanent_transfer))
+8. Q[He, Ownership.type, Ownership.status](Ownership.type == "conditional" → Negation(Ownership.status, Ownership.permanent_transfer))
+9. Q[He, Event.death, Ownership.lifetime](Event.death == "he left the place" → Negation(Ownership.lifetime, Ownership.permanent_transfer))
+10. Q[He, Person.ascendancy, Influence.extent](Person.ascendancy == "completely under" → Negation(Influence.extent, Ownership.permanent_transfer))
+11. Q[He, Relationship.marriage, Person.wife](Relationship.marriage == "under ascendancy" → Negation(Person.wife, Ownership.permanent_transfer))
+12. Q[He, Transfer.to, Transfer.from](Transfer.to == "her for her lifetime" → Negation(Transfer.from, Ownership.permanent_transfer))
+13. Q[He, Legal.document, Event.legal_transfer](Legal.document == "will" → Negation(Event.legal_transfer, Ownership.permanent_transfer))
+14. Q[He, Ownership.rights, Ownership.lifetime](Ownership.rights == "conditional" → Negation(Ownership.lifetime, Ownership.permanent_transfer))
+15. Q[He, Life.termination, Life.duration](Life.termination == "on dying" → Negation(Life.duration, Ownership.permanent_transfer))
+16. Q[He, Condition.for_lifetime, Ownership.conditional_transfer](Condition.for_lifetime == "for her lifetime" → Negation(Ownership.conditional_transfer, Ownership.permanent_transfer))
+17. Q[He, Influence.on_decision, Person.decision](Influence.on_decision == "completely under" → Negation(Person.decision, Ownership.permanent_transfer))
+18. Q[He, Ownership.status, Ownership.type](Ownership.status == "conditional" → Negation(Ownership.type, Ownership.permanent_transfer))
+19. Q[He, Event.will, Event.dying](Event.will == "left the place" → Negation(Event.dying, Ownership.permanent_transfer))
+20. Q[He, Person.husband, Person.ascendancy](Person.husband == "under ascendancy" → Negation(Person.ascendancy, Ownership.permanent_transfer))
+21. Q[He, Transfer.from, Transfer.to](Transfer.from == "he" → Negation(Transfer.to, Ownership.permanent_transfer))
+22. Q[He, Ownership.lifetime, Ownership.conditional_transfer](Ownership.lifetime == "for her lifetime" → Negation(Ownership.conditional_transfer, Ownership.permanent_transfer))
+23. Q[He, Event.death, Condition.on_death](Event.death == "on dying" → Negation(Condition.on_death, Ownership.permanent_transfer))
+24. Q[He, Person.inheritance, Ownership.rights](Person.inheritance == "conditional" → Negation(Ownership.rights, Ownership.permanent_transfer))
+25. Q[He, Legal.condition, Ownership.conditional_transfer](Legal.condition == "on death" → Negation(Ownership.conditional_transfer, Ownership.permanent_transfer))
+26. Q[He, Life.duration, Life.termination](Life.duration == "conditional" → Negation(Life.termination, Ownership.permanent_transfer))
+27. Q[He, Influence.extent, Person.ascendancy](Influence.extent == "complete" → Negation(Person.ascendancy, Ownership.permanent_transfer))
+28. Q[He, Ownership.type, Ownership.lifetime](Ownership.type == "conditional" → Negation(Ownership.lifetime, Ownership.permanent_transfer))
+29. Q[He, Event.legal_transfer, Ownership.conditional_transfer](Event.legal_transfer == "conditional" → Negation(Ownership.conditional_transfer, Ownership.permanent_transfer))
+30. Q[He, Transfer.to, Ownership.lifetime](Transfer.to == "her" → Negation(Ownership.lifetime, Ownership.permanent_transfer))

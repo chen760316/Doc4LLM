@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 165)
+S1: As people get older they have fewer and fewer nerve cells, because once the cells have died they are not replaced.
+S2: The brain cells, like the skin cells, are able to multiply and that is why all the brain cells do not die out.
+
+Predicates:
+1. People.age
+2. NerveCells.count
+3. NerveCells.replacement
+4. BrainCells.multiplication
+5. SkinCells.multiplication
+6. NerveCells.decline
+7. Age.effect_on(NerveCells)
+8. NerveCells.death
+9. BrainCells.survival
+10. BrainCells.death
+11. NerveCells.not_replaced
+12. BrainCells.not_dying_out
+13. Age.influence_on(BrainCells)
+14. NerveCells.age_relation
+15. BrainCells.age_relation
+16. SkinCells.age_relation
+17. NerveCells.lifetime
+18. BrainCells.lifetime
+19. SkinCells.lifetime
+20. NerveCells.vitality
+21. BrainCells.vitality
+22. SkinCells.vitality
+23. NerveCells.functionality
+24. BrainCells.functionality
+25. SkinCells.functionality
+26. M_NLI(S1, S2)
+27. Factual(NerveCells, decline)
+28. Factual(BrainCells, multiplication)
+29. violate(NerveCells, replacement)
+30. violate(BrainCells, death)
+
+Rules:
+1. Q[people, NerveCells.count, decline](people.age > 60 → Factual(NerveCells, decline))
+2. Q[people, NerveCells.not_replaced, decline](NerveCells.death == true → Factual(NerveCells, decline))
+3. Q[people, BrainCells.multiplication, not_dying_out](BrainCells.multiplication == true → Factual(BrainCells, not_dying_out))
+4. Q[people, NerveCells.decline, not_replaced](NerveCells.count < 1000 → Factual(NerveCells, decline))
+5. Q[people, BrainCells.survival, not_dying_out](BrainCells.survival == true → Factual(BrainCells, not_dying_out))
+6. Q[people, NerveCells.age_relation, decline](Age.effect_on(NerveCells) == negative → Factual(NerveCells, decline))
+7. Q[people, BrainCells.age_relation, not_dying_out](Age.influence_on(BrainCells) == positive → Factual(BrainCells, not_dying_out))
+8. Q[people, NerveCells.death, not_replaced](NerveCells.death == true → Factual(NerveCells, not_replaced))
+9. Q[people, BrainCells.not_dying_out, multiplication](BrainCells.multiplication == true → Factual(BrainCells, not_dying_out))
+10. Q[people, NerveCells.vitality, decline](NerveCells.vitality < 50 → Factual(NerveCells, decline))
+11. Q[people, BrainCells.vitality, not_dying_out](BrainCells.vitality > 50 → Factual(BrainCells, not_dying_out))
+12. Q[people, NerveCells.functionality, decline](NerveCells.functionality < 30 → Factual(NerveCells, decline))
+13. Q[people, BrainCells.functionality, not_dying_out](BrainCells.functionality > 70 → Factual(BrainCells, not_dying_out))
+14. Q[people, NerveCells.lifetime, decline](NerveCells.lifetime < 70 → Factual(NerveCells, decline))
+15. Q[people, BrainCells.lifetime, not_dying_out](BrainCells.lifetime > 70 → Factual(BrainCells, not_dying_out))
+16. Q[people, NerveCells.replacement, decline](NerveCells.replacement == false → Factual(NerveCells, decline))
+17. Q[people, BrainCells.not_dying_out, survival](BrainCells.not_dying_out == true → Factual(BrainCells, survival))
+18. Q[people, NerveCells.age_relation, not_replaced](NerveCells.age_relation == negative → Factual(NerveCells, not_replaced))
+19. Q[people, BrainCells.age_relation, multiplication](BrainCells.age_relation == positive → Factual(BrainCells, multiplication))
+20. Q[people, NerveCells.count, not_replaced](NerveCells.count == 0 → Factual(NerveCells, not_replaced))
+21. Q[people, BrainCells.count, multiplication](BrainCells.count > 1000 → Factual(BrainCells, multiplication))
+22. Q[people, NerveCells.decline, not_replaced](NerveCells.decline == true → Factual(NerveCells, not_replaced))
+23. Q[people, BrainCells.death, not_dying_out](BrainCells.death == false → Factual(BrainCells, not_dying_out))
+24. Q[people, NerveCells.vitality, not_replaced](NerveCells.vitality == 0 → Factual(NerveCells, not_replaced))
+25. Q[people, BrainCells.vitality, multiplication](BrainCells.vitality > 50 → Factual(BrainCells, multiplication))
+26. Q[people, NerveCells.functionality, not_replaced](NerveCells.functionality == 0 → Factual(NerveCells, not_replaced))
+27. Q[people, BrainCells.functionality, multiplication](BrainCells.functionality > 50 → Factual(BrainCells, multiplication))
+28. Q[people, NerveCells.lifetime, not_replaced](NerveCells.lifetime == 0 → Factual(NerveCells, not_replaced))
+29. Q[people, BrainCells.lifetime, multiplication](BrainCells.lifetime > 50 → Factual(BrainCells, multiplication))
+30. Q[people, NerveCells.death, decline](NerveCells.death == true → Factual(NerveCells, decline))

@@ -1,0 +1,43 @@
+Predicates:
+Chapel.label != "Place of Worship"
+Chapel.label != Nearby House.label
+Chapel.label = "Place of Worship"
+Chapel.name != "Chapel"
+Chapel.name != Nearby House.name
+Chapel.name = "Chapel"
+Chapel.status != "well-maintained"
+Chapel.status != Nearby House.status
+Chapel.status = "well-maintained"
+Chapel.time_period != "after early 18th century"
+Chapel.time_period = "after early 18th century"
+Chapel___Chapel.condition = "fell into disrepair"
+Chapel___Chapel.contradiction_type = "Causal"
+Chapel___Chapel.relationship != Chapel___Nearby House.relationship
+Chapel___Chapel.relationship = "After the early part of the 18th century, the chapel became unused and began to fall into disrepair."
+Chapel___Chapel.source_id != Chapel___Nearby House.source_id
+Chapel___Chapel.source_id = "3502252168_6"
+Chapel___Chapel.time = "early 18th century"
+Chapel___Nearby House.contradiction_type = "Causal"
+Chapel___Nearby House.relationship = "The chapel was used as a private place of worship for the nearby house until the early 18th century."
+Chapel___Nearby House.source_id = "3502252168_5"
+Chapel___Nearby House.time = "early 18th century"
+Nearby House.label != "House"
+Nearby House.label = "House"
+Nearby House.name != "Nearby House"
+Nearby House.name = "Nearby House"
+Nearby House.status != "private place of worship"
+Nearby House.status = "private place of worship"
+None_ML(Chapel.attrs, Nearby House.attrs)
+None_ML(Chapel___Chapel.attrs, Chapel___Nearby House.attrs)
+
+Rules:
+Q[Chapel,Chapel] (Chapel.label != "Place of Worship" ∧ None_ML(Chapel___Chapel.attrs, Chapel___Nearby House.attrs) → Chapel___Chapel.source_id = "3502252168_6")
+Q[Chapel,Chapel] (Chapel___Nearby House.source_id = "3502252168_5" ∧ Chapel___Chapel.source_id = "3502252168_6" ∧ Chapel___Nearby House.time = "early 18th century" ∧ Nearby House.status != "private place of worship" ∧ Chapel.label != "Place of Worship" → Nearby House.name = "Nearby House")
+Q[Chapel,Chapel] (Chapel___Chapel.time = "early 18th century" ∧ Chapel___Nearby House.time = "early 18th century" ∧ Nearby House.status = "private place of worship" ∧ Chapel___Chapel.source_id = "3502252168_6" ∧ None_ML(Chapel.attrs, Nearby House.attrs) ∧ Chapel___Nearby House.source_id = "3502252168_5" → Nearby House.status != "private place of worship")
+Q[Chapel,Chapel] (Chapel.name != Nearby House.name ∧ Nearby House.name = "Nearby House" ∧ Chapel___Nearby House.relationship = "The chapel was used as a private place of worship for the nearby house until the early 18th century." → Chapel.status = "well-maintained")
+Q[Chapel,Chapel] (Nearby House.label = "House" ∧ Chapel___Nearby House.relationship = "The chapel was used as a private place of worship for the nearby house until the early 18th century." ∧ Nearby House.name = "Nearby House" ∧ Chapel___Chapel.time = "early 18th century" → Chapel.label != Nearby House.label)
+Q[Chapel,Chapel] (Chapel___Nearby House.contradiction_type = "Causal" ∧ Chapel.time_period != "after early 18th century" ∧ Chapel.status != Nearby House.status → Chapel___Nearby House.relationship = "The chapel was used as a private place of worship for the nearby house until the early 18th century.")
+Q[Chapel,Chapel] (Chapel___Chapel.time = "early 18th century" ∧ Chapel___Chapel.relationship = "After the early part of the 18th century, the chapel became unused and began to fall into disrepair." ∧ Chapel___Nearby House.relationship = "The chapel was used as a private place of worship for the nearby house until the early 18th century." ∧ Chapel.name = "Chapel" ∧ Nearby House.name = "Nearby House" → Chapel.label != "Place of Worship")
+Q[Chapel,Chapel] (Nearby House.status != "private place of worship" ∧ Chapel.time_period = "after early 18th century" ∧ Chapel___Chapel.contradiction_type = "Causal" ∧ Chapel___Nearby House.relationship = "The chapel was used as a private place of worship for the nearby house until the early 18th century." → Chapel___Chapel.condition = "fell into disrepair")
+Q[Chapel,Chapel] (Nearby House.name != "Nearby House" ∧ Chapel___Chapel.source_id = "3502252168_6" → Chapel___Chapel.relationship = "After the early part of the 18th century, the chapel became unused and began to fall into disrepair.")
+Q[Chapel,Chapel] (Chapel___Chapel.relationship != Chapel___Nearby House.relationship ∧ Chapel___Nearby House.source_id = "3502252168_5" ∧ Chapel.status != Nearby House.status ∧ None_ML(Chapel.attrs, Nearby House.attrs) ∧ Chapel.name != Nearby House.name ∧ Chapel.name = "Chapel" → Nearby House.label = "House")

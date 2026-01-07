@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 731)
+S1: The South China Morning Post is located in Japan.
+S2: No, it was diplomacy backed up by force, Kondracker roars back.
+
+Predicates:
+1. Publication_South_China_Morning_Post.location
+2. Publication_South_China_Morning_Post.year
+3. Publication_South_China_Morning_Post.language
+4. Publication_South_China_Morning_Post.type
+5. Publication_South_China_Morning_Post.owner
+6. Publication_South_China_Morning_Post.editor
+7. Publication_South_China_Morning_Post.founded_year
+8. Publication_South_China_Morning_Post.headquarters
+9. Publication_South_China_Morning_Post.website
+10. Publication_South_China_Morning_Post.issn
+11. Location_Hong_Kong.country
+12. Location_Hong_Kong.region
+13. Location_Hong_Kong.population
+14. Location_Hong_Kong.area
+15. Location_Japan.country
+16. Location_Japan.region
+17. Location_Japan.population
+18. Location_Japan.area
+19. Relationship_location.is_in
+20. Relationship_location.is_not_in
+21. Relationship_diplomacy.backed_by
+22. Relationship_force.is_used
+23. Meta_M_NLI(S1, S2)
+24. Meta_Factual(South_China_Morning_Post, Hong_Kong)
+25. Meta_violate(South_China_Morning_Post, Japan)
+26. Entity_Kondracker.name
+27. Entity_Kondracker.role
+28. Entity_Kondracker.statement
+29. Entity_diplomacy.type
+30. Entity_force.type
+
+Rules:
+1. Q[The, Publication_South_China_Morning_Post.location, Japan](Publication_South_China_Morning_Post.location == "Japan" → Factual(Publication_South_China_Morning_Post, Japan))
+2. Q[The, Publication_South_China_Morning_Post.location, Hong_Kong](Publication_South_China_Morning_Post.location == "Hong Kong" → Factual(Publication_South_China_Morning_Post, Hong_Kong))
+3. Q[The, Publication_South_China_Morning_Post.headquarters, Japan](Publication_South_China_Morning_Post.headquarters == "Japan" → Factual(Publication_South_China_Morning_Post, Japan))
+4. Q[The, Publication_South_China_Morning_Post.headquarters, Hong_Kong](Publication_South_China_Morning_Post.headquarters == "Hong Kong" → Factual(Publication_South_China_Morning_Post, Hong_Kong))
+5. Q[The, Publication_South_China_Morning_Post.owner, Japan](Publication_South_China_Morning_Post.owner == "Japan" → Factual(Publication_South_China_Morning_Post, Japan))
+6. Q[The, Publication_South_China_Morning_Post.owner, Hong_Kong](Publication_South_China_Morning_Post.owner == "Hong Kong" → Factual(Publication_South_China_Morning_Post, Hong_Kong))
+7. Q[The, Publication_South_China_Morning_Post.language, Japanese](Publication_South_China_Morning_Post.language == "Japanese" → Factual(Publication_South_China_Morning_Post, Japan))
+8. Q[The, Publication_South_China_Morning_Post.language, Chinese](Publication_South_China_Morning_Post.language == "Chinese" → Factual(Publication_South_China_Morning_Post, Hong_Kong))
+9. Q[The, Publication_South_China_Morning_Post.type, newspaper](Publication_South_China_Morning_Post.type == "newspaper" → Factual(Publication_South_China_Morning_Post, Hong_Kong))
+10. Q[The, Publication_South_China_Morning_Post.year, 1903](Publication_South_China_Morning_Post.year == 1903 → Factual(Publication_South_China_Morning_Post, Hong_Kong))
+11. Q[The, Location_Hong_Kong.country, Hong_Kong](Location_Hong_Kong.country == "Hong Kong" → Factual(Location_Hong_Kong, Hong_Kong))
+12. Q[The, Location_Japan.country, Japan](Location_Japan.country == "Japan" → Factual(Location_Japan, Japan))
+13. Q[The, Location_Hong_Kong.region, Asia](Location_Hong_Kong.region == "Asia" → Factual(Location_Hong_Kong, Hong_Kong))
+14. Q[The, Location_Japan.region, Asia](Location_Japan.region == "Asia" → Factual(Location_Japan, Japan))
+15. Q[The, Location_Hong_Kong.population, 7500000](Location_Hong_Kong.population == 7500000 → Factual(Location_Hong_Kong, Hong_Kong))
+16. Q[The, Location_Japan.population, 126000000](Location_Japan.population == 126000000 → Factual(Location_Japan, Japan))
+17. Q[The, Relationship_location.is_in, Hong_Kong](Relationship_location.is_in == "Hong Kong" → Factual(Publication_South_China_Morning_Post, Hong_Kong))
+18. Q[The, Relationship_location.is_not_in, Japan](Relationship_location.is_not_in == "Japan" → Factual(Publication_South_China_Morning_Post, Japan))
+19. Q[The, Meta_M_NLI(S1, S2), contradiction](Meta_M_NLI(S1, S2) == contradiction → Factual(Publication_South_China_Morning_Post, Hong_Kong))
+20. Q[The, Meta_Factual(South_China_Morning_Post, Hong_Kong), true](Meta_Factual(South_China_Morning_Post, Hong_Kong) == true → Factual(Publication_South_China_Morning_Post, Hong_Kong))
+21. Q[The, Meta_violate(South_China_Morning_Post, Japan), true](Meta_violate(South_China_Morning_Post, Japan) == true → Factual(Publication_South_China_Morning_Post, Japan))
+22. Q[The, Entity_Kondracker.statement, diplomacy](Entity_Kondracker.statement == "diplomacy" → Factual(Entity_Kondracker, diplomacy))
+23. Q[The, Entity_Kondracker.statement, force](Entity_Kondracker.statement == "force" → Factual(Entity_Kondracker, force))
+24. Q[The, Relationship_diplomacy.backed_by, force](Relationship_diplomacy.backed_by == "force" → Factual(Relationship_diplomacy, force))
+25. Q[The, Relationship_force.is_used, true](Relationship_force.is_used == true → Factual(Relationship_force, true))
+26. Q[The, Publication_South_China_Morning_Post.issn, 123456789](Publication_South_China_Morning_Post.issn == "123456789" → Factual(Publication_South_China_Morning_Post, Hong_Kong))
+27. Q[The, Publication_South_China_Morning_Post.website, "scmp.com"](Publication_South_China_Morning_Post.website == "scmp.com" → Factual(Publication_South_China_Morning_Post, Hong_Kong))
+28. Q[The, Publication_South_China_Morning_Post.editor, "John Doe"](Publication_South_China_Morning_Post.editor == "John Doe" → Factual(Publication_South_China_Morning_Post, Hong_Kong))
+29. Q[The, Publication_South_China_Morning_Post.founded_year, 1903](Publication_South_China_Morning_Post.founded_year == 1903 → Factual(Publication_South_China_Morning_Post, Hong_Kong))
+30. Q[The, Publication_South_China_Morning_Post.type, news](Publication_South_China_Morning_Post.type == "news" → Factual(Publication_South_China_Morning_Post, Hong_Kong))

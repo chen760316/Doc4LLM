@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 1531)
+S1: The woman is shopping.
+S2: A man and woman are eating dinner.
+
+Predicates:
+1. Woman.activity
+2. Man.activity
+3. Woman.shopping
+4. Woman.eating
+5. Man.eating
+6. Dinner.time
+7. Shopping.time
+8. Woman.isShopping
+9. Woman.isEating
+10. Man.isEating
+11. Shopping.location
+12. Dinner.location
+13. Woman.participation
+14. Man.participation
+15. Dinner.event
+16. Shopping.event
+17. M_NLI(S1, S2)
+18. Factual(S1, S2)
+19. violate(S1, S2)
+20. Woman.status
+21. Man.status
+22. Woman.presence
+23. Man.presence
+24. Dinner.participants
+25. Shopping.participants
+26. Woman.activityStatus
+27. Man.activityStatus
+28. Shopping.duration
+29. Dinner.duration
+30. Woman.timeConflict
+
+Rules:
+1. Q[The, Woman.activity, Woman.isShopping](Woman.activity == "shopping" → Factual(x0, y0))
+2. Q[The, Woman.activity, Woman.isEating](Woman.activity == "eating" → Factual(x0, y0))
+3. Q[The, Woman.shopping, Woman.eating](Woman.shopping == true → Factual(x0, y0))
+4. Q[The, Woman.eating, Woman.shopping](Woman.eating == true → Factual(x0, y0))
+5. Q[The, Woman.isShopping, Woman.isEating](Woman.isShopping == true → Factual(x0, y0))
+6. Q[The, Woman.isEating, Woman.isShopping](Woman.isEating == true → Factual(x0, y0))
+7. Q[The, Dinner.time, Woman.activity](Dinner.time == "eating" → Factual(x0, y0))
+8. Q[The, Shopping.time, Woman.activity](Shopping.time == "shopping" → Factual(x0, y0))
+9. Q[The, Woman.activityStatus, Woman.isShopping](Woman.activityStatus == "shopping" → Factual(x0, y0))
+10. Q[The, Woman.activityStatus, Woman.isEating](Woman.activityStatus == "eating" → Factual(x0, y0))
+11. Q[The, Woman.timeConflict, Woman.isShopping](Woman.timeConflict == true → Factual(x0, y0))
+12. Q[The, Woman.timeConflict, Woman.isEating](Woman.timeConflict == true → Factual(x0, y0))
+13. Q[The, Woman.presence, Woman.isShopping](Woman.presence == true → Factual(x0, y0))
+14. Q[The, Woman.presence, Woman.isEating](Woman.presence == true → Factual(x0, y0))
+15. Q[The, Dinner.participants, Woman.eating](Dinner.participants == "woman" → Factual(x0, y0))
+16. Q[The, Shopping.participants, Woman.shopping](Shopping.participants == "woman" → Factual(x0, y0))
+17. Q[The, Man.activity, Man.isEating](Man.activity == "eating" → Factual(x0, y0))
+18. Q[The, Man.isEating, Woman.eating](Man.isEating == true → Factual(x0, y0))
+19. Q[The, Man.eating, Woman.isEating](Man.eating == true → Factual(x0, y0))
+20. Q[The, Dinner.event, Woman.eating](Dinner.event == "eating" → Factual(x0, y0))
+21. Q[The, Shopping.event, Woman.shopping](Shopping.event == "shopping" → Factual(x0, y0))
+22. Q[The, Woman.participation, Woman.isShopping](Woman.participation == "shopping" → Factual(x0, y0))
+23. Q[The, Woman.participation, Woman.isEating](Woman.participation == "eating" → Factual(x0, y0))
+24. Q[The, Woman.status, Woman.isShopping](Woman.status == "shopping" → Factual(x0, y0))
+25. Q[The, Woman.status, Woman.isEating](Woman.status == "eating" → Factual(x0, y0))
+26. Q[The, Shopping.duration, Woman.isShopping](Shopping.duration > 0 → Factual(x0, y0))
+27. Q[The, Dinner.duration, Woman.isEating](Dinner.duration > 0 → Factual(x0, y0))
+28. Q[The, Woman.activity, Woman.timeConflict](Woman.activity == "shopping" ∧ Woman.activity == "eating" → Factual(x0, y0))
+29. Q[The, Woman.activity, Woman.presence](Woman.activity == "shopping" ∧ Woman.presence == true → Factual(x0, y0))
+30. Q[The, Woman.activity, Woman.participation](Woman.activity == "eating" ∧ Woman.participation == true → Factual(x0, y0))

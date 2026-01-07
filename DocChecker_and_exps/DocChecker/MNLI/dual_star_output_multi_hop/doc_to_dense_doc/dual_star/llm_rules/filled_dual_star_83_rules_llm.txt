@@ -1,0 +1,133 @@
+Predicates:
+1. Economy.status = "hurt"
+2. Economy.reliance = "farming"
+3. Famine.impact = "negative"
+4. Plague.impact = "negative"
+5. Economy.affected_by = Famine
+6. Economy.affected_by = Plague
+7. Famine.causes = Economic_harm
+8. Plague.causes = Economic_harm
+9. Economic_harm.results_in = Decreased_productivity
+10. Economic_harm.results_in = Increased_unemployment
+11. Famine.results_in = Economic_decline
+12. Plague.results_in = Economic_decline
+13. Economy.experiences = Famine
+14. Economy.experiences = Plague
+15. Famine.is_a = Natural_disaster
+16. Plague.is_a = Health_crisis
+17. Natural_disaster.has_impact_on = Economy
+18. Health_crisis.has_impact_on = Economy
+19. Economy.suffers_from = Famine
+20. Economy.suffers_from = Plague
+21. Famine.leads_to = Economic_instability
+22. Plague.leads_to = Economic_instability
+23. Economic_instability.results_in = Social_unrest
+24. Economic_instability.results_in = Decreased_investment
+25. Famine.contributes_to = Economic_hardship
+26. Plague.contributes_to = Economic_hardship
+27. Economic_hardship.affects = Population_wellbeing
+28. Economic_hardship.affects = Community_stability
+29. Economy.is_vulnerable_to = Famine
+30. Economy.is_vulnerable_to = Plague
+31. Famine.decreases = Agricultural_output
+32. Plague.decreases = Labor_force
+33. Agricultural_output.is_critical_for = Economy
+34. Labor_force.is_critical_for = Economy
+35. Economy.recovers_from = Famine
+36. Economy.recovers_from = Plague
+37. Recovery_process.requires = Time
+38. Recovery_process.requires = Resources
+39. Famine.results_in = Food_shortages
+40. Plague.results_in = Health_crisis
+41. Food_shortages.leads_to = Increased_prices
+42. Health_crisis.leads_to = Increased_mortality
+43. Increased_prices.affects = Consumer_spending
+44. Increased_mortality.affects = Workforce
+45. Economy.struggles_with = Famine
+46. Economy.struggles_with = Plague
+47. Famine.is_fueled_by = Poor_agricultural_practices
+48. Plague.is_fueled_by = Poor_healthcare_system
+49. Poor_agricultural_practices.leads_to = Famine
+50. Poor_healthcare_system.leads_to = Plague
+51. Economy.requires = Sustainable_agriculture
+52. Economy.requires = Effective_healthcare
+53. Sustainable_agriculture.prevents = Famine
+54. Effective_healthcare.prevents = Plague
+55. Famine.is_mitigated_by = Government_intervention
+56. Plague.is_mitigated_by = Public_health_measures
+57. Government_intervention.supports = Economy
+58. Public_health_measures.supports = Economy
+59. Economy.is_affected_by = External_factors
+60. External_factors.include = Climate_change
+61. External_factors.include = Disease_outbreaks
+62. Climate_change.increases = Risk_of_famine
+63. Disease_outbreaks.increase = Risk_of_plague
+64. Economy.is_resilient_to = Famine
+65. Economy.is_resilient_to = Plague
+66. Resilience.requires = Preparedness
+67. Preparedness.includes = Emergency_planning
+68. Emergency_planning.includes = Resource_allocation
+69. Resource_allocation.is_essential_for = Economic_stability
+70. Economic_stability.supports = Community_wellbeing
+71. Community_wellbeing.is_enhanced_by = Economic_growth
+72. Economic_growth.is_driven_by = Innovation
+73. Innovation.is_supported_by = Education
+74. Education.promotes = Sustainable_practices
+75. Sustainable_practices.reduce = Environmental_impact
+76. Environmental_impact.can_lead_to = Famine
+77. Environmental_impact.can_lead_to = Plague
+78. Economy.is_interconnected_with = Global_market
+79. Global_market.is_affected_by = Local_events
+80. Local_events.include = Famine
+81. Local_events.include = Plague
+82. Famine.can_trigger = Migration
+83. Plague.can_trigger = Migration
+84. Migration.affects = Labor_market
+85. Labor_market.is_critical_for = Economic_growth
+86. Economic_growth.requires = Skilled_workforce
+87. Skilled_workforce.is_fostered_by = Training_programs
+88. Training_programs.improve = Employment_opportunities
+89. Employment_opportunities.support = Economic_recovery
+90. Economic_recovery.is_fueled_by = Investment
+91. Investment.is_attracted_by = Stability
+92. Stability.is_achieved_through = Policy_reform
+93. Policy_reform.addresses = Economic_inequality
+94. Economic_inequality.can_lead_to = Social_tension
+95. Social_tension.can_result_in = Conflict
+96. Conflict.has_negative_impact_on = Economy
+97. Economy.is_reshaped_by = Crisis
+98. Crisis.can_lead_to = Transformation
+99. Transformation.requires = Adaptation
+100. Adaptation.is_key_to = Future_resilience
+
+Rules:
+1. Q[1, 1](Economy.status = "hurt" ∧ Economy.reliance = "farming" → Economic_harm.results_in = Increased_unemployment)
+2. Q[2, 2](Famine.impact = "negative" ∧ Economy.affected_by = Famine → Economy.suffers_from = Plague)
+3. Q[3, 3](Plague.impact = "negative" ∧ Economy.experiences = Plague ∧ Economic_harm.results_in = Decreased_productivity → Famine.results_in = Economic_decline)
+4. Q[4, 4](Economy.affected_by = Plague ∧ Plague.leads_to = Economic_instability ∧ Economic_instability.results_in = Social_unrest → Economy.is_vulnerable_to = Famine)
+5. Q[5, 5](Famine.results_in = Food_shortages ∧ Food_shortages.leads_to = Increased_prices ∧ Increased_prices.affects = Consumer_spending ∧ Economy.is_affected_by = External_factors → Economic_hardship.affects = Community_stability)
+6. Q[6, 6](Plague.is_a = Health_crisis ∧ Health_crisis.has_impact_on = Economy ∧ Economy.struggles_with = Plague ∧ Economic_harm.results_in = Increased_unemployment ∧ Economic_hardship.affects = Population_wellbeing → Economy.recovers_from = Famine)
+7. Q[7, 1](Famine.is_a = Natural_disaster ∧ Economy.is_vulnerable_to = Famine → Economic_harm.results_in = Decreased_productivity)
+8. Q[8, 2](Plague.is_fueled_by = Poor_healthcare_system ∧ Economy.requires = Effective_healthcare → Plague.leads_to = Economic_instability)
+9. Q[9, 3](Famine.leads_to = Economic_instability ∧ Economic_instability.results_in = Decreased_investment ∧ Economy.is_affected_by = External_factors → Economic_hardship.affects = Community_stability)
+10. Q[10, 4](Economic_harm.results_in = Increased_unemployment ∧ Economy.suffers_from = Famine ∧ Famine.results_in = Economic_decline → Economy.is_resilient_to = Plague)
+11. Q[11, 5](Famine.contributes_to = Economic_hardship ∧ Economic_hardship.affects = Population_wellbeing ∧ Economy.is_affected_by = External_factors ∧ Economy.status = "hurt" → Economic_growth.is_driven_by = Innovation)
+12. Q[12, 6](Plague.decreases = Labor_force ∧ Labor_force.is_critical_for = Economy ∧ Economy.is_affected_by = External_factors ∧ Economy.experiences = Plague ∧ Economic_harm.results_in = Increased_unemployment → Economy.recovers_from = Famine)
+13. Q[13, 1](Famine.is_fueled_by = Poor_agricultural_practices ∧ Poor_agricultural_practices.leads_to = Famine → Economic_harm.results_in = Decreased_productivity)
+14. Q[14, 2](Plague.can_trigger = Migration ∧ Migration.affects = Labor_market → Economic_growth.requires = Skilled_workforce)
+15. Q[15, 3](Famine.results_in = Food_shortages ∧ Food_shortages.leads_to = Increased_prices ∧ Increased_prices.affects = Consumer_spending → Economic_recovery.is_fueled_by = Investment)
+16. Q[16, 4](Economic_instability.results_in = Social_unrest ∧ Social_tension.can_result_in = Conflict ∧ Conflict.has_negative_impact_on = Economy → Economy.is_reshaped_by = Crisis)
+17. Q[17, 5](Famine.results_in = Economic_decline ∧ Economic_decline.results_in = Decreased_productivity ∧ Economy.is_vulnerable_to = Famine ∧ Economy.requires = Sustainable_agriculture → Economic_growth.is_driven_by = Innovation)
+18. Q[18, 6](Plague.is_a = Health_crisis ∧ Health_crisis.leads_to = Increased_mortality ∧ Increased_mortality.affects = Workforce ∧ Economy.is_affected_by = External_factors ∧ Economy.status = "hurt" → Economic_hardship.affects = Community_stability)
+19. Q[19, 1](Famine.can_trigger = Migration ∧ Migration.affects = Labor_market → Economic_growth.requires = Skilled_workforce)
+20. Q[20, 2](Plague.leads_to = Economic_instability ∧ Economic_instability.results_in = Decreased_investment → Economy.is_resilient_to = Famine)
+21. Q[21, 3](Famine.decreases = Agricultural_output ∧ Agricultural_output.is_critical_for = Economy ∧ Economy.is_vulnerable_to = Famine → Economic_harm.results_in = Increased_unemployment)
+22. Q[22, 4](Plague.is_fueled_by = Poor_healthcare_system ∧ Economy.requires = Effective_healthcare ∧ Effective_healthcare.prevents = Plague → Economy.recovers_from = Famine)
+23. Q[23, 5](Famine.leads_to = Economic_instability ∧ Economic_instability.results_in = Social_unrest ∧ Economy.is_affected_by = External_factors ∧ Economy.status = "hurt" → Economic_growth.is_driven_by = Innovation)
+24. Q[24, 6](Plague.can_trigger = Migration ∧ Migration.affects = Labor_market ∧ Labor_market.is_critical_for = Economic_growth ∧ Economic_growth.requires = Skilled_workforce ∧ Economy.is_affected_by = External_factors → Economic_recovery.is_fueled_by = Investment)
+25. Q[25, 1](Famine.is_a = Natural_disaster ∧ Economy.is_vulnerable_to = Famine → Economic_harm.results_in = Increased_unemployment)
+26. Q[26, 2](Plague.impact = "negative" ∧ Economy.affected_by = Plague → Economy.suffers_from = Famine)
+27. Q[27, 3](Famine.results_in = Food_shortages ∧ Food_shortages.leads_to = Increased_prices ∧ Increased_prices.affects = Consumer_spending → Economic_hardship.affects = Population_wellbeing)
+28. Q[28, 4](Economic_harm.results_in = Decreased_productivity ∧ Economy.suffers_from = Famine ∧ Famine.results_in = Economic_decline → Economy.is_resilient_to = Plague)
+29. Q[29, 5](Plague.is_a = Health_crisis ∧ Health_crisis.has_impact_on = Economy ∧ Economy.struggles_with = Plague ∧ Economic_harm.results_in = Increased_unemployment → Economy.recovers_from = Famine)
+30. Q[30, 6](Famine.is_fueled_by = Poor_agricultural_practices ∧ Poor_agricultural_practices.leads_to = Famine ∧ Economy.requires = Sustainable_agriculture

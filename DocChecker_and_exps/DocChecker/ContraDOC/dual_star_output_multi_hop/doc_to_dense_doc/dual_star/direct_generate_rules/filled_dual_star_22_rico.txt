@@ -1,0 +1,34 @@
+Predicates:
+None_ML(cargo.attrs, crew.attrs)
+cargo.label != "Cargo"
+cargo.label != crew.label
+cargo.label = "Cargo"
+cargo.name != "cargo"
+cargo.name != crew.name
+cargo.name = "cargo"
+cargo.status != "spontaneously combusts"
+cargo.status = "spontaneously combusts"
+cargo___crew.condition = "hull cannot be made airtight"
+cargo___crew.contradiction_type = "Causal"
+cargo___crew.method = "smothering"
+cargo___crew.outcome = "hull cannot be made airtight"
+cargo___crew.relationship = "The cargo spontaneously combusts, prompting the crew to attempt to smother the fire."
+cargo___crew.source_id = "3488771884_2"
+crew.action != "attempts to smother the fire"
+crew.action = "attempts to smother the fire"
+crew.label != "Crew"
+crew.label = "Crew"
+crew.name != "crew"
+crew.name = "crew"
+
+Rules:
+Q[cargo,cargo] (cargo.status = "spontaneously combusts" ∧ crew.name = "crew" ∧ cargo___crew.method = "smothering" ∧ cargo___crew.condition = "hull cannot be made airtight" ∧ None_ML(cargo.attrs, crew.attrs) → cargo.status != "spontaneously combusts")
+Q[cargo,cargo] (cargo___crew.outcome = "hull cannot be made airtight" ∧ cargo.status = "spontaneously combusts" ∧ crew.label != "Crew" → cargo.name = "cargo")
+Q[cargo,cargo] (crew.label = "Crew" ∧ crew.action = "attempts to smother the fire" → cargo___crew.condition = "hull cannot be made airtight")
+Q[cargo,cargo] (crew.label != "Crew" ∧ None_ML(cargo.attrs, crew.attrs) ∧ cargo.name != "cargo" ∧ cargo.status != "spontaneously combusts" ∧ cargo.name != crew.name ∧ crew.action != "attempts to smother the fire" → crew.name != "crew")
+Q[cargo,cargo] (crew.name != "crew" ∧ crew.label != "Crew" ∧ cargo.name != "cargo" ∧ cargo___crew.condition = "hull cannot be made airtight" → cargo.status = "spontaneously combusts")
+Q[cargo,cargo] (cargo___crew.source_id = "3488771884_2" ∧ cargo___crew.condition = "hull cannot be made airtight" ∧ cargo___crew.method = "smothering" ∧ crew.name = "crew" ∧ cargo.label != crew.label → crew.action = "attempts to smother the fire")
+Q[cargo,cargo] (cargo___crew.condition = "hull cannot be made airtight" ∧ crew.name = "crew" → crew.label = "Crew")
+Q[cargo,cargo] (cargo.label = "Cargo" ∧ crew.label != "Crew" ∧ cargo___crew.method = "smothering" ∧ cargo.name != "cargo" → cargo___crew.contradiction_type = "Causal")
+Q[cargo,cargo] (crew.label = "Crew" ∧ cargo___crew.outcome = "hull cannot be made airtight" ∧ cargo.label != "Cargo" → cargo.label = "Cargo")
+Q[cargo,cargo] (crew.label != "Crew" ∧ crew.action = "attempts to smother the fire" ∧ cargo___crew.condition = "hull cannot be made airtight" ∧ cargo___crew.method = "smothering" ∧ cargo.status = "spontaneously combusts" ∧ cargo.name != crew.name → crew.action != "attempts to smother the fire")

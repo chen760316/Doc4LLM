@@ -1,0 +1,13 @@
+### Entity Mapping ###
+x0: "Judges"
+y0: "Judges"
+
+### Rules with Substituted Entities ###
+Rule: Q["Judges", "Judges"](Judges.case_type = "Franco-era" ∧ Judges.hearing_time = "last week" → violate(x0, y0))
+
+Rule: Q["Judges", "Judges"](Franco-era case.time = "last week" ∧ Franco-era case.source_domain = "N/A" → violate(x0, y0))
+
+Rule: Q["Judges", "Judges"](Another Trial.case_status = "ongoing" ∧ Another Trial.trial_outcome = "pending" ∧ Another Trial.judicial_review = "in progress" ∧ Another Trial.case_number = "2023-003" ∧ M_NLI(Judges.hearing_time, Franco-era case.time) → violate(x0, y0))
+
+Rule: Q["Judges", "Judges"](Factual(Judges.judicial_panel, Another Trial.judicial_panel) ∧ Causal(Judges.hearing_time, Another Trial.time) ∧ Numeric(Judges.case_number, Franco-era case.case_number) ∧ Temporal(Judges.hearing_time, Another Trial.time) → violate(x0, y0))
+

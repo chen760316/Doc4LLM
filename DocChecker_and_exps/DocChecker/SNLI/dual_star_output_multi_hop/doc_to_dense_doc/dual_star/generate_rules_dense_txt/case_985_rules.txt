@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 985)
+S1: Five people are sitting on outdoor furniture underneath a bright red flowering tree.
+S2: Five people were at a backyard party and sitting in the chairs beneath the tree.
+
+Predicates:
+1. Person1.is_sitting
+2. Person2.is_sitting
+3. Person3.is_sitting
+4. Person4.is_sitting
+5. Person5.is_sitting
+6. Tree.type
+7. Tree.color
+8. Furniture.type
+9. Furniture.location
+10. Event.current
+11. Event.past
+12. Person1.underneath(Tree)
+13. Person2.underneath(Tree)
+14. Person3.underneath(Tree)
+15. Person4.underneath(Tree)
+16. Person5.underneath(Tree)
+17. Party.location
+18. Party.time
+19. Party.attendees
+20. Relationship.between(Person1, Person2)
+21. Relationship.between(Person3, Person4)
+22. Relationship.between(Person5, Person1)
+23. M_NLI(S1, S2)
+24. Temporal(current, past)
+25. violate(current, past)
+26. Tree.has_flowers
+27. Furniture.is_outdoor
+28. Person1.is_present
+29. Person2.is_present
+30. Person3.is_present
+
+Rules:
+1. Q[Five, Person1.is_sitting == True, Event.current](S1 → Temporal(current, past))
+2. Q[Five, Person2.is_sitting == True, Event.current](S1 → Temporal(current, past))
+3. Q[Five, Person3.is_sitting == True, Event.current](S1 → Temporal(current, past))
+4. Q[Five, Person4.is_sitting == True, Event.current](S1 → Temporal(current, past))
+5. Q[Five, Person5.is_sitting == True, Event.current](S1 → Temporal(current, past))
+6. Q[Five, Tree.type == "flowering", Event.current](S1 → Temporal(current, past))
+7. Q[Five, Tree.color == "red", Event.current](S1 → Temporal(current, past))
+8. Q[Five, Furniture.type == "chairs", Event.current](S1 → Temporal(current, past))
+9. Q[Five, Furniture.location == "outdoor", Event.current](S1 → Temporal(current, past))
+10. Q[Five, Event.current == True, Event.current](S1 → Temporal(current, past))
+11. Q[Five, Person1.underneath(Tree) == True, Event.current](S1 → Temporal(current, past))
+12. Q[Five, Person2.underneath(Tree) == True, Event.current](S1 → Temporal(current, past))
+13. Q[Five, Person3.underneath(Tree) == True, Event.current](S1 → Temporal(current, past))
+14. Q[Five, Person4.underneath(Tree) == True, Event.current](S1 → Temporal(current, past))
+15. Q[Five, Person5.underneath(Tree) == True, Event.current](S1 → Temporal(current, past))
+16. Q[Five, Party.location == "backyard", Event.past](S2 → Temporal(current, past))
+17. Q[Five, Party.time == "past", Event.past](S2 → Temporal(current, past))
+18. Q[Five, Party.attendees == 5, Event.past](S2 → Temporal(current, past))
+19. Q[Five, Event.past == True, Event.past](S2 → Temporal(current, past))
+20. Q[Five, Person1.is_present == True, Event.past](S2 → Temporal(current, past))
+21. Q[Five, Person2.is_present == True, Event.past](S2 → Temporal(current, past))
+22. Q[Five, Person3.is_present == True, Event.past](S2 → Temporal(current, past))
+23. Q[Five, Person4.is_present == True, Event.past](S2 → Temporal(current, past))
+24. Q[Five, Person5.is_present == True, Event.past](S2 → Temporal(current, past))
+25. Q[Five, Tree.has_flowers == True, Event.current](S1 → Temporal(current, past))
+26. Q[Five, Furniture.is_outdoor == True, Event.current](S1 → Temporal(current, past))
+27. Q[Five, Relationship.between(Person1, Person2) == True, Event.current](S1 → Temporal(current, past))
+28. Q[Five, Relationship.between(Person3, Person4) == True, Event.current](S1 → Temporal(current, past))
+29. Q[Five, Relationship.between(Person5, Person1) == True, Event.current](S1 → Temporal(current, past))
+30. Q[Five, M_NLI(S1, S2) == False, Event.current](S1 → Temporal(current, past))

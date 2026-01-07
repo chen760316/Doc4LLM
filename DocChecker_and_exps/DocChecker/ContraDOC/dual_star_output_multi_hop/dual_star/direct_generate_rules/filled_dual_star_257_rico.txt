@@ -1,0 +1,45 @@
+Predicates:
+ICRC.label != "Organization"
+ICRC.label = "Organization"
+ICRC.name != "ICRC"
+ICRC.name = "ICRC"
+ICRC.type != "humanitarian organization"
+ICRC.type = "humanitarian organization"
+Iran.label != "Country"
+Iran.label != ICRC.label
+Iran.label = "Country"
+Iran.name != "Iran"
+Iran.name != ICRC.name
+Iran.name = "Iran"
+None_ML(Saudi Arabia.attrs, ICRC.attrs)
+None_ML(Saudi Arabia___Iran.attrs, Saudi Arabia___ICRC.attrs)
+Saudi Arabia.label != "Organization"
+Saudi Arabia.label != Iran.label
+Saudi Arabia.label = "Organization"
+Saudi Arabia.name != "Saudi Arabia"
+Saudi Arabia.name != ICRC.name
+Saudi Arabia.name != Iran.name
+Saudi Arabia.name = "Saudi Arabia"
+Saudi Arabia.type != "country"
+Saudi Arabia.type != ICRC.type
+Saudi Arabia.type = "country"
+Saudi Arabia___ICRC.doc_id = "3489738279_7"
+Saudi Arabia___ICRC.method = "via two aircraft"
+Saudi Arabia___ICRC.relationship = "Saudi Arabia allowed the ICRC to enter Yemen with medical supplies and workers."
+Saudi Arabia___Iran.context = "Iran's nuclear threat"
+Saudi Arabia___Iran.doc_id != Saudi Arabia___ICRC.doc_id
+Saudi Arabia___Iran.doc_id = "3489825777_11"
+Saudi Arabia___Iran.relationship != Saudi Arabia___ICRC.relationship
+Saudi Arabia___Iran.relationship = "Saudi Arabia may pursue nuclear weapons if Iran is not stopped."
+
+Rules:
+Q[Saudi Arabia,Saudi Arabia] (Saudi Arabia___ICRC.method = "via two aircraft" ∧ ICRC.name = "ICRC" ∧ Saudi Arabia.name != Iran.name ∧ Saudi Arabia___Iran.context = "Iran's nuclear threat" ∧ None_ML(Saudi Arabia___Iran.attrs, Saudi Arabia___ICRC.attrs) ∧ Saudi Arabia.label != Iran.label → Iran.name = "Iran")
+Q[Saudi Arabia,Saudi Arabia] (Saudi Arabia___Iran.relationship = "Saudi Arabia may pursue nuclear weapons if Iran is not stopped." ∧ ICRC.label != "Organization" ∧ None_ML(Saudi Arabia___Iran.attrs, Saudi Arabia___ICRC.attrs) ∧ Saudi Arabia.label != Iran.label → Saudi Arabia.name != Iran.name)
+Q[Saudi Arabia,Saudi Arabia] (Saudi Arabia.label != Iran.label ∧ Saudi Arabia___Iran.relationship = "Saudi Arabia may pursue nuclear weapons if Iran is not stopped." → Saudi Arabia___ICRC.relationship = "Saudi Arabia allowed the ICRC to enter Yemen with medical supplies and workers.")
+Q[Saudi Arabia,Saudi Arabia] (Saudi Arabia.type != ICRC.type ∧ ICRC.label != "Organization" ∧ ICRC.type != "humanitarian organization" ∧ ICRC.type = "humanitarian organization" ∧ Iran.label != ICRC.label → Saudi Arabia___Iran.doc_id != Saudi Arabia___ICRC.doc_id)
+Q[Saudi Arabia,Saudi Arabia] (Saudi Arabia.label != "Organization" ∧ Saudi Arabia___ICRC.relationship = "Saudi Arabia allowed the ICRC to enter Yemen with medical supplies and workers." ∧ ICRC.type != "humanitarian organization" → Saudi Arabia.name = "Saudi Arabia")
+Q[Saudi Arabia,Saudi Arabia] (None_ML(Saudi Arabia___Iran.attrs, Saudi Arabia___ICRC.attrs) ∧ Iran.name != ICRC.name ∧ Saudi Arabia___Iran.doc_id != Saudi Arabia___ICRC.doc_id ∧ Saudi Arabia___Iran.relationship != Saudi Arabia___ICRC.relationship ∧ Saudi Arabia.name = "Saudi Arabia" → Saudi Arabia.type = "country")
+Q[Saudi Arabia,Saudi Arabia] (Saudi Arabia.name != "Saudi Arabia" ∧ Saudi Arabia.label = "Organization" ∧ ICRC.label = "Organization" ∧ Saudi Arabia___Iran.doc_id != Saudi Arabia___ICRC.doc_id → Saudi Arabia.label != "Organization")
+Q[Saudi Arabia,Saudi Arabia] (ICRC.label != "Organization" ∧ Iran.label != "Country" → Saudi Arabia.type != ICRC.type)
+Q[Saudi Arabia,Saudi Arabia] (Saudi Arabia___Iran.doc_id = "3489825777_11" ∧ Saudi Arabia.name = "Saudi Arabia" ∧ Saudi Arabia.type != ICRC.type → None_ML(Saudi Arabia.attrs, ICRC.attrs))
+Q[Saudi Arabia,Saudi Arabia] (ICRC.label != "Organization" ∧ Saudi Arabia.name != Iran.name ∧ Saudi Arabia.type = "country" ∧ Saudi Arabia.name = "Saudi Arabia" ∧ Saudi Arabia.name != "Saudi Arabia" ∧ None_ML(Saudi Arabia.attrs, ICRC.attrs) → Saudi Arabia.type != "country")

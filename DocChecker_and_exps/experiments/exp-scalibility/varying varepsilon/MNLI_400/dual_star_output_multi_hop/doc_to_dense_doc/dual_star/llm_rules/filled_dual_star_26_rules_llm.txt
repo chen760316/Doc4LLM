@@ -1,0 +1,134 @@
+Predicates:
+1. "August".isHolidayPeriod = true
+2. "Easter".isHolidayPeriod = true
+3. "July".isHolidayPeriod = true
+4. "France".holidaySeason = "Summer"
+5. "France".holidaySeason = "Spring"
+6. "France".holidaySeason = "Summer"
+7. "August".peakTourism = true
+8. "Easter".peakTourism = false
+9. "July".peakTourism = true
+10. "August".averageTemperature = "Warm"
+11. "Easter".averageTemperature = "Mild"
+12. "July".averageTemperature = "Hot"
+13. "August".visitorCount = 5000000
+14. "Easter".visitorCount = 2000000
+15. "July".visitorCount = 6000000
+16. "August".culturalEvents = "Festivals"
+17. "Easter".culturalEvents = "Religious"
+18. "July".culturalEvents = "Festivals"
+19. "August".travelCosts = "High"
+20. "Easter".travelCosts = "Moderate"
+21. "July".travelCosts = "High"
+22. "August".familyFriendly = true
+23. "Easter".familyFriendly = true
+24. "July".familyFriendly = false
+25. "August".localCuisine = "Varied"
+26. "Easter".localCuisine = "Traditional"
+27. "July".localCuisine = "Varied"
+28. "August".accommodationAvailability = "High"
+29. "Easter".accommodationAvailability = "Moderate"
+30. "July".accommodationAvailability = "Low"
+31. "August".weather = "Sunny"
+32. "Easter".weather = "Variable"
+33. "July".weather = "Hot"
+34. "August".activities = "Outdoor"
+35. "Easter".activities = "Indoor"
+36. "July".activities = "Outdoor"
+37. "August".transportation = "Busy"
+38. "Easter".transportation = "Moderate"
+39. "July".transportation = "Busy"
+40. "August".festivals = "Music"
+41. "Easter".festivals = "Religious"
+42. "July".festivals = "Music"
+43. "August".touristAttractions = "Open"
+44. "Easter".touristAttractions = "Open"
+45. "July".touristAttractions = "Open"
+46. "August".localEvents = "Numerous"
+47. "Easter".localEvents = "Few"
+48. "July".localEvents = "Numerous"
+49. "August".sightseeing = "Popular"
+50. "Easter".sightseeing = "Less Popular"
+51. "July".sightseeing = "Popular"
+52. "August".nightlife = "Vibrant"
+53. "Easter".nightlife = "Quiet"
+54. "July".nightlife = "Vibrant"
+55. "August".shopping = "Varied"
+56. "Easter".shopping = "Limited"
+57. "July".shopping = "Varied"
+58. "August".cuisineVariety = "High"
+59. "Easter".cuisineVariety = "Low"
+60. "July".cuisineVariety = "High"
+61. "August".eventFrequency = "High"
+62. "Easter".eventFrequency = "Low"
+63. "July".eventFrequency = "High"
+64. "August".familyActivities = "Many"
+65. "Easter".familyActivities = "Few"
+66. "July".familyActivities = "Many"
+67. "August".culturalDiversity = "Rich"
+68. "Easter".culturalDiversity = "Limited"
+69. "July".culturalDiversity = "Rich"
+70. "August".violate(x0, y0)
+71. M_NLI("August is one of the main holiday periods for visiting France.", "Easter is one of the main holiday periods for visiting France.")
+72. M_NLI("August is one of the main holiday periods for visiting France.", "July is one of the main holiday periods for visiting France.")
+73. T("August is one of the main holiday periods for visiting France.", "Easter is one of the main holiday periods for visiting France.", tau)
+74. T("August is one of the main holiday periods for visiting France.", "July is one of the main holiday periods for visiting France.", tau)
+75. Factual("August", "Easter")
+76. Factual("August", "July")
+77. Causal("August", "Easter")
+78. Causal("August", "July")
+79. Negation("August", "Easter")
+80. Negation("August", "July")
+81. Relation("August", "Easter")
+82. Relation("August", "July")
+83. Numeric("August", "Easter")
+84. Numeric("August", "July")
+85. Temporal("August", "Easter")
+86. Temporal("August", "July")
+87. tau("August.isHolidayPeriod", "Easter.isHolidayPeriod")
+88. tau("August.isHolidayPeriod", "July.isHolidayPeriod")
+89. violate("August", "Easter")
+90. violate("August", "July")
+91. Factual("Easter", "July")
+92. Causal("Easter", "July")
+93. Negation("Easter", "July")
+94. Relation("Easter", "July")
+95. Numeric("Easter", "July")
+96. Temporal("Easter", "July")
+97. M_NLI("July is one of the main holiday periods for visiting France.", "Easter is one of the main holiday periods for visiting France.")
+98. T("July is one of the main holiday periods for visiting France.", "Easter is one of the main holiday periods for visiting France.", tau)
+99. tau("July.isHolidayPeriod", "Easter.isHolidayPeriod")
+100. violate("July", "Easter")
+violate(x0, y0)
+
+Rules:
+1. Q["August", "Easter"](August.isHolidayPeriod ∧ Easter.isHolidayPeriod → violate("August", "Easter"))
+2. Q["July", "Easter"](July.isHolidayPeriod ∧ Easter.isHolidayPeriod → violate("July", "Easter"))
+3. Q["August", "July"](August.isHolidayPeriod ∧ July.isHolidayPeriod → violate("August", "July"))
+4. Q["France", "Easter"](France.holidaySeason = "Summer" ∧ Easter.isHolidayPeriod → violate("France", "Easter"))
+5. Q["France", "July"](France.holidaySeason = "Spring" ∧ July.isHolidayPeriod → violate("France", "July"))
+6. Q["France", "August"](France.holidaySeason = "Summer" ∧ August.isHolidayPeriod → violate("France", "August"))
+7. Q["August", "July"](August.peakTourism = true ∧ July.peakTourism = true ∧ August.isHolidayPeriod → violate("August", "July"))
+8. Q["Easter", "July"](Easter.peakTourism = false ∧ July.peakTourism = true ∧ Easter.isHolidayPeriod → violate("Easter", "July"))
+9. Q["August", "Easter"](August.averageTemperature = "Warm" ∧ Easter.averageTemperature = "Mild" ∧ August.isHolidayPeriod → violate("August", "Easter"))
+10. Q["July", "Easter"](July.averageTemperature = "Hot" ∧ Easter.averageTemperature = "Mild" ∧ July.isHolidayPeriod → violate("July", "Easter"))
+11. Q["August", "July"](August.visitorCount = 5000000 ∧ July.visitorCount = 6000000 ∧ August.isHolidayPeriod → violate("August", "July"))
+12. Q["Easter", "July"](Easter.visitorCount = 2000000 ∧ July.visitorCount = 6000000 ∧ Easter.isHolidayPeriod → violate("Easter", "July"))
+13. Q["August", "Easter"](August.culturalEvents = "Festivals" ∧ Easter.culturalEvents = "Religious" ∧ August.isHolidayPeriod → violate("August", "Easter"))
+14. Q["July", "Easter"](July.culturalEvents = "Festivals" ∧ Easter.culturalEvents = "Religious" ∧ July.isHolidayPeriod → violate("July", "Easter"))
+15. Q["August", "July"](August.travelCosts = "High" ∧ July.travelCosts = "High" ∧ August.isHolidayPeriod → violate("August", "July"))
+16. Q["Easter", "July"](Easter.travelCosts = "Moderate" ∧ July.travelCosts = "High" ∧ Easter.isHolidayPeriod → violate("Easter", "July"))
+17. Q["August", "Easter"](August.familyFriendly = true ∧ Easter.familyFriendly = true ∧ August.isHolidayPeriod → violate("August", "Easter"))
+18. Q["July", "Easter"](July.familyFriendly = false ∧ Easter.familyFriendly = true ∧ July.isHolidayPeriod → violate("July", "Easter"))
+19. Q["August", "July"](August.localCuisine = "Varied" ∧ July.localCuisine = "Varied" ∧ August.isHolidayPeriod → violate("August", "July"))
+20. Q["Easter", "July"](Easter.localCuisine = "Traditional" ∧ July.localCuisine = "Varied" ∧ Easter.isHolidayPeriod → violate("Easter", "July"))
+21. Q["August", "Easter"](August.weather = "Sunny" ∧ Easter.weather = "Variable" ∧ August.isHolidayPeriod → violate("August", "Easter"))
+22. Q["July", "Easter"](July.weather = "Hot" ∧ Easter.weather = "Variable" ∧ July.isHolidayPeriod → violate("July", "Easter"))
+23. Q["August", "July"](August.activities = "Outdoor" ∧ July.activities = "Outdoor" ∧ August.isHolidayPeriod → violate("August", "July"))
+24. Q["Easter", "July"](Easter.activities = "Indoor" ∧ July.activities = "Outdoor" ∧ Easter.isHolidayPeriod → violate("Easter", "July"))
+25. Q["August", "Easter"](August.nightlife = "Vibrant" ∧ Easter.nightlife = "Quiet" ∧ August.isHolidayPeriod → violate("August", "Easter"))
+26. Q["July", "Easter"](July.nightlife = "Vibrant" ∧ Easter.nightlife = "Quiet" ∧ July.isHolidayPeriod → violate("July", "Easter"))
+27. Q["August", "July"](August.culturalDiversity = "Rich" ∧ July.culturalDiversity = "Rich" ∧ August.isHolidayPeriod → violate("August", "July"))
+28. Q["Easter", "July"](Easter.culturalDiversity = "Limited" ∧ July.culturalDiversity = "Rich" ∧ Easter.isHolidayPeriod → violate("Easter", "July"))
+29. Q["August", "Easter"](August.eventFrequency = "High" ∧ Easter.eventFrequency = "Low" ∧ August.isHolidayPeriod → violate("August", "Easter"))
+30. Q["July", "Easter"](July.eventFrequency = "High" ∧ Easter.eventFrequency = "Low" ∧ July.isHolidayPeriod → violate("July", "Easter"))

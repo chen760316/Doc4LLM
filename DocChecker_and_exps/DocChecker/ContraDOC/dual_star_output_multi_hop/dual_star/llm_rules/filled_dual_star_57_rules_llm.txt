@@ -1,0 +1,123 @@
+Predicates:
+1. Chris.marital_status = "married"
+2. Chris.marital_status != "single"
+3. Chris.marital_status > "single"
+4. Chris.marital_status < "divorced"
+5. Chris.marital_status >= "married"
+6. Chris.marital_status <= "married"
+7. Kitty.marital_status = "married"
+8. Kitty.marital_status != "single"
+9. Kitty.marital_status < "divorced"
+10. Kitty.marital_status > "single"
+11. Kitty.marital_status >= "married"
+12. Kitty.marital_status <= "married"
+13. Margaret.feelings_for = "Chris"
+14. Margaret.feelings_for != "Kitty"
+15. Margaret.feelings_for < "indifference"
+16. Margaret.feelings_for > "dislike"
+17. Margaret.feelings_for >= "love"
+18. Margaret.feelings_for <= "affection"
+19. "Chris is now married to Kitty".time = "fifteen years later"
+20. "Chris is now married to Kitty".time != "ten years later"
+21. "Chris is now married to Kitty".time < "twenty years later"
+22. "Chris is now married to Kitty".time > "ten years later"
+23. "Chris is now married to Kitty".time >= "fifteen years later"
+24. "Chris is now married to Kitty".time <= "fifteen years later"
+25. Dr Gilbert Anderson.occupation = "psychoanalyst"
+26. Dr Gilbert Anderson.occupation != "doctor"
+27. Dr Gilbert Anderson.occupation < "surgeon"
+28. Dr Gilbert Anderson.occupation > "therapist"
+29. Dr Gilbert Anderson.occupation >= "psychoanalyst"
+30. Dr Gilbert Anderson.occupation <= "psychoanalyst"
+31. M_NLI(Chris.marital_status, Kitty.marital_status)
+32. M_NLU(Margaret.feelings_for, Chris.marital_status)
+33. M_TEM(Chris.marital_status, "fifteen years later")
+34. contra("Chris is now married to Kitty", "Chris has feelings for Margaret")
+35. S(Chris, "Chris is now married to Kitty")
+36. S(Kitty, "Kitty is now married to Chris")
+37. S(Margaret, "Margaret has feelings for Chris")
+38. S(Dr Gilbert Anderson, "Dr Gilbert Anderson is a psychoanalyst")
+39. T("Chris is now married to Kitty", "Chris has feelings for Margaret", "Relational")
+40. tau(Chris.marital_status, Kitty.marital_status)
+41. tau("Chris is now married to Kitty".time, "fifteen years later")
+42. "Relationship".time = "fifteen years later"
+43. "Relationship".time != "ten years later"
+44. "Relationship".time < "twenty years later"
+45. "Relationship".time > "ten years later"
+46. "Relationship".time >= "fifteen years later"
+47. "Relationship".time <= "fifteen years later"
+48. M_NLI(Dr Gilbert Anderson.occupation, "psychoanalyst")
+49. M_NLU(Chris.marital_status, "married")
+50. M_TEM(Kitty.marital_status, "married")
+51. contra("Dr Gilbert Anderson is a psychoanalyst", "Dr Gilbert Anderson is not a doctor")
+52. S(Dr Gilbert Anderson, "Dr Gilbert Anderson is a psychoanalyst")
+53. S(Chris, "Chris has feelings for Margaret")
+54. S(Kitty, "Kitty is married to Chris")
+55. T("Chris is now married to Kitty", "Chris has feelings for Margaret", "Content")
+56. tau(Dr Gilbert Anderson.occupation, "psychoanalyst")
+57. Chris.feelings_for = "Kitty"
+58. Chris.feelings_for != "Margaret"
+59. Chris.feelings_for < "indifference"
+60. Chris.feelings_for > "love"
+61. Chris.feelings_for >= "affection"
+62. Chris.feelings_for <= "love"
+63. "Relationship".status = "ongoing"
+64. "Relationship".status != "ended"
+65. "Relationship".status < "terminated"
+66. "Relationship".status > "beginning"
+67. "Relationship".status >= "ongoing"
+68. "Relationship".status <= "ongoing"
+69. M_NLI(Chris.feelings_for, Kitty.marital_status)
+70. M_NLU(Margaret.feelings_for, Chris.feelings_for)
+71. M_TEM(Chris.feelings_for, "love")
+72. contra("Chris loves Kitty", "Chris loves Margaret")
+73. S("Relationship", "Chris is now married to Kitty")
+74. S("Relationship", "Chris has feelings for Margaret")
+75. T("Chris is now married to Kitty", "Chris loves Margaret", "Causal")
+76. tau(Chris.feelings_for, Margaret.feelings_for)
+77. Dr Gilbert Anderson.experience_years = 15
+78. Dr Gilbert Anderson.experience_years != 10
+79. Dr Gilbert Anderson.experience_years < 20
+80. Dr Gilbert Anderson.experience_years > 5
+81. Dr Gilbert Anderson.experience_years >= 15
+82. Dr Gilbert Anderson.experience_years <= 15
+83. "Relationship".duration = "fifteen years"
+84. "Relationship".duration != "ten years"
+85. "Relationship".duration < "twenty years"
+86. "Relationship".duration > "ten years"
+87. "Relationship".duration >= "fifteen years"
+88. "Relationship".duration <= "fifteen years"
+89. M_NLI(Dr Gilbert Anderson.experience_years, "fifteen years")
+90. M_NLU(Chris.marital_status, "married")
+91. M_TEM(Kitty.marital_status, "married")
+92. contra("Dr Gilbert Anderson has 15 years of experience", "Dr Gilbert Anderson has less experience")
+93. S(Dr Gilbert Anderson, "Dr Gilbert Anderson has 15 years of experience")
+94. S(Chris, "Chris is married to Kitty")
+95. T("Chris is married to Kitty", "Chris has feelings for Margaret", "Negation")
+96. tau(Dr Gilbert Anderson.experience_years, "fifteen years")
+97. Chris.relationship_status = "married"
+98. Chris.relationship_status != "single"
+99. Chris.relationship_status < "divorced"
+100. Chris.relationship_status > "single"
+
+Rules:
+1. Q[1, 2](Chris.marital_status = "married" ∧ Chris.marital_status != "single" → Chris.relationship_status = "married")
+2. Q[3, 4](Chris.marital_status > "single" ∧ Chris.marital_status < "divorced" → Chris.marital_status != "divorced")
+3. Q[5, 6](Chris.marital_status >= "married" ∧ Chris.marital_status <= "married" → Chris.marital_status = "married")
+4. Q[7, 8](Kitty.marital_status = "married" ∧ Kitty.marital_status != "single" → Kitty.relationship_status = "married")
+5. Q[9, 10, 11](Kitty.marital_status < "divorced" ∧ Kitty.marital_status > "single" ∧ Kitty.marital_status >= "married" → Kitty.marital_status != "divorced")
+6. Q[12, 13, 14](Kitty.marital_status <= "married" ∧ Margaret.feelings_for = "Chris" ∧ Margaret.feelings_for != "Kitty" → Margaret.feelings_for < "indifference")
+7. Q[15, 16, 17](Margaret.feelings_for < "indifference" ∧ Margaret.feelings_for > "dislike" ∧ Margaret.feelings_for >= "love" → Margaret.feelings_for != "dislike")
+8. Q[18, 19, 20](Margaret.feelings_for <= "affection" ∧ "Chris is now married to Kitty".time = "fifteen years later" ∧ "Chris is now married to Kitty".time != "ten years later" → "Chris is now married to Kitty".time < "twenty years later")
+9. Q[21, 22, 23, 24]( "Chris is now married to Kitty".time < "twenty years later" ∧ "Chris is now married to Kitty".time > "ten years later" ∧ "Chris is now married to Kitty".time >= "fifteen years later" ∧ "Chris is now married to Kitty".time <= "fifteen years later" → "Chris is now married to Kitty".time != "ten years later")
+10. Q[25, 26, 27, 28](Dr Gilbert Anderson.occupation = "psychoanalyst" ∧ Dr Gilbert Anderson.occupation != "doctor" ∧ Dr Gilbert Anderson.occupation < "surgeon" ∧ Dr Gilbert Anderson.occupation > "therapist" → Dr Gilbert Anderson.occupation != "doctor")
+11. Q[29, 30, 31, 32](Dr Gilbert Anderson.occupation >= "psychoanalyst" ∧ Dr Gilbert Anderson.occupation <= "psychoanalyst" ∧ M_NLI(Chris.marital_status, Kitty.marital_status) ∧ M_NLU(Margaret.feelings_for, Chris.marital_status) → Dr Gilbert Anderson.occupation = "psychoanalyst")
+12. Q[33, 34, 35, 36](M_TEM(Chris.marital_status, "fifteen years later") ∧ contra("Chris is now married to Kitty", "Chris has feelings for Margaret") ∧ S(Chris, "Chris is now married to Kitty") ∧ S(Kitty, "Kitty is now married to Chris") → Chris.marital_status != "single")
+13. Q[37, 38, 39, 40, 41](S(Margaret, "Margaret has feelings for Chris") ∧ S(Dr Gilbert Anderson, "Dr Gilbert Anderson is a psychoanalyst") ∧ T("Chris is now married to Kitty", "Chris has feelings for Margaret", "Relational") ∧ tau(Chris.marital_status, Kitty.marital_status) → Chris.relationship_status != "single")
+14. Q[42, 43, 44, 45, 46]( "Relationship".time = "fifteen years later" ∧ "Relationship".time != "ten years later" ∧ "Relationship".time < "twenty years later" ∧ "Relationship".time > "ten years later" ∧ "Relationship".time >= "fifteen years later" → "Relationship".time != "ten years later")
+15. Q[47, 48, 49, 50, 51]( "Relationship".time <= "fifteen years later" ∧ M_NLI(Dr Gilbert Anderson.occupation, "psychoanalyst") ∧ M_NLU(Chris.marital_status, "married") ∧ M_TEM(Kitty.marital_status, "married") → Dr Gilbert Anderson.occupation != "doctor")
+16. Q[52, 53, 54, 55, 56](S(Dr Gilbert Anderson, "Dr Gilbert Anderson is a psychoanalyst") ∧ S(Chris, "Chris has feelings for Margaret") ∧ S(Kitty, "Kitty is married to Chris") ∧ T("Chris is now married to Kitty", "Chris has feelings for Margaret", "Content") → Chris.feelings_for != "dislike")
+17. Q[57, 58, 59, 60, 61, 62](Chris.feelings_for = "Kitty" ∧ Chris.feelings_for != "Margaret" ∧ Chris.feelings_for < "indifference" ∧ Chris.feelings_for > "love" ∧ Chris.feelings_for >= "affection" ∧ Chris.feelings_for <= "love" → Chris.feelings_for != "dislike")
+18. Q[63, 64, 65, 66, 67, 68]( "Relationship".status = "ongoing" ∧ "Relationship".status != "ended" ∧ "Relationship".status < "terminated" ∧ "Relationship".status > "beginning" ∧ "Relationship".status >= "ongoing" ∧ "Relationship".status <= "ongoing" → "Relationship".status != "ended")
+19. Q[69, 70, 71, 72, 73](M_NLI(Chris.feelings_for, Kitty.marital_status) ∧ M_NLU(Margaret.feelings_for, Chris.feelings_for) ∧ M_TEM(Chris.feelings_for, "love") ∧ contra("Chris loves Kitty", "Chris loves Margaret") → Chris.feelings_for != "dislike")
+20. Q[74, 75, 76, 77, 78](S("Relationship", "Chris is now married to Kitty") ∧ S("Relationship", "Chris has feelings for Margaret") ∧ T("Chris is now married to Kitty", "Chris loves Margaret", "Causal") ∧ tau(Chris.feelings_for, Margaret.feelings_for) → Chris.feelings_for != "dislike")

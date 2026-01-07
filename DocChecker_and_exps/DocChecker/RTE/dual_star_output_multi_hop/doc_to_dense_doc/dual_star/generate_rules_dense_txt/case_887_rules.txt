@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 887)
+S1: W P now has strong projects include participation in a joint venture called Constellation in affect the Samara city main tobacco factory.
+S2: P M has now firm projects which include a stake in a joint venture called Constellation in Samara involving the city's main tobacco factory.
+
+Predicates:
+1. W_P.has_strong_projects
+2. W_P.participates_in_joint_venture
+3. W_P.joint_venture_name = Constellation
+4. W_P.affects_city = Samara
+5. W_P.tobacco_factory = main
+6. P_M.has_firm_projects
+7. P_M.stake_in_joint_venture
+8. P_M.joint_venture_name = Constellation
+9. P_M.involves_city = Samara
+10. P_M.tobacco_factory = main
+11. M_NLI(S1, S2)
+12. Negation(W_P.has_firm_projects, P_M.has_firm_projects)
+13. violate(W_P.has_strong_projects, P_M.has_firm_projects)
+14. Constellation.involves_tobacco_factory = main
+15. Constellation.is_joint_venture
+16. Samara.has_tobacco_factory
+17. Samara.is_city
+18. W_P.participates_in(Constellation)
+19. P_M.participates_in(Constellation)
+20. Constellation.affects(Samara)
+21. W_P.strong_projects_involve(Constellation)
+22. P_M.firm_projects_involve(Constellation)
+23. W_P.impact_on(Samara) = true
+24. P_M.impact_on(Samara) = false
+25. W_P.joint_venture_affects(Samara)
+26. P_M.joint_venture_affects(Samara)
+27. W_P.tobacco_factory_in(Samara)
+28. P_M.tobacco_factory_in(Samara)
+29. Constellation.is_part_of(Samara)
+30. W_P.has_participation_in(Constellation)
+
+Rules:
+1. Q[now, W_P.has_strong_projects, P_M.has_firm_projects](W_P.has_strong_projects == true → Negation(W_P.has_firm_projects, P_M.has_firm_projects))
+2. Q[now, W_P.participates_in_joint_venture, P_M.stake_in_joint_venture](W_P.participates_in_joint_venture == true → Negation(W_P.has_firm_projects, P_M.has_firm_projects))
+3. Q[now, W_P.joint_venture_name, P_M.joint_venture_name](W_P.joint_venture_name = Constellation → Negation(W_P.has_firm_projects, P_M.has_firm_projects))
+4. Q[now, W_P.affects_city, P_M.involves_city](W_P.affects_city = Samara → Negation(W_P.has_firm_projects, P_M.has_firm_projects))
+5. Q[now, W_P.tobacco_factory, P_M.tobacco_factory](W_P.tobacco_factory = main → Negation(W_P.has_firm_projects, P_M.has_firm_projects))
+6. Q[now, P_M.has_firm_projects, W_P.has_firm_projects](P_M.has_firm_projects == false → Negation(W_P.has_firm_projects, P_M.has_firm_projects))
+7. Q[now, P_M.stake_in_joint_venture, W_P.participates_in_joint_venture](P_M.stake_in_joint_venture == false → Negation(W_P.has_firm_projects, P_M.has_firm_projects))
+8. Q[now, P_M.joint_venture_name, W_P.joint_venture_name](P_M.joint_venture_name = Constellation → Negation(W_P.has_firm_projects, P_M.has_firm_projects))
+9. Q[now, P_M.involves_city, W_P.affects_city](P_M.involves_city = Samara → Negation(W_P.has_firm_projects, P_M.has_firm_projects))
+10. Q[now, P_M.tobacco_factory, W_P.tobacco_factory](P_M.tobacco_factory = main → Negation(W_P.has_firm_projects, P_M.has_firm_projects))
+11. Q[now, W_P.strong_projects_involve, P_M.firm_projects_involve](W_P.strong_projects_involve(Constellation) == true → Negation(W_P.has_firm_projects, P_M.has_firm_projects))
+12. Q[now, W_P.impact_on, P_M.impact_on](W_P.impact_on(Samara) = true → Negation(W_P.has_firm_projects, P_M.has_firm_projects))
+13. Q[now, W_P.joint_venture_affects, P_M.joint_venture_affects](W_P.joint_venture_affects(Samara) == true → Negation(W_P.has_firm_projects, P_M.has_firm_projects))
+14. Q[now, W_P.tobacco_factory_in, P_M.tobacco_factory_in](W_P.tobacco_factory_in(Samara) == true → Negation(W_P.has_firm_projects, P_M.has_firm_projects))
+15. Q[now, Constellation.is_joint_venture, W_P.participates_in](Constellation.is_joint_venture == true → Negation(W_P.has_firm_projects, P_M.has_firm_projects))
+16. Q[now, Constellation.affects, W_P.impact_on](Constellation.affects(Samara) == true → Negation(W_P.has_firm_projects, P_M.has_firm_projects))
+17. Q[now, Samara.has_tobacco_factory, W_P.tobacco_factory](Samara.has_tobacco_factory == true → Negation(W_P.has_firm_projects, P_M.has_firm_projects))
+18. Q[now, Samara.is_city, W_P.affects_city](Samara.is_city == true → Negation(W_P.has_firm_projects, P_M.has_firm_projects))
+19. Q[now, W_P.has_participation_in, P_M.participates_in](W_P.has_participation_in(Constellation) == true → Negation(W_P.has_firm_projects, P_M.has_firm_projects))
+20. Q[now, W_P.strong_projects_involve, P_M.participates_in](W_P.strong_projects_involve(Constellation) == true → Negation(W_P.has_firm_projects, P_M.has_firm_projects))
+21. Q[now, P_M.firm_projects_involve, W_P.participates_in](P_M.firm_projects_involve(Constellation) == false → Negation(W_P.has_firm_projects, P_M.has_firm_projects))
+22. Q[now, W_P.participates_in, P_M.participates_in](W_P.participates_in(Constellation) == true → Negation(W_P.has_firm_projects, P_M.has_firm_projects))
+23. Q[now, W_P.impact_on, P_M.impact_on](W_P.impact_on(Samara) = true → Negation(W_P.has_firm_projects, P_M.has_firm_projects))
+24. Q[now, W_P.joint_venture_affects, P_M.joint_venture_affects](W_P.joint_venture_affects(Samara) == true → Negation(W_P.has_firm_projects, P_M.has_firm_projects))
+25. Q[now, W_P.tobacco_factory_in, P_M.tobacco_factory_in](W_P.tobacco_factory_in(Samara) == true → Negation(W_P.has_firm_projects, P_M.has_firm_projects))
+26. Q[now, W_P.has_strong_projects, P_M.has_firm_projects](W_P.has_strong_projects == true → Negation(W_P.has_firm_projects, P_M.has_firm_projects))
+27. Q[now, P_M.has_firm_projects, W_P.has_strong_projects](P_M.has_firm_projects == false → Negation(W_P.has_firm_projects, P_M.has_firm_projects))
+28. Q[now, W_P.participates_in_joint_venture, P_M.stake_in_joint_venture](W_P.participates_in_joint_venture == true → Negation(W_P.has_firm_projects, P_M.has_firm_projects))
+29. Q[now, W_P.affects_city, P_M.involves_city](W_P.affects_city = Samara → Negation(W_P.has_firm_projects, P_M.has_firm_projects))
+30. Q[now, W_P.tobacco_factory, P_M.tobacco_factory](W_P.tobacco_factory = main → Negation(W_P.has_firm_projects, P_M.has_firm_projects))

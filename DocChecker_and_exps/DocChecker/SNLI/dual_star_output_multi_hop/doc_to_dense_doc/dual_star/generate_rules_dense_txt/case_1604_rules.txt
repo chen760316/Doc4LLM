@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 1604)
+S1: A man is sleeping.
+S2: The man played the drum alone.
+
+Predicates:
+1. Man.sleeping
+2. Man.played_drum
+3. Man.active
+4. Man.alone
+5. Drum.instrument
+6. Person.sleeping
+7. Person.playing
+8. Person.active
+9. Person.alone
+10. Activity.sleeping
+11. Activity.playing
+12. Activity.drum
+13. Relationship.sleeping.active
+14. Relationship.playing.alone
+15. Factual(man, sleeping)
+16. Factual(man, played_drum)
+17. Factual(man, active)
+18. Factual(man, alone)
+19. Violate(sleeping, playing)
+20. Violate(active, sleeping)
+21. M_NLI(sleeping, playing)
+22. M_NLI(man.sleeping, man.played_drum)
+23. Entity.man.sleeping
+24. Entity.man.played_drum
+25. Entity.drum.instrument
+26. Edge.sleeping.relationship
+27. Edge.playing.relationship
+28. Meta.sleeping.active
+29. Meta.playing.alone
+30. Meta.violate(sleeping, playing)
+
+Rules:
+1. Q[man, x0, y0](Man.sleeping == true → Factual(man, sleeping))
+2. Q[man, x0, y0](Man.played_drum == true → Factual(man, played_drum))
+3. Q[man, x0, y0](Man.active == true → Factual(man, active))
+4. Q[man, x0, y0](Man.alone == true → Factual(man, alone))
+5. Q[man, x0, y0](Activity.sleeping == true → Factual(man, sleeping))
+6. Q[man, x0, y0](Activity.playing == true → Factual(man, played_drum))
+7. Q[man, x0, y0](Person.sleeping == true → Factual(man, sleeping))
+8. Q[man, x0, y0](Person.playing == true → Factual(man, played_drum))
+9. Q[man, x0, y0](Relationship.sleeping.active == true → Factual(man, sleeping))
+10. Q[man, x0, y0](Relationship.playing.alone == true → Factual(man, played_drum))
+11. Q[man, x0, y0](Violate(sleeping, playing) == true → Factual(man, sleeping))
+12. Q[man, x0, y0](Violate(active, sleeping) == true → Factual(man, active))
+13. Q[man, x0, y0](M_NLI(man.sleeping, man.played_drum) == true → Factual(man, sleeping))
+14. Q[man, x0, y0](Entity.man.sleeping == true → Factual(man, sleeping))
+15. Q[man, x0, y0](Entity.man.played_drum == true → Factual(man, played_drum))
+16. Q[man, x0, y0](Edge.sleeping.relationship == true → Factual(man, sleeping))
+17. Q[man, x0, y0](Edge.playing.relationship == true → Factual(man, played_drum))
+18. Q[man, x0, y0](Meta.sleeping.active == true → Factual(man, sleeping))
+19. Q[man, x0, y0](Meta.playing.alone == true → Factual(man, played_drum))
+20. Q[man, x0, y0](Meta.violate(sleeping, playing) == true → Factual(man, sleeping))
+21. Q[man, x0, y0](Man.sleeping == true ∧ Man.played_drum == true → Factual(man, sleeping))
+22. Q[man, x0, y0](Man.active == true ∧ Man.sleeping == true → Factual(man, active))
+23. Q[man, x0, y0](Person.sleeping == true ∧ Person.playing == true → Factual(man, sleeping))
+24. Q[man, x0, y0](Activity.sleeping == true ∧ Activity.playing == true → Factual(man, sleeping))
+25. Q[man, x0, y0](Man.alone == true ∧ Man.played_drum == true → Factual(man, alone))
+26. Q[man, x0, y0](Violate(sleeping, playing) == true ∧ Man.sleeping == true → Factual(man, sleeping))
+27. Q[man, x0, y0](Violate(active, sleeping) == true ∧ Man.active == true → Factual(man, active))
+28. Q[man, x0, y0](M_NLI(man.sleeping, man.played_drum) == true ∧ Man.played_drum == true → Factual(man, sleeping))
+29. Q[man, x0, y0](Entity.man.sleeping == true ∧ Entity.man.played_drum == true → Factual(man, sleeping))
+30. Q[man, x0, y0](Meta.violate(sleeping, playing) == true ∧ Man.active == true → Factual(man, active))

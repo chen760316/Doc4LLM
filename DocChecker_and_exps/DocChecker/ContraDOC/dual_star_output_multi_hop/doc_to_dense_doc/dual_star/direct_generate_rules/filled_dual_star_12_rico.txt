@@ -1,0 +1,58 @@
+Predicates:
+Berries.label != "Item"
+Berries.label != Overall Prices.label
+Berries.label = "Item"
+Berries.name != "Berries"
+Berries.name != Broccoli.name
+Berries.name != Overall Prices.name
+Berries.name = "Berries"
+Berries.new_price != "$3.88"
+Berries.new_price != Broccoli.new_price
+Berries.new_price = "$3.88"
+Berries.price_increase != "80 cents"
+Berries.price_increase != Broccoli.price_increase
+Berries.price_increase = "80 cents"
+Berries___Broccoli.contradiction_type = "Numeric"
+Berries___Broccoli.relationship = "Prices rose last year for Berries and Broccoli."
+Berries___Broccoli.source_id = "3489738298_4"
+Berries___Broccoli.time = "last year"
+Berries___Overall Prices.contradiction_type = "Numeric"
+Berries___Overall Prices.month = "February"
+Berries___Overall Prices.relationship != Berries___Broccoli.relationship
+Berries___Overall Prices.relationship = "Prices rose for berries last year, while overall prices are expected to rise this year due to inflation."
+Berries___Overall Prices.source_id != Berries___Broccoli.source_id
+Berries___Overall Prices.source_id = "3489738298_10"
+Berries___Overall Prices.time != Berries___Broccoli.time
+Berries___Overall Prices.time = "this year"
+Broccoli.label != "Item"
+Broccoli.label = "Item"
+Broccoli.name != "Broccoli"
+Broccoli.name = "Broccoli"
+Broccoli.new_price != "$1.89"
+Broccoli.new_price = "$1.89"
+Broccoli.price_increase != "11 cents"
+Broccoli.price_increase = "11 cents"
+None_ML(Berries___Overall Prices.attrs, Berries___Broccoli.attrs)
+None_ML(Overall Prices.attrs, Berries.attrs)
+Overall Prices.expected_trend != "rise"
+Overall Prices.expected_trend = "rise"
+Overall Prices.label != "Economic Indicator"
+Overall Prices.label != Broccoli.label
+Overall Prices.label = "Economic Indicator"
+Overall Prices.name != "Overall Prices"
+Overall Prices.name != Broccoli.name
+Overall Prices.name = "Overall Prices"
+Overall Prices.reason != "inflation"
+Overall Prices.reason = "inflation"
+
+Rules:
+Q[Berries,Berries] (Berries___Overall Prices.contradiction_type = "Numeric" ∧ Overall Prices.reason = "inflation" → Berries.name != "Berries")
+Q[Berries,Berries] (Berries.price_increase != Broccoli.price_increase ∧ Overall Prices.label != Broccoli.label ∧ Overall Prices.name != Broccoli.name ∧ Overall Prices.label = "Economic Indicator" ∧ Berries.label != Overall Prices.label ∧ Berries___Broccoli.relationship = "Prices rose last year for Berries and Broccoli." → Berries___Overall Prices.contradiction_type = "Numeric")
+Q[Berries,Berries] (Berries___Overall Prices.relationship != Berries___Broccoli.relationship ∧ Overall Prices.name != Broccoli.name ∧ Broccoli.label = "Item" → Broccoli.price_increase = "11 cents")
+Q[Berries,Berries] (Berries___Overall Prices.time != Berries___Broccoli.time ∧ Broccoli.price_increase != "11 cents" ∧ Berries.label != "Item" ∧ Broccoli.name != "Broccoli" → Berries___Overall Prices.relationship = "Prices rose for berries last year, while overall prices are expected to rise this year due to inflation.")
+Q[Berries,Berries] (Berries___Overall Prices.relationship != Berries___Broccoli.relationship ∧ Overall Prices.name = "Overall Prices" ∧ Berries.name != "Berries" ∧ None_ML(Berries___Overall Prices.attrs, Berries___Broccoli.attrs) ∧ Berries.label != "Item" → Overall Prices.label != Broccoli.label)
+Q[Berries,Berries] (None_ML(Berries___Overall Prices.attrs, Berries___Broccoli.attrs) ∧ Berries.label != "Item" ∧ Berries.price_increase != "80 cents" → Berries.label != Overall Prices.label)
+Q[Berries,Berries] (Broccoli.price_increase = "11 cents" ∧ Overall Prices.expected_trend = "rise" ∧ Berries.new_price != Broccoli.new_price ∧ Berries.new_price = "$3.88" ∧ None_ML(Berries___Overall Prices.attrs, Berries___Broccoli.attrs) ∧ Overall Prices.name != "Overall Prices" → Berries___Broccoli.source_id = "3489738298_4")
+Q[Berries,Berries] (Berries___Broccoli.contradiction_type = "Numeric" ∧ Berries___Overall Prices.relationship = "Prices rose for berries last year, while overall prices are expected to rise this year due to inflation." ∧ Berries.price_increase != "80 cents" ∧ Overall Prices.name != "Overall Prices" → Overall Prices.expected_trend = "rise")
+Q[Berries,Berries] (Berries___Overall Prices.time != Berries___Broccoli.time ∧ Berries___Overall Prices.month = "February" ∧ Berries___Overall Prices.relationship = "Prices rose for berries last year, while overall prices are expected to rise this year due to inflation." ∧ Berries.price_increase != Broccoli.price_increase ∧ Berries___Broccoli.contradiction_type = "Numeric" → Overall Prices.label != "Economic Indicator")
+Q[Berries,Berries] (Overall Prices.name != Broccoli.name ∧ Berries___Overall Prices.relationship = "Prices rose for berries last year, while overall prices are expected to rise this year due to inflation." → Berries.new_price != Broccoli.new_price)

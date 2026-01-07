@@ -1,0 +1,128 @@
+Predicates:
+person1.age > "30"
+person1.name != "Alice"
+person2.salary <= "50000"
+company1.revenue >= "1000000"
+product1.price < "100"
+order1.status = "shipped"
+employee1.department = "HR"
+employee2.experience_years >= "5"
+project1.deadline < "2024-12-31"
+vehicle1.mileage > "20000"
+person3.height <= "180"
+person4.weight != "70"
+device1.battery_life >= "10"
+book1.pages > "300"
+movie1.rating >= "7.5"
+student1.gpa < "3.0"
+account1.balance >= "1000"
+transaction1.amount > "100"
+city1.population >= "1000000"
+country1.area < "500000"
+person1.friendship_with_person2.duration > "2"
+employee1.reports_to_manager1.satisfaction = "high"
+order1.contains_product1.quantity >= "3"
+customer1.purchased_product2.frequency < "5"
+author1.wrote_book1.year_published = "2020"
+driver1.drives_vehicle1.accidents = "0"
+user1.follows_user2.since = "2021-01-01"
+teacher1.teaches_course1.students_count > "50"
+patient1.treated_by_doctor1.sessions >= "4"
+athlete1.member_of_team1.years = "3"
+supplier1.supplies_company1.contract_value > "100000"
+artist1.collaborated_with_artist2.projects = "2"
+player1.participated_in_match1.goals_scored >= "1"
+customer1.subscribed_to_service1.duration_months < "12"
+author1.coauthored_with_author2.books = "1"
+employee1.assigned_to_project1.hours_worked > "100"
+driver1.owns_vehicle1.insurance_status = "active"
+student1.enrolled_in_course1.grade >= "85"
+user1.sent_message_to_user2.count > "10"
+client1.has_contract_with_company1.renewed = "true"
+M_NLI(person1.attributes, person2.attributes)
+M_NLI(company1.attributes, company2.attributes)
+M_NLU(employee1.attributes, project1.attributes)
+M_NLU(customer1.attributes, product1.attributes)
+M_TEM(order1.attributes, shipment1.attributes)
+M_TEM(event1.attributes, event2.attributes)
+contra("person1.age is 35", "person1.age is 25")
+contra("order1.status is shipped", "order1.status is canceled")
+S(person1, "John Doe")
+S(employee1, "Jane Smith")
+S(order1, "Order #12345")
+S(product1, "Smartphone Model X")
+S(company1, "TechCorp Inc.")
+S(vehicle1, "Toyota Camry 2018")
+S(ex_order_contains_product1, "3 units of product1")
+S(ex_employee_reports_to_manager1, "Reports to manager since 2020")
+T("person1.age is 35", "person1.age is 25", Numeric)
+T("order1.status is shipped", "order1.status is canceled", Factual)
+tau(person1.age, person1.age)
+tau(order1.status, order1.status)
+tau(ex_employee_reports_to_manager1.satisfaction, ex_employee_reports_to_manager1.satisfaction)
+tau(ex_order_contains_product1.quantity, ex_order_contains_product1.quantity)
+person5.email != "unknown@example.com"
+person6.phone_number = "+1234567890"
+company2.founded_year < "2000"
+product2.stock >= "50"
+order2.priority = "high"
+employee3.position = "Manager"
+employee4.salary > "70000"
+project2.budget <= "500000"
+vehicle2.year >= "2015"
+person7.marital_status = "single"
+person8.nationality != "Canadian"
+device2.warranty_period > "12"
+book2.genre = "Science Fiction"
+movie2.duration < "120"
+student2.attendance_rate >= "90"
+account2.account_type = "savings"
+transaction2.currency = "USD"
+city2.gdp > "2000000000"
+country2.capital = "Paris"
+person9.language_spoken = "English"
+person7.knows_person8.since > "2010"
+employee5.manages_team1.size >= "10"
+order3.shipped_by_courier1.delivery_time < "5"
+customer2.reviewed_product3.rating >= "4"
+author2.published_book2.copies_sold > "10000"
+driver2.drives_vehicle2.license_valid = "true"
+user2.friends_with_user3.mutual_friends >= "5"
+teacher2.assigned_to_class1.period = "morning"
+patient2.diagnosed_by_doctor2.condition = "diabetes"
+athlete2.trains_with_coach1.sessions_per_week = "3"
+supplier2.delivers_to_company2.on_time_rate >= "95"
+artist2.featured_in_album1.tracks = "12"
+player2.selected_for_team2.matches_played > "20"
+customer3.uses_service2.plan_type = "premium"
+author3.invited_to_conference1.speaking_slots = "1"
+employee6.completed_training1.certified = "yes"
+driver3.has_vehicle3.registration_expiry > "2024-01-01"
+student3.participates_in_club1.membership_duration >= "1"
+user3.liked_post1.count > "100"
+client2.signed_contract_with_company3.duration_years < "3"
+
+Rules:
+Q[x0, y0](person1.age > "30" ∧ person1.name != "Alice" → person1.friendship_with_person2.duration > "2")
+Q[x0, y0](order1.status = "shipped" ∧ order1.contains_product1.quantity >= "3" → shipment1.attributes = "dispatched")
+Q[x0, y0](employee1.department = "HR" ∧ employee1.reports_to_manager1.satisfaction = "high" → employee1.assigned_to_project1.hours_worked > "100")
+Q[x0, y0](student1.gpa < "3.0" ∧ student1.enrolled_in_course1.grade >= "85" → student1.attendance_rate >= "90")
+Q[x0, y0](driver1.drives_vehicle1.accidents = "0" ∧ driver1.owns_vehicle1.insurance_status = "active" → driver1.has_vehicle3.registration_expiry > "2024-01-01")
+Q[x0, y0](company1.revenue >= "1000000" ∧ product1.price < "100" ∧ customer1.purchased_product2.frequency < "5" → customer1.subscribed_to_service1.duration_months < "12")
+Q[x0, y0](author1.wrote_book1.year_published = "2020" ∧ author1.coauthored_with_author2.books = "1" ∧ author2.published_book2.copies_sold > "10000" → author3.invited_to_conference1.speaking_slots = "1")
+Q[x0, y0](athlete1.member_of_team1.years = "3" ∧ player1.participated_in_match1.goals_scored >= "1" ∧ athlete2.trains_with_coach1.sessions_per_week = "3" → player2.selected_for_team2.matches_played > "20")
+Q[x0, y0](employee3.position = "Manager" ∧ employee5.manages_team1.size >= "10" ∧ employee6.completed_training1.certified = "yes" → employee4.salary > "70000")
+Q[x0, y0](city1.population >= "1000000" ∧ city2.gdp > "2000000000" ∧ country2.capital = "Paris" → country1.area < "500000")
+Q[x0, y0](person7.marital_status = "single" ∧ person7.knows_person8.since > "2010" ∧ person8.nationality != "Canadian" ∧ person9.language_spoken = "English" → person6.phone_number = "+1234567890")
+Q[x0, y0](order2.priority = "high" ∧ order3.shipped_by_courier1.delivery_time < "5" ∧ transaction1.amount > "100" ∧ transaction2.currency = "USD" → account1.balance >= "1000")
+Q[x0, y0](supplier1.supplies_company1.contract_value > "100000" ∧ supplier2.delivers_to_company2.on_time_rate >= "95" ∧ client1.has_contract_with_company1.renewed = "true" ∧ client2.signed_contract_with_company3.duration_years < "3" → company2.founded_year < "2000")
+Q[x0, y0](device1.battery_life >= "10" ∧ device2.warranty_period > "12" ∧ product2.stock >= "50" ∧ product1.price < "100" → customer3.uses_service2.plan_type = "premium")
+Q[x0, y0](teacher1.teaches_course1.students_count > "50" ∧ teacher2.assigned_to_class1.period = "morning" ∧ student2.attendance_rate >= "90" ∧ student3.participates_in_club1.membership_duration >= "1" → student1.enrolled_in_course1.grade >= "85")
+Q[x0, y0](person1.age > "30" ∧ person1.name != "Alice" ∧ person1.friendship_with_person2.duration > "2" ∧ employee1.department = "HR" ∧ employee1.reports_to_manager1.satisfaction = "high" → employee1.assigned_to_project1.hours_worked > "100")
+Q[x0, y0](order1.status = "shipped" ∧ order1.contains_product1.quantity >= "3" ∧ shipment1.attributes = "dispatched" ∧ transaction1.amount > "100" ∧ account1.balance >= "1000" → order2.priority = "high")
+Q[x0, y0](author1.wrote_book1.year_published = "2020" ∧ author1.coauthored_with_author2.books = "1" ∧ author2.published_book2.copies_sold > "10000" ∧ author3.invited_to_conference1.speaking_slots = "1" ∧ artist2.featured_in_album1.tracks = "12" → artist1.collaborated_with_artist2.projects = "2")
+Q[x0, y0](athlete1.member_of_team1.years = "3" ∧ player1.participated_in_match1.goals_scored >= "1" ∧ athlete2.trains_with_coach1.sessions_per_week = "3" ∧ player2.selected_for_team2.matches_played > "20" ∧ athlete2.trains_with_coach1.sessions_per_week = "3" → athlete1.member_of_team1.years = "3")
+Q[x0, y0](employee3.position = "Manager" ∧ employee5.manages_team1.size >= "10" ∧ employee6.completed_training1.certified = "yes" ∧ employee4.salary > "70000" ∧ client1.has_contract_with_company1.renewed = "true" → company1.revenue >= "1000000")
+Q[x0, y0](city1.population >= "1000000" ∧ city2.gdp > "2000000000" ∧ country2.capital = "Paris" ∧ country1.area < "500000" ∧ person7.marital_status = "single" ∧ person7.knows_person8.since > "2010" → person8.nationality != "Canadian")
+Q[x0, y0](order2.priority = "high" ∧ order3.shipped_by_courier1.delivery_time < "5" ∧ transaction1.amount > "100" ∧ transaction2.currency = "USD" ∧ account1.balance >= "1000" ∧ customer2.reviewed_product3.rating >= "4" → customer3.uses_service2.plan_type = "premium")
+Q[x0, y0](supplier1.supplies_company1.contract_value > "100000" ∧ supplier2.delivers_to_company2.on_time_rate >= "95" ∧ client1.has_contract_with_company1.renewed = "true" ∧ client2.signed_contract_with_company3.duration_years < "3" ∧ company2.founded_year

@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 1465)
+S1: There are a total of five major and minor temples along the path.
+S2: At the other end of the canal is the second major temple on the path.
+
+Predicates:
+1. Temple.total_count
+2. Temple.major_count
+3. Temple.minor_count
+4. Canal.location
+5. Temple.position
+6. Temple.type
+7. Temple.path
+8. Temple.is_major
+9. Temple.is_minor
+10. Temple.counts_as_major
+11. Temple.counts_as_minor
+12. Path.has_temples
+13. Path.temple_count
+14. Path.has_major_temples
+15. Path.has_minor_temples
+16. Canal.has_temples
+17. Canal.has_major_temple
+18. Canal.has_minor_temple
+19. Temple.is_at_end_of_canal
+20. Temple.is_second_major
+21. Temple.is_first_major
+22. Temple.is_last_major
+23. Temple.is_first_minor
+24. Temple.is_last_minor
+25. M_NLI(S1, S2)
+26. Numeric(5, total_temples)
+27. Numeric(2, second_major_temple)
+28. violate(5, 6)
+29. Temple.count(5)
+30. Temple.count(6)
+
+Rules:
+1. Q[There, Temple.total_count, 5](Temple.total_count == 5 → Numeric(5, total_temples))
+2. Q[There, Temple.major_count, 2](Temple.major_count == 2 → Numeric(2, second_major_temple))
+3. Q[There, Temple.total_count, 6](Temple.total_count == 6 → violate(5, 6))
+4. Q[There, Temple.path, 5](Temple.path.has_temples == true → Temple.count(5))
+5. Q[There, Temple.major_count, 3](Temple.major_count == 3 → violate(5, 6))
+6. Q[There, Temple.minor_count, 3](Temple.minor_count == 3 → Temple.count(5))
+7. Q[There, Canal.has_major_temple, true](Canal.has_major_temple == true → Temple.count(6))
+8. Q[There, Canal.has_temples, true](Canal.has_temples == true → Temple.count(6))
+9. Q[There, Temple.is_second_major, true](Temple.is_second_major == true → Temple.count(6))
+10. Q[There, Temple.is_major, true](Temple.is_major == true → Temple.count(6))
+11. Q[There, Temple.is_at_end_of_canal, true](Temple.is_at_end_of_canal == true → Temple.count(6))
+12. Q[There, Temple.position, 2](Temple.position == 2 → Numeric(2, second_major_temple))
+13. Q[There, Temple.path, 6](Temple.path.has_major_temples == true → Temple.count(6))
+14. Q[There, Temple.is_first_major, true](Temple.is_first_major == true → Temple.count(6))
+15. Q[There, Temple.is_last_major, true](Temple.is_last_major == true → Temple.count(6))
+16. Q[There, Temple.is_first_minor, true](Temple.is_first_minor == true → Temple.count(6))
+17. Q[There, Temple.is_last_minor, true](Temple.is_last_minor == true → Temple.count(6))
+18. Q[There, Temple.counts_as_major, true](Temple.counts_as_major == true → Temple.count(6))
+19. Q[There, Temple.counts_as_minor, true](Temple.counts_as_minor == true → Temple.count(6))
+20. Q[There, Path.temple_count, 5](Path.temple_count == 5 → Numeric(5, total_temples))
+21. Q[There, Path.has_major_temples, true](Path.has_major_temples == true → Temple.count(6))
+22. Q[There, Temple.type, "major"](Temple.type == "major" → Temple.count(6))
+23. Q[There, Temple.type, "minor"](Temple.type == "minor" → Temple.count(6))
+24. Q[There, Canal.location, "end"](Canal.location == "end" → Temple.count(6))
+25. Q[There, Temple.is_major, false](Temple.is_major == false → Temple.count(5))
+26. Q[There, Temple.is_minor, true](Temple.is_minor == true → Temple.count(5))
+27. Q[There, Temple.path, 6](Temple.path.has_minor_temples == true → Temple.count(6))
+28. Q[There, Temple.count, 5](Temple.count(5) → Numeric(5, total_temples))
+29. Q[There, Temple.count, 6](Temple.count(6) → violate(5, 6))
+30. Q[There, Temple.major_count, 4](Temple.major_count == 4 → violate(5, 6))

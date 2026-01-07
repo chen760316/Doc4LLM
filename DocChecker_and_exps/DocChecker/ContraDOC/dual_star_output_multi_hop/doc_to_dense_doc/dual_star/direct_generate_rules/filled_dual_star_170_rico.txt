@@ -1,0 +1,52 @@
+Predicates:
+None_ML(Veronica Mars.attrs, television critics.attrs)
+None_ML(Veronica Mars___television critics.attrs, Veronica Mars___Rowan Kaiser.attrs)
+Rowan Kaiser.affiliation != "The A.V. Club"
+Rowan Kaiser.affiliation = "The A.V. Club"
+Rowan Kaiser.label != "Reviewer"
+Rowan Kaiser.label != television critics.label
+Rowan Kaiser.label = "Reviewer"
+Rowan Kaiser.name != "Rowan Kaiser"
+Rowan Kaiser.name != television critics.name
+Rowan Kaiser.name = "Rowan Kaiser"
+Rowan Kaiser.occupation != "critic"
+Rowan Kaiser.occupation = "critic"
+Veronica Mars.label != "Episode"
+Veronica Mars.label != Rowan Kaiser.label
+Veronica Mars.label != television critics.label
+Veronica Mars.label = "Episode"
+Veronica Mars.name != "Veronica Mars"
+Veronica Mars.name != Rowan Kaiser.name
+Veronica Mars.name != television critics.name
+Veronica Mars.name = "Veronica Mars"
+Veronica Mars.status != "original broadcast"
+Veronica Mars.status = "original broadcast"
+Veronica Mars___Rowan Kaiser.contradiction_type = "Content"
+Veronica Mars___Rowan Kaiser.reason != Veronica Mars___television critics.reason
+Veronica Mars___Rowan Kaiser.reason = "oversimplification of the overall themes"
+Veronica Mars___Rowan Kaiser.relationship != Veronica Mars___television critics.relationship
+Veronica Mars___Rowan Kaiser.relationship = "Rowan Kaiser gave a review of the episode"
+Veronica Mars___Rowan Kaiser.review_type = "mixed"
+Veronica Mars___Rowan Kaiser.source_id = "3499318686_5"
+Veronica Mars___television critics.contradiction_type = "Content"
+Veronica Mars___television critics.reason = "case-of-the-week"
+Veronica Mars___television critics.relationship = "television critics praised the episode"
+Veronica Mars___television critics.source_id = "3499318686_5"
+television critics.label != "Critics"
+television critics.label = "Critics"
+television critics.name != "television critics"
+television critics.name = "television critics"
+television critics.review_type != "positive"
+television critics.review_type = "positive"
+
+Rules:
+Q[Veronica Mars,Veronica Mars] (Rowan Kaiser.occupation = "critic" ∧ Veronica Mars___Rowan Kaiser.relationship = "Rowan Kaiser gave a review of the episode" ∧ Veronica Mars___Rowan Kaiser.reason = "oversimplification of the overall themes" → Veronica Mars___Rowan Kaiser.review_type = "mixed")
+Q[Veronica Mars,Veronica Mars] (Veronica Mars___Rowan Kaiser.review_type = "mixed" ∧ Veronica Mars___Rowan Kaiser.reason = "oversimplification of the overall themes" ∧ Rowan Kaiser.occupation != "critic" ∧ television critics.review_type != "positive" ∧ television critics.label = "Critics" → Veronica Mars.name != "Veronica Mars")
+Q[Veronica Mars,Veronica Mars] (Rowan Kaiser.label != television critics.label ∧ Rowan Kaiser.name != "Rowan Kaiser" → Veronica Mars___television critics.reason = "case-of-the-week")
+Q[Veronica Mars,Veronica Mars] (Rowan Kaiser.label != television critics.label ∧ Veronica Mars.name != "Veronica Mars" ∧ Veronica Mars___television critics.relationship = "television critics praised the episode" ∧ Veronica Mars___Rowan Kaiser.relationship != Veronica Mars___television critics.relationship ∧ Rowan Kaiser.name != "Rowan Kaiser" ∧ Veronica Mars___Rowan Kaiser.relationship = "Rowan Kaiser gave a review of the episode" → Veronica Mars___Rowan Kaiser.source_id = "3499318686_5")
+Q[Veronica Mars,Veronica Mars] (Veronica Mars___television critics.reason = "case-of-the-week" ∧ Rowan Kaiser.affiliation = "The A.V. Club" ∧ Veronica Mars___Rowan Kaiser.contradiction_type = "Content" ∧ Veronica Mars___television critics.relationship = "television critics praised the episode" → Veronica Mars___Rowan Kaiser.relationship != Veronica Mars___television critics.relationship)
+Q[Veronica Mars,Veronica Mars] (Veronica Mars.name = "Veronica Mars" ∧ Veronica Mars___Rowan Kaiser.reason = "oversimplification of the overall themes" ∧ Veronica Mars.name != television critics.name ∧ Rowan Kaiser.name != "Rowan Kaiser" ∧ Veronica Mars.name != Rowan Kaiser.name → Veronica Mars___television critics.contradiction_type = "Content")
+Q[Veronica Mars,Veronica Mars] (Veronica Mars___Rowan Kaiser.reason = "oversimplification of the overall themes" ∧ Rowan Kaiser.occupation != "critic" ∧ Veronica Mars___television critics.relationship = "television critics praised the episode" ∧ Veronica Mars___Rowan Kaiser.relationship != Veronica Mars___television critics.relationship ∧ Rowan Kaiser.name = "Rowan Kaiser" ∧ Veronica Mars.name != television critics.name → Veronica Mars.status != "original broadcast")
+Q[Veronica Mars,Veronica Mars] (Veronica Mars___television critics.source_id = "3499318686_5" ∧ Veronica Mars___television critics.reason = "case-of-the-week" → Veronica Mars.label != Rowan Kaiser.label)
+Q[Veronica Mars,Veronica Mars] (Veronica Mars___Rowan Kaiser.review_type = "mixed" ∧ television critics.review_type = "positive" ∧ Veronica Mars.name != Rowan Kaiser.name ∧ Rowan Kaiser.occupation != "critic" → Rowan Kaiser.affiliation = "The A.V. Club")
+Q[Veronica Mars,Veronica Mars] (Veronica Mars.name = "Veronica Mars" ∧ Rowan Kaiser.affiliation = "The A.V. Club" ∧ Veronica Mars___Rowan Kaiser.review_type = "mixed" → Veronica Mars___Rowan Kaiser.reason != Veronica Mars___television critics.reason)

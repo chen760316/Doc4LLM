@@ -1,0 +1,66 @@
+Source: dense_text.txt (Index 173)
+S1: No university bus services will operate through the area between Little and Denning Streets.
+S2: However, alternative services will operate on bus routes 566 and 45 between Gatton Road, the town centre and the university.
+
+Predicates:
+1. UniversityBusServices.operating = false
+2. Area.between(Little, Denning).busServices = false
+3. AlternativeServices.operating = true
+4. BusRoutes.route566.operating = true
+5. BusRoutes.route45.operating = true
+6. GattonRoad.busServices = true
+7. TownCentre.busServices = true
+8. University.busServices = true
+9. M_NLI(S1, S2)
+10. Negation(UniversityBusServices.operating, AlternativeServices.operating)
+11. violate(UniversityBusServices.operating, AlternativeServices.operating)
+12. BusServices.area(Little, Denning) = false
+13. AlternativeServices.routes = {566, 45}
+14. BusRoutes.between(GattonRoad, TownCentre, University) = true
+15. UniversityBusServices.area(Little, Denning) = false
+16. AlternativeServices.between(GattonRoad, TownCentre) = true
+17. AlternativeServices.between(TownCentre, University) = true
+18. BusRoutes.route566.between(GattonRoad, TownCentre) = true
+19. BusRoutes.route45.between(GattonRoad, TownCentre) = true
+20. BusRoutes.route566.between(TownCentre, University) = true
+21. BusRoutes.route45.between(TownCentre, University) = true
+22. UniversityBusServices.area(Little, Denning).status = inactive
+23. AlternativeServices.status = active
+24. BusRoutes.status = active
+25. BusServices.status(Little, Denning) = inactive
+26. BusServices.status(GattonRoad, TownCentre) = active
+27. BusServices.status(TownCentre, University) = active
+28. M_NLI(S1, S2).result = true
+29. Negation(UniversityBusServices.operating, true)
+30. violate(UniversityBusServices.operating, false)
+
+Rules:
+1. Q[university, UniversityBusServices.operating, AlternativeServices.operating](UniversityBusServices.operating == false → Negation(UniversityBusServices.operating, AlternativeServices.operating))
+2. Q[bus, Area.between(Little, Denning).busServices, AlternativeServices.operating](Area.between(Little, Denning).busServices == false → Negation(Area.between(Little, Denning).busServices, AlternativeServices.operating))
+3. Q[alternative, AlternativeServices.operating, UniversityBusServices.operating](AlternativeServices.operating == true → Negation(AlternativeServices.operating, UniversityBusServices.operating))
+4. Q[route566, BusRoutes.route566.operating, UniversityBusServices.operating](BusRoutes.route566.operating == true → Negation(BusRoutes.route566.operating, UniversityBusServices.operating))
+5. Q[route45, BusRoutes.route45.operating, UniversityBusServices.operating](BusRoutes.route45.operating == true → Negation(BusRoutes.route45.operating, UniversityBusServices.operating))
+6. Q[gatton, GattonRoad.busServices, UniversityBusServices.operating](GattonRoad.busServices == true → Negation(GattonRoad.busServices, UniversityBusServices.operating))
+7. Q[towncentre, TownCentre.busServices, UniversityBusServices.operating](TownCentre.busServices == true → Negation(TownCentre.busServices, UniversityBusServices.operating))
+8. Q[university, University.busServices, UniversityBusServices.operating](University.busServices == true → Negation(University.busServices, UniversityBusServices.operating))
+9. Q[area, Area.between(Little, Denning).busServices, AlternativeServices.operating](Area.between(Little, Denning).busServices == false → Negation(Area.between(Little, Denning).busServices, AlternativeServices.operating))
+10. Q[alternative, AlternativeServices.routes, UniversityBusServices.operating](AlternativeServices.routes == {566, 45} → Negation(AlternativeServices.routes, UniversityBusServices.operating))
+11. Q[bus, BusRoutes.between(GattonRoad, TownCentre, University), UniversityBusServices.operating](BusRoutes.between(GattonRoad, TownCentre, University) == true → Negation(BusRoutes.between(GattonRoad, TownCentre, University), UniversityBusServices.operating))
+12. Q[university, UniversityBusServices.area(Little, Denning), AlternativeServices.operating](UniversityBusServices.area(Little, Denning) == false → Negation(UniversityBusServices.area(Little, Denning), AlternativeServices.operating))
+13. Q[alternative, AlternativeServices.between(GattonRoad, TownCentre), UniversityBusServices.operating](AlternativeServices.between(GattonRoad, TownCentre) == true → Negation(AlternativeServices.between(GattonRoad, TownCentre), UniversityBusServices.operating))
+14. Q[alternative, AlternativeServices.between(TownCentre, University), UniversityBusServices.operating](AlternativeServices.between(TownCentre, University) == true → Negation(AlternativeServices.between(TownCentre, University), UniversityBusServices.operating))
+15. Q[route566, BusRoutes.route566.between(GattonRoad, TownCentre), UniversityBusServices.operating](BusRoutes.route566.between(GattonRoad, TownCentre) == true → Negation(BusRoutes.route566.between(GattonRoad, TownCentre), UniversityBusServices.operating))
+16. Q[route45, BusRoutes.route45.between(GattonRoad, TownCentre), UniversityBusServices.operating](BusRoutes.route45.between(GattonRoad, TownCentre) == true → Negation(BusRoutes.route45.between(GattonRoad, TownCentre), UniversityBusServices.operating))
+17. Q[route566, BusRoutes.route566.between(TownCentre, University), UniversityBusServices.operating](BusRoutes.route566.between(TownCentre, University) == true → Negation(BusRoutes.route566.between(TownCentre, University), UniversityBusServices.operating))
+18. Q[route45, BusRoutes.route45.between(TownCentre, University), UniversityBusServices.operating](BusRoutes.route45.between(TownCentre, University) == true → Negation(BusRoutes.route45.between(TownCentre, University), UniversityBusServices.operating))
+19. Q[university, UniversityBusServices.area(Little, Denning).status, AlternativeServices.operating](UniversityBusServices.area(Little, Denning).status == inactive → Negation(UniversityBusServices.area(Little, Denning).status, AlternativeServices.operating))
+20. Q[alternative, AlternativeServices.status, UniversityBusServices.operating](AlternativeServices.status == active → Negation(AlternativeServices.status, UniversityBusServices.operating))
+21. Q[bus, BusRoutes.status, UniversityBusServices.operating](BusRoutes.status == active → Negation(BusRoutes.status, UniversityBusServices.operating))
+22. Q[bus, BusServices.status(Little, Denning), AlternativeServices.operating](BusServices.status(Little, Denning) == inactive → Negation(BusServices.status(Little, Denning), AlternativeServices.operating))
+23. Q[bus, BusServices.status(GattonRoad, TownCentre), UniversityBusServices.operating](BusServices.status(GattonRoad, TownCentre) == active → Negation(BusServices.status(GattonRoad, TownCentre), UniversityBusServices.operating))
+24. Q[bus, BusServices.status(TownCentre, University), UniversityBusServices.operating](BusServices.status(TownCentre, University) == active → Negation(BusServices.status(TownCentre, University), UniversityBusServices.operating))
+25. Q[university, M_NLI(S1, S2), AlternativeServices.operating](M_NLI(S1, S2) == true → Negation(M_NLI(S1, S2), AlternativeServices.operating))
+26. Q[university, Negation(UniversityBusServices.operating, true), AlternativeServices.operating](Negation(UniversityBusServices.operating, true) == true → Negation(Negation(UniversityBusServices.operating, true), AlternativeServices.operating))
+27. Q[university, violate(UniversityBusServices.operating, false), AlternativeServices.operating](violate(UniversityBusServices.operating, false) == true → Negation(violate(UniversityBusServices.operating, false), AlternativeServices.operating))
+28. Q[university, UniversityBusServices.area(Little, Denning).status, AlternativeServices.operating](UniversityBusServices.area(Little, Denning).status == inactive → Negation(UniversityBusServices.area(Little, Denning).status, AlternativeServices.operating))
+29. Q[alternative, AlternativeServices.between(GattonRoad, TownCentre), UniversityBusServices.operating](AlternativeServices.between(GattonRoad, TownCentre) == true → Negation(AlternativeServices.between(GattonRoad, TownCentre), University

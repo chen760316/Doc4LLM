@@ -1,0 +1,63 @@
+Source: dense_text.txt (Index 2)
+S1: The Recipient shall not disclose any Confidential Information to any third parties other than to its affiliates, and its and their respective officers, directors, employees, consultants or professional advisers (collectively, “Representatives”) who have a need to know the Confidential Information for use in evaluating or pursuing a potential business relationship with Disclosing Party or its affiliates (“Permitted Use.”)
+S2: Receiving Party may share some Confidential Information with some of Receiving Party's employees.
+
+Predicates:
+1. Recipient.disclose_confidential_information = false
+2. Recipient.third_parties = false
+3. Recipient.affiliates = true
+4. Recipient.Representatives.need_to_know = true
+5. Recipient.Permitted_Use = true
+6. Receiving_Party.share_confidential_information = true
+7. Receiving_Party.employees = true
+8. Receiving_Party.Confidential_Information = some
+9. Receiving_Party.Confidential_Information_with_employees = true
+10. Receiving_Party.Confidential_Information_with_third_parties = false
+11. Disclosing_Party.business_relationship = potential
+12. Disclosing_Party.affiliates = true
+13. Representatives.use_confidential_information = true
+14. Confidential_Information.shared_with_affiliates = true
+15. Confidential_Information.shared_with_employees = true
+16. Confidential_Information.shared_with_third_parties = false
+17. Confidential_Information.evaluating_business_relationship = true
+18. Confidential_Information.pursuing_business_relationship = true
+19. Recipient.violates_disclosure_policy = false
+20. Receiving_Party.violates_disclosure_policy = true
+21. M_NLI(S1, S2) = true
+22. Negation(Recipient.disclose_confidential_information, Receiving_Party.share_confidential_information) = true
+23. violate(Recipient.disclose_confidential_information, Receiving_Party.share_confidential_information) = true
+24. Representatives.Confidential_Information_access = true
+25. Confidential_Information.accessed_by_representatives = true
+26. Confidential_Information.shared_with_consultants = false
+27. Confidential_Information.shared_with_professional_advisers = false
+28. Confidential_Information.shared_with_directors = false
+29. Confidential_Information.shared_with_officers = false
+30. Receiving_Party.Confidential_Information_usage = Permitted_Use
+
+Rules:
+1. Q[The, Recipient.disclose_confidential_information, Receiving_Party.share_confidential_information](Recipient.disclose_confidential_information == false → Negation(Recipient.disclose_confidential_information, Receiving_Party.share_confidential_information))
+2. Q[The, Recipient.third_parties, Receiving_Party.employees](Recipient.third_parties == false → Negation(Recipient.third_parties, Receiving_Party.employees))
+3. Q[The, Recipient.affiliates, Receiving_Party.Confidential_Information](Recipient.affiliates == true → Negation(Recipient.affiliates, Receiving_Party.Confidential_Information))
+4. Q[The, Recipient.Representatives.need_to_know, Receiving_Party.Confidential_Information_with_employees](Recipient.Representatives.need_to_know == true → Negation(Recipient.Representatives.need_to_know, Receiving_Party.Confidential_Information_with_employees))
+5. Q[The, Recipient.Permitted_Use, Receiving_Party.Confidential_Information](Recipient.Permitted_Use == true → Negation(Recipient.Permitted_Use, Receiving_Party.Confidential_Information))
+6. Q[The, Disclosing_Party.business_relationship, Receiving_Party.Confidential_Information](Disclosing_Party.business_relationship == potential → Negation(Disclosing_Party.business_relationship, Receiving_Party.Confidential_Information))
+7. Q[The, Disclosing_Party.affiliates, Receiving_Party.Confidential_Information_with_third_parties](Disclosing_Party.affiliates == true → Negation(Disclosing_Party.affiliates, Receiving_Party.Confidential_Information_with_third_parties))
+8. Q[The, Representatives.use_confidential_information, Receiving_Party.violates_disclosure_policy](Representatives.use_confidential_information == true → Negation(Representatives.use_confidential_information, Receiving_Party.violates_disclosure_policy))
+9. Q[The, Confidential_Information.shared_with_affiliates, Receiving_Party.Confidential_Information_with_employees](Confidential_Information.shared_with_affiliates == true → Negation(Confidential_Information.shared_with_affiliates, Receiving_Party.Confidential_Information_with_employees))
+10. Q[The, Confidential_Information.shared_with_employees, Receiving_Party.Confidential_Information_with_third_parties](Confidential_Information.shared_with_employees == true → Negation(Confidential_Information.shared_with_employees, Receiving_Party.Confidential_Information_with_third_parties))
+11. Q[The, Confidential_Information.evaluating_business_relationship, Receiving_Party.Confidential_Information_usage](Confidential_Information.evaluating_business_relationship == true → Negation(Confidential_Information.evaluating_business_relationship, Receiving_Party.Confidential_Information_usage))
+12. Q[The, Confidential_Information.pursuing_business_relationship, Receiving_Party.violates_disclosure_policy](Confidential_Information.pursuing_business_relationship == true → Negation(Confidential_Information.pursuing_business_relationship, Receiving_Party.violates_disclosure_policy))
+13. Q[The, Recipient.violates_disclosure_policy, Receiving_Party.Confidential_Information_with_employees](Recipient.violates_disclosure_policy == false → Negation(Recipient.violates_disclosure_policy, Receiving_Party.Confidential_Information_with_employees))
+14. Q[The, Receiving_Party.Confidential_Information_usage, Recipient.Permitted_Use](Receiving_Party.Confidential_Information_usage == Permitted_Use → Negation(Receiving_Party.Confidential_Information_usage, Recipient.Permitted_Use))
+15. Q[The, Recipient.Representatives, Receiving_Party.Confidential_Information_with_third_parties](Recipient.Representatives == true → Negation(Recipient.Representatives, Receiving_Party.Confidential_Information_with_third_parties))
+16. Q[The, Confidential_Information.accessed_by_representatives, Receiving_Party.share_confidential_information](Confidential_Information.accessed_by_representatives == true → Negation(Confidential_Information.accessed_by_representatives, Receiving_Party.share_confidential_information))
+17. Q[The, Confidential_Information.shared_with_consultants, Receiving_Party.Confidential_Information_with_employees](Confidential_Information.shared_with_consultants == false → Negation(Confidential_Information.shared_with_consultants, Receiving_Party.Confidential_Information_with_employees))
+18. Q[The, Confidential_Information.shared_with_professional_advisers, Receiving_Party.Confidential_Information_with_employees](Confidential_Information.shared_with_professional_advisers == false → Negation(Confidential_Information.shared_with_professional_advisers, Receiving_Party.Confidential_Information_with_employees))
+19. Q[The, Confidential_Information.shared_with_directors, Receiving_Party.Confidential_Information_with_employees](Confidential_Information.shared_with_directors == false → Negation(Confidential_Information.shared_with_directors, Receiving_Party.Confidential_Information_with_employees))
+20. Q[The, Confidential_Information.shared_with_officers, Receiving_Party.Confidential_Information_with_employees](Confidential_Information.shared_with_officers == false → Negation(Confidential_Information.shared_with_officers, Receiving_Party.Confidential_Information_with_employees))
+21. Q[The, Recipient.violates_disclosure_policy, Receiving_Party.Confidential_Information_with_third_parties](Recipient.violates_disclosure_policy == false → Negation(Recipient.violates_disclosure_policy, Receiving_Party.Confidential_Information_with_third_parties))
+22. Q[The, Recipient.disclose_confidential_information, Receiving_Party.Confidential_Information_with_employees](Recipient.disclose_confidential_information == false → Negation(Recipient.disclose_confidential_information, Receiving_Party.Confidential_Information_with_employees))
+23. Q[The, Recipient.third_parties, Receiving_Party.Confidential_Information_with_employees](Recipient.third_parties == false → Negation(Recipient.third_parties, Receiving_Party.Confidential_Information_with_employees))
+24. Q[The, Recipient.affiliates, Receiving_Party.Confidential_Information_with_third_parties](Recipient.affiliates == true → Negation(Recipient.affiliates, Receiving_Party.Confidential_Information_with_third_parties))
+25. Q[The, Recipient.Representatives.need_to_know, Receiving_Party.Confidential_Information_with_third_parties](Recipient.Representatives.need_to_know == true → Negation(Recipient.Representatives.need_to_know, Receiving_Party.Confidential_Information_with_third_parties))
+26. Q[The, Recipient.Permitted_Use, Receiving_Party.Confidential_Information_with_third_parties](Recipient.Permitted_Use == true → Negation(Recipient.Permitted_Use, Receiving_Party.Confidential_Information_with_third

@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 359)
+S1: The borrowers must form five-member groups that, along with the bank's field workers, closely supervise the loans.
+S2: Peer pressure substitutes for collateral because the group's first two borrowers have to start repaying the principal plus interest over a six-week period before the other members can take out loans.
+
+Predicates:
+1. Borrowers.group_size = 5
+2. Borrowers.supervision_method = "close supervision"
+3. Bank.field_workers.role = "supervisor"
+4. Borrowers.first_two_repay.principal = true
+5. Borrowers.first_two_repay.interest = true
+6. Borrowers.repayment_period = "six weeks"
+7. Group.borrowers.start_repay = true
+8. Group.members.take_out_loans = true
+9. Peer_pressure.substitutes.collateral = true
+10. Supervision.method = "ensuring loan repayment"
+11. Peer_pressure.method = "ensuring loan repayment"
+12. Borrowers.group.supervision = Bank.field_workers
+13. Group.first_two.borrowers = Borrowers.first_two
+14. Borrowers.repayment_condition = "first two repay"
+15. Loans.supervision.required = true
+16. Loans.peer_pressure.required = true
+17. Group.members.repayment_status = "pending"
+18. Borrowers.group.formation = "mandatory"
+19. Bank.field_workers.assist = Borrowers
+20. Borrowers.repayment_sequence = "first two then others"
+21. Group.members.loan_access = "conditional"
+22. Borrowers.group.peer_pressure = true
+23. Loans.repayment_method = "peer pressure"
+24. Loans.repayment_method = "supervision"
+25. Borrowers.group.supervision_type = "close"
+26. Borrowers.loan_access.condition = "peer pressure"
+27. Borrowers.loan_access.condition = "supervision"
+28. Group.members.repaying = "first two"
+29. Loans.repayment_timing = "after first two"
+30. Borrowers.group.supervision_effectiveness = "high"
+
+Rules:
+1. Q[The, Borrowers.supervision_method, Peer_pressure.method](Borrowers.group_size == 5 → Causal(Borrowers.supervision_method, Peer_pressure.method))
+2. Q[The, Loans.repayment_method, Peer_pressure.method](Loans.repayment_method == "supervision" → Causal(Loans.repayment_method, Peer_pressure.method))
+3. Q[The, Borrowers.first_two_repay.principal, Borrowers.first_two_repay.interest](Borrowers.first_two_repay.principal == true → Causal(Borrowers.first_two_repay.principal, Borrowers.first_two_repay.interest))
+4. Q[The, Borrowers.group.supervision, Bank.field_workers.role](Borrowers.group.supervision == Bank.field_workers → Causal(Borrowers.group.supervision, Bank.field_workers.role))
+5. Q[The, Borrowers.repayment_period, Group.members.loan_access](Borrowers.repayment_period == "six weeks" → Causal(Borrowers.repayment_period, Group.members.loan_access))
+6. Q[The, Group.members.repayment_status, Borrowers.first_two_repay.principal](Group.members.repayment_status == "pending" → Causal(Group.members.repayment_status, Borrowers.first_two_repay.principal))
+7. Q[The, Borrowers.group.formation, Borrowers.group.peer_pressure](Borrowers.group.formation == "mandatory" → Causal(Borrowers.group.formation, Borrowers.group.peer_pressure))
+8. Q[The, Loans.supervision.required, Loans.peer_pressure.required](Loans.supervision.required == true → Causal(Loans.supervision.required, Loans.peer_pressure.required))
+9. Q[The, Borrowers.group.peer_pressure, Borrowers.loan_access.condition](Borrowers.group.peer_pressure == true → Causal(Borrowers.group.peer_pressure, Borrowers.loan_access.condition))
+10. Q[The, Borrowers.group.supervision_type, Borrowers.group.peer_pressure](Borrowers.group.supervision_type == "close" → Causal(Borrowers.group.supervision_type, Borrowers.group.peer_pressure))
+11. Q[The, Borrowers.repayment_sequence, Group.members.repaying](Borrowers.repayment_sequence == "first two then others" → Causal(Borrowers.repayment_sequence, Group.members.repaying))
+12. Q[The, Group.first_two.borrowers, Borrowers.first_two_repay.interest](Group.first_two.borrowers == Borrowers.first_two → Causal(Group.first_two.borrowers, Borrowers.first_two_repay.interest))
+13. Q[The, Bank.field_workers.assist, Borrowers.group.supervision](Bank.field_workers.assist == Borrowers → Causal(Bank.field_workers.assist, Borrowers.group.supervision))
+14. Q[The, Borrowers.loan_access.condition, Borrowers.group.supervision](Borrowers.loan_access.condition == "supervision" → Causal(Borrowers.loan_access.condition, Borrowers.group.supervision))
+15. Q[The, Loans.repayment_timing, Borrowers.first_two_repay.principal](Loans.repayment_timing == "after first two" → Causal(Loans.repayment_timing, Borrowers.first_two_repay.principal))
+16. Q[The, Borrowers.group.supervision_effectiveness, Loans.supervision.required](Borrowers.group.supervision_effectiveness == "high" → Causal(Borrowers.group.supervision_effectiveness, Loans.supervision.required))
+17. Q[The, Borrowers.first_two_repay.interest, Group.members.loan_access](Borrowers.first_two_repay.interest == true → Causal(Borrowers.first_two_repay.interest, Group.members.loan_access))
+18. Q[The, Borrowers.group.formation, Borrowers.group_size](Borrowers.group.formation == "mandatory" → Causal(Borrowers.group.formation, Borrowers.group_size))
+19. Q[The, Group.members.take_out_loans, Borrowers.first_two_repay.principal](Group.members.take_out_loans == true → Causal(Group.members.take_out_loans, Borrowers.first_two_repay.principal))
+20. Q[The, Borrowers.repayment_condition, Group.members.repaying](Borrowers.repayment_condition == "first two repay" → Causal(Borrowers.repayment_condition, Group.members.repaying))
+21. Q[The, Borrowers.group.supervision, Loans.supervision.required](Borrowers.group.supervision == Bank.field_workers → Causal(Borrowers.group.supervision, Loans.supervision.required))
+22. Q[The, Borrowers.loan_access.condition, Loans.repayment_method](Borrowers.loan_access.condition == "peer pressure" → Causal(Borrowers.loan_access.condition, Loans.repayment_method))
+23. Q[The, Borrowers.group.peer_pressure, Borrowers.group.supervision](Borrowers.group.peer_pressure == true → Causal(Borrowers.group.peer_pressure, Borrowers.group.supervision))
+24. Q[The, Borrowers.first_two_repay.principal, Borrowers.first_two_repay.interest](Borrowers.first_two_repay.principal == true → Causal(Borrowers.first_two_repay.principal, Borrowers.first_two_repay.interest))
+25. Q[The, Group.members.loan_access, Borrowers.group.supervision](Group.members.loan_access == "conditional" → Causal(Group.members.loan_access, Borrowers.group.supervision))
+26. Q[The, Borrowers.group.supervision_type, Loans.supervision.required](Borrowers.group.supervision_type == "close" → Causal(Borrowers.group.supervision_type, Loans.supervision.required))
+27. Q[The, Borrowers.repayment_period, Borrowers.group.peer_pressure](Borrowers.repayment_period == "six weeks" → Causal(Borrowers.repayment_period, Borrowers.group.peer_pressure))
+28. Q[The, Borrowers.group.peer_pressure, Loans.repayment_method](Borrowers.group.peer_pressure == true → Causal(Borrowers.group.peer_pressure, Loans.repayment_method))
+29. Q[The, Borrowers.group.supervision, Borrowers.loan_access.condition](Borrowers.group.supervision == Bank.field_workers → Causal(Borrowers.group.supervision, Borrowers.loan_access.condition))
+30. Q[The, Group.members.repaying, Borrowers.repayment_condition](Group.members.repaying == "first two" → Causal(Group.members.repaying, Borrowers.repayment_condition))

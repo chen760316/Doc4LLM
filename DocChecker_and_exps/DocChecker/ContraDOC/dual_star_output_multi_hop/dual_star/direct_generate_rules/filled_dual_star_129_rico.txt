@@ -1,0 +1,40 @@
+Predicates:
+Jesus.label != "Person"
+Jesus.label = "Person"
+Jesus.name != "Jesus"
+Jesus.name = "Jesus"
+Jesus.nationality != "Jewish"
+Jesus.nationality = "Jewish"
+Jesus.occupation != "religious leader"
+Jesus.occupation = "religious leader"
+Joanna.label != "Person"
+Joanna.label = "Person"
+Joanna.name != "Joanna"
+Joanna.name != Jesus.name
+Joanna.name = "Joanna"
+Joanna.occupation != "Financial supporter"
+Joanna.occupation != Jesus.occupation
+Joanna.occupation = "Financial supporter"
+Joanna.relationship != "Wife of Herod's steward"
+Joanna.relationship = "Wife of Herod's steward"
+Joanna.status != "Follower"
+Joanna.status = "Follower"
+Joanna___Jesus.background = "Upper-class woman, wife of Herod's steward"
+Joanna___Jesus.context = "Support for ministry"
+Joanna___Jesus.doc_id = "3489738297_5"
+Joanna___Jesus.location = "Galilee"
+Joanna___Jesus.method = "Financial support"
+Joanna___Jesus.relationship = "Joanna provided for Jesus out of her resources."
+None_ML(Jesus.attrs, Joanna.attrs)
+
+Rules:
+Q[Joanna,Joanna] (Joanna.name != "Joanna" ∧ Joanna___Jesus.relationship = "Joanna provided for Jesus out of her resources." ∧ Jesus.nationality != "Jewish" ∧ Joanna.occupation = "Financial supporter" → Joanna___Jesus.background = "Upper-class woman, wife of Herod's steward")
+Q[Joanna,Joanna] (Joanna.name != "Joanna" ∧ Joanna.occupation != Jesus.occupation ∧ Jesus.label != "Person" → Joanna.name = "Joanna")
+Q[Joanna,Joanna] (None_ML(Jesus.attrs, Joanna.attrs) ∧ Joanna___Jesus.doc_id = "3489738297_5" ∧ Jesus.occupation != "religious leader" ∧ Joanna.name = "Joanna" ∧ Jesus.occupation = "religious leader" ∧ Joanna___Jesus.method = "Financial support" → Joanna.occupation != "Financial supporter")
+Q[Joanna,Joanna] (Joanna.name = "Joanna" ∧ Joanna.occupation != "Financial supporter" → Jesus.label != "Person")
+Q[Joanna,Joanna] (Jesus.occupation != "religious leader" ∧ Joanna.name = "Joanna" ∧ Jesus.nationality != "Jewish" ∧ None_ML(Jesus.attrs, Joanna.attrs) ∧ Joanna.status != "Follower" → Joanna___Jesus.relationship = "Joanna provided for Jesus out of her resources.")
+Q[Joanna,Joanna] (Joanna.occupation != "Financial supporter" ∧ Joanna___Jesus.background = "Upper-class woman, wife of Herod's steward" ∧ Jesus.nationality = "Jewish" ∧ Joanna.occupation != Jesus.occupation ∧ Joanna.relationship = "Wife of Herod's steward" ∧ Joanna___Jesus.relationship = "Joanna provided for Jesus out of her resources." → Jesus.occupation = "religious leader")
+Q[Joanna,Joanna] (Joanna___Jesus.relationship = "Joanna provided for Jesus out of her resources." ∧ None_ML(Jesus.attrs, Joanna.attrs) → Jesus.name = "Jesus")
+Q[Joanna,Joanna] (Joanna.name != "Joanna" ∧ Joanna.occupation = "Financial supporter" ∧ Joanna.status = "Follower" → Joanna.status != "Follower")
+Q[Joanna,Joanna] (Joanna.label = "Person" ∧ Joanna.status != "Follower" ∧ Joanna___Jesus.location = "Galilee" ∧ Joanna.name = "Joanna" → Jesus.name != "Jesus")
+Q[Joanna,Joanna] (Jesus.occupation = "religious leader" ∧ Joanna.label != "Person" ∧ Joanna.name != "Joanna" ∧ Jesus.nationality != "Jewish" ∧ Joanna.name = "Joanna" → Joanna___Jesus.location = "Galilee")

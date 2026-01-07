@@ -1,0 +1,104 @@
+Predicates:
+Balance.label != "Character"
+Balance.label = "Character"
+Balance.name != "Balance"
+Balance.name != Melinda.name
+Balance.name != Owen.name
+Balance.name = "Balance"
+Balance.occupation != "Magistrate"
+Balance.occupation = "Magistrate"
+Captain Brazen.label != "Character"
+Captain Brazen.label = "Character"
+Captain Brazen.name != "Captain Brazen"
+Captain Brazen.name != Balance.name
+Captain Brazen.name != Melinda.name
+Captain Brazen.name != Owen.name
+Captain Brazen.name != Rose.name
+Captain Brazen.name = "Captain Brazen"
+Captain Brazen.occupation != "Recruiter"
+Captain Brazen.occupation != Balance.occupation
+Captain Brazen.occupation = "Recruiter"
+Melinda.label != "Character"
+Melinda.label = "Character"
+Melinda.name != "Melinda"
+Melinda.name != Owen.name
+Melinda.name = "Melinda"
+Melinda.status != "Relenting towards Worthy"
+Melinda.status != Owen.status
+Melinda.status = "Relenting towards Worthy"
+None_ML(Balance.attrs, Owen.attrs)
+None_ML(Sylvia___Owen.attrs, Sylvia___Melinda.attrs)
+Owen.label != "Character"
+Owen.label = "Character"
+Owen.name != "Owen"
+Owen.name = "Owen"
+Owen.status != "Deceased"
+Owen.status = "Deceased"
+Rose.label != "Character"
+Rose.label = "Character"
+Rose.name != "Rose"
+Rose.name != Balance.name
+Rose.name != Melinda.name
+Rose.name != Owen.name
+Rose.name = "Rose"
+Rose.status != "Local wench"
+Rose.status != Melinda.status
+Rose.status != Owen.status
+Rose.status = "Local wench"
+Sylvia.label != "Character"
+Sylvia.label = "Character"
+Sylvia.name != "Sylvia"
+Sylvia.name != Balance.name
+Sylvia.name != Captain Brazen.name
+Sylvia.name != Melinda.name
+Sylvia.name != Owen.name
+Sylvia.name != Rose.name
+Sylvia.name = "Sylvia"
+Sylvia.status != "In love with Plume"
+Sylvia.status != Melinda.status
+Sylvia.status != Owen.status
+Sylvia.status != Rose.status
+Sylvia.status = "In love with Plume"
+Sylvia___Balance.actual_location = "Shrewsbury"
+Sylvia___Balance.disguise = "Jack Wilful"
+Sylvia___Balance.doc_id != Sylvia___Owen.doc_id
+Sylvia___Balance.doc_id = "3488771854_1"
+Sylvia___Balance.location = "Welsh countryside"
+Sylvia___Balance.reason = "accused of sexually assaulting Rose"
+Sylvia___Balance.relationship != Sylvia___Melinda.relationship
+Sylvia___Balance.relationship != Sylvia___Owen.relationship
+Sylvia___Balance.relationship = "Sylvia finds herself on trial before her father Balance."
+Sylvia___Captain Brazen.doc_id != Sylvia___Balance.doc_id
+Sylvia___Captain Brazen.doc_id != Sylvia___Melinda.doc_id
+Sylvia___Captain Brazen.doc_id = "3488771854_8"
+Sylvia___Captain Brazen.relationship != Sylvia___Balance.relationship
+Sylvia___Captain Brazen.relationship != Sylvia___Melinda.relationship
+Sylvia___Captain Brazen.relationship != Sylvia___Owen.relationship
+Sylvia___Captain Brazen.relationship != Sylvia___Rose.relationship
+Sylvia___Captain Brazen.relationship = "Brazen and Plume compete to recruit Sylvia disguised as 'Wilful'."
+Sylvia___Melinda.doc_id != Sylvia___Owen.doc_id
+Sylvia___Melinda.doc_id = "3488771854_1"
+Sylvia___Melinda.relationship != Sylvia___Owen.relationship
+Sylvia___Melinda.relationship = "Sylvia argues with Melinda about her behavior after inheriting money."
+Sylvia___Owen.doc_id = "3488771854_8"
+Sylvia___Owen.relationship = "Sylvia mourns her brother Owen's death."
+Sylvia___Rose.doc_id != Sylvia___Balance.doc_id
+Sylvia___Rose.doc_id != Sylvia___Melinda.doc_id
+Sylvia___Rose.doc_id = "3488771854_8"
+Sylvia___Rose.previous_relation = "courted by Plume"
+Sylvia___Rose.relationship != Sylvia___Balance.relationship
+Sylvia___Rose.relationship != Sylvia___Melinda.relationship
+Sylvia___Rose.relationship != Sylvia___Owen.relationship
+Sylvia___Rose.relationship = "Sylvia spends the night in bed with Rose."
+
+Rules:
+Q[Sylvia,Sylvia] (Sylvia___Balance.disguise = "Jack Wilful" ∧ Rose.name != "Rose" ∧ Sylvia___Rose.doc_id = "3488771854_8" → Sylvia.label != "Character")
+Q[Sylvia,Sylvia] (Captain Brazen.occupation != "Recruiter" ∧ Melinda.name != Owen.name → Melinda.status != "Relenting towards Worthy")
+Q[Sylvia,Sylvia] (Rose.status = "Local wench" ∧ Sylvia.name != Melinda.name ∧ Sylvia.name != Captain Brazen.name ∧ Captain Brazen.name != "Captain Brazen" → Sylvia___Balance.reason = "accused of sexually assaulting Rose")
+Q[Sylvia,Sylvia] (Sylvia___Owen.relationship = "Sylvia mourns her brother Owen's death." ∧ Sylvia___Owen.doc_id = "3488771854_8" ∧ Sylvia___Balance.relationship != Sylvia___Melinda.relationship ∧ Captain Brazen.occupation != "Recruiter" ∧ Sylvia___Captain Brazen.doc_id != Sylvia___Balance.doc_id ∧ Sylvia___Captain Brazen.relationship != Sylvia___Owen.relationship → Sylvia___Melinda.doc_id != Sylvia___Owen.doc_id)
+Q[Sylvia,Sylvia] (Sylvia___Balance.doc_id = "3488771854_1" ∧ Captain Brazen.name != Melinda.name ∧ Balance.occupation = "Magistrate" ∧ Owen.status = "Deceased" ∧ Sylvia___Rose.previous_relation = "courted by Plume" → Sylvia___Captain Brazen.relationship != Sylvia___Owen.relationship)
+Q[Sylvia,Sylvia] (None_ML(Sylvia___Owen.attrs, Sylvia___Melinda.attrs) ∧ Sylvia___Owen.doc_id = "3488771854_8" ∧ Rose.name = "Rose" → Sylvia___Balance.location = "Welsh countryside")
+Q[Sylvia,Sylvia] (Captain Brazen.occupation != Balance.occupation ∧ Melinda.name != "Melinda" ∧ Balance.occupation = "Magistrate" ∧ Sylvia___Owen.doc_id = "3488771854_8" ∧ Sylvia___Balance.disguise = "Jack Wilful" ∧ Balance.label != "Character" → None_ML(Balance.attrs, Owen.attrs))
+Q[Sylvia,Sylvia] (Sylvia___Rose.relationship != Sylvia___Balance.relationship ∧ Balance.name = "Balance" ∧ Sylvia.name != Captain Brazen.name ∧ Rose.label != "Character" ∧ Melinda.name != "Melinda" → Balance.name != "Balance")
+Q[Sylvia,Sylvia] (Sylvia___Captain Brazen.relationship != Sylvia___Owen.relationship ∧ None_ML(Sylvia___Owen.attrs, Sylvia___Melinda.attrs) → Sylvia___Melinda.doc_id = "3488771854_1")
+Q[Sylvia,Sylvia] (Rose.label != "Character" ∧ Sylvia.name != Rose.name ∧ Sylvia___Balance.location = "Welsh countryside" ∧ Sylvia___Balance.reason = "accused of sexually assaulting Rose" → Captain Brazen.occupation = "Recruiter")

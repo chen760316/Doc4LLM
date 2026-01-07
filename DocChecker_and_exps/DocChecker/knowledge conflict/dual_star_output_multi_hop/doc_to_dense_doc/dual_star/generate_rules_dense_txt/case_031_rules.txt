@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 31)
+S1: International Medical Corps is a global humanitarian organization that provides emergency medical assistance and training to communities affected by natural disasters, conflicts, and epidemics.
+S2: International Committee of the Red Cross is a global humanitarian organization that provides emergency medical assistance and training to communities affected by natural disasters, conflicts, and epidemics.
+
+Predicates:
+1. International_Medical_Corps.provides_emergency_medical_assistance
+2. International_Medical_Corps.provides_training
+3. International_Medical_Corps.affected_by.natural_disasters
+4. International_Medical_Corps.affected_by.conflicts
+5. International_Medical_Corps.affected_by.epidemics
+6. International_Committee_of_the_Red_Cross.provides_emergency_medical_assistance
+7. International_Committee_of_the_Red_Cross.provides_training
+8. International_Committee_of_the_Red_Cross.affected_by.natural_disasters
+9. International_Committee_of_the_Red_Cross.affected_by.conflicts
+10. International_Committee_of_the_Red_Cross.affected_by.epidemics
+11. "provides".type_of_service.emergency_medical_assistance
+12. "provides".type_of_service.training
+13. "affected_by".type_of_event.natural_disasters
+14. "affected_by".type_of_event.conflicts
+15. "affected_by".type_of_event.epidemics
+16. M_NLI(S1, S2)
+17. Factual(International_Medical_Corps, emergency_medical_assistance)
+18. Factual(International_Committee_of_the_Red_Cross, emergency_medical_assistance)
+19. violate(International_Medical_Corps, sole_provider)
+20. violate(International_Committee_of_the_Red_Cross, sole_provider)
+21. "provides".organization_type.humanitarian
+22. "provides".service_type.emergency
+23. "provides".service_type.medical
+24. "provides".service_type.training
+25. "affected_by".event_type.natural_disasters
+26. "affected_by".event_type.conflicts
+27. "affected_by".event_type.epidemics
+28. Factual(International_Medical_Corps, training)
+29. Factual(International_Committee_of_the_Red_Cross, training)
+30. violate(International_Medical_Corps, emergency_service_provider)
+
+Rules:
+1. Q[International, International_Medical_Corps.provides_emergency_medical_assistance == true](Premise → Conclusion) → Factual(International_Medical_Corps, emergency_medical_assistance)
+2. Q[International, International_Committee_of_the_Red_Cross.provides_emergency_medical_assistance == true](Premise → Conclusion) → Factual(International_Committee_of_the_Red_Cross, emergency_medical_assistance)
+3. Q[International, International_Medical_Corps.provides_training == true](Premise → Conclusion) → Factual(International_Medical_Corps, training)
+4. Q[International, International_Committee_of_the_Red_Cross.provides_training == true](Premise → Conclusion) → Factual(International_Committee_of_the_Red_Cross, training)
+5. Q[International, International_Medical_Corps.affected_by.natural_disasters == true](Premise → Conclusion) → Factual(International_Medical_Corps, natural_disasters)
+6. Q[International, International_Committee_of_the_Red_Cross.affected_by.natural_disasters == true](Premise → Conclusion) → Factual(International_Committee_of_the_Red_Cross, natural_disasters)
+7. Q[International, International_Medical_Corps.affected_by.conflicts == true](Premise → Conclusion) → Factual(International_Medical_Corps, conflicts)
+8. Q[International, International_Committee_of_the_Red_Cross.affected_by.conflicts == true](Premise → Conclusion) → Factual(International_Committee_of_the_Red_Cross, conflicts)
+9. Q[International, International_Medical_Corps.affected_by.epidemics == true](Premise → Conclusion) → Factual(International_Medical_Corps, epidemics)
+10. Q[International, International_Committee_of_the_Red_Cross.affected_by.epidemics == true](Premise → Conclusion) → Factual(International_Committee_of_the_Red_Cross, epidemics)
+11. Q[International, "provides".type_of_service.emergency_medical_assistance == true](Premise → Conclusion) → Factual(International_Medical_Corps, emergency_medical_assistance)
+12. Q[International, "provides".type_of_service.training == true](Premise → Conclusion) → Factual(International_Medical_Corps, training)
+13. Q[International, "affected_by".type_of_event.natural_disasters == true](Premise → Conclusion) → Factual(International_Medical_Corps, natural_disasters)
+14. Q[International, "affected_by".type_of_event.conflicts == true](Premise → Conclusion) → Factual(International_Medical_Corps, conflicts)
+15. Q[International, "affected_by".type_of_event.epidemics == true](Premise → Conclusion) → Factual(International_Medical_Corps, epidemics)
+16. Q[International, "provides".organization_type.humanitarian == true](Premise → Conclusion) → Factual(International_Medical_Corps, humanitarian)
+17. Q[International, "provides".service_type.emergency == true](Premise → Conclusion) → Factual(International_Medical_Corps, emergency)
+18. Q[International, "provides".service_type.medical == true](Premise → Conclusion) → Factual(International_Medical_Corps, medical)
+19. Q[International, "provides".service_type.training == true](Premise → Conclusion) → Factual(International_Medical_Corps, training)
+20. Q[International, International_Medical_Corps.provides_emergency_medical_assistance == true AND International_Committee_of_the_Red_Cross.provides_emergency_medical_assistance == true](Premise → Conclusion) → violate(International_Medical_Corps, sole_provider)
+21. Q[International, International_Medical_Corps.provides_training == true AND International_Committee_of_the_Red_Cross.provides_training == true](Premise → Conclusion) → violate(International_Medical_Corps, sole_provider)
+22. Q[International, International_Medical_Corps.affected_by.natural_disasters == true AND International_Committee_of_the_Red_Cross.affected_by.natural_disasters == true](Premise → Conclusion) → violate(International_Medical_Corps, sole_provider)
+23. Q[International, International_Medical_Corps.affected_by.conflicts == true AND International_Committee_of_the_Red_Cross.affected_by.conflicts == true](Premise → Conclusion) → violate(International_Medical_Corps, sole_provider)
+24. Q[International, International_Medical_Corps.affected_by.epidemics == true AND International_Committee_of_the_Red_Cross.affected_by.epidemics == true](Premise → Conclusion) → violate(International_Medical_Corps, sole_provider)
+25. Q[International, International_Medical_Corps.provides_emergency_medical_assistance == true AND International_Committee_of_the_Red_Cross.provides_emergency_medical_assistance == true](Premise → Conclusion) → violate(International_Committee_of_the_Red_Cross, sole_provider)
+26. Q[International, International_Medical_Corps.provides_training == true AND International_Committee_of_the_Red_Cross.provides_training == true](Premise → Conclusion) → violate(International_Committee_of_the_Red_Cross, sole_provider)
+27. Q[International, International_Medical_Corps.affected_by.natural_disasters == true AND International_Committee_of_the_Red_Cross.affected_by.natural_disasters == true](Premise → Conclusion) → violate(International_Committee_of_the_Red_Cross, sole_provider)
+28. Q[International, International_Medical_Corps.affected_by.conflicts == true AND International_Committee_of_the_Red_Cross.affected_by.conflicts == true](Premise → Conclusion) → violate(International_Committee_of_the_Red_Cross, sole_provider)
+29. Q[International, International_Medical_Corps.affected_by.epidemics == true AND International_Committee_of_the_Red_Cross.affected_by.epidemics == true](Premise → Conclusion) → violate(International_Committee_of_the_Red_Cross, sole_provider)
+30. Q[International, International_Medical_Corps.provides_emergency_medical_assistance == true AND International_Medical_Corps.provides_training == true](Premise → Conclusion) → violate(International_Medical_Corps, emergency_service_provider)

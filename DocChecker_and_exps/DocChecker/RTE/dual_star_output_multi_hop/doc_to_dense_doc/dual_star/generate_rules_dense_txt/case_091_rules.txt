@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 91)
+S1: The bus was of Nairobi in Kenya, crashed in the divisions of Uganda Kabale, on the border with Rwanda.
+S2: The bus, which was heading for Nairobi in Kenya, crashed in the Kabale district of Uganda near the Rwandan border.
+
+Predicates:
+1. Bus.origin: Nairobi
+2. Bus.destination: Nairobi
+3. Bus.crash_location: Kabale
+4. Bus.border: Rwanda
+5. Bus.country: Uganda
+6. Bus.route: Nairobi_to_Kabale
+7. Bus.status: crashed
+8. Bus.time: unknown
+9. Bus.passengers: unknown
+10. Bus.driver: unknown
+11. Bus.model: unknown
+12. Bus.capacity: unknown
+13. Bus.weather_conditions: unknown
+14. Bus.road_conditions: unknown
+15. Bus.injury_report: unknown
+16. Bus.cause_of_crash: unknown
+17. Bus.time_of_departure: unknown
+18. Bus.time_of_arrival: unknown
+19. Bus.registration_number: unknown
+20. Bus.owner: unknown
+21. Bus.insurance_status: unknown
+22. Bus.maintenance_status: unknown
+23. Bus.route_length: unknown
+24. Bus.speed_at_crash: unknown
+25. Bus.traffic_conditions: unknown
+26. Bus.emergency_response_time: unknown
+27. Bus.local_authorities_informed: true
+28. Bus.investigation_status: ongoing
+29. M_NLI(S1, S2): true
+30. violate(Bus.origin, Bus.destination): true
+
+Rules:
+1. Q[The, Bus.origin, Bus.destination](Bus.origin == "Nairobi" → Relation(Bus.origin, Bus.destination))
+2. Q[The, Bus.destination, Bus.origin](Bus.destination == "Nairobi" → Relation(Bus.destination, Bus.origin))
+3. Q[The, Bus.crash_location, Bus.border](Bus.crash_location == "Kabale" → Relation(Bus.crash_location, Bus.border))
+4. Q[The, Bus.border, Bus.crash_location](Bus.border == "Rwanda" → Relation(Bus.border, Bus.crash_location))
+5. Q[The, Bus.country, Bus.crash_location](Bus.country == "Uganda" → Relation(Bus.country, Bus.crash_location))
+6. Q[The, Bus.route, Bus.origin](Bus.route == "Nairobi_to_Kabale" → Relation(Bus.route, Bus.origin))
+7. Q[The, Bus.status, Bus.crash_location](Bus.status == "crashed" → Relation(Bus.status, Bus.crash_location))
+8. Q[The, Bus.origin, Bus.route](Bus.origin == "Nairobi" → Relation(Bus.origin, Bus.route))
+9. Q[The, Bus.destination, Bus.route](Bus.destination == "Nairobi" → Relation(Bus.destination, Bus.route))
+10. Q[The, Bus.crash_location, Bus.country](Bus.crash_location == "Kabale" → Relation(Bus.crash_location, Bus.country))
+11. Q[The, Bus.border, Bus.country](Bus.border == "Rwanda" → Relation(Bus.border, Bus.country))
+12. Q[The, Bus.route, Bus.crash_location](Bus.route == "Nairobi_to_Kabale" → Relation(Bus.route, Bus.crash_location))
+13. Q[The, Bus.origin, Bus.border](Bus.origin == "Nairobi" → Relation(Bus.origin, Bus.border))
+14. Q[The, Bus.destination, Bus.border](Bus.destination == "Nairobi" → Relation(Bus.destination, Bus.border))
+15. Q[The, Bus.crash_location, Bus.origin](Bus.crash_location == "Kabale" → Relation(Bus.crash_location, Bus.origin))
+16. Q[The, Bus.country, Bus.origin](Bus.country == "Uganda" → Relation(Bus.country, Bus.origin))
+17. Q[The, Bus.route, Bus.destination](Bus.route == "Nairobi_to_Kabale" → Relation(Bus.route, Bus.destination))
+18. Q[The, Bus.status, Bus.origin](Bus.status == "crashed" → Relation(Bus.status, Bus.origin))
+19. Q[The, Bus.origin, Bus.crash_location](Bus.origin == "Nairobi" → Relation(Bus.origin, Bus.crash_location))
+20. Q[The, Bus.destination, Bus.crash_location](Bus.destination == "Nairobi" → Relation(Bus.destination, Bus.crash_location))
+21. Q[The, Bus.border, Bus.origin](Bus.border == "Rwanda" → Relation(Bus.border, Bus.origin))
+22. Q[The, Bus.crash_location, Bus.destination](Bus.crash_location == "Kabale" → Relation(Bus.crash_location, Bus.destination))
+23. Q[The, Bus.country, Bus.destination](Bus.country == "Uganda" → Relation(Bus.country, Bus.destination))
+24. Q[The, Bus.route, Bus.origin](Bus.route == "Nairobi_to_Kabale" → Relation(Bus.route, Bus.origin))
+25. Q[The, Bus.status, Bus.destination](Bus.status == "crashed" → Relation(Bus.status, Bus.destination))
+26. Q[The, Bus.origin, Bus.country](Bus.origin == "Nairobi" → Relation(Bus.origin, Bus.country))
+27. Q[The, Bus.destination, Bus.country](Bus.destination == "Nairobi" → Relation(Bus.destination, Bus.country))
+28. Q[The, Bus.crash_location, Bus.border](Bus.crash_location == "Kabale" → Relation(Bus.crash_location, Bus.border))
+29. Q[The, Bus.border, Bus.destination](Bus.border == "Rwanda" → Relation(Bus.border, Bus.destination))
+30. Q[The, Bus.origin, Bus.route](violate(Bus.origin, Bus.destination) → Relation(Bus.origin, Bus.destination))

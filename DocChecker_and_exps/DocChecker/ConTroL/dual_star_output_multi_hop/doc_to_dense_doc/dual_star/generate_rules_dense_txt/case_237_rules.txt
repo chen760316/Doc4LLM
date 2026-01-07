@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 237)
+S1: U p t o f o u r c h i l d r e n u n d e r 1 6 t r a v e l f r e e w i t h a n a d u l t o r c o n c e s s i o n a r y p a s s h o l d e r.
+S2: C h i l d r e n u n d e r 1 6 t r a v e l l i n g a l o n e a r e a l l o w e d f r e e t r a v e l.
+
+Predicates:
+1. Children_Under_16.travel_free_with_adult
+2. Children_Under_16.travel_free_with_concessionary_pass
+3. Children_Under_16.travel_alone
+4. Children_Under_16.travel_free
+5. Adult.has_concessionary_pass
+6. Adult.accompanies_children
+7. Travel_policy.children_under_16
+8. Travel_policy.free_travel_conditions
+9. Travel_policy.adult_accompaniment_required
+10. Travel_policy.children_traveling_alone
+11. Concessionary_pass.holder
+12. Free_travel.allowed
+13. Travel_conditions.accompanied_by_adult
+14. Travel_conditions.accompanied_by_concessionary_pass_holder
+15. Travel_conditions.children_traveling_alone_allowed
+16. Travel_conditions.violation_of_policy
+17. Policy_violation.children_traveling_alone
+18. Policy_violation.adult_accompaniment_required
+19. Free_travel.policy
+20. Free_travel.under_16
+21. Travel_rules.children
+22. Travel_rules.adult_required
+23. Travel_rules.concessionary_pass
+24. Travel_rules.free_travel_alone
+25. Travel_rules.violation
+26. Travel_exemption.children_under_16
+27. Travel_exemption.adult_required
+28. Travel_exemption.concessionary_pass_holder
+29. Travel_exemption.violation
+30. Travel_policy.conflict
+
+Rules:
+1. Q[Anchor, Children_Under_16.travel_free_with_adult, Children_Under_16.travel_alone](Children_Under_16.travel_free_with_adult == true → Negation(Children_Under_16.travel_alone, true))
+2. Q[Anchor, Children_Under_16.travel_free_with_concessionary_pass, Children_Under_16.travel_alone](Children_Under_16.travel_free_with_concessionary_pass == true → Negation(Children_Under_16.travel_alone, true))
+3. Q[Anchor, Travel_policy.adult_accompaniment_required, Travel_policy.children_traveling_alone](Travel_policy.adult_accompaniment_required == true → Negation(Travel_policy.children_traveling_alone, true))
+4. Q[Anchor, Travel_conditions.accompanied_by_adult, Travel_conditions.children_traveling_alone_allowed](Travel_conditions.accompanied_by_adult == true → Negation(Travel_conditions.children_traveling_alone_allowed, true))
+5. Q[Anchor, Travel_policy.free_travel_conditions, Travel_policy.children_traveling_alone](Travel_policy.free_travel_conditions == true → Negation(Travel_policy.children_traveling_alone, true))
+6. Q[Anchor, Travel_rules.adult_required, Travel_rules.free_travel_alone](Travel_rules.adult_required == true → Negation(Travel_rules.free_travel_alone, true))
+7. Q[Anchor, Travel_exemption.adult_required, Travel_exemption.violation](Travel_exemption.adult_required == true → Negation(Travel_exemption.violation, true))
+8. Q[Anchor, Travel_conditions.violation_of_policy, Policy_violation.children_traveling_alone](Travel_conditions.violation_of_policy == true → Negation(Policy_violation.children_traveling_alone, true))
+9. Q[Anchor, Travel_policy.conflict, Travel_policy.free_travel_conditions](Travel_policy.conflict == true → Negation(Travel_policy.free_travel_conditions, true))
+10. Q[Anchor, Travel_rules.violation, Travel_rules.children](Travel_rules.violation == true → Negation(Travel_rules.children, true))
+11. Q[Anchor, Free_travel.policy, Free_travel.under_16](Free_travel.policy == true → Negation(Free_travel.under_16, true))
+12. Q[Anchor, Adult.accompanies_children, Children_Under_16.travel_free](Adult.accompanies_children == true → Negation(Children_Under_16.travel_free, true))
+13. Q[Anchor, Travel_conditions.accompanied_by_concessionary_pass_holder, Children_Under_16.travel_free](Travel_conditions.accompanied_by_concessionary_pass_holder == true → Negation(Children_Under_16.travel_free, true))
+14. Q[Anchor, Travel_exemption.concessionary_pass_holder, Travel_exemption.violation](Travel_exemption.concessionary_pass_holder == true → Negation(Travel_exemption.violation, true))
+15. Q[Anchor, Travel_policy.children_under_16, Travel_policy.adult_accompaniment_required](Travel_policy.children_under_16 == true → Negation(Travel_policy.adult_accompaniment_required, true))
+16. Q[Anchor, Free_travel.allowed, Children_Under_16.travel_free](Free_travel.allowed == true → Negation(Children_Under_16.travel_free, true))
+17. Q[Anchor, Travel_rules.concessionary_pass, Adult.has_concessionary_pass](Travel_rules.concessionary_pass == true → Negation(Adult.has_concessionary_pass, true))
+18. Q[Anchor, Travel_conditions.children_traveling_alone_allowed, Children_Under_16.travel_free](Travel_conditions.children_traveling_alone_allowed == true → Negation(Children_Under_16.travel_free, true))
+19. Q[Anchor, Travel_policy.free_travel_conditions, Travel_policy.adult_accompaniment_required](Travel_policy.free_travel_conditions == true → Negation(Travel_policy.adult_accompaniment_required, true))
+20. Q[Anchor, Travel_rules.free_travel_alone, Travel_rules.adult_required](Travel_rules.free_travel_alone == true → Negation(Travel_rules.adult_required, true))
+21. Q[Anchor, Travel_exemption.violation, Travel_exemption.children_under_16](Travel_exemption.violation == true → Negation(Travel_exemption.children_under_16, true))
+22. Q[Anchor, Travel_policy.children_traveling_alone, Travel_policy.free_travel_conditions](Travel_policy.children_traveling_alone == true → Negation(Travel_policy.free_travel_conditions, true))
+23. Q[Anchor, Travel_conditions.violation_of_policy, Travel_conditions.accompanied_by_adult](Travel_conditions.violation_of_policy == true → Negation(Travel_conditions.accompanied_by_adult, true))
+24. Q[Anchor, Travel_rules.violation, Travel_rules.free_travel_alone](Travel_rules.violation == true → Negation(Travel_rules.free_travel_alone, true))
+25. Q[Anchor, Free_travel.policy, Travel_policy.children_under_16](Free_travel.policy == true → Negation(Travel_policy.children_under_16, true))
+26. Q[Anchor, Adult.accompanies_children, Travel_policy.free_travel_conditions](Adult.accompanies_children == true → Negation(Travel_policy.free_travel_conditions, true))
+27. Q[Anchor, Travel_conditions.accompanied_by_concessionary_pass_holder, Travel_rules.free_travel_alone](Travel_conditions.accompanied_by_concessionary_pass_holder == true → Negation(Travel_rules.free_travel_alone, true))
+28. Q[Anchor, Travel_policy.conflict, Travel_policy.adult_accompaniment_required](Travel_policy.conflict == true → Negation(Travel_policy.adult_accompaniment_required, true))
+29. Q[Anchor, Travel_exemption.adult_required, Travel_policy.children_traveling_alone](Travel_exemption.adult_required == true → Negation(Travel_policy.children_traveling_alone, true))
+30. Q[Anchor, Travel_rules.children, Travel_conditions.children_traveling_alone_allowed](Travel_rules.children == true → Negation(Travel_conditions.children_traveling_alone_allowed, true))

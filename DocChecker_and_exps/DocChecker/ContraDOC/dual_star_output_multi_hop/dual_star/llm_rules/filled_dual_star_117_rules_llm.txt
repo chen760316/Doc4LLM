@@ -1,0 +1,92 @@
+Predicates:
+1. Jackie.status = "survivor"
+2. Sarah Roderick.status = "survivor"
+3. Phi Kappa Psi.type = "fraternity"
+4. University of Virginia.status = "under investigation"
+5. Will Dana.occupation = "managing editor"
+6. Rolling Stone.status = "retracted article"
+7. Columbia Journalism School.type = "educational institution"
+8. Jackie.report_year = "2013"
+9. Sarah Roderick.comment_year = "2014"
+10. "Jackie reported an alleged gang rape incident to the University of Virginia.".incident_location = "fraternity house"
+11. "Phi Kappa Psi may consider suing for defamation based on the flawed article.".context = "Potential legal action due to reputational harm"
+12. "The article published by Rolling Stone caused damage to the reputation of Phi Kappa Psi fraternity and UVA.".context = "Flawed article about a purported gang rape"
+13. "Will Dana, the managing editor of Rolling Stone, issued an apology to readers and those affected by the flawed article.".context = "Apology for the flawed article about a purported gang rape"
+14. "Sarah Roderick commented on the impact of Rolling Stone's retraction on survivors' voices.".comment_year >= "2014"
+15. "The Virginia attorney general requested O'Melveny & Myers to investigate the University of Virginia's handling of sexual assault allegations.".request_year <= "2014"
+16. Jackie.report_year < "2014"
+17. "Jackie and Sarah Roderick discussed the impact of the Rolling Stone article on survivors.".context != "discussion about college sports"
+18. "Jackie and Sarah Roderick discussed the impact of the Rolling Stone article on survivors.".context = "conversation about the portrayal of rape on college campuses"
+19. O'Melveny & Myers.task = "investigation of university's handling of sexual assault allegations"
+20. Will Dana.status != "indifferent"
+21. "Jackie reported an alleged gang rape incident to the University of Virginia.".report_year > "2012"
+22. "Phi Kappa Psi may consider suing for defamation based on the flawed article.".context != "celebration of fraternity life"
+23. "The article published by Rolling Stone caused damage to the reputation of Phi Kappa Psi fraternity and UVA.".context >= "Flawed article about a purported gang rape"
+24. "Will Dana, the managing editor of Rolling Stone, issued an apology to readers and those affected by the flawed article.".context < "celebration of journalism"
+25. Jackie.status != "perpetrator"
+26. Sarah Roderick.location = "University of Virginia"
+27. "The Virginia attorney general requested O'Melveny & Myers to investigate the University of Virginia's handling of sexual assault allegations.".request_year > "2013"
+28. "Jackie and Sarah Roderick discussed the impact of the Rolling Stone article on survivors.".context <= "conversation about societal issues"
+29. "Jackie reported an alleged gang rape incident to the University of Virginia.".incident_location != "library"
+30. "Phi Kappa Psi may consider suing for defamation based on the flawed article.".context >= "legal considerations"
+31. "The article published by Rolling Stone caused damage to the reputation of Phi Kappa Psi fraternity and UVA.".context != "positive portrayal"
+32. "Will Dana, the managing editor of Rolling Stone, issued an apology to readers and those affected by the flawed article.".context > "no response"
+33. Jackie.status >= "survivor"
+34. Sarah Roderick.status <= "survivor"
+35. "Jackie reported an alleged gang rape incident to the University of Virginia.".report_year != "2014"
+36. "The Virginia attorney general requested O'Melveny & Myers to investigate the University of Virginia's handling of sexual assault allegations.".request_year < "2015"
+37. "Jackie and Sarah Roderick discussed the impact of the Rolling Stone article on survivors.".context > "discussion about academic performance"
+38. O'Melveny & Myers.task != "celebration of university policies"
+39. "Phi Kappa Psi may consider suing for defamation based on the flawed article.".context < "fraternity recruitment"
+40. "The article published by Rolling Stone caused damage to the reputation of Phi Kappa Psi fraternity and UVA.".context >= "media scrutiny"
+41. "Will Dana, the managing editor of Rolling Stone, issued an apology to readers and those affected by the flawed article.".context != "celebration of journalism ethics"
+42. Jackie.report_year <= "2013"
+43. Sarah Roderick.comment_year < "2015"
+44. "Jackie reported an alleged gang rape incident to the University of Virginia.".incident_location >= "fraternity house"
+45. "The Virginia attorney general requested O'Melveny & Myers to investigate the University of Virginia's handling of sexual assault allegations.".request_year != "2013"
+46. "Jackie and Sarah Roderick discussed the impact of the Rolling Stone article on survivors.".context != "discussion about sports"
+47. "Jackie reported an alleged gang rape incident to the University of Virginia.".report_year > "2011"
+48. "Phi Kappa Psi may consider suing for defamation based on the flawed article.".context <= "legal ramifications"
+49. "The article published by Rolling Stone caused damage to the reputation of Phi Kappa Psi fraternity and UVA.".context > "neutral reporting"
+50. "Will Dana, the managing editor of Rolling Stone, issued an apology to readers and those affected by the flawed article.".context < "no acknowledgment"
+51. M_NLI(Jackie.status, Sarah Roderick.status)
+52. M_NLU(Jackie.report_year, "2013")
+53. M_TEM(Sarah Roderick.comment_year, "2014")
+54. contra("Rolling Stone article", "flawed article")
+55. S(Jackie, "Jackie reported an alleged gang rape incident")
+56. S(Sarah Roderick, "Sarah Roderick commented on the impact of Rolling Stone's retraction")
+57. T("impact of the Rolling Stone article", "flawed article", "Content")
+58. tau(Jackie.report_year, Sarah Roderick.comment_year)
+59. tau("Jackie reported an alleged gang rape incident to the University of Virginia.", "Phi Kappa Psi may consider suing for defamation based on the flawed article.")
+60. M_NLI(Will Dana.occupation, "managing editor")
+61. M_NLU(University of Virginia.status, "under investigation")
+62. M_TEM(Phi Kappa Psi.type, "fraternity")
+63. contra("apology issued", "no response")
+64. S(University of Virginia, "University of Virginia's handling of sexual assault allegations")
+65. S(Will Dana, "Will Dana, the managing editor of Rolling Stone")
+66. T("damage to the reputation", "positive portrayal", "Factual")
+67. tau(Jackie.status, "survivor")
+68. tau(Sarah Roderick.location, "University of Virginia")
+69. tau("The Virginia attorney general requested O'Melveny & Myers", "
+
+Rules:
+1. Q[1, 1](Jackie.status = "survivor" ∧ Phi Kappa Psi.type = "fraternity" → University of Virginia.status = "under investigation")
+2. Q[2, 2](Sarah Roderick.status = "survivor" ∧ Jackie.report_year < "2014" → Will Dana.status != "indifferent")
+3. Q[3, 3](Jackie.report_year = "2013" ∧ "Jackie reported an alleged gang rape incident to the University of Virginia.".incident_location = "fraternity house" → Rolling Stone.status = "retracted article")
+4. Q[4, 4](Will Dana.occupation = "managing editor" ∧ "The article published by Rolling Stone caused damage to the reputation of Phi Kappa Psi fraternity and UVA.".context = "Flawed article about a purported gang rape" → "Phi Kappa Psi may consider suing for defamation based on the flawed article.".context = "Potential legal action due to reputational harm")
+5. Q[5, 5](Jackie.status != "perpetrator" ∧ Sarah Roderick.location = "University of Virginia" ∧ "The Virginia attorney general requested O'Melveny & Myers to investigate the University of Virginia's handling of sexual assault allegations.".request_year <= "2014" → O'Melveny & Myers.task = "investigation of university's handling of sexual assault allegations")
+6. Q[6, 6](Will Dana.status != "indifferent" ∧ "Jackie and Sarah Roderick discussed the impact of the Rolling Stone article on survivors.".context = "conversation about the portrayal of rape on college campuses" ∧ "The article published by Rolling Stone caused damage to the reputation of Phi Kappa Psi fraternity and UVA.".context >= "Flawed article about a purported gang rape" → Jackie.status = "survivor")
+7. Q[7, 1](Jackie.report_year < "2014" ∧ "Jackie reported an alleged gang rape incident to the University of Virginia.".incident_location != "library" → Sarah Roderick.comment_year >= "2014")
+8. Q[8, 2](Phi Kappa Psi.type = "fraternity" ∧ "The article published by Rolling Stone caused damage to the reputation of Phi Kappa Psi fraternity and UVA.".context != "positive portrayal" → Will Dana.occupation = "managing editor")
+9. Q[9, 3](Jackie.status = "survivor" ∧ "The Virginia attorney general requested O'Melveny & Myers to investigate the University of Virginia's handling of sexual assault allegations.".request_year < "2015" → "Jackie and Sarah Roderick discussed the impact of the Rolling Stone article on survivors.".context != "discussion about college sports")
+10. Q[10, 4](Sarah Roderick.status <= "survivor" ∧ "Jackie reported an alleged gang rape incident to the University of Virginia.".report_year != "2014" ∧ "Will Dana, the managing editor of Rolling Stone, issued an apology to readers and those affected by the flawed article.".context < "celebration of journalism" → Jackie.report_year <= "2013")
+11. Q[11, 1](Jackie.status != "perpetrator" ∧ "The article published by Rolling Stone caused damage to the reputation of Phi Kappa Psi fraternity and UVA.".context >= "media scrutiny" → "Phi Kappa Psi may consider suing for defamation based on the flawed article.".context != "celebration of fraternity life")
+12. Q[12, 2](Will Dana.occupation = "managing editor" ∧ "Jackie and Sarah Roderick discussed the impact of the Rolling Stone article on survivors.".context <= "conversation about societal issues" → "The article published by Rolling Stone caused damage to the reputation of Phi Kappa Psi fraternity and UVA.".context != "positive portrayal")
+13. Q[13, 3](Sarah Roderick.location = "University of Virginia" ∧ Jackie.report_year > "2012" → "The Virginia attorney general requested O'Melveny & Myers to investigate the University of Virginia's handling of sexual assault allegations.".request_year > "2013")
+14. Q[14, 4](Jackie.status >= "survivor" ∧ "Will Dana, the managing editor of Rolling Stone, issued an apology to readers and those affected by the flawed article.".context > "no response" → "Jackie reported an alleged gang rape incident to the University of Virginia.".incident_location = "fraternity house")
+15. Q[15, 5](Sarah Roderick.comment_year < "2015" ∧ "Jackie and Sarah Roderick discussed the impact of the Rolling Stone article on survivors.".context != "discussion about sports" ∧ "The article published by Rolling Stone caused damage to the reputation of Phi Kappa Psi fraternity and UVA.".context > "neutral reporting" → Jackie.report_year < "2014")
+16. Q[16, 6](Will Dana.status != "indifferent" ∧ "The Virginia attorney general requested O'Melveny & Myers to investigate the University of Virginia's handling of sexual assault allegations.".request_year != "2013" ∧ "Jackie reported an alleged gang rape incident to the University of Virginia.".report_year > "2011" → "Phi Kappa Psi may consider suing for defamation based on the flawed article.".context < "celebration of university policies")
+17. Q[17, 1](Jackie.report_year = "2013" ∧ "The article published by Rolling Stone caused damage to the reputation of Phi Kappa Psi fraternity and UVA.".context >= "Flawed article about a purported gang rape" → "Will Dana, the managing editor of Rolling Stone, issued an apology to readers and those affected by the flawed article.".context < "celebration of journalism ethics")
+18. Q[18, 2](Sarah Roderick.status <= "survivor" ∧ Jackie.status != "perpetrator" → "Jackie reported an alleged gang rape incident to the University of Virginia.".incident_location != "library")
+19. Q[19, 3](Phi Kappa Psi.type = "fraternity" ∧ "The article published by Rolling Stone caused damage to the reputation of Phi Kappa Psi fraternity and UVA.".context != "positive portrayal" ∧ "Will Dana, the managing editor of Rolling Stone, issued an apology to readers and those affected by the flawed article.".context < "celebration of journalism" → "Jackie and Sarah Roderick discussed the impact of the Rolling Stone article on survivors.".context != "discussion about college sports")
+20. Q[20, 4](Jackie.report_year < "2014" ∧ "Jackie reported an alleged gang rape incident to the University of Virginia.".incident_location = "fraternity house" ∧ "The Virginia attorney general requested O'Melveny & Myers to investigate the University of Virginia's handling of sexual assault allegations.".request_year <= "2014" → "The article published by Rolling Stone caused

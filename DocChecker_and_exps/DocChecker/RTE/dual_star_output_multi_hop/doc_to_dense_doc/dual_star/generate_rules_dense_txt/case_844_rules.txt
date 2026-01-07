@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 844)
+S1: V i c t o r E m m a n u e l I I I w a s K i n g o f I t a l y b e t w e e n 1 9 0 0 a n d 1 9 4 6 .
+S2: V i c t o r E m m a n u e l I I I w a s k i n g o f I t a l y f r o m 1 9 0 0 t o 1 9 4 6 .
+
+Predicates:
+1. King_of_Italy.title
+2. King_of_Italy.start_year
+3. King_of_Italy.end_year
+4. Victor_Emmanuel_III.title
+5. Victor_Emmanuel_III.start_year
+6. Victor_Emmanuel_III.end_year
+7. Italy.has_king
+8. Italy.king_name
+9. Italy.reign_period
+10. Reign.start_year
+11. Reign.end_year
+12. Historical_Fact.is_true
+13. Historical_Fact.has_title
+14. Historical_Fact.has_dates
+15. Title.emphasis
+16. Title.capitalization
+17. Title.variation
+18. Sentence_1.content
+19. Sentence_2.content
+20. Sentence_1.has_fact
+21. Sentence_2.has_fact
+22. Sentence_1.is_equivalent_to
+23. Sentence_2.is_equivalent_to
+24. Fact.is_identical
+25. Fact.has_different_emphasis
+26. Fact.has_contradiction
+27. Time_Period.start_year
+28. Time_Period.end_year
+29. Time_Period.is_between
+30. Relationship.has_contradiction
+
+Rules:
+1. Q[King_of_Italy, Victor_Emmanuel_III.title, King_of_Italy.title](Victor_Emmanuel_III.title == "King" → Negation(Victor_Emmanuel_III.title, King_of_Italy.title))
+2. Q[King_of_Italy, Victor_Emmanuel_III.start_year, King_of_Italy.start_year](Victor_Emmanuel_III.start_year == 1900 → Negation(Victor_Emmanuel_III.start_year, King_of_Italy.start_year))
+3. Q[King_of_Italy, Victor_Emmanuel_III.end_year, King_of_Italy.end_year](Victor_Emmanuel_III.end_year == 1946 → Negation(Victor_Emmanuel_III.end_year, King_of_Italy.end_year))
+4. Q[Italy, Italy.has_king, Victor_Emmanuel_III.title](Italy.has_king == true → Negation(Italy.has_king, Victor_Emmanuel_III.title))
+5. Q[Italy, Italy.king_name, Victor_Emmanuel_III.title](Italy.king_name == "Victor Emmanuel III" → Negation(Italy.king_name, Victor_Emmanuel_III.title))
+6. Q[Reign, Reign.start_year, Victor_Emmanuel_III.start_year](Reign.start_year == 1900 → Negation(Reign.start_year, Victor_Emmanuel_III.start_year))
+7. Q[Reign, Reign.end_year, Victor_Emmanuel_III.end_year](Reign.end_year == 1946 → Negation(Reign.end_year, Victor_Emmanuel_III.end_year))
+8. Q[Historical_Fact, Historical_Fact.is_true, Sentence_1.has_fact](Historical_Fact.is_true == true → Negation(Historical_Fact.is_true, Sentence_1.has_fact))
+9. Q[Historical_Fact, Historical_Fact.has_title, Victor_Emmanuel_III.title](Historical_Fact.has_title == "King" → Negation(Historical_Fact.has_title, Victor_Emmanuel_III.title))
+10. Q[Historical_Fact, Historical_Fact.has_dates, Victor_Emmanuel_III.start_year](Historical_Fact.has_dates == true → Negation(Historical_Fact.has_dates, Victor_Emmanuel_III.start_year))
+11. Q[Title, Title.emphasis, King_of_Italy.title](Title.emphasis == "King" → Negation(Title.emphasis, King_of_Italy.title))
+12. Q[Title, Title.capitalization, King_of_Italy.title](Title.capitalization == "king" → Negation(Title.capitalization, King_of_Italy.title))
+13. Q[Title, Title.variation, King_of_Italy.title](Title.variation == "King" → Negation(Title.variation, King_of_Italy.title))
+14. Q[Sentence_1, Sentence_1.content, Sentence_2.content](Sentence_1.content == "Victor Emmanuel III was King of Italy between 1900 and 1946." → Negation(Sentence_1.content, Sentence_2.content))
+15. Q[Sentence_2, Sentence_2.content, Sentence_1.content](Sentence_2.content == "Victor Emmanuel III was king of Italy from 1900 to 1946." → Negation(Sentence_2.content, Sentence_1.content))
+16. Q[Sentence_1, Sentence_1.has_fact, Sentence_2.has_fact](Sentence_1.has_fact == true → Negation(Sentence_1.has_fact, Sentence_2.has_fact))
+17. Q[Sentence_2, Sentence_2.has_fact, Sentence_1.has_fact](Sentence_2.has_fact == true → Negation(Sentence_2.has_fact, Sentence_1.has_fact))
+18. Q[Fact, Fact.is_identical, Sentence_1.has_fact](Fact.is_identical == true → Negation(Fact.is_identical, Sentence_1.has_fact))
+19. Q[Fact, Fact.has_different_emphasis, Title.emphasis](Fact.has_different_emphasis == true → Negation(Fact.has_different_emphasis, Title.emphasis))
+20. Q[Fact, Fact.has_contradiction, Title.capitalization](Fact.has_contradiction == true → Negation(Fact.has_contradiction, Title.capitalization))
+21. Q[Time_Period, Time_Period.start_year, Victor_Emmanuel_III.start_year](Time_Period.start_year == 1900 → Negation(Time_Period.start_year, Victor_Emmanuel_III.start_year))
+22. Q[Time_Period, Time_Period.end_year, Victor_Emmanuel_III.end_year](Time_Period.end_year == 1946 → Negation(Time_Period.end_year, Victor_Emmanuel_III.end_year))
+23. Q[Time_Period, Time_Period.is_between, Victor_Emmanuel_III.start_year](Time_Period.is_between == true → Negation(Time_Period.is_between, Victor_Emmanuel_III.start_year))
+24. Q[Relationship, Relationship.has_contradiction, Title.capitalization](Relationship.has_contradiction == true → Negation(Relationship.has_contradiction, Title.capitalization))
+25. Q[Sentence_1, Sentence_1.is_equivalent_to, Sentence_2.is_equivalent_to](Sentence_1.is_equivalent_to == false → Negation(Sentence_1.is_equivalent_to, Sentence_2.is_equivalent_to))
+26. Q[Sentence_2, Sentence_2.is_equivalent_to, Sentence_1.is_equivalent_to](Sentence_2.is_equivalent_to == false → Negation(Sentence_2.is_equivalent_to, Sentence_1.is_equivalent_to))
+27. Q[Fact, Fact.has_different_emphasis, King_of_Italy.title](Fact.has_different_emphasis == true → Negation(Fact.has_different_emphasis, King_of_Italy.title))
+28. Q[Fact, Fact.has_contradiction, Victor_Emmanuel_III.title](Fact.has_contradiction == true → Negation(Fact.has_contradiction, Victor_Emmanuel_III.title))
+29. Q[Title, Title.capitalization, Sentence_1.content](Title.capitalization == "king" → Negation(Title.capitalization, Sentence_1.content))
+30. Q[Title, Title.capitalization, Sentence_2.content](Title.capitalization == "King" → Negation(Title.capitalization, Sentence_2.content))

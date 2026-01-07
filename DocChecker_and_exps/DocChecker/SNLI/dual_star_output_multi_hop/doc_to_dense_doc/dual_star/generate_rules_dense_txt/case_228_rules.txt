@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 228)
+S1: A teenager is a boy.
+S2: A teenager plays her trumpet on the field at a game.
+
+Predicates:
+1. Teenager.gender
+2. Teenager.age
+3. Teenager.activity
+4. Boy.gender
+5. Boy.age
+6. Boy.activity
+7. Trumpet.owner
+8. Trumpet.location
+9. Game.location
+10. Game.type
+11. Field.type
+12. Field.location
+13. Teenager.instrument
+14. Teenager.role
+15. Teenager.participation
+16. Boy.instrument
+17. Boy.role
+18. Boy.participation
+19. Girl.gender
+20. Girl.age
+21. Girl.activity
+22. M_NLI(S1, S2)
+23. Factual(S1, S2)
+24. violate(S1, S2)
+25. Activity.type
+26. Activity.location
+27. Game.participants
+28. Trumpet.type
+29. Field.size
+30. Teenager.skill_level
+
+Rules:
+1. Q[teenager, Teenager.gender, Boy.gender](Teenager.gender == "male" → Factual(Teenager.gender, Boy.gender))
+2. Q[teenager, Teenager.gender, Girl.gender](Teenager.gender == "female" → Factual(Teenager.gender, Girl.gender))
+3. Q[teenager, Teenager.age, Boy.age](Teenager.age == "teen" → Factual(Teenager.age, Boy.age))
+4. Q[teenager, Teenager.activity, Boy.activity](Teenager.activity == "playing trumpet" → Factual(Teenager.activity, Boy.activity))
+5. Q[teenager, Teenager.instrument, Boy.instrument](Teenager.instrument == "trumpet" → Factual(Teenager.instrument, Boy.instrument))
+6. Q[teenager, Teenager.role, Boy.role](Teenager.role == "player" → Factual(Teenager.role, Boy.role))
+7. Q[teenager, Teenager.participation, Boy.participation](Teenager.participation == "active" → Factual(Teenager.participation, Boy.participation))
+8. Q[teenager, Teenager.gender, Teenager.gender](Teenager.gender == "male" → Factual(Teenager.gender, Teenager.gender))
+9. Q[teenager, Teenager.activity, Girl.activity](Teenager.activity == "playing trumpet" → Factual(Teenager.activity, Girl.activity))
+10. Q[teenager, Teenager.instrument, Girl.instrument](Teenager.instrument == "trumpet" → Factual(Teenager.instrument, Girl.instrument))
+11. Q[teenager, Teenager.role, Girl.role](Teenager.role == "player" → Factual(Teenager.role, Girl.role))
+12. Q[teenager, Teenager.participation, Girl.participation](Teenager.participation == "active" → Factual(Teenager.participation, Girl.participation))
+13. Q[teenager, Teenager.gender, Teenager.gender](Teenager.gender == "female" → Factual(Teenager.gender, Teenager.gender))
+14. Q[teenager, Teenager.activity, Teenager.activity](Teenager.activity == "playing trumpet" → Factual(Teenager.activity, Teenager.activity))
+15. Q[teenager, Teenager.instrument, Teenager.instrument](Teenager.instrument == "trumpet" → Factual(Teenager.instrument, Teenager.instrument))
+16. Q[teenager, Teenager.role, Teenager.role](Teenager.role == "player" → Factual(Teenager.role, Teenager.role))
+17. Q[teenager, Teenager.participation, Teenager.participation](Teenager.participation == "active" → Factual(Teenager.participation, Teenager.participation))
+18. Q[teenager, Trumpet.owner, Teenager.gender](Trumpet.owner == "female" → Factual(Trumpet.owner, Teenager.gender))
+19. Q[teenager, Trumpet.location, Game.location](Trumpet.location == "field" → Factual(Trumpet.location, Game.location))
+20. Q[teenager, Game.type, Game.type](Game.type == "sports" → Factual(Game.type, Game.type))
+21. Q[teenager, Field.type, Field.type](Field.type == "sports field" → Factual(Field.type, Field.type))
+22. Q[teenager, Field.location, Game.location](Field.location == "game field" → Factual(Field.location, Game.location))
+23. Q[teenager, Teenager.skill_level, Boy.skill_level](Teenager.skill_level == "intermediate" → Factual(Teenager.skill_level, Boy.skill_level))
+24. Q[teenager, Teenager.skill_level, Girl.skill_level](Teenager.skill_level == "intermediate" → Factual(Teenager.skill_level, Girl.skill_level))
+25. Q[teenager, Teenager.activity, Activity.type](Teenager.activity == "playing" → Factual(Teenager.activity, Activity.type))
+26. Q[teenager, Game.participants, Teenager.participation](Game.participants == "teenagers" → Factual(Game.participants, Teenager.participation))
+27. Q[teenager, Trumpet.type, Trumpet.type](Trumpet.type == "brass" → Factual(Trumpet.type, Trumpet.type))
+28. Q[teenager, Field.size, Field.size](Field.size == "large" → Factual(Field.size, Field.size))
+29. Q[teenager, Game.location, Field.location](Game.location == "field" → Factual(Game.location, Field.location))
+30. Q[teenager, Teenager.activity, Activity.location](Teenager.activity == "performing" → Factual(Teenager.activity, Activity.location))

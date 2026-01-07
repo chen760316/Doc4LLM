@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 65)
+S1: The disclosure of Confidential Information by the disclosing Party shall not constitute an express or implied grant to the receiving Party, of any rights to or under the disclosing Party’s patents, copyrights, trade secrets, trademarks or any other intellectual property rights.
+S2: Receiving Party may retain some Confidential Information even after the return or destruction of Confidential Information.
+
+Predicates:
+1. DisclosingParty.hasRightsTo.patents
+2. DisclosingParty.hasRightsTo.copyrights
+3. DisclosingParty.hasRightsTo.tradeSecrets
+4. DisclosingParty.hasRightsTo.trademarks
+5. DisclosingParty.hasRightsTo.intellectualProperty
+6. ReceivingParty.gainsRightsTo.patents
+7. ReceivingParty.gainsRightsTo.copyrights
+8. ReceivingParty.gainsRightsTo.tradeSecrets
+9. ReceivingParty.gainsRightsTo.trademarks
+10. ReceivingParty.gainsRightsTo.intellectualProperty
+11. ReceivingParty.retains.ConfidentialInformation
+12. ReceivingParty.mayRetain.ConfidentialInformation
+13. ConfidentialInformation.isReturned
+14. ConfidentialInformation.isDestroyed
+15. ReceivingParty.hasPotentialRightsTo.ConfidentialInformation
+16. DisclosingParty.discloses.ConfidentialInformation
+17. ReceivingParty.receives.ConfidentialInformation
+18. ConfidentialInformation.isNotGrantedRights
+19. ReceivingParty.isNotGrantedRightsTo.patents
+20. ReceivingParty.isNotGrantedRightsTo.copyrights
+21. ReceivingParty.isNotGrantedRightsTo.tradeSecrets
+22. ReceivingParty.isNotGrantedRightsTo.trademarks
+23. ReceivingParty.isNotGrantedRightsTo.intellectualProperty
+24. DisclosingParty.isDisclosing.ConfidentialInformation
+25. ReceivingParty.mayRetain.some.ConfidentialInformation
+26. ConfidentialInformation.isSubjectToReturnOrDestruction
+27. DisclosingParty.hasIntellectualPropertyRights
+28. ReceivingParty.isReceiving.ConfidentialInformation
+29. ConfidentialInformation.isConfidential
+30. DisclosingParty.isNotGrantingRightsTo.ReceivingParty
+
+Rules:
+1. Q[The, ReceivingParty.gainsRightsTo.patents == false](DisclosingParty.hasRightsTo.patents → Factual(x0, y0))
+2. Q[The, ReceivingParty.gainsRightsTo.copyrights == false](DisclosingParty.hasRightsTo.copyrights → Factual(x0, y0))
+3. Q[The, ReceivingParty.gainsRightsTo.tradeSecrets == false](DisclosingParty.hasRightsTo.tradeSecrets → Factual(x0, y0))
+4. Q[The, ReceivingParty.gainsRightsTo.trademarks == false](DisclosingParty.hasRightsTo.trademarks → Factual(x0, y0))
+5. Q[The, ReceivingParty.gainsRightsTo.intellectualProperty == false](DisclosingParty.hasRightsTo.intellectualProperty → Factual(x0, y0))
+6. Q[The, ReceivingParty.retains.ConfidentialInformation == true](ConfidentialInformation.isReturned == false → Factual(x0, y0))
+7. Q[The, ReceivingParty.mayRetain.ConfidentialInformation == true](ConfidentialInformation.isDestroyed == false → Factual(x0, y0))
+8. Q[The, ReceivingParty.hasPotentialRightsTo.ConfidentialInformation == true](ReceivingParty.mayRetain.some.ConfidentialInformation → Factual(x0, y0))
+9. Q[The, ReceivingParty.isNotGrantedRightsTo.patents == true](DisclosingParty.isNotGrantingRightsTo.ReceivingParty → Factual(x0, y0))
+10. Q[The, ReceivingParty.isNotGrantedRightsTo.copyrights == true](DisclosingParty.isNotGrantingRightsTo.ReceivingParty → Factual(x0, y0))
+11. Q[The, ReceivingParty.isNotGrantedRightsTo.tradeSecrets == true](DisclosingParty.isNotGrantingRightsTo.ReceivingParty → Factual(x0, y0))
+12. Q[The, ReceivingParty.isNotGrantedRightsTo.trademarks == true](DisclosingParty.isNotGrantingRightsTo.ReceivingParty → Factual(x0, y0))
+13. Q[The, ReceivingParty.isNotGrantedRightsTo.intellectualProperty == true](DisclosingParty.isNotGrantingRightsTo.ReceivingParty → Factual(x0, y0))
+14. Q[The, ConfidentialInformation.isNotGrantedRights == true](ReceivingParty.isNotGrantedRightsTo.patents → Factual(x0, y0))
+15. Q[The, ConfidentialInformation.isNotGrantedRights == true](ReceivingParty.isNotGrantedRightsTo.copyrights → Factual(x0, y0))
+16. Q[The, ConfidentialInformation.isNotGrantedRights == true](ReceivingParty.isNotGrantedRightsTo.tradeSecrets → Factual(x0, y0))
+17. Q[The, ConfidentialInformation.isNotGrantedRights == true](ReceivingParty.isNotGrantedRightsTo.trademarks → Factual(x0, y0))
+18. Q[The, ConfidentialInformation.isNotGrantedRights == true](ReceivingParty.isNotGrantedRightsTo.intellectualProperty → Factual(x0, y0))
+19. Q[The, DisclosingParty.discloses.ConfidentialInformation == true](ReceivingParty.isReceiving.ConfidentialInformation → Factual(x0, y0))
+20. Q[The, ConfidentialInformation.isConfidential == true](DisclosingParty.hasIntellectualPropertyRights → Factual(x0, y0))
+21. Q[The, ConfidentialInformation.isSubjectToReturnOrDestruction == true](ReceivingParty.retains.ConfidentialInformation → Factual(x0, y0))
+22. Q[The, ReceivingParty.mayRetain.some.ConfidentialInformation == true](ConfidentialInformation.isReturned == false → Factual(x0, y0))
+23. Q[The, ReceivingParty.mayRetain.some.ConfidentialInformation == true](ConfidentialInformation.isDestroyed == false → Factual(x0, y0))
+24. Q[The, DisclosingParty.isDisclosing.ConfidentialInformation == true](ReceivingParty.isReceiving.ConfidentialInformation → Factual(x0, y0))
+25. Q[The, DisclosingParty.hasRightsTo.patents == true](ReceivingParty.isNotGrantedRightsTo.patents → Factual(x0, y0))
+26. Q[The, DisclosingParty.hasRightsTo.copyrights == true](ReceivingParty.isNotGrantedRightsTo.copyrights → Factual(x0, y0))
+27. Q[The, DisclosingParty.hasRightsTo.tradeSecrets == true](ReceivingParty.isNotGrantedRightsTo.tradeSecrets → Factual(x0, y0))
+28. Q[The, DisclosingParty.hasRightsTo.trademarks == true](ReceivingParty.isNotGrantedRightsTo.trademarks → Factual(x0, y0))
+29. Q[The, DisclosingParty.hasRightsTo.intellectualProperty == true](ReceivingParty.isNotGrantedRightsTo.intellectualProperty → Factual(x0, y0))
+30. Q[The, ReceivingParty.retains.ConfidentialInformation == true](ReceivingParty.mayRetain.some.ConfidentialInformation → Factual(x0, y0))

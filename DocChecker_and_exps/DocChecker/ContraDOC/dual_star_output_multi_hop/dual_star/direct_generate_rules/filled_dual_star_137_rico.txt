@@ -1,0 +1,48 @@
+Predicates:
+Julian Reichelt.label != "Person"
+Julian Reichelt.label != Paris Match.label
+Julian Reichelt.label != cell phone video.label
+Julian Reichelt.label = "Person"
+Julian Reichelt.media != "Bild"
+Julian Reichelt.media = "Bild"
+Julian Reichelt.name != "Julian Reichelt"
+Julian Reichelt.name != Paris Match.name
+Julian Reichelt.name != cell phone video.name
+Julian Reichelt.name = "Julian Reichelt"
+Julian Reichelt.occupation != "editor-in-chief"
+Julian Reichelt.occupation = "editor-in-chief"
+Julian Reichelt___Paris Match.context = "reporting on the video"
+Julian Reichelt___Paris Match.doc_id = "3489825776_7"
+Julian Reichelt___Paris Match.relationship = "Julian Reichelt supported the claims made by Paris Match regarding a video of the crash."
+Julian Reichelt___cell phone video.context != Julian Reichelt___Paris Match.context
+Julian Reichelt___cell phone video.context = "reported on CNN"
+Julian Reichelt___cell phone video.doc_id != Julian Reichelt___Paris Match.doc_id
+Julian Reichelt___cell phone video.doc_id = "3489825756_6"
+Julian Reichelt___cell phone video.relationship != Julian Reichelt___Paris Match.relationship
+Julian Reichelt___cell phone video.relationship = "Julian Reichelt claimed to have watched the video and stood by the report."
+None_ML(Julian Reichelt___Paris Match.attrs, Julian Reichelt___cell phone video.attrs)
+None_ML(Paris Match.attrs, cell phone video.attrs)
+Paris Match.label != "Media"
+Paris Match.label = "Media"
+Paris Match.name != "Paris Match"
+Paris Match.name = "Paris Match"
+cell phone video.label != "Video"
+cell phone video.label != Paris Match.label
+cell phone video.label = "Video"
+cell phone video.name != "cell phone video"
+cell phone video.name != Paris Match.name
+cell phone video.name = "cell phone video"
+cell phone video.status != "claimed to be real"
+cell phone video.status = "claimed to be real"
+
+Rules:
+Q[Julian Reichelt,Julian Reichelt] (cell phone video.status != "claimed to be real" ∧ Julian Reichelt.occupation = "editor-in-chief" ∧ None_ML(Paris Match.attrs, cell phone video.attrs) ∧ Paris Match.label = "Media" → Julian Reichelt.name = "Julian Reichelt")
+Q[Julian Reichelt,Julian Reichelt] (Julian Reichelt___cell phone video.context != Julian Reichelt___Paris Match.context ∧ Julian Reichelt.media = "Bild" → Julian Reichelt___Paris Match.relationship = "Julian Reichelt supported the claims made by Paris Match regarding a video of the crash.")
+Q[Julian Reichelt,Julian Reichelt] (Julian Reichelt.occupation = "editor-in-chief" ∧ cell phone video.label != Paris Match.label ∧ Julian Reichelt___cell phone video.context != Julian Reichelt___Paris Match.context ∧ Paris Match.label = "Media" ∧ Julian Reichelt___Paris Match.context = "reporting on the video" → Julian Reichelt.label != Paris Match.label)
+Q[Julian Reichelt,Julian Reichelt] (cell phone video.label != "Video" ∧ Julian Reichelt___cell phone video.relationship = "Julian Reichelt claimed to have watched the video and stood by the report." ∧ Julian Reichelt___Paris Match.doc_id = "3489825776_7" ∧ Paris Match.label = "Media" ∧ Julian Reichelt.label != Paris Match.label ∧ Julian Reichelt.name != cell phone video.name → Julian Reichelt.label != "Person")
+Q[Julian Reichelt,Julian Reichelt] (Julian Reichelt___cell phone video.relationship != Julian Reichelt___Paris Match.relationship ∧ Paris Match.name = "Paris Match" ∧ None_ML(Paris Match.attrs, cell phone video.attrs) → None_ML(Julian Reichelt___Paris Match.attrs, Julian Reichelt___cell phone video.attrs))
+Q[Julian Reichelt,Julian Reichelt] (Julian Reichelt___Paris Match.context = "reporting on the video" ∧ cell phone video.name = "cell phone video" → Julian Reichelt.name != "Julian Reichelt")
+Q[Julian Reichelt,Julian Reichelt] (Julian Reichelt.label = "Person" ∧ cell phone video.name != "cell phone video" ∧ Julian Reichelt.media != "Bild" ∧ Julian Reichelt.occupation != "editor-in-chief" ∧ Julian Reichelt.label != Paris Match.label ∧ cell phone video.name = "cell phone video" → cell phone video.status != "claimed to be real")
+Q[Julian Reichelt,Julian Reichelt] (Julian Reichelt___Paris Match.doc_id = "3489825776_7" ∧ Julian Reichelt.name != cell phone video.name ∧ Julian Reichelt.name = "Julian Reichelt" → Julian Reichelt.name != Paris Match.name)
+Q[Julian Reichelt,Julian Reichelt] (cell phone video.status != "claimed to be real" ∧ Julian Reichelt___cell phone video.relationship = "Julian Reichelt claimed to have watched the video and stood by the report." ∧ Julian Reichelt.name != "Julian Reichelt" ∧ cell phone video.label != "Video" ∧ Julian Reichelt___cell phone video.context != Julian Reichelt___Paris Match.context → Julian Reichelt.occupation = "editor-in-chief")
+Q[Julian Reichelt,Julian Reichelt] (Julian Reichelt.label = "Person" ∧ cell phone video.label != "Video" ∧ Julian Reichelt___cell phone video.context = "reported on CNN" ∧ Julian Reichelt___cell phone video.relationship = "Julian Reichelt claimed to have watched the video and stood by the report." → Julian Reichelt___cell phone video.doc_id != Julian Reichelt___Paris Match.doc_id)

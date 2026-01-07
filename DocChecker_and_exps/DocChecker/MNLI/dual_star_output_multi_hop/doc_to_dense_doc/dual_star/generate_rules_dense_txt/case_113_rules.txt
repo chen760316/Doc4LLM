@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 113)
+S1: Now we have become an atomized society of individuals who get their news -- if they get it at all -- from TV.
+S2: All of our news is on radio and in newspapers.
+
+Predicates:
+1. Society.atomized
+2. Individuals.get_news_from(TV)
+3. Individuals.get_news_from(radio)
+4. Individuals.get_news_from(newspapers)
+5. News.source(TV)
+6. News.source(radio)
+7. News.source(newspapers)
+8. News.is_obtained_from(TV)
+9. News.is_obtained_from(radio)
+10. News.is_obtained_from(newspapers)
+11. News.is_primary_source(TV)
+12. News.is_primary_source(radio)
+13. News.is_primary_source(newspapers)
+14. TV.provides_news
+15. Radio.provides_news
+16. Newspapers.provides_news
+17. M_NLI(S1, S2)
+18. Content(S1, S2)
+19. violate(S1, S2)
+20. Society.has_individuals
+21. Individuals.receive_news
+22. News.is_accessed_by(Individuals)
+23. TV.is_primary_media
+24. Radio.is_secondary_media
+25. Newspapers.is_secondary_media
+26. Society.lacks_unified_news_source
+27. Individuals.prefer(TV)
+28. Individuals.prefer(radio)
+29. Individuals.prefer(newspapers)
+30. News.is_divided_by_media
+
+Rules:
+1. Q[Now, Society.atomized, Individuals.get_news_from(TV)](Society.atomized → Content(S1, S2))
+2. Q[Now, Individuals.get_news_from(radio), Individuals.get_news_from(newspapers)](Individuals.get_news_from(TV) → Content(S1, S2))
+3. Q[Now, News.is_primary_source(TV), News.is_primary_source(radio)](Individuals.get_news_from(TV) → Content(S1, S2))
+4. Q[Now, News.is_primary_source(TV), News.is_primary_source(newspapers)](Individuals.get_news_from(TV) → Content(S1, S2))
+5. Q[Now, News.source(TV), News.source(radio)](Individuals.get_news_from(TV) → Content(S1, S2))
+6. Q[Now, News.source(TV), News.source(newspapers)](Individuals.get_news_from(TV) → Content(S1, S2))
+7. Q[Now, News.is_obtained_from(TV), News.is_obtained_from(radio)](Individuals.get_news_from(TV) → Content(S1, S2))
+8. Q[Now, News.is_obtained_from(TV), News.is_obtained_from(newspapers)](Individuals.get_news_from(TV) → Content(S1, S2))
+9. Q[Now, TV.provides_news, Radio.provides_news](Individuals.get_news_from(TV) → Content(S1, S2))
+10. Q[Now, TV.is_primary_media, Radio.is_secondary_media](Individuals.get_news_from(TV) → Content(S1, S2))
+11. Q[Now, Society.lacks_unified_news_source, Individuals.get_news_from(TV)](Individuals.get_news_from(TV) → Content(S1, S2))
+12. Q[Now, Society.lacks_unified_news_source, Individuals.get_news_from(radio)](Individuals.get_news_from(radio) → Content(S1, S2))
+13. Q[Now, Society.lacks_unified_news_source, Individuals.get_news_from(newspapers)](Individuals.get_news_from(newspapers) → Content(S1, S2))
+14. Q[Now, News.is_divided_by_media, Individuals.get_news_from(TV)](Individuals.get_news_from(TV) → Content(S1, S2))
+15. Q[Now, News.is_divided_by_media, Individuals.get_news_from(radio)](Individuals.get_news_from(radio) → Content(S1, S2))
+16. Q[Now, News.is_divided_by_media, Individuals.get_news_from(newspapers)](Individuals.get_news_from(newspapers) → Content(S1, S2))
+17. Q[Now, News.is_primary_source(radio), News.is_primary_source(newspapers)](Individuals.get_news_from(radio) → Content(S1, S2))
+18. Q[Now, News.is_primary_source(newspapers), News.is_primary_source(TV)](Individuals.get_news_from(newspapers) → Content(S1, S2))
+19. Q[Now, News.is_obtained_from(radio), News.is_obtained_from(newspapers)](Individuals.get_news_from(radio) → Content(S1, S2))
+20. Q[Now, News.is_obtained_from(newspapers), News.is_obtained_from(TV)](Individuals.get_news_from(newspapers) → Content(S1, S2))
+21. Q[Now, Individuals.receive_news, News.is_primary_source(TV)](Individuals.get_news_from(TV) → Content(S1, S2))
+22. Q[Now, Individuals.receive_news, News.is_primary_source(radio)](Individuals.get_news_from(radio) → Content(S1, S2))
+23. Q[Now, Individuals.receive_news, News.is_primary_source(newspapers)](Individuals.get_news_from(newspapers) → Content(S1, S2))
+24. Q[Now, Individuals.prefer(TV), News.is_primary_source(TV)](Individuals.get_news_from(TV) → Content(S1, S2))
+25. Q[Now, Individuals.prefer(radio), News.is_primary_source(radio)](Individuals.get_news_from(radio) → Content(S1, S2))
+26. Q[Now, Individuals.prefer(newspapers), News.is_primary_source(newspapers)](Individuals.get_news_from(newspapers) → Content(S1, S2))
+27. Q[Now, Society.has_individuals, News.is_primary_source(TV)](Individuals.get_news_from(TV) → Content(S1, S2))
+28. Q[Now, Society.has_individuals, News.is_primary_source(radio)](Individuals.get_news_from(radio) → Content(S1, S2))
+29. Q[Now, Society.has_individuals, News.is_primary_source(newspapers)](Individuals.get_news_from(newspapers) → Content(S1, S2))
+30. Q[Now, News.is_accessed_by(Individuals), News.is_primary_source(TV)](Individuals.get_news_from(TV) → Content(S1, S2))

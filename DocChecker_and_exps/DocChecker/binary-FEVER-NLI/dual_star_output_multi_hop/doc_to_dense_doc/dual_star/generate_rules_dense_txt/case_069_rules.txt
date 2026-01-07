@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 69)
+S1: Disney died of lung cancer in December 1966 before either the park or the EPCOT project were completed.
+S2: Walt Disney died of lung cancer in 1977.
+
+Predicates:
+1. Disney.year: 1966
+2. Disney.cause_of_death: lung cancer
+3. Disney.project_status: incomplete
+4. EPCOT.project_status: incomplete
+5. Walt_Disney.year: 1977
+6. Walt_Disney.cause_of_death: lung cancer
+7. Disney.death_date: December 1966
+8. Walt_Disney.death_date: 1977
+9. Disney.park_status: incomplete
+10. lung_cancer.related_to: Disney
+11. lung_cancer.related_to: Walt_Disney
+12. death.date: December 1966
+13. death.date: 1977
+14. M_NLI(S1, S2): true
+15. Temporal(1966, 1977): true
+16. violate(1966, 1977): true
+17. Disney.project: EPCOT
+18. EPCOT.completion_status: not_completed
+19. Disney.occupation: animator
+20. Disney.occupation: filmmaker
+21. Disney.influence: animation
+22. Disney.influence: theme parks
+23. lung_cancer.impact_on: Disney
+24. lung_cancer.impact_on: Walt_Disney
+25. December_1966.event: death
+26. 1977.event: death
+27. Disney.legacy: theme parks
+28. Disney.legacy: animation
+29. EPCOT.inception_year: 1966
+30. EPCOT.development_status: ongoing
+
+Rules:
+1. Q[Disney, Disney.year, Walt_Disney.year](Disney.year == 1966 ∧ Walt_Disney.year == 1977 → Temporal(1966, 1977))
+2. Q[Disney, Disney.death_date, Walt_Disney.death_date](Disney.death_date == December 1966 ∧ Walt_Disney.death_date == 1977 → Temporal(1966, 1977))
+3. Q[Disney, Disney.cause_of_death, Walt_Disney.cause_of_death](Disney.cause_of_death == lung cancer ∧ Walt_Disney.cause_of_death == lung cancer → Temporal(1966, 1977))
+4. Q[Disney, Disney.project_status, EPCOT.project_status](Disney.project_status == incomplete ∧ EPCOT.project_status == incomplete → Temporal(1966, 1977))
+5. Q[Disney, Disney.park_status, EPCOT.completion_status](Disney.park_status == incomplete ∧ EPCOT.completion_status == not_completed → Temporal(1966, 1977))
+6. Q[Disney, lung_cancer.related_to, lung_cancer.related_to](lung_cancer.related_to: Disney ∧ lung_cancer.related_to: Walt_Disney → Temporal(1966, 1977))
+7. Q[Disney, death.date, death.date](death.date == December 1966 ∧ death.date == 1977 → Temporal(1966, 1977))
+8. Q[Disney, EPCOT.inception_year, EPCOT.development_status](EPCOT.inception_year == 1966 ∧ EPCOT.development_status == ongoing → Temporal(1966, 1977))
+9. Q[Disney, Disney.occupation, Disney.occupation](Disney.occupation == animator ∧ Disney.occupation == filmmaker → Temporal(1966, 1977))
+10. Q[Disney, Disney.influence, Disney.influence](Disney.influence == animation ∧ Disney.influence == theme parks → Temporal(1966, 1977))
+11. Q[Disney, lung_cancer.impact_on, lung_cancer.impact_on](lung_cancer.impact_on: Disney ∧ lung_cancer.impact_on: Walt_Disney → Temporal(1966, 1977))
+12. Q[Disney, EPCOT.project, EPCOT.completion_status](Disney.project == EPCOT ∧ EPCOT.completion_status == not_completed → Temporal(1966, 1977))
+13. Q[Disney, Disney.year, Disney.death_date](Disney.year == 1966 ∧ Disney.death_date == December 1966 → Temporal(1966, 1977))
+14. Q[Walt_Disney, Walt_Disney.year, Walt_Disney.death_date](Walt_Disney.year == 1977 ∧ Walt_Disney.death_date == 1977 → Temporal(1966, 1977))
+15. Q[Disney, Disney.cause_of_death, Disney.legacy](Disney.cause_of_death == lung cancer ∧ Disney.legacy == theme parks → Temporal(1966, 1977))
+16. Q[Walt_Disney, Walt_Disney.cause_of_death, Walt_Disney.legacy](Walt_Disney.cause_of_death == lung cancer ∧ Walt_Disney.legacy == animation → Temporal(1966, 1977))
+17. Q[Disney, EPCOT.project_status, EPCOT.inception_year](EPCOT.project_status == incomplete ∧ EPCOT.inception_year == 1966 → Temporal(1966, 1977))
+18. Q[Disney, Disney.legacy, EPCOT.development_status](Disney.legacy == theme parks ∧ EPCOT.development_status == ongoing → Temporal(1966, 1977))
+19. Q[Disney, lung_cancer.related_to, Disney.year](lung_cancer.related_to: Disney ∧ Disney.year == 1966 → Temporal(1966, 1977))
+20. Q[Walt_Disney, lung_cancer.related_to, Walt_Disney.year](lung_cancer.related_to: Walt_Disney ∧ Walt_Disney.year == 1977 → Temporal(1966, 1977))
+21. Q[Disney, Disney.project, Disney.cause_of_death](Disney.project == EPCOT ∧ Disney.cause_of_death == lung cancer → Temporal(1966, 1977))
+22. Q[Disney, EPCOT.development_status, Disney.park_status](EPCOT.development_status == ongoing ∧ Disney.park_status == incomplete → Temporal(1966, 1977))
+23. Q[Disney, Disney.year, EPCOT.inception_year](Disney.year == 1966 ∧ EPCOT.inception_year == 1966 → Temporal(1966, 1977))
+24. Q[Walt_Disney, Walt_Disney.year, Disney.year](Walt_Disney.year == 1977 ∧ Disney.year == 1966 → Temporal(1966, 1977))
+25. Q[Disney, Disney.cause_of_death, Walt_Disney.cause_of_death](Disney.cause_of_death == lung cancer ∧ Walt_Disney.cause_of_death == lung cancer → Temporal(1966, 1977))
+26. Q[Disney, Disney.death_date, Walt_Disney.year](Disney.death_date == December 1966 ∧ Walt_Disney.year == 1977 → Temporal(1966, 1977))
+27. Q[Disney, EPCOT.project, Disney.legacy](Disney.project == EPCOT ∧ Disney.legacy == animation → Temporal(1966, 1977))
+28. Q[Walt_Disney, Walt_Disney.death_date, Disney.death_date](Walt_Disney.death_date == 1977 ∧ Disney.death_date == December 1966 → Temporal(1966, 1977))
+29. Q[Disney, lung_cancer.impact_on, Disney.cause_of_death](lung_cancer.impact_on: Disney ∧ Disney.cause_of_death == lung cancer → Temporal(1966, 1977))
+30. Q[Walt_Disney, lung_cancer.impact_on, Walt_Disney.cause_of_death](lung_cancer.impact_on: Walt_Disney ∧ Walt_Disney.cause_of_death == lung cancer → Temporal(1966, 1977))

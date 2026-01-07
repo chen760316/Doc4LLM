@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 139)
+S1: All ferries arrive at the Smithsonian port.
+S2: Most commercial ferries arrive at the new port of Athinios farther along the coast.
+
+Predicates:
+1. Ferry.arrival_port(Smithsonian)
+2. Ferry.arrival_port(Athinios)
+3. Ferry.type(commercial)
+4. Ferry.type(non_commercial)
+5. All_Ferries.arrive_at(Smithsonian)
+6. Most_Commercial_Ferries.arrive_at(Athinios)
+7. Arrival_Port(Smithsonian).contains(Ferry)
+8. Arrival_Port(Athinios).contains(Most_Commercial_Ferry)
+9. All_Ferries != Most_Commercial_Ferries
+10. Smithsonian.port.is_different_from(Athinios.port)
+11. Ferry.arrival(Smithsonian).is_complete
+12. Ferry.arrival(Athinios).is_partial
+13. Relation(Ferry, Smithsonian).is_arrival
+14. Relation(Ferry, Athinios).is_arrival
+15. violate(All_Ferries, Most_Commercial_Ferries)
+16. M_NLI(S1, S2)
+17. Arrival(Smithsonian).is_universal
+18. Arrival(Athinios).is_quantified
+19. All_Ferries.arrive_at(Smithsonian).is_true
+20. Most_Commercial_Ferries.arrive_at(Athinios).is_true
+21. Ferry(Smithsonian).is_not_equal_to(Ferry(Athinios))
+22. Arrival_Port(Smithsonian).is_unique
+23. Arrival_Port(Athinios).is_not_unique
+24. Relation(All_Ferries, Smithsonian).is_valid
+25. Relation(Most_Commercial_Ferries, Athinios).is_valid
+26. All_Ferries != Arrival_Port(Athinios)
+27. Most_Commercial_Ferries != Arrival_Port(Smithsonian)
+28. All_Ferries.arrival(Smithsonian).is_necessary
+29. Most_Commercial_Ferries.arrival(Athinios).is_sufficient
+30. Arrival(Smithsonian).is_exclusive_to(All_Ferries)
+
+Rules:
+1. Q[All, Ferry.arrival_port(Smithsonian) == true → Relation(Ferry, Smithsonian)]
+2. Q[Most, Ferry.type(commercial) == true → Relation(Ferry, Athinios)]
+3. Q[All, All_Ferries.arrive_at(Smithsonian) == true → Relation(All_Ferries, Smithsonian)]
+4. Q[Most, Most_Commercial_Ferries.arrive_at(Athinios) == true → Relation(Most_Commercial_Ferries, Athinios)]
+5. Q[All, Arrival_Port(Smithsonian).contains(Ferry) == true → Relation(Ferry, Smithsonian)]
+6. Q[Most, Arrival_Port(Athinios).contains(Most_Commercial_Ferry) == true → Relation(Most_Commercial_Ferry, Athinios)]
+7. Q[All, All_Ferries != Most_Commercial_Ferries → Relation(All_Ferries, Most_Commercial_Ferries)]
+8. Q[All, Smithsonian.port.is_different_from(Athinios.port) == true → Relation(Smithsonian, Athinios)]
+9. Q[All, Ferry.arrival(Smithsonian).is_complete == true → Relation(Ferry, Smithsonian)]
+10. Q[Most, Ferry.arrival(Athinios).is_partial == true → Relation(Ferry, Athinios)]
+11. Q[All, Relation(Ferry, Smithsonian).is_arrival == true → Relation(Ferry, Smithsonian)]
+12. Q[Most, Relation(Ferry, Athinios).is_arrival == true → Relation(Ferry, Athinios)]
+13. Q[All, violate(All_Ferries, Most_Commercial_Ferries) == true → Relation(All_Ferries, Most_Commercial_Ferries)]
+14. Q[All, M_NLI(S1, S2) == true → Relation(S1, S2)]
+15. Q[All, Arrival(Smithsonian).is_universal == true → Relation(Smithsonian, All_Ferries)]
+16. Q[Most, Arrival(Athinios).is_quantified == true → Relation(Athinios, Most_Commercial_Ferries)]
+17. Q[All, All_Ferries.arrive_at(Smithsonian).is_true == true → Relation(All_Ferries, Smithsonian)]
+18. Q[Most, Most_Commercial_Ferries.arrive_at(Athinios).is_true == true → Relation(Most_Commercial_Ferries, Athinios)]
+19. Q[All, Ferry(Smithsonian).is_not_equal_to(Ferry(Athinios)) == true → Relation(Smithsonian, Athinios)]
+20. Q[All, Arrival_Port(Smithsonian).is_unique == true → Relation(Smithsonian, All_Ferries)]
+21. Q[Most, Arrival_Port(Athinios).is_not_unique == true → Relation(Athinios, Most_Commercial_Ferries)]
+22. Q[All, Relation(All_Ferries, Smithsonian).is_valid == true → Relation(All_Ferries, Smithsonian)]
+23. Q[Most, Relation(Most_Commercial_Ferries, Athinios).is_valid == true → Relation(Most_Commercial_Ferries, Athinios)]
+24. Q[All, All_Ferries != Arrival_Port(Athinios) == true → Relation(All_Ferries, Athinios)]
+25. Q[Most, Most_Commercial_Ferries != Arrival_Port(Smithsonian) == true → Relation(Most_Commercial_Ferries, Smithsonian)]
+26. Q[All, All_Ferries.arrival(Smithsonian).is_necessary == true → Relation(All_Ferries, Smithsonian)]
+27. Q[Most, Most_Commercial_Ferries.arrival(Athinios).is_sufficient == true → Relation(Most_Commercial_Ferries, Athinios)]
+28. Q[All, Arrival(Smithsonian).is_exclusive_to(All_Ferries) == true → Relation(Smithsonian, All_Ferries)]
+29. Q[Most, Arrival(Athinios).is_exclusive_to(Most_Commercial_Ferries) == true → Relation(Athinios, Most_Commercial_Ferries)]
+30. Q[All, All_Ferries.arrive_at(Smithsonian) != Most_Commercial_Ferries.arrive_at(Athinios) → Relation(All_Ferries, Most_Commercial_Ferries)]

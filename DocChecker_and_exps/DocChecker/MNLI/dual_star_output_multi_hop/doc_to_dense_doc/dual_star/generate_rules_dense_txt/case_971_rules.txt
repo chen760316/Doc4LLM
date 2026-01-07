@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 971)
+S1: My question also concerns, but this time in an office setting, in a bathroom with many stalls.
+S2: There is a bathroom with many stalls in an office and I have a question about it.
+
+Predicates:
+1. Bathroom.location.office
+2. Bathroom.stalls.count.many
+3. Question.context.personal
+4. Question.context.general
+5. Office.setting.type
+6. Bathroom.setting.type
+7. Question.subject.bathroom
+8. Question.subject.office
+9. Question.type.concerns
+10. Question.type.inquiry
+11. Inquiry.location.bathroom
+12. Inquiry.location.office
+13. Stalls.count.many
+14. Stalls.type.bathroom
+15. Personal.context.question
+16. General.statement.question
+17. Office.bathroom.exists
+18. Office.bathroom.stalls.exists
+19. Inquiry.type.personal
+20. Inquiry.type.general
+21. Relation(bathroom, office)
+22. Relation(question, bathroom)
+23. Relation(question, office)
+24. Violate(context.personal, context.general)
+25. M_NLI(S1, S2)
+26. Relation(S1, S2)
+27. Violate(S1, S2)
+28. Office.has.bathroom
+29. Bathroom.has.stalls
+30. Question.is.about.bathroom
+
+Rules:
+1. Q[question, Question.context.personal, Question.context.general](Question.context.personal == true → Relation(question, bathroom))
+2. Q[question, Question.context.personal, Question.context.general](Question.context.general == true → Relation(question, office))
+3. Q[question, Question.subject.bathroom, Question.subject.office](Question.subject.bathroom == true → Relation(question, bathroom))
+4. Q[question, Question.subject.bathroom, Question.subject.office](Question.subject.office == true → Relation(question, office))
+5. Q[question, Question.type.concerns, Question.type.inquiry](Question.type.concerns == true → Relation(question, bathroom))
+6. Q[question, Question.type.concerns, Question.type.inquiry](Question.type.inquiry == true → Relation(question, office))
+7. Q[question, Inquiry.location.bathroom, Inquiry.location.office](Inquiry.location.bathroom == true → Relation(question, bathroom))
+8. Q[question, Inquiry.location.bathroom, Inquiry.location.office](Inquiry.location.office == true → Relation(question, office))
+9. Q[question, Bathroom.location.office, Office.setting.type](Bathroom.location.office == true → Relation(question, bathroom))
+10. Q[question, Bathroom.location.office, Office.setting.type](Office.setting.type == "office" → Relation(question, office))
+11. Q[question, Bathroom.stalls.count.many, Stalls.count.many](Bathroom.stalls.count.many == true → Relation(question, bathroom))
+12. Q[question, Bathroom.stalls.count.many, Stalls.count.many](Stalls.count.many == true → Relation(question, office))
+13. Q[question, Personal.context.question, General.statement.question](Personal.context.question == true → Relation(question, bathroom))
+14. Q[question, Personal.context.question, General.statement.question](General.statement.question == true → Relation(question, office))
+15. Q[question, Inquiry.type.personal, Inquiry.type.general](Inquiry.type.personal == true → Relation(question, bathroom))
+16. Q[question, Inquiry.type.personal, Inquiry.type.general](Inquiry.type.general == true → Relation(question, office))
+17. Q[question, Office.bathroom.exists, Bathroom.has.stalls](Office.bathroom.exists == true → Relation(question, bathroom))
+18. Q[question, Office.bathroom.exists, Bathroom.has.stalls](Bathroom.has.stalls == true → Relation(question, office))
+19. Q[question, Violate(context.personal, context.general), Violate(S1, S2)](Violate(context.personal, context.general) == true → Relation(question, bathroom))
+20. Q[question, Violate(context.personal, context.general), Violate(S1, S2)](Violate(S1, S2) == true → Relation(question, office))
+21. Q[question, Relation(bathroom, office), Relation(question, bathroom)](Relation(bathroom, office) == true → Relation(question, bathroom))
+22. Q[question, Relation(bathroom, office), Relation(question, office)](Relation(bathroom, office) == true → Relation(question, office))
+23. Q[question, Office.has.bathroom, Bathroom.setting.type](Office.has.bathroom == true → Relation(question, bathroom))
+24. Q[question, Office.has.bathroom, Bathroom.setting.type](Bathroom.setting.type == "bathroom" → Relation(question, office))
+25. Q[question, Question.is.about.bathroom, Question.type.inquiry](Question.is.about.bathroom == true → Relation(question, bathroom))
+26. Q[question, Question.is.about.bathroom, Question.type.inquiry](Question.type.inquiry == true → Relation(question, office))
+27. Q[question, Bathroom.location.office, Inquiry.location.bathroom](Bathroom.location.office == true → Relation(question, bathroom))
+28. Q[question, Bathroom.location.office, Inquiry.location.office](Inquiry.location.office == true → Relation(question, office))
+29. Q[question, Stalls.type.bathroom, Bathroom.stalls.count.many](Stalls.type.bathroom == true → Relation(question, bathroom))
+30. Q[question, Stalls.type.bathroom, Bathroom.stalls.count.many](Bathroom.stalls.count.many == true → Relation(question, office))

@@ -1,0 +1,64 @@
+Source: dense_text.txt (Index 70)
+S1: Claimant's application alleged an accident in September 1990.
+S2: The history provided to his treating doctor alleged a specific incident in February or March 1991.
+
+Predicates:
+1. Claimant.application.accident_date = September_1990
+2. Claimant.history.treating_doctor.incident_date = February_or_March_1991
+3. Claimant.history.treating_doctor.allegation = specific_incident
+4. Accident.date = September_1990
+5. Incident.date = February_or_March_1991
+6. Claimant.application.allegation = accident
+7. Treating_doctor.history.provided_to = Claimant
+8. Claimant.history.treating_doctor.timeline = different
+9. Accident.timeline = September_1990_to_February_or_March_1991
+10. Claimant.application.timeline = September_1990
+11. Claimant.history.timeline = February_or_March_1991
+12. Claimant.application.allegation_timeline = September_1990
+13. Treating_doctor.allegation_timeline = February_or_March_1991
+14. Claimant.history.treating_doctor.relationship = treating
+15. Accident.allegation = Claimant.application
+16. Incident.allegation = Claimant.history.treating_doctor
+17. Claimant.application.violates_timeline = Claimant.history.treating_doctor
+18. Claimant.history.treating_doctor.violates_timeline = Claimant.application
+19. M_NLI(S1, S2) = true
+20. Temporal(S1, S2) = true
+21. violate(S1, S2) = true
+22. Claimant.application.event = accident
+23. Claimant.history.treating_doctor.event = specific_incident
+24. Claimant.application.date = September_1990
+25. Claimant.history.treating_doctor.date = February_or_March_1991
+26. Claimant.application.allegation_type = accident
+27. Claimant.history.treating_doctor.allegation_type = incident
+28. Claimant.application.difference = Claimant.history.treating_doctor
+29. Claimant.history.treating_doctor.difference = Claimant.application
+30. Claimant.application.timeline_conflict = Claimant.history.treating_doctor.timeline
+
+Rules:
+1. Q[Claimant, Claimant.application.accident_date, Claimant.history.treating_doctor.incident_date](Claimant.application.accident_date == September_1990 → Temporal(Claimant.application.accident_date, Claimant.history.treating_doctor.incident_date))
+2. Q[Claimant, Claimant.application.allegation, Claimant.history.treating_doctor.allegation](Claimant.application.allegation == accident → Temporal(Claimant.application.allegation, Claimant.history.treating_doctor.allegation))
+3. Q[Claimant, Claimant.history.treating_doctor.timeline, Claimant.application.timeline](Claimant.history.treating_doctor.timeline == February_or_March_1991 → Temporal(Claimant.history.treating_doctor.timeline, Claimant.application.timeline))
+4. Q[Claimant, Claimant.application.timeline, Claimant.history.treating_doctor.timeline](Claimant.application.timeline == September_1990 → Temporal(Claimant.application.timeline, Claimant.history.treating_doctor.timeline))
+5. Q[Claimant, Claimant.history.treating_doctor.date, Claimant.application.date](Claimant.history.treating_doctor.date == February_or_March_1991 → Temporal(Claimant.history.treating_doctor.date, Claimant.application.date))
+6. Q[Claimant, Claimant.application.violates_timeline, Claimant.history.treating_doctor.violates_timeline](Claimant.application.violates_timeline == Claimant.history.treating_doctor → Temporal(Claimant.application.violates_timeline, Claimant.history.treating_doctor.violates_timeline))
+7. Q[Claimant, Claimant.history.treating_doctor.allegation_type, Claimant.application.allegation_type](Claimant.history.treating_doctor.allegation_type == incident → Temporal(Claimant.history.treating_doctor.allegation_type, Claimant.application.allegation_type))
+8. Q[Claimant, Claimant.history.treating_doctor.event, Claimant.application.event](Claimant.history.treating_doctor.event == specific_incident → Temporal(Claimant.history.treating_doctor.event, Claimant.application.event))
+9. Q[Claimant, Claimant.application.timeline_conflict, Claimant.history.treating_doctor.timeline](Claimant.application.timeline_conflict == Claimant.history.treating_doctor.timeline → Temporal(Claimant.application.timeline_conflict, Claimant.history.treating_doctor.timeline))
+10. Q[Claimant, Claimant.history.treating_doctor.difference, Claimant.application.difference](Claimant.history.treating_doctor.difference == Claimant.application → Temporal(Claimant.history.treating_doctor.difference, Claimant.application.difference))
+11. Q[Claimant, Claimant.application.date, Claimant.history.treating_doctor.date](Claimant.application.date == September_1990 → Temporal(Claimant.application.date, Claimant.history.treating_doctor.date))
+12. Q[Claimant, Claimant.history.treating_doctor.timeline, Claimant.application.timeline](Claimant.history.treating_doctor.timeline == different → Temporal(Claimant.history.treating_doctor.timeline, Claimant.application.timeline))
+13. Q[Claimant, Claimant.application.allegation, Claimant.history.treating_doctor.allegation](Claimant.application.allegation == accident → Temporal(Claimant.application.allegation, Claimant.history.treating_doctor.allegation))
+14. Q[Claimant, Claimant.history.treating_doctor.timeline, Claimant.application.timeline](Claimant.history.treating_doctor.timeline == February_or_March_1991 → Temporal(Claimant.history.treating_doctor.timeline, Claimant.application.timeline))
+15. Q[Claimant, Claimant.application.event, Claimant.history.treating_doctor.event](Claimant.application.event == accident → Temporal(Claimant.application.event, Claimant.history.treating_doctor.event))
+16. Q[Claimant, Claimant.history.treating_doctor.allegation, Claimant.application.allegation](Claimant.history.treating_doctor.allegation == specific_incident → Temporal(Claimant.history.treating_doctor.allegation, Claimant.application.allegation))
+17. Q[Claimant, Claimant.application.timeline, Claimant.history.treating_doctor.timeline](Claimant.application.timeline == September_1990 → Temporal(Claimant.application.timeline, Claimant.history.treating_doctor.timeline))
+18. Q[Claimant, Claimant.history.treating_doctor.date, Claimant.application.date](Claimant.history.treating_doctor.date == February_or_March_1991 → Temporal(Claimant.history.treating_doctor.date, Claimant.application.date))
+19. Q[Claimant, Claimant.application.violates_timeline, Claimant.history.treating_doctor.violates_timeline](Claimant.application.violates_timeline == Claimant.history.treating_doctor → Temporal(Claimant.application.violates_timeline, Claimant.history.treating_doctor.violates_timeline))
+20. Q[Claimant, Claimant.history.treating_doctor.allegation_type, Claimant.application.allegation_type](Claimant.history.treating_doctor.allegation_type == incident → Temporal(Claimant.history.treating_doctor.allegation_type, Claimant.application.allegation_type))
+21. Q[Claimant, Claimant.history.treating_doctor.event, Claimant.application.event](Claimant.history.treating_doctor.event == specific_incident → Temporal(Claimant.history.treating_doctor.event, Claimant.application.event))
+22. Q[Claimant, Claimant.application.timeline_conflict, Claimant.history.treating_doctor.timeline](Claimant.application.timeline_conflict == Claimant.history.treating_doctor.timeline → Temporal(Claimant.application.timeline_conflict, Claimant.history.treating_doctor.timeline))
+23. Q[Claimant, Claimant.history.treating_doctor.difference, Claimant.application.difference](Claimant.history.treating_doctor.difference == Claimant.application → Temporal(Claimant.history.treating_doctor.difference, Claimant.application.difference))
+24. Q[Claimant, Claimant.application.date, Claimant.history.treating_doctor.date](Claimant.application.date == September_1990 → Temporal(Claimant.application.date, Claimant.history.treating_doctor.date))
+25. Q[Claimant, Claimant.history.treating_doctor.timeline, Claimant.application.timeline](Claimant.history.treating_doctor.timeline == different → Temporal(Claimant.history.treating_doctor.timeline, Claimant.application.timeline))
+26. Q[Claimant, Claimant.application.allegation, Claimant.history.treating_doctor.allegation](Claimant.application.allegation == accident → Temporal(Claimant.application.allegation, Claimant.history.treating_doctor.allegation))
+27. Q[Claim

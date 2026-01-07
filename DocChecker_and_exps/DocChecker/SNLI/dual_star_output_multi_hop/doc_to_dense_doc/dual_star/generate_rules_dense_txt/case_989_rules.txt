@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 989)
+S1: Two dogs fighting in a forest, with the legs of two men in jeans in the background.
+S2: The two dogs are play fighting outside.
+
+Predicates:
+1. Dogs.fighting
+2. Dogs.play_fighting
+3. Location.forest
+4. Location.outside
+5. Men.in_jeans
+6. Men.legs_visible
+7. Dogs.in_background
+8. Dogs.in_forest
+9. Dogs.outside
+10. Fighting.type.play
+11. Fighting.type.real
+12. Background.visible
+13. Forest.contains_dogs
+14. Outside.contains_dogs
+15. Jeans.worn_by_men
+16. Men.visible_in_background
+17. Dogs.interacting
+18. Interaction.type.fighting
+19. Interaction.type.play
+20. Location.conflict
+21. Location.contradiction
+22. M_NLI(S1, S2)
+23. Factual(S1, S2)
+24. violate(S1, S2)
+25. Dogs.number.two
+26. Men.number.two
+27. Fighting.context
+28. Play_fighting.context
+29. Forest.environment
+30. Outside.environment
+
+Rules:
+1. Q[Two, Dogs.fighting == true, Location.forest == true](Fighting.type.real → Factual(x0, y0))
+2. Q[Two, Dogs.play_fighting == true, Location.outside == true](Fighting.type.play → Factual(x0, y0))
+3. Q[Two, Dogs.fighting == true, Location.outside == true](Location.conflict → Factual(x0, y0))
+4. Q[Two, Dogs.play_fighting == true, Location.forest == true](Location.contradiction → Factual(x0, y0))
+5. Q[Two, Men.in_jeans == true, Men.legs_visible == true](Men.visible_in_background → Factual(x0, y0))
+6. Q[Two, Dogs.in_forest == true, Dogs.outside == true](Location.conflict → Factual(x0, y0))
+7. Q[Two, Dogs.number.two == true, Men.number.two == true](Men.visible_in_background → Factual(x0, y0))
+8. Q[Two, Fighting.context == "real", Location.forest == true](Fighting.type.real → Factual(x0, y0))
+9. Q[Two, Play_fighting.context == "play", Location.outside == true](Fighting.type.play → Factual(x0, y0))
+10. Q[Two, Dogs.in_background == true, Location.forest == true](Background.visible → Factual(x0, y0))
+11. Q[Two, Dogs.interacting == true, Interaction.type.fighting == true](Fighting.type.real → Factual(x0, y0))
+12. Q[Two, Dogs.interacting == true, Interaction.type.play == true](Fighting.type.play → Factual(x0, y0))
+13. Q[Two, Location.forest == true, Location.outside == true](Location.contradiction → Factual(x0, y0))
+14. Q[Two, Forest.contains_dogs == true, Outside.contains_dogs == true](Location.conflict → Factual(x0, y0))
+15. Q[Two, Dogs.fighting == true, Dogs.in_forest == true](Fighting.type.real → Factual(x0, y0))
+16. Q[Two, Dogs.play_fighting == true, Dogs.outside == true](Fighting.type.play → Factual(x0, y0))
+17. Q[Two, Men.visible_in_background == true, Location.forest == true](Background.visible → Factual(x0, y0))
+18. Q[Two, Dogs.number.two == true, Dogs.fighting == true](Fighting.context → Factual(x0, y0))
+19. Q[Two, Dogs.number.two == true, Dogs.play_fighting == true](Play_fighting.context → Factual(x0, y0))
+20. Q[Two, Location.forest == true, Men.in_jeans == true](Men.visible_in_background → Factual(x0, y0))
+21. Q[Two, Location.outside == true, Men.in_jeans == true](Men.visible_in_background → Factual(x0, y0))
+22. Q[Two, Dogs.in_forest == true, Fighting.type.real == true](Fighting.context → Factual(x0, y0))
+23. Q[Two, Dogs.outside == true, Fighting.type.play == true](Play_fighting.context → Factual(x0, y0))
+24. Q[Two, Location.forest == true, Fighting.type.play == true](Location.contradiction → Factual(x0, y0))
+25. Q[Two, Location.outside == true, Fighting.type.real == true](Location.contradiction → Factual(x0, y0))
+26. Q[Two, Dogs.fighting == true, Men.legs_visible == true](Men.visible_in_background → Factual(x0, y0))
+27. Q[Two, Dogs.play_fighting == true, Men.legs_visible == true](Men.visible_in_background → Factual(x0, y0))
+28. Q[Two, Location.forest == true, Dogs.outside == true](Location.contradiction → Factual(x0, y0))
+29. Q[Two, Location.outside == true, Dogs.in_forest == true](Location.contradiction → Factual(x0, y0))
+30. Q[Two, Fighting.type.real == true, Location.outside == true](Location.contradiction → Factual(x0, y0))

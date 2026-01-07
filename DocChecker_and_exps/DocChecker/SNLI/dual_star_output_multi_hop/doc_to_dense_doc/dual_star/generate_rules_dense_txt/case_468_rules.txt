@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 468)
+S1: F o u r m e n a n d o n e f e m a l e s t a n d n e a r a r a i l a t n i g h t.
+S2: F i v e p e o p l e s t a n d i n g.
+
+Predicates:
+1. S1.total_people = 5
+2. S1.men_count = 4
+3. S1.female_count = 1
+4. S1.location = "near a rail"
+5. S1.time = "night"
+6. S2.total_people = 5
+7. S2.status = "standing"
+8. S1.relationship = "composition"
+9. S1.composition = "4 men, 1 female"
+10. S2.relationship = "status"
+11. S2.composition = "5 people"
+12. M_NLI(S1, S2)
+13. Numeric(S1.total_people, S2.total_people)
+14. violate(S1.composition, S2.composition)
+15. S1.environment = "outdoor"
+16. S2.environment = "unknown"
+17. S1.gender_ratio = "4:1"
+18. S2.gender_ratio = "unknown"
+19. S1.time_of_day = "night"
+20. S2.time_of_day = "unknown"
+21. S1.group_type = "mixed gender"
+22. S2.group_type = "unknown"
+23. S1.activity = "standing"
+24. S2.activity = "standing"
+25. S1.context = "nighttime gathering"
+26. S2.context = "standing group"
+27. S1.location_type = "public space"
+28. S2.location_type = "unknown"
+29. S1.participants = "4 men, 1 female"
+30. S2.participants = "5 people"
+
+Rules:
+1. Q[men, S1.men_count, S2.total_people](S1.men_count == 4 → Numeric(S1.men_count, S2.total_people))
+2. Q[female, S1.female_count, S2.total_people](S1.female_count == 1 → Numeric(S1.female_count, S2.total_people))
+3. Q[total_people, S1.total_people, S2.total_people](S1.total_people == 5 → Numeric(S1.total_people, S2.total_people))
+4. Q[location, S1.location, S2.location_type](S1.location == "near a rail" → Numeric(S1.total_people, S2.total_people))
+5. Q[time, S1.time, S2.time_of_day](S1.time == "night" → Numeric(S1.total_people, S2.total_people))
+6. Q[status, S2.status, S1.activity](S2.status == "standing" → Numeric(S1.total_people, S2.total_people))
+7. Q[composition, S1.composition, S2.composition](S1.composition == "4 men, 1 female" → Numeric(S1.total_people, S2.total_people))
+8. Q[gender_ratio, S1.gender_ratio, S2.gender_ratio](S1.gender_ratio == "4:1" → Numeric(S1.total_people, S2.total_people))
+9. Q[participants, S1.participants, S2.participants](S1.participants == "4 men, 1 female" → Numeric(S1.total_people, S2.total_people))
+10. Q[environment, S1.environment, S2.environment](S1.environment == "outdoor" → Numeric(S1.total_people, S2.total_people))
+11. Q[activity, S1.activity, S2.activity](S1.activity == "standing" → Numeric(S1.total_people, S2.total_people))
+12. Q[context, S1.context, S2.context](S1.context == "nighttime gathering" → Numeric(S1.total_people, S2.total_people))
+13. Q[group_type, S1.group_type, S2.group_type](S1.group_type == "mixed gender" → Numeric(S1.total_people, S2.total_people))
+14. Q[relationship, S1.relationship, S2.relationship](S1.relationship == "composition" → Numeric(S1.total_people, S2.total_people))
+15. Q[time_of_day, S1.time_of_day, S2.time_of_day](S1.time_of_day == "night" → Numeric(S1.total_people, S2.total_people))
+16. Q[location_type, S1.location_type, S2.location_type](S1.location_type == "public space" → Numeric(S1.total_people, S2.total_people))
+17. Q[violate, S1.composition, S2.composition](violate(S1.composition, S2.composition) → Numeric(S1.total_people, S2.total_people))
+18. Q[total_people, S2.total_people, S1.total_people](S2.total_people == 5 → Numeric(S1.total_people, S2.total_people))
+19. Q[gender_ratio, S2.gender_ratio, S1.gender_ratio](S2.gender_ratio == "unknown" → Numeric(S1.total_people, S2.total_people))
+20. Q[participants, S2.participants, S1.participants](S2.participants == "5 people" → Numeric(S1.total_people, S2.total_people))
+21. Q[status, S1.activity, S2.status](S1.activity == "standing" → Numeric(S1.total_people, S2.total_people))
+22. Q[relationship, S2.relationship, S1.relationship](S2.relationship == "status" → Numeric(S1.total_people, S2.total_people))
+23. Q[environment, S2.environment, S1.environment](S2.environment == "unknown" → Numeric(S1.total_people, S2.total_people))
+24. Q[time, S2.time_of_day, S1.time](S2.time_of_day == "unknown" → Numeric(S1.total_people, S2.total_people))
+25. Q[group_type, S2.group_type, S1.group_type](S2.group_type == "unknown" → Numeric(S1.total_people, S2.total_people))
+26. Q[location, S2.location_type, S1.location](S2.location_type == "unknown" → Numeric(S1.total_people, S2.total_people))
+27. Q[activity, S2.activity, S1.activity](S2.activity == "standing" → Numeric(S1.total_people, S2.total_people))
+28. Q[participants, S1.participants, S2.participants](S1.participants == "4 men, 1 female" → Numeric(S1.total_people, S2.total_people))
+29. Q[total_people, S1.total_people, S2.total_people](M_NLI(S1, S2) → Numeric(S1.total_people, S2.total_people))
+30. Q[violate, S1.composition, S2.composition](violate(S1.composition, S2.composition) → Numeric(S1.total_people, S2.total_people))

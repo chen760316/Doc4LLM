@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 1019)
+S1: The Last Frontier and El Rancho Vegas were the first two.
+S2: The El Rancho Vegas (1941) was the first, followed by the Last Frontier (1943).
+
+Predicates:
+1. Last_Frontier.year(1943)
+2. El_Rancho_Vegas.year(1941)
+3. "is_first".Last_Frontier
+4. "is_first".El_Rancho_Vegas
+5. "follows".El_Rancho_Vegas, Last_Frontier
+6. "precedes".Last_Frontier, El_Rancho_Vegas
+7. M_NLI(S1, S2)
+8. Temporal(El_Rancho_Vegas, Last_Frontier)
+9. violate(S1, S2)
+10. "is_first".El_Rancho_Vegas
+11. "is_first".Last_Frontier
+12. "chronological_order".El_Rancho_Vegas, Last_Frontier
+13. "is_first_in_time".El_Rancho_Vegas
+14. "is_first_in_time".Last_Frontier
+15. "establishes_order".S2
+16. "suggests_simultaneity".S1
+17. "is_first".S2
+18. "is_second".Last_Frontier
+19. "is_second".El_Rancho_Vegas
+20. "temporal_relationship".S1, S2
+21. "contradicts".S1, S2
+22. "is_first".S1
+23. "is_second".S1
+24. "is_first".S2
+25. "is_second".S2
+26. "temporal_sequence".El_Rancho_Vegas, Last_Frontier
+27. "is_first_in_sequence".El_Rancho_Vegas
+28. "is_second_in_sequence".Last_Frontier
+29. "chronological_sequence".S1, S2
+30. "conflict".S1, S2
+
+Rules:
+1. Q[The, "is_first".El_Rancho_Vegas, "is_first".Last_Frontier](El_Rancho_Vegas.year(1941) == 1941 → Temporal(El_Rancho_Vegas, Last_Frontier))
+2. Q[The, "is_first".Last_Frontier, "is_first".El_Rancho_Vegas](Last_Frontier.year(1943) == 1943 → Temporal(El_Rancho_Vegas, Last_Frontier))
+3. Q[The, "suggests_simultaneity".S1, "establishes_order".S2](M_NLI(S1, S2) == true → Temporal(El_Rancho_Vegas, Last_Frontier))
+4. Q[The, "is_first".S1, "is_second".S1](violate(S1, S2) == true → Temporal(El_Rancho_Vegas, Last_Frontier))
+5. Q[The, "is_first".El_Rancho_Vegas, "is_second".Last_Frontier](El_Rancho_Vegas.year(1941) == 1941 → Temporal(El_Rancho_Vegas, Last_Frontier))
+6. Q[The, "is_first".Last_Frontier, "is_second".El_Rancho_Vegas](Last_Frontier.year(1943) == 1943 → Temporal(El_Rancho_Vegas, Last_Frontier))
+7. Q[The, "contradicts".S1, "contradicts".S2](Temporal(El_Rancho_Vegas, Last_Frontier) == false → Temporal(El_Rancho_Vegas, Last_Frontier))
+8. Q[The, "is_first".S2, "is_second".S2](chronological_order.El_Rancho_Vegas, Last_Frontier == true → Temporal(El_Rancho_Vegas, Last_Frontier))
+9. Q[The, "is_first_in_time".El_Rancho_Vegas, "is_second_in_time".Last_Frontier](El_Rancho_Vegas.year(1941) < Last_Frontier.year(1943) → Temporal(El_Rancho_Vegas, Last_Frontier))
+10. Q[The, "is_first_in_sequence".El_Rancho_Vegas, "is_second_in_sequence".Last_Frontier](follows.El_Rancho_Vegas, Last_Frontier == false → Temporal(El_Rancho_Vegas, Last_Frontier))
+11. Q[The, "chronological_sequence".S1, S2](temporal_relationship.S1, S2 == false → Temporal(El_Rancho_Vegas, Last_Frontier))
+12. Q[The, "is_first".El_Rancho_Vegas, "is_first".S2](is_first.El_Rancho_Vegas == true → Temporal(El_Rancho_Vegas, Last_Frontier))
+13. Q[The, "is_second".Last_Frontier, "is_first".S2](is_second.Last_Frontier == true → Temporal(El_Rancho_Vegas, Last_Frontier))
+14. Q[The, "is_first".S1, "is_second".S2](is_first.S1 == true → Temporal(El_Rancho_Vegas, Last_Frontier))
+15. Q[The, "is_first".S2, "is_second".S1](is_second.S2 == true → Temporal(El_Rancho_Vegas, Last_Frontier))
+16. Q[The, "temporal_relationship".S1, S2](temporal_sequence.El_Rancho_Vegas, Last_Frontier == false → Temporal(El_Rancho_Vegas, Last_Frontier))
+17. Q[The, "conflict".S1, S2](conflict.S1, S2 == true → Temporal(El_Rancho_Vegas, Last_Frontier))
+18. Q[The, "is_first_in_time".Last_Frontier, "is_second_in_time".El_Rancho_Vegas](El_Rancho_Vegas.year(1941) < Last_Frontier.year(1943) → Temporal(El_Rancho_Vegas, Last_Frontier))
+19. Q[The, "is_first".S1, "is_first".S2](is_first.S1 == true → Temporal(El_Rancho_Vegas, Last_Frontier))
+20. Q[The, "is_second".S1, "is_first".S2](is_first.S2 == true → Temporal(El_Rancho_Vegas, Last_Frontier))
+21. Q[The, "is_first".El_Rancho_Vegas, "is_second".S1](is_second.S1 == true → Temporal(El_Rancho_Vegas, Last_Frontier))
+22. Q[The, "is_first".Last_Frontier, "is_second".S2](is_second.S2 == true → Temporal(El_Rancho_Vegas, Last_Frontier))
+23. Q[The, "temporal_sequence".El_Rancho_Vegas, Last_Frontier](temporal_relationship.S1, S2 == false → Temporal(El_Rancho_Vegas, Last_Frontier))
+24. Q[The, "is_first".S2, "is_second".Last_Frontier](is_second.Last_Frontier == true → Temporal(El_Rancho_Vegas, Last_Frontier))
+25. Q[The, "is_first".Last_Frontier, "is_second".El_Rancho_Vegas](is_second.El_Rancho_Vegas == true → Temporal(El_Rancho_Vegas, Last_Frontier))
+26. Q[The, "is_first_in_sequence".Last_Frontier, "is_second_in_sequence".El_Rancho_Vegas](follows.El_Rancho_Vegas, Last_Frontier == false → Temporal(El_Rancho_Vegas, Last_Frontier))
+27. Q[The, "is_first".S1, "is_first".S2](is_first.S2 == true → Temporal(El_Rancho_Vegas, Last_Frontier))
+28. Q[The, "is_second".S1, "is_first".S2](is_first.S2 == true → Temporal(El_Rancho_Vegas, Last_Frontier))
+29. Q[The, "is_first".El_Rancho_Vegas, "is_second".S1](is_second.S1 == true → Temporal(El_Rancho_Vegas, Last_Frontier))
+30. Q[The, "is_first".Last_F

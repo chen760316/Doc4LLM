@@ -1,0 +1,133 @@
+Predicates:
+1. entity.name = "John Doe"
+2. entity.age = "35"
+3. entity.occupation = "teacher"
+4. entity.location = "New York"
+5. entity.reputation = "respected"
+6. entity.allegation = "molestation"
+7. entity.moral_standing = "moral man"
+8. entity.relationship_status = "married"
+9. entity.children_count = "2"
+10. entity.hobbies = "reading"
+11. entity.education_level = "PhD"
+12. entity.nationality = "American"
+13. entity.employment_status = "employed"
+14. entity.community_involvement = "active"
+15. entity.legal_status = "under investigation"
+16. entity.testimony = "denies allegations"
+17. entity.supporters_count = "100"
+18. entity.critics_count = "10"
+19. entity.previous_offenses = "none"
+20. entity.public_image = "tainted"
+21. "is alleged to have molested".source = "news article"
+22. "is alleged to have molested".date = "2023-10-01"
+23. "is considered to be a moral man in regards to".source = "community feedback"
+24. "is considered to be a moral man in regards to".date = "2023-09-15"
+25. "is married to".spouse = "Jane Doe"
+26. "has children with".children = "Alice, Bob"
+27. "is involved in".activity = "charity work"
+28. "has received".award = "Teacher of the Year"
+29. "is known for".trait = "integrity"
+30. "has been accused of".crime = "sexual misconduct"
+31. "is facing".consequences = "legal action"
+32. "has a reputation for".behavior = "honesty"
+33. "is perceived as".role_model = "mentor"
+34. "has been supported by".group = "local community"
+35. "has been criticized by".group = "activists"
+36. "is involved in".organization = "educational reform"
+37. "has a history of".behavior = "good conduct"
+38. "is seen as".leader = "in the community"
+39. "is under".scrutiny = "media attention"
+40. "has been found guilty of".offense = "none"
+41. M_NLI(entity.allegation, entity.reputation)
+42. T("John Doe is a respected teacher.", "John Doe is a molester.", tau)
+43. tau(entity.reputation, entity.allegation)
+44. violate(entity.allegation, entity.reputation)
+45. Factual(entity.allegation, entity.reputation)
+46. Content(entity.reputation, entity.allegation)
+47. Causal(entity.legal_status, entity.reputation)
+48. Negation(entity.testimony, entity.allegation)
+49. Relation(entity.relationship_status, entity.allegation)
+50. Numeric(entity.children_count, entity.critics_count)
+51. Temporal(entity.date, entity.date)
+52. M_NLI(entity.hobbies, entity.occupation)
+53. T("John is a teacher.", "John is unemployed.", tau)
+54. tau(entity.occupation, entity.employment_status)
+55. violate(entity.occupation, entity.employment_status)
+56. Factual(entity.occupation, entity.employment_status)
+57. Content(entity.hobbies, entity.occupation)
+58. Causal(entity.reputation, entity.allegation)
+59. Negation(entity.testimony, entity.reputation)
+60. Relation(entity.relationship_status, entity.children_count)
+61. Numeric(entity.supporters_count, entity.critics_count)
+62. Temporal(entity.date, entity.date)
+63. M_NLI(entity.education_level, entity.occupation)
+64. T("John has a PhD.", "John has no degree.", tau)
+65. tau(entity.education_level, entity.occupation)
+66. violate(entity.education_level, entity.occupation)
+67. Factual(entity.education_level, entity.occupation)
+68. Content(entity.hobbies, entity.education_level)
+69. Causal(entity.reputation, entity.education_level)
+70. Negation(entity.testimony, entity.education_level)
+71. Relation(entity.relationship_status, entity.education_level)
+72. Numeric(entity.children_count, entity.supporters_count)
+73. Temporal(entity.date, entity.date)
+74. M_NLI(entity.location, entity.reputation)
+75. T("John lives in New York.", "John is homeless.", tau)
+76. tau(entity.location, entity.reputation)
+77. violate(entity.location, entity.reputation)
+78. Factual(entity.location, entity.reputation)
+79. Content(entity.hobbies, entity.location)
+80. Causal(entity.reputation, entity.location)
+81. Negation(entity.testimony, entity.location)
+82. Relation(entity.relationship_status, entity.location)
+83. Numeric(entity.children_count, entity.critics_count)
+84. Temporal(entity.date, entity.date)
+85. M_NLI(entity.nationality, entity.reputation)
+86. T("John is American.", "John is not a citizen.", tau)
+87. tau(entity.nationality, entity.reputation)
+88. violate(entity.nationality, entity.reputation)
+89. Factual(entity.nationality, entity.reputation)
+90. Content(entity.hobbies, entity.nationality)
+91. Causal(entity.reputation, entity.nationality)
+92. Negation(entity.testimony, entity.nationality)
+93. Relation(entity.relationship_status, entity.nationality)
+94. Numeric(entity.children_count, entity.supporters_count)
+95. Temporal(entity.date, entity.date)
+96. M_NLI(entity.community_involvement, entity.reputation)
+97. T("John is active in the community.", "John is a recluse.", tau)
+98. tau(entity.community_involvement, entity.reputation)
+99. violate(entity.community_involvement, entity.reputation)
+100. Factual(entity.community_involvement, entity.reputation)
+violate(x0, y0)
+
+Rules:
+1. Q[x0, y0](entity.name = "John Doe" ∧ entity.occupation = "teacher" → violate(x0, y0))
+2. Q[x0, y0](entity.age = "35" ∧ entity.location = "New York" → violate(x0, y0))
+3. Q[x0, y0](entity.reputation = "respected" ∧ entity.allegation = "molestation" → violate(x0, y0))
+4. Q[x0, y0](entity.relationship_status = "married" ∧ entity.legal_status = "under investigation" → violate(x0, y0))
+5. Q[x0, y0](entity.children_count = "2" ∧ entity.hobbies = "reading" → violate(x0, y0))
+6. Q[x0, y0](entity.education_level = "PhD" ∧ entity.nationality = "American" → violate(x0, y0))
+7. Q[x0, y0](entity.occupation = "teacher" ∧ entity.reputation = "respected" ∧ entity.allegation = "molestation" → violate(x0, y0))
+8. Q[x0, y0](entity.location = "New York" ∧ entity.moral_standing = "moral man" ∧ entity.legal_status = "under investigation" → violate(x0, y0))
+9. Q[x0, y0](entity.relationship_status = "married" ∧ entity.children_count = "2" ∧ entity.community_involvement = "active" → violate(x0, y0))
+10. Q[x0, y0](entity.age = "35" ∧ entity.occupation = "teacher" ∧ entity.allegation = "molestation" → violate(x0, y0))
+11. Q[x0, y0](entity.reputation = "respected" ∧ entity.legal_status = "under investigation" ∧ entity.testimony = "denies allegations" → violate(x0, y0))
+12. Q[x0, y0](entity.nationality = "American" ∧ entity.education_level = "PhD" ∧ entity.hobbies = "reading" → violate(x0, y0))
+13. Q[x0, y0](entity.name = "John Doe" ∧ entity.age = "35" ∧ entity.occupation = "teacher" ∧ entity.location = "New York" → violate(x0, y0))
+14. Q[x0, y0](entity.reputation = "respected" ∧ entity.allegation = "molestation" ∧ entity.moral_standing = "moral man" → violate(x0, y0))
+15. Q[x0, y0](entity.relationship_status = "married" ∧ entity.children_count = "2" ∧ entity.community_involvement = "active" ∧ entity.legal_status = "under investigation" → violate(x0, y0))
+16. Q[x0, y0](entity.age = "35" ∧ entity.occupation = "teacher" ∧ entity.reputation = "respected" ∧ entity.allegation = "molestation" → violate(x0, y0))
+17. Q[x0, y0](entity.location = "New York" ∧ entity.moral_standing = "moral man" ∧ entity.testimony = "denies allegations" ∧ entity.legal_status = "under investigation" → violate(x0, y0))
+18. Q[x0, y0](entity.nationality = "American" ∧ entity.education_level = "PhD" ∧ entity.hobbies = "reading" ∧ entity.community_involvement = "active" → violate(x0, y0))
+19. Q[x0, y0](entity.name = "John Doe" ∧ entity.age = "35" ∧ entity.occupation = "teacher" ∧ entity.location = "New York" ∧ entity.reputation = "respected" → violate(x0, y0))
+20. Q[x0, y0](entity.allegation = "molestation" ∧ entity.moral_standing = "moral man" ∧ entity.legal_status = "under investigation" ∧ entity.testimony = "denies allegations" → violate(x0, y0))
+21. Q[x0, y0](entity.relationship_status = "married" ∧ entity.children_count = "2" ∧ entity.community_involvement = "active" ∧ entity.legal_status = "under investigation" ∧ entity.reputation = "respected" → violate(x0, y0))
+22. Q[x0, y0](entity.age = "35" ∧ entity.occupation = "teacher" ∧ entity.location = "New York" ∧ entity.reputation = "respected" ∧ entity.allegation = "molestation" → violate(x0, y0))
+23. Q[x0, y0](entity.nationality = "American" ∧ entity.education_level = "PhD" ∧ entity.hobbies = "reading" ∧ entity.community_involvement = "active" ∧ entity.legal_status = "under investigation" → violate(x0, y0))
+24. Q[x0, y0](entity.name = "John Doe" ∧ entity.age = "35" ∧ entity.occupation = "teacher" ∧ entity.location = "New York" ∧ entity.reputation = "respected" ∧ entity.allegation = "molestation" → violate(x0, y0))
+25. Q[x0, y0](entity.relationship_status = "married" ∧ entity.children_count = "2" ∧ entity.hobbies = "reading" ∧ entity.legal_status = "under investigation" ∧ entity.reputation = "respected" → violate(x0, y0))
+26. Q[x0, y0](entity.age = "35" ∧ entity.occupation = "teacher" ∧ entity.location = "New York" ∧ entity.moral_standing = "moral man" ∧ entity.legal_status = "under investigation" → violate(x0, y0))
+27. Q[x0, y0](entity.nationality = "American" ∧ entity.education_level = "PhD" ∧ entity.hobbies = "reading" ∧ entity.community_involvement = "active" ∧ entity.testimony = "denies allegations" → violate(x0, y0))
+28. Q[x0, y0](entity.name = "John Doe" ∧ entity.age = "35" ∧ entity.occupation = "teacher" ∧ entity.location = "New York" ∧ entity.reputation = "respected" ∧ entity.allegation = "molestation" ∧ entity.legal_status = "under investigation" → violate(x0, y0))
+29. Q[x0, y0](entity.relationship_status = "married" ∧ entity.children_count = "2" ∧ entity.hobbies = "

@@ -1,0 +1,50 @@
+Predicates:
+new product.label = "Product"
+new product.label != "Product"
+new product.name = "new product"
+new product.name != "new product"
+new product.status = "not revealed"
+new product.status != "not revealed"
+unknown company.label = "Company"
+unknown company.label != "Company"
+unknown company.name = "unknown company"
+unknown company.name != "unknown company"
+The company had not yet revealed any details about its new product by February 2025..date = "February 2025"
+The company had not yet revealed any details about its new product by February 2025..date != "February 2025"
+M_NLI(new product(label=Product, name=new product, status=not revealed), unknown company(label=Company, name=unknown company))
+M_NLU(new product(label=Product, name=new product, status=not revealed), unknown company(label=Company, name=unknown company))
+M_TEM(new product(label=Product, name=new product, status=not revealed), unknown company(label=Company, name=unknown company))
+M_NLI(unknown company(label=Company, name=unknown company), new product(label=Product, name=new product, status=not revealed))
+M_NLU(unknown company(label=Company, name=unknown company), new product(label=Product, name=new product, status=not revealed))
+M_TEM(unknown company(label=Company, name=unknown company), new product(label=Product, name=new product, status=not revealed))
+S(The company announced its new product in January 2025., "had over 10,000 attendees last night.
+The company announced its new product in January 2025.
+The Eif")
+S(new product, "new product (label=Product name=new product status=not revealed)")
+S(The company had not yet revealed any details about its new product by February 2025., " had not yet revealed any details about its new product by February 2025.
+The Eiffel Tower was built")
+T(new product (label=Product name=new product status=not revealed),  had not yet revealed any details about its new product by February 2025.
+The Eiffel Tower was built, No Contradiction)
+No Contradiction(new product., The company had not yet revealed any details about its new product by February 2025..)
+
+Rules:
+Q[x0, y0](new product.label = "Product" ∧ new product.name = "new product" → new product.status = "not revealed")
+Q[x0, y0](unknown company.label = "Company" ∧ unknown company.name = "unknown company" → new product.status != "not revealed")
+Q[x0, y0](new product.status = "not revealed" ∧ The company had not yet revealed any details about its new product by February 2025..date = "February 2025" → No Contradiction(new product., The company had not yet revealed any details about its new product by February 2025..))
+Q[x0, y0](new product.label != "Product" ∧ unknown company.label = "Company" ∧ new product.name = "new product" → new product.status != "not revealed")
+Q[x0, y0](unknown company.name != "unknown company" ∧ new product.status = "not revealed" ∧ The company had not yet revealed any details about its new product by February 2025..date != "February 2025" → M_NLI(new product(label=Product, name=new product, status=not revealed), unknown company(label=Company, name=unknown company)))
+Q[x0, y0](new product.label = "Product" ∧ new product.name != "new product" ∧ unknown company.label != "Company" ∧ The company had not yet revealed any details about its new product by February 2025..date = "February 2025" → M_TEM(unknown company(label=Company, name=unknown company), new product(label=Product, name=new product, status=not revealed)))
+Q[x0, y0](new product.status != "not revealed" ∧ unknown company.label = "Company" ∧ unknown company.name = "unknown company" ∧ The company had not yet revealed any details about its new product by February 2025..date != "February 2025" ∧ new product.name = "new product" → M_NLU(new product(label=Product, name=new product, status=not revealed), unknown company(label=Company, name=unknown company)))
+Q[x0, y0](new product.label = "Product" ∧ unknown company.label != "Company" ∧ new product.status = "not revealed" ∧ unknown company.name != "unknown company" ∧ The company had not yet revealed any details about its new product by February 2025..date = "February 2025" ∧ new product.name = "new product" → M_NLI(unknown company(label=Company, name=unknown company), new product(label=Product, name=new product, status=not revealed)))
+Q[x0, y0](new product.label != "Product" ∧ new product.name != "new product" → unknown company.label != "Company")
+Q[x0, y0](new product.status = "not revealed" ∧ The company had not yet revealed any details about its new product by February 2025..date = "February 2025" → M_TEM(new product(label=Product, name=new product, status=not revealed), unknown company(label=Company, name=unknown company)))
+Q[x0, y0](unknown company.label = "Company" ∧ unknown company.name != "unknown company" ∧ new product.status != "not revealed" → No Contradiction(new product., The company had not yet revealed any details about its new product by February 2025..))
+Q[x0, y0](new product.label = "Product" ∧ unknown company.label = "Company" ∧ new product.name = "new product" ∧ new product.status != "not revealed" → M_NLU(unknown company(label=Company, name=unknown company), new product(label=Product, name=new product, status=not revealed)))
+Q[x0, y0](new product.name = "new product" ∧ unknown company.name = "unknown company" → new product.status = "not revealed")
+Q[x0, y0](new product.label != "Product" ∧ unknown company.label != "Company" ∧ new product.status != "not revealed" ∧ The company had not yet revealed any details about its new product by February 2025..date != "February 2025" → M_NLI(new product(label=Product, name=new product, status=not revealed), unknown company(label=Company, name=unknown company)))
+Q[x0, y0](new product.status = "not revealed" ∧ unknown company.label = "Company" ∧ unknown company.name = "unknown company" ∧ new product.name != "new product" ∧ The company had not yet revealed any details about its new product by February 2025..date = "February 2025" ∧ new product.label = "Product" → No Contradiction(new product., The company had not yet revealed any details about its new product by February 2025..))
+Q[x0, y0](new product.name != "new product" ∧ unknown company.name != "unknown company" → new product.label != "Product")
+Q[x0, y0](new product.status != "not revealed" ∧ The company had not yet revealed any details about its new product by February 2025..date != "February 2025" → M_TEM(unknown company(label=Company, name=unknown company), new product(label=Product, name=new product, status=not revealed)))
+Q[x0, y0](new product.label = "Product" ∧ unknown company.label = "Company" → M_NLU(new product(label=Product, name=new product, status=not revealed), unknown company(label=Company, name=unknown company)))
+Q[x0, y0](new product.name = "new product" ∧ unknown company.name = "unknown company" ∧ new product.status != "not revealed" → M_NLI(unknown company(label=Company, name=unknown company), new product(label=Product, name=new product, status=not revealed)))
+Q[x0, y0](new product.label != "Product" ∧ unknown company.label != "Company" ∧ new product.name != "new product" ∧ unknown company.name != "unknown company" ∧ new product.status != "not revealed" ∧ The company had not yet revealed any details about its new product by February 2025..date != "February 2025" → No Contradiction(new product., The company had not yet revealed any details about its new product by February 2025..))

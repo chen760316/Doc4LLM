@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 1339)
+S1: The picture is of a downtown area with people crossing the street, and walking on the sidewalk.
+S2: The picture is of a downtown area after a bombing.
+
+Predicates:
+1. Picture.scene_type.downtown_area
+2. Picture.activity.crossing_street
+3. Picture.activity.walking_on_sidewalk
+4. Picture.scene_type.post_bombing
+5. Picture.activity.people_present
+6. Picture.activity.normal_scene
+7. Picture.activity.abnormal_scene
+8. Scene.normality.normal
+9. Scene.normality.abnormal
+10. People.presence.crossing_street
+11. People.presence.walking
+12. Scene.condition.bombing
+13. Scene.condition.normal
+14. Causal(normal_scene, people_present)
+15. Causal(post_bombing, people_absent)
+16. Violate(normal_scene, post_bombing)
+17. Entity.downtown_area.activity
+18. Entity.bombing.effect
+19. Relationship.scene_activity.normal
+20. Relationship.scene_activity.abnormal
+21. Meta.M_NLI(s1, s2)
+22. Meta.Causal(s1, s2)
+23. Meta.violate(s1, s2)
+24. Picture.condition.normal
+25. Picture.condition.abnormal
+26. People.activity.crossing
+27. People.activity.walking
+28. Scene.downtown_area.condition
+29. Scene.bombing.effect
+30. Relationship.people_activity.normal
+
+Rules:
+1. Q[The, Picture.scene_type.downtown_area, Picture.scene_type.post_bombing](Picture.scene_type.downtown_area == "true" → Causal(Picture.scene_type.downtown_area, Picture.scene_type.post_bombing))
+2. Q[The, Picture.activity.crossing_street, Picture.activity.abnormal_scene](Picture.activity.crossing_street == "true" → Causal(Picture.activity.crossing_street, Picture.activity.abnormal_scene))
+3. Q[The, Picture.activity.walking_on_sidewalk, Picture.activity.abnormal_scene](Picture.activity.walking_on_sidewalk == "true" → Causal(Picture.activity.walking_on_sidewalk, Picture.activity.abnormal_scene))
+4. Q[The, Picture.scene_type.downtown_area, Picture.activity.people_present](Picture.scene_type.downtown_area == "true" → Causal(Picture.scene_type.downtown_area, Picture.activity.people_present))
+5. Q[The, Picture.scene_type.post_bombing, Picture.activity.people_present](Picture.scene_type.post_bombing == "true" → Causal(Picture.scene_type.post_bombing, Picture.activity.people_present))
+6. Q[The, Picture.activity.normal_scene, Picture.activity.people_present](Picture.activity.normal_scene == "true" → Causal(Picture.activity.normal_scene, Picture.activity.people_present))
+7. Q[The, Scene.normality.normal, Scene.normality.abnormal](Scene.normality.normal == "true" → Causal(Scene.normality.normal, Scene.normality.abnormal))
+8. Q[The, Scene.condition.normal, Scene.condition.bombing](Scene.condition.normal == "true" → Causal(Scene.condition.normal, Scene.condition.bombing))
+9. Q[The, People.presence.crossing_street, Picture.activity.abnormal_scene](People.presence.crossing_street == "true" → Causal(People.presence.crossing_street, Picture.activity.abnormal_scene))
+10. Q[The, People.presence.walking, Picture.activity.abnormal_scene](People.presence.walking == "true" → Causal(People.presence.walking, Picture.activity.abnormal_scene))
+11. Q[The, Scene.condition.bombing, Picture.activity.people_absent](Scene.condition.bombing == "true" → Causal(Scene.condition.bombing, Picture.activity.people_absent))
+12. Q[The, Picture.activity.abnormal_scene, Picture.activity.people_absent](Picture.activity.abnormal_scene == "true" → Causal(Picture.activity.abnormal_scene, Picture.activity.people_absent))
+13. Q[The, Picture.activity.normal_scene, Scene.normality.normal](Picture.activity.normal_scene == "true" → Causal(Picture.activity.normal_scene, Scene.normality.normal))
+14. Q[The, Picture.activity.abnormal_scene, Scene.normality.abnormal](Picture.activity.abnormal_scene == "true" → Causal(Picture.activity.abnormal_scene, Scene.normality.abnormal))
+15. Q[The, Picture.scene_type.downtown_area, Scene.condition.normal](Picture.scene_type.downtown_area == "true" → Causal(Picture.scene_type.downtown_area, Scene.condition.normal))
+16. Q[The, Picture.scene_type.post_bombing, Scene.condition.normal](Picture.scene_type.post_bombing == "true" → Causal(Picture.scene_type.post_bombing, Scene.condition.normal))
+17. Q[The, Entity.bombing.effect, Picture.activity.people_absent](Entity.bombing.effect == "true" → Causal(Entity.bombing.effect, Picture.activity.people_absent))
+18. Q[The, Relationship.scene_activity.normal, Picture.activity.people_present](Relationship.scene_activity.normal == "true" → Causal(Relationship.scene_activity.normal, Picture.activity.people_present))
+19. Q[The, Relationship.scene_activity.abnormal, Picture.activity.people_absent](Relationship.scene_activity.abnormal == "true" → Causal(Relationship.scene_activity.abnormal, Picture.activity.people_absent))
+20. Q[The, Scene.downtown_area.condition, Picture.activity.people_present](Scene.downtown_area.condition == "true" → Causal(Scene.downtown_area.condition, Picture.activity.people_present))
+21. Q[The, Scene.bombing.effect, Picture.activity.people_absent](Scene.bombing.effect == "true" → Causal(Scene.bombing.effect, Picture.activity.people_absent))
+22. Q[The, Meta.M_NLI(s1, s2), Picture.activity.abnormal_scene](Meta.M_NLI(s1, s2) == "true" → Causal(Meta.M_NLI(s1, s2), Picture.activity.abnormal_scene))
+23. Q[The, Meta.Causal(s1, s2), Picture.activity.people_absent](Meta.Causal(s1, s2) == "true" → Causal(Meta.Causal(s1, s2), Picture.activity.people_absent))
+24. Q[The, Meta.violate(s1, s2), Picture.activity.abnormal_scene](Meta.violate(s1, s2) == "true" → Causal(Meta.violate(s1, s2), Picture.activity.abnormal_scene))
+25. Q[The, Picture.condition.normal, Picture.activity.people_present](Picture.condition.normal == "true" → Causal(Picture.condition.normal, Picture.activity.people_present))
+26. Q[The, Picture.condition.abnormal, Picture.activity.people_absent](Picture.condition.abnormal == "true" → Causal(Picture.condition.abnormal, Picture.activity.people_absent))
+27. Q[The, People.activity.crossing, Picture.activity.people_present](People.activity.crossing == "true" → Causal(People.activity.crossing, Picture.activity.people_present))
+28. Q[The, People.activity.walking, Picture.activity.people_present](People.activity.walking == "true" → Causal(People.activity.walking, Picture.activity.people_present))
+29. Q[The, Entity.downtown_area.activity, Picture.activity.people_present](Entity.downtown_area.activity == "true" → Causal(Entity.downtown_area.activity, Picture.activity.people_present))
+30. Q[The, Picture.activity.people_present, Scene.normality.normal](Picture.activity.people_present == "true" → Causal(Picture.activity.people_present, Scene.normality.normal))

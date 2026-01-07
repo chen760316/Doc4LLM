@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 1658)
+S1: The amount of homework done by 6-year-olds to 9-year-olds has tripled since 1981.
+S2: Six to 9 years olds enjoy doing more homework than before.
+
+Predicates:
+1. Homework.amount(6_year_olds_1981)
+2. Homework.amount(9_year_olds_1981)
+3. Homework.amount(6_year_olds_2023)
+4. Homework.amount(9_year_olds_2023)
+5. Enjoyment.level(6_year_olds)
+6. Enjoyment.level(9_year_olds)
+7. Increase.amount(6_year_olds)
+8. Increase.amount(9_year_olds)
+9. Enjoyment.comparison(6_year_olds, 1981)
+10. Enjoyment.comparison(9_year_olds, 1981)
+11. Enjoyment.comparison(6_year_olds, 2023)
+12. Enjoyment.comparison(9_year_olds, 2023)
+13. Tripled.amount(6_year_olds)
+14. Tripled.amount(9_year_olds)
+15. Correlation.exists(homework, enjoyment)
+16. Year(1981)
+17. Year(2023)
+18. Age.range(6_to_9_years)
+19. Homework.increase.since(1981)
+20. Enjoyment.increase.since(1981)
+21. Factual(homework, increase)
+22. Factual(enjoyment, subjective)
+23. Violate(correlation, enjoyment)
+24. M_NLI(S1, S2)
+25. Factual(6_year_olds, homework)
+26. Factual(9_year_olds, homework)
+27. Relationship(increase, enjoyment)
+28. Relationship(homework, age)
+29. Relationship(enjoyment, age)
+30. Meta(S1, S2)
+
+Rules:
+1. Q[The, Homework.amount(6_year_olds_2023) == 3 * Homework.amount(6_year_olds_1981) → Factual(homework, increase)]
+2. Q[The, Homework.amount(9_year_olds_2023) == 3 * Homework.amount(9_year_olds_1981) → Factual(homework, increase)]
+3. Q[The, Enjoyment.level(6_year_olds) > Enjoyment.level(6_year_olds, 1981) → Factual(enjoyment, subjective)]
+4. Q[The, Enjoyment.level(9_year_olds) > Enjoyment.level(9_year_olds, 1981) → Factual(enjoyment, subjective)]
+5. Q[The, Homework.increase.since(1981) → Factual(homework, increase)]
+6. Q[The, Enjoyment.increase.since(1981) → Factual(enjoyment, subjective)]
+7. Q[The, Tripled.amount(6_year_olds) → Factual(homework, increase)]
+8. Q[The, Tripled.amount(9_year_olds) → Factual(homework, increase)]
+9. Q[The, Year(1981) → Factual(6_year_olds, homework)]
+10. Q[The, Year(2023) → Factual(9_year_olds, homework)]
+11. Q[The, Increase.amount(6_year_olds) == Homework.amount(6_year_olds_2023) - Homework.amount(6_year_olds_1981) → Factual(homework, increase)]
+12. Q[The, Increase.amount(9_year_olds) == Homework.amount(9_year_olds_2023) - Homework.amount(9_year_olds_1981) → Factual(homework, increase)]
+13. Q[The, Enjoyment.comparison(6_year_olds, 2023) > Enjoyment.comparison(6_year_olds, 1981) → Factual(enjoyment, subjective)]
+14. Q[The, Enjoyment.comparison(9_year_olds, 2023) > Enjoyment.comparison(9_year_olds, 1981) → Factual(enjoyment, subjective)]
+15. Q[The, Correlation.exists(homework, enjoyment) → Factual(homework, increase)]
+16. Q[The, Relationship(increase, enjoyment) → Factual(homework, increase)]
+17. Q[The, Relationship(homework, age) → Factual(6_year_olds, homework)]
+18. Q[The, Relationship(enjoyment, age) → Factual(9_year_olds, homework)]
+19. Q[The, Homework.amount(6_year_olds_1981) < Homework.amount(6_year_olds_2023) → Factual(homework, increase)]
+20. Q[The, Homework.amount(9_year_olds_1981) < Homework.amount(9_year_olds_2023) → Factual(homework, increase)]
+21. Q[The, Enjoyment.comparison(6_year_olds, 1981) < Enjoyment.comparison(6_year_olds, 2023) → Factual(enjoyment, subjective)]
+22. Q[The, Enjoyment.comparison(9_year_olds, 1981) < Enjoyment.comparison(9_year_olds, 2023) → Factual(enjoyment, subjective)]
+23. Q[The, Enjoyment.level(6_year_olds) > 0 → Factual(enjoyment, subjective)]
+24. Q[The, Enjoyment.level(9_year_olds) > 0 → Factual(enjoyment, subjective)]
+25. Q[The, Homework.amount(6_year_olds_2023) > Homework.amount(6_year_olds_1981) → Factual(homework, increase)]
+26. Q[The, Homework.amount(9_year_olds_2023) > Homework.amount(9_year_olds_1981) → Factual(homework, increase)]
+27. Q[The, Enjoyment.level(6_year_olds) == 0 → Violate(correlation, enjoyment)]
+28. Q[The, Enjoyment.level(9_year_olds) == 0 → Violate(correlation, enjoyment)]
+29. Q[The, Meta(S1, S2) → Factual(homework, increase)]
+30. Q[The, M_NLI(S1, S2) → Factual(homework, increase)]

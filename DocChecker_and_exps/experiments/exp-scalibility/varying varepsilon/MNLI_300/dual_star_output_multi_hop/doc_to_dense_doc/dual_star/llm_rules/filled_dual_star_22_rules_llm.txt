@@ -1,0 +1,133 @@
+Predicates:
+1. "cut".doc_index = "43"
+2. "cut".label_text = "contradiction"
+3. "have implemented".doc_index = "43"
+4. "have implemented".label_text = "contradiction"
+5. "is part of".doc_index = "43"
+6. "is part of".label_text = "contradiction"
+7. "tripled".doc_index = "43"
+8. "tripled".label_text = "contradiction"
+9. entity1.name = "Alice"
+10. entity1.age = "30"
+11. entity1.occupation = "Engineer"
+12. entity2.name = "Bob"
+13. entity2.age = "25"
+14. entity2.occupation = "Doctor"
+15. "relationship".type = "friendship"
+16. "relationship".duration = "5 years"
+17. "relationship".status = "active"
+18. "project".name = "AI Development"
+19. "project".budget = "100000"
+20. "project".deadline = "2025-12-31"
+21. M_NLI(entity1.occupation, entity2.occupation)
+22. T("Alice is an engineer", "Alice is a doctor", tau)
+23. tau(entity1.age, entity2.age)
+24. violate(entity1.name, entity2.name)
+25. Factual(entity1.age, entity2.age)
+26. Causal(entity1.occupation, entity2.occupation)
+27. Numeric(entity1.age, entity2.age)
+28. Temporal(entity1.deadline, entity2.deadline)
+29. "event".name = "Conference"
+30. "event".date = "2023-10-15"
+31. "event".location = "New York"
+32. "meeting".type = "team meeting"
+33. "meeting".participants = "5"
+34. "meeting".time = "10:00 AM"
+35. M_NLI("Alice attended the conference", "Alice did not attend the conference")
+36. T("The meeting was at 10 AM", "The meeting was at 2 PM", tau)
+37. tau("Conference", "Meeting")
+38. violate("Conference", "Meeting")
+39. Factual("Conference", "Meeting")
+40. Causal("event.date", "meeting.time")
+41. Numeric("event.participants", "meeting.participants")
+42. Temporal("event.date", "meeting.time")
+43. "product".name = "Laptop"
+44. "product".price = "1200"
+45. "product".stock = "50"
+46. "sale".discount = "20%"
+47. "sale".duration = "1 week"
+48. "sale".status = "active"
+49. M_NLI("The laptop costs $1200", "The laptop costs $800")
+50. T("The sale is active", "The sale is not active", tau)
+51. tau("product.price", "sale.discount")
+52. violate("product.name", "sale.name")
+53. Factual("product.price", "sale.discount")
+54. Causal("product.stock", "sale.status")
+55. Numeric("product.stock", "sale.duration")
+56. Temporal("sale.duration", "product.stock")
+57. "service".name = "Web Hosting"
+58. "service".monthly_fee = "30"
+59. "service".contract_length = "12 months"
+60. "subscription".type = "monthly"
+61. "subscription".status = "active"
+62. "subscription".renewal_date = "2024-01-01"
+63. M_NLI("Web Hosting is $30/month", "Web Hosting is free")
+64. T("The subscription is active", "The subscription is canceled", tau)
+65. tau("service.monthly_fee", "subscription.type")
+66. violate("service.name", "subscription.name")
+67. Factual("service.monthly_fee", "subscription.status")
+68. Causal("service.contract_length", "subscription.renewal_date")
+69. Numeric("service.monthly_fee", "subscription.renewal_date")
+70. Temporal("service.contract_length", "subscription.renewal_date")
+71. "course".title = "Data Science"
+72. "course".duration = "6 months"
+73. "course".fee = "500"
+74. "enrollment".status = "open"
+75. "enrollment".start_date = "2023-11-01"
+76. "enrollment".end_date = "2024-04-30"
+77. M_NLI("Data Science course costs $500", "Data Science course is free")
+78. T("Enrollment is open", "Enrollment is closed", tau)
+79. tau("course.fee", "enrollment.status")
+80. violate("course.title", "enrollment.title")
+81. Factual("course.fee", "enrollment.start_date")
+82. Causal("course.duration", "enrollment.end_date")
+83. Numeric("course.fee", "enrollment.end_date")
+84. Temporal("course.duration", "enrollment.start_date")
+85. "book".title = "AI Basics"
+86. "book".author = "John Doe"
+87. "book".price = "25"
+88. "sale".type = "clearance"
+89. "sale".discount = "50%"
+90. "sale".status = "active"
+91. M_NLI("AI Basics costs $25", "AI Basics costs $10")
+92. T("The sale is active", "The sale is inactive", tau)
+93. tau("book.price", "sale.discount")
+94. violate("book.title", "sale.title")
+95. Factual("book.price", "sale.status")
+96. Causal("book.author", "sale.type")
+97. Numeric("book.price", "sale.discount")
+98. Temporal("book.title", "sale.start_date")
+99. "cut".type = "physical"
+100. "cut".severity = "minor"
+violate(x0, y0)
+
+Rules:
+1. Q[x0, y0](cut.label_text = "contradiction" ∧ have implemented.label_text = "contradiction" → violate(x0, y0)
+2. Q[x0, y0](entity1.name = "Alice" ∧ entity2.name = "Bob" → violate(x0, y0)
+3. Q[x0, y0](relationship.type = "friendship" ∧ relationship.status = "active" ∧ relationship.duration = "5 years" → violate(x0, y0)
+4. Q[x0, y0](project.name = "AI Development" ∧ project.budget = "100000" ∧ project.deadline = "2025-12-31" → violate(x0, y0)
+5. Q[x0, y0](event.name = "Conference" ∧ event.date = "2023-10-15" ∧ event.location = "New York" ∧ meeting.type = "team meeting" → violate(x0, y0)
+6. Q[x0, y0](service.name = "Web Hosting" ∧ service.monthly_fee = "30" ∧ subscription.type = "monthly" ∧ subscription.status = "active" → violate(x0, y0)
+7. Q[x0, y0](course.title = "Data Science" ∧ course.duration = "6 months" ∧ enrollment.status = "open" ∧ enrollment.start_date = "2023-11-01" ∧ enrollment.end_date = "2024-04-30" → violate(x0, y0)
+8. Q[x0, y0](book.title = "AI Basics" ∧ book.price = "25" ∧ sale.type = "clearance" ∧ sale.status = "active" → violate(x0, y0)
+9. Q[x0, y0](cut.doc_index = "43" ∧ cut.label_text = "contradiction" ∧ is part of.label_text = "contradiction" → violate(x0, y0)
+10. Q[x0, y0](entity1.age = "30" ∧ entity2.age = "25" ∧ M_NLI(entity1.occupation, entity2.occupation) → violate(x0, y0)
+11. Q[x0, y0](project.budget = "100000" ∧ project.deadline = "2025-12-31" ∧ Numeric(entity1.age, entity2.age) → violate(x0, y0)
+12. Q[x0, y0](service.monthly_fee = "30" ∧ subscription.status = "active" ∧ T("The subscription is active", "The subscription is canceled", tau) → violate(x0, y0)
+13. Q[x0, y0](cut.severity = "minor" ∧ cut.type = "physical" ∧ have implemented.label_text = "contradiction" ∧ is part of.label_text = "contradiction" → violate(x0, y0)
+14. Q[x0, y0](relationship.type = "friendship" ∧ relationship.duration = "5 years" ∧ relationship.status = "active" ∧ M_NLI("Alice is an engineer", "Alice is a doctor") → violate(x0, y0)
+15. Q[x0, y0](event.date = "2023-10-15" ∧ meeting.time = "10:00 AM" ∧ T("The meeting was at 10 AM", "The meeting was at 2 PM", tau) → violate(x0, y0)
+16. Q[x0, y0](course.fee = "500" ∧ enrollment.status = "open" ∧ M_NLI("Data Science course costs $500", "Data Science course is free") → violate(x0, y0)
+17. Q[x0, y0](book.price = "25" ∧ sale.discount = "50%" ∧ M_NLI("AI Basics costs $25", "AI Basics costs $10") → violate(x0, y0)
+18. Q[x0, y0](cut.label_text = "contradiction" ∧ tripled.label_text = "contradiction" ∧ is part of.label_text = "contradiction" → violate(x0, y0)
+19. Q[x0, y0](entity1.occupation = "Engineer" ∧ entity2.occupation = "Doctor" ∧ Numeric(entity1.age, entity2.age) ∧ Factual(entity1.age, entity2.age) → violate(x0, y0)
+20. Q[x0, y0](project.name = "AI Development" ∧ project.budget = "100000" ∧ Temporal(entity1.deadline, entity2.deadline) → violate(x0, y0)
+21. Q[x0, y0](service.contract_length = "12 months" ∧ subscription.renewal_date = "2024-01-01" ∧ T("The subscription is active", "The subscription is canceled", tau) → violate(x0, y0)
+22. Q[x0, y0](course.duration = "6 months" ∧ enrollment.start_date = "2023-11-01" ∧ enrollment.end_date = "2024-04-30" ∧ T("Enrollment is open", "Enrollment is closed", tau) → violate(x0, y0)
+23. Q[x0, y0](book.title = "AI Basics" ∧ book.author = "John Doe" ∧ sale.type = "clearance" ∧ sale.status = "active" ∧ T("The sale is active", "The sale is inactive", tau) → violate(x0, y0)
+24. Q[x0, y0](cut.doc_index = "43" ∧ cut.label_text = "contradiction" ∧ tripled.label_text = "contradiction" ∧ is part of.label_text = "contradiction" → violate(x0, y0)
+25. Q[x0, y0](entity1.age = "30" ∧ entity2.age = "25" ∧ Causal(entity1.occupation, entity2.occupation) → violate(x0, y0)
+26. Q[x0, y0](project.deadline = "2025-12-31" ∧ project.budget = "100000" ∧ Temporal(entity1.deadline, entity2.deadline) → violate(x0, y0)
+27. Q[x0, y0](service.monthly_fee = "30" ∧ subscription.type = "monthly" ∧ Numeric(service.monthly_fee, subscription.renewal_date) → violate(x0, y0)
+28. Q[x0, y0](course.title = "Data Science" ∧ course.fee = "500" ∧ enrollment.status = "open" ∧ M_NLI("Data Science course costs $500", "Data Science course is free") → violate(x0, y0)
+29. Q[x0, y0](book.price = "25" ∧ sale.discount = "50%" ∧ Factual(book

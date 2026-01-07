@@ -1,0 +1,39 @@
+Predicates:
+John.emotion != "dreading"
+John.emotion = "dreading"
+John.label != "Person"
+John.label != presentation.label
+John.label = "Person"
+John.name != "John"
+John.name != presentation.name
+John.name = "John"
+John___presentation.relationship != "John is dreading the presentation scheduled for tomorrow."
+John___presentation.relationship = "John is dreading the presentation scheduled for tomorrow."
+John___upcoming presentation.relationship != "John feels very excited about the upcoming presentation."
+John___upcoming presentation.relationship != John_presentation.relationship
+John___upcoming presentation.relationship = "John feels very excited about the upcoming presentation."
+M_NLI(('John', 'upcoming presentation').attrs, ('John', 'presentation').attrs)
+M_TEM(John.attrs, presentation.attrs)
+None_ML(('John', 'presentation').attrs, John is dreading the presentation scheduled for tomorrow..attrs)
+None_ML(('John', 'upcoming presentation').attrs, John feels very excited about the upcoming presentation..attrs)
+None_ML(('John', 'upcoming presentation').attrs, John is dreading the presentation scheduled for tomorrow..attrs)
+None_ML(John feels very excited about the upcoming presentation..attrs, ('John', 'presentation').attrs)
+None_ML(John feels very excited about the upcoming presentation..attrs, John is dreading the presentation scheduled for tomorrow..attrs)
+presentation.label != "Event"
+presentation.label = "Event"
+presentation.name != "presentation"
+presentation.name = "presentation"
+presentation.time != "tomorrow"
+presentation.time = "tomorrow"
+
+Rules:
+Q[John,John] (None_ML(('John', 'upcoming presentation').attrs, John feels very excited about the upcoming presentation..attrs) ∧ John.name != presentation.name → John.name != presentation.name)
+Q[John,John] (John___presentation.relationship != "John is dreading the presentation scheduled for tomorrow." ∧ M_TEM(John.attrs, presentation.attrs) → M_TEM(John.attrs, presentation.attrs))
+Q[John,John] (presentation.label != "Event" ∧ John.label = "Person" → presentation.label != "Event")
+Q[John,John] (John.label != presentation.label ∧ John.name != "John" → John.label != presentation.label)
+Q[John,John] (M_NLI(('John', 'upcoming presentation').attrs, ('John', 'presentation').attrs) ∧ presentation.label = "Event" → M_NLI(('John', 'upcoming presentation').attrs, ('John', 'presentation').attrs))
+Q[John,John] (presentation.time != "tomorrow" ∧ John___upcoming presentation.relationship != "John feels very excited about the upcoming presentation." → John___upcoming presentation.relationship != "John feels very excited about the upcoming presentation.")
+Q[John,John] (John___upcoming presentation.relationship = "John feels very excited about the upcoming presentation." ∧ John.label != "Person" → John___upcoming presentation.relationship = "John feels very excited about the upcoming presentation.")
+Q[John,John] (presentation.time = "tomorrow" ∧ presentation.name = "presentation" → presentation.time = "tomorrow")
+Q[John,John] (John.label = "Person" ∧ presentation.name = "presentation" → John.label = "Person")
+Q[John,John] (presentation.name != "presentation" ∧ John.emotion != "dreading" → John.emotion != "dreading")

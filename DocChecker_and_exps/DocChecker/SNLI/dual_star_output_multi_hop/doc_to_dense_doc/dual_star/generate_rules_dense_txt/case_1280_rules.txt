@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 1280)
+S1: A dog is playing catch on the grassy plain.
+S2: A dog is playing by himself indoors.
+
+Predicates:
+1. Dog.location.outdoors
+2. Dog.activity.playing_catch
+3. Dog.location.indoor
+4. Dog.activity.playing_alone
+5. Grassy_plain.type.outdoor_environment
+6. Indoor_environment.type.indoor_space
+7. Playing_catch.relationship.with_ball
+8. Playing_alone.relationship.with_no_other_dogs
+9. Dog.state.active
+10. Dog.state.independent
+11. Grassy_plain.condition.suitable_for_play
+12. Indoor_environment.condition.not_suitable_for_play
+13. M_NLI(S1, S2)
+14. Causal(Dog.activity.playing_catch, Dog.location.outdoors)
+15. Causal(Dog.activity.playing_alone, Dog.location.indoor)
+16. violate(Dog.location.outdoors, Dog.location.indoor)
+17. Dog.activity.playing_catch.relationship.to_grassy_plain
+18. Dog.activity.playing_alone.relationship.to_indoor_environment
+19. Grassy_plain.size.large
+20. Indoor_environment.size.small
+21. Dog.emotion.happy
+22. Dog.emotion.bored
+23. Playing_catch.requires.ball
+24. Playing_alone.requires.no_companions
+25. Dog.energy_level.high
+26. Dog.energy_level.low
+27. Grassy_plain.accessible.to_dogs
+28. Indoor_environment.accessible.to_dogs
+29. Dog.playing_catch.enjoyment_level.high
+30. Dog.playing_alone.enjoyment_level.low
+
+Rules:
+1. Q[dog, Dog.location.outdoors == true, Dog.location.indoor == true](Dog.activity.playing_catch → Causal(Dog.activity.playing_catch, Dog.location.outdoors))
+2. Q[dog, Dog.activity.playing_catch == true, Dog.activity.playing_alone == true](Dog.location.outdoors → Causal(Dog.activity.playing_catch, Dog.location.outdoors))
+3. Q[dog, Dog.location.outdoors == true, Dog.activity.playing_alone == true](Dog.activity.playing_catch → Causal(Dog.activity.playing_alone, Dog.location.indoor))
+4. Q[dog, Dog.activity.playing_catch == true, Dog.location.indoor == true](Dog.location.outdoors → Causal(Dog.activity.playing_catch, Dog.location.outdoors))
+5. Q[dog, Dog.activity.playing_alone == true, Dog.location.outdoors == true](Dog.location.indoor → Causal(Dog.activity.playing_alone, Dog.location.indoor))
+6. Q[dog, Dog.state.active == true, Dog.state.independent == true](Dog.activity.playing_catch → Causal(Dog.activity.playing_catch, Dog.location.outdoors))
+7. Q[dog, Dog.location.outdoors == true, Dog.activity.playing_catch == true](Grassy_plain.type.outdoor_environment → Causal(Dog.activity.playing_catch, Dog.location.outdoors))
+8. Q[dog, Dog.activity.playing_alone == true, Dog.location.outdoors == true](Indoor_environment.type.indoor_space → Causal(Dog.activity.playing_alone, Dog.location.indoor))
+9. Q[dog, Dog.activity.playing_catch == true, Dog.activity.playing_alone == true](Dog.location.outdoors → Causal(Dog.activity.playing_catch, Dog.activity.playing_alone))
+10. Q[dog, Dog.location.indoor == true, Dog.activity.playing_catch == true](Indoor_environment.condition.not_suitable_for_play → Causal(Dog.activity.playing_catch, Dog.location.indoor))
+11. Q[dog, Dog.activity.playing_catch == true, Dog.activity.playing_alone == true](Dog.state.active → Causal(Dog.activity.playing_catch, Dog.activity.playing_alone))
+12. Q[dog, Dog.location.outdoors == true, Dog.activity.playing_alone == true](Dog.activity.playing_catch → Causal(Dog.activity.playing_alone, Dog.location.indoor))
+13. Q[dog, Dog.activity.playing_catch == true, Dog.location.indoor == true](Dog.activity.playing_catch.relationship.to_grassy_plain → Causal(Dog.activity.playing_catch, Dog.location.indoor))
+14. Q[dog, Dog.activity.playing_alone == true, Dog.location.outdoors == true](Dog.activity.playing_alone.relationship.to_indoor_environment → Causal(Dog.activity.playing_alone, Dog.location.indoor))
+15. Q[dog, Dog.location.outdoors == true, Dog.activity.playing_catch == true](Grassy_plain.condition.suitable_for_play → Causal(Dog.activity.playing_catch, Dog.location.outdoors))
+16. Q[dog, Dog.activity.playing_alone == true, Dog.location.indoor == true](Dog.energy_level.low → Causal(Dog.activity.playing_alone, Dog.location.indoor))
+17. Q[dog, Dog.activity.playing_catch == true, Dog.location.indoor == true](Dog.energy_level.high → Causal(Dog.activity.playing_catch, Dog.location.outdoors))
+18. Q[dog, Dog.activity.playing_catch == true, Dog.activity.playing_alone == true](Dog.playing_catch.enjoyment_level.high → Causal(Dog.activity.playing_catch, Dog.activity.playing_alone))
+19. Q[dog, Dog.activity.playing_alone == true, Dog.location.outdoors == true](Dog.playing_alone.enjoyment_level.low → Causal(Dog.activity.playing_alone, Dog.location.indoor))
+20. Q[dog, Dog.location.outdoors == true, Dog.activity.playing_catch == true](Dog.activity.playing_catch.requires.ball → Causal(Dog.activity.playing_catch, Dog.location.outdoors))
+21. Q[dog, Dog.activity.playing_alone == true, Dog.location.indoor == true](Dog.activity.playing_alone.requires.no_companions → Causal(Dog.activity.playing_alone, Dog.location.indoor))
+22. Q[dog, Dog.location.outdoors == true, Dog.activity.playing_catch == true](Dog.energy_level.high → Causal(Dog.activity.playing_catch, Dog.location.outdoors))
+23. Q[dog, Dog.activity.playing_alone == true, Dog.location.indoor == true](Dog.emotion.bored → Causal(Dog.activity.playing_alone, Dog.location.indoor))
+24. Q[dog, Dog.activity.playing_catch == true, Dog.location.indoor == true](Dog.emotion.happy → Causal(Dog.activity.playing_catch, Dog.location.outdoors))
+25. Q[dog, Dog.activity.playing_catch == true, Dog.activity.playing_alone == true](Dog.location.outdoors → Causal(Dog.activity.playing_catch, Dog.activity.playing_alone))
+26. Q[dog, Dog.activity.playing_alone == true, Dog.location.outdoors == true](Dog.activity.playing_alone.relationship.to_indoor_environment → Causal(Dog.activity.playing_alone, Dog.location.indoor))
+27. Q[dog, Dog.location.outdoors == true, Dog.activity.playing_catch == true](Dog.activity.playing_catch.relationship.with_ball → Causal(Dog.activity.playing_catch, Dog.location.outdoors))
+28. Q[dog, Dog.activity.playing_alone == true, Dog.location.indoor == true](Dog.activity.playing_alone.relationship.with_no_other_dogs → Causal(Dog.activity.playing_alone, Dog.location.indoor))
+29. Q[dog, Dog.activity.playing_catch == true, Dog.location.indoor == true](Dog.activity.playing_catch → Causal(Dog.activity.playing_catch, Dog.location.indoor))
+30. Q[dog, Dog.activity.playing_alone == true, Dog.location.outdoors == true](Dog.activity.playing_alone → Causal(Dog.activity.playing_alone, Dog.location.indoor))

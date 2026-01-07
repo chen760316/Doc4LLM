@@ -1,0 +1,50 @@
+Predicates:
+Easter Sunday Mass.description != "A mass held to celebrate Easter."
+Easter Sunday Mass.description != Urbi et Orbi address.description
+Easter Sunday Mass.description = "A mass held to celebrate Easter."
+Easter Sunday Mass.label != "Event"
+Easter Sunday Mass.label = "Event"
+Easter Sunday Mass.name != "Easter Sunday Mass"
+Easter Sunday Mass.name != Urbi et Orbi address.name
+Easter Sunday Mass.name = "Easter Sunday Mass"
+None_ML(Easter Sunday Mass.attrs, Pope Francis.attrs)
+None_ML(Pope Francis___Easter Sunday Mass.attrs, Pope Francis___Urbi et Orbi address.attrs)
+Pope Francis.label != "Person"
+Pope Francis.label != Easter Sunday Mass.label
+Pope Francis.label != Urbi et Orbi address.label
+Pope Francis.label = "Person"
+Pope Francis.location != "Vatican"
+Pope Francis.location = "Vatican"
+Pope Francis.name != "Pope Francis"
+Pope Francis.name != Easter Sunday Mass.name
+Pope Francis.name != Urbi et Orbi address.name
+Pope Francis.name = "Pope Francis"
+Pope Francis.occupation != "Pontiff"
+Pope Francis.occupation = "Pontiff"
+Pope Francis___Easter Sunday Mass.date = "last week"
+Pope Francis___Easter Sunday Mass.doc_id != Pope Francis___Urbi et Orbi address.doc_id
+Pope Francis___Easter Sunday Mass.doc_id = "3489738288_1"
+Pope Francis___Easter Sunday Mass.location = "St. Peter's Square"
+Pope Francis___Easter Sunday Mass.relationship != Pope Francis___Urbi et Orbi address.relationship
+Pope Francis___Easter Sunday Mass.relationship = "Pope Francis held the Easter Sunday Mass."
+Pope Francis___Easter Sunday Mass.weather = "Rainy"
+Pope Francis___Urbi et Orbi address.doc_id = "3489738288_4"
+Pope Francis___Urbi et Orbi address.relationship = "Pope Francis delivered the Urbi et Orbi address after Easter Sunday Mass."
+Urbi et Orbi address.description != "A message delivered by the Pope to the world."
+Urbi et Orbi address.description = "A message delivered by the Pope to the world."
+Urbi et Orbi address.label != "Event"
+Urbi et Orbi address.label = "Event"
+Urbi et Orbi address.name != "Urbi et Orbi address"
+Urbi et Orbi address.name = "Urbi et Orbi address"
+
+Rules:
+Q[Pope Francis,Pope Francis] (Easter Sunday Mass.label != "Event" ∧ Urbi et Orbi address.name != "Urbi et Orbi address" ∧ Pope Francis.name != Urbi et Orbi address.name → Pope Francis.name = "Pope Francis")
+Q[Pope Francis,Pope Francis] (Easter Sunday Mass.label = "Event" ∧ Easter Sunday Mass.name != Urbi et Orbi address.name ∧ Pope Francis.label != Easter Sunday Mass.label ∧ Urbi et Orbi address.description = "A message delivered by the Pope to the world." → Easter Sunday Mass.description != Urbi et Orbi address.description)
+Q[Pope Francis,Pope Francis] (Urbi et Orbi address.description = "A message delivered by the Pope to the world." ∧ Easter Sunday Mass.description = "A mass held to celebrate Easter." ∧ None_ML(Pope Francis___Easter Sunday Mass.attrs, Pope Francis___Urbi et Orbi address.attrs) ∧ Pope Francis.occupation = "Pontiff" ∧ Pope Francis.label = "Person" ∧ Easter Sunday Mass.description != "A mass held to celebrate Easter." → Pope Francis___Urbi et Orbi address.relationship = "Pope Francis delivered the Urbi et Orbi address after Easter Sunday Mass.")
+Q[Pope Francis,Pope Francis] (Pope Francis.location != "Vatican" ∧ Urbi et Orbi address.name != "Urbi et Orbi address" ∧ Pope Francis___Easter Sunday Mass.location = "St. Peter's Square" ∧ Pope Francis___Easter Sunday Mass.doc_id = "3489738288_1" ∧ Easter Sunday Mass.description != Urbi et Orbi address.description → Pope Francis.label != Easter Sunday Mass.label)
+Q[Pope Francis,Pope Francis] (Pope Francis___Easter Sunday Mass.weather = "Rainy" ∧ None_ML(Easter Sunday Mass.attrs, Pope Francis.attrs) → Easter Sunday Mass.description = "A mass held to celebrate Easter.")
+Q[Pope Francis,Pope Francis] (Pope Francis.label != "Person" ∧ Easter Sunday Mass.description != Urbi et Orbi address.description ∧ Pope Francis___Easter Sunday Mass.location = "St. Peter's Square" ∧ Easter Sunday Mass.description = "A mass held to celebrate Easter." ∧ Easter Sunday Mass.label != "Event" → Pope Francis___Easter Sunday Mass.relationship = "Pope Francis held the Easter Sunday Mass.")
+Q[Pope Francis,Pope Francis] (Pope Francis___Urbi et Orbi address.relationship = "Pope Francis delivered the Urbi et Orbi address after Easter Sunday Mass." ∧ Pope Francis.label != Easter Sunday Mass.label ∧ Urbi et Orbi address.description = "A message delivered by the Pope to the world." ∧ Easter Sunday Mass.description = "A mass held to celebrate Easter." ∧ Easter Sunday Mass.description != Urbi et Orbi address.description ∧ Pope Francis___Easter Sunday Mass.location = "St. Peter's Square" → Easter Sunday Mass.label != "Event")
+Q[Pope Francis,Pope Francis] (Easter Sunday Mass.name = "Easter Sunday Mass" ∧ None_ML(Pope Francis___Easter Sunday Mass.attrs, Pope Francis___Urbi et Orbi address.attrs) ∧ Pope Francis___Easter Sunday Mass.relationship = "Pope Francis held the Easter Sunday Mass." → Pope Francis___Urbi et Orbi address.doc_id = "3489738288_4")
+Q[Pope Francis,Pope Francis] (Pope Francis.location = "Vatican" ∧ Pope Francis.label != "Person" ∧ Pope Francis.name != "Pope Francis" ∧ Easter Sunday Mass.description = "A mass held to celebrate Easter." → Urbi et Orbi address.description = "A message delivered by the Pope to the world.")
+Q[Pope Francis,Pope Francis] (None_ML(Easter Sunday Mass.attrs, Pope Francis.attrs) ∧ Pope Francis.occupation = "Pontiff" → Pope Francis___Easter Sunday Mass.doc_id = "3489738288_1")

@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 41)
+S1: Each Recipient shall, and it shall cause its Representatives to, use the Evaluation Material solely for the purpose of evaluating a Possible Transaction, keep the Evaluation Material confidential, and, subject to Section 5, will not, and will cause its Representatives not to, disclose any of the Evaluation Material in any manner whatsoever;
+S2: Receiving Party may share some Confidential Information with some of Receiving Party's employees.
+
+Predicates:
+1. Recipient.use(Evaluation_Material, Purpose_of_evaluating_Possible_Transaction)
+2. Recipient.keep(Evaluation_Material, confidential)
+3. Recipient.not_disclose(Evaluation_Material, any_manner)
+4. Representatives.use(Evaluation_Material, Purpose_of_evaluating_Possible_Transaction)
+5. Representatives.keep(Evaluation_Material, confidential)
+6. Representatives.not_disclose(Evaluation_Material, any_manner)
+7. Receiving_Party.share(Confidential_Information, employees)
+8. Receiving_Party.not_disclose(Evaluation_Material, any_manner)
+9. Evaluation_Material.is_confidential(Evaluation_Material)
+10. Evaluation_Material.is_used_for(Evaluation_Material, Purpose_of_evaluating_Possible_Transaction)
+11. Confidential_Information.is_shared_with(Receiving_Party, employees)
+12. Confidential_Information.is_not_shared_with(Receiving_Party, unauthorized_parties)
+13. Section_5.applies_to(Recipient, Representatives)
+14. Recipient.ensures(Representatives, confidentiality)
+15. Representatives.maintain(Evaluation_Material, confidentiality)
+16. Evaluation_Material.is_not_disclosed(Recipient, any_manner)
+17. Evaluation_Material.is_not_disclosed(Representatives, any_manner)
+18. Receiving_Party.may_share(Confidential_Information, employees)
+19. Receiving_Party.ensures(Confidential_Information, confidentiality)
+20. Confidential_Information.is_used_for(Receiving_Party, business_purposes)
+21. Evaluation_Material.is_used_by(Recipient, Representatives)
+22. Evaluation_Material.is.shared_with(Representatives, authorized_parties)
+23. Evaluation_Material.is.not_shared_with(Representatives, unauthorized_parties)
+24. Confidential_Information.is.shared_with(Receiving_Party, employees)
+25. Confidential_Information.is.not_shared_with(Receiving_Party, competitors)
+26. Evaluation_Material.is.maintained_by(Recipient, confidentiality)
+27. Evaluation_Material.is.maintained_by(Representatives, confidentiality)
+28. Receiving_Party.has(Confidential_Information, employees)
+29. Evaluation_Material.is.evaluated_by(Recipient, Possible_Transaction)
+30. Evaluation_Material.is.not.shared_with(Receiving_Party, third_parties)
+
+Rules:
+1. Q[Each, Recipient.keep(Evaluation_Material, confidential) → Negation(Recipient.not_disclose(Evaluation_Material, any_manner), Receiving_Party.share(Confidential_Information, employees))]
+2. Q[Each, Recipient.not_disclose(Evaluation_Material, any_manner) → Negation(Receiving_Party.share(Confidential_Information, employees), Recipient.keep(Evaluation_Material, confidential))]
+3. Q[Each, Representatives.keep(Evaluation_Material, confidential) → Negation(Representatives.not_disclose(Evaluation_Material, any_manner), Receiving_Party.share(Confidential_Information, employees))]
+4. Q[Each, Representatives.not_disclose(Evaluation_Material, any_manner) → Negation(Receiving_Party.share(Confidential_Information, employees), Representatives.keep(Evaluation_Material, confidential))]
+5. Q[Each, Evaluation_Material.is_confidential(Evaluation_Material) → Negation(Receiving_Party.share(Confidential_Information, employees), Evaluation_Material.is_not_disclosed(Recipient, any_manner))]
+6. Q[Each, Evaluation_Material.is_used_for(Evaluation_Material, Purpose_of_evaluating_Possible_Transaction) → Negation(Receiving_Party.share(Confidential_Information, employees), Evaluation_Material.is.not_shared_with(Representatives, unauthorized_parties))]
+7. Q[Each, Recipient.use(Evaluation_Material, Purpose_of_evaluating_Possible_Transaction) → Negation(Receiving_Party.share(Confidential_Information, employees), Evaluation_Material.is.not_disclosed(Recipient, any_manner))]
+8. Q[Each, Evaluation_Material.is.evaluated_by(Recipient, Possible_Transaction) → Negation(Receiving_Party.share(Confidential_Information, employees), Evaluation_Material.is.not_shared_with(Representatives, unauthorized_parties))]
+9. Q[Each, Recipient.ensures(Representatives, confidentiality) → Negation(Receiving_Party.share(Confidential_Information, employees), Representatives.not_disclose(Evaluation_Material, any_manner))]
+10. Q[Each, Confidential_Information.is.not_shared_with(Receiving_Party, unauthorized_parties) → Negation(Receiving_Party.share(Confidential_Information, employees), Recipient.keep(Evaluation_Material, confidential))]
+11. Q[Each, Evaluation_Material.is.maintained_by(Recipient, confidentiality) → Negation(Receiving_Party.share(Confidential_Information, employees), Evaluation_Material.is.not_disclosed(Representatives, any_manner))]
+12. Q[Each, Evaluation_Material.is.maintained_by(Representatives, confidentiality) → Negation(Receiving_Party.share(Confidential_Information, employees), Evaluation_Material.is.not_disclosed(Recipient, any_manner))]
+13. Q[Each, Section_5.applies_to(Recipient, Representatives) → Negation(Receiving_Party.share(Confidential_Information, employees), Recipient.not_disclose(Evaluation_Material, any_manner))]
+14. Q[Each, Evaluation_Material.is.shared_with(Representatives, authorized_parties) → Negation(Receiving_Party.share(Confidential_Information, employees), Evaluation_Material.is.not_shared_with(Representatives, unauthorized_parties))]
+15. Q[Each, Confidential_Information.is.shared_with(Receiving_Party, employees) → Negation(Receiving_Party.share(Confidential_Information, employees), Evaluation_Material.is.not_disclosed(Recipient, any_manner))]
+16. Q[Each, Confidential_Information.is_used_for(Receiving_Party, business_purposes) → Negation(Receiving_Party.share(Confidential_Information, employees), Evaluation_Material.is.not_disclosed(Representatives, any_manner))]
+17. Q[Each, Evaluation_Material.is.not.shared_with(Representatives, unauthorized_parties) → Negation(Receiving_Party.share(Confidential_Information, employees), Evaluation_Material.is.not_disclosed(Recipient, any_manner))]
+18. Q[Each, Evaluation_Material.is.not_disclosed(Recipient, any_manner) → Negation(Receiving_Party.share(Confidential_Information, employees), Evaluation_Material.is.not_shared_with(Representatives, unauthorized_parties))]
+19. Q[Each, Evaluation_Material.is.not_disclosed(Representatives, any_manner) → Negation(Receiving_Party.share(Confidential_Information, employees), Evaluation_Material.is.not_disclosed(Recipient, any_manner))]
+20. Q[Each, Recipient.not_disclose(Evaluation_Material, any_manner) → Negation(Receiving_Party.share(Confidential_Information, employees), Evaluation_Material.is.not_shared_with(Representatives, unauthorized_parties))]
+21. Q[Each, Representatives.not_disclose(Evaluation_Material, any_manner) → Negation(Receiving_Party.share(Confidential_Information, employees), Evaluation_Material.is.not_disclosed(Recipient, any_manner))]
+22. Q[Each, Recipient.keep(Evaluation_Material, confidential) → Negation(Receiving_Party.share(Confidential_Information, employees), Evaluation_Material.is.not_disclosed(Representatives, any_manner))]
+23. Q[Each, Evaluation_Material.is_used_by(Recipient, Representatives) → Negation(Receiving_Party.share(Confidential_Information, employees), Evaluation_Material.is.not_disclosed(Recipient, any_manner))]
+24. Q[Each, Evaluation_Material.is.not_shared_with(Receiving_Party, third_parties) → Negation(Receiving_Party.share(Confidential_Information, employees), Evaluation_Material.is.not_disclosed(Representatives, any_manner))]
+25. Q[Each, Evaluation_Material.is.not_disclosed(Representatives, any_manner) → Negation(Receiving_Party.share(Confidential_Information, employees), Evaluation_Material.is.not_shared_with(Representatives, unauthorized_parties))]
+26. Q[Each, Evaluation_Material.is.not_disclosed(Recipient, any_manner) → Negation(Receiving_Party.share(Confidential_Information, employees), Evaluation_Material.is.not_shared_with(Representatives, unauthorized_parties))]
+27. Q[Each, Recipient.ensures(Representatives, confidentiality) → Negation(Receiving_Party.share(Confidential_Information, employees), Evaluation_Material.is.not_disclosed(Recipient, any_manner))]
+28. Q[Each, Evaluation_Material.is.evaluated_by(Recipient, Possible_Transaction) → Negation(Receiving_Party.share(Confidential_Information, employees), Evaluation_Material.is.not_disclosed(Representatives, any_manner))]
+29. Q[Each, Evaluation_Material.is_used_for(Evaluation_Material, Purpose_of_evaluating_Possible_Transaction) → Negation(Receiving_Party.share(Confidential_Information, employees), Evaluation_Material.is.not_disclosed(Recipient, any_manner))]
+30. Q[Each, Evaluation_Material.is_confidential(Evaluation_Material) → Negation(

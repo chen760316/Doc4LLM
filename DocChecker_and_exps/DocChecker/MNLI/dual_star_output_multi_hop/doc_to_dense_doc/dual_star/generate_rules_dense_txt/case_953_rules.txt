@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 953)
+S1: It wasn't such a bad idea.
+S2: The idea wasn't so bad.
+
+Predicates:
+1. Idea.sentiment
+2. Idea.quality
+3. Idea.evaluation
+4. Idea.perception
+5. Idea.positive_assessment
+6. Idea.negative_assessment
+7. Idea.similarity
+8. Idea.contradiction
+9. Idea.phrase_strength
+10. Idea.phrase_weakness
+11. Opinion.strength
+12. Opinion.conveyance
+13. Opinion.agreement
+14. Opinion.disagreement
+15. Opinion.clarity
+16. Opinion.ambiguity
+17. Sentiment.similarity
+18. Sentiment.contradiction
+19. Sentiment.evaluation
+20. Sentiment.positive
+21. Sentiment.negative
+22. M_NLI(S1, S2)
+23. Negation(S1, S2)
+24. violate(S1, S2)
+25. Idea.context
+26. Idea.impact
+27. Idea.reception
+28. Idea.interpretation
+29. Opinion.consistency
+30. Opinion.inconsistency
+
+Rules:
+1. Q[wasn, Idea.sentiment, Idea.negative_assessment](Idea.sentiment == "neutral" → Negation(positive, negative))
+2. Q[wasn, Idea.quality, Idea.negative_assessment](Idea.quality == "acceptable" → Negation(high_quality, low_quality))
+3. Q[wasn, Idea.evaluation, Opinion.disagreement](Idea.evaluation == "not bad" → Negation(positive_evaluation, negative_evaluation))
+4. Q[wasn, Idea.perception, Opinion.inconsistency](Idea.perception == "not so bad" → Negation(positive_perception, negative_perception))
+5. Q[wasn, Idea.positive_assessment, Idea.negative_assessment](Idea.positive_assessment == "low" → Negation(high_assessment, low_assessment))
+6. Q[wasn, Idea.similarity, Idea.contradiction](Idea.similarity == "high" → Negation(agreement, disagreement))
+7. Q[wasn, Idea.contradiction, Opinion.agreement](Idea.contradiction == "present" → Negation(agreement, contradiction))
+8. Q[wasn, Idea.phrase_strength, Opinion.ambiguity](Idea.phrase_strength == "weak" → Negation(strong_phrase, weak_phrase))
+9. Q[wasn, Idea.phrase_weakness, Opinion.clarity](Idea.phrase_weakness == "high" → Negation(clear_phrase, unclear_phrase))
+10. Q[wasn, Opinion.strength, Opinion.inconsistency](Opinion.strength == "low" → Negation(strong_opinion, weak_opinion))
+11. Q[wasn, Opinion.conveyance, Opinion.ambiguity](Opinion.conveyance == "mixed" → Negation(clear_conveyance, unclear_conveyance))
+12. Q[wasn, Opinion.agreement, Opinion.disagreement](Opinion.agreement == "low" → Negation(agreement, disagreement))
+13. Q[wasn, Opinion.clarity, Idea.impact](Opinion.clarity == "low" → Negation(clear_impact, unclear_impact))
+14. Q[wasn, Opinion.ambiguity, Idea.reception](Opinion.ambiguity == "high" → Negation(clear_reception, unclear_reception))
+15. Q[wasn, Sentiment.similarity, Sentiment.contradiction](Sentiment.similarity == "low" → Negation(similar_sentiment, contradictory_sentiment))
+16. Q[wasn, Sentiment.evaluation, Idea.negative_assessment](Sentiment.evaluation == "neutral" → Negation(positive_evaluation, negative_evaluation))
+17. Q[wasn, Sentiment.positive, Idea.negative_assessment](Sentiment.positive == "low" → Negation(positive_sentiment, negative_sentiment))
+18. Q[wasn, Sentiment.negative, Idea.positive_assessment](Sentiment.negative == "high" → Negation(positive_sentiment, negative_sentiment))
+19. Q[wasn, M_NLI(S1, S2), Idea.context](M_NLI(S1, S2) == "contradictory" → Negation(consistent_context, inconsistent_context))
+20. Q[wasn, Negation(S1, S2), Opinion.inconsistency](Negation(S1, S2) == "true" → Negation(consistent_opinion, inconsistent_opinion))
+21. Q[wasn, violate(S1, S2), Opinion.agreement](violate(S1, S2) == "true" → Negation(agreement, violation))
+22. Q[wasn, Idea.context, Idea.impact](Idea.context == "neutral" → Negation(positive_impact, negative_impact))
+23. Q[wasn, Idea.impact, Opinion.clarity](Idea.impact == "low" → Negation(clear_impact, unclear_impact))
+24. Q[wasn, Idea.reception, Opinion.ambiguity](Idea.reception == "mixed" → Negation(clear_reception, unclear_reception))
+25. Q[wasn, Idea.interpretation, Opinion.inconsistency](Idea.interpretation == "contradictory" → Negation(consistent_interpretation, inconsistent_interpretation))
+26. Q[wasn, Opinion.consistency, Opinion.inconsistency](Opinion.consistency == "low" → Negation(consistent_opinion, inconsistent_opinion))
+27. Q[wasn, Idea.similarity, Opinion.agreement](Idea.similarity == "low" → Negation(agreement, disagreement))
+28. Q[wasn, Idea.phrase_strength, Opinion.strength](Idea.phrase_strength == "weak" → Negation(strong_opinion, weak_opinion))
+29. Q[wasn, Idea.phrase_weakness, Opinion.clarity](Idea.phrase_weakness == "high" → Negation(clear_phrase, unclear_phrase))
+30. Q[wasn, Idea.evaluation, Opinion.strength](Idea.evaluation == "not bad" → Negation(strong_evaluation, weak_evaluation))

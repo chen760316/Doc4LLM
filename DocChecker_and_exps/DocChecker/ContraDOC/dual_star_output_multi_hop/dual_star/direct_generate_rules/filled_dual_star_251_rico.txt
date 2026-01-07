@@ -1,0 +1,54 @@
+Predicates:
+Ellen.age != "ten years older than Rosemary West"
+Ellen.age = "ten years older than Rosemary West"
+Ellen.label != "Person"
+Ellen.label = "Person"
+Ellen.name != "Ellen"
+Ellen.name = "Ellen"
+Ellen.status != "sister"
+Ellen.status = "sister"
+John Meredith.children_count != 4
+John Meredith.children_count < 9
+John Meredith.children_count = 4
+John Meredith.children_count > -1
+John Meredith.label != "Person"
+John Meredith.label = "Person"
+John Meredith.name != "John Meredith"
+John Meredith.name != Ellen.name
+John Meredith.name = "John Meredith"
+John Meredith.status != "widower"
+John Meredith.status != Ellen.status
+John Meredith.status = "widower"
+None_ML(John Meredith.attrs, Rosemary West.attrs)
+None_ML(Rosemary West___John Meredith.attrs, Rosemary West___Ellen.attrs)
+Rosemary West.age != "late thirties"
+Rosemary West.age != Ellen.age
+Rosemary West.age = "late thirties"
+Rosemary West.label != "Person"
+Rosemary West.label = "Person"
+Rosemary West.name != "Rosemary West"
+Rosemary West.name != Ellen.name
+Rosemary West.name != John Meredith.name
+Rosemary West.name = "Rosemary West"
+Rosemary West.status != "single"
+Rosemary West.status != Ellen.status
+Rosemary West.status != John Meredith.status
+Rosemary West.status = "single"
+Rosemary West___Ellen.doc_id = "3488771876_2"
+Rosemary West___Ellen.relationship = "Rosemary and Ellen plan a double wedding."
+Rosemary West___Ellen.time = "in the fall"
+Rosemary West___John Meredith.doc_id = "3488771876_2"
+Rosemary West___John Meredith.relationship != Rosemary West___Ellen.relationship
+Rosemary West___John Meredith.relationship = "Rosemary agrees to speak to John Meredith again."
+
+Rules:
+Q[Rosemary West,Rosemary West] (Ellen.name = "Ellen" ∧ John Meredith.children_count < 9 ∧ Rosemary West.status != John Meredith.status ∧ John Meredith.status != "widower" → Rosemary West.label != "Person")
+Q[Rosemary West,Rosemary West] (John Meredith.status = "widower" ∧ John Meredith.label != "Person" ∧ Rosemary West.name != John Meredith.name → Rosemary West___Ellen.doc_id = "3488771876_2")
+Q[Rosemary West,Rosemary West] (Ellen.age != "ten years older than Rosemary West" ∧ John Meredith.label != "Person" ∧ Ellen.age = "ten years older than Rosemary West" ∧ Rosemary West___John Meredith.doc_id = "3488771876_2" ∧ Rosemary West.age != "late thirties" → Rosemary West.label = "Person")
+Q[Rosemary West,Rosemary West] (Ellen.label = "Person" ∧ Rosemary West.age = "late thirties" → John Meredith.status = "widower")
+Q[Rosemary West,Rosemary West] (John Meredith.status != Ellen.status ∧ John Meredith.status = "widower" ∧ Rosemary West.name != John Meredith.name ∧ Rosemary West.status != "single" ∧ Ellen.name != "Ellen" ∧ Rosemary West.name = "Rosemary West" → Rosemary West.status != John Meredith.status)
+Q[Rosemary West,Rosemary West] (Ellen.label = "Person" ∧ John Meredith.status != Ellen.status → John Meredith.children_count < 9)
+Q[Rosemary West,Rosemary West] (Rosemary West___Ellen.doc_id = "3488771876_2" ∧ John Meredith.status = "widower" ∧ John Meredith.children_count = 4 ∧ John Meredith.status != Ellen.status ∧ John Meredith.status != "widower" → Ellen.age != "ten years older than Rosemary West")
+Q[Rosemary West,Rosemary West] (Ellen.age = "ten years older than Rosemary West" ∧ Rosemary West.age != Ellen.age ∧ Rosemary West___Ellen.doc_id = "3488771876_2" ∧ Ellen.status = "sister" → Rosemary West___John Meredith.relationship != Rosemary West___Ellen.relationship)
+Q[Rosemary West,Rosemary West] (Ellen.name = "Ellen" ∧ Rosemary West.status != "single" ∧ Ellen.age != "ten years older than Rosemary West" ∧ Rosemary West___John Meredith.relationship = "Rosemary agrees to speak to John Meredith again." ∧ Rosemary West.age = "late thirties" ∧ John Meredith.name = "John Meredith" → Ellen.status = "sister")
+Q[Rosemary West,Rosemary West] (John Meredith.children_count != 4 ∧ Rosemary West___Ellen.doc_id = "3488771876_2" ∧ Rosemary West.name != Ellen.name → Ellen.label = "Person")

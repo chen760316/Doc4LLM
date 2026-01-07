@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 108)
+S1: The stock market is up over 100 percent since the start of 2014, but it's still down about 20 percent from its peak last year.
+S2: CNN counts Thorsten Heins and John Boehner among the business losers.
+
+Predicates:
+1. StockMarket.recovery
+2. StockMarket.percentIncrease
+3. StockMarket.percentDecrease
+4. StockMarket.startYear
+5. StockMarket.peakYear
+6. BusinessLosers.individuals
+7. CNN.source
+8. ThorstenHeins.status
+9. JohnBoehner.status
+10. EconomicEnvironment.negative
+11. EconomicEnvironment.recovery
+12. StockMarket.currentStatus
+13. StockMarket.peakValue
+14. StockMarket.currentValue
+15. BusinessLosers.economicImpact
+16. BusinessLosers.individualCount
+17. Year.2014.stockMarketStatus
+18. Year.lastYear.stockMarketPeak
+19. Year.lastYear.stockMarketStatus
+20. Recovery.indicator
+21. Loss.indicator
+22. Relationship.stockMarketBusiness
+23. Relation(stockMarket, businessLosers)
+24. M_NLI(S1, S2)
+25. Relation(StockMarket, EconomicEnvironment)
+26. violate(StockMarket, BusinessLosers)
+27. BusinessLosers.economicTrend
+28. StockMarket.trendAnalysis
+29. CNN.businessAnalysis
+30. EconomicEnvironment.trend
+
+Rules:
+1. Q[The, StockMarket.recovery, EconomicEnvironment.negative](StockMarket.recovery == true → Relation(StockMarket, EconomicEnvironment))
+2. Q[The, StockMarket.percentDecrease, BusinessLosers.individuals](StockMarket.percentDecrease == 20 → Relation(StockMarket, BusinessLosers))
+3. Q[The, StockMarket.percentIncrease, BusinessLosers.individualCount](StockMarket.percentIncrease == 100 → Relation(StockMarket, BusinessLosers))
+4. Q[The, StockMarket.startYear, Year.2014.stockMarketStatus](StockMarket.startYear == 2014 → Relation(StockMarket, Year.2014.stockMarketStatus))
+5. Q[The, StockMarket.peakYear, Year.lastYear.stockMarketPeak](StockMarket.peakYear == lastYear → Relation(StockMarket, Year.lastYear.stockMarketPeak))
+6. Q[The, BusinessLosers.individuals, CNN.source](BusinessLosers.individuals == [ThorstenHeins, JohnBoehner] → Relation(BusinessLosers, CNN.source))
+7. Q[The, ThorstenHeins.status, EconomicEnvironment.negative](ThorstenHeins.status == "loser" → Relation(ThorstenHeins, EconomicEnvironment))
+8. Q[The, JohnBoehner.status, EconomicEnvironment.negative](JohnBoehner.status == "loser" → Relation(JohnBoehner, EconomicEnvironment))
+9. Q[The, EconomicEnvironment.recovery, BusinessLosers.economicImpact](EconomicEnvironment.recovery == true → Relation(EconomicEnvironment, BusinessLosers.economicImpact))
+10. Q[The, StockMarket.currentStatus, BusinessLosers.economicTrend](StockMarket.currentStatus == "down" → Relation(StockMarket, BusinessLosers.economicTrend))
+11. Q[The, StockMarket.peakValue, StockMarket.currentValue](StockMarket.peakValue > StockMarket.currentValue → Relation(StockMarket, StockMarket.currentValue))
+12. Q[The, BusinessLosers.economicImpact, StockMarket.trendAnalysis](BusinessLosers.economicImpact == "negative" → Relation(BusinessLosers, StockMarket.trendAnalysis))
+13. Q[The, CNN.businessAnalysis, StockMarket.currentStatus](CNN.businessAnalysis == "negative" → Relation(CNN.businessAnalysis, StockMarket.currentStatus))
+14. Q[The, StockMarket.trendAnalysis, EconomicEnvironment.negative](StockMarket.trendAnalysis == "down" → Relation(StockMarket, EconomicEnvironment))
+15. Q[The, Recovery.indicator, BusinessLosers.economicTrend](Recovery.indicator == false → Relation(Recovery, BusinessLosers.economicTrend))
+16. Q[The, Loss.indicator, BusinessLosers.economicImpact](Loss.indicator == true → Relation(Loss, BusinessLosers.economicImpact))
+17. Q[The, StockMarket.currentValue, StockMarket.percentDecrease](StockMarket.currentValue < StockMarket.peakValue → Relation(StockMarket, StockMarket.percentDecrease))
+18. Q[The, BusinessLosers.individualCount, EconomicEnvironment.negative](BusinessLosers.individualCount > 0 → Relation(BusinessLosers, EconomicEnvironment))
+19. Q[The, StockMarket.percentIncrease, StockMarket.currentStatus](StockMarket.percentIncrease == 100 → Relation(StockMarket, StockMarket.currentStatus))
+20. Q[The, Year.lastYear.stockMarketStatus, StockMarket.currentStatus](Year.lastYear.stockMarketStatus == "down" → Relation(Year.lastYear.stockMarketStatus, StockMarket.currentStatus))
+21. Q[The, StockMarket.trendAnalysis, BusinessLosers.economicTrend](StockMarket.trendAnalysis == "negative" → Relation(StockMarket, BusinessLosers.economicTrend))
+22. Q[The, EconomicEnvironment.trend, BusinessLosers.economicImpact](EconomicEnvironment.trend == "negative" → Relation(EconomicEnvironment, BusinessLosers.economicImpact))
+23. Q[The, StockMarket.currentStatus, Recovery.indicator](StockMarket.currentStatus == "down" → Relation(StockMarket, Recovery.indicator))
+24. Q[The, BusinessLosers.economicTrend, StockMarket.percentDecrease](BusinessLosers.economicTrend == "negative" → Relation(BusinessLosers, StockMarket.percentDecrease))
+25. Q[The, CNN.source, BusinessLosers.individuals](CNN.source == "negative" → Relation(CNN.source, BusinessLosers.individuals))
+26. Q[The, StockMarket.peakValue, StockMarket.currentValue](StockMarket.peakValue > StockMarket.currentValue → Relation(StockMarket, StockMarket.currentValue))
+27. Q[The, StockMarket.currentStatus, EconomicEnvironment.negative](StockMarket.currentStatus == "down" → Relation(StockMarket, EconomicEnvironment.negative))
+28. Q[The, BusinessLosers.economicImpact, StockMarket.trendAnalysis](BusinessLosers.economicImpact == "negative" → Relation(BusinessLosers, StockMarket.trendAnalysis))
+29. Q[The, StockMarket.percentDecrease, EconomicEnvironment.negative](StockMarket.percentDecrease == 20 → Relation(StockMarket, EconomicEnvironment.negative))
+30. Q[The, StockMarket.recovery, BusinessLosers.individuals](StockMarket.recovery == true → Relation(StockMarket, BusinessLosers.individuals))

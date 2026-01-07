@@ -1,0 +1,36 @@
+Predicates:
+San Francisco Education Fund.type != "fund"
+San Francisco Education Fund.type = "fund"
+Smith Family__S0_Smith Family__S1.relationship != "same_entity"
+Smith Family__S0_Smith Family__S1.relationship = "same_entity"
+Smith Family__S0_Tokyo.relationship != "The Smith family traveled to Tokyo."
+Smith Family__S0_Tokyo.relationship != Smith Family__S0_Smith Family__S1.relationship
+Smith Family__S0_Tokyo.relationship != Smith Family__S1_San Francisco Education Fund.relationship
+Smith Family__S0_Tokyo.relationship = "The Smith family traveled to Tokyo."
+Smith Family__S0_Tokyo.year != 2025
+Smith Family__S0_Tokyo.year < 2026
+Smith Family__S0_Tokyo.year <= 2025
+Smith Family__S0_Tokyo.year = 2025
+Smith Family__S0_Tokyo.year > 2024
+Smith Family__S0_Tokyo.year >= 2025
+Smith Family__S1_San Francisco Education Fund.focus != "support underrepresented students pursuing careers in AI and medicine"
+Smith Family__S1_San Francisco Education Fund.focus = "support underrepresented students pursuing careers in AI and medicine"
+Smith Family__S1_San Francisco Education Fund.relationship != "The Smiths co-funded a scholarship program with the San Francisco Education Fund."
+Smith Family__S1_San Francisco Education Fund.relationship != Smith Family__S0_Smith Family__S1.relationship
+Smith Family__S1_San Francisco Education Fund.relationship = "The Smiths co-funded a scholarship program with the San Francisco Education Fund."
+contra("use n", "San Francisco Education Fund")
+linkage(Smith Family__S0, Smith Family__S1)
+linkage(Smith Family__S0, Tokyo)
+linkage(Smith Family__S1, San Francisco Education Fund)
+
+Rules:
+Q[Smith Family__S0,Smith Family__S1] (linkage(Smith Family__S1, San Francisco Education Fund) ∧ Smith Family__S1_San Francisco Education Fund.relationship = "The Smiths co-funded a scholarship program with the San Francisco Education Fund." → Smith Family__S1_San Francisco Education Fund.relationship = "The Smiths co-funded a scholarship program with the San Francisco Education Fund.")
+Q[Smith Family__S0,Smith Family__S1] (Smith Family__S0_Tokyo.year <= 2025 ∧ linkage(Smith Family__S0, Smith Family__S1) → linkage(Smith Family__S0, Smith Family__S1))
+Q[Smith Family__S0,Smith Family__S1] (linkage(Smith Family__S0, Smith Family__S1) ∧ contra("use n", "San Francisco Education Fund") → contra("use n", "San Francisco Education Fund"))
+Q[Smith Family__S0,Smith Family__S1] (Smith Family__S1_San Francisco Education Fund.relationship = "The Smiths co-funded a scholarship program with the San Francisco Education Fund." ∧ Smith Family__S0_Tokyo.relationship != Smith Family__S0_Smith Family__S1.relationship → Smith Family__S0_Tokyo.relationship != Smith Family__S0_Smith Family__S1.relationship)
+Q[Smith Family__S0,Smith Family__S1] (Smith Family__S0_Tokyo.year > 2024 ∧ San Francisco Education Fund.type = "fund" → San Francisco Education Fund.type = "fund")
+Q[Smith Family__S0,Smith Family__S1] (Smith Family__S1_San Francisco Education Fund.relationship = "The Smiths co-funded a scholarship program with the San Francisco Education Fund." ∧ Smith Family__S1_San Francisco Education Fund.focus != "support underrepresented students pursuing careers in AI and medicine" → Smith Family__S1_San Francisco Education Fund.focus != "support underrepresented students pursuing careers in AI and medicine")
+Q[Smith Family__S0,Smith Family__S1] (linkage(Smith Family__S1, San Francisco Education Fund) ∧ linkage(Smith Family__S0, Tokyo) → linkage(Smith Family__S1, San Francisco Education Fund))
+Q[Smith Family__S0,Smith Family__S1] (San Francisco Education Fund.type != "fund" ∧ Smith Family__S1_San Francisco Education Fund.relationship = "The Smiths co-funded a scholarship program with the San Francisco Education Fund." → San Francisco Education Fund.type != "fund")
+Q[Smith Family__S0,Smith Family__S1] (San Francisco Education Fund.type != "fund" ∧ Smith Family__S0_Tokyo.relationship = "The Smith family traveled to Tokyo." → Smith Family__S0_Tokyo.relationship = "The Smith family traveled to Tokyo.")
+Q[Smith Family__S0,Smith Family__S1] (Smith Family__S0_Tokyo.year >= 2025 ∧ Smith Family__S0_Tokyo.year != 2025 → Smith Family__S0_Tokyo.year >= 2025)

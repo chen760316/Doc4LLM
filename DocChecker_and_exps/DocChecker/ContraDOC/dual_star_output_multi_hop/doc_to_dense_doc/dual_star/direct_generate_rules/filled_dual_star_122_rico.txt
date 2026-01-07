@@ -1,0 +1,73 @@
+Predicates:
+Archbishop Theobald of Canterbury.label != "Person"
+Archbishop Theobald of Canterbury.label = "Person"
+Archbishop Theobald of Canterbury.name != "Archbishop Theobald of Canterbury"
+Archbishop Theobald of Canterbury.name = "Archbishop Theobald of Canterbury"
+Archbishop Theobald of Canterbury.occupation != "Archbishop"
+Archbishop Theobald of Canterbury.occupation = "Archbishop"
+None_ML(Archbishop Theobald of Canterbury.attrs, Unknown.attrs)
+None_ML(Osbert___Unknown.attrs, Osbert___archdeacon.attrs)
+Osbert.label != "Person"
+Osbert.label != archdeacon.label
+Osbert.label = "Person"
+Osbert.name != "Osbert"
+Osbert.name != Archbishop Theobald of Canterbury.name
+Osbert.name != Unknown.name
+Osbert.name != archdeacon.name
+Osbert.name = "Osbert"
+Osbert.occupation != "unknown"
+Osbert.occupation != Archbishop Theobald of Canterbury.occupation
+Osbert.occupation = "unknown"
+Osbert___Archbishop Theobald of Canterbury.context = "trial switching"
+Osbert___Archbishop Theobald of Canterbury.contradiction_type = "Causal"
+Osbert___Archbishop Theobald of Canterbury.relationship = "Osbert was supported by Archbishop Theobald of Canterbury in his efforts."
+Osbert___Archbishop Theobald of Canterbury.source_id = "3499318674_8"
+Osbert___Unknown.contradiction_type != Osbert___Archbishop Theobald of Canterbury.contradiction_type
+Osbert___Unknown.contradiction_type = "Temporal"
+Osbert___Unknown.relationship != Osbert___Archbishop Theobald of Canterbury.relationship
+Osbert___Unknown.relationship = "Osbert was alive while another person died after 1184."
+Osbert___Unknown.source_id = "3499318674_8"
+Osbert___Unknown.time = "after 1184"
+Osbert___archdeacon.contradiction_type != Osbert___Archbishop Theobald of Canterbury.contradiction_type
+Osbert___archdeacon.contradiction_type != Osbert___Unknown.contradiction_type
+Osbert___archdeacon.contradiction_type = "Negation"
+Osbert___archdeacon.occupation = "secular lord"
+Osbert___archdeacon.relationship != Osbert___Archbishop Theobald of Canterbury.relationship
+Osbert___archdeacon.relationship != Osbert___Unknown.relationship
+Osbert___archdeacon.relationship = "Osbert was no longer the archdeacon by 1158 as his successor is attested."
+Osbert___archdeacon.source_id = "3499318674_8"
+Osbert___archdeacon.status = "self-identified"
+Osbert___archdeacon.time != 1158
+Osbert___archdeacon.time = 1158
+Unknown.label != "Person"
+Unknown.label = "Person"
+Unknown.name != "Unknown"
+Unknown.name != Archbishop Theobald of Canterbury.name
+Unknown.name = "Unknown"
+Unknown.status != "deceased"
+Unknown.status = "deceased"
+Unknown.year != "after 1184"
+Unknown.year = "after 1184"
+archdeacon.label != "Position"
+archdeacon.label != Archbishop Theobald of Canterbury.label
+archdeacon.label != Unknown.label
+archdeacon.label = "Position"
+archdeacon.name != "archdeacon"
+archdeacon.name != Archbishop Theobald of Canterbury.name
+archdeacon.name != Unknown.name
+archdeacon.name = "archdeacon"
+archdeacon.status != "self-identified"
+archdeacon.status != Unknown.status
+archdeacon.status = "self-identified"
+
+Rules:
+Q[Osbert,Osbert] (Archbishop Theobald of Canterbury.label = "Person" ∧ Osbert___Archbishop Theobald of Canterbury.source_id = "3499318674_8" ∧ Osbert___Unknown.time = "after 1184" ∧ archdeacon.name = "archdeacon" → Osbert.occupation != "unknown")
+Q[Osbert,Osbert] (Osbert___Archbishop Theobald of Canterbury.contradiction_type = "Causal" ∧ Osbert.name != "Osbert" ∧ Unknown.name != Archbishop Theobald of Canterbury.name → Osbert___Unknown.source_id = "3499318674_8")
+Q[Osbert,Osbert] (archdeacon.status = "self-identified" ∧ Osbert.label = "Person" ∧ Osbert___Unknown.relationship != Osbert___Archbishop Theobald of Canterbury.relationship ∧ Osbert___Archbishop Theobald of Canterbury.contradiction_type = "Causal" ∧ Osbert___archdeacon.relationship != Osbert___Archbishop Theobald of Canterbury.relationship ∧ Osbert___Archbishop Theobald of Canterbury.context = "trial switching" → Osbert.name != Archbishop Theobald of Canterbury.name)
+Q[Osbert,Osbert] (Unknown.name != "Unknown" ∧ Osbert.occupation != "unknown" ∧ Osbert___archdeacon.contradiction_type = "Negation" ∧ None_ML(Osbert___Unknown.attrs, Osbert___archdeacon.attrs) ∧ Osbert.name = "Osbert" → archdeacon.name != "archdeacon")
+Q[Osbert,Osbert] (archdeacon.label = "Position" ∧ Osbert.occupation = "unknown" → archdeacon.name = "archdeacon")
+Q[Osbert,Osbert] (archdeacon.label != Archbishop Theobald of Canterbury.label ∧ Osbert___archdeacon.time != 1158 ∧ Archbishop Theobald of Canterbury.label = "Person" ∧ Osbert___archdeacon.relationship != Osbert___Archbishop Theobald of Canterbury.relationship ∧ Osbert___archdeacon.status = "self-identified" ∧ Osbert___archdeacon.relationship = "Osbert was no longer the archdeacon by 1158 as his successor is attested." → Osbert.name = "Osbert")
+Q[Osbert,Osbert] (archdeacon.label = "Position" ∧ Osbert___archdeacon.relationship = "Osbert was no longer the archdeacon by 1158 as his successor is attested." ∧ Osbert___Unknown.source_id = "3499318674_8" ∧ Osbert___archdeacon.contradiction_type = "Negation" ∧ Osbert___Archbishop Theobald of Canterbury.context = "trial switching" → Unknown.name = "Unknown")
+Q[Osbert,Osbert] (Unknown.status != "deceased" ∧ Archbishop Theobald of Canterbury.name != "Archbishop Theobald of Canterbury" ∧ Archbishop Theobald of Canterbury.label != "Person" ∧ Osbert___archdeacon.relationship != Osbert___Unknown.relationship → archdeacon.label != Archbishop Theobald of Canterbury.label)
+Q[Osbert,Osbert] (Unknown.status = "deceased" ∧ Unknown.label != "Person" ∧ Unknown.name != Archbishop Theobald of Canterbury.name → Osbert.occupation = "unknown")
+Q[Osbert,Osbert] (Osbert.name != Archbishop Theobald of Canterbury.name ∧ Osbert___Unknown.source_id = "3499318674_8" → archdeacon.label != "Position")

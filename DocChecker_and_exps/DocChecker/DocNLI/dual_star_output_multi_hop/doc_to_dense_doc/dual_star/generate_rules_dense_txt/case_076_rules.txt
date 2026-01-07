@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 76)
+S1: He carried a hatchet and allowed police to search his car, where they found camping gear and two dogs.
+S2: He was arrested after he refused to leave.
+
+Predicates:
+1. He.cooperated_with.police
+2. He.allowed.police_to_search_car
+3. police.found.camping_gear
+4. police.found.two_dogs
+5. He.carried.hatchet
+6. He.refused_to_leave
+7. He.was.arrested
+8. He.defied.police
+9. camping_gear.is_found_in.car
+10. two_dogs.are_in.car
+11. police.search.is.cooperative
+12. arrest.is.result_of.defiance
+13. He.is.a.suspect
+14. police.have.evidence
+15. camping_gear.belongs_to.He
+16. dogs.are.His
+17. He.is.in.possession.of.hatchet
+18. police.search.is.legal
+19. He.is.cooperative.with.law_enforcement
+20. refusal.to.leave.leads.to.arrest
+21. He.is.not.compliant
+22. police.action.is.justified
+23. He.is.in.car
+24. He.has.camping_gear
+25. He.has.dogs
+26. police.search.reveals.evidence
+27. He.is.a.camping.enthusiast
+28. He.is.involved.in.suspicious.activity
+29. police.arrest.is.based.on.refusal
+30. He.is.under.investigation
+
+Rules:
+1. Q[allowed, He.allowed.police_to_search_car == true → Causal(He.cooperated_with.police, He.refused_to_leave)]
+2. Q[carried, He.carried.hatchet == true → Causal(He.is.in.possession.of.hatchet, He.refused_to_leave)]
+3. Q[arrested, He.was.arrested == true → Causal(He.defied.police, He.refused_to_leave)]
+4. Q[defied, He.defied.police == true → Causal(He.refused_to_leave, He.was.arrested)]
+5. Q[found, police.found.camping_gear == true → Causal(police.search.reveals.evidence, He.refused_to_leave)]
+6. Q[found, police.found.two_dogs == true → Causal(police.search.reveals.evidence, He.refused_to_leave)]
+7. Q[cooperative, police.search.is.cooperative == true → Causal(He.allowed.police_to_search_car, He.refused_to_leave)]
+8. Q[defiance, He.refused_to_leave == true → Causal(He.is.not.compliant, He.was.arrested)]
+9. Q[justified, police.action.is.justified == true → Causal(He.defied.police, He.was.arrested)]
+10. Q[legal, police.search.is.legal == true → Causal(He.allowed.police_to_search_car, He.refused_to_leave)]
+11. Q[suspect, He.is.a.suspect == true → Causal(He.refused_to_leave, He.was.arrested)]
+12. Q[evidence, police.have.evidence == true → Causal(police.search.reveals.evidence, He.refused_to_leave)]
+13. Q[camping_enthusiast, He.is.a.camping.enthusiast == true → Causal(He.has.camping_gear, He.refused_to_leave)]
+14. Q[suspicious, He.is.involved.in.suspicious_activity == true → Causal(He.refused_to_leave, He.was.arrested)]
+15. Q[compliance, He.is.cooperative.with.law_enforcement == true → Causal(He.allowed.police_to_search_car, He.refused_to_leave)]
+16. Q[search, police.search.is.cooperative == true → Causal(He.allowed.police_to_search_car, He.refused_to_leave)]
+17. Q[search, police.search.reveals.evidence == true → Causal(police.found.camping_gear, He.refused_to_leave)]
+18. Q[search, police.search.reveals.evidence == true → Causal(police.found.two_dogs, He.refused_to_leave)]
+19. Q[refusal, refusal.to.leave.leads.to.arrest == true → Causal(He.refused_to_leave, He.was.arrested)]
+20. Q[defiance, He.defied.police == true → Causal(He.refused_to_leave, He.was.arrested)]
+21. Q[arrest, He.was.arrested == true → Causal(He.defied.police, He.refused_to_leave)]
+22. Q[compliance, He.is.cooperative.with.law_enforcement == true → Causal(He.allowed.police_to_search_car, He.refused_to_leave)]
+23. Q[dogs, He.has.dogs == true → Causal(two_dogs.are_in.car, He.refused_to_leave)]
+24. Q[camping_gear, He.has.camping_gear == true → Causal(camping_gear.is_found_in.car, He.refused_to_leave)]
+25. Q[search, police.search.is.cooperative == true → Causal(He.allowed.police_to_search_car, He.refused_to_leave)]
+26. Q[search, police.search.is.legal == true → Causal(He.allowed.police_to_search_car, He.refused_to_leave)]
+27. Q[defiance, He.is.not.compliant == true → Causal(He.refused_to_leave, He.was.arrested)]
+28. Q[arrest, police.arrest.is.based.on.refusal == true → Causal(He.refused_to_leave, He.was.arrested)]
+29. Q[investigation, He.is.under.investigation == true → Causal(He.refused_to_leave, He.was.arrested)]
+30. Q[suspect, He.is.a.suspect == true → Causal(He.refused_to_leave, He.was.arrested)]

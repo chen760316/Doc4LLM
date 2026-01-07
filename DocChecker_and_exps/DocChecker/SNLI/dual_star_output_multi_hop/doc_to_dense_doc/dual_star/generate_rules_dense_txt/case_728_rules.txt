@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 728)
+S1: A man is sitting up against a wall with a sign near his feet.
+S2: A man is sitting on a sidewalk near the church.
+
+Predicates:
+1. Man.position
+2. Man.location
+3. Wall.type
+4. Sign.position
+5. Sidewalk.type
+6. Church.location
+7. Man.sitting
+8. Sign.near
+9. Wall.near
+10. Sidewalk.near
+11. Man.against
+12. Man.sitting_on
+13. Church.near
+14. Sign.type
+15. Wall.height
+16. Sidewalk.width
+17. Man.state
+18. Wall.material
+19. Sidewalk.material
+20. Man.activity
+21. Sign.message
+22. Church.type
+23. Man.environment
+24. Wall.condition
+25. Sidewalk.condition
+26. Sign.visibility
+27. Man.orientation
+28. Wall.position
+29. Sidewalk.position
+30. Church.size
+
+Rules:
+1. Q[man, Man.position, Wall.type](Man.position == "against" → Relation(Man.position, Wall.type))
+2. Q[man, Man.position, Sidewalk.type](Man.position == "against" → Relation(Man.position, Sidewalk.type))
+3. Q[man, Man.location, Wall.near](Man.location == "sitting" ∧ Man.against == "wall" → Relation(Man.location, Wall.near))
+4. Q[man, Man.location, Sidewalk.near](Man.location == "sitting" ∧ Man.sitting_on == "sidewalk" → Relation(Man.location, Sidewalk.near))
+5. Q[man, Man.sitting, Wall.height](Man.sitting == true ∧ Man.against == "wall" → Relation(Man.sitting, Wall.height))
+6. Q[man, Man.sitting, Sidewalk.width](Man.sitting == true ∧ Man.sitting_on == "sidewalk" → Relation(Man.sitting, Sidewalk.width))
+7. Q[man, Man.against, Wall.material](Man.against == "wall" → Relation(Man.against, Wall.material))
+8. Q[man, Man.against, Sidewalk.material](Man.against == "wall" → Relation(Man.against, Sidewalk.material))
+9. Q[man, Man.state, Wall.condition](Man.state == "sitting" ∧ Man.against == "wall" → Relation(Man.state, Wall.condition))
+10. Q[man, Man.state, Sidewalk.condition](Man.state == "sitting" ∧ Man.sitting_on == "sidewalk" → Relation(Man.state, Sidewalk.condition))
+11. Q[man, Man.activity, Wall.position](Man.activity == "sitting" ∧ Man.against == "wall" → Relation(Man.activity, Wall.position))
+12. Q[man, Man.activity, Sidewalk.position](Man.activity == "sitting" ∧ Man.sitting_on == "sidewalk" → Relation(Man.activity, Sidewalk.position))
+13. Q[man, Man.environment, Wall.near](Man.environment == "urban" ∧ Man.against == "wall" → Relation(Man.environment, Wall.near))
+14. Q[man, Man.environment, Sidewalk.near](Man.environment == "urban" ∧ Man.sitting_on == "sidewalk" → Relation(Man.environment, Sidewalk.near))
+15. Q[man, Man.orientation, Wall.position](Man.orientation == "upright" ∧ Man.against == "wall" → Relation(Man.orientation, Wall.position))
+16. Q[man, Man.orientation, Sidewalk.position](Man.orientation == "upright" ∧ Man.sitting_on == "sidewalk" → Relation(Man.orientation, Sidewalk.position))
+17. Q[man, Man.location, Church.near](Man.location == "sitting" ∧ Man.sitting_on == "sidewalk" → Relation(Man.location, Church.near))
+18. Q[man, Man.sitting_on, Wall.type](Man.sitting_on == "sidewalk" ∧ Man.against == "wall" → Relation(Man.sitting_on, Wall.type))
+19. Q[man, Man.sitting_on, Sidewalk.type](Man.sitting_on == "sidewalk" → Relation(Man.sitting_on, Sidewalk.type))
+20. Q[man, Man.position, Church.location](Man.position == "against" ∧ Man.sitting_on == "sidewalk" → Relation(Man.position, Church.location))
+21. Q[man, Man.location, Church.type](Man.location == "sitting" ∧ Man.sitting_on == "sidewalk" → Relation(Man.location, Church.type))
+22. Q[man, Man.activity, Church.size](Man.activity == "sitting" ∧ Man.sitting_on == "sidewalk" → Relation(Man.activity, Church.size))
+23. Q[man, Man.state, Church.location](Man.state == "sitting" ∧ Man.sitting_on == "sidewalk" → Relation(Man.state, Church.location))
+24. Q[man, Man.against, Church.near](Man.against == "wall" ∧ Man.sitting_on == "sidewalk" → Relation(Man.against, Church.near))
+25. Q[man, Man.position, Sign.position](Man.position == "against" ∧ Man.against == "wall" → Relation(Man.position, Sign.position))
+26. Q[man, Man.location, Sign.near](Man.location == "sitting" ∧ Man.sitting_on == "sidewalk" → Relation(Man.location, Sign.near))
+27. Q[man, Man.activity, Sign.visibility](Man.activity == "sitting" ∧ Man.sitting_on == "sidewalk" → Relation(Man.activity, Sign.visibility))
+28. Q[man, Man.state, Sign.message](Man.state == "sitting" ∧ Man.sitting_on == "sidewalk" → Relation(Man.state, Sign.message))
+29. Q[man, Man.orientation, Sign.type](Man.orientation == "upright" ∧ Man.sitting_on == "sidewalk" → Relation(Man.orientation, Sign.type))
+30. Q[man, Man.environment, Sign.position](Man.environment == "urban" ∧ Man.sitting_on == "sidewalk" → Relation(Man.environment, Sign.position))

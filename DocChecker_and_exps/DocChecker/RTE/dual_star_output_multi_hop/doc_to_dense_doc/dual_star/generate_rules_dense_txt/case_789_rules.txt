@@ -1,0 +1,63 @@
+Source: dense_text.txt (Index 789)
+S1: The longest life support from the Russian Salyuts was 63 days.
+S2: The second generation Salyuts would fly missions much longer and would need to be resupplied from time to time.
+
+Predicates:
+1. Salyut.longest_life_support = 63_days
+2. Salyut.second_generation.mission_duration = longer_than_63_days
+3. Salyut.second_generation.resupply_needed = true
+4. Salyut.first_generation.max_duration = 63_days
+5. Salyut.second_generation.max_duration > Salyut.first_generation.max_duration
+6. Salyut.second_generation.mission_duration > Salyut.first_generation.max_duration
+7. Salyut.first_generation.resupply_needed = false
+8. Salyut.second_generation.resupply_frequency = periodic
+9. Salyut.first_generation.lifespan = 63_days
+10. Salyut.second_generation.lifespan > Salyut.first_generation.lifespan
+11. Salyut.first_generation.mission_duration <= Salyut.first_generation.max_duration
+12. Salyut.second_generation.mission_duration > Salyut.first_generation.max_duration
+13. Salyut.first_generation.support_duration = 63_days
+14. Salyut.second_generation.support_duration > Salyut.first_generation.support_duration
+15. Salyut.second_generation.mission_duration = resupplied
+16. Salyut.first_generation.resupply_frequency = none
+17. Salyut.second_generation.mission_duration = variable
+18. Salyut.first_generation.mission_duration = fixed
+19. Salyut.second_generation.lifespan = variable
+20. Salyut.first_generation.lifespan = fixed
+21. Salyut.second_generation.mission_duration > 63_days
+22. Salyut.first_generation.max_support_duration = 63_days
+23. Salyut.second_generation.max_support_duration > Salyut.first_generation.max_support_duration
+24. Salyut.second_generation.requires_resupply = true
+25. Salyut.first_generation.requires_resupply = false
+26. Salyut.second_generation.mission_duration = extended
+27. Salyut.first_generation.mission_duration = limited
+28. Salyut.second_generation.lifespan = extended
+29. Salyut.first_generation.lifespan = limited
+30. Salyut.second_generation.mission_duration = greater_than_63_days
+
+Rules:
+1. Q[The, Salyut.longest_life_support, Salyut.second_generation.mission_duration](Salyut.longest_life_support == 63_days → Factual(Salyut.longest_life_support, Salyut.second_generation.mission_duration))
+2. Q[The, Salyut.second_generation.mission_duration, Salyut.first_generation.max_duration](Salyut.second_generation.mission_duration > Salyut.first_generation.max_duration → Factual(Salyut.second_generation.mission_duration, Salyut.first_generation.max_duration))
+3. Q[The, Salyut.first_generation.max_duration, Salyut.second_generation.max_duration](Salyut.second_generation.max_duration > Salyut.first_generation.max_duration → Factual(Salyut.first_generation.max_duration, Salyut.second_generation.max_duration))
+4. Q[The, Salyut.second_generation.resupply_needed, Salyut.first_generation.resupply_needed](Salyut.second_generation.resupply_needed == true → Factual(Salyut.second_generation.resupply_needed, Salyut.first_generation.resupply_needed))
+5. Q[The, Salyut.first_generation.lifespan, Salyut.second_generation.lifespan](Salyut.second_generation.lifespan > Salyut.first_generation.lifespan → Factual(Salyut.first_generation.lifespan, Salyut.second_generation.lifespan))
+6. Q[The, Salyut.first_generation.support_duration, Salyut.second_generation.support_duration](Salyut.second_generation.support_duration > Salyut.first_generation.support_duration → Factual(Salyut.first_generation.support_duration, Salyut.second_generation.support_duration))
+7. Q[The, Salyut.second_generation.mission_duration, Salyut.first_generation.mission_duration](Salyut.second_generation.mission_duration > Salyut.first_generation.mission_duration → Factual(Salyut.second_generation.mission_duration, Salyut.first_generation.mission_duration))
+8. Q[The, Salyut.first_generation.resupply_frequency, Salyut.second_generation.resupply_frequency](Salyut.first_generation.resupply_frequency == none → Factual(Salyut.first_generation.resupply_frequency, Salyut.second_generation.resupply_frequency))
+9. Q[The, Salyut.second_generation.requires_resupply, Salyut.first_generation.requires_resupply](Salyut.second_generation.requires_resupply == true → Factual(Salyut.second_generation.requires_resupply, Salyut.first_generation.requires_resupply))
+10. Q[The, Salyut.second_generation.mission_duration, Salyut.first_generation.max_duration](Salyut.second_generation.mission_duration > Salyut.first_generation.max_duration → Factual(Salyut.second_generation.mission_duration, Salyut.first_generation.max_duration))
+11. Q[The, Salyut.first_generation.mission_duration, Salyut.second_generation.mission_duration](Salyut.first_generation.mission_duration <= Salyut.first_generation.max_duration → Factual(Salyut.first_generation.mission_duration, Salyut.second_generation.mission_duration))
+12. Q[The, Salyut.second_generation.mission_duration, Salyut.first_generation.lifespan](Salyut.second_generation.mission_duration > Salyut.first_generation.lifespan → Factual(Salyut.second_generation.mission_duration, Salyut.first_generation.lifespan))
+13. Q[The, Salyut.first_generation.max_support_duration, Salyut.second_generation.max_support_duration](Salyut.second_generation.max_support_duration > Salyut.first_generation.max_support_duration → Factual(Salyut.first_generation.max_support_duration, Salyut.second_generation.max_support_duration))
+14. Q[The, Salyut.second_generation.mission_duration, Salyut.first_generation.support_duration](Salyut.second_generation.mission_duration > Salyut.first_generation.support_duration → Factual(Salyut.second_generation.mission_duration, Salyut.first_generation.support_duration))
+15. Q[The, Salyut.second_generation.lifespan, Salyut.first_generation.lifespan](Salyut.second_generation.lifespan > Salyut.first_generation.lifespan → Factual(Salyut.second_generation.lifespan, Salyut.first_generation.lifespan))
+16. Q[The, Salyut.first_generation.mission_duration, Salyut.second_generation.mission_duration](Salyut.first_generation.mission_duration == fixed → Factual(Salyut.first_generation.mission_duration, Salyut.second_generation.mission_duration))
+17. Q[The, Salyut.second_generation.mission_duration, Salyut.first_generation.mission_duration](Salyut.second_generation.mission_duration == extended → Factual(Salyut.second_generation.mission_duration, Salyut.first_generation.mission_duration))
+18. Q[The, Salyut.second_generation.mission_duration, Salyut.first_generation.max_duration](Salyut.second_generation.mission_duration > 63_days → Factual(Salyut.second_generation.mission_duration, Salyut.first_generation.max_duration))
+19. Q[The, Salyut.first_generation.lifespan, Salyut.second_generation.lifespan](Salyut.first_generation.lifespan == limited → Factual(Salyut.first_generation.lifespan, Salyut.second_generation.lifespan))
+20. Q[The, Salyut.second_generation.mission_duration, Salyut.first_generation.mission_duration](Salyut.second_generation.mission_duration > Salyut.first_generation.mission_duration → Factual(Salyut.second_generation.mission_duration, Salyut.first_generation.mission_duration))
+21. Q[The, Salyut.second_generation.mission_duration, Salyut.first_generation.max_duration](Salyut.second_generation.mission_duration > Salyut.first_generation.max_duration → Factual(Salyut.second_generation.mission_duration, Salyut.first_generation.max_duration))
+22. Q[The, Salyut.second_generation.lifespan, Salyut.first_generation.lifespan](Salyut.second_generation.lifespan > Salyut.first_generation.lifespan → Factual(Salyut.second_generation.lifespan, Salyut.first_generation.lifespan))
+23. Q[The, Salyut.first_generation.max_duration, Salyut.second_generation.max_duration](Salyut.second_generation.max_duration > Salyut.first_generation.max_duration → Factual(Salyut.first_generation.max_duration, Salyut.second_generation.max_duration))
+24. Q[The, Salyut.second_generation.mission_duration, Salyut.first_generation.support_duration](Salyut.second_generation.mission_duration > Salyut.first_generation.support_duration → Factual(Salyut.second_generation.mission_duration, Salyut.first_generation.support_duration))
+25. Q[The, Salyut.first_generation.resupply_needed, Salyut.second_generation.resupply_needed](Salyut.first_generation.resupply_needed == false → Factual(Salyut.first_generation.resupply_needed, Salyut.second_generation.resupply_needed))
+26. Q[The, Salyut.second_generation.mission_duration, Salyut.first_generation.lifespan](Salyut.second_generation.mission_duration

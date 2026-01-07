@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 227)
+S1: A 1.86 percent increase to payroll taxes wouldn't be enough to prevent a shortfall in Social Security funds.
+S2: Increasing payroll taxes by 1.86 percent (a 15 percent increase over the 2001 rate paid by employers and workers) now could head off a Social Security shortfall for 75 years.
+
+Predicates:
+1. S1.indicates.not_sufficient(A, 1.86_percent_increase)
+2. S2.claims.sufficient(A, 1.86_percent_increase)
+3. S1.shortfall(Social_Security_funds)
+4. S2.prevents(Social_Security_shortfall, 75_years)
+5. S1.increase_type(payroll_taxes)
+6. S2.increase_type(payroll_taxes)
+7. S1.increase_amount(1.86_percent)
+8. S2.increase_amount(1.86_percent)
+9. S1.time_frame(current)
+10. S2.time_frame(75_years)
+11. S1.relationship(payroll_taxes, shortfall)
+12. S2.relationship(payroll_taxes, shortfall)
+13. S1.year(2001)
+14. S2.year(2001)
+15. S1.increase_type(employer_worker_rate)
+16. S2.increase_type(employer_worker_rate)
+17. S1.percentage(1.86)
+18. S2.percentage(15)
+19. S1.impact(Social_Security_funds, negative)
+20. S2.impact(Social_Security_shortfall, positive)
+21. S1.evidence(shortfall)
+22. S2.evidence(prevention)
+23. S1.duration(shortfall, insufficient)
+24. S2.duration(shortfall, sufficient)
+25. S1.causal_relationship(A, shortfall)
+26. S2.causal_relationship(A, prevention)
+27. M_NLI(S1, S2)
+28. Causal(S1, S2)
+29. violate(S1, S2)
+30. S1.context(current_economic_conditions)
+
+Rules:
+1. Q[percent, S1.indicates.not_sufficient(A, 1.86_percent_increase) → Causal(1.86_percent_increase, shortfall)]
+2. Q[percent, S2.claims.sufficient(A, 1.86_percent_increase) → Causal(1.86_percent_increase, prevention)]
+3. Q[percent, S1.shortfall(Social_Security_funds) → Causal(shortfall, negative_impact)]
+4. Q[percent, S2.prevents(Social_Security_shortfall, 75_years) → Causal(prevention, positive_impact)]
+5. Q[percent, S1.increase_type(payroll_taxes) → Causal(payroll_taxes, shortfall)]
+6. Q[percent, S2.increase_type(payroll_taxes) → Causal(payroll_taxes, prevention)]
+7. Q[percent, S1.increase_amount(1.86_percent) → Causal(1.86_percent, insufficient)]
+8. Q[percent, S2.increase_amount(1.86_percent) → Causal(1.86_percent, sufficient)]
+9. Q[percent, S1.time_frame(current) → Causal(current, shortfall)]
+10. Q[percent, S2.time_frame(75_years) → Causal(75_years, prevention)]
+11. Q[percent, S1.relationship(payroll_taxes, shortfall) → Causal(payroll_taxes, shortfall)]
+12. Q[percent, S2.relationship(payroll_taxes, shortfall) → Causal(payroll_taxes, prevention)]
+13. Q[percent, S1.year(2001) → Causal(2001, insufficient)]
+14. Q[percent, S2.year(2001) → Causal(2001, sufficient)]
+15. Q[percent, S1.increase_type(employer_worker_rate) → Causal(employer_worker_rate, shortfall)]
+16. Q[percent, S2.increase_type(employer_worker_rate) → Causal(employer_worker_rate, prevention)]
+17. Q[percent, S1.percentage(1.86) → Causal(1.86, negative_impact)]
+18. Q[percent, S2.percentage(15) → Causal(15, positive_impact)]
+19. Q[percent, S1.impact(Social_Security_funds, negative) → Causal(negative_impact, shortfall)]
+20. Q[percent, S2.impact(Social_Security_shortfall, positive) → Causal(positive_impact, prevention)]
+21. Q[percent, S1.evidence(shortfall) → Causal(shortfall, insufficient)]
+22. Q[percent, S2.evidence(prevention) → Causal(prevention, sufficient)]
+23. Q[percent, S1.duration(shortfall, insufficient) → Causal(insufficient, shortfall)]
+24. Q[percent, S2.duration(shortfall, sufficient) → Causal(sufficient, prevention)]
+25. Q[percent, S1.causal_relationship(A, shortfall) → Causal(A, shortfall)]
+26. Q[percent, S2.causal_relationship(A, prevention) → Causal(A, prevention)]
+27. Q[percent, M_NLI(S1, S2) → Causal(S1, S2)]
+28. Q[percent, Causal(S1, S2) → Causal(S1, S2)]
+29. Q[percent, violate(S1, S2) → Causal(S1, S2)]
+30. Q[percent, S1.context(current_economic_conditions) → Causal(current_economic_conditions, shortfall)]

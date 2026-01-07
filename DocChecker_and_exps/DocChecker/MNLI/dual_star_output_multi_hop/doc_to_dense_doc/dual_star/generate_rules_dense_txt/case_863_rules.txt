@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 863)
+S1: She was very generous, but she always wanted a return.
+S2: She always wanted a return, but she was very generous.
+
+Predicates:
+1. She.generosity
+2. She.return_desire
+3. She.generosity_impact
+4. She.return_desire_impact
+5. M_NLI(S1, S2)
+6. Negation(S1, S2)
+7. violate(S1, S2)
+8. return_desire.negates(generosity)
+9. generosity.is_undermined_by(return_desire)
+10. return_desire.conflicts_with(generosity)
+11. generosity.exists_with(return_desire)
+12. return_desire.exists_with(generosity)
+13. S1.generosity
+14. S1.return_desire
+15. S2.generosity
+16. S2.return_desire
+17. generosity.is_positive
+18. return_desire.is_negative
+19. generosity.and.return_desire
+20. return_desire.and.generosity
+21. S1.contradicts(S2)
+22. S2.contradicts(S1)
+23. generosity.is_not_equal_to(return_desire)
+24. return_desire.is_not_equal_to(generosity)
+25. S1.positive_sentiment
+26. S2.negative_sentiment
+27. generosity.is_conditioned_by(return_desire)
+28. return_desire.is_conditioned_by(generosity)
+29. S1.returns_expected
+30. S2.returns_expected
+
+Rules:
+1. Q[She, She.generosity, She.return_desire](She.generosity == "very generous" → Negation(She.generosity, She.return_desire))
+2. Q[She, She.return_desire, She.generosity](She.return_desire == "always wanted a return" → Negation(She.return_desire, She.generosity))
+3. Q[She, She.generosity_impact, She.return_desire_impact](She.generosity_impact == "positive" → Negation(She.generosity_impact, She.return_desire_impact))
+4. Q[She, return_desire.negates(generosity), generosity.is_undermined_by(return_desire)](return_desire.negates(generosity) == true → Negation(return_desire, generosity))
+5. Q[She, return_desire.conflicts_with(generosity), generosity.is_not_equal_to(return_desire)](return_desire.conflicts_with(generosity) == true → Negation(return_desire, generosity))
+6. Q[She, S1.generosity, S2.return_desire](S1.generosity == "very generous" → Negation(S1.generosity, S2.return_desire))
+7. Q[She, S2.generosity, S1.return_desire](S2.generosity == "very generous" → Negation(S2.generosity, S1.return_desire))
+8. Q[She, generosity.is_conditioned_by(return_desire), return_desire.is_conditioned_by(generosity)](generosity.is_conditioned_by(return_desire) == true → Negation(generosity, return_desire))
+9. Q[She, M_NLI(S1, S2), S1.contradicts(S2)](M_NLI(S1, S2) == true → Negation(S1, S2))
+10. Q[She, violate(S1, S2), S1.positive_sentiment](violate(S1, S2) == true → Negation(S1, S2))
+11. Q[She, S1.returns_expected, S2.returns_expected](S1.returns_expected == false → Negation(S1.returns_expected, S2.returns_expected))
+12. Q[She, generosity.and.return_desire, return_desire.and.generosity](generosity.and.return_desire == false → Negation(generosity, return_desire))
+13. Q[She, return_desire.is_negative, generosity.is_positive](return_desire.is_negative == true → Negation(return_desire, generosity))
+14. Q[She, S1.negative_sentiment, S2.positive_sentiment](S1.negative_sentiment == true → Negation(S1.negative_sentiment, S2.positive_sentiment))
+15. Q[She, return_desire.exists_with(generosity), generosity.exists_with(return_desire)](return_desire.exists_with(generosity) == false → Negation(return_desire, generosity))
+16. Q[She, generosity.is_not_equal_to(return_desire), return_desire.is_not_equal_to(generosity)](generosity.is_not_equal_to(return_desire) == true → Negation(generosity, return_desire))
+17. Q[She, S1.generosity, S1.return_desire](S1.generosity == "very generous" → Negation(S1.generosity, S1.return_desire))
+18. Q[She, S2.generosity, S2.return_desire](S2.generosity == "very generous" → Negation(S2.generosity, S2.return_desire))
+19. Q[She, return_desire.is_conditioned_by(generosity), generosity.is_conditioned_by(return_desire)](return_desire.is_conditioned_by(generosity) == false → Negation(return_desire, generosity))
+20. Q[She, generosity.is_positive, return_desire.is_negative](generosity.is_positive == true → Negation(generosity, return_desire))
+21. Q[She, S1.positive_sentiment, S2.negative_sentiment](S1.positive_sentiment == true → Negation(S1.positive_sentiment, S2.negative_sentiment))
+22. Q[She, return_desire.and.generosity, generosity.and.return_desire](return_desire.and.generosity == false → Negation(return_desire, generosity))
+23. Q[She, S1.generosity, S2.generosity](S1.generosity == "very generous" → Negation(S1.generosity, S2.generosity))
+24. Q[She, S1.return_desire, S2.return_desire](S1.return_desire == "always wanted a return" → Negation(S1.return_desire, S2.return_desire))
+25. Q[She, return_desire.conflicts_with(generosity), generosity.is_conditioned_by(return_desire)](return_desire.conflicts_with(generosity) == true → Negation(return_desire, generosity))
+26. Q[She, generosity.is_undermined_by(return_desire), return_desire.is_conditioned_by(generosity)](generosity.is_undermined_by(return_desire) == true → Negation(generosity, return_desire))
+27. Q[She, S1.returns_expected, S2.returns_expected](S1.returns_expected == false → Negation(S1.returns_expected, S2.returns_expected))
+28. Q[She, M_NLI(S1, S2), S2.contradicts(S1)](M_NLI(S1, S2) == true → Negation(S2, S1))
+29. Q[She, violate(S1, S2), S2.positive_sentiment](violate(S1, S2) == true → Negation(S2.positive_sentiment, S1.negative_sentiment))
+30. Q[She, return_desire.exists_with(generosity), generosity.exists_with(return_desire)](return_desire.exists_with(generosity) == false → Negation(return_desire, generosity))

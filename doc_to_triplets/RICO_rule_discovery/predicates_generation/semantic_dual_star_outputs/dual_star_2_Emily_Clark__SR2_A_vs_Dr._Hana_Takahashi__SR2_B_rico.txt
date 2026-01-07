@@ -1,0 +1,64 @@
+Predicates:
+Emily Clark__SR2_A.age != 42
+Emily Clark__SR2_A.age < 47
+Emily Clark__SR2_A.age <= 42
+Emily Clark__SR2_A.age = 42
+Emily Clark__SR2_A.age > 37
+Emily Clark__SR2_A.age >= 42
+Emily Clark__SR2_A.country_of_citizenship != "United Kingdom"
+Emily Clark__SR2_A.country_of_citizenship = "United Kingdom"
+Emily Clark__SR2_A.location != "San Francisco"
+Emily Clark__SR2_A.location = "San Francisco"
+Emily Clark__SR2_A.nationality != "American"
+Emily Clark__SR2_A.nationality = "American"
+Emily Clark__SR2_A.occupation != "writer"
+Emily Clark__SR2_A.occupation = "writer"
+Emily Clark__SR2_A.status != "married"
+Emily Clark__SR2_A.status = "married"
+Emily Clark__SR2_A_ICU.award != "community award for outstanding medical service"
+Emily Clark__SR2_A_ICU.award = "community award for outstanding medical service"
+Emily Clark__SR2_A_ICU.duration != "over six months"
+Emily Clark__SR2_A_ICU.duration = "over six months"
+Emily Clark__SR2_A_ICU.relationship != "Emily Clark volunteered in the ICU department"
+Emily Clark__SR2_A_ICU.relationship != Emily_Clark__SR2_A_Dr._Hana_Takahashi__SR2_B.relationship
+Emily Clark__SR2_A_ICU.relationship = "Emily Clark volunteered in the ICU department"
+Emily Clark__SR2_A_ICU.year != 2020
+Emily Clark__SR2_A_ICU.year < 2021
+Emily Clark__SR2_A_ICU.year <= 2020
+Emily Clark__SR2_A_ICU.year = 2020
+Emily Clark__SR2_A_ICU.year > 2019
+Emily Clark__SR2_A_ICU.year >= 2020
+Emily Clark__SR2_A_St. Mary's Hospital.relationship != "Emily Clark works at St. Mary's Hospital"
+Emily Clark__SR2_A_St. Mary's Hospital.relationship != Emily Clark__SR2_A_ICU.relationship
+Emily Clark__SR2_A_St. Mary's Hospital.relationship != Emily_Clark__SR2_A_Dr._Hana_Takahashi__SR2_B.relationship
+Emily Clark__SR2_A_St. Mary's Hospital.relationship = "Emily Clark works at St. Mary's Hospital"
+Emily_Clark__SR2_A_Dr._Hana_Takahashi__SR2_B.relationship != "semantically_related"
+Emily_Clark__SR2_A_Dr._Hana_Takahashi__SR2_B.relationship = "semantically_related"
+contra("Emily Clark", "his influence beyo")
+contra("Emily Clark", "on")
+contra("St. Mary's Hospital", "on")
+linkage(Emily Clark__SR2_A, ICU)
+linkage(Emily Clark__SR2_A, St. Mary's Hospital)
+linkage(Emily_Clark__SR2_A, Dr._Hana_Takahashi__SR2_B)
+
+Rules:
+Q[Emily_Clark__SR2_A,Dr._Hana_Takahashi__SR2_B] (Emily Clark__SR2_A_ICU.year >= 2020 ∧ Emily Clark__SR2_A_ICU.year != 2020 → Emily Clark__SR2_A_ICU.year != 2020)
+Q[Emily_Clark__SR2_A,Dr._Hana_Takahashi__SR2_B] (Emily Clark__SR2_A_ICU.award != "community award for outstanding medical service" ∧ contra("Emily Clark", "his influence beyo") → contra("Emily Clark", "his influence beyo"))
+Q[Emily_Clark__SR2_A,Dr._Hana_Takahashi__SR2_B] (Emily Clark__SR2_A.country_of_citizenship != "United Kingdom" ∧ linkage(Emily Clark__SR2_A, ICU) → linkage(Emily Clark__SR2_A, ICU))
+Q[Emily_Clark__SR2_A,Dr._Hana_Takahashi__SR2_B] (Emily Clark__SR2_A.nationality != "American" ∧ Emily Clark__SR2_A_ICU.award != "community award for outstanding medical service" → Emily Clark__SR2_A.nationality != "American")
+Q[Emily_Clark__SR2_A,Dr._Hana_Takahashi__SR2_B] (Emily Clark__SR2_A_ICU.award != "community award for outstanding medical service" ∧ Emily Clark__SR2_A_St. Mary's Hospital.relationship != "Emily Clark works at St. Mary's Hospital" → Emily Clark__SR2_A_St. Mary's Hospital.relationship != "Emily Clark works at St. Mary's Hospital")
+Q[Emily_Clark__SR2_A,Dr._Hana_Takahashi__SR2_B] (Emily Clark__SR2_A.status = "married" ∧ linkage(Emily Clark__SR2_A, St. Mary's Hospital) → Emily Clark__SR2_A.status = "married")
+Q[Emily_Clark__SR2_A,Dr._Hana_Takahashi__SR2_B] (Emily Clark__SR2_A.age > 37 ∧ linkage(Emily Clark__SR2_A, St. Mary's Hospital) → linkage(Emily Clark__SR2_A, St. Mary's Hospital))
+Q[Emily_Clark__SR2_A,Dr._Hana_Takahashi__SR2_B] (Emily Clark__SR2_A.age = 42 ∧ contra("St. Mary's Hospital", "on") → Emily Clark__SR2_A.age = 42)
+Q[Emily_Clark__SR2_A,Dr._Hana_Takahashi__SR2_B] (Emily Clark__SR2_A_ICU.year > 2019 ∧ Emily Clark__SR2_A_ICU.award = "community award for outstanding medical service" → Emily Clark__SR2_A_ICU.year > 2019)
+Q[Emily_Clark__SR2_A,Dr._Hana_Takahashi__SR2_B] (Emily Clark__SR2_A_ICU.year >= 2020 ∧ Emily Clark__SR2_A.country_of_citizenship != "United Kingdom" → Emily Clark__SR2_A_ICU.year >= 2020)
+Q[Emily_Clark__SR2_A,Dr._Hana_Takahashi__SR2_B] (Emily Clark__SR2_A.status != "married" ∧ Emily_Clark__SR2_A_Dr._Hana_Takahashi__SR2_B.relationship != "semantically_related" → Emily Clark__SR2_A.status != "married")
+Q[Emily_Clark__SR2_A,Dr._Hana_Takahashi__SR2_B] (Emily Clark__SR2_A.nationality = "American" ∧ linkage(Emily_Clark__SR2_A, Dr._Hana_Takahashi__SR2_B) → linkage(Emily_Clark__SR2_A, Dr._Hana_Takahashi__SR2_B))
+Q[Emily_Clark__SR2_A,Dr._Hana_Takahashi__SR2_B] (Emily Clark__SR2_A.age < 47 ∧ Emily Clark__SR2_A.age <= 42 → Emily Clark__SR2_A.age < 47)
+Q[Emily_Clark__SR2_A,Dr._Hana_Takahashi__SR2_B] (Emily Clark__SR2_A.occupation != "writer" ∧ Emily Clark__SR2_A_ICU.year = 2020 → Emily Clark__SR2_A_ICU.year = 2020)
+Q[Emily_Clark__SR2_A,Dr._Hana_Takahashi__SR2_B] (Emily Clark__SR2_A_ICU.relationship != Emily_Clark__SR2_A_Dr._Hana_Takahashi__SR2_B.relationship ∧ Emily Clark__SR2_A_ICU.year = 2020 → Emily Clark__SR2_A_ICU.relationship != Emily_Clark__SR2_A_Dr._Hana_Takahashi__SR2_B.relationship)
+Q[Emily_Clark__SR2_A,Dr._Hana_Takahashi__SR2_B] (Emily_Clark__SR2_A_Dr._Hana_Takahashi__SR2_B.relationship = "semantically_related" ∧ Emily Clark__SR2_A_ICU.relationship = "Emily Clark volunteered in the ICU department" → Emily Clark__SR2_A_ICU.relationship = "Emily Clark volunteered in the ICU department")
+Q[Emily_Clark__SR2_A,Dr._Hana_Takahashi__SR2_B] (Emily Clark__SR2_A.age != 42 ∧ linkage(Emily Clark__SR2_A, St. Mary's Hospital) → Emily Clark__SR2_A.age != 42)
+Q[Emily_Clark__SR2_A,Dr._Hana_Takahashi__SR2_B] (Emily Clark__SR2_A.occupation != "writer" ∧ Emily Clark__SR2_A_ICU.award != "community award for outstanding medical service" → Emily Clark__SR2_A_ICU.award != "community award for outstanding medical service")
+Q[Emily_Clark__SR2_A,Dr._Hana_Takahashi__SR2_B] (Emily Clark__SR2_A.occupation = "writer" ∧ Emily Clark__SR2_A_St. Mary's Hospital.relationship != Emily_Clark__SR2_A_Dr._Hana_Takahashi__SR2_B.relationship → Emily Clark__SR2_A.occupation = "writer")
+Q[Emily_Clark__SR2_A,Dr._Hana_Takahashi__SR2_B] (Emily Clark__SR2_A_St. Mary's Hospital.relationship != Emily Clark__SR2_A_ICU.relationship ∧ contra("Emily Clark", "on") → Emily Clark__SR2_A_St. Mary's Hospital.relationship != Emily Clark__SR2_A_ICU.relationship)

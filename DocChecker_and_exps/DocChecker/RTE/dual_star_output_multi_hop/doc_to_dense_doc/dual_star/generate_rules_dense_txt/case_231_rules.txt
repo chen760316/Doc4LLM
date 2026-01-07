@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 231)
+S1: The Presidents of Ecuador and Peru said that they have agreed to work together to find a solution Pacifica one of long duration of their border dispute.
+S2: The presidents of Ecuador and Peru say they have agreed to work together to try to find a peaceful solution to their long-running border dispute.
+
+Predicates:
+1. President_Ecuador.agreement
+2. President_Peru.agreement
+3. President_Ecuador.cooperation
+4. President_Peru.cooperation
+5. border_dispute.duration
+6. border_dispute.type
+7. solution.peaceful
+8. solution.definitive
+9. President_Ecuador.statement
+10. President_Peru.statement
+11. President_Ecuador.intent
+12. President_Peru.intent
+13. Pacifica.solution
+14. border_dispute.agreement
+15. border_dispute.attempt
+16. President_Ecuador.working_together
+17. President_Peru.working_together
+18. President_Ecuador.outcome
+19. President_Peru.outcome
+20. President_Ecuador.uncertainty
+21. President_Peru.uncertainty
+22. M_NLI(S1, S2)
+23. Causal(President_Ecuador, President_Peru)
+24. violate(S1, S2)
+25. solution.agreement
+26. solution.attempt
+27. border_dispute.agreement_status
+28. cooperation.effort
+29. cooperation.success
+30. border_dispute.resolution
+
+Rules:
+1. Q[The, President_Ecuador.agreement == "definitive" → Causal(President_Ecuador, President_Peru)]
+2. Q[The, President_Peru.agreement == "definitive" → Causal(President_Peru, President_Ecuador)]
+3. Q[The, President_Ecuador.cooperation == "true" → Causal(President_Ecuador, President_Peru)]
+4. Q[The, President_Peru.cooperation == "true" → Causal(President_Peru, President_Ecuador)]
+5. Q[The, border_dispute.duration == "long" → Causal(border_dispute, solution)]
+6. Q[The, border_dispute.type == "dispute" → Causal(border_dispute, solution)]
+7. Q[The, solution.peaceful == "true" → Causal(solution, border_dispute)]
+8. Q[The, solution.definitive == "true" → Causal(solution, border_dispute)]
+9. Q[The, President_Ecuador.statement == "agreement" → Causal(President_Ecuador, President_Peru)]
+10. Q[The, President_Peru.statement == "agreement" → Causal(President_Peru, President_Ecuador)]
+11. Q[The, President_Ecuador.intent == "cooperation" → Causal(President_Ecuador, President_Peru)]
+12. Q[The, President_Peru.intent == "cooperation" → Causal(President_Peru, President_Ecuador)]
+13. Q[The, Pacifica.solution == "attempt" → Causal(President_Ecuador, President_Peru)]
+14. Q[The, border_dispute.agreement == "false" → Causal(border_dispute, solution)]
+15. Q[The, border_dispute.attempt == "true" → Causal(border_dispute, solution)]
+16. Q[The, President_Ecuador.working_together == "true" → Causal(President_Ecuador, President_Peru)]
+17. Q[The, President_Peru.working_together == "true" → Causal(President_Peru, President_Ecuador)]
+18. Q[The, President_Ecuador.outcome == "uncertain" → Causal(President_Ecuador, President_Peru)]
+19. Q[The, President_Peru.outcome == "uncertain" → Causal(President_Peru, President_Ecuador)]
+20. Q[The, President_Ecuador.uncertainty == "true" → Causal(President_Ecuador, President_Peru)]
+21. Q[The, President_Peru.uncertainty == "true" → Causal(President_Peru, President_Ecuador)]
+22. Q[The, M_NLI(S1, S2) == "contradict" → Causal(S1, S2)]
+23. Q[The, Causal(President_Ecuador, President_Peru) == "true" → Causal(President_Ecuador, President_Peru)]
+24. Q[The, violate(S1, S2) == "true" → Causal(S1, S2)]
+25. Q[The, solution.agreement == "false" → Causal(solution, border_dispute)]
+26. Q[The, solution.attempt == "true" → Causal(solution, border_dispute)]
+27. Q[The, border_dispute.agreement_status == "disputed" → Causal(border_dispute, solution)]
+28. Q[The, cooperation.effort == "attempt" → Causal(cooperation, solution)]
+29. Q[The, cooperation.success == "false" → Causal(cooperation, solution)]
+30. Q[The, border_dispute.resolution == "pending" → Causal(border_dispute, solution)]

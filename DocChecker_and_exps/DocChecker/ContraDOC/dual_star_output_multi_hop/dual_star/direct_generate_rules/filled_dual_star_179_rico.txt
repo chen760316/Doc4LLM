@@ -1,0 +1,67 @@
+Predicates:
+Jim Webb.label != "Person"
+Jim Webb.label != Polk County Democrats Awards Dinner.label
+Jim Webb.label = "Person"
+Jim Webb.location != "Virginia"
+Jim Webb.location != Polk County Democrats Awards Dinner.location
+Jim Webb.location = "Virginia"
+Jim Webb.name != "Jim Webb"
+Jim Webb.name != Polk County Democrats Awards Dinner.name
+Jim Webb.name = "Jim Webb"
+Jim Webb.nationality != "American"
+Jim Webb.nationality = "American"
+Jim Webb.occupation != "former senator"
+Jim Webb.occupation = "former senator"
+Jim Webb.status != "presidential candidate"
+Jim Webb.status = "presidential candidate"
+Martin O'Malley.label != "Person"
+Martin O'Malley.label != Polk County Democrats Awards Dinner.label
+Martin O'Malley.label = "Person"
+Martin O'Malley.location != "Iowa"
+Martin O'Malley.location != Jim Webb.location
+Martin O'Malley.location != Polk County Democrats Awards Dinner.location
+Martin O'Malley.location = "Iowa"
+Martin O'Malley.name != "Martin O'Malley"
+Martin O'Malley.name != Jim Webb.name
+Martin O'Malley.name != Polk County Democrats Awards Dinner.name
+Martin O'Malley.name = "Martin O'Malley"
+Martin O'Malley.nationality != "American"
+Martin O'Malley.nationality = "American"
+Martin O'Malley.occupation != "former mayor and governor"
+Martin O'Malley.occupation != Jim Webb.occupation
+Martin O'Malley.occupation = "former mayor and governor"
+Martin O'Malley.status != "presidential candidate"
+Martin O'Malley.status = "presidential candidate"
+Martin O'Malley___Jim Webb.date = "Friday morning"
+Martin O'Malley___Jim Webb.doc_id = "3489825749_3"
+Martin O'Malley___Jim Webb.event != Martin O'Malley___Polk County Democrats Awards Dinner.event
+Martin O'Malley___Jim Webb.event = "meeting"
+Martin O'Malley___Jim Webb.location = "Des Moines hotel lobby"
+Martin O'Malley___Jim Webb.relationship != Martin O'Malley___Polk County Democrats Awards Dinner.relationship
+Martin O'Malley___Jim Webb.relationship = "Both Martin O'Malley and Jim Webb are Democrats considering a presidential run."
+Martin O'Malley___Polk County Democrats Awards Dinner.content = "focused on the American Dream and better wages for workers"
+Martin O'Malley___Polk County Democrats Awards Dinner.doc_id = "3489825749_3"
+Martin O'Malley___Polk County Democrats Awards Dinner.event = "speech"
+Martin O'Malley___Polk County Democrats Awards Dinner.relationship = "Martin O'Malley gave a speech at the Polk County Democrats Awards Dinner."
+None_ML(Martin O'Malley.attrs, Jim Webb.attrs)
+None_ML(Martin O'Malley___Jim Webb.attrs, Martin O'Malley___Polk County Democrats Awards Dinner.attrs)
+Polk County Democrats Awards Dinner.date != "Friday night"
+Polk County Democrats Awards Dinner.date = "Friday night"
+Polk County Democrats Awards Dinner.label != "Event"
+Polk County Democrats Awards Dinner.label = "Event"
+Polk County Democrats Awards Dinner.location != "Des Moines"
+Polk County Democrats Awards Dinner.location = "Des Moines"
+Polk County Democrats Awards Dinner.name != "Polk County Democrats Awards Dinner"
+Polk County Democrats Awards Dinner.name = "Polk County Democrats Awards Dinner"
+
+Rules:
+Q[Martin O'Malley,Martin O'Malley] (Martin O'Malley.occupation = "former mayor and governor" ∧ Martin O'Malley.occupation != "former mayor and governor" → None_ML(Martin O'Malley.attrs, Jim Webb.attrs))
+Q[Martin O'Malley,Martin O'Malley] (Jim Webb.occupation != "former senator" ∧ None_ML(Martin O'Malley.attrs, Jim Webb.attrs) ∧ Martin O'Malley.location = "Iowa" ∧ Jim Webb.name != "Jim Webb" → Martin O'Malley___Jim Webb.location = "Des Moines hotel lobby")
+Q[Martin O'Malley,Martin O'Malley] (Jim Webb.occupation = "former senator" ∧ Martin O'Malley___Jim Webb.doc_id = "3489825749_3" ∧ Polk County Democrats Awards Dinner.label = "Event" → Martin O'Malley.occupation = "former mayor and governor")
+Q[Martin O'Malley,Martin O'Malley] (Martin O'Malley.occupation != Jim Webb.occupation ∧ Martin O'Malley.status != "presidential candidate" ∧ Martin O'Malley.label != Polk County Democrats Awards Dinner.label ∧ Martin O'Malley.occupation != "former mayor and governor" ∧ Jim Webb.nationality != "American" ∧ Martin O'Malley___Polk County Democrats Awards Dinner.doc_id = "3489825749_3" → Jim Webb.occupation = "former senator")
+Q[Martin O'Malley,Martin O'Malley] (Jim Webb.name != "Jim Webb" ∧ Martin O'Malley___Polk County Democrats Awards Dinner.content = "focused on the American Dream and better wages for workers" ∧ Polk County Democrats Awards Dinner.name != "Polk County Democrats Awards Dinner" ∧ Jim Webb.status = "presidential candidate" ∧ Jim Webb.status != "presidential candidate" → Jim Webb.location != Polk County Democrats Awards Dinner.location)
+Q[Martin O'Malley,Martin O'Malley] (Polk County Democrats Awards Dinner.name != "Polk County Democrats Awards Dinner" ∧ Martin O'Malley.name != Polk County Democrats Awards Dinner.name ∧ Martin O'Malley.label != "Person" ∧ Martin O'Malley___Polk County Democrats Awards Dinner.event = "speech" → Polk County Democrats Awards Dinner.location = "Des Moines")
+Q[Martin O'Malley,Martin O'Malley] (Martin O'Malley___Jim Webb.event = "meeting" ∧ Polk County Democrats Awards Dinner.date = "Friday night" ∧ Jim Webb.nationality != "American" → Martin O'Malley.nationality != "American")
+Q[Martin O'Malley,Martin O'Malley] (Jim Webb.location = "Virginia" ∧ Martin O'Malley.nationality = "American" ∧ Polk County Democrats Awards Dinner.date != "Friday night" ∧ Jim Webb.label != Polk County Democrats Awards Dinner.label ∧ Martin O'Malley___Jim Webb.date = "Friday morning" ∧ Polk County Democrats Awards Dinner.date = "Friday night" → Polk County Democrats Awards Dinner.name = "Polk County Democrats Awards Dinner")
+Q[Martin O'Malley,Martin O'Malley] (Martin O'Malley.nationality != "American" ∧ Martin O'Malley.label != Polk County Democrats Awards Dinner.label → Martin O'Malley___Polk County Democrats Awards Dinner.content = "focused on the American Dream and better wages for workers")
+Q[Martin O'Malley,Martin O'Malley] (Martin O'Malley.name != Jim Webb.name ∧ Martin O'Malley.location != "Iowa" ∧ Jim Webb.status != "presidential candidate" ∧ Martin O'Malley.label = "Person" ∧ Jim Webb.occupation = "former senator" → Jim Webb.label = "Person")

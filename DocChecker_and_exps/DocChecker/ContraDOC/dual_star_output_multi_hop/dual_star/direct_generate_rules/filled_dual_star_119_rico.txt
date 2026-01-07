@@ -1,0 +1,48 @@
+Predicates:
+James Marsh.case != "civil suit against UVA"
+James Marsh.case = "civil suit against UVA"
+James Marsh.label != "Person"
+James Marsh.label != U.S. Department of Education.label
+James Marsh.label != University of Virginia.label
+James Marsh.label = "Person"
+James Marsh.name != "James Marsh"
+James Marsh.name != U.S. Department of Education.name
+James Marsh.name != University of Virginia.name
+James Marsh.name = "James Marsh"
+James Marsh.occupation != "attorney"
+James Marsh.occupation = "attorney"
+James Marsh___U.S. Department of Education.context = "allegations of mishandling sexual assault evidence"
+James Marsh___U.S. Department of Education.doc_id != James Marsh___University of Virginia.doc_id
+James Marsh___U.S. Department of Education.doc_id = "3489825753_6"
+James Marsh___U.S. Department of Education.relationship != James Marsh___University of Virginia.relationship
+James Marsh___U.S. Department of Education.relationship = "James Marsh filed a civil suit leading to a Title IX investigation into the University of Virginia."
+James Marsh___University of Virginia.doc_id = "3489825773_7"
+James Marsh___University of Virginia.evidence_status = "lost or destroyed"
+James Marsh___University of Virginia.relationship = "James Marsh filed a civil suit against the University of Virginia regarding mishandling of evidence."
+None_ML(James Marsh___U.S. Department of Education.attrs, James Marsh___University of Virginia.attrs)
+None_ML(University of Virginia.attrs, U.S. Department of Education.attrs)
+U.S. Department of Education.investigation_type != "Title IX"
+U.S. Department of Education.investigation_type = "Title IX"
+U.S. Department of Education.label != "Organization"
+U.S. Department of Education.label = "Organization"
+U.S. Department of Education.name != "U.S. Department of Education"
+U.S. Department of Education.name != University of Virginia.name
+U.S. Department of Education.name = "U.S. Department of Education"
+University of Virginia.label != "Organization"
+University of Virginia.label = "Organization"
+University of Virginia.name != "University of Virginia"
+University of Virginia.name = "University of Virginia"
+University of Virginia.status != "under investigation"
+University of Virginia.status = "under investigation"
+
+Rules:
+Q[James Marsh,James Marsh] (James Marsh.label = "Person" ∧ James Marsh___University of Virginia.evidence_status = "lost or destroyed" ∧ James Marsh___U.S. Department of Education.doc_id != James Marsh___University of Virginia.doc_id → James Marsh.label != "Person")
+Q[James Marsh,James Marsh] (James Marsh___U.S. Department of Education.doc_id != James Marsh___University of Virginia.doc_id ∧ James Marsh.name != U.S. Department of Education.name ∧ James Marsh.case = "civil suit against UVA" ∧ U.S. Department of Education.investigation_type = "Title IX" ∧ James Marsh___University of Virginia.evidence_status = "lost or destroyed" ∧ None_ML(University of Virginia.attrs, U.S. Department of Education.attrs) → James Marsh.name != University of Virginia.name)
+Q[James Marsh,James Marsh] (James Marsh___University of Virginia.doc_id = "3489825773_7" ∧ James Marsh___U.S. Department of Education.context = "allegations of mishandling sexual assault evidence" ∧ None_ML(James Marsh___U.S. Department of Education.attrs, James Marsh___University of Virginia.attrs) ∧ University of Virginia.status != "under investigation" → James Marsh.label != U.S. Department of Education.label)
+Q[James Marsh,James Marsh] (U.S. Department of Education.label != "Organization" ∧ James Marsh.label != "Person" ∧ U.S. Department of Education.name = "U.S. Department of Education" ∧ James Marsh.occupation = "attorney" ∧ James Marsh.occupation != "attorney" → James Marsh___U.S. Department of Education.doc_id != James Marsh___University of Virginia.doc_id)
+Q[James Marsh,James Marsh] (U.S. Department of Education.name != "U.S. Department of Education" ∧ James Marsh.case != "civil suit against UVA" → James Marsh.name != "James Marsh")
+Q[James Marsh,James Marsh] (James Marsh___University of Virginia.relationship = "James Marsh filed a civil suit against the University of Virginia regarding mishandling of evidence." ∧ James Marsh.occupation != "attorney" → James Marsh.name != U.S. Department of Education.name)
+Q[James Marsh,James Marsh] (James Marsh.label = "Person" ∧ U.S. Department of Education.name = "U.S. Department of Education" ∧ James Marsh.label != "Person" ∧ James Marsh.case = "civil suit against UVA" ∧ University of Virginia.label != "Organization" ∧ James Marsh.label != U.S. Department of Education.label → James Marsh___University of Virginia.relationship = "James Marsh filed a civil suit against the University of Virginia regarding mishandling of evidence.")
+Q[James Marsh,James Marsh] (U.S. Department of Education.name != "U.S. Department of Education" ∧ James Marsh.label = "Person" ∧ James Marsh.label != "Person" ∧ James Marsh___U.S. Department of Education.relationship != James Marsh___University of Virginia.relationship ∧ U.S. Department of Education.label != "Organization" → University of Virginia.status != "under investigation")
+Q[James Marsh,James Marsh] (U.S. Department of Education.name != "U.S. Department of Education" ∧ James Marsh___University of Virginia.relationship = "James Marsh filed a civil suit against the University of Virginia regarding mishandling of evidence." ∧ University of Virginia.status = "under investigation" → James Marsh.label != University of Virginia.label)
+Q[James Marsh,James Marsh] (James Marsh___U.S. Department of Education.relationship != James Marsh___University of Virginia.relationship ∧ James Marsh.name = "James Marsh" ∧ University of Virginia.status = "under investigation" ∧ James Marsh.label = "Person" → U.S. Department of Education.investigation_type = "Title IX")

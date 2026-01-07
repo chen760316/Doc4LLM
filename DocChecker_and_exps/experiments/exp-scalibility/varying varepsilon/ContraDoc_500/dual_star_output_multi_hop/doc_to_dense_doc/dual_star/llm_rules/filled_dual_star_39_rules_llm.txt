@@ -1,0 +1,130 @@
+Predicates:
+1. Alice.status = "orphan"
+2. Edith.status = "orphan"
+3. Humphrey.status = "orphan"
+4. "Relationship".type = "sibling"
+5. "Relationship".status = "orphan"
+6. "Relationship".count = 3
+7. Alice.age = 12
+8. Edith.age = 10
+9. Humphrey.age = 14
+10. Alice.gender = "female"
+11. Edith.gender = "female"
+12. Humphrey.gender = "male"
+13. Alice.residence = "foster home"
+14. Edith.residence = "foster home"
+15. Humphrey.residence = "foster home"
+16. "Relationship".location = "foster home"
+17. "Relationship".duration = "ongoing"
+18. Alice.education = "middle school"
+19. Edith.education = "elementary school"
+20. Humphrey.education = "high school"
+21. "Relationship".support = "emotional"
+22. "Relationship".financial_support = "none"
+23. M_NLI(Alice.status, Humphrey.status)
+24. M_NLI(Edith.age, Humphrey.age)
+25. T("Alice and Edith are siblings.", "Alice and Edith are not siblings.", Negation)
+26. T("Humphrey is an orphan.", "Humphrey is not an orphan.", Negation)
+27. tau(Alice.gender, Edith.gender)
+28. tau(Humphrey.residence, "independent living")
+29. violate(Alice, Edith)
+30. Factual(Alice.age, Edith.age)
+31. Causal(Alice.education, Edith.education)
+32. Numeric(Alice.age, Humphrey.age)
+33. Temporal(Alice.residence, "independent living")
+34. "Relationship".emotional_support = "high"
+35. "Relationship".conflict = "none"
+36. Alice.hobbies = "reading"
+37. Edith.hobbies = "drawing"
+38. Humphrey.hobbies = "sports"
+39. "Relationship".shared_interests = "none"
+40. "Relationship".communication = "frequent"
+41. M_NLI(Edith.hobbies, Humphrey.hobbies)
+42. T("Alice is older than Edith.", "Edith is older than Alice.", Relation)
+43. T("Humphrey is the oldest sibling.", "Humphrey is the youngest sibling.", Relation)
+44. tau(Alice.residence, "group home")
+45. tau(Edith.education, "high school")
+46. violate(Humphrey, Alice)
+47. Factual(Edith.status, "not orphan")
+48. Causal(Humphrey.hobbies, "no hobbies")
+49. Numeric(Edith.age, 15)
+50. Temporal(Alice.education, "high school")
+51. "Relationship".trust_level = "high"
+52. "Relationship".conflict_resolution = "effective"
+53. Alice.favorite_food = "pizza"
+54. Edith.favorite_food = "pasta"
+55. Humphrey.favorite_food = "sushi"
+56. M_NLI(Alice.favorite_food, Edith.favorite_food)
+57. T("Alice loves pizza.", "Alice hates pizza.", Content)
+58. T("Humphrey enjoys sports.", "Humphrey dislikes sports.", Content)
+59. tau(Alice.hobbies, "sports")
+60. tau(Edith.hobbies, "sports")
+61. violate(Edith, Humphrey)
+62. Factual(Humphrey.education, "not in school")
+63. Causal(Alice.hobbies, "no hobbies")
+64. Numeric(Humphrey.age, 10)
+65. Temporal(Edith.residence, "independent living")
+66. "Relationship".emotional_bond = "strong"
+67. "Relationship".shared_memories = "many"
+68. Alice.occupation = "student"
+69. Edith.occupation = "student"
+70. Humphrey.occupation = "student"
+71. M_NLI(Alice.occupation, Edith.occupation)
+72. T("Alice is a student.", "Alice is not a student.", Negation)
+73. T("Humphrey is in high school.", "Humphrey is in elementary school.", Relation)
+74. tau(Alice.status, "not orphan")
+75. tau(Edith.age, 12)
+76. violate(Alice, Humphrey)
+77. Factual(Edith.hobbies, "not drawing")
+78. Causal(Humphrey.favorite_food, "not sushi")
+79. Numeric(Alice.age, 15)
+80. Temporal(Humphrey.education, "not in school")
+81. "Relationship".support_type = "none"
+82. "Relationship".communication_frequency = "rare"
+83. Alice.friends_count = 5
+84. Edith.friends_count = 3
+85. Humphrey.friends_count = 2
+86. M_NLI(Alice.friends_count, Edith.friends_count)
+87. T("Alice has many friends.", "Alice has no friends.", Negation)
+88. T("Humphrey is popular.", "Humphrey is not popular.", Negation)
+89. tau(Alice.hobbies, "not reading")
+90. tau(Edith.favorite_food, "not pasta")
+91. violate(Humphrey, Edith)
+92. Factual(Alice.residence, "not foster home")
+93. Causal(Edith.hobbies, "not drawing")
+94. Numeric(Humphrey.friends_count, 10)
+95. Temporal(Alice.education, "not in school")
+96. "Relationship".trust_level = "low"
+97. "Relationship".conflict_resolution = "ineffective"
+98. Alice.pets_count = 1
+99. Edith.pets_count = 0
+100. Humphrey.pets_count = 2
+violate(x0, y0)
+
+Rules:
+1. Q[Alice, Edith](Alice.status = "orphan" ∧ Edith.status = "orphan" → violate(Alice, Edith))
+2. Q[Humphrey, Alice](Humphrey.status = "orphan" ∧ "Relationship".type = "sibling" → violate(Humphrey, Alice))
+3. Q[Edith, Humphrey](Edith.age = 10 ∧ Humphrey.age = 14 ∧ "Relationship".count = 3 → violate(Edith, Humphrey))
+4. Q[Alice, Humphrey](Alice.gender = "female" ∧ Humphrey.gender = "male" ∧ "Relationship".location = "foster home" → violate(Alice, Humphrey))
+5. Q[Humphrey, Edith](Humphrey.residence = "foster home" ∧ Edith.residence = "foster home" ∧ "Relationship".duration = "ongoing" → violate(Humphrey, Edith))
+6. Q[Alice, Edith](Alice.age = 12 ∧ Edith.age = 10 ∧ "Relationship".support = "emotional" ∧ "Relationship".financial_support = "none" → violate(Alice, Edith))
+7. Q[Humphrey, Alice](Alice.education = "middle school" ∧ Humphrey.education = "high school" ∧ "Relationship".emotional_support = "high" → violate(Humphrey, Alice))
+8. Q[Edith, Humphrey](Edith.hobbies = "drawing" ∧ Humphrey.hobbies = "sports" ∧ "Relationship".shared_interests = "none" → violate(Edith, Humphrey))
+9. Q[Alice, Humphrey](Alice.favorite_food = "pizza" ∧ Humphrey.favorite_food = "sushi" ∧ "Relationship".trust_level = "high" ∧ "Relationship".conflict = "none" → violate(Alice, Humphrey))
+10. Q[Humphrey, Edith](Humphrey.age = 14 ∧ Edith.age = 10 ∧ "Relationship".communication = "frequent" ∧ "Relationship".conflict_resolution = "effective" → violate(Humphrey, Edith))
+11. Q[Alice, Edith](Alice.status = "orphan" ∧ Edith.status = "orphan" ∧ "Relationship".trust_level = "low" ∧ "Relationship".conflict_resolution = "ineffective" → violate(Alice, Edith))
+12. Q[Humphrey, Alice](Humphrey.status = "orphan" ∧ Alice.hobbies = "reading" ∧ "Relationship".shared_memories = "many" ∧ "Relationship".support_type = "none" → violate(Humphrey, Alice))
+13. Q[Edith, Humphrey](Edith.residence = "foster home" ∧ Humphrey.residence = "foster home" ∧ "Relationship".duration = "ongoing" ∧ "Relationship".emotional_bond = "strong" → violate(Edith, Humphrey))
+14. Q[Alice, Edith](Alice.age = 12 ∧ Edith.age = 10 ∧ "Relationship".count = 3 ∧ "Relationship".location = "foster home" ∧ "Relationship".support = "emotional" → violate(Alice, Edith))
+15. Q[Humphrey, Alice](Humphrey.gender = "male" ∧ Alice.gender = "female" ∧ "Relationship".conflict = "none" ∧ "Relationship".communication_frequency = "rare" → violate(Humphrey, Alice))
+16. Q[Edith, Humphrey](Edith.hobbies = "drawing" ∧ Humphrey.hobbies = "sports" ∧ "Relationship".trust_level = "high" ∧ "Relationship".conflict_resolution = "effective" ∧ "Relationship".shared_interests = "none" → violate(Edith, Humphrey))
+17. Q[Alice, Humphrey](Alice.education = "middle school" ∧ Humphrey.education = "high school" ∧ "Relationship".emotional_support = "high" ∧ "Relationship".financial_support = "none" ∧ "Relationship".conflict = "none" → violate(Alice, Humphrey))
+18. Q[Humphrey, Edith](Humphrey.age = 14 ∧ Edith.age = 10 ∧ "Relationship".count = 3 ∧ "Relationship".location = "foster home" ∧ "Relationship".duration = "ongoing" → violate(Humphrey, Edith))
+19. Q[Alice, Edith](Alice.favorite_food = "pizza" ∧ Edith.favorite_food = "pasta" ∧ "Relationship".support_type = "none" ∧ "Relationship".communication_frequency = "rare" ∧ "Relationship".emotional_bond = "strong" → violate(Alice, Edith))
+20. Q[Humphrey, Alice](Humphrey.status = "orphan" ∧ Alice.hobbies = "reading" ∧ "Relationship".shared_memories = "many" ∧ "Relationship".trust_level = "low" ∧ "Relationship".conflict_resolution = "ineffective" → violate(Humphrey, Alice))
+21. Q[Edith, Humphrey](Edith.age = 10 ∧ Humphrey.age = 14 ∧ "Relationship".communication = "frequent" ∧ "Relationship".conflict = "none" ∧ "Relationship".support = "emotional" → violate(Edith, Humphrey))
+22. Q[Alice, Edith](Alice.status = "orphan" ∧ Edith.status = "orphan" ∧ "Relationship".count = 3 ∧ "Relationship".location = "foster home" ∧ "Relationship".duration = "ongoing" ∧ "Relationship".emotional_bond = "strong" → violate(Alice, Edith))
+23. Q[Humphrey, Alice](Humphrey.gender = "male" ∧ Alice.gender = "female" ∧ "Relationship".trust_level = "high" ∧ "Relationship".conflict_resolution = "effective" ∧ "Relationship".shared_interests = "none" → violate(Humphrey, Alice))
+24. Q[Edith, Humphrey](Edith.hobbies = "drawing" ∧ Humphrey.hobbies = "sports" ∧ "Relationship".support_type = "none" ∧ "Relationship".communication_frequency = "rare" ∧ "Relationship".emotional_bond = "strong" → violate(Edith, Humphrey))
+25. Q[Alice, Humphrey](Alice.education = "middle school" ∧ Humphrey.education = "high school" ∧ "Relationship".emotional_support = "high" ∧ "Relationship".financial_support = "none" ∧ "Relationship".conflict = "none" ∧ "Relationship".shared_memories = "many" → violate(Alice, Humphrey))
+26. Q[Humphrey, Edith](Humphrey.age = 14 ∧ Edith.age = 10 ∧ "Relationship".count =

@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 134)
+S1: We worry so much about girls getting hurt - and justifiably so - but interestingly enough, the stats show it's our boys who are more likely to get robbed, attacked or even murdered.
+S2: We see girls as fragile or children and boys as plastic plants.
+
+Predicates:
+1. Vulnerability.boys.statistic
+2. Vulnerability.girls.statistic
+3. Perception.girls.fragile
+4. Perception.boys.plastic_plants
+5. Risk.boys.robbed
+6. Risk.boys.attacked
+7. Risk.boys.murdered
+8. Risk.girls.hurt
+9. Contradiction.perception.boys
+10. Contradiction.perception.girls
+11. M_NLI(S1, S2)
+12. Content(S1, Vulnerability.boys)
+13. Content(S2, Perception.boys)
+14. violate(Vulnerability.boys, Perception.boys)
+15. Vulnerability.boys.higher_than.girls
+16. Perception.boys.less_vulnerable
+17. Perception.girls.more_vulnerable
+18. Risk.boys.higher_than.girls
+19. M_NLI(Vulnerability.boys, Perception.boys)
+20. Content(S1, Risk.boys)
+21. Content(S2, Perception.girls)
+22. violate(Risk.boys, Perception.girls)
+23. Vulnerability.boys.ignored
+24. Vulnerability.girls.exaggerated
+25. Perception.boys.simplistic
+26. Perception.girls.simplistic
+27. Risk.boys.underreported
+28. Risk.girls.overreported
+29. M_NLI(Risk.boys, Risk.girls)
+30. Content(S1, Risk.girls)
+
+Rules:
+1. Q[worry, Vulnerability.boys.statistic, Perception.boys.plastic_plants](Vulnerability.boys.statistic == "higher" → Content(Vulnerability.boys, Perception.boys))
+2. Q[worry, Risk.boys.robbed, Perception.boys.plastic_plants](Risk.boys.robbed == "higher" → Content(Risk.boys, Perception.boys))
+3. Q[worry, Risk.boys.attacked, Perception.boys.plastic_plants](Risk.boys.attacked == "higher" → Content(Risk.boys, Perception.boys))
+4. Q[worry, Risk.boys.murdered, Perception.boys.plastic_plants](Risk.boys.murdered == "higher" → Content(Risk.boys, Perception.boys))
+5. Q[worry, Vulnerability.boys.higher_than.girls, Perception.boys.plastic_plants](Vulnerability.boys.higher_than.girls == "true" → Content(Vulnerability.boys, Perception.boys))
+6. Q[worry, Risk.boys.higher_than.girls, Perception.boys.plastic_plants](Risk.boys.higher_than.girls == "true" → Content(Risk.boys, Perception.boys))
+7. Q[worry, Vulnerability.boys.ignored, Perception.boys.plastic_plants](Vulnerability.boys.ignored == "true" → Content(Vulnerability.boys, Perception.boys))
+8. Q[worry, Risk.boys.underreported, Perception.boys.plastic_plants](Risk.boys.underreported == "true" → Content(Risk.boys, Perception.boys))
+9. Q[worry, Perception.girls.more_vulnerable, Perception.boys.plastic_plants](Perception.girls.more_vulnerable == "true" → Content(Perception.girls, Perception.boys))
+10. Q[worry, Perception.boys.less_vulnerable, Perception.girls.fragile](Perception.boys.less_vulnerable == "true" → Content(Perception.boys, Perception.girls))
+11. Q[worry, Vulnerability.girls.statistic, Perception.boys.plastic_plants](Vulnerability.girls.statistic == "exaggerated" → Content(Vulnerability.girls, Perception.boys))
+12. Q[worry, Risk.girls.hurt, Perception.boys.plastic_plants](Risk.girls.hurt == "overreported" → Content(Risk.girls, Perception.boys))
+13. Q[worry, Contradiction.perception.boys, Perception.boys.plastic_plants](Contradiction.perception.boys == "true" → Content(Contradiction.perception.boys, Perception.boys))
+14. Q[worry, Contradiction.perception.girls, Perception.boys.plastic_plants](Contradiction.perception.girls == "true" → Content(Contradiction.perception.girls, Perception.boys))
+15. Q[worry, Perception.boys.simplistic, Perception.girls.fragile](Perception.boys.simplistic == "true" → Content(Perception.boys, Perception.girls))
+16. Q[worry, Perception.girls.simplistic, Perception.boys.plastic_plants](Perception.girls.simplistic == "true" → Content(Perception.girls, Perception.boys))
+17. Q[worry, M_NLI(S1, S2), Perception.boys.plastic_plants](M_NLI(S1, S2) == "true" → Content(M_NLI(S1, S2), Perception.boys))
+18. Q[worry, Content(S1, Risk.boys), Perception.boys.plastic_plants](Content(S1, Risk.boys) == "true" → Content(Content(S1, Risk.boys), Perception.boys))
+19. Q[worry, Content(S2, Perception.girls), Perception.boys.plastic_plants](Content(S2, Perception.girls) == "true" → Content(Content(S2, Perception.girls), Perception.boys))
+20. Q[worry, violate(Vulnerability.boys, Perception.boys), Perception.boys.plastic_plants](violate(Vulnerability.boys, Perception.boys) == "true" → Content(violate(Vulnerability.boys, Perception.boys), Perception.boys))
+21. Q[worry, violate(Risk.boys, Perception.girls), Perception.boys.plastic_plants](violate(Risk.boys, Perception.girls) == "true" → Content(violate(Risk.boys, Perception.girls), Perception.boys))
+22. Q[worry, M_NLI(Risk.boys, Risk.girls), Perception.boys.plastic_plants](M_NLI(Risk.boys, Risk.girls) == "true" → Content(M_NLI(Risk.boys, Risk.girls), Perception.boys))
+23. Q[worry, Content(S1, Vulnerability.boys), Perception.boys.plastic_plants](Content(S1, Vulnerability.boys) == "true" → Content(Content(S1, Vulnerability.boys), Perception.boys))
+24. Q[worry, Content(S2, Perception.boys), Perception.boys.plastic_plants](Content(S2, Perception.boys) == "true" → Content(Content(S2, Perception.boys), Perception.boys))
+25. Q[worry, Risk.boys.higher_than.girls, Perception.boys.plastic_plants](Risk.boys.higher_than.girls == "true" → Content(Risk.boys, Perception.boys))
+26. Q[worry, Vulnerability.boys.statistic, Perception.girls.fragile](Vulnerability.boys.statistic == "higher" → Content(Vulnerability.boys, Perception.girls))
+27. Q[worry, Risk.boys.attacked, Perception.girls.fragile](Risk.boys.attacked == "higher" → Content(Risk.boys, Perception.girls))
+28. Q[worry, Risk.boys.murdered, Perception.girls.fragile](Risk.boys.murdered == "higher" → Content(Risk.boys, Perception.girls))
+29. Q[worry, Vulnerability.boys.ignored, Perception.girls.fragile](Vulnerability.boys.ignored == "true" → Content(Vulnerability.boys, Perception.girls))
+30. Q[worry, Risk.boys.underreported, Perception.girls.fragile](Risk.boys.underreported == "true" → Content(Risk.boys, Perception.girls))

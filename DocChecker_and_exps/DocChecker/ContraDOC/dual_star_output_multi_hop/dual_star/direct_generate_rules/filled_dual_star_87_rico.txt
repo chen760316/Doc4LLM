@@ -1,0 +1,56 @@
+Predicates:
+FBI agents.label != "Person"
+FBI agents.label = "Person"
+FBI agents.name != "FBI agents"
+FBI agents.name != Kevone Charleston.name
+FBI agents.name != two agents.name
+FBI agents.name = "FBI agents"
+FBI agents.type != "law enforcement officers"
+FBI agents.type = "law enforcement officers"
+FBI agents___Kevone Charleston.doc_id != FBI agents___two agents.doc_id
+FBI agents___Kevone Charleston.doc_id = "3489738225_1"
+FBI agents___Kevone Charleston.focus = "violent crimes and major offender squad"
+FBI agents___Kevone Charleston.outcome = "Charleston was shot and captured"
+FBI agents___Kevone Charleston.relationship != FBI agents___two agents.relationship
+FBI agents___Kevone Charleston.relationship = "FBI agents confronted Kevone Charleston during his robbery attempt."
+FBI agents___Kevone Charleston.time = "ongoing investigation since November 2013"
+FBI agents___two agents.doc_id = "3489738225_4"
+FBI agents___two agents.location = "near CVS pharmacy"
+FBI agents___two agents.method = "collision with suspect's vehicle"
+FBI agents___two agents.relationship = "Two FBI agents were injured during the pursuit of Kevone Charleston."
+Kevone Charleston.age != 36
+Kevone Charleston.age < 41
+Kevone Charleston.age = 36
+Kevone Charleston.age > 31
+Kevone Charleston.label != "Person"
+Kevone Charleston.label = "Person"
+Kevone Charleston.location != "Austell, Georgia"
+Kevone Charleston.location = "Austell, Georgia"
+Kevone Charleston.name != "Kevone Charleston"
+Kevone Charleston.name != two agents.name
+Kevone Charleston.name = "Kevone Charleston"
+Kevone Charleston.nationality != "American"
+Kevone Charleston.nationality = "American"
+Kevone Charleston.status != "suspect"
+Kevone Charleston.status != two agents.status
+Kevone Charleston.status = "suspect"
+None_ML(FBI agents___two agents.attrs, FBI agents___Kevone Charleston.attrs)
+None_ML(two agents.attrs, FBI agents.attrs)
+two agents.label != "Person"
+two agents.label = "Person"
+two agents.name != "two agents"
+two agents.name = "two agents"
+two agents.status != "injured"
+two agents.status = "injured"
+
+Rules:
+Q[FBI agents,FBI agents] (FBI agents___Kevone Charleston.relationship != FBI agents___two agents.relationship ∧ FBI agents___Kevone Charleston.relationship = "FBI agents confronted Kevone Charleston during his robbery attempt." ∧ FBI agents___Kevone Charleston.focus = "violent crimes and major offender squad" ∧ FBI agents.name != two agents.name → FBI agents.name = "FBI agents")
+Q[FBI agents,FBI agents] (Kevone Charleston.nationality = "American" ∧ Kevone Charleston.label = "Person" → None_ML(two agents.attrs, FBI agents.attrs))
+Q[FBI agents,FBI agents] (two agents.status != "injured" ∧ Kevone Charleston.status != "suspect" ∧ FBI agents___Kevone Charleston.doc_id != FBI agents___two agents.doc_id ∧ Kevone Charleston.nationality = "American" ∧ FBI agents.name = "FBI agents" → Kevone Charleston.age > 31)
+Q[FBI agents,FBI agents] (Kevone Charleston.label != "Person" ∧ Kevone Charleston.age != 36 ∧ Kevone Charleston.status != two agents.status → Kevone Charleston.status = "suspect")
+Q[FBI agents,FBI agents] (FBI agents___two agents.relationship = "Two FBI agents were injured during the pursuit of Kevone Charleston." ∧ FBI agents.type != "law enforcement officers" ∧ Kevone Charleston.age != 36 ∧ Kevone Charleston.name != "Kevone Charleston" ∧ None_ML(FBI agents___two agents.attrs, FBI agents___Kevone Charleston.attrs) ∧ FBI agents___Kevone Charleston.doc_id != FBI agents___two agents.doc_id → FBI agents___Kevone Charleston.outcome = "Charleston was shot and captured")
+Q[FBI agents,FBI agents] (Kevone Charleston.location != "Austell, Georgia" ∧ two agents.name != "two agents" ∧ two agents.name = "two agents" ∧ FBI agents___two agents.location = "near CVS pharmacy" → Kevone Charleston.name != two agents.name)
+Q[FBI agents,FBI agents] (FBI agents___two agents.method = "collision with suspect's vehicle" ∧ Kevone Charleston.location = "Austell, Georgia" ∧ Kevone Charleston.label = "Person" ∧ Kevone Charleston.nationality != "American" ∧ Kevone Charleston.nationality = "American" → two agents.status = "injured")
+Q[FBI agents,FBI agents] (Kevone Charleston.label = "Person" ∧ two agents.label != "Person" → Kevone Charleston.location = "Austell, Georgia")
+Q[FBI agents,FBI agents] (None_ML(FBI agents___two agents.attrs, FBI agents___Kevone Charleston.attrs) ∧ Kevone Charleston.age != 36 ∧ Kevone Charleston.location = "Austell, Georgia" → FBI agents.name != two agents.name)
+Q[FBI agents,FBI agents] (Kevone Charleston.age != 36 ∧ Kevone Charleston.nationality != "American" ∧ FBI agents.type != "law enforcement officers" ∧ FBI agents___Kevone Charleston.focus = "violent crimes and major offender squad" ∧ FBI agents.label != "Person" ∧ FBI agents___Kevone Charleston.doc_id = "3489738225_1" → FBI agents.label = "Person")

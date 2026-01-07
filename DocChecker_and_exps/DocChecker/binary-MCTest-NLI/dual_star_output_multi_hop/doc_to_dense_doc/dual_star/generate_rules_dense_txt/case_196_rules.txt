@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 196)
+S1: They had a big picnic, and it was a great end to the week.
+S2: Mary spent Sunday with her mom, dad, grandma, and grandpa.
+
+Predicates:
+1. Picnic.event_type
+2. Picnic.size
+3. Picnic.weekday
+4. Week.end_event
+5. Mary.activity
+6. Mary.family_member
+7. Sunday.date
+8. Mom.relationship
+9. Dad.relationship
+10. Grandma.relationship
+11. Grandpa.relationship
+12. Family.gathering
+13. Event.enjoyment_level
+14. Week.status
+15. Week.ongoing
+16. Event.conclusion
+17. Mary.time_spent
+18. Family.time_spent
+19. Sunday.activity
+20. Picnic.enjoyment
+21. Event.participants
+22. Mary.weekend_activity
+23. Family.event_type
+24. Temporal(picnic, Sunday)
+25. M_NLI(S1, S2)
+26. Violate(week, Sunday)
+27. Relationship(family, Mary)
+28. Event.positive_experience
+29. Temporal(week, picnic)
+30. Temporal(Sunday, week)
+
+Rules:
+1. Q[They, Picnic.size, Week.end_event](Picnic.size == "big" → Temporal(Picnic.size, Week.end_event))
+2. Q[They, Picnic.event_type, Week.end_event](Picnic.event_type == "picnic" → Temporal(Picnic.event_type, Week.end_event))
+3. Q[They, Picnic.weekday, Week.end_event](Picnic.weekday == "Sunday" → Temporal(Picnic.weekday, Week.end_event))
+4. Q[They, Week.status, Week.end_event](Week.status == "completed" → Temporal(Week.status, Week.end_event))
+5. Q[They, Week.ongoing, Week.end_event](Week.ongoing == false → Temporal(Week.ongoing, Week.end_event))
+6. Q[Mary, Mary.activity, Sunday.date](Mary.activity == "spending time with family" → Temporal(Mary.activity, Sunday.date))
+7. Q[Mary, Mary.family_member, Sunday.date](Mary.family_member == "mom" → Temporal(Mary.family_member, Sunday.date))
+8. Q[Mary, Mary.family_member, Sunday.date](Mary.family_member == "dad" → Temporal(Mary.family_member, Sunday.date))
+9. Q[Mary, Mary.family_member, Sunday.date](Mary.family_member == "grandma" → Temporal(Mary.family_member, Sunday.date))
+10. Q[Mary, Mary.family_member, Sunday.date](Mary.family_member == "grandpa" → Temporal(Mary.family_member, Sunday.date))
+11. Q[Mary, Family.gathering, Sunday.date](Family.gathering == "picnic" → Temporal(Mary, Sunday.date))
+12. Q[Mary, Sunday.activity, Week.ongoing](Sunday.activity == "family time" → Temporal(Mary, Week.ongoing))
+13. Q[Mom, Mom.relationship, Sunday.date](Mom.relationship == "mother" → Temporal(Mom.relationship, Sunday.date))
+14. Q[Dad, Dad.relationship, Sunday.date](Dad.relationship == "father" → Temporal(Dad.relationship, Sunday.date))
+15. Q[Grandma, Grandma.relationship, Sunday.date](Grandma.relationship == "grandmother" → Temporal(Grandma.relationship, Sunday.date))
+16. Q[Grandpa, Grandpa.relationship, Sunday.date](Grandpa.relationship == "grandfather" → Temporal(Grandpa.relationship, Sunday.date))
+17. Q[Family, Family.time_spent, Sunday.date](Family.time_spent == "quality time" → Temporal(Family.time_spent, Sunday.date))
+18. Q[Mary, Mary.weekend_activity, Week.ongoing](Mary.weekend_activity == "picnic" → Temporal(Mary.weekend_activity, Week.ongoing))
+19. Q[Mary, Event.enjoyment_level, Week.ongoing](Event.enjoyment_level == "high" → Temporal(Mary, Week.ongoing))
+20. Q[They, Event.conclusion, Week.end_event](Event.conclusion == "weekend picnic" → Temporal(They, Week.end_event))
+21. Q[They, Event.participants, Week.end_event](Event.participants == "family" → Temporal(They, Week.end_event))
+22. Q[They, Picnic.enjoyment, Week.end_event](Picnic.enjoyment == "great" → Temporal(They, Week.end_event))
+23. Q[They, Temporal(picnic, Sunday), Week.end_event](Temporal(picnic, Sunday) == true → Temporal(They, Week.end_event))
+24. Q[They, Violate(week, Sunday), Week.end_event](Violate(week, Sunday) == true → Temporal(They, Week.end_event))
+25. Q[They, Relationship(family, Mary), Week.end_event](Relationship(family, Mary) == "close" → Temporal(They, Week.end_event))
+26. Q[They, Event.positive_experience, Week.end_event](Event.positive_experience == "true" → Temporal(They, Week.end_event))
+27. Q[They, Temporal(week, picnic), Week.end_event](Temporal(week, picnic) == true → Temporal(They, Week.end_event))
+28. Q[They, Temporal(Sunday, week), Week.end_event](Temporal(Sunday, week) == true → Temporal(They, Week.end_event))
+29. Q[Mary, Mary.time_spent, Sunday.date](Mary.time_spent == "full day" → Temporal(Mary, Sunday.date))
+30. Q[They, Week.ongoing, Week.end_event](Week.ongoing == true → Temporal(They, Week.end_event))

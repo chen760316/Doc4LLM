@@ -1,0 +1,61 @@
+Source: dense_text.txt (Index 56)
+S1: The Recipient agrees that you will only use Confidential Information solely for the purpose as stated in Section II.
+S2: You may not use Confidential Information for any other purpose.
+
+Predicates:
+1. Recipient.agrees
+2. Recipient.uses(Confidential_Information)
+3. Confidential_Information.purpose(Sec_II)
+4. Recipient.uses(Confidential_Information).only_for(Sec_II)
+5. Recipient.may_not.use(Confidential_Information).for(any_other_purpose)
+6. Confidential_Information.not_used(for_any_other_purpose)
+7. Section_II.specifies(purpose)
+8. Recipient.acknowledges(Confidential_Information)
+9. Confidential_Information.is_confidential
+10. Recipient.is_bound(by_terms)
+11. Terms.include(Confidential_Information_usage)
+12. Usage.is_limited(to(Sec_II))
+13. Purpose.is_defined(in(Sec_II))
+14. Recipient.violates(terms).if(uses(Confidential_Information).for(any_other_purpose)
+15. Confidential_Information.is_not_used(for_other_purposes)
+16. Recipient.agrees(to(terms))
+17. Terms.state(usage_limitations)
+18. Usage_limitations.apply(to(Confidential_Information))
+19. Recipient.may_use(Confidential_Information).only_if(purpose_is(Sec_II))
+20. Purpose_is(Sec_II).is_required
+21. Recipient.is.prohibited(from(using(Confidential_Information).for(any_other_purpose))
+22. Violation.of(terms).occurs(if(Recipient.uses(Confidential_Information).for(any_other_purpose))
+23. Confidential_Information.usage.is.restricted
+24. Recipient.acknowledges(usage_restrictions)
+25. Section_II.includes(usage_conditions)
+26. Usage_conditions.limit(Confidential_Information)
+27. Recipient.is.informed(about(usage_limitations))
+28. Confidential_Information.usage.is.conditional
+29. Recipient.must.compile(with(usage_conditions))
+30. Violation.of(usage_conditions.is.a.breach)
+
+Rules:
+1. Q[The, Recipient.agrees, Recipient.violates(terms)](Recipient.agrees == true → Causal(Recipient.uses(Confidential_Information), Recipient.violates(terms)))
+2. Q[The, Recipient.uses(Confidential_Information), Recipient.may_not.use(Confidential_Information).for(any_other_purpose)](Recipient.uses(Confidential_Information) == true → Causal(Recipient.uses(Confidential_Information), Recipient.may_not.use(Confidential_Information).for(any_other_purpose)))
+3. Q[The, Confidential_Information.purpose(Sec_II), Recipient.violates(terms)](Confidential_Information.purpose(Sec_II) == true → Causal(Confidential_Information.purpose(Sec_II), Recipient.violates(terms)))
+4. Q[The, Recipient.uses(Confidential_Information).only_for(Sec_II), Recipient.is.prohibited(from(using(Confidential_Information).for(any_other_purpose)))](Recipient.uses(Confidential_Information).only_for(Sec_II) == true → Causal(Recipient.uses(Confidential_Information).only_for(Sec_II), Recipient.is.prohibited(from(using(Confidential_Information).for(any_other_purpose))))
+5. Q[The, Recipient.may_not.use(Confidential_Information).for(any_other_purpose), Confidential_Information.not_used(for_any_other_purpose)](Recipient.may_not.use(Confidential_Information).for(any_other_purpose) == true → Causal(Recipient.may_not.use(Confidential_Information).for(any_other_purpose), Confidential_Information.not_used(for_any_other_purpose)))
+6. Q[The, Section_II.specifies(purpose), Recipient.is.informed(about(usage_limitations))](Section_II.specifies(purpose) == true → Causal(Section_II.specifies(purpose), Recipient.is.informed(about(usage_limitations)))
+7. Q[The, Recipient.agrees(to(terms)), Recipient.acknowledges(usage_restrictions)](Recipient.agrees(to(terms)) == true → Causal(Recipient.agrees(to(terms)), Recipient.acknowledges(usage_restrictions)))
+8. Q[The, Terms.include(Confidential_Information_usage), Usage.is.limited(to(Sec_II))](Terms.include(Confidential_Information_usage) == true → Causal(Terms.include(Confidential_Information_usage), Usage.is.limited(to(Sec_II)))
+9. Q[The, Recipient.violates(terms), Confidential_Information.is_not_used(for_other_purposes)](Recipient.violates(terms) == true → Causal(Recipient.violates(terms), Confidential_Information.is_not_used(for_other_purposes)))
+10. Q[The, Purpose.is_defined(in(Sec_II)), Recipient.must.compile(with(usage_conditions))](Purpose.is_defined(in(Sec_II)) == true → Causal(Purpose.is_defined(in(Sec_II)), Recipient.must.compile(with(usage_conditions)))
+11. Q[The, Recipient.is_bound(by_terms), Terms.state(usage_limitations)](Recipient.is_bound(by_terms) == true → Causal(Recipient.is_bound(by_terms), Terms.state(usage_limitations)))
+12. Q[The, Usage_conditions.limit(Confidential_Information), Recipient.acknowledges(Confidential_Information)](Usage_conditions.limit(Confidential_Information) == true → Causal(Usage_conditions.limit(Confidential_Information), Recipient.acknowledges(Confidential_Information)))
+13. Q[The, Recipient.may_use(Confidential_Information).only_if(purpose_is(Sec_II)), Confidential_Information.usage.is.conditional](Recipient.may_use(Confidential_Information).only_if(purpose_is(Sec_II)) == true → Causal(Recipient.may_use(Confidential_Information).only_if(purpose_is(Sec_II)), Confidential_Information.usage.is.conditional))
+14. Q[The, Recipient.is.prohibited(from(using(Confidential_Information).for(any_other_purpose)), Violation.of(terms)](Recipient.is.prohibited(from(using(Confidential_Information).for(any_other_purpose)) == true → Causal(Recipient.is.prohibited(from(using(Confidential_Information).for(any_other_purpose)), Violation.of(terms)))
+15. Q[The, Recipient.agrees, Recipient.is.informed(about(usage_limitations))](Recipient.agrees == true → Causal(Recipient.agrees, Recipient.is.informed(about(usage_limitations)))
+16. Q[The, Confidential_Information.usage.is.restricted, Recipient.acknowledges(usage_restrictions)](Confidential_Information.usage.is.restricted == true → Causal(Confidential_Information.usage.is.restricted, Recipient.acknowledges(usage_restrictions)))
+17. Q[The, Section_II.includes(usage_conditions), Recipient.is.bound(by_terms)](Section_II.includes(usage_conditions) == true → Causal(Section_II.includes(usage_conditions), Recipient.is.bound(by_terms)))
+18. Q[The, Recipient.violates(terms), Usage.is.limited(to(Sec_II))](Recipient.violates(terms) == true → Causal(Recipient.violates(terms), Usage.is.limited(to(Sec_II)))
+19. Q[The, Recipient.may_not.use(Confidential_Information).for(any_other_purpose), Violation.of(usage_conditions.is.a.breach)](Recipient.may_not.use(Confidential_Information).for(any_other_purpose) == true → Causal(Recipient.may_not.use(Confidential_Information).for(any_other_purpose), Violation.of(usage_conditions.is.a.breach))
+20. Q[The, Recipient.is.informed(about(usage_limitations)), Confidential_Information.usage.is.conditional](Recipient.is.informed(about(usage_limitations)) == true → Causal(Recipient.is.informed(about(usage_limitations)), Confidential_Information.usage.is.conditional)
+21. Q[The, Recipient.acknowledges(usage_restrictions), Recipient.is.prohibited(from(using(Confidential_Information).for(any_other_purpose)))](Recipient.acknowledges(usage_restrictions) == true → Causal(Recipient.acknowledges(usage_restrictions), Recipient.is.prohibited(from(using(Confidential_Information).for(any_other_purpose))))
+22. Q[The, Terms.state(usage_limitations), Recipient.violates(terms)](Terms.state(usage_limitations) == true → Causal(Terms.state(usage_limitations), Recipient.violates(terms))
+23. Q[The, Recipient.must.compile(with(usage_conditions)), Confidential_Information.usage.is.restricted](Recipient.must.compile(with(usage_conditions)) == true → Causal(Recipient.must.compile(with(usage_conditions)), Confidential_Information.usage.is.restricted)
+24. Q[The, Recipient

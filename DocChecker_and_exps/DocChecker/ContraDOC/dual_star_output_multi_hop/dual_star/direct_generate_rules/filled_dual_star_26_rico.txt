@@ -1,0 +1,34 @@
+Predicates:
+Baxter.label != "Family"
+Baxter.label = "Family"
+Baxter.location != "unspecified"
+Baxter.location = "unspecified"
+Baxter.name != "Baxter"
+Baxter.name != Parcher.name
+Baxter.name = "Baxter"
+Baxter.status != "middle-class"
+Baxter.status != Parcher.status
+Baxter.status = "middle-class"
+Baxter___Parcher.doc_id = "3488771877_3"
+Baxter___Parcher.relationship = "The Baxter family are neighbors to the Parcher family."
+None_ML(Baxter.attrs, Parcher.attrs)
+Parcher.label != "Family"
+Parcher.label = "Family"
+Parcher.location != "unspecified"
+Parcher.location = "unspecified"
+Parcher.name != "Parcher"
+Parcher.name = "Parcher"
+Parcher.status != "unspecified"
+Parcher.status = "unspecified"
+
+Rules:
+Q[Baxter,Baxter] (Parcher.name = "Parcher" ∧ Baxter___Parcher.doc_id = "3488771877_3" ∧ Parcher.location = "unspecified" ∧ Baxter.label = "Family" ∧ Parcher.label != "Family" ∧ Parcher.location != "unspecified" → Parcher.status != "unspecified")
+Q[Baxter,Baxter] (Baxter.name = "Baxter" ∧ Baxter.location = "unspecified" ∧ None_ML(Baxter.attrs, Parcher.attrs) → Baxter.status != Parcher.status)
+Q[Baxter,Baxter] (Baxter.status != "middle-class" ∧ Baxter___Parcher.relationship = "The Baxter family are neighbors to the Parcher family." ∧ Parcher.name = "Parcher" ∧ Baxter___Parcher.doc_id = "3488771877_3" ∧ Baxter.label = "Family" → Baxter.name = "Baxter")
+Q[Baxter,Baxter] (Baxter.location != "unspecified" ∧ Parcher.location = "unspecified" ∧ Baxter.name != "Baxter" ∧ Parcher.location != "unspecified" → Baxter___Parcher.relationship = "The Baxter family are neighbors to the Parcher family.")
+Q[Baxter,Baxter] (Baxter.status = "middle-class" ∧ Baxter.label != "Family" → Parcher.label = "Family")
+Q[Baxter,Baxter] (Baxter.label != "Family" ∧ Baxter.label = "Family" ∧ Baxter.status != "middle-class" ∧ Parcher.location != "unspecified" ∧ Parcher.status != "unspecified" ∧ Parcher.label = "Family" → Parcher.status = "unspecified")
+Q[Baxter,Baxter] (Baxter.status = "middle-class" ∧ Baxter.name = "Baxter" ∧ Parcher.name = "Parcher" ∧ Baxter.name != Parcher.name → Baxter.status != "middle-class")
+Q[Baxter,Baxter] (Baxter.name != Parcher.name ∧ Baxter.name != "Baxter" ∧ Parcher.location != "unspecified" ∧ Baxter.name = "Baxter" ∧ Parcher.name = "Parcher" → Baxter.status = "middle-class")
+Q[Baxter,Baxter] (Baxter.status != Parcher.status ∧ Baxter.status = "middle-class" → Parcher.name = "Parcher")
+Q[Baxter,Baxter] (Parcher.status != "unspecified" ∧ Baxter.status != "middle-class" ∧ None_ML(Baxter.attrs, Parcher.attrs) → Baxter.location != "unspecified")

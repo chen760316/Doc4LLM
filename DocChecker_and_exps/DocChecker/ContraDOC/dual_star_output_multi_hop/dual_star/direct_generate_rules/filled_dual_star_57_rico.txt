@@ -1,0 +1,49 @@
+Predicates:
+Chris Baldry.label != "Person"
+Chris Baldry.label = "Person"
+Chris Baldry.name != "Chris Baldry"
+Chris Baldry.name != Jenny.name
+Chris Baldry.name != Kitty Baldry.name
+Chris Baldry.name != Margaret Grey.name
+Chris Baldry.name = "Chris Baldry"
+Chris Baldry___Jenny.doc_id != Chris Baldry___Kitty Baldry.doc_id
+Chris Baldry___Jenny.doc_id = "3488771834_5"
+Chris Baldry___Jenny.relationship != Chris Baldry___Kitty Baldry.relationship
+Chris Baldry___Jenny.relationship = "Chris returns to the estate thinking he is still twenty years old."
+Chris Baldry___Kitty Baldry.doc_id = "3488771834_6"
+Chris Baldry___Kitty Baldry.relationship = "Chris is now married to Kitty, despite his feelings for Margaret."
+Chris Baldry___Kitty Baldry.time = "fifteen years later"
+Chris Baldry___Margaret Grey.doc_id != Chris Baldry___Kitty Baldry.doc_id
+Chris Baldry___Margaret Grey.doc_id = "3488771834_5"
+Chris Baldry___Margaret Grey.relationship != Chris Baldry___Jenny.relationship
+Chris Baldry___Margaret Grey.relationship != Chris Baldry___Kitty Baldry.relationship
+Chris Baldry___Margaret Grey.relationship = "Chris had a summer fling with Margaret fifteen years prior."
+Jenny.label != "Person"
+Jenny.label = "Person"
+Jenny.name != "Jenny"
+Jenny.name != Kitty Baldry.name
+Jenny.name = "Jenny"
+Kitty Baldry.label != "Person"
+Kitty Baldry.label = "Person"
+Kitty Baldry.name != "Kitty Baldry"
+Kitty Baldry.name = "Kitty Baldry"
+Margaret Grey.label != "Person"
+Margaret Grey.label = "Person"
+Margaret Grey.name != "Margaret Grey"
+Margaret Grey.name != Jenny.name
+Margaret Grey.name != Kitty Baldry.name
+Margaret Grey.name = "Margaret Grey"
+None_ML(Chris Baldry___Jenny.attrs, Chris Baldry___Margaret Grey.attrs)
+None_ML(Margaret Grey.attrs, Jenny.attrs)
+
+Rules:
+Q[Chris Baldry,Chris Baldry] (Chris Baldry___Kitty Baldry.time = "fifteen years later" ∧ Chris Baldry___Margaret Grey.relationship = "Chris had a summer fling with Margaret fifteen years prior." ∧ None_ML(Margaret Grey.attrs, Jenny.attrs) → Chris Baldry.label != "Person")
+Q[Chris Baldry,Chris Baldry] (Jenny.name != Kitty Baldry.name ∧ Kitty Baldry.name = "Kitty Baldry" → Chris Baldry.name != "Chris Baldry")
+Q[Chris Baldry,Chris Baldry] (Chris Baldry.name != Margaret Grey.name ∧ Chris Baldry.name != "Chris Baldry" ∧ None_ML(Margaret Grey.attrs, Jenny.attrs) ∧ Kitty Baldry.label = "Person" → Jenny.label = "Person")
+Q[Chris Baldry,Chris Baldry] (Margaret Grey.name != "Margaret Grey" ∧ Jenny.label = "Person" ∧ Chris Baldry.name != "Chris Baldry" ∧ Chris Baldry___Jenny.relationship = "Chris returns to the estate thinking he is still twenty years old." ∧ Margaret Grey.name != Kitty Baldry.name ∧ Kitty Baldry.name != "Kitty Baldry" → Chris Baldry___Margaret Grey.doc_id != Chris Baldry___Kitty Baldry.doc_id)
+Q[Chris Baldry,Chris Baldry] (Margaret Grey.name != Jenny.name ∧ Margaret Grey.label = "Person" ∧ Chris Baldry___Margaret Grey.relationship != Chris Baldry___Jenny.relationship ∧ Chris Baldry___Jenny.doc_id = "3488771834_5" ∧ Chris Baldry___Kitty Baldry.relationship = "Chris is now married to Kitty, despite his feelings for Margaret." → Margaret Grey.label != "Person")
+Q[Chris Baldry,Chris Baldry] (Jenny.name = "Jenny" ∧ Chris Baldry___Margaret Grey.doc_id = "3488771834_5" ∧ Margaret Grey.name != "Margaret Grey" ∧ Jenny.name != "Jenny" → Chris Baldry___Jenny.relationship = "Chris returns to the estate thinking he is still twenty years old.")
+Q[Chris Baldry,Chris Baldry] (Chris Baldry___Kitty Baldry.doc_id = "3488771834_6" ∧ Jenny.name = "Jenny" → Margaret Grey.name != Kitty Baldry.name)
+Q[Chris Baldry,Chris Baldry] (Chris Baldry___Margaret Grey.doc_id != Chris Baldry___Kitty Baldry.doc_id ∧ None_ML(Chris Baldry___Jenny.attrs, Chris Baldry___Margaret Grey.attrs) ∧ Margaret Grey.name != Jenny.name ∧ Chris Baldry___Margaret Grey.doc_id = "3488771834_5" ∧ Chris Baldry.name != Kitty Baldry.name ∧ Chris Baldry___Kitty Baldry.relationship = "Chris is now married to Kitty, despite his feelings for Margaret." → Chris Baldry.name != Margaret Grey.name)
+Q[Chris Baldry,Chris Baldry] (Margaret Grey.name != Jenny.name ∧ Kitty Baldry.name != "Kitty Baldry" ∧ None_ML(Chris Baldry___Jenny.attrs, Chris Baldry___Margaret Grey.attrs) → Chris Baldry___Kitty Baldry.doc_id = "3488771834_6")
+Q[Chris Baldry,Chris Baldry] (Chris Baldry___Kitty Baldry.doc_id = "3488771834_6" ∧ Chris Baldry.name != "Chris Baldry" ∧ Chris Baldry___Jenny.doc_id != Chris Baldry___Kitty Baldry.doc_id ∧ Margaret Grey.name != Kitty Baldry.name ∧ Jenny.name != Kitty Baldry.name → Chris Baldry___Kitty Baldry.time = "fifteen years later")

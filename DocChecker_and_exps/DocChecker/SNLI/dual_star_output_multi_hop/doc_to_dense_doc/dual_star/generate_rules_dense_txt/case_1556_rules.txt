@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 1556)
+S1: The three males are inside.
+S2: A man and a woman are sitting down watching television.
+
+Predicates:
+1. M_NLI(S1, S2)
+2. Relation(three_males, inside)
+3. Relation(man, sitting_down)
+4. Relation(woman, sitting_down)
+5. Relation(man, watching_television)
+6. Relation(woman, watching_television)
+7. violate(S1, S2)
+8. node_name.males_count
+9. node_name.male_1
+10. node_name.male_2
+11. node_name.male_3
+12. node_name.female
+13. node_name.location
+14. node_name.activity
+15. "inside".location
+16. "sitting_down".activity
+17. "watching_television".activity
+18. "three_males".count
+19. "man_and_woman".count
+20. "television".object
+21. "males".gender
+22. "female".gender
+23. "man".gender
+24. "woman".gender
+25. Relation(three_males, different_context)
+26. Relation(man_and_woman, different_location)
+27. node_name.context
+28. node_name.different_context
+29. node_name.different_location
+30. "inside".context
+
+Rules:
+1. Q[The, x0, y0](M_NLI(S1, S2) → Relation(three_males, inside))
+2. Q[The, x0, y0](M_NLI(S1, S2) → Relation(man_and_woman, different_location))
+3. Q[The, x0, y0](node_name.males_count == 3 → Relation(three_males, inside))
+4. Q[The, x0, y0](node_name.males_count == 3 → violate(S1, S2))
+5. Q[The, x0, y0](node_name.male_1.gender == "male" → Relation(three_males, inside))
+6. Q[The, x0, y0](node_name.male_2.gender == "male" → Relation(three_males, inside))
+7. Q[The, x0, y0](node_name.male_3.gender == "male" → Relation(three_males, inside))
+8. Q[The, x0, y0](node_name.female.gender == "female" → Relation(man_and_woman, different_location))
+9. Q[The, x0, y0](node_name.activity == "watching_television" → Relation(man_and_woman, different_location))
+10. Q[The, x0, y0](node_name.location == "inside" → Relation(three_males, inside))
+11. Q[The, x0, y0](node_name.activity == "sitting_down" → Relation(man_and_woman, different_location))
+12. Q[The, x0, y0](node_name.context == "inside" → Relation(three_males, inside))
+13. Q[The, x0, y0](node_name.different_context == "different" → Relation(three_males, different_context))
+14. Q[The, x0, y0](node_name.different_location == "different" → Relation(man_and_woman, different_location))
+15. Q[The, x0, y0](node_name.males_count == 3 ∧ node_name.female.gender == "female" → violate(S1, S2))
+16. Q[The, x0, y0](node_name.activity == "watching_television" ∧ node_name.males_count == 3 → violate(S1, S2))
+17. Q[The, x0, y0](node_name.male_1.gender == "male" ∧ node_name.female.gender == "female" → Relation(man_and_woman, different_location))
+18. Q[The, x0, y0](node_name.male_2.gender == "male" ∧ node_name.female.gender == "female" → Relation(man_and_woman, different_location))
+19. Q[The, x0, y0](node_name.male_3.gender == "male" ∧ node_name.female.gender == "female" → Relation(man_and_woman, different_location))
+20. Q[The, x0, y0](node_name.activity == "sitting_down" ∧ node_name.males_count == 3 → violate(S1, S2))
+21. Q[The, x0, y0](node_name.location == "inside" ∧ node_name.activity == "watching_television" → violate(S1, S2))
+22. Q[The, x0, y0](node_name.males_count == 3 ∧ node_name.activity == "sitting_down" → Relation(three_males, inside))
+23. Q[The, x0, y0](node_name.males_count == 3 ∧ node_name.activity == "watching_television" → violate(S1, S2))
+24. Q[The, x0, y0](node_name.male_1.gender == "male" ∧ node_name.activity == "watching_television" → Relation(man, watching_television))
+25. Q[The, x0, y0](node_name.male_2.gender == "male" ∧ node_name.activity == "watching_television" → Relation(man, watching_television))
+26. Q[The, x0, y0](node_name.male_3.gender == "male" ∧ node_name.activity == "watching_television" → Relation(man, watching_television))
+27. Q[The, x0, y0](node_name.female.gender == "female" ∧ node_name.activity == "watching_television" → Relation(woman, watching_television))
+28. Q[The, x0, y0](node_name.female.gender == "female" ∧ node_name.activity == "sitting_down" → Relation(woman, sitting_down))
+29. Q[The, x0, y0](node_name.males_count == 3 ∧ node_name.female.gender == "female" → Relation(three_males, different_context))
+30. Q[The, x0, y0](node_name.males_count == 3 ∧ node_name.activity == "sitting_down" ∧ node_name.female.gender == "female" → violate(S1, S2))

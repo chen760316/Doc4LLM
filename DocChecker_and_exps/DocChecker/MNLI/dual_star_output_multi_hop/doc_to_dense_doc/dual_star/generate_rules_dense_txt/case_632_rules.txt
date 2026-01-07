@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 632)
+S1: H e d i e d f a l l i n g o f f a b r i d g e w h i l e d r u n k , b u t h e r e h e h a d s o b e r e d u p .
+S2: O n e , w h o h a d d i e d f a l l i n g o f f a b r i d g e w h i l e d r u n k , w a s c u r i n g h i m s e l f o f t h e s h o c k b y r e m a i n i n g d e a d d r u n k .
+
+Predicates:
+1. H.sobered_up
+2. H.died
+3. H.fell_off_bridge
+4. H.drunk
+5. One.died
+6. One.fell_off_bridge
+7. One.drunk
+8. One.sobered_up
+9. One.curled_up
+10. shock.remain
+11. shock.sobered_up
+12. shock.dead_drunk
+13. H.sobered_up_before_dying
+14. One.remained_dead_drunk
+15. H.fell_off_bridge_while_drunk
+16. One.fell_off_bridge_while_drunk
+17. H.sobered_up_after_falling
+18. One.sobered_up_after_falling
+19. H.died_after_sobering_up
+20. One.died_while_dead_drunk
+21. H.sobered_up_during_fall
+22. One.sobered_up_during_fall
+23. H.experienced_shock
+24. One.experienced_shock
+25. H.sobered_up_and_died
+26. One.remained_drunk_and_died
+27. H.sobered_up_before_fall
+28. One.sobered_up_before_fall
+29. H.died_due_to_fall
+30. One.died_due_to_drunk
+
+Rules:
+1. Q[H, H.sobered_up == true, H.died == true](H.sobered_up == true → Causal(H.sobered_up, H.died))
+2. Q[H, H.fell_off_bridge == true, H.drunk == true](H.fell_off_bridge == true → Causal(H.fell_off_bridge, H.drunk))
+3. Q[H, H.sobered_up_before_dying == true, H.died == true](H.sobered_up_before_dying == true → Causal(H.sobered_up_before_dying, H.died))
+4. Q[H, H.drunk == true, H.fell_off_bridge == true](H.drunk == true → Causal(H.drunk, H.fell_off_bridge))
+5. Q[One, One.remained_dead_drunk == true, One.died == true](One.remained_dead_drunk == true → Causal(One.remained_dead_drunk, One.died))
+6. Q[One, One.fell_off_bridge == true, One.drunk == true](One.fell_off_bridge == true → Causal(One.fell_off_bridge, One.drunk))
+7. Q[One, One.sobered_up == true, One.died == true](One.sobered_up == true → Causal(One.sobered_up, One.died))
+8. Q[One, One.sobered_up_after_falling == true, One.died == true](One.sobered_up_after_falling == true → Causal(One.sobered_up_after_falling, One.died))
+9. Q[One, One.died_while_dead_drunk == true, One.drunk == true](One.died_while_dead_drunk == true → Causal(One.died_while_dead_drunk, One.drunk))
+10. Q[H, H.sobered_up_during_fall == true, H.died == true](H.sobered_up_during_fall == true → Causal(H.sobered_up_during_fall, H.died))
+11. Q[H, H.fell_off_bridge_while_drunk == true, H.drunk == true](H.fell_off_bridge_while_drunk == true → Causal(H.fell_off_bridge_while_drunk, H.drunk))
+12. Q[One, One.fell_off_bridge_while_drunk == true, One.drunk == true](One.fell_off_bridge_while_drunk == true → Causal(One.fell_off_bridge_while_drunk, One.drunk))
+13. Q[H, H.died_due_to_fall == true, H.fell_off_bridge == true](H.died_due_to_fall == true → Causal(H.died_due_to_fall, H.fell_off_bridge))
+14. Q[One, One.died_due_to_drunk == true, One.drunk == true](One.died_due_to_drunk == true → Causal(One.died_due_to_drunk, One.drunk))
+15. Q[H, H.sobered_up_before_fall == true, H.fell_off_bridge == true](H.sobered_up_before_fall == true → Causal(H.sobered_up_before_fall, H.fell_off_bridge))
+16. Q[One, One.sobered_up_before_fall == true, One.fell_off_bridge == true](One.sobered_up_before_fall == true → Causal(One.sobered_up_before_fall, One.fell_off_bridge))
+17. Q[H, H.sobered_up_and_died == true, H.died == true](H.sobered_up_and_died == true → Causal(H.sobered_up_and_died, H.died))
+18. Q[One, One.remained_drunk_and_died == true, One.died == true](One.remained_drunk_and_died == true → Causal(One.remained_drunk_and_died, One.died))
+19. Q[H, H.experienced_shock == true, H.sobered_up == true](H.experienced_shock == true → Causal(H.experienced_shock, H.sobered_up))
+20. Q[One, One.experienced_shock == true, One.remained_dead_drunk == true](One.experienced_shock == true → Causal(One.experienced_shock, One.remained_dead_drunk))
+21. Q[H, H.sobered_up_after_falling == true, H.fell_off_bridge == true](H.sobered_up_after_falling == true → Causal(H.sobered_up_after_falling, H.fell_off_bridge))
+22. Q[One, One.sobered_up_after_falling == true, One.fell_off_bridge == true](One.sobered_up_after_falling == true → Causal(One.sobered_up_after_falling, One.fell_off_bridge))
+23. Q[H, H.died_after_sobering_up == true, H.sobered_up == true](H.died_after_sobering_up == true → Causal(H.died_after_sobering_up, H.sobered_up))
+24. Q[One, One.died_while_dead_drunk == true, One.remained_dead_drunk == true](One.died_while_dead_drunk == true → Causal(One.died_while_dead_drunk, One.remained_dead_drunk))
+25. Q[H, H.fell_off_bridge == true, H.sobered_up == false](H.fell_off_bridge == true → Causal(H.fell_off_bridge, H.sobered_up == false))
+26. Q[One, One.fell_off_bridge == true, One.sobered_up == false](One.fell_off_bridge == true → Causal(One.fell_off_bridge, One.sobered_up == false))
+27. Q[H, H.sobered_up == false, H.died == true](H.sobered_up == false → Causal(H.sobered_up == false, H.died))
+28. Q[One, One.sobered_up == false, One.died == true](One.sobered_up == false → Causal(One.sobered_up == false, One.died))
+29. Q[H, H.drunk == true, H.sobered_up == false](H.drunk == true → Causal(H.drunk, H.sobered_up == false))
+30. Q[One, One.drunk == true, One.sobered_up == false](One.drunk == true → Causal(One.drunk, One.sobered_up == false))

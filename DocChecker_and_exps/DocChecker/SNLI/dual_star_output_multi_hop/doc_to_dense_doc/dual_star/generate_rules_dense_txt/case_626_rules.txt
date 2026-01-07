@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 626)
+S1: Two Asian children are looking at another child who is eating in a restaurant.
+S2: The children are staring.
+
+Predicates:
+1. Child1.nationality
+2. Child2.nationality
+3. Child3.action
+4. Restaurant.location
+5. Child1.emotion
+6. Child2.emotion
+7. Child3.activity
+8. Child1.gaze_direction
+9. Child2.gaze_direction
+10. Child3.food_type
+11. Restaurant.type
+12. Child1.age
+13. Child2.age
+14. Child3.age
+15. Child1.gender
+16. Child2.gender
+17. Child3.gender
+18. "looking_at".intensity
+19. "staring".intensity
+20. "eating".duration
+21. "restaurant".capacity
+22. Child1.distance_to_child3
+23. Child2.distance_to_child3
+24. "looking_at".duration
+25. "staring".duration
+26. "eating".frequency
+27. Child1.interaction_type
+28. Child2.interaction_type
+29. Child3.interaction_type
+30. "restaurant".time_of_day
+
+Rules:
+1. Q[Two, Child1.action, Child2.action](Child1.action == "looking_at" → Negation(Child1.action, Child2.action))
+2. Q[Two, Child1.gaze_direction, Child2.gaze_direction](Child1.gaze_direction == Child2.gaze_direction → Negation(Child1.gaze_direction, Child2.gaze_direction))
+3. Q[Two, Child1.emotion, Child2.emotion](Child1.emotion == "curious" → Negation(Child1.emotion, Child2.emotion))
+4. Q[Two, Child1.distance_to_child3, Child2.distance_to_child3](Child1.distance_to_child3 < 5 → Negation(Child1.distance_to_child3, Child2.distance_to_child3))
+5. Q[Two, Child1.nationality, Child2.nationality](Child1.nationality == "Asian" → Negation(Child1.nationality, Child2.nationality))
+6. Q[Two, "looking_at".intensity, "staring".intensity]( "looking_at".intensity < "staring".intensity → Negation("looking_at".intensity, "staring".intensity))
+7. Q[Two, "looking_at".duration, "staring".duration]( "looking_at".duration < "staring".duration → Negation("looking_at".duration, "staring".duration))
+8. Q[Two, Child3.activity, Child3.action](Child3.activity == "eating" → Negation(Child3.activity, Child3.action))
+9. Q[Two, Restaurant.type, Restaurant.location](Restaurant.type == "family" → Negation(Restaurant.type, Restaurant.location))
+10. Q[Two, Child1.age, Child2.age](Child1.age < 10 → Negation(Child1.age, Child2.age))
+11. Q[Two, Child1.gender, Child2.gender](Child1.gender == "female" → Negation(Child1.gender, Child2.gender))
+12. Q[Two, Child1.interaction_type, Child2.interaction_type](Child1.interaction_type == "observing" → Negation(Child1.interaction_type, Child2.interaction_type))
+13. Q[Two, "eating".duration, "eating".frequency]( "eating".duration > 5 → Negation("eating".duration, "eating".frequency))
+14. Q[Two, Restaurant.capacity, Restaurant.type](Restaurant.capacity > 50 → Negation(Restaurant.capacity, Restaurant.type))
+15. Q[Two, Child1.nationality, Child3.nationality](Child1.nationality == "Asian" → Negation(Child1.nationality, Child3.nationality))
+16. Q[Two, Child2.nationality, Child3.nationality](Child2.nationality == "Asian" → Negation(Child2.nationality, Child3.nationality))
+17. Q[Two, Child1.gaze_direction, Child3.gaze_direction](Child1.gaze_direction == "towards" → Negation(Child1.gaze_direction, Child3.gaze_direction))
+18. Q[Two, Child2.gaze_direction, Child3.gaze_direction](Child2.gaze_direction == "towards" → Negation(Child2.gaze_direction, Child3.gaze_direction))
+19. Q[Two, "staring".intensity, "looking_at".intensity]( "staring".intensity > "looking_at".intensity → Negation("staring".intensity, "looking_at".intensity))
+20. Q[Two, "staring".duration, "looking_at".duration]( "staring".duration > "looking_at".duration → Negation("staring".duration, "looking_at".duration))
+21. Q[Two, Child1.emotion, Child3.emotion](Child1.emotion == "interested" → Negation(Child1.emotion, Child3.emotion))
+22. Q[Two, Child2.emotion, Child3.emotion](Child2.emotion == "interested" → Negation(Child2.emotion, Child3.emotion))
+23. Q[Two, Child1.age, Child3.age](Child1.age < 10 → Negation(Child1.age, Child3.age))
+24. Q[Two, Child2.age, Child3.age](Child2.age < 10 → Negation(Child2.age, Child3.age))
+25. Q[Two, Child1.distance_to_child3, Child1.action](Child1.distance_to_child3 < 5 → Negation(Child1.distance_to_child3, Child1.action))
+26. Q[Two, Child2.distance_to_child3, Child2.action](Child2.distance_to_child3 < 5 → Negation(Child2.distance_to_child3, Child2.action))
+27. Q[Two, "eating".frequency, "staring".duration]( "eating".frequency < 3 → Negation("eating".frequency, "staring".duration))
+28. Q[Two, "restaurant".time_of_day, "restaurant".capacity]( "restaurant".time_of_day == "dinner" → Negation("restaurant".time_of_day, "restaurant".capacity))
+29. Q[Two, Child1.interaction_type, Child3.interaction_type](Child1.interaction_type == "watching" → Negation(Child1.interaction_type, Child3.interaction_type))
+30. Q[Two, Child2.interaction_type, Child3.interaction_type](Child2.interaction_type == "watching" → Negation(Child2.interaction_type, Child3.interaction_type))

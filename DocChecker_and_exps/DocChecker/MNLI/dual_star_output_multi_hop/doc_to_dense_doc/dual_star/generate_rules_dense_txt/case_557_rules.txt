@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 557)
+S1: I watch the Cosby Show every single day.
+S2: I just don't watch it because of the timing.
+
+Predicates:
+1. Speaker.watches(Cosby_Show.daily)
+2. Speaker.does_not_watch(Cosby_Show.timing)
+3. M_NLI(S1, S2)
+4. Factual(Speaker.watches(Cosby_Show), true)
+5. Factual(Speaker.does_not_watch(Cosby_Show), true)
+6. violate(Speaker.watches(Cosby_Show), Speaker.does_not_watch(Cosby_Show))
+7. Cosby_Show.is_watched_by(Speaker.daily)
+8. Cosby_Show.is_not_watched_by(Speaker.timing)
+9. Speaker.has_issue_with(Cosby_Show.timing)
+10. Speaker.enjoys(Cosby_Show)
+11. Speaker.watches(Cosby_Show) -> Speaker.has_time
+12. Speaker.does_not_watch(Cosby_Show) -> Speaker.lacks_time
+13. Speaker.watches(Cosby_Show) <-> Speaker.has_time
+14. Speaker.does_not_watch(Cosby_Show) <-> Speaker.lacks_time
+15. Speaker.watches(Cosby_Show) ^ Speaker.does_not_watch(Cosby_Show) -> contradiction
+16. Cosby_Show.is_a_show
+17. Speaker.watches(show) -> show.is_a_show
+18. Speaker.does_not_watch(show) -> show.is_a_show
+19. Speaker.watches(Cosby_Show) -> Speaker.is_a_fan
+20. Speaker.does_not_watch(Cosby_Show) -> Speaker.is_not_a_fan
+21. Speaker.watches(Cosby_Show) ^ Speaker.is_a_fan
+22. Speaker.does_not_watch(Cosby_Show) ^ Speaker.is_not_a_fan
+23. Speaker.watches(Cosby_Show) -> Speaker.has_interest
+24. Speaker.does_not_watch(Cosby_Show) -> Speaker.lacks_interest
+25. Speaker.watches(Cosby_Show) -> Speaker.enjoys_entertainment
+26. Speaker.does_not_watch(Cosby_Show) -> Speaker.avoids_entertainment
+27. Speaker.watches(Cosby_Show) ^ Speaker.enjoys_entertainment
+28. Speaker.does_not_watch(Cosby_Show) ^ Speaker.avoids_entertainment
+29. Cosby_Show.has_viewers
+30. Speaker.is_a_viewer_of(Cosby_Show) -> Speaker.watches(Cosby_Show)
+
+Rules:
+1. Q[watch, Speaker.watches(Cosby_Show.daily), Speaker.does_not_watch(Cosby_Show.timing)](Speaker.watches(Cosby_Show.daily) → Factual(Speaker.watches(Cosby_Show), true))
+2. Q[watch, Speaker.watches(Cosby_Show.daily), Speaker.does_not_watch(Cosby_Show.timing)](Speaker.does_not_watch(Cosby_Show.timing) → Factual(Speaker.does_not_watch(Cosby_Show), true))
+3. Q[watch, Speaker.watches(Cosby_Show.daily), Speaker.does_not_watch(Cosby_Show.timing)](Speaker.watches(Cosby_Show.daily) ^ Speaker.does_not_watch(Cosby_Show.timing) → Factual(Speaker.watches(Cosby_Show), true))
+4. Q[watch, Speaker.watches(Cosby_Show.daily), Speaker.does_not_watch(Cosby_Show.timing)](Speaker.watches(Cosby_Show.daily) ^ Speaker.does_not_watch(Cosby_Show.timing) → violate(Speaker.watches(Cosby_Show), Speaker.does_not_watch(Cosby_Show)))
+5. Q[watch, Speaker.watches(Cosby_Show.daily), Speaker.does_not_watch(Cosby_Show.timing)](Speaker.watches(Cosby_Show.daily) → Speaker.has_time)
+6. Q[watch, Speaker.watches(Cosby_Show.daily), Speaker.does_not_watch(Cosby_Show.timing)](Speaker.does_not_watch(Cosby_Show.timing) → Speaker.lacks_time)
+7. Q[watch, Speaker.watches(Cosby_Show.daily), Speaker.does_not_watch(Cosby_Show.timing)](Speaker.watches(Cosby_Show.daily) <-> Speaker.has_time)
+8. Q[watch, Speaker.watches(Cosby_Show.daily), Speaker.does_not_watch(Cosby_Show.timing)](Speaker.does_not_watch(Cosby_Show.timing) <-> Speaker.lacks_time)
+9. Q[watch, Speaker.watches(Cosby_Show.daily), Speaker.does_not_watch(Cosby_Show.timing)](Speaker.watches(Cosby_Show.daily) ^ Speaker.does_not_watch(Cosby_Show.timing) → contradiction)
+10. Q[watch, Speaker.watches(Cosby_Show.daily), Speaker.does_not_watch(Cosby_Show.timing)](Speaker.watches(Cosby_Show.daily) → Speaker.is_a_fan)
+11. Q[watch, Speaker.watches(Cosby_Show.daily), Speaker.does_not_watch(Cosby_Show.timing)](Speaker.does_not_watch(Cosby_Show.timing) → Speaker.is_not_a_fan)
+12. Q[watch, Speaker.watches(Cosby_Show.daily), Speaker.does_not_watch(Cosby_Show.timing)](Speaker.watches(Cosby_Show.daily) → Speaker.has_interest)
+13. Q[watch, Speaker.watches(Cosby_Show.daily), Speaker.does_not_watch(Cosby_Show.timing)](Speaker.does_not_watch(Cosby_Show.timing) → Speaker.lacks_interest)
+14. Q[watch, Speaker.watches(Cosby_Show.daily), Speaker.does_not_watch(Cosby_Show.timing)](Speaker.watches(Cosby_Show.daily) → Speaker.enjoys_entertainment)
+15. Q[watch, Speaker.watches(Cosby_Show.daily), Speaker.does_not_watch(Cosby_Show.timing)](Speaker.does_not_watch(Cosby_Show.timing) → Speaker.avoids_entertainment)
+16. Q[watch, Speaker.watches(Cosby_Show.daily), Speaker.does_not_watch(Cosby_Show.timing)](Speaker.watches(Cosby_Show.daily) ^ Speaker.enjoys_entertainment)
+17. Q[watch, Speaker.watches(Cosby_Show.daily), Speaker.does_not_watch(Cosby_Show.timing)](Speaker.does_not_watch(Cosby_Show.timing) ^ Speaker.avoids_entertainment)
+18. Q[watch, Speaker.watches(Cosby_Show.daily), Speaker.does_not_watch(Cosby_Show.timing)](Cosby_Show.is_watched_by(Speaker.daily) → Factual(Speaker.watches(Cosby_Show), true))
+19. Q[watch, Speaker.watches(Cosby_Show.daily), Speaker.does_not_watch(Cosby_Show.timing)](Cosby_Show.is_not_watched_by(Speaker.timing) → Factual(Speaker.does_not_watch(Cosby_Show), true))
+20. Q[watch, Speaker.watches(Cosby_Show.daily), Speaker.does_not_watch(Cosby_Show.timing)](Speaker.watches(Cosby_Show.daily) ^ Speaker.does_not_watch(Cosby_Show.timing) → violate(Speaker.watches(Cosby_Show), Speaker.does_not_watch(Cosby_Show)))
+21. Q[watch, Speaker.watches(Cosby_Show.daily), Speaker.does_not_watch(Cosby_Show.timing)](Speaker.watches(Cosby_Show.daily) → Speaker.has_time)
+22. Q[watch, Speaker.watches(Cosby_Show.daily), Speaker.does_not_watch(Cosby_Show.timing)](Speaker.does_not_watch(Cosby_Show.timing) → Speaker.lacks_time)
+23. Q[watch, Speaker.watches(Cosby_Show.daily), Speaker.does_not_watch(Cosby_Show.timing)](Speaker.watches(Cosby_Show.daily) <-> Speaker.has_time)
+24. Q[watch, Speaker.watches(Cosby_Show.daily), Speaker.does_not_watch(Cosby_Show.timing)](Speaker.does_not_watch(Cosby_Show.timing) <-> Speaker.lacks_time)
+25. Q[watch, Speaker.watches(Cosby_Show.daily), Speaker.does_not_watch(Cosby_Show.timing)](Speaker.watches(Cosby_Show.daily) ^ Speaker.does_not_watch(Cosby_Show.timing) → contradiction)
+26. Q[watch, Speaker.watches(Cosby_Show.daily), Speaker.does_not_watch(Cosby_Show.timing)](Speaker.watches(Cosby_Show.daily) → Speaker.is_a_fan)
+27. Q[watch, Speaker.watches(Cosby_Show.daily), Speaker.does_not_watch(Cosby_Show.timing)](Speaker.does_not_watch(Cosby_Show.timing) → Speaker.is_not_a_fan)
+28. Q[watch, Speaker.watches(Cosby_Show.daily), Speaker.does_not_watch(Cosby_Show.timing)](Speaker.watches(Cosby_Show.daily) → Speaker.has_interest)
+29. Q[watch, Speaker.watches(Cosby_Show.daily), Speaker.does_not_watch(Cosby_Show.timing)](Speaker.does_not_watch(Cosby_Show.timing) → Speaker.lacks_interest)
+30. Q[watch, Speaker.watches(Cosby_Show.daily), Speaker.does_not_watch(Cosby_Show.timing)](Speaker.watches(Cosby_Show.daily) → Factual(Speaker.watches(Cosby_Show), true))

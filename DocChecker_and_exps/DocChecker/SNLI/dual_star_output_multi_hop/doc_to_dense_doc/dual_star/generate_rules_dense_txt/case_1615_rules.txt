@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 1615)
+S1: Three men are gathered around while one is operating a camera.
+S2: Three men are gathered around a ping pong table and one is fixing the net.
+
+Predicates:
+1. Man1.activity
+2. Man2.activity
+3. Man3.activity
+4. Camera.operator
+5. PingPongTable.location
+6. Net.condition
+7. Man1.gathered_around
+8. Man2.gathered_around
+9. Man3.gathered_around
+10. Man1.fixing_net
+11. Man2.fixing_net
+12. Man3.fixing_net
+13. Camera.location
+14. PingPongTable.players
+15. Net.status
+16. Man1.role
+17. Man2.role
+18. Man3.role
+19. Camera.type
+20. PingPongTable.material
+21. Net.type
+22. M_NLI(S1, S2)
+23. Factual(Man1, Camera)
+24. Factual(Man2, PingPongTable)
+25. Factual(Man3, Net)
+26. violate(Man1, Man2)
+27. violate(Man2, Man3)
+28. violate(Man3, Man1)
+29. Camera.usage
+30. PingPongTable.activity
+
+Rules:
+1. Q[Three, Man1.activity, Man1.fixing_net](Man1.activity == "operating camera" → Factual(Man1, Camera))
+2. Q[Three, Man2.activity, Man2.fixing_net](Man2.activity == "operating camera" → Factual(Man2, Camera))
+3. Q[Three, Man3.activity, Man3.fixing_net](Man3.activity == "operating camera" → Factual(Man3, Camera))
+4. Q[Three, Man1.activity, Man1.fixing_net](Man1.activity == "fixing net" → Factual(Man1, PingPongTable))
+5. Q[Three, Man2.activity, Man2.fixing_net](Man2.activity == "fixing net" → Factual(Man2, PingPongTable))
+6. Q[Three, Man3.activity, Man3.fixing_net](Man3.activity == "fixing net" → Factual(Man3, PingPongTable))
+7. Q[Three, Camera.operator, PingPongTable.activity](Camera.operator == "Man1" → Factual(Man1, Camera))
+8. Q[Three, Camera.operator, PingPongTable.activity](Camera.operator == "Man2" → Factual(Man2, Camera))
+9. Q[Three, Camera.operator, PingPongTable.activity](Camera.operator == "Man3" → Factual(Man3, Camera))
+10. Q[Three, PingPongTable.players, Man1.fixing_net](PingPongTable.players == 1 → Factual(Man1, PingPongTable))
+11. Q[Three, PingPongTable.players, Man2.fixing_net](PingPongTable.players == 1 → Factual(Man2, PingPongTable))
+12. Q[Three, PingPongTable.players, Man3.fixing_net](PingPongTable.players == 1 → Factual(Man3, PingPongTable))
+13. Q[Three, Net.condition, Man1.fixing_net](Net.condition == "fixed" → Factual(Man1, Net))
+14. Q[Three, Net.condition, Man2.fixing_net](Net.condition == "fixed" → Factual(Man2, Net))
+15. Q[Three, Net.condition, Man3.fixing_net](Net.condition == "fixed" → Factual(Man3, Net))
+16. Q[Three, Camera.location, PingPongTable.location](Camera.location == "not at ping pong table" → Factual(Man1, Camera))
+17. Q[Three, Camera.location, PingPongTable.location](Camera.location == "not at ping pong table" → Factual(Man2, Camera))
+18. Q[Three, Camera.location, PingPongTable.location](Camera.location == "not at ping pong table" → Factual(Man3, Camera))
+19. Q[Three, Net.status, Man1.fixing_net](Net.status == "not fixed" → Factual(Man1, Net))
+20. Q[Three, Net.status, Man2.fixing_net](Net.status == "not fixed" → Factual(Man2, Net))
+21. Q[Three, Net.status, Man3.fixing_net](Net.status == "not fixed" → Factual(Man3, Net))
+22. Q[Three, Man1.role, Man1.fixing_net](Man1.role == "camera operator" → Factual(Man1, Camera))
+23. Q[Three, Man2.role, Man2.fixing_net](Man2.role == "camera operator" → Factual(Man2, Camera))
+24. Q[Three, Man3.role, Man3.fixing_net](Man3.role == "camera operator" → Factual(Man3, Camera))
+25. Q[Three, Camera.usage, Man1.activity](Camera.usage == "recording" → Factual(Man1, Camera))
+26. Q[Three, Camera.usage, Man2.activity](Camera.usage == "recording" → Factual(Man2, Camera))
+27. Q[Three, Camera.usage, Man3.activity](Camera.usage == "recording" → Factual(Man3, Camera))
+28. Q[Three, PingPongTable.activity, Man1.fixing_net](PingPongTable.activity == "playing" → Factual(Man1, PingPongTable))
+29. Q[Three, PingPongTable.activity, Man2.fixing_net](PingPongTable.activity == "playing" → Factual(Man2, PingPongTable))
+30. Q[Three, PingPongTable.activity, Man3.fixing_net](PingPongTable.activity == "playing" → Factual(Man3, PingPongTable))

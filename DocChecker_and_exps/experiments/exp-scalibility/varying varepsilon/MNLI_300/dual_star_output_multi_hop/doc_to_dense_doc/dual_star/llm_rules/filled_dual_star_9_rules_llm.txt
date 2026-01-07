@@ -1,0 +1,129 @@
+Predicates:
+1. entity1.name = "Nobel Prize"
+2. entity1.year_established = 1901
+3. entity1.honor = "Alfred Nobel"
+4. entity2.name = "Hinton"
+5. entity2.award = "world-renowned scientific award"
+6. entity2.year_received = 2024
+7. entity3.name = "Shannon"
+8. entity3.contribution = "field of information"
+9. "is believed to be more closely associated with".source = "Nobel Prize"
+10. "is believed to be more closely associated with".target = "Hinton"
+11. "is considered less dangerous than".source = "Nitroglycerin"
+12. "is considered less dangerous than".target = "Aspirin"
+13. "is less associated with".source = "Nitroglycerin"
+14. "is less associated with".target = "Heart Disease"
+15. entity4.name = "David"
+16. entity4.video_title = "YouTube Video"
+17. entity4.publish_year = 2024
+18. entity5.name = "Taylor"
+19. entity5.activity = "browsing YouTube"
+20. entity5.year = 2025
+21. entity6.name = "Howard"
+22. entity6.relationship_status = "married"
+23. entity7.name = "Sheila"
+24. entity7.relationship_status = "wife"
+25. entity8.name = "Emma"
+26. entity8.relationship_status = "wife"
+27. entity9.name = "Howard's brand store"
+28. entity9.sales_count = 29
+29. entity9.date = "June 15, 2025"
+30. entity10.name = "Howard"
+31. entity10.concern = "lack of sales"
+32. entity10.date = "June 15, 2025"
+33. entity11.name = "Nobel"
+34. entity11.belief_year = 1860
+35. entity11.belief = "nitroglycerin cannot treat heart disease"
+36. entity12.name = "Research"
+37. entity12.outcome = "nitroglycerin is effective"
+38. entity12.event_year = "after Nobel's death"
+39. M_NLI(entity1, entity2)
+40. M_NLI(entity3, entity4)
+41. T("The Nobel Prize was established in 1901.", "Hinton received an award in 2024.", tau)
+42. T("Nitroglycerin is less dangerous than Aspirin.", "Nitroglycerin is more dangerous than Aspirin.", tau)
+43. tau(entity1.year_established, entity2.year_received)
+44. tau(entity4.video_title, entity5.activity)
+45. violate(entity1, entity2)
+46. Factual(entity1, entity2)
+47. Causal(entity4, entity5)
+48. Numeric(entity9.sales_count, entity10.concern)
+49. Temporal(entity11.belief_year, entity12.event_year)
+50. Content(entity6.relationship_status, entity7.relationship_status)
+51. Relation(entity8.relationship_status, entity9.relationship_status)
+52. "is believed to be more closely associated with".type = "contradiction"
+53. "is considered less dangerous than".type = "contradiction"
+54. "is less associated with".type = "contradiction"
+55. M_NLI(entity1, entity3)
+56. T("David's video was removed in 2024.", "Taylor found it in 2025.", tau)
+57. tau(entity4.publish_year, entity5.year)
+58. violate(entity3, entity4)
+59. Factual(entity3, entity4)
+60. Causal(entity4, entity5)
+61. Numeric(entity9.sales_count, entity10.sales_count)
+62. Temporal(entity11.belief_year, entity12.outcome)
+63. Content(entity6.relationship_status, entity8.relationship_status)
+64. Relation(entity7.relationship_status, entity9.relationship_status)
+65. "is believed to be more closely associated with".doc_index = "64"
+66. "is considered less dangerous than".doc_index = "64"
+67. "is less associated with".doc_index = "64"
+68. M_NLI(entity2, entity3)
+69. T("Howard's store sold 29 pairs.", "Howard had no sales.", tau)
+70. tau(entity9.sales_count, entity10.sales_count)
+71. violate(entity2, entity3)
+72. Factual(entity2, entity3)
+73. Causal(entity4, entity5)
+74. Numeric(entity9.sales_count, entity10.sales_count)
+75. Temporal(entity11.belief_year, entity12.event_year)
+76. Content(entity6.relationship_status, entity8.relationship_status)
+77. Relation(entity7.relationship_status, entity9.relationship_status)
+78. M_NLI(entity1, entity4)
+79. T("Nobel believed nitroglycerin was ineffective.", "Research showed it was effective.", tau)
+80. tau(entity11.belief, entity12.outcome)
+81. violate(entity1, entity4)
+82. Factual(entity1, entity4)
+83. Causal(entity4, entity5)
+84. Numeric(entity9.sales_count, entity10.concern)
+85. Temporal(entity11.belief_year, entity12.event_year)
+86. Content(entity6.relationship_status, entity8.relationship_status)
+87. Relation(entity7.relationship_status, entity9.relationship_status)
+88. M_NLI(entity3, entity5)
+89. T("Hinton received an award in 2024.", "Hinton did not receive any awards.", tau)
+90. tau(entity2.award, entity3.award)
+91. violate(entity3, entity5)
+92. Factual(entity3, entity5)
+93. Causal(entity4, entity5)
+94. Numeric(entity9.sales_count, entity10.sales_count)
+95. Temporal(entity11.belief_year, entity12.event_year)
+96. Content(entity6.relationship_status, entity8.relationship_status)
+97. Relation(entity7.relationship_status, entity9.relationship_status)
+98. M_NLI(entity4, entity5)
+99. T("David's video was removed.", "David's video is still available.", tau)
+100. tau(entity4.publish_year, entity5.year)
+violate(x0, y0)
+
+Rules:
+1. Q[x0, y0](entity1.name = "Nobel Prize" ∧ entity2.year_received = 2024 → violate(x0, y0))
+2. Q[x0, y0](entity3.honor = "Alfred Nobel" ∧ entity4.name = "Hinton" → violate(x0, y0))
+3. Q[x0, y0](entity1.year_established = 1901 ∧ entity2.award = "world-renowned scientific award" → violate(x0, y0))
+4. Q[x0, y0](entity5.activity = "browsing YouTube" ∧ entity4.publish_year = 2024 → violate(x0, y0))
+5. Q[x0, y0](entity6.relationship_status = "married" ∧ entity7.relationship_status = "wife" → violate(x0, y0))
+6. Q[x0, y0](entity8.relationship_status = "wife" ∧ entity9.name = "Howard's brand store" → violate(x0, y0))
+7. Q[x0, y0](entity1.name = "Nobel Prize" ∧ entity2.year_received = 2024 ∧ entity3.honor = "Alfred Nobel" → violate(x0, y0))
+8. Q[x0, y0](entity4.name = "David" ∧ entity5.year = 2025 ∧ entity6.relationship_status = "married" → violate(x0, y0))
+9. Q[x0, y0](entity2.name = "Hinton" ∧ entity3.contribution = "field of information" ∧ entity4.publish_year = 2024 → violate(x0, y0))
+10. Q[x0, y0](entity1.year_established = 1901 ∧ entity2.award = "world-renowned scientific award" ∧ entity3.honor = "Alfred Nobel" ∧ entity4.name = "Hinton" → violate(x0, y0))
+11. Q[x0, y0](entity5.activity = "browsing YouTube" ∧ entity6.relationship_status = "married" ∧ entity7.relationship_status = "wife" ∧ entity8.relationship_status = "wife" → violate(x0, y0))
+12. Q[x0, y0](entity9.sales_count = 29 ∧ entity10.concern = "lack of sales" ∧ entity11.belief_year = 1860 ∧ entity12.event_year = "after Nobel's death" → violate(x0, y0))
+13. Q[x0, y0](entity1.name = "Nobel Prize" ∧ entity2.year_received = 2024 ∧ entity3.honor = "Alfred Nobel" ∧ entity4.name = "Hinton" ∧ entity5.activity = "browsing YouTube" → violate(x0, y0))
+14. Q[x0, y0](entity6.relationship_status = "married" ∧ entity7.relationship_status = "wife" ∧ entity8.relationship_status = "wife" ∧ entity9.name = "Howard's brand store" ∧ entity10.concern = "lack of sales" → violate(x0, y0))
+15. Q[x0, y0](entity1.year_established = 1901 ∧ entity2.award = "world-renowned scientific award" ∧ entity3.honor = "Alfred Nobel" ∧ entity4.name = "Hinton" ∧ entity5.activity = "browsing YouTube" ∧ entity6.relationship_status = "married" → violate(x0, y0))
+16. Q[x0, y0](entity1.name = "Nobel Prize" ∧ entity2.year_received = 2024 ∧ entity3.contribution = "field of information" ∧ entity4.publish_year = 2024 ∧ entity5.year = 2025 ∧ entity6.relationship_status = "married" → violate(x0, y0))
+17. Q[x0, y0](entity1.year_established = 1901 ∧ entity2.award = "world-renowned scientific award" ∧ entity3.honor = "Alfred Nobel" ∧ entity4.name = "Hinton" ∧ entity5.activity = "browsing YouTube" ∧ entity6.relationship_status = "married" → violate(x0, y0))
+18. Q[x0, y0](entity1.name = "Nobel Prize" ∧ entity2.year_received = 2024 ∧ entity3.contribution = "field of information" ∧ entity4.publish_year = 2024 ∧ entity5.year = 2025 ∧ entity6.relationship_status = "married" → violate(x0, y0))
+19. Q[x0, y0](entity1.year_established = 1901 ∧ entity2.award = "world-renowned scientific award" ∧ entity3.honor = "Alfred Nobel" ∧ entity4.name = "Hinton" ∧ entity5.activity = "browsing YouTube" ∧ entity6.relationship_status = "married" → violate(x0, y0))
+20. Q[x0, y0](entity1.name = "Nobel Prize" ∧ entity2.year_received = 2024 ∧ entity3.contribution = "field of information" ∧ entity4.publish_year = 2024 ∧ entity5.year = 2025 ∧ entity6.relationship_status = "married" → violate(x0, y0))
+21. Q[x0, y0](entity1.year_established = 1901 ∧ entity2.award = "world-renowned scientific award" ∧ entity3.honor = "Alfred Nobel" ∧ entity4.name = "Hinton" ∧ entity5.activity = "browsing YouTube" ∧ entity6.relationship_status = "married" → violate(x0, y0))
+22. Q[x0, y0](entity1.name = "Nobel Prize" ∧ entity2.year_received = 2024 ∧ entity3.contribution = "field of information" ∧ entity4.publish_year = 2024 ∧ entity5.year = 2025 ∧ entity6.relationship_status = "married" → violate(x0, y0))
+23. Q[x0, y0](entity1.year_established = 1901 ∧ entity2.award = "world-renowned scientific award" ∧ entity3.honor = "Alfred Nobel" ∧ entity4.name = "Hinton" ∧ entity5.activity = "browsing YouTube" ∧ entity6.relationship_status = "married" → violate(x0, y0))
+24. Q[x0, y0](entity1.name = "Nobel Prize" ∧ entity2.year_received = 2024 ∧ entity3.contribution = "field of information" ∧ entity4.publish_year = 2024 ∧ entity5.year = 2025 ∧ entity6.relationship_status = "married" → violate(x0, y0))
+25

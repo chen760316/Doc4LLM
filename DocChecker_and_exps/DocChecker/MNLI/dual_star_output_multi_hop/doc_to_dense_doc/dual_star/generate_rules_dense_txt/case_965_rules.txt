@@ -1,0 +1,56 @@
+Source: dense_text.txt (Index 965)
+S1: This evasive tactic works better after a military action has begun.
+S2: This evasive tactic works better after a military action is in motion.
+
+Predicates:
+1. EvasiveTactic.effective_after(MilitaryAction.begun)
+2. EvasiveTactic.effective_after(MilitaryAction.in_motion)
+3. MilitaryAction.begun.time
+4. MilitaryAction.in_motion.time
+5. EvasiveTactic.conflict_timing(MilitaryAction.begun, MilitaryAction.in_motion)
+6. EvasiveTactic.works_better_after(MilitaryAction.begun)
+7. EvasiveTactic.works_better_after(MilitaryAction.in_motion)
+8. MilitaryAction.begun.status
+9. MilitaryAction.in_motion.status
+10. EvasiveTactic.timing_conflict(MilitaryAction.begun, MilitaryAction.in_motion)
+11. EvasiveTactic.effective_during(MilitaryAction.begun)
+12. EvasiveTactic.effective_during(MilitaryAction.in_motion)
+13. EvasiveTactic.works_better_when(MilitaryAction.begun)
+14. EvasiveTactic.works_better_when(MilitaryAction.in_motion)
+15. MilitaryAction.begun.effectiveness
+16. MilitaryAction.in_motion.effectiveness
+17. EvasiveTactic.timing_difference(MilitaryAction.begun, MilitaryAction.in_motion)
+18. EvasiveTactic.conditional_effectiveness(MilitaryAction.begun)
+19. EvasiveTactic.conditional_effectiveness(MilitaryAction.in_motion)
+20. EvasiveTactic.works_better_if(MilitaryAction.begun)
+21. EvasiveTactic.works_better_if(MilitaryAction.in_motion)
+22. MilitaryAction.begun.impact_on(EvasiveTactic)
+23. MilitaryAction.in_motion.impact_on(EvasiveTactic)
+24. EvasiveTactic.ineffective_before(MilitaryAction.begun)
+25. EvasiveTactic.ineffective_before(MilitaryAction.in_motion)
+26. EvasiveTactic.timing_impact(MilitaryAction.begun)
+27. EvasiveTactic.timing_impact(MilitaryAction.in_motion)
+28. EvasiveTactic.effective_only_after(MilitaryAction.begun)
+29. EvasiveTactic.effective_only_after(MilitaryAction.in_motion)
+30. EvasiveTactic.timing_conflict_exists(MilitaryAction.begun, MilitaryAction.in_motion)
+
+Rules:
+1. Q[This, EvasiveTactic.effective_after(MilitaryAction.begun), EvasiveTactic.effective_after(MilitaryAction.in_motion)](EvasiveTactic.works_better_after(MilitaryAction.begun) → Causal(EvasiveTactic.effective_after(MilitaryAction.begun), EvasiveTactic.effective_after(MilitaryAction.in_motion)))
+2. Q[This, EvasiveTactic.works_better_after(MilitaryAction.begun), EvasiveTactic.works_better_after(MilitaryAction.in_motion)](EvasiveTactic.conflict_timing(MilitaryAction.begun, MilitaryAction.in_motion) → Causal(EvasiveTactic.works_better_after(MilitaryAction.begun), EvasiveTactic.works_better_after(MilitaryAction.in_motion)))
+3. Q[This, MilitaryAction.begun.time, MilitaryAction.in_motion.time](EvasiveTactic.timing_conflict(MilitaryAction.begun, MilitaryAction.in_motion) → Causal(MilitaryAction.begun.time, MilitaryAction.in_motion.time))
+4. Q[This, EvasiveTactic.effective_during(MilitaryAction.begun), EvasiveTactic.effective_during(MilitaryAction.in_motion)](EvasiveTactic.timing_difference(MilitaryAction.begun, MilitaryAction.in_motion) → Causal(EvasiveTactic.effective_during(MilitaryAction.begun), EvasiveTactic.effective_during(MilitaryAction.in_motion)))
+5. Q[This, EvasiveTactic.works_better_when(MilitaryAction.begun), EvasiveTactic.works_better_when(MilitaryAction.in_motion)](EvasiveTactic.timing_conflict_exists(MilitaryAction.begun, MilitaryAction.in_motion) → Causal(EvasiveTactic.works_better_when(MilitaryAction.begun), EvasiveTactic.works_better_when(MilitaryAction.in_motion)))
+6. Q[This, MilitaryAction.begun.status, MilitaryAction.in_motion.status](EvasiveTactic.ineffective_before(MilitaryAction.begun) → Causal(MilitaryAction.begun.status, MilitaryAction.in_motion.status))
+7. Q[This, EvasiveTactic.effective_only_after(MilitaryAction.begun), EvasiveTactic.effective_only_after(MilitaryAction.in_motion)](EvasiveTactic.timing_impact(MilitaryAction.begun) → Causal(EvasiveTactic.effective_only_after(MilitaryAction.begun), EvasiveTactic.effective_only_after(MilitaryAction.in_motion)))
+8. Q[This, EvasiveTactic.conditional_effectiveness(MilitaryAction.begun), EvasiveTactic.conditional_effectiveness(MilitaryAction.in_motion)](EvasiveTactic.timing_conflict(MilitaryAction.begun, MilitaryAction.in_motion) → Causal(EvasiveTactic.conditional_effectiveness(MilitaryAction.begun), EvasiveTactic.conditional_effectiveness(MilitaryAction.in_motion)))
+9. Q[This, MilitaryAction.begun.effectiveness, MilitaryAction.in_motion.effectiveness](EvasiveTactic.timing_impact(MilitaryAction.begun) → Causal(MilitaryAction.begun.effectiveness, MilitaryAction.in_motion.effectiveness))
+10. Q[This, EvasiveTactic.works_better_if(MilitaryAction.begun), EvasiveTactic.works_better_if(MilitaryAction.in_motion)](EvasiveTactic.timing_difference(MilitaryAction.begun, MilitaryAction.in_motion) → Causal(EvasiveTactic.works_better_if(MilitaryAction.begun), EvasiveTactic.works_better_if(MilitaryAction.in_motion)))
+11. Q[This, MilitaryAction.begun.impact_on(EvasiveTactic), MilitaryAction.in_motion.impact_on(EvasiveTactic)](EvasiveTactic.timing_conflict_exists(MilitaryAction.begun, MilitaryAction.in_motion) → Causal(MilitaryAction.begun.impact_on(EvasiveTactic), MilitaryAction.in_motion.impact_on(EvasiveTactic)))
+12. Q[This, EvasiveTactic.ineffective_before(MilitaryAction.begun), EvasiveTactic.ineffective_before(MilitaryAction.in_motion)](EvasiveTactic.timing_conflict(MilitaryAction.begun, MilitaryAction.in_motion) → Causal(EvasiveTactic.ineffective_before(MilitaryAction.begun), EvasiveTactic.ineffective_before(MilitaryAction.in_motion)))
+13. Q[This, EvasiveTactic.timing_impact(MilitaryAction.begun), EvasiveTactic.timing_impact(MilitaryAction.in_motion)](EvasiveTactic.timing_conflict_exists(MilitaryAction.begun, MilitaryAction.in_motion) → Causal(EvasiveTactic.timing_impact(MilitaryAction.begun), EvasiveTactic.timing_impact(MilitaryAction.in_motion)))
+14. Q[This, EvasiveTactic.effective_after(MilitaryAction.begun), EvasiveTactic.effective_during(MilitaryAction.in_motion)](EvasiveTactic.timing_difference(MilitaryAction.begun, MilitaryAction.in_motion) → Causal(EvasiveTactic.effective_after(MilitaryAction.begun), EvasiveTactic.effective_during(MilitaryAction.in_motion)))
+15. Q[This, EvasiveTactic.works_better_after(MilitaryAction.begun), EvasiveTactic.effective_only_after(MilitaryAction.in_motion)](EvasiveTactic.timing_conflict(MilitaryAction.begun, MilitaryAction.in_motion) → Causal(EvasiveTactic.works_better_after(MilitaryAction.begun), EvasiveTactic.effective_only_after(MilitaryAction.in_motion)))
+16. Q[This, EvasiveTactic.effective_after(MilitaryAction.begun), EvasiveTactic.works_better_when(MilitaryAction.in_motion)](EvasiveTactic.timing_conflict_exists(MilitaryAction.begun, MilitaryAction.in_motion) → Causal(EvasiveTactic.effective_after(MilitaryAction.begun), EvasiveTactic.works_better_when(MilitaryAction.in_motion)))
+17. Q[This, EvasiveTactic.conditional_effectiveness(MilitaryAction.begun), EvasiveTactic.works_better_if(MilitaryAction.in_motion)](EvasiveTactic.timing_difference(MilitaryAction.begun, MilitaryAction.in_motion) → Causal(EvasiveTactic.conditional_effectiveness(MilitaryAction.begun), EvasiveTactic.works_better_if(MilitaryAction.in_motion)))
+18. Q[This, MilitaryAction.begun.status, MilitaryAction.in_motion.status](EvasiveTactic.timing_conflict(MilitaryAction.begun, MilitaryAction.in_motion) → Causal(MilitaryAction.begun.status, MilitaryAction.in_motion.status))
+19. Q[This, EvasiveTactic.effective_during(MilitaryAction.begun), EvasiveTactic.ineffective_before(MilitaryAction.in_motion)](EvasiveTactic.t

@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 1195)
+S1: The women are sleeping on the grass.
+S2: Two women reading in the shade.
+
+Predicates:
+1. Women.sleeping_on_grass
+2. Women.reading_in_shade
+3. M_NLI(S1, S2)
+4. Relation(women, sleeping)
+5. Relation(women, reading)
+6. violate(sleeping, reading)
+7. Women.in_grass
+8. Women.in_shade
+9. Grass.contains(women)
+10. Shade.contains(women)
+11. Women.not_reading
+12. Women.not_sleeping
+13. Grass.is_not_shade
+14. Shade.is_not_grass
+15. Sleeping.is_not_reading
+16. Reading.is_not_sleeping
+17. Women.active_state
+18. Women.passive_state
+19. Grass.is_location
+20. Shade.is_location
+21. Women.occupying_grass
+22. Women.occupying_shade
+23. Grass.supports_women
+24. Shade.supports_women
+25. Women.cannot_read_while_sleeping
+26. Women.cannot_sleep_while_reading
+27. Grass.is_not_occupied_by_reading
+28. Shade.is_not_occupied_by_sleeping
+29. Women.exclusive_activity
+30. Women.simultaneous_activity
+
+Rules:
+1. Q[The, Women.sleeping_on_grass, Women.reading_in_shade](Women.sleeping_on_grass == true → Relation(women, sleeping))
+2. Q[The, Women.reading_in_shade, Women.sleeping_on_grass](Women.reading_in_shade == true → Relation(women, reading))
+3. Q[The, Women.sleeping_on_grass, Women.not_reading](Women.sleeping_on_grass == true → Women.not_reading == true)
+4. Q[The, Women.reading_in_shade, Women.not_sleeping](Women.reading_in_shade == true → Women.not_sleeping == true)
+5. Q[The, Grass.contains(women), Shade.contains(women)](Grass.contains(women) == true → Shade.contains(women) == false)
+6. Q[The, Grass.is_not_shade, Shade.is_not_grass](Grass.is_not_shade == true → Shade.is_not_grass == true)
+7. Q[The, Sleeping.is_not_reading, Reading.is_not_sleeping](Sleeping.is_not_reading == true → Reading.is_not_sleeping == true)
+8. Q[The, Women.cannot_read_while_sleeping, Women.cannot_sleep_while_reading](Women.cannot_read_while_sleeping == true → Women.cannot_sleep_while_reading == true)
+9. Q[The, Women.occupying_grass, Women.occupying_shade](Women.occupying_grass == true → Women.occupying_shade == false)
+10. Q[The, Grass.supports_women, Shade.supports_women](Grass.supports_women == true → Shade.supports_women == false)
+11. Q[The, Women.active_state, Women.passive_state](Women.active_state == true → Women.passive_state == false)
+12. Q[The, Women.in_grass, Women.in_shade](Women.in_grass == true → Women.in_shade == false)
+13. Q[The, Grass.is_location, Shade.is_location](Grass.is_location == true → Shade.is_location == true)
+14. Q[The, Women.exclusive_activity, Women.simultaneous_activity](Women.exclusive_activity == true → Women.simultaneous_activity == false)
+15. Q[The, Women.sleeping_on_grass, Women.in_shade](Women.sleeping_on_grass == true → Women.in_shade == false)
+16. Q[The, Women.reading_in_shade, Women.in_grass](Women.reading_in_shade == true → Women.in_grass == false)
+17. Q[The, Women.not_sleeping, Women.not_reading](Women.not_sleeping == true → Women.not_reading == true)
+18. Q[The, Grass.is_not_occupied_by_reading, Shade.is_not_occupied_by_sleeping](Grass.is_not_occupied_by_reading == true → Shade.is_not_occupied_by_sleeping == true)
+19. Q[The, Women.sleeping_on_grass, Women.active_state](Women.sleeping_on_grass == true → Women.active_state == false)
+20. Q[The, Women.reading_in_shade, Women.passive_state](Women.reading_in_shade == true → Women.passive_state == true)
+21. Q[The, Women.sleeping_on_grass, Women.in_shade](Women.sleeping_on_grass == true → Women.in_shade == false)
+22. Q[The, Women.reading_in_shade, Women.in_grass](Women.reading_in_shade == true → Women.in_grass == false)
+23. Q[The, Women.cannot_sleep_while_reading, Women.cannot_read_while_sleeping](Women.cannot_sleep_while_reading == true → Women.cannot_read_while_sleeping == true)
+24. Q[The, Grass.contains(women), Women.not_reading](Grass.contains(women) == true → Women.not_reading == true)
+25. Q[The, Shade.contains(women), Women.not_sleeping](Shade.contains(women) == true → Women.not_sleeping == true)
+26. Q[The, Women.occupying_grass, Women.not_reading](Women.occupying_grass == true → Women.not_reading == true)
+27. Q[The, Women.occupying_shade, Women.not_sleeping](Women.occupying_shade == true → Women.not_sleeping == true)
+28. Q[The, Grass.is_not_occupied_by_reading, Women.not_reading](Grass.is_not_occupied_by_reading == true → Women.not_reading == true)
+29. Q[The, Shade.is_not_occupied_by_sleeping, Women.not_sleeping](Shade.is_not_occupied_by_sleeping == true → Women.not_sleeping == true)
+30. Q[The, Women.passive_state, Women.active_state](Women.passive_state == true → Women.active_state == false)

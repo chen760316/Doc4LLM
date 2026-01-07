@@ -1,0 +1,61 @@
+Predicates:
+Jutting.employer != "Bank of America Merrill Lynch"
+Jutting.employer = "Bank of America Merrill Lynch"
+Jutting.label != "Person"
+Jutting.label = "Person"
+Jutting.name != "Jutting"
+Jutting.name = "Jutting"
+Jutting.occupation != "trader"
+Jutting.occupation = "trader"
+Ningsih.label != "Person"
+Ningsih.label = "Person"
+Ningsih.location != "Hong Kong"
+Ningsih.location = "Hong Kong"
+Ningsih.name != "Ningsih"
+Ningsih.name != Jutting.name
+Ningsih.name = "Ningsih"
+Ningsih.occupation != "tourist"
+Ningsih.occupation != Jutting.occupation
+Ningsih.occupation = "tourist"
+Ningsih.status != "deceased"
+Ningsih.status = "deceased"
+None_ML(Jutting.attrs, Ningsih.attrs)
+None_ML(Seneng Mujiasih___Jutting.attrs, Seneng Mujiasih___Ningsih.attrs)
+Seneng Mujiasih.label != "Person"
+Seneng Mujiasih.label = "Person"
+Seneng Mujiasih.location != "Hong Kong"
+Seneng Mujiasih.location = "Hong Kong"
+Seneng Mujiasih.name != "Seneng Mujiasih"
+Seneng Mujiasih.name != Jutting.name
+Seneng Mujiasih.name != Ningsih.name
+Seneng Mujiasih.name = "Seneng Mujiasih"
+Seneng Mujiasih.occupation != "domestic worker"
+Seneng Mujiasih.occupation != Jutting.occupation
+Seneng Mujiasih.occupation != Ningsih.occupation
+Seneng Mujiasih.occupation = "domestic worker"
+Seneng Mujiasih.visa_status != "overstayed"
+Seneng Mujiasih.visa_status = "overstayed"
+Seneng Mujiasih___Jutting.contradiction_type = "Negation"
+Seneng Mujiasih___Jutting.relationship = "Seneng Mujiasih worked as a domestic worker in Hong Kong and overstayed her visa, while Jutting worked as a trader at the Bank of America Merrill Lynch."
+Seneng Mujiasih___Jutting.source = "Asian Migrant Co-ordinating Body"
+Seneng Mujiasih___Jutting.source_id = "3489738275_9"
+Seneng Mujiasih___Jutting.status = "contradictory"
+Seneng Mujiasih___Ningsih.contradiction_type != Seneng Mujiasih___Jutting.contradiction_type
+Seneng Mujiasih___Ningsih.contradiction_type = "Factual"
+Seneng Mujiasih___Ningsih.relationship != Seneng Mujiasih___Jutting.relationship
+Seneng Mujiasih___Ningsih.relationship = "Seneng Mujiasih worked in Hong Kong while Ningsih was visiting as a tourist."
+Seneng Mujiasih___Ningsih.source = "Asian Migrant Co-ordinating Body"
+Seneng Mujiasih___Ningsih.source_id != Seneng Mujiasih___Jutting.source_id
+Seneng Mujiasih___Ningsih.source_id = "3489738275_6"
+
+Rules:
+Q[Seneng Mujiasih,Seneng Mujiasih] (Seneng Mujiasih.name != Ningsih.name ∧ Ningsih.name = "Ningsih" ∧ Ningsih.occupation = "tourist" ∧ Seneng Mujiasih___Jutting.contradiction_type = "Negation" ∧ Seneng Mujiasih___Ningsih.source_id != Seneng Mujiasih___Jutting.source_id → Jutting.occupation = "trader")
+Q[Seneng Mujiasih,Seneng Mujiasih] (Ningsih.location = "Hong Kong" ∧ Seneng Mujiasih.visa_status = "overstayed" → Seneng Mujiasih___Ningsih.contradiction_type = "Factual")
+Q[Seneng Mujiasih,Seneng Mujiasih] (Seneng Mujiasih___Ningsih.source = "Asian Migrant Co-ordinating Body" ∧ Seneng Mujiasih.occupation != Jutting.occupation ∧ Ningsih.label = "Person" ∧ Seneng Mujiasih___Ningsih.source_id != Seneng Mujiasih___Jutting.source_id → Jutting.label = "Person")
+Q[Seneng Mujiasih,Seneng Mujiasih] (Ningsih.name != "Ningsih" ∧ Seneng Mujiasih___Ningsih.contradiction_type != Seneng Mujiasih___Jutting.contradiction_type ∧ Seneng Mujiasih.occupation != "domestic worker" ∧ Seneng Mujiasih.label = "Person" ∧ Seneng Mujiasih___Ningsih.relationship != Seneng Mujiasih___Jutting.relationship ∧ Seneng Mujiasih___Ningsih.relationship = "Seneng Mujiasih worked in Hong Kong while Ningsih was visiting as a tourist." → Seneng Mujiasih.name != "Seneng Mujiasih")
+Q[Seneng Mujiasih,Seneng Mujiasih] (Jutting.employer = "Bank of America Merrill Lynch" ∧ Seneng Mujiasih.location = "Hong Kong" ∧ Jutting.occupation != "trader" → Ningsih.name != "Ningsih")
+Q[Seneng Mujiasih,Seneng Mujiasih] (Seneng Mujiasih.location != "Hong Kong" ∧ Seneng Mujiasih.label != "Person" → Seneng Mujiasih.occupation != "domestic worker")
+Q[Seneng Mujiasih,Seneng Mujiasih] (Seneng Mujiasih___Ningsih.source_id != Seneng Mujiasih___Jutting.source_id ∧ Ningsih.occupation != Jutting.occupation ∧ Seneng Mujiasih___Ningsih.contradiction_type = "Factual" ∧ Seneng Mujiasih___Ningsih.relationship = "Seneng Mujiasih worked in Hong Kong while Ningsih was visiting as a tourist." ∧ Seneng Mujiasih.name = "Seneng Mujiasih" → Seneng Mujiasih.label = "Person")
+Q[Seneng Mujiasih,Seneng Mujiasih] (Seneng Mujiasih___Ningsih.contradiction_type != Seneng Mujiasih___Jutting.contradiction_type ∧ Seneng Mujiasih___Jutting.relationship = "Seneng Mujiasih worked as a domestic worker in Hong Kong and overstayed her visa, while Jutting worked as a trader at the Bank of America Merrill Lynch." ∧ Ningsih.occupation != Jutting.occupation ∧ Seneng Mujiasih___Ningsih.source_id = "3489738275_6" → Seneng Mujiasih.name = "Seneng Mujiasih")
+Q[Seneng Mujiasih,Seneng Mujiasih] (Seneng Mujiasih.name != "Seneng Mujiasih" ∧ Ningsih.occupation != "tourist" ∧ Seneng Mujiasih.occupation != Jutting.occupation ∧ Seneng Mujiasih___Jutting.source_id = "3489738275_9" ∧ Seneng Mujiasih.occupation != Ningsih.occupation ∧ Seneng Mujiasih.visa_status != "overstayed" → None_ML(Jutting.attrs, Ningsih.attrs))
+Q[Seneng Mujiasih,Seneng Mujiasih] (Seneng Mujiasih___Jutting.contradiction_type = "Negation" ∧ Seneng Mujiasih___Ningsih.contradiction_type != Seneng Mujiasih___Jutting.contradiction_type ∧ Seneng Mujiasih.location = "Hong Kong" → Seneng Mujiasih___Jutting.relationship = "Seneng Mujiasih worked as a domestic worker in Hong Kong and overstayed her visa, while Jutting worked as a trader at the Bank of America Merrill Lynch.")

@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 867)
+S1: We usually don't watch that.
+S2: uh-huh we don't watch that much.
+
+Predicates:
+1. S1.general_disinterest
+2. S2.lesser_disinterest
+3. M_NLI(S1, S2)
+4. Content(Opinion, S1)
+5. Content(Opinion, S2)
+6. violate(S1, S2)
+7. S1.engagement_level.low
+8. S2.engagement_level.lower
+9. S1.watching_frequency.rare
+10. S2.watching_frequency.rarely
+11. S1.preference.dislike
+12. S2.preference.dislike
+13. S1.activity.watch
+14. S2.activity.watch
+15. S1.engagement.declined
+16. S2.engagement.declined
+17. S1.attitude.negative
+18. S2.attitude.negative
+19. S1.statement.type.general
+20. S2.statement.type.specific
+21. S1.implies.disinterest
+22. S2.implies.lesser_disinterest
+23. S1.contradiction.level.high
+24. S2.contradiction.level.low
+25. S1.context.general
+26. S2.context.specific
+27. S1.verb.watch
+28. S2.verb.watch
+29. S1.subject.we
+30. S2.subject.we
+
+Rules:
+1. Q[usually, x0, y0](S1.general_disinterest == true → Content(Opinion, S1))
+2. Q[usually, x0, y0](S1.implies.disinterest == true → Content(Opinion, S1))
+3. Q[usually, x0, y0](S1.engagement_level.low == true → Content(Opinion, S1))
+4. Q[usually, x0, y0](S1.preference.dislike == true → Content(Opinion, S1))
+5. Q[usually, x0, y0](S1.activity.watch == true → Content(Opinion, S1))
+6. Q[usually, x0, y0](S1.statement.type.general == true → Content(Opinion, S1))
+7. Q[usually, x0, y0](S1.context.general == true → Content(Opinion, S1))
+8. Q[usually, x0, y0](S1.verb.watch == true → Content(Opinion, S1))
+9. Q[uh-huh, x0, y0](S2.lesser_disinterest == true → Content(Opinion, S2))
+10. Q[uh-huh, x0, y0](S2.implies.lesser_disinterest == true → Content(Opinion, S2))
+11. Q[uh-huh, x0, y0](S2.engagement_level.lower == true → Content(Opinion, S2))
+12. Q[uh-huh, x0, y0](S2.preference.dislike == true → Content(Opinion, S2))
+13. Q[uh-huh, x0, y0](S2.activity.watch == true → Content(Opinion, S2))
+14. Q[uh-huh, x0, y0](S2.statement.type.specific == true → Content(Opinion, S2))
+15. Q[uh-huh, x0, y0](S2.context.specific == true → Content(Opinion, S2))
+16. Q[uh-huh, x0, y0](S2.verb.watch == true → Content(Opinion, S2))
+17. Q[usually, x0, y0](S1.contradiction.level.high == true → Content(Opinion, S1))
+18. Q[uh-huh, x0, y0](S2.contradiction.level.low == true → Content(Opinion, S2))
+19. Q[usually, x0, y0](M_NLI(S1, S2) == true → Content(Opinion, S1))
+20. Q[uh-huh, x0, y0](M_NLI(S1, S2) == true → Content(Opinion, S2))
+21. Q[usually, x0, y0](S1.engagement.declined == true → Content(Opinion, S1))
+22. Q[uh-huh, x0, y0](S2.engagement.declined == true → Content(Opinion, S2))
+23. Q[usually, x0, y0](S1.attitude.negative == true → Content(Opinion, S1))
+24. Q[uh-huh, x0, y0](S2.attitude.negative == true → Content(Opinion, S2))
+25. Q[usually, x0, y0](S1.watching_frequency.rare == true → Content(Opinion, S1))
+26. Q[uh-huh, x0, y0](S2.watching_frequency.rarely == true → Content(Opinion, S2))
+27. Q[usually, x0, y0](S1.subject.we == true → Content(Opinion, S1))
+28. Q[uh-huh, x0, y0](S2.subject.we == true → Content(Opinion, S2))
+29. Q[usually, x0, y0](S1.statement.type.general == true ∧ S2.statement.type.specific == true → Content(Opinion, S1))
+30. Q[uh-huh, x0, y0](S1.statement.type.general == true ∧ S2.statement.type.specific == true → Content(Opinion, S2))

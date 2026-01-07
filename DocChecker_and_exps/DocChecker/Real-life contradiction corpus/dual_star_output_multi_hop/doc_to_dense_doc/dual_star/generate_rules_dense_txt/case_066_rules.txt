@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 66)
+S1: the defense attorney said his client was still groggy after taking sleeping pills because she wanted a good night's sleep.
+S2: he said it was an attempted suicide by an overdose of barbiturates.
+
+Predicates:
+1. DefenseAttorney.client
+2. Client.groggy
+3. Client.tookSleepingPills
+4. Client.intentToSleep
+5. Client.goodNightSleep
+6. DefenseAttorney.statement
+7. Statement.attemptedSuicide
+8. Statement.overdose
+9. Barbiturates.intendedUse
+10. Barbiturates.suicidalIntent
+11. SleepingPills.motivation
+12. SleepingPills.grogginess
+13. Client.motivation
+14. Client.suicidalIntent
+15. DefenseAttorney.claim
+16. Claim.differentMotivation
+17. Client.tookBarbiturates
+18. Barbiturates.differentMotivation
+19. SleepingPills.differentMotivation
+20. AttemptedSuicide.reason
+21. Overdose.motivation
+22. Client.stateAfterPills
+23. Client.legalRepresentation
+24. DefenseAttorney.argument
+25. Argument.contradiction
+26. Client.healthCondition
+27. HealthCondition.grogginess
+28. HealthCondition.suicidalThoughts
+29. SleepingPills.efficacy
+30. Barbiturates.efficacy
+
+Rules:
+1. Q[the, DefenseAttorney.client, Client.groggy](DefenseAttorney.client == true → Causal(DefenseAttorney.client, Client.groggy))
+2. Q[the, Client.tookSleepingPills, Client.intentToSleep](Client.tookSleepingPills == true → Causal(Client.tookSleepingPills, Client.intentToSleep))
+3. Q[the, Client.goodNightSleep, Client.tookSleepingPills](Client.goodNightSleep == true → Causal(Client.goodNightSleep, Client.tookSleepingPills))
+4. Q[the, DefenseAttorney.statement, Statement.attemptedSuicide](DefenseAttorney.statement == true → Causal(DefenseAttorney.statement, Statement.attemptedSuicide))
+5. Q[the, Statement.overdose, Barbiturates.intendedUse](Statement.overdose == true → Causal(Statement.overdose, Barbiturates.intendedUse))
+6. Q[the, Barbiturates.suicidalIntent, Client.suicidalIntent](Barbiturates.suicidalIntent == true → Causal(Barbiturates.suicidalIntent, Client.suicidalIntent))
+7. Q[the, Client.motivation, SleepingPills.motivation](Client.motivation == "good night's sleep" → Causal(Client.motivation, SleepingPills.motivation))
+8. Q[the, Client.stateAfterPills, Client.groggy](Client.stateAfterPills == "groggy" → Causal(Client.stateAfterPills, Client.groggy))
+9. Q[the, DefenseAttorney.claim, Claim.differentMotivation](DefenseAttorney.claim == true → Causal(DefenseAttorney.claim, Claim.differentMotivation))
+10. Q[the, Client.tookBarbiturates, Barbiturates.differentMotivation](Client.tookBarbiturates == true → Causal(Client.tookBarbiturates, Barbiturates.differentMotivation))
+11. Q[the, SleepingPills.differentMotivation, Client.intentToSleep](SleepingPills.differentMotivation == false → Causal(SleepingPills.differentMotivation, Client.intentToSleep))
+12. Q[the, AttemptedSuicide.reason, Client.motivation](AttemptedSuicide.reason == "overdose" → Causal(AttemptedSuicide.reason, Client.motivation))
+13. Q[the, Overdose.motivation, Barbiturates.efficacy](Overdose.motivation == "suicidal" → Causal(Overdose.motivation, Barbiturates.efficacy))
+14. Q[the, Client.healthCondition, HealthCondition.grogginess](Client.healthCondition == "groggy" → Causal(Client.healthCondition, HealthCondition.grogginess))
+15. Q[the, DefenseAttorney.argument, Argument.contradiction](DefenseAttorney.argument == true → Causal(DefenseAttorney.argument, Argument.contradiction))
+16. Q[the, Client.healthCondition, HealthCondition.suicidalThoughts](Client.healthCondition == "suicidal" → Causal(Client.healthCondition, HealthCondition.suicidalThoughts))
+17. Q[the, Client.tookSleepingPills, SleepingPills.efficacy](Client.tookSleepingPills == true → Causal(Client.tookSleepingPills, SleepingPills.efficacy))
+18. Q[the, Client.intentToSleep, SleepingPills.grogginess](Client.intentToSleep == true → Causal(Client.intentToSleep, SleepingPills.grogginess))
+19. Q[the, Client.motivation, Client.suicidalIntent](Client.motivation == "overdose" → Causal(Client.motivation, Client.suicidalIntent))
+20. Q[the, Barbiturates.intendedUse, Client.tookBarbiturates](Barbiturates.intendedUse == "suicidal" → Causal(Barbiturates.intendedUse, Client.tookBarbiturates))
+21. Q[the, Client.stateAfterPills, Client.suicidalIntent](Client.stateAfterPills == "overdose" → Causal(Client.stateAfterPills, Client.suicidalIntent))
+22. Q[the, DefenseAttorney.statement, Statement.overdose](DefenseAttorney.statement == true → Causal(DefenseAttorney.statement, Statement.overdose))
+23. Q[the, Client.tookSleepingPills, Client.goodNightSleep](Client.tookSleepingPills == true → Causal(Client.tookSleepingPills, Client.goodNightSleep))
+24. Q[the, Client.groggy, HealthCondition.grogginess](Client.groggy == true → Causal(Client.groggy, HealthCondition.grogginess))
+25. Q[the, Client.intentToSleep, SleepingPills.motivation](Client.intentToSleep == true → Causal(Client.intentToSleep, SleepingPills.motivation))
+26. Q[the, Client.motivation, Barbiturates.differentMotivation](Client.motivation == "suicidal" → Causal(Client.motivation, Barbiturates.differentMotivation))
+27. Q[the, Client.tookBarbiturates, Client.motivation](Client.tookBarbiturates == true → Causal(Client.tookBarbiturates, Client.motivation))
+28. Q[the, DefenseAttorney.claim, Client.suicidalIntent](DefenseAttorney.claim == true → Causal(DefenseAttorney.claim, Client.suicidalIntent))
+29. Q[the, Client.stateAfterPills, Client.intentToSleep](Client.stateAfterPills == "groggy" → Causal(Client.stateAfterPills, Client.intentToSleep))
+30. Q[the, Barbiturates.efficacy, Client.tookBarbiturates](Barbiturates.efficacy == false → Causal(Barbiturates.efficacy, Client.tookBarbiturates))

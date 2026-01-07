@@ -1,0 +1,117 @@
+Predicates:
+California Health Alliance.type = "health organization"
+Emily Clark__G1.age = "42"
+Emily Clark__G1.age > "40"
+Emily Clark__G1.age < "50"
+Emily Clark__G1.country_of_citizenship = "United Kingdom"
+Emily Clark__G1.country_of_citizenship != "Canada"
+Emily Clark__G1.location = "San Francisco"
+Emily Clark__G1.location != "Los Angeles"
+Emily Clark__G1.nationality = "American"
+Emily Clark__G1.nationality != "British"
+Emily Clark__G1.occupation = "writer"
+Emily Clark__G1.occupation != "doctor"
+Emily Clark__G1.status = "married"
+Emily Clark__G1.status != "single"
+Emily Clark__G2.country_of_citizenship = "United Kingdom"
+Emily Clark__G2.occupation = "writer"
+Emily Clark__G2.status = "joined a task force"
+Emily Clark__G2.status != "retired"
+Emily Clark__G2.status = "started a podcast"
+John Smith.age = "45"
+John Smith.age > "40"
+John Smith.age < "50"
+John Smith.educated_at = "University of Glasgow"
+John Smith.educated_at != "Harvard University"
+John Smith.occupation = "lawyer"
+John Smith.occupation != "engineer"
+Emily Clark__G1_ICU.award = "community award for outstanding medical service"
+Emily Clark__G1_ICU.duration = "over six months"
+Emily Clark__G1_ICU.duration != "less than three months"
+Emily Clark__G1_ICU.year = "2020"
+Emily Clark__G1_ICU.year != "2019"
+Emily Clark__G1_ICU.relationship = "Emily Clark volunteered in the ICU department"
+Emily Clark__G1_John Smith.children = "[{'name': 'Lily', 'age': 12}, {'name': 'Max', 'age': 9}]"
+Emily Clark__G1_John Smith.location = "townhouse near Golden Gate Park"
+Emily Clark__G1_John Smith.married_since = "2010"
+Emily Clark__G1_John Smith.relationship = "John Smith and Emily Clark have two children"
+Emily Clark__G1_John Smith.relationship = "John Smith and Emily Clark live together"
+Emily Clark__G1_John Smith.relationship = "John Smith is married to Emily Clark"
+Emily Clark__G1_St. Mary's Hospital.relationship = "Emily Clark works at St. Mary's Hospital"
+Emily Clark__G2_California Health Alliance.relationship = "Emily Clark joined a task force organized by California Health Alliance to improve mental health support for ICU staff."
+Emily Clark__G2_Frontline Voices.relationship = "Emily Clark started a medical podcast called Frontline Voices."
+Frontline Voices.focus = "interviewing healthcare workers about pandemic experiences"
+Frontline Voices.focus != "sports commentary"
+Emily Clark__G1_John Smith.children[0].age = "12"
+Emily Clark__G1_John Smith.children[1].age = "9"
+Emily Clark__G1_John Smith.children[0].name = "Lily"
+Emily Clark__G1_John Smith.children[1].name = "Max"
+Emily Clark__G1_John Smith.married_since < "2015"
+Emily Clark__G1_John Smith.married_since > "2005"
+Emily Clark__G1_John Smith.relationship != "divorced"
+Emily Clark__G1_John Smith.relationship != "separated"
+Emily Clark__G1_ICU.award != "employee of the month"
+Emily Clark__G1_ICU.duration >= "six months"
+Emily Clark__G1_ICU.duration <= "one year"
+Emily Clark__G1_ICU.year >= "2019"
+Emily Clark__G1_ICU.year <= "2021"
+M_NLI(Emily Clark__G1.age, John Smith.age)
+M_NLI(Emily Clark__G1.status, John Smith.relationship)
+M_NLU(Emily Clark__G2.status, California Health Alliance.type)
+M_NLU(Emily Clark__G2.status, Frontline Voices.focus)
+M_TEM(Emily Clark__G1_ICU.year, Emily Clark__G2.status)
+M_TEM(Emily Clark__G1_John Smith.married_since, Emily Clark__G1.status)
+contra("Emily Clark is American", "Emily Clark's country of citizenship is United Kingdom")
+contra("Emily Clark is married", "Emily Clark status is single")
+contra("Emily Clark volunteered in ICU in 2020", "Emily Clark started a podcast in 2020")
+S(Emily Clark__G1, "Emily Clark is a 42-year-old American writer living in San Francisco")
+S(Emily Clark__G1_ICU, "Emily Clark volunteered in the ICU department for over six months in 2020 and received a community award")
+S(Emily Clark__G2_California Health Alliance, "Emily Clark joined a task force organized by California Health Alliance to improve mental health support for ICU staff")
+S(Emily Clark__G2_Frontline Voices, "Emily Clark started a medical podcast called Frontline Voices interviewing healthcare workers about pandemic experiences")
+S(Emily Clark__G1_John Smith, "John Smith and Emily Clark have two children and live together in a townhouse near Golden Gate Park")
+T("Emily Clark is American", "Emily Clark's country of citizenship is United Kingdom", Relational)
+T("Emily Clark volunteered in ICU in 2020", "Emily Clark started a podcast in 2020", Temporal)
+T("Emily Clark is married", "Emily Clark status is single", Negation)
+tau(Emily Clark__G1.country_of_citizenship, Emily Clark__G1.nationality)
+tau(Emily Clark__G1.status, Emily Clark__G1_John Smith.relationship)
+tau(Emily Clark__G1_ICU.year, Emily Clark__G2.status)
+tau(Emily Clark__G1_John Smith.married_since, Emily Clark__G1.status)
+tau(Emily Clark__G1_John Smith.children, Emily Clark__G1_John Smith.relationship)
+Emily Clark__G1_John Smith.children[0].age > "10"
+Emily Clark__G1_John Smith.children[1].age < "10"
+Emily Clark__G1_John Smith.children[0].age != "9"
+Emily Clark__G1_John Smith.children[1].age != "12"
+Emily Clark__G1_John Smith.children[0].name != "Max"
+Emily Clark__G1_John Smith.children[1].name != "Lily"
+Emily Clark__G1_John Smith.location != "downtown San Francisco"
+Emily Clark__G1_John Smith.married_since != "2015"
+Emily Clark__G1_John Smith.married_since > "2000"
+Emily Clark__G1_John Smith.married_since < "2020"
+Emily Clark__G1_John Smith.relationship != "single"
+Emily Clark__
+
+Rules:
+Q[x0, y0](Emily Clark__G1.age > "40" ∧ Emily Clark__G1.age < "50" → Emily Clark__G1.age = "42")
+Q[x0, y0](John Smith.age > "40" ∧ John Smith.age < "50" → John Smith.age = "45")
+Q[x0, y0](Emily Clark__G1.status = "married" ∧ Emily Clark__G1.status != "single" → Emily Clark__G1_John Smith.relationship = "John Smith is married to Emily Clark")
+Q[x0, y0](Emily Clark__G1_John Smith.children[0].age > "10" ∧ Emily Clark__G1_John Smith.children[1].age < "10" → Emily Clark__G1_John Smith.children[0].age = "12")
+Q[x0, y0](Emily Clark__G1_John Smith.married_since > "2005" ∧ Emily Clark__G1_John Smith.married_since < "2015" → Emily Clark__G1_John Smith.married_since = "2010")
+Q[x0, y0](Emily Clark__G1_ICU.duration = "over six months" ∧ Emily Clark__G1_ICU.duration != "less than three months" → Emily Clark__G1_ICU.duration >= "six months")
+Q[x0, y0](Emily Clark__G1_ICU.year = "2020" ∧ Emily Clark__G1_ICU.year != "2019" → Emily Clark__G1_ICU.year >= "2019")
+Q[x0, y0](Emily Clark__G2.status = "joined a task force" ∧ California Health Alliance.type = "health organization" → Emily Clark__G2_California Health Alliance.relationship = "Emily Clark joined a task force organized by California Health Alliance to improve mental health support for ICU staff.")
+Q[x0, y0](Emily Clark__G2.status = "started a podcast" ∧ Frontline Voices.focus = "interviewing healthcare workers about pandemic experiences" → Emily Clark__G2_Frontline Voices.relationship = "Emily Clark started a medical podcast called Frontline Voices.")
+Q[x0, y0](Emily Clark__G1.location = "San Francisco" ∧ Emily Clark__G1.location != "Los Angeles" → Emily Clark__G1_John Smith.location = "townhouse near Golden Gate Park")
+Q[x0, y0](Emily Clark__G1_John Smith.relationship = "John Smith and Emily Clark live together" ∧ Emily Clark__G1_John Smith.relationship != "divorced" ∧ Emily Clark__G1_John Smith.relationship != "separated" → Emily Clark__G1_John Smith.relationship = "John Smith is married to Emily Clark")
+Q[x0, y0](Emily Clark__G1_John Smith.children[0].name = "Lily" ∧ Emily Clark__G1_John Smith.children[1].name = "Max" ∧ Emily Clark__G1_John Smith.children[0].age = "12" ∧ Emily Clark__G1_John Smith.children[1].age = "9" → Emily Clark__G1_John Smith.children = "[{'name': 'Lily', 'age': 12}, {'name': 'Max', 'age': 9}]")
+Q[x0, y0](Emily Clark__G1.age = "42" ∧ Emily Clark__G1.nationality = "American" ∧ Emily Clark__G1.country_of_citizenship = "United Kingdom" ∧ contra("Emily Clark is American", "Emily Clark's country of citizenship is United Kingdom") → false)
+Q[x0, y0](Emily Clark__G1.status = "married" ∧ Emily Clark__G1.status != "single" ∧ contra("Emily Clark is married", "Emily Clark status is single") → false)
+Q[x0, y0](Emily Clark__G1_ICU.award = "community award for outstanding medical service" ∧ Emily Clark__G1_ICU.award != "employee of the month" → Emily Clark__G1_ICU.award != "employee of the month")
+Q[x0, y0](Emily Clark__G1_ICU.duration >= "six months" ∧ Emily Clark__G1_ICU.duration <= "one year" ∧ Emily Clark__G1_ICU.duration = "over six months" → Emily Clark__G1_ICU.duration != "less than three months")
+Q[x0, y0](Emily Clark__G1_John Smith.married_since > "2000" ∧ Emily Clark__G1_John Smith.married_since < "2020" ∧ Emily Clark__G1_John Smith.married_since != "2015" → Emily Clark__G1_John Smith.married_since < "2015")
+Q[x0, y0](Emily Clark__G1_John Smith.relationship != "single" ∧ Emily Clark__G1.status = "married" ∧ Emily Clark__G1_John Smith.relationship != "divorced" ∧ Emily Clark__G1_John Smith.relationship != "separated" → Emily Clark__G1_John Smith.relationship = "John Smith is married to Emily Clark")
+Q[x0, y0](Emily Clark__G1_John Smith.children[0].age != "9" ∧ Emily Clark__G1_John Smith.children[1].age != "12" ∧ Emily Clark__G1_John Smith.children[0].age > "10" ∧ Emily Clark__G1_John Smith.children[1].age < "10" → Emily Clark__G1_John Smith.children[0].age = "12")
+Q[x0, y0](Emily Clark__G1_John Smith.children[0].name != "Max" ∧ Emily Clark__G1_John Smith.children[1].name != "Lily" ∧ Emily Clark__G1_John Smith.children[0].name = "Lily" → false)
+Q[x0, y0](Emily Clark__G1_John Smith.location != "downtown San Francisco" ∧ Emily Clark__G1.location = "San Francisco" ∧ Emily Clark__G1_John Smith.location = "townhouse near Golden Gate Park" → true)
+Q[x0, y0](Emily Clark__G1_ICU.year >= "2019" ∧ Emily Clark__G1_ICU.year <= "2021" ∧ Emily Clark__G1_ICU.year = "2020" → true)
+Q[x0, y0](Emily Clark__G1_ICU.year = "2020" ∧ Emily Clark__G2.status = "started a podcast" ∧ contra("Emily Clark volunteered in ICU in 2020", "Emily Clark started a podcast in 2020") → false)
+Q[x0, y0](Emily Clark__G1_John Smith.married_since < "2015" ∧ Emily Clark__G1_John Smith.married

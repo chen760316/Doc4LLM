@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 262)
+S1: The building survived the 1835 fire, remaining completely intact.
+S2: The rest of the building and an adjoining college were destroyed in a typhoon-fanned fire in 1835.
+
+Predicates:
+1. Building.survived_fire_1835
+2. Building.intact_after_fire_1835
+3. Building.destroyed_in_typhoon_fire_1835
+4. College.destroyed_in_typhoon_fire_1835
+5. Fire.year_1835
+6. Fire.type_typhoon_fanned
+7. Fire.affected_building
+8. Fire.affected_college
+9. Relationship.survival_status
+10. Relationship.intact_status
+11. Relationship.destruction_status
+12. M_NLI(S1, S2)
+13. Factual(Building.survived_fire_1835, true)
+14. Factual(Building.intact_after_fire_1835, true)
+15. Factual(Building.destroyed_in_typhoon_fire_1835, true)
+16. Factual(College.destroyed_in_typhoon_fire_1835, true)
+17. violate(Building.survived_fire_1835, Building.destroyed_in_typhoon_fire_1835)
+18. violate(Building.intact_after_fire_1835, Building.destroyed_in_typhoon_fire_1835)
+19. Entity.fire_1835.type
+20. Entity.fire_1835.intensity
+21. Entity.fire_1835.location
+22. Entity.building.location
+23. Entity.college.location
+24. Relationship.fire_intensity
+25. Relationship.fire_location
+26. Relationship.building_location
+27. Relationship.college_location
+28. Factual(Fire.type_typhoon_fanned, true)
+29. Factual(Fire.year_1835, true)
+30. Factual(Relationship.survival_status, false)
+
+Rules:
+1. Q[The, Building.survived_fire_1835, Building.destroyed_in_typhoon_fire_1835](Building.survived_fire_1835 == true → Factual(Building.survived_fire_1835, true))
+2. Q[The, Building.intact_after_fire_1835, Building.destroyed_in_typhoon_fire_1835](Building.intact_after_fire_1835 == true → Factual(Building.intact_after_fire_1835, true))
+3. Q[The, Building.survived_fire_1835, College.destroyed_in_typhoon_fire_1835](Building.survived_fire_1835 == true → Factual(Building.survived_fire_1835, true))
+4. Q[The, Building.intact_after_fire_1835, College.destroyed_in_typhoon_fire_1835](Building.intact_after_fire_1835 == true → Factual(Building.intact_after_fire_1835, true))
+5. Q[The, Fire.year_1835, Building.destroyed_in_typhoon_fire_1835](Fire.year_1835 == 1835 → Factual(Fire.year_1835, true))
+6. Q[The, Fire.type_typhoon_fanned, Building.destroyed_in_typhoon_fire_1835](Fire.type_typhoon_fanned == true → Factual(Fire.type_typhoon_fanned, true))
+7. Q[The, Fire.affected_building, Building.destroyed_in_typhoon_fire_1835](Fire.affected_building == true → Factual(Building.destroyed_in_typhoon_fire_1835, true))
+8. Q[The, Fire.affected_college, College.destroyed_in_typhoon_fire_1835](Fire.affected_college == true → Factual(College.destroyed_in_typhoon_fire_1835, true))
+9. Q[The, Relationship.survival_status, Building.destroyed_in_typhoon_fire_1835](Relationship.survival_status == false → Factual(Relationship.survival_status, false))
+10. Q[The, Relationship.intact_status, Building.destroyed_in_typhoon_fire_1835](Relationship.intact_status == false → Factual(Relationship.intact_status, false))
+11. Q[The, Relationship.destruction_status, Building.survived_fire_1835](Relationship.destruction_status == true → Factual(Relationship.destruction_status, true))
+12. Q[The, Building.survived_fire_1835, Fire.type_typhoon_fanned](Building.survived_fire_1835 == true → Factual(Building.survived_fire_1835, true))
+13. Q[The, Building.intact_after_fire_1835, Fire.type_typhoon_fanned](Building.intact_after_fire_1835 == true → Factual(Building.intact_after_fire_1835, true))
+14. Q[The, Fire.year_1835, Building.survived_fire_1835](Fire.year_1835 == 1835 → Factual(Fire.year_1835, true))
+15. Q[The, Fire.type_typhoon_fanned, Building.survived_fire_1835](Fire.type_typhoon_fanned == true → Factual(Fire.type_typhoon_fanned, true))
+16. Q[The, Fire.affected_building, Building.survived_fire_1835](Fire.affected_building == false → Factual(Building.survived_fire_1835, true))
+17. Q[The, Fire.affected_college, College.destroyed_in_typhoon_fire_1835](Fire.affected_college == true → Factual(College.destroyed_in_typhoon_fire_1835, true))
+18. Q[The, Building.survived_fire_1835, Relationship.destruction_status](Building.survived_fire_1835 == true → Factual(Relationship.destruction_status, false))
+19. Q[The, Building.intact_after_fire_1835, Relationship.destruction_status](Building.intact_after_fire_1835 == true → Factual(Relationship.destruction_status, false))
+20. Q[The, Building.survived_fire_1835, Relationship.survival_status](Building.survived_fire_1835 == true → Factual(Relationship.survival_status, true))
+21. Q[The, Building.intact_after_fire_1835, Relationship.survival_status](Building.intact_after_fire_1835 == true → Factual(Relationship.survival_status, true))
+22. Q[The, Fire.year_1835, Relationship.survival_status](Fire.year_1835 == 1835 → Factual(Relationship.survival_status, false))
+23. Q[The, Fire.type_typhoon_fanned, Relationship.survival_status](Fire.type_typhoon_fanned == true → Factual(Relationship.survival_status, false))
+24. Q[The, Fire.affected_building, Relationship.survival_status](Fire.affected_building == true → Factual(Relationship.survival_status, false))
+25. Q[The, Fire.affected_college, Relationship.survival_status](Fire.affected_college == true → Factual(Relationship.survival_status, false))
+26. Q[The, Building.survived_fire_1835, Factual(Building.destroyed_in_typhoon_fire_1835)](Building.survived_fire_1835 == true → Factual(Building.destroyed_in_typhoon_fire_1835, false))
+27. Q[The, Building.intact_after_fire_1835, Factual(Building.destroyed_in_typhoon_fire_1835)](Building.intact_after_fire_1835 == true → Factual(Building.destroyed_in_typhoon_fire_1835, false))
+28. Q[The, Building.survived_fire_1835, Factual(College.destroyed_in_typhoon_fire_1835)](Building.survived_fire_1835 == true → Factual(College.destroyed_in_typhoon_fire_1835, false))
+29. Q[The, Building.intact_after_fire_1835, Factual(College.destroyed_in_typhoon_fire_1835)](Building.intact_after_fire_1835 == true → Factual(College.destroyed_in_typhoon_fire_1835, false))
+30. Q[The, Relationship.survival_status, Factual(Building.destroyed_in_typhoon_fire_1835)](Relationship.survival_status == false → Factual(Building.destroyed_in_typhoon_fire_1835, true))

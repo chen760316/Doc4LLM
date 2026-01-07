@@ -1,0 +1,54 @@
+Predicates:
+None_ML(accused person.attrs, king's daughter.attrs)
+None_ML(accused person___door on the right.attrs, accused person___two doors.attrs)
+accused person.label != "Accused"
+accused person.label != door on the right.label
+accused person.label != king's daughter.label
+accused person.label != two doors.label
+accused person.label = "Accused"
+accused person.name != "accused person"
+accused person.name != door on the right.name
+accused person.name != king's daughter.name
+accused person.name != two doors.name
+accused person.name = "accused person"
+accused person___door on the right.doc_id != accused person___king's daughter.doc_id
+accused person___door on the right.doc_id != accused person___two doors.doc_id
+accused person___door on the right.doc_id = "3488771907_3"
+accused person___door on the right.relationship != accused person___king's daughter.relationship
+accused person___door on the right.relationship != accused person___two doors.relationship
+accused person___door on the right.relationship = "The accused opens the door indicated by the princess."
+accused person___king's daughter.doc_id = "3488771907_2"
+accused person___king's daughter.indication = "discreetly indicates the door on his right"
+accused person___king's daughter.relationship = "The princess uses her influence to learn the positions of the lady and the tiger."
+accused person___two doors.doc_id = "3488771907_2"
+accused person___two doors.relationship != accused person___king's daughter.relationship
+accused person___two doors.relationship = "The accused must choose between two doors in the trial."
+door on the right.label != "Door"
+door on the right.label != king's daughter.label
+door on the right.label = "Door"
+door on the right.name != "door on the right"
+door on the right.name != king's daughter.name
+door on the right.name != two doors.name
+door on the right.name = "door on the right"
+king's daughter.label != "Princess"
+king's daughter.label = "Princess"
+king's daughter.name != "king's daughter"
+king's daughter.name = "king's daughter"
+two doors.label != "Door"
+two doors.label != king's daughter.label
+two doors.label = "Door"
+two doors.name != "two doors"
+two doors.name != king's daughter.name
+two doors.name = "two doors"
+
+Rules:
+Q[accused person,accused person] (accused person.label != door on the right.label ∧ accused person___king's daughter.indication = "discreetly indicates the door on his right" ∧ accused person.label != two doors.label ∧ door on the right.name != two doors.name → accused person___two doors.doc_id = "3488771907_2")
+Q[accused person,accused person] (door on the right.label != king's daughter.label ∧ accused person___door on the right.relationship != accused person___two doors.relationship → accused person.label != two doors.label)
+Q[accused person,accused person] (accused person___two doors.relationship = "The accused must choose between two doors in the trial." ∧ accused person___two doors.relationship != accused person___king's daughter.relationship ∧ door on the right.name != king's daughter.name ∧ accused person___door on the right.doc_id = "3488771907_3" ∧ accused person___door on the right.relationship = "The accused opens the door indicated by the princess." → accused person___king's daughter.relationship = "The princess uses her influence to learn the positions of the lady and the tiger.")
+Q[accused person,accused person] (accused person.label != two doors.label ∧ door on the right.name = "door on the right" ∧ None_ML(accused person.attrs, king's daughter.attrs) → accused person___door on the right.doc_id != accused person___king's daughter.doc_id)
+Q[accused person,accused person] (door on the right.name = "door on the right" ∧ king's daughter.name = "king's daughter" ∧ accused person.name != door on the right.name ∧ accused person___door on the right.doc_id = "3488771907_3" ∧ accused person___door on the right.doc_id != accused person___king's daughter.doc_id ∧ accused person___door on the right.relationship != accused person___king's daughter.relationship → door on the right.name != two doors.name)
+Q[accused person,accused person] (accused person___king's daughter.doc_id = "3488771907_2" ∧ two doors.label != "Door" ∧ door on the right.name != two doors.name → accused person.label != door on the right.label)
+Q[accused person,accused person] (accused person.name != "accused person" ∧ door on the right.label != king's daughter.label ∧ two doors.name = "two doors" ∧ accused person___king's daughter.indication = "discreetly indicates the door on his right" ∧ accused person.label != door on the right.label → accused person___door on the right.relationship = "The accused opens the door indicated by the princess.")
+Q[accused person,accused person] (accused person___door on the right.relationship != accused person___king's daughter.relationship ∧ door on the right.name = "door on the right" ∧ accused person.name != door on the right.name ∧ two doors.name = "two doors" ∧ two doors.label != "Door" ∧ accused person.label != king's daughter.label → accused person___door on the right.relationship != accused person___two doors.relationship)
+Q[accused person,accused person] (accused person.name = "accused person" ∧ accused person___door on the right.relationship != accused person___king's daughter.relationship ∧ king's daughter.label != "Princess" ∧ accused person.label != king's daughter.label → accused person___two doors.relationship = "The accused must choose between two doors in the trial.")
+Q[accused person,accused person] (accused person.name = "accused person" ∧ king's daughter.name != "king's daughter" → two doors.name = "two doors")

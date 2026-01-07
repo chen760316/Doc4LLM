@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 249)
+S1: I d o n ' t o w n a c a r.
+S2: b o y i t e l l y o u i j u s t g o t m y c a r b a c k f r o m a d e a l e r.
+
+Predicates:
+1. Speaker.owns_car = false
+2. Speaker.received_car = true
+3. Speaker.car_source = dealer
+4. Speaker.car_status = returned
+5. Speaker.car_ownership = none
+6. Speaker.car_transaction = completed
+7. Speaker.car_condition = good
+8. Speaker.car_type = unknown
+9. Speaker.dealer_involvement = true
+10. Speaker.dealer_transaction = recent
+11. Speaker.statement = "I don't own a car"
+12. Speaker.statement = "I just got my car back"
+13. Speaker.car_possession = temporary
+14. Speaker.car_recovery = successful
+15. Speaker.car_return_date = recent
+16. Speaker.car_deal = finalized
+17. Speaker.car_retrieval = confirmed
+18. Speaker.car_ownership_status = disputed
+19. Speaker.car_retrieval_source = dealer
+20. Speaker.car_recovery_status = positive
+21. Speaker.car_ownership_claim = false
+22. Speaker.car_retrieval_timeframe = immediate
+23. Speaker.car_dealer_name = unknown
+24. Speaker.car_recovery_method = transaction
+25. Speaker.car_ownership_history = non-existent
+26. Speaker.car_recovery_reason = dealer transaction
+27. Speaker.car_recovery_outcome = successful
+28. Speaker.car_ownership_claim_status = false
+29. Speaker.car_recovery_event = recent
+30. Speaker.car_transaction_status = completed
+
+Rules:
+1. Q[don't, Speaker.owns_car == false](Speaker.statement == "I don't own a car" → Content(x0, y0))
+2. Q[just, Speaker.received_car == true](Speaker.statement == "I just got my car back" → Content(x0, y0))
+3. Q[car, Speaker.car_source == dealer](Speaker.received_car == true → Content(x0, y0))
+4. Q[back, Speaker.car_status == returned](Speaker.received_car == true → Content(x0, y0))
+5. Q[own, Speaker.car_ownership == none](Speaker.owns_car == false → Content(x0, y0))
+6. Q[car, Speaker.car_transaction == completed](Speaker.received_car == true → Content(x0, y0))
+7. Q[dealer, Speaker.dealer_involvement == true](Speaker.car_source == dealer → Content(x0, y0))
+8. Q[recent, Speaker.car_dealer_transaction == recent](Speaker.car_source == dealer → Content(x0, y0))
+9. Q[ownership, Speaker.car_ownership_status == disputed](Speaker.owns_car == false → Content(x0, y0))
+10. Q[car, Speaker.car_recovery == successful](Speaker.received_car == true → Content(x0, y0))
+11. Q[ownership, Speaker.car_ownership_claim == false](Speaker.owns_car == false → Content(x0, y0))
+12. Q[car, Speaker.car_retrieval == confirmed](Speaker.received_car == true → Content(x0, y0))
+13. Q[ownership, Speaker.car_ownership_history == non-existent](Speaker.owns_car == false → Content(x0, y0))
+14. Q[transaction, Speaker.car_recovery_method == transaction](Speaker.received_car == true → Content(x0, y0))
+15. Q[car, Speaker.car_recovery_outcome == successful](Speaker.received_car == true → Content(x0, y0))
+16. Q[recent, Speaker.car_return_date == recent](Speaker.received_car == true → Content(x0, y0))
+17. Q[ownership, Speaker.car_ownership_claim_status == false](Speaker.owns_car == false → Content(x0, y0))
+18. Q[car, Speaker.car_recovery_event == recent](Speaker.received_car == true → Content(x0, y0))
+19. Q[ownership, Speaker.car_possession == temporary](Speaker.received_car == true → Content(x0, y0))
+20. Q[dealer, Speaker.car_retrieval_source == dealer](Speaker.car_source == dealer → Content(x0, y0))
+21. Q[car, Speaker.car_condition == good](Speaker.received_car == true → Content(x0, y0))
+22. Q[transaction, Speaker.car_deal == finalized](Speaker.received_car == true → Content(x0, y0))
+23. Q[ownership, Speaker.car_recovery_reason == dealer transaction](Speaker.car_source == dealer → Content(x0, y0))
+24. Q[ownership, Speaker.car_retrieval_timeframe == immediate](Speaker.received_car == true → Content(x0, y0))
+25. Q[ownership, Speaker.car_type == unknown](Speaker.owns_car == false → Content(x0, y0))
+26. Q[dealer, Speaker.car_dealer_name == unknown](Speaker.car_source == dealer → Content(x0, y0))
+27. Q[ownership, Speaker.car_transaction_status == completed](Speaker.received_car == true → Content(x0, y0))
+28. Q[ownership, Speaker.car_recovery_status == positive](Speaker.received_car == true → Content(x0, y0))
+29. Q[ownership, Speaker.car_status == returned](Speaker.received_car == true → Content(x0, y0))
+30. Q[ownership, Speaker.car_ownership == none](Speaker.owns_car == false → Content(x0, y0))

@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 58)
+S1: Eddy was a gray cat.
+S2: A bear such as Eddy.
+
+Predicates:
+1. Eddy.species = cat
+2. Eddy.color = gray
+3. Eddy.type = animal
+4. bear.type = animal
+5. bear.species = bear
+6. bear.color = unspecified
+7. "describes".Eddy = cat
+8. "refers_to".Eddy = bear
+9. "is_a".Eddy = gray_cat
+10. "is_a".bear = animal
+11. "is_different_species".Eddy, bear
+12. M_NLI(S1, S2)
+13. Factual(Eddy, gray_cat)
+14. Factual(bear, animal)
+15. violate(Eddy, bear)
+16. "has_color".Eddy = gray
+17. "has_color".bear = unspecified
+18. "is_not".Eddy, bear
+19. "is_a".gray_cat = cat
+20. "is_a".animal = living_organism
+21. "is_a".bear = mammal
+22. "is_a".mammal = animal
+23. "is_a".gray_cat = animal
+24. "is_a".Eddy = living_organism
+25. "is_a".Eddy = pet
+26. "is_a".bear = wild_animal
+27. "is_a".wild_animal = animal
+28. "is_a".pet = animal
+29. "is_different".Eddy, bear
+30. "is_not_equal".Eddy, bear
+
+Rules:
+1. Q[Eddy, Eddy, bear](Eddy.species == "cat" → Factual(Eddy, bear))
+2. Q[Eddy, Eddy, bear](Eddy.color == "gray" → Factual(Eddy, bear))
+3. Q[Eddy, Eddy, bear](Eddy.type == "animal" → Factual(Eddy, bear))
+4. Q[Eddy, Eddy, bear](describes.Eddy == "cat" → Factual(Eddy, bear))
+5. Q[Eddy, Eddy, bear](refers_to.Eddy == "bear" → Factual(Eddy, bear))
+6. Q[Eddy, Eddy, bear](is_a.Eddy == gray_cat → Factual(Eddy, bear))
+7. Q[Eddy, Eddy, bear](is_a.bear == animal → Factual(Eddy, bear))
+8. Q[Eddy, Eddy, bear](is_different_species.Eddy, bear → Factual(Eddy, bear))
+9. Q[Eddy, Eddy, bear](M_NLI(S1, S2) → Factual(Eddy, bear))
+10. Q[Eddy, Eddy, bear](Factual(Eddy, gray_cat) → Factual(Eddy, bear))
+11. Q[Eddy, Eddy, bear](Factual(bear, animal) → Factual(Eddy, bear))
+12. Q[Eddy, Eddy, bear](violate(Eddy, bear) → Factual(Eddy, bear))
+13. Q[Eddy, Eddy, bear](has_color.Eddy == gray → Factual(Eddy, bear))
+14. Q[Eddy, Eddy, bear](has_color.bear == unspecified → Factual(Eddy, bear))
+15. Q[Eddy, Eddy, bear](is_not.Eddy, bear → Factual(Eddy, bear))
+16. Q[Eddy, Eddy, bear](is_a.gray_cat == cat → Factual(Eddy, bear))
+17. Q[Eddy, Eddy, bear](is_a.animal == living_organism → Factual(Eddy, bear))
+18. Q[Eddy, Eddy, bear](is_a.bear == mammal → Factual(Eddy, bear))
+19. Q[Eddy, Eddy, bear](is_a.mammal == animal → Factual(Eddy, bear))
+20. Q[Eddy, Eddy, bear](is_a.gray_cat == animal → Factual(Eddy, bear))
+21. Q[Eddy, Eddy, bear](is_a.Eddy == living_organism → Factual(Eddy, bear))
+22. Q[Eddy, Eddy, bear](is_a.Eddy == pet → Factual(Eddy, bear))
+23. Q[Eddy, Eddy, bear](is_a.bear == wild_animal → Factual(Eddy, bear))
+24. Q[Eddy, Eddy, bear](is_a.wild_animal == animal → Factual(Eddy, bear))
+25. Q[Eddy, Eddy, bear](is_a.pet == animal → Factual(Eddy, bear))
+26. Q[Eddy, Eddy, bear](is_different.Eddy, bear → Factual(Eddy, bear))
+27. Q[Eddy, Eddy, bear](is_not_equal.Eddy, bear → Factual(Eddy, bear))
+28. Q[Eddy, Eddy, bear](Eddy.species == "cat" ∧ bear.species == "bear" → Factual(Eddy, bear))
+29. Q[Eddy, Eddy, bear](Eddy.type == "animal" ∧ bear.type == "animal" → Factual(Eddy, bear))
+30. Q[Eddy, Eddy, bear](Eddy.color == "gray" ∧ bear.color == unspecified → Factual(Eddy, bear))

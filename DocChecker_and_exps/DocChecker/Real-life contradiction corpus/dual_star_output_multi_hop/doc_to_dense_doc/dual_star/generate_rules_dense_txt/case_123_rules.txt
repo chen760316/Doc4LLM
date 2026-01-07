@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 123)
+S1: Gregg Miner, the company's general manager, originally stated that it was the management team that selected the supervisor for the RIF.
+S2: Gregg Miner acknowledged that he probably had been the one to select Whittington for the RIF.
+
+Predicates:
+1. Gregg_Miner.position = "general manager"
+2. management_team.decision_maker = "collective"
+3. Gregg_Miner.statement = "management team selected supervisor"
+4. Gregg_Miner.acknowledgment = "selected Whittington"
+5. Whittington.selection_reason = "RIF"
+6. RIF.selection_process = "management team"
+7. RIF.selection_process = "Gregg Miner"
+8. management_team.selection_method = "collective decision"
+9. Gregg_Miner.role_in_selection = "individual"
+10. Whittington.selected_by = "Gregg Miner"
+11. management_team.influence_on_decision = "high"
+12. Gregg_Miner.influence_on_decision = "high"
+13. RIF.decision_maker = "Gregg Miner"
+14. RIF.decision_maker = "management team"
+15. Gregg_Miner.statement_conflict = "yes"
+16. management_team.selection_conflict = "no"
+17. Gregg_Miner.decision_making_style = "individualistic"
+18. management_team.decision_making_style = "collaborative"
+19. RIF.context = "supervisor selection"
+20. Gregg_Miner.credibility = "questionable"
+21. management_team.credibility = "intact"
+22. Whittington.role = "supervisor"
+23. RIF.outcome = "selection of Whittington"
+24. Gregg_Miner.acknowledgment_conflict = "yes"
+25. management_team.decision_outcome = "supervisor selected"
+26. Gregg_Miner.statement_accuracy = "inaccurate"
+27. RIF.process_conflict = "yes"
+28. management_team.selection_accuracy = "accurate"
+29. Gregg_Miner.individual_decision = "yes"
+30. management_team.collective_decision = "no"
+
+Rules:
+1. Q[management_team, Gregg_Miner.position == "general manager" → Causal(Gregg_Miner, management_team)]
+2. Q[Gregg_Miner, management_team.decision_maker == "collective" → Causal(Gregg_Miner, management_team)]
+3. Q[Gregg_Miner, Gregg_Miner.statement == "management team selected supervisor" → Causal(Gregg_Miner, management_team)]
+4. Q[Gregg_Miner, Gregg_Miner.acknowledgment == "selected Whittington" → Causal(Gregg_Miner, Whittington)]
+5. Q[Whittington, Whittington.selection_reason == "RIF" → Causal(Whittington, RIF)]
+6. Q[RIF, RIF.selection_process == "management team" → Causal(RIF, management_team)]
+7. Q[RIF, RIF.selection_process == "Gregg Miner" → Causal(RIF, Gregg_Miner)]
+8. Q[management_team, management_team.selection_method == "collective decision" → Causal(management_team, RIF)]
+9. Q[Gregg_Miner, Gregg_Miner.role_in_selection == "individual" → Causal(Gregg_Miner, RIF)]
+10. Q[Whittington, Whittington.selected_by == "Gregg Miner" → Causal(Whittington, Gregg_Miner)]
+11. Q[management_team, management_team.influence_on_decision == "high" → Causal(management_team, RIF)]
+12. Q[Gregg_Miner, Gregg_Miner.influence_on_decision == "high" → Causal(Gregg_Miner, RIF)]
+13. Q[RIF, RIF.decision_maker == "Gregg Miner" → Causal(RIF, Gregg_Miner)]
+14. Q[RIF, RIF.decision_maker == "management team" → Causal(RIF, management_team)]
+15. Q[Gregg_Miner, Gregg_Miner.statement_conflict == "yes" → Causal(Gregg_Miner, management_team)]
+16. Q[management_team, management_team.selection_conflict == "no" → Causal(management_team, RIF)]
+17. Q[Gregg_Miner, Gregg_Miner.decision_making_style == "individualistic" → Causal(Gregg_Miner, RIF)]
+18. Q[management_team, management_team.decision_making_style == "collaborative" → Causal(management_team, RIF)]
+19. Q[RIF, RIF.context == "supervisor selection" → Causal(RIF, Whittington)]
+20. Q[Gregg_Miner, Gregg_Miner.credibility == "questionable" → Causal(Gregg_Miner, RIF)]
+21. Q[management_team, management_team.credibility == "intact" → Causal(management_team, RIF)]
+22. Q[Whittington, Whittington.role == "supervisor" → Causal(Whittington, RIF)]
+23. Q[RIF, RIF.outcome == "selection of Whittington" → Causal(RIF, Whittington)]
+24. Q[Gregg_Miner, Gregg_Miner.acknowledgment_conflict == "yes" → Causal(Gregg_Miner, RIF)]
+25. Q[management_team, management_team.decision_outcome == "supervisor selected" → Causal(management_team, RIF)]
+26. Q[Gregg_Miner, Gregg_Miner.statement_accuracy == "inaccurate" → Causal(Gregg_Miner, management_team)]
+27. Q[RIF, RIF.process_conflict == "yes" → Causal(RIF, Gregg_Miner)]
+28. Q[management_team, management_team.selection_accuracy == "accurate" → Causal(management_team, RIF)]
+29. Q[Gregg_Miner, Gregg_Miner.individual_decision == "yes" → Causal(Gregg_Miner, RIF)]
+30. Q[management_team, management_team.collective_decision == "no" → Causal(management_team, RIF)]

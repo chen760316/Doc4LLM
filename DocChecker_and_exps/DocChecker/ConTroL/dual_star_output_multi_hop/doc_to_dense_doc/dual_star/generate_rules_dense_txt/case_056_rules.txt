@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 56)
+S1: A bite from a taipan is always fatal to humans.
+S2: However, the markings and behaviour are a bluff and its venom is only mild and virtually harmless to humans.
+
+Predicates:
+1. Taipan.venom = fatal
+2. Taipan.behaviour = bluff
+3. Taipan.markings = bluff
+4. Taipan.venom = mild
+5. Taipan.venom = harmless
+6. Humans.bite_effect = fatal
+7. Humans.bite_effect = mild
+8. Humans.bite_effect = harmless
+9. Taipan.bite.fatal_to(Humans)
+10. Taipan.bite.mild_to(Humans)
+11. Taipan.bite.harmful_to(Humans)
+12. Fatality_claim.asserted_by(S1)
+13. Harmless_claim.asserted_by(S2)
+14. S1.contradicts(S2)
+15. S2.refutes(S1)
+16. Taipan.bite.always_fatal_to(Humans)
+17. Taipan.bite.not_always_fatal_to(Humans)
+18. Taipan.venom.is_harmless_to(Humans)
+19. Taipan.venom.is_not_harmless_to(Humans)
+20. Fatality_claim.violate(Humans)
+21. Mild_claim.violate(Humans)
+22. Harmless_claim.violate(Humans)
+23. S1.is_factual = false
+24. S2.is_factual = true
+25. Humans.experience.bite_effect = fatal
+26. Humans.experience.bite_effect = mild
+27. Humans.experience.bite_effect = harmless
+28. Taipan.bite.is_fatal = true
+29. Taipan.bite.is_harmless = true
+30. M_NLI(S1, S2) = true
+
+Rules:
+1. Q[bite, Taipan.venom = fatal, Taipan.venom = mild](Fatality_claim.asserted_by(S1) → Factual(x0, y0))
+2. Q[bite, Taipan.venom = fatal, Taipan.venom = harmless](Fatality_claim.asserted_by(S1) → Factual(x0, y0))
+3. Q[bite, Humans.bite_effect = fatal, Taipan.venom = mild](Humans.bite_effect = fatal → Factual(x0, y0))
+4. Q[bite, Humans.bite_effect = fatal, Taipan.venom = harmless](Humans.bite_effect = fatal → Factual(x0, y0))
+5. Q[bite, Taipan.bite.fatal_to(Humans), Taipan.venom = mild](Taipan.bite.always_fatal_to(Humans) → Factual(x0, y0))
+6. Q[bite, Taipan.bite.fatal_to(Humans), Taipan.venom = harmless](Taipan.bite.always_fatal_to(Humans) → Factual(x0, y0))
+7. Q[bite, Humans.bite_effect = fatal, Taipan.bite.mild_to(Humans)](Humans.bite_effect = fatal → Factual(x0, y0))
+8. Q[bite, Humans.bite_effect = fatal, Taipan.bite.harmful_to(Humans)](Humans.bite_effect = fatal → Factual(x0, y0))
+9. Q[bite, Taipan.bite.is_fatal, Taipan.venom.is_harmless_to(Humans)](Taipan.bite.is_fatal = true → Factual(x0, y0))
+10. Q[bite, Taipan.bite.is_fatal, Taipan.venom.is_not_harmless_to(Humans)](Taipan.bite.is_fatal = true → Factual(x0, y0))
+11. Q[bite, Taipan.bite.harmful_to(Humans), Taipan.venom.is_harmless_to(Humans)](Taipan.bite.harmful_to(Humans) → Factual(x0, y0))
+12. Q[bite, Taipan.bite.harmful_to(Humans), Taipan.venom.is_not_harmless_to(Humans)](Taipan.bite.harmful_to(Humans) → Factual(x0, y0))
+13. Q[bite, Taipan.venom = fatal, Taipan.bite.not_always_fatal_to(Humans)](Fatality_claim.violate(Humans) → Factual(x0, y0))
+14. Q[bite, Taipan.venom = mild, Taipan.bite.is_fatal](Mild_claim.violate(Humans) → Factual(x0, y0))
+15. Q[bite, Taipan.venom = harmless, Taipan.bite.is_fatal](Harmless_claim.violate(Humans) → Factual(x0, y0))
+16. Q[bite, Taipan.bite.is_fatal, Taipan.bite.not_always_fatal_to(Humans)](Taipan.bite.is_fatal = true → Factual(x0, y0))
+17. Q[bite, Taipan.bite.is_harmless, Taipan.bite.fatal_to(Humans)](Taipan.bite.is_harmless = true → Factual(x0, y0))
+18. Q[bite, Taipan.venom.is_harmless_to(Humans), Taipan.bite.fatal_to(Humans)](Taipan.venom.is_harmless_to(Humans) → Factual(x0, y0))
+19. Q[bite, Taipan.venom.is_not_harmless_to(Humans), Taipan.bite.fatal_to(Humans)](Taipan.venom.is_not_harmless_to(Humans) → Factual(x0, y0))
+20. Q[bite, Humans.experience.bite_effect = fatal, Taipan.venom = mild](Humans.experience.bite_effect = fatal → Factual(x0, y0))
+21. Q[bite, Humans.experience.bite_effect = fatal, Taipan.venom = harmless](Humans.experience.bite_effect = fatal → Factual(x0, y0))
+22. Q[bite, Taipan.bite.is_fatal, Taipan.venom = mild](Taipan.bite.is_fatal = true → Factual(x0, y0))
+23. Q[bite, Taipan.bite.is_fatal, Taipan.venom = harmless](Taipan.bite.is_fatal = true → Factual(x0, y0))
+24. Q[bite, Taipan.bite.harmful_to(Humans), Taipan.venom = mild](Taipan.bite.harmful_to(Humans) → Factual(x0, y0))
+25. Q[bite, Taipan.bite.harmful_to(Humans), Taipan.venom = harmless](Taipan.bite.harmful_to(Humans) → Factual(x0, y0))
+26. Q[bite, Taipan.bite.is_fatal, Taipan.venom.is_harmless_to(Humans)](Taipan.bite.is_fatal = true → Factual(x0, y0))
+27. Q[bite, Taipan.bite.is_fatal, Taipan.venom.is_not_harmless_to(Humans)](Taipan.bite.is_fatal = true → Factual(x0, y0))
+28. Q[bite, Taipan.bite.fatal_to(Humans), Taipan.venom.is_harmless_to(Humans)](Taipan.bite.fatal_to(Humans) → Factual(x0, y0))
+29. Q[bite, Taipan.bite.fatal_to(Humans), Taipan.venom.is_not_harmless_to(Humans)](Taipan.bite.fatal_to(Humans) → Factual(x0, y0))
+30. Q[bite, Taipan.bite.is_fatal, Taipan.bite.mild_to(Humans)](Taipan.bite.is_fatal = true → Factual(x0, y0))

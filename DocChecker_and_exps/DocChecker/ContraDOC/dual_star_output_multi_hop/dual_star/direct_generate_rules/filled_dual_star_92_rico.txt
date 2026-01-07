@@ -1,0 +1,47 @@
+Predicates:
+DNA analysis.label != "Investigation"
+DNA analysis.label = "Investigation"
+DNA analysis.name != "DNA analysis"
+DNA analysis.name != Germanwings crash investigation.name
+DNA analysis.name = "DNA analysis"
+DNA analysis.status != "ongoing"
+DNA analysis.status = "ongoing"
+Francois Hollande.country != "France"
+Francois Hollande.country = "France"
+Francois Hollande.label != "Person"
+Francois Hollande.label != DNA analysis.label
+Francois Hollande.label != Germanwings crash investigation.label
+Francois Hollande.label = "Person"
+Francois Hollande.name != "Francois Hollande"
+Francois Hollande.name != DNA analysis.name
+Francois Hollande.name != Germanwings crash investigation.name
+Francois Hollande.name = "Francois Hollande"
+Francois Hollande.occupation != "President"
+Francois Hollande.occupation = "President"
+Francois Hollande___DNA analysis.doc_id != Francois Hollande___Germanwings crash investigation.doc_id
+Francois Hollande___DNA analysis.doc_id = "3489825756_6"
+Francois Hollande___DNA analysis.relationship != Francois Hollande___Germanwings crash investigation.relationship
+Francois Hollande___DNA analysis.relationship = "Francois Hollande stated that it should be possible to identify all victims using DNA analysis."
+Francois Hollande___DNA analysis.time_frame = "by the end of the week"
+Francois Hollande___Germanwings crash investigation.date = "Tuesday"
+Francois Hollande___Germanwings crash investigation.doc_id = "3489825776_7"
+Francois Hollande___Germanwings crash investigation.method = "DNA analysis"
+Francois Hollande___Germanwings crash investigation.relationship = "Francois Hollande commented on the identification of victims from the Germanwings crash."
+Germanwings crash investigation.label != "Investigation"
+Germanwings crash investigation.label = "Investigation"
+Germanwings crash investigation.name != "Germanwings crash investigation"
+Germanwings crash investigation.name = "Germanwings crash investigation"
+None_ML(Francois Hollande.attrs, Germanwings crash investigation.attrs)
+None_ML(Francois Hollande___Germanwings crash investigation.attrs, Francois Hollande___DNA analysis.attrs)
+
+Rules:
+Q[Francois Hollande,Francois Hollande] (Francois Hollande.label = "Person" ∧ Francois Hollande___Germanwings crash investigation.relationship = "Francois Hollande commented on the identification of victims from the Germanwings crash." ∧ Francois Hollande.label != "Person" ∧ None_ML(Francois Hollande.attrs, Germanwings crash investigation.attrs) ∧ Francois Hollande___DNA analysis.time_frame = "by the end of the week" ∧ Francois Hollande.label != DNA analysis.label → Francois Hollande___DNA analysis.relationship = "Francois Hollande stated that it should be possible to identify all victims using DNA analysis.")
+Q[Francois Hollande,Francois Hollande] (Francois Hollande.occupation != "President" ∧ None_ML(Francois Hollande___Germanwings crash investigation.attrs, Francois Hollande___DNA analysis.attrs) → Francois Hollande___DNA analysis.doc_id != Francois Hollande___Germanwings crash investigation.doc_id)
+Q[Francois Hollande,Francois Hollande] (DNA analysis.status != "ongoing" ∧ Francois Hollande.country != "France" ∧ DNA analysis.name = "DNA analysis" ∧ Francois Hollande.label != "Person" → None_ML(Francois Hollande.attrs, Germanwings crash investigation.attrs))
+Q[Francois Hollande,Francois Hollande] (Francois Hollande.name != Germanwings crash investigation.name ∧ Francois Hollande.country != "France" ∧ None_ML(Francois Hollande___Germanwings crash investigation.attrs, Francois Hollande___DNA analysis.attrs) → Germanwings crash investigation.name != "Germanwings crash investigation")
+Q[Francois Hollande,Francois Hollande] (Francois Hollande___Germanwings crash investigation.method = "DNA analysis" ∧ Francois Hollande___Germanwings crash investigation.date = "Tuesday" ∧ Francois Hollande.occupation = "President" ∧ Francois Hollande.name != DNA analysis.name ∧ Francois Hollande.country = "France" → Germanwings crash investigation.name = "Germanwings crash investigation")
+Q[Francois Hollande,Francois Hollande] (Francois Hollande___DNA analysis.doc_id != Francois Hollande___Germanwings crash investigation.doc_id ∧ Francois Hollande___Germanwings crash investigation.doc_id = "3489825776_7" ∧ DNA analysis.name != Germanwings crash investigation.name ∧ Francois Hollande.name != DNA analysis.name ∧ Francois Hollande___Germanwings crash investigation.relationship = "Francois Hollande commented on the identification of victims from the Germanwings crash." ∧ Francois Hollande.label = "Person" → Francois Hollande___DNA analysis.time_frame = "by the end of the week")
+Q[Francois Hollande,Francois Hollande] (DNA analysis.status = "ongoing" ∧ Francois Hollande.country != "France" ∧ Francois Hollande.label != "Person" ∧ Francois Hollande.country = "France" ∧ DNA analysis.name != Germanwings crash investigation.name → Francois Hollande.label = "Person")
+Q[Francois Hollande,Francois Hollande] (Francois Hollande.label != Germanwings crash investigation.label ∧ Francois Hollande___Germanwings crash investigation.method = "DNA analysis" ∧ DNA analysis.label = "Investigation" ∧ DNA analysis.name != Germanwings crash investigation.name → Francois Hollande___DNA analysis.doc_id = "3489825756_6")
+Q[Francois Hollande,Francois Hollande] (Francois Hollande.occupation != "President" ∧ Francois Hollande.label != DNA analysis.label → Germanwings crash investigation.label = "Investigation")
+Q[Francois Hollande,Francois Hollande] (Francois Hollande___DNA analysis.relationship != Francois Hollande___Germanwings crash investigation.relationship ∧ Francois Hollande.country = "France" ∧ DNA analysis.name != Germanwings crash investigation.name → Francois Hollande.occupation != "President")

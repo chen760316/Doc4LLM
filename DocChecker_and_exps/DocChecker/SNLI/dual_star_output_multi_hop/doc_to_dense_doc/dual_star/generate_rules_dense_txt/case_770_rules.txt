@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 770)
+S1: Three people pose with political signs at the political rally.
+S2: Two men and a woman pose with signs for Obama and Chris Gregoire.
+
+Predicates:
+1. Person1.gender
+2. Person2.gender
+3. Person3.gender
+4. Person1.political_sign
+5. Person2.political_sign
+6. Person3.political_sign
+7. PoliticalRally.location
+8. PoliticalRally.date
+9. PoliticalRally.attendees_count
+10. PoliticalSign.candidate
+11. PoliticalSign.political_party
+12. Person1.affiliation
+13. Person2.affiliation
+14. Person3.affiliation
+15. Event.type
+16. Event.purpose
+17. Event.organizer
+18. Person1.role
+19. Person2.role
+20. Person3.role
+21. M_NLI(S1, S2)
+22. Numeric(3, 3)
+23. Numeric(2, 1)
+24. violate(3, 3)
+25. violate(2, 1)
+26. PoliticalRally.theme
+27. PoliticalRally.speakers_count
+28. PoliticalSign.message
+29. Person1.age
+30. Person2.age
+
+Rules:
+1. Q[Three, Person1.gender, Person2.gender](Person1.gender == "male" ∧ Person2.gender == "male" → Numeric(2, 1))
+2. Q[Three, Person1.gender, Person3.gender](Person1.gender == "male" ∧ Person3.gender == "female" → Numeric(2, 1))
+3. Q[Three, Person2.gender, Person3.gender](Person2.gender == "male" ∧ Person3.gender == "female" → Numeric(2, 1))
+4. Q[Three, Person1.political_sign, Person2.political_sign](Person1.political_sign == "Obama" ∧ Person2.political_sign == "Chris Gregoire" → Numeric(2, 1))
+5. Q[Three, Person1.political_sign, Person3.political_sign](Person1.political_sign == "Obama" ∧ Person3.political_sign == "Chris Gregoire" → Numeric(2, 1))
+6. Q[Three, Person2.political_sign, Person3.political_sign](Person2.political_sign == "Obama" ∧ Person3.political_sign == "Chris Gregoire" → Numeric(2, 1))
+7. Q[Three, Person1.affiliation, Person2.affiliation](Person1.affiliation == "Democrat" ∧ Person2.affiliation == "Democrat" → Numeric(2, 1))
+8. Q[Three, Person1.affiliation, Person3.affiliation](Person1.affiliation == "Democrat" ∧ Person3.affiliation == "Democrat" → Numeric(2, 1))
+9. Q[Three, Person2.affiliation, Person3.affiliation](Person2.affiliation == "Democrat" ∧ Person3.affiliation == "Democrat" → Numeric(2, 1))
+10. Q[Three, PoliticalRally.attendees_count, Numeric(3, 3)](PoliticalRally.attendees_count == 3 → Numeric(3, 3))
+11. Q[Three, PoliticalRally.attendees_count, Numeric(2, 1)](PoliticalRally.attendees_count == 3 ∧ (Person1.gender == "male" ∧ Person2.gender == "male" ∧ Person3.gender == "female") → Numeric(2, 1))
+12. Q[Three, Person1.role, Person2.role](Person1.role == "attendee" ∧ Person2.role == "attendee" → Numeric(2, 1))
+13. Q[Three, Person1.role, Person3.role](Person1.role == "attendee" ∧ Person3.role == "attendee" → Numeric(2, 1))
+14. Q[Three, Person2.role, Person3.role](Person2.role == "attendee" ∧ Person3.role == "attendee" → Numeric(2, 1))
+15. Q[Three, PoliticalSign.candidate, PoliticalSign.political_party](PoliticalSign.candidate == "Obama" ∧ PoliticalSign.political_party == "Democrat" → Numeric(2, 1))
+16. Q[Three, PoliticalSign.candidate, PoliticalSign.political_party](PoliticalSign.candidate == "Chris Gregoire" ∧ PoliticalSign.political_party == "Democrat" → Numeric(2, 1))
+17. Q[Three, Event.type, Event.purpose](Event.type == "political rally" ∧ Event.purpose == "support candidates" → Numeric(2, 1))
+18. Q[Three, PoliticalRally.theme, PoliticalRally.speakers_count](PoliticalRally.theme == "support" ∧ PoliticalRally.speakers_count == 3 → Numeric(2, 1))
+19. Q[Three, Person1.age, Person2.age](Person1.age >= 18 ∧ Person2.age >= 18 → Numeric(2, 1))
+20. Q[Three, Person1.age, Person3.age](Person1.age >= 18 ∧ Person3.age >= 18 → Numeric(2, 1))
+21. Q[Three, Person2.age, Person3.age](Person2.age >= 18 ∧ Person3.age >= 18 → Numeric(2, 1))
+22. Q[Three, PoliticalRally.location, PoliticalRally.date](PoliticalRally.location == "city park" ∧ PoliticalRally.date == "2023-10-01" → Numeric(2, 1))
+23. Q[Three, Person1.gender, Person2.gender](Person1.gender == "male" ∧ Person2.gender == "male" ∧ Person3.gender == "female" → Numeric(2, 1))
+24. Q[Three, Person1.gender, Person3.gender](Person1.gender == "male" ∧ Person3.gender == "female" ∧ Person2.gender == "male" → Numeric(2, 1))
+25. Q[Three, Person2.gender, Person3.gender](Person2.gender == "male" ∧ Person3.gender == "female" ∧ Person1.gender == "male" → Numeric(2, 1))
+26. Q[Three, PoliticalSign.message, Person1.political_sign](PoliticalSign.message == "Vote for change" ∧ Person1.political_sign == "Obama" → Numeric(2, 1))
+27. Q[Three, PoliticalSign.message, Person2.political_sign](PoliticalSign.message == "Vote for progress" ∧ Person2.political_sign == "Chris Gregoire" → Numeric(2, 1))
+28. Q[Three, PoliticalRally.attendees_count, Numeric(3, 3)](PoliticalRally.attendees_count == 3 ∧ (Person1.gender == "male" ∧ Person2.gender == "male" ∧ Person3.gender == "female") → Numeric(3, 3))
+29. Q[Three, violate(3, 3), violate(2, 1)](M_NLI(S1, S2) → violate(3, 3))
+30. Q[Three, violate(2, 1), violate(3, 3)](M_NLI(S1, S2) → violate(2, 1))

@@ -1,0 +1,105 @@
+Predicates:
+1. Diana.attributes.role = "public figure"
+2. Diana.attributes.empathy = True
+3. Diana.attributes.age_at_death < 40
+4. Diana.attributes.age_at_death >= 36
+5. Diana.status != "alive"
+6. "Diana advocated for victims of landmines".context = "humanitarian work"
+7. "Diana advocated for victims of landmines".location = "international"
+8. "Diana opened the Middlesex Hospital's Aids ward".context != "political work"
+9. "Diana opened the Middlesex Hospital's Aids ward".location = "Middlesex Hospital, UK"
+10. "Prince Harry led tributes to his mother Diana".event = "memorial service"
+11. "Prince Harry led tributes to his mother Diana".location = "London, England"
+12. "Prince William participated in a thanksgiving service".event != "memorial service"
+13. "Prince William participated in a thanksgiving service".location = "London, England"
+14. "Opening of the Middlesex Hospital's Aids ward".year >= 1987
+15. "Opening of the Middlesex Hospital's Aids ward".significance = "first Aids ward in the UK"
+16. "Victims of landmines advocacy".year < 2000
+17. "Victims of landmines advocacy".significance != "irrelevant"
+18. Prince Harry.attributes.role = "son"
+19. Prince Harry.attributes.relationship = "child of Diana"
+20. Prince William.attributes.role = "son"
+21. Prince William.attributes.relationship != "sibling of Diana"
+22. M_NLI(Diana.attributes, Prince Harry.attributes)
+23. M_NLU(Diana.attributes, Prince William.attributes)
+24. M_TEM(Prince Harry.attributes, Prince William.attributes)
+25. contra("Diana opened the Aids ward", "Diana did not open the Aids ward")
+26. S(Diana, "Diana advocated for victims of landmines")
+27. S(Prince Harry, "Prince Harry led tributes to his mother Diana")
+28. S("Diana opened the Middlesex Hospital's Aids ward", "Diana opened the Aids ward")
+29. T("Diana advocated for victims of landmines", "Diana did not advocate for victims", Factual)
+30. tau(Diana.attributes.age_at_death, Prince Harry.attributes.role)
+31. tau("Diana opened the Middlesex Hospital's Aids ward.significance", "Victims of landmines advocacy.significance")
+32. "Diana advocated for victims of landmines".context != "military work"
+33. "Diana opened the Middlesex Hospital's Aids ward".year > 1985
+34. "Prince Harry led tributes to his mother Diana".event != "celebration"
+35. "Prince William participated in a thanksgiving service".event = "thanksgiving service"
+36. "Victims of landmines advocacy".year >= 1997
+37. "Victims of landmines advocacy".significance = "accelerated adoption of the Ottawa Convention"
+38. Diana.attributes.age_at_death <= 36
+39. "Diana opened the Middlesex Hospital's Aids ward".significance != "unimportant"
+40. "Diana advocated for victims of landmines".location != "local"
+41. "Prince Harry led tributes to his mother Diana".location != "New York"
+42. "Prince William participated in a thanksgiving service".location != "Birmingham"
+43. M_NLI(Prince Harry.attributes, Prince William.attributes)
+44. M_NLU(Diana.attributes, "Victims of landmines advocacy.significance")
+45. M_TEM("Diana opened the Aids ward", "Diana did not open the Aids ward")
+46. contra("Diana was a public figure", "Diana was not a public figure")
+47. S(Prince William, "Prince William participated in a thanksgiving service")
+48. S("Victims of landmines advocacy", "Diana advocated for victims of landmines")
+49. tau("Diana advocated for victims of landmines.context", "Diana did not advocate for victims.context")
+50. "Diana opened the Middlesex Hospital's Aids ward".year < 1990
+51. "Diana advocated for victims of landmines".context = "advocacy"
+52. "Prince Harry led tributes to his mother Diana".event = "commemoration"
+53. "Prince William participated in a thanksgiving service".event != "funeral"
+54. Diana.attributes.empathy != False
+55. "Victims of landmines advocacy".year > 1995
+56. "Victims of landmines advocacy".significance >= "important"
+57. "Diana opened the Middlesex Hospital's Aids ward".significance < "controversial"
+58. "Diana advocated for victims of landmines".location != "domestic"
+59. "Prince Harry led tributes to his mother Diana".location = "public space"
+60. "Prince William participated in a thanksgiving service".location = "religious venue"
+61. M_NLI("Diana opened the Aids ward", "Diana did not open the Aids ward")
+62. M_NLU("Victims of landmines advocacy", "Diana's humanitarian work")
+63. M_TEM("Prince Harry led tributes", "Prince Harry did not lead tributes")
+64. contra("Diana was empathetic", "Diana was not empathetic")
+65. S("Victims of landmines advocacy", "Diana's advocacy for landmines victims")
+66. S("Prince Harry", "Prince Harry led tributes to his mother")
+67. tau("Diana.attributes.age_at_death", "Prince William.attributes.role")
+68. "Diana advocated for victims of landmines".context != "political"
+69. "Diana opened the Middlesex Hospital's Aids ward".year <= 1987
+70. "Prince Harry led tributes to his mother Diana".event != "celebration"
+71. "Prince William participated in a thanksgiving service".event = "memorial"
+72. Diana.attributes.age_at_death > 30
+73. "Victims of landmines advocacy".year <= 1997
+74. "Victims of landmines advocacy".significance != "minimal"
+75. "Diana opened the Middlesex Hospital's Aids ward".significance = "pioneering"
+76. "Diana advocated for victims of landmines".location = "global"
+77. "Prince Harry led tributes to his mother Diana".location != "private"
+78. "Prince William participated in a thanksgiving service".location != "outdoor"
+79. M_NLI("Diana's advocacy", "Diana's indifference")
+80. M_NLU("Diana's humanitarian work", "Diana's public image")
+81. M_TEM("Diana opened the Aids ward", "Diana did not open the Aids ward")
+82. contra("Diana was a public figure", "D
+
+Rules:
+1. Q[1, 1](Diana.attributes.role = "public figure" ∧ Diana.attributes.empathy = True → Diana.status != "alive")
+2. Q[2, 2](Diana.attributes.age_at_death < 40 ∧ Diana.attributes.age_at_death >= 36 → Diana.attributes.empathy = False)
+3. Q[3, 3](Diana.attributes.age_at_death < 40 ∧ "Diana advocated for victims of landmines".context = "humanitarian work" → "Diana opened the Middlesex Hospital's Aids ward".significance = "pioneering")
+4. Q[4, 4](Diana.attributes.age_at_death < 40 ∧ "Diana opened the Middlesex Hospital's Aids ward".year >= 1987 ∧ "Diana opened the Middlesex Hospital's Aids ward".significance != "unimportant" → "Diana advocated for victims of landmines".year < 2000)
+5. Q[5, 5](Diana.attributes.age_at_death < 40 ∧ "Diana opened the Middlesex Hospital's Aids ward".year >= 1987 ∧ "Diana opened the Middlesex Hospital's Aids ward".significance != "unimportant" ∧ "Diana advocated for victims of landmines".year < 2000 → "Prince Harry led tributes to his mother Diana".event = "memorial service")
+6. Q[6, 6](Diana.attributes.age_at_death < 40 ∧ "Diana opened the Middlesex Hospital's Aids ward".year >= 1987 ∧ "Diana opened the Middlesex Hospital's Aids ward".significance != "unimportant" ∧ "Diana advocated for victims of landmines".year < 2000 ∧ "Diana advocated for victims of landmines".significance != "irrelevant" → "Prince William participated in a thanksgiving service".event != "memorial service")
+7. Q[7, 7](Diana.attributes.empathy = True ∧ "Diana advocated for victims of landmines".location = "international" → "Diana opened the Middlesex Hospital's Aids ward".context != "political work")
+8. Q[8, 8](Diana.attributes.empathy = True ∧ "Diana advocated for victims of landmines".location = "international" ∧ "Diana opened the Middlesex Hospital's Aids ward".year > 1985 → "Prince Harry led tributes to his mother Diana".location = "London, England")
+9. Q[9, 9](Diana.attributes.empathy = True ∧ "Diana advocated for victims of landmines".location = "international" ∧ "Diana opened the Middlesex Hospital's Aids ward".year > 1985 ∧ "Prince Harry led tributes to his mother Diana".event = "memorial service" → "Prince William participated in a thanksgiving service".event != "funeral")
+10. Q[10, 10](Diana.attributes.empathy = True ∧ "Diana advocated for victims of landmines".location = "international" ∧ "Diana opened the Middlesex Hospital's Aids ward".year > 1985 ∧ "Prince Harry led tributes to his mother Diana".event = "memorial service" ∧ "Prince William participated in a thanksgiving service".location = "London, England" → "Diana.attributes.age_at_death" <= 36)
+11. Q[11, 11](Diana.status != "alive" ∧ "Diana opened the Middlesex Hospital's Aids ward".significance = "first Aids ward in the UK" → "Diana advocated for victims of landmines".year < 2000)
+12. Q[12, 12](Diana.status != "alive" ∧ "Diana opened the Middlesex Hospital's Aids ward".significance = "first Aids ward in the UK" ∧ "Victims of landmines advocacy".year < 2000 → "Prince Harry.attributes.role = 'son'")
+13. Q[13, 13](Diana.status != "alive" ∧ "Diana opened the Middlesex Hospital's Aids ward".significance = "first Aids ward in the UK" ∧ "Victims of landmines advocacy".year < 2000 ∧ "Prince Harry.attributes.relationship = 'child of Diana'" → "Prince William.attributes.role = 'son'")
+14. Q[14, 14](Diana.status != "alive" ∧ "Diana opened the Middlesex Hospital's Aids ward".significance = "first Aids ward in the UK" ∧ "Victims of landmines advocacy".year < 2000 ∧ "Prince Harry.attributes.relationship = 'child of Diana'" ∧ "Prince William.attributes.relationship != 'sibling of Diana'" → "Diana.attributes.age_at_death" < 40)
+15. Q[15, 15](Diana.attributes.age_at_death >= 36 ∧ "Diana opened the Middlesex Hospital's Aids ward".year > 1985 → "Diana advocated for victims of landmines".significance != "irrelevant")
+16. Q[16, 16](Diana.attributes.age_at_death >= 36 ∧ "Diana opened the Middlesex Hospital's Aids ward".year > 1985 ∧ "Diana advocated for victims of landmines".significance != "irrelevant" → "Diana.attributes.empathy != False")
+17. Q[17, 17](Diana.attributes.age_at_death >= 36 ∧ "Diana opened the Middlesex Hospital's Aids ward".year > 1985 ∧ "Diana advocated for victims of landmines".significance != "irrelevant" ∧ "Diana.attributes.empathy != False" → "Prince Harry led tributes to his mother Diana".location != "New York")
+18. Q[18, 18](Diana.attributes.age_at_death >= 36 ∧ "Diana opened the Middlesex Hospital's Aids ward".year > 1985 ∧ "Diana advocated for victims of landmines".significance != "irrelevant" ∧ "Diana.attributes.empathy != False" ∧ "Prince Harry led tributes to his mother Diana".location != "New York" → "Prince William participated in a thanksgiving service".location != "Birmingham")
+19. Q[19, 19](Diana.attributes.age_at_death <= 36 ∧ "Diana opened the Middlesex Hospital's Aids ward".significance != "unimportant" → "Diana advocated for victims of landmines".year >= 1997)
+20. Q[20, 20](Diana.attributes.age_at_death <= 36 ∧ "Diana opened the Middlesex Hospital's Aids ward".significance != "unimportant" ∧ "Victims of landmines advocacy".year >= 1997 → "D

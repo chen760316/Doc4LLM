@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 962)
+S1: Two small dogs are fighting over a bag while another sleeps.
+S2: Two small dogs are fighting over a bag of chips.
+
+Predicates:
+1. Dog1.size
+2. Dog2.size
+3. Dog1.action
+4. Dog2.action
+5. Bag.type
+6. Bag.content
+7. Dog1.state
+8. Dog2.state
+9. Dog1.location
+10. Dog2.location
+11. Dog1.relationship_with(Dog2)
+12. Dog1.interaction_with(Bag)
+13. Dog2.interaction_with(Bag)
+14. Bag_of_chips.type
+15. Bag_of_chips.content
+16. Dog1.is_fighting_with(Dog2)
+17. Dog2.is_fighting_with(Dog1)
+18. Dog1.is_sleeping
+19. Dog2.is_sleeping
+20. Bag.is_present
+21. Bag_of_chips.is_present
+22. M_NLI(S1, S2)
+23. Content(S1, S2)
+24. violate(S1, S2)
+25. Dog1.is_small
+26. Dog2.is_small
+27. Bag.is_filled
+28. Bag_of_chips.is_filled
+29. Dog1.is_awake
+30. Dog2.is_awake
+
+Rules:
+1. Q[Two, Dog1.size, Dog2.size](Dog1.is_small == true ∧ Dog2.is_small == true → Content(Dog1.size, Dog2.size))
+2. Q[Two, Dog1.action, Dog2.action](Dog1.is_fighting_with(Dog2) == true ∧ Dog2.is_fighting_with(Dog1) == true → Content(Dog1.action, Dog2.action))
+3. Q[Two, Bag.type, Bag.content](Bag.type == "unknown" ∧ Bag.content == "unknown" → Content(Bag.type, Bag.content))
+4. Q[Two, Dog1.state, Dog2.state](Dog1.is_awake == true ∧ Dog2.is_awake == true → Content(Dog1.state, Dog2.state))
+5. Q[Two, Dog1.location, Dog2.location](Dog1.location == "unknown" ∧ Dog2.location == "unknown" → Content(Dog1.location, Dog2.location))
+6. Q[Two, Dog1.interaction_with(Bag), Dog2.interaction_with(Bag)](Dog1.interaction_with(Bag) == "fighting" ∧ Dog2.interaction_with(Bag) == "fighting" → Content(Dog1.interaction_with(Bag), Dog2.interaction_with(Bag)))
+7. Q[Two, Bag.is_present, Bag_of_chips.is_present](Bag.is_present == true ∧ Bag_of_chips.is_present == false → Content(Bag.is_present, Bag_of_chips.is_present))
+8. Q[Two, Bag.is_filled, Bag_of_chips.is_filled](Bag.is_filled == true ∧ Bag_of_chips.is_filled == false → Content(Bag.is_filled, Bag_of_chips.is_filled))
+9. Q[Two, Dog1.relationship_with(Dog2), Dog2.relationship_with(Dog1)](Dog1.relationship_with(Dog2) == "fighting" ∧ Dog2.relationship_with(Dog1) == "fighting" → Content(Dog1.relationship_with(Dog2), Dog2.relationship_with(Dog1)))
+10. Q[Two, Dog1.is_sleeping, Dog2.is_sleeping](Dog1.is_sleeping == false ∧ Dog2.is_sleeping == false → Content(Dog1.is_sleeping, Dog2.is_sleeping))
+11. Q[Two, Bag.type, Bag_of_chips.type](Bag.type == "unknown" ∧ Bag_of_chips.type == "chips" → Content(Bag.type, Bag_of_chips.type))
+12. Q[Two, Dog1.action, Dog2.action](Dog1.action == "fighting" ∧ Dog2.action == "fighting" → Content(Dog1.action, Dog2.action))
+13. Q[Two, Dog1.size, Dog2.size](Dog1.size == "small" ∧ Dog2.size == "small" → Content(Dog1.size, Dog2.size))
+14. Q[Two, Dog1.is_awake, Dog2.is_awake](Dog1.is_awake == true ∧ Dog2.is_awake == true → Content(Dog1.is_awake, Dog2.is_awake))
+15. Q[Two, Bag.content, Bag_of_chips.content](Bag.content == "unknown" ∧ Bag_of_chips.content == "chips" → Content(Bag.content, Bag_of_chips.content))
+16. Q[Two, Dog1.is_fighting_with(Dog2), Dog2.is_fighting_with(Dog1)](Dog1.is_fighting_with(Dog2) == true ∧ Dog2.is_fighting_with(Dog1) == true → Content(Dog1.is_fighting_with(Dog2), Dog2.is_fighting_with(Dog1)))
+17. Q[Two, Bag.is_present, Bag_of_chips.is_present](Bag.is_present == true ∧ Bag_of_chips.is_present == true → Content(Bag.is_present, Bag_of_chips.is_present))
+18. Q[Two, Dog1.interaction_with(Bag), Dog2.interaction_with(Bag)](Dog1.interaction_with(Bag) == "fighting" ∧ Dog2.interaction_with(Bag) == "fighting" → Content(Dog1.interaction_with(Bag), Dog2.interaction_with(Bag)))
+19. Q[Two, Dog1.state, Dog2.state](Dog1.state == "fighting" ∧ Dog2.state == "fighting" → Content(Dog1.state, Dog2.state))
+20. Q[Two, Dog1.size, Dog2.size](Dog1.size == "small" ∧ Dog2.size == "small" → Content(Dog1.size, Dog2.size))
+21. Q[Two, Bag.type, Bag_of_chips.type](Bag.type == "unknown" ∧ Bag_of_chips.type == "chips" → Content(Bag.type, Bag_of_chips.type))
+22. Q[Two, Dog1.is_sleeping, Dog2.is_sleeping](Dog1.is_sleeping == false ∧ Dog2.is_sleeping == false → Content(Dog1.is_sleeping, Dog2.is_sleeping))
+23. Q[Two, Dog1.action, Dog2.action](Dog1.action == "fighting" ∧ Dog2.action == "fighting" → Content(Dog1.action, Dog2.action))
+24. Q[Two, Bag.is_filled, Bag_of_chips.is_filled](Bag.is_filled == true ∧ Bag_of_chips.is_filled == false → Content(Bag.is_filled, Bag_of_chips.is_filled))
+25. Q[Two, Dog1.interaction_with(Bag), Dog2.interaction_with(Bag)](Dog1.interaction_with(Bag) == "fighting" ∧ Dog2.interaction_with(Bag) == "fighting" → Content(Dog1.interaction_with(Bag), Dog2.interaction_with(Bag)))
+26. Q[Two, Dog1.is_awake, Dog2.is_awake](Dog1.is_awake == true ∧ Dog2.is_awake == false → Content(Dog1.is_awake, Dog2.is_awake))
+27. Q[Two, Bag.content, Bag_of_chips.content](Bag.content == "unknown" ∧ Bag_of_chips.content == "chips" → Content(Bag.content, Bag_of_chips.content))
+28. Q[Two, Dog1.state, Dog2.state](Dog1.state == "fighting" ∧ Dog2.state == "fighting" → Content(Dog1.state, Dog2.state))
+29. Q[Two, Dog1.size, Dog2.size](Dog1.size == "small" ∧ Dog2.size == "small" → Content(Dog1.size, Dog2.size))
+30. Q[Two, Bag.is_present, Bag_of_chips.is_present](Bag.is_present == true ∧ Bag_of_chips.is_present == false → Content(Bag.is_present, Bag_of_chips.is_present))

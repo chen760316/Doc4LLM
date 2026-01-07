@@ -1,0 +1,65 @@
+Source: dense_text.txt (Index 296)
+S1: If the trial court did enter an order, why would Tristina, the custodial parent who was paying child support to the non-custodial parent and who was residing with her parents, wait nine months before asking for a modification?
+S2: The answer is simple - she waited because the trial court did not enter an order that she could modify.
+
+Predicates:
+1. TrialCourt.enteredOrder
+2. Tristina.isCustodialParent
+3. Tristina.paysChildSupport
+4. Tristina.residesWithParents
+5. Tristina.waitedNineMonths
+6. Modification.requestedByTristina
+7. TrialCourt.doesNotEnterOrder
+8. Delay.inModification
+9. NonCustodialParent.receivesChildSupport
+10. Tristina.asksForModification
+11. TrialCourt.hasOrder
+12. Order.modifiable
+13. Tristina.waitsBecause
+14. Delay.becauseNoOrder
+15. CustodialParent.paysSupport
+16. NonCustodialParent.isNotCustodial
+17. Tristina.isNotInContempt
+18. Modification.isRequested
+19. TrialCourt.hasNotEnteredOrder
+20. Tristina.isResidingWithParents
+21. ChildSupport.isPaidToNonCustodial
+22. Modification.isDelayed
+23. TrialCourt.orderExists
+24. Tristina.isQuestionedAboutDelay
+25. Delay.isQuestioned
+26. TrialCourt.doesNotModify
+27. Tristina.isSeekingModification
+28. NonCustodialParent.isReceivingSupport
+29. Modification.isNotPossible
+30. TrialCourt.isQuestionedAboutOrder
+
+Rules:
+1. Q[the, TrialCourt.enteredOrder == true, Delay.inModification == true](Tristina.isCustodialParent == true ∧ Tristina.paysChildSupport == true → Causal(TrialCourt.enteredOrder, Delay.inModification))
+2. Q[the, TrialCourt.enteredOrder == false, Delay.inModification == true](Tristina.waitedNineMonths == true ∧ Tristina.asksForModification == true → Causal(TrialCourt.enteredOrder, Delay.inModification))
+3. Q[the, TrialCourt.hasNotEnteredOrder == true, Delay.inModification == true](Tristina.isCustodialParent == true ∧ Tristina.waitedNineMonths == true → Causal(TrialCourt.hasNotEnteredOrder, Delay.inModification))
+4. Q[the, TrialCourt.doesNotEnterOrder == true, Delay.inModification == true](Tristina.isResidingWithParents == true ∧ Tristina.paysChildSupport == true → Causal(TrialCourt.doesNotEnterOrder, Delay.inModification))
+5. Q[the, TrialCourt.hasOrder == false, Delay.inModification == true](Tristina.waitedNineMonths == true ∧ Modification.isRequested == true → Causal(TrialCourt.hasOrder, Delay.inModification))
+6. Q[the, TrialCourt.orderExists == false, Delay.inModification == true](Tristina.isSeekingModification == true ∧ Tristina.waitedNineMonths == true → Causal(TrialCourt.orderExists, Delay.inModification))
+7. Q[the, TrialCourt.doesNotModify == true, Delay.inModification == true](Tristina.isCustodialParent == true ∧ Tristina.paysChildSupport == true → Causal(TrialCourt.doesNotModify, Delay.inModification))
+8. Q[the, TrialCourt.hasNotEnteredOrder == true, Delay.inModification == true](Tristina.isNotInContempt == true ∧ Tristina.asksForModification == true → Causal(TrialCourt.hasNotEnteredOrder, Delay.inModification))
+9. Q[the, TrialCourt.doesNotEnterOrder == true, Delay.inModification == true](Tristina.waitedNineMonths == true ∧ Tristina.residesWithParents == true → Causal(TrialCourt.doesNotEnterOrder, Delay.inModification))
+10. Q[the, TrialCourt.hasOrder == false, Delay.inModification == true](Tristina.isCustodialParent == true ∧ Tristina.waitedNineMonths == true → Causal(TrialCourt.hasOrder, Delay.inModification))
+11. Q[the, TrialCourt.orderExists == false, Delay.inModification == true](Tristina.paysChildSupport == true ∧ Tristina.waitedNineMonths == true → Causal(TrialCourt.orderExists, Delay.inModification))
+12. Q[the, TrialCourt.doesNotModify == true, Delay.inModification == true](Tristina.isSeekingModification == true ∧ Tristina.residesWithParents == true → Causal(TrialCourt.doesNotModify, Delay.inModification))
+13. Q[the, TrialCourt.hasNotEnteredOrder == true, Delay.inModification == true](Tristina.waitedNineMonths == true ∧ Modification.isDelayed == true → Causal(TrialCourt.hasNotEnteredOrder, Delay.inModification))
+14. Q[the, TrialCourt.doesNotEnterOrder == true, Delay.inModification == true](Tristina.isCustodialParent == true ∧ Tristina.isNotInContempt == true → Causal(TrialCourt.doesNotEnterOrder, Delay.inModification))
+15. Q[the, TrialCourt.hasOrder == false, Delay.inModification == true](Tristina.paysChildSupport == true ∧ Tristina.isResidingWithParents == true → Causal(TrialCourt.hasOrder, Delay.inModification))
+16. Q[the, TrialCourt.orderExists == false, Delay.inModification == true](Tristina.waitedNineMonths == true ∧ Tristina.isSeekingModification == true → Causal(TrialCourt.orderExists, Delay.inModification))
+17. Q[the, TrialCourt.doesNotModify == true, Delay.inModification == true](Tristina.isCustodialParent == true ∧ Tristina.asksForModification == true → Causal(TrialCourt.doesNotModify, Delay.inModification))
+18. Q[the, TrialCourt.hasNotEnteredOrder == true, Delay.inModification == true](Tristina.waitedNineMonths == true ∧ Tristina.paysChildSupport == true → Causal(TrialCourt.hasNotEnteredOrder, Delay.inModification))
+19. Q[the, TrialCourt.doesNotEnterOrder == true, Delay.inModification == true](Tristina.isResidingWithParents == true ∧ Tristina.isSeekingModification == true → Causal(TrialCourt.doesNotEnterOrder, Delay.inModification))
+20. Q[the, TrialCourt.hasOrder == false, Delay.inModification == true](Tristina.isCustodialParent == true ∧ Tristina.waitedNineMonths == true → Causal(TrialCourt.hasOrder, Delay.inModification))
+21. Q[the, TrialCourt.orderExists == false, Delay.inModification == true](Tristina.paysChildSupport == true ∧ Tristina.isNotInContempt == true → Causal(TrialCourt.orderExists, Delay.inModification))
+22. Q[the, TrialCourt.doesNotModify == true, Delay.inModification == true](Tristina.isSeekingModification == true ∧ Tristina.waitedNineMonths == true → Causal(TrialCourt.doesNotModify, Delay.inModification))
+23. Q[the, TrialCourt.hasNotEnteredOrder == true, Delay.inModification == true](Tristina.isCustodialParent == true ∧ Tristina.residesWithParents == true → Causal(TrialCourt.hasNotEnteredOrder, Delay.inModification))
+24. Q[the, TrialCourt.doesNotEnterOrder == true, Delay.inModification == true](Tristina.waitedNineMonths == true ∧ Tristina.paysChildSupport == true → Causal(TrialCourt.doesNotEnterOrder, Delay.inModification))
+25. Q[the, TrialCourt.hasOrder == false, Delay.inModification == true](Tristina.isSeekingModification == true ∧ Tristina.isNotInContempt == true → Causal(TrialCourt.hasOrder, Delay.inModification))
+26. Q[the, TrialCourt.orderExists == false, Delay.inModification == true](Tristina.waitedNineMonths == true ∧ Tristina.asksForModification == true → Causal(TrialCourt.orderExists, Delay.inModification))
+27. Q[the, TrialCourt.doesNotModify == true, Delay.inModification == true](Tristina.isCustodialParent == true ∧ Tristina.isResidingWithParents == true → Causal(TrialCourt.doesNotModify, Delay.inModification))
+28. Q[the,

@@ -1,0 +1,133 @@
+Predicates:
+1. entity1.name = "Alice"
+2. entity1.age = 30
+3. entity1.occupation = "Engineer"
+4. entity2.name = "Bob"
+5. entity2.age = 25
+6. entity2.occupation = "Doctor"
+7. "covers".source = "Document A"
+8. "covers".target = "Document B"
+9. "exist for training".source = "Dataset X"
+10. "exist for training".target = "Dataset Y"
+11. "includes".source = "Module 1"
+12. "includes".target = "Module 2"
+13. "is illegal to be a".subject = "Underage Driver"
+14. "is illegal to be a".action = "Drive a Car"
+15. M_NLI(entity1.occupation, entity2.occupation)
+16. M_NLI(entity1.age, entity2.age)
+17. T("Alice is 30 years old", "Alice is not 30 years old", tau)
+18. T("Bob is a doctor", "Bob is not a doctor", tau)
+19. tau(entity1.age, entity2.age)
+20. violate(entity1.name, entity2.name)
+21. Factual(entity1.occupation, entity2.occupation)
+22. Causal(entity1.age, entity2.age)
+23. Numeric(entity1.age, entity2.age)
+24. Temporal(entity1.name, entity2.name)
+25. Content(entity1.occupation, entity2.occupation)
+26. Relation(entity1.name, entity2.name)
+27. "covers".relationship_type = "contradiction"
+28. "exist for training".relationship_type = "contradiction"
+29. "includes".relationship_type = "contradiction"
+30. "is illegal to be a".relationship_type = "contradiction"
+31. entity1.location = "New York"
+32. entity2.location = "Los Angeles"
+33. M_NLI(entity1.location, entity2.location)
+34. T("Alice lives in New York", "Alice does not live in New York", tau)
+35. tau(entity1.location, entity2.location)
+36. violate(entity1.location, entity2.location)
+37. Factual(entity1.location, entity2.location)
+38. Causal(entity1.age, entity2.age)
+39. Numeric(entity1.age, entity2.age)
+40. Temporal(entity1.location, entity2.location)
+41. Content(entity1.location, entity2.location)
+42. Relation(entity1.name, entity2.name)
+43. entity1.salary = 70000
+44. entity2.salary = 50000
+45. M_NLI(entity1.salary, entity2.salary)
+46. T("Alice earns 70000", "Alice does not earn 70000", tau)
+47. tau(entity1.salary, entity2.salary)
+48. violate(entity1.salary, entity2.salary)
+49. Factual(entity1.salary, entity2.salary)
+50. Causal(entity1.salary, entity2.salary)
+51. Numeric(entity1.salary, entity2.salary)
+52. Temporal(entity1.salary, entity2.salary)
+53. Content(entity1.salary, entity2.salary)
+54. Relation(entity1.name, entity2.name)
+55. entity1.education = "Masters"
+56. entity2.education = "Bachelors"
+57. M_NLI(entity1.education, entity2.education)
+58. T("Alice has a Masters degree", "Alice does not have a Masters degree", tau)
+59. tau(entity1.education, entity2.education)
+60. violate(entity1.education, entity2.education)
+61. Factual(entity1.education, entity2.education)
+62. Causal(entity1.education, entity2.education)
+63. Numeric(entity1.education, entity2.education)
+64. Temporal(entity1.education, entity2.education)
+65. Content(entity1.education, entity2.education)
+66. Relation(entity1.name, entity2.name)
+67. entity1.hobby = "Painting"
+68. entity2.hobby = "Sculpting"
+69. M_NLI(entity1.hobby, entity2.hobby)
+70. T("Alice enjoys painting", "Alice does not enjoy painting", tau)
+71. tau(entity1.hobby, entity2.hobby)
+72. violate(entity1.hobby, entity2.hobby)
+73. Factual(entity1.hobby, entity2.hobby)
+74. Causal(entity1.hobby, entity2.hobby)
+75. Numeric(entity1.hobby, entity2.hobby)
+76. Temporal(entity1.hobby, entity2.hobby)
+77. Content(entity1.hobby, entity2.hobby)
+78. Relation(entity1.name, entity2.name)
+79. entity1.nationality = "American"
+80. entity2.nationality = "Canadian"
+81. M_NLI(entity1.nationality, entity2.nationality)
+82. T("Alice is American", "Alice is not American", tau)
+83. tau(entity1.nationality, entity2.nationality)
+84. violate(entity1.nationality, entity2.nationality)
+85. Factual(entity1.nationality, entity2.nationality)
+86. Causal(entity1.nationality, entity2.nationality)
+87. Numeric(entity1.nationality, entity2.nationality)
+88. Temporal(entity1.nationality, entity2.nationality)
+89. Content(entity1.nationality, entity2.nationality)
+90. Relation(entity1.name, entity2.name)
+91. entity1.pets = "Dog"
+92. entity2.pets = "Cat"
+93. M_NLI(entity1.pets, entity2.pets)
+94. T("Alice has a dog", "Alice does not have a dog", tau)
+95. tau(entity1.pets, entity2.pets)
+96. violate(entity1.pets, entity2.pets)
+97. Factual(entity1.pets, entity2.pets)
+98. Causal(entity1.pets, entity2.pets)
+99. Numeric(entity1.pets, entity2.pets)
+100. Temporal(entity1.pets, entity2.pets)
+violate(x0, y0)
+
+Rules:
+1. Q[x0, y0](entity1.name = "Alice" ∧ entity2.name = "Bob" → violate(x0, y0))
+2. Q[x0, y0](entity1.age = 30 ∧ entity2.age = 25 → violate(x0, y0))
+3. Q[x0, y0](entity1.occupation = "Engineer" ∧ entity2.occupation = "Doctor" → violate(x0, y0))
+4. Q[x0, y0](entity1.location = "New York" ∧ entity2.location = "Los Angeles" → violate(x0, y0))
+5. Q[x0, y0](entity1.salary = 70000 ∧ entity2.salary = 50000 → violate(x0, y0))
+6. Q[x0, y0](entity1.education = "Masters" ∧ entity2.education = "Bachelors" → violate(x0, y0))
+7. Q[x0, y0](entity1.hobby = "Painting" ∧ entity2.hobby = "Sculpting" ∧ M_NLI(entity1.hobby, entity2.hobby) → violate(x0, y0))
+8. Q[x0, y0](entity1.nationality = "American" ∧ entity2.nationality = "Canadian" ∧ M_NLI(entity1.nationality, entity2.nationality) → violate(x0, y0))
+9. Q[x0, y0](entity1.pets = "Dog" ∧ entity2.pets = "Cat" ∧ M_NLI(entity1.pets, entity2.pets) → violate(x0, y0))
+10. Q[x0, y0](entity1.age = 30 ∧ entity2.age = 25 ∧ T("Alice is 30 years old", "Alice is not 30 years old", tau) → violate(x0, y0))
+11. Q[x0, y0](entity1.occupation = "Engineer" ∧ entity2.occupation = "Doctor" ∧ Factual(entity1.occupation, entity2.occupation) → violate(x0, y0))
+12. Q[x0, y0](entity1.location = "New York" ∧ entity2.location = "Los Angeles" ∧ Causal(entity1.location, entity2.location) → violate(x0, y0))
+13. Q[x0, y0](entity1.salary = 70000 ∧ entity2.salary = 50000 ∧ Numeric(entity1.salary, entity2.salary) → violate(x0, y0))
+14. Q[x0, y0](entity1.education = "Masters" ∧ entity2.education = "Bachelors" ∧ Temporal(entity1.education, entity2.education) → violate(x0, y0))
+15. Q[x0, y0](entity1.hobby = "Painting" ∧ entity2.hobby = "Sculpting" ∧ Content(entity1.hobby, entity2.hobby) → violate(x0, y0))
+16. Q[x0, y0](entity1.nationality = "American" ∧ entity2.nationality = "Canadian" ∧ Relation(entity1.name, entity2.name) → violate(x0, y0))
+17. Q[x0, y0](entity1.age = 30 ∧ entity2.age = 25 ∧ "covers".source = "Document A" ∧ "covers".target = "Document B" → violate(x0, y0))
+18. Q[x0, y0](entity1.occupation = "Engineer" ∧ entity2.occupation = "Doctor" ∧ "exist for training".source = "Dataset X" ∧ "exist for training".target = "Dataset Y" → violate(x0, y0))
+19. Q[x0, y0](entity1.location = "New York" ∧ entity2.location = "Los Angeles" ∧ "includes".source = "Module 1" ∧ "includes".target = "Module 2" → violate(x0, y0))
+20. Q[x0, y0](entity1.salary = 70000 ∧ entity2.salary = 50000 ∧ "is illegal to be a".subject = "Underage Driver" ∧ "is illegal to be a".action = "Drive a Car" → violate(x0, y0))
+21. Q[x0, y0](entity1.education = "Masters" ∧ entity2.education = "Bachelors" ∧ M_NLI(entity1.education, entity2.education) ∧ T("Alice has a Masters degree", "Alice does not have a Masters degree", tau) → violate(x0, y0))
+22. Q[x0, y0](entity1.hobby = "Painting" ∧ entity2.hobby = "Sculpting" ∧ tau(entity1.hobby, entity2.hobby) ∧ violate(entity1.hobby, entity2.hobby) → violate(x0, y0))
+23. Q[x0, y0](entity1.nationality = "American" ∧ entity2.nationality = "Canadian" ∧ tau(entity1.nationality, entity2.nationality) ∧ violate(entity1.nationality, entity2.nationality) → violate(x0, y0))
+24. Q[x0, y0](entity1.pets = "Dog" ∧ entity2.pets = "Cat" ∧ tau(entity1.pets, entity2.pets) ∧ violate(entity1.pets, entity2.pets) → violate(x0, y0))
+25. Q[x0, y0](entity1.age = 30 ∧ entity2.age = 25 ∧ "covers".relationship_type = "contradiction" ∧ "exist for training".relationship_type = "contradiction" → violate(x0, y0))
+26. Q[x0, y0](entity1.occupation = "Engineer" ∧ entity2.occupation = "Doctor" ∧ "includes".relationship_type = "contradiction" ∧ "is illegal to be a".relationship_type = "contradiction" → violate(x0, y0))
+27. Q[x0, y0](entity1.location = "New York" ∧ entity2.location = "Los Angeles" ∧ "covers".relationship_type = "contradiction" ∧ "exist for training".relationship_type = "contradiction" → violate(x0, y0))
+28. Q[x0, y0](entity1.salary = 70000 ∧ entity2.salary = 50000 ∧ "includes".relationship_type = "contradiction" ∧ "is illegal to be a".relationship_type = "contradiction" → violate(x0, y0))
+29. Q[x0, y0](entity1.education = "Masters" ∧ entity2.education = "Bachelors" ∧ "covers".relationship_type = "contradiction" ∧ "exist for training".relationship_type

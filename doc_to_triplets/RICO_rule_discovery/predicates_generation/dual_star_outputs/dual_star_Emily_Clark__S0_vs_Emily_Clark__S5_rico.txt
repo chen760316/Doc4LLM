@@ -1,0 +1,64 @@
+Predicates:
+Emily Clark__S0.age != 42
+Emily Clark__S0.age < 47
+Emily Clark__S0.age <= 42
+Emily Clark__S0.age = 42
+Emily Clark__S0.age > 37
+Emily Clark__S0.age >= 42
+Emily Clark__S0.country_of_citizenship != "United Kingdom"
+Emily Clark__S0.country_of_citizenship != Emily Clark__S5.country_of_citizenship
+Emily Clark__S0.country_of_citizenship = "United Kingdom"
+Emily Clark__S0.location != "San Francisco"
+Emily Clark__S0.location = "San Francisco"
+Emily Clark__S0.nationality != "American"
+Emily Clark__S0.nationality = "American"
+Emily Clark__S0.occupation != "writer"
+Emily Clark__S0.occupation != Emily Clark__S5.occupation
+Emily Clark__S0.occupation = "writer"
+Emily Clark__S0.status != "married"
+Emily Clark__S0.status != Emily Clark__S5.status
+Emily Clark__S0.status = "married"
+Emily Clark__S0_Emily Clark__S5.relationship != "same_entity"
+Emily Clark__S0_Emily Clark__S5.relationship = "same_entity"
+Emily Clark__S0_St. Mary's Hospital.relationship != "Emily Clark works at St. Mary's Hospital"
+Emily Clark__S0_St. Mary's Hospital.relationship != Emily Clark__S0_Emily Clark__S5.relationship
+Emily Clark__S0_St. Mary's Hospital.relationship != Emily Clark__S5_Frontline Voices.relationship
+Emily Clark__S0_St. Mary's Hospital.relationship = "Emily Clark works at St. Mary's Hospital"
+Emily Clark__S5.country_of_citizenship != "United Kingdom"
+Emily Clark__S5.country_of_citizenship = "United Kingdom"
+Emily Clark__S5.occupation != "writer"
+Emily Clark__S5.occupation = "writer"
+Emily Clark__S5.status != "started a podcast"
+Emily Clark__S5.status = "started a podcast"
+Emily Clark__S5_Frontline Voices.relationship != "Emily Clark started a medical podcast called Frontline Voices."
+Emily Clark__S5_Frontline Voices.relationship != Emily Clark__S0_Emily Clark__S5.relationship
+Emily Clark__S5_Frontline Voices.relationship = "Emily Clark started a medical podcast called Frontline Voices."
+Frontline Voices.focus != "interviewing healthcare workers about pandemic experiences"
+Frontline Voices.focus = "interviewing healthcare workers about pandemic experiences"
+M_NLI(Emily Clark__S0.attrs, Frontline Voices.attrs)
+M_NLI(Emily Clark__S5.attrs, Frontline Voices.attrs)
+M_NLU(Emily Clark__S0.attrs, Frontline Voices.attrs)
+M_NLU(Emily Clark__S5.attrs, Frontline Voices.attrs)
+M_TEM(Emily Clark__S0.attrs, Frontline Voices.attrs)
+M_TEM(Emily Clark__S5.attrs, Frontline Voices.attrs)
+contra("Emily Clark", "Emily Clark")
+contra("Emily Clark", "Frontline Voices")
+contra("Emily Clark", "his influence beyo")
+contra("St. Mary's Hospital", "Emily Clark")
+contra("St. Mary's Hospital", "Frontline Voices")
+contra("wo children", "Frontline Voices")
+linkage(Emily Clark__S0, Emily Clark__S5)
+linkage(Emily Clark__S0, St. Mary's Hospital)
+linkage(Emily Clark__S5, Frontline Voices)
+
+Rules:
+Q[Emily Clark__S0,Emily Clark__S5] (M_NLI(Emily Clark__S5.attrs, Frontline Voices.attrs) ∧ Emily Clark__S0.occupation != Emily Clark__S5.occupation → Emily Clark__S0.occupation != Emily Clark__S5.occupation)
+Q[Emily Clark__S0,Emily Clark__S5] (Emily Clark__S5.country_of_citizenship = "United Kingdom" ∧ contra("St. Mary's Hospital", "Emily Clark") → contra("St. Mary's Hospital", "Emily Clark"))
+Q[Emily Clark__S0,Emily Clark__S5] (linkage(Emily Clark__S5, Frontline Voices) ∧ linkage(Emily Clark__S0, Emily Clark__S5) → linkage(Emily Clark__S0, Emily Clark__S5))
+Q[Emily Clark__S0,Emily Clark__S5] (Frontline Voices.focus != "interviewing healthcare workers about pandemic experiences" ∧ M_TEM(Emily Clark__S5.attrs, Frontline Voices.attrs) → M_TEM(Emily Clark__S5.attrs, Frontline Voices.attrs))
+Q[Emily Clark__S0,Emily Clark__S5] (Emily Clark__S0.occupation != "writer" ∧ contra("wo children", "Frontline Voices") → contra("wo children", "Frontline Voices"))
+Q[Emily Clark__S0,Emily Clark__S5] (Emily Clark__S0.country_of_citizenship != Emily Clark__S5.country_of_citizenship ∧ contra("Emily Clark", "Emily Clark") → contra("Emily Clark", "Emily Clark"))
+Q[Emily Clark__S0,Emily Clark__S5] (Emily Clark__S0.age > 37 ∧ Emily Clark__S5_Frontline Voices.relationship = "Emily Clark started a medical podcast called Frontline Voices." → Emily Clark__S5_Frontline Voices.relationship = "Emily Clark started a medical podcast called Frontline Voices.")
+Q[Emily Clark__S0,Emily Clark__S5] (Emily Clark__S5.occupation != "writer" ∧ Emily Clark__S0.location != "San Francisco" → Emily Clark__S5.occupation != "writer")
+Q[Emily Clark__S0,Emily Clark__S5] (Emily Clark__S0.country_of_citizenship != "United Kingdom" ∧ M_NLI(Emily Clark__S0.attrs, Frontline Voices.attrs) → M_NLI(Emily Clark__S0.attrs, Frontline Voices.attrs))
+Q[Emily Clark__S0,Emily Clark__S5] (contra("Emily Clark", "Frontline Voices") ∧ linkage(Emily Clark__S0, St. Mary's Hospital) → linkage(Emily Clark__S0, St. Mary's Hospital))

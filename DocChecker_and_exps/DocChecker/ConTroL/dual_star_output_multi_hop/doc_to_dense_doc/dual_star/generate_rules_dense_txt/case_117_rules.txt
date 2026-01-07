@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 117)
+S1: Meals: lunch and an evening meal are provided as part of the programme, beginning with supper on Sunday 23rd September and finishing with lunch at midday on Friday 28th September.
+S2: Please note that breakfast is not available.
+
+Predicates:
+1. Meals.provided
+2. Meals.lunch
+3. Meals.evening_meal
+4. Programme.start_date
+5. Programme.end_date
+6. Programme.start_time
+7. Programme.end_time
+8. Supper.date
+9. Supper.day
+10. Lunch.date
+11. Lunch.time
+12. Breakfast.available
+13. Breakfast.not_available
+14. Meals.include
+15. Meals.excludes
+16. Meals.schedule
+17. Meals.duration
+18. Sunday.date
+19. Friday.date
+20. September.month
+21. September.year
+22. Meals.provided_on(Sunday_23rd_September)
+23. Meals.provided_until(Friday_28th_September)
+24. Meals.not_includes(Breakfast)
+25. Meals.schedule_conflict
+26. Meals.full_provision
+27. Meals.part_of_programme
+28. Programme.duration
+29. Meals.serve_time
+30. Meals.contradiction(Breakfast.not_available)
+
+Rules:
+1. Q[Meals, Meals.provided, Breakfast.not_available](Meals.provided == true → Factual(Meals, Breakfast.not_available))
+2. Q[Meals, Meals.include, Breakfast.available](Meals.include == Breakfast.available → Factual(Meals, Breakfast.available))
+3. Q[Meals, Meals.excludes, Breakfast](Meals.excludes == Breakfast → Factual(Meals, Breakfast))
+4. Q[Meals, Meals.schedule, Breakfast.not_available](Meals.schedule == Breakfast.not_available → Factual(Meals, Breakfast.not_available))
+5. Q[Meals, Meals.full_provision, Breakfast.not_available](Meals.full_provision == true → Factual(Meals, Breakfast.not_available))
+6. Q[Meals, Meals.provided_on(Sunday_23rd_September), Breakfast.not_available](Meals.provided_on(Sunday_23rd_September) == true → Factual(Meals, Breakfast.not_available))
+7. Q[Meals, Meals.provided_until(Friday_28th_September), Breakfast.not_available](Meals.provided_until(Friday_28th_September) == true → Factual(Meals, Breakfast.not_available))
+8. Q[Meals, Meals.duration, Breakfast.not_available](Meals.duration == true → Factual(Meals, Breakfast.not_available))
+9. Q[Meals, Meals.schedule_conflict, Breakfast.not_available](Meals.schedule_conflict == true → Factual(Meals, Breakfast.not_available))
+10. Q[Meals, Meals.part_of_programme, Breakfast.not_available](Meals.part_of_programme == true → Factual(Meals, Breakfast.not_available))
+11. Q[Meals, Meals.lunch, Breakfast.not_available](Meals.lunch == true → Factual(Meals, Breakfast.not_available))
+12. Q[Meals, Meals.evening_meal, Breakfast.not_available](Meals.evening_meal == true → Factual(Meals, Breakfast.not_available))
+13. Q[Meals, Meals.serve_time, Breakfast.not_available](Meals.serve_time == true → Factual(Meals, Breakfast.not_available))
+14. Q[Meals, Meals.contradiction(Breakfast.not_available), Breakfast.available](Meals.contradiction(Breakfast.not_available) == true → Factual(Meals, Breakfast.available))
+15. Q[Meals, Meals.provided, Breakfast.available](Meals.provided == true → Factual(Meals, Breakfast.available))
+16. Q[Meals, Meals.schedule, Breakfast.available](Meals.schedule == Breakfast.available → Factual(Meals, Breakfast.available))
+17. Q[Meals, Meals.include, Breakfast.not_available](Meals.include == Breakfast.not_available → Factual(Meals, Breakfast.not_available))
+18. Q[Meals, Meals.excludes, Breakfast.available](Meals.excludes == Breakfast.available → Factual(Meals, Breakfast.available))
+19. Q[Meals, Meals.duration, Breakfast.available](Meals.duration == true → Factual(Meals, Breakfast.available))
+20. Q[Meals, Meals.provided_on(Sunday_23rd_September), Breakfast.available](Meals.provided_on(Sunday_23rd_September) == true → Factual(Meals, Breakfast.available))
+21. Q[Meals, Meals.provided_until(Friday_28th_September), Breakfast.available](Meals.provided_until(Friday_28th_September) == true → Factual(Meals, Breakfast.available))
+22. Q[Meals, Meals.schedule_conflict, Breakfast.available](Meals.schedule_conflict == true → Factual(Meals, Breakfast.available))
+23. Q[Meals, Meals.part_of_programme, Breakfast.available](Meals.part_of_programme == true → Factual(Meals, Breakfast.available))
+24. Q[Meals, Meals.lunch, Breakfast.available](Meals.lunch == true → Factual(Meals, Breakfast.available))
+25. Q[Meals, Meals.evening_meal, Breakfast.available](Meals.evening_meal == true → Factual(Meals, Breakfast.available))
+26. Q[Meals, Meals.serve_time, Breakfast.available](Meals.serve_time == true → Factual(Meals, Breakfast.available))
+27. Q[Meals, Meals.contradiction(Breakfast.available), Breakfast.not_available](Meals.contradiction(Breakfast.available) == true → Factual(Meals, Breakfast.not_available))
+28. Q[Meals, Meals.full_provision, Breakfast.available](Meals.full_provision == true → Factual(Meals, Breakfast.available))
+29. Q[Meals, Meals.schedule, Breakfast.not_available](Meals.schedule == Breakfast.not_available → Factual(Meals, Breakfast.not_available))
+30. Q[Meals, Meals.provided, Breakfast.not_available](Meals.provided == true → Factual(Meals, Breakfast.not_available))

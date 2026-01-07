@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 394)
+S1: You will likely do badly in school because your parents won't help you.
+S2: You are free to leave, he said before walking alone to his car.
+
+Predicates:
+1. Student.performance -> "bad"
+2. Parents.support -> "none"
+3. Freedom.status -> "free"
+4. Action.walk -> "alone"
+5. Outcome.school -> "negative"
+6. Causal.parents_support -> "student_performance"
+7. M_NLI(S1, S2) -> "contradiction"
+8. Causal(lack_of_support, negative_outcome) -> "school"
+9. Relationship(freedom, action) -> "leave"
+10. Entity(student, performance) -> "bad"
+11. Entity(parents, support) -> "lack"
+12. Entity(freedom, status) -> "available"
+13. Entity(action, walking) -> "alone"
+14. Violate(freedom, negative_outcome) -> "school"
+15. Causal(freedom, action) -> "leave"
+16. Relationship(parents, student) -> "support"
+17. Outcome(freedom, action) -> "leave"
+18. Meta(M_NLI, S1, S2) -> "contradiction"
+19. Causal(negative_outcome, lack_of_support) -> "school"
+20. Entity(student, situation) -> "poor"
+21. Entity(parents, involvement) -> "low"
+22. Relationship(student, performance) -> "bad"
+23. Meta(Causal, x0, y0) -> "relationship"
+24. Entity(action, direction) -> "towards_car"
+25. Causal(freedom, student) -> "leave"
+26. Relationship(negative_outcome, cause) -> "lack_of_support"
+27. Entity(situation, outcome) -> "negative"
+28. Entity(parents, role) -> "supportive"
+29. Violate(freedom, negative_outcome) -> "school"
+30. Causal(parents_involvement, student_performance) -> "positive"
+
+Rules:
+1. Q[You, Student.performance, Outcome.school](Parents.support == "none" → Causal(negative_outcome, lack_of_support))
+2. Q[You, Student.performance, Outcome.school](Entity(parents, support) == "lack" → Causal(lack_of_support, negative_outcome))
+3. Q[You, Freedom.status, Action.walk](Freedom.status == "free" → Causal(freedom, action))
+4. Q[You, Freedom.status, Action.walk](Entity(freedom, status) == "available" → Causal(freedom, action))
+5. Q[You, Student.performance, Outcome.school](Entity(student, performance) == "bad" → Causal(negative_outcome, lack_of_support))
+6. Q[You, Freedom.status, Action.walk](Action.walk == "alone" → Causal(freedom, action))
+7. Q[You, Student.performance, Outcome.school](Entity(parents, involvement) == "low" → Causal(negative_outcome, lack_of_support))
+8. Q[You, Freedom.status, Action.walk](Relationship(freedom, action) == "leave" → Causal(freedom, action))
+9. Q[You, Student.performance, Outcome.school](Entity(student, situation) == "poor" → Causal(negative_outcome, lack_of_support))
+10. Q[You, Student.performance, Outcome.school](Relationship(student, performance) == "bad" → Causal(negative_outcome, lack_of_support))
+11. Q[You, Freedom.status, Action.walk](Outcome(freedom, action) == "leave" → Causal(freedom, action))
+12. Q[You, Student.performance, Outcome.school](Causal.parents_support == "none" → Causal(negative_outcome, lack_of_support))
+13. Q[You, Freedom.status, Action.walk](Violate(freedom, negative_outcome) == "school" → Causal(freedom, action))
+14. Q[You, Student.performance, Outcome.school](Causal(negative_outcome, lack_of_support) == "school" → Causal(negative_outcome, lack_of_support))
+15. Q[You, Freedom.status, Action.walk](Entity(action, walking) == "alone" → Causal(freedom, action))
+16. Q[You, Student.performance, Outcome.school](Entity(parents, role) == "supportive" → Causal(parents_involvement, student_performance))
+17. Q[You, Freedom.status, Action.walk](Causal(freedom, action) == "leave" → Causal(freedom, action))
+18. Q[You, Student.performance, Outcome.school](Meta(M_NLI, S1, S2) == "contradiction" → Causal(negative_outcome, lack_of_support))
+19. Q[You, Freedom.status, Action.walk](Entity(action, direction) == "towards_car" → Causal(freedom, action))
+20. Q[You, Student.performance, Outcome.school](Causal(freedom, action) == "leave" → Causal(freedom, action))
+21. Q[You, Student.performance, Outcome.school](Entity(situation, outcome) == "negative" → Causal(negative_outcome, lack_of_support))
+22. Q[You, Freedom.status, Action.walk](Causal(freedom, student) == "leave" → Causal(freedom, action))
+23. Q[You, Student.performance, Outcome.school](Causal(parents_involvement, student_performance) == "positive" → Causal(negative_outcome, lack_of_support))
+24. Q[You, Freedom.status, Action.walk](Violate(freedom, negative_outcome) == "school" → Causal(freedom, action))
+25. Q[You, Student.performance, Outcome.school](Causal(negative_outcome, lack_of_support) == "school" → Causal(negative_outcome, lack_of_support))
+26. Q[You, Freedom.status, Action.walk](Meta(Causal, x0, y0) == "relationship" → Causal(freedom, action))
+27. Q[You, Student.performance, Outcome.school](Entity(parents, support) == "none" → Causal(negative_outcome, lack_of_support))
+28. Q[You, Freedom.status, Action.walk](Causal(freedom, action) == "leave" → Causal(freedom, action))
+29. Q[You, Student.performance, Outcome.school](Entity(parents, involvement) == "low" → Causal(negative_outcome, lack_of_support))
+30. Q[You, Freedom.status, Action.walk](Causal(freedom, action) == "leave" → Causal(freedom, action))

@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 19)
+S1: A f t e r e a t i n g h i s l u n c h , A n d r e w c a u g h t t h r e e m o r e f i s h b e f o r e h e w o k e u p h i s g r a n d p a .
+S2: A n d r e w c a u g h t T h r e e t o t a l f i s h .
+
+Predicates:
+1. Andrew.caught_fish
+2. Andrew.eating_lunch
+3. Andrew.total_fish_caught
+4. Andrew.caught_three_more_fish
+5. Andrew.woke_up_grandpa
+6. Fish.total_caught
+7. Fish.caught_after_lunch
+8. Fish.caught_before_waking_grandpa
+9. Time.after_eating_lunch
+10. Time.before_waking_grandpa
+11. Event.catching_fish
+12. Event.eating_lunch
+13. Event.waking_grandpa
+14. Quantity.three_fish
+15. Quantity.total_fish
+16. Relationship.caught_more_than_three
+17. Relationship.eating_before_catching
+18. Relationship.waking_after_catching
+19. Condition.after_eating
+20. Condition.before_waking
+21. Meta.NLI(S1, S2)
+22. Meta.Numeric(3, total_fish)
+23. Meta.violate(3, total_fish)
+24. Action.catching
+25. Action.eating
+26. Action.waking
+27. Context.lunch_time
+28. Context.fishing_time
+29. Context.grandpa_awake
+30. Context.grandpa_asleep
+
+Rules:
+1. Q[Andrew, 3, 0](Andrew.caught_fish == true ∧ Andrew.caught_three_more_fish == true → Numeric(3, 0))
+2. Q[Andrew, 3, 3](Andrew.total_fish_caught == 3 ∧ Andrew.caught_three_more_fish == true → Numeric(3, 3))
+3. Q[Andrew, 3, 0](Andrew.caught_fish == true ∧ Andrew.total_fish_caught == 3 → Numeric(3, 0))
+4. Q[Andrew, 3, 3](Andrew.total_fish_caught == 3 ∧ Relationship.caught_more_than_three == true → Numeric(3, 3))
+5. Q[Andrew, 3, 0](Andrew.caught_three_more_fish == true ∧ Fish.total_caught == 3 → Numeric(3, 0))
+6. Q[Andrew, 3, 3](Fish.total_caught == 3 ∧ Andrew.caught_three_more_fish == true → Numeric(3, 3))
+7. Q[Andrew, 3, 0](Andrew.eating_lunch == true ∧ Time.after_eating_lunch == true → Numeric(3, 0))
+8. Q[Andrew, 3, 3](Andrew.total_fish_caught == 3 ∧ Time.after_eating_lunch == true → Numeric(3, 3))
+9. Q[Andrew, 3, 0](Andrew.caught_fish == true ∧ Fish.caught_after_lunch == true → Numeric(3, 0))
+10. Q[Andrew, 3, 3](Fish.caught_after_lunch == true ∧ Andrew.total_fish_caught == 3 → Numeric(3, 3))
+11. Q[Andrew, 3, 0](Andrew.woke_up_grandpa == true ∧ Time.before_waking_grandpa == true → Numeric(3, 0))
+12. Q[Andrew, 3, 3](Andrew.total_fish_caught == 3 ∧ Time.before_waking_grandpa == true → Numeric(3, 3))
+13. Q[Andrew, 3, 0](Event.eating_lunch == true ∧ Event.catching_fish == true → Numeric(3, 0))
+14. Q[Andrew, 3, 3](Event.catching_fish == true ∧ Andrew.total_fish_caught == 3 → Numeric(3, 3))
+15. Q[Andrew, 3, 0](Condition.after_eating == true ∧ Andrew.caught_three_more_fish == true → Numeric(3, 0))
+16. Q[Andrew, 3, 3](Andrew.total_fish_caught == 3 ∧ Condition.after_eating == true → Numeric(3, 3))
+17. Q[Andrew, 3, 0](Relationship.eating_before_catching == true ∧ Andrew.caught_three_more_fish == true → Numeric(3, 0))
+18. Q[Andrew, 3, 3](Andrew.total_fish_caught == 3 ∧ Relationship.eating_before_catching == true → Numeric(3, 3))
+19. Q[Andrew, 3, 0](Fish.caught_before_waking_grandpa == true ∧ Andrew.caught_three_more_fish == true → Numeric(3, 0))
+20. Q[Andrew, 3, 3](Andrew.total_fish_caught == 3 ∧ Fish.caught_before_waking_grandpa == true → Numeric(3, 3))
+21. Q[Andrew, 3, 0](Meta.NLI(S1, S2) == true ∧ Andrew.caught_three_more_fish == true → Numeric(3, 0))
+22. Q[Andrew, 3, 3](Meta.NLI(S1, S2) == true ∧ Andrew.total_fish_caught == 3 → Numeric(3, 3))
+23. Q[Andrew, 3, 0](Meta.violate(3, total_fish) == true ∧ Andrew.caught_three_more_fish == true → Numeric(3, 0))
+24. Q[Andrew, 3, 3](Meta.violate(3, total_fish) == true ∧ Andrew.total_fish_caught == 3 → Numeric(3, 3))
+25. Q[Andrew, 3, 0](Context.lunch_time == true ∧ Andrew.caught_three_more_fish == true → Numeric(3, 0))
+26. Q[Andrew, 3, 3](Andrew.total_fish_caught == 3 ∧ Context.lunch_time == true → Numeric(3, 3))
+27. Q[Andrew, 3, 0](Context.fishing_time == true ∧ Andrew.caught_three_more_fish == true → Numeric(3, 0))
+28. Q[Andrew, 3, 3](Andrew.total_fish_caught == 3 ∧ Context.fishing_time == true → Numeric(3, 3))
+29. Q[Andrew, 3, 0](Context.grandpa_awake == true ∧ Andrew.caught_three_more_fish == true → Numeric(3, 0))
+30. Q[Andrew, 3, 3](Andrew.total_fish_caught == 3 ∧ Context.grandpa_awake == true → Numeric(3, 3))

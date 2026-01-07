@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 1281)
+S1: I much preferred Duluth to Atlanta.
+S2: which is uh north of Atlanta well not north it's more east
+
+Predicates:
+1. Preference.location.Duluth
+2. Preference.location.Atlanta
+3. GeographicalRelation.Duluth.east_of.Atlanta
+4. GeographicalRelation.Duluth.north_of.Atlanta
+5. Preference.intensity.Duluth
+6. Preference.intensity.Atlanta
+7. Relation.preference.Duluth.Atlanta
+8. Relation.geographical.Duluth.Atlanta
+9. M_NLI(S1, S2)
+10. Violate.preference.Duluth.Atlanta
+11. Entity.Duluth.location
+12. Entity.Atlanta.location
+13. Entity.Duluth.preferred_over.Atlanta
+14. Entity.Atlanta.less_preferred_than.Duluth
+15. Relation.geographical_significance.Duluth.Atlanta
+16. Meta.geographical_relation.Duluth.Atlanta
+17. Preference.comparison.Duluth.Atlanta
+18. Relation.direction.Duluth.east
+19. Relation.direction.Atlanta.west
+20. Entity.Duluth.geographical_position
+21. Entity.Atlanta.geographical_position
+22. Relation.geographical_position.Duluth.east_of.Atlanta
+23. Relation.geographical_position.Atlanta.west_of.Duluth
+24. M_NLI(preference, geographical_relation)
+25. Violate.geographical_relation.Duluth.Atlanta
+26. Preference.stronger_for.Duluth
+27. Preference.weaker_for.Atlanta
+28. Relation.geographical_context.Duluth.Atlanta
+29. Entity.Duluth.preferred_location
+30. Entity.Atlanta.less_favored_location
+
+Rules:
+1. Q[much, Preference.intensity.Duluth == "high" → Relation.preference.Duluth.Atlanta]
+2. Q[much, Preference.intensity.Atlanta == "low" → Relation.preference.Duluth.Atlanta]
+3. Q[much, Entity.Duluth.preferred_over.Atlanta == true → Relation.preference.Duluth.Atlanta]
+4. Q[much, Preference.location.Duluth == "Duluth" → Relation.preference.Duluth.Atlanta]
+5. Q[much, Preference.location.Atlanta == "Atlanta" → Relation.preference.Duluth.Atlanta]
+6. Q[much, Violate.preference.Duluth.Atlanta == true → Relation.preference.Duluth.Atlanta]
+7. Q[much, Preference.comparison.Duluth.Atlanta == "Duluth preferred" → Relation.preference.Duluth.Atlanta]
+8. Q[much, Preference.stronger_for.Duluth == true → Relation.preference.Duluth.Atlanta]
+9. Q[much, Preference.weaker_for.Atlanta == true → Relation.preference.Duluth.Atlanta]
+10. Q[much, Entity.Duluth.location == "north" → Relation.geographical.Duluth.Atlanta]
+11. Q[much, Entity.Atlanta.location == "south" → Relation.geographical.Duluth.Atlanta]
+12. Q[much, GeographicalRelation.Duluth.east_of.Atlanta == true → Relation.geographical.Duluth.Atlanta]
+13. Q[much, GeographicalRelation.Duluth.north_of.Atlanta == false → Relation.geographical.Duluth.Atlanta]
+14. Q[much, Relation.geographical_position.Duluth.east_of.Atlanta == true → Relation.geographical.Duluth.Atlanta]
+15. Q[much, Relation.geographical_position.Atlanta.west_of.Duluth == true → Relation.geographical.Duluth.Atlanta]
+16. Q[much, Relation.geographical_significance.Duluth.Atlanta == "low" → Relation.geographical.Duluth.Atlanta]
+17. Q[much, Meta.geographical_relation.Duluth.Atlanta == "downplayed" → Relation.geographical.Duluth.Atlanta]
+18. Q[much, M_NLI(S1, S2) == false → Relation.preference.Duluth.Atlanta]
+19. Q[much, Violate.geographical_relation.Duluth.Atlanta == true → Relation.geographical.Duluth.Atlanta]
+20. Q[much, Entity.Duluth.geographical_position == "east" → Relation.geographical.Duluth.Atlanta]
+21. Q[much, Entity.Atlanta.geographical_position == "west" → Relation.geographical.Duluth.Atlanta]
+22. Q[much, Relation.direction.Duluth.east == true → Relation.geographical.Duluth.Atlanta]
+23. Q[much, Relation.direction.Atlanta.west == true → Relation.geographical.Duluth.Atlanta]
+24. Q[much, Preference.location.Duluth == "preferred" → Relation.preference.Duluth.Atlanta]
+25. Q[much, Preference.location.Atlanta == "less preferred" → Relation.preference.Duluth.Atlanta]
+26. Q[much, Entity.Duluth.preferred_location == "Duluth" → Relation.preference.Duluth.Atlanta]
+27. Q[much, Entity.Atlanta.less_favored_location == "Atlanta" → Relation.preference.Duluth.Atlanta]
+28. Q[much, Relation.geographical_context.Duluth.Atlanta == "contradictory" → Relation.geographical.Duluth.Atlanta]
+29. Q[much, M_NLI(preference, geographical_relation) == false → Relation.preference.Duluth.Atlanta]
+30. Q[much, Relation.geographical.Duluth.Atlanta == "contradictory" → Relation.geographical.Duluth.Atlanta]

@@ -1,0 +1,62 @@
+Source: dense_text.txt (Index 76)
+S1: Sudan refused to allow U.N. troops in Darfur.
+S2: Sudan was ready to accept U.N. troops.
+
+Predicates:
+1. Sudan.refusal_to_allow_U.N._troops
+2. Sudan.readiness_to_accept_U.N._troops
+3. M_NLI(Sudan.refusal_to_allow_U.N._troops, Sudan.readiness_to_accept_U.N._troops)
+4. Factual(Sudan.refusal_to_allow_U.N._troops, Sudan.readiness_to_accept_U.N._troops)
+5. violate(Sudan.refusal_to_allow_U.N._troops, Sudan.readiness_to_accept_U.N._troops)
+6. U.N._troops.in_Darfur
+7. Sudan.position_on_U.N._troops
+8. U.N._troops.acceptance_status
+9. Sudan.refusal_status
+10. Sudan.acceptance_status
+11. M_NLI(Sudan.refusal_status, Sudan.acceptance_status)
+12. Factual(Sudan.refusal_status, Sudan.acceptance_status)
+13. violate(Sudan.refusal_status, Sudan.acceptance_status)
+14. U.N._troops.deployment_in_Darfur
+15. Sudan.policy_on_U.N._troops
+16. Sudan.decision_on_U.N._troops
+17. M_NLI(Sudan.policy_on_U.N._troops, Sudan.decision_on_U.N._troops)
+18. Factual(Sudan.policy_on_U.N._troops, Sudan.decision_on_U.N._troops)
+19. violate(Sudan.policy_on_U.N._troops, Sudan.decision_on_U.N._troops)
+20. U.N._troops.mission_in_Darfur
+21. Sudan.response_to_U.N._troops
+22. M_NLI(Sudan.response_to_U.N._troops, U.N._troops.deployment_in_Darfur)
+23. Factual(Sudan.response_to_U.N._troops, U.N._troops.deployment_in_Darfur)
+24. violate(Sudan.response_to_U.N._troops, U.N._troops.deployment_in_Darfur)
+25. Sudan.international_relations
+26. U.N._troops.impact_on_Sudan
+27. M_NLI(Sudan.international_relations, U.N._troops.impact_on_Sudan)
+28. Factual(Sudan.international_relations, U.N._troops.impact_on_Sudan)
+29. violate(Sudan.international_relations, U.N._troops.impact_on_Sudan)
+30. Sudan.stance_on_international_intervention
+
+Rules:
+1. Q[Sudan, Sudan.refusal_to_allow_U.N._troops, Sudan.readiness_to_accept_U.N._troops](Sudan.refusal_to_allow_U.N._troops == true → Factual(Sudan.refusal_to_allow_U.N._troops, Sudan.readiness_to_accept_U.N._troops))
+2. Q[Sudan, Sudan.readiness_to_accept_U.N._troops, Sudan.refusal_to_allow_U.N._troops](Sudan.readiness_to_accept_U.N._troops == true → Factual(Sudan.readiness_to_accept_U.N._troops, Sudan.refusal_to_allow_U.N._troops))
+3. Q[Sudan, Sudan.position_on_U.N._troops, Sudan.refusal_to_allow_U.N._troops](Sudan.position_on_U.N._troops == "refusal" → Factual(Sudan.position_on_U.N._troops, Sudan.refusal_to_allow_U.N._troops))
+4. Q[Sudan, Sudan.position_on_U.N._troops, Sudan.readiness_to_accept_U.N._troops](Sudan.position_on_U.N._troops == "readiness" → Factual(Sudan.position_on_U.N._troops, Sudan.readiness_to_accept_U.N._troops))
+5. Q[Sudan, Sudan.refusal_status, Sudan.acceptance_status](Sudan.refusal_status == true → Factual(Sudan.refusal_status, Sudan.acceptance_status))
+6. Q[Sudan, Sudan.acceptance_status, Sudan.refusal_status](Sudan.acceptance_status == true → Factual(Sudan.acceptance_status, Sudan.refusal_status))
+7. Q[Sudan, Sudan.policy_on_U.N._troops, Sudan.decision_on_U.N._troops](Sudan.policy_on_U.N._troops == "refusal" → Factual(Sudan.policy_on_U.N._troops, Sudan.decision_on_U.N._troops))
+8. Q[Sudan, Sudan.policy_on_U.N._troops, Sudan.decision_on_U.N._troops](Sudan.policy_on_U.N._troops == "acceptance" → Factual(Sudan.policy_on_U.N._troops, Sudan.decision_on_U.N._troops))
+9. Q[Sudan, Sudan.response_to_U.N._troops, U.N._troops.deployment_in_Darfur](Sudan.response_to_U.N._troops == "refusal" → Factual(Sudan.response_to_U.N._troops, U.N._troops.deployment_in_Darfur))
+10. Q[Sudan, Sudan.response_to_U.N._troops, U.N._troops.deployment_in_Darfur](Sudan.response_to_U.N._troops == "acceptance" → Factual(Sudan.response_to_U.N._troops, U.N._troops.deployment_in_Darfur))
+11. Q[Sudan, Sudan.refusal_to_allow_U.N._troops, Sudan.policy_on_U.N._troops](Sudan.refusal_to_allow_U.N._troops == true → Factual(Sudan.refusal_to_allow_U.N._troops, Sudan.policy_on_U.N._troops))
+12. Q[Sudan, Sudan.readiness_to_accept_U.N._troops, Sudan.policy_on_U.N._troops](Sudan.readiness_to_accept_U.N._troops == true → Factual(Sudan.readiness_to_accept_U.N._troops, Sudan.policy_on_U.N._troops))
+13. Q[Sudan, Sudan.refusal_status, Sudan.refusal_to_allow_U.N._troops](Sudan.refusal_status == true → Factual(Sudan.refusal_status, Sudan.refusal_to_allow_U.N._troops))
+14. Q[Sudan, Sudan.acceptance_status, Sudan.readiness_to_accept_U.N._troops](Sudan.acceptance_status == true → Factual(Sudan.acceptance_status, Sudan.readiness_to_accept_U.N._troops))
+15. Q[Sudan, Sudan.decision_on_U.N._troops, Sudan.refusal_to_allow_U.N._troops](Sudan.decision_on_U.N._troops == "refusal" → Factual(Sudan.decision_on_U.N._troops, Sudan.refusal_to_allow_U.N._troops))
+16. Q[Sudan, Sudan.decision_on_U.N._troops, Sudan.readiness_to_accept_U.N._troops](Sudan.decision_on_U.N._troops == "acceptance" → Factual(Sudan.decision_on_U.N._troops, Sudan.readiness_to_accept_U.N._troops))
+17. Q[Sudan, U.N._troops.in_Darfur, Sudan.refusal_to_allow_U.N._troops](U.N._troops.in_Darfur == true and Sudan.refusal_to_allow_U.N._troops == true → Factual(U.N._troops.in_Darfur, Sudan.refusal_to_allow_U.N._troops))
+18. Q[Sudan, U.N._troops.in_Darfur, Sudan.readiness_to_accept_U.N._troops](U.N._troops.in_Darfur == true and Sudan.readiness_to_accept_U.N._troops == true → Factual(U.N._troops.in_Darfur, Sudan.readiness_to_accept_U.N._troops))
+19. Q[Sudan, Sudan.international_relations, U.N._troops.impact_on_Sudan](Sudan.international_relations == "negative" and U.N._troops.impact_on_Sudan == "negative" → Factual(Sudan.international_relations, U.N._troops.impact_on_Sudan))
+20. Q[Sudan, Sudan.stance_on_international_intervention, Sudan.refusal_to_allow_U.N._troops](Sudan.stance_on_international_intervention == "refusal" → Factual(Sudan.stance_on_international_intervention, Sudan.refusal_to_allow_U.N._troops))
+21. Q[Sudan, Sudan.stance_on_international_intervention, Sudan.readiness_to_accept_U.N._troops](Sudan.stance_on_international_intervention == "acceptance" → Factual(Sudan.stance_on_international_intervention, Sudan.readiness_to_accept_U.N._troops))
+22. Q[Sudan, Sudan.refusal_to_allow_U.N._troops, Sudan.refusal_status](Sudan.refusal_to_allow_U.N._troops == true → Factual(Sudan.refusal_to_allow_U.N._troops, Sudan.refusal_status))
+23. Q[Sudan, Sudan.readiness_to_accept_U.N._troops, Sudan.acceptance_status](Sudan.readiness_to_accept_U.N._troops == true → Factual(Sudan.readiness_to_accept_U.N._troops, Sudan.acceptance_status))
+24. Q[Sudan, Sudan.policy_on_U.N._troops, Sudan.refusal_status](Sudan.policy_on_U.N._troops == "refusal" → Factual(Sudan.policy_on_U.N._troops, Sudan.refusal_status))
+25. Q[

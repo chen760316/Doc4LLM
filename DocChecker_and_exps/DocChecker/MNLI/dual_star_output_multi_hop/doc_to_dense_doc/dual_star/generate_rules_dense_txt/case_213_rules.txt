@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 213)
+S1: All the letters go to Bill now.
+S2: Bill has delegated that and now those letters all go to John.
+
+Predicates:
+1. Letters.go_to(Bill)
+2. Letters.go_to(John)
+3. Bill.delegated(Letters)
+4. Letters.all_go_to(Bill)
+5. Letters.all_go_to(John)
+6. M_NLI(S1, S2)
+7. Relation(Letters, Bill)
+8. Relation(Letters, John)
+9. violate(Letters, Bill)
+10. violate(Letters, John)
+11. Bill.has(Letters)
+12. John.receives(Letters)
+13. Delegation(Bill, Letters)
+14. Delegation(John, Letters)
+15. Letters.transition(Bill, John)
+16. Bill.is_current_recipient(Letters)
+17. John.is_new_recipient(Letters)
+18. Letters.change_recipient(Bill, John)
+19. Bill.delegates(Letters, John)
+20. Letters.are_now_with(John)
+21. Letters.were_with(Bill)
+22. Bill.is_sender(Letters)
+23. John.is_receiver(Letters)
+24. Letters.move_from(Bill, John)
+25. Bill.hands_off(Letters)
+26. John.takes_over(Letters)
+27. Letters.assigned_to(Bill)
+28. Letters.assigned_to(John)
+29. Bill.no_longer_receives(Letters)
+30. John.now_receives(Letters)
+
+Rules:
+1. Q[All, Letters.go_to(Bill) → Relation(Letters, Bill)]
+2. Q[All, Letters.go_to(John) → Relation(Letters, John)]
+3. Q[All, Bill.delegated(Letters) → Relation(Letters, John)]
+4. Q[All, Letters.all_go_to(Bill) → Relation(Letters, Bill)]
+5. Q[All, Letters.all_go_to(John) → Relation(Letters, John)]
+6. Q[All, M_NLI(S1, S2) → violate(Letters, Bill)]
+7. Q[All, M_NLI(S1, S2) → violate(Letters, John)]
+8. Q[All, Bill.has(Letters) → Relation(Letters, Bill)]
+9. Q[All, John.receives(Letters) → Relation(Letters, John)]
+10. Q[All, Delegation(Bill, Letters) → Relation(Letters, John)]
+11. Q[All, Delegation(John, Letters) → Relation(Letters, John)]
+12. Q[All, Letters.transition(Bill, John) → Relation(Letters, John)]
+13. Q[All, Bill.is_current_recipient(Letters) → violate(Letters, John)]
+14. Q[All, John.is_new_recipient(Letters) → Relation(Letters, John)]
+15. Q[All, Letters.change_recipient(Bill, John) → Relation(Letters, John)]
+16. Q[All, Bill.delegates(Letters, John) → Relation(Letters, John)]
+17. Q[All, Letters.are_now_with(John) → Relation(Letters, John)]
+18. Q[All, Letters.were_with(Bill) → violate(Letters, Bill)]
+19. Q[All, Bill.is_sender(Letters) → Relation(Letters, Bill)]
+20. Q[All, John.is_receiver(Letters) → Relation(Letters, John)]
+21. Q[All, Letters.move_from(Bill, John) → Relation(Letters, John)]
+22. Q[All, Bill.hands_off(Letters) → Relation(Letters, John)]
+23. Q[All, John.takes_over(Letters) → Relation(Letters, John)]
+24. Q[All, Letters.assigned_to(Bill) → violate(Letters, John)]
+25. Q[All, Letters.assigned_to(John) → Relation(Letters, John)]
+26. Q[All, Bill.no_longer_receives(Letters) → Relation(Letters, John)]
+27. Q[All, John.now_receives(Letters) → Relation(Letters, John)]
+28. Q[All, Letters.go_to(Bill) ∧ Bill.delegated(Letters) → violate(Letters, Bill)]
+29. Q[All, Letters.go_to(John) ∧ Bill.delegated(Letters) → Relation(Letters, John)]
+30. Q[All, Letters.all_go_to(Bill) ∧ Letters.all_go_to(John) → violate(Letters, Bill)]

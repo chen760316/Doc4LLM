@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 182)
+S1: Bern is located in Switzerland.
+S2: Bern is located in Austria.
+
+Predicates:
+1. Bern.location = Switzerland
+2. Bern.location = Austria
+3. M_NLI(S1, S2)
+4. Factual(Bern, Switzerland)
+5. Factual(Bern, Austria)
+6. violate(Bern.location, Switzerland)
+7. violate(Bern.location, Austria)
+8. Bern.isCapitalOf = Switzerland
+9. Bern.isCapitalOf = Austria
+10. M_NLI(Bern.isCapitalOf, Bern.location)
+11. Factual(Bern.isCapitalOf, Switzerland)
+12. Factual(Bern.isCapitalOf, Austria)
+13. violate(Bern.isCapitalOf, Switzerland)
+14. violate(Bern.isCapitalOf, Austria)
+15. Switzerland.contains = Bern
+16. Austria.contains = Bern
+17. M_NLI(Switzerland.contains, Austria.contains)
+18. Factual(Switzerland, Bern)
+19. Factual(Austria, Bern)
+20. violate(Switzerland.contains, Austria.contains)
+21. Bern.isPartOf = Switzerland
+22. Bern.isPartOf = Austria
+23. M_NLI(Bern.isPartOf, Bern.location)
+24. Factual(Bern.isPartOf, Switzerland)
+25. Factual(Bern.isPartOf, Austria)
+26. violate(Bern.isPartOf, Switzerland)
+27. violate(Bern.isPartOf, Austria)
+28. Switzerland.capital = Bern
+29. Austria.capital = Bern
+30. M_NLI(Switzerland.capital, Austria.capital)
+
+Rules:
+1. Q[Bern, x0, y0](Bern.location = Switzerland → Factual(Bern, Switzerland))
+2. Q[Bern, x0, y0](Bern.location = Austria → Factual(Bern, Austria))
+3. Q[Bern, x0, y0](Bern.location = Switzerland ∧ Bern.location = Austria → violate(Bern.location, Switzerland))
+4. Q[Bern, x0, y0](Bern.location = Switzerland ∧ Bern.location = Austria → violate(Bern.location, Austria))
+5. Q[Bern, x0, y0](Bern.isCapitalOf = Switzerland → Factual(Bern.isCapitalOf, Switzerland))
+6. Q[Bern, x0, y0](Bern.isCapitalOf = Austria → Factual(Bern.isCapitalOf, Austria))
+7. Q[Bern, x0, y0](Bern.isCapitalOf = Switzerland ∧ Bern.isCapitalOf = Austria → violate(Bern.isCapitalOf, Switzerland))
+8. Q[Bern, x0, y0](Bern.isCapitalOf = Switzerland ∧ Bern.isCapitalOf = Austria → violate(Bern.isCapitalOf, Austria))
+9. Q[Bern, x0, y0](Switzerland.contains = Bern → Factual(Switzerland, Bern))
+10. Q[Bern, x0, y0](Austria.contains = Bern → Factual(Austria, Bern))
+11. Q[Bern, x0, y0](Switzerland.contains = Bern ∧ Austria.contains = Bern → violate(Switzerland.contains, Austria.contains))
+12. Q[Bern, x0, y0](Bern.isPartOf = Switzerland → Factual(Bern.isPartOf, Switzerland))
+13. Q[Bern, x0, y0](Bern.isPartOf = Austria → Factual(Bern.isPartOf, Austria))
+14. Q[Bern, x0, y0](Bern.isPartOf = Switzerland ∧ Bern.isPartOf = Austria → violate(Bern.isPartOf, Switzerland))
+15. Q[Bern, x0, y0](Bern.isPartOf = Switzerland ∧ Bern.isPartOf = Austria → violate(Bern.isPartOf, Austria))
+16. Q[Bern, x0, y0](Bern.location = Switzerland ∧ Bern.isCapitalOf = Switzerland → Factual(Bern, Switzerland))
+17. Q[Bern, x0, y0](Bern.location = Austria ∧ Bern.isCapitalOf = Austria → Factual(Bern, Austria))
+18. Q[Bern, x0, y0](Bern.location = Switzerland ∧ Bern.isCapitalOf = Austria → violate(Bern.isCapitalOf, Austria))
+19. Q[Bern, x0, y0](Bern.location = Austria ∧ Bern.isCapitalOf = Switzerland → violate(Bern.isCapitalOf, Switzerland))
+20. Q[Bern, x0, y0](Bern.location = Switzerland ∧ Switzerland.capital = Bern → Factual(Bern, Switzerland))
+21. Q[Bern, x0, y0](Bern.location = Austria ∧ Austria.capital = Bern → Factual(Bern, Austria))
+22. Q[Bern, x0, y0](Bern.location = Switzerland ∧ Austria.capital = Bern → violate(Austria.capital, Bern))
+23. Q[Bern, x0, y0](Bern.location = Austria ∧ Switzerland.capital = Bern → violate(Switzerland.capital, Bern))
+24. Q[Bern, x0, y0](Bern.isPartOf = Switzerland ∧ Switzerland.capital = Bern → Factual(Bern, Switzerland))
+25. Q[Bern, x0, y0](Bern.isPartOf = Austria ∧ Austria.capital = Bern → Factual(Bern, Austria))
+26. Q[Bern, x0, y0](Bern.isPartOf = Switzerland ∧ Bern.isPartOf = Austria → violate(Bern.isPartOf, Switzerland))
+27. Q[Bern, x0, y0](Bern.isPartOf = Austria ∧ Bern.isPartOf = Switzerland → violate(Bern.isPartOf, Austria))
+28. Q[Bern, x0, y0](Bern.location = Switzerland ∧ Bern.isPartOf = Austria → violate(Bern.isPartOf, Austria))
+29. Q[Bern, x0, y0](Bern.location = Austria ∧ Bern.isPartOf = Switzerland → violate(Bern.isPartOf, Switzerland))
+30. Q[Bern, x0, y0](Bern.location = Switzerland ∧ Bern.location = Austria → Factual(Bern, contradiction))

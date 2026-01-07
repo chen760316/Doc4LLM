@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 127)
+S1: Two kids outdoors.
+S2: A man and a woman are busy working together at the front desk of a building.
+
+Predicates:
+1. Kids.outdoors
+2. Man.working
+3. Woman.working
+4. Building.front_desk
+5. Kids.indoor
+6. Adults.indoor
+7. Adults.outdoors
+8. Kids.busy
+9. Man.busy
+10. Woman.busy
+11. Work.together
+12. Front_desk.busy
+13. Kids.playing
+14. Adults.collaborating
+15. Kids.in_building
+16. Man.in_building
+17. Woman.in_building
+18. Kids.in_front_desk
+19. Adults.outdoor_activity
+20. Work.indoor
+21. Work.outdoor
+22. Kids.activity
+23. Adults.activity
+24. Man.and_Woman.collaborating
+25. Kids.location
+26. Adults.location
+27. Work.location
+28. Kids.environment
+29. Adults.environment
+30. M_NLI(S1, S2)
+
+Rules:
+1. Q[Two, Kids.outdoors, Adults.indoor](Kids.outdoors == true → Relation(Kids.outdoors, Adults.indoor))
+2. Q[Two, Kids.indoor, Adults.outdoors](Kids.indoor == true → Relation(Kids.indoor, Adults.outdoors))
+3. Q[Two, Kids.busy, Adults.collaborating](Kids.busy == true → Relation(Kids.busy, Adults.collaborating))
+4. Q[Two, Kids.playing, Man.working](Kids.playing == true → Relation(Kids.playing, Man.working))
+5. Q[Two, Kids.activity, Work.indoor](Kids.activity == true → Relation(Kids.activity, Work.indoor))
+6. Q[Two, Kids.in_building, Woman.working](Kids.in_building == true → Relation(Kids.in_building, Woman.working))
+7. Q[Two, Kids.location, Adults.location](Kids.location == "outdoors" → Relation(Kids.location, Adults.location))
+8. Q[Two, Adults.indoor, Kids.outdoors](Adults.indoor == true → Relation(Adults.indoor, Kids.outdoors))
+9. Q[Two, Man.in_building, Kids.outdoors](Man.in_building == true → Relation(Man.in_building, Kids.outdoors))
+10. Q[Two, Woman.in_building, Kids.outdoors](Woman.in_building == true → Relation(Woman.in_building, Kids.outdoors))
+11. Q[Two, Front_desk.busy, Kids.activity](Front_desk.busy == true → Relation(Front_desk.busy, Kids.activity))
+12. Q[Two, Adults.activity, Kids.playing](Adults.activity == "working" → Relation(Adults.activity, Kids.playing))
+13. Q[Two, Man.and_Woman.collaborating, Kids.outdoors](Man.and_Woman.collaborating == true → Relation(Man.and_Woman.collaborating, Kids.outdoors))
+14. Q[Two, Work.together, Kids.indoor](Work.together == true → Relation(Work.together, Kids.indoor))
+15. Q[Two, Adults.environment, Kids.environment](Adults.environment == "indoor" → Relation(Adults.environment, Kids.environment))
+16. Q[Two, Work.location, Kids.environment](Work.location == "indoor" → Relation(Work.location, Kids.environment))
+17. Q[Two, Adults.outdoor_activity, Kids.activity](Adults.outdoor_activity == false → Relation(Adults.outdoor_activity, Kids.activity))
+18. Q[Two, Kids.in_front_desk, Adults.indoor](Kids.in_front_desk == false → Relation(Kids.in_front_desk, Adults.indoor))
+19. Q[Two, Kids.in_building, Adults.outdoors](Kids.in_building == false → Relation(Kids.in_building, Adults.outdoors))
+20. Q[Two, Adults.indoor, Kids.outdoors](Adults.indoor == true → Relation(Adults.indoor, Kids.outdoors))
+21. Q[Two, Kids.environment, Adults.environment](Kids.environment == "outdoors" → Relation(Kids.environment, Adults.environment))
+22. Q[Two, Work.indoor, Kids.outdoors](Work.indoor == true → Relation(Work.indoor, Kids.outdoors))
+23. Q[Two, Man.busy, Kids.playing](Man.busy == true → Relation(Man.busy, Kids.playing))
+24. Q[Two, Woman.busy, Kids.playing](Woman.busy == true → Relation(Woman.busy, Kids.playing))
+25. Q[Two, Adults.collaborating, Kids.activity](Adults.collaborating == true → Relation(Adults.collaborating, Kids.activity))
+26. Q[Two, Kids.location, Adults.indoor](Kids.location == "outdoors" → Relation(Kids.location, Adults.indoor))
+27. Q[Two, Adults.outdoors, Kids.indoor](Adults.outdoors == false → Relation(Adults.outdoors, Kids.indoor))
+28. Q[Two, Kids.environment, Adults.indoor](Kids.environment == "outdoors" → Relation(Kids.environment, Adults.indoor))
+29. Q[Two, Work.together, Kids.outdoors](Work.together == false → Relation(Work.together, Kids.outdoors))
+30. Q[Two, M_NLI(S1, S2), Relation](M_NLI(S1, S2) == true → Relation(M_NLI(S1, S2), Relation))

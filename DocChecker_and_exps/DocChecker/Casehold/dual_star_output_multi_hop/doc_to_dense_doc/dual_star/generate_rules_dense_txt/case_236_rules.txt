@@ -1,0 +1,65 @@
+Source: dense_text.txt (Index 236)
+S1: If Mr. Robinson is advancing a new claim, we lack jurisdiction over this appeal because there is no final Board decision on that claim.
+S2: If, on the other hand, Mr. Robinson is advancing a new argument in support of his claim, then we possess jurisdiction over this appeal and can consider the new argument or remand the matter for the Board to consider it in the first instance.
+
+Predicates:
+1. Mr_Robinson.is_advancing_new_claim
+2. jurisdiction.lacks_over_appeal
+3. Board_decision.is_final_on_claim
+4. Mr_Robinson.is_advancing_new_argument
+5. jurisdiction.possesses_over_appeal
+6. new_argument.is_considered
+7. matter.is_remanded_to_Board
+8. Board.is_considering_new_argument
+9. Mr_Robinson.is_advancing_new_claim -> jurisdiction.lacks_over_appeal
+10. Mr_Robinson.is_advancing_new_argument -> jurisdiction.possesses_over_appeal
+11. jurisdiction.lacks_over_appeal -> Board_decision.is_final_on_claim
+12. jurisdiction.possesses_over_appeal -> new_argument.is_considered
+13. jurisdiction.possesses_over_appeal -> matter.is_remanded_to_Board
+14. new_argument.is_considered -> Board.is_considering_new_argument
+15. violate(Mr_Robinson.is_advancing_new_claim, Mr_Robinson.is_advancing_new_argument)
+16. M_NLI(S1, S2)
+17. Causal(Mr_Robinson.is_advancing_new_claim, jurisdiction.lacks_over_appeal)
+18. Causal(Mr_Robinson.is_advancing_new_argument, jurisdiction.possesses_over_appeal)
+19. Board_decision.is_final_on_claim -> jurisdiction.lacks_over_appeal
+20. new_argument.is_considered -> jurisdiction.possesses_over_appeal
+21. Mr_Robinson.is_advancing_new_claim -> Board_decision.is_final_on_claim
+22. Mr_Robinson.is_advancing_new_argument -> new_argument.is_considered
+23. jurisdiction.lacks_over_appeal -> matter.is_not_remanded_to_Board
+24. jurisdiction.possesses_over_appeal -> matter.is_remanded_to_Board
+25. Mr_Robinson.is_advancing_new_claim -> new_argument.is_not_considered
+26. Mr_Robinson.is_advancing_new_argument -> Board.is_considering_new_argument
+27. jurisdiction.lacks_over_appeal -> Mr_Robinson.is_not_advancing_new_argument
+28. jurisdiction.possesses_over_appeal -> Mr_Robinson.is_not_advancing_new_claim
+29. Board_decision.is_final_on_claim -> Mr_Robinson.is_not_advancing_new_argument
+30. new_argument.is_not_considered -> jurisdiction.lacks_over_appeal
+
+Rules:
+1. Q[Robinson, Mr_Robinson.is_advancing_new_claim, jurisdiction.lacks_over_appeal](Mr_Robinson.is_advancing_new_claim → Causal(Mr_Robinson.is_advancing_new_claim, jurisdiction.lacks_over_appeal))
+2. Q[Robinson, Mr_Robinson.is_advancing_new_argument, jurisdiction.possesses_over_appeal](Mr_Robinson.is_advancing_new_argument → Causal(Mr_Robinson.is_advancing_new_argument, jurisdiction.possesses_over_appeal))
+3. Q[Robinson, jurisdiction.lacks_over_appeal, Board_decision.is_final_on_claim](jurisdiction.lacks_over_appeal → Causal(jurisdiction.lacks_over_appeal, Board_decision.is_final_on_claim))
+4. Q[Robinson, jurisdiction.possesses_over_appeal, new_argument.is_considered](jurisdiction.possesses_over_appeal → Causal(jurisdiction.possesses_over_appeal, new_argument.is_considered))
+5. Q[Robinson, jurisdiction.lacks_over_appeal, Mr_Robinson.is_advancing_new_argument](jurisdiction.lacks_over_appeal → Causal(jurisdiction.lacks_over_appeal, Mr_Robinson.is_not_advancing_new_argument))
+6. Q[Robinson, jurisdiction.possesses_over_appeal, Mr_Robinson.is_advancing_new_claim](jurisdiction.possesses_over_appeal → Causal(jurisdiction.possesses_over_appeal, Mr_Robinson.is_not_advancing_new_claim))
+7. Q[Robinson, Mr_Robinson.is_advancing_new_claim, Board_decision.is_final_on_claim](Mr_Robinson.is_advancing_new_claim → Causal(Mr_Robinson.is_advancing_new_claim, Board_decision.is_final_on_claim))
+8. Q[Robinson, Mr_Robinson.is_advancing_new_argument, new_argument.is_considered](Mr_Robinson.is_advancing_new_argument → Causal(Mr_Robinson.is_advancing_new_argument, new_argument.is_considered))
+9. Q[Robinson, jurisdiction.lacks_over_appeal, matter.is_not_remanded_to_Board](jurisdiction.lacks_over_appeal → Causal(jurisdiction.lacks_over_appeal, matter.is_not_remanded_to_Board))
+10. Q[Robinson, jurisdiction.possesses_over_appeal, matter.is_remanded_to_Board](jurisdiction.possesses_over_appeal → Causal(jurisdiction.possesses_over_appeal, matter.is_remanded_to_Board))
+11. Q[Robinson, Mr_Robinson.is_advancing_new_claim, new_argument.is_not_considered](Mr_Robinson.is_advancing_new_claim → Causal(Mr_Robinson.is_advancing_new_claim, new_argument.is_not_considered))
+12. Q[Robinson, Mr_Robinson.is_advancing_new_argument, Board.is_considering_new_argument](Mr_Robinson.is_advancing_new_argument → Causal(Mr_Robinson.is_advancing_new_argument, Board.is_considering_new_argument))
+13. Q[Robinson, jurisdiction.lacks_over_appeal, Mr_Robinson.is_not_advancing_new_argument](jurisdiction.lacks_over_appeal → Causal(jurisdiction.lacks_over_appeal, Mr_Robinson.is_not_advancing_new_argument))
+14. Q[Robinson, jurisdiction.possesses_over_appeal, Mr_Robinson.is_not_advancing_new_claim](jurisdiction.possesses_over_appeal → Causal(jurisdiction.possesses_over_appeal, Mr_Robinson.is_not_advancing_new_claim))
+15. Q[Robinson, Board_decision.is_final_on_claim, jurisdiction.lacks_over_appeal](Board_decision.is_final_on_claim → Causal(Board_decision.is_final_on_claim, jurisdiction.lacks_over_appeal))
+16. Q[Robinson, new_argument.is_considered, jurisdiction.possesses_over_appeal](new_argument.is_considered → Causal(new_argument.is_considered, jurisdiction.possesses_over_appeal))
+17. Q[Robinson, Mr_Robinson.is_advancing_new_argument, jurisdiction.possesses_over_appeal](Mr_Robinson.is_advancing_new_argument → Causal(Mr_Robinson.is_advancing_new_argument, jurisdiction.possesses_over_appeal))
+18. Q[Robinson, Mr_Robinson.is_advancing_new_claim, jurisdiction.lacks_over_appeal](Mr_Robinson.is_advancing_new_claim → Causal(Mr_Robinson.is_advancing_new_claim, jurisdiction.lacks_over_appeal))
+19. Q[Robinson, jurisdiction.lacks_over_appeal, Board_decision.is_final_on_claim](jurisdiction.lacks_over_appeal → Causal(jurisdiction.lacks_over_appeal, Board_decision.is_final_on_claim))
+20. Q[Robinson, jurisdiction.possesses_over_appeal, new_argument.is_considered](jurisdiction.possesses_over_appeal → Causal(jurisdiction.possesses_over_appeal, new_argument.is_considered))
+21. Q[Robinson, Mr_Robinson.is_advancing_new_argument, matter.is_remanded_to_Board](Mr_Robinson.is_advancing_new_argument → Causal(Mr_Robinson.is_advancing_new_argument, matter.is_remanded_to_Board))
+22. Q[Robinson, Mr_Robinson.is_advancing_new_claim, jurisdiction.lacks_over_appeal](Mr_Robinson.is_advancing_new_claim → Causal(Mr_Robinson.is_advancing_new_claim, jurisdiction.lacks_over_appeal))
+23. Q[Robinson, jurisdiction.lacks_over_appeal, new_argument.is_not_considered](jurisdiction.lacks_over_appeal → Causal(jurisdiction.lacks_over_appeal, new_argument.is_not_considered))
+24. Q[Robinson, jurisdiction.possesses_over_appeal, new_argument.is_considered](jurisdiction.possesses_over_appeal → Causal(jurisdiction.possesses_over_appeal, new_argument.is_considered))
+25. Q[Robinson, Mr_Robinson.is_advancing_new_argument, jurisdiction.possesses_over_appeal](Mr_Robinson.is_advancing_new_argument → Causal(Mr_Robinson.is_advancing_new_argument, jurisdiction.possesses_over_appeal))
+26. Q[Robinson, Mr_Robinson.is_advancing_new_claim, jurisdiction.lacks_over_appeal](Mr_Robinson.is_advancing_new_claim → Causal(Mr_Robinson.is_advancing_new_claim, jurisdiction.lacks_over_appeal))
+27. Q[Robinson, jurisdiction.lacks_over_appeal, Mr_Robinson.is_not_advancing_new_argument](jurisdiction.lacks_over_appeal → Causal(jurisdiction.lacks_over_appeal, Mr_Robinson.is_not_advancing_new_argument))
+28. Q[Robinson, jurisdiction.possesses

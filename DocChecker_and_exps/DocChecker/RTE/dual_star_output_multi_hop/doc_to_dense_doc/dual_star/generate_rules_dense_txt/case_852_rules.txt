@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 852)
+S1: The Amsterdam police said on Wednesday that they have recovered stolen lithographs by the late U.S. pop artist Andy Warhol worth more than $1 million.
+S2: Police had recovered 81 lithographs of Andy Warhol.
+
+Predicates:
+1. Amsterdam_police.reported_on.date
+2. Amsterdam_police.recovered.value
+3. Amsterdam_police.recovered.item_type
+4. Andy_Warhol.art_type
+5. Andy_Warhol.art_value
+6. lithographs.quantity
+7. lithographs.value_per_item
+8. lithographs.total_value
+9. lithographs.recovery_date
+10. lithographs.artist
+11. police.operation.type
+12. police.operation.date
+13. police.recovery.location
+14. police.recovery.method
+15. stolen_items.value
+16. stolen_items.quantity
+17. stolen_items.artist
+18. stolen_items.recovery_status
+19. art_market.value_threshold
+20. art_market.artist_reputation
+21. art_market.item_type
+22. art_market.total_value
+23. art_market.item_quantity
+24. M_NLI(S1, S2).implication_strength
+25. Numeric(1, 1000000)
+26. Numeric(81, 81)
+27. violate(art_value, quantity)
+28. relationship.recovery.value
+29. relationship.recovery.quantity
+30. relationship.artist.art_type
+
+Rules:
+1. Q[The, Amsterdam_police.recovered.value, lithographs.total_value](Amsterdam_police.recovered.value == Numeric(1, 1000000) → Numeric(1, 1000000))
+2. Q[The, lithographs.quantity, 81](lithographs.quantity == Numeric(81, 81) → Numeric(81, 81))
+3. Q[The, Amsterdam_police.recovered.value, lithographs.value_per_item](Amsterdam_police.recovered.value == Numeric(1, 1000000) → Numeric(1, 1000000))
+4. Q[The, lithographs.total_value, stolen_items.value](lithographs.total_value == Numeric(1, 1000000) → Numeric(1, 1000000))
+5. Q[The, lithographs.quantity, stolen_items.quantity](lithographs.quantity == Numeric(81, 81) → Numeric(81, 81))
+6. Q[The, Amsterdam_police.recovered.item_type, Andy_Warhol.art_type](Amsterdam_police.recovered.item_type == "lithographs" → Numeric(1, 1000000))
+7. Q[The, lithographs.value_per_item, Andy_Warhol.art_value](lithographs.value_per_item == Numeric(1, 1000000) / lithographs.quantity → Numeric(1, 1000000))
+8. Q[The, lithographs.total_value, art_market.total_value](lithographs.total_value == Numeric(1, 1000000) → Numeric(1, 1000000))
+9. Q[The, lithographs.quantity, art_market.item_quantity](lithographs.quantity == Numeric(81, 81) → Numeric(81, 81))
+10. Q[The, Amsterdam_police.recovered.value, relationship.recovery.value](Amsterdam_police.recovered.value == Numeric(1, 1000000) → Numeric(1, 1000000))
+11. Q[The, lithographs.total_value, relationship.recovery.value](lithographs.total_value == Numeric(1, 1000000) → Numeric(1, 1000000))
+12. Q[The, lithographs.quantity, relationship.recovery.quantity](lithographs.quantity == Numeric(81, 81) → Numeric(81, 81))
+13. Q[The, Amsterdam_police.reported_on.date, police.operation.date](Amsterdam_police.reported_on.date == police.operation.date → Numeric(1, 1000000))
+14. Q[The, Amsterdam_police.recovered.item_type, art_market.item_type](Amsterdam_police.recovered.item_type == "lithographs" → Numeric(1, 1000000))
+15. Q[The, lithographs.value_per_item, art_market.value_threshold](lithographs.value_per_item > art_market.value_threshold → Numeric(1, 1000000))
+16. Q[The, lithographs.total_value, art_market.total_value](lithographs.total_value == Numeric(1, 1000000) → Numeric(1, 1000000))
+17. Q[The, lithographs.quantity, art_market.item_quantity](lithographs.quantity == Numeric(81, 81) → Numeric(81, 81))
+18. Q[The, Amsterdam_police.recovered.value, stolen_items.value](Amsterdam_police.recovered.value == Numeric(1, 1000000) → Numeric(1, 1000000))
+19. Q[The, lithographs.total_value, stolen_items.value](lithographs.total_value == Numeric(1, 1000000) → Numeric(1, 1000000))
+20. Q[The, lithographs.quantity, stolen_items.quantity](lithographs.quantity == Numeric(81, 81) → Numeric(81, 81))
+21. Q[The, Amsterdam_police.recovered.value, relationship.artist.art_type](Amsterdam_police.recovered.value == Numeric(1, 1000000) → Numeric(1, 1000000))
+22. Q[The, lithographs.total_value, relationship.artist.art_type](lithographs.total_value == Numeric(1, 1000000) → Numeric(1, 1000000))
+23. Q[The, lithographs.quantity, relationship.artist.art_type](lithographs.quantity == Numeric(81, 81) → Numeric(81, 81))
+24. Q[The, Amsterdam_police.recovered.value, art_market.total_value](Amsterdam_police.recovered.value == Numeric(1, 1000000) → Numeric(1, 1000000))
+25. Q[The, lithographs.total_value, art_market.total_value](lithographs.total_value == Numeric(1, 1000000) → Numeric(1, 1000000))
+26. Q[The, lithographs.quantity, art_market.item_quantity](lithographs.quantity == Numeric(81, 81) → Numeric(81, 81))
+27. Q[The, Amsterdam_police.recovered.value, police.operation.type](Amsterdam_police.recovered.value == Numeric(1, 1000000) → Numeric(1, 1000000))
+28. Q[The, lithographs.total_value, police.operation.type](lithographs.total_value == Numeric(1, 1000000) → Numeric(1, 1000000))
+29. Q[The, lithographs.quantity, police.operation.type](lithographs.quantity == Numeric(81, 81) → Numeric(81, 81))
+30. Q[The, Amsterdam_police.recovered.value, Amsterdam_police.recovered.item_type](Amsterdam_police.recovered.value == Numeric(1, 1000000) → Numeric(1, 1000000))

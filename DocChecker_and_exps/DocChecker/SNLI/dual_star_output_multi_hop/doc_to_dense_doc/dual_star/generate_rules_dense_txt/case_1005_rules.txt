@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 1005)
+S1: A child plays in the snow.
+S2: A young child slides down a snow slope while smiling.
+
+Predicates:
+1. Child.activity
+2. Child.emotion
+3. Child.age
+4. Child.location
+5. Snow.type
+6. Snow.condition
+7. Child.action
+8. Slope.type
+9. Slope.condition
+10. Child.smiling
+11. Child.playing
+12. Child.sliding
+13. Activity.general
+14. Activity.specific
+15. Relation(Child, Snow)
+16. Relation(Child, Slope)
+17. Relation(Child, Emotion)
+18. Relation(Child, Action)
+19. Violate(Activity.general, Activity.specific)
+20. M_NLI(S1, S2)
+21. M_NLI(S2, S1)
+22. Relation(Snow, Condition)
+23. Relation(Slope, Condition)
+24. Child.age_group
+25. Child.play_type
+26. Child.experience_level
+27. Snow.depth
+28. Slope.angle
+29. Child.safety
+30. Child.interaction
+
+Rules:
+1. Q[child, Child.activity, Activity.general](Child.age == "young" → Relation(Child, Snow))
+2. Q[child, Child.activity, Activity.specific](Child.action == "sliding" → Violate(Activity.general, Activity.specific))
+3. Q[child, Child.emotion, Emotion](Child.smiling == true → Relation(Child, Emotion))
+4. Q[child, Child.age, Age](Child.age == "young" → Relation(Child, Snow))
+5. Q[child, Child.location, Location](Child.location == "slope" → Relation(Child, Slope))
+6. Q[child, Snow.type, Type](Snow.type == "snow" → Relation(Child, Snow))
+7. Q[child, Snow.condition, Condition](Snow.condition == "fresh" → Relation(Child, Snow))
+8. Q[child, Child.action, Action](Child.action == "playing" → Relation(Child, Snow))
+9. Q[child, Child.sliding, Action](Child.sliding == true → Violate(Activity.general, Activity.specific))
+10. Q[child, Slope.type, Type](Slope.type == "snow slope" → Relation(Child, Slope))
+11. Q[child, Slope.condition, Condition](Slope.condition == "safe" → Relation(Child, Slope))
+12. Q[child, Child.smiling, Emotion](Child.smiling == true → Relation(Child, Emotion))
+13. Q[child, Child.playing, Activity](Child.playing == true → Relation(Child, Snow))
+14. Q[child, Child.sliding, Action](Child.sliding == true → Relation(Child, Slope))
+15. Q[child, Activity.general, Activity](Activity.general == "playing" → Relation(Child, Snow))
+16. Q[child, Activity.specific, Activity](Activity.specific == "sliding" → Violate(Activity.general, Activity.specific))
+17. Q[child, Child.age_group, Group](Child.age_group == "toddler" → Relation(Child, Snow))
+18. Q[child, Child.play_type, Type](Child.play_type == "outdoor" → Relation(Child, Snow))
+19. Q[child, Child.experience_level, Level](Child.experience_level == "beginner" → Relation(Child, Slope))
+20. Q[child, Snow.depth, Depth](Snow.depth == "deep" → Relation(Child, Snow))
+21. Q[child, Slope.angle, Angle](Slope.angle == "steep" → Relation(Child, Slope))
+22. Q[child, Child.safety, Safety](Child.safety == "high" → Relation(Child, Slope))
+23. Q[child, Child.interaction, Interaction](Child.interaction == "playing with others" → Relation(Child, Snow))
+24. Q[child, Child.activity, Activity](Child.activity == "playing" → Relation(Child, Snow))
+25. Q[child, Child.action, Action](Child.action == "sliding" → Violate(Activity.general, Activity.specific))
+26. Q[child, Child.smiling, Emotion](Child.smiling == true → Relation(Child, Emotion))
+27. Q[child, Snow.condition, Condition](Snow.condition == "icy" → Relation(Child, Snow))
+28. Q[child, Slope.condition, Condition](Slope.condition == "unsafe" → Relation(Child, Slope))
+29. Q[child, Child.playing, Activity](Child.playing == false → Relation(Child, Snow))
+30. Q[child, Child.age, Age](Child.age == "toddler" → Relation(Child, Slope))

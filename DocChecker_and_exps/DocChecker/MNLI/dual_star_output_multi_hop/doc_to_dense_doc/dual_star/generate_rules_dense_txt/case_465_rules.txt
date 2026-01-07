@@ -1,0 +1,64 @@
+Source: dense_text.txt (Index 465)
+S1: Stores do not open until 10 am or later, but shopping goes on into the evening, up to 9:30 pm.
+S2: Stores close early around 6 pm.
+
+Predicates:
+1. Store.opening_time >= 10 am
+2. Store.closing_time <= 6 pm
+3. Shopping.start_time >= 10 am
+4. Shopping.end_time <= 9:30 pm
+5. Store.opening_time < Store.closing_time
+6. Shopping.timeframe.includes(Store.opening_time)
+7. Shopping.timeframe.includes(Store.closing_time)
+8. Store.closing_time < Shopping.end_time
+9. Store.opening_time < Shopping.start_time
+10. Store.closing_time > Shopping.start_time
+11. Store.opening_time <= 10 am
+12. Store.closing_time >= 6 pm
+13. Shopping.end_time > Store.closing_time
+14. Shopping.start_time < Store.opening_time
+15. Store.hours_of_operation.includes(10 am)
+16. Store.hours_of_operation.includes(6 pm)
+17. Shopping.hours.includes(9:30 pm)
+18. Store.opening_time == 10 am
+19. Store.closing_time == 6 pm
+20. Shopping.hours.includes(Store.opening_time)
+21. Shopping.hours.includes(Store.closing_time)
+22. Shopping.hours.includes(9:30 pm)
+23. M_NLI(S1, S2)
+24. Temporal(Store.opening_time, Store.closing_time)
+25. violate(Store.closing_time, Shopping.end_time)
+26. Store.opening_time < 9:30 pm
+27. Store.closing_time > 10 am
+28. Shopping.end_time > Store.opening_time
+29. Shopping.start_time < Store.closing_time
+30. Store.hours_of_operation.includes(6 pm)
+
+Rules:
+1. Q[Stores, Store.opening_time >= 10 am, Store.closing_time <= 6 pm](Store.opening_time >= 10 am ∧ Store.closing_time <= 6 pm → Temporal(Store.opening_time, Store.closing_time))
+2. Q[Stores, Store.closing_time <= 6 pm, Shopping.end_time <= 9:30 pm](Store.closing_time <= 6 pm ∧ Shopping.end_time <= 9:30 pm → Temporal(Store.closing_time, Shopping.end_time))
+3. Q[Stores, Store.opening_time < Store.closing_time, Shopping.start_time >= 10 am](Store.opening_time < Store.closing_time ∧ Shopping.start_time >= 10 am → Temporal(Store.opening_time, Store.closing_time))
+4. Q[Stores, Shopping.start_time < Store.opening_time, Store.closing_time <= 6 pm](Shopping.start_time < Store.opening_time ∧ Store.closing_time <= 6 pm → Temporal(Shopping.start_time, Store.closing_time))
+5. Q[Stores, Store.closing_time < Shopping.end_time, Store.opening_time == 10 am](Store.closing_time < Shopping.end_time ∧ Store.opening_time == 10 am → Temporal(Store.closing_time, Shopping.end_time))
+6. Q[Stores, Store.hours_of_operation.includes(10 am), Store.closing_time == 6 pm](Store.hours_of_operation.includes(10 am) ∧ Store.closing_time == 6 pm → Temporal(Store.hours_of_operation.includes(10 am), Store.closing_time))
+7. Q[Stores, Shopping.hours.includes(9:30 pm), Store.closing_time <= 6 pm](Shopping.hours.includes(9:30 pm) ∧ Store.closing_time <= 6 pm → Temporal(Shopping.hours.includes(9:30 pm), Store.closing_time))
+8. Q[Stores, Store.opening_time < Shopping.start_time, Store.closing_time <= 6 pm](Store.opening_time < Shopping.start_time ∧ Store.closing_time <= 6 pm → Temporal(Store.opening_time, Store.closing_time))
+9. Q[Stores, Store.closing_time > Shopping.start_time, Store.opening_time < 10 am](Store.closing_time > Shopping.start_time ∧ Store.opening_time < 10 am → Temporal(Store.closing_time, Shopping.start_time))
+10. Q[Stores, Shopping.timeframe.includes(Store.opening_time), Store.closing_time <= 6 pm](Shopping.timeframe.includes(Store.opening_time) ∧ Store.closing_time <= 6 pm → Temporal(Shopping.timeframe.includes(Store.opening_time), Store.closing_time))
+11. Q[Stores, Store.opening_time < 9:30 pm, Store.closing_time == 6 pm](Store.opening_time < 9:30 pm ∧ Store.closing_time == 6 pm → Temporal(Store.opening_time, Store.closing_time))
+12. Q[Stores, Store.closing_time >= 6 pm, Shopping.end_time > Store.closing_time](Store.closing_time >= 6 pm ∧ Shopping.end_time > Store.closing_time → Temporal(Store.closing_time, Shopping.end_time))
+13. Q[Stores, Store.hours_of_operation.includes(6 pm), Store.opening_time < Store.closing_time](Store.hours_of_operation.includes(6 pm) ∧ Store.opening_time < Store.closing_time → Temporal(Store.hours_of_operation.includes(6 pm), Store.closing_time))
+14. Q[Stores, Shopping.hours.includes(Store.closing_time), Store.closing_time <= 6 pm](Shopping.hours.includes(Store.closing_time) ∧ Store.closing_time <= 6 pm → Temporal(Shopping.hours.includes(Store.closing_time), Store.closing_time))
+15. Q[Stores, Shopping.start_time < Store.closing_time, Store.opening_time == 10 am](Shopping.start_time < Store.closing_time ∧ Store.opening_time == 10 am → Temporal(Shopping.start_time, Store.closing_time))
+16. Q[Stores, Store.closing_time < Shopping.end_time, Store.opening_time < 9:30 pm](Store.closing_time < Shopping.end_time ∧ Store.opening_time < 9:30 pm → Temporal(Store.closing_time, Shopping.end_time))
+17. Q[Stores, Store.opening_time <= 10 am, Shopping.start_time >= 10 am](Store.opening_time <= 10 am ∧ Shopping.start_time >= 10 am → Temporal(Store.opening_time, Shopping.start_time))
+18. Q[Stores, Store.closing_time > 10 am, Shopping.hours.includes(9:30 pm)](Store.closing_time > 10 am ∧ Shopping.hours.includes(9:30 pm) → Temporal(Store.closing_time, Shopping.hours.includes(9:30 pm)))
+19. Q[Stores, Store.opening_time < Store.closing_time, Shopping.hours.includes(Store.opening_time)](Store.opening_time < Store.closing_time ∧ Shopping.hours.includes(Store.opening_time) → Temporal(Store.opening_time, Store.closing_time))
+20. Q[Stores, Shopping.timeframe.includes(Store.closing_time), Store.closing_time <= 6 pm](Shopping.timeframe.includes(Store.closing_time) ∧ Store.closing_time <= 6 pm → Temporal(Shopping.timeframe.includes(Store.closing_time), Store.closing_time))
+21. Q[Stores, Store.hours_of_operation.includes(10 am), Store.closing_time > Shopping.start_time](Store.hours_of_operation.includes(10 am) ∧ Store.closing_time > Shopping.start_time → Temporal(Store.hours_of_operation.includes(10 am), Store.closing_time))
+22. Q[Stores, Store.opening_time < Shopping.start_time, Store.closing_time > 10 am](Store.opening_time < Shopping.start_time ∧ Store.closing_time > 10 am → Temporal(Store.opening_time, Store.closing_time))
+23. Q[Stores, Store.closing_time < Shopping.end_time, Store.opening_time < Store.closing_time](Store.closing_time < Shopping.end_time ∧ Store.opening_time < Store.closing_time → Temporal(Store.closing_time, Shopping.end_time))
+24. Q[Stores, Store.opening_time == 10 am, Shopping.hours.includes(9:30 pm)](Store.opening_time == 10 am ∧ Shopping.hours.includes(9:30 pm) → Temporal(Store.opening_time, Shopping.hours.includes(9:30 pm)))
+25. Q[Stores, Store.closing_time <= 6 pm, Shopping.start_time < Store.opening_time](Store.closing_time <= 6 pm ∧ Shopping.start_time < Store.opening_time → Temporal(Store.closing_time, Shopping.start_time))
+26. Q[Stores, Store.hours_of_operation.includes(6 pm), Store.opening_time < Shopping.start_time](Store.hours_of_operation.includes(6 pm) ∧ Store.opening_time < Shopping.start_time → Temporal(Store.hours_of_operation.includes(6 pm), Shopping.start_time))
+27. Q[Stores, Store.closing_time > 10 am, Shopping.end_time <= 9:30

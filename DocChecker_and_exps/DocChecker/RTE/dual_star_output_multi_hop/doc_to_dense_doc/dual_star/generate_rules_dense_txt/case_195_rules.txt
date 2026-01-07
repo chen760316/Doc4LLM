@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 195)
+S1: It was formed by of the cristianos-demócratas (CDA) led by Prime Minister Jan Peter Balkenende, the liberal party called (VVD) and D66 'liberal left' right.
+S2: It was made up of the Christian-democrats (CDA) led by Prime Minister Jan Peter Balkenende, the right wing liberal party (VVD) and the so-called 'left-liberal' D66.
+
+Predicates:
+1. Coalition.composition
+2. CDA.leader
+3. CDA.leader_name
+4. CDA.political_alignment
+5. VVD.political_alignment
+6. D66.political_alignment
+7. PrimeMinister.name
+8. PrimeMinister.party
+9. Coalition.member_count
+10. Coalition.formation_year
+11. CDA.right_wing
+12. VVD.right_wing
+13. D66.left_liberal
+14. Coalition.political_ideology
+15. CDA.formed_by
+16. VVD.formed_by
+17. D66.formed_by
+18. Coalition.parties_included
+19. Coalition.leadership_structure
+20. Coalition.political_stability
+21. CDA.electoral_support
+22. VVD.electoral_support
+23. D66.electoral_support
+24. Coalition.policy_agenda
+25. Coalition.formation_reason
+26. Coalition.ideological_difference
+27. CDA.history
+28. VVD.history
+29. D66.history
+30. Coalition.public_perception
+
+Rules:
+1. Q[was, CDA.political_alignment, D66.political_alignment](CDA.political_alignment == "Christian-democrat" → Content(CDA.political_alignment, D66.political_alignment))
+2. Q[was, VVD.political_alignment, D66.political_alignment](VVD.political_alignment == "right wing" → Content(VVD.political_alignment, D66.political_alignment))
+3. Q[was, Coalition.composition, Coalition.political_ideology](Coalition.composition == "CDA, VVD, D66" → Content(Coalition.composition, Coalition.political_ideology))
+4. Q[was, CDA.leader_name, PrimeMinister.name](CDA.leader_name == "Jan Peter Balkenende" → Content(CDA.leader_name, PrimeMinister.name))
+5. Q[was, Coalition.member_count, Coalition.political_ideology](Coalition.member_count == 3 → Content(Coalition.member_count, Coalition.political_ideology))
+6. Q[was, CDA.right_wing, VVD.right_wing](CDA.right_wing == false → Content(CDA.right_wing, VVD.right_wing))
+7. Q[was, D66.left_liberal, Coalition.political_ideology](D66.left_liberal == true → Content(D66.left_liberal, Coalition.political_ideology))
+8. Q[was, Coalition.formation_year, Coalition.political_ideology](Coalition.formation_year == 2002 → Content(Coalition.formation_year, Coalition.political_ideology))
+9. Q[was, CDA.formed_by, Coalition.composition](CDA.formed_by == "CDA, VVD, D66" → Content(CDA.formed_by, Coalition.composition))
+10. Q[was, VVD.formed_by, Coalition.composition](VVD.formed_by == "CDA, VVD, D66" → Content(VVD.formed_by, Coalition.composition))
+11. Q[was, D66.formed_by, Coalition.composition](D66.formed_by == "CDA, VVD, D66" → Content(D66.formed_by, Coalition.composition))
+12. Q[was, Coalition.policy_agenda, Coalition.political_ideology](Coalition.policy_agenda == "liberal" → Content(Coalition.policy_agenda, Coalition.political_ideology))
+13. Q[was, Coalition.ideological_difference, Coalition.political_ideology](Coalition.ideological_difference == true → Content(Coalition.ideological_difference, Coalition.political_ideology))
+14. Q[was, CDA.electoral_support, VVD.electoral_support](CDA.electoral_support < VVD.electoral_support → Content(CDA.electoral_support, VVD.electoral_support))
+15. Q[was, Coalition.leadership_structure, Coalition.political_ideology](Coalition.leadership_structure == "CDA-led" → Content(Coalition.leadership_structure, Coalition.political_ideology))
+16. Q[was, Coalition.public_perception, Coalition.political_ideology](Coalition.public_perception == "mixed" → Content(Coalition.public_perception, Coalition.political_ideology))
+17. Q[was, CDA.history, VVD.history](CDA.history != VVD.history → Content(CDA.history, VVD.history))
+18. Q[was, Coalition.political_stability, Coalition.political_ideology](Coalition.political_stability == "unstable" → Content(Coalition.political_stability, Coalition.political_ideology))
+19. Q[was, CDA.leader, PrimeMinister.party](CDA.leader == "CDA" → Content(CDA.leader, PrimeMinister.party))
+20. Q[was, Coalition.parties_included, Coalition.political_ideology](Coalition.parties_included == "CDA, VVD, D66" → Content(Coalition.parties_included, Coalition.political_ideology))
+21. Q[was, Coalition.formation_reason, Coalition.political_ideology](Coalition.formation_reason == "to govern" → Content(Coalition.formation_reason, Coalition.political_ideology))
+22. Q[was, CDA.political_alignment, VVD.political_alignment](CDA.political_alignment != VVD.political_alignment → Content(CDA.political_alignment, VVD.political_alignment))
+23. Q[was, Coalition.political_ideology, D66.left_liberal](Coalition.political_ideology == "liberal" → Content(Coalition.political_ideology, D66.left_liberal))
+24. Q[was, Coalition.composition, CDA.political_alignment](Coalition.composition == "CDA, VVD, D66" → Content(Coalition.composition, CDA.political_alignment))
+25. Q[was, Coalition.political_ideology, VVD.right_wing](Coalition.political_ideology == "liberal" → Content(Coalition.political_ideology, VVD.right_wing))
+26. Q[was, Coalition.member_count, D66.left_liberal](Coalition.member_count == 3 → Content(Coalition.member_count, D66.left_liberal))
+27. Q[was, Coalition.policy_agenda, CDA.political_alignment](Coalition.policy_agenda == "liberal" → Content(Coalition.policy_agenda, CDA.political_alignment))
+28. Q[was, Coalition.ideological_difference, CDA.political_alignment](Coalition.ideological_difference == true → Content(Coalition.ideological_difference, CDA.political_alignment))
+29. Q[was, Coalition.political_stability, D66.left_liberal](Coalition.political_stability == "unstable" → Content(Coalition.political_stability, D66.left_liberal))
+30. Q[was, Coalition.public_perception, VVD.right_wing](Coalition.public_perception == "mixed" → Content(Coalition.public_perception, VVD.right_wing))

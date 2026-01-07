@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 122)
+S1: John felt very bad about hurting his friend's feelings.
+S2: John's naughty actions really hurt Jack's feelings so he tried to hide from John.
+
+Predicates:
+1. John.emotion = "bad"
+2. John.action = "hurt"
+3. John's_friend.name = "Jack"
+4. Jack.emotion = "hurt"
+5. Jack.action = "hide"
+6. John.relationship_with(Jack) = "friend"
+7. Jack.relationship_with(John) = "friend"
+8. John.feelings_towards(Jack) = "guilt"
+9. Jack.feelings_towards(John) = "fear"
+10. John's_action_impact_on(Jack) = "negative"
+11. Jack's_response_to(John) = "avoidance"
+12. John.intention = "apologize"
+13. Jack's_perception_of(John) = "threatening"
+14. John's_behavior = "naughty"
+15. Jack's_emotional_state = "distressed"
+16. John.experience = "remorse"
+17. Jack's_action = "hide_from_John"
+18. John's_action_causes(Jack's_emotion) = "hurt"
+19. Jack's_emotion_causes(John's_feelings) = "guilt"
+20. John's_action_type = "harmful"
+21. Jack's_reaction_to(John's_action) = "withdrawal"
+22. John.feels = "regret"
+23. Jack's_friends = "none"
+24. John_and_Jack.relationship_status = "strained"
+25. John's_action_results_in(Jack's_emotion) = "hurt"
+26. Jack's_behavior_towards(John) = "evasive"
+27. John.intends_to(restore_friendship) = "yes"
+28. Jack's_emotional_response = "avoidance"
+29. John's_action = "unintentional"
+30. Jack's_feelings_about(John) = "conflicted"
+
+Rules:
+1. Q[John, John.emotion, Jack.emotion](John.emotion == "bad" → Causal(John, Jack))
+2. Q[John, John.action, Jack.action](John.action == "hurt" → Causal(John, Jack))
+3. Q[John, John's_friend.name, Jack's_action](John's_friend.name == "Jack" → Causal(John, Jack))
+4. Q[John, Jack.emotion, Jack's_action](Jack.emotion == "hurt" → Causal(John, Jack))
+5. Q[John, Jack.action, Jack's_perception_of](Jack.action == "hide" → Causal(John, Jack))
+6. Q[John, John.relationship_with, Jack.relationship_with](John.relationship_with(Jack) == "friend" → Causal(John, Jack))
+7. Q[John, Jack.feelings_towards, John's_feelings_towards](Jack.feelings_towards(John) == "fear" → Causal(John, Jack))
+8. Q[John, John's_action_impact_on, Jack's_emotional_state](John's_action_impact_on(Jack) == "negative" → Causal(John, Jack))
+9. Q[John, Jack's_response_to, John's_behavior](Jack's_response_to(John) == "avoidance" → Causal(John, Jack))
+10. Q[John, John.intention, Jack's_emotional_response](John.intention == "apologize" → Causal(John, Jack))
+11. Q[John, Jack's_perception_of, John's_action_type](Jack's_perception_of(John) == "threatening" → Causal(John, Jack))
+12. Q[John, John's_behavior, Jack's_reaction_to](John's_behavior == "naughty" → Causal(John, Jack))
+13. Q[John, Jack's_emotional_state, John.experience](Jack's_emotional_state == "distressed" → Causal(John, Jack))
+14. Q[John, John.feelings_towards, Jack's_friends](John.feelings_towards(Jack) == "guilt" → Causal(John, Jack))
+15. Q[John, Jack's_action, John's_action_causes](Jack's_action == "hide_from_John" → Causal(John, Jack))
+16. Q[John, John's_action_type, Jack's_reaction_to](John's_action_type == "harmful" → Causal(John, Jack))
+17. Q[John, Jack's_reaction_to, John's_action_results_in](Jack's_reaction_to(John's_action) == "withdrawal" → Causal(John, Jack))
+18. Q[John, John.feels, Jack's_behavior_towards](John.feels == "regret" → Causal(John, Jack))
+19. Q[John, Jack's_friends, John_and_Jack.relationship_status](Jack's_friends == "none" → Causal(John, Jack))
+20. Q[John, John's_action_results_in, Jack's_emotion](John's_action_results_in(Jack.emotion) == "hurt" → Causal(John, Jack))
+21. Q[John, Jack's_behavior_towards, John's_action](Jack's_behavior_towards(John) == "evasive" → Causal(John, Jack))
+22. Q[John, John.intends_to, Jack's_emotional_response](John.intends_to(restore_friendship) == "yes" → Causal(John, Jack))
+23. Q[John, Jack's_emotional_response, John's_action](Jack's_emotional_response == "avoidance" → Causal(John, Jack))
+24. Q[John, John's_action, Jack's_feelings_about](John's_action == "unintentional" → Causal(John, Jack))
+25. Q[John, Jack's_feelings_about, John's_action](Jack's_feelings_about(John) == "conflicted" → Causal(John, Jack))
+26. Q[John, Jack's_action, John's_action_impact_on](Jack's_action == "hide" → Causal(John, Jack))
+27. Q[John, Jack's_emotional_state, John's_experience](Jack's_emotional_state == "hurt" → Causal(John, Jack))
+28. Q[John, Jack's_perception_of, John's_action](Jack's_perception_of(John) == "threatening" → Causal(John, Jack))
+29. Q[John, John's_action_type, Jack's_response_to](John's_action_type == "harmful" → Causal(John, Jack))
+30. Q[John, Jack's_action, John's_feelings_towards](Jack's_action == "hide" → Causal(John, Jack))

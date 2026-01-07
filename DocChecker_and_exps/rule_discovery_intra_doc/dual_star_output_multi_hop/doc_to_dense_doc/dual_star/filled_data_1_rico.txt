@@ -1,0 +1,31 @@
+Predicates:
+Jane.label != "Person"
+Jane.label != Tom.label
+Jane.label = "Person"
+Jane.name != "Jane"
+Jane.name != Tom.name
+Jane.name = "Jane"
+Jane___Tom.relationship != "Jane and Tom are a married couple and Tom is Jane's stepbrother."
+Jane___Tom.relationship = "Jane and Tom are a married couple and Tom is Jane's stepbrother."
+M_NLI(('Jane', 'Tom').attrs, Jane and Tom are a married couple and Tom is Jane's stepbrother..attrs)
+M_NLU(Jane and Tom are siblings who share a close relationship..attrs, Jane and Tom are a married couple and Tom is Jane's stepbrother..attrs)
+M_NLU(Jane.attrs, Tom.attrs)
+None_ML(('Jane', 'Tom').attrs, Jane and Tom are siblings who share a close relationship..attrs)
+Tom.label != "Person"
+Tom.label = "Person"
+Tom.name != "Tom"
+Tom.name = "Tom"
+Tom.relationship != "stepbrother"
+Tom.relationship = "stepbrother"
+
+Rules:
+Q[Jane,Jane] (Jane.label = "Person" ∧ Tom.label = "Person" → Tom.label = "Person")
+Q[Jane,Jane] (Tom.name != "Tom" ∧ Tom.relationship = "stepbrother" → Tom.relationship = "stepbrother")
+Q[Jane,Jane] (Jane.name = "Jane" ∧ None_ML(('Jane', 'Tom').attrs, Jane and Tom are siblings who share a close relationship..attrs) → Jane.name = "Jane")
+Q[Jane,Jane] (Jane___Tom.relationship != "Jane and Tom are a married couple and Tom is Jane's stepbrother." ∧ Tom.name = "Tom" → Jane___Tom.relationship != "Jane and Tom are a married couple and Tom is Jane's stepbrother.")
+Q[Jane,Jane] (None_ML(('Jane', 'Tom').attrs, Jane and Tom are siblings who share a close relationship..attrs) ∧ Tom.relationship != "stepbrother" → None_ML(('Jane', 'Tom').attrs, Jane and Tom are siblings who share a close relationship..attrs))
+Q[Jane,Jane] (Jane.name != "Jane" ∧ M_NLU(Jane and Tom are siblings who share a close relationship..attrs, Jane and Tom are a married couple and Tom is Jane's stepbrother..attrs) → Jane.name != "Jane")
+Q[Jane,Jane] (Jane.label != "Person" ∧ M_NLU(Jane and Tom are siblings who share a close relationship..attrs, Jane and Tom are a married couple and Tom is Jane's stepbrother..attrs) → M_NLU(Jane and Tom are siblings who share a close relationship..attrs, Jane and Tom are a married couple and Tom is Jane's stepbrother..attrs))
+Q[Jane,Jane] (Tom.relationship != "stepbrother" ∧ Jane___Tom.relationship = "Jane and Tom are a married couple and Tom is Jane's stepbrother." → Jane___Tom.relationship = "Jane and Tom are a married couple and Tom is Jane's stepbrother.")
+Q[Jane,Jane] (Tom.label != "Person" ∧ M_NLU(Jane.attrs, Tom.attrs) → M_NLU(Jane.attrs, Tom.attrs))
+Q[Jane,Jane] (M_NLU(Jane.attrs, Tom.attrs) ∧ M_NLI(('Jane', 'Tom').attrs, Jane and Tom are a married couple and Tom is Jane's stepbrother..attrs) → M_NLI(('Jane', 'Tom').attrs, Jane and Tom are a married couple and Tom is Jane's stepbrother..attrs))

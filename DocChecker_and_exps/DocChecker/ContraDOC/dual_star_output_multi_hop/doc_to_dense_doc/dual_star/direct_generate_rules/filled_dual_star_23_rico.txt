@@ -1,0 +1,61 @@
+Predicates:
+Carlisle.label != "Town"
+Carlisle.label != adults.label
+Carlisle.label != children.label
+Carlisle.label = "Town"
+Carlisle.location != "England"
+Carlisle.location = "England"
+Carlisle.name != "Carlisle"
+Carlisle.name != adults.name
+Carlisle.name != children.name
+Carlisle.name = "Carlisle"
+Carlisle.type != "industrial"
+Carlisle.type = "industrial"
+Carlisle___adults.contradiction_type = "Numeric"
+Carlisle___adults.relationship = "The introduction of mills increased the death rate of adults in Carlisle."
+Carlisle___adults.source_id = "3488771873_1"
+Carlisle___adults.time_period = "1779–87"
+Carlisle___children.contradiction_type = "Numeric"
+Carlisle___children.relationship != Carlisle___adults.relationship
+Carlisle___children.relationship = "The introduction of mills increased the death rate of children in Carlisle."
+Carlisle___children.source_id = "3488771873_1"
+Carlisle___children.time_period = "1779–87"
+None_ML(Carlisle___children.attrs, Carlisle___adults.attrs)
+None_ML(children.attrs, adults.attrs)
+adults.age != "under 39"
+adults.age = "under 39"
+adults.death_rate_after != "1261 out of 10000"
+adults.death_rate_after = "1261 out of 10000"
+adults.death_rate_before != "1006 out of 10000"
+adults.death_rate_before = "1006 out of 10000"
+adults.label != "Adult"
+adults.label = "Adult"
+adults.name != "adults"
+adults.name = "adults"
+children.age != "under 5"
+children.age != adults.age
+children.age = "under 5"
+children.death_rate_after != "4738 out of 10000"
+children.death_rate_after != adults.death_rate_after
+children.death_rate_after = "4738 out of 10000"
+children.death_rate_before != "4408 out of 10000"
+children.death_rate_before != adults.death_rate_before
+children.death_rate_before = "4408 out of 10000"
+children.label != "Child"
+children.label != adults.label
+children.label = "Child"
+children.name != "children"
+children.name != adults.name
+children.name = "children"
+
+Rules:
+Q[Carlisle,Carlisle] (Carlisle.type != "industrial" ∧ Carlisle.type = "industrial" ∧ Carlisle___children.contradiction_type = "Numeric" → Carlisle.name != children.name)
+Q[Carlisle,Carlisle] (Carlisle___adults.source_id = "3488771873_1" ∧ adults.name = "adults" ∧ Carlisle___children.contradiction_type = "Numeric" ∧ adults.label = "Adult" ∧ Carlisle.name != "Carlisle" ∧ children.age = "under 5" → adults.age != "under 39")
+Q[Carlisle,Carlisle] (None_ML(children.attrs, adults.attrs) ∧ children.label != adults.label → children.name != adults.name)
+Q[Carlisle,Carlisle] (adults.age != "under 39" ∧ None_ML(children.attrs, adults.attrs) ∧ children.name != "children" ∧ Carlisle___children.source_id = "3488771873_1" ∧ Carlisle.name = "Carlisle" → adults.label = "Adult")
+Q[Carlisle,Carlisle] (Carlisle___adults.contradiction_type = "Numeric" ∧ Carlisle.location = "England" ∧ Carlisle.label != adults.label ∧ Carlisle.label != "Town" → children.age != "under 5")
+Q[Carlisle,Carlisle] (Carlisle.label != adults.label ∧ children.death_rate_after = "4738 out of 10000" ∧ adults.name != "adults" ∧ Carlisle.label != children.label ∧ children.death_rate_before != adults.death_rate_before ∧ Carlisle.name != children.name → children.death_rate_after != "4738 out of 10000")
+Q[Carlisle,Carlisle] (Carlisle___children.source_id = "3488771873_1" ∧ children.label = "Child" → children.age != adults.age)
+Q[Carlisle,Carlisle] (Carlisle.location != "England" ∧ Carlisle___children.source_id = "3488771873_1" ∧ children.death_rate_before != adults.death_rate_before ∧ adults.age != "under 39" ∧ children.label != adults.label → children.name = "children")
+Q[Carlisle,Carlisle] (children.name != "children" ∧ adults.death_rate_after = "1261 out of 10000" ∧ Carlisle.label != children.label → adults.name != "adults")
+Q[Carlisle,Carlisle] (adults.death_rate_after != "1261 out of 10000" ∧ children.age != adults.age ∧ Carlisle.name = "Carlisle" ∧ Carlisle___adults.time_period = "1779–87" → Carlisle.type = "industrial")

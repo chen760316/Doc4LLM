@@ -1,0 +1,64 @@
+Source: dense_text.txt (Index 218)
+S1: Dr. Seuss's real name was Theodor Geisel.
+S2: Dr. Seuss's real name was John Smith.
+
+Predicates:
+1. Dr_Seuss.real_name = Theodor_Geisel
+2. Dr_Seuss.real_name ≠ John_Smith
+3. M_NLI(S1, S2)
+4. Factual(Dr_Seuss.real_name, Theodor_Geisel)
+5. Factual(Dr_Seuss.real_name, John_Smith)
+6. violate(S1, S2)
+7. Theodor_Geisel.occupation = Author
+8. John_Smith.occupation ≠ Author
+9. Dr_Seuss.pseudonym = Dr_Seuss
+10. Theodor_Geisel.birth_year = 1904
+11. Dr_Seuss.first_publication_year = 1937
+12. Dr_Seuss.genre = Children's_Literature
+13. Theodor_Geisel.nationality = American
+14. John_Smith.nationality ≠ American
+15. Dr_Seuss.award = Pulitzer_Prize
+16. Theodor_Geisel.death_year = 1991
+17. Dr_Seuss.popularity = High
+18. Theodor_Geisel.education = Dartmouth_College
+19. John_Smith.education ≠ Dartmouth_College
+20. Dr_Seuss.style = Rhyming
+21. Theodor_Geisel.hometown = Springfield
+22. John_Smith.hometown ≠ Springfield
+23. Dr_Seuss.target_audience = Children
+24. Theodor_Geisel.influence = Significant
+25. Dr_Seuss.language = English
+26. Theodor_Geisel.works_count = 46
+27. John_Smith.works_count ≠ 46
+28. Dr_Seuss.theme = Imagination
+29. Theodor_Geisel.illustrator = Himself
+30. John_Smith.illustrator ≠ Himself
+
+Rules:
+1. Q[Seuss, Dr_Seuss.real_name, Theodor_Geisel](Dr_Seuss.real_name = Theodor_Geisel → Factual(Dr_Seuss.real_name, Theodor_Geisel))
+2. Q[Seuss, Dr_Seuss.real_name, John_Smith](Dr_Seuss.real_name = John_Smith → Factual(Dr_Seuss.real_name, John_Smith))
+3. Q[Seuss, Dr_Seuss.real_name, Theodor_Geisel](Dr_Seuss.real_name ≠ John_Smith → Factual(Dr_Seuss.real_name, Theodor_Geisel))
+4. Q[Seuss, Dr_Seuss.real_name, John_Smith](M_NLI(S1, S2) → Factual(Dr_Seuss.real_name, John_Smith))
+5. Q[Seuss, Dr_Seuss.real_name, Theodor_Geisel](violate(S1, S2) → Factual(Dr_Seuss.real_name, Theodor_Geisel))
+6. Q[Seuss, Dr_Seuss.real_name, John_Smith](Dr_Seuss.real_name = John_Smith ∧ Dr_Seuss.real_name ≠ Theodor_Geisel → Factual(Dr_Seuss.real_name, John_Smith))
+7. Q[Seuss, Dr_Seuss.real_name, Theodor_Geisel](Dr_Seuss.real_name = Theodor_Geisel ∧ Dr_Seuss.real_name ≠ John_Smith → Factual(Dr_Seuss.real_name, Theodor_Geisel))
+8. Q[Seuss, Dr_Seuss.real_name, John_Smith](Dr_Seuss.real_name ≠ Theodor_Geisel ∧ Dr_Seuss.real_name = John_Smith → Factual(Dr_Seuss.real_name, John_Smith))
+9. Q[Seuss, Dr_Seuss.real_name, Theodor_Geisel](Dr_Seuss.real_name = Theodor_Geisel ∧ violate(S1, S2) → Factual(Dr_Seuss.real_name, Theodor_Geisel))
+10. Q[Seuss, Dr_Seuss.real_name, John_Smith](Dr_Seuss.real_name = John_Smith ∧ violate(S1, S2) → Factual(Dr_Seuss.real_name, John_Smith))
+11. Q[Seuss, Dr_Seuss.real_name, Theodor_Geisel](Dr_Seuss.real_name = Theodor_Geisel ∧ M_NLI(S1, S2) → Factual(Dr_Seuss.real_name, Theodor_Geisel))
+12. Q[Seuss, Dr_Seuss.real_name, John_Smith](Dr_Seuss.real_name = John_Smith ∧ M_NLI(S1, S2) → Factual(Dr_Seuss.real_name, John_Smith))
+13. Q[Seuss, Dr_Seuss.real_name, Theodor_Geisel](Dr_Seuss.real_name ≠ John_Smith ∧ Factual(Dr_Seuss.real_name, Theodor_Geisel) → Factual(Dr_Seuss.real_name, Theodor_Geisel))
+14. Q[Seuss, Dr_Seuss.real_name, John_Smith](Dr_Seuss.real_name ≠ Theodor_Geisel ∧ Factual(Dr_Seuss.real_name, John_Smith) → Factual(Dr_Seuss.real_name, John_Smith))
+15. Q[Seuss, Dr_Seuss.real_name, Theodor_Geisel](Dr_Seuss.real_name = Theodor_Geisel ∧ Dr_Seuss.real_name ≠ John_Smith → Factual(Dr_Seuss.real_name, Theodor_Geisel))
+16. Q[Seuss, Dr_Seuss.real_name, John_Smith](Dr_Seuss.real_name = John_Smith ∧ Dr_Seuss.real_name ≠ Theodor_Geisel → Factual(Dr_Seuss.real_name, John_Smith))
+17. Q[Seuss, Dr_Seuss.real_name, Theodor_Geisel](Factual(Dr_Seuss.real_name, Theodor_Geisel) ∧ Factual(Dr_Seuss.real_name, John_Smith) → Factual(Dr_Seuss.real_name, Theodor_Geisel))
+18. Q[Seuss, Dr_Seuss.real_name, John_Smith](Factual(Dr_Seuss.real_name, John_Smith) ∧ Factual(Dr_Seuss.real_name, Theodor_Geisel) → Factual(Dr_Seuss.real_name, John_Smith))
+19. Q[Seuss, Dr_Seuss.real_name, Theodor_Geisel](Dr_Seuss.real_name = Theodor_Geisel ∧ Dr_Seuss.real_name ≠ John_Smith → Factual(Dr_Seuss.real_name, Theodor_Geisel))
+20. Q[Seuss, Dr_Seuss.real_name, John_Smith](Dr_Seuss.real_name = John_Smith ∧ Dr_Seuss.real_name ≠ Theodor_Geisel → Factual(Dr_Seuss.real_name, John_Smith))
+21. Q[Seuss, Dr_Seuss.real_name, Theodor_Geisel](Dr_Seuss.real_name ≠ John_Smith ∧ violate(S1, S2) → Factual(Dr_Seuss.real_name, Theodor_Geisel))
+22. Q[Seuss, Dr_Seuss.real_name, John_Smith](Dr_Seuss.real_name ≠ Theodor_Geisel ∧ violate(S1, S2) → Factual(Dr_Seuss.real_name, John_Smith))
+23. Q[Seuss, Dr_Seuss.real_name, Theodor_Geisel](M_NLI(S1, S2) ∧ Dr_Seuss.real_name = Theodor_Geisel → Factual(Dr_Seuss.real_name, Theodor_Geisel))
+24. Q[Seuss, Dr_Seuss.real_name, John_Smith](M_NLI(S1, S2) ∧ Dr_Seuss.real_name = John_Smith → Factual(Dr_Seuss.real_name, John_Smith))
+25. Q[Seuss, Dr_Seuss.real_name, Theodor_Geisel](Dr_Seuss.real_name = Theodor_Geisel ∧ Factual(Dr_Seuss.real_name, John_Smith) → Factual(Dr_Seuss.real_name, Theodor_Geisel))
+26. Q[Seuss, Dr_Seuss.real_name, John_Smith](Dr_Seuss.real_name = John_Smith ∧ Factual(Dr_Seuss.real_name, Theodor_Geisel) → Factual(Dr_Seuss.real_name, John_Smith))
+27. Q[

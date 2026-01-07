@@ -1,0 +1,77 @@
+Predicates:
+None_ML(Positive Reviews.attrs, SpongeBob SquarePants.attrs)
+None_ML(Sailor Mouth___SpongeBob SquarePants.attrs, Sailor Mouth___Parents Television Council.attrs)
+Parents Television Council.description != "Criticized the episode for promoting profanity among children."
+Parents Television Council.description = "Criticized the episode for promoting profanity among children."
+Parents Television Council.label != "Criticism"
+Parents Television Council.label != SpongeBob SquarePants.label
+Parents Television Council.label = "Criticism"
+Parents Television Council.name != "Parents Television Council"
+Parents Television Council.name != SpongeBob SquarePants.name
+Parents Television Council.name = "Parents Television Council"
+Positive Reviews.description != "The episode received positive reviews and is considered a favorite by the crew."
+Positive Reviews.description != Parents Television Council.description
+Positive Reviews.description = "The episode received positive reviews and is considered a favorite by the crew."
+Positive Reviews.label != "Reception"
+Positive Reviews.label != Parents Television Council.label
+Positive Reviews.label != SpongeBob SquarePants.label
+Positive Reviews.label = "Reception"
+Positive Reviews.name != "Positive Reviews"
+Positive Reviews.name != Parents Television Council.name
+Positive Reviews.name != SpongeBob SquarePants.name
+Positive Reviews.name = "Positive Reviews"
+Sailor Mouth.air_date != "September 21, 2001"
+Sailor Mouth.air_date = "September 21, 2001"
+Sailor Mouth.episode_number != 18
+Sailor Mouth.episode_number < 23
+Sailor Mouth.episode_number = 18
+Sailor Mouth.episode_number > 13
+Sailor Mouth.label != "Episode"
+Sailor Mouth.label != Parents Television Council.label
+Sailor Mouth.label != Positive Reviews.label
+Sailor Mouth.label != SpongeBob SquarePants.label
+Sailor Mouth.label = "Episode"
+Sailor Mouth.name != "Sailor Mouth"
+Sailor Mouth.name != Parents Television Council.name
+Sailor Mouth.name != Positive Reviews.name
+Sailor Mouth.name != SpongeBob SquarePants.name
+Sailor Mouth.name = "Sailor Mouth"
+Sailor Mouth.network != "Nickelodeon"
+Sailor Mouth.network = "Nickelodeon"
+Sailor Mouth.overall_episode_number != 38
+Sailor Mouth.overall_episode_number < 43
+Sailor Mouth.overall_episode_number = 38
+Sailor Mouth.overall_episode_number > 33
+Sailor Mouth.season != 2
+Sailor Mouth.season < 7
+Sailor Mouth.season = 2
+Sailor Mouth.season > -3
+Sailor Mouth___Parents Television Council.doc_id = "3502252178_2"
+Sailor Mouth___Parents Television Council.relationship != Sailor Mouth___SpongeBob SquarePants.relationship
+Sailor Mouth___Parents Television Council.relationship = "The episode Sailor Mouth faced criticism from the Parents Television Council."
+Sailor Mouth___Positive Reviews.doc_id = "3502252178_2"
+Sailor Mouth___Positive Reviews.relationship != Sailor Mouth___Parents Television Council.relationship
+Sailor Mouth___Positive Reviews.relationship != Sailor Mouth___SpongeBob SquarePants.relationship
+Sailor Mouth___Positive Reviews.relationship = "The episode Sailor Mouth received positive reviews."
+Sailor Mouth___SpongeBob SquarePants.doc_id = "3502252178_2"
+Sailor Mouth___SpongeBob SquarePants.relationship = "SpongeBob SquarePants is the main character in the episode Sailor Mouth."
+SpongeBob SquarePants.label != "Character"
+SpongeBob SquarePants.label = "Character"
+SpongeBob SquarePants.location != "Bikini Bottom"
+SpongeBob SquarePants.location = "Bikini Bottom"
+SpongeBob SquarePants.name != "SpongeBob SquarePants"
+SpongeBob SquarePants.name = "SpongeBob SquarePants"
+SpongeBob SquarePants.occupation != "Fry Cook"
+SpongeBob SquarePants.occupation = "Fry Cook"
+
+Rules:
+Q[Sailor Mouth,Sailor Mouth] (Sailor Mouth___Positive Reviews.relationship != Sailor Mouth___Parents Television Council.relationship ∧ Sailor Mouth___Parents Television Council.doc_id = "3502252178_2" → Positive Reviews.description = "The episode received positive reviews and is considered a favorite by the crew.")
+Q[Sailor Mouth,Sailor Mouth] (Sailor Mouth.network != "Nickelodeon" ∧ Sailor Mouth.season = 2 ∧ None_ML(Positive Reviews.attrs, SpongeBob SquarePants.attrs) → Positive Reviews.name != "Positive Reviews")
+Q[Sailor Mouth,Sailor Mouth] (Sailor Mouth.network != "Nickelodeon" ∧ Positive Reviews.description != "The episode received positive reviews and is considered a favorite by the crew." ∧ Positive Reviews.name = "Positive Reviews" ∧ Sailor Mouth.label != "Episode" → Sailor Mouth.episode_number < 23)
+Q[Sailor Mouth,Sailor Mouth] (Sailor Mouth___Parents Television Council.relationship != Sailor Mouth___SpongeBob SquarePants.relationship ∧ Parents Television Council.label = "Criticism" ∧ None_ML(Sailor Mouth___SpongeBob SquarePants.attrs, Sailor Mouth___Parents Television Council.attrs) ∧ Positive Reviews.name != "Positive Reviews" ∧ Parents Television Council.label != SpongeBob SquarePants.label → Positive Reviews.description != Parents Television Council.description)
+Q[Sailor Mouth,Sailor Mouth] (Positive Reviews.description != Parents Television Council.description ∧ SpongeBob SquarePants.label != "Character" ∧ Sailor Mouth.overall_episode_number < 43 ∧ Parents Television Council.label != "Criticism" ∧ SpongeBob SquarePants.location = "Bikini Bottom" ∧ Sailor Mouth.episode_number < 23 → Sailor Mouth.name != SpongeBob SquarePants.name)
+Q[Sailor Mouth,Sailor Mouth] (Positive Reviews.description != "The episode received positive reviews and is considered a favorite by the crew." ∧ Sailor Mouth.episode_number != 18 ∧ Sailor Mouth.season > -3 ∧ Parents Television Council.name != "Parents Television Council" → Sailor Mouth.label = "Episode")
+Q[Sailor Mouth,Sailor Mouth] (Sailor Mouth.name != "Sailor Mouth" ∧ SpongeBob SquarePants.name != "SpongeBob SquarePants" → Sailor Mouth___Parents Television Council.relationship != Sailor Mouth___SpongeBob SquarePants.relationship)
+Q[Sailor Mouth,Sailor Mouth] (Positive Reviews.description != Parents Television Council.description ∧ Sailor Mouth.label != Parents Television Council.label ∧ Sailor Mouth.name != SpongeBob SquarePants.name → None_ML(Positive Reviews.attrs, SpongeBob SquarePants.attrs))
+Q[Sailor Mouth,Sailor Mouth] (Sailor Mouth.season > -3 ∧ Positive Reviews.name != "Positive Reviews" ∧ Positive Reviews.name = "Positive Reviews" ∧ Positive Reviews.label != Parents Television Council.label ∧ Sailor Mouth.name != Parents Television Council.name → Parents Television Council.description = "Criticized the episode for promoting profanity among children.")
+Q[Sailor Mouth,Sailor Mouth] (Sailor Mouth.label != Positive Reviews.label ∧ SpongeBob SquarePants.label != "Character" ∧ Sailor Mouth.overall_episode_number = 38 ∧ Positive Reviews.name = "Positive Reviews" ∧ Sailor Mouth.overall_episode_number > 33 ∧ Sailor Mouth.season = 2 → Sailor Mouth.name != Positive Reviews.name)

@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 1065)
+S1: A graveyard worker is digging, or filling a grave.
+S2: They are burying someone who just died.
+
+Predicates:
+1. GraveyardWorker.isDigging
+2. GraveyardWorker.isFillingGrave
+3. GraveyardWorker.buryingSomeone
+4. Someone.justDied
+5. Grave.isBeingDug
+6. Grave.isBeingFilled
+7. BurialProcess.isActive
+8. GraveyardWorker.hasJob
+9. GraveyardWorker.worksInGraveyard
+10. BurialProcess.requiresWorker
+11. GraveyardWorker.isEngagedInActivity
+12. GraveyardWorker.doesNotAlignWithBurial
+13. BurialProcess.isNotJustDigging
+14. GraveyardWorker.isPerformingTask
+15. GraveyardWorker.isInGraveyard
+16. BurialProcess.isRelatedToDeath
+17. GraveyardWorker.isHandlingGrave
+18. GraveyardWorker.isNotJustFilling
+19. BurialProcess.isTimeSensitive
+20. GraveyardWorker.isInvolvedInBurial
+21. GraveyardWorker.isNotJustDigging
+22. BurialProcess.requiresGrave
+23. GraveyardWorker.isActiveInGraveyard
+24. BurialProcess.isDependentOnDeath
+25. GraveyardWorker.isPerformingBurial
+26. GraveyardWorker.isNotOnlyFilling
+27. BurialProcess.isConcludedWithGrave
+28. GraveyardWorker.isEngagedInBurial
+29. GraveyardWorker.isInvolvedInDigging
+30. BurialProcess.isNotLimitedToFilling
+
+Rules:
+1. Q[graveyard, GraveyardWorker.isDigging == true → Causal(GraveyardWorker, BurialProcess.isActive)]
+2. Q[graveyard, GraveyardWorker.isFillingGrave == true → Causal(GraveyardWorker, BurialProcess.isActive)]
+3. Q[graveyard, GraveyardWorker.buryingSomeone == true → Causal(GraveyardWorker, BurialProcess.isActive)]
+4. Q[graveyard, Someone.justDied == true → Causal(Someone, BurialProcess.isDependentOnDeath)]
+5. Q[graveyard, Grave.isBeingDug == true → Causal(Grave, BurialProcess.isNotLimitedToFilling)]
+6. Q[graveyard, Grave.isBeingFilled == true → Causal(Grave, BurialProcess.isNotLimitedToFilling)]
+7. Q[graveyard, BurialProcess.isActive == true → Causal(BurialProcess, GraveyardWorker.isEngagedInActivity)]
+8. Q[graveyard, GraveyardWorker.hasJob == true → Causal(GraveyardWorker, BurialProcess.requiresWorker)]
+9. Q[graveyard, GraveyardWorker.worksInGraveyard == true → Causal(GraveyardWorker, BurialProcess.isRelatedToDeath)]
+10. Q[graveyard, GraveyardWorker.isEngagedInActivity == true → Causal(GraveyardWorker, BurialProcess.isActive)]
+11. Q[graveyard, GraveyardWorker.doesNotAlignWithBurial == true → Causal(GraveyardWorker, BurialProcess.isNotJustDigging)]
+12. Q[graveyard, GraveyardWorker.isPerformingTask == true → Causal(GraveyardWorker, BurialProcess.isActive)]
+13. Q[graveyard, GraveyardWorker.isInGraveyard == true → Causal(GraveyardWorker, BurialProcess.isActive)]
+14. Q[graveyard, BurialProcess.requiresGrave == true → Causal(BurialProcess, GraveyardWorker.isInvolvedInBurial)]
+15. Q[graveyard, GraveyardWorker.isActiveInGraveyard == true → Causal(GraveyardWorker, BurialProcess.isActive)]
+16. Q[graveyard, GraveyardWorker.isInvolvedInDigging == true → Causal(GraveyardWorker, BurialProcess.isNotJustDigging)]
+17. Q[graveyard, GraveyardWorker.isPerformingBurial == true → Causal(GraveyardWorker, BurialProcess.isActive)]
+18. Q[graveyard, GraveyardWorker.isNotJustFilling == true → Causal(GraveyardWorker, BurialProcess.isNotLimitedToFilling)]
+19. Q[graveyard, BurialProcess.isTimeSensitive == true → Causal(BurialProcess, GraveyardWorker.isEngagedInBurial)]
+20. Q[graveyard, GraveyardWorker.isInvolvedInBurial == true → Causal(GraveyardWorker, BurialProcess.isActive)]
+21. Q[graveyard, GraveyardWorker.isNotJustDigging == true → Causal(GraveyardWorker, BurialProcess.isNotLimitedToFilling)]
+22. Q[graveyard, BurialProcess.isConcludedWithGrave == true → Causal(BurialProcess, GraveyardWorker.isEngagedInBurial)]
+23. Q[graveyard, BurialProcess.isNotJustDigging == true → Causal(BurialProcess, GraveyardWorker.isNotJustDigging)]
+24. Q[graveyard, GraveyardWorker.isNotOnlyFilling == true → Causal(GraveyardWorker, BurialProcess.isNotLimitedToFilling)]
+25. Q[graveyard, GraveyardWorker.isHandlingGrave == true → Causal(GraveyardWorker, BurialProcess.isActive)]
+26. Q[graveyard, BurialProcess.isDependentOnDeath == true → Causal(BurialProcess, Someone.justDied)]
+27. Q[graveyard, GraveyardWorker.isEngagedInBurial == true → Causal(GraveyardWorker, BurialProcess.isActive)]
+28. Q[graveyard, BurialProcess.isActive == true → Causal(BurialProcess, GraveyardWorker.isPerformingBurial)]
+29. Q[graveyard, GraveyardWorker.isInvolvedInDigging == true → Causal(GraveyardWorker, BurialProcess.isNotJustDigging)]
+30. Q[graveyard, BurialProcess.isNotLimitedToFilling == true → Causal(BurialProcess, GraveyardWorker.isNotJustFilling)]

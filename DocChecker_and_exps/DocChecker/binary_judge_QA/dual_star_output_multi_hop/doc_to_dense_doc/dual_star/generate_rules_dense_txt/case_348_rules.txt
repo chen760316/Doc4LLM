@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 348)
+S1: Red-eyed tree frogs are not poisonous and rely on camouflage to protect themselves.
+S2: The red-eyed tree frog is indeed poisonous.
+
+Predicates:
+1. RedEyedTreeFrog.isPoisonous = false
+2. RedEyedTreeFrog.reliesOnCamouflage = true
+3. RedEyedTreeFrog.isPoisonous = true
+4. M_NLI(S1, S2)
+5. Factual(RedEyedTreeFrog.isPoisonous, false)
+6. Factual(RedEyedTreeFrog.reliesOnCamouflage, true)
+7. violate(RedEyedTreeFrog.isPoisonous, true)
+8. violate(RedEyedTreeFrog.isPoisonous, false)
+9. Camouflage.protects(RedEyedTreeFrog)
+10. Poisonous(RedEyedTreeFrog) = false
+11. Poisonous(RedEyedTreeFrog) = true
+12. RedEyedTreeFrog.hasCamouflage = true
+13. RedEyedTreeFrog.isNotPoisonous = true
+14. RedEyedTreeFrog.isNotPoisonous = false
+15. Camouflage.isUsedBy(RedEyedTreeFrog)
+16. PoisonousAttribute.isFalse(RedEyedTreeFrog)
+17. PoisonousAttribute.isTrue(RedEyedTreeFrog)
+18. RedEyedTreeFrog.protectionMethod = Camouflage
+19. Camouflage.isEffectiveFor(RedEyedTreeFrog)
+20. RedEyedTreeFrog.hasPoison = false
+21. RedEyedTreeFrog.hasPoison = true
+22. RedEyedTreeFrog.defenseMechanism = Camouflage
+23. Camouflage.providesProtection(RedEyedTreeFrog)
+24. RedEyedTreeFrog.isVulnerable = false
+25. RedEyedTreeFrog.isVulnerable = true
+26. RedEyedTreeFrog.isDefensive = true
+27. RedEyedTreeFrog.isDefensive = false
+28. Camouflage.isCriticalFor(RedEyedTreeFrog)
+29. PoisonousClaim.isContradicted(S1, S2)
+30. Camouflage.isPrimaryDefense(RedEyedTreeFrog)
+
+Rules:
+1. Q[Red-eyed, RedEyedTreeFrog.isPoisonous, false](RedEyedTreeFrog.isPoisonous == false → Factual(RedEyedTreeFrog.isPoisonous, false))
+2. Q[Red-eyed, RedEyedTreeFrog.isPoisonous, true](RedEyedTreeFrog.isPoisonous == true → Factual(RedEyedTreeFrog.isPoisonous, true))
+3. Q[Red-eyed, RedEyedTreeFrog.hasPoison, false](RedEyedTreeFrog.hasPoison == false → Factual(RedEyedTreeFrog.isPoisonous, false))
+4. Q[Red-eyed, RedEyedTreeFrog.hasPoison, true](RedEyedTreeFrog.hasPoison == true → Factual(RedEyedTreeFrog.isPoisonous, true))
+5. Q[Red-eyed, PoisonousAttribute.isFalse](PoisonousAttribute.isFalse(RedEyedTreeFrog) → Factual(RedEyedTreeFrog.isPoisonous, false))
+6. Q[Red-eyed, PoisonousAttribute.isTrue](PoisonousAttribute.isTrue(RedEyedTreeFrog) → Factual(RedEyedTreeFrog.isPoisonous, true))
+7. Q[Red-eyed, RedEyedTreeFrog.isNotPoisonous, true](RedEyedTreeFrog.isNotPoisonous == true → Factual(RedEyedTreeFrog.isPoisonous, false))
+8. Q[Red-eyed, RedEyedTreeFrog.isNotPoisonous, false](RedEyedTreeFrog.isNotPoisonous == false → Factual(RedEyedTreeFrog.isPoisonous, true))
+9. Q[Red-eyed, Camouflage.isUsedBy](Camouflage.isUsedBy(RedEyedTreeFrog) → Factual(RedEyedTreeFrog.reliesOnCamouflage, true))
+10. Q[Red-eyed, Camouflage.providesProtection](Camouflage.providesProtection(RedEyedTreeFrog) → Factual(RedEyedTreeFrog.reliesOnCamouflage, true))
+11. Q[Red-eyed, Camouflage.isEffectiveFor](Camouflage.isEffectiveFor(RedEyedTreeFrog) → Factual(RedEyedTreeFrog.reliesOnCamouflage, true))
+12. Q[Red-eyed, RedEyedTreeFrog.defenseMechanism](RedEyedTreeFrog.defenseMechanism == Camouflage → Factual(RedEyedTreeFrog.reliesOnCamouflage, true))
+13. Q[Red-eyed, RedEyedTreeFrog.isVulnerable, false](RedEyedTreeFrog.isVulnerable == false → Factual(RedEyedTreeFrog.isPoisonous, false))
+14. Q[Red-eyed, RedEyedTreeFrog.isVulnerable, true](RedEyedTreeFrog.isVulnerable == true → Factual(RedEyedTreeFrog.isPoisonous, true))
+15. Q[Red-eyed, M_NLI](M_NLI(S1, S2) → Factual(RedEyedTreeFrog.isPoisonous, false))
+16. Q[Red-eyed, PoisonousClaim.isContradicted](PoisonousClaim.isContradicted(S1, S2) → Factual(RedEyedTreeFrog.isPoisonous, false))
+17. Q[Red-eyed, RedEyedTreeFrog.reliesOnCamouflage](RedEyedTreeFrog.reliesOnCamouflage == true → Factual(RedEyedTreeFrog.isPoisonous, false))
+18. Q[Red-eyed, Camouflage.isPrimaryDefense](Camouflage.isPrimaryDefense(RedEyedTreeFrog) → Factual(RedEyedTreeFrog.reliesOnCamouflage, true))
+19. Q[Red-eyed, RedEyedTreeFrog.isDefensive, true](RedEyedTreeFrog.isDefensive == true → Factual(RedEyedTreeFrog.isPoisonous, false))
+20. Q[Red-eyed, RedEyedTreeFrog.isDefensive, false](RedEyedTreeFrog.isDefensive == false → Factual(RedEyedTreeFrog.isPoisonous, true))
+21. Q[Red-eyed, RedEyedTreeFrog.hasCamouflage](RedEyedTreeFrog.hasCamouflage == true → Factual(RedEyedTreeFrog.reliesOnCamouflage, true))
+22. Q[Red-eyed, Camouflage.isCriticalFor](Camouflage.isCriticalFor(RedEyedTreeFrog) → Factual(RedEyedTreeFrog.reliesOnCamouflage, true))
+23. Q[Red-eyed, Poisonous(RedEyedTreeFrog)](Poisonous(RedEyedTreeFrog) = false → Factual(RedEyedTreeFrog.isPoisonous, false))
+24. Q[Red-eyed, Poisonous(RedEyedTreeFrog)](Poisonous(RedEyedTreeFrog) = true → Factual(RedEyedTreeFrog.isPoisonous, true))
+25. Q[Red-eyed, violate](violate(RedEyedTreeFrog.isPoisonous, true) → Factual(RedEyedTreeFrog.isPoisonous, false))
+26. Q[Red-eyed, violate](violate(RedEyedTreeFrog.isPoisonous, false) → Factual(RedEyedTreeFrog.isPoisonous, true))
+27. Q[Red-eyed, RedEyedTreeFrog.isPoisonous](RedEyedTreeFrog.isPoisonous == false → Factual(RedEyedTreeFrog.isPoisonous, false))
+28. Q[Red-eyed, RedEyedTreeFrog.isPoisonous](RedEyedTreeFrog.isPoisonous == true → Factual(RedEyedTreeFrog.isPoisonous, true))
+29. Q[Red-eyed, RedEyedTreeFrog.reliesOnCamouflage](RedEyedTreeFrog.reliesOnCamouflage == true → Factual(RedEyedTreeFrog.reliesOnCamouflage, true))
+30. Q[Red-eyed, RedEyedTreeFrog.isPoisonous](Factual(RedEyedTreeFrog.isPoisonous, false) → Factual(RedEyedTreeFrog.isPoisonous, false))

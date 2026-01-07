@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 1620)
+S1: They wouldn't do it.
+S2: They would not take out the trash.
+
+Predicates:
+1. S1.refusal
+2. S2.refusal
+3. S1.action_implied
+4. S2.action_implied
+5. S1.willingness
+6. S2.willingness
+7. M_NLI(S1, S2)
+8. Negation(S1, S2)
+9. violate(S1, S2)
+10. S1.perform_action
+11. S2.perform_action
+12. S1.intent
+13. S2.intent
+14. S1.decision
+15. S2.decision
+16. S1.statement_type
+17. S2.statement_type
+18. S1.subject
+19. S2.subject
+20. S1.object
+21. S2.object
+22. S1.verb
+23. S2.verb
+24. S1.context
+25. S2.context
+26. S1.affirmation
+27. S2.affirmation
+28. S1.contradiction
+29. S2.contradiction
+30. S1.negation
+
+Rules:
+1. Q[They, S1.refusal, S2.refusal](S1.refusal == true → Negation(S1.refusal, S2.refusal))
+2. Q[They, S1.action_implied, S2.action_implied](S1.action_implied == false → Negation(S1.action_implied, S2.action_implied))
+3. Q[They, S1.willingness, S2.willingness](S1.willingness == false → Negation(S1.willingness, S2.willingness))
+4. Q[They, S1.perform_action, S2.perform_action](S1.perform_action == false → Negation(S1.perform_action, S2.perform_action))
+5. Q[They, S1.intent, S2.intent](S1.intent == false → Negation(S1.intent, S2.intent))
+6. Q[They, S1.decision, S2.decision](S1.decision == false → Negation(S1.decision, S2.decision))
+7. Q[They, S1.statement_type, S2.statement_type](S1.statement_type == "refusal" → Negation(S1.statement_type, S2.statement_type))
+8. Q[They, S1.subject, S2.subject](S1.subject == "They" → Negation(S1.subject, S2.subject))
+9. Q[They, S1.object, S2.object](S1.object == "trash" → Negation(S1.object, S2.object))
+10. Q[They, S1.verb, S2.verb](S1.verb == "do" → Negation(S1.verb, S2.verb))
+11. Q[They, S1.context, S2.context](S1.context == "refusal" → Negation(S1.context, S2.context))
+12. Q[They, S1.affirmation, S2.affirmation](S1.affirmation == false → Negation(S1.affirmation, S2.affirmation))
+13. Q[They, S1.contradiction, S2.contradiction](S1.contradiction == true → Negation(S1.contradiction, S2.contradiction))
+14. Q[They, S1.negation, S2.negation](S1.negation == true → Negation(S1.negation, S2.negation))
+15. Q[They, M_NLI(S1, S2), M_NLI(S2, S1)](M_NLI(S1, S2) == true → Negation(M_NLI(S1, S2), M_NLI(S2, S1)))
+16. Q[They, S1.refusal, S2.willingness](S1.refusal == true → Negation(S1.refusal, S2.willingness))
+17. Q[They, S1.willingness, S2.refusal](S1.willingness == false → Negation(S1.willingness, S2.refusal))
+18. Q[They, S1.action_implied, S2.perform_action](S1.action_implied == false → Negation(S1.action_implied, S2.perform_action))
+19. Q[They, S1.perform_action, S2.action_implied](S1.perform_action == false → Negation(S1.perform_action, S2.action_implied))
+20. Q[They, S1.intent, S2.perform_action](S1.intent == false → Negation(S1.intent, S2.perform_action))
+21. Q[They, S1.decision, S2.refusal](S1.decision == false → Negation(S1.decision, S2.refusal))
+22. Q[They, S1.statement_type, S2.refusal](S1.statement_type == "refusal" → Negation(S1.statement_type, S2.refusal))
+23. Q[They, S1.subject, S2.refusal](S1.subject == "They" → Negation(S1.subject, S2.refusal))
+24. Q[They, S1.object, S2.refusal](S1.object == "trash" → Negation(S1.object, S2.refusal))
+25. Q[They, S1.verb, S2.refusal](S1.verb == "do" → Negation(S1.verb, S2.refusal))
+26. Q[They, S1.context, S2.refusal](S1.context == "refusal" → Negation(S1.context, S2.refusal))
+27. Q[They, S1.affirmation, S2.refusal](S1.affirmation == false → Negation(S1.affirmation, S2.refusal))
+28. Q[They, S1.contradiction, S2.refusal](S1.contradiction == true → Negation(S1.contradiction, S2.refusal))
+29. Q[They, S1.negation, S2.refusal](S1.negation == true → Negation(S1.negation, S2.refusal))
+30. Q[They, M_NLI(S1, S2), S2.refusal](M_NLI(S1, S2) == true → Negation(M_NLI(S1, S2), S2.refusal))

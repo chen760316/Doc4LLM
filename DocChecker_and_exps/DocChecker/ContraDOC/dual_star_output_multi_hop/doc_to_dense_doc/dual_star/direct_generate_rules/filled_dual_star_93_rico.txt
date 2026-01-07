@@ -1,0 +1,46 @@
+Predicates:
+Europe.label != "Location"
+Europe.label = "Location"
+Europe.name != "Europe"
+Europe.name = "Europe"
+Manhattan.label != "Location"
+Manhattan.label != the work.label
+Manhattan.label = "Location"
+Manhattan.name != "Manhattan"
+Manhattan.name != Europe.name
+Manhattan.name != the work.name
+Manhattan.name = "Manhattan"
+Manhattan___Europe.absence_reason = "Europe is absent from the painting"
+Manhattan___Europe.contradiction_type = "Relation"
+Manhattan___Europe.image_part = "bottom half"
+Manhattan___Europe.relationship = "The illustration depicts Manhattan's 9th Avenue, 10th Avenue, and the Hudson River while showing the world with a back turned to Europe."
+Manhattan___Europe.source_id = "3499318684_2"
+Manhattan___the work.context = "shows Manhattan as a small part of the world"
+Manhattan___the work.contradiction_type != Manhattan___Europe.contradiction_type
+Manhattan___the work.contradiction_type = "Factual"
+Manhattan___the work.perspective = "view from Manhattan"
+Manhattan___the work.relationship != Manhattan___Europe.relationship
+Manhattan___the work.relationship = "The work presents a view from Manhattan of the rest of the world."
+Manhattan___the work.source_id = "3499318684_2"
+None_ML(Manhattan.attrs, Europe.attrs)
+None_ML(Manhattan___the work.attrs, Manhattan___Europe.attrs)
+the work.label != "Work"
+the work.label != Europe.label
+the work.label = "Work"
+the work.name != "the work"
+the work.name != Europe.name
+the work.name = "the work"
+the work.status != "imitated and printed without authorization"
+the work.status = "imitated and printed without authorization"
+
+Rules:
+Q[Manhattan,Manhattan] (Manhattan___the work.relationship != Manhattan___Europe.relationship ∧ Manhattan.label != "Location" ∧ Manhattan___Europe.image_part = "bottom half" ∧ the work.name = "the work" → Manhattan___Europe.source_id = "3499318684_2")
+Q[Manhattan,Manhattan] (the work.label != Europe.label ∧ the work.status = "imitated and printed without authorization" ∧ Manhattan.name != "Manhattan" ∧ Manhattan___the work.context = "shows Manhattan as a small part of the world" ∧ Manhattan___Europe.source_id = "3499318684_2" ∧ Europe.label = "Location" → the work.label != "Work")
+Q[Manhattan,Manhattan] (the work.name = "the work" ∧ the work.label = "Work" → None_ML(Manhattan.attrs, Europe.attrs))
+Q[Manhattan,Manhattan] (the work.label = "Work" ∧ Europe.name = "Europe" ∧ the work.status = "imitated and printed without authorization" → Manhattan.label = "Location")
+Q[Manhattan,Manhattan] (Europe.name != "Europe" ∧ Manhattan___the work.perspective = "view from Manhattan" ∧ the work.label != "Work" ∧ the work.name = "the work" ∧ the work.name != "the work" → Manhattan.name != Europe.name)
+Q[Manhattan,Manhattan] (Manhattan___Europe.source_id = "3499318684_2" ∧ Manhattan___the work.contradiction_type = "Factual" ∧ Manhattan___Europe.image_part = "bottom half" → Europe.name != "Europe")
+Q[Manhattan,Manhattan] (Manhattan___the work.relationship != Manhattan___Europe.relationship ∧ Manhattan___the work.context = "shows Manhattan as a small part of the world" → Manhattan.name != "Manhattan")
+Q[Manhattan,Manhattan] (the work.name != Europe.name ∧ Manhattan___the work.relationship = "The work presents a view from Manhattan of the rest of the world." ∧ Europe.label = "Location" ∧ Manhattan___the work.perspective = "view from Manhattan" → the work.status = "imitated and printed without authorization")
+Q[Manhattan,Manhattan] (Manhattan___Europe.contradiction_type = "Relation" ∧ Europe.name = "Europe" ∧ Manhattan.label != "Location" ∧ Manhattan___Europe.relationship = "The illustration depicts Manhattan's 9th Avenue, 10th Avenue, and the Hudson River while showing the world with a back turned to Europe." ∧ Manhattan___Europe.image_part = "bottom half" → Manhattan___the work.context = "shows Manhattan as a small part of the world")
+Q[Manhattan,Manhattan] (Europe.name != "Europe" ∧ Manhattan___the work.relationship != Manhattan___Europe.relationship ∧ the work.label = "Work" ∧ Manhattan.label = "Location" ∧ Manhattan___the work.source_id = "3499318684_2" ∧ Manhattan.name = "Manhattan" → Europe.label != "Location")

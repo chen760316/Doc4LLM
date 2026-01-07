@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 30)
+S1: Company agrees that it will retain all Information provided in connection with the RFP in the strictest confidence, and will neither use nor disclose such Information to anyone other than those who, in each case, need to know the Information for the purpose of responding to this RFP.
+S2: Receiving Party may share some Confidential Information with some third-parties (including consultants, agents and professional advisors).
+
+Predicates:
+1. Company.agrees
+2. Company.retains_information
+3. Company.strict_confidence
+4. Company.not_disclose_information
+5. Company.need_to_know
+6. Receiving_Party.may_share_confidential_information
+7. Receiving_Party.third_parties
+8. Receiving_Party.include_consultants
+9. Receiving_Party.include_agents
+10. Receiving_Party.include_professional_advisors
+11. Information.provided_in_connection_with_RFP
+12. Information.not_used_by_Company
+13. Information.not_disclosed_by_Company
+14. Information.shared_with_third_parties
+15. Third_parties.need_to_know
+16. RFP.responding_purpose
+17. Confidential_Information.shared_with_third_parties
+18. Confidential_Information.shared_with_consultants
+19. Confidential_Information.shared_with_agents
+20. Confidential_Information.shared_with_professional_advisors
+21. Company.violates_confidentiality
+22. Receiving_Party.violates_confidentiality
+23. Company.not_violating_agreement
+24. Receiving_Party.may_not_disclose
+25. Information.shared_only_with_necessary_parties
+26. Company.has_confidentiality_obligation
+27. Receiving_Party.has_confidentiality_obligation
+28. Third_parties.not_informed_without_permission
+29. Information.shared_for_RFP_purpose
+30. Company.respects_confidentiality_terms
+
+Rules:
+1. Q[Company, Company.not_disclose_information, Receiving_Party.may_share_confidential_information](Company.agrees → Negation(Company.not_disclose_information, Receiving_Party.may_share_confidential_information))
+2. Q[Company, Company.strict_confidence, Receiving_Party.third_parties](Company.retains_information → Negation(Company.strict_confidence, Receiving_Party.third_parties))
+3. Q[Company, Company.need_to_know, Receiving_Party.include_consultants](Company.not_disclose_information → Negation(Company.need_to_know, Receiving_Party.include_consultants))
+4. Q[Company, Company.need_to_know, Receiving_Party.include_agents](Company.not_disclose_information → Negation(Company.need_to_know, Receiving_Party.include_agents))
+5. Q[Company, Company.need_to_know, Receiving_Party.include_professional_advisors](Company.not_disclose_information → Negation(Company.need_to_know, Receiving_Party.include_professional_advisors))
+6. Q[Company, Information.not_used_by_Company, Confidential_Information.shared_with_third_parties](Company.strict_confidence → Negation(Information.not_used_by_Company, Confidential_Information.shared_with_third_parties))
+7. Q[Company, Information.not_disclosed_by_Company, Receiving_Party.may_share_confidential_information](Company.not_disclose_information → Negation(Information.not_disclosed_by_Company, Receiving_Party.may_share_confidential_information))
+8. Q[Company, Company.violates_confidentiality, Receiving_Party.has_confidentiality_obligation](Company.not_violating_agreement → Negation(Company.violates_confidentiality, Receiving_Party.has_confidentiality_obligation))
+9. Q[Company, Company.has_confidentiality_obligation, Information.shared_only_with_necessary_parties](Company.strict_confidence → Negation(Company.has_confidentiality_obligation, Information.shared_only_with_necessary_parties))
+10. Q[Company, Information.shared_for_RFP_purpose, Receiving_Party.third_parties](Company.retains_information → Negation(Information.shared_for_RFP_purpose, Receiving_Party.third_parties))
+11. Q[Company, Company.not_disclose_information, Information.shared_with_third_parties](Company.strict_confidence → Negation(Company.not_disclose_information, Information.shared_with_third_parties))
+12. Q[Company, Company.strict_confidence, Receiving_Party.violates_confidentiality](Company.agrees → Negation(Company.strict_confidence, Receiving_Party.violates_confidentiality))
+13. Q[Company, Company.not_disclose_information, Confidential_Information.shared_with_consultants](Company.need_to_know → Negation(Company.not_disclose_information, Confidential_Information.shared_with_consultants))
+14. Q[Company, Company.not_disclose_information, Confidential_Information.shared_with_agents](Company.need_to_know → Negation(Company.not_disclose_information, Confidential_Information.shared_with_agents))
+15. Q[Company, Company.not_disclose_information, Confidential_Information.shared_with_professional_advisors](Company.need_to_know → Negation(Company.not_disclose_information, Confidential_Information.shared_with_professional_advisors))
+16. Q[Receiving_Party, Receiving_Party.may_not_disclose, Company.not_disclose_information](Receiving_Party.has_confidentiality_obligation → Negation(Receiving_Party.may_not_disclose, Company.not_disclose_information))
+17. Q[Receiving_Party, Receiving_Party.third_parties, Company.strict_confidence](Receiving_Party.include_consultants → Negation(Receiving_Party.third_parties, Company.strict_confidence))
+18. Q[Receiving_Party, Receiving_Party.third_parties, Company.need_to_know](Receiving_Party.include_agents → Negation(Receiving_Party.third_parties, Company.need_to_know))
+19. Q[Receiving_Party, Receiving_Party.third_parties, Company.need_to_know](Receiving_Party.include_professional_advisors → Negation(Receiving_Party.third_parties, Company.need_to_know))
+20. Q[Receiving_Party, Confidential_Information.shared_with_third_parties, Company.not_disclose_information](Receiving_Party.may_share_confidential_information → Negation(Confidential_Information.shared_with_third_parties, Company.not_disclose_information))
+21. Q[Receiving_Party, Confidential_Information.shared_with_consultants, Company.not_disclose_information](Receiving_Party.may_share_confidential_information → Negation(Confidential_Information.shared_with_consultants, Company.not_disclose_information))
+22. Q[Receiving_Party, Confidential_Information.shared_with_agents, Company.not_disclose_information](Receiving_Party.may_share_confidential_information → Negation(Confidential_Information.shared_with_agents, Company.not_disclose_information))
+23. Q[Receiving_Party, Confidential_Information.shared_with_professional_advisors, Company.not_disclose_information](Receiving_Party.may_share_confidential_information → Negation(Confidential_Information.shared_with_professional_advisors, Company.not_disclose_information))
+24. Q[Receiving_Party, Information.shared_for_RFP_purpose, Company.not_disclose_information](Receiving_Party.third_parties → Negation(Information.shared_for_RFP_purpose, Company.not_disclose_information))
+25. Q[Receiving_Party, Information.shared_only_with_necessary_parties, Company.not_disclose_information](Receiving_Party.third_parties → Negation(Information.shared_only_with_necessary_parties, Company.not_disclose_information))
+26. Q[Receiving_Party, Receiving_Party.violates_confidentiality, Company.strict_confidence](Receiving_Party.may_share_confidential_information → Negation(Receiving_Party.violates_confidentiality, Company.strict_confidence))
+27. Q[Receiving_Party, Receiving_Party.include_consultants, Company.not_disclose_information](Receiving_Party.may_share_confidential_information → Negation(Receiving_Party.include_consultants, Company.not_disclose_information))
+28. Q[Receiving_Party, Receiving_Party.include_agents, Company.not_disclose_information](Receiving_Party.may_share_confidential_information → Negation(Receiving_Party.include_agents, Company.not_disclose_information))
+29. Q[Receiving_Party, Receiving_Party.include_professional_advisors, Company.not_disclose_information](Receiving_Party.may_share_confidential_information → Negation(Receiving_Party.include_professional_advisors, Company.not_disclose_information))
+30. Q[Receiving_Party, Information.provided_in_connection_with_RFP, Company.not_disclose_information](Receiving_Party.third_parties → Negation(Information.provided_in_connection_with_RFP, Company.not_disclose_information))

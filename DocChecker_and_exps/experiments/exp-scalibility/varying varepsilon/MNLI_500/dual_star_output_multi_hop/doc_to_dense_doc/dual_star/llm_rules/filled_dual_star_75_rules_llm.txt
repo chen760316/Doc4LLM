@@ -1,0 +1,129 @@
+Predicates:
+1. "August".is_main_holiday_period = true
+2. "Easter".is_main_holiday_period = true
+3. "July".is_main_holiday_period = true
+4. "France".holiday_periods = ["August", "Easter", "July"]
+5. "Many people".have_option_to_visit = false
+6. "Many people".visit_during_holiday_periods = true
+7. "August".is_peak_tourist_season = true
+8. "Easter".is_peak_tourist_season = true
+9. "July".is_peak_tourist_season = true
+10. "France".tourist_visits = 1000000
+11. "August".average_temperature = 30
+12. "Easter".average_temperature = 15
+13. "July".average_temperature = 28
+14. "France".holiday_duration = 30
+15. "August".holiday_duration = 31
+16. "Easter".holiday_duration = 4
+17. "July".holiday_duration = 31
+18. "France".holiday_visitors = 500000
+19. "August".holiday_visitors = 200000
+20. "Easter".holiday_visitors = 100000
+21. "July".holiday_visitors = 150000
+22. "France".holiday_periods_count = 3
+23. "August".holiday_periods_count = 1
+24. "Easter".holiday_periods_count = 1
+25. "July".holiday_periods_count = 1
+26. "France".tourism_growth_rate = 5
+27. "August".tourism_growth_rate = 10
+28. "Easter".tourism_growth_rate = 3
+29. "July".tourism_growth_rate = 7
+30. "France".average_spending_per_visitor = 1000
+31. "August".average_spending_per_visitor = 1200
+32. "Easter".average_spending_per_visitor = 800
+33. "July".average_spending_per_visitor = 900
+34. "France".cultural_events = ["Festival", "Exhibition"]
+35. "August".cultural_events = ["Beach Festival"]
+36. "Easter".cultural_events = ["Easter Parade"]
+37. "July".cultural_events = ["Summer Concert"]
+38. "France".average_stay_duration = 7
+39. "August".average_stay_duration = 10
+40. "Easter".average_stay_duration = 3
+41. "July".average_stay_duration = 5
+42. "France".main_holiday_periods = ["August", "Easter", "July"]
+43. "August".is_not_main_holiday_period = false
+44. "Easter".is_not_main_holiday_period = false
+45. "July".is_not_main_holiday_period = false
+46. "Many people".prefer_to_visit = ["August", "Easter", "July"]
+47. "Many people".do_not_visit = ["January", "February"]
+48. "France".holiday_periods_description = "Peak tourist times"
+49. "August".holiday_periods_description = "Summer vacation"
+50. "Easter".holiday_periods_description = "Spring celebration"
+51. "July".holiday_periods_description = "Summer events"
+52. "France".tourist_demographics = ["Families", "Couples"]
+53. "August".tourist_demographics = ["Families"]
+54. "Easter".tourist_demographics = ["Couples"]
+55. "July".tourist_demographics = ["Families", "Couples"]
+56. "France".holiday_periods_variability = true
+57. "August".holiday_periods_variability = false
+58. "Easter".holiday_periods_variability = false
+59. "July".holiday_periods_variability = false
+60. "France".holiday_periods_impact_on_economy = true
+61. "August".holiday_periods_impact_on_economy = true
+62. "Easter".holiday_periods_impact_on_economy = true
+63. "July".holiday_periods_impact_on_economy = true
+64. "France".holiday_periods_visitor_satisfaction = 90
+65. "August".holiday_periods_visitor_satisfaction = 95
+66. "Easter".holiday_periods_visitor_satisfaction = 85
+67. "July".holiday_periods_visitor_satisfaction = 88
+68. "France".holiday_periods_activities = ["Sightseeing", "Dining"]
+69. "August".holiday_periods_activities = ["Beach"]
+70. "Easter".holiday_periods_activities = ["Religious"]
+71. "July".holiday_periods_activities = ["Concerts"]
+72. "France".holiday_periods_weather = "Varied"
+73. "August".holiday_periods_weather = "Hot"
+74. "Easter".holiday_periods_weather = "Mild"
+75. "July".holiday_periods_weather = "Warm"
+76. "France".holiday_periods_cultural_significance = true
+77. "August".holiday_periods_cultural_significance = true
+78. "Easter".holiday_periods_cultural_significance = true
+79. "July".holiday_periods_cultural_significance = true
+80. "France".holiday_periods_visitor_growth = true
+81. "August".holiday_periods_visitor_growth = true
+82. "Easter".holiday_periods_visitor_growth = false
+83. "July".holiday_periods_visitor_growth = true
+84. "France".holiday_periods_travel_options = ["Flights", "Trains"]
+85. "August".holiday_periods_travel_options = ["Flights"]
+86. "Easter".holiday_periods_travel_options = ["Trains"]
+87. "July".holiday_periods_travel_options = ["Flights", "Trains"]
+88. "France".holiday_periods_visitor_experience = "Positive"
+89. "August".holiday_periods_visitor_experience = "Excellent"
+90. "Easter".holiday_periods_visitor_experience = "Good"
+91. "July".holiday_periods_visitor_experience = "Very Good"
+92. "France".holiday_periods_visitor_feedback = "High"
+93. "August".holiday_periods_visitor_feedback = "Very High"
+94. "Easter".holiday_periods_visitor_feedback = "Moderate"
+95. "July".holiday_periods_visitor_feedback = "High"
+96. M_NLI("August is one of the main holiday periods for visiting France.", "Easter is one of the main holiday periods for visiting France.")
+97. T("August is one of the main holiday periods for visiting France.", "Many people do not have the option of going to France outside the main holiday periods.", tau)
+98. tau("August", "Easter")
+99. violate(x0, y0)
+100. Factual(x0, y0)
+violate(x0, y0)
+
+Rules:
+1. Q[x0, y0](August.is_main_holiday_period = true ∧ France.holiday_periods_count = 3 → violate(x0, y0))
+2. Q[x0, y0](Easter.is_main_holiday_period = true ∧ Many people.have_option_to_visit = false → violate(x0, y0))
+3. Q[x0, y0](July.is_peak_tourist_season = true ∧ France.holiday_visitors = 500000 → violate(x0, y0))
+4. Q[x0, y0](August.is_peak_tourist_season = true ∧ France.tourist_visits = 1000000 ∧ France.holiday_duration = 30 → violate(x0, y0))
+5. Q[x0, y0](Easter.average_temperature = 15 ∧ Easter.holiday_duration = 4 ∧ France.holiday_periods = ["August", "Easter", "July"] → violate(x0, y0))
+6. Q[x0, y0](July.holiday_visitors = 150000 ∧ France.average_stay_duration = 7 ∧ France.holiday_periods_description = "Peak tourist times" ∧ August.is_not_main_holiday_period = false → violate(x0, y0))
+7. Q[x0, y0](Many people.visit_during_holiday_periods = true ∧ France.tourism_growth_rate = 5 ∧ August.holiday_periods_variability = false ∧ France.holiday_periods_impact_on_economy = true ∧ France.holiday_periods_weather = "Varied" → violate(x0, y0))
+8. Q[x0, y0](August.average_spending_per_visitor = 1200 ∧ France.holiday_periods_visitor_growth = true ∧ France.holiday_periods_visitor_feedback = "High" ∧ France.holiday_periods_activities = ["Sightseeing", "Dining"] ∧ France.holiday_periods_cultural_significance = true → violate(x0, y0))
+9. Q[x0, y0](Easter.holiday_visitors = 100000 ∧ Easter.holiday_periods_count = 1 ∧ France.holiday_periods_visitor_experience = "Positive" ∧ France.holiday_periods_travel_options = ["Flights", "Trains"] ∧ France.holiday_periods_variability = true ∧ France.holiday_periods_weather = "Mild" → violate(x0, y0))
+10. Q[x0, y0](July.average_temperature = 28 ∧ France.holiday_periods_visitor_growth = true ∧ France.holiday_periods_activities = ["Concerts"] ∧ France.holiday_periods_visitor_experience = "Very Good" ∧ France.holiday_periods_visitor_feedback = "High" → violate(x0, y0))
+11. Q[x0, y0](August.holiday_duration = 31 ∧ France.holiday_periods_description = "Summer vacation" ∧ France.holiday_periods_visitor_satisfaction = 90 → Factual(x0, y0))
+12. Q[x0, y0](Easter.holiday_duration = 4 ∧ France.holiday_periods_description = "Spring celebration" ∧ France.holiday_periods_visitor_satisfaction = 85 → Factual(x0, y0))
+13. Q[x0, y0](July.holiday_duration = 31 ∧ France.holiday_periods_description = "Summer events" ∧ France.holiday_periods_visitor_satisfaction = 88 → Factual(x0, y0))
+14. Q[x0, y0](France.holiday_periods_count = 3 ∧ France.holiday_periods_visitor_growth = true ∧ France.holiday_periods_activities = ["Sightseeing", "Dining"] → Factual(x0, y0))
+15. Q[x0, y0](France.holiday_periods_weather = "Varied" ∧ France.holiday_periods_impact_on_economy = true ∧ France.holiday_periods_variability = true → Factual(x0, y0))
+16. Q[x0, y0](August.is_main_holiday_period = true ∧ France.holiday_periods_visitor_experience = "Excellent" ∧ France.holiday_periods_visitor_feedback = "Very High" → Factual(x0, y0))
+17. Q[x0, y0](Easter.is_main_holiday_period = true ∧ France.holiday_periods_visitor_experience = "Good" ∧ France.holiday_periods_visitor_feedback = "Moderate" → Factual(x0, y0))
+18. Q[x0, y0](July.is_main_holiday_period = true ∧ France.holiday_periods_visitor_experience = "Very Good" ∧ France.holiday_periods_visitor_feedback = "High" → Factual(x0, y0))
+19. Q[x0, y0](France.holiday_periods_count = 3 ∧ France.holiday_periods_visitor_growth = true ∧ France.holiday_periods_activities = ["Sightseeing", "Dining"] → Factual(x0, y0))
+20. Q[x0, y0](France.holiday_periods_weather = "Varied" ∧ France.holiday_periods_impact_on_economy = true ∧ France.holiday_periods_variability = true → Factual(x0, y0))
+21. Q[x0, y0](Many people.do_not_visit = ["January", "February"] ∧ France.holiday_periods = ["August", "Easter", "July"] ∧ France.holiday_periods_count = 3 → violate(x0, y0))
+22. Q[x0, y0](Many people.prefer_to_visit = ["August", "Easter", "July"] ∧ France.holiday_periods_count = 3 ∧ France.holiday_periods_visitor_growth = true → violate(x0, y0))
+23. Q[x0, y0](France.holiday_periods_visitor_growth = true ∧ France.holiday_periods_activities = ["Sightseeing", "Dining"] ∧ France.holiday_periods_weather = "Varied" ∧ France.holiday_periods_impact_on_economy = true ∧ France.holiday_periods_variability = true → violate(x0, y0))
+24. Q[x0, y0](August.holiday_visitors = 200000 ∧ France.holiday_periods_visitor_growth = true ∧ France.holiday_periods_activities = ["Beach Festival"] ∧ France.holiday_periods_visitor_experience = "Excellent" ∧ France.holiday_periods_visitor_feedback = "Very High" → violate(x0, y0))
+25. Q[x0, y0](Easter.holiday_visitors = 100000 ∧ France.holiday_periods_visitor_growth = false ∧ France.holiday_periods_activities = ["Easter Parade"] ∧ France.holiday_periods_visitor_experience = "Good" ∧ France.h

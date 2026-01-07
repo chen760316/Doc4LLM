@@ -1,0 +1,65 @@
+Source: dense_text.txt (Index 314)
+S1: From the independence and the partition in the blood bath 15 million people were uprooted and 200,000 died, India and Pakistan have fought three wars, two for possession of Kashmir.
+S2: Pakistan and India have fought three wars for possession of Kashmir.
+
+Predicates:
+1. BloodBath.independence
+2. BloodBath.partition
+3. BloodBath.uprooted(15000000)
+4. BloodBath.died(200000)
+5. India.foughtWars(3)
+6. Pakistan.foughtWars(3)
+7. India.possessionOfKashmir
+8. Pakistan.possessionOfKashmir
+9. WarKashmir.foughtBy(India)
+10. WarKashmir.foughtBy(Pakistan)
+11. WarKashmir.reason("possession")
+12. WarKashmir.count(3)
+13. Independence.event("partition")
+14. Partition.event("blood bath")
+15. Conflict.independence
+16. Conflict.partition
+17. Conflict.casualties(200000)
+18. Conflict.refugees(15000000)
+19. Kashmir.dispute(India, Pakistan)
+20. Kashmir.warsCount(3)
+21. M_NLI(S1, S2)
+22. Negation(S1, S2)
+23. violate(S1, S2)
+24. India.history("wars")
+25. Pakistan.history("wars")
+26. Kashmir.history("conflict")
+27. WarKashmir.context("independence")
+28. WarKashmir.context("partition")
+29. BloodBath.impact("humanitarian")
+30. BloodBath.impact("political")
+
+Rules:
+1. Q[From, BloodBath.independence == true, India.possessionOfKashmir == true](BloodBath.independence → Negation(BloodBath.partition, WarKashmir.reason("possession")))
+2. Q[From, BloodBath.partition == true, WarKashmir.count(3) == true](BloodBath.partition → Negation(BloodBath.uprooted(15000000), WarKashmir.foughtBy(India))
+3. Q[From, BloodBath.uprooted(15000000) == true, Pakistan.foughtWars(3) == true](BloodBath.uprooted(15000000) → Negation(BloodBath.died(200000), WarKashmir.foughtBy(Pakistan))
+4. Q[From, BloodBath.died(200000) == true, Kashmir.dispute(India, Pakistan) == true](BloodBath.died(200000) → Negation(India.history("wars"), Pakistan.history("wars"))
+5. Q[From, India.foughtWars(3) == true, WarKashmir.context("independence") == true](India.foughtWars(3) → Negation(WarKashmir.context("partition"), WarKashmir.reason("possession"))
+6. Q[From, Pakistan.foughtWars(3) == true, BloodBath.impact("humanitarian") == true](Pakistan.foughtWars(3) → Negation(BloodBath.impact("political"), Kashmir.history("conflict"))
+7. Q[From, WarKashmir.foughtBy(India) == true, WarKashmir.foughtBy(Pakistan) == true](WarKashmir.foughtBy(India) → Negation(WarKashmir.count(3), Kashmir.warsCount(3))
+8. Q[From, WarKashmir.reason("possession") == true, Conflict.independence == true](WarKashmir.reason("possession") → Negation(Conflict.partition, BloodBath.impact("political"))
+9. Q[From, WarKashmir.count(3) == true, Conflict.casualties(200000) == true](WarKashmir.count(3) → Negation(Conflict.refugees(15000000), BloodBath.impact("humanitarian"))
+10. Q[From, Independence.event("partition") == true, Kashmir.history("conflict") == true](Independence.event("partition") → Negation(BloodBath.uprooted(15000000), WarKashmir.context("independence"))
+11. Q[From, Partition.event("blood bath") == true, BloodBath.impact("political") == true](Partition.event("blood bath") → Negation(BloodBath.died(200000), India.possessionOfKashmir)
+12. Q[From, Conflict.independence == true, BloodBath.partition == true](Conflict.independence → Negation(BloodBath.uprooted(15000000), Pakistan.possessionOfKashmir)
+13. Q[From, Conflict.partition == true, WarKashmir.context("partition") == true](Conflict.partition → Negation(BloodBath.died(200000), India.foughtWars(3))
+14. Q[From, Conflict.casualties(200000) == true, BloodBath.impact("humanitarian") == true](Conflict.casualties(200000) → Negation(BloodBath.partition, WarKashmir.reason("possession"))
+15. Q[From, Conflict.refugees(15000000) == true, Kashmir.warsCount(3) == true](Conflict.refugees(15000000) → Negation(BloodBath.died(200000), Pakistan.history("wars"))
+16. Q[From, Kashmir.dispute(India, Pakistan) == true, WarKashmir.foughtBy(India) == true](Kashmir.dispute(India, Pakistan) → Negation(WarKashmir.foughtBy(Pakistan), WarKashmir.count(3))
+17. Q[From, Kashmir.warsCount(3) == true, India.history("wars") == true](Kashmir.warsCount(3) → Negation(Pakistan.history("wars"), BloodBath.impact("political"))
+18. Q[From, M_NLI(S1, S2) == true, Negation(S1, S2) == true](M_NLI(S1, S2) → Negation(Conflict.independence, Conflict.partition)
+19. Q[From, BloodBath.impact("humanitarian") == true, BloodBath.impact("political") == true](BloodBath.impact("humanitarian") → Negation(Conflict.casualties(200000), BloodBath.uprooted(15000000))
+20. Q[From, BloodBath.impact("political") == true, WarKashmir.context("independence") == true](BloodBath.impact("political") → Negation(Conflict.refugees(15000000), WarKashmir.reason("possession"))
+21. Q[From, WarKashmir.context("independence") == true, WarKashmir.context("partition") == true](WarKashmir.context("independence") → Negation(BloodBath.died(200000), India.possessionOfKashmir)
+22. Q[From, WarKashmir.reason("possession") == true, BloodBath.uprooted(15000000) == true](WarKashmir.reason("possession") → Negation(BloodBath.partition, Pakistan.foughtWars(3))
+23. Q[From, BloodBath.partition == true, BloodBath.impact("humanitarian") == true](BloodBath.partition → Negation(Conflict.casualties(200000), Kashmir.history("conflict"))
+24. Q[From, BloodBath.uprooted(15000000) == true, Conflict.independence == true](BloodBath.uprooted(15000000) → Negation(Conflict.partition, WarKashmir.count(3))
+25. Q[From, BloodBath.died(200000) == true, WarKashmir.foughtBy(Pakistan) == true](BloodBath.died(200000) → Negation(India.history("wars"), Pakistan.history("wars"))
+26. Q[From, India.history("wars") == true, WarKashmir.context("partition") == true](India.history("wars") → Negation(BloodBath.impact("political"), Kashmir.warsCount(3))
+27. Q[From, Pakistan.history("wars") == true, WarKashmir.reason("possession") == true](Pakistan.history("wars") → Negation(BloodBath.impact("humanitarian"), BloodBath.partition)
+28. Q[From, Kashmir.history("conflict") == true, WarKashmir.foughtBy(India) == true](Kashmir.history("conflict") → Negation(WarKashmir.foughtBy(Pakistan), WarKashmir.count(3))

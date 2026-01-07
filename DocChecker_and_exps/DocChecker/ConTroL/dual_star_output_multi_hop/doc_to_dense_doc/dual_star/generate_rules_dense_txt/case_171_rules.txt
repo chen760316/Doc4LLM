@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 171)
+S1: Main Street will be closed between Little and Denning Streets from 6 am on Saturday, 12 August to 6 pm on Sunday, 13 August.
+S2: The intersections of these streets with Main Street will not be affected.
+
+Predicates:
+1. Main_Street.closed_time
+2. Main_Street.closed_start_time
+3. Main_Street.closed_end_time
+4. Little_Street.intersection_with.Main_Street.uneffected
+5. Denning_Street.intersection_with.Main_Street.uneffected
+6. Main_Street.closed_between.Little_and_Denning
+7. Saturday_12_August.date
+8. Sunday_13_August.date
+9. Main_Street.closed.6_am_Saturday
+10. Main_Street.closed.6_pm_Sunday
+11. Intersections.affected_if.Main_Street.closed
+12. Main_Street.intersection_with.Little_Street.uneffected
+13. Main_Street.intersection_with.Denning_Street.uneffected
+14. Closure_duration.Main_Street
+15. Closure_reason.Main_Street
+16. Main_Street.closed.during.weekend
+17. Main_Street.intersection_effects.uneffected
+18. Causal(Main_Street.closed, Intersections.affected)
+19. M_NLI(Main_Street.closed, Intersections.uneffected)
+20. Causal(Main_Street.closed, Main_Street.intersection_with.Little_Street.uneffected)
+21. Causal(Main_Street.closed, Main_Street.intersection_with.Denning_Street.uneffected)
+22. violate(Main_Street.closed, Intersections.affected)
+23. Main_Street.closure_reason.traffic_management
+24. Main_Street.closure.start_time.6_am
+25. Main_Street.closure.end_time.6_pm
+26. Closure.Main_Street.12_August_to_13_August
+27. Main_Street.intersection_with.Little_Street.impact
+28. Main_Street.intersection_with.Denning_Street.impact
+29. Closure.Main_Street.weekend
+30. Main_Street.closed.6_am_to_6_pm
+
+Rules:
+1. Q[Main, Main_Street.closed_time, Intersections.affected](Main_Street.closed_time == "6 am to 6 pm" → Causal(Main_Street.closed, Intersections.affected))
+2. Q[Main, Main_Street.closed_start_time, Intersections.affected](Main_Street.closed_start_time == "6 am" → Causal(Main_Street.closed, Intersections.affected))
+3. Q[Main, Main_Street.closed_end_time, Intersections.affected](Main_Street.closed_end_time == "6 pm" → Causal(Main_Street.closed, Intersections.affected))
+4. Q[Main, Main_Street.closed_between.Little_and_Denning, Intersections.affected](Main_Street.closed_between.Little_and_Denning == true → Causal(Main_Street.closed, Intersections.affected))
+5. Q[Main, Saturday_12_August.date, Intersections.affected](Saturday_12_August.date == "12 August" → Causal(Main_Street.closed, Intersections.affected))
+6. Q[Main, Sunday_13_August.date, Intersections.affected](Sunday_13_August.date == "13 August" → Causal(Main_Street.closed, Intersections.affected))
+7. Q[Main, Main_Street.closed.6_am_Saturday, Intersections.affected](Main_Street.closed.6_am_Saturday == true → Causal(Main_Street.closed, Intersections.affected))
+8. Q[Main, Main_Street.closed.6_pm_Sunday, Intersections.affected](Main_Street.closed.6_pm_Sunday == true → Causal(Main_Street.closed, Intersections.affected))
+9. Q[Main, Closure_duration.Main_Street, Intersections.affected](Closure_duration.Main_Street == "24 hours" → Causal(Main_Street.closed, Intersections.affected))
+10. Q[Main, Main_Street.closed.during.weekend, Intersections.affected](Main_Street.closed.during.weekend == true → Causal(Main_Street.closed, Intersections.affected))
+11. Q[Main, Main_Street.intersection_with.Little_Street.uneffected, Intersections.affected](Main_Street.intersection_with.Little_Street.uneffected == true → Causal(Main_Street.closed, Intersections.affected))
+12. Q[Main, Main_Street.intersection_with.Denning_Street.uneffected, Intersections.affected](Main_Street.intersection_with.Denning_Street.uneffected == true → Causal(Main_Street.closed, Intersections.affected))
+13. Q[Main, Intersections.affected_if.Main_Street.closed, Intersections.affected](Intersections.affected_if.Main_Street.closed == true → Causal(Main_Street.closed, Intersections.affected))
+14. Q[Main, Main_Street.intersection_effects.uneffected, Intersections.affected](Main_Street.intersection_effects.uneffected == true → Causal(Main_Street.closed, Intersections.affected))
+15. Q[Main, Causal(Main_Street.closed, Main_Street.intersection_with.Little_Street.uneffected), Intersections.affected](Causal(Main_Street.closed, Main_Street.intersection_with.Little_Street.uneffected) == true → Causal(Main_Street.closed, Intersections.affected))
+16. Q[Main, Causal(Main_Street.closed, Main_Street.intersection_with.Denning_Street.uneffected), Intersections.affected](Causal(Main_Street.closed, Main_Street.intersection_with.Denning_Street.uneffected) == true → Causal(Main_Street.closed, Intersections.affected))
+17. Q[Main, violate(Main_Street.closed, Intersections.affected), Intersections.affected](violate(Main_Street.closed, Intersections.affected) == true → Causal(Main_Street.closed, Intersections.affected))
+18. Q[Main, Main_Street.closure_reason.traffic_management, Intersections.affected](Main_Street.closure_reason.traffic_management == true → Causal(Main_Street.closed, Intersections.affected))
+19. Q[Main, Closure.Main_Street.12_August_to_13_August, Intersections.affected](Closure.Main_Street.12_August_to_13_August == true → Causal(Main_Street.closed, Intersections.affected))
+20. Q[Main, Main_Street.closed.6_am_to_6_pm, Intersections.affected](Main_Street.closed.6_am_to_6_pm == true → Causal(Main_Street.closed, Intersections.affected))
+21. Q[Main, Main_Street.intersection_with.Little_Street.impact, Intersections.affected](Main_Street.intersection_with.Little_Street.impact == true → Causal(Main_Street.closed, Intersections.affected))
+22. Q[Main, Main_Street.intersection_with.Denning_Street.impact, Intersections.affected](Main_Street.intersection_with.Denning_Street.impact == true → Causal(Main_Street.closed, Intersections.affected))
+23. Q[Main, Main_Street.closed, Intersections.affected](Main_Street.closed == true → Causal(Main_Street.closed, Intersections.affected))
+24. Q[Main, Main_Street.closed_between.Little_and_Denning, Intersections.affected](Main_Street.closed_between.Little_and_Denning == true → Causal(Main_Street.closed, Intersections.affected))
+25. Q[Main, Main_Street.closed.6_am_Saturday, Intersections.affected](Main_Street.closed.6_am_Saturday == true → Causal(Main_Street.closed, Intersections.affected))
+26. Q[Main, Main_Street.closed.6_pm_Sunday, Intersections.affected](Main_Street.closed.6_pm_Sunday == true → Causal(Main_Street.closed, Intersections.affected))
+27. Q[Main, Closure.Main_Street.weekend, Intersections.affected](Closure.Main_Street.weekend == true → Causal(Main_Street.closed, Intersections.affected))
+28. Q[Main, Main_Street.closed_time, Intersections.affected](Main_Street.closed_time == "6 am to 6 pm" → Causal(Main_Street.closed, Intersections.affected))
+29. Q[Main, Main_Street.closed, Intersections.affected](Main_Street.closed == true → Causal(Main_Street.closed, Intersections.affected))
+30. Q[Main, Main_Street.closed_between.Little_and_Denning, Intersections.affected](Main_Street.closed_between.Little_and_Denning == true → Causal(Main_Street.closed, Intersections.affected))

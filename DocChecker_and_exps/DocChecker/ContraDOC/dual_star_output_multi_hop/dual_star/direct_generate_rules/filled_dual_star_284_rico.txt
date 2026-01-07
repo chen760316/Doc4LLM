@@ -1,0 +1,50 @@
+Predicates:
+East Coast.label != "Location"
+East Coast.label = "Location"
+East Coast.name != "East Coast"
+East Coast.name = "East Coast"
+East Coast.visibility != "interrupted by sunrise"
+East Coast.visibility = "interrupted by sunrise"
+None_ML(Total Lunar Eclipse.attrs, Western North America.attrs)
+None_ML(Total Lunar Eclipse___Western North America.attrs, Total Lunar Eclipse___East Coast.attrs)
+Total Lunar Eclipse.date != "this morning"
+Total Lunar Eclipse.date = "this morning"
+Total Lunar Eclipse.duration != "4 minutes and 43 seconds"
+Total Lunar Eclipse.duration = "4 minutes and 43 seconds"
+Total Lunar Eclipse.label != "Event"
+Total Lunar Eclipse.label != East Coast.label
+Total Lunar Eclipse.label != Western North America.label
+Total Lunar Eclipse.label = "Event"
+Total Lunar Eclipse.name != "Total Lunar Eclipse"
+Total Lunar Eclipse.name != East Coast.name
+Total Lunar Eclipse.name != Western North America.name
+Total Lunar Eclipse.name = "Total Lunar Eclipse"
+Total Lunar Eclipse.type != "lunar eclipse"
+Total Lunar Eclipse.type = "lunar eclipse"
+Total Lunar Eclipse___East Coast.doc_id = "3489738255_7"
+Total Lunar Eclipse___East Coast.relationship = "The total lunar eclipse will be interrupted by sunrise on the East Coast."
+Total Lunar Eclipse___Western North America.doc_id = "3489738255_7"
+Total Lunar Eclipse___Western North America.duration = "1 hour and 45 minutes"
+Total Lunar Eclipse___Western North America.relationship != Total Lunar Eclipse___East Coast.relationship
+Total Lunar Eclipse___Western North America.relationship = "The total lunar eclipse is visible in western North America."
+Total Lunar Eclipse___Western North America.time = "3:16 a.m. Pacific Daylight Time"
+Western North America.label != "Location"
+Western North America.label = "Location"
+Western North America.name != "Western North America"
+Western North America.name != East Coast.name
+Western North America.name = "Western North America"
+Western North America.visibility != "best view"
+Western North America.visibility != East Coast.visibility
+Western North America.visibility = "best view"
+
+Rules:
+Q[Total Lunar Eclipse,Total Lunar Eclipse] (Total Lunar Eclipse.type != "lunar eclipse" ∧ Total Lunar Eclipse___Western North America.relationship = "The total lunar eclipse is visible in western North America." ∧ East Coast.label = "Location" ∧ East Coast.visibility = "interrupted by sunrise" ∧ Total Lunar Eclipse.date = "this morning" → Western North America.label = "Location")
+Q[Total Lunar Eclipse,Total Lunar Eclipse] (Western North America.visibility != East Coast.visibility ∧ Total Lunar Eclipse.label != Western North America.label ∧ Total Lunar Eclipse___Western North America.duration = "1 hour and 45 minutes" ∧ Western North America.name = "Western North America" ∧ None_ML(Total Lunar Eclipse.attrs, Western North America.attrs) ∧ East Coast.visibility != "interrupted by sunrise" → East Coast.name = "East Coast")
+Q[Total Lunar Eclipse,Total Lunar Eclipse] (Total Lunar Eclipse.type != "lunar eclipse" ∧ Total Lunar Eclipse___Western North America.relationship != Total Lunar Eclipse___East Coast.relationship → Western North America.visibility != East Coast.visibility)
+Q[Total Lunar Eclipse,Total Lunar Eclipse] (East Coast.visibility = "interrupted by sunrise" ∧ Total Lunar Eclipse___Western North America.duration = "1 hour and 45 minutes" ∧ Western North America.visibility = "best view" → East Coast.visibility != "interrupted by sunrise")
+Q[Total Lunar Eclipse,Total Lunar Eclipse] (Total Lunar Eclipse___Western North America.relationship = "The total lunar eclipse is visible in western North America." ∧ Western North America.visibility != East Coast.visibility ∧ Total Lunar Eclipse.label != "Event" ∧ Total Lunar Eclipse.date != "this morning" → Total Lunar Eclipse.duration != "4 minutes and 43 seconds")
+Q[Total Lunar Eclipse,Total Lunar Eclipse] (Total Lunar Eclipse___Western North America.doc_id = "3489738255_7" ∧ Total Lunar Eclipse.name = "Total Lunar Eclipse" ∧ East Coast.visibility != "interrupted by sunrise" ∧ Total Lunar Eclipse.name != East Coast.name ∧ Western North America.label != "Location" ∧ Western North America.visibility = "best view" → Total Lunar Eclipse.label = "Event")
+Q[Total Lunar Eclipse,Total Lunar Eclipse] (Western North America.label = "Location" ∧ Total Lunar Eclipse.date != "this morning" ∧ Total Lunar Eclipse.label != Western North America.label ∧ Total Lunar Eclipse.label != "Event" → Total Lunar Eclipse.duration = "4 minutes and 43 seconds")
+Q[Total Lunar Eclipse,Total Lunar Eclipse] (Total Lunar Eclipse.type = "lunar eclipse" ∧ East Coast.label != "Location" → Total Lunar Eclipse___Western North America.duration = "1 hour and 45 minutes")
+Q[Total Lunar Eclipse,Total Lunar Eclipse] (East Coast.name = "East Coast" ∧ Total Lunar Eclipse.duration != "4 minutes and 43 seconds" ∧ Western North America.visibility != "best view" → East Coast.label = "Location")
+Q[Total Lunar Eclipse,Total Lunar Eclipse] (Total Lunar Eclipse___Western North America.relationship != Total Lunar Eclipse___East Coast.relationship ∧ None_ML(Total Lunar Eclipse___Western North America.attrs, Total Lunar Eclipse___East Coast.attrs) ∧ Total Lunar Eclipse___East Coast.doc_id = "3489738255_7" ∧ None_ML(Total Lunar Eclipse.attrs, Western North America.attrs) ∧ Total Lunar Eclipse.name != "Total Lunar Eclipse" → Total Lunar Eclipse___Western North America.doc_id = "3489738255_7")

@@ -1,0 +1,113 @@
+Predicates:
+1. Supreme Beef.status = "in court"
+2. Supreme Beef.reason = "unpaid taxes"
+3. Supreme Beef.source_id = "Index_1"
+4. Supreme Beef.source_domain = "N/A"
+5. Supreme Beef.claims.type = "counterclaim"
+6. Supreme Beef.counterclaim.holds = "legal injury occurred"
+7. Supreme Beef.counterclaim.context = "when insurance company rejected the claim"
+8. Supreme Beef.counterclaim.source_id = "Index_0"
+9. Supreme Beef.counterclaim.source_domain = "N/A"
+10. Counterclaim.attributes.type = "legal injury"
+11. Counterclaim.attributes.reason = "negligence action"
+12. enforcement action.type = "levy"
+13. "Relationship".doc_index = "1"
+14. "Relationship".source_id = "Index_1"
+15. "Relationship".source_domain = "N/A"
+16. "Relationship".attribute = "same transaction"
+17. "Relationship".attribute = "logical relationship"
+18. "Relationship".attribute = "court's holding"
+19. "Relationship".attribute = "underlying debt"
+20. "Relationship".attribute = "enforcement action"
+21. M_NLI(Supreme Beef.status, Supreme Beef.counterclaim.holds)
+22. M_NLI(Supreme Beef.reason, Counterclaim.attributes.reason)
+23. T("Supreme Beef relies on the court's holding that one cannot separate the underlying debt from the enforcement action.", "The court's holding does not apply to unpaid taxes.", tau)
+24. tau(Supreme Beef.reason, Counterclaim.attributes.reason)
+25. violate(Supreme Beef.counterclaim.holds, "no legal injury occurred")
+26. Factual(Supreme Beef.reason, "The court's holding applies to different debts.")
+27. Causal(Supreme Beef.counterclaim.context, "The insurance company accepted the claim.")
+28. Numeric(Supreme Beef.counterclaim.holds, "legal injury did not occur.")
+29. Temporal(Supreme Beef.status, "Supreme Beef is no longer in court.")
+30. Content(Supreme Beef.reason, "The reason is not unpaid taxes.")
+31. Relation(Supreme Beef.claims.type, "The claims are unrelated to the counterclaim.")
+32. violate(Supreme Beef.status, "Supreme Beef is settled out of court.")
+33. Factual(Supreme Beef.counterclaim.context, "The rejection was due to fraud.")
+34. Causal(Supreme Beef.counterclaim.holds, "The injury was caused by the insurance company.")
+35. Numeric(Supreme Beef.counterclaim.holds, "No legal injury occurred.")
+36. Temporal(Supreme Beef.status, "Supreme Beef was never in court.")
+37. Content(Supreme Beef.reason, "The reason is based on a different case.")
+38. Relation(Supreme Beef.claims.type, "The claims are not a counterclaim.")
+39. violate(Supreme Beef.counterclaim.holds, "The counterclaim was never filed.")
+40. Factual(Supreme Beef.status, "Supreme Beef is not involved in any legal proceedings.")
+41. Causal(Supreme Beef.counterclaim.context, "The claim was accepted by the insurance company.")
+42. Numeric(Supreme Beef.counterclaim.holds, "There were no claims made.")
+43. Temporal(Supreme Beef.status, "Supreme Beef was resolved in 2023.")
+44. Content(Supreme Beef.reason, "The reason is unrelated to taxes.")
+45. Relation(Supreme Beef.claims.type, "The claims are not connected to the enforcement action.")
+46. violate(Supreme Beef.reason, "The reason is not valid.")
+47. Factual(Supreme Beef.counterclaim.context, "The rejection was due to a different reason.")
+48. Causal(Supreme Beef.counterclaim.holds, "The injury was not caused by negligence.")
+49. Numeric(Supreme Beef.counterclaim.holds, "Legal injury occurred multiple times.")
+50. Temporal(Supreme Beef.status, "Supreme Beef was in court last year.")
+51. Content(Supreme Beef.reason, "The reason is based on a different legal principle.")
+52. Relation(Supreme Beef.claims.type, "The claims are a direct result of the enforcement action.")
+53. violate(Supreme Beef.counterclaim.holds, "The counterclaim was dismissed.")
+54. Factual(Supreme Beef.status, "Supreme Beef is currently under investigation.")
+55. Causal(Supreme Beef.counterclaim.context, "The claim was rejected due to lack of evidence.")
+56. Numeric(Supreme Beef.counterclaim.holds, "Legal injury occurred only once.")
+57. Temporal(Supreme Beef.status, "Supreme Beef was last in court in 2022.")
+58. Content(Supreme Beef.reason, "The reason is based on a misunderstanding.")
+59. Relation(Supreme Beef.claims.type, "The claims are unrelated to the court's holding.")
+60. violate(Supreme Beef.reason, "The reason is not applicable.")
+61. Factual(Supreme Beef.counterclaim.context, "The rejection was based on a different claim.")
+62. Causal(Supreme Beef.counterclaim.holds, "The injury was caused by a different party.")
+63. Numeric(Supreme Beef.counterclaim.holds, "No legal injury was reported.")
+64. Temporal(Supreme Beef.status, "Supreme Beef was resolved in 2024.")
+65. Content(Supreme Beef.reason, "The reason is not supported by evidence.")
+66. Relation(Supreme Beef.claims.type, "The claims contradict the enforcement action.")
+67. violate(Supreme Beef.counterclaim.holds, "The counterclaim was never substantiated.")
+68. Factual(Supreme Beef.status, "Supreme Beef is not in litigation.")
+69. Causal(Supreme Beef.counterclaim.context, "The claim was accepted without issue.")
+70. Numeric(Supreme Beef.counterclaim.holds, "Legal injury occurred several times.")
+71. Temporal(Supreme Beef.status, "Supreme Beef was last in court in 2021.")
+72. Content(Supreme Beef.reason, "The reason is based on incorrect assumptions.")
+73. Relation(Supreme Beef.claims.type, "The claims are a result of the insurance company's actions.")
+74. violate(Supreme Beef.reason, "The reason is invalid.")
+75. Factual(Supreme Beef.counterclaim.context, "The rejection was due to a lack of documentation.")
+76. Causal(Supreme Beef.counterclaim.holds, "The injury was not a result of negligence.")
+77. Numeric(Supreme Beef.counterclaim.holds, "Legal injury occurred multiple times.")
+78. Temporal(Supreme Beef.status, "Supreme Beef was resolved in 2020.")
+79. Content(Supreme Beef.reason, "The reason is not relevant.")
+80. Relation(Supreme Beef.claims.type, "The claims are not a counterclaim.")
+81. violate(Supreme Beef.counterclaim.holds, "The counterclaim was not filed correctly.")
+82. Factual(Supreme Beef.status, "Supreme Beef is currently under review.")
+83. Causal(Supreme Beef.counterclaim.context, "The claim was rejected due to insufficient evidence
+violate(x0, y0)
+
+Rules:
+1. Q[Supreme Beef.status, Supreme Beef.reason](Supreme Beef.status = "in court" ∧ Supreme Beef.reason = "unpaid taxes" → violate(Supreme Beef.counterclaim.holds, "no legal injury occurred"))
+2. Q[Supreme Beef.source_id, Supreme Beef.source_domain](Supreme Beef.source_id = "Index_1" ∧ Supreme Beef.source_domain = "N/A" → violate(Supreme Beef.reason, "The reason is not valid."))
+3. Q[Supreme Beef.claims.type, Supreme Beef.counterclaim.holds](Supreme Beef.claims.type = "counterclaim" ∧ Supreme Beef.counterclaim.holds = "legal injury occurred" → violate(Supreme Beef.status, "Supreme Beef is settled out of court."))
+4. Q[Supreme Beef.counterclaim.context, Supreme Beef.counterclaim.source_id](Supreme Beef.counterclaim.context = "when insurance company rejected the claim" ∧ Supreme Beef.counterclaim.source_id = "Index_0" → violate(Supreme Beef.reason, "The reason is not applicable."))
+5. Q[Counterclaim.attributes.type, Counterclaim.attributes.reason](Counterclaim.attributes.type = "legal injury" ∧ Counterclaim.attributes.reason = "negligence action" → violate(Supreme Beef.counterclaim.holds, "The counterclaim was never filed."))
+6. Q[Supreme Beef.status, Supreme Beef.reason](Supreme Beef.status = "in court" ∧ Supreme Beef.reason = "unpaid taxes" → violate(Supreme Beef.counterclaim.context, "The rejection was due to fraud."))
+7. Q[Supreme Beef.counterclaim.holds, Supreme Beef.counterclaim.context](Supreme Beef.counterclaim.holds = "legal injury occurred" ∧ Supreme Beef.counterclaim.context = "when insurance company rejected the claim" → violate(Supreme Beef.reason, "The reason is unrelated to taxes."))
+8. Q[Supreme Beef.source_id, Supreme Beef.claims.type](Supreme Beef.source_id = "Index_1" ∧ Supreme Beef.claims.type = "counterclaim" → violate(Supreme Beef.status, "Supreme Beef is not involved in any legal proceedings."))
+9. Q[Supreme Beef.reason, Supreme Beef.counterclaim.holds](Supreme Beef.reason = "unpaid taxes" ∧ Supreme Beef.counterclaim.holds = "legal injury occurred" → violate(Supreme Beef.status, "Supreme Beef was never in court."))
+10. Q[Supreme Beef.counterclaim.context, Supreme Beef.reason](Supreme Beef.counterclaim.context = "when insurance company rejected the claim" ∧ Supreme Beef.reason = "unpaid taxes" → violate(Supreme Beef.counterclaim.holds, "The counterclaim was dismissed."))
+11. Q[Supreme Beef.status, Supreme Beef.counterclaim.holds](Supreme Beef.status = "in court" ∧ Supreme Beef.counterclaim.holds = "legal injury occurred" ∧ Supreme Beef.reason = "unpaid taxes" → violate(Supreme Beef.reason, "The reason is based on incorrect assumptions."))
+12. Q[Supreme Beef.claims.type, Supreme Beef.counterclaim.context](Supreme Beef.claims.type = "counterclaim" ∧ Supreme Beef.counterclaim.context = "when insurance company rejected the claim" → violate(Supreme Beef.status, "Supreme Beef is currently under investigation."))
+13. Q[Supreme Beef.source_domain, Supreme Beef.reason](Supreme Beef.source_domain = "N/A" ∧ Supreme Beef.reason = "unpaid taxes" → violate(Supreme Beef.counterclaim.holds, "Legal injury occurred multiple times."))
+14. Q[Supreme Beef.counterclaim.holds, Supreme Beef.source_id](Supreme Beef.counterclaim.holds = "legal injury occurred" ∧ Supreme Beef.source_id = "Index_0" → violate(Supreme Beef.reason, "The reason is based on a misunderstanding."))
+15. Q[Supreme Beef.status, Supreme Beef.claims.type](Supreme Beef.status = "in court" ∧ Supreme Beef.claims.type = "counterclaim" → violate(Supreme Beef.counterclaim.context, "The claim was accepted without issue."))
+16. Q[Supreme Beef.reason, Supreme Beef.source_domain](Supreme Beef.reason = "unpaid taxes" ∧ Supreme Beef.source_domain = "N/A" → violate(Supreme Beef.status, "Supreme Beef was resolved in 2024."))
+17. Q[Supreme Beef.counterclaim.context, Counterclaim.attributes.reason](Supreme Beef.counterclaim.context = "when insurance company rejected the claim" ∧ Counterclaim.attributes.reason = "negligence action" → violate(Supreme Beef.counterclaim.holds, "The counterclaim was never substantiated."))
+18. Q[Supreme Beef.claims.type, Supreme Beef.counterclaim.holds](Supreme Beef.claims.type = "counterclaim" ∧ Supreme Beef.counterclaim.holds = "legal injury occurred" → violate(Supreme Beef.reason, "The reason is not supported by evidence."))
+19. Q[Supreme Beef.status, Supreme Beef.counterclaim.context](Supreme Beef.status = "in court" ∧ Supreme Beef.counterclaim.context = "when insurance company rejected the claim" → violate(Supreme Beef.reason, "The reason is not relevant."))
+20. Q[Supreme Beef.source_id, Supreme Beef.counterclaim.holds](Supreme Beef.source_id = "Index_1" ∧ Supreme Beef.counterclaim.holds = "legal injury occurred" → violate(Supreme Beef.status, "Supreme Beef is currently under review."))
+21. Q[Supreme Beef.reason, Supreme Beef.claims.type](Supreme Beef.reason = "unpaid taxes" ∧ Supreme Beef.claims.type = "counterclaim" → violate(Supreme Beef.counterclaim.context, "The rejection was based on a different claim."))
+22. Q[Supreme Beef.counterclaim.holds, Supreme Beef.reason](Supreme Beef.counterclaim.holds = "legal injury occurred" ∧ Supreme Beef.reason = "unpaid taxes" → violate(Supreme Beef.status, "Supreme Beef was last in court in 2021."))
+23. Q[Supreme Beef.status, Supreme Beef.source_domain](Supreme Beef.status = "in court" ∧ Supreme Beef.source_domain = "N/A" → violate(Supreme Beef.counterclaim.holds, "The counterclaim was not filed correctly."))
+24. Q[Supreme Beef.claims.type, Supreme Beef.reason](Supreme Beef.claims.type = "counterclaim" ∧ Supreme Beef.reason = "unpaid taxes" → violate(Supreme Beef.counterclaim.context, "The claim was rejected due to lack of evidence."))
+25. Q[Supreme Beef.counterclaim.context, Supreme Beef.source_id](Supreme Beef.counterclaim.context = "when insurance company rejected the claim" ∧ Supreme Beef.source_id = "Index_0" → violate(Supreme Beef.reason, "The reason is based on a different legal principle."))
+26. Q[Supreme Beef.status, Supreme Beef.counterclaim.holds](Supreme Beef.status = "in court" ∧ Supreme Beef

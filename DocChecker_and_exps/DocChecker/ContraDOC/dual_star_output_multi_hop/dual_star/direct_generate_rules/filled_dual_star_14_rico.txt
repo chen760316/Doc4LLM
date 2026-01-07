@@ -1,0 +1,57 @@
+Predicates:
+American Pie.label != "Song"
+American Pie.label != Bob Dylan.label
+American Pie.label != Buddy Holly.label
+American Pie.label != Don McLean.label
+American Pie.label = "Song"
+American Pie.name != "American Pie"
+American Pie.name != Bob Dylan.name
+American Pie.name != Buddy Holly.name
+American Pie.name != Don McLean.name
+American Pie.name = "American Pie"
+American Pie___Bob Dylan.doc_id = "3489738228_5"
+American Pie___Bob Dylan.record_date = "June"
+American Pie___Bob Dylan.record_price = "$1 million"
+American Pie___Bob Dylan.relationship = "Bob Dylan's song 'Like a Rolling Stone' holds the record for a popular music manuscript."
+American Pie___Buddy Holly.doc_id = "3489738228_5"
+American Pie___Buddy Holly.relationship != American Pie___Bob Dylan.relationship
+American Pie___Buddy Holly.relationship = "The opening lines of 'American Pie' were inspired by the death of Buddy Holly."
+American Pie___Don McLean.auction_rank = "3rd highest for American literary manuscript"
+American Pie___Don McLean.doc_id = "3489738228_5"
+American Pie___Don McLean.relationship != American Pie___Bob Dylan.relationship
+American Pie___Don McLean.relationship != American Pie___Buddy Holly.relationship
+American Pie___Don McLean.relationship = "Don McLean sold the manuscript of 'American Pie' at an auction."
+Bob Dylan.label != "Person"
+Bob Dylan.label = "Person"
+Bob Dylan.name != "Bob Dylan"
+Bob Dylan.name = "Bob Dylan"
+Bob Dylan.status != "alive"
+Bob Dylan.status = "alive"
+Buddy Holly.label != "Person"
+Buddy Holly.label = "Person"
+Buddy Holly.name != "Buddy Holly"
+Buddy Holly.name != Bob Dylan.name
+Buddy Holly.name = "Buddy Holly"
+Buddy Holly.status != "deceased"
+Buddy Holly.status != Bob Dylan.status
+Buddy Holly.status = "deceased"
+Don McLean.label != "Person"
+Don McLean.label = "Person"
+Don McLean.name != "Don McLean"
+Don McLean.name != Bob Dylan.name
+Don McLean.name != Buddy Holly.name
+Don McLean.name = "Don McLean"
+None_ML(American Pie.attrs, Don McLean.attrs)
+None_ML(American Pie___Don McLean.attrs, American Pie___Buddy Holly.attrs)
+
+Rules:
+Q[American Pie,American Pie] (American Pie___Don McLean.relationship != American Pie___Bob Dylan.relationship ∧ Bob Dylan.name != "Bob Dylan" → Bob Dylan.name = "Bob Dylan")
+Q[American Pie,American Pie] (American Pie___Bob Dylan.relationship = "Bob Dylan's song 'Like a Rolling Stone' holds the record for a popular music manuscript." ∧ American Pie.name != Bob Dylan.name ∧ Bob Dylan.name = "Bob Dylan" ∧ Don McLean.name = "Don McLean" → Bob Dylan.status = "alive")
+Q[American Pie,American Pie] (Buddy Holly.status = "deceased" ∧ Buddy Holly.status != "deceased" ∧ American Pie___Buddy Holly.doc_id = "3489738228_5" → American Pie.name != Bob Dylan.name)
+Q[American Pie,American Pie] (American Pie.name != Buddy Holly.name ∧ Buddy Holly.status = "deceased" ∧ Don McLean.name != Buddy Holly.name ∧ Bob Dylan.name = "Bob Dylan" ∧ American Pie.name = "American Pie" → American Pie___Don McLean.doc_id = "3489738228_5")
+Q[American Pie,American Pie] (American Pie___Don McLean.auction_rank = "3rd highest for American literary manuscript" ∧ American Pie___Buddy Holly.relationship != American Pie___Bob Dylan.relationship ∧ None_ML(American Pie.attrs, Don McLean.attrs) ∧ Buddy Holly.label = "Person" ∧ Bob Dylan.name != "Bob Dylan" ∧ American Pie___Bob Dylan.relationship = "Bob Dylan's song 'Like a Rolling Stone' holds the record for a popular music manuscript." → Buddy Holly.status = "deceased")
+Q[American Pie,American Pie] (American Pie.label != "Song" ∧ Buddy Holly.status = "deceased" ∧ Bob Dylan.label = "Person" ∧ American Pie.name != Buddy Holly.name ∧ Don McLean.label != "Person" → Bob Dylan.label != "Person")
+Q[American Pie,American Pie] (Don McLean.label != "Person" ∧ None_ML(American Pie.attrs, Don McLean.attrs) ∧ American Pie___Bob Dylan.record_date = "June" ∧ American Pie.name != "American Pie" → American Pie___Don McLean.relationship != American Pie___Bob Dylan.relationship)
+Q[American Pie,American Pie] (American Pie.label != Don McLean.label ∧ None_ML(American Pie.attrs, Don McLean.attrs) → American Pie___Buddy Holly.relationship = "The opening lines of 'American Pie' were inspired by the death of Buddy Holly.")
+Q[American Pie,American Pie] (American Pie___Bob Dylan.record_price = "$1 million" ∧ Bob Dylan.label = "Person" ∧ Bob Dylan.status = "alive" ∧ American Pie.label != Don McLean.label ∧ Don McLean.label = "Person" ∧ American Pie___Bob Dylan.relationship = "Bob Dylan's song 'Like a Rolling Stone' holds the record for a popular music manuscript." → American Pie.name != Don McLean.name)
+Q[American Pie,American Pie] (Bob Dylan.status = "alive" ∧ Buddy Holly.status != "deceased" ∧ American Pie___Buddy Holly.doc_id = "3489738228_5" → None_ML(American Pie.attrs, Don McLean.attrs))

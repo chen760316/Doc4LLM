@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 630)
+S1: A man and a woman walk down a gray stone walkway.
+S2: Two people are walking together.
+
+Predicates:
+1. Man.gender
+2. Woman.gender
+3. Walkway.color
+4. Person.count
+5. Person1.walking_with.Person2
+6. Person1.gender
+7. Person2.gender
+8. Walkway.material
+9. Walkway.location
+10. Walking.action
+11. Two_people.together
+12. Man.walking
+13. Woman.walking
+14. Gray_stone.walkway
+15. Person1.is_a.Man
+16. Person2.is_a.Woman
+17. Walking.together
+18. Two_people.gender_specified
+19. Two_people.gender_unspecified
+20. Man.is_human
+21. Woman.is_human
+22. Walkway.is_outdoor
+23. Walking.is_a_activity
+24. Man.and.Woman.walking
+25. Two_people.is_a_group
+26. Walkway.has_surface
+27. Walking.has_direction
+28. Man.and.Woman.is_a_couple
+29. Two_people.is_not_specified
+30. Walking.is_happening
+
+Rules:
+1. Q[man, Person1.gender, Person2.gender](Person1.is_a.Man == true → Negation(Person1.gender, Person2.gender))
+2. Q[woman, Person1.gender, Person2.gender](Person2.is_a.Woman == true → Negation(Person1.gender, Person2.gender))
+3. Q[walkway, Walkway.color, Walkway.color](Gray_stone.walkway == true → Negation(Walkway.color, Walkway.color))
+4. Q[man, Person.count, Person.count](Person.count == 2 → Negation(Person1.count, Person2.count))
+5. Q[woman, Person1.walking_with.Person2, Person1.walking_with.Person2](Person1.walking_with.Person2 == true → Negation(Person1.walking_with.Person2, Person1.walking_with.Person2))
+6. Q[man, Two_people.gender_specified, Two_people.gender_unspecified](Two_people.gender_specified == true → Negation(Two_people.gender_specified, Two_people.gender_unspecified))
+7. Q[woman, Two_people.gender_specified, Two_people.gender_unspecified](Two_people.gender_unspecified == true → Negation(Two_people.gender_specified, Two_people.gender_unspecified))
+8. Q[walkway, Walkway.material, Walkway.material](Walkway.material == "stone" → Negation(Walkway.material, Walkway.material))
+9. Q[man, Man.walking, Woman.walking](Man.walking == true → Negation(Man.walking, Woman.walking))
+10. Q[woman, Man.walking, Woman.walking](Woman.walking == true → Negation(Man.walking, Woman.walking))
+11. Q[walkway, Walkway.location, Walkway.location](Walkway.location == "outdoor" → Negation(Walkway.location, Walkway.location))
+12. Q[man, Walking.action, Walking.action](Walking.action == "walking" → Negation(Walking.action, Walking.action))
+13. Q[woman, Walking.action, Walking.action](Walking.action == "walking" → Negation(Walking.action, Walking.action))
+14. Q[walkway, Two_people.together, Two_people.together](Two_people.together == true → Negation(Two_people.together, Two_people.together))
+15. Q[man, Person1.is_a.Man, Person2.is_a.Woman](Person1.is_a.Man == true → Negation(Person1.is_a.Man, Person2.is_a.Woman))
+16. Q[woman, Person1.is_a.Man, Person2.is_a.Woman](Person2.is_a.Woman == true → Negation(Person1.is_a.Man, Person2.is_a.Woman))
+17. Q[walkway, Walkway.has_surface, Walkway.has_surface](Walkway.has_surface == true → Negation(Walkway.has_surface, Walkway.has_surface))
+18. Q[man, Walking.together, Walking.together](Walking.together == true → Negation(Walking.together, Walking.together))
+19. Q[woman, Walking.together, Walking.together](Walking.together == true → Negation(Walking.together, Walking.together))
+20. Q[walkway, Walkway.is_outdoor, Walkway.is_outdoor](Walkway.is_outdoor == true → Negation(Walkway.is_outdoor, Walkway.is_outdoor))
+21. Q[man, Two_people.is_a_group, Two_people.is_a_group](Two_people.is_a_group == true → Negation(Two_people.is_a_group, Two_people.is_a_group))
+22. Q[woman, Two_people.is_a_group, Two_people.is_a_group](Two_people.is_a_group == true → Negation(Two_people.is_a_group, Two_people.is_a_group))
+23. Q[walkway, Walking.is_happening, Walking.is_happening](Walking.is_happening == true → Negation(Walking.is_happening, Walking.is_happening))
+24. Q[man, Man.and.Woman.walking, Man.and.Woman.walking](Man.and.Woman.walking == true → Negation(Man.and.Woman.walking, Man.and.Woman.walking))
+25. Q[woman, Man.and.Woman.walking, Man.and.Woman.walking](Man.and.Woman.walking == true → Negation(Man.and.Woman.walking, Man.and.Woman.walking))
+26. Q[walkway, Walkway.color, Walkway.color](Walkway.color == "gray" → Negation(Walkway.color, Walkway.color))
+27. Q[man, Person1.gender, Person2.gender](Person1.gender == "male" → Negation(Person1.gender, Person2.gender))
+28. Q[woman, Person1.gender, Person2.gender](Person2.gender == "female" → Negation(Person1.gender, Person2.gender))
+29. Q[walkway, Walkway.material, Walkway.material](Walkway.material == "gray stone" → Negation(Walkway.material, Walkway.material))
+30. Q[man, Two_people.gender_unspecified, Two_people.gender_specified](Two_people.gender_unspecified == true → Negation(Two_people.gender_unspecified, Two_people.gender_specified))

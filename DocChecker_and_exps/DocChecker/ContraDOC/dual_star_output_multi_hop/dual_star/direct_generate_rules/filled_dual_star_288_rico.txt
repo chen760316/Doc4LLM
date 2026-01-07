@@ -1,0 +1,48 @@
+Predicates:
+None_ML(O'Melveny & Myers.attrs, University of Virginia.attrs)
+None_ML(University of Virginia___Phi Kappa Psi.attrs, University of Virginia___O'Melveny & Myers.attrs)
+O'Melveny & Myers.label != "Law Firm"
+O'Melveny & Myers.label = "Law Firm"
+O'Melveny & Myers.name != "O'Melveny & Myers"
+O'Melveny & Myers.name = "O'Melveny & Myers"
+O'Melveny & Myers.task != "investigation of university's handling of sexual assault allegations"
+O'Melveny & Myers.task = "investigation of university's handling of sexual assault allegations"
+Phi Kappa Psi.label != "Fraternity"
+Phi Kappa Psi.label != O'Melveny & Myers.label
+Phi Kappa Psi.label = "Fraternity"
+Phi Kappa Psi.name != "Phi Kappa Psi"
+Phi Kappa Psi.name != O'Melveny & Myers.name
+Phi Kappa Psi.name = "Phi Kappa Psi"
+Phi Kappa Psi.type != "fraternity"
+Phi Kappa Psi.type = "fraternity"
+University of Virginia.label != "Organization"
+University of Virginia.label != O'Melveny & Myers.label
+University of Virginia.label != Phi Kappa Psi.label
+University of Virginia.label = "Organization"
+University of Virginia.name != "University of Virginia"
+University of Virginia.name != O'Melveny & Myers.name
+University of Virginia.name != Phi Kappa Psi.name
+University of Virginia.name = "University of Virginia"
+University of Virginia.status != "under investigation"
+University of Virginia.status = "under investigation"
+University of Virginia___O'Melveny & Myers.doc_id = "3489825773_7"
+University of Virginia___O'Melveny & Myers.relationship = "The Virginia attorney general requested O'Melveny & Myers to investigate the University of Virginia's handling of sexual assault allegations."
+University of Virginia___O'Melveny & Myers.request_year != 2014
+University of Virginia___O'Melveny & Myers.request_year = 2014
+University of Virginia___Phi Kappa Psi.context = "Flawed article about a purported gang rape"
+University of Virginia___Phi Kappa Psi.doc_id != University of Virginia___O'Melveny & Myers.doc_id
+University of Virginia___Phi Kappa Psi.doc_id = "3489825771_8"
+University of Virginia___Phi Kappa Psi.relationship != University of Virginia___O'Melveny & Myers.relationship
+University of Virginia___Phi Kappa Psi.relationship = "The article published by Rolling Stone caused damage to the reputation of Phi Kappa Psi fraternity and UVA."
+
+Rules:
+Q[University of Virginia,University of Virginia] (Phi Kappa Psi.type != "fraternity" ∧ University of Virginia.name != O'Melveny & Myers.name → Phi Kappa Psi.name != O'Melveny & Myers.name)
+Q[University of Virginia,University of Virginia] (University of Virginia___Phi Kappa Psi.doc_id = "3489825771_8" ∧ University of Virginia___Phi Kappa Psi.relationship != University of Virginia___O'Melveny & Myers.relationship ∧ Phi Kappa Psi.name != O'Melveny & Myers.name → Phi Kappa Psi.label != "Fraternity")
+Q[University of Virginia,University of Virginia] (O'Melveny & Myers.name != "O'Melveny & Myers" ∧ Phi Kappa Psi.name = "Phi Kappa Psi" ∧ University of Virginia___Phi Kappa Psi.relationship = "The article published by Rolling Stone caused damage to the reputation of Phi Kappa Psi fraternity and UVA." ∧ University of Virginia___Phi Kappa Psi.relationship != University of Virginia___O'Melveny & Myers.relationship ∧ Phi Kappa Psi.label != O'Melveny & Myers.label ∧ O'Melveny & Myers.label = "Law Firm" → University of Virginia.label != Phi Kappa Psi.label)
+Q[University of Virginia,University of Virginia] (University of Virginia___Phi Kappa Psi.doc_id = "3489825771_8" ∧ Phi Kappa Psi.label != O'Melveny & Myers.label ∧ University of Virginia.name != "University of Virginia" ∧ None_ML(University of Virginia___Phi Kappa Psi.attrs, University of Virginia___O'Melveny & Myers.attrs) → Phi Kappa Psi.type = "fraternity")
+Q[University of Virginia,University of Virginia] (University of Virginia.label != O'Melveny & Myers.label ∧ Phi Kappa Psi.name != "Phi Kappa Psi" ∧ O'Melveny & Myers.label = "Law Firm" ∧ University of Virginia___Phi Kappa Psi.context = "Flawed article about a purported gang rape" ∧ None_ML(University of Virginia___Phi Kappa Psi.attrs, University of Virginia___O'Melveny & Myers.attrs) → University of Virginia.name != "University of Virginia")
+Q[University of Virginia,University of Virginia] (University of Virginia___Phi Kappa Psi.context = "Flawed article about a purported gang rape" ∧ Phi Kappa Psi.type != "fraternity" ∧ O'Melveny & Myers.label = "Law Firm" ∧ University of Virginia___Phi Kappa Psi.relationship != University of Virginia___O'Melveny & Myers.relationship → O'Melveny & Myers.task != "investigation of university's handling of sexual assault allegations")
+Q[University of Virginia,University of Virginia] (University of Virginia.name != "University of Virginia" ∧ University of Virginia.name = "University of Virginia" ∧ University of Virginia.label != "Organization" ∧ Phi Kappa Psi.type != "fraternity" ∧ Phi Kappa Psi.type = "fraternity" ∧ None_ML(University of Virginia___Phi Kappa Psi.attrs, University of Virginia___O'Melveny & Myers.attrs) → O'Melveny & Myers.name = "O'Melveny & Myers")
+Q[University of Virginia,University of Virginia] (O'Melveny & Myers.label != "Law Firm" ∧ University of Virginia.name != O'Melveny & Myers.name → University of Virginia.label != O'Melveny & Myers.label)
+Q[University of Virginia,University of Virginia] (University of Virginia___Phi Kappa Psi.context = "Flawed article about a purported gang rape" ∧ O'Melveny & Myers.label = "Law Firm" ∧ University of Virginia.status = "under investigation" → Phi Kappa Psi.name = "Phi Kappa Psi")
+Q[University of Virginia,University of Virginia] (None_ML(University of Virginia___Phi Kappa Psi.attrs, University of Virginia___O'Melveny & Myers.attrs) ∧ University of Virginia___O'Melveny & Myers.request_year = 2014 ∧ O'Melveny & Myers.name != "O'Melveny & Myers" ∧ O'Melveny & Myers.name = "O'Melveny & Myers" ∧ University of Virginia.status != "under investigation" → University of Virginia___Phi Kappa Psi.doc_id = "3489825771_8")

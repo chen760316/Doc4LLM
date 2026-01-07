@@ -1,0 +1,34 @@
+Predicates:
+None_ML(executions.attrs, long-term trend.attrs)
+executions.change != "decrease"
+executions.change = "decrease"
+executions.label != "Execution"
+executions.label = "Execution"
+executions.location != "worldwide"
+executions.location = "worldwide"
+executions.name != "executions"
+executions.name = "executions"
+long-term trend.label != "Trend"
+long-term trend.label != executions.label
+long-term trend.label = "Trend"
+long-term trend.name != "long-term trend"
+long-term trend.name != executions.name
+long-term trend.name = "long-term trend"
+long-term trend.status != "positive"
+long-term trend.status = "positive"
+long-term trend___executions.contradiction_type = "Causal"
+long-term trend___executions.relationship = "The long-term trend indicates a decrease in the number of executions worldwide."
+long-term trend___executions.source_id = "3489738278_6"
+long-term trend___executions.time = "long-term"
+
+Rules:
+Q[long-term trend,long-term trend] (executions.location != "worldwide" ∧ long-term trend___executions.contradiction_type = "Causal" ∧ long-term trend___executions.relationship = "The long-term trend indicates a decrease in the number of executions worldwide." → long-term trend.label = "Trend")
+Q[long-term trend,long-term trend] (executions.change = "decrease" ∧ executions.label != "Execution" ∧ long-term trend.status != "positive" ∧ long-term trend.status = "positive" → executions.label = "Execution")
+Q[long-term trend,long-term trend] (executions.label != "Execution" ∧ long-term trend___executions.relationship = "The long-term trend indicates a decrease in the number of executions worldwide." ∧ long-term trend.status = "positive" ∧ long-term trend.status != "positive" ∧ executions.name = "executions" ∧ long-term trend.label = "Trend" → long-term trend___executions.source_id = "3489738278_6")
+Q[long-term trend,long-term trend] (long-term trend.label = "Trend" ∧ executions.location != "worldwide" ∧ executions.label != "Execution" ∧ executions.label = "Execution" ∧ None_ML(executions.attrs, long-term trend.attrs) → executions.location = "worldwide")
+Q[long-term trend,long-term trend] (long-term trend.label != "Trend" ∧ executions.location != "worldwide" → long-term trend.name = "long-term trend")
+Q[long-term trend,long-term trend] (executions.change != "decrease" ∧ executions.location = "worldwide" ∧ long-term trend___executions.source_id = "3489738278_6" → long-term trend.status = "positive")
+Q[long-term trend,long-term trend] (long-term trend.name = "long-term trend" ∧ long-term trend.status = "positive" ∧ long-term trend.label != "Trend" ∧ executions.label = "Execution" ∧ long-term trend.name != "long-term trend" → executions.label != "Execution")
+Q[long-term trend,long-term trend] (executions.change = "decrease" ∧ executions.name != "executions" ∧ long-term trend.name != "long-term trend" ∧ executions.change != "decrease" ∧ long-term trend___executions.contradiction_type = "Causal" ∧ long-term trend.status = "positive" → long-term trend.name != executions.name)
+Q[long-term trend,long-term trend] (long-term trend.label != "Trend" ∧ executions.label != "Execution" ∧ executions.name = "executions" ∧ executions.name != "executions" → long-term trend.name != "long-term trend")
+Q[long-term trend,long-term trend] (long-term trend___executions.time = "long-term" ∧ executions.change != "decrease" → executions.name = "executions")

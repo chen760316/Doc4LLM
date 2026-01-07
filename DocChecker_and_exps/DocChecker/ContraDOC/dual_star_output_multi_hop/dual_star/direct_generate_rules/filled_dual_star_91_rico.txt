@@ -1,0 +1,59 @@
+Predicates:
+Fletcher Gyles.label != "Person"
+Fletcher Gyles.label != Matthew Hale's Pleas of the Crown.label
+Fletcher Gyles.label != Public Good.label
+Fletcher Gyles.label != Statute of Anne.label
+Fletcher Gyles.label = "Person"
+Fletcher Gyles.name != "Fletcher Gyles"
+Fletcher Gyles.name != Matthew Hale's Pleas of the Crown.name
+Fletcher Gyles.name != Public Good.name
+Fletcher Gyles.name != Statute of Anne.name
+Fletcher Gyles.name = "Fletcher Gyles"
+Fletcher Gyles.nationality != "English"
+Fletcher Gyles.nationality = "English"
+Fletcher Gyles.occupation != "Bookseller"
+Fletcher Gyles.occupation = "Bookseller"
+Fletcher Gyles___Matthew Hale's Pleas of the Crown.doc_id = "wiki_train_29256"
+Fletcher Gyles___Matthew Hale's Pleas of the Crown.relationship != Fletcher Gyles___Public Good.relationship
+Fletcher Gyles___Matthew Hale's Pleas of the Crown.relationship != Fletcher Gyles___Statute of Anne.relationship
+Fletcher Gyles___Matthew Hale's Pleas of the Crown.relationship = "Fletcher Gyles published the book Matthew Hale's Pleas of the Crown."
+Fletcher Gyles___Public Good.doc_id = "wiki_train_29256"
+Fletcher Gyles___Public Good.relationship = "Gyles' case contributed to the interpretation of copyright law as serving the public good."
+Fletcher Gyles___Statute of Anne.claim = "Infringement of publishing rights"
+Fletcher Gyles___Statute of Anne.doc_id = "wiki_train_29256"
+Fletcher Gyles___Statute of Anne.relationship != Fletcher Gyles___Public Good.relationship
+Fletcher Gyles___Statute of Anne.relationship = "Gyles claimed his rights under the Statute of Anne were infringed."
+Matthew Hale's Pleas of the Crown.label != "Book"
+Matthew Hale's Pleas of the Crown.label != Public Good.label
+Matthew Hale's Pleas of the Crown.label != Statute of Anne.label
+Matthew Hale's Pleas of the Crown.label = "Book"
+Matthew Hale's Pleas of the Crown.name != "Matthew Hale's Pleas of the Crown"
+Matthew Hale's Pleas of the Crown.name != Public Good.name
+Matthew Hale's Pleas of the Crown.name != Statute of Anne.name
+Matthew Hale's Pleas of the Crown.name = "Matthew Hale's Pleas of the Crown"
+Matthew Hale's Pleas of the Crown.rights != "Exclusive publishing rights"
+Matthew Hale's Pleas of the Crown.rights = "Exclusive publishing rights"
+None_ML(Fletcher Gyles___Matthew Hale's Pleas of the Crown.attrs, Fletcher Gyles___Public Good.attrs)
+None_ML(Statute of Anne.attrs, Matthew Hale's Pleas of the Crown.attrs)
+Public Good.label != "Legal Concept"
+Public Good.label = "Legal Concept"
+Public Good.name != "Public Good"
+Public Good.name = "Public Good"
+Statute of Anne.label != "Legal Document"
+Statute of Anne.label != Public Good.label
+Statute of Anne.label = "Legal Document"
+Statute of Anne.name != "Statute of Anne"
+Statute of Anne.name != Public Good.name
+Statute of Anne.name = "Statute of Anne"
+
+Rules:
+Q[Fletcher Gyles,Fletcher Gyles] (Matthew Hale's Pleas of the Crown.rights != "Exclusive publishing rights" ∧ Fletcher Gyles.name = "Fletcher Gyles" → Fletcher Gyles.occupation = "Bookseller")
+Q[Fletcher Gyles,Fletcher Gyles] (Fletcher Gyles.label != Statute of Anne.label ∧ Fletcher Gyles.label != Public Good.label ∧ None_ML(Statute of Anne.attrs, Matthew Hale's Pleas of the Crown.attrs) ∧ Fletcher Gyles.occupation != "Bookseller" ∧ Matthew Hale's Pleas of the Crown.rights != "Exclusive publishing rights" → Statute of Anne.name != "Statute of Anne")
+Q[Fletcher Gyles,Fletcher Gyles] (Fletcher Gyles___Public Good.doc_id = "wiki_train_29256" ∧ Matthew Hale's Pleas of the Crown.label != Public Good.label ∧ Fletcher Gyles.label = "Person" ∧ Fletcher Gyles___Public Good.relationship = "Gyles' case contributed to the interpretation of copyright law as serving the public good." ∧ Fletcher Gyles___Statute of Anne.relationship != Fletcher Gyles___Public Good.relationship ∧ Fletcher Gyles.name != Public Good.name → Fletcher Gyles___Matthew Hale's Pleas of the Crown.relationship = "Fletcher Gyles published the book Matthew Hale's Pleas of the Crown.")
+Q[Fletcher Gyles,Fletcher Gyles] (Fletcher Gyles.occupation != "Bookseller" ∧ Public Good.label != "Legal Concept" ∧ Fletcher Gyles.name != Matthew Hale's Pleas of the Crown.name ∧ Public Good.name != "Public Good" → Matthew Hale's Pleas of the Crown.label != "Book")
+Q[Fletcher Gyles,Fletcher Gyles] (Statute of Anne.label != "Legal Document" ∧ Fletcher Gyles.label != Matthew Hale's Pleas of the Crown.label ∧ Fletcher Gyles___Statute of Anne.claim = "Infringement of publishing rights" → Statute of Anne.label != Public Good.label)
+Q[Fletcher Gyles,Fletcher Gyles] (Fletcher Gyles___Public Good.relationship = "Gyles' case contributed to the interpretation of copyright law as serving the public good." ∧ Fletcher Gyles.nationality = "English" ∧ Fletcher Gyles___Statute of Anne.relationship != Fletcher Gyles___Public Good.relationship ∧ Fletcher Gyles___Statute of Anne.relationship = "Gyles claimed his rights under the Statute of Anne were infringed." ∧ Fletcher Gyles___Public Good.doc_id = "wiki_train_29256" ∧ Matthew Hale's Pleas of the Crown.rights != "Exclusive publishing rights" → Matthew Hale's Pleas of the Crown.label != Public Good.label)
+Q[Fletcher Gyles,Fletcher Gyles] (Fletcher Gyles.name = "Fletcher Gyles" ∧ Fletcher Gyles.name != Statute of Anne.name ∧ Fletcher Gyles.label != Matthew Hale's Pleas of the Crown.label → Fletcher Gyles.nationality = "English")
+Q[Fletcher Gyles,Fletcher Gyles] (Fletcher Gyles___Statute of Anne.relationship != Fletcher Gyles___Public Good.relationship ∧ Fletcher Gyles___Statute of Anne.relationship = "Gyles claimed his rights under the Statute of Anne were infringed." ∧ Matthew Hale's Pleas of the Crown.name != "Matthew Hale's Pleas of the Crown" ∧ Matthew Hale's Pleas of the Crown.name != Statute of Anne.name ∧ Statute of Anne.label != Public Good.label → Fletcher Gyles___Matthew Hale's Pleas of the Crown.doc_id = "wiki_train_29256")
+Q[Fletcher Gyles,Fletcher Gyles] (Public Good.name = "Public Good" ∧ Fletcher Gyles___Statute of Anne.doc_id = "wiki_train_29256" → Fletcher Gyles.label = "Person")
+Q[Fletcher Gyles,Fletcher Gyles] (Matthew Hale's Pleas of the Crown.label = "Book" ∧ Statute of Anne.label != "Legal Document" ∧ Fletcher Gyles___Matthew Hale's Pleas of the Crown.relationship = "Fletcher Gyles published the book Matthew Hale's Pleas of the Crown." ∧ Matthew Hale's Pleas of the Crown.rights != "Exclusive publishing rights" → Fletcher Gyles___Public Good.doc_id = "wiki_train_29256")

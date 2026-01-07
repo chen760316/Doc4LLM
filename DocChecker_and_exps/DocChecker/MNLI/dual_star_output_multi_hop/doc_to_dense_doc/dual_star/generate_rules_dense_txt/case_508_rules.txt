@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 508)
+S1: T h e C e n t r e i s l o c a t e d f a r f r o m H i g h g a t e , o n a c o u n t r y r o a d w i t h n o o t h e r b u i l d i n g s i n s i g h t .
+S2: T h e C e n t r e s i t s j u s t b a c k f r o m H i g h g a t e , o n t h e s a m e s t r e e t w i t h t h e T o u r i s t I n f o r m a t i o n C e n t r e .
+
+Predicates:
+1. Centre.location = far_from(Highgate)
+2. Centre.location = just_back_from(Highgate)
+3. Centre.street = same_street(Tourist_Information_Centre)
+4. Tourist_Information_Centre.street = same_street(Centre)
+5. Centre.visibility = no_other_buildings_in_sight
+6. Centre.visibility = other_buildings_in_sight
+7. M_NLI(S1, S2)
+8. Relation(Centre, Highgate)
+9. violate(Centre, Highgate)
+10. Centre.situation = located_on(country_road)
+11. Centre.situation = situated_on(same_street)
+12. Highgate.distance_to_Centre = far
+13. Highgate.distance_to_Centre = near
+14. Centre.accessibility = difficult
+15. Centre.accessibility = easy
+16. Centre.proximity_to(Tourist_Information_Centre) = close
+17. Centre.proximity_to(Tourist_Information_Centre) = far
+18. Centre.environment = rural
+19. Centre.environment = urban
+20. Centre.building_count = zero
+21. Centre.building_count = one
+22. Centre.visibility_condition = unobstructed
+23. Centre.visibility_condition = obstructed
+24. Centre.location_description = isolated
+25. Centre.location_description = adjacent
+26. Centre.relation_to(Highgate) = distant
+27. Centre.relation_to(Highgate) = nearby
+28. Centre.street_type = country_road
+29. Centre.street_type = urban_street
+30. Centre.accessibility_condition = remote
+
+Rules:
+1. Q[Anchor, x0, y0](Centre.location == far_from(Highgate) → Relation(Centre, Highgate))
+2. Q[Anchor, x0, y0](Centre.location == just_back_from(Highgate) → violate(Centre, Highgate))
+3. Q[Anchor, x0, y0](Centre.street == same_street(Tourist_Information_Centre) → Relation(Centre, Tourist_Information_Centre))
+4. Q[Anchor, x0, y0](Centre.visibility == no_other_buildings_in_sight → Centre.building_count == zero)
+5. Q[Anchor, x0, y0](Centre.visibility == other_buildings_in_sight → Centre.building_count == one)
+6. Q[Anchor, x0, y0](Centre.situation == located_on(country_road) → Centre.environment == rural)
+7. Q[Anchor, x0, y0](Centre.situation == situated_on(same_street) → Centre.accessibility == easy)
+8. Q[Anchor, x0, y0](Highgate.distance_to_Centre == far → Centre.relation_to(Highgate) == distant)
+9. Q[Anchor, x0, y0](Highgate.distance_to_Centre == near → Centre.relation_to(Highgate) == nearby)
+10. Q[Anchor, x0, y0](Centre.accessibility == difficult → Centre.accessibility_condition == remote)
+11. Q[Anchor, x0, y0](Centre.accessibility == easy → Centre.accessibility_condition == accessible)
+12. Q[Anchor, x0, y0](Centre.environment == rural → Centre.location_description == isolated)
+13. Q[Anchor, x0, y0](Centre.environment == urban → Centre.location_description == adjacent)
+14. Q[Anchor, x0, y0](Centre.proximity_to(Tourist_Information_Centre) == close → Centre.visibility_condition == unobstructed)
+15. Q[Anchor, x0, y0](Centre.proximity_to(Tourist_Information_Centre) == far → Centre.visibility_condition == obstructed)
+16. Q[Anchor, x0, y0](Centre.location == far_from(Highgate) ∧ Centre.location == just_back_from(Highgate) → violate(Centre, Highgate))
+17. Q[Anchor, x0, y0](Centre.street_type == country_road → Centre.situation == located_on(country_road))
+18. Q[Anchor, x0, y0](Centre.street_type == urban_street → Centre.situation == situated_on(same_street))
+19. Q[Anchor, x0, y0](Centre.visibility_condition == unobstructed ∧ Centre.visibility == no_other_buildings_in_sight → Centre.building_count == zero)
+20. Q[Anchor, x0, y0](Centre.visibility_condition == obstructed ∧ Centre.visibility == other_buildings_in_sight → Centre.building_count == one)
+21. Q[Anchor, x0, y0](Centre.location_description == isolated → Centre.visibility == no_other_buildings_in_sight)
+22. Q[Anchor, x0, y0](Centre.location_description == adjacent → Centre.visibility == other_buildings_in_sight)
+23. Q[Anchor, x0, y0](Centre.relation_to(Highgate) == distant → Highgate.distance_to_Centre == far)
+24. Q[Anchor, x0, y0](Centre.relation_to(Highgate) == nearby → Highgate.distance_to_Centre == near)
+25. Q[Anchor, x0, y0](Centre.accessibility_condition == remote → Centre.accessibility == difficult)
+26. Q[Anchor, x0, y0](Centre.accessibility_condition == accessible → Centre.accessibility == easy)
+27. Q[Anchor, x0, y0](Centre.street == same_street(Tourist_Information_Centre) → Centre.proximity_to(Tourist_Information_Centre) == close)
+28. Q[Anchor, x0, y0](Centre.street == same_street(Tourist_Information_Centre) ∧ Centre.location == far_from(Highgate) → violate(Centre, Highgate))
+29. Q[Anchor, x0, y0](Centre.location == just_back_from(Highgate) ∧ Centre.street == same_street(Tourist_Information_Centre) → Relation(Centre, Highgate))
+30. Q[Anchor, x0, y0](Centre.visibility == no_other_buildings_in_sight ∧ Centre.location == far_from(Highgate) → violate(Centre, Highgate))

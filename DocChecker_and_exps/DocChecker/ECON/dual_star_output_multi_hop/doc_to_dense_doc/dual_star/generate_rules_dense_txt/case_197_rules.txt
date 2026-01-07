@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 197)
+S1: The Daytona 500 is 500 miles
+S2: The Daytona 500 is a 50-mile sprint race.
+
+Predicates:
+1. Daytona_500.distance
+2. Daytona_500.type
+3. Daytona_500.distance.500_miles
+4. Daytona_500.distance.50_miles
+5. M_NLI(S1, S2)
+6. Factual(Daytona_500.distance, 500_miles)
+7. Factual(Daytona_500.distance, 50_miles)
+8. violate(Daytona_500.distance.500_miles, Daytona_500.distance.50_miles)
+9. Daytona_500.is_a.race
+10. Daytona_500.is_a.sprint_race
+11. Daytona_500.length
+12. Daytona_500.length.500_miles
+13. Daytona_500.length.50_miles
+14. Daytona_500.event_type
+15. Daytona_500.event_type.auto_race
+16. Daytona_500.event_type.sprint_race
+17. Daytona_500.location
+18. Daytona_500.location.Daytona
+19. Daytona_500.year
+20. Daytona_500.year.2023
+21. Daytona_500.participants
+22. Daytona_500.participants.cars
+23. Daytona_500.duration
+24. Daytona_500.duration.approximately_3_hours
+25. Daytona_500.popularity
+26. Daytona_500.popularity.high
+27. Daytona_500.history
+28. Daytona_500.history.established_1959
+29. Daytona_500.sanctioning_body
+30. Daytona_500.sanctioning_body.NASCAR
+
+Rules:
+1. Q[The, Daytona_500.distance, 500_miles](Daytona_500.distance == 500_miles → Factual(Daytona_500.distance, 500_miles))
+2. Q[The, Daytona_500.distance, 50_miles](Daytona_500.distance == 50_miles → Factual(Daytona_500.distance, 50_miles))
+3. Q[The, Daytona_500.type, auto_race](Daytona_500.type == auto_race → Factual(Daytona_500.type, auto_race))
+4. Q[The, Daytona_500.type, sprint_race](Daytona_500.type == sprint_race → Factual(Daytona_500.type, sprint_race))
+5. Q[The, Daytona_500.length, 500_miles](Daytona_500.length == 500_miles → Factual(Daytona_500.length, 500_miles))
+6. Q[The, Daytona_500.length, 50_miles](Daytona_500.length == 50_miles → Factual(Daytona_500.length, 50_miles))
+7. Q[The, Daytona_500.distance.500_miles, Daytona_500.distance.50_miles](Daytona_500.distance.500_miles == true ∧ Daytona_500.distance.50_miles == true → violate(Daytona_500.distance.500_miles, Daytona_500.distance.50_miles))
+8. Q[The, Daytona_500.is_a.race, Daytona_500.is_a.sprint_race](Daytona_500.is_a.race == true ∧ Daytona_500.is_a.sprint_race == true → violate(Daytona_500.is_a.race, Daytona_500.is_a.sprint_race))
+9. Q[The, Daytona_500.event_type, auto_race](Daytona_500.event_type == auto_race → Factual(Daytona_500.event_type, auto_race))
+10. Q[The, Daytona_500.event_type, sprint_race](Daytona_500.event_type == sprint_race → Factual(Daytona_500.event_type, sprint_race))
+11. Q[The, Daytona_500.distance, Daytona_500.length](Daytona_500.distance == Daytona_500.length → Factual(Daytona_500.distance, Daytona_500.length))
+12. Q[The, Daytona_500.distance.500_miles, Daytona_500.length.500_miles](Daytona_500.distance.500_miles == true → Factual(Daytona_500.distance, 500_miles))
+13. Q[The, Daytona_500.distance.50_miles, Daytona_500.length.50_miles](Daytona_500.distance.50_miles == true → Factual(Daytona_500.distance, 50_miles))
+14. Q[The, Daytona_500.distance, Daytona_500.type](Daytona_500.distance == 500_miles ∧ Daytona_500.type == sprint_race → violate(Daytona_500.distance, Daytona_500.type))
+15. Q[The, Daytona_500.distance, Daytona_500.event_type](Daytona_500.distance == 500_miles ∧ Daytona_500.event_type == sprint_race → violate(Daytona_500.distance, Daytona_500.event_type))
+16. Q[The, Daytona_500.length, Daytona_500.type](Daytona_500.length == 500_miles ∧ Daytona_500.type == sprint_race → violate(Daytona_500.length, Daytona_500.type))
+17. Q[The, Daytona_500.length, Daytona_500.event_type](Daytona_500.length == 500_miles ∧ Daytona_500.event_type == sprint_race → violate(Daytona_500.length, Daytona_500.event_type))
+18. Q[The, Daytona_500.distance.500_miles, Daytona_500.distance.50_miles](Daytona_500.distance.500_miles == true ∧ Daytona_500.distance.50_miles == true → Factual(Daytona_500.distance, 500_miles))
+19. Q[The, Daytona_500.distance.50_miles, Daytona_500.distance.500_miles](Daytona_500.distance.50_miles == true ∧ Daytona_500.distance.500_miles == true → Factual(Daytona_500.distance, 50_miles))
+20. Q[The, Daytona_500.distance, Daytona_500.duration](Daytona_500.distance == 500_miles ∧ Daytona_500.duration == approximately_3_hours → violate(Daytona_500.distance, Daytona_500.duration))
+21. Q[The, Daytona_500.distance, Daytona_500.popularity](Daytona_500.distance == 500_miles ∧ Daytona_500.popularity == high → violate(Daytona_500.distance, Daytona_500.popularity))
+22. Q[The, Daytona_500.distance, Daytona_500.history](Daytona_500.distance == 500_miles ∧ Daytona_500.history == established_1959 → violate(Daytona_500.distance, Daytona_500.history))
+23. Q[The, Daytona_500.distance, Daytona_500.sanctioning_body](Daytona_500.distance == 500_miles ∧ Daytona_500.sanctioning_body == NASCAR → violate(Daytona_500.distance, Daytona_500.sanctioning_body))
+24. Q[The, Daytona_500.distance, Daytona_500.participants](Daytona_500.distance == 500_miles ∧ Daytona_500.participants == cars → violate(Daytona_500.distance, Daytona_500.participants))
+25. Q[The, Daytona_500.distance, Daytona_500.year](Daytona_500.distance == 500_miles ∧ Daytona_500.year == 2023 → violate(Daytona_500.distance, Daytona_500.year))
+26. Q[The, Daytona_500.distance, Daytona_500.location](Daytona_500.distance == 500_miles ∧ Daytona_500.location == Daytona → violate(Daytona_500.distance, Daytona_500.location))
+27. Q[The, Daytona_500.distance, Daytona_500.duration.approximately_3_hours](Daytona_500.distance == 500_miles ∧ Daytona_500.duration.approximately_3_hours == true → violate(Daytona_500.distance, Daytona_500.duration.approximately_3_hours))
+28. Q[The, Daytona_500.distance, Daytona_500.popularity.high](Daytona_500.distance == 500_miles ∧ Daytona_500.popularity.high == true → violate(Daytona_500.distance, Daytona_500.popularity.high))
+29. Q[The, Daytona_500.distance, Daytona_500.history.established_1959](Daytona_500.distance == 500_miles ∧ Daytona_500.history.established_1959 == true → violate(Daytona_500.distance, Daytona_500.history.established_1959))
+30. Q[The, Daytona_500.distance,

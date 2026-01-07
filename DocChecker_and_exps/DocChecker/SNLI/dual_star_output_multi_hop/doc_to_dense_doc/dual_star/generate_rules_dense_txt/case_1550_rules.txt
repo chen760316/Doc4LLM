@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 1550)
+S1: There is only 1 person sitting.
+S2: Many people sit at a table drinking and looking at the camera.
+
+Predicates:
+1. Person.sitting
+2. Person.count(1)
+3. People.count(many)
+4. Table.drinking
+5. Table.looking_at_camera
+6. Person.is_present
+7. Person.sitting_at_table
+8. Camera.is_present
+9. Person.drinking
+10. Person.is_looking_at_camera
+11. Relationship.sitting_at("Table")
+12. Relationship.drinking_at("Table")
+13. Relationship.looking_at("Camera")
+14. Entity.count(1)
+15. Entity.count(many)
+16. Meta.M_NLI(S1, S2)
+17. Meta.Numeric(1, many)
+18. Meta.violate(1, many)
+19. Person.is_only_one
+20. People.is_many
+21. Table.has_people
+22. Camera.is_active
+23. Person.is_not_alone
+24. Person.is_in_group
+25. Group.count(many)
+26. Group.is_at_table
+27. Group.is_drinking
+28. Group.is_looking_at_camera
+29. Person.is_not_drinking
+30. Person.is_not_looking_at_camera
+
+Rules:
+1. Q[There, Person.count(1), People.count(many)](Person.count(1) → Numeric(1, many))
+2. Q[There, Person.is_only_one, People.is_many](Person.is_only_one → Numeric(1, many))
+3. Q[There, Person.sitting, People.count(many)](Person.sitting → Numeric(1, many))
+4. Q[There, Person.is_present, People.is_many](Person.is_present → Numeric(1, many))
+5. Q[There, Person.sitting_at_table, Group.is_at_table](Person.sitting_at_table → Numeric(1, many))
+6. Q[There, Person.is_not_alone, People.is_many](Person.is_not_alone → Numeric(1, many))
+7. Q[There, Person.is_in_group, Group.count(many)](Person.is_in_group → Numeric(1, many))
+8. Q[There, Person.drinking, Group.is_drinking](Person.drinking → Numeric(1, many))
+9. Q[There, Person.looking_at_camera, Group.is_looking_at_camera](Person.looking_at_camera → Numeric(1, many))
+10. Q[There, Person.count(1), Group.count(many)](Person.count(1) → Numeric(1, many))
+11. Q[There, Person.is_present, Person.count(1)](Person.is_present → Numeric(1, many))
+12. Q[There, Person.sitting, Group.count(many)](Person.sitting → Numeric(1, many))
+13. Q[There, Person.is_only_one, Group.is_at_table](Person.is_only_one → Numeric(1, many))
+14. Q[There, Person.is_not_drinking, Group.is_drinking](Person.is_not_drinking → Numeric(1, many))
+15. Q[There, Person.is_not_looking_at_camera, Group.is_looking_at_camera](Person.is_not_looking_at_camera → Numeric(1, many))
+16. Q[There, Person.count(1), Table.has_people](Person.count(1) → Numeric(1, many))
+17. Q[There, Person.sitting, Table.drinking](Person.sitting → Numeric(1, many))
+18. Q[There, Person.is_present, Table.looking_at_camera](Person.is_present → Numeric(1, many))
+19. Q[There, Person.is_only_one, Table.has_people](Person.is_only_one → Numeric(1, many))
+20. Q[There, Person.is_in_group, Table.drinking](Person.is_in_group → Numeric(1, many))
+21. Q[There, Person.is_not_alone, Table.looking_at_camera](Person.is_not_alone → Numeric(1, many))
+22. Q[There, Person.sitting_at_table, Table.has_people](Person.sitting_at_table → Numeric(1, many))
+23. Q[There, Person.drinking, Table.drinking](Person.drinking → Numeric(1, many))
+24. Q[There, Person.looking_at_camera, Table.looking_at_camera](Person.looking_at_camera → Numeric(1, many))
+25. Q[There, Person.is_only_one, Person.is_present](Person.is_only_one → Numeric(1, many))
+26. Q[There, Person.is_in_group, Person.is_present](Person.is_in_group → Numeric(1, many))
+27. Q[There, Person.is_not_drinking, Person.is_present](Person.is_not_drinking → Numeric(1, many))
+28. Q[There, Person.is_not_looking_at_camera, Person.is_present](Person.is_not_looking_at_camera → Numeric(1, many))
+29. Q[There, Person.count(1), Person.is_present](Person.count(1) → Numeric(1, many))
+30. Q[There, Person.sitting, Person.is_present](Person.sitting → Numeric(1, many))

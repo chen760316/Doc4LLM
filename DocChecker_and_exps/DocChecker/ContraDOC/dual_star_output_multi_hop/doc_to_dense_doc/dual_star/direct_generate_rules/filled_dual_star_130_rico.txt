@@ -1,0 +1,50 @@
+Predicates:
+None_ML(he.attrs, tiger.attrs)
+None_ML(princess___tiger.attrs, princess___he.attrs)
+he.label != "Person"
+he.label = "Person"
+he.name != "he"
+he.name = "he"
+he.status != "layman"
+he.status = "layman"
+he.time != "before 1158"
+he.time = "before 1158"
+princess.label != "Character"
+princess.label != he.label
+princess.label = "Character"
+princess.name != "princess"
+princess.name != he.name
+princess.name != tiger.name
+princess.name = "princess"
+princess.role != "discreet"
+princess.role = "discreet"
+princess___he.action = "indicates"
+princess___he.contradiction_type = "Causal"
+princess___he.direction = "right"
+princess___he.relationship = "The princess discreetly indicates the door on the right to him."
+princess___he.source_id = "3488771907_3"
+princess___tiger.contradiction_type = "Causal"
+princess___tiger.relationship != princess___he.relationship
+princess___tiger.relationship = "The princess has learned the position of the tiger behind a door using her influence."
+princess___tiger.source_id = "3488771907_3"
+tiger.label != "Character"
+tiger.label != he.label
+tiger.label = "Character"
+tiger.name != "tiger"
+tiger.name != he.name
+tiger.name = "tiger"
+tiger.status != "behind a door"
+tiger.status != he.status
+tiger.status = "behind a door"
+
+Rules:
+Q[princess,princess] (princess___tiger.relationship != princess___he.relationship ∧ princess.role != "discreet" ∧ he.label = "Person" → tiger.name != he.name)
+Q[princess,princess] (princess___tiger.relationship = "The princess has learned the position of the tiger behind a door using her influence." ∧ princess.name = "princess" → he.status != "layman")
+Q[princess,princess] (princess___tiger.relationship != princess___he.relationship ∧ he.time = "before 1158" ∧ he.name = "he" ∧ he.time != "before 1158" → princess.name != tiger.name)
+Q[princess,princess] (tiger.name = "tiger" ∧ princess___he.action = "indicates" ∧ he.label = "Person" ∧ princess.name = "princess" ∧ he.status != "layman" → he.name = "he")
+Q[princess,princess] (tiger.status = "behind a door" ∧ princess.role = "discreet" ∧ he.label = "Person" ∧ princess___tiger.source_id = "3488771907_3" ∧ he.time != "before 1158" ∧ he.label != "Person" → he.time = "before 1158")
+Q[princess,princess] (he.time != "before 1158" ∧ princess.name != tiger.name → he.label != "Person")
+Q[princess,princess] (tiger.label != he.label ∧ princess___tiger.relationship != princess___he.relationship ∧ princess___he.action = "indicates" → princess___he.direction = "right")
+Q[princess,princess] (princess.label = "Character" ∧ princess.role = "discreet" ∧ he.time = "before 1158" ∧ tiger.name != he.name ∧ princess___tiger.contradiction_type = "Causal" → tiger.label = "Character")
+Q[princess,princess] (he.label = "Person" ∧ princess___he.contradiction_type = "Causal" ∧ princess.label = "Character" ∧ tiger.label != he.label ∧ he.status = "layman" ∧ tiger.status != he.status → princess___tiger.source_id = "3488771907_3")
+Q[princess,princess] (tiger.status != "behind a door" ∧ princess.role != "discreet" ∧ princess.name = "princess" ∧ he.status != "layman" → princess.name != he.name)

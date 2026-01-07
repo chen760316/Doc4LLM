@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 1344)
+S1: Two fencers compete in match.
+S2: Fencers are sleeping.
+
+Predicates:
+1. Fencer_1.status
+2. Fencer_2.status
+3. Match_1.participants
+4. Match_1.result
+5. Fencer_1.energy_level
+6. Fencer_2.energy_level
+7. Fencer_1.skill_level
+8. Fencer_2.skill_level
+9. Match_1.duration
+10. Fencer_1.location
+11. Fencer_2.location
+12. Fencer_1.equipment
+13. Fencer_2.equipment
+14. Match_1.start_time
+15. Match_1.end_time
+16. Fencer_1.training_hours
+17. Fencer_2.training_hours
+18. Fencer_1.mental_state
+19. Fencer_2.mental_state
+20. Match_1.referee
+21. Fencer_1.previous_matches
+22. Fencer_2.previous_matches
+23. Fencer_1.wins
+24. Fencer_2.wins
+25. Fencer_1.losses
+26. Fencer_2.losses
+27. Match_1.location
+28. Fencer_1.fatigue_level
+29. Fencer_2.fatigue_level
+30. M_NLI(S1, S2)
+
+Rules:
+1. Q[Two, Fencer_1.status == "competing", Fencer_1.status == "sleeping"](Premise → Causal(Fencer_1, Fencer_2))
+2. Q[Two, Fencer_2.status == "competing", Fencer_2.status == "sleeping"](Premise → Causal(Fencer_2, Fencer_1))
+3. Q[Two, Match_1.participants == "Fencer_1 and Fencer_2", Fencer_1.status == "sleeping"](Premise → Causal(Fencer_1, Fencer_2))
+4. Q[Two, Match_1.participants == "Fencer_1 and Fencer_2", Fencer_2.status == "sleeping"](Premise → Causal(Fencer_2, Fencer_1))
+5. Q[Two, Fencer_1.energy_level < 50, Fencer_1.status == "sleeping"](Premise → Causal(Fencer_1, Fencer_2))
+6. Q[Two, Fencer_2.energy_level < 50, Fencer_2.status == "sleeping"](Premise → Causal(Fencer_2, Fencer_1))
+7. Q[Two, Fencer_1.mental_state == "asleep", Fencer_1.status == "competing"](Premise → Causal(Fencer_1, Fencer_2))
+8. Q[Two, Fencer_2.mental_state == "asleep", Fencer_2.status == "competing"](Premise → Causal(Fencer_2, Fencer_1))
+9. Q[Two, Match_1.start_time < current_time, Fencer_1.status == "sleeping"](Premise → Causal(Fencer_1, Fencer_2))
+10. Q[Two, Match_1.start_time < current_time, Fencer_2.status == "sleeping"](Premise → Causal(Fencer_2, Fencer_1))
+11. Q[Two, Fencer_1.fatigue_level > 80, Fencer_1.status == "sleeping"](Premise → Causal(Fencer_1, Fencer_2))
+12. Q[Two, Fencer_2.fatigue_level > 80, Fencer_2.status == "sleeping"](Premise → Causal(Fencer_2, Fencer_1))
+13. Q[Two, Match_1.duration > 0, Fencer_1.status == "sleeping"](Premise → Causal(Fencer_1, Fencer_2))
+14. Q[Two, Match_1.duration > 0, Fencer_2.status == "sleeping"](Premise → Causal(Fencer_2, Fencer_1))
+15. Q[Two, Fencer_1.training_hours < 1, Fencer_1.status == "sleeping"](Premise → Causal(Fencer_1, Fencer_2))
+16. Q[Two, Fencer_2.training_hours < 1, Fencer_2.status == "sleeping"](Premise → Causal(Fencer_2, Fencer_1))
+17. Q[Two, Fencer_1.previous_matches == 0, Fencer_1.status == "sleeping"](Premise → Causal(Fencer_1, Fencer_2))
+18. Q[Two, Fencer_2.previous_matches == 0, Fencer_2.status == "sleeping"](Premise → Causal(Fencer_2, Fencer_1))
+19. Q[Two, Fencer_1.wins == 0, Fencer_1.status == "sleeping"](Premise → Causal(Fencer_1, Fencer_2))
+20. Q[Two, Fencer_2.wins == 0, Fencer_2.status == "sleeping"](Premise → Causal(Fencer_2, Fencer_1))
+21. Q[Two, Fencer_1.losses > 5, Fencer_1.status == "sleeping"](Premise → Causal(Fencer_1, Fencer_2))
+22. Q[Two, Fencer_2.losses > 5, Fencer_2.status == "sleeping"](Premise → Causal(Fencer_2, Fencer_1))
+23. Q[Two, Fencer_1.location == "bed", Fencer_1.status == "competing"](Premise → Causal(Fencer_1, Fencer_2))
+24. Q[Two, Fencer_2.location == "bed", Fencer_2.status == "competing"](Premise → Causal(Fencer_2, Fencer_1))
+25. Q[Two, Match_1.result == "ongoing", Fencer_1.status == "sleeping"](Premise → Causal(Fencer_1, Fencer_2))
+26. Q[Two, Match_1.result == "ongoing", Fencer_2.status == "sleeping"](Premise → Causal(Fencer_2, Fencer_1))
+27. Q[Two, Fencer_1.equipment == "not ready", Fencer_1.status == "sleeping"](Premise → Causal(Fencer_1, Fencer_2))
+28. Q[Two, Fencer_2.equipment == "not ready", Fencer_2.status == "sleeping"](Premise → Causal(Fencer_2, Fencer_1))
+29. Q[Two, M_NLI(S1, S2) == "contradiction", Fencer_1.status == "sleeping"](Premise → Causal(Fencer_1, Fencer_2))
+30. Q[Two, M_NLI(S1, S2) == "contradiction", Fencer_2.status == "sleeping"](Premise → Causal(Fencer_2, Fencer_1))

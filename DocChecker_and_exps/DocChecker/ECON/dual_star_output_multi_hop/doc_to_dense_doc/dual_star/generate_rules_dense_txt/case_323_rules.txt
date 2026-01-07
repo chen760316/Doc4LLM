@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 323)
+S1: Injera is a sweet unleavened cookie with a crispy texture, typically made out of wheat flour.
+S2: Injera is a sour fermented flatbread with a slightly spongy texture, traditionally made out of teff flour.
+
+Predicates:
+1. Injera.type = sweet_cookie
+2. Injera.texture = crispy
+3. Injera.main_ingredient = wheat_flour
+4. Injera.type = sour_flatbread
+5. Injera.texture = spongy
+6. Injera.main_ingredient = teff_flour
+7. "describes".S1 = Injera.type
+8. "describes".S1 = Injera.texture
+9. "describes".S1 = Injera.main_ingredient
+10. "describes".S2 = Injera.type
+11. "describes".S2 = Injera.texture
+12. "describes".S2 = Injera.main_ingredient
+13. M_NLI(S1, S2) = false
+14. Factual(Injera.type, sweet_cookie) = true
+15. Factual(Injera.type, sour_flatbread) = false
+16. Factual(Injera.main_ingredient, wheat_flour) = true
+17. Factual(Injera.main_ingredient, teff_flour) = false
+18. violate(Injera.type, sweet_cookie, sour_flatbread) = true
+19. violate(Injera.main_ingredient, wheat_flour, teff_flour) = true
+20. "traditional".S2 = true
+21. "traditional".S1 = false
+22. "crispy".S1 = true
+23. "spongy".S2 = true
+24. "fermented".S2 = true
+25. "unleavened".S1 = true
+26. "sweet".S1 = true
+27. "sour".S2 = true
+28. "cookie".S1 = true
+29. "flatbread".S2 = true
+30. "made_out_of".S1 = wheat_flour
+
+Rules:
+1. Q[Injera, x0, y0](Injera.type == sweet_cookie ∧ Injera.type == sour_flatbread → Factual(x0, y0))
+2. Q[Injera, x0, y0](Injera.texture == crispy ∧ Injera.texture == spongy → Factual(x0, y0))
+3. Q[Injera, x0, y0](Injera.main_ingredient == wheat_flour ∧ Injera.main_ingredient == teff_flour → Factual(x0, y0))
+4. Q[Injera, x0, y0](Factual(Injera.type, sweet_cookie) = true ∧ Factual(Injera.type, sour_flatbread) = false → Factual(x0, y0))
+5. Q[Injera, x0, y0](Factual(Injera.main_ingredient, wheat_flour) = true ∧ Factual(Injera.main_ingredient, teff_flour) = false → Factual(x0, y0))
+6. Q[Injera, x0, y0](violate(Injera.type, sweet_cookie, sour_flatbread) = true → Factual(x0, y0))
+7. Q[Injera, x0, y0](violate(Injera.main_ingredient, wheat_flour, teff_flour) = true → Factual(x0, y0))
+8. Q[Injera, x0, y0](describes.S1 = Injera.type ∧ describes.S2 = Injera.type → Factual(x0, y0))
+9. Q[Injera, x0, y0](describes.S1 = Injera.texture ∧ describes.S2 = Injera.texture → Factual(x0, y0))
+10. Q[Injera, x0, y0](describes.S1 = Injera.main_ingredient ∧ describes.S2 = Injera.main_ingredient → Factual(x0, y0))
+11. Q[Injera, x0, y0](traditional.S2 = true ∧ traditional.S1 = false → Factual(x0, y0))
+12. Q[Injera, x0, y0](crispy.S1 = true ∧ spongy.S2 = true → Factual(x0, y0))
+13. Q[Injera, x0, y0](unleavened.S1 = true ∧ fermented.S2 = true → Factual(x0, y0))
+14. Q[Injera, x0, y0](sweet.S1 = true ∧ sour.S2 = true → Factual(x0, y0))
+15. Q[Injera, x0, y0](cookie.S1 = true ∧ flatbread.S2 = true → Factual(x0, y0))
+16. Q[Injera, x0, y0](made_out_of.S1 = wheat_flour ∧ made_out_of.S2 = teff_flour → Factual(x0, y0))
+17. Q[Injera, x0, y0](M_NLI(S1, S2) = false → Factual(x0, y0))
+18. Q[Injera, x0, y0](Factual(Injera.type, sweet_cookie) = true ∧ violate(Injera.type, sweet_cookie, sour_flatbread) = true → Factual(x0, y0))
+19. Q[Injera, x0, y0](Factual(Injera.main_ingredient, wheat_flour) = true ∧ violate(Injera.main_ingredient, wheat_flour, teff_flour) = true → Factual(x0, y0))
+20. Q[Injera, x0, y0](crispy.S1 = true ∧ Factual(Injera.texture, spongy) = true → Factual(x0, y0))
+21. Q[Injera, x0, y0](sweet.S1 = true ∧ Factual(Injera.type, sour_flatbread) = false → Factual(x0, y0))
+22. Q[Injera, x0, y0](sour.S2 = true ∧ Factual(Injera.type, sweet_cookie) = false → Factual(x0, y0))
+23. Q[Injera, x0, y0](fermented.S2 = true ∧ Factual(Injera.main_ingredient, wheat_flour) = false → Factual(x0, y0))
+24. Q[Injera, x0, y0](traditional.S2 = true ∧ traditional.S1 = false → Factual(x0, y0))
+25. Q[Injera, x0, y0](Factual(Injera.type, sour_flatbread) = false ∧ Factual(Injera.type, sweet_cookie) = true → Factual(x0, y0))
+26. Q[Injera, x0, y0](Factual(Injera.main_ingredient, teff_flour) = false ∧ Factual(Injera.main_ingredient, wheat_flour) = true → Factual(x0, y0))
+27. Q[Injera, x0, y0](Factual(Injera.texture, crispy) = true ∧ Factual(Injera.texture, spongy) = false → Factual(x0, y0))
+28. Q[Injera, x0, y0](Factual(Injera.type, sweet_cookie) = true ∧ Factual(Injera.type, sour_flatbread) = false → Factual(x0, y0))
+29. Q[Injera, x0, y0](Factual(Injera.main_ingredient, wheat_flour) = true ∧ Factual(Injera.main_ingredient, teff_flour) = false → Factual(x0, y0))
+30. Q[Injera, x0, y0](Factual(Injera.texture, crispy) = true ∧ Factual(Injera.texture, spongy) = false → Factual(x0, y0))

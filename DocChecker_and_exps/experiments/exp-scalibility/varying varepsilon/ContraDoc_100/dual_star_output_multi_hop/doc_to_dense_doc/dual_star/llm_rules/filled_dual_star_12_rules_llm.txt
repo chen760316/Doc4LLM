@@ -1,0 +1,133 @@
+Predicates:
+1. Dr. South.humour = "personable"
+2. Dr. South.relationship = "partnership offer"
+3. Philip.decision = "accepts offer"
+4. Philip.relationship_status = "engaged to Sally"
+5. Philip.relationship_status = "broke up with Norah"
+6. Philip.feelings = "no attachment to baby"
+7. Philip.business_trip.location = "Paris"
+8. Philip.business_trip.purpose = "study art"
+9. Philip.vacation.activity = "hop-picking"
+10. Philip.vacation.location = "Kent countryside"
+11. Philip.inspiration_source = "business trip to Paris"
+12. Philip.financial_support = "supports Mildred"
+13. Philip.financial_status = "can ill afford"
+14. Paris.country = "France"
+15. study_art.location = "France"
+16. "Dr. South".context = "medical practice"
+17. "Philip".context = "decision to marry Sally"
+18. "Philip".context = "relationship with Norah"
+19. "Philip".context = "business trip"
+20. "Philip".context = "summer vacation"
+21. "Philip".context = "financial support"
+22. "Philip".context = "art inspiration"
+23. "Philip".context = "romantic abandon"
+24. "Philip".context = "attachment to baby"
+25. "Philip".context = "relationship status"
+26. M_NLI(Dr. South.humour, Philip.feelings)
+27. T("Philip accepts Dr. South's offer.", "Philip breaks off his relationship with Norah", tau)
+28. tau(Philip.relationship_status, Philip.feelings)
+29. violate(Philip.relationship_status, Philip.feelings)
+30. Factual(Philip.relationship_status, Philip.feelings)
+31. Causal(Philip.decision, Philip.relationship_status)
+32. Numeric(Philip.financial_status, Philip.financial_support)
+33. Temporal(Philip.business_trip.location, Philip.vacation.location)
+34. Content(Philip.inspiration_source, Philip.vacation.activity)
+35. Relation(Dr. South.relationship, Philip.decision)
+36. Factual(Dr. South.relationship, Philip.relationship_status)
+37. Causal(Philip.business_trip.purpose, Philip.inspiration_source)
+38. Negation(Philip.feelings, Philip.relationship_status)
+39. Numeric(Philip.financial_status, Philip.financial_support)
+40. Temporal(Philip.business_trip.location, Philip.vacation.location)
+41. M_NLI(Philip.decision, Philip.relationship_status)
+42. T("Philip goes on a business trip to Paris.", "Philip goes on a small summer vacation", tau)
+43. tau(Philip.business_trip.purpose, Philip.vacation.activity)
+44. violate(Philip.business_trip.purpose, Philip.vacation.activity)
+45. Factual(Philip.business_trip.purpose, Philip.vacation.activity)
+46. Causal(Philip.financial_support, Philip.financial_status)
+47. Numeric(Philip.financial_support, Philip.financial_status)
+48. Temporal(Philip.relationship_status, Philip.decision)
+49. Content(Philip.feelings, Philip.relationship_status)
+50. Relation(Philip.business_trip.location, Philip.vacation.location)
+51. "Philip".decision = "to marry Sally"
+52. "Philip".feeling = "no attachment"
+53. "Philip".relationship = "with Norah"
+54. "Philip".relationship = "with Sally"
+55. "Philip".business_trip = "to Paris"
+56. "Philip".vacation = "with Athelnys"
+57. "Philip".financial_support = "to Mildred"
+58. "Philip".inspiration = "to study art"
+59. "Dr. South".opinion = "favorable"
+60. "Philip".context = "romantic feelings"
+61. M_NLI(Philip.financial_support, Philip.financial_status)
+62. T("Philip supports Mildred financially.", "Philip can ill afford", tau)
+63. tau(Philip.financial_support, Philip.financial_status)
+64. violate(Philip.financial_support, Philip.financial_status)
+65. Factual(Philip.financial_support, Philip.financial_status)
+66. Causal(Philip.relationship_status, Philip.decision)
+67. Numeric(Philip.business_trip.purpose, Philip.vacation.activity)
+68. Temporal(Philip.relationship_status, Philip.feelings)
+69. Content(Philip.inspiration_source, Philip.business_trip.purpose)
+70. Relation(Philip.vacation.location, Philip.business_trip.location)
+71. "Philip".relationship = "with Sally"
+72. "Philip".relationship = "with Norah"
+73. "Philip".context = "business trip"
+74. "Philip".context = "summer vacation"
+75. "Philip".context = "financial support"
+76. "Philip".context = "art inspiration"
+77. "Philip".context = "romantic abandon"
+78. "Philip".context = "attachment to baby"
+79. "Philip".context = "relationship status"
+80. M_NLI(Philip.relationship_status, Philip.feelings)
+81. T("Philip goes on a business trip to Paris.", "Philip goes on a small summer vacation", tau)
+82. tau(Philip.business_trip.purpose, Philip.vacation.activity)
+83. violate(Philip.business_trip.purpose, Philip.vacation.activity)
+84. Factual(Philip.business_trip.purpose, Philip.vacation.activity)
+85. Causal(Philip.financial_support, Philip.financial_status)
+86. Numeric(Philip.financial_support, Philip.financial_status)
+87. Temporal(Philip.relationship_status, Philip.decision)
+88. Content(Philip.feelings, Philip.relationship_status)
+89. Relation(Philip.business_trip.location, Philip.vacation.location)
+90. "Philip".decision = "to marry Sally"
+91. "Philip".feeling = "no attachment"
+92. "Philip".relationship = "with Norah"
+93. "Philip".relationship = "with Sally"
+94. "Philip".business_trip = "to Paris"
+95. "Philip".vacation = "with Athelnys"
+96. "Philip".financial_support = "to Mildred"
+97. "Philip".inspiration = "to study art"
+98. "Dr. South".opinion = "favorable"
+99. "Philip".context = "romantic feelings"
+100. violate(Philip.relationship_status, Philip.feelings)
+violate(x0, y0)
+
+Rules:
+1. Q[Philip, Norah](Philip.relationship_status = "engaged to Sally" ∧ Philip.relationship_status = "broke up with Norah" → violate(Philip.relationship_status, Philip.feelings))
+2. Q[Philip, Mildred](Philip.financial_support = "supports Mildred" ∧ Philip.financial_status = "can ill afford" → violate(Philip.financial_support, Philip.financial_status))
+3. Q[Philip, Sally](Philip.decision = "accepts offer" ∧ Philip.relationship_status = "engaged to Sally" → violate(Philip.relationship_status, Philip.feelings))
+4. Q[Philip, Paris](Philip.business_trip.location = "Paris" ∧ Philip.vacation.location = "Kent countryside" → violate(Philip.business_trip.location, Philip.vacation.location))
+5. Q[Philip, Athelnys](Philip.vacation.activity = "hop-picking" ∧ Philip.vacation.location = "Kent countryside" → violate(Philip.vacation.activity, Philip.vacation.location))
+6. Q[Philip, Norah](Philip.relationship_status = "engaged to Sally" ∧ Philip.relationship = "with Norah" → violate(Philip.relationship_status, Philip.feelings))
+7. Q[Philip, Dr. South](Dr. South.humour = "personable" ∧ Philip.feelings = "no attachment to baby" ∧ Philip.relationship_status = "engaged to Sally" → violate(Philip.relationship_status, Philip.feelings))
+8. Q[Philip, Sally](Philip.decision = "to marry Sally" ∧ Philip.relationship_status = "broke up with Norah" ∧ Philip.feelings = "no attachment to baby" → violate(Philip.relationship_status, Philip.feelings))
+9. Q[Philip, Mildred](Philip.financial_support = "supports Mildred" ∧ Philip.financial_status = "can ill afford" ∧ Philip.relationship_status = "engaged to Sally" → violate(Philip.financial_support, Philip.financial_status))
+10. Q[Philip, Paris](Philip.business_trip.location = "Paris" ∧ Philip.business_trip.purpose = "study art" ∧ Philip.vacation.activity = "hop-picking" → violate(Philip.business_trip.purpose, Philip.vacation.activity))
+11. Q[Philip, Norah](Philip.relationship_status = "broke up with Norah" ∧ Philip.relationship = "with Norah" ∧ Philip.feelings = "no attachment" → violate(Philip.relationship_status, Philip.feelings))
+12. Q[Philip, Athelnys](Philip.vacation.activity = "hop-picking" ∧ Philip.vacation.location = "Kent countryside" ∧ Philip.business_trip.location = "Paris" → violate(Philip.vacation.activity, Philip.vacation.location))
+13. Q[Philip, Dr. South](Philip.decision = "accepts offer" ∧ Dr. South.relationship = "partnership offer" ∧ Philip.relationship_status = "engaged to Sally" → violate(Philip.relationship_status, Philip.feelings))
+14. Q[Philip, Sally](Philip.relationship_status = "engaged to Sally" ∧ Philip.feelings = "no attachment to baby" ∧ Philip.business_trip.purpose = "study art" → violate(Philip.relationship_status, Philip.feelings))
+15. Q[Philip, Mildred](Philip.financial_support = "supports Mildred" ∧ Philip.financial_status = "can ill afford" ∧ Philip.relationship = "with Norah" → violate(Philip.financial_support, Philip.financial_status))
+16. Q[Philip, Paris](Philip.business_trip.location = "Paris" ∧ Philip.vacation.location = "Kent countryside" ∧ Philip.vacation.activity = "hop-picking" → violate(Philip.business_trip.location, Philip.vacation.location))
+17. Q[Philip, Norah](Philip.relationship_status = "broke up with Norah" ∧ Philip.relationship = "with Norah" ∧ Philip.decision = "to marry Sally" → violate(Philip.relationship_status, Philip.feelings))
+18. Q[Philip, Athelnys](Philip.vacation.activity = "hop-picking" ∧ Philip.vacation.location = "Kent countryside" ∧ Philip.business_trip.purpose = "study art" → violate(Philip.vacation.activity, Philip.vacation.location))
+19. Q[Philip, Dr. South](Philip.decision = "accepts offer" ∧ Dr. South.relationship = "partnership offer" ∧ Philip.relationship_status = "broke up with Norah" → violate(Philip.relationship_status, Philip.feelings))
+20. Q[Philip, Sally](Philip.relationship_status = "engaged to Sally" ∧ Philip.feelings = "no attachment to baby" ∧ Philip.financial_status = "can ill afford" → violate(Philip.relationship_status, Philip.feelings))
+21. Q[Philip, Mildred](Philip.financial_support = "supports Mildred" ∧ Philip.financial_status = "can ill afford" ∧ Philip.relationship_status = "broke up with Norah" → violate(Philip.financial_support, Philip.financial_status))
+22. Q[Philip, Paris](Philip.business_trip.location = "Paris" ∧ Philip.business_trip.purpose = "study art" ∧ Philip.vacation.activity = "hop-picking" → violate(Philip.business_trip.purpose, Philip.vacation.activity))
+23. Q[Philip, Norah](Philip.relationship_status = "broke up with Norah" ∧ Philip.relationship = "with Norah" ∧ Philip.feelings = "no attachment" → violate(Philip.relationship_status, Philip.feelings))
+24. Q[Philip, Athelnys](Philip.vacation.activity = "hop-picking" ∧ Philip.vacation.location = "Kent countryside" ∧ Philip.business_trip.location = "Paris" → violate(Philip.vacation.activity, Philip.vacation.location))
+25. Q[Philip, Dr. South](Philip.decision = "accepts offer" ∧ Dr. South.relationship = "partnership offer" ∧ Philip.relationship_status = "engaged to Sally" → violate(Philip.relationship_status, Philip.feelings))
+26. Q[Philip, Sally](Philip.relationship_status = "engaged to Sally" ∧ Philip.feelings = "no attachment to baby" ∧ Philip.business_trip.purpose = "study art" → violate(Philip.relationship_status, Philip.feelings))
+27. Q[Philip, Mildred](Philip.financial_support = "supports Mildred" ∧ Philip.financial_status = "can ill afford" ∧ Philip.relationship = "with Norah" → violate(Philip.financial_support, Philip.financial_status))
+28. Q[Philip, Paris](Philip.business_trip.location = "Paris" ∧ Philip.vacation.location = "Kent countryside" ∧ Philip.vacation.activity = "hop-picking" → violate(Philip.business_trip.location, Philip.vacation.location))
+29. Q[Philip, Norah](Philip.relationship_status = "broke up with Norah" ∧ Philip.relationship = "with

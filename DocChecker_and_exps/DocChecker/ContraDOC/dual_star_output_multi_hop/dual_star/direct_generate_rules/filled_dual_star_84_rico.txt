@@ -1,0 +1,43 @@
+Predicates:
+Fainall.label != "Character"
+Fainall.label = "Character"
+Fainall.name != "Fainall"
+Fainall.name != Lady Wishfort.name
+Fainall.name != Mrs. Marwood.name
+Fainall.name = "Fainall"
+Fainall.occupation != "nobleman"
+Fainall.occupation != Lady Wishfort.occupation
+Fainall.occupation = "nobleman"
+Fainall___Lady Wishfort.amount = "£6000"
+Fainall___Lady Wishfort.doc_id = "3488771860_4"
+Fainall___Lady Wishfort.relationship != Fainall___Mrs. Marwood.relationship
+Fainall___Lady Wishfort.relationship = "Fainall informs Mirabell that should Lady Wishfort marry, he will lose £6000 of Millamant's inheritance."
+Fainall___Mrs. Marwood.doc_id = "3488771860_4"
+Fainall___Mrs. Marwood.relationship = "Fainall accuses Mrs. Marwood of loving Mirabell."
+Lady Wishfort.label != "Character"
+Lady Wishfort.label = "Character"
+Lady Wishfort.name != "Lady Wishfort"
+Lady Wishfort.name != Mrs. Marwood.name
+Lady Wishfort.name = "Lady Wishfort"
+Lady Wishfort.occupation != "aristocrat"
+Lady Wishfort.occupation = "aristocrat"
+Mrs. Marwood.label != "Character"
+Mrs. Marwood.label = "Character"
+Mrs. Marwood.name != "Mrs. Marwood"
+Mrs. Marwood.name = "Mrs. Marwood"
+Mrs. Marwood.relationship_status != "having an affair with Fainall"
+Mrs. Marwood.relationship_status = "having an affair with Fainall"
+None_ML(Fainall___Lady Wishfort.attrs, Fainall___Mrs. Marwood.attrs)
+None_ML(Lady Wishfort.attrs, Mrs. Marwood.attrs)
+
+Rules:
+Q[Fainall,Fainall] (Mrs. Marwood.relationship_status != "having an affair with Fainall" ∧ Lady Wishfort.name != "Lady Wishfort" → Fainall.name != "Fainall")
+Q[Fainall,Fainall] (Lady Wishfort.name != "Lady Wishfort" ∧ Fainall.occupation != Lady Wishfort.occupation ∧ Lady Wishfort.name != Mrs. Marwood.name ∧ Lady Wishfort.occupation != "aristocrat" ∧ Fainall.name != Lady Wishfort.name ∧ Fainall.name = "Fainall" → Fainall.occupation != "nobleman")
+Q[Fainall,Fainall] (Fainall___Mrs. Marwood.doc_id = "3488771860_4" ∧ Fainall___Lady Wishfort.doc_id = "3488771860_4" ∧ Lady Wishfort.name != Mrs. Marwood.name ∧ Fainall.occupation = "nobleman" → Fainall___Lady Wishfort.relationship != Fainall___Mrs. Marwood.relationship)
+Q[Fainall,Fainall] (Fainall.name = "Fainall" ∧ Fainall___Mrs. Marwood.doc_id = "3488771860_4" ∧ Fainall.occupation = "nobleman" → Mrs. Marwood.label != "Character")
+Q[Fainall,Fainall] (Lady Wishfort.occupation = "aristocrat" ∧ None_ML(Fainall___Lady Wishfort.attrs, Fainall___Mrs. Marwood.attrs) ∧ Fainall___Lady Wishfort.relationship != Fainall___Mrs. Marwood.relationship ∧ Fainall___Lady Wishfort.relationship = "Fainall informs Mirabell that should Lady Wishfort marry, he will lose £6000 of Millamant's inheritance." ∧ Mrs. Marwood.relationship_status != "having an affair with Fainall" → Fainall___Mrs. Marwood.doc_id = "3488771860_4")
+Q[Fainall,Fainall] (Mrs. Marwood.label != "Character" ∧ Fainall.name != Lady Wishfort.name ∧ Lady Wishfort.occupation != "aristocrat" ∧ Fainall.name != "Fainall" ∧ Mrs. Marwood.name = "Mrs. Marwood" ∧ Fainall.occupation != Lady Wishfort.occupation → Mrs. Marwood.relationship_status = "having an affair with Fainall")
+Q[Fainall,Fainall] (Fainall.occupation = "nobleman" ∧ Mrs. Marwood.relationship_status != "having an affair with Fainall" ∧ Fainall.label != "Character" ∧ Mrs. Marwood.name = "Mrs. Marwood" → None_ML(Fainall___Lady Wishfort.attrs, Fainall___Mrs. Marwood.attrs))
+Q[Fainall,Fainall] (None_ML(Lady Wishfort.attrs, Mrs. Marwood.attrs) ∧ Lady Wishfort.label != "Character" → Fainall.label != "Character")
+Q[Fainall,Fainall] (None_ML(Lady Wishfort.attrs, Mrs. Marwood.attrs) ∧ Mrs. Marwood.name != "Mrs. Marwood" ∧ Lady Wishfort.name = "Lady Wishfort" ∧ Fainall.occupation != Lady Wishfort.occupation ∧ Fainall___Lady Wishfort.amount = "£6000" → Lady Wishfort.occupation != "aristocrat")
+Q[Fainall,Fainall] (Fainall.occupation != "nobleman" ∧ Fainall___Mrs. Marwood.relationship = "Fainall accuses Mrs. Marwood of loving Mirabell." ∧ Fainall___Lady Wishfort.relationship = "Fainall informs Mirabell that should Lady Wishfort marry, he will lose £6000 of Millamant's inheritance." → Fainall.label = "Character")

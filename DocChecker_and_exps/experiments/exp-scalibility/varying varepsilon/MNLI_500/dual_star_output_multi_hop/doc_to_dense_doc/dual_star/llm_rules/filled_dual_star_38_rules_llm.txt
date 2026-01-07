@@ -1,0 +1,132 @@
+Predicates:
+1. entity1.name = "Entity A"
+2. entity1.type = "Type 1"
+3. entity1.location = "Location X"
+4. entity1.creation_date = "2020-01-01"
+5. entity1.status = "active"
+6. entity1.category = "Category A"
+7. entity2.name = "Entity B"
+8. entity2.type = "Type 2"
+9. entity2.location = "Location Y"
+10. entity2.creation_date = "2021-01-01"
+11. entity2.status = "inactive"
+12. entity2.category = "Category B"
+13. "handles the same types of cases as".doc_index = "20"
+14. "handles the same types of cases as".label_text = "contradiction"
+15. "provides services that are comparable to".doc_index = "20"
+16. "provides services that are comparable to".label_text = "contradiction"
+17. M_NLI(entity1.name, entity2.name)
+18. M_NLI(entity1.type, entity2.type)
+19. M_NLI(entity1.location, entity2.location)
+20. M_NLI(entity1.creation_date, entity2.creation_date)
+21. M_NLI(entity1.status, entity2.status)
+22. M_NLI(entity1.category, entity2.category)
+23. T("Entity A is active", "Entity A is inactive", tau)
+24. T("Entity B is located in Location Y", "Entity B is located in Location Z", tau)
+25. tau(entity1.creation_date, entity2.creation_date)
+26. tau(entity1.status, entity2.status)
+27. violate(entity1, entity2)
+28. Factual(entity1, entity2)
+29. Causal(entity1, entity2)
+30. Numeric(entity1, entity2)
+31. Temporal(entity1, entity2)
+32. Content(entity1, entity2)
+33. Negation(entity1, entity2)
+34. Relation(entity1, entity2)
+35. Factual(entity1.type, entity2.type)
+36. Causal(entity1.location, entity2.location)
+37. Numeric(entity1.creation_date, entity2.creation_date)
+38. Temporal(entity1.status, entity2.status)
+39. Content(entity1.category, entity2.category)
+40. Negation(entity1.name, entity2.name)
+41. Relation(entity1.status, entity2.status)
+42. "Entity A handles cases of Type 1".label_text = "true"
+43. "Entity B handles cases of Type 2".label_text = "false"
+44. "Entity A is located in Location X".label_text = "true"
+45. "Entity B is located in Location Y".label_text = "false"
+46. "Entity A was created on 2020-01-01".label_text = "true"
+47. "Entity B was created on 2021-01-01".label_text = "false"
+48. "Entity A is currently active".label_text = "true"
+49. "Entity B is currently inactive".label_text = "false"
+50. "Entity A belongs to Category A".label_text = "true"
+51. "Entity B belongs to Category B".label_text = "false"
+52. T("Entity A provides services", "Entity A does not provide services", tau)
+53. T("Entity B provides services", "Entity B does not provide services", tau)
+54. tau(entity1.category, entity2.category)
+55. violate(entity1.status, entity2.status)
+56. Factual(entity1.location, entity2.location)
+57. Causal(entity1.creation_date, entity2.creation_date)
+58. Numeric(entity1.type, entity2.type)
+59. Temporal(entity1.name, entity2.name)
+60. Content(entity1.status, entity2.status)
+61. Negation(entity1.category, entity2.category)
+62. Relation(entity1.creation_date, entity2.creation_date)
+63. "Entity A's services are comparable to Entity B's".label_text = "true"
+64. "Entity B's services are not comparable to Entity A's".label_text = "false"
+65. M_NLI(entity1.status, entity2.status)
+66. M_NLI(entity1.category, entity2.category)
+67. T("Entity A is in Category A", "Entity A is not in Category A", tau)
+68. T("Entity B is in Category B", "Entity B is not in Category B", tau)
+69. tau(entity1.name, entity2.name)
+70. violate(entity1.type, entity2.type)
+71. Factual(entity1.creation_date, entity2.creation_date)
+72. Causal(entity1.location, entity2.location)
+73. Numeric(entity1.status, entity2.status)
+74. Temporal(entity1.category, entity2.category)
+75. Content(entity1.name, entity2.name)
+76. Negation(entity1.type, entity2.type)
+77. Relation(entity1.location, entity2.location)
+78. "Entity A's status is active".label_text = "true"
+79. "Entity B's status is inactive".label_text = "false"
+80. "Entity A's creation date is 2020-01-01".label_text = "true"
+81. "Entity B's creation date is 2021-01-01".label_text = "false"
+82. "Entity A is located in Location X".label_text = "true"
+83. "Entity B is located in Location Y".label_text = "false"
+84. T("Entity A is active", "Entity A is inactive", tau)
+85. T("Entity B is inactive", "Entity B is active", tau)
+86. tau(entity1.category, entity2.category)
+87. violate(entity1.name, entity2.name)
+88. Factual(entity1.type, entity2.type)
+89. Causal(entity1.location, entity2.location)
+90. Numeric(entity1.creation_date, entity2.creation_date)
+91. Temporal(entity1.status, entity2.status)
+92. Content(entity1.category, entity2.category)
+93. Negation(entity1.name, entity2.name)
+94. Relation(entity1.status, entity2.status)
+95. "Entity A's services are not comparable to Entity B's".label_text = "false"
+96. "Entity B's services are comparable to Entity A's".label_text = "true"
+97. M_NLI(entity1.category, entity2.category)
+98. M_NLI(entity1.creation_date, entity2.creation_date)
+99. T("Entity A is in Category A", "Entity A is not in Category A", tau)
+100. T("Entity B is in Category B", "Entity B is not in Category B", tau)
+violate(x0, y0)
+
+Rules:
+1. Q[x0, y0](entity1.status = "active" ∧ entity2.status = "inactive" → violate(x0, y0))
+2. Q[x0, y0](entity1.type = "Type 1" ∧ entity2.type = "Type 2" → violate(x0, y0))
+3. Q[x0, y0](entity1.location = "Location X" ∧ entity2.location = "Location Y" → violate(x0, y0))
+4. Q[x0, y0](entity1.creation_date = "2020-01-01" ∧ entity2.creation_date = "2021-01-01" → violate(x0, y0))
+5. Q[x0, y0](entity1.category = "Category A" ∧ entity2.category = "Category B" → violate(x0, y0))
+6. Q[x0, y0](entity1.name = "Entity A" ∧ entity2.name = "Entity B" → violate(x0, y0))
+7. Q[x0, y0](entity1.status = "active" ∧ entity1.category = "Category A" ∧ entity2.status = "inactive" → violate(x0, y0))
+8. Q[x0, y0](entity1.type = "Type 1" ∧ entity1.location = "Location X" ∧ entity2.type = "Type 2" → violate(x0, y0))
+9. Q[x0, y0](entity1.creation_date = "2020-01-01" ∧ entity1.status = "active" ∧ entity2.creation_date = "2021-01-01" → violate(x0, y0))
+10. Q[x0, y0](entity1.category = "Category A" ∧ entity1.name = "Entity A" ∧ entity2.category = "Category B" → violate(x0, y0))
+11. Q[x0, y0](entity1.name = "Entity A" ∧ entity1.status = "active" ∧ entity2.name = "Entity B" ∧ entity2.status = "inactive" → violate(x0, y0))
+12. Q[x0, y0](entity1.type = "Type 1" ∧ entity1.location = "Location X" ∧ entity1.creation_date = "2020-01-01" ∧ entity2.type = "Type 2" → violate(x0, y0))
+13. Q[x0, y0](entity1.status = "active" ∧ entity1.category = "Category A" ∧ entity2.status = "inactive" ∧ entity2.category = "Category B" → violate(x0, y0))
+14. Q[x0, y0](entity1.name = "Entity A" ∧ entity1.creation_date = "2020-01-01" ∧ entity2.name = "Entity B" ∧ entity2.creation_date = "2021-01-01" → violate(x0, y0))
+15. Q[x0, y0](entity1.location = "Location X" ∧ entity1.status = "active" ∧ entity2.location = "Location Y" ∧ entity2.status = "inactive" → violate(x0, y0))
+16. Q[x0, y0](entity1.name = "Entity A" ∧ entity1.type = "Type 1" ∧ entity1.status = "active" ∧ entity2.name = "Entity B" ∧ entity2.type = "Type 2" → violate(x0, y0))
+17. Q[x0, y0](entity1.creation_date = "2020-01-01" ∧ entity1.category = "Category A" ∧ entity2.creation_date = "2021-01-01" ∧ entity2.category = "Category B" → violate(x0, y0))
+18. Q[x0, y0](entity1.status = "active" ∧ entity1.location = "Location X" ∧ entity2.status = "inactive" ∧ entity2.location = "Location Y" → violate(x0, y0))
+19. Q[x0, y0](entity1.type = "Type 1" ∧ entity1.creation_date = "2020-01-01" ∧ entity2.type = "Type 2" ∧ entity2.creation_date = "2021-01-01" → violate(x0, y0))
+20. Q[x0, y0](entity1.category = "Category A" ∧ entity1.name = "Entity A" ∧ entity2.category = "Category B" ∧ entity2.name = "Entity B" → violate(x0, y0))
+21. Q[x0, y0](entity1.status = "active" ∧ entity1.type = "Type 1" ∧ entity1.location = "Location X" ∧ entity2.status = "inactive" ∧ entity2.type = "Type 2" → violate(x0, y0))
+22. Q[x0, y0](entity1.creation_date = "2020-01-01" ∧ entity1.category = "Category A" ∧ entity2.creation_date = "2021-01-01" ∧ entity2.category = "Category B" → violate(x0, y0))
+23. Q[x0, y0](entity1.name = "Entity A" ∧ entity1.status = "active" ∧ entity1.creation_date = "2020-01-01" ∧ entity2.name = "Entity B" ∧ entity2.status = "inactive" → violate(x0, y0))
+24. Q[x0, y0](entity1.type = "Type 1" ∧ entity1.location = "Location X" ∧ entity1.creation_date = "2020-01-01" ∧ entity2.type = "Type 2" ∧ entity2.location = "Location Y" → violate(x0, y0))
+25. Q[x0, y0](entity1.status = "active" ∧ entity1.category = "Category A" ∧ entity2.status = "inactive" ∧ entity2.category = "Category B" ∧ entity1.creation_date = "2020-01-01" → violate(x0, y0))
+26. Q[x0, y0](entity1.name = "Entity A" ∧ entity1.type = "Type 1" ∧ entity1.status = "active" ∧ entity2.name = "Entity B" ∧ entity2.type = "Type 2" ∧ entity2.status = "inactive" → violate(x0, y0))
+27. Q[x0, y0](entity1.creation_date = "2020-01-01" ∧ entity1.category = "Category A" ∧ entity2.creation_date = "2021-01-01" ∧ entity2.category = "Category B" ∧ entity1.status = "active" → violate(x0, y0))
+28. Q[x0, y0](entity1.location

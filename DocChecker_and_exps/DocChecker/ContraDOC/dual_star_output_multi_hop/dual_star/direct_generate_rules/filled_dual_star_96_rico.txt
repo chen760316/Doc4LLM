@@ -1,0 +1,41 @@
+Predicates:
+General Antonio Molara.label != "Person"
+General Antonio Molara.label != Presidential Palace.label
+General Antonio Molara.label != Republican Guard.label
+General Antonio Molara.label = "Person"
+General Antonio Molara.name != "General Antonio Molara"
+General Antonio Molara.name != Presidential Palace.name
+General Antonio Molara.name != Republican Guard.name
+General Antonio Molara.name = "General Antonio Molara"
+General Antonio Molara___Presidential Palace.doc_id = "3488771878_4"
+General Antonio Molara___Presidential Palace.event = "storming of the palace"
+General Antonio Molara___Presidential Palace.relationship = "General Molara dies on the steps of the Presidential Palace."
+General Antonio Molara___Republican Guard.action = "despatch loyal Republican Guard"
+General Antonio Molara___Republican Guard.doc_id = "3488771878_4"
+General Antonio Molara___Republican Guard.location = "capital"
+General Antonio Molara___Republican Guard.relationship != General Antonio Molara___Presidential Palace.relationship
+General Antonio Molara___Republican Guard.relationship = "General Molara's orders are refused by the Republican Guard."
+None_ML(General Antonio Molara___Presidential Palace.attrs, General Antonio Molara___Republican Guard.attrs)
+None_ML(Republican Guard.attrs, General Antonio Molara.attrs)
+Presidential Palace.label != "Location"
+Presidential Palace.label = "Location"
+Presidential Palace.name != "Presidential Palace"
+Presidential Palace.name = "Presidential Palace"
+Republican Guard.label != "Military Unit"
+Republican Guard.label != Presidential Palace.label
+Republican Guard.label = "Military Unit"
+Republican Guard.name != "Republican Guard"
+Republican Guard.name != Presidential Palace.name
+Republican Guard.name = "Republican Guard"
+
+Rules:
+Q[General Antonio Molara,General Antonio Molara] (General Antonio Molara.name != Republican Guard.name ∧ General Antonio Molara___Republican Guard.doc_id = "3488771878_4" ∧ General Antonio Molara.name != Presidential Palace.name ∧ General Antonio Molara___Republican Guard.location = "capital" ∧ Republican Guard.label != "Military Unit" ∧ General Antonio Molara___Republican Guard.relationship != General Antonio Molara___Presidential Palace.relationship → Republican Guard.label != Presidential Palace.label)
+Q[General Antonio Molara,General Antonio Molara] (General Antonio Molara.name != "General Antonio Molara" ∧ General Antonio Molara.name != Republican Guard.name ∧ Republican Guard.label != "Military Unit" ∧ General Antonio Molara.label = "Person" → None_ML(General Antonio Molara___Presidential Palace.attrs, General Antonio Molara___Republican Guard.attrs))
+Q[General Antonio Molara,General Antonio Molara] (Republican Guard.label != Presidential Palace.label ∧ General Antonio Molara___Presidential Palace.doc_id = "3488771878_4" ∧ General Antonio Molara___Presidential Palace.relationship = "General Molara dies on the steps of the Presidential Palace." ∧ General Antonio Molara.label = "Person" ∧ General Antonio Molara___Republican Guard.location = "capital" → Presidential Palace.name != "Presidential Palace")
+Q[General Antonio Molara,General Antonio Molara] (General Antonio Molara.name != Presidential Palace.name ∧ Republican Guard.name = "Republican Guard" → General Antonio Molara.name != Republican Guard.name)
+Q[General Antonio Molara,General Antonio Molara] (General Antonio Molara.name != Republican Guard.name ∧ Republican Guard.name = "Republican Guard" ∧ General Antonio Molara___Republican Guard.action = "despatch loyal Republican Guard" → General Antonio Molara___Presidential Palace.doc_id = "3488771878_4")
+Q[General Antonio Molara,General Antonio Molara] (Republican Guard.label != Presidential Palace.label ∧ Presidential Palace.name = "Presidential Palace" → General Antonio Molara.name = "General Antonio Molara")
+Q[General Antonio Molara,General Antonio Molara] (General Antonio Molara.label != "Person" ∧ General Antonio Molara.label != Republican Guard.label ∧ Republican Guard.label = "Military Unit" ∧ General Antonio Molara.name = "General Antonio Molara" → General Antonio Molara.label != Presidential Palace.label)
+Q[General Antonio Molara,General Antonio Molara] (Republican Guard.name != Presidential Palace.name ∧ General Antonio Molara.name != Republican Guard.name ∧ General Antonio Molara___Presidential Palace.doc_id = "3488771878_4" → General Antonio Molara.name != Presidential Palace.name)
+Q[General Antonio Molara,General Antonio Molara] (Presidential Palace.name = "Presidential Palace" ∧ General Antonio Molara.name != Presidential Palace.name ∧ General Antonio Molara___Presidential Palace.relationship = "General Molara dies on the steps of the Presidential Palace." ∧ General Antonio Molara.label != Presidential Palace.label ∧ Republican Guard.label = "Military Unit" ∧ General Antonio Molara.name != "General Antonio Molara" → Republican Guard.label != "Military Unit")
+Q[General Antonio Molara,General Antonio Molara] (General Antonio Molara___Presidential Palace.doc_id = "3488771878_4" ∧ Republican Guard.name != Presidential Palace.name ∧ Republican Guard.label != "Military Unit" ∧ Presidential Palace.label != "Location" ∧ General Antonio Molara.label = "Person" → Republican Guard.name = "Republican Guard")

@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 621)
+S1: The only people who came to the conference were clients and client advocates.
+S2: The forum participants weren't presented with a study sponsored by the FFC.
+
+Predicates:
+1. Conference.attendees = clients ∪ client_advocates
+2. Forum.participants ≠ study_presented
+3. Clients ∩ Client_advocates = Conference.attendees
+4. FFC.study.sponsored = false
+5. Clients ⊆ Conference.attendees
+6. Client_advocates ⊆ Conference.attendees
+7. Forum.participants ⊆ Clients ∪ Client_advocates
+8. Study.presented ≠ FFC.sponsored
+9. Clients ∩ Forum.participants = ∅
+10. Client_advocates ∩ Forum.participants = ∅
+11. M_NLI(S1, S2)
+12. Relation(Conference.attendees, Forum.participants)
+13. violate(Conference.attendees, Forum.participants)
+14. Clients ∩ FFC.study = ∅
+15. Client_advocates ∩ FFC.study = ∅
+16. Study.sponsored_by ≠ FFC
+17. Forum.participants ∩ FFC.study = ∅
+18. Clients ∪ Client_advocates = Conference.attendees
+19. FFC.study.presented = false
+20. Clients ∩ Forum.participants = false
+21. Client_advocates ∩ Forum.participants = false
+22. M_NLI(S1, S2) = true
+23. Relation(Clients, Forum.participants)
+24. Relation(Client_advocates, Forum.participants)
+25. violate(Clients, FFC.study)
+26. violate(Client_advocates, FFC.study)
+27. Forum.participants ≠ Conference.attendees
+28. Clients ∩ Forum.participants = ∅
+29. Client_advocates ∩ Forum.participants = ∅
+30. FFC.study.presented = false
+
+Rules:
+1. Q[The, Conference.attendees, Forum.participants](Conference.attendees = clients ∪ client_advocates → Relation(Conference.attendees, Forum.participants))
+2. Q[The, Forum.participants, FFC.study](Forum.participants ≠ study_presented → Relation(Forum.participants, FFC.study))
+3. Q[The, Clients, Forum.participants](Clients ∩ Forum.participants = ∅ → Relation(Clients, Forum.participants))
+4. Q[The, Client_advocates, Forum.participants](Client_advocates ∩ Forum.participants = ∅ → Relation(Client_advocates, Forum.participants))
+5. Q[The, Clients, Conference.attendees](Clients ⊆ Conference.attendees → Relation(Clients, Conference.attendees))
+6. Q[The, Client_advocates, Conference.attendees](Client_advocates ⊆ Conference.attendees → Relation(Client_advocates, Conference.attendees))
+7. Q[The, Forum.participants, FFC.study](Forum.participants ∩ FFC.study = ∅ → Relation(Forum.participants, FFC.study))
+8. Q[The, Clients, FFC.study](Clients ∩ FFC.study = ∅ → Relation(Clients, FFC.study))
+9. Q[The, Client_advocates, FFC.study](Client_advocates ∩ FFC.study = ∅ → Relation(Client_advocates, FFC.study))
+10. Q[The, Conference.attendees, FFC.study](violate(Conference.attendees, FFC.study) → Relation(Conference.attendees, FFC.study))
+11. Q[The, Forum.participants, Conference.attendees](Forum.participants ≠ Conference.attendees → Relation(Forum.participants, Conference.attendees))
+12. Q[The, Clients, Client_advocates](Clients ∩ Client_advocates = Conference.attendees → Relation(Clients, Client_advocates))
+13. Q[The, FFC.study, Forum.participants](FFC.study.presented = false → Relation(FFC.study, Forum.participants))
+14. Q[The, Clients, Client_advocates](Clients ∪ Client_advocates = Conference.attendees → Relation(Clients, Client_advocates))
+15. Q[The, Forum.participants, Clients](Forum.participants ⊆ Clients ∪ Client_advocates → Relation(Forum.participants, Clients))
+16. Q[The, Conference.attendees, FFC.study](violate(Clients, FFC.study) → Relation(Conference.attendees, FFC.study))
+17. Q[The, Conference.attendees, Forum.participants](M_NLI(S1, S2) = true → Relation(Conference.attendees, Forum.participants))
+18. Q[The, Clients, Forum.participants](Clients ∩ Forum.participants = false → Relation(Clients, Forum.participants))
+19. Q[The, Client_advocates, Forum.participants](Client_advocates ∩ Forum.participants = false → Relation(Client_advocates, Forum.participants))
+20. Q[The, Forum.participants, FFC.study](Study.presented ≠ FFC.sponsored → Relation(Forum.participants, FFC.study))
+21. Q[The, Clients, Forum.participants](Clients ∩ Forum.participants = ∅ → Relation(Clients, Forum.participants))
+22. Q[The, Client_advocates, Forum.participants](Client_advocates ∩ Forum.participants = ∅ → Relation(Client_advocates, Forum.participants))
+23. Q[The, Conference.attendees, Forum.participants](Relation(Clients, Forum.participants) → Relation(Conference.attendees, Forum.participants))
+24. Q[The, Conference.attendees, Forum.participants](Relation(Client_advocates, Forum.participants) → Relation(Conference.attendees, Forum.participants))
+25. Q[The, Forum.participants, FFC.study](Forum.participants ∩ FFC.study = ∅ → Relation(Forum.participants, FFC.study))
+26. Q[The, Clients, Forum.participants](Clients ∩ Forum.participants = ∅ → Relation(Clients, Forum.participants))
+27. Q[The, Client_advocates, Forum.participants](Client_advocates ∩ Forum.participants = ∅ → Relation(Client_advocates, Forum.participants))
+28. Q[The, Conference.attendees, Forum.participants](Clients ∪ Client_advocates = Conference.attendees → Relation(Conference.attendees, Forum.participants))
+29. Q[The, Forum.participants, FFC.study](FFC.study.presented = false → Relation(Forum.participants, FFC.study))
+30. Q[The, Clients, Client_advocates](M_NLI(S1, S2) = true → Relation(Clients, Client_advocates))

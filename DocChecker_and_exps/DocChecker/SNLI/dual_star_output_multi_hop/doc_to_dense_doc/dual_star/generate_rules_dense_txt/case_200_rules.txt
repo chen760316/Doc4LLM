@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 200)
+S1: A young boy is jumping in the air in front of a concrete wall.
+S2: A boy is jumping in front of a brick wall.
+
+Predicates:
+1. S1.boy.age
+2. S1.boy.action
+3. S1.wall.material
+4. S2.boy.action
+5. S2.wall.material
+6. "specifies".S1.wall.material
+7. "specifies".S2.wall.material
+8. M_NLI(S1, S2)
+9. Factual(S1.boy, S2.boy)
+10. Factual(S1.wall, S1.wall)
+11. violate(S1.wall.material, S2.wall.material)
+12. S1.boy.location
+13. S2.boy.location
+14. "in_front_of".S1.boy
+15. "in_front_of".S2.boy
+16. S1.wall.type
+17. S2.wall.type
+18. "is_different_from".S1.wall.type
+19. "is_different_from".S2.wall.type
+20. S1.boy.height
+21. S2.boy.height
+22. "is_jumping".S1.boy
+23. "is_jumping".S2.boy
+24. S1.wall.height
+25. S2.wall.height
+26. "is_present".S1.boy
+27. "is_present".S2.boy
+28. "is_visible".S1.wall
+29. "is_visible".S2.wall
+30. "is_a".S1.boy
+
+Rules:
+1. Q[boy, S1.boy.age, S2.boy.age](S1.boy.age == "young" → Factual(S1.boy, S2.boy))
+2. Q[boy, S1.boy.action, S2.boy.action](S1.boy.action == "jumping" → Factual(S1.boy, S2.boy))
+3. Q[wall, S1.wall.material, S2.wall.material](S1.wall.material == "concrete" → Factual(S1.wall, S2.wall))
+4. Q[wall, S1.wall.material, S2.wall.material](S2.wall.material == "brick" → Factual(S1.wall, S2.wall))
+5. Q[wall, S1.wall.material, S2.wall.material](violate(S1.wall.material, S2.wall.material) → Factual(S1.wall, S2.wall))
+6. Q[wall, S1.wall.type, S2.wall.type](S1.wall.type == "concrete" → Factual(S1.wall, S2.wall))
+7. Q[wall, S1.wall.type, S2.wall.type](S2.wall.type == "brick" → Factual(S1.wall, S2.wall))
+8. Q[boy, S1.boy.location, S2.boy.location](S1.boy.location == "in_front_of" → Factual(S1.boy, S2.boy))
+9. Q[boy, S1.boy.height, S2.boy.height](S1.boy.height == "unknown" → Factual(S1.boy, S2.boy))
+10. Q[boy, S1.boy.action, S2.boy.action](S1.boy.action == "is_jumping" → Factual(S1.boy, S2.boy))
+11. Q[wall, S1.wall.height, S2.wall.height](S1.wall.height == "unknown" → Factual(S1.wall, S2.wall))
+12. Q[wall, S1.wall.material, S2.wall.material](specifies.S1.wall.material == "concrete" → Factual(S1.wall, S2.wall))
+13. Q[wall, S1.wall.material, S2.wall.material](specifies.S2.wall.material == "brick" → Factual(S1.wall, S2.wall))
+14. Q[boy, S1.boy.action, S2.boy.action](S2.boy.action == "is_jumping" → Factual(S1.boy, S2.boy))
+15. Q[boy, S1.boy.age, S2.boy.age](S1.boy.age == "young" → Factual(S1.boy, S2.boy))
+16. Q[wall, S1.wall.material, S2.wall.material](S1.wall.material == "concrete" ∧ S2.wall.material == "brick" → Factual(S1.wall, S2.wall))
+17. Q[wall, S1.wall.type, S2.wall.type](S1.wall.type == "concrete" ∧ S2.wall.type == "brick" → Factual(S1.wall, S2.wall))
+18. Q[boy, S1.boy.action, S2.boy.action](S1.boy.action == "is_jumping" ∧ S2.boy.action == "is_jumping" → Factual(S1.boy, S2.boy))
+19. Q[wall, S1.wall.material, S2.wall.material](S1.wall.material == "concrete" ∧ violate(S1.wall.material, S2.wall.material) → Factual(S1.wall, S2.wall))
+20. Q[wall, S1.wall.material, S2.wall.material](S2.wall.material == "brick" ∧ violate(S1.wall.material, S2.wall.material) → Factual(S1.wall, S2.wall))
+21. Q[boy, S1.boy.location, S2.boy.location](S1.boy.location == "in_front_of" ∧ S2.boy.location == "in_front_of" → Factual(S1.boy, S2.boy))
+22. Q[boy, S1.boy.height, S2.boy.height](S1.boy.height == "unknown" ∧ S2.boy.height == "unknown" → Factual(S1.boy, S2.boy))
+23. Q[wall, S1.wall.height, S2.wall.height](S1.wall.height == "unknown" ∧ S2.wall.height == "unknown" → Factual(S1.wall, S2.wall))
+24. Q[boy, S1.boy.action, S2.boy.action](S1.boy.action == "is_jumping" ∧ S2.boy.action == "is_jumping" → Factual(S1.boy, S2.boy))
+25. Q[wall, S1.wall.material, S2.wall.material](S1.wall.material == "concrete" ∧ S2.wall.material == "brick" → Factual(S1.wall, S2.wall))
+26. Q[wall, S1.wall.type, S2.wall.type](S1.wall.type == "concrete" ∧ S2.wall.type == "brick" → Factual(S1.wall, S2.wall))
+27. Q[boy, S1.boy.age, S2.boy.age](S1.boy.age == "young" ∧ S2.boy.age == "unknown" → Factual(S1.boy, S2.boy))
+28. Q[boy, S1.boy.action, S2.boy.action](S1.boy.action == "is_jumping" ∧ S2.boy.action == "is_jumping" → Factual(S1.boy, S2.boy))
+29. Q[wall, S1.wall.material, S2.wall.material](S1.wall.material == "concrete" ∧ S2.wall.material == "brick" → Factual(S1.wall, S2.wall))
+30. Q[wall, S1.wall.type, S2.wall.type](S1.wall.type == "concrete" ∧ S2.wall.type == "brick" → Factual(S1.wall, S2.wall))

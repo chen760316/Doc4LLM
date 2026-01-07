@@ -1,0 +1,74 @@
+Predicates:
+Lady Wishfort.label != "Person"
+Lady Wishfort.label = "Person"
+Lady Wishfort.name != "Lady Wishfort"
+Lady Wishfort.name != Millamant.name
+Lady Wishfort.name != Mrs. Fainall.name
+Lady Wishfort.name != Waitwell.name
+Lady Wishfort.name = "Lady Wishfort"
+Millamant.label != "Person"
+Millamant.label = "Person"
+Millamant.name != "Millamant"
+Millamant.name = "Millamant"
+Mirabell.label != "Person"
+Mirabell.label = "Person"
+Mirabell.name != "Mirabell"
+Mirabell.name != Lady Wishfort.name
+Mirabell.name != Millamant.name
+Mirabell.name != Mrs. Fainall.name
+Mirabell.name != Waitwell.name
+Mirabell.name = "Mirabell"
+Mirabell.occupation != "restorer"
+Mirabell.occupation = "restorer"
+Mirabell___Lady Wishfort.condition = "consent"
+Mirabell___Lady Wishfort.contradiction_type != Mirabell___Waitwell.contradiction_type
+Mirabell___Lady Wishfort.contradiction_type = "Causal"
+Mirabell___Lady Wishfort.relationship != Mirabell___Millamant.relationship
+Mirabell___Lady Wishfort.relationship != Mirabell___Mrs. Fainall.relationship
+Mirabell___Lady Wishfort.relationship != Mirabell___Waitwell.relationship
+Mirabell___Lady Wishfort.relationship = "Mirabell will obtain the money regardless of Lady Wishfort's consent."
+Mirabell___Lady Wishfort.source_id != Mirabell___Waitwell.source_id
+Mirabell___Lady Wishfort.source_id = "3488771860_3"
+Mirabell___Millamant.contradiction_type = "Causal"
+Mirabell___Millamant.relationship = "Mirabell is free to marry Millamant with the full £6000 inheritance"
+Mirabell___Millamant.source_id = "3488771860_3"
+Mirabell___Mrs. Fainall.contradiction_type != Mirabell___Waitwell.contradiction_type
+Mirabell___Mrs. Fainall.contradiction_type = "Causal"
+Mirabell___Mrs. Fainall.relationship != Mirabell___Millamant.relationship
+Mirabell___Mrs. Fainall.relationship != Mirabell___Waitwell.relationship
+Mirabell___Mrs. Fainall.relationship = "Mirabell restores Mrs. Fainall's property to her possession"
+Mirabell___Mrs. Fainall.source_id != Mirabell___Waitwell.source_id
+Mirabell___Mrs. Fainall.source_id = "3488771860_3"
+Mirabell___Waitwell.contradiction_type != Mirabell___Millamant.contradiction_type
+Mirabell___Waitwell.contradiction_type = "Factual"
+Mirabell___Waitwell.relationship != Mirabell___Millamant.relationship
+Mirabell___Waitwell.relationship = "Mirabell calls on Waitwell."
+Mirabell___Waitwell.source_id != Mirabell___Millamant.source_id
+Mirabell___Waitwell.source_id = "3488771860_4"
+Mrs. Fainall.label != "Person"
+Mrs. Fainall.label = "Person"
+Mrs. Fainall.name != "Mrs. Fainall"
+Mrs. Fainall.name != Millamant.name
+Mrs. Fainall.name != Waitwell.name
+Mrs. Fainall.name = "Mrs. Fainall"
+Mrs. Fainall.status != "property owner"
+Mrs. Fainall.status = "property owner"
+None_ML(Mirabell___Millamant.attrs, Mirabell___Waitwell.attrs)
+None_ML(Mrs. Fainall.attrs, Waitwell.attrs)
+Waitwell.label != "Person"
+Waitwell.label = "Person"
+Waitwell.name != "Waitwell"
+Waitwell.name != Millamant.name
+Waitwell.name = "Waitwell"
+
+Rules:
+Q[Mirabell,Mirabell] (Mirabell.label = "Person" ∧ Waitwell.name = "Waitwell" ∧ Mirabell.name != "Mirabell" → Mrs. Fainall.status = "property owner")
+Q[Mirabell,Mirabell] (Lady Wishfort.name != Mrs. Fainall.name ∧ Waitwell.name != "Waitwell" ∧ Mirabell.occupation != "restorer" ∧ Mirabell.label = "Person" ∧ Mirabell___Lady Wishfort.contradiction_type = "Causal" ∧ Mirabell.name != Mrs. Fainall.name → Mirabell___Waitwell.source_id != Mirabell___Millamant.source_id)
+Q[Mirabell,Mirabell] (Mirabell___Waitwell.source_id != Mirabell___Millamant.source_id ∧ Mirabell___Lady Wishfort.source_id = "3488771860_3" ∧ Millamant.label = "Person" ∧ Waitwell.name != "Waitwell" ∧ Millamant.name = "Millamant" → Mirabell.name != "Mirabell")
+Q[Mirabell,Mirabell] (Mirabell___Waitwell.contradiction_type != Mirabell___Millamant.contradiction_type ∧ Mirabell___Mrs. Fainall.relationship != Mirabell___Waitwell.relationship ∧ Mrs. Fainall.status = "property owner" ∧ Mirabell___Lady Wishfort.relationship != Mirabell___Millamant.relationship → Mirabell___Millamant.contradiction_type = "Causal")
+Q[Mirabell,Mirabell] (Mirabell.name != Millamant.name ∧ Waitwell.name != "Waitwell" → Mirabell___Lady Wishfort.contradiction_type = "Causal")
+Q[Mirabell,Mirabell] (Mirabell.name = "Mirabell" ∧ Mrs. Fainall.status = "property owner" → Mrs. Fainall.name = "Mrs. Fainall")
+Q[Mirabell,Mirabell] (Mirabell___Millamant.relationship = "Mirabell is free to marry Millamant with the full £6000 inheritance" ∧ Lady Wishfort.name != Millamant.name ∧ Mrs. Fainall.label = "Person" → Mirabell___Mrs. Fainall.source_id != Mirabell___Waitwell.source_id)
+Q[Mirabell,Mirabell] (Mirabell___Lady Wishfort.source_id = "3488771860_3" ∧ Lady Wishfort.name != Mrs. Fainall.name ∧ None_ML(Mrs. Fainall.attrs, Waitwell.attrs) ∧ Lady Wishfort.name = "Lady Wishfort" → Mrs. Fainall.name != Waitwell.name)
+Q[Mirabell,Mirabell] (Lady Wishfort.label = "Person" ∧ Millamant.name = "Millamant" ∧ Lady Wishfort.name != Millamant.name ∧ Mirabell___Lady Wishfort.relationship != Mirabell___Waitwell.relationship ∧ Mrs. Fainall.status = "property owner" ∧ Millamant.label = "Person" → Waitwell.name != Millamant.name)
+Q[Mirabell,Mirabell] (Mirabell.name != Lady Wishfort.name ∧ Mirabell.occupation != "restorer" ∧ Mrs. Fainall.label = "Person" ∧ Millamant.label != "Person" ∧ Mirabell___Lady Wishfort.condition = "consent" → Mirabell___Lady Wishfort.contradiction_type != Mirabell___Waitwell.contradiction_type)

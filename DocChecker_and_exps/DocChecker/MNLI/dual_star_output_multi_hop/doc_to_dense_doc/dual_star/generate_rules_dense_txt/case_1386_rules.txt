@@ -1,0 +1,63 @@
+Source: dense_text.txt (Index 1386)
+S1: I am not great at making blouses but I can recall that.
+S2: so I'm not great but I remember it.
+
+Predicates:
+1. Speaker.skill("making blouses") = "not great"
+2. Speaker.memory("recall") = "can"
+3. Speaker.skill("making blouses") = "lack"
+4. Speaker.memory("recall") = "ability"
+5. Sentence1.assertion("skill") = "not great at making blouses"
+6. Sentence1.assertion("memory") = "can recall"
+7. Sentence2.assertion("skill") = "not great"
+8. Sentence2.assertion("memory") = "remember it"
+9. Reason.contradiction("recall", "negate")
+10. Reason.relationship("skill", "memory") = "contradictory"
+11. Speaker.statement("S1") = "I am not great at making blouses but I can recall that."
+12. Speaker.statement("S2") = "so I'm not great but I remember it."
+13. Sentence1.relationship("skill", "memory") = "assertion"
+14. Sentence2.relationship("skill", "memory") = "negation"
+15. Speaker.skill("blouses") = "poor"
+16. Speaker.memory("blouses") = "recall"
+17. Sentence1.skill("blouses") = "not proficient"
+18. Sentence2.skill("blouses") = "not proficient"
+19. Sentence1.memory("recall") = "affirmative"
+20. Sentence2.memory("recall") = "negative"
+21. Reason.skill("blouses") = "inconsistent"
+22. Reason.memory("recall") = "inconsistent"
+23. M_NLI(S1, S2) = "true"
+24. Negation(S1, S2) = "true"
+25. violate(S1, S2) = "true"
+26. Speaker.skill("recall") = "affirmative"
+27. Speaker.skill("recall") = "denied"
+28. Sentence1.memory("ability") = "asserted"
+29. Sentence2.memory("ability") = "denied"
+30. Reason.relationship("assertion", "negation") = "contradictory"
+
+Rules:
+1. Q[not, Speaker.skill("making blouses") = "not great", Speaker.memory("recall") = "can"](Sentence1.assertion("skill") = "not great at making blouses" → Negation(Speaker.memory("recall"), "can")).
+2. Q[not, Speaker.skill("making blouses") = "lack", Speaker.memory("recall") = "ability"](Sentence1.assertion("memory") = "can recall" → Negation(Speaker.memory("recall"), "ability")).
+3. Q[not, Sentence1.assertion("skill") = "not great at making blouses", Sentence2.assertion("memory") = "remember it"](Reason.relationship("skill", "memory") = "contradictory" → Negation(Sentence2.assertion("memory"), "remember it")).
+4. Q[not, Speaker.skill("blouses") = "poor", Speaker.memory("recall") = "recall"](Sentence1.skill("blouses") = "not proficient" → Negation(Speaker.memory("recall"), "recall")).
+5. Q[not, Speaker.skill("making blouses") = "not great", Speaker.memory("recall") = "affirmative"](Sentence1.memory("ability") = "asserted" → Negation(Speaker.memory("recall"), "affirmative")).
+6. Q[not, Sentence1.assertion("memory") = "can recall", Sentence2.assertion("memory") = "remember it"](Reason.memory("recall") = "inconsistent" → Negation(Sentence2.assertion("memory"), "remember it")).
+7. Q[not, Speaker.skill("recall") = "affirmative", Speaker.skill("recall") = "denied"](Negation(Speaker.skill("recall"), "affirmative") → Negation(Speaker.skill("recall"), "denied")).
+8. Q[not, Sentence1.relationship("skill", "memory") = "assertion", Sentence2.relationship("skill", "memory") = "negation"](Reason.relationship("assertion", "negation") = "contradictory" → Negation(Sentence2.relationship("skill", "memory"), "negation")).
+9. Q[not, Speaker.memory("recall") = "can", Speaker.memory("recall") = "negative"](Sentence1.memory("ability") = "asserted" → Negation(Speaker.memory("recall"), "negative")).
+10. Q[not, Speaker.skill("making blouses") = "not great", Speaker.skill("recall") = "denied"](Sentence1.assertion("skill") = "not great at making blouses" → Negation(Speaker.skill("recall"), "denied")).
+11. Q[not, Sentence1.assertion("skill") = "not great at making blouses", Sentence2.assertion("skill") = "not great"](Reason.skill("blouses") = "inconsistent" → Negation(Sentence2.assertion("skill"), "not great")).
+12. Q[not, Speaker.memory("recall") = "ability", Speaker.memory("recall") = "denied"](Sentence2.memory("ability") = "denied" → Negation(Speaker.memory("recall"), "ability")).
+13. Q[not, Sentence1.assertion("memory") = "can recall", Sentence2.assertion("memory") = "remember it"](M_NLI(S1, S2) = "true" → Negation(Sentence2.assertion("memory"), "remember it")).
+14. Q[not, Speaker.skill("making blouses") = "not great", Speaker.memory("recall") = "can"](Negation(Speaker.skill("making blouses"), "not great") → Negation(Speaker.memory("recall"), "can")).
+15. Q[not, Speaker.skill("making blouses") = "lack", Speaker.memory("recall") = "ability"](Negation(Speaker.skill("making blouses"), "lack") → Negation(Speaker.memory("recall"), "ability")).
+16. Q[not, Sentence1.assertion("memory") = "can recall", Sentence2.assertion("memory") = "remember it"](Reason.relationship("skill", "memory") = "contradictory" → Negation(Sentence2.assertion("memory"), "remember it")).
+17. Q[not, Speaker.skill("blouses") = "poor", Speaker.memory("recall") = "recall"](Sentence1.skill("blouses") = "not proficient" → Negation(Speaker.memory("recall"), "recall")).
+18. Q[not, Speaker.skill("making blouses") = "not great", Speaker.memory("recall") = "affirmative"](Sentence1.memory("ability") = "asserted" → Negation(Speaker.memory("recall"), "affirmative")).
+19. Q[not, Sentence1.assertion("memory") = "can recall", Sentence2.assertion("memory") = "remember it"](Reason.memory("recall") = "inconsistent" → Negation(Sentence2.assertion("memory"), "remember it")).
+20. Q[not, Speaker.skill("recall") = "affirmative", Speaker.skill("recall") = "denied"](Negation(Speaker.skill("recall"), "affirmative") → Negation(Speaker.skill("recall"), "denied")).
+21. Q[not, Sentence1.relationship("skill", "memory") = "assertion", Sentence2.relationship("skill", "memory") = "negation"](Reason.relationship("assertion", "negation") = "contradictory" → Negation(Sentence2.relationship("skill", "memory"), "negation")).
+22. Q[not, Speaker.memory("recall") = "can", Speaker.memory("recall") = "negative"](Sentence1.memory("ability") = "asserted" → Negation(Speaker.memory("recall"), "negative")).
+23. Q[not, Speaker.skill("making blouses") = "not great", Speaker.skill("recall") = "denied"](Sentence1.assertion("skill") = "not great at making blouses" → Negation(Speaker.skill("recall"), "denied")).
+24. Q[not, Sentence1.assertion("skill") = "not great at making blouses", Sentence2.assertion("skill") = "not great"](Reason.skill("blouses") = "inconsistent" → Negation(Sentence2.assertion("skill"), "not great")).
+25. Q[not, Speaker.memory("recall") = "ability", Speaker.memory("recall") = "denied"](Sentence2.memory("ability") = "denied" → Negation(Speaker.memory("recall"), "ability")).
+26. Q[not, Sentence1.assertion("memory") = "can recall", Sentence2.assertion("memory") = "remember it"](M_NLI(S1, S2) = "true" → Negation(Sentence2.assertion

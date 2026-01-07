@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 80)
+S1: From the planting of a cork sapling to the first harvest takes 25 years, and a gap of approximately a decade must separate harvests from an individual tree.
+S2: And for top-quality cork, it's necessary to wait a further 15 or 20 years.
+
+Predicates:
+1. CorkSapling.planting_time = 25 years
+2. CorkTree.first_harvest_time = 25 years
+3. CorkTree.harvest_gap = 10 years
+4. CorkTree.additional_wait_time = 15 years
+5. CorkTree.additional_wait_time = 20 years
+6. CorkQuality.top_quality_wait_time = 15 years
+7. CorkQuality.top_quality_wait_time = 20 years
+8. CorkTree.total_wait_time = 40 years
+9. CorkTree.total_wait_time = 45 years
+10. Harvest.cork_quality = top_quality
+11. Harvest.cork_quality = standard_quality
+12. CorkTree.harvest_interval = 10 years
+13. CorkTree.age_at_first_harvest = 25 years
+14. CorkTree.age_at_top_quality_harvest = 40 years
+15. CorkTree.age_at_top_quality_harvest = 45 years
+16. CorkTree.planting_to_top_quality_harvest = 40 years
+17. CorkTree.planting_to_top_quality_harvest = 45 years
+18. CorkHarvest.cork_type = cork
+19. CorkHarvest.harvest_time = 25 years
+20. CorkHarvest.wait_time_for_quality = 15 years
+21. CorkHarvest.wait_time_for_quality = 20 years
+22. CorkHarvest.total_time_to_quality = 40 years
+23. CorkHarvest.total_time_to_quality = 45 years
+24. CorkTree.growth_period = 25 years
+25. CorkTree.quality_wait_period = 15 years
+26. CorkTree.quality_wait_period = 20 years
+27. CorkHarvest.quality_requirement = top_quality
+28. CorkHarvest.quality_requirement = standard_quality
+29. CorkTree.historical_growth_time = 25 years
+30. CorkTree.historical_harvest_gap = 10 years
+
+Rules:
+1. Q[From, CorkSapling.planting_time == 25 years → Numeric(40, 40)]
+2. Q[From, CorkTree.first_harvest_time == 25 years → Numeric(40, 40)]
+3. Q[From, CorkTree.additional_wait_time == 15 years → Numeric(40, 40)]
+4. Q[From, CorkTree.additional_wait_time == 20 years → Numeric(45, 45)]
+5. Q[From, CorkQuality.top_quality_wait_time == 15 years → Numeric(40, 40)]
+6. Q[From, CorkQuality.top_quality_wait_time == 20 years → Numeric(45, 45)]
+7. Q[From, CorkTree.total_wait_time == 40 years → Numeric(40, 40)]
+8. Q[From, CorkTree.total_wait_time == 45 years → Numeric(45, 45)]
+9. Q[From, CorkTree.age_at_first_harvest == 25 years → Numeric(40, 40)]
+10. Q[From, CorkTree.age_at_top_quality_harvest == 40 years → Numeric(40, 40)]
+11. Q[From, CorkTree.age_at_top_quality_harvest == 45 years → Numeric(45, 45)]
+12. Q[From, CorkTree.planting_to_top_quality_harvest == 40 years → Numeric(40, 40)]
+13. Q[From, CorkTree.planting_to_top_quality_harvest == 45 years → Numeric(45, 45)]
+14. Q[From, CorkHarvest.total_time_to_quality == 40 years → Numeric(40, 40)]
+15. Q[From, CorkHarvest.total_time_to_quality == 45 years → Numeric(45, 45)]
+16. Q[From, CorkTree.growth_period == 25 years → Numeric(40, 40)]
+17. Q[From, CorkTree.quality_wait_period == 15 years → Numeric(40, 40)]
+18. Q[From, CorkTree.quality_wait_period == 20 years → Numeric(45, 45)]
+19. Q[From, CorkHarvest.wait_time_for_quality == 15 years → Numeric(40, 40)]
+20. Q[From, CorkHarvest.wait_time_for_quality == 20 years → Numeric(45, 45)]
+21. Q[From, CorkTree.harvest_gap == 10 years → Numeric(40, 40)]
+22. Q[From, CorkTree.first_harvest_time == 25 years and CorkTree.additional_wait_time == 15 years → Numeric(40, 40)]
+23. Q[From, CorkTree.first_harvest_time == 25 years and CorkTree.additional_wait_time == 20 years → Numeric(45, 45)]
+24. Q[From, CorkTree.age_at_top_quality_harvest == 40 years and CorkTree.additional_wait_time == 15 years → Numeric(40, 40)]
+25. Q[From, CorkTree.age_at_top_quality_harvest == 45 years and CorkTree.additional_wait_time == 20 years → Numeric(45, 45)]
+26. Q[From, CorkTree.planting_to_top_quality_harvest == 40 years and CorkTree.additional_wait_time == 15 years → Numeric(40, 40)]
+27. Q[From, CorkTree.planting_to_top_quality_harvest == 45 years and CorkTree.additional_wait_time == 20 years → Numeric(45, 45)]
+28. Q[From, CorkHarvest.cork_type == cork and CorkTree.total_wait_time == 40 years → Numeric(40, 40)]
+29. Q[From, CorkHarvest.cork_type == cork and CorkTree.total_wait_time == 45 years → Numeric(45, 45)]
+30. Q[From, CorkTree.historical_growth_time == 25 years and CorkTree.harvest_gap == 10 years → Numeric(40, 40)]

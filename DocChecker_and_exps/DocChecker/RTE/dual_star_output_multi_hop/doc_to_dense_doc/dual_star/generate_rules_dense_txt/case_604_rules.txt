@@ -1,0 +1,63 @@
+Source: dense_text.txt (Index 604)
+S1: Other two Navy, Jackson Tyler and John Jodka III, Marines have been guilty of assault aggravating and conspiracy to obstruct justice and were sentenced to 21 months and 18 months respectively.
+S2: Tyler Jackson has been sentenced to 18 months.
+
+Predicates:
+1. Navy.Jackson_Tyler.guilty_of_assault_aggravating
+2. Navy.Jackson_Tyler.guilty_of_conspiracy_to_obstruct_justice
+3. Navy.Jackson_Tyler.sentence_duration_21_months
+4. Navy.John_Jodka_III.guilty_of_assault_aggravating
+5. Navy.John_Jodka_III.guilty_of_conspiracy_to_obstruct_justice
+6. Navy.John_Jodka_III.sentence_duration_18_months
+7. Marines.Jackson_Tyler.guilty_of_assault_aggravating
+8. Marines.Jackson_Tyler.guilty_of_conspiracy_to_obstruct_justice
+9. Marines.Jackson_Tyler.sentence_duration_21_months
+10. Marines.John_Jodka_III.guilty_of_assault_aggravating
+11. Marines.John_Jodka_III.guilty_of_conspiracy_to_obstruct_justice
+12. Marines.John_Jodka_III.sentence_duration_18_months
+13. "sentenced_to".Jackson_Tyler.duration_18_months
+14. "sentenced_to".John_Jodka_III.duration_18_months
+15. "sentenced_to".Jackson_Tyler.duration_21_months
+16. "guilty_of".Jackson_Tyler.assault_aggravating
+17. "guilty_of".Jackson_Tyler.conspiracy_to_obstruct_justice
+18. "guilty_of".John_Jodka_III.assault_aggravating
+19. "guilty_of".John_Jodka_III.conspiracy_to_obstruct_justice
+20. M_NLI(S1, S2)
+21. Causal(Jackson_Tyler, John_Jodka_III)
+22. violate(Jackson_Tyler, Tyler_Jackson)
+23. violate(John_Jodka_III, Tyler_Jackson)
+24. "relationship".Jackson_Tyler.Marines
+25. "relationship".John_Jodka_III.Marines
+26. "relationship".Jackson_Tyler.Navy
+27. "relationship".John_Jodka_III.Navy
+28. "sentence".Jackson_Tyler.length_21_months
+29. "sentence".John_Jodka_III.length_18_months
+30. "assault".Jackson_Tyler.type_aggravating
+
+Rules:
+1. Q[Other, Navy.Jackson_Tyler.guilty_of_assault_aggravating == true](Navy.Jackson_Tyler.sentence_duration_21_months == true → Causal(Jackson_Tyler, John_Jodka_III))
+2. Q[Other, Navy.Jackson_Tyler.guilty_of_conspiracy_to_obstruct_justice == true](Navy.Jackson_Tyler.sentence_duration_21_months == true → Causal(Jackson_Tyler, John_Jodka_III))
+3. Q[Other, Marines.Jackson_Tyler.guilty_of_assault_aggravating == true](Marines.Jackson_Tyler.sentence_duration_21_months == true → Causal(Jackson_Tyler, John_Jodka_III))
+4. Q[Other, Marines.Jackson_Tyler.guilty_of_conspiracy_to_obstruct_justice == true](Marines.Jackson_Tyler.sentence_duration_21_months == true → Causal(Jackson_Tyler, John_Jodka_III))
+5. Q[Other, "sentenced_to".Jackson_Tyler.duration_21_months == true](Navy.Jackson_Tyler.guilty_of_assault_aggravating == true → Causal(Jackson_Tyler, John_Jodka_III))
+6. Q[Other, "sentenced_to".Jackson_Tyler.duration_21_months == true](Navy.Jackson_Tyler.guilty_of_conspiracy_to_obstruct_justice == true → Causal(Jackson_Tyler, John_Jodka_III))
+7. Q[Other, "sentenced_to".John_Jodka_III.duration_18_months == true](Navy.John_Jodka_III.guilty_of_assault_aggravating == true → Causal(Jackson_Tyler, John_Jodka_III))
+8. Q[Other, "sentenced_to".John_Jodka_III.duration_18_months == true](Navy.John_Jodka_III.guilty_of_conspiracy_to_obstruct_justice == true → Causal(Jackson_Tyler, John_Jodka_III))
+9. Q[Other, Marines.John_Jodka_III.guilty_of_assault_aggravating == true](Marines.John_Jodka_III.sentence_duration_18_months == true → Causal(Jackson_Tyler, John_Jodka_III))
+10. Q[Other, Marines.John_Jodka_III.guilty_of_conspiracy_to_obstruct_justice == true](Marines.John_Jodka_III.sentence_duration_18_months == true → Causal(Jackson_Tyler, John_Jodka_III))
+11. Q[Other, "guilty_of".Jackson_Tyler.assault_aggravating == true](Navy.Jackson_Tyler.sentence_duration_21_months == true → Causal(Jackson_Tyler, John_Jodka_III))
+12. Q[Other, "guilty_of".Jackson_Tyler.conspiracy_to_obstruct_justice == true](Navy.Jackson_Tyler.sentence_duration_21_months == true → Causal(Jackson_Tyler, John_Jodka_III))
+13. Q[Other, "guilty_of".John_Jodka_III.assault_aggravating == true](Navy.John_Jodka_III.sentence_duration_18_months == true → Causal(Jackson_Tyler, John_Jodka_III))
+14. Q[Other, "guilty_of".John_Jodka_III.conspiracy_to_obstruct_justice == true](Navy.John_Jodka_III.sentence_duration_18_months == true → Causal(Jackson_Tyler, John_Jodka_III))
+15. Q[Other, "sentence".Jackson_Tyler.length_21_months == true](Navy.Jackson_Tyler.guilty_of_assault_aggravating == true → Causal(Jackson_Tyler, John_Jodka_III))
+16. Q[Other, "sentence".Jackson_Tyler.length_21_months == true](Navy.Jackson_Tyler.guilty_of_conspiracy_to_obstruct_justice == true → Causal(Jackson_Tyler, John_Jodka_III))
+17. Q[Other, "sentence".John_Jodka_III.length_18_months == true](Navy.John_Jodka_III.guilty_of_assault_aggravating == true → Causal(Jackson_Tyler, John_Jodka_III))
+18. Q[Other, "sentence".John_Jodka_III.length_18_months == true](Navy.John_Jodka_III.guilty_of_conspiracy_to_obstruct_justice == true → Causal(Jackson_Tyler, John_Jodka_III))
+19. Q[Other, Navy.Jackson_Tyler.sentence_duration_21_months == true](Marines.Jackson_Tyler.guilty_of_assault_aggravating == true → Causal(Jackson_Tyler, John_Jodka_III))
+20. Q[Other, Navy.John_Jodka_III.sentence_duration_18_months == true](Marines.John_Jodka_III.guilty_of_assault_aggravating == true → Causal(Jackson_Tyler, John_Jodka_III))
+21. Q[Other, Navy.Jackson_Tyler.sentence_duration_21_months == true](Marines.Jackson_Tyler.guilty_of_conspiracy_to_obstruct_justice == true → Causal(Jackson_Tyler, John_Jodka_III))
+22. Q[Other, Navy.John_Jodka_III.sentence_duration_18_months == true](Marines.John_Jodka_III.guilty_of_conspiracy_to_obstruct_justice == true → Causal(Jackson_Tyler, John_Jodka_III))
+23. Q[Other, "relationship".Jackson_Tyler.Marines == true](Navy.Jackson_Tyler.sentence_duration_21_months == true → Causal(Jackson_Tyler, John_Jodka_III))
+24. Q[Other, "relationship".John_Jodka_III.Marines == true](Navy.John_Jodka_III.sentence_duration_18_months == true → Causal(Jackson_Tyler, John_Jodka_III))
+25. Q[Other, "relationship".Jackson_Tyler.Navy == true](Navy.Jackson_Tyler.sentence_duration_21_months == true → Causal(Jackson_Tyler, John_Jodka_III))
+26. Q[Other, "relationship".John_Jodka_III.Navy == true](Navy.John_Jodka_III.sentence_duration_18_months == true →

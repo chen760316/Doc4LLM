@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 33)
+S1: make no disclosures of any CONFIDENTIAL INFORMATION to any party other than officers and employees of a Party to this IRA;
+S2: Receiving Party shall notify Disclosing Party in case Receiving Party is required by law, regulation or judicial process to disclose any Confidential Information.
+
+Predicates:
+1. Party.officers
+2. Party.employees
+3. Receiving_Party.notify_Disclosing_Party
+4. Receiving_Party.required_by_law
+5. Receiving_Party.required_by_regulation
+6. Receiving_Party.required_by_judicial_process
+7. Disclosing_Party.Confidential_Information
+8. Confidential_Information.no_disclosures
+9. Confidential_Information.to_any_party
+10. Confidential_Information.to_specified_individuals
+11. Disclosures.made_by_Party
+12. Disclosures.made_to_officers
+13. Disclosures.made_to_employees
+14. Disclosures.made_to_other_parties
+15. Law.requires_disclosure
+16. Regulation.requires_disclosure
+17. Judicial_process.requires_disclosure
+18. Violation.of_confidentiality
+19. Violation.of_disclosure_terms
+20. Notification.of_legal_requirement
+21. Notification.of_regulatory_requirement
+22. Notification.of_judicial_requirement
+23. Confidentiality.agreement
+24. Confidentiality.enforcement
+25. Confidentiality.terms
+26. Disclosure.exception
+27. Disclosure.legal_obligation
+28. Disclosure.regulatory_obligation
+29. Disclosure.judicial_obligation
+30. Party.agreement_to_confidentiality
+
+Rules:
+1. Q[make, Confidential_Information.no_disclosures, Confidential_Information.to_any_party](Receiving_Party.notify_Disclosing_Party == true → Negation(Confidential_Information.no_disclosures, Confidential_Information.to_any_party))
+2. Q[make, Confidential_Information.no_disclosures, Confidential_Information.to_specified_individuals](Receiving_Party.required_by_law == true → Negation(Confidential_Information.no_disclosures, Confidential_Information.to_specified_individuals))
+3. Q[make, Disclosures.made_by_Party, Disclosures.made_to_other_parties](Receiving_Party.required_by_regulation == true → Negation(Disclosures.made_by_Party, Disclosures.made_to_other_parties))
+4. Q[make, Disclosures.made_to_officers, Disclosures.made_to_employees](Receiving_Party.required_by_judicial_process == true → Negation(Disclosures.made_to_officers, Disclosures.made_to_employees))
+5. Q[make, Party.officers, Party.employees](Law.requires_disclosure == true → Negation(Party.officers, Party.employees))
+6. Q[make, Party.officers, Confidential_Information.to_specified_individuals](Regulation.requires_disclosure == true → Negation(Party.officers, Confidential_Information.to_specified_individuals))
+7. Q[make, Party.employees, Confidential_Information.to_any_party](Judicial_process.requires_disclosure == true → Negation(Party.employees, Confidential_Information.to_any_party))
+8. Q[make, Receiving_Party.notify_Disclosing_Party, Notification.of_legal_requirement](Confidential_Information.no_disclosures == true → Negation(Receiving_Party.notify_Disclosing_Party, Notification.of_legal_requirement))
+9. Q[make, Receiving_Party.notify_Disclosing_Party, Notification.of_regulatory_requirement](Confidential_Information.to_any_party == true → Negation(Receiving_Party.notify_Disclosing_Party, Notification.of_regulatory_requirement))
+10. Q[make, Receiving_Party.notify_Disclosing_Party, Notification.of_judicial_requirement](Confidential_Information.to_specified_individuals == true → Negation(Receiving_Party.notify_Disclosing_Party, Notification.of_judicial_requirement))
+11. Q[make, Violation.of_confidentiality, Violation.of_disclosure_terms](Receiving_Party.required_by_law == true → Negation(Violation.of_confidentiality, Violation.of_disclosure_terms))
+12. Q[make, Violation.of_confidentiality, Disclosure.exception](Receiving_Party.required_by_regulation == true → Negation(Violation.of_confidentiality, Disclosure.exception))
+13. Q[make, Violation.of_disclosure_terms, Disclosure.legal_obligation](Receiving_Party.required_by_judicial_process == true → Negation(Violation.of_disclosure_terms, Disclosure.legal_obligation))
+14. Q[make, Confidentiality.agreement, Confidentiality.terms](Law.requires_disclosure == true → Negation(Confidentiality.agreement, Confidentiality.terms))
+15. Q[make, Confidentiality.enforcement, Confidentiality.terms](Regulation.requires_disclosure == true → Negation(Confidentiality.enforcement, Confidentiality.terms))
+16. Q[make, Confidentiality.agreement, Disclosure.regulatory_obligation](Judicial_process.requires_disclosure == true → Negation(Confidentiality.agreement, Disclosure.regulatory_obligation))
+17. Q[make, Disclosure.judicial_obligation, Disclosure.exception](Receiving_Party.required_by_law == true → Negation(Disclosure.judicial_obligation, Disclosure.exception))
+18. Q[make, Disclosure.legal_obligation, Confidential_Information.to_any_party](Receiving_Party.required_by_regulation == true → Negation(Disclosure.legal_obligation, Confidential_Information.to_any_party))
+19. Q[make, Disclosure.regulatory_obligation, Confidential_Information.to_specified_individuals](Receiving_Party.required_by_judicial_process == true → Negation(Disclosure.regulatory_obligation, Confidential_Information.to_specified_individuals))
+20. Q[make, Party.agreement_to_confidentiality, Confidentiality.terms](Law.requires_disclosure == true → Negation(Party.agreement_to_confidentiality, Confidentiality.terms))
+21. Q[make, Party.agreement_to_confidentiality, Disclosure.judicial_obligation](Regulation.requires_disclosure == true → Negation(Party.agreement_to_confidentiality, Disclosure.judicial_obligation))
+22. Q[make, Party.agreement_to_confidentiality, Disclosure.legal_obligation](Judicial_process.requires_disclosure == true → Negation(Party.agreement_to_confidentiality, Disclosure.legal_obligation))
+23. Q[make, Disclosures.made_to_employees, Confidential_Information.to_any_party](Receiving_Party.required_by_law == true → Negation(Disclosures.made_to_employees, Confidential_Information.to_any_party))
+24. Q[make, Disclosures.made_to_officers, Confidential_Information.to_specified_individuals](Receiving_Party.required_by_regulation == true → Negation(Disclosures.made_to_officers, Confidential_Information.to_specified_individuals))
+25. Q[make, Disclosures.made_by_Party, Confidential_Information.to_specified_individuals](Receiving_Party.required_by_judicial_process == true → Negation(Disclosures.made_by_Party, Confidential_Information.to_specified_individuals))
+26. Q[make, Confidential_Information.to_any_party, Confidential_Information.to_specified_individuals](Law.requires_disclosure == true → Negation(Confidential_Information.to_any_party, Confidential_Information.to_specified_individuals))
+27. Q[make, Confidential_Information.to_specified_individuals, Confidential_Information.no_disclosures](Regulation.requires_disclosure == true → Negation(Confidential_Information.to_specified_individuals, Confidential_Information.no_disclosures))
+28. Q[make, Confidential_Information.to_any_party, Confidential_Information.no_disclosures](Judicial_process.requires_disclosure == true → Negation(Confidential_Information.to_any_party, Confidential_Information.no_disclosures))
+29. Q[make, Receiving_Party.notify_Disclosing_Party, Disclosure.exception](Law.requires_disclosure == true → Negation(Receiving_Party.notify_Disclosing_Party, Disclosure.exception))
+30. Q[make, Receiving_Party.notify_Disclosing_Party, Disclosure.judicial_obligation](Regulation.requires_disclosure == true → Negation(Receiving_Party.notify_Disclosing_Party, Disclosure.judicial_obligation))

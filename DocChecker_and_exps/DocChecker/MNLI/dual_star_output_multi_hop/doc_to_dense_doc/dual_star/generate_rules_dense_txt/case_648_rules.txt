@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 648)
+S1: Hong Kong currency is widely accepted in Guangzhou, or you can change your currency into RMB (yuan) at any bank or hotel.
+S2: No one in Guangzhou accepts Hong Kong currency.
+
+Predicates:
+1. S1.acceptance.Hong_Kong_currency
+2. S1.currency_exchange.available
+3. S1.location.Guangzhou
+4. S1.bank.service.currency_exchange
+5. S1.hotel.service.currency_exchange
+6. S2.acceptance.Hong_Kong_currency
+7. S2.location.Guangzhou
+8. S2.entity.no_one
+9. S2.entity.Hong_Kong_currency
+10. M_NLI(S1, S2)
+11. Factual(S1, S2)
+12. violate(S1, S2)
+13. S1.currency.RMB
+14. S1.entity.Hong_Kong_currency
+15. S1.service.widely_accepted
+16. S2.entity.Guangzhou
+17. S2.service.no_acceptance
+18. S1.relationship.currency_exchange
+19. S2.relationship.no_acceptance
+20. S1.attribute.widely_accepted
+21. S2.attribute.no_one_accepts
+22. S1.bank.location.Guangzhou
+23. S1.hotel.location.Guangzhou
+24. S1.currency_type.Hong_Kong
+25. S2.currency_type.Hong_Kong
+26. S1.service.bank
+27. S1.service.hotel
+28. S2.service.bank
+29. S2.service.hotel
+30. S1.entity.bank
+
+Rules:
+1. Q[Hong, S1.acceptance.Hong_Kong_currency == "widely accepted" → Factual(x0, y0)]
+2. Q[Hong, S2.acceptance.Hong_Kong_currency == "no one" → Factual(x0, y0)]
+3. Q[Guangzhou, S1.location.Guangzhou == "true" → Factual(x0, y0)]
+4. Q[Guangzhou, S2.location.Guangzhou == "true" → Factual(x0, y0)]
+5. Q[Hong, S1.service.widely_accepted == "true" → Factual(x0, y0)]
+6. Q[Hong, S2.service.no_acceptance == "true" → Factual(x0, y0)]
+7. Q[Hong, S1.bank.service.currency_exchange == "available" → Factual(x0, y0)]
+8. Q[Hong, S1.hotel.service.currency_exchange == "available" → Factual(x0, y0)]
+9. Q[Hong, S1.relationship.currency_exchange == "exists" → Factual(x0, y0)]
+10. Q[Hong, S2.relationship.no_acceptance == "exists" → Factual(x0, y0)]
+11. Q[Hong, S1.attribute.widely_accepted == "true" → Factual(x0, y0)]
+12. Q[Hong, S2.attribute.no_one_accepts == "true" → Factual(x0, y0)]
+13. Q[Hong, S1.entity.Hong_Kong_currency == "true" → Factual(x0, y0)]
+14. Q[Hong, S2.entity.Hong_Kong_currency == "true" → Factual(x0, y0)]
+15. Q[Guangzhou, S1.bank.location.Guangzhou == "true" → Factual(x0, y0)]
+16. Q[Guangzhou, S1.hotel.location.Guangzhou == "true" → Factual(x0, y0)]
+17. Q[Hong, S1.currency.RMB == "true" → Factual(x0, y0)]
+18. Q[Hong, S1.currency_type.Hong_Kong == "true" → Factual(x0, y0)]
+19. Q[Hong, S2.currency_type.Hong_Kong == "true" → Factual(x0, y0)]
+20. Q[Hong, S1.service.bank == "available" → Factual(x0, y0)]
+21. Q[Hong, S1.service.hotel == "available" → Factual(x0, y0)]
+22. Q[Hong, S2.service.bank == "not available" → Factual(x0, y0)]
+23. Q[Hong, S2.service.hotel == "not available" → Factual(x0, y0)]
+24. Q[Hong, M_NLI(S1, S2) == "contradiction" → Factual(x0, y0)]
+25. Q[Hong, violate(S1, S2) == "true" → Factual(x0, y0)]
+26. Q[Hong, S1.acceptance.Hong_Kong_currency == "true" → Factual(x0, y0)]
+27. Q[Hong, S2.entity.no_one == "true" → Factual(x0, y0)]
+28. Q[Guangzhou, S1.service.widely_accepted == "true" → Factual(x0, y0)]
+29. Q[Guangzhou, S2.service.no_acceptance == "true" → Factual(x0, y0)]
+30. Q[Hong, S1.currency_exchange.available == "true" → Factual(x0, y0)]

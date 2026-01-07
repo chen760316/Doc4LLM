@@ -1,0 +1,80 @@
+Predicates:
+Justin.label != "Character"
+Justin.label = "Character"
+Justin.name != "Justin"
+Justin.name != Owl.name
+Justin.name != Timothy.name
+Justin.name = "Justin"
+Justin.relation != "saves Mrs. Frisby"
+Justin.relation != Owl.relation
+Justin.relation != Timothy.relation
+Justin.relation = "saves Mrs. Frisby"
+Mrs. Frisby.label != "Character"
+Mrs. Frisby.label = "Character"
+Mrs. Frisby.name != "Mrs. Frisby"
+Mrs. Frisby.name != Justin.name
+Mrs. Frisby.name != Owl.name
+Mrs. Frisby.name != Rats.name
+Mrs. Frisby.name != Timothy.name
+Mrs. Frisby.name = "Mrs. Frisby"
+Mrs. Frisby.occupation != "head of a family of field mice"
+Mrs. Frisby.occupation = "head of a family of field mice"
+Mrs. Frisby.status != "widowed"
+Mrs. Frisby.status != Timothy.status
+Mrs. Frisby.status = "widowed"
+Mrs. Frisby___Justin.doc_id = "3488771835_6"
+Mrs. Frisby___Justin.relationship != Mrs. Frisby___Owl.relationship
+Mrs. Frisby___Justin.relationship != Mrs. Frisby___Timothy.relationship
+Mrs. Frisby___Justin.relationship = "Justin comes to save Mrs. Frisby and manages to get her out of the cage."
+Mrs. Frisby___Owl.doc_id = "3488771835_6"
+Mrs. Frisby___Owl.relationship = "Jeremy suggests Mrs. Frisby seek help from an owl who dwells in the forest."
+Mrs. Frisby___Rats.doc_id = "3488771835_6"
+Mrs. Frisby___Rats.relationship != Mrs. Frisby___Justin.relationship
+Mrs. Frisby___Rats.relationship != Mrs. Frisby___Owl.relationship
+Mrs. Frisby___Rats.relationship != Mrs. Frisby___Timothy.relationship
+Mrs. Frisby___Rats.relationship = "The rats agree to move Mrs. Frisby's house to a location safe from the plow out of respect for Jonathan."
+Mrs. Frisby___Timothy.doc_id = "3488771835_6"
+Mrs. Frisby___Timothy.relationship != Mrs. Frisby___Owl.relationship
+Mrs. Frisby___Timothy.relationship = "Mrs. Frisby is the mother of Timothy who is ill."
+None_ML(Mrs. Frisby.attrs, Rats.attrs)
+None_ML(Mrs. Frisby___Timothy.attrs, Mrs. Frisby___Rats.attrs)
+Owl.label != "Character"
+Owl.label = "Character"
+Owl.name != "Owl"
+Owl.name = "Owl"
+Owl.relation != "suggested helper"
+Owl.relation = "suggested helper"
+Rats.label != "Character"
+Rats.label = "Character"
+Rats.name != "Rats"
+Rats.name != Justin.name
+Rats.name != Owl.name
+Rats.name != Timothy.name
+Rats.name = "Rats"
+Rats.relation != "need to drug Dragon"
+Rats.relation != Justin.relation
+Rats.relation != Owl.relation
+Rats.relation != Timothy.relation
+Rats.relation = "need to drug Dragon"
+Timothy.label != "Character"
+Timothy.label = "Character"
+Timothy.name != "Timothy"
+Timothy.name != Owl.name
+Timothy.name = "Timothy"
+Timothy.relation != "son of Mrs. Frisby"
+Timothy.relation != Owl.relation
+Timothy.relation = "son of Mrs. Frisby"
+Timothy.status != "ill"
+Timothy.status = "ill"
+
+Rules:
+Q[Mrs. Frisby,Mrs. Frisby] (Rats.label != "Character" ∧ Mrs. Frisby.name != "Mrs. Frisby" → Timothy.status != "ill")
+Q[Mrs. Frisby,Mrs. Frisby] (Justin.name != Timothy.name ∧ Mrs. Frisby.status != "widowed" ∧ Rats.name != Owl.name ∧ Mrs. Frisby.occupation = "head of a family of field mice" → Owl.relation = "suggested helper")
+Q[Mrs. Frisby,Mrs. Frisby] (None_ML(Mrs. Frisby___Timothy.attrs, Mrs. Frisby___Rats.attrs) ∧ Mrs. Frisby___Timothy.relationship != Mrs. Frisby___Owl.relationship ∧ Rats.relation != Justin.relation ∧ Owl.relation = "suggested helper" ∧ Mrs. Frisby.status != "widowed" → Owl.label != "Character")
+Q[Mrs. Frisby,Mrs. Frisby] (Mrs. Frisby___Owl.doc_id = "3488771835_6" ∧ Justin.name != Timothy.name ∧ Mrs. Frisby.occupation = "head of a family of field mice" ∧ Rats.relation != Owl.relation ∧ Mrs. Frisby___Owl.relationship = "Jeremy suggests Mrs. Frisby seek help from an owl who dwells in the forest." ∧ Mrs. Frisby___Rats.doc_id = "3488771835_6" → Owl.name != "Owl")
+Q[Mrs. Frisby,Mrs. Frisby] (Mrs. Frisby.label != "Character" ∧ Mrs. Frisby.occupation = "head of a family of field mice" ∧ Justin.name = "Justin" → Justin.relation = "saves Mrs. Frisby")
+Q[Mrs. Frisby,Mrs. Frisby] (Rats.name != "Rats" ∧ Mrs. Frisby___Rats.relationship != Mrs. Frisby___Owl.relationship → Rats.name != Justin.name)
+Q[Mrs. Frisby,Mrs. Frisby] (Owl.relation = "suggested helper" ∧ Mrs. Frisby___Timothy.relationship = "Mrs. Frisby is the mother of Timothy who is ill." ∧ Justin.name != "Justin" → Owl.name = "Owl")
+Q[Mrs. Frisby,Mrs. Frisby] (Timothy.name = "Timothy" ∧ Rats.name != "Rats" ∧ Rats.label != "Character" ∧ Mrs. Frisby___Justin.relationship != Mrs. Frisby___Owl.relationship → Mrs. Frisby.name != Timothy.name)
+Q[Mrs. Frisby,Mrs. Frisby] (Timothy.label = "Character" ∧ Justin.relation != Timothy.relation ∧ Mrs. Frisby___Owl.relationship = "Jeremy suggests Mrs. Frisby seek help from an owl who dwells in the forest." ∧ Owl.relation != "suggested helper" ∧ None_ML(Mrs. Frisby___Timothy.attrs, Mrs. Frisby___Rats.attrs) ∧ Mrs. Frisby___Rats.relationship = "The rats agree to move Mrs. Frisby's house to a location safe from the plow out of respect for Jonathan." → Mrs. Frisby___Owl.doc_id = "3488771835_6")
+Q[Mrs. Frisby,Mrs. Frisby] (Rats.label != "Character" ∧ Mrs. Frisby___Rats.relationship != Mrs. Frisby___Timothy.relationship ∧ Mrs. Frisby.name = "Mrs. Frisby" ∧ Timothy.name != "Timothy" ∧ Owl.name = "Owl" → Timothy.name = "Timothy")

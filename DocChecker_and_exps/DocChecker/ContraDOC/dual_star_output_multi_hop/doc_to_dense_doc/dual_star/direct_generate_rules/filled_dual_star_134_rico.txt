@@ -1,0 +1,40 @@
+Predicates:
+Black Voters.label != "Voter Group"
+Black Voters.label != Minority Communities.label
+Black Voters.label = "Voter Group"
+Black Voters.name != "Black Voters"
+Black Voters.name != Minority Communities.name
+Black Voters.name = "Black Voters"
+Minority Communities.label != "Community"
+Minority Communities.label = "Community"
+Minority Communities.name != "Minority Communities"
+Minority Communities.name = "Minority Communities"
+None_ML(Minority Communities.attrs, Black Voters.attrs)
+None_ML(Republicans___Black Voters.attrs, Republicans___Minority Communities.attrs)
+Republicans.label != "Political Party"
+Republicans.label != Black Voters.label
+Republicans.label != Minority Communities.label
+Republicans.label = "Political Party"
+Republicans.name != "Republicans"
+Republicans.name != Black Voters.name
+Republicans.name != Minority Communities.name
+Republicans.name = "Republicans"
+Republicans___Black Voters.contradiction_type = "Causal"
+Republicans___Black Voters.relationship != Republicans___Minority Communities.relationship
+Republicans___Black Voters.relationship = "Republicans are starting to consider black voters as an important part of the electoral strategy."
+Republicans___Black Voters.source_id = "3489738272_4"
+Republicans___Minority Communities.contradiction_type = "Causal"
+Republicans___Minority Communities.relationship = "Republicans need a real commitment to the issues facing minority communities to appeal to them."
+Republicans___Minority Communities.source_id = "3489738272_4"
+
+Rules:
+Q[Republicans,Republicans] (Republicans___Black Voters.relationship = "Republicans are starting to consider black voters as an important part of the electoral strategy." ∧ Republicans___Black Voters.contradiction_type = "Causal" ∧ None_ML(Republicans___Black Voters.attrs, Republicans___Minority Communities.attrs) ∧ Republicans___Black Voters.source_id = "3489738272_4" ∧ Minority Communities.label != "Community" → Black Voters.label != Minority Communities.label)
+Q[Republicans,Republicans] (Black Voters.label != "Voter Group" ∧ Minority Communities.label != "Community" → Black Voters.label = "Voter Group")
+Q[Republicans,Republicans] (Republicans___Black Voters.relationship != Republicans___Minority Communities.relationship ∧ Minority Communities.label != "Community" ∧ Minority Communities.name = "Minority Communities" ∧ Black Voters.label != "Voter Group" → Republicans.name != Black Voters.name)
+Q[Republicans,Republicans] (Black Voters.label != "Voter Group" ∧ None_ML(Minority Communities.attrs, Black Voters.attrs) ∧ Black Voters.name != Minority Communities.name → Republicans.name = "Republicans")
+Q[Republicans,Republicans] (Minority Communities.label = "Community" ∧ Black Voters.name != "Black Voters" ∧ Black Voters.name != Minority Communities.name ∧ Republicans___Black Voters.contradiction_type = "Causal" ∧ Minority Communities.name != "Minority Communities" ∧ Republicans___Black Voters.source_id = "3489738272_4" → Republicans.name != Minority Communities.name)
+Q[Republicans,Republicans] (Minority Communities.name != "Minority Communities" ∧ Republicans___Black Voters.contradiction_type = "Causal" ∧ None_ML(Minority Communities.attrs, Black Voters.attrs) ∧ Republicans.label != Black Voters.label ∧ Black Voters.name != Minority Communities.name → Republicans.label != "Political Party")
+Q[Republicans,Republicans] (Black Voters.name != Minority Communities.name ∧ None_ML(Republicans___Black Voters.attrs, Republicans___Minority Communities.attrs) → Republicans___Black Voters.source_id = "3489738272_4")
+Q[Republicans,Republicans] (Republicans___Black Voters.contradiction_type = "Causal" ∧ Black Voters.name != "Black Voters" ∧ Republicans.name != Black Voters.name → Republicans___Black Voters.relationship != Republicans___Minority Communities.relationship)
+Q[Republicans,Republicans] (Black Voters.name = "Black Voters" ∧ Minority Communities.name != "Minority Communities" ∧ Republicans.label != Minority Communities.label ∧ None_ML(Republicans___Black Voters.attrs, Republicans___Minority Communities.attrs) ∧ Republicans.label = "Political Party" ∧ Republicans___Black Voters.relationship != Republicans___Minority Communities.relationship → Republicans___Minority Communities.source_id = "3489738272_4")
+Q[Republicans,Republicans] (Republicans___Black Voters.source_id = "3489738272_4" ∧ Republicans.label = "Political Party" ∧ Republicans___Minority Communities.source_id = "3489738272_4" ∧ Republicans___Minority Communities.relationship = "Republicans need a real commitment to the issues facing minority communities to appeal to them." → Republicans___Black Voters.relationship = "Republicans are starting to consider black voters as an important part of the electoral strategy.")

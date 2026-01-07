@@ -1,0 +1,133 @@
+Predicates:
+1. person.name = "Alice"
+2. person.age = 30
+3. person.occupation = "Engineer"
+4. person.city = "New York"
+5. book.title = "The Great Gatsby"
+6. book.author = "F. Scott Fitzgerald"
+7. book.year_published = 1925
+8. book.genre = "Fiction"
+9. movie.title = "Inception"
+10. movie.director = "Christopher Nolan"
+11. movie.release_year = 2010
+12. movie.genre = "Science Fiction"
+13. company.name = "Tech Innovations"
+14. company.founded_year = 2015
+15. company.ceo = "John Doe"
+16. company.industry = "Technology"
+17. event.date = "2023-10-01"
+18. event.location = "Los Angeles"
+19. event.type = "Conference"
+20. event.attendees = 500
+21. relationship.type = "Friendship"
+22. relationship.start_date = "2010-05-20"
+23. relationship.end_date = "2020-08-15"
+24. relationship.intensity = "High"
+25. product.name = "Smartphone X"
+26. product.price = 999.99
+27. product.release_date = "2022-03-15"
+28. product.category = "Electronics"
+29. animal.species = "Dog"
+30. animal.breed = "Labrador"
+31. animal.age = 5
+32. animal.owner = "Bob"
+33. location.city = "Paris"
+34. location.country = "France"
+35. location.population = 2148000
+36. location.area = 105.4
+37. M_NLI(person.name, book.author)
+38. M_NLI(movie.title, event.type)
+39. T("Alice is 30 years old", "Alice is 25 years old", tau)
+40. T("The Great Gatsby was published in 1925", "The Great Gatsby was published in 1930", tau)
+41. tau(person.age, book.year_published)
+42. tau(movie.release_year, event.date)
+43. violate(person.age, book.year_published)
+44. Factual(person.city, location.city)
+45. Factual(company.founded_year, event.date)
+46. Causal(movie.release_year, event.date)
+47. Causal(product.price, company.founded_year)
+48. Numeric(person.age, animal.age)
+49. Numeric(location.population, event.attendees)
+50. Temporal(event.date, movie.release_year)
+51. Temporal(company.founded_year, product.release_date)
+52. Content(person.occupation, company.ceo)
+53. Content(book.genre, movie.genre)
+54. Negation(event.attendees, 0)
+55. Negation(product.price, 0)
+56. Relation(relationship.type, animal.species)
+57. Relation(company.name, product.name)
+58. violate(book.title, movie.title)
+59. Factual(movie.director, company.ceo)
+60. Causal(person.age, relationship.start_date)
+61. Numeric(location.area, location.population)
+62. Temporal(event.date, relationship.start_date)
+63. Content(animal.breed, person.occupation)
+64. Negation(company.founded_year, 2020)
+65. Relation(event.location, location.city)
+66. violate(person.name, animal.owner)
+67. Factual(product.category, book.genre)
+68. Causal(movie.release_year, book.year_published)
+69. Numeric(event.attendees, 1000)
+70. Temporal(company.founded_year, event.date)
+71. Content(person.city, location.country)
+72. Negation(person.age, 40)
+73. Relation(relationship.intensity, event.type)
+74. violate(location.population, event.attendees)
+75. Factual(animal.owner, person.name)
+76. Causal(product.price, movie.release_year)
+77. Numeric(book.year_published, 2025)
+78. Temporal(event.date, company.founded_year)
+79. Content(movie.genre, book.title)
+80. Negation(person.occupation, "Doctor")
+81. Relation(relationship.start_date, event.date)
+82. violate(company.name, product.name)
+83. Factual(location.city, person.city)
+84. Causal(animal.age, person.age)
+85. Numeric(location.area, 200)
+86. Temporal(movie.release_year, event.date)
+87. Content(book.author, company.ceo)
+88. Negation(event.attendees, 600)
+89. Relation(relationship.end_date, event.date)
+90. violate(person.age, animal.age)
+91. Factual(product.release_date, event.date)
+92. Causal(company.founded_year, product.price)
+93. Numeric(location.population, 3000000)
+94. Temporal(event.date, movie.release_year)
+95. Content(person.city, location.area)
+96. Negation(book.year_published, 1920)
+97. Relation(relationship.type, movie.genre)
+98. violate(person.occupation, book.title)
+99. Factual(animal.species, product.category)
+100. Causal(event.attendees, company.founded_year)
+violate(x0, y0)
+
+Rules:
+1. Q[x0, y0](person.name = "Alice" ∧ person.age = 30 → violate(x0, y0))
+2. Q[x0, y0](book.title = "The Great Gatsby" ∧ book.year_published = 1925 → violate(x0, y0))
+3. Q[x0, y0](movie.title = "Inception" ∧ movie.release_year = 2010 → violate(x0, y0))
+4. Q[x0, y0](person.city = "New York" ∧ person.occupation = "Engineer" ∧ person.age = 30 → violate(x0, y0))
+5. Q[x0, y0](company.name = "Tech Innovations" ∧ company.founded_year = 2015 ∧ company.industry = "Technology" → violate(x0, y0))
+6. Q[x0, y0](event.date = "2023-10-01" ∧ event.location = "Los Angeles" ∧ event.type = "Conference" → violate(x0, y0))
+7. Q[x0, y0](relationship.type = "Friendship" ∧ relationship.start_date = "2010-05-20" ∧ relationship.end_date = "2020-08-15" ∧ relationship.intensity = "High" → violate(x0, y0))
+8. Q[x0, y0](product.name = "Smartphone X" ∧ product.price = 999.99 ∧ product.release_date = "2022-03-15" ∧ product.category = "Electronics" → violate(x0, y0))
+9. Q[x0, y0](animal.species = "Dog" ∧ animal.breed = "Labrador" ∧ animal.age = 5 ∧ animal.owner = "Bob" → violate(x0, y0))
+10. Q[x0, y0](location.city = "Paris" ∧ location.country = "France" ∧ location.population = 2148000 ∧ location.area = 105.4 → violate(x0, y0))
+11. Q[x0, y0](M_NLI(person.name, book.author) ∧ M_NLI(movie.title, event.type) ∧ T("Alice is 30 years old", "Alice is 25 years old", tau) → violate(x0, y0))
+12. Q[x0, y0](tau(person.age, book.year_published) ∧ tau(movie.release_year, event.date) ∧ violate(person.age, book.year_published) → violate(x0, y0))
+13. Q[x0, y0](Factual(person.city, location.city) ∧ Factual(company.founded_year, event.date) ∧ Causal(movie.release_year, event.date) ∧ Causal(product.price, company.founded_year) → violate(x0, y0))
+14. Q[x0, y0](Numeric(person.age, animal.age) ∧ Numeric(location.population, event.attendees) ∧ Temporal(event.date, movie.release_year) ∧ Temporal(company.founded_year, product.release_date) → violate(x0, y0))
+15. Q[x0, y0](Content(person.occupation, company.ceo) ∧ Content(book.genre, movie.genre) ∧ Negation(event.attendees, 0) ∧ Negation(product.price, 0) → violate(x0, y0))
+16. Q[x0, y0](Relation(relationship.type, animal.species) ∧ Relation(company.name, product.name) ∧ violate(book.title, movie.title) ∧ Factual(movie.director, company.ceo) → violate(x0, y0))
+17. Q[x0, y0](Causal(person.age, relationship.start_date) ∧ Numeric(location.area, location.population) ∧ Temporal(event.date, relationship.start_date) ∧ Content(animal.breed, person.occupation) → violate(x0, y0))
+18. Q[x0, y0](Negation(company.founded_year, 2020) ∧ Relation(event.location, location.city) ∧ violate(person.name, animal.owner) ∧ Factual(product.category, book.genre) → violate(x0, y0))
+19. Q[x0, y0](Causal(movie.release_year, book.year_published) ∧ Numeric(book.year_published, 2025) ∧ Temporal(event.date, company.founded_year) ∧ Content(movie.genre, book.title) → violate(x0, y0))
+20. Q[x0, y0](Negation(person.occupation, "Doctor") ∧ Relation(relationship.start_date, event.date) ∧ violate(company.name, product.name) ∧ Factual(location.city, person.city) → violate(x0, y0))
+21. Q[x0, y0](Causal(animal.age, person.age) ∧ Numeric(location.area, 200) ∧ Temporal(movie.release_year, event.date) ∧ Content(book.author, company.ceo) → violate(x0, y0))
+22. Q[x0, y0](Negation(event.attendees, 600) ∧ Relation(relationship.end_date, event.date) ∧ violate(person.age, animal.age) ∧ Factual(product.release_date, event.date) → violate(x0, y0))
+23. Q[x0, y0](Causal(company.founded_year, product.price) ∧ Numeric(location.population, 3000000) ∧ Temporal(event.date, movie.release_year) ∧ Content(person.city, location.area) → violate(x0, y0))
+24. Q[x0, y0](Negation(book.year_published, 1920) ∧ Relation(relationship.type, movie.genre) ∧ violate(person.occupation, book.title) ∧ Factual(animal.species, product.category) → violate(x0, y0))
+25. Q[x0, y0](Causal(event.attendees, company.founded_year) ∧ Numeric(location.area, 105.4) ∧ Temporal(event.date, relationship.start_date) ∧ Content(person.city, location.country) → violate(x0, y0))
+26. Q[x0, y0](Factual(company.ceo, "John Doe") ∧ Numeric(product.price, 999.99) ∧ Temporal(movie.release_year, event.date) ∧ Content(book.title, movie.title) → violate(x0, y0))
+27. Q[x0, y0](Causal(person.age, relationship.intensity) ∧ Numeric(location.population, 2148000) ∧ Temporal(event.date, movie.release_year) ∧ Content(animal.breed, person.occupation) → violate(x0, y0))
+28. Q[x0, y0](Negation(company.founded_year, 2015) ∧ Relation(event.location, location.city) ∧ violate(person.name, animal.owner) ∧ Factual(product.category, book.genre) → violate(x0, y0))
+29. Q[x0, y0](Causal(movie.release_year, book.year_published) ∧ Numeric(book.year_published, 2025) ∧ Temporal(event

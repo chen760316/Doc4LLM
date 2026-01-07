@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 256)
+S1: the ALJ, in rejecting his testimony, improperly relied on the ground that he 'has not required strong analgesic medication ... in recent years.'
+S2: holding that threatening employee to mind her own business investigating her videotaping her without her permission and forcing her to take polygraph could not be considered adverse employment actions because they had no effect on conditions of employment
+
+Predicates:
+1. ALJ.rejection_basis
+2. ALJ.testimony_improper_reliance
+3. testimony.lack_of_medication
+4. medication.strong_analgesic
+5. employee.threatened
+6. employee.investigation
+7. employee.videotaping_without_permission
+8. employee.polygraph_forced
+9. adverse_employment_action.threatening
+10. adverse_employment_action.polygraph
+11. conditions_of_employment.no_effect
+12. actions.threatening_employee
+13. actions.forcing_polygraph
+14. rejection.testimony
+15. testimony.impact_on_adverse_actions
+16. actions.negative_impact
+17. assessment.adverse_actions
+18. rejection.improper_basis
+19. actions.investigation
+20. actions.videotaping
+21. employee.mind_own_business
+22. actions.adverse_effect
+23. actions.not_considered_adverse
+24. testimony.rejection_ground
+25. medication.recent_years
+26. actions.impact_on_conditions
+27. testimony.rejection_contradiction
+28. actions.threatening_not_adverse
+29. actions.polygraph_not_adverse
+30. rejection.based_on_medication
+
+Rules:
+1. Q[the, ALJ.rejection_basis == "lack_of_medication"](ALJ.testimony_improper_reliance → Causal(x0, y0))
+2. Q[the, testimony.lack_of_medication == "true"](ALJ.testimony_improper_reliance → Causal(x0, y0))
+3. Q[the, medication.strong_analgesic == "not_required"](ALJ.testimony_improper_reliance → Causal(x0, y0))
+4. Q[the, employee.threatened == "true"](adverse_employment_action.threatening → Causal(x0, y0))
+5. Q[the, employee.polygraph_forced == "true"](adverse_employment_action.polygraph → Causal(x0, y0))
+6. Q[the, actions.threatening_employee == "true"](conditions_of_employment.no_effect → Causal(x0, y0))
+7. Q[the, actions.forcing_polygraph == "true"](conditions_of_employment.no_effect → Causal(x0, y0))
+8. Q[the, actions.negative_impact == "true"](conditions_of_employment.no_effect → Causal(x0, y0))
+9. Q[the, actions.videotaping_without_permission == "true"](conditions_of_employment.no_effect → Causal(x0, y0))
+10. Q[the, employee.investigation == "true"](conditions_of_employment.no_effect → Causal(x0, y0))
+11. Q[the, actions.adverse_effect == "true"](assessment.adverse_actions → Causal(x0, y0))
+12. Q[the, actions.not_considered_adverse == "true"](assessment.adverse_actions → Causal(x0, y0))
+13. Q[the, testimony.impact_on_adverse_actions == "true"](rejection.testimony → Causal(x0, y0))
+14. Q[the, rejection.improper_basis == "true"](testimony.rejection_ground → Causal(x0, y0))
+15. Q[the, actions.impact_on_conditions == "true"](assessment.adverse_actions → Causal(x0, y0))
+16. Q[the, rejection.based_on_medication == "true"](testimony.rejection_contradiction → Causal(x0, y0))
+17. Q[the, employee.mind_own_business == "true"](actions.threatening_not_adverse → Causal(x0, y0))
+18. Q[the, actions.polygraph_not_adverse == "true"](conditions_of_employment.no_effect → Causal(x0, y0))
+19. Q[the, actions.threatening_not_adverse == "true"](conditions_of_employment.no_effect → Causal(x0, y0))
+20. Q[the, actions.videotaping == "true"](conditions_of_employment.no_effect → Causal(x0, y0))
+21. Q[the, employee.investigation == "true"](actions.not_considered_adverse → Causal(x0, y0))
+22. Q[the, actions.threatening_employee == "true"](actions.not_considered_adverse → Causal(x0, y0))
+23. Q[the, actions.polygraph == "true"](actions.not_considered_adverse → Causal(x0, y0))
+24. Q[the, rejection.testimony == "true"](testimony.rejection_contradiction → Causal(x0, y0))
+25. Q[the, testimony.rejection_ground == "lack_of_medication"](rejection.improper_basis → Causal(x0, y0))
+26. Q[the, actions.threatening == "true"](adverse_employment_action.threatening → Causal(x0, y0))
+27. Q[the, actions.polygraph == "true"](adverse_employment_action.polygraph → Causal(x0, y0))
+28. Q[the, actions.investigation == "true"](employee.mind_own_business → Causal(x0, y0))
+29. Q[the, actions.videotaping_without_permission == "true"](employee.mind_own_business → Causal(x0, y0))
+30. Q[the, actions.adverse_effect == "true"](testimony.rejection_contradiction → Causal(x0, y0))

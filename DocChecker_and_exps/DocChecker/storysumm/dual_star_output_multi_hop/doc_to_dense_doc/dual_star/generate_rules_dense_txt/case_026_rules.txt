@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 26)
+S1: The man finds himself back on the wet road he was standing on before, with a lollipop in his hand.
+S2: The man doesn't just find himself back on the road. A door appears, he exits, and then is back on the road.
+
+Predicates:
+1. Man.has_lollipop
+2. Man.is_on_road
+3. Road.is_wet
+4. Door.appears
+5. Man.exits_through_door
+6. Man.finds_himself_back_on_road
+7. Sequence_of_events.includes(door_appearance)
+8. Sequence_of_events.includes(man_exiting)
+9. Man.is_back_on_road
+10. Road.is_previous_location
+11. Lollipop.is_in_hand
+12. Man.is_standing_on_road
+13. Door.is_present
+14. Man.exits_before_returning
+15. Causal(man_exiting, man_back_on_road)
+16. Causal(door_appearance, man_exiting)
+17. M_NLI(S1, S2)
+18. Violate(S1, S2)
+19. Man.has_previous_location
+20. Road.is_location_of_man
+21. Man.experiences_sequence_of_events
+22. Door.is_mechanism_for_exit
+23. Man.is_in_state_of_return
+24. Lollipop.is_object_of_man
+25. Road.is_context_for_events
+26. Man.has_exited
+27. Door.is_exit_point
+28. Man.is_in_transition
+29. Sequence_of_events.is_causal
+30. Man.is_in_location_after_exit
+
+Rules:
+1. Q[The, Man.has_lollipop == true](Man.is_on_road == true → Causal(man_exiting, man_back_on_road))
+2. Q[The, Man.is_on_road == true](Road.is_wet == true → Causal(man_exiting, man_back_on_road))
+3. Q[The, Road.is_wet == true](Man.finds_himself_back_on_road == true → Causal(man_exiting, man_back_on_road))
+4. Q[The, Door.appears == true](Man.is_on_road == true → Causal(door_appearance, man_exiting))
+5. Q[The, Man.exits_through_door == true](Sequence_of_events.includes(door_appearance) == true → Causal(door_appearance, man_exiting))
+6. Q[The, Man.is_back_on_road == true](Man.exits_through_door == true → Causal(man_exiting, man_back_on_road))
+7. Q[The, Sequence_of_events.includes(man_exiting) == true](Man.is_on_road == true → Causal(man_exiting, man_back_on_road))
+8. Q[The, Man.is_standing_on_road == true](Door.appears == true → Causal(door_appearance, man_exiting))
+9. Q[The, Door.is_present == true](Man.exits_through_door == true → Causal(man_exiting, man_back_on_road))
+10. Q[The, Man.has_previous_location == true](Road.is_previous_location == true → Causal(man_exiting, man_back_on_road))
+11. Q[The, Road.is_location_of_man == true](Man.finds_himself_back_on_road == true → Causal(man_exiting, man_back_on_road))
+12. Q[The, Man.experiences_sequence_of_events == true](Sequence_of_events.includes(man_exiting) == true → Causal(man_exiting, man_back_on_road))
+13. Q[The, Door.is_mechanism_for_exit == true](Man.is_on_road == true → Causal(door_appearance, man_exiting))
+14. Q[The, Man.is_in_state_of_return == true](Man.exits_before_returning == true → Causal(man_exiting, man_back_on_road))
+15. Q[The, Lollipop.is_in_hand == true](Man.is_on_road == true → Causal(man_exiting, man_back_on_road))
+16. Q[The, Road.is_context_for_events == true](Door.appears == true → Causal(door_appearance, man_exiting))
+17. Q[The, Man.has_exited == true](Man.is_on_road == true → Causal(man_exiting, man_back_on_road))
+18. Q[The, Door.is_exit_point == true](Man.exits_through_door == true → Causal(man_exiting, man_back_on_road))
+19. Q[The, Man.is_in_transition == true](Sequence_of_events.includes(man_exiting) == true → Causal(man_exiting, man_back_on_road))
+20. Q[The, Sequence_of_events.is_causal == true](Door.appears == true → Causal(door_appearance, man_exiting))
+21. Q[The, Man.is_in_location_after_exit == true](Man.exits_through_door == true → Causal(man_exiting, man_back_on_road))
+22. Q[The, Man.is_on_road == true](Door.is_present == true → Causal(door_appearance, man_exiting))
+23. Q[The, Man.finds_himself_back_on_road == true](Man.exits_before_returning == true → Causal(man_exiting, man_back_on_road))
+24. Q[The, Road.is_previous_location == true](Man.is_back_on_road == true → Causal(man_exiting, man_back_on_road))
+25. Q[The, Man.has_lollipop == true](Man.is_standing_on_road == true → Causal(man_exiting, man_back_on_road))
+26. Q[The, Man.is_standing_on_road == true](Road.is_wet == true → Causal(man_exiting, man_back_on_road))
+27. Q[The, Man.is_on_road == true](Man.experiences_sequence_of_events == true → Causal(man_exiting, man_back_on_road))
+28. Q[The, Door.is_mechanism_for_exit == true](Man.is_back_on_road == true → Causal(man_exiting, man_back_on_road))
+29. Q[The, Man.is_in_state_of_return == true](Road.is_context_for_events == true → Causal(door_appearance, man_exiting))
+30. Q[The, Man.has_previous_location == true](Man.is_in_transition == true → Causal(man_exiting, man_back_on_road))

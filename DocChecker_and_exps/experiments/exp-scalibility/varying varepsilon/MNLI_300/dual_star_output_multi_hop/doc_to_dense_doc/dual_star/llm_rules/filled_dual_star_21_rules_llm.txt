@@ -1,0 +1,128 @@
+Predicates:
+1. entity.name = "Howard"
+2. entity.age = "35"
+3. entity.occupation = "store owner"
+4. entity.location = "New York"
+5. entity.revenue = "50000"
+6. entity.product = "high heels"
+7. entity.sales_date = "2025-06-15"
+8. entity.customer_count = "100"
+9. entity.rating = "4.5"
+10. entity.brand = "Elegant Steps"
+11. edge.relationship = "displays more than"
+12. edge.relationship = "includes many from"
+13. edge.relationship = "is presented in a number of"
+14. edge.relationship = "presents a large collection of"
+15. edge.source = "Howard's store"
+16. edge.target = "high heels collection"
+17. M_NLI(entity1.name, entity2.name)
+18. M_NLI(entity1.age, entity2.age)
+19. T("Howard is 35 years old", "Howard is 40 years old", tau)
+20. T("The store sold 29 pairs", "The store sold no pairs", tau)
+21. tau(entity.revenue, entity.sales_date)
+22. violate(x0, y0)
+23. Factual(x0, y0)
+24. Causal(x0, y0)
+25. Numeric(x0, y0)
+26. Temporal(x0, y0)
+27. Content(x0, y0)
+28. Relation(x0, y0)
+29. Negation(x0, y0)
+30. edge.source = "Elegant Steps"
+31. edge.target = "customer feedback"
+32. entity.product_type = "footwear"
+33. entity.stock_level = "200"
+34. entity.return_rate = "5%"
+35. entity.supplier = "Fashion Supplies Inc."
+36. edge.relationship = "is part of"
+37. edge.relationship = "is associated with"
+38. M_NLI(entity1.product, entity2.product)
+39. T("The store has a 5% return rate", "The store has a 10% return rate", tau)
+40. tau(entity.stock_level, entity.return_rate)
+41. violate(x1, y1)
+42. Factual(x1, y1)
+43. Causal(x1, y1)
+44. Numeric(x1, y1)
+45. Temporal(x1, y1)
+46. Content(x1, y1)
+47. Relation(x1, y1)
+48. Negation(x1, y1)
+49. edge.relationship = "offers discounts on"
+50. edge.relationship = "is known for"
+51. entity.discount_rate = "20%"
+52. entity.customer_feedback = "positive"
+53. entity.competitor = "Trendy Shoes"
+54. M_NLI(entity1.discount_rate, entity2.discount_rate)
+55. T("The store offers a 20% discount", "The store offers no discount", tau)
+56. tau(entity.customer_feedback, entity.competitor)
+57. violate(x2, y2)
+58. Factual(x2, y2)
+59. Causal(x2, y2)
+60. Numeric(x2, y2)
+61. Temporal(x2, y2)
+62. Content(x2, y2)
+63. Relation(x2, y2)
+64. Negation(x2, y2)
+65. edge.relationship = "has a partnership with"
+66. edge.relationship = "is located near"
+67. entity.partnership = "local boutiques"
+68. entity.nearby_store = "Fashion Hub"
+69. M_NLI(entity1.partnership, entity2.nearby_store)
+70. T("The store has a partnership with local boutiques", "The store has no partnerships", tau)
+71. tau(entity.nearby_store, entity.location)
+72. violate(x3, y3)
+73. Factual(x3, y3)
+74. Causal(x3, y3)
+75. Numeric(x3, y3)
+76. Temporal(x3, y3)
+77. Content(x3, y3)
+78. Relation(x3, y3)
+79. Negation(x3, y3)
+80. edge.relationship = "competes with"
+81. edge.relationship = "is preferred by"
+82. entity.competitor_count = "5"
+83. entity.preferred_by = "local customers"
+84. M_NLI(entity1.competitor_count, entity2.preferred_by)
+85. T("The store competes with 5 other stores", "The store has no competitors", tau)
+86. tau(entity.preferred_by, entity.customer_count)
+87. violate(x4, y4)
+88. Factual(x4, y4)
+89. Causal(x4, y4)
+90. Numeric(x4, y4)
+91. Temporal(x4, y4)
+92. Content(x4, y4)
+93. Relation(x4, y4)
+94. Negation(x4, y4)
+95. edge.relationship = "is recognized for"
+96. edge.relationship = "has received awards for"
+97. entity.award = "Best Footwear Brand"
+98. entity.award_year = "2023"
+99. M_NLI(entity1.award, entity2.award_year)
+100. T("The store is recognized for Best Footwear Brand", "The store has never received any awards", tau)
+violate(x0, y0)
+
+Rules:
+1. Q[x0, y0](entity.name = "Howard" ∧ entity.age = "35" → violate(x0, y0))
+2. Q[x0, y0](entity.occupation = "store owner" ∧ entity.location = "New York" → violate(x0, y0))
+3. Q[x0, y0](entity.revenue = "50000" ∧ entity.product = "high heels" ∧ entity.customer_count = "100" → violate(x0, y0))
+4. Q[x0, y0](entity.rating = "4.5" ∧ entity.brand = "Elegant Steps" ∧ edge.relationship = "displays more than" → violate(x0, y0))
+5. Q[x0, y0](edge.source = "Howard's store" ∧ edge.target = "high heels collection" ∧ entity.sales_date = "2025-06-15" → violate(x0, y0))
+6. Q[x0, y0](entity.product_type = "footwear" ∧ entity.stock_level = "200" ∧ entity.return_rate = "5%" ∧ entity.supplier = "Fashion Supplies Inc." → violate(x0, y0))
+7. Q[x0, y0](edge.relationship = "is part of" ∧ edge.relationship = "is associated with" ∧ entity.discount_rate = "20%" ∧ entity.customer_feedback = "positive" → violate(x0, y0))
+8. Q[x0, y0](entity.competitor = "Trendy Shoes" ∧ edge.relationship = "offers discounts on" ∧ edge.relationship = "is known for" ∧ entity.customer_count = "100" ∧ entity.rating = "4.5" → violate(x0, y0))
+9. Q[x0, y0](entity.partnership = "local boutiques" ∧ entity.nearby_store = "Fashion Hub" ∧ edge.relationship = "has a partnership with" ∧ edge.relationship = "is located near" ∧ entity.age = "35" → violate(x0, y0))
+10. Q[x0, y0](entity.competitor_count = "5" ∧ entity.preferred_by = "local customers" ∧ edge.relationship = "competes with" ∧ edge.relationship = "is preferred by" ∧ entity.location = "New York" ∧ entity.revenue = "50000" → violate(x0, y0))
+11. Q[x0, y0](entity.award = "Best Footwear Brand" ∧ entity.award_year = "2023" ∧ edge.relationship = "is recognized for" ∧ edge.relationship = "has received awards for" → violate(x0, y0))
+12. Q[x0, y0](entity.discount_rate = "20%" ∧ entity.customer_feedback = "positive" ∧ edge.relationship = "offers discounts on" ∧ edge.relationship = "is known for" ∧ entity.product = "high heels" → violate(x0, y0))
+13. Q[x0, y0](entity.stock_level = "200" ∧ entity.return_rate = "5%" ∧ edge.relationship = "is part of" ∧ edge.relationship = "is associated with" ∧ entity.location = "New York" ∧ entity.occupation = "store owner" → violate(x0, y0))
+14. Q[x0, y0](entity.customer_count = "100" ∧ entity.rating = "4.5" ∧ edge.relationship = "displays more than" ∧ edge.relationship = "includes many from" ∧ entity.brand = "Elegant Steps" → violate(x0, y0))
+15. Q[x0, y0](entity.product_type = "footwear" ∧ entity.competitor = "Trendy Shoes" ∧ edge.relationship = "competes with" ∧ edge.relationship = "is preferred by" ∧ entity.age = "35" ∧ entity.name = "Howard" → violate(x0, y0))
+16. Q[x0, y0](entity.revenue = "50000" ∧ entity.sales_date = "2025-06-15" ∧ edge.source = "Howard's store" ∧ edge.target = "high heels collection" ∧ entity.customer_count = "100" → violate(x0, y0))
+17. Q[x0, y0](entity.product = "high heels" ∧ entity.discount_rate = "20%" ∧ edge.relationship = "offers discounts on" ∧ edge.relationship = "is known for" ∧ entity.location = "New York" ∧ entity.occupation = "store owner" → violate(x0, y0))
+18. Q[x0, y0](entity.age = "35" ∧ entity.name = "Howard" ∧ edge.relationship = "is presented in a number of" ∧ edge.relationship = "presents a large collection of" ∧ entity.rating = "4.5" → violate(x0, y0))
+19. Q[x0, y0](entity.customer_feedback = "positive" ∧ entity.competitor_count = "5" ∧ edge.relationship = "competes with" ∧ edge.relationship = "is preferred by" ∧ entity.product_type = "footwear" ∧ entity.stock_level = "200" → violate(x0, y0))
+20. Q[x0, y0](entity.return_rate = "5%" ∧ entity.supplier = "Fashion Supplies Inc." ∧ edge.relationship = "is part of" ∧ edge.relationship = "is associated with" ∧ entity.award = "Best Footwear Brand" ∧ entity.award_year = "2023" → violate(x0, y0))
+21. Q[x0, y0](entity.location = "New York" ∧ entity.occupation = "store owner" ∧ edge.relationship = "is located near" ∧ edge.relationship = "has a partnership with" ∧ entity.nearby_store = "Fashion Hub" ∧ entity.product = "high heels" → violate(x0, y0))
+22. Q[x0, y0](entity.rating = "4.5" ∧ entity.brand = "Elegant Steps" ∧ edge.relationship = "displays more than" ∧ edge.relationship = "includes many from" ∧ entity.customer_count = "100" ∧ entity.revenue = "50000" → violate(x0, y0))
+23. Q[x0, y0](entity.product_type = "footwear" ∧ entity.discount_rate = "20%" ∧ edge.relationship = "offers discounts on" ∧ edge.relationship = "is known for" ∧ entity.competitor = "Trendy Shoes" ∧ entity.customer_feedback = "positive" → violate(x0, y0))
+24. Q[x0, y0](entity.age = "35" ∧ entity.name = "Howard" ∧ edge.relationship = "is presented in a number of" ∧ edge.relationship = "presents a large collection of" ∧ entity.product = "high heels" ∧ entity.sales_date = "2025-06

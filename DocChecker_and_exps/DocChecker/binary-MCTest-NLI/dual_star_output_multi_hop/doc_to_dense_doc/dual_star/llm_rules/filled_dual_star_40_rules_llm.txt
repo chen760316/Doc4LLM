@@ -1,0 +1,102 @@
+Predicates:
+1. I.attributes = "{'fur': 'all needed'}"
+2. King.attributes = "{'facial_hair': 'none', 'clothing': 'no shirt and tie'}"
+3. Sitting.description = "sitting without a queen"
+4. my family.relationship = "loved"
+5. place.winter = "no"
+6. "left this house".source_id = "Index_191"
+7. "moved into another house".source_id = "Index_191"
+8. "The king is sitting without a queen.".location = "school yard"
+9. "I had to leave my family, but they loved me.".doc_index = "189"
+10. "I have a new family.".doc_index = "190"
+11. M_NLI(I.attributes, King.attributes)
+12. T("I had to leave my family, but they loved me.", "I have a new family.", tau)
+13. tau(my family.relationship, "new family")
+14. violate(I, "I have a new family.")
+15. Factual(I, "I have a new family.")
+16. Content(I, "I had to leave my family, but they loved me.")
+17. Causal("I had to leave my family", "I have a new family.")
+18. Negation("I had to leave my family", "I did not leave my family.")
+19. Relation("my family", "new family")
+20. Numeric("I had to leave my family", "I have a new family.")
+21. Temporal("I had to leave my family", "I have a new family.")
+22. "The speaker expresses a preference for not being confined to a shirt box.".source_id = "Index_240"
+23. "I lived in a place with no winter.".doc_index = "1"
+24. M_NLI("The king is sitting without a queen.", "The king is sitting with a queen.")
+25. T("I lived in a place with no winter.", "I lived in a place with winter.", tau)
+26. tau(place.winter, "winter")
+27. violate("I lived in a place with no winter.", "I lived in a place with winter.")
+28. Factual("I lived in a place with no winter.", "I lived in a place with winter.")
+29. Content("I lived in a place with no winter.", "I lived in a place with winter.")
+30. Causal("I lived in a place with no winter.", "I experienced winter.")
+31. Negation("I lived in a place with no winter.", "I lived in a place with winter.")
+32. Relation("place.winter", "place.winter")
+33. Numeric("I lived in a place with no winter.", "I lived in a place with 4 seasons.")
+34. Temporal("I lived in a place with no winter.", "I lived in a place with winter.")
+35. "The king is sitting without a queen.".source_id = "Index_145"
+36. "The king is sitting without a queen.".doc_index = "145"
+37. M_NLI("The king is sitting without a queen.", "The king is sitting with a queen.")
+38. T("The king is sitting without a queen.", "The king is sitting with a queen.", tau)
+39. tau(Sitting.description, "sitting with a queen")
+40. violate("The king is sitting without a queen.", "The king is sitting with a queen.")
+41. Factual("The king is sitting without a queen.", "The king is sitting with a queen.")
+42. Content("The king is sitting without a queen.", "The king is sitting with a queen.")
+43. Causal("The king is sitting without a queen.", "The queen is present.")
+44. Negation("The king is sitting without a queen.", "The king is sitting with a queen.")
+45. Relation("Sitting.description", "sitting with a queen")
+46. Numeric("The king is sitting without a queen.", "The king is sitting with 1 queen.")
+47. Temporal("The king is sitting without a queen.", "The king was sitting with a queen.")
+48. "I had to leave my family, but they loved me.".source_id = "Index_189"
+49. "I have a new family.".source_id = "Index_190"
+50. M_NLI("I had to leave my family, but they loved me.", "I have a new family.")
+51. T("I had to leave my family, but they loved me.", "I have a new family.", tau)
+52. tau(my family.relationship, "new family")
+53. violate("I had to leave my family, but they loved me.", "I have a new family.")
+54. Factual("I had to leave my family, but they loved me.", "I have a new family.")
+55. Content("I had to leave my family, but they loved me.", "I have a new family.")
+56. Causal("I had to leave my family, but they loved me.", "I have a new family.")
+57. Negation("I had to leave my family, but they loved me.", "I did not leave my family.")
+58. Relation("my family.relationship", "new family")
+59. Numeric("I had to leave my family, but they loved me.", "I have a new family.")
+60. Temporal("I had to leave my family, but they loved me.", "I have a new family.")
+61. "The speaker expresses a preference for not being confined to a shirt box.".doc_index = "240"
+62. "left this house".source_id = "Index_191"
+63. "moved into another house".source_id = "Index_191"
+64. M_NLI("left this house", "moved into another house")
+65. T("left this house", "moved into another house", tau)
+66. tau("left this house", "moved into another house")
+67. violate("left this house", "moved into another house")
+68. Factual("left this house", "moved into another house")
+69. Content("left this house", "moved into another house")
+70. Causal("left this house", "moved into another house")
+71. Negation("left this house", "I did not leave this house.")
+72. Relation("left this house", "moved into another house")
+73. Numeric("left this house", "moved into another house")
+74. Temporal("left this house", "moved into another house")
+75. "I lived in a place with no winter.".source_id = "Index_1"
+76. "The king is sitting without a queen.".location = "school yard"
+77. M_NLI("The speaker expresses a preference for not being confined to a shirt box.", "The speaker prefers to be confined.")
+78. T("The speaker expresses a preference for not being confined to a shirt box.", "The speaker prefers to be confined.", tau)
+79. tau("The speaker expresses a preference for not being confined to a shirt box.", "The speaker prefers to be confined.")
+80. violate("The speaker expresses a preference for not being confined to a shirt
+violate(x0, y0)
+
+Rules:
+1. Q[I, "I have a new family"](I.attributes = "{'fur': 'all needed'}" ∧ "I had to leave my family, but they loved me.".doc_index = "189" → violate(I, "I have a new family."))
+2. Q[King, "The king is sitting with a queen"](King.attributes = "{'facial_hair': 'none', 'clothing': 'no shirt and tie'}" ∧ "The king is sitting without a queen.".location = "school yard" → violate(King, "The king is sitting with a queen."))
+3. Q[place, "I lived in a place with winter"](place.winter = "no" ∧ "I lived in a place with no winter.".doc_index = "1" → violate(place, "I lived in a place with winter."))
+4. Q[I, "I have a new family"](my family.relationship = "loved" ∧ "I had to leave my family, but they loved me.".doc_index = "189" → violate(I, "I have a new family."))
+5. Q[Sitting, "The king is sitting with a queen"](Sitting.description = "sitting without a queen" ∧ "The king is sitting without a queen.".location = "school yard" → violate(Sitting, "The king is sitting with a queen."))
+6. Q[place, "I lived in a place with winter"](place.winter = "no" ∧ "I lived in a place with no winter.".doc_index = "1" ∧ "I lived in a place with no winter.".source_id = "Index_1" → violate(place, "I lived in a place with winter."))
+7. Q[I, "I have a new family"](I.attributes = "{'fur': 'all needed'}" ∧ "I had to leave my family, but they loved me.".doc_index = "189" ∧ "I have a new family.".doc_index = "190" → violate(I, "I have a new family."))
+8. Q[King, "The king is sitting with a queen"](King.attributes = "{'facial_hair': 'none', 'clothing': 'no shirt and tie'}" ∧ "The king is sitting without a queen.".location = "school yard" ∧ "The king is sitting without a queen.".doc_index = "145" → violate(King, "The king is sitting with a queen."))
+9. Q[place, "I lived in a place with winter"](place.winter = "no" ∧ "I lived in a place with no winter.".doc_index = "1" ∧ "I lived in a place with no winter.".source_id = "Index_1" ∧ "I lived in a place with no winter.".doc_index = "1" → violate(place, "I lived in a place with winter."))
+10. Q[I, "I have a new family"](my family.relationship = "loved" ∧ "I had to leave my family, but they loved me.".doc_index = "189" ∧ "I have a new family.".doc_index = "190" ∧ "I have a new family.".source_id = "Index_190" → violate(I, "I have a new family."))
+11. Q[Sitting, "The king is sitting with a queen"](Sitting.description = "sitting without a queen" ∧ "The king is sitting without a queen.".location = "school yard" ∧ "The king is sitting without a queen.".doc_index = "145" ∧ "The king is sitting without a queen.".source_id = "Index_145" → violate(Sitting, "The king is sitting with a queen."))
+12. Q[place, "I lived in a place with winter"](place.winter = "no" ∧ "I lived in a place with no winter.".doc_index = "1" ∧ "I lived in a place with no winter.".source_id = "Index_1" ∧ "I lived in a place with no winter.".doc_index = "1" ∧ "I lived in a place with no winter.".source_id = "Index_1" → violate(place, "I lived in a place with winter."))
+13. Q[I, "I have a new family"](I.attributes = "{'fur': 'all needed'}" ∧ "I had to leave my family, but they loved me.".doc_index = "189" ∧ "I have a new family.".doc_index = "190" ∧ "I have a new family.".source_id = "Index_190" ∧ "I have a new family.".source_id = "Index_190" → violate(I, "I have a new family."))
+14. Q[King, "The king is sitting with a queen"](King.attributes = "{'facial_hair': 'none', 'clothing': 'no shirt and tie'}" ∧ "The king is sitting without a queen.".location = "school yard" ∧ "The king is sitting without a queen.".doc_index = "145" ∧ "The king is sitting without a queen.".source_id = "Index_145" ∧ "The king is sitting without a queen.".doc_index = "145" → violate(King, "The king is sitting with a queen."))
+15. Q[place, "I lived in a place with winter"](place.winter = "no" ∧ "I lived in a place with no winter.".doc_index = "1" ∧ "I lived in a place with no winter.".source_id = "Index_1" ∧ "I lived in a place with no winter.".doc_index = "1" ∧ "I lived in a place with no winter.".source_id = "Index_1" ∧ "I lived in a place with no winter.".doc_index = "1" → violate(place, "I lived in a place with winter."))
+16. Q[I, "I have a new family"](my family.relationship = "loved" ∧ "I had to leave my family, but they loved me.".doc_index = "189" ∧ "I have a new family.".doc_index = "190" ∧ "I have a new family.".source_id = "Index_190" ∧ "I have a new family.".source_id = "Index_190" → violate(I, "I have a new family."))
+17. Q[Sitting, "The king is sitting with a queen"](Sitting.description = "sitting without a queen" ∧ "The king is sitting without a queen.".location = "school yard" ∧ "The king is sitting without a queen.".doc_index = "145" ∧ "The king is sitting without a queen.".source_id = "Index_145" ∧ "The king is sitting without a queen.".doc_index = "145" → violate(Sitting, "The king is sitting with a queen."))
+18. Q[place, "I lived in a place with winter"](place.w

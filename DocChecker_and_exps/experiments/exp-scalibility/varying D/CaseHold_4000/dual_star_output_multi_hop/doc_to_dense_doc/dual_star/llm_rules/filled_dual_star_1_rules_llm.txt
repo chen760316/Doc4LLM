@@ -1,0 +1,130 @@
+Predicates:
+1. health_policy.doc_index = "15"
+2. health_policy.source_domain = "N/A"
+3. health_policy.source_id = "Index_15"
+4. health_care_provider.doc_index = "15"
+5. health_care_provider.source_domain = "N/A"
+6. health_care_provider.source_id = "Index_15"
+7. inmate.doc_index = "15"
+8. inmate.source_domain = "N/A"
+9. inmate.source_id = "Index_15"
+10. health_policy.affects = "inmate"
+11. health_policy.determines = "medical treatment"
+12. health_care_provider.provides = "medical treatment"
+13. health_policy.type = "health care"
+14. inmate.status = "affected"
+15. health_care_provider.type = "provider"
+16. health_policy.effect = "determines treatment"
+17. health_policy.scope = "health care"
+18. health_care_provider.role = "provider"
+19. inmate.needs = "medical treatment"
+20. health_policy.enforcement = "mandatory"
+21. health_care_provider.compliance = "required"
+22. inmate.rights = "medical care"
+23. health_policy.impact = "direct"
+24. health_care_provider.responsibility = "treatment"
+25. inmate.access = "health care"
+26. health_policy.guidelines = "treatment provision"
+27. health_care_provider.obligation = "provide care"
+28. inmate.eligibility = "treatment"
+29. health_policy.revision_date = "2023"
+30. health_care_provider.license_status = "active"
+31. inmate.location = "facility"
+32. health_policy.approval = "government"
+33. health_care_provider.credential = "licensed"
+34. inmate.health_status = "monitored"
+35. health_policy.restrictions = "none"
+36. health_care_provider.services = "medical"
+37. inmate.treatment_plan = "established"
+38. health_policy.reviews = "annual"
+39. health_care_provider.network = "affiliated"
+40. inmate.advocacy = "supported"
+41. health_policy.implementation = "effective"
+42. health_care_provider.quality = "standard"
+43. inmate.assessment = "regular"
+44. health_policy.objective = "improve care"
+45. health_care_provider.feedback = "positive"
+46. inmate.satisfaction = "high"
+47. health_policy.issues = "none"
+48. health_care_provider.performance = "evaluated"
+49. inmate.support = "available"
+50. health_policy.resources = "adequate"
+51. health_care_provider.training = "ongoing"
+52. inmate.right_to_appeal = "granted"
+53. health_policy.violations = "penalties"
+54. health_care_provider.monitoring = "continuous"
+55. inmate.health_records = "confidential"
+56. health_policy.standards = "met"
+57. health_care_provider.reviews = "conducted"
+58. inmate.access_to_care = "ensured"
+59. health_policy.impact_assessment = "completed"
+60. health_care_provider.eligibility_criteria = "clear"
+61. health_policy.violation_penalty = "fines"
+62. health_care_provider.oversight = "government"
+63. health_policy.determines_access = "true"
+64. health_care_provider.provides_care = "true"
+65. inmate.is_eligible_for_treatment = "true"
+66. health_policy.is_effective = "true"
+67. health_care_provider.is_compliant = "true"
+68. inmate.has_access_to_care = "true"
+69. health_policy.does_not_apply_to_inmates = "false"
+70. health_care_provider.is_not_licensed = "false"
+71. inmate.is_not_eligible_for_treatment = "false"
+72. health_policy.is_not_effective = "false"
+73. health_care_provider.is_not_compliant = "false"
+74. inmate.has_no_access_to_care = "false"
+75. M_NLI(health_policy.affects, health_care_provider.provides)
+76. T(health_policy.determines, health_policy.affects, Causal)
+77. tau(health_policy.effect, health_care_provider.compliance)
+78. violate(health_policy, health_care_provider)
+79. Factual(health_policy, inmate)
+80. Causal(health_policy, health_care_provider)
+81. Numeric(health_policy, health_care_provider)
+82. Temporal(health_policy, inmate)
+83. Content(health_policy, health_care_provider)
+84. Relation(health_policy, inmate)
+85. Negation(health_policy, health_care_provider)
+86. Factual(health_care_provider, inmate)
+87. Causal(inmate, health_policy)
+88. Numeric(inmate, health_care_provider)
+89. Temporal(health_care_provider, health_policy)
+90. Content(inmate, health_policy)
+91. Relation(health_care_provider, inmate)
+92. Negation(inmate, health_policy)
+93. M_NLI(inmate.access, health_policy.determines)
+94. T(health_care_provider.provides, inmate.needs, Relation)
+95. tau(health_policy.scope, health_care_provider.role)
+96. violate(inmate, health_policy)
+97. Factual(inmate, health_care_provider)
+98. Causal(health_care_provider, inmate)
+99. Numeric(health_policy, inmate)
+100. Temporal(health_policy, health_care_provider)
+violate(x0, y0)
+
+Rules:
+1. Q[x0, y0](health_policy.affects = "inmate" ∧ inmate.status = "affected" → violate(x0, y0))
+2. Q[x0, y0](health_policy.source_id = "Index_15" ∧ health_care_provider.source_id = "Index_15" → violate(x0, y0))
+3. Q[x0, y0](health_policy.type = "health care" ∧ health_policy.enforcement = "mandatory" → violate(x0, y0))
+4. Q[x0, y0](inmate.access = "health care" ∧ inmate.rights = "medical care" → violate(x0, y0))
+5. Q[x0, y0](health_care_provider.license_status = "active" ∧ health_care_provider.is_compliant = "true" → violate(x0, y0))
+6. Q[x0, y0](health_policy.implementation = "effective" ∧ health_policy.issues = "none" → violate(x0, y0))
+7. Q[x0, y0](health_policy.determines = "medical treatment" ∧ health_care_provider.provides = "medical treatment" ∧ inmate.needs = "medical treatment" → violate(x0, y0))
+8. Q[x0, y0](health_policy.source_domain = "N/A" ∧ health_care_provider.source_domain = "N/A" ∧ inmate.source_domain = "N/A" → violate(x0, y0))
+9. Q[x0, y0](health_policy.revision_date = "2023" ∧ health_policy.approval = "government" ∧ health_policy.resources = "adequate" → violate(x0, y0))
+10. Q[x0, y0](health_care_provider.type = "provider" ∧ health_care_provider.obligation = "provide care" ∧ inmate.access_to_care = "ensured" → violate(x0, y0))
+11. Q[x0, y0](health_policy.guidelines = "treatment provision" ∧ health_policy.standards = "met" ∧ health_policy.effect = "determines treatment" ∧ inmate.treatment_plan = "established" → violate(x0, y0))
+12. Q[x0, y0](health_care_provider.quality = "standard" ∧ health_care_provider.performance = "evaluated" ∧ inmate.satisfaction = "high" ∧ inmate.health_status = "monitored" → violate(x0, y0))
+13. Q[x0, y0](health_policy.violations = "penalties" ∧ health_policy.impact = "direct" ∧ health_policy.scope = "health care" ∧ health_care_provider.network = "affiliated" ∧ inmate.advocacy = "supported" → violate(x0, y0))
+14. Q[x0, y0](health_policy.does_not_apply_to_inmates = "false" ∧ inmate.is_eligible_for_treatment = "true" ∧ health_policy.is_effective = "true" ∧ health_care_provider.is_compliant = "true" → violate(x0, y0))
+15. Q[x0, y0](health_policy.restrictions = "none" ∧ health_policy.impact_assessment = "completed" ∧ health_care_provider.training = "ongoing" ∧ inmate.assessment = "regular" ∧ inmate.support = "available" → violate(x0, y0))
+16. Q[x0, y0](health_policy.determines_access = "true" ∧ health_care_provider.provides_care = "true" ∧ inmate.has_access_to_care = "true" ∧ inmate.right_to_appeal = "granted" ∧ health_policy.is_not_effective = "false" → violate(x0, y0))
+17. Q[x0, y0](health_policy.issues = "none" ∧ health_policy.approval = "government" ∧ health_care_provider.credential = "licensed" ∧ inmate.health_records = "confidential" ∧ inmate.location = "facility" → violate(x0, y0))
+18. Q[x0, y0](health_policy.source_id = "Index_15" ∧ health_policy.doc_index = "15" ∧ health_care_provider.doc_index = "15" ∧ inmate.doc_index = "15" ∧ health_policy.type = "health care" → violate(x0, y0))
+19. Q[x0, y0](health_policy.enforcement = "mandatory" ∧ health_care_provider.compliance = "required" ∧ inmate.eligibility = "treatment" ∧ inmate.access = "health care" ∧ health_policy.implementation = "effective" → violate(x0, y0))
+20. Q[x0, y0](health_policy.guidelines = "treatment provision" ∧ health_policy.impact = "direct" ∧ health_care_provider.responsibility = "treatment" ∧ inmate.health_status = "monitored" ∧ inmate.satisfaction = "high" → violate(x0, y0))
+21. Q[x0, y0](health_policy.revision_date = "2023" ∧ health_policy.issues = "none" ∧ health_care_provider.oversight = "government" ∧ inmate.access_to_care = "ensured" ∧ health_policy.is_effective = "true" → violate(x0, y0))
+22. Q[x0, y0](health_policy.determines = "medical treatment" ∧ health_policy.affects = "inmate" ∧ inmate.needs = "medical treatment" ∧ health_care_provider.provides = "medical treatment" ∧ inmate.rights = "medical care" → violate(x0, y0))
+23. Q[x0, y0](health_policy.source_domain = "N/A" ∧ health_policy.source_id = "Index_15" ∧ health_care_provider.source_domain = "N/A" ∧ health_care_provider.source_id = "Index_15" ∧ inmate.source_domain = "N/A" → violate(x0, y0))
+24. Q[x0, y0](health_policy.type = "health care" ∧ health_policy.enforcement = "mandatory" ∧ health_policy.impact_assessment = "completed" ∧ health_care_provider.quality = "standard" ∧ inmate.health_records = "confidential" → violate(x0, y0))
+25. Q[x0, y0](health_policy.implementation = "effective" ∧ health_policy.resources = "adequate" ∧ health_care_provider.training = "ongoing" ∧ inmate.assessment = "regular" ∧ inmate.support = "available" → violate(x0, y0))
+26. Q[x0, y0](health_policy.violations = "penalties" ∧ health_policy.scope = "health care" ∧ health_care_provider.network = "affiliated" ∧ inmate.advocacy = "supported" ∧ inmate

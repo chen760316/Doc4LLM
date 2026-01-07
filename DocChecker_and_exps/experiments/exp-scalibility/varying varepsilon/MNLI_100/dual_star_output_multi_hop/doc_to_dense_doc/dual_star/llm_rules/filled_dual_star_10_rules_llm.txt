@@ -1,0 +1,133 @@
+Predicates:
+1. entity.name = "Alice"
+2. entity.age = 30
+3. entity.location = "New York"
+4. entity.occupation = "Engineer"
+5. entity.salary = 80000
+6. entity.hobby = "Photography"
+7. entity.marital_status = "Single"
+8. entity.education_level = "Master's"
+9. entity.nationality = "American"
+10. entity.experience_years = 5
+11. "are receiving".source = "Government"
+12. "are receiving".amount = 1500
+13. "are receiving".frequency = "Monthly"
+14. "are receiving".duration = "1 Year"
+15. "are receiving".condition = "Unemployment"
+16. "reassured".source = "Manager"
+17. "reassured".message = "Everything will be fine"
+18. "reassured".context = "Project Deadline"
+19. "reassured".recipient = "Team"
+20. "reassured".tone = "Positive"
+21. "wanted to cut".entity = "Budget"
+22. "wanted to cut".amount = 20000
+23. "wanted to cut".reason = "Cost Reduction"
+24. "wanted to cut".approval_status = "Pending"
+25. "wanted to cut".impact = "Project Delay"
+26. "were intended to be reduced by".entity = "Expenses"
+27. "were intended to be reduced by".amount = 10000
+28. "were intended to be reduced by".deadline = "End of Q2"
+29. "were intended to be reduced by".method = "Outsourcing"
+30. "were intended to be reduced by".responsible_party = "Finance Department"
+31. M_NLI(entity1.name, entity2.name)
+32. M_NLI(entity1.salary, entity2.salary)
+33. M_NLI(entity1.hobby, entity2.hobby)
+34. M_NLI(entity1.education_level, entity2.education_level)
+35. T("Alice is 30 years old", "Alice is 25 years old", "Numeric")
+36. T("Alice lives in New York", "Alice lives in Los Angeles", "Factual")
+37. T("Alice is an Engineer", "Alice is a Doctor", "Content")
+38. T("Alice is single", "Alice is married", "Negation")
+39. T("Alice has 5 years of experience", "Alice has 10 years of experience", "Numeric")
+40. T("Alice's salary is 80000", "Alice's salary is 60000", "Numeric")
+41. tau(entity1.hobby, entity2.hobby)
+42. tau(entity1.age, entity2.age)
+43. tau(entity1.location, entity2.location)
+44. tau(entity1.marital_status, entity2.marital_status)
+45. violate(entity1, entity2)
+46. Factual(entity1.location, entity2.location)
+47. Factual(entity1.salary, entity2.salary)
+48. Causal(entity1.salary, entity2.salary)
+49. Causal(entity1.experience_years, entity2.experience_years)
+50. Numeric(entity1.age, entity2.age)
+51. Numeric(entity1.salary, entity2.salary)
+52. Temporal(entity1.education_level, entity2.education_level)
+53. Temporal(entity1.hobby, entity2.hobby)
+54. Content(entity1.occupation, entity2.occupation)
+55. Content(entity1.marital_status, entity2.marital_status)
+56. Negation(entity1.hobby, entity2.hobby)
+57. Negation(entity1.age, entity2.age)
+58. Relation(entity1.location, entity2.location)
+59. Relation(entity1.occupation, entity2.occupation)
+60. "are receiving".status = "Active"
+61. "are receiving".recipient = "Alice"
+62. "reassured".status = "Confirmed"
+63. "reassured".recipient = "Alice"
+64. "wanted to cut".status = "Approved"
+65. "wanted to cut".entity = "Marketing"
+66. "were intended to be reduced by".status = "In Progress"
+67. "were intended to be reduced by".entity = "Salaries"
+68. M_NLI(entity1.experience_years, entity2.experience_years)
+69. T("Alice's salary is 80000", "Alice's salary is 70000", "Numeric")
+70. T("Alice is single", "Alice is not single", "Negation")
+71. tau(entity1.salary, entity2.salary)
+72. violate(entity1, entity2)
+73. Factual(entity1.hobby, entity2.hobby)
+74. Causal(entity1.salary, entity2.salary)
+75. Numeric(entity1.age, entity2.age)
+76. Temporal(entity1.location, entity2.location)
+77. Content(entity1.occupation, entity2.occupation)
+78. Negation(entity1.marital_status, entity2.marital_status)
+79. Relation(entity1.hobby, entity2.hobby)
+80. "are receiving".type = "Financial Aid"
+81. "reassured".context = "Performance Review"
+82. "wanted to cut".entity = "Training Budget"
+83. "were intended to be reduced by".entity = "Travel Expenses"
+84. M_NLI(entity1.education_level, entity2.education_level)
+85. T("Alice's experience is 5 years", "Alice's experience is 3 years", "Numeric")
+86. T("Alice's salary is 80000", "Alice's salary is 90000", "Numeric")
+87. tau(entity1.location, entity2.location)
+88. violate(entity1, entity2)
+89. Factual(entity1.age, entity2.age)
+90. Causal(entity1.hobby, entity2.hobby)
+91. Numeric(entity1.salary, entity2.salary)
+92. Temporal(entity1.marital_status, entity2.marital_status)
+93. Content(entity1.occupation, entity2.occupation)
+94. Negation(entity1.experience_years, entity2.experience_years)
+95. Relation(entity1.location, entity2.location)
+96. "are receiving".source = "Charity"
+97. "reassured".message = "You are doing great"
+98. "wanted to cut".reason = "Budget Constraints"
+99. "were intended to be reduced by".method = "Cost-Cutting Measures"
+100. M_NLI(entity1.name, entity2.name)
+violate(x0, y0)
+
+Rules:
+1. Q[x0, y0](entity.name = "Alice" ∧ entity.age = 30 → violate(x0, y0))
+2. Q[x0, y0](entity.location = "New York" ∧ entity.occupation = "Engineer" → violate(x0, y0))
+3. Q[x0, y0](entity.salary = 80000 ∧ entity.hobby = "Photography" → violate(x0, y0))
+4. Q[x0, y0](entity.marital_status = "Single" ∧ entity.education_level = "Master's" ∧ entity.nationality = "American" → violate(x0, y0))
+5. Q[x0, y0](entity.experience_years = 5 ∧ "are receiving".source = "Government" ∧ "are receiving".amount = 1500 → violate(x0, y0))
+6. Q[x0, y0](entity.location = "New York" ∧ entity.salary = 80000 ∧ entity.occupation = "Engineer" → violate(x0, y0))
+7. Q[x0, y0](entity.name = "Alice" ∧ entity.age = 30 ∧ entity.marital_status = "Single" ∧ entity.education_level = "Master's" → violate(x0, y0))
+8. Q[x0, y0](entity.hobby = "Photography" ∧ entity.salary = 80000 ∧ "are receiving".condition = "Unemployment" ∧ "reassured".tone = "Positive" → violate(x0, y0))
+9. Q[x0, y0](entity.location = "New York" ∧ entity.occupation = "Engineer" ∧ entity.experience_years = 5 ∧ "wanted to cut".amount = 20000 → violate(x0, y0))
+10. Q[x0, y0](entity.name = "Alice" ∧ entity.age = 30 ∧ entity.location = "New York" ∧ entity.occupation = "Engineer" ∧ entity.salary = 80000 → violate(x0, y0))
+11. Q[x0, y0](entity.marital_status = "Single" ∧ entity.education_level = "Master's" ∧ entity.nationality = "American" ∧ "are receiving".source = "Government" ∧ "reassured".context = "Project Deadline" → violate(x0, y0))
+12. Q[x0, y0](entity.hobby = "Photography" ∧ entity.experience_years = 5 ∧ "wanted to cut".reason = "Cost Reduction" ∧ "wanted to cut".approval_status = "Pending" ∧ "reassured".tone = "Positive" → violate(x0, y0))
+13. Q[x0, y0](entity.name = "Alice" ∧ entity.age = 30 ∧ entity.location = "New York" ∧ entity.occupation = "Engineer" ∧ entity.salary = 80000 ∧ entity.marital_status = "Single" → violate(x0, y0))
+14. Q[x0, y0](entity.hobby = "Photography" ∧ entity.education_level = "Master's" ∧ entity.experience_years = 5 ∧ "are receiving".amount = 1500 ∧ "wanted to cut".entity = "Budget" ∧ "reassured".tone = "Positive" → violate(x0, y0))
+15. Q[x0, y0](entity.location = "New York" ∧ entity.salary = 80000 ∧ entity.occupation = "Engineer" ∧ "are receiving".condition = "Unemployment" ∧ "wanted to cut".reason = "Budget Constraints" ∧ "reassured".context = "Performance Review" → violate(x0, y0))
+16. Q[x0, y0](entity.name = "Alice" ∧ entity.age = 30 → Factual(x0, y0))
+17. Q[x0, y0](entity.location = "New York" ∧ entity.occupation = "Engineer" → Factual(x0, y0))
+18. Q[x0, y0](entity.salary = 80000 ∧ entity.hobby = "Photography" → Factual(x0, y0))
+19. Q[x0, y0](entity.marital_status = "Single" ∧ entity.education_level = "Master's" ∧ entity.nationality = "American" → Factual(x0, y0))
+20. Q[x0, y0](entity.experience_years = 5 ∧ "are receiving".source = "Government" ∧ "are receiving".amount = 1500 → Factual(x0, y0))
+21. Q[x0, y0](entity.location = "New York" ∧ entity.salary = 80000 ∧ entity.occupation = "Engineer" → Factual(x0, y0))
+22. Q[x0, y0](entity.name = "Alice" ∧ entity.age = 30 ∧ entity.marital_status = "Single" ∧ entity.education_level = "Master's" → Factual(x0, y0))
+23. Q[x0, y0](entity.hobby = "Photography" ∧ entity.salary = 80000 ∧ "are receiving".condition = "Unemployment" ∧ "reassured".tone = "Positive" → Factual(x0, y0))
+24. Q[x0, y0](entity.location = "New York" ∧ entity.occupation = "Engineer" ∧ entity.experience_years = 5 ∧ "wanted to cut".amount = 20000 → Factual(x0, y0))
+25. Q[x0, y0](entity.name = "Alice" ∧ entity.age = 30 ∧ entity.location = "New York" ∧ entity.occupation = "Engineer" ∧ entity.salary = 80000 → Factual(x0, y0))
+26. Q[x0, y0](entity.marital_status = "Single" ∧ entity.education_level = "Master's" ∧ entity.nationality = "American" ∧ "are receiving".source = "Government" ∧ "reassured".context = "Project Deadline" → Factual(x0, y0))
+27. Q[x0, y0](entity.hobby = "Photography" ∧ entity.experience_years = 5 ∧ "wanted to cut".reason = "Cost Reduction" ∧ "wanted to cut".approval_status = "Pending" ∧ "reassured".tone = "Positive" → Factual(x0, y0))
+28. Q[x0, y0](entity.name = "Alice" ∧ entity.age = 30 ∧ entity.location = "New York" ∧ entity.occupation = "Engineer" ∧ entity.salary = 80000 ∧ entity.marital_status = "Single" → Factual(x0, y0))
+29. Q[x0, y0](entity.hobby = "Photography" ∧

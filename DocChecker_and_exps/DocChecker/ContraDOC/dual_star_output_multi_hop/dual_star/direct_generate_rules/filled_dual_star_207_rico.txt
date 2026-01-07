@@ -1,0 +1,46 @@
+Predicates:
+Lady Mason.label != "Person"
+Lady Mason.label = "Person"
+Lady Mason.name != "Lady Mason"
+Lady Mason.name != Mrs. Furnival.name
+Lady Mason.name = "Lady Mason"
+Lady Mason.status != "alive"
+Lady Mason.status != Mrs. Furnival.status
+Lady Mason.status = "alive"
+Mr. Furnival.label != "Person"
+Mr. Furnival.label = "Person"
+Mr. Furnival.name != "Mr. Furnival"
+Mr. Furnival.name != Lady Mason.name
+Mr. Furnival.name != Mrs. Furnival.name
+Mr. Furnival.name = "Mr. Furnival"
+Mr. Furnival.status != "reconciled"
+Mr. Furnival.status != Lady Mason.status
+Mr. Furnival.status != Mrs. Furnival.status
+Mr. Furnival.status = "reconciled"
+Mr. Furnival___Lady Mason.doc_id = "story_train_3585"
+Mr. Furnival___Lady Mason.relationship != Mr. Furnival___Mrs. Furnival.relationship
+Mr. Furnival___Lady Mason.relationship = "Mr. Furnival befriends Lady Mason, arousing the jealousy of his wife."
+Mr. Furnival___Lady Mason.wife_status = "jealous"
+Mr. Furnival___Mrs. Furnival.Sophia_engagement = "dropped"
+Mr. Furnival___Mrs. Furnival.doc_id = "story_train_3585"
+Mr. Furnival___Mrs. Furnival.relationship = "Mr. Furnival and his wife are reconciled."
+Mrs. Furnival.label != "Person"
+Mrs. Furnival.label = "Person"
+Mrs. Furnival.name != "Mrs. Furnival"
+Mrs. Furnival.name = "Mrs. Furnival"
+Mrs. Furnival.status != "wife"
+Mrs. Furnival.status = "wife"
+None_ML(Mr. Furnival.attrs, Mrs. Furnival.attrs)
+None_ML(Mr. Furnival___Lady Mason.attrs, Mr. Furnival___Mrs. Furnival.attrs)
+
+Rules:
+Q[Mr. Furnival,Mr. Furnival] (Mr. Furnival___Lady Mason.relationship = "Mr. Furnival befriends Lady Mason, arousing the jealousy of his wife." ∧ Mr. Furnival.name != Lady Mason.name → Mr. Furnival.name = "Mr. Furnival")
+Q[Mr. Furnival,Mr. Furnival] (Mr. Furnival.name != Mrs. Furnival.name ∧ None_ML(Mr. Furnival___Lady Mason.attrs, Mr. Furnival___Mrs. Furnival.attrs) ∧ Mr. Furnival___Mrs. Furnival.Sophia_engagement = "dropped" ∧ Mr. Furnival.status != "reconciled" ∧ Mrs. Furnival.label = "Person" → Lady Mason.status = "alive")
+Q[Mr. Furnival,Mr. Furnival] (Mr. Furnival___Lady Mason.relationship != Mr. Furnival___Mrs. Furnival.relationship ∧ Lady Mason.status = "alive" ∧ Mr. Furnival.name != Lady Mason.name ∧ Mr. Furnival.status != Lady Mason.status → Mr. Furnival___Lady Mason.relationship = "Mr. Furnival befriends Lady Mason, arousing the jealousy of his wife.")
+Q[Mr. Furnival,Mr. Furnival] (Mrs. Furnival.status != "wife" ∧ Mr. Furnival.label = "Person" ∧ Mr. Furnival.status != Mrs. Furnival.status → Lady Mason.status != "alive")
+Q[Mr. Furnival,Mr. Furnival] (Lady Mason.name != "Lady Mason" ∧ Lady Mason.status != "alive" ∧ Mrs. Furnival.name != "Mrs. Furnival" ∧ Mr. Furnival___Lady Mason.doc_id = "story_train_3585" ∧ Mr. Furnival___Mrs. Furnival.relationship = "Mr. Furnival and his wife are reconciled." ∧ Lady Mason.status != Mrs. Furnival.status → Mr. Furnival.status != "reconciled")
+Q[Mr. Furnival,Mr. Furnival] (Mr. Furnival___Lady Mason.doc_id = "story_train_3585" ∧ Lady Mason.status != "alive" ∧ Mr. Furnival.status != Mrs. Furnival.status ∧ Lady Mason.label = "Person" → Mr. Furnival.name != "Mr. Furnival")
+Q[Mr. Furnival,Mr. Furnival] (Mr. Furnival.name != Mrs. Furnival.name ∧ Lady Mason.status = "alive" ∧ Lady Mason.name != "Lady Mason" ∧ Mr. Furnival.name != Lady Mason.name ∧ Lady Mason.name = "Lady Mason" ∧ Mrs. Furnival.label = "Person" → Mrs. Furnival.label != "Person")
+Q[Mr. Furnival,Mr. Furnival] (None_ML(Mr. Furnival___Lady Mason.attrs, Mr. Furnival___Mrs. Furnival.attrs) ∧ Lady Mason.name = "Lady Mason" ∧ Mrs. Furnival.status = "wife" ∧ Mrs. Furnival.name = "Mrs. Furnival" ∧ Lady Mason.status != "alive" → Mr. Furnival___Mrs. Furnival.relationship = "Mr. Furnival and his wife are reconciled.")
+Q[Mr. Furnival,Mr. Furnival] (Lady Mason.name != Mrs. Furnival.name ∧ Mr. Furnival___Mrs. Furnival.relationship = "Mr. Furnival and his wife are reconciled." → None_ML(Mr. Furnival___Lady Mason.attrs, Mr. Furnival___Mrs. Furnival.attrs))
+Q[Mr. Furnival,Mr. Furnival] (Mr. Furnival___Mrs. Furnival.Sophia_engagement = "dropped" ∧ Mr. Furnival___Lady Mason.relationship != Mr. Furnival___Mrs. Furnival.relationship ∧ None_ML(Mr. Furnival.attrs, Mrs. Furnival.attrs) → Mr. Furnival.label != "Person")

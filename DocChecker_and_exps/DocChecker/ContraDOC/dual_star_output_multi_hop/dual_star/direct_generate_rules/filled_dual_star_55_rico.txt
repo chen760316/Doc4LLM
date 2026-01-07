@@ -1,0 +1,37 @@
+Predicates:
+Andreas Lubitz.label != "Person"
+Andreas Lubitz.label = "Person"
+Andreas Lubitz.name != "Andreas Lubitz"
+Andreas Lubitz.name = "Andreas Lubitz"
+Andreas Lubitz.nationality != "German"
+Andreas Lubitz.nationality = "German"
+Andreas Lubitz.occupation != "co-pilot"
+Andreas Lubitz.occupation = "co-pilot"
+Andreas Lubitz.status != "deceased"
+Andreas Lubitz.status = "deceased"
+Christoph Kumpa.label != "Person"
+Christoph Kumpa.label = "Person"
+Christoph Kumpa.name != "Christoph Kumpa"
+Christoph Kumpa.name != Andreas Lubitz.name
+Christoph Kumpa.name = "Christoph Kumpa"
+Christoph Kumpa.occupation != "spokesman"
+Christoph Kumpa.occupation != Andreas Lubitz.occupation
+Christoph Kumpa.occupation = "spokesman"
+Christoph Kumpa.organization != "prosecutor's office in Dusseldorf"
+Christoph Kumpa.organization = "prosecutor's office in Dusseldorf"
+Christoph Kumpa___Andreas Lubitz.context = "investigation"
+Christoph Kumpa___Andreas Lubitz.doc_id = "3489825776_7"
+Christoph Kumpa___Andreas Lubitz.relationship = "Christoph Kumpa revealed that medical records indicate Lubitz suffered from suicidal tendencies."
+None_ML(Christoph Kumpa.attrs, Andreas Lubitz.attrs)
+
+Rules:
+Q[Christoph Kumpa,Christoph Kumpa] (Andreas Lubitz.label = "Person" ∧ Andreas Lubitz.nationality = "German" ∧ Andreas Lubitz.name = "Andreas Lubitz" → Andreas Lubitz.nationality != "German")
+Q[Christoph Kumpa,Christoph Kumpa] (None_ML(Christoph Kumpa.attrs, Andreas Lubitz.attrs) ∧ Christoph Kumpa.occupation = "spokesman" ∧ Andreas Lubitz.occupation != "co-pilot" ∧ Andreas Lubitz.name != "Andreas Lubitz" ∧ Christoph Kumpa.occupation != Andreas Lubitz.occupation ∧ Christoph Kumpa___Andreas Lubitz.doc_id = "3489825776_7" → Andreas Lubitz.nationality = "German")
+Q[Christoph Kumpa,Christoph Kumpa] (None_ML(Christoph Kumpa.attrs, Andreas Lubitz.attrs) ∧ Christoph Kumpa___Andreas Lubitz.relationship = "Christoph Kumpa revealed that medical records indicate Lubitz suffered from suicidal tendencies." ∧ Christoph Kumpa.label = "Person" ∧ Andreas Lubitz.status != "deceased" → Christoph Kumpa.organization != "prosecutor's office in Dusseldorf")
+Q[Christoph Kumpa,Christoph Kumpa] (Christoph Kumpa.label != "Person" ∧ Christoph Kumpa.organization = "prosecutor's office in Dusseldorf" → Andreas Lubitz.occupation = "co-pilot")
+Q[Christoph Kumpa,Christoph Kumpa] (Andreas Lubitz.occupation != "co-pilot" ∧ Andreas Lubitz.name = "Andreas Lubitz" ∧ None_ML(Christoph Kumpa.attrs, Andreas Lubitz.attrs) ∧ Andreas Lubitz.label != "Person" ∧ Christoph Kumpa___Andreas Lubitz.relationship = "Christoph Kumpa revealed that medical records indicate Lubitz suffered from suicidal tendencies." → Christoph Kumpa.name != Andreas Lubitz.name)
+Q[Christoph Kumpa,Christoph Kumpa] (Christoph Kumpa.name != "Christoph Kumpa" ∧ Andreas Lubitz.nationality = "German" ∧ Christoph Kumpa.occupation != "spokesman" ∧ Andreas Lubitz.occupation != "co-pilot" ∧ Christoph Kumpa___Andreas Lubitz.context = "investigation" → Andreas Lubitz.status = "deceased")
+Q[Christoph Kumpa,Christoph Kumpa] (None_ML(Christoph Kumpa.attrs, Andreas Lubitz.attrs) ∧ Christoph Kumpa.occupation != "spokesman" ∧ Christoph Kumpa.occupation = "spokesman" ∧ Christoph Kumpa___Andreas Lubitz.context = "investigation" → Christoph Kumpa.occupation != Andreas Lubitz.occupation)
+Q[Christoph Kumpa,Christoph Kumpa] (Andreas Lubitz.occupation = "co-pilot" ∧ Christoph Kumpa.label = "Person" → Andreas Lubitz.label = "Person")
+Q[Christoph Kumpa,Christoph Kumpa] (Christoph Kumpa.organization != "prosecutor's office in Dusseldorf" ∧ Christoph Kumpa.occupation != "spokesman" ∧ Andreas Lubitz.status = "deceased" → Christoph Kumpa___Andreas Lubitz.doc_id = "3489825776_7")
+Q[Christoph Kumpa,Christoph Kumpa] (Andreas Lubitz.label != "Person" ∧ Andreas Lubitz.label = "Person" ∧ Christoph Kumpa.organization != "prosecutor's office in Dusseldorf" ∧ None_ML(Christoph Kumpa.attrs, Andreas Lubitz.attrs) ∧ Christoph Kumpa.label != "Person" ∧ Andreas Lubitz.status != "deceased" → Andreas Lubitz.name = "Andreas Lubitz")

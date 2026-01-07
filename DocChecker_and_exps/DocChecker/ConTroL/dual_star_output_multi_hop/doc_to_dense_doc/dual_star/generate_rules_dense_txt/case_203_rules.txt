@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 203)
+S1: All glasses are grills.
+S2: All grills are windows.
+
+Predicates:
+1. Glass.grill
+2. Grill.window
+3. M_NLI(S1, S2)
+4. Relation(glass, grill)
+5. Relation(grill, window)
+6. violate(glass, window)
+7. Glass.is_a(grill)
+8. Grill.is_a(window)
+9. Glass.belongs_to(grill)
+10. Grill.belongs_to(window)
+11. M_NLI(All_glasses_are_grills, All_grills_are_windows)
+12. Relation(All_glasses, grills)
+13. Relation(All_grills, windows)
+14. violate(All_glasses, windows)
+15. Glass.category(grill)
+16. Grill.category(window)
+17. Glass.type(grill)
+18. Grill.type(window)
+19. M_NLI(glass_to_grill, grill_to_window)
+20. Relation(glass, grill_category)
+21. Relation(grill, window_category)
+22. violate(glass_category, window_category)
+23. Glass.subset_of(grill)
+24. Grill.subset_of(window)
+25. M_NLI(Subset_glass_grill, Subset_grill_window)
+26. Relation(glass_subset, grill)
+27. Relation(grill_subset, window)
+28. violate(glass_subset, window)
+29. Glass.inherits(grill)
+30. Grill.inherits(window)
+
+Rules:
+1. Q[All, Glass.grill == true → Relation(glass, grill)]
+2. Q[All, Grill.window == true → Relation(grill, window)]
+3. Q[All, Glass.is_a(grill) → Relation(glass, grill)]
+4. Q[All, Grill.is_a(window) → Relation(grill, window)]
+5. Q[All, Glass.belongs_to(grill) → Relation(glass, grill)]
+6. Q[All, Grill.belongs_to(window) → Relation(grill, window)]
+7. Q[All, M_NLI(S1, S2) → violate(glass, window)]
+8. Q[All, Glass.category(grill) → Relation(glass, grill)]
+9. Q[All, Grill.category(window) → Relation(grill, window)]
+10. Q[All, Glass.type(grill) → Relation(glass, grill)]
+11. Q[All, Grill.type(window) → Relation(grill, window)]
+12. Q[All, M_NLI(All_glasses_are_grills, All_grills_are_windows) → violate(All_glasses, windows)]
+13. Q[All, Glass.subset_of(grill) → Relation(glass_subset, grill)]
+14. Q[All, Grill.subset_of(window) → Relation(grill_subset, window)]
+15. Q[All, M_NLI(Subset_glass_grill, Subset_grill_window) → violate(glass_subset, window)]
+16. Q[All, Glass.inherits(grill) → Relation(glass, grill)]
+17. Q[All, Grill.inherits(window) → Relation(grill, window)]
+18. Q[All, violate(glass, window) → Relation(glass, grill)]
+19. Q[All, violate(All_glasses, windows) → Relation(All_glasses, grills)]
+20. Q[All, Relation(All_glasses, grills) → violate(glass, window)]
+21. Q[All, Relation(All_grills, windows) → violate(glass, window)]
+22. Q[All, Glass.grill == true ∧ Grill.window == true → violate(glass, window)]
+23. Q[All, Glass.belongs_to(grill) ∧ Grill.belongs_to(window) → violate(glass, window)]
+24. Q[All, Glass.is_a(grill) ∧ Grill.is_a(window) → violate(glass, window)]
+25. Q[All, Glass.category(grill) ∧ Grill.category(window) → violate(glass, window)]
+26. Q[All, Glass.type(grill) ∧ Grill.type(window) → violate(glass, window)]
+27. Q[All, Relation(glass, grill) ∧ Relation(grill, window) → violate(glass, window)]
+28. Q[All, Glass.subset_of(grill) ∧ Grill.subset_of(window) → violate(glass, window)]
+29. Q[All, M_NLI(glass_to_grill, grill_to_window) → violate(glass, window)]
+30. Q[All, Relation(glass_subset, grill) ∧ Relation(grill_subset, window) → violate(glass_subset, window)]

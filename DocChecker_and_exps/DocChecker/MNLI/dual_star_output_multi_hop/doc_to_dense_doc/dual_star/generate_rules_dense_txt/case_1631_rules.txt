@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 1631)
+S1: I need to call my home phone at least once a day to listen to unread messages, but it's now becoming an addiction.
+S2: I call my home phone from the office at least once a day to see if any messages have been left.
+
+Predicates:
+1. Call.home_phone.frequency
+2. Call.home_phone.addiction
+3. Call.office_phone.frequency
+4. Call.office_phone.purpose
+5. Message.unread.status
+6. Message.home_phone.source
+7. Routine.call.home_phone
+8. Routine.call.office_phone
+9. Addiction.call.home_phone
+10. Task.call.home_phone
+11. Task.call.office_phone
+12. Frequency.call.home_phone
+13. Frequency.call.office_phone
+14. Implication.call.home_phone
+15. Implication.call.office_phone
+16. Suggestion.call.home_phone
+17. Suggestion.call.office_phone
+18. Negative_implication.call.home_phone
+19. Positive_implication.call.office_phone
+20. Causal.call.home_phone.addiction
+21. Causal.call.office_phone.routine
+22. Violation.call.home_phone.addiction
+23. Violation.call.office_phone.routine
+24. Entity.home_phone.messages
+25. Entity.office_phone.messages
+26. Relationship.call.home_phone.messages
+27. Relationship.call.office_phone.messages
+28. Meta.NLI(S1, S2)
+29. Meta.Causal(S1, S2)
+30. Meta.violate(S1, S2)
+
+Rules:
+1. Q[need, Call.home_phone.addiction, Call.office_phone.purpose](Call.home_phone.frequency == "daily" → Causal(Call.home_phone.addiction, Call.office_phone.purpose))
+2. Q[need, Call.home_phone.addiction, Call.office_phone.frequency](Call.home_phone.addiction == "true" → Causal(Call.home_phone.addiction, Call.office_phone.frequency))
+3. Q[need, Call.home_phone.addiction, Routine.call.home_phone](Call.home_phone.frequency == "daily" → Causal(Call.home_phone.addiction, Routine.call.home_phone))
+4. Q[need, Call.home_phone.addiction, Frequency.call.home_phone](Call.home_phone.addiction == "true" → Causal(Call.home_phone.addiction, Frequency.call.home_phone))
+5. Q[need, Call.home_phone.addiction, Message.unread.status](Call.home_phone.frequency == "daily" → Causal(Call.home_phone.addiction, Message.unread.status))
+6. Q[need, Call.home_phone.addiction, Task.call.home_phone](Call.home_phone.addiction == "true" → Causal(Call.home_phone.addiction, Task.call.home_phone))
+7. Q[need, Call.home_phone.addiction, Implication.call.home_phone](Call.home_phone.frequency == "daily" → Causal(Call.home_phone.addiction, Implication.call.home_phone))
+8. Q[need, Call.home_phone.addiction, Suggestion.call.home_phone](Call.home_phone.addiction == "true" → Causal(Call.home_phone.addiction, Suggestion.call.home_phone))
+9. Q[need, Call.home_phone.addiction, Negative_implication.call.home_phone](Call.home_phone.frequency == "daily" → Causal(Call.home_phone.addiction, Negative_implication.call.home_phone))
+10. Q[need, Call.home_phone.addiction, Entity.home_phone.messages](Call.home_phone.addiction == "true" → Causal(Call.home_phone.addiction, Entity.home_phone.messages))
+11. Q[need, Call.home_phone.addiction, Relationship.call.home_phone.messages](Call.home_phone.frequency == "daily" → Causal(Call.home_phone.addiction, Relationship.call.home_phone.messages))
+12. Q[need, Call.home_phone.addiction, Meta.NLI(S1, S2)](Call.home_phone.addiction == "true" → Causal(Call.home_phone.addiction, Meta.NLI(S1, S2)))
+13. Q[need, Call.home_phone.addiction, Meta.Causal(S1, S2)](Call.home_phone.frequency == "daily" → Causal(Call.home_phone.addiction, Meta.Causal(S1, S2)))
+14. Q[need, Call.home_phone.addiction, Meta.violate(S1, S2)](Call.home_phone.addiction == "true" → Causal(Call.home_phone.addiction, Meta.violate(S1, S2)))
+15. Q[need, Call.office_phone.purpose, Call.home_phone.frequency](Call.office_phone.purpose == "check messages" → Causal(Call.office_phone.purpose, Call.home_phone.frequency))
+16. Q[need, Call.office_phone.purpose, Routine.call.office_phone](Call.office_phone.purpose == "check messages" → Causal(Call.office_phone.purpose, Routine.call.office_phone))
+17. Q[need, Call.office_phone.purpose, Frequency.call.office_phone](Call.office_phone.purpose == "check messages" → Causal(Call.office_phone.purpose, Frequency.call.office_phone))
+18. Q[need, Call.office_phone.purpose, Task.call.office_phone](Call.office_phone.purpose == "check messages" → Causal(Call.office_phone.purpose, Task.call.office_phone))
+19. Q[need, Call.office_phone.purpose, Positive_implication.call.office_phone](Call.office_phone.purpose == "check messages" → Causal(Call.office_phone.purpose, Positive_implication.call.office_phone))
+20. Q[need, Call.office_phone.purpose, Entity.office_phone.messages](Call.office_phone.purpose == "check messages" → Causal(Call.office_phone.purpose, Entity.office_phone.messages))
+21. Q[need, Call.office_phone.purpose, Relationship.call.office_phone.messages](Call.office_phone.purpose == "check messages" → Causal(Call.office_phone.purpose, Relationship.call.office_phone.messages))
+22. Q[need, Call.office_phone.purpose, Meta.NLI(S1, S2)](Call.office_phone.purpose == "check messages" → Causal(Call.office_phone.purpose, Meta.NLI(S1, S2)))
+23. Q[need, Call.office_phone.purpose, Meta.Causal(S1, S2)](Call.office_phone.purpose == "check messages" → Causal(Call.office_phone.purpose, Meta.Causal(S1, S2)))
+24. Q[need, Call.office_phone.purpose, Meta.violate(S1, S2)](Call.office_phone.purpose == "check messages" → Causal(Call.office_phone.purpose, Meta.violate(S1, S2)))
+25. Q[need, Call.home_phone.frequency, Call.office_phone.frequency](Call.home_phone.frequency == "daily" → Causal(Call.home_phone.frequency, Call.office_phone.frequency))
+26. Q[need, Call.home_phone.frequency, Routine.call.home_phone](Call.home_phone.frequency == "daily" → Causal(Call.home_phone.frequency, Routine.call.home_phone))
+27. Q[need, Call.home_phone.frequency, Addiction.call.home_phone](Call.home_phone.frequency == "daily" → Causal(Call.home_phone.frequency, Addiction.call.home_phone))
+28. Q[need, Call.home_phone.frequency, Task.call.home_phone](Call.home_phone.frequency == "daily" → Causal(Call.home_phone.frequency, Task.call.home_phone))
+29. Q[need, Call.home_phone.frequency, Implication.call.home_phone](Call.home_phone.frequency == "daily" → Causal(Call.home_phone.frequency, Implication.call.home_phone))
+30. Q[need, Call.home_phone.frequency, Suggestion.call.home_phone](Call.home_phone.frequency == "daily" → Causal(Call.home_phone.frequency, Suggestion.call.home_phone))

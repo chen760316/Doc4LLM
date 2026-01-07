@@ -1,0 +1,105 @@
+Predicates:
+Antonio Inoki.country != "Japan"
+Antonio Inoki.country = "Japan"
+Antonio Inoki.label != "Politician"
+Antonio Inoki.label != Diet.label
+Antonio Inoki.label != Iraq.label
+Antonio Inoki.label != Islam.label
+Antonio Inoki.label != North Korea.label
+Antonio Inoki.label != mixed-discipline match.label
+Antonio Inoki.label = "Politician"
+Antonio Inoki.name != "Antonio Inoki"
+Antonio Inoki.name != Diet.name
+Antonio Inoki.name != Iraq.name
+Antonio Inoki.name != Islam.name
+Antonio Inoki.name != North Korea.name
+Antonio Inoki.name != mixed-discipline match.name
+Antonio Inoki.name = "Antonio Inoki"
+Antonio Inoki.occupation != "former wrestler-turned-lawmaker"
+Antonio Inoki.occupation = "former wrestler-turned-lawmaker"
+Antonio Inoki___Diet.doc_id = "3489738245_6"
+Antonio Inoki___Diet.relationship = "Antonio Inoki asked a question in the Diet regarding extraterrestrial threats."
+Antonio Inoki___Iraq.doc_id = "3489738245_6"
+Antonio Inoki___Iraq.relationship != Antonio Inoki___Diet.relationship
+Antonio Inoki___Iraq.relationship != Antonio Inoki___Islam.relationship
+Antonio Inoki___Iraq.relationship != Antonio Inoki___North Korea.relationship
+Antonio Inoki___Iraq.relationship = "Antonio Inoki traveled to Iraq in 1990 to try to secure the release of Japanese hostages."
+Antonio Inoki___Iraq.year != 1990
+Antonio Inoki___Iraq.year = 1990
+Antonio Inoki___Islam.conversion_year = "1990s"
+Antonio Inoki___Islam.doc_id = "3489738245_6"
+Antonio Inoki___Islam.relationship != Antonio Inoki___Diet.relationship
+Antonio Inoki___Islam.relationship = "Antonio Inoki reportedly converted to Islam in the 1990s and practices both Islam and Buddhism."
+Antonio Inoki___North Korea.doc_id = "3489738245_6"
+Antonio Inoki___North Korea.relationship != Antonio Inoki___Diet.relationship
+Antonio Inoki___North Korea.relationship != Antonio Inoki___Islam.relationship
+Antonio Inoki___North Korea.relationship = "Antonio Inoki attempted to replicate Dennis Rodman's basketball diplomacy by staging a wrestling tournament in North Korea."
+Antonio Inoki___mixed-discipline match.doc_id = "3489738245_6"
+Antonio Inoki___mixed-discipline match.relationship != Antonio Inoki___Diet.relationship
+Antonio Inoki___mixed-discipline match.relationship != Antonio Inoki___Iraq.relationship
+Antonio Inoki___mixed-discipline match.relationship != Antonio Inoki___Islam.relationship
+Antonio Inoki___mixed-discipline match.relationship != Antonio Inoki___North Korea.relationship
+Antonio Inoki___mixed-discipline match.relationship = "Antonio Inoki famously fought Muhammad Ali in a mixed-discipline match."
+Diet.country != "Japan"
+Diet.country = "Japan"
+Diet.label != "Government"
+Diet.label = "Government"
+Diet.name != "Diet"
+Diet.name = "Diet"
+Iraq.label != "Country"
+Iraq.label != Diet.label
+Iraq.label != Islam.label
+Iraq.label = "Country"
+Iraq.name != "Iraq"
+Iraq.name != Diet.name
+Iraq.name != Islam.name
+Iraq.name != North Korea.name
+Iraq.name = "Iraq"
+Islam.label != "Religion"
+Islam.label != Diet.label
+Islam.label = "Religion"
+Islam.name != "Islam"
+Islam.name != Diet.name
+Islam.name = "Islam"
+Islam.practice != "also practices Buddhism"
+Islam.practice = "also practices Buddhism"
+None_ML(Antonio Inoki___Islam.attrs, Antonio Inoki___North Korea.attrs)
+None_ML(mixed-discipline match.attrs, Diet.attrs)
+North Korea.label != "Country"
+North Korea.label != Diet.label
+North Korea.label != Islam.label
+North Korea.label = "Country"
+North Korea.name != "North Korea"
+North Korea.name != Diet.name
+North Korea.name != Islam.name
+North Korea.name = "North Korea"
+mixed-discipline match.label != "Event"
+mixed-discipline match.label != Diet.label
+mixed-discipline match.label != Iraq.label
+mixed-discipline match.label != Islam.label
+mixed-discipline match.label != North Korea.label
+mixed-discipline match.label = "Event"
+mixed-discipline match.name != "mixed-discipline match"
+mixed-discipline match.name != Diet.name
+mixed-discipline match.name != Iraq.name
+mixed-discipline match.name != Islam.name
+mixed-discipline match.name != North Korea.name
+mixed-discipline match.name = "mixed-discipline match"
+mixed-discipline match.opponent != "Muhammad Ali"
+mixed-discipline match.opponent = "Muhammad Ali"
+mixed-discipline match.year != 1976
+mixed-discipline match.year < 1981
+mixed-discipline match.year = 1976
+mixed-discipline match.year > 1971
+
+Rules:
+Q[Antonio Inoki,Antonio Inoki] (Antonio Inoki___Iraq.relationship = "Antonio Inoki traveled to Iraq in 1990 to try to secure the release of Japanese hostages." ∧ Diet.name = "Diet" → Islam.practice = "also practices Buddhism")
+Q[Antonio Inoki,Antonio Inoki] (mixed-discipline match.name != Islam.name ∧ Islam.practice = "also practices Buddhism" ∧ Antonio Inoki.name != mixed-discipline match.name → Antonio Inoki.occupation != "former wrestler-turned-lawmaker")
+Q[Antonio Inoki,Antonio Inoki] (mixed-discipline match.label != Diet.label ∧ Diet.name != "Diet" ∧ None_ML(mixed-discipline match.attrs, Diet.attrs) ∧ Antonio Inoki___mixed-discipline match.relationship != Antonio Inoki___Diet.relationship ∧ Antonio Inoki.label = "Politician" ∧ Antonio Inoki___Iraq.year != 1990 → North Korea.label != "Country")
+Q[Antonio Inoki,Antonio Inoki] (Antonio Inoki.label = "Politician" ∧ Antonio Inoki.name != mixed-discipline match.name ∧ Islam.practice != "also practices Buddhism" ∧ Islam.name = "Islam" → North Korea.name != Diet.name)
+Q[Antonio Inoki,Antonio Inoki] (Diet.label = "Government" ∧ Iraq.name != North Korea.name ∧ mixed-discipline match.name != Islam.name ∧ None_ML(Antonio Inoki___Islam.attrs, Antonio Inoki___North Korea.attrs) ∧ mixed-discipline match.label != Diet.label → mixed-discipline match.name != "mixed-discipline match")
+Q[Antonio Inoki,Antonio Inoki] (Antonio Inoki.label != Iraq.label ∧ Antonio Inoki___mixed-discipline match.relationship = "Antonio Inoki famously fought Muhammad Ali in a mixed-discipline match." ∧ Antonio Inoki.label != North Korea.label ∧ None_ML(Antonio Inoki___Islam.attrs, Antonio Inoki___North Korea.attrs) ∧ Diet.label != "Government" → mixed-discipline match.label != Diet.label)
+Q[Antonio Inoki,Antonio Inoki] (Antonio Inoki.name != Diet.name ∧ Antonio Inoki___mixed-discipline match.relationship != Antonio Inoki___North Korea.relationship ∧ mixed-discipline match.label != Iraq.label → Diet.name != "Diet")
+Q[Antonio Inoki,Antonio Inoki] (Antonio Inoki___mixed-discipline match.relationship != Antonio Inoki___Islam.relationship ∧ None_ML(Antonio Inoki___Islam.attrs, Antonio Inoki___North Korea.attrs) ∧ Diet.label != "Government" ∧ Islam.label != "Religion" → Antonio Inoki___Islam.relationship = "Antonio Inoki reportedly converted to Islam in the 1990s and practices both Islam and Buddhism.")
+Q[Antonio Inoki,Antonio Inoki] (Antonio Inoki.label = "Politician" ∧ Iraq.name = "Iraq" ∧ Antonio Inoki___Iraq.doc_id = "3489738245_6" ∧ Antonio Inoki___Iraq.relationship = "Antonio Inoki traveled to Iraq in 1990 to try to secure the release of Japanese hostages." ∧ Antonio Inoki___mixed-discipline match.relationship != Antonio Inoki___North Korea.relationship ∧ mixed-discipline match.opponent = "Muhammad Ali" → Iraq.label = "Country")
+Q[Antonio Inoki,Antonio Inoki] (Iraq.name != North Korea.name ∧ Diet.country != "Japan" → Antonio Inoki___Iraq.relationship = "Antonio Inoki traveled to Iraq in 1990 to try to secure the release of Japanese hostages.")

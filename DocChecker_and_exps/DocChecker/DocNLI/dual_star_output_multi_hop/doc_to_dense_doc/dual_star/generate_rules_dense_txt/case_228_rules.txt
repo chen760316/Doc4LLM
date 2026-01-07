@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 228)
+S1: The country is also expected to invest $47.1m in new mines this year at it seeks to expand its production base.
+S2: The country, which reported a 13.9% reduction in output from its mines in 2018, now plans to ramp up production to around five million metric tons (mt).
+
+Predicates:
+1. Country.investment_amount
+2. Country.investment_year
+3. Country.production_base_expansion
+4. Country.output_reduction_percentage
+5. Country.production_target
+6. Country.output_year
+7. Investment.amount
+8. Investment.year
+9. Production.base
+10. Production.output
+11. Production.target
+12. Mines.investment
+13. Mines.output
+14. Mines.year
+15. Expansion.investment
+16. Expansion.production
+17. Reduction.output
+18. Reduction.year
+19. Factual(investment, expansion)
+20. Factual(output, reduction)
+21. M_NLI(investment, output)
+22. M_NLI(expansion, reduction)
+23. violate(investment, reduction)
+24. violate(expansion, output)
+25. Relationship.investment_expansion
+26. Relationship.output_reduction
+27. Country.mines_investment
+28. Country.mines_output
+29. Country.mines_year
+30. Country.production_metric_tons
+
+Rules:
+1. Q[The, x0, y0](Country.investment_amount == 47.1m → Factual(investment, expansion))
+2. Q[The, x0, y0](Country.investment_year == 2023 → Factual(investment, expansion))
+3. Q[The, x0, y0](Country.production_base_expansion == true → Factual(investment, expansion))
+4. Q[The, x0, y0](Country.output_reduction_percentage == 13.9% → Factual(output, reduction))
+5. Q[The, x0, y0](Country.production_target == 5 million metric tons → Factual(output, reduction))
+6. Q[The, x0, y0](Country.output_year == 2018 → Factual(output, reduction))
+7. Q[The, x0, y0](Mines.investment == 47.1m → Factual(investment, expansion))
+8. Q[The, x0, y0](Mines.year == 2023 → Factual(investment, expansion))
+9. Q[The, x0, y0](Mines.output == 13.9% → Factual(output, reduction))
+10. Q[The, x0, y0](Mines.output == 5 million metric tons → Factual(output, reduction))
+11. Q[The, x0, y0](Expansion.investment == 47.1m → Factual(investment, expansion))
+12. Q[The, x0, y0](Expansion.production == true → Factual(investment, expansion))
+13. Q[The, x0, y0](Reduction.output == 13.9% → Factual(output, reduction))
+14. Q[The, x0, y0](Reduction.year == 2018 → Factual(output, reduction))
+15. Q[The, x0, y0](Country.mines_investment == 47.1m → Factual(investment, expansion))
+16. Q[The, x0, y0](Country.mines_output == 13.9% → Factual(output, reduction))
+17. Q[The, x0, y0](Country.mines_year == 2018 → Factual(output, reduction))
+18. Q[The, x0, y0](Country.production_metric_tons == 5 million → Factual(output, reduction))
+19. Q[The, x0, y0](Investment.amount == 47.1m → Factual(investment, expansion))
+20. Q[The, x0, y0](Investment.year == 2023 → Factual(investment, expansion))
+21. Q[The, x0, y0](Production.base == true → Factual(investment, expansion))
+22. Q[The, x0, y0](Production.output == 13.9% → Factual(output, reduction))
+23. Q[The, x0, y0](Production.target == 5 million metric tons → Factual(output, reduction))
+24. Q[The, x0, y0](Relationship.investment_expansion == true → Factual(investment, expansion))
+25. Q[The, x0, y0](Relationship.output_reduction == true → Factual(output, reduction))
+26. Q[The, x0, y0](M_NLI(investment, output) == true → Factual(investment, expansion))
+27. Q[The, x0, y0](M_NLI(expansion, reduction) == true → Factual(investment, expansion))
+28. Q[The, x0, y0](violate(investment, reduction) == true → Factual(investment, expansion))
+29. Q[The, x0, y0](violate(expansion, output) == true → Factual(investment, expansion))
+30. Q[The, x0, y0](Country.production_base_expansion == true AND Country.output_reduction_percentage == 13.9% → Factual(investment, expansion))

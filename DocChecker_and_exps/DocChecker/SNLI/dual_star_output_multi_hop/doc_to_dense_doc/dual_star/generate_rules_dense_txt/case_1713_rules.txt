@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 1713)
+S1: Three construction workers wearing white hats and neon green vests stand against boating rail.
+S2: Three workers take a break and drink beer.
+
+Predicates:
+1. Worker_1.hat_color = white
+2. Worker_1.vest_color = neon_green
+3. Worker_2.hat_color = white
+4. Worker_2.vest_color = neon_green
+5. Worker_3.hat_color = white
+6. Worker_3.vest_color = neon_green
+7. Worker_1.activity = standing
+8. Worker_2.activity = standing
+9. Worker_3.activity = standing
+10. Worker_1.location = boating_rail
+11. Worker_2.location = boating_rail
+12. Worker_3.location = boating_rail
+13. Worker_1.break_status = taking_break
+14. Worker_2.break_status = taking_break
+15. Worker_3.break_status = taking_break
+16. Worker_1.drink = beer
+17. Worker_2.drink = beer
+18. Worker_3.drink = beer
+19. Activity_change.worker_1 = standing_to_break
+20. Activity_change.worker_2 = standing_to_break
+21. Activity_change.worker_3 = standing_to_break
+22. Relation(Worker_1, Worker_2) = coworkers
+23. Relation(Worker_2, Worker_3) = coworkers
+24. Relation(Worker_1, Worker_3) = coworkers
+25. M_NLI(S1, S2) = true
+26. Relation(standing, taking_break) = change
+27. violate(Worker_1.activity, Worker_1.break_status) = true
+28. violate(Worker_2.activity, Worker_2.break_status) = true
+29. violate(Worker_3.activity, Worker_3.break_status) = true
+30. Worker_1.group_activity = drinking
+
+Rules:
+1. Q[Three, Worker_1.activity, Worker_1.break_status](Worker_1.hat_color = white ∧ Worker_1.vest_color = neon_green ∧ Worker_1.activity = standing → Relation(Worker_1, Worker_1) = coworkers)
+2. Q[Three, Worker_2.activity, Worker_2.break_status](Worker_2.hat_color = white ∧ Worker_2.vest_color = neon_green ∧ Worker_2.activity = standing → Relation(Worker_2, Worker_2) = coworkers)
+3. Q[Three, Worker_3.activity, Worker_3.break_status](Worker_3.hat_color = white ∧ Worker_3.vest_color = neon_green ∧ Worker_3.activity = standing → Relation(Worker_3, Worker_3) = coworkers)
+4. Q[Three, Worker_1.activity, Worker_1.break_status](Worker_1.activity = standing ∧ Worker_1.break_status = taking_break → Relation(standing, taking_break) = change)
+5. Q[Three, Worker_2.activity, Worker_2.break_status](Worker_2.activity = standing ∧ Worker_2.break_status = taking_break → Relation(standing, taking_break) = change)
+6. Q[Three, Worker_3.activity, Worker_3.break_status](Worker_3.activity = standing ∧ Worker_3.break_status = taking_break → Relation(standing, taking_break) = change)
+7. Q[Three, Worker_1.activity, Worker_1.break_status](Worker_1.activity = standing ∧ violate(Worker_1.activity, Worker_1.break_status) = true → Relation(Worker_1, Worker_1) = coworkers)
+8. Q[Three, Worker_2.activity, Worker_2.break_status](Worker_2.activity = standing ∧ violate(Worker_2.activity, Worker_2.break_status) = true → Relation(Worker_2, Worker_2) = coworkers)
+9. Q[Three, Worker_3.activity, Worker_3.break_status](Worker_3.activity = standing ∧ violate(Worker_3.activity, Worker_3.break_status) = true → Relation(Worker_3, Worker_3) = coworkers)
+10. Q[Three, Worker_1.activity, Worker_1.break_status](Worker_1.activity = standing ∧ Worker_1.break_status = taking_break → violate(Worker_1.activity, Worker_1.break_status) = true)
+11. Q[Three, Worker_2.activity, Worker_2.break_status](Worker_2.activity = standing ∧ Worker_2.break_status = taking_break → violate(Worker_2.activity, Worker_2.break_status) = true)
+12. Q[Three, Worker_3.activity, Worker_3.break_status](Worker_3.activity = standing ∧ Worker_3.break_status = taking_break → violate(Worker_3.activity, Worker_3.break_status) = true)
+13. Q[Three, Worker_1.activity, Worker_1.break_status](Worker_1.activity = standing ∧ Activity_change.worker_1 = standing_to_break → Relation(Worker_1, Worker_1) = coworkers)
+14. Q[Three, Worker_2.activity, Worker_2.break_status](Worker_2.activity = standing ∧ Activity_change.worker_2 = standing_to_break → Relation(Worker_2, Worker_2) = coworkers)
+15. Q[Three, Worker_3.activity, Worker_3.break_status](Worker_3.activity = standing ∧ Activity_change.worker_3 = standing_to_break → Relation(Worker_3, Worker_3) = coworkers)
+16. Q[Three, Worker_1.activity, Worker_1.break_status](Worker_1.activity = standing ∧ Worker_1.break_status = taking_break → M_NLI(S1, S2) = true)
+17. Q[Three, Worker_2.activity, Worker_2.break_status](Worker_2.activity = standing ∧ Worker_2.break_status = taking_break → M_NLI(S1, S2) = true)
+18. Q[Three, Worker_3.activity, Worker_3.break_status](Worker_3.activity = standing ∧ Worker_3.break_status = taking_break → M_NLI(S1, S2) = true)
+19. Q[Three, Worker_1.activity, Worker_1.break_status](Worker_1.activity = standing ∧ Worker_1.location = boating_rail → Relation(Worker_1, Worker_1) = coworkers)
+20. Q[Three, Worker_2.activity, Worker_2.break_status](Worker_2.activity = standing ∧ Worker_2.location = boating_rail → Relation(Worker_2, Worker_2) = coworkers)
+21. Q[Three, Worker_3.activity, Worker_3.break_status](Worker_3.activity = standing ∧ Worker_3.location = boating_rail → Relation(Worker_3, Worker_3) = coworkers)
+22. Q[Three, Worker_1.activity, Worker_1.break_status](Worker_1.break_status = taking_break ∧ Worker_1.drink = beer → Relation(Worker_1, Worker_1) = coworkers)
+23. Q[Three, Worker_2.activity, Worker_2.break_status](Worker_2.break_status = taking_break ∧ Worker_2.drink = beer → Relation(Worker_2, Worker_2) = coworkers)
+24. Q[Three, Worker_3.activity, Worker_3.break_status](Worker_3.break_status = taking_break ∧ Worker_3.drink = beer → Relation(Worker_3, Worker_3) = coworkers)
+25. Q[Three, Worker_1.activity, Worker_1.break_status](Worker_1.activity = standing ∧ Worker_1.break_status = taking_break → Worker_1.group_activity = drinking)
+26. Q[Three, Worker_2.activity, Worker_2.break_status](Worker_2.activity = standing ∧ Worker_2.break_status = taking_break → Worker_2.group_activity = drinking)
+27. Q[Three, Worker_3.activity, Worker_3.break_status](Worker_3.activity = standing ∧ Worker_3.break_status = taking_break → Worker_3.group_activity = drinking)
+28. Q[Three, Worker_1.activity, Worker_1.break_status](Worker_1.activity = standing ∧ Worker_1.break_status = taking_break → Relation(Worker_1, Worker_2) = coworkers)
+29. Q[Three, Worker_2.activity, Worker_2.break_status](Worker_2.activity = standing ∧ Worker_2.break_status = taking_break → Relation(Worker_2, Worker_3) = coworkers)
+30. Q[Three, Worker_3.activity, Worker_3.break_status](Worker_3.activity = standing ∧ Worker_3.break_status = taking_break → Relation(Worker_1, Worker_3) = coworkers)

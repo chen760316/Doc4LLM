@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 866)
+S1: t w o s m a l l d o g s p l a y i n g w i t h e a c h o t h e r i n t h e g r a s s
+S2: T w o d o g s a r e p l a y i n g t u g - o - w a r .
+
+Predicates:
+1. S1.dogs.size = small
+2. S1.dogs.count = 2
+3. S1.dogs.activity = playing
+4. S1.location = grass
+5. S2.dogs.count = 2
+6. S2.dogs.activity = playing
+7. S2.dogs.game = tug-of-war
+8. S2.dogs.size = unspecified
+9. S1.dogs.relationship = with each other
+10. S1.location.type = outdoor
+11. S2.dogs.relationship = unspecified
+12. S1.activity.type = play
+13. S2.activity.type = game
+14. S1.dogs.environment = grass
+15. S2.dogs.environment = unspecified
+16. S1.dogs.state = active
+17. S2.dogs.state = active
+18. S1.dogs.interaction = positive
+19. S2.dogs.interaction = positive
+20. S1.dogs.species = dog
+21. S2.dogs.species = dog
+22. S1.dogs.size.known = true
+23. S2.dogs.size.known = false
+24. M_NLI(S1, S2) = contradict
+25. Numeric(S1.dogs.count, S2.dogs.count) = (2, 2)
+26. violate(S1.dogs.size, S2.dogs.size) = true
+27. S1.dogs.playing_with = S1.dogs
+28. S2.dogs.playing_with = S2.dogs
+29. S1.activity.location = grass
+30. S2.activity.location = unspecified
+
+Rules:
+1. Q[dogs, 2, 2](S1.dogs.count == 2 ∧ S2.dogs.count == 2 → Numeric(S1.dogs.count, S2.dogs.count))
+2. Q[dogs, 2, 0](S1.dogs.size == small ∧ S2.dogs.size == unspecified → Numeric(S1.dogs.count, 0))
+3. Q[dogs, 2, 2](S1.dogs.activity == playing ∧ S2.dogs.activity == playing → Numeric(S1.dogs.count, S2.dogs.count))
+4. Q[dogs, 2, 0](S1.dogs.size == small ∧ S2.dogs.size.known == false → Numeric(S1.dogs.count, 0))
+5. Q[dogs, 2, 2](S1.location == grass ∧ S2.dogs.environment == unspecified → Numeric(S1.dogs.count, S2.dogs.count))
+6. Q[dogs, 2, 0](S1.dogs.size == small ∧ violate(S1.dogs.size, S2.dogs.size) == true → Numeric(S1.dogs.count, 0))
+7. Q[dogs, 2, 2](S1.dogs.relationship == with each other ∧ S2.dogs.relationship == unspecified → Numeric(S1.dogs.count, S2.dogs.count))
+8. Q[dogs, 2, 0](S1.dogs.size.known == true ∧ S2.dogs.size.known == false → Numeric(S1.dogs.count, 0))
+9. Q[dogs, 2, 2](S1.activity.type == play ∧ S2.activity.type == game → Numeric(S1.dogs.count, S2.dogs.count))
+10. Q[dogs, 2, 0](S1.dogs.size == small ∧ S2.dogs.size == unspecified → Numeric(S1.dogs.count, 0))
+11. Q[dogs, 2, 2](S1.dogs.state == active ∧ S2.dogs.state == active → Numeric(S1.dogs.count, S2.dogs.count))
+12. Q[dogs, 2, 0](S1.dogs.size == small ∧ S2.dogs.size == unspecified → Numeric(S1.dogs.count, 0))
+13. Q[dogs, 2, 2](S1.dogs.interaction == positive ∧ S2.dogs.interaction == positive → Numeric(S1.dogs.count, S2.dogs.count))
+14. Q[dogs, 2, 0](S1.dogs.size.known == true ∧ S2.dogs.size.known == false → Numeric(S1.dogs.count, 0))
+15. Q[dogs, 2, 2](S1.dogs.species == dog ∧ S2.dogs.species == dog → Numeric(S1.dogs.count, S2.dogs.count))
+16. Q[dogs, 2, 0](M_NLI(S1, S2) == contradict → Numeric(S1.dogs.count, 0))
+17. Q[dogs, 2, 2](S1.dogs.activity == playing ∧ S2.dogs.activity == playing → Numeric(S1.dogs.count, S2.dogs.count))
+18. Q[dogs, 2, 0](S1.dogs.size == small ∧ S2.dogs.size == unspecified → Numeric(S1.dogs.count, 0))
+19. Q[dogs, 2, 2](S1.dogs.environment == grass ∧ S2.dogs.environment == unspecified → Numeric(S1.dogs.count, S2.dogs.count))
+20. Q[dogs, 2, 0](S1.dogs.size == small ∧ violate(S1.dogs.size, S2.dogs.size) == true → Numeric(S1.dogs.count, 0))
+21. Q[dogs, 2, 2](S1.dogs.relationship == with each other ∧ S2.dogs.relationship == unspecified → Numeric(S1.dogs.count, S2.dogs.count))
+22. Q[dogs, 2, 0](S1.dogs.size.known == true ∧ S2.dogs.size.known == false → Numeric(S1.dogs.count, 0))
+23. Q[dogs, 2, 2](S1.activity.location == grass ∧ S2.activity.location == unspecified → Numeric(S1.dogs.count, S2.dogs.count))
+24. Q[dogs, 2, 0](S1.dogs.size == small ∧ S2.dogs.size == unspecified → Numeric(S1.dogs.count, 0))
+25. Q[dogs, 2, 2](S1.dogs.state == active ∧ S2.dogs.state == active → Numeric(S1.dogs.count, S2.dogs.count))
+26. Q[dogs, 2, 0](S1.dogs.size == small ∧ S2.dogs.size == unspecified → Numeric(S1.dogs.count, 0))
+27. Q[dogs, 2, 2](S1.dogs.interaction == positive ∧ S2.dogs.interaction == positive → Numeric(S1.dogs.count, S2.dogs.count))
+28. Q[dogs, 2, 0](S1.dogs.size.known == true ∧ S2.dogs.size.known == false → Numeric(S1.dogs.count, 0))
+29. Q[dogs, 2, 2](S1.dogs.species == dog ∧ S2.dogs.species == dog → Numeric(S1.dogs.count, S2.dogs.count))
+30. Q[dogs, 2, 0](M_NLI(S1, S2) == contradict → Numeric(S1.dogs.count, 0))

@@ -1,0 +1,58 @@
+Predicates:
+Lady Wishfort.label != "Person"
+Lady Wishfort.label = "Person"
+Lady Wishfort.name != "Lady Wishfort"
+Lady Wishfort.name != Mirabell.name
+Lady Wishfort.name != Mrs. Marwood.name
+Lady Wishfort.name != Sir Wilfull Witwoud.name
+Lady Wishfort.name = "Lady Wishfort"
+Lady Wishfort___Mirabell.condition = "If he can save her fortune and honour"
+Lady Wishfort___Mirabell.contradiction_type = "Causal"
+Lady Wishfort___Mirabell.relationship = "Lady Wishfort offers her consent to Mirabell for marriage if he can save her fortune and honour."
+Lady Wishfort___Mirabell.source_id = "3488771860_4"
+Lady Wishfort___Mrs. Marwood.contradiction_type = "Causal"
+Lady Wishfort___Mrs. Marwood.relationship != Lady Wishfort___Mirabell.relationship
+Lady Wishfort___Mrs. Marwood.relationship = "Lady Wishfort expresses gratitude to Mrs. Marwood for revealing the plot"
+Lady Wishfort___Mrs. Marwood.source_id = "3488771860_4"
+Lady Wishfort___Sir Wilfull Witwoud.contradiction_type = "Causal"
+Lady Wishfort___Sir Wilfull Witwoud.relationship != Lady Wishfort___Mirabell.relationship
+Lady Wishfort___Sir Wilfull Witwoud.relationship != Lady Wishfort___Mrs. Marwood.relationship
+Lady Wishfort___Sir Wilfull Witwoud.relationship = "Lady Wishfort wants Millamant to marry Sir Wilfull Witwoud"
+Lady Wishfort___Sir Wilfull Witwoud.source_id = "3488771860_4"
+Mirabell.label != "Person"
+Mirabell.label = "Person"
+Mirabell.name != "Mirabell"
+Mirabell.name = "Mirabell"
+Mirabell.occupation != "restorer"
+Mirabell.occupation = "restorer"
+Mrs. Marwood.label != "Person"
+Mrs. Marwood.label = "Person"
+Mrs. Marwood.name != "Mrs. Marwood"
+Mrs. Marwood.name != Mirabell.name
+Mrs. Marwood.name = "Mrs. Marwood"
+None_ML(Lady Wishfort___Sir Wilfull Witwoud.attrs, Lady Wishfort___Mirabell.attrs)
+None_ML(Mirabell.attrs, Mrs. Marwood.attrs)
+Sir Wilfull Witwoud.label != "Person"
+Sir Wilfull Witwoud.label = "Person"
+Sir Wilfull Witwoud.location != "Countryside"
+Sir Wilfull Witwoud.location = "Countryside"
+Sir Wilfull Witwoud.name != "Sir Wilfull Witwoud"
+Sir Wilfull Witwoud.name != Mirabell.name
+Sir Wilfull Witwoud.name != Mrs. Marwood.name
+Sir Wilfull Witwoud.name = "Sir Wilfull Witwoud"
+Sir Wilfull Witwoud.relationship != "Nephew"
+Sir Wilfull Witwoud.relationship = "Nephew"
+Sir Wilfull Witwoud.status != "Just arrived"
+Sir Wilfull Witwoud.status = "Just arrived"
+
+Rules:
+Q[Lady Wishfort,Lady Wishfort] (Mrs. Marwood.name = "Mrs. Marwood" ∧ Sir Wilfull Witwoud.location != "Countryside" ∧ Sir Wilfull Witwoud.name != Mirabell.name ∧ Lady Wishfort___Sir Wilfull Witwoud.source_id = "3488771860_4" → Lady Wishfort___Mrs. Marwood.contradiction_type = "Causal")
+Q[Lady Wishfort,Lady Wishfort] (Mrs. Marwood.name = "Mrs. Marwood" ∧ Mrs. Marwood.name != "Mrs. Marwood" ∧ Mirabell.occupation = "restorer" ∧ Lady Wishfort___Sir Wilfull Witwoud.relationship = "Lady Wishfort wants Millamant to marry Sir Wilfull Witwoud" ∧ Lady Wishfort___Mirabell.source_id = "3488771860_4" → Sir Wilfull Witwoud.name != Mrs. Marwood.name)
+Q[Lady Wishfort,Lady Wishfort] (Sir Wilfull Witwoud.label != "Person" ∧ Sir Wilfull Witwoud.location != "Countryside" → Mirabell.label = "Person")
+Q[Lady Wishfort,Lady Wishfort] (Lady Wishfort.name != Sir Wilfull Witwoud.name ∧ Mirabell.name != "Mirabell" ∧ Sir Wilfull Witwoud.name != "Sir Wilfull Witwoud" → Lady Wishfort___Mirabell.condition = "If he can save her fortune and honour")
+Q[Lady Wishfort,Lady Wishfort] (Sir Wilfull Witwoud.name = "Sir Wilfull Witwoud" ∧ Lady Wishfort___Mrs. Marwood.relationship != Lady Wishfort___Mirabell.relationship ∧ Mrs. Marwood.name != "Mrs. Marwood" ∧ Mirabell.label != "Person" ∧ Sir Wilfull Witwoud.relationship = "Nephew" ∧ Sir Wilfull Witwoud.label = "Person" → Sir Wilfull Witwoud.status != "Just arrived")
+Q[Lady Wishfort,Lady Wishfort] (Sir Wilfull Witwoud.relationship = "Nephew" ∧ Sir Wilfull Witwoud.name != Mrs. Marwood.name ∧ None_ML(Mirabell.attrs, Mrs. Marwood.attrs) → Lady Wishfort___Mrs. Marwood.source_id = "3488771860_4")
+Q[Lady Wishfort,Lady Wishfort] (Mirabell.label = "Person" ∧ Sir Wilfull Witwoud.location != "Countryside" ∧ Sir Wilfull Witwoud.location = "Countryside" ∧ Sir Wilfull Witwoud.status != "Just arrived" → Lady Wishfort.name = "Lady Wishfort")
+Q[Lady Wishfort,Lady Wishfort] (Lady Wishfort___Mirabell.condition = "If he can save her fortune and honour" ∧ Sir Wilfull Witwoud.name = "Sir Wilfull Witwoud" ∧ Mirabell.name != "Mirabell" ∧ Mrs. Marwood.label = "Person" ∧ Mirabell.name = "Mirabell" ∧ Sir Wilfull Witwoud.relationship = "Nephew" → Mrs. Marwood.name = "Mrs. Marwood")
+Q[Lady Wishfort,Lady Wishfort] (Lady Wishfort___Mirabell.contradiction_type = "Causal" ∧ Mrs. Marwood.name != Mirabell.name ∧ Sir Wilfull Witwoud.name = "Sir Wilfull Witwoud" ∧ Lady Wishfort___Sir Wilfull Witwoud.source_id = "3488771860_4" ∧ Mirabell.label = "Person" → Sir Wilfull Witwoud.label = "Person")
+Q[Lady Wishfort,Lady Wishfort] (Lady Wishfort.label != "Person" ∧ Lady Wishfort___Mirabell.contradiction_type = "Causal" → Sir Wilfull Witwoud.label != "Person")

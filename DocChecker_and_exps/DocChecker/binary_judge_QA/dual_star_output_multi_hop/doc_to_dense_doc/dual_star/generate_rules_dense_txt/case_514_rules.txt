@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 514)
+S1: The way they are shown to single-handedly eliminate thousands of Persian soldiers in the movie is a blatant misrepresentation.
+S2: While Spartans were indeed formidable warriors, they were human and suffered injuries and fatalities just like any other soldiers.
+
+Predicates:
+1. Movie.representation
+2. Spartan.warrior
+3. Spartan.human
+4. Spartan.injury
+5. Spartan.fatality
+6. Persian.soldier
+7. portrayal.exaggeration
+8. portrayal.realism
+9. capability.formidable
+10. capability.vulnerability
+11. relationship.humanity
+12. relationship.warrior
+13. relationship.injury
+14. relationship.fatality
+15. M_NLI(S1, S2)
+16. Causal(portrayal.exaggeration, capability.vulnerability)
+17. violate(portrayal.exaggeration, portrayal.realism)
+18. Spartan.soldier
+19. Spartan.elimination
+20. Persian.soldier.count
+21. portrayal.misrepresentation
+22. portrayal.human.vulnerability
+23. capability.human
+24. capability.soldier
+25. relationship.exaggeration
+26. relationship.misrepresentation
+27. relationship.human.vulnerability
+28. Spartan.battle
+29. Spartan.soldier.count
+30. Persian.soldier.vulnerability
+
+Rules:
+1. Q[The, Spartan.warrior, portrayal.exaggeration](Movie.representation == "misrepresentation" → Causal(portrayal.exaggeration, capability.vulnerability))
+2. Q[The, Spartan.human, portrayal.realism](Spartan.human == true → Causal(portrayal.exaggeration, capability.vulnerability))
+3. Q[The, Spartan.injury, portrayal.misrepresentation](Spartan.injury == true → Causal(portrayal.exaggeration, capability.vulnerability))
+4. Q[The, Spartan.fatality, portrayal.human.vulnerability](Spartan.fatality == true → Causal(portrayal.exaggeration, capability.vulnerability))
+5. Q[The, Persian.soldier, Spartan.elimination](Persian.soldier.count > 1000 → Causal(portrayal.exaggeration, capability.vulnerability))
+6. Q[The, portrayal.exaggeration, capability.formidable](portrayal.exaggeration == true → Causal(portrayal.exaggeration, capability.vulnerability))
+7. Q[The, portrayal.realism, capability.vulnerability](portrayal.realism == true → Causal(portrayal.exaggeration, capability.vulnerability))
+8. Q[The, capability.formidable, Spartan.warrior](capability.formidable == true → Causal(portrayal.exaggeration, capability.vulnerability))
+9. Q[The, capability.vulnerability, Spartan.human](capability.vulnerability == true → Causal(portrayal.exaggeration, capability.vulnerability))
+10. Q[The, relationship.humanity, Spartan.human](relationship.humanity == true → Causal(portrayal.exaggeration, capability.vulnerability))
+11. Q[The, relationship.warrior, Spartan.warrior](relationship.warrior == true → Causal(portrayal.exaggeration, capability.vulnerability))
+12. Q[The, relationship.injury, Spartan.injury](relationship.injury == true → Causal(portrayal.exaggeration, capability.vulnerability))
+13. Q[The, relationship.fatality, Spartan.fatality](relationship.fatality == true → Causal(portrayal.exaggeration, capability.vulnerability))
+14. Q[The, Spartan.battle, portrayal.misrepresentation](Spartan.battle == true → Causal(portrayal.exaggeration, capability.vulnerability))
+15. Q[The, Spartan.soldier, portrayal.exaggeration](Spartan.soldier.count > 300 → Causal(portrayal.exaggeration, capability.vulnerability))
+16. Q[The, Persian.soldier.count, Spartan.elimination](Persian.soldier.count > 1000 → Causal(portrayal.exaggeration, capability.vulnerability))
+17. Q[The, portrayal.human.vulnerability, Spartan.human](portrayal.human.vulnerability == true → Causal(portrayal.exaggeration, capability.vulnerability))
+18. Q[The, capability.human, Spartan.human](capability.human == true → Causal(portrayal.exaggeration, capability.vulnerability))
+19. Q[The, capability.soldier, Spartan.warrior](capability.soldier == true → Causal(portrayal.exaggeration, capability.vulnerability))
+20. Q[The, relationship.exaggeration, portrayal.exaggeration](relationship.exaggeration == true → Causal(portrayal.exaggeration, capability.vulnerability))
+21. Q[The, relationship.misrepresentation, portrayal.misrepresentation](relationship.misrepresentation == true → Causal(portrayal.exaggeration, capability.vulnerability))
+22. Q[The, relationship.human.vulnerability, portrayal.human.vulnerability](relationship.human.vulnerability == true → Causal(portrayal.exaggeration, capability.vulnerability))
+23. Q[The, Spartan.soldier.count, portrayal.exaggeration](Spartan.soldier.count > 300 → Causal(portrayal.exaggeration, capability.vulnerability))
+24. Q[The, Persian.soldier.vulnerability, Spartan.human](Persian.soldier.vulnerability == true → Causal(portrayal.exaggeration, capability.vulnerability))
+25. Q[The, portrayal.misrepresentation, Spartan.warrior](portrayal.misrepresentation == true → Causal(portrayal.exaggeration, capability.vulnerability))
+26. Q[The, Spartan.elimination, Persian.soldier](Spartan.elimination > 1000 → Causal(portrayal.exaggeration, capability.vulnerability))
+27. Q[The, Spartan.human, capability.vulnerability](Spartan.human == true → Causal(portrayal.exaggeration, capability.vulnerability))
+28. Q[The, portrayal.exaggeration, Spartan.warrior](portrayal.exaggeration == true → Causal(portrayal.exaggeration, capability.vulnerability))
+29. Q[The, Spartan.battle, capability.formidable](Spartan.battle == true → Causal(portrayal.exaggeration, capability.vulnerability))
+30. Q[The, portrayal.realism, Spartan.human](portrayal.realism == true → Causal(portrayal.exaggeration, capability.vulnerability))

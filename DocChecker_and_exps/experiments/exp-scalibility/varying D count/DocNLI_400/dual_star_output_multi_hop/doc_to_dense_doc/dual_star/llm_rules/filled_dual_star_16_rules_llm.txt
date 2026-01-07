@@ -1,0 +1,124 @@
+Predicates:
+1. I.occupation = "Doctor Who"
+2. I.status = "fan"
+3. I.duration = "approximately 40 years"
+4. inner thigh.condition = "sharp pain"
+5. leg.condition = "unable to step on"
+6. muscle tightness.status = "normal"
+7. seeing all the sights.description = "was astounding"
+8. "Relationship".time = "since injury"
+9. "Relationship".reason = "after playing on the grass"
+10. "Relationship".time = "after landing"
+11. "Relationship".source_id = "Index_62"
+12. "Relationship".source_domain = "N/A"
+13. "Relationship".doc_index = "62"
+14. "Relationship".source_id = "Index_109"
+15. "Relationship".source_domain = "N/A"
+16. "Relationship".doc_index = "109"
+17. T("I couldn't step on my leg.", "I experienced sharp pain in my inner thigh.", tau)
+18. T("I couldn't step on my leg.", "I felt muscle tightness.", tau)
+19. T("I experienced sharp pain in my inner thigh.", "I felt muscle tightness.", tau)
+20. tau(inner thigh.condition, leg.condition)
+21. tau(muscle tightness.status, leg.condition)
+22. violate("I couldn't step on my leg.", "I felt muscle tightness.")
+23. violate("I couldn't step on my leg.", "I experienced sharp pain in my inner thigh.")
+24. Factual("I couldn't step on my leg.", "I experienced sharp pain in my inner thigh.")
+25. Factual("I felt muscle tightness.", "I experienced sharp pain in my inner thigh.")
+26. Causal("I couldn't step on my leg.", "I experienced sharp pain in my inner thigh.")
+27. Causal("I felt muscle tightness.", "I couldn't step on my leg.")
+28. Negation("I couldn't step on my leg.", "I could step on my leg.")
+29. Relation("I couldn't step on my leg.", "I felt muscle tightness.")
+30. Numeric("I experienced sharp pain in my inner thigh.", "I felt muscle tightness.")
+31. Temporal("I couldn't step on my leg.", "I will be able to step on my leg.")
+32. M_NLI("I couldn't step on my leg.", "I experienced sharp pain in my inner thigh.")
+33. M_NLI("I felt muscle tightness.", "I couldn't step on my leg.")
+34. M_NLI("I experienced sharp pain in my inner thigh.", "I felt muscle tightness.")
+35. "Relationship".attribute = "pain"
+36. "Relationship".attribute = "tightness"
+37. "Relationship".attribute = "injury"
+38. "Relationship".attribute = "sight"
+39. "Relationship".attribute = "existence"
+40. "Relationship".attribute = "duration"
+41. "Relationship".attribute = "occupation"
+42. "Relationship".attribute = "status"
+43. "Relationship".attribute = "condition"
+44. "Relationship".attribute = "emotion"
+45. "Relationship".attribute = "experience"
+46. "Relationship".attribute = "reaction"
+47. "Relationship".attribute = "belief"
+48. "Relationship".attribute = "understanding"
+49. "Relationship".attribute = "perception"
+50. "Relationship".attribute = "memory"
+51. "Relationship".attribute = "sensation"
+52. "Relationship".attribute = "response"
+53. "Relationship".attribute = "interpretation"
+54. "Relationship".attribute = "evaluation"
+55. "Relationship".attribute = "assessment"
+56. "Relationship".attribute = "conclusion"
+57. "Relationship".attribute = "observation"
+58. "Relationship".attribute = "thought"
+59. "Relationship".attribute = "feeling"
+60. "Relationship".attribute = "opinion"
+61. "Relationship".attribute = "view"
+62. "Relationship".attribute = "perspective"
+63. "Relationship".attribute = "insight"
+64. "Relationship".attribute = "understanding"
+65. "Relationship".attribute = "knowledge"
+66. "Relationship".attribute = "awareness"
+67. "Relationship".attribute = "recognition"
+68. "Relationship".attribute = "acknowledgment"
+69. "Relationship".attribute = "realization"
+70. "Relationship".attribute = "discovery"
+71. "Relationship".attribute = "finding"
+72. "Relationship".attribute = "contribution"
+73. "Relationship".attribute = "impact"
+74. "Relationship".attribute = "influence"
+75. "Relationship".attribute = "effect"
+76. "Relationship".attribute = "result"
+77. "Relationship".attribute = "outcome"
+78. "Relationship".attribute = "consequence"
+79. "Relationship".attribute = "implication"
+80. "Relationship".attribute = "significance"
+81. "Relationship".attribute = "importance"
+82. "Relationship".attribute = "value"
+83. "Relationship".attribute = "worth"
+84. "Relationship".attribute = "merit"
+85. "Relationship".attribute = "quality"
+86. "Relationship".attribute = "standard"
+87. "Relationship".attribute = "criterion"
+88. "Relationship".attribute = "measure"
+89. "Relationship".attribute = "gauge"
+90. "Relationship".attribute = "scale"
+91. "Relationship".attribute = "level"
+92. "Relationship".attribute = "degree"
+93. "Relationship".attribute = "extent"
+94. "Relationship".attribute = "range"
+95. "Relationship".attribute = "scope"
+96. "Relationship".attribute = "breadth"
+97. "Relationship".attribute = "depth"
+98. "Relationship".attribute = "width"
+99. "Relationship".attribute = "height"
+100. "Relationship".attribute = "volume"
+violate(x0, y0)
+
+Rules:
+1. Q[x0, y0](I.occupation = "Doctor Who" ∧ I.status = "fan" → violate(x0, y0))
+2. Q[x0, y0](I.duration = "approximately 40 years" ∧ inner thigh.condition = "sharp pain" → violate(x0, y0))
+3. Q[x0, y0](leg.condition = "unable to step on" ∧ muscle tightness.status = "normal" ∧ seeing all the sights.description = "was astounding" → violate(x0, y0))
+4. Q[x0, y0](inner thigh.condition = "sharp pain" ∧ leg.condition = "unable to step on" ∧ "Relationship".time = "since injury" → violate(x0, y0))
+5. Q[x0, y0](T("I couldn't step on my leg.", "I experienced sharp pain in my inner thigh.", tau) ∧ T("I felt muscle tightness.", "I couldn't step on my leg.", tau) ∧ "Relationship".reason = "after playing on the grass" → violate(x0, y0))
+6. Q[x0, y0](tau(inner thigh.condition, leg.condition) ∧ tau(muscle tightness.status, leg.condition) ∧ "Relationship".source_id = "Index_62" ∧ "Relationship".source_domain = "N/A" → violate(x0, y0))
+7. Q[x0, y0](violate("I couldn't step on my leg.", "I felt muscle tightness.") ∧ Factual("I couldn't step on my leg.", "I experienced sharp pain in my inner thigh.") ∧ Causal("I couldn't step on my leg.", "I experienced sharp pain in my inner thigh.") → violate(x0, y0))
+8. Q[x0, y0](Causal("I felt muscle tightness.", "I couldn't step on my leg.") ∧ Negation("I couldn't step on my leg.", "I could step on my leg.") ∧ Relation("I couldn't step on my leg.", "I felt muscle tightness.") ∧ Numeric("I experienced sharp pain in my inner thigh.", "I felt muscle tightness.") → violate(x0, y0))
+9. Q[x0, y0](Temporal("I couldn't step on my leg.", "I will be able to step on my leg.") ∧ M_NLI("I couldn't step on my leg.", "I experienced sharp pain in my inner thigh.") ∧ M_NLI("I felt muscle tightness.", "I couldn't step on my leg.") ∧ "Relationship".attribute = "pain" ∧ "Relationship".attribute = "injury" → violate(x0, y0))
+10. Q[x0, y0](M_NLI("I experienced sharp pain in my inner thigh.", "I felt muscle tightness.") ∧ "Relationship".attribute = "tightness" ∧ "Relationship".attribute = "sight" ∧ "Relationship".attribute = "existence" ∧ "Relationship".attribute = "duration" → violate(x0, y0))
+11. Q[x0, y0](I.occupation = "Doctor Who" ∧ I.status = "fan" ∧ I.duration = "approximately 40 years" ∧ inner thigh.condition = "sharp pain" ∧ leg.condition = "unable to step on" ∧ muscle tightness.status = "normal" → violate(x0, y0))
+12. Q[x0, y0](seeing all the sights.description = "was astounding" ∧ "Relationship".time = "since injury" ∧ "Relationship".reason = "after playing on the grass" ∧ "Relationship".source_id = "Index_109" ∧ "Relationship".source_domain = "N/A" ∧ "Relationship".doc_index = "109" → violate(x0, y0))
+13. Q[x0, y0](T("I couldn't step on my leg.", "I experienced sharp pain in my inner thigh.", tau) ∧ T("I felt muscle tightness.", "I couldn't step on my leg.", tau) ∧ "Relationship".attribute = "emotion" ∧ "Relationship".attribute = "experience" → violate(x0, y0))
+14. Q[x0, y0](tau(inner thigh.condition, leg.condition) ∧ tau(muscle tightness.status, leg.condition) ∧ "Relationship".attribute = "reaction" ∧ "Relationship".attribute = "belief" ∧ "Relationship".attribute = "understanding" → violate(x0, y0))
+15. Q[x0, y0](Factual("I couldn't step on my leg.", "I experienced sharp pain in my inner thigh.") ∧ Causal("I couldn't step on my leg.", "I experienced sharp pain in my inner thigh.") ∧ Negation("I couldn't step on my leg.", "I could step on my leg.") ∧ Relation("I couldn't step on my leg.", "I felt muscle tightness.") ∧ Numeric("I experienced sharp pain in my inner thigh.", "I felt muscle tightness.") → violate(x0, y0))
+16. Q[x0, y0](Temporal("I couldn't step on my leg.", "I will be able to step on my leg.") ∧ M_NLI("I couldn't step on my leg.", "I experienced sharp pain in my inner thigh.") ∧ M_NLI("I felt muscle tightness.", "I couldn't step on my leg.") ∧ "Relationship".attribute = "pain" ∧ "Relationship".attribute = "injury" ∧ "Relationship".attribute = "sight" → violate(x0, y0))
+17. Q[x0, y0](I.occupation = "Doctor Who" ∧ I.status = "fan" ∧ I.duration = "approximately 40 years" ∧ inner thigh.condition = "sharp pain" ∧ leg.condition = "unable to step on" ∧ seeing all the sights.description = "was astounding" → violate(x0, y0))
+18. Q[x0, y0](T("I couldn't step on my leg.", "I experienced sharp pain in my inner thigh.", tau) ∧ T("I felt muscle tightness.", "I couldn't step on my leg.", tau) ∧ "Relationship".time = "after landing" ∧ "Relationship".source_id = "Index_62" ∧ "Relationship".source_domain = "N/A" → violate(x0, y0))
+19. Q[x0, y0](tau(inner thigh.condition, leg.condition) ∧ tau(muscle tightness.status, leg.condition) ∧ "Relationship".doc_index = "62" ∧ "Relationship".source_id = "Index_109" ∧ "Relationship".source_domain = "N/A" ∧ "Relationship".doc_index = "109" → violate(x0, y0))
+20. Q[x0, y0](violate("I couldn't step on my leg.", "I felt muscle tightness.") ∧ Factual("I felt muscle tightness.", "I experienced sharp pain in my inner thigh.") ∧ Causal("I felt muscle

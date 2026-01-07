@@ -1,0 +1,133 @@
+Predicates:
+1. Martin.occupation = "toy finder"
+2. Martin.occupation != "princess"
+3. Martin.occupation > "teacher"
+4. Martin.occupation < "engineer"
+5. Martin.occupation >= "artist"
+6. Martin.occupation <= "clown"
+7. Princess Petulant.status = "royal"
+8. Princess Petulant.status != "commoner"
+9. Princess Petulant.status < "empress"
+10. Princess Petulant.status > "duchess"
+11. Princess Petulant.status >= "countess"
+12. Princess Petulant.status <= "lady"
+13. unknown.status = "fatality"
+14. unknown.status != "alive"
+15. unknown.status < "critical"
+16. unknown.status > "stable"
+17. unknown.status >= "danger"
+18. unknown.status <= "survivor"
+19. "Martin talks with Princess Petulant".time = "four weeks"
+20. "Martin talks with Princess Petulant".time != "two weeks"
+21. "Martin talks with Princess Petulant".time < "five weeks"
+22. "Martin talks with Princess Petulant".time > "three weeks"
+23. "Martin talks with Princess Petulant".time >= "four weeks"
+24. "Martin talks with Princess Petulant".time <= "four weeks"
+25. M_NLI(Martin.occupation, Princess Petulant.status)
+26. M_NLU(Martin.occupation, unknown.status)
+27. M_TEM(Princess Petulant.status, unknown.status)
+28. contra("Martin talks with Princess Petulant", "Martin ignores Princess Petulant")
+29. S(Martin, "Martin")
+30. S(Princess Petulant, "Princess Petulant")
+31. S(unknown, "unknown")
+32. S("Martin talks with Princess Petulant", "talks with")
+33. T("four weeks", "two weeks", "Temporal")
+34. tau(Martin.occupation, Princess Petulant.status)
+35. tau("Martin talks with Princess Petulant".time, unknown.status)
+36. Martin.occupation != "toy maker"
+37. Martin.occupation < "scientist"
+38. Princess Petulant.status >= "queen"
+39. Princess Petulant.status <= "princess"
+40. unknown.status > "unresponsive"
+41. unknown.status < "healthy"
+42. "Martin talks with Princess Petulant".time > "one month"
+43. "Martin talks with Princess Petulant".time < "six weeks"
+44. M_NLI(unknown.status, Princess Petulant.status)
+45. M_NLU(Martin.occupation, "toy finder")
+46. M_TEM(Martin.occupation, unknown.status)
+47. contra("Martin promises", "Martin denies")
+48. S(Martin.occupation, "toy finder")
+49. S(unknown.status, "fatality")
+50. S("Martin talks with Princess Petulant", "talks")
+51. T("four weeks", "one month", "Numeric")
+52. tau(Martin.occupation, "toy maker")
+53. tau("Martin talks with Princess Petulant".time, "three weeks")
+54. Martin.occupation >= "finder"
+55. Martin.occupation <= "searcher"
+56. Princess Petulant.status != "servant"
+57. Princess Petulant.status < "empress"
+58. unknown.status >= "critical"
+59. unknown.status <= "nonexistent"
+60. "Martin talks with Princess Petulant".time >= "three weeks"
+61. "Martin talks with Princess Petulant".time <= "five weeks"
+62. M_NLI(Princess Petulant.status, "royal")
+63. M_NLU(unknown.status, "fatality")
+64. M_TEM(Martin.occupation, "finder")
+65. contra("Martin returns", "Martin leaves")
+66. S(Princess Petulant.status, "royal")
+67. S(Martin.occupation, "finder")
+68. S("Martin talks with Princess Petulant", "talks")
+69. T("four weeks", "four weeks", "Content")
+70. tau(unknown.status, "alive")
+71. tau(Martin.occupation, "searcher")
+72. Martin.occupation != "hunter"
+73. Martin.occupation < "detective"
+74. Princess Petulant.status >= "queen"
+75. Princess Petulant.status <= "noble"
+76. unknown.status > "deceased"
+77. unknown.status < "alive"
+78. "Martin talks with Princess Petulant".time > "two weeks"
+79. "Martin talks with Princess Petulant".time < "seven weeks"
+80. M_NLI(Martin.occupation, "finder")
+81. M_NLU(Princess Petulant.status, "royal")
+82. M_TEM(unknown.status, "fatality")
+83. contra("Martin finds toy", "Martin loses toy")
+84. S(unknown, "unknown")
+85. S(Martin.occupation, "toy finder")
+86. S("Martin talks with Princess Petulant", "talks")
+87. T("four weeks", "three weeks", "Temporal")
+88. tau(Martin.occupation, "toy maker")
+89. tau("Martin talks with Princess Petulant".time, "five weeks")
+90. Martin.occupation >= "finder"
+91. Martin.occupation <= "searcher"
+92. Princess Petulant.status != "peasant"
+93. Princess Petulant.status < "queen"
+94. unknown.status >= "critical"
+95. unknown.status <= "nonexistent"
+96. "Martin talks with Princess Petulant".time >= "three weeks"
+97. "Martin talks with Princess Petulant".time <= "five weeks"
+98. M_NLI(Princess Petulant.status, "royal")
+99. M_NLU(unknown.status, "fatality")
+100. M_TEM(Martin.occupation, "finder")
+
+Rules:
+1. Q[1, 1](Martin.occupation = "toy finder" ∧ Martin.occupation != "princess" → Princess Petulant.status != "commoner")
+2. Q[2, 2](Martin.occupation < "engineer" ∧ Martin.occupation >= "artist" → Princess Petulant.status < "empress")
+3. Q[3, 3](Princess Petulant.status = "royal" ∧ Princess Petulant.status != "commoner" ∧ Princess Petulant.status < "empress" → Martin.occupation != "hunter")
+4. Q[4, 4](unknown.status = "fatality" ∧ unknown.status != "alive" ∧ unknown.status < "critical" ∧ unknown.status > "stable" → Martin.occupation != "toy maker")
+5. Q[5, 5](Martin.occupation < "scientist" ∧ Martin.occupation != "toy finder" ∧ Princess Petulant.status >= "queen" ∧ Princess Petulant.status <= "noble" ∧ unknown.status > "deceased" → "Martin talks with Princess Petulant".time < "six weeks")
+6. Q[6, 6](unknown.status < "healthy" ∧ unknown.status >= "critical" ∧ "Martin talks with Princess Petulant".time > "one month" ∧ "Martin talks with Princess Petulant".time < "seven weeks" ∧ Martin.occupation != "hunter" ∧ Martin.occupation < "detective" → Princess Petulant.status != "servant")
+7. Q[1, 2](Martin.occupation != "toy maker" ∧ Martin.occupation < "scientist" → unknown.status < "alive")
+8. Q[2, 3](Princess Petulant.status >= "countess" ∧ Princess Petulant.status <= "lady" → Martin.occupation != "engineer")
+9. Q[3, 4](unknown.status > "stable" ∧ unknown.status < "critical" ∧ "Martin talks with Princess Petulant".time >= "three weeks" → Martin.occupation != "searcher")
+10. Q[4, 5](Martin.occupation >= "finder" ∧ Martin.occupation <= "searcher" ∧ Princess Petulant.status < "queen" ∧ Princess Petulant.status != "peasant" → unknown.status != "fatality")
+11. Q[5, 6](unknown.status >= "danger" ∧ unknown.status <= "survivor" ∧ "Martin talks with Princess Petulant".time >= "four weeks" ∧ "Martin talks with Princess Petulant".time <= "five weeks" ∧ Martin.occupation != "toy finder" → Princess Petulant.status != "commoner")
+12. Q[1, 3](Martin.occupation < "detective" ∧ Martin.occupation != "hunter" → "Martin talks with Princess Petulant".time > "two weeks")
+13. Q[2, 4](Princess Petulant.status < "duchess" ∧ Princess Petulant.status >= "countess" → unknown.status > "unresponsive")
+14. Q[3, 5](unknown.status < "healthy" ∧ unknown.status >= "critical" ∧ "Martin talks with Princess Petulant".time < "five weeks" → Martin.occupation != "toy finder")
+15. Q[4, 6](Martin.occupation != "hunter" ∧ Martin.occupation < "detective" ∧ Princess Petulant.status >= "queen" ∧ Princess Petulant.status <= "noble" → unknown.status < "alive")
+16. Q[1, 4](Martin.occupation != "toy finder" ∧ Martin.occupation < "scientist" → Princess Petulant.status != "servant")
+17. Q[2, 5](unknown.status < "critical" ∧ unknown.status > "stable" ∧ "Martin talks with Princess Petulant".time >= "three weeks" → Martin.occupation != "engineer")
+18. Q[3, 6](Princess Petulant.status < "empress" ∧ Princess Petulant.status != "commoner" ∧ "Martin talks with Princess Petulant".time < "six weeks" → unknown.status != "fatality")
+19. Q[4, 1](unknown.status >= "danger" ∧ unknown.status <= "survivor" ∧ Martin.occupation < "scientist" → Princess Petulant.status != "royal")
+20. Q[5, 2](Martin.occupation < "detective" ∧ Martin.occupation != "hunter" ∧ "Martin talks with Princess Petulant".time > "one month" → unknown.status < "alive")
+21. Q[1, 5](Martin.occupation != "toy maker" ∧ Martin.occupation < "scientist" → Princess Petulant.status < "queen")
+22. Q[2, 6](unknown.status < "healthy" ∧ unknown.status >= "critical" ∧ "Martin talks with Princess Petulant".time < "five weeks" → Martin.occupation != "searcher")
+23. Q[3, 1](Princess Petulant.status >= "countess" ∧ Princess Petulant.status <= "lady" → unknown.status != "fatality")
+24. Q[4, 2](unknown.status > "stable" ∧ unknown.status < "critical" ∧ "Martin talks with Princess Petulant".time >= "three weeks" → Martin.occupation != "hunter")
+25. Q[5, 3](Martin.occupation >= "finder" ∧ Martin.occupation <= "searcher" ∧ Princess Petulant.status < "queen" → unknown.status < "alive")
+26. Q[1, 6](Martin.occupation != "toy finder" ∧ Martin.occupation < "scientist" → Princess Petulant.status != "commoner")
+27. Q[2, 1](Princess Petulant.status < "duchess" ∧ Princess Petulant.status >= "countess" → unknown.status > "unresponsive")
+28. Q[3, 2](unknown.status < "healthy" ∧ unknown.status >= "critical" ∧ "Martin talks with Princess Petulant".time < "five weeks" → Martin.occupation != "toy finder")
+29. Q[4, 3](Martin.occupation != "hunter" ∧ Martin.occupation < "detective" ∧ Princess Petulant.status >= "queen" → unknown.status < "alive")
+30. Q[5, 4](Martin.occupation < "scientist" ∧ Martin.occupation != "toy finder" → Princess Petulant.status != "royal")

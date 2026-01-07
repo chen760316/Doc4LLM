@@ -1,0 +1,50 @@
+Predicates:
+Abraham Axler.label != "Person"
+Abraham Axler.label != Rolling Stone.label
+Abraham Axler.label != University of Virginia.label
+Abraham Axler.label = "Person"
+Abraham Axler.location != "University of Virginia"
+Abraham Axler.location = "University of Virginia"
+Abraham Axler.name != "Abraham Axler"
+Abraham Axler.name != Rolling Stone.name
+Abraham Axler.name != University of Virginia.name
+Abraham Axler.name = "Abraham Axler"
+Abraham Axler.occupation != "student body president"
+Abraham Axler.occupation = "student body president"
+Abraham Axler___Rolling Stone.context = "new policies and national conversation on sexual assault"
+Abraham Axler___Rolling Stone.doc_id != Abraham Axler___University of Virginia.doc_id
+Abraham Axler___Rolling Stone.doc_id = "3489825753_6"
+Abraham Axler___Rolling Stone.relationship != Abraham Axler___University of Virginia.relationship
+Abraham Axler___Rolling Stone.relationship = "Abraham Axler commented on the positive outcomes from the Rolling Stone article despite its retraction."
+Abraham Axler___University of Virginia.comment_year != 2014
+Abraham Axler___University of Virginia.comment_year = 2014
+Abraham Axler___University of Virginia.doc_id = "3489825773_7"
+Abraham Axler___University of Virginia.relationship = "Abraham Axler stated that the article led to new policies at the University of Virginia."
+None_ML(Abraham Axler.attrs, Rolling Stone.attrs)
+None_ML(Abraham Axler___University of Virginia.attrs, Abraham Axler___Rolling Stone.attrs)
+Rolling Stone.label != "Organization"
+Rolling Stone.label = "Organization"
+Rolling Stone.name != "Rolling Stone"
+Rolling Stone.name != University of Virginia.name
+Rolling Stone.name = "Rolling Stone"
+Rolling Stone.status != "retracted article"
+Rolling Stone.status != University of Virginia.status
+Rolling Stone.status = "retracted article"
+University of Virginia.label != "Organization"
+University of Virginia.label = "Organization"
+University of Virginia.name != "University of Virginia"
+University of Virginia.name = "University of Virginia"
+University of Virginia.status != "under investigation"
+University of Virginia.status = "under investigation"
+
+Rules:
+Q[Abraham Axler,Abraham Axler] (University of Virginia.label = "Organization" ∧ Abraham Axler___Rolling Stone.context = "new policies and national conversation on sexual assault" ∧ Abraham Axler.location != "University of Virginia" ∧ University of Virginia.name = "University of Virginia" → Rolling Stone.name != University of Virginia.name)
+Q[Abraham Axler,Abraham Axler] (Abraham Axler.name != Rolling Stone.name ∧ Abraham Axler.name = "Abraham Axler" ∧ Abraham Axler___Rolling Stone.relationship != Abraham Axler___University of Virginia.relationship → Abraham Axler___Rolling Stone.context = "new policies and national conversation on sexual assault")
+Q[Abraham Axler,Abraham Axler] (Rolling Stone.label != "Organization" ∧ University of Virginia.status = "under investigation" ∧ Abraham Axler.name != "Abraham Axler" ∧ Rolling Stone.status != "retracted article" ∧ Abraham Axler___Rolling Stone.doc_id != Abraham Axler___University of Virginia.doc_id → Abraham Axler___Rolling Stone.relationship = "Abraham Axler commented on the positive outcomes from the Rolling Stone article despite its retraction.")
+Q[Abraham Axler,Abraham Axler] (Abraham Axler___University of Virginia.comment_year = 2014 ∧ University of Virginia.label != "Organization" → Rolling Stone.label != "Organization")
+Q[Abraham Axler,Abraham Axler] (University of Virginia.name != "University of Virginia" ∧ University of Virginia.status != "under investigation" ∧ Abraham Axler.name != Rolling Stone.name ∧ Abraham Axler___University of Virginia.relationship = "Abraham Axler stated that the article led to new policies at the University of Virginia." ∧ Abraham Axler.name != University of Virginia.name ∧ Abraham Axler.label != University of Virginia.label → Rolling Stone.name != "Rolling Stone")
+Q[Abraham Axler,Abraham Axler] (None_ML(Abraham Axler___University of Virginia.attrs, Abraham Axler___Rolling Stone.attrs) ∧ Abraham Axler.name != "Abraham Axler" ∧ Rolling Stone.status != University of Virginia.status ∧ Abraham Axler.occupation != "student body president" ∧ Rolling Stone.label != "Organization" ∧ Abraham Axler.label != Rolling Stone.label → Abraham Axler___Rolling Stone.doc_id = "3489825753_6")
+Q[Abraham Axler,Abraham Axler] (Abraham Axler___University of Virginia.relationship = "Abraham Axler stated that the article led to new policies at the University of Virginia." ∧ Abraham Axler.label != Rolling Stone.label ∧ Rolling Stone.name = "Rolling Stone" ∧ Abraham Axler.label != "Person" ∧ Abraham Axler.occupation != "student body president" → Abraham Axler___University of Virginia.doc_id = "3489825773_7")
+Q[Abraham Axler,Abraham Axler] (Abraham Axler___Rolling Stone.relationship = "Abraham Axler commented on the positive outcomes from the Rolling Stone article despite its retraction." ∧ Abraham Axler.label = "Person" ∧ Abraham Axler___University of Virginia.comment_year != 2014 → University of Virginia.label = "Organization")
+Q[Abraham Axler,Abraham Axler] (University of Virginia.name = "University of Virginia" ∧ Rolling Stone.name = "Rolling Stone" ∧ Rolling Stone.status != "retracted article" ∧ Abraham Axler.name = "Abraham Axler" → Abraham Axler.label != Rolling Stone.label)
+Q[Abraham Axler,Abraham Axler] (Abraham Axler.label = "Person" ∧ Abraham Axler.name != University of Virginia.name → Abraham Axler.name != "Abraham Axler")

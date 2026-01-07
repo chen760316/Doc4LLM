@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 117)
+S1: You probably have one of two impressions.
+S2: But you haven't really been to Atlanta.
+
+Predicates:
+1. Impression.person
+2. Experience.person
+3. Location.atlanta
+4. Negation(person.experience_atlanta)
+5. M_NLI(S1, S2)
+6. Impression.has_experience
+7. Relationship.impression_experience
+8. Entity.person
+9. Entity.impression
+10. Entity.experience
+11. Relationship.negation_experience
+12. Violate(impression, experience)
+13. Location.experience_atlanta
+14. Negation(impression.atlanta)
+15. M_NLI(impression, negation)
+16. Entity.atlanta
+17. Relationship.has_impression
+18. Relationship.has_location
+19. Negation(person.has_impression)
+20. Experience.negation_atlanta
+21. Impression.negation
+22. Entity.impression_atlanta
+23. Relationship.experience_location
+24. Violate(experience, location)
+25. Entity.person_impression
+26. Relationship.experience_impression
+27. Negation(location.experience)
+28. M_NLI(location, negation)
+29. Impression.negative
+30. Relationship.negative_impression
+
+Rules:
+1. Q[You, Impression.person, Experience.person](You.has_impression == "true" → Negation(You.experience_atlanta))
+2. Q[You, Experience.person, Location.atlanta](You.has_experience == "false" → Negation(You.impression))
+3. Q[You, Impression.has_experience, Location.atlanta](You.has_impression == "true" → Negation(You.experience_atlanta))
+4. Q[You, Entity.person, Entity.experience](You.experience == "false" → Negation(You.has_impression))
+5. Q[You, Relationship.impression_experience, Negation(person.experience_atlanta)](You.has_impression == "true" → Negation(You.experience_atlanta))
+6. Q[You, Impression.negative, Negation(impression.atlanta)](You.has_impression == "true" → Negation(You.experience_atlanta))
+7. Q[You, Relationship.has_impression, Negation(location.experience)](You.has_impression == "true" → Negation(You.experience_atlanta))
+8. Q[You, Entity.impression, Entity.atlanta](You.has_impression == "true" → Negation(You.experience_atlanta))
+9. Q[You, Relationship.experience_location, Negation(person.experience_atlanta)](You.has_experience == "false" → Negation(You.has_impression))
+10. Q[You, Impression.person, Negation(person.has_impression)](You.has_experience == "false" → Negation(You.has_impression))
+11. Q[You, Relationship.has_location, Negation(location.experience)](You.has_impression == "true" → Negation(You.experience_atlanta))
+12. Q[You, Entity.experience, Impression.negative](You.experience == "false" → Negation(You.has_impression))
+13. Q[You, Relationship.negative_impression, Negation(person.experience_atlanta)](You.has_impression == "true" → Negation(You.experience_atlanta))
+14. Q[You, Impression.has_experience, Negation(impression.atlanta)](You.has_impression == "true" → Negation(You.experience_atlanta))
+15. Q[You, M_NLI(S1, S2), Negation(person.experience_atlanta)](You.has_impression == "true" → Negation(You.experience_atlanta))
+16. Q[You, Negation(impression.atlanta), Experience.negation_atlanta](You.has_impression == "true" → Negation(You.experience_atlanta))
+17. Q[You, Relationship.experience_impression, Negation(person.has_impression)](You.has_experience == "false" → Negation(You.has_impression))
+18. Q[You, Entity.person_impression, Negation(person.experience_atlanta)](You.has_impression == "true" → Negation(You.experience_atlanta))
+19. Q[You, Impression.negative, Negation(location.experience)](You.has_impression == "true" → Negation(You.experience_atlanta))
+20. Q[You, Violate(impression, experience), Negation(person.experience_atlanta)](You.has_impression == "true" → Negation(You.experience_atlanta))
+21. Q[You, M_NLI(location, negation), Negation(person.experience_atlanta)](You.has_impression == "true" → Negation(You.experience_atlanta))
+22. Q[You, Relationship.has_impression, Negation(impression.atlanta)](You.has_impression == "true" → Negation(You.experience_atlanta))
+23. Q[You, Impression.person, Negation(location.experience)](You.has_experience == "false" → Negation(You.has_impression))
+24. Q[You, Entity.experience, Negation(person.has_impression)](You.experience == "false" → Negation(You.has_impression))
+25. Q[You, Impression.has_experience, Negation(person.experience_atlanta)](You.has_impression == "true" → Negation(You.experience_atlanta))
+26. Q[You, Relationship.experience_location, Negation(impression.atlanta)](You.has_impression == "true" → Negation(You.experience_atlanta))
+27. Q[You, Impression.negative, Negation(person.has_impression)](You.experience == "false" → Negation(You.has_impression))
+28. Q[You, Relationship.negative_impression, Negation(location.experience)](You.has_impression == "true" → Negation(You.experience_atlanta))
+29. Q[You, Entity.impression, Negation(person.experience_atlanta)](You.has_impression == "true" → Negation(You.experience_atlanta))
+30. Q[You, Violate(experience, location), Negation(person.experience_atlanta)](You.has_impression == "true" → Negation(You.experience_atlanta))

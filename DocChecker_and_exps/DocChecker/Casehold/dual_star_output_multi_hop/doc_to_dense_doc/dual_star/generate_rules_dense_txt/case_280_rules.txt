@@ -1,0 +1,59 @@
+Source: dense_text.txt (Index 280)
+S1: TAMKO filed its own motion to exclude the expert testimony of Anirban Basu and David Elmore.
+S2: The testimony of Basu and Elmore may be holding that an expert is not competent to testify as to statutory interpretation.
+
+Predicates:
+1. TAMKO.motion_to_exclude.expert_testimony
+2. Basu.testimony.holds_expert_competency
+3. Elmore.testimony.holds_expert_competency
+4. TAMKO.expert_testimony.of(Basu)
+5. TAMKO.expert_testimony.of(Elmore)
+6. Basu.testimony.relevant_to.statutory_interpretation
+7. Elmore.testimony.relevant_to.statutory_interpretation
+8. Basu.testimony.considered.by.court
+9. Elmore.testimony.considered.by.court
+10. TAMKO.argues.expert_competency.of(Basu)
+11. TAMKO.argues.expert_competency.of(Elmore)
+12. Basu.testimony.assesses.statutory_interpretation
+13. Elmore.testimony.assesses.statutory_interpretation
+14. TAMKO.motion.filed.by(TAMKO)
+15. Basu.testimony.may.be.excluded
+16. Elmore.testimony.may.be.excluded
+17. TAMKO.motion.to.exclude.holds(competency_issue)
+18. Basu.testimony.impact.on.case
+19. Elmore.testimony.impact.on.case
+20. TAMKO.position.on.expert_testimony.is(exclude)
+21. Basu.testimony.is.considered.by(TAMKO)
+22. Elmore.testimony.is.considered.by(TAMKO)
+23. TAMKO.believes(Basu).is.not.competent
+24. TAMKO.believes(Elmore).is.not.competent
+25. Basu.testimony.is.under.review
+26. Elmore.testimony.is.under.review
+27. TAMKO.motion.is.legal_action
+28. Basu.testimony.is.pertinent.to(case)
+29. Elmore.testimony.is.pertinent.to(case)
+30. TAMKO.motion.to.exclude.is.ongoing
+
+Rules:
+1. Q[TAMKO, TAMKO.motion_to_exclude.expert_testimony, Basu.testimony.holds_expert_competency](TAMKO.motion_to_exclude.expert_testimony == true → Causal(TAMKO.motion_to_exclude.expert_testimony, Basu.testimony.holds_expert_competency))
+2. Q[TAMKO, TAMKO.motion_to_exclude.expert_testimony, Elmore.testimony.holds_expert_competency](TAMKO.motion_to_exclude.expert_testimony == true → Causal(TAMKO.motion_to_exclude.expert_testimony, Elmore.testimony.holds_expert_competency))
+3. Q[TAMKO, TAMKO.argues.expert_competency.of(Basu), Basu.testimony.relevant_to.statutory_interpretation](TAMKO.argues.expert_competency.of(Basu) == true → Causal(TAMKO.argues.expert_competency.of(Basu), Basu.testimony.relevant_to.statutory_interpretation))
+4. Q[TAMKO, TAMKO.argues.expert_competency.of(Elmore), Elmore.testimony.relevant_to.statutory_interpretation](TAMKO.argues.expert_competency.of(Elmore) == true → Causal(TAMKO.argues.expert_competency.of(Elmore), Elmore.testimony.relevant_to.statutory_interpretation))
+5. Q[TAMKO, TAMKO.position.on.expert_testimony.is(exclude), Basu.testimony.is.considered.by(TAMKO)](TAMKO.position.on.expert_testimony.is(exclude) == true → Causal(TAMKO.position.on.expert_testimony.is(exclude), Basu.testimony.is.considered.by(TAMKO)))
+6. Q[TAMKO, TAMKO.position.on.expert_testimony.is(exclude), Elmore.testimony.is.considered.by(TAMKO)](TAMKO.position.on.expert_testimony.is(exclude) == true → Causal(TAMKO.position.on.expert_testimony.is(exclude), Elmore.testimony.is.considered.by(TAMKO)))
+7. Q[TAMKO, TAMKO.believes(Basu).is.not.competent, Basu.testimony.assesses.statutory_interpretation](TAMKO.believes(Basu).is.not.competent == true → Causal(TAMKO.believes(Basu).is.not.competent, Basu.testimony.assesses.statutory_interpretation))
+8. Q[TAMKO, TAMKO.believes(Elmore).is.not.competent, Elmore.testimony.assesses.statutory_interpretation](TAMKO.believes(Elmore).is.not.competent == true → Causal(TAMKO.believes(Elmore).is.not.competent, Elmore.testimony.assesses.statutory_interpretation))
+9. Q[TAMKO, TAMKO.motion.to.exclude.holds(competency_issue), Basu.testimony.impact.on.case](TAMKO.motion.to.exclude.holds(competency_issue) == true → Causal(TAMKO.motion.to.exclude.holds(competency_issue), Basu.testimony.impact.on.case))
+10. Q[TAMKO, TAMKO.motion.to.exclude.holds(competency_issue), Elmore.testimony.impact.on.case](TAMKO.motion.to.exclude.holds(competency_issue) == true → Causal(TAMKO.motion.to.exclude.holds(competency_issue), Elmore.testimony.impact.on.case))
+11. Q[TAMKO, TAMKO.motion.is.legal_action, Basu.testimony.is.under.review](TAMKO.motion.is.legal_action == true → Causal(TAMKO.motion.is.legal_action, Basu.testimony.is.under.review))
+12. Q[TAMKO, TAMKO.motion.is.legal_action, Elmore.testimony.is.under.review](TAMKO.motion.is.legal_action == true → Causal(TAMKO.motion.is.legal_action, Elmore.testimony.is.under.review))
+13. Q[TAMKO, TAMKO.motion.to.exclude.is.ongoing, Basu.testimony.may.be.excluded](TAMKO.motion.to.exclude.is.ongoing == true → Causal(TAMKO.motion.to.exclude.is.ongoing, Basu.testimony.may.be.excluded))
+14. Q[TAMKO, TAMKO.motion.to.exclude.is.ongoing, Elmore.testimony.may.be.excluded](TAMKO.motion.to.exclude.is.ongoing == true → Causal(TAMKO.motion.to.exclude.is.ongoing, Elmore.testimony.may.be.excluded))
+15. Q[TAMKO, TAMKO.expert_testimony.of(Basu), Basu.testimony.is.pertinent.to(case)](TAMKO.expert_testimony.of(Basu) == true → Causal(TAMKO.expert_testimony.of(Basu), Basu.testimony.is.pertinent.to(case)))
+16. Q[TAMKO, TAMKO.expert_testimony.of(Elmore), Elmore.testimony.is.pertinent.to(case)](TAMKO.expert_testimony.of(Elmore) == true → Causal(TAMKO.expert_testimony.of(Elmore), Elmore.testimony.is.pertinent.to(case)))
+17. Q[TAMKO, Basu.testimony.is.under.review, Basu.testimony.holds_expert_competency](Basu.testimony.is.under.review == true → Causal(Basu.testimony.is.under.review, Basu.testimony.holds_expert_competency))
+18. Q[TAMKO, Elmore.testimony.is.under.review, Elmore.testimony.holds_expert_competency](Elmore.testimony.is.under.review == true → Causal(Elmore.testimony.is.under.review, Elmore.testimony.holds_expert_competency))
+19. Q[TAMKO, TAMKO.motion_to_exclude.expert_testimony, Basu.testimony.is.considered.by(TAMKO)](TAMKO.motion_to_exclude.expert_testimony == true → Causal(TAMKO.motion_to_exclude.expert_testimony, Basu.testimony.is.considered.by(TAMKO)))
+20. Q[TAMKO, TAMKO.motion_to_exclude.expert_testimony, Elmore.testimony.is.considered.by(TAMKO)](TAMKO.motion_to_exclude.expert_testimony == true → Causal(TAMKO.motion_to_exclude.expert_testimony, Elmore.testimony.is.considered.by(TAMKO)))
+21. Q[TAMKO, TAMKO.motion_to_exclude.expert_testimony, Basu.testimony.assesses.statutory_interpretation](TAMKO.motion_to_exclude.expert_testimony == true → Causal(TAMKO.motion_to_exclude.expert_testimony, Basu.testimony.assesses.statutory_interpretation))
+22. Q[TAMKO, TAMKO.motion_to_exclude.expert_testimony

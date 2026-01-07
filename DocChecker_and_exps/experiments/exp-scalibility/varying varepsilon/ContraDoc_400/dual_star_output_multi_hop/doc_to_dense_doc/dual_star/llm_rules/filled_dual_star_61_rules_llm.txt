@@ -1,0 +1,134 @@
+Predicates:
+1. She.status = "potential companion"
+2. He.status = "companion"
+3. She.equality = "education and work"
+4. She.condition = "same rights"
+5. "Relationship".condition = "same rights"
+6. "Relationship".doc_index = "14"
+7. "Relationship".equality = "education and work"
+8. He.rights = "equal"
+9. She.rights = "equal"
+10. He.education = "higher"
+11. She.education = "lower"
+12. He.work = "full-time"
+13. She.work = "part-time"
+14. He.role = "partner"
+15. She.role = "subordinate"
+16. He.power = "dominant"
+17. She.power = "submissive"
+18. "Relationship".status = "conditional"
+19. "Relationship".type = "companionship"
+20. "Relationship".nature = "equality"
+21. violate(x0, y0)
+22. Factual(x0, y0)
+23. Content(x0, y0)
+24. Causal(x0, y0)
+25. Negation(x0, y0)
+26. Relation(x0, y0)
+27. Numeric(x0, y0)
+28. Temporal(x0, y0)
+29. M_NLI(She.status, He.status)
+30. T("She can become his companion only when she has the same rights as he and is his equal in education and work.", "She can only be his slave or his despot, but never his companion.", tau)
+31. tau(She.equality, He.equality)
+32. tau(She.condition, He.condition)
+33. M_NLI(She.role, He.role)
+34. T("He is her equal in education.", "She is not his equal in education.", tau)
+35. tau(She.work, He.work)
+36. tau(She.rights, He.rights)
+37. "Relationship".power = "equal"
+38. "Relationship".equality = "none"
+39. He.education = "equal"
+40. She.education = "equal"
+41. He.rights = "superior"
+42. She.rights = "inferior"
+43. "Relationship".status = "inequality"
+44. "Relationship".type = "subordination"
+45. He.role = "master"
+46. She.role = "servant"
+47. He.power = "absolute"
+48. She.power = "none"
+49. M_NLI(She.power, He.power)
+50. T("She can become his companion.", "She cannot become his companion.", tau)
+51. tau(She.status, He.status)
+52. tau(She.equality, "none")
+53. tau(She.condition, "not met")
+54. "Relationship".condition = "not met"
+55. "Relationship".equality = "disparity"
+56. He.status = "not companion"
+57. She.status = "not potential companion"
+58. He.rights = "exclusive"
+59. She.rights = "limited"
+60. He.education = "superior"
+61. She.education = "inferior"
+62. He.work = "unemployed"
+63. She.work = "employed"
+64. "Relationship".type = "inequality"
+65. "Relationship".nature = "subordination"
+66. violate(She.equality, He.equality)
+67. Factual(She.condition, He.condition)
+68. Content(She.role, He.role)
+69. Causal(She.status, He.status)
+70. Negation(She.equality, He.equality)
+71. Relation(She.rights, He.rights)
+72. Numeric(She.work, He.work)
+73. Temporal(She.education, He.education)
+74. M_NLI(She.rights, He.rights)
+75. T("She has the same rights as he.", "She does not have the same rights as he.", tau)
+76. tau(She.role, "not companion")
+77. tau(He.status, "not companion")
+78. "Relationship".status = "disparity"
+79. "Relationship".type = "inequality"
+80. He.power = "dominant"
+81. She.power = "subordinate"
+82. He.education = "higher"
+83. She.education = "lower"
+84. He.rights = "exclusive"
+85. She.rights = "limited"
+86. "Relationship".condition = "not satisfied"
+87. "Relationship".equality = "none"
+88. violate(She.status, He.status)
+89. Factual(She.role, He.role)
+90. Content(She.condition, He.condition)
+91. Causal(She.equality, He.equality)
+92. Negation(She.rights, He.rights)
+93. Relation(She.education, He.education)
+94. Numeric(She.work, He.work)
+95. Temporal(She.status, He.status)
+96. M_NLI(He.role, She.role)
+97. T("He is her equal.", "He is not her equal.", tau)
+98. tau(She.condition, "not fulfilled")
+99. tau(He.status, "not companion")
+100. "Relationship".type = "conditional"
+violate(x0, y0)
+
+Rules:
+1. Q[x0, y0](She.status = "potential companion" ∧ He.status = "companion" → violate(x0, y0))
+2. Q[x0, y0](She.equality = "education and work" ∧ She.condition = "same rights" → violate(x0, y0))
+3. Q[x0, y0](He.rights = "equal" ∧ She.rights = "limited" → violate(x0, y0))
+4. Q[x0, y0](He.education = "higher" ∧ She.education = "lower" → violate(x0, y0))
+5. Q[x0, y0](He.role = "partner" ∧ She.role = "subordinate" → violate(x0, y0))
+6. Q[x0, y0](He.power = "dominant" ∧ She.power = "submissive" → violate(x0, y0))
+7. Q[x0, y0](She.status = "potential companion" ∧ He.status = "not companion" ∧ She.condition = "same rights" → violate(x0, y0))
+8. Q[x0, y0](He.education = "higher" ∧ She.education = "inferior" ∧ He.rights = "exclusive" → violate(x0, y0))
+9. Q[x0, y0](He.role = "master" ∧ She.role = "servant" ∧ "Relationship".type = "inequality" → violate(x0, y0))
+10. Q[x0, y0](He.power = "absolute" ∧ She.power = "none" ∧ "Relationship".status = "inequality" → violate(x0, y0))
+11. Q[x0, y0](She.equality = "none" ∧ She.condition = "not met" ∧ "Relationship".condition = "not met" → violate(x0, y0))
+12. Q[x0, y0](He.rights = "superior" ∧ She.rights = "inferior" ∧ "Relationship".equality = "none" ∧ "Relationship".nature = "subordination" → violate(x0, y0))
+13. Q[x0, y0](He.education = "equal" ∧ She.education = "inferior" ∧ He.rights = "exclusive" ∧ She.rights = "limited" → violate(x0, y0))
+14. Q[x0, y0](He.status = "not companion" ∧ She.status = "not potential companion" ∧ "Relationship".type = "subordination" → violate(x0, y0))
+15. Q[x0, y0](He.role = "master" ∧ She.role = "servant" ∧ "Relationship".condition = "not satisfied" ∧ "Relationship".equality = "disparity" → violate(x0, y0))
+16. Q[x0, y0](She.equality = "education and work" ∧ She.condition = "same rights" ∧ He.rights = "exclusive" ∧ She.rights = "limited" → violate(x0, y0))
+17. Q[x0, y0](He.education = "higher" ∧ She.education = "lower" ∧ He.power = "dominant" ∧ She.power = "submissive" ∧ "Relationship".status = "conditional" → violate(x0, y0))
+18. Q[x0, y0](He.rights = "equal" ∧ She.rights = "limited" ∧ "Relationship".equality = "none" ∧ "Relationship".nature = "subordination" → violate(x0, y0))
+19. Q[x0, y0](He.status = "companion" ∧ She.status = "not potential companion" ∧ "Relationship".type = "inequality" ∧ "Relationship".condition = "not met" → violate(x0, y0))
+20. Q[x0, y0](He.role = "partner" ∧ She.role = "subordinate" ∧ "Relationship".status = "inequality" ∧ "Relationship".equality = "none" → violate(x0, y0))
+21. Q[x0, y0](He.education = "higher" ∧ She.education = "inferior" ∧ He.rights = "exclusive" ∧ She.rights = "limited" ∧ "Relationship".type = "inequality" → violate(x0, y0))
+22. Q[x0, y0](He.power = "dominant" ∧ She.power = "submissive" ∧ "Relationship".nature = "subordination" ∧ "Relationship".status = "disparity" → violate(x0, y0))
+23. Q[x0, y0](She.equality = "none" ∧ She.condition = "not fulfilled" ∧ "Relationship".condition = "not satisfied" ∧ "Relationship".equality = "disparity" → violate(x0, y0))
+24. Q[x0, y0](He.role = "master" ∧ She.role = "servant" ∧ He.education = "higher" ∧ She.education = "lower" ∧ "Relationship".status = "inequality" → violate(x0, y0))
+25. Q[x0, y0](He.status = "not companion" ∧ She.status = "not potential companion" ∧ He.rights = "superior" ∧ She.rights = "inferior" ∧ "Relationship".type = "inequality" → violate(x0, y0))
+26. Q[x0, y0](He.education = "equal" ∧ She.education = "inferior" ∧ He.rights = "exclusive" ∧ She.rights = "limited" ∧ "Relationship".equality = "none" → violate(x0, y0))
+27. Q[x0, y0](He.power = "absolute" ∧ She.power = "none" ∧ "Relationship".status = "inequality" ∧ "Relationship".type = "subordination" ∧ "Relationship".condition = "not met" → violate(x0, y0))
+28. Q[x0, y0](He.role = "partner" ∧ She.role = "subordinate" ∧ He.education = "higher" ∧ She.education = "lower" ∧ "Relationship".nature = "equality" → violate(x0, y0))
+29. Q[x0, y0](He.rights = "equal" ∧ She.rights = "limited" ∧ "Relationship".equality = "none" ∧ "Relationship".status = "conditional" ∧ "Relationship".type = "inequality" → violate(x0, y0))
+30. Q[x0, y0](He.status = "companion" ∧ She.status = "not potential companion" ∧ He.role = "master" ∧ She.role = "

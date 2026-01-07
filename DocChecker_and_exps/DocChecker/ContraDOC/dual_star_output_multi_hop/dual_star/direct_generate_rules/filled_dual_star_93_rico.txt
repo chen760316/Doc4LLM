@@ -1,0 +1,48 @@
+Predicates:
+Friedrich Engels.label != "Person"
+Friedrich Engels.label != Industrial Revolution.label
+Friedrich Engels.label = "Person"
+Friedrich Engels.name != "Friedrich Engels"
+Friedrich Engels.name != Industrial Revolution.name
+Friedrich Engels.name != Karl Marx.name
+Friedrich Engels.name = "Friedrich Engels"
+Friedrich Engels.partner != "Karl Marx"
+Friedrich Engels.partner != Karl Marx.partner
+Friedrich Engels.partner = "Karl Marx"
+Friedrich Engels.relationship != "intellectual partnership"
+Friedrich Engels.relationship = "intellectual partnership"
+Friedrich Engels___Industrial Revolution.doc_id = "3488771873_1"
+Friedrich Engels___Industrial Revolution.relationship != Friedrich Engels___Karl Marx.relationship
+Friedrich Engels___Industrial Revolution.relationship = "Engels' interpretation of the Industrial Revolution influenced British historians."
+Friedrich Engels___Karl Marx.doc_id = "3488771873_1"
+Friedrich Engels___Karl Marx.relationship = "Engels formed a lifelong intellectual partnership with Karl Marx."
+Industrial Revolution.focus != "workers' wages and living conditions"
+Industrial Revolution.focus = "workers' wages and living conditions"
+Industrial Revolution.label != "Historical Event"
+Industrial Revolution.label != Karl Marx.label
+Industrial Revolution.label = "Historical Event"
+Industrial Revolution.name != "Industrial Revolution"
+Industrial Revolution.name != Karl Marx.name
+Industrial Revolution.name = "Industrial Revolution"
+Karl Marx.label != "Person"
+Karl Marx.label = "Person"
+Karl Marx.name != "Karl Marx"
+Karl Marx.name = "Karl Marx"
+Karl Marx.partner != "Friedrich Engels"
+Karl Marx.partner = "Friedrich Engels"
+Karl Marx.relationship != "intellectual partnership"
+Karl Marx.relationship = "intellectual partnership"
+None_ML(Friedrich Engels___Industrial Revolution.attrs, Friedrich Engels___Karl Marx.attrs)
+None_ML(Industrial Revolution.attrs, Karl Marx.attrs)
+
+Rules:
+Q[Friedrich Engels,Friedrich Engels] (Industrial Revolution.focus != "workers' wages and living conditions" ∧ Industrial Revolution.name = "Industrial Revolution" ∧ Friedrich Engels.partner != "Karl Marx" ∧ Friedrich Engels.relationship = "intellectual partnership" → Karl Marx.label != "Person")
+Q[Friedrich Engels,Friedrich Engels] (Friedrich Engels___Karl Marx.relationship = "Engels formed a lifelong intellectual partnership with Karl Marx." ∧ Karl Marx.relationship = "intellectual partnership" ∧ Friedrich Engels.name = "Friedrich Engels" ∧ Industrial Revolution.focus = "workers' wages and living conditions" ∧ Karl Marx.name != "Karl Marx" → Industrial Revolution.label != Karl Marx.label)
+Q[Friedrich Engels,Friedrich Engels] (Industrial Revolution.label != "Historical Event" ∧ None_ML(Industrial Revolution.attrs, Karl Marx.attrs) ∧ Industrial Revolution.label = "Historical Event" ∧ Karl Marx.label != "Person" ∧ Industrial Revolution.name != "Industrial Revolution" ∧ Friedrich Engels.label = "Person" → Friedrich Engels___Karl Marx.relationship = "Engels formed a lifelong intellectual partnership with Karl Marx.")
+Q[Friedrich Engels,Friedrich Engels] (Industrial Revolution.focus != "workers' wages and living conditions" ∧ Karl Marx.partner != "Friedrich Engels" ∧ None_ML(Friedrich Engels___Industrial Revolution.attrs, Friedrich Engels___Karl Marx.attrs) → Friedrich Engels.partner != "Karl Marx")
+Q[Friedrich Engels,Friedrich Engels] (Friedrich Engels.partner = "Karl Marx" ∧ Karl Marx.relationship != "intellectual partnership" → Industrial Revolution.focus = "workers' wages and living conditions")
+Q[Friedrich Engels,Friedrich Engels] (Friedrich Engels.partner != Karl Marx.partner ∧ Friedrich Engels.partner != "Karl Marx" ∧ Friedrich Engels___Karl Marx.doc_id = "3488771873_1" ∧ Friedrich Engels___Industrial Revolution.relationship != Friedrich Engels___Karl Marx.relationship ∧ Karl Marx.relationship != "intellectual partnership" → Industrial Revolution.name != Karl Marx.name)
+Q[Friedrich Engels,Friedrich Engels] (Friedrich Engels.partner != Karl Marx.partner ∧ Industrial Revolution.name = "Industrial Revolution" ∧ Friedrich Engels.name != Karl Marx.name → Friedrich Engels.label != "Person")
+Q[Friedrich Engels,Friedrich Engels] (Friedrich Engels___Karl Marx.doc_id = "3488771873_1" ∧ Friedrich Engels.relationship = "intellectual partnership" ∧ Friedrich Engels___Industrial Revolution.relationship = "Engels' interpretation of the Industrial Revolution influenced British historians." ∧ Karl Marx.partner != "Friedrich Engels" ∧ Karl Marx.name != "Karl Marx" ∧ Friedrich Engels.partner = "Karl Marx" → Karl Marx.relationship != "intellectual partnership")
+Q[Friedrich Engels,Friedrich Engels] (Friedrich Engels.label != "Person" ∧ Karl Marx.label != "Person" ∧ Friedrich Engels.name != Industrial Revolution.name ∧ Industrial Revolution.focus != "workers' wages and living conditions" → Friedrich Engels___Industrial Revolution.relationship != Friedrich Engels___Karl Marx.relationship)
+Q[Friedrich Engels,Friedrich Engels] (Industrial Revolution.label = "Historical Event" ∧ Karl Marx.name != "Karl Marx" → Friedrich Engels.relationship = "intellectual partnership")

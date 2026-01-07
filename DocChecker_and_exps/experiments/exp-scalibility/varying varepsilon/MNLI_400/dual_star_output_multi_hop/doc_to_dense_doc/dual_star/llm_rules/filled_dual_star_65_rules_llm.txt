@@ -1,0 +1,133 @@
+Predicates:
+1. reply.content = "met the expectation"
+2. reply.content = "contrary to what was expected"
+3. reply.sentiment = "positive"
+4. reply.sentiment = "negative"
+5. expectation.level = "high"
+6. expectation.level = "low"
+7. expectation.type = "specific"
+8. expectation.type = "general"
+9. expectation.time = "2023-10-01"
+10. expectation.time = "2023-10-02"
+11. expectation.source = "user feedback"
+12. expectation.source = "internal review"
+13. expectation.context = "customer service"
+14. expectation.context = "product launch"
+15. reply.quality = "satisfactory"
+16. reply.quality = "unsatisfactory"
+17. reply.timestamp = "2023-10-01T10:00:00Z"
+18. reply.timestamp = "2023-10-01T11:00:00Z"
+19. reply.sender = "customer"
+20. reply.sender = "employee"
+21. expectation.response_time = "quick"
+22. expectation.response_time = "slow"
+23. expectation.urgency = "high"
+24. expectation.urgency = "low"
+25. reply.clarity = "clear"
+26. reply.clarity = "confusing"
+27. reply.length = "short"
+28. reply.length = "long"
+29. reply.relevance = "high"
+30. reply.relevance = "low"
+31. expectation.assessment = "positive"
+32. expectation.assessment = "negative"
+33. expectation.criteria = "specific metrics"
+34. expectation.criteria = "general feedback"
+35. reply.satisfaction = "satisfied"
+36. reply.satisfaction = "dissatisfied"
+37. expectation.feedback = "constructive"
+38. expectation.feedback = "destructive"
+39. reply.impact = "positive"
+40. reply.impact = "negative"
+41. reply.format = "email"
+42. reply.format = "chat"
+43. reply.audience = "internal team"
+44. reply.audience = "external clients"
+45. expectation.goal = "alignment"
+46. expectation.goal = "misalignment"
+47. reply.response_type = "formal"
+48. reply.response_type = "informal"
+49. expectation.assumption = "valid"
+50. expectation.assumption = "invalid"
+51. M_NLI(reply.content, expectation.content)
+52. T(reply.content, expectation.content, tau)
+53. tau(reply.sentiment, expectation.sentiment)
+54. violate(reply.content, expectation.content)
+55. Factual(reply.content, expectation.content)
+56. Content(reply.sentiment, expectation.sentiment)
+57. Causal(reply.quality, expectation.quality)
+58. Negation(reply.timestamp, expectation.timestamp)
+59. Relation(reply.sender, expectation.source)
+60. Numeric(reply.length, expectation.length)
+61. Temporal(reply.timestamp, expectation.time)
+62. M_NLI(reply.quality, expectation.assessment)
+63. T(reply.relevance, expectation.criteria, tau)
+64. tau(reply.satisfaction, expectation.assessment)
+65. violate(reply.quality, expectation.quality)
+66. Factual(reply.relevance, expectation.relevance)
+67. Content(reply.impact, expectation.assessment)
+68. Causal(reply.response_time, expectation.urgency)
+69. Negation(reply.clarity, expectation.feedback)
+70. Relation(reply.audience, expectation.context)
+71. Numeric(reply.length, expectation.response_time)
+72. Temporal(reply.timestamp, expectation.time)
+73. M_NLI(reply.impact, expectation.assessment)
+74. T(reply.format, expectation.type, tau)
+75. tau(reply.sender, expectation.source)
+76. violate(reply.satisfaction, expectation.assessment)
+77. Factual(reply.format, expectation.context)
+78. Content(reply.length, expectation.urgency)
+79. Causal(reply.relevance, expectation.criteria)
+80. Negation(reply.timestamp, expectation.time)
+81. Relation(reply.sender, expectation.audience)
+82. Numeric(reply.length, expectation.level)
+83. Temporal(reply.timestamp, expectation.time)
+84. M_NLI(reply.assessment, expectation.assessment)
+85. T(reply.quality, expectation.quality, tau)
+86. tau(reply.impact, expectation.assessment)
+87. violate(reply.relevance, expectation.relevance)
+88. Factual(reply.satisfaction, expectation.assessment)
+89. Content(reply.quality, expectation.feedback)
+90. Causal(reply.response_time, expectation.urgency)
+91. Negation(reply.clarity, expectation.assessment)
+92. Relation(reply.sender, expectation.source)
+93. Numeric(reply.length, expectation.level)
+94. Temporal(reply.timestamp, expectation.time)
+95. M_NLI(reply.impact, expectation.assessment)
+96. T(reply.format, expectation.type, tau)
+97. tau(reply.sender, expectation.audience)
+98. violate(reply.quality, expectation.quality)
+99. Factual(reply.relevance, expectation.relevance)
+100. Content(reply.impact, expectation.assessment)
+violate(x0, y0)
+
+Rules:
+1. Q[x0, y0](reply.content = "met the expectation" ∧ reply.sentiment = "positive" → violate(x0, y0))
+2. Q[x0, y0](reply.content = "contrary to what was expected" ∧ reply.sentiment = "negative" → violate(x0, y0))
+3. Q[x0, y0](expectation.level = "high" ∧ reply.quality = "unsatisfactory" → violate(x0, y0))
+4. Q[x0, y0](expectation.type = "specific" ∧ reply.relevance = "low" → violate(x0, y0))
+5. Q[x0, y0](reply.sender = "customer" ∧ reply.satisfaction = "dissatisfied" → violate(x0, y0))
+6. Q[x0, y0](expectation.response_time = "slow" ∧ reply.quality = "satisfactory" → violate(x0, y0))
+7. Q[x0, y0](reply.content = "met the expectation" ∧ reply.sentiment = "negative" ∧ expectation.level = "low" → violate(x0, y0))
+8. Q[x0, y0](reply.quality = "unsatisfactory" ∧ expectation.assessment = "positive" ∧ reply.satisfaction = "satisfied" → violate(x0, y0))
+9. Q[x0, y0](expectation.source = "user feedback" ∧ reply.impact = "negative" ∧ reply.length = "long" → violate(x0, y0))
+10. Q[x0, y0](expectation.context = "customer service" ∧ reply.clarity = "confusing" ∧ expectation.urgency = "high" → violate(x0, y0))
+11. Q[x0, y0](reply.timestamp = "2023-10-01T10:00:00Z" ∧ reply.sender = "employee" ∧ expectation.feedback = "destructive" → violate(x0, y0))
+12. Q[x0, y0](reply.content = "contrary to what was expected" ∧ reply.quality = "satisfactory" ∧ expectation.goal = "alignment" → violate(x0, y0))
+13. Q[x0, y0](expectation.level = "high" ∧ reply.relevance = "low" ∧ expectation.assessment = "negative" ∧ reply.satisfaction = "dissatisfied" → violate(x0, y0))
+14. Q[x0, y0](reply.sentiment = "positive" ∧ expectation.type = "general" ∧ reply.quality = "unsatisfactory" ∧ expectation.source = "internal review" → violate(x0, y0))
+15. Q[x0, y0](reply.impact = "positive" ∧ expectation.assumption = "invalid" ∧ reply.length = "short" ∧ expectation.urgency = "low" → violate(x0, y0))
+16. Q[x0, y0](reply.content = "met the expectation" ∧ reply.sentiment = "negative" ∧ expectation.time = "2023-10-01" ∧ reply.satisfaction = "dissatisfied" ∧ expectation.feedback = "destructive" → violate(x0, y0))
+17. Q[x0, y0](reply.quality = "unsatisfactory" ∧ expectation.level = "high" ∧ reply.relevance = "high" ∧ expectation.goal = "misalignment" ∧ reply.sender = "customer" → violate(x0, y0))
+18. Q[x0, y0](expectation.type = "specific" ∧ reply.clarity = "clear" ∧ expectation.response_time = "quick" ∧ reply.impact = "negative" ∧ expectation.assessment = "positive" → violate(x0, y0))
+19. Q[x0, y0](reply.timestamp = "2023-10-01T11:00:00Z" ∧ reply.sender = "employee" ∧ expectation.context = "product launch" ∧ reply.satisfaction = "satisfied" ∧ expectation.feedback = "constructive" → violate(x0, y0))
+20. Q[x0, y0](reply.content = "contrary to what was expected" ∧ reply.sentiment = "positive" ∧ expectation.level = "low" ∧ reply.quality = "satisfactory" ∧ expectation.assessment = "negative" → violate(x0, y0))
+21. Q[x0, y0](expectation.source = "user feedback" ∧ reply.relevance = "low" ∧ expectation.urgency = "high" ∧ reply.length = "long" ∧ reply.quality = "unsatisfactory" → violate(x0, y0))
+22. Q[x0, y0](reply.content = "met the expectation" ∧ reply.sentiment = "negative" ∧ expectation.time = "2023-10-02" ∧ reply.satisfaction = "dissatisfied" ∧ expectation.feedback = "destructive" → violate(x0, y0))
+23. Q[x0, y0](reply.quality = "satisfactory" ∧ expectation.assessment = "negative" ∧ reply.relevance = "high" ∧ expectation.goal = "misalignment" ∧ reply.sender = "customer" → violate(x0, y0))
+24. Q[x0, y0](expectation.level = "high" ∧ reply.quality = "unsatisfactory" ∧ expectation.type = "general" ∧ reply.impact = "negative" ∧ expectation.assumption = "invalid" → violate(x0, y0))
+25. Q[x0, y0](reply.content = "contrary to what was expected" ∧ reply.sentiment = "positive" ∧ expectation.source = "internal review" ∧ reply.satisfaction = "dissatisfied" ∧ expectation.feedback = "constructive" → violate(x0, y0))
+26. Q[x0, y0](reply.timestamp = "2023-10-01T10:00:00Z" ∧ reply.sender = "employee" ∧ expectation.context = "customer service" ∧ reply.length = "short" ∧ expectation.urgency = "low" → violate(x0, y0))
+27. Q[x0, y0](reply.quality = "satisfactory" ∧ expectation.assessment = "positive" ∧ reply.relevance = "low" ∧ expectation.goal = "misalignment" ∧ reply.sender = "customer" → violate(x0, y0))
+28. Q[x0, y0](reply.content = "met the expectation" ∧ reply.sentiment = "negative" ∧ expectation.level = "high" ∧ reply.quality = "unsatisfactory" ∧ expectation.feedback = "destructive" → violate(x0, y0))
+29. Q[x0, y0](expectation.type = "specific" ∧ reply.clarity = "confusing" ∧ expectation.response_time = "slow" ∧ reply.impact

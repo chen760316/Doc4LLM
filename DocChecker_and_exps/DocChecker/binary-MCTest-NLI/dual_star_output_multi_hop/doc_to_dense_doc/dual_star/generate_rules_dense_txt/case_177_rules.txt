@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 177)
+S1: She wanted to take her car to the store because she wanted to stop at Macy's on the way.
+S2: It would be faster than walking.
+
+Predicates:
+1. She.car.owned
+2. She.store.visited
+3. She.Macy's.stopped
+4. She.walking.status
+5. She.car.mode_of_transport
+6. Store.location
+7. Macy's.location
+8. Car.speed
+9. Walking.speed
+10. Car.route.taken
+11. Store.distance
+12. Macy's.distance
+13. She.time_taken.to_store
+14. She.time_taken.to_Macy's
+15. Car.faster_than.walking
+16. She.intention.to.shop
+17. She.transportation.method
+18. Store.purpose
+19. Macy's.purpose
+20. She.decision.to.drive
+21. She.preference.for.car
+22. She.avoid.walking
+23. She.journey.start_time
+24. She.journey.end_time
+25. Car.condition
+26. Store.open_status
+27. Macy's.open_status
+28. She.route.planned
+29. She.destination.choice
+30. She.transportation.efficiency
+
+Rules:
+1. Q[She, She.car.owned == true, She.walking.status == false](She.car.owned == true → Causal(She.car.owned, She.walking.status))
+2. Q[She, She.Macy's.stopped == true, She.walking.status == false](She.Macy's.stopped == true → Causal(She.Macy's.stopped, She.walking.status))
+3. Q[She, She.car.mode_of_transport == "car", She.walking.status == false](She.car.mode_of_transport == "car" → Causal(She.car.mode_of_transport, She.walking.status))
+4. Q[She, She.time_taken.to_Macy's < She.time_taken.to_store, She.walking.status == false](She.time_taken.to_Macy's < She.time_taken.to_store → Causal(She.time_taken.to_Macy's, She.walking.status))
+5. Q[She, Car.faster_than.walking == true, She.walking.status == false](Car.faster_than.walking == true → Causal(Car.faster_than.walking, She.walking.status))
+6. Q[She, She.decision.to.drive == true, She.walking.status == false](She.decision.to.drive == true → Causal(She.decision.to.drive, She.walking.status))
+7. Q[She, She.preference.for.car == true, She.walking.status == false](She.preference.for.car == true → Causal(She.preference.for.car, She.walking.status))
+8. Q[She, She.avoid.walking == true, She.walking.status == false](She.avoid.walking == true → Causal(She.avoid.walking, She.walking.status))
+9. Q[She, Store.distance < Macy's.distance, She.walking.status == false](Store.distance < Macy's.distance → Causal(Store.distance, She.walking.status))
+10. Q[She, She.transportation.method == "car", She.walking.status == false](She.transportation.method == "car" → Causal(She.transportation.method, She.walking.status))
+11. Q[She, She.intention.to.shop == true, She.walking.status == false](She.intention.to.shop == true → Causal(She.intention.to.shop, She.walking.status))
+12. Q[She, She.route.planned == "car", She.walking.status == false](She.route.planned == "car" → Causal(She.route.planned, She.walking.status))
+13. Q[She, Car.speed > Walking.speed, She.walking.status == false](Car.speed > Walking.speed → Causal(Car.speed, She.walking.status))
+14. Q[She, She.journey.start_time < She.journey.end_time, She.walking.status == false](She.journey.start_time < She.journey.end_time → Causal(She.journey.start_time, She.walking.status))
+15. Q[She, Macy's.open_status == true, She.walking.status == false](Macy's.open_status == true → Causal(Macy's.open_status, She.walking.status))
+16. Q[She, Store.open_status == true, She.walking.status == false](Store.open_status == true → Causal(Store.open_status, She.walking.status))
+17. Q[She, She.store.visited == true, She.walking.status == false](She.store.visited == true → Causal(She.store.visited, She.walking.status))
+18. Q[She, She.destination.choice == "Macy's", She.walking.status == false](She.destination.choice == "Macy's" → Causal(She.destination.choice, She.walking.status))
+19. Q[She, She.time_taken.to_store < She.time_taken.to_Macy's, She.walking.status == false](She.time_taken.to_store < She.time_taken.to_Macy's → Causal(She.time_taken.to_store, She.walking.status))
+20. Q[She, Car.route.taken == "direct", She.walking.status == false](Car.route.taken == "direct" → Causal(Car.route.taken, She.walking.status))
+21. Q[She, She.car.owned == true, She.transportation.efficiency == "high"](She.car.owned == true → Causal(She.car.owned, She.transportation.efficiency))
+22. Q[She, She.transportation.efficiency == "high", She.walking.status == false](She.transportation.efficiency == "high" → Causal(She.transportation.efficiency, She.walking.status))
+23. Q[She, She.car.mode_of_transport == "car", She.transportation.method == "car"](She.car.mode_of_transport == "car" → Causal(She.car.mode_of_transport, She.transportation.method))
+24. Q[She, Store.purpose == "shopping", She.walking.status == false](Store.purpose == "shopping" → Causal(Store.purpose, She.walking.status))
+25. Q[She, Macy's.purpose == "shopping", She.walking.status == false](Macy's.purpose == "shopping" → Causal(Macy's.purpose, She.walking.status))
+26. Q[She, She.car.owned == true, She.car.condition == "good"](She.car.owned == true → Causal(She.car.owned, She.car.condition))
+27. Q[She, She.transportation.method == "car", She.car.owned == true](She.transportation.method == "car" → Causal(She.transportation.method, She.car.owned))
+28. Q[She, Store.location == "nearby", She.walking.status == false](Store.location == "nearby" → Causal(Store.location, She.walking.status))
+29. Q[She, Macy's.location == "on the way", She.walking.status == false](Macy's.location == "on the way" → Causal(Macy's.location, She.walking.status))
+30. Q[She, She.journey.end_time < She.journey.start_time + 30, She.walking.status == false](She.journey.end_time < She.journey.start_time + 30 → Causal(She.journey.end_time, She.walking.status))

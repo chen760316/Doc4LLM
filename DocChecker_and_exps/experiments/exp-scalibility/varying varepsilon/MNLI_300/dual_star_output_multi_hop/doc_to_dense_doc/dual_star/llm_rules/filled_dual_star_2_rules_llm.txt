@@ -1,0 +1,132 @@
+Predicates:
+1. agencies.incentives = "additional"
+2. agencies.rewards = "necessary"
+3. changes.internal_control = "compliance"
+4. changes.internal_control = "non-compliance"
+5. changes.knowledge = "no changes"
+6. changes.knowledge = "some changes"
+7. "asked whether changes complied with the internal control requirements of".context = "audit"
+8. "asked whether changes complied with the internal control requirements of".context = "review"
+9. agencies.create = "incentives"
+10. agencies.create = "barriers"
+11. incentives.type = "monetary"
+12. incentives.type = "non-monetary"
+13. rewards.impact = "positive"
+14. rewards.impact = "negative"
+15. internal_control.requirements = "strict"
+16. internal_control.requirements = "lenient"
+17. changes.status = "approved"
+18. changes.status = "rejected"
+19. changes.impact = "minimal"
+20. changes.impact = "significant"
+21. compliance.status = "met"
+22. compliance.status = "not met"
+23. knowledge.source = "internal"
+24. knowledge.source = "external"
+25. "asked whether changes complied with the internal control requirements of".outcome = "satisfactory"
+26. "asked whether changes complied with the internal control requirements of".outcome = "unsatisfactory"
+27. agencies.motivation = "increase efficiency"
+28. agencies.motivation = "reduce costs"
+29. incentives.effectiveness = "high"
+30. incentives.effectiveness = "low"
+31. rewards.frequency = "regular"
+32. rewards.frequency = "rare"
+33. internal_control.auditor = "independent"
+34. internal_control.auditor = "internal"
+35. changes.approval = "granted"
+36. changes.approval = "denied"
+37. compliance.evidence = "documented"
+38. compliance.evidence = "lacking"
+39. knowledge.assessment = "accurate"
+40. knowledge.assessment = "inaccurate"
+41. M_NLI(agencies.incentives, changes.knowledge)
+42. M_NLI(internal_control.requirements, changes.status)
+43. T(agencies.create, changes.impact, tau)
+44. tau(incentives.type, rewards.impact)
+45. violate(agencies, changes)
+46. Factual(agencies, changes)
+47. Causal(agencies, changes)
+48. Numeric(agencies, changes)
+49. Temporal(agencies, changes)
+50. Negation(agencies, changes)
+51. Relation(agencies, changes)
+52. Factual(internal_control, compliance)
+53. Causal(internal_control, changes)
+54. Numeric(internal_control, changes)
+55. Temporal(internal_control, changes)
+56. Negation(internal_control, changes)
+57. Relation(internal_control, changes)
+58. Factual(knowledge, changes)
+59. Causal(knowledge, changes)
+60. Numeric(knowledge, changes)
+61. Temporal(knowledge, changes)
+62. Negation(knowledge, changes)
+63. Relation(knowledge, changes)
+64. M_NLI(agencies.create, rewards.impact)
+65. T(agencies.motivation, incentives.effectiveness, tau)
+66. tau(rewards.frequency, compliance.status)
+67. violate(incentives, rewards)
+68. Factual(changes, compliance)
+69. Causal(changes, knowledge)
+70. Numeric(changes, compliance)
+71. Temporal(changes, knowledge)
+72. Negation(changes, compliance)
+73. Relation(changes, knowledge)
+74. M_NLI(internal_control.auditor, changes.approval)
+75. T(internal_control.requirements, changes.impact, tau)
+76. tau(agencies.motivation, changes.status)
+77. violate(knowledge, compliance)
+78. Factual(agencies, internal_control)
+79. Causal(agencies, rewards)
+80. Numeric(agencies, incentives)
+81. Temporal(agencies, changes)
+82. Negation(agencies, internal_control)
+83. Relation(agencies, rewards)
+84. M_NLI(incentives.effectiveness, rewards.frequency)
+85. T(internal_control.auditor, compliance.evidence, tau)
+86. tau(knowledge.source, changes.approval)
+87. violate(internal_control, changes)
+88. Factual(rewards, compliance)
+89. Causal(rewards, knowledge)
+90. Numeric(rewards, incentives)
+91. Temporal(rewards, changes)
+92. Negation(rewards, compliance)
+93. Relation(rewards, knowledge)
+94. M_NLI(knowledge.assessment, changes.impact)
+95. T(knowledge.source, compliance.status, tau)
+96. tau(internal_control.auditor, changes.status)
+97. violate(agencies, internal_control)
+98. Factual(incentives, rewards)
+99. Causal(incentives, changes)
+100. Numeric(incentives, compliance)
+violate(x0, y0)
+
+Rules:
+1. Q[x0, y0](agencies.incentives = "additional" ∧ changes.internal_control = "non-compliance" → violate(x0, y0))
+2. Q[x0, y0](agencies.create = "barriers" ∧ changes.status = "approved" → violate(x0, y0))
+3. Q[x0, y0](incentives.type = "monetary" ∧ rewards.impact = "negative" → violate(x0, y0))
+4. Q[x0, y0](internal_control.requirements = "strict" ∧ compliance.status = "not met" → violate(x0, y0))
+5. Q[x0, y0](changes.impact = "significant" ∧ changes.approval = "denied" → violate(x0, y0))
+6. Q[x0, y0](knowledge.source = "external" ∧ compliance.evidence = "lacking" → violate(x0, y0))
+7. Q[x0, y0](agencies.motivation = "reduce costs" ∧ changes.knowledge = "no changes" ∧ changes.internal_control = "compliance" → violate(x0, y0))
+8. Q[x0, y0](incentives.effectiveness = "low" ∧ rewards.frequency = "rare" ∧ changes.status = "rejected" → violate(x0, y0))
+9. Q[x0, y0](internal_control.auditor = "internal" ∧ compliance.status = "met" ∧ changes.impact = "minimal" → violate(x0, y0))
+10. Q[x0, y0](agencies.create = "incentives" ∧ changes.approval = "granted" ∧ compliance.evidence = "documented" → violate(x0, y0))
+11. Q[x0, y0](agencies.rewards = "necessary" ∧ changes.knowledge = "some changes" ∧ internal_control.requirements = "lenient" ∧ compliance.status = "not met" → violate(x0, y0))
+12. Q[x0, y0](incentives.type = "non-monetary" ∧ rewards.impact = "positive" ∧ changes.approval = "denied" ∧ changes.impact = "significant" → violate(x0, y0))
+13. Q[x0, y0](changes.internal_control = "compliance" ∧ changes.status = "approved" ∧ compliance.evidence = "lacking" ∧ knowledge.assessment = "inaccurate" → violate(x0, y0))
+14. Q[x0, y0](agencies.motivation = "increase efficiency" ∧ changes.impact = "minimal" ∧ compliance.status = "not met" ∧ internal_control.auditor = "independent" → violate(x0, y0))
+15. Q[x0, y0](rewards.frequency = "regular" ∧ changes.approval = "granted" ∧ changes.knowledge = "no changes" ∧ compliance.evidence = "documented" → violate(x0, y0))
+16. Q[x0, y0](agencies.incentives = "additional" ∧ changes.internal_control = "non-compliance" ∧ changes.impact = "significant" ∧ compliance.status = "met" ∧ knowledge.source = "internal" → violate(x0, y0))
+17. Q[x0, y0](incentives.effectiveness = "high" ∧ rewards.impact = "negative" ∧ changes.approval = "denied" ∧ compliance.evidence = "lacking" ∧ changes.status = "rejected" → violate(x0, y0))
+18. Q[x0, y0](internal_control.requirements = "strict" ∧ changes.knowledge = "some changes" ∧ compliance.status = "not met" ∧ changes.impact = "minimal" ∧ knowledge.assessment = "inaccurate" → violate(x0, y0))
+19. Q[x0, y0](agencies.create = "barriers" ∧ changes.approval = "granted" ∧ compliance.evidence = "documented" ∧ changes.internal_control = "compliance" ∧ rewards.frequency = "rare" → violate(x0, y0))
+20. Q[x0, y0](agencies.motivation = "reduce costs" ∧ changes.status = "rejected" ∧ compliance.status = "met" ∧ changes.impact = "significant" ∧ knowledge.source = "external" → violate(x0, y0))
+21. Q[x0, y0](incentives.type = "monetary" ∧ rewards.impact = "positive" ∧ changes.approval = "denied" ∧ compliance.evidence = "lacking" ∧ changes.knowledge = "no changes" → violate(x0, y0))
+22. Q[x0, y0](changes.internal_control = "compliance" ∧ changes.impact = "significant" ∧ compliance.status = "not met" ∧ knowledge.assessment = "inaccurate" ∧ internal_control.auditor = "internal" → violate(x0, y0))
+23. Q[x0, y0](agencies.rewards = "necessary" ∧ changes.approval = "granted" ∧ compliance.evidence = "documented" ∧ changes.knowledge = "some changes" ∧ changes.status = "rejected" → violate(x0, y0))
+24. Q[x0, y0](incentives.effectiveness = "low" ∧ rewards.frequency = "rare" ∧ changes.internal_control = "non-compliance" ∧ compliance.status = "met" ∧ changes.impact = "minimal" → violate(x0, y0))
+25. Q[x0, y0](internal_control.requirements = "lenient" ∧ changes.approval = "denied" ∧ compliance.evidence = "lacking" ∧ knowledge.source = "external" ∧ changes.knowledge = "no changes" → violate(x0, y0))
+26. Q[x0, y0](agencies.create = "incentives" ∧ changes.status = "approved" ∧ compliance.status = "not met" ∧ changes.impact = "significant" ∧ knowledge.assessment = "inaccurate" → violate(x0, y0))
+27. Q[x0, y0](agencies.motivation = "increase efficiency" ∧ changes.approval = "granted" ∧ compliance.evidence = "documented" ∧ changes.internal_control = "compliance" ∧ changes.impact = "minimal" → violate(x0, y0))
+28. Q[x0, y0](incentives.type = "non-monetary" ∧ rewards.impact = "negative" ∧ changes.status = "rejected" ∧ compliance.status = "met" ∧ changes.knowledge = "some changes" → violate

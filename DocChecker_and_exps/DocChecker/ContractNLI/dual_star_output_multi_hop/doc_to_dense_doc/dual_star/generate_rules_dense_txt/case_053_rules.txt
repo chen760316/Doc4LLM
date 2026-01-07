@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 53)
+S1: The Receiving Party shall, upon the request of the Disclosing Party or upon the termination of this Agreement, return to the Disclosing Party all Confidential Information, including drawings, documents, reports and other tangible manifestations of Confidential Information received by the Receiving Party pursuant to this Agreement, together with all copies and reproductions thereof.
+S2: Receiving Party shall destroy or return some Confidential Information upon the termination of Agreement.
+
+Predicates:
+1. ReceivingParty.hasConfidentialInformation
+2. DisclosingParty.requestsReturn
+3. Agreement.isTerminated
+4. ReceivingParty.returnsAllConfidentialInformation
+5. ReceivingParty.destroysSomeConfidentialInformation
+6. ConfidentialInformation.includesDrawings
+7. ConfidentialInformation.includesDocuments
+8. ConfidentialInformation.includesReports
+9. ConfidentialInformation.includesTangibleManifestations
+10. ReceivingParty.hasCopiesOfConfidentialInformation
+11. DisclosingParty.receivesConfidentialInformation
+12. ReceivingParty.pursuantToAgreement
+13. ReceivingParty.returnsCopies
+14. ReceivingParty.returnsReproductions
+15. DisclosingParty.hasConfidentialInformation
+16. Agreement.requiresReturnOfConfidentialInformation
+17. ReceivingParty.mayDestroyConfidentialInformation
+18. ReceivingParty.mayReturnConfidentialInformation
+19. ConfidentialInformation.isReturned
+20. ConfidentialInformation.isDestroyed
+21. Agreement.terminates
+22. DisclosingParty.hasRequest
+23. ReceivingParty.compliesWithRequest
+24. ReceivingParty.violatesAgreement
+25. ConfidentialInformation.isTangible
+26. ReceivingParty.receivesConfidentialInformation
+27. DisclosingParty.hasDrawings
+28. DisclosingParty.hasDocuments
+29. DisclosingParty.hasReports
+30. ReceivingParty.returnsConfidentialInformation
+
+Rules:
+1. Q[The, ReceivingParty.hasConfidentialInformation == true](Agreement.isTerminated → Causal(ReceivingParty.returnsAllConfidentialInformation, ReceivingParty.destroysSomeConfidentialInformation))
+2. Q[The, DisclosingParty.requestsReturn == true](ReceivingParty.hasConfidentialInformation == true → Causal(ReceivingParty.returnsAllConfidentialInformation, ReceivingParty.destroysSomeConfidentialInformation))
+3. Q[The, Agreement.isTerminated == true](ReceivingParty.returnsAllConfidentialInformation == true → Causal(ReceivingParty.destroysSomeConfidentialInformation, ReceivingParty.returnsAllConfidentialInformation))
+4. Q[The, ReceivingParty.pursuantToAgreement == true](DisclosingParty.requestsReturn == true → Causal(ReceivingParty.returnsAllConfidentialInformation, ReceivingParty.destroysSomeConfidentialInformation))
+5. Q[The, ConfidentialInformation.includesDrawings == true](ReceivingParty.hasConfidentialInformation == true → Causal(ReceivingParty.returnsAllConfidentialInformation, ReceivingParty.destroysSomeConfidentialInformation))
+6. Q[The, ConfidentialInformation.includesDocuments == true](Agreement.isTerminated == true → Causal(ReceivingParty.returnsAllConfidentialInformation, ReceivingParty.destroysSomeConfidentialInformation))
+7. Q[The, ConfidentialInformation.includesReports == true](ReceivingParty.hasConfidentialInformation == true → Causal(ReceivingParty.returnsAllConfidentialInformation, ReceivingParty.destroysSomeConfidentialInformation))
+8. Q[The, ConfidentialInformation.includesTangibleManifestations == true](DisclosingParty.requestsReturn == true → Causal(ReceivingParty.returnsAllConfidentialInformation, ReceivingParty.destroysSomeConfidentialInformation))
+9. Q[The, ReceivingParty.hasCopiesOfConfidentialInformation == true](Agreement.isTerminated == true → Causal(ReceivingParty.returnsAllConfidentialInformation, ReceivingParty.destroysSomeConfidentialInformation))
+10. Q[The, DisclosingParty.receivesConfidentialInformation == true](ReceivingParty.returnsAllConfidentialInformation == true → Causal(ReceivingParty.destroysSomeConfidentialInformation, ReceivingParty.returnsAllConfidentialInformation))
+11. Q[The, ReceivingParty.returnsCopies == true](ReceivingParty.hasConfidentialInformation == true → Causal(ReceivingParty.returnsAllConfidentialInformation, ReceivingParty.destroysSomeConfidentialInformation))
+12. Q[The, ReceivingParty.returnsReproductions == true](Agreement.isTerminated == true → Causal(ReceivingParty.returnsAllConfidentialInformation, ReceivingParty.destroysSomeConfidentialInformation))
+13. Q[The, DisclosingParty.hasConfidentialInformation == true](ReceivingParty.pursuantToAgreement == true → Causal(ReceivingParty.returnsAllConfidentialInformation, ReceivingParty.destroysSomeConfidentialInformation))
+14. Q[The, Agreement.requiresReturnOfConfidentialInformation == true](ReceivingParty.hasConfidentialInformation == true → Causal(ReceivingParty.returnsAllConfidentialInformation, ReceivingParty.destroysSomeConfidentialInformation))
+15. Q[The, ReceivingParty.mayDestroyConfidentialInformation == true](Agreement.isTerminated == true → Causal(ReceivingParty.returnsAllConfidentialInformation, ReceivingParty.destroysSomeConfidentialInformation))
+16. Q[The, ReceivingParty.mayReturnConfidentialInformation == true](DisclosingParty.requestsReturn == true → Causal(ReceivingParty.returnsAllConfidentialInformation, ReceivingParty.destroysSomeConfidentialInformation))
+17. Q[The, ConfidentialInformation.isReturned == true](ReceivingParty.hasConfidentialInformation == true → Causal(ReceivingParty.returnsAllConfidentialInformation, ReceivingParty.destroysSomeConfidentialInformation))
+18. Q[The, ConfidentialInformation.isDestroyed == true](Agreement.isTerminated == true → Causal(ReceivingParty.returnsAllConfidentialInformation, ReceivingParty.destroysSomeConfidentialInformation))
+19. Q[The, Agreement.terminates == true](ReceivingParty.returnsAllConfidentialInformation == true → Causal(ReceivingParty.destroysSomeConfidentialInformation, ReceivingParty.returnsAllConfidentialInformation))
+20. Q[The, DisclosingParty.hasRequest == true](ReceivingParty.hasConfidentialInformation == true → Causal(ReceivingParty.returnsAllConfidentialInformation, ReceivingParty.destroysSomeConfidentialInformation))
+21. Q[The, ReceivingParty.compliesWithRequest == true](Agreement.isTerminated == true → Causal(ReceivingParty.returnsAllConfidentialInformation, ReceivingParty.destroysSomeConfidentialInformation))
+22. Q[The, ReceivingParty.violatesAgreement == true](ReceivingParty.hasConfidentialInformation == true → Causal(ReceivingParty.returnsAllConfidentialInformation, ReceivingParty.destroysSomeConfidentialInformation))
+23. Q[The, ConfidentialInformation.isTangible == true](DisclosingParty.requestsReturn == true → Causal(ReceivingParty.returnsAllConfidentialInformation, ReceivingParty.destroysSomeConfidentialInformation))
+24. Q[The, ReceivingParty.receivesConfidentialInformation == true](Agreement.isTerminated == true → Causal(ReceivingParty.returnsAllConfidentialInformation, ReceivingParty.destroysSomeConfidentialInformation))
+25. Q[The, DisclosingParty.hasDrawings == true](ReceivingParty.hasConfidentialInformation == true → Causal(ReceivingParty.returnsAllConfidentialInformation, ReceivingParty.destroysSomeConfidentialInformation))
+26. Q[The, DisclosingParty.hasDocuments == true](Agreement.isTerminated == true → Causal(ReceivingParty.returnsAllConfidentialInformation, ReceivingParty.destroysSomeConfidentialInformation))
+27. Q[The, DisclosingParty.hasReports == true](ReceivingParty.hasConfidentialInformation == true → Causal(ReceivingParty.returnsAllConfidentialInformation, ReceivingParty.destroysSomeConfidentialInformation))
+28. Q[The, ReceivingParty.returnsConfidentialInformation == true](Agreement.isTerminated == true → Causal(ReceivingParty.returnsAllConfidentialInformation, ReceivingParty.destroysSomeConfidentialInformation))
+29. Q[The, ReceivingParty.hasConfidentialInformation == true](DisclosingParty.hasRequest == true → Causal(ReceivingParty.returnsAllConfidentialInformation, ReceivingParty.destroysSomeConfidentialInformation))
+30. Q[The, ReceivingParty.returnsAllConfidentialInformation == true](ReceivingParty.mayDestroyConfidentialInformation == true → Causal(ReceivingParty.destroysSomeConfidentialInformation, ReceivingParty.returnsAllConfidentialInformation))

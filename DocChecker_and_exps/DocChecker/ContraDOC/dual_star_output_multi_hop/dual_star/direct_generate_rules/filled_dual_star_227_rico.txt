@@ -1,0 +1,43 @@
+Predicates:
+Christy Mahon.label != "Person"
+Christy Mahon.label = "Person"
+Christy Mahon.name != "Christy Mahon"
+Christy Mahon.name = "Christy Mahon"
+Christy Mahon.status != "lost"
+Christy Mahon.status = "lost"
+None_ML(Pegeen.attrs, Christy Mahon.attrs)
+None_ML(Pegeen___Christy Mahon.attrs, Pegeen___Shawn Keogh.attrs)
+Pegeen.label != "Person"
+Pegeen.label = "Person"
+Pegeen.name != "Pegeen"
+Pegeen.name != Christy Mahon.name
+Pegeen.name != Shawn Keogh.name
+Pegeen.name = "Pegeen"
+Pegeen.relationship_status != "laments losing Christy"
+Pegeen.relationship_status != Shawn Keogh.relationship_status
+Pegeen.relationship_status = "laments losing Christy"
+Pegeen___Christy Mahon.doc_id = "3488771865_3"
+Pegeen___Christy Mahon.quote = "I've lost the only playboy of the western world."
+Pegeen___Christy Mahon.relationship = "Pegeen laments betraying and losing Christy."
+Pegeen___Shawn Keogh.doc_id = "3488771865_3"
+Pegeen___Shawn Keogh.relationship != Pegeen___Christy Mahon.relationship
+Pegeen___Shawn Keogh.relationship = "Pegeen falls in love with Christy, to the dismay of her betrothed Shawn."
+Shawn Keogh.label != "Person"
+Shawn Keogh.label = "Person"
+Shawn Keogh.name != "Shawn Keogh"
+Shawn Keogh.name != Christy Mahon.name
+Shawn Keogh.name = "Shawn Keogh"
+Shawn Keogh.relationship_status != "betrothed to Pegeen"
+Shawn Keogh.relationship_status = "betrothed to Pegeen"
+
+Rules:
+Q[Pegeen,Pegeen] (Christy Mahon.label != "Person" ∧ Pegeen___Shawn Keogh.doc_id = "3488771865_3" ∧ Christy Mahon.name != "Christy Mahon" ∧ None_ML(Pegeen___Christy Mahon.attrs, Pegeen___Shawn Keogh.attrs) ∧ Pegeen___Christy Mahon.doc_id = "3488771865_3" → Pegeen.name != "Pegeen")
+Q[Pegeen,Pegeen] (Pegeen.name != Shawn Keogh.name ∧ Christy Mahon.name != "Christy Mahon" ∧ None_ML(Pegeen.attrs, Christy Mahon.attrs) ∧ Pegeen___Shawn Keogh.relationship = "Pegeen falls in love with Christy, to the dismay of her betrothed Shawn." → Christy Mahon.label != "Person")
+Q[Pegeen,Pegeen] (Pegeen___Christy Mahon.quote = "I've lost the only playboy of the western world." ∧ Pegeen___Shawn Keogh.doc_id = "3488771865_3" ∧ Pegeen.name != Shawn Keogh.name → Shawn Keogh.name != "Shawn Keogh")
+Q[Pegeen,Pegeen] (Christy Mahon.name != "Christy Mahon" ∧ Pegeen.name != "Pegeen" ∧ Pegeen.name != Christy Mahon.name ∧ None_ML(Pegeen.attrs, Christy Mahon.attrs) ∧ Pegeen.label != "Person" ∧ Pegeen___Shawn Keogh.relationship != Pegeen___Christy Mahon.relationship → Pegeen.relationship_status = "laments losing Christy")
+Q[Pegeen,Pegeen] (Pegeen.relationship_status != "laments losing Christy" ∧ Shawn Keogh.name != Christy Mahon.name → Shawn Keogh.relationship_status = "betrothed to Pegeen")
+Q[Pegeen,Pegeen] (Christy Mahon.name != "Christy Mahon" ∧ Pegeen.relationship_status = "laments losing Christy" → None_ML(Pegeen.attrs, Christy Mahon.attrs))
+Q[Pegeen,Pegeen] (Christy Mahon.label != "Person" ∧ Pegeen___Christy Mahon.doc_id = "3488771865_3" ∧ Shawn Keogh.relationship_status != "betrothed to Pegeen" ∧ Pegeen.relationship_status != "laments losing Christy" ∧ Pegeen___Shawn Keogh.relationship = "Pegeen falls in love with Christy, to the dismay of her betrothed Shawn." ∧ Shawn Keogh.name != Christy Mahon.name → Christy Mahon.status = "lost")
+Q[Pegeen,Pegeen] (Pegeen___Shawn Keogh.doc_id = "3488771865_3" ∧ Christy Mahon.status != "lost" ∧ Pegeen.relationship_status != "laments losing Christy" ∧ Pegeen___Shawn Keogh.relationship = "Pegeen falls in love with Christy, to the dismay of her betrothed Shawn." → None_ML(Pegeen___Christy Mahon.attrs, Pegeen___Shawn Keogh.attrs))
+Q[Pegeen,Pegeen] (Christy Mahon.label != "Person" ∧ Shawn Keogh.name = "Shawn Keogh" ∧ Pegeen___Shawn Keogh.doc_id = "3488771865_3" → Christy Mahon.label = "Person")
+Q[Pegeen,Pegeen] (Pegeen.name != Christy Mahon.name ∧ Christy Mahon.status = "lost" ∧ Shawn Keogh.name != "Shawn Keogh" ∧ Shawn Keogh.relationship_status != "betrothed to Pegeen" ∧ Shawn Keogh.name != Christy Mahon.name → Pegeen___Shawn Keogh.doc_id = "3488771865_3")

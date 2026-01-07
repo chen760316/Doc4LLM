@@ -1,0 +1,37 @@
+Predicates:
+M_NLI(('New Product', 'Unnamed Company').attrs, The company had not yet revealed any details about its new product..attrs)
+M_NLI(('new product', 'unknown').attrs, ('New Product', 'Unnamed Company').attrs)
+M_NLI(('new product', 'unknown').attrs, The company had not yet revealed any details about its new product..attrs)
+M_NLI(New Product.attrs, Unnamed Company.attrs)
+M_NLI(The company announced its new product..attrs, ('New Product', 'Unnamed Company').attrs)
+M_NLI(The company announced its new product..attrs, The company had not yet revealed any details about its new product..attrs)
+M_NLU(('new product', 'unknown').attrs, The company announced its new product..attrs)
+New Product.label != "Product"
+New Product.label != Unnamed Company.label
+New Product.label = "Product"
+New Product.name != "New Product"
+New Product.name != Unnamed Company.name
+New Product.name = "New Product"
+New Product___Unnamed Company.relationship != "The company had not yet revealed any details about its new product."
+New Product___Unnamed Company.relationship = "The company had not yet revealed any details about its new product."
+None_ML(new product.attrs, New Product.attrs)
+None_ML(new product.attrs, Unnamed Company.attrs)
+Unnamed Company.label != "Company"
+Unnamed Company.label = "Company"
+Unnamed Company.name != "Unnamed Company"
+Unnamed Company.name = "Unnamed Company"
+new product___unknown.relationship != "The company announced its new product."
+new product___unknown.relationship != New Product_Unnamed Company.relationship
+new product___unknown.relationship = "The company announced its new product."
+
+Rules:
+Q[new product,New Product] (New Product.label != Unnamed Company.label ∧ Unnamed Company.label != "Company" → Unnamed Company.label != "Company")
+Q[new product,New Product] (New Product.name != Unnamed Company.name ∧ M_NLI(('new product', 'unknown').attrs, ('New Product', 'Unnamed Company').attrs) → New Product.name != Unnamed Company.name)
+Q[new product,New Product] (M_NLI(('new product', 'unknown').attrs, ('New Product', 'Unnamed Company').attrs) ∧ new product___unknown.relationship != "The company announced its new product." → new product___unknown.relationship != "The company announced its new product.")
+Q[new product,New Product] (Unnamed Company.name = "Unnamed Company" ∧ New Product___Unnamed Company.relationship = "The company had not yet revealed any details about its new product." → New Product___Unnamed Company.relationship = "The company had not yet revealed any details about its new product.")
+Q[new product,New Product] (New Product.name != "New Product" ∧ Unnamed Company.label = "Company" → Unnamed Company.label = "Company")
+Q[new product,New Product] (New Product.name != "New Product" ∧ M_NLI(('new product', 'unknown').attrs, ('New Product', 'Unnamed Company').attrs) → M_NLI(('new product', 'unknown').attrs, ('New Product', 'Unnamed Company').attrs))
+Q[new product,New Product] (M_NLI(The company announced its new product..attrs, The company had not yet revealed any details about its new product..attrs) ∧ M_NLU(('new product', 'unknown').attrs, The company announced its new product..attrs) → M_NLU(('new product', 'unknown').attrs, The company announced its new product..attrs))
+Q[new product,New Product] (None_ML(new product.attrs, New Product.attrs) ∧ Unnamed Company.name != "Unnamed Company" → None_ML(new product.attrs, New Product.attrs))
+Q[new product,New Product] (M_NLI(New Product.attrs, Unnamed Company.attrs) ∧ M_NLI(('New Product', 'Unnamed Company').attrs, The company had not yet revealed any details about its new product..attrs) → M_NLI(('New Product', 'Unnamed Company').attrs, The company had not yet revealed any details about its new product..attrs))
+Q[new product,New Product] (Unnamed Company.name = "Unnamed Company" ∧ New Product.label = "Product" → New Product.label = "Product")

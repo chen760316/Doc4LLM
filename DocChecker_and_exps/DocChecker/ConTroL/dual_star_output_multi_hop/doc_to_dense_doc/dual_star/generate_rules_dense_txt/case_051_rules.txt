@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 51)
+S1: In England and Wales, despite the prevalence of notices asserting that trespassers will be prosecuted, unless the trespass is aggravated in some way, it will only be a civil wrong.
+S2: In some jurisdictions trespassing is an offence or misdemeanor covered by a criminal code.
+
+Predicates:
+1. England_and_Wales.trespassing_status = civil_wrong
+2. England_and_Wales.trespass_notice = prosecution_warning
+3. England_and_Wales.trespass_aggravation = necessary_for_criminal_charge
+4. Jurisdiction.trespassing_status = criminal_offence
+5. Jurisdiction.trespassing_type = misdemeanor
+6. Trespassing.is_a = civil_wrong
+7. Trespassing.is_a = criminal_offence
+8. Notice.asserts = prosecution
+9. Trespasser.status = civil
+10. Trespasser.status = criminal
+11. England_and_Wales.jurisdiction_type = civil
+12. Some_jurisdictions.jurisdiction_type = criminal
+13. Trespassing.in_some_jurisdictions = offence
+14. Trespassing.in_some_jurisdictions = misdemeanor
+15. Prosecution_warning.is_present = England_and_Wales
+16. Civil_wrong.is_a = trespassing
+17. Criminal_offence.is_a = trespassing
+18. Trespass.is_aggravated = condition_for_criminal_charge
+19. Trespass_notice.relationship = warning
+20. Trespasser.action = civil_wrong
+21. Trespasser.action = criminal_offence
+22. England_and_Wales.trespass_law = civil
+23. Some_jurisdictions.trespass_law = criminal
+24. Trespassing.legal_status = varies_by_jurisdiction
+25. Notice.trespass_warning = legal_implication
+26. Trespass.is_a = legal_issue
+27. Trespasser.legal_consequence = varies_by_jurisdiction
+28. England_and_Wales.trespass_law = not_criminal
+29. Jurisdiction.trespass_law = varies
+30. Trespassing.legal_consequence = civil_or_criminal
+
+Rules:
+1. Q[England, England_and_Wales.trespassing_status, Jurisdiction.trespassing_status](England_and_Wales.trespassing_status == civil_wrong → Factual(England, Jurisdiction.trespassing_status))
+2. Q[England, England_and_Wales.trespass_notice, Some_jurisdictions.trespassing_status](England_and_Wales.trespass_notice == prosecution_warning → Factual(England, Some_jurisdictions.trespassing_status))
+3. Q[England, England_and_Wales.trespass_aggravation, Jurisdiction.trespassing_type](England_and_Wales.trespass_aggravation == necessary_for_criminal_charge → Factual(England, Jurisdiction.trespassing_type))
+4. Q[England, England_and_Wales.jurisdiction_type, Some_jurisdictions.jurisdiction_type](England_and_Wales.jurisdiction_type == civil → Factual(England, Some_jurisdictions.jurisdiction_type))
+5. Q[England, England_and_Wales.trespass_law, Some_jurisdictions.trespass_law](England_and_Wales.trespass_law == civil → Factual(England, Some_jurisdictions.trespass_law))
+6. Q[England, Trespasser.status, Trespasser.status](Trespasser.status == civil → Factual(England, Trespasser.status))
+7. Q[England, Trespassing.is_a, Trespassing.is_a](Trespassing.is_a == civil_wrong → Factual(England, Trespassing.is_a))
+8. Q[England, Trespass.is_aggravated, Jurisdiction.trespassing_status](Trespass.is_aggravated == condition_for_criminal_charge → Factual(England, Jurisdiction.trespassing_status))
+9. Q[England, Trespasser.action, Trespasser.action](Trespasser.action == civil_wrong → Factual(England, Trespasser.action))
+10. Q[England, England_and_Wales.trespass_law, Trespassing.in_some_jurisdictions](England_and_Wales.trespass_law == civil → Factual(England, Trespassing.in_some_jurisdictions))
+11. Q[England, England_and_Wales.trespass_notice, Trespassing.in_some_jurisdictions](England_and_Wales.trespass_notice == prosecution_warning → Factual(England, Trespassing.in_some_jurisdictions))
+12. Q[England, England_and_Wales.trespassing_status, Trespassing.is_a](England_and_Wales.trespassing_status == civil_wrong → Factual(England, Trespassing.is_a))
+13. Q[England, England_and_Wales.trespass_law, Trespassing.legal_status](England_and_Wales.trespass_law == civil → Factual(England, Trespassing.legal_status))
+14. Q[England, England_and_Wales.trespass_law, Trespassing.legal_consequence](England_and_Wales.trespass_law == civil → Factual(England, Trespassing.legal_consequence))
+15. Q[England, England_and_Wales.trespass_aggravation, Trespass.is_a](England_and_Wales.trespass_aggravation == necessary_for_criminal_charge → Factual(England, Trespass.is_a))
+16. Q[England, England_and_Wales.trespass_law, Trespasser.legal_consequence](England_and_Wales.trespass_law == civil → Factual(England, Trespasser.legal_consequence))
+17. Q[England, England_and_Wales.trespass_notice, Trespass.is_a](England_and_Wales.trespass_notice == prosecution_warning → Factual(England, Trespass.is_a))
+18. Q[England, England_and_Wales.trespass_law, Trespassing.legal_consequence](England_and_Wales.trespass_law == civil → Factual(England, Trespassing.legal_consequence))
+19. Q[England, England_and_Wales.trespass_notice, Trespasser.status](England_and_Wales.trespass_notice == prosecution_warning → Factual(England, Trespasser.status))
+20. Q[England, England_and_Wales.trespass_aggravation, Trespasser.action](England_and_Wales.trespass_aggravation == necessary_for_criminal_charge → Factual(England, Trespasser.action))
+21. Q[England, England_and_Wales.trespass_law, Jurisdiction.trespassing_status](England_and_Wales.trespass_law == civil → Factual(England, Jurisdiction.trespassing_status))
+22. Q[England, England_and_Wales.trespass_notice, Trespassing.is_a](England_and_Wales.trespass_notice == prosecution_warning → Factual(England, Trespassing.is_a))
+23. Q[England, England_and_Wales.trespass_law, Jurisdiction.trespassing_type](England_and_Wales.trespass_law == civil → Factual(England, Jurisdiction.trespassing_type))
+24. Q[England, England_and_Wales.trespass_aggravation, Trespassing.in_some_jurisdictions](England_and_Wales.trespass_aggravation == necessary_for_criminal_charge → Factual(England, Trespassing.in_some_jurisdictions))
+25. Q[England, England_and_Wales.trespass_notice, Trespass.is_a](England_and_Wales.trespass_notice == prosecution_warning → Factual(England, Trespass.is_a))
+26. Q[England, England_and_Wales.trespass_law, Trespasser.status](England_and_Wales.trespass_law == civil → Factual(England, Trespasser.status))
+27. Q[England, England_and_Wales.trespass_aggravation, Trespasser.action](England_and_Wales.trespass_aggravation == necessary_for_criminal_charge → Factual(England, Trespasser.action))
+28. Q[England, England_and_Wales.trespass_law, Trespassing.legal_status](England_and_Wales.trespass_law == civil → Factual(England, Trespassing.legal_status))
+29. Q[England, England_and_Wales.trespass_notice, Trespassing.legal_consequence](England_and_Wales.trespass_notice == prosecution_warning → Factual(England, Trespassing.legal_consequence))
+30. Q[England, England_and_Wales.trespass_law, Trespass.is_a](England_and_Wales.trespass_law == civil → Factual(England, Trespass.is_a))

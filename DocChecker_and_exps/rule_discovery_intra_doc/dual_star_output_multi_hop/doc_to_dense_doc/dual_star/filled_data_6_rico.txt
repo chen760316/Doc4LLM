@@ -1,0 +1,46 @@
+Predicates:
+Lisa.action != "donor"
+Lisa.action = "donor"
+Lisa.age != 70
+Lisa.age < 75
+Lisa.age <= 70
+Lisa.age = 70
+Lisa.age > 65
+Lisa.age >= 70
+Lisa.label != "Person"
+Lisa.label = "Person"
+Lisa.name != "Lisa"
+Lisa.name = "Lisa"
+M_NLI(('Zully Broussard', 'Lisa').attrs, Zully Broussard donated her kidney, possibly for a close friend, while Lisa is a donor aged 70..attrs)
+M_NLI(('Zully Broussard', 'Stranger').attrs, ('Zully Broussard', 'Lisa').attrs)
+M_NLI(Zully Broussard.attrs, Lisa.attrs)
+M_NLU(Zully Broussard may or may not have donated her kidney to a stranger..attrs, ('Zully Broussard', 'Lisa').attrs)
+M_NLU(Zully Broussard may or may not have donated her kidney to a stranger..attrs, Zully Broussard donated her kidney, possibly for a close friend, while Lisa is a donor aged 70..attrs)
+None_ML(('Zully Broussard', 'Stranger').attrs, Zully Broussard donated her kidney, possibly for a close friend, while Lisa is a donor aged 70..attrs)
+None_ML(('Zully Broussard', 'Stranger').attrs, Zully Broussard may or may not have donated her kidney to a stranger..attrs)
+Zully Broussard.action != "donated kidney"
+Zully Broussard.action != Lisa.action
+Zully Broussard.action = "donated kidney"
+Zully Broussard.label != "Person"
+Zully Broussard.label != Lisa.label
+Zully Broussard.label = "Person"
+Zully Broussard.name != "Zully Broussard"
+Zully Broussard.name != Lisa.name
+Zully Broussard.name = "Zully Broussard"
+Zully Broussard___Lisa.relationship != "Zully Broussard donated her kidney, possibly for a close friend, while Lisa is a donor aged 70."
+Zully Broussard___Lisa.relationship = "Zully Broussard donated her kidney, possibly for a close friend, while Lisa is a donor aged 70."
+Zully Broussard___Stranger.relationship != "Zully Broussard may or may not have donated her kidney to a stranger."
+Zully Broussard___Stranger.relationship != Zully Broussard_Lisa.relationship
+Zully Broussard___Stranger.relationship = "Zully Broussard may or may not have donated her kidney to a stranger."
+
+Rules:
+Q[Zully Broussard,Zully Broussard] (M_NLI(Zully Broussard.attrs, Lisa.attrs) ∧ Zully Broussard___Lisa.relationship != "Zully Broussard donated her kidney, possibly for a close friend, while Lisa is a donor aged 70." → Zully Broussard___Lisa.relationship != "Zully Broussard donated her kidney, possibly for a close friend, while Lisa is a donor aged 70.")
+Q[Zully Broussard,Zully Broussard] (Lisa.age < 75 ∧ M_NLI(Zully Broussard.attrs, Lisa.attrs) → Lisa.age < 75)
+Q[Zully Broussard,Zully Broussard] (Lisa.label = "Person" ∧ Lisa.name != "Lisa" → Lisa.name != "Lisa")
+Q[Zully Broussard,Zully Broussard] (Zully Broussard.name != Lisa.name ∧ Lisa.age >= 70 → Lisa.age >= 70)
+Q[Zully Broussard,Zully Broussard] (Lisa.age != 70 ∧ Zully Broussard.action = "donated kidney" → Lisa.age != 70)
+Q[Zully Broussard,Zully Broussard] (Lisa.age <= 70 ∧ Lisa.label != "Person" → Lisa.age <= 70)
+Q[Zully Broussard,Zully Broussard] (M_NLI(('Zully Broussard', 'Stranger').attrs, ('Zully Broussard', 'Lisa').attrs) ∧ M_NLU(Zully Broussard may or may not have donated her kidney to a stranger..attrs, Zully Broussard donated her kidney, possibly for a close friend, while Lisa is a donor aged 70..attrs) → M_NLI(('Zully Broussard', 'Stranger').attrs, ('Zully Broussard', 'Lisa').attrs))
+Q[Zully Broussard,Zully Broussard] (Zully Broussard___Lisa.relationship = "Zully Broussard donated her kidney, possibly for a close friend, while Lisa is a donor aged 70." ∧ Zully Broussard___Stranger.relationship != "Zully Broussard may or may not have donated her kidney to a stranger." → Zully Broussard___Lisa.relationship = "Zully Broussard donated her kidney, possibly for a close friend, while Lisa is a donor aged 70.")
+Q[Zully Broussard,Zully Broussard] (Zully Broussard.name != "Zully Broussard" ∧ None_ML(('Zully Broussard', 'Stranger').attrs, Zully Broussard donated her kidney, possibly for a close friend, while Lisa is a donor aged 70..attrs) → Zully Broussard.name != "Zully Broussard")
+Q[Zully Broussard,Zully Broussard] (Zully Broussard___Lisa.relationship = "Zully Broussard donated her kidney, possibly for a close friend, while Lisa is a donor aged 70." ∧ Lisa.action = "donor" → Lisa.action = "donor")

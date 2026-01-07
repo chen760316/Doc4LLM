@@ -1,0 +1,92 @@
+Predicates:
+Art Berry.label != "Person"
+Art Berry.label != attack on Fede.label
+Art Berry.label != escape from the asylum.label
+Art Berry.label != insane asylum.label
+Art Berry.label != new company.label
+Art Berry.label = "Person"
+Art Berry.name != "Art Berry"
+Art Berry.name != attack on Fede.name
+Art Berry.name != escape from the asylum.name
+Art Berry.name != insane asylum.name
+Art Berry.name != new company.name
+Art Berry.name = "Art Berry"
+Art Berry.occupation != "entrepreneur"
+Art Berry.occupation = "entrepreneur"
+Art Berry.status != "protagonist"
+Art Berry.status != attack on Fede.status
+Art Berry.status != escape from the asylum.status
+Art Berry.status != insane asylum.status
+Art Berry.status = "protagonist"
+Art Berry___attack on Fede.contradiction_type = "Causal"
+Art Berry___attack on Fede.relationship != Art Berry___escape from the asylum.relationship
+Art Berry___attack on Fede.relationship != Art Berry___insane asylum.relationship
+Art Berry___attack on Fede.relationship != Art Berry___new company.relationship
+Art Berry___attack on Fede.relationship = "The asylum plot takes place after Art Berry's attack on Fede."
+Art Berry___attack on Fede.source_id = "3488771909_3"
+Art Berry___attack on Fede.time = "after the attack"
+Art Berry___escape from the asylum.contradiction_type = "Causal"
+Art Berry___escape from the asylum.relationship != Art Berry___insane asylum.relationship
+Art Berry___escape from the asylum.relationship != Art Berry___new company.relationship
+Art Berry___escape from the asylum.relationship = "Art Berry escapes from the asylum."
+Art Berry___escape from the asylum.source_id = "3488771909_3"
+Art Berry___insane asylum.contradiction_type = "Causal"
+Art Berry___insane asylum.reason = "complex conspiracy"
+Art Berry___insane asylum.relationship = "Art Berry has been sent to the insane asylum as a result of a complex conspiracy."
+Art Berry___insane asylum.source_id = "3488771909_3"
+Art Berry___new company.contradiction_type = "Causal"
+Art Berry___new company.method = "using inside knowledge of psychiatric institutions"
+Art Berry___new company.relationship != Art Berry___insane asylum.relationship
+Art Berry___new company.relationship = "Art Berry founds a new company to market health care products."
+Art Berry___new company.source_id = "3488771909_3"
+None_ML(Art Berry.attrs, insane asylum.attrs)
+None_ML(Art Berry___insane asylum.attrs, Art Berry___new company.attrs)
+attack on Fede.label != "Event"
+attack on Fede.label != insane asylum.label
+attack on Fede.label != new company.label
+attack on Fede.label = "Event"
+attack on Fede.name != "attack on Fede"
+attack on Fede.name != escape from the asylum.name
+attack on Fede.name != insane asylum.name
+attack on Fede.name != new company.name
+attack on Fede.name = "attack on Fede"
+attack on Fede.status != "incident"
+attack on Fede.status != insane asylum.status
+attack on Fede.status = "incident"
+escape from the asylum.label != "Event"
+escape from the asylum.label != insane asylum.label
+escape from the asylum.label != new company.label
+escape from the asylum.label = "Event"
+escape from the asylum.name != "escape from the asylum"
+escape from the asylum.name != insane asylum.name
+escape from the asylum.name != new company.name
+escape from the asylum.name = "escape from the asylum"
+escape from the asylum.status != "incident"
+escape from the asylum.status != insane asylum.status
+escape from the asylum.status = "incident"
+insane asylum.label != "Location"
+insane asylum.label = "Location"
+insane asylum.name != "insane asylum"
+insane asylum.name = "insane asylum"
+insane asylum.status != "institution"
+insane asylum.status = "institution"
+new company.industry != "health care"
+new company.industry = "health care"
+new company.label != "Company"
+new company.label != insane asylum.label
+new company.label = "Company"
+new company.name != "new company"
+new company.name != insane asylum.name
+new company.name = "new company"
+
+Rules:
+Q[Art Berry,Art Berry] (escape from the asylum.name != new company.name ∧ Art Berry___new company.source_id = "3488771909_3" ∧ new company.label != "Company" ∧ escape from the asylum.label != new company.label → attack on Fede.name != new company.name)
+Q[Art Berry,Art Berry] (Art Berry___escape from the asylum.relationship != Art Berry___new company.relationship ∧ Art Berry___new company.relationship != Art Berry___insane asylum.relationship ∧ attack on Fede.label != "Event" → escape from the asylum.name = "escape from the asylum")
+Q[Art Berry,Art Berry] (Art Berry.name != escape from the asylum.name ∧ escape from the asylum.status != insane asylum.status ∧ Art Berry.status != escape from the asylum.status ∧ escape from the asylum.name = "escape from the asylum" ∧ attack on Fede.label != insane asylum.label → Art Berry___new company.source_id = "3488771909_3")
+Q[Art Berry,Art Berry] (attack on Fede.status != "incident" ∧ insane asylum.label = "Location" → Art Berry___new company.relationship != Art Berry___insane asylum.relationship)
+Q[Art Berry,Art Berry] (escape from the asylum.status != "incident" ∧ Art Berry___escape from the asylum.source_id = "3488771909_3" ∧ attack on Fede.label != new company.label ∧ Art Berry___attack on Fede.time = "after the attack" ∧ Art Berry.label = "Person" ∧ attack on Fede.status != "incident" → new company.name = "new company")
+Q[Art Berry,Art Berry] (attack on Fede.status != "incident" ∧ Art Berry___escape from the asylum.relationship != Art Berry___new company.relationship → attack on Fede.name != "attack on Fede")
+Q[Art Berry,Art Berry] (insane asylum.label != "Location" ∧ Art Berry.label != insane asylum.label ∧ insane asylum.status != "institution" → Art Berry.status = "protagonist")
+Q[Art Berry,Art Berry] (Art Berry___insane asylum.source_id = "3488771909_3" ∧ Art Berry___new company.source_id = "3488771909_3" ∧ Art Berry___escape from the asylum.contradiction_type = "Causal" ∧ attack on Fede.label != "Event" ∧ new company.industry = "health care" → Art Berry___attack on Fede.source_id = "3488771909_3")
+Q[Art Berry,Art Berry] (escape from the asylum.label = "Event" ∧ escape from the asylum.name != insane asylum.name ∧ attack on Fede.label != new company.label ∧ attack on Fede.name != new company.name ∧ Art Berry___insane asylum.contradiction_type = "Causal" ∧ Art Berry___new company.relationship = "Art Berry founds a new company to market health care products." → new company.label = "Company")
+Q[Art Berry,Art Berry] (Art Berry.label != attack on Fede.label ∧ Art Berry___new company.method = "using inside knowledge of psychiatric institutions" ∧ attack on Fede.status != insane asylum.status ∧ attack on Fede.label != "Event" → insane asylum.status = "institution")

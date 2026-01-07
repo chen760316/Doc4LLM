@@ -1,0 +1,130 @@
+Predicates:
+1. Parker.action = "asked"
+2. Parker.object = "garden shed"
+3. army.action = "blow up"
+4. garden_shed.status = "filled with objects"
+5. Parker.intent = "destroy"
+6. army.target = "garden shed"
+7. garden_shed.content = "objects"
+8. Parker.requested_by = "army"
+9. garden_shed.condition = "intact"
+10. Parker.location = "garden"
+11. army.method = "explosion"
+12. Parker.emotion = "determined"
+13. garden_shed.size = "medium"
+14. army.response = "approved"
+15. Parker.time = "unspecified"
+16. garden_shed.owner = "Parker"
+17. army.equipment = "explosives"
+18. Parker.reason = "safety concern"
+19. garden_shed.material = "wood"
+20. army.mission = "destruction"
+21. Parker.action_type = "request"
+22. garden_shed.accessibility = "easy"
+23. army.location = "nearby"
+24. Parker.objective = "clear space"
+25. garden_shed.history = "previously used"
+26. army.command = "execute"
+27. Parker.communication_method = "verbal"
+28. garden_shed.usage = "storage"
+29. army.timing = "immediate"
+30. Parker.situation = "urgent"
+31. garden_shed.value = "low"
+32. army.approval_status = "pending"
+33. Parker.impact = "significant"
+34. garden_shed.ownership = "personal"
+35. army.target_type = "structure"
+36. Parker.urgency_level = "high"
+37. garden_shed.condition_before = "good"
+38. army.operation_type = "demolition"
+39. Parker.impact_on_environment = "negative"
+40. garden_shed.access = "restricted"
+41. violate(x0, y0)
+42. Factual(x0, y0)
+43. Content(x0, y0)
+44. Causal(x0, y0)
+45. Negation(x0, y0)
+46. Relation(x0, y0)
+47. Numeric(x0, y0)
+48. Temporal(x0, y0)
+49. M_NLI(Parker.action, army.action)
+50. T("Parker asked the army to blow up the garden shed.", "Parker filled the garden shed with objects.", tau)
+51. tau(Parker.object, garden_shed.status)
+52. violate(Parker.requested_by, garden_shed.owner)
+53. Factual(Parker.reason, garden_shed.status)
+54. Causal(Parker.action, garden_shed.condition)
+55. Negation(Parker.intent, garden_shed.usage)
+56. Relation(Parker.location, army.location)
+57. Numeric(Parker.urgency_level, army.timing)
+58. Temporal(Parker.time, army.timing)
+59. M_NLI(garden_shed.content, garden_shed.condition)
+60. T("Parker filled the garden shed with objects.", "Parker asked the army to blow up the garden shed.", tau)
+61. tau(army.method, garden_shed.condition)
+62. violate(Parker.objective, garden_shed.history)
+63. Factual(army.approval_status, garden_shed.value)
+64. Causal(army.response, Parker.emotion)
+65. Negation(garden_shed.accessibility, garden_shed.usage)
+66. Relation(Parker.action_type, army.mission)
+67. Numeric(army.equipment, garden_shed.size)
+68. Temporal(Parker.situation, army.timing)
+69. M_NLI(Parker.impact, garden_shed.value)
+70. T("Parker filled the garden shed with objects.", "garden shed is empty.", tau)
+71. tau(Parker.communication_method, army.command)
+72. violate(Parker.location, army.location)
+73. Factual(garden_shed.condition_before, garden_shed.status)
+74. Causal(Parker.impact_on_environment, army.operation_type)
+75. Negation(Parker.urgency_level, garden_shed.history)
+76. Relation(Parker.reason, garden_shed.usage)
+77. Numeric(army.timing, garden_shed.size)
+78. Temporal(Parker.time, army.command)
+79. M_NLI(army.method, garden_shed.material)
+80. T("Parker asked the army to blow up the garden shed.", "The garden shed was never targeted.", tau)
+81. tau(Parker.emotion, army.response)
+82. violate(garden_shed.usage, garden_shed.condition)
+83. Factual(Parker.action, army.target)
+84. Causal(Parker.requested_by, army.approval_status)
+85. Negation(garden_shed.value, garden_shed.history)
+86. Relation(Parker.objective, garden_shed.accessibility)
+87. Numeric(Parker.impact, army.mission)
+88. Temporal(Parker.situation, army.operation_type)
+89. M_NLI(Parker.reason, army.timing)
+90. T("Parker filled the garden shed with objects.", "The garden shed was empty.", tau)
+91. tau(Parker.location, garden_shed.access)
+92. violate(army.method, garden_shed.condition)
+93. Factual(Parker.intent, army.target)
+94. Causal(garden_shed.history, army.response)
+95. Negation(Parker.impact, garden_shed.value)
+96. Relation(Parker.action_type, garden_shed.usage)
+97. Numeric(army.equipment, garden_shed.material)
+98. Temporal(Parker.time, army.mission)
+99. M_NLI(Parker.urgency_level, garden_shed.condition)
+100. T("Parker asked the army to blow up the garden shed.", "Parker did not want the shed destroyed.", tau)
+violate(x0, y0)
+
+Rules:
+1. Q[Parker, garden_shed](Parker.action = "asked" ∧ army.action = "blow up" → violate(Parker.objective, garden_shed.history))
+2. Q[Parker, garden_shed](Parker.intent = "destroy" ∧ garden_shed.condition = "intact" → violate(Parker.location, garden_shed.accessibility))
+3. Q[Parker, garden_shed](Parker.requested_by = "army" ∧ army.target = "garden shed" ∧ army.approval_status = "pending" → violate(Parker.action, army.response))
+4. Q[Parker, garden_shed](Parker.emotion = "determined" ∧ army.method = "explosion" ∧ garden_shed.status = "filled with objects" → violate(garden_shed.condition, garden_shed.usage))
+5. Q[Parker, garden_shed](Parker.time = "unspecified" ∧ army.timing = "immediate" ∧ garden_shed.owner = "Parker" ∧ army.mission = "destruction" → violate(Parker.impact, garden_shed.value))
+6. Q[Parker, garden_shed](Parker.urgency_level = "high" ∧ army.location = "nearby" ∧ garden_shed.size = "medium" ∧ army.equipment = "explosives" ∧ garden_shed.condition_before = "good" → violate(Parker.reason, garden_shed.usage))
+7. Q[Parker, garden_shed](Parker.action = "asked" ∧ army.target = "garden shed" → violate(Parker.intent, garden_shed.status))
+8. Q[Parker, garden_shed](Parker.location = "garden" ∧ garden_shed.accessibility = "easy" ∧ army.method = "explosion" → violate(Parker.objective, garden_shed.condition))
+9. Q[Parker, garden_shed](Parker.reason = "safety concern" ∧ army.response = "approved" ∧ garden_shed.history = "previously used" → violate(Parker.impact_on_environment, army.operation_type))
+10. Q[Parker, garden_shed](Parker.action_type = "request" ∧ army.command = "execute" ∧ garden_shed.value = "low" → violate(Parker.emotion, army.approval_status))
+11. Q[Parker, garden_shed](Parker.impact = "significant" ∧ garden_shed.usage = "storage" ∧ army.timing = "immediate" ∧ garden_shed.condition = "intact" → violate(Parker.location, garden_shed.owner))
+12. Q[Parker, garden_shed](Parker.urgency_level = "high" ∧ army.method = "explosion" ∧ garden_shed.access = "restricted" ∧ army.target_type = "structure" → violate(Parker.intent, garden_shed.history))
+13. Q[Parker, garden_shed](Parker.action = "asked" ∧ army.approval_status = "pending" ∧ garden_shed.condition_before = "good" ∧ army.equipment = "explosives" ∧ garden_shed.status = "filled with objects" → violate(Parker.objective, garden_shed.value))
+14. Q[Parker, garden_shed](Parker.requested_by = "army" ∧ army.response = "approved" ∧ garden_shed.size = "medium" ∧ garden_shed.condition = "intact" → violate(Parker.impact_on_environment, garden_shed.usage))
+15. Q[Parker, garden_shed](Parker.intent = "destroy" ∧ army.timing = "immediate" ∧ garden_shed.owner = "Parker" ∧ army.mission = "destruction" ∧ garden_shed.history = "previously used" → violate(Parker.location, garden_shed.accessibility))
+16. Q[Parker, garden_shed](Parker.action_type = "request" ∧ army.method = "explosion" ∧ garden_shed.accessibility = "easy" ∧ army.target = "garden shed" ∧ garden_shed.value = "low" → violate(Parker.reason, garden_shed.condition))
+17. Q[Parker, garden_shed](Parker.emotion = "determined" ∧ army.command = "execute" ∧ garden_shed.usage = "storage" ∧ army.timing = "immediate" → violate(Parker.impact, garden_shed.history))
+18. Q[Parker, garden_shed](Parker.time = "unspecified" ∧ army.approval_status = "pending" ∧ garden_shed.condition_before = "good" ∧ army.equipment = "explosives" ∧ garden_shed.status = "filled with objects" → violate(Parker.intent, garden_shed.value))
+19. Q[Parker, garden_shed](Parker.urgency_level = "high" ∧ army.target = "garden shed" ∧ garden_shed.condition = "intact" ∧ army.method = "explosion" → violate(Parker.objective, garden_shed.usage))
+20. Q[Parker, garden_shed](Parker.action = "asked" ∧ army.response = "approved" ∧ garden_shed.history = "previously used" ∧ army.timing = "immediate" → violate(Parker.location, garden_shed.owner))
+21. Q[Parker, garden_shed](Parker.intent = "destroy" ∧ army.approval_status = "pending" ∧ garden_shed.size = "medium" ∧ army.equipment = "explosives" ∧ garden_shed.condition = "intact" → violate(Parker.impact_on_environment, garden_shed.value))
+22. Q[Parker, garden_shed](Parker.reason = "safety concern" ∧ army.method = "explosion" ∧ garden_shed.accessibility = "easy" ∧ army.target_type = "structure" → violate(Parker.intent, garden_shed.history))
+23. Q[Parker, garden_shed](Parker.action_type = "request" ∧ army.command = "execute" ∧ garden_shed.usage = "storage" ∧ army.timing = "immediate" ∧ garden_shed.condition_before = "good" → violate(Parker.objective, garden_shed.value))
+24. Q[Parker, garden_shed](Parker.emotion = "determined" ∧ army.target = "garden shed" ∧ garden_shed.size = "medium" ∧ army.response = "approved" → violate(Parker.location, garden_shed.accessibility))
+25. Q[Parker, garden_shed](Parker.urgency_level = "high" ∧ army.approval_status = "pending" ∧ garden_shed.condition = "intact" ∧ army.method = "explosion" → violate(Parker.intent, garden_shed.history))
+26. Q[Parker, garden_shed](Parker.action = "asked" ∧ army.timing =

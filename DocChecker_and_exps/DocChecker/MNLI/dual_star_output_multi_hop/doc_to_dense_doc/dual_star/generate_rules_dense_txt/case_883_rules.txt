@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 883)
+S1: The maximum time you could spend in a single stay is from 2 pm until 1 pm the following day.
+S2: Check-out time is generally noon or 1 pm, with check-in usually available from 2 pm to 3 pm.
+
+Predicates:
+1. Stay.maximum_time
+2. Stay.start_time
+3. Stay.end_time
+4. CheckOut.time
+5. CheckIn.time
+6. CheckOut.default_time
+7. CheckIn.default_time
+8. Stay.duration
+9. Stay.check_out_time
+10. Stay.check_in_time
+11. CheckOut.noon
+12. CheckOut.one_pm
+13. CheckIn.two_pm
+14. CheckIn.three_pm
+15. Stay.extended_until
+16. Stay.check_out_before
+17. Stay.check_in_after
+18. CheckOut.time_limit
+19. CheckIn.time_limit
+20. Stay.valid_duration
+21. Stay.check_out_window
+22. Stay.check_in_window
+23. CheckOut.general_time
+24. CheckIn.general_time
+25. Stay.check_out_after
+26. Stay.check_in_before
+27. Stay.check_out_timeframe
+28. Stay.check_in_timeframe
+29. CheckOut.time_range
+30. CheckIn.time_range
+
+Rules:
+1. Q[The, Stay.maximum_time, Stay.end_time](Stay.maximum_time == "from 2 pm until 1 pm the following day" → Temporal(Stay.maximum_time, Stay.end_time))
+2. Q[The, Stay.start_time, Stay.end_time](Stay.start_time == "2 pm" → Temporal(Stay.start_time, Stay.end_time))
+3. Q[The, Stay.end_time, CheckOut.time](Stay.end_time == "1 pm the following day" → Temporal(Stay.end_time, CheckOut.time))
+4. Q[The, CheckOut.default_time, CheckOut.time](CheckOut.default_time == "noon" → Temporal(CheckOut.default_time, CheckOut.time))
+5. Q[The, CheckOut.default_time, CheckOut.one_pm](CheckOut.default_time == "1 pm" → Temporal(CheckOut.default_time, CheckOut.one_pm))
+6. Q[The, CheckIn.time, Stay.check_in_time](CheckIn.time == "from 2 pm to 3 pm" → Temporal(CheckIn.time, Stay.check_in_time))
+7. Q[The, Stay.check_out_time, CheckOut.time](Stay.check_out_time == "noon or 1 pm" → Temporal(Stay.check_out_time, CheckOut.time))
+8. Q[The, Stay.check_out_time, Stay.extended_until](Stay.check_out_time == "1 pm" → Temporal(Stay.check_out_time, Stay.extended_until))
+9. Q[The, Stay.check_out_before, CheckOut.time](Stay.check_out_before == "1 pm" → Temporal(Stay.check_out_before, CheckOut.time))
+10. Q[The, Stay.check_in_after, CheckIn.time](Stay.check_in_after == "2 pm" → Temporal(Stay.check_in_after, CheckIn.time))
+11. Q[The, Stay.check_in_before, CheckIn.time](Stay.check_in_before == "3 pm" → Temporal(Stay.check_in_before, CheckIn.time))
+12. Q[The, Stay.check_out_window, CheckOut.time](Stay.check_out_window == "before 1 pm" → Temporal(Stay.check_out_window, CheckOut.time))
+13. Q[The, Stay.check_in_window, CheckIn.time](Stay.check_in_window == "after 2 pm" → Temporal(Stay.check_in_window, CheckIn.time))
+14. Q[The, Stay.duration, Stay.maximum_time](Stay.duration == "from 2 pm until 1 pm the following day" → Temporal(Stay.duration, Stay.maximum_time))
+15. Q[The, CheckOut.time_limit, CheckOut.default_time](CheckOut.time_limit == "noon or 1 pm" → Temporal(CheckOut.time_limit, CheckOut.default_time))
+16. Q[The, Stay.check_out_timeframe, CheckOut.time](Stay.check_out_timeframe == "noon or 1 pm" → Temporal(Stay.check_out_timeframe, CheckOut.time))
+17. Q[The, Stay.check_in_timeframe, CheckIn.time](Stay.check_in_timeframe == "from 2 pm to 3 pm" → Temporal(Stay.check_in_timeframe, CheckIn.time))
+18. Q[The, Stay.valid_duration, Stay.maximum_time](Stay.valid_duration == "from 2 pm until 1 pm the following day" → Temporal(Stay.valid_duration, Stay.maximum_time))
+19. Q[The, CheckOut.time_range, CheckOut.default_time](CheckOut.time_range == "noon to 1 pm" → Temporal(CheckOut.time_range, CheckOut.default_time))
+20. Q[The, CheckIn.time_range, CheckIn.time](CheckIn.time_range == "from 2 pm to 3 pm" → Temporal(CheckIn.time_range, CheckIn.time))
+21. Q[The, Stay.check_out_after, CheckOut.time](Stay.check_out_after == "1 pm" → Temporal(Stay.check_out_after, CheckOut.time))
+22. Q[The, Stay.check_in_after, CheckIn.time](Stay.check_in_after == "2 pm" → Temporal(Stay.check_in_after, CheckIn.time))
+23. Q[The, Stay.check_out_time, Stay.extended_until](Stay.check_out_time == "1 pm" → Temporal(Stay.check_out_time, Stay.extended_until))
+24. Q[The, Stay.check_in_time, Stay.start_time](Stay.check_in_time == "2 pm" → Temporal(Stay.check_in_time, Stay.start_time))
+25. Q[The, Stay.check_out_window, Stay.check_out_time](Stay.check_out_window == "before 1 pm" → Temporal(Stay.check_out_window, Stay.check_out_time))
+26. Q[The, Stay.check_in_window, Stay.check_in_time](Stay.check_in_window == "after 2 pm" → Temporal(Stay.check_in_window, Stay.check_in_time))
+27. Q[The, Stay.check_out_timeframe, Stay.check_out_time](Stay.check_out_timeframe == "noon or 1 pm" → Temporal(Stay.check_out_timeframe, Stay.check_out_time))
+28. Q[The, Stay.check_in_timeframe, Stay.check_in_time](Stay.check_in_timeframe == "from 2 pm to 3 pm" → Temporal(Stay.check_in_timeframe, Stay.check_in_time))
+29. Q[The, Stay.duration, Stay.check_out_time](Stay.duration == "from 2 pm until 1 pm the following day" → Temporal(Stay.duration, Stay.check_out_time))
+30. Q[The, Stay.valid_duration, Stay.check_out_time](Stay.valid_duration == "from 2 pm until 1 pm the following day" → Temporal(Stay.valid_duration, Stay.check_out_time))

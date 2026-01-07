@@ -1,0 +1,34 @@
+Predicates:
+Lucy Snowe.age != 23
+Lucy Snowe.age < 28
+Lucy Snowe.age = 23
+Lucy Snowe.age > 18
+Lucy Snowe.label != "Character"
+Lucy Snowe.label = "Character"
+Lucy Snowe.location != "Villette"
+Lucy Snowe.location = "Villette"
+Lucy Snowe.name != "Lucy Snowe"
+Lucy Snowe.name = "Lucy Snowe"
+Miss Marchmont.label != "Character"
+Miss Marchmont.label = "Character"
+Miss Marchmont.name != "Miss Marchmont"
+Miss Marchmont.name != Lucy Snowe.name
+Miss Marchmont.name = "Miss Marchmont"
+Miss Marchmont.status != "rheumatic crippled woman"
+Miss Marchmont.status = "rheumatic crippled woman"
+Miss Marchmont___Lucy Snowe.doc_id = "3488771889_8"
+Miss Marchmont___Lucy Snowe.relationship = "Miss Marchmont shares her sad love story with Lucy and decides to treat her better."
+Miss Marchmont___Lucy Snowe.time = "30 years previously"
+None_ML(Miss Marchmont.attrs, Lucy Snowe.attrs)
+
+Rules:
+Q[Miss Marchmont,Miss Marchmont] (Miss Marchmont.label != "Character" ∧ Miss Marchmont.status = "rheumatic crippled woman" ∧ Lucy Snowe.age > 18 → Lucy Snowe.name != "Lucy Snowe")
+Q[Miss Marchmont,Miss Marchmont] (Miss Marchmont___Lucy Snowe.doc_id = "3488771889_8" ∧ Miss Marchmont.name != "Miss Marchmont" → Miss Marchmont.status != "rheumatic crippled woman")
+Q[Miss Marchmont,Miss Marchmont] (Lucy Snowe.location = "Villette" ∧ Lucy Snowe.label = "Character" ∧ Miss Marchmont.name != "Miss Marchmont" ∧ Miss Marchmont.status != "rheumatic crippled woman" ∧ Lucy Snowe.age = 23 → Lucy Snowe.location != "Villette")
+Q[Miss Marchmont,Miss Marchmont] (Miss Marchmont.label != "Character" ∧ Lucy Snowe.location = "Villette" ∧ Miss Marchmont.name != "Miss Marchmont" ∧ Lucy Snowe.age != 23 → Miss Marchmont___Lucy Snowe.relationship = "Miss Marchmont shares her sad love story with Lucy and decides to treat her better.")
+Q[Miss Marchmont,Miss Marchmont] (Miss Marchmont.status != "rheumatic crippled woman" ∧ Miss Marchmont___Lucy Snowe.relationship = "Miss Marchmont shares her sad love story with Lucy and decides to treat her better." ∧ None_ML(Miss Marchmont.attrs, Lucy Snowe.attrs) ∧ Lucy Snowe.age > 18 ∧ Miss Marchmont.name != "Miss Marchmont" ∧ Miss Marchmont.label = "Character" → Miss Marchmont___Lucy Snowe.doc_id = "3488771889_8")
+Q[Miss Marchmont,Miss Marchmont] (Lucy Snowe.location != "Villette" ∧ Lucy Snowe.age = 23 ∧ Miss Marchmont.label != "Character" ∧ Miss Marchmont___Lucy Snowe.relationship = "Miss Marchmont shares her sad love story with Lucy and decides to treat her better." ∧ Miss Marchmont.status = "rheumatic crippled woman" ∧ Miss Marchmont.name != Lucy Snowe.name → Miss Marchmont.name != "Miss Marchmont")
+Q[Miss Marchmont,Miss Marchmont] (Lucy Snowe.age < 28 ∧ Miss Marchmont___Lucy Snowe.time = "30 years previously" ∧ Lucy Snowe.age = 23 ∧ Lucy Snowe.name = "Lucy Snowe" → Lucy Snowe.age != 23)
+Q[Miss Marchmont,Miss Marchmont] (Lucy Snowe.name = "Lucy Snowe" ∧ Miss Marchmont.status != "rheumatic crippled woman" ∧ Lucy Snowe.age > 18 → Lucy Snowe.label = "Character")
+Q[Miss Marchmont,Miss Marchmont] (Miss Marchmont.name = "Miss Marchmont" ∧ Lucy Snowe.label != "Character" ∧ Miss Marchmont.status = "rheumatic crippled woman" ∧ Miss Marchmont___Lucy Snowe.time = "30 years previously" ∧ Lucy Snowe.name != "Lucy Snowe" → Miss Marchmont.label = "Character")
+Q[Miss Marchmont,Miss Marchmont] (Miss Marchmont.label != "Character" ∧ Lucy Snowe.name != "Lucy Snowe" → None_ML(Miss Marchmont.attrs, Lucy Snowe.attrs))

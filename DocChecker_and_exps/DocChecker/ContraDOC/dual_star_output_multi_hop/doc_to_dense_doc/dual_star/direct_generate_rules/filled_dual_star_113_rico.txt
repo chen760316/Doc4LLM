@@ -1,0 +1,45 @@
+Predicates:
+M. Paul.label != "Person"
+M. Paul.label = "Person"
+M. Paul.name != "M. Paul"
+M. Paul.name != Mme. Beck.name
+M. Paul.name != Père Silas.name
+M. Paul.name = "M. Paul"
+M. Paul.status != "long-dead fiancée"
+M. Paul.status = "long-dead fiancée"
+M. Paul___Mme. Beck.contradiction_type = "Content"
+M. Paul___Mme. Beck.reason = "to keep Lucy and M. Paul apart"
+M. Paul___Mme. Beck.relationship != M. Paul___Père Silas.relationship
+M. Paul___Mme. Beck.relationship = "Mme. Beck is part of the group that conspires against M. Paul."
+M. Paul___Mme. Beck.source_id = "3488771889_1"
+M. Paul___Père Silas.contradiction_type = "Content"
+M. Paul___Père Silas.reason = "to keep Lucy and M. Paul apart"
+M. Paul___Père Silas.relationship = "Père Silas is part of the group that conspires against M. Paul."
+M. Paul___Père Silas.source_id = "3488771889_1"
+Mme. Beck.label != "Person"
+Mme. Beck.label = "Person"
+Mme. Beck.name != "Mme. Beck"
+Mme. Beck.name != Père Silas.name
+Mme. Beck.name = "Mme. Beck"
+Mme. Beck.role != "antagonist"
+Mme. Beck.role = "antagonist"
+None_ML(M. Paul___Père Silas.attrs, M. Paul___Mme. Beck.attrs)
+None_ML(Père Silas.attrs, M. Paul.attrs)
+Père Silas.label != "Person"
+Père Silas.label = "Person"
+Père Silas.name != "Père Silas"
+Père Silas.name = "Père Silas"
+Père Silas.role != "antagonist"
+Père Silas.role = "antagonist"
+
+Rules:
+Q[M. Paul,M. Paul] (M. Paul.label != "Person" ∧ Père Silas.label != "Person" ∧ M. Paul___Père Silas.source_id = "3488771889_1" ∧ Père Silas.role != "antagonist" ∧ Mme. Beck.role != "antagonist" ∧ M. Paul___Père Silas.relationship = "Père Silas is part of the group that conspires against M. Paul." → M. Paul___Mme. Beck.contradiction_type = "Content")
+Q[M. Paul,M. Paul] (Père Silas.label = "Person" ∧ Mme. Beck.name = "Mme. Beck" ∧ M. Paul.name != Mme. Beck.name ∧ M. Paul___Mme. Beck.reason = "to keep Lucy and M. Paul apart" ∧ M. Paul___Père Silas.source_id = "3488771889_1" → M. Paul.name != "M. Paul")
+Q[M. Paul,M. Paul] (None_ML(M. Paul___Père Silas.attrs, M. Paul___Mme. Beck.attrs) ∧ Père Silas.role = "antagonist" → Mme. Beck.role = "antagonist")
+Q[M. Paul,M. Paul] (M. Paul___Mme. Beck.source_id = "3488771889_1" ∧ Père Silas.role != "antagonist" ∧ M. Paul.name != Père Silas.name ∧ M. Paul.name = "M. Paul" → Père Silas.label = "Person")
+Q[M. Paul,M. Paul] (None_ML(M. Paul___Père Silas.attrs, M. Paul___Mme. Beck.attrs) ∧ M. Paul.name != Père Silas.name ∧ M. Paul.name != Mme. Beck.name → M. Paul___Mme. Beck.reason = "to keep Lucy and M. Paul apart")
+Q[M. Paul,M. Paul] (Père Silas.label != "Person" ∧ M. Paul___Mme. Beck.relationship != M. Paul___Père Silas.relationship ∧ M. Paul___Mme. Beck.source_id = "3488771889_1" ∧ M. Paul.name != Mme. Beck.name ∧ M. Paul.name != Père Silas.name → Mme. Beck.name = "Mme. Beck")
+Q[M. Paul,M. Paul] (M. Paul___Père Silas.reason = "to keep Lucy and M. Paul apart" ∧ Mme. Beck.name != Père Silas.name ∧ M. Paul___Mme. Beck.relationship != M. Paul___Père Silas.relationship → None_ML(Père Silas.attrs, M. Paul.attrs))
+Q[M. Paul,M. Paul] (Mme. Beck.name = "Mme. Beck" ∧ M. Paul___Mme. Beck.reason = "to keep Lucy and M. Paul apart" → Père Silas.label != "Person")
+Q[M. Paul,M. Paul] (Père Silas.name != "Père Silas" ∧ M. Paul.name != "M. Paul" ∧ Mme. Beck.role != "antagonist" ∧ M. Paul___Mme. Beck.source_id = "3488771889_1" → M. Paul.status != "long-dead fiancée")
+Q[M. Paul,M. Paul] (M. Paul___Père Silas.source_id = "3488771889_1" ∧ M. Paul___Mme. Beck.reason = "to keep Lucy and M. Paul apart" ∧ M. Paul.status = "long-dead fiancée" ∧ Mme. Beck.name = "Mme. Beck" ∧ M. Paul___Mme. Beck.relationship != M. Paul___Père Silas.relationship ∧ Mme. Beck.role = "antagonist" → None_ML(M. Paul___Père Silas.attrs, M. Paul___Mme. Beck.attrs))

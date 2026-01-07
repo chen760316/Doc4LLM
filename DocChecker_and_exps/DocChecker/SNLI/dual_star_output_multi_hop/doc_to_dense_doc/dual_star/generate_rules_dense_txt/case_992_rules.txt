@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 992)
+S1: The soccer player in blue is trying to score a goal.
+S2: The soccer player in blue is trying to control the ball while the player in red tries to defend.
+
+Predicates:
+1. SoccerPlayer.blue.action
+2. SoccerPlayer.red.action
+3. SoccerPlayer.blue.intent
+4. SoccerPlayer.red.intent
+5. SoccerPlayer.blue.position
+6. SoccerPlayer.red.position
+7. SoccerPlayer.blue.skill
+8. SoccerPlayer.red.skill
+9. Goal.attempted
+10. Goal.scored
+11. Ball.controlled
+12. Ball.position
+13. Defense.strategy
+14. Defense.success
+15. M_NLI(S1, S2)
+16. Causal(SoccerPlayer.blue.action, Goal.attempted)
+17. Causal(SoccerPlayer.red.action, Defense.strategy)
+18. violate(SoccerPlayer.blue.intent, SoccerPlayer.red.intent)
+19. SoccerPlayer.blue.team
+20. SoccerPlayer.red.team
+21. Game.state
+22. Game.time
+23. Field.dimension
+24. Referee.decision
+25. Crowd.reaction
+26. Scoreboard.update
+27. Match.duration
+28. Player.foul
+29. Player.injury
+30. Coach.strategy
+
+Rules:
+1. Q[The, SoccerPlayer.blue.action, Goal.attempted](SoccerPlayer.blue.action == "trying to score" → Causal(SoccerPlayer.blue.action, Goal.attempted))
+2. Q[The, SoccerPlayer.red.action, Defense.strategy](SoccerPlayer.red.action == "defending" → Causal(SoccerPlayer.red.action, Defense.strategy))
+3. Q[The, SoccerPlayer.blue.intent, Goal.attempted](SoccerPlayer.blue.intent == "score" → Causal(SoccerPlayer.blue.intent, Goal.attempted))
+4. Q[The, SoccerPlayer.red.intent, Defense.strategy](SoccerPlayer.red.intent == "prevent scoring" → Causal(SoccerPlayer.red.intent, Defense.strategy))
+5. Q[The, SoccerPlayer.blue.position, Goal.attempted](SoccerPlayer.blue.position == "near goal" → Causal(SoccerPlayer.blue.position, Goal.attempted))
+6. Q[The, SoccerPlayer.red.position, Defense.strategy](SoccerPlayer.red.position == "between player and goal" → Causal(SoccerPlayer.red.position, Defense.strategy))
+7. Q[The, SoccerPlayer.blue.skill, Goal.attempted](SoccerPlayer.blue.skill == "high" → Causal(SoccerPlayer.blue.skill, Goal.attempted))
+8. Q[The, SoccerPlayer.red.skill, Defense.success](SoccerPlayer.red.skill == "high" → Causal(SoccerPlayer.red.skill, Defense.success))
+9. Q[The, Ball.controlled, Goal.attempted](Ball.controlled == "yes" → Causal(Ball.controlled, Goal.attempted))
+10. Q[The, Ball.position, Defense.strategy](Ball.position == "in control of blue" → Causal(Ball.position, Defense.strategy))
+11. Q[The, Defense.success, Goal.scored](Defense.success == "yes" → Causal(Defense.success, Goal.scored))
+12. Q[The, SoccerPlayer.blue.action, SoccerPlayer.red.action](SoccerPlayer.blue.action == "trying to score" ∧ SoccerPlayer.red.action == "defending" → Causal(SoccerPlayer.blue.action, SoccerPlayer.red.action))
+13. Q[The, SoccerPlayer.blue.intent, SoccerPlayer.red.intent](SoccerPlayer.blue.intent == "score" ∧ SoccerPlayer.red.intent == "defend" → Causal(SoccerPlayer.blue.intent, SoccerPlayer.red.intent))
+14. Q[The, Game.state, Goal.attempted](Game.state == "active" → Causal(Game.state, Goal.attempted))
+15. Q[The, Game.time, Goal.attempted](Game.time == "during play" → Causal(Game.time, Goal.attempted))
+16. Q[The, Referee.decision, Goal.scored](Referee.decision == "valid goal" → Causal(Referee.decision, Goal.scored))
+17. Q[The, Crowd.reaction, Goal.scored](Crowd.reaction == "cheering" → Causal(Crowd.reaction, Goal.scored))
+18. Q[The, Scoreboard.update, Goal.scored](Scoreboard.update == "increase" → Causal(Scoreboard.update, Goal.scored))
+19. Q[The, Match.duration, Goal.attempted](Match.duration == "ongoing" → Causal(Match.duration, Goal.attempted))
+20. Q[The, Player.foul, Defense.strategy](Player.foul == "none" → Causal(Player.foul, Defense.strategy))
+21. Q[The, Player.injury, Defense.success](Player.injury == "none" → Causal(Player.injury, Defense.success))
+22. Q[The, Coach.strategy, Goal.attempted](Coach.strategy == "offensive" → Causal(Coach.strategy, Goal.attempted))
+23. Q[The, SoccerPlayer.blue.action, SoccerPlayer.red.intent](SoccerPlayer.blue.action == "attempting to score" ∧ SoccerPlayer.red.intent == "defend" → Causal(SoccerPlayer.blue.action, SoccerPlayer.red.intent))
+24. Q[The, SoccerPlayer.red.action, SoccerPlayer.blue.intent](SoccerPlayer.red.action == "defending" ∧ SoccerPlayer.blue.intent == "score" → Causal(SoccerPlayer.red.action, SoccerPlayer.blue.intent))
+25. Q[The, SoccerPlayer.blue.skill, SoccerPlayer.red.skill](SoccerPlayer.blue.skill == "high" ∧ SoccerPlayer.red.skill == "low" → Causal(SoccerPlayer.blue.skill, SoccerPlayer.red.skill))
+26. Q[The, Ball.position, SoccerPlayer.blue.action](Ball.position == "near blue" → Causal(Ball.position, SoccerPlayer.blue.action))
+27. Q[The, SoccerPlayer.red.position, SoccerPlayer.blue.action](SoccerPlayer.red.position == "blocking" → Causal(SoccerPlayer.red.position, SoccerPlayer.blue.action))
+28. Q[The, Defense.strategy, Goal.scored](Defense.strategy == "effective" → Causal(Defense.strategy, Goal.scored))
+29. Q[The, SoccerPlayer.blue.intent, Goal.scored](SoccerPlayer.blue.intent == "score" ∧ Defense.success == "no" → Causal(SoccerPlayer.blue.intent, Goal.scored))
+30. Q[The, SoccerPlayer.red.intent, Goal.attempted](SoccerPlayer.red.intent == "defend" ∧ SoccerPlayer.blue.action == "scoring" → Causal(SoccerPlayer.red.intent, Goal.attempted))

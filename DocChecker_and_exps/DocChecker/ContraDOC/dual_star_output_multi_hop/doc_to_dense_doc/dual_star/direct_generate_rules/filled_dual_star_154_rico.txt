@@ -1,0 +1,46 @@
+Predicates:
+None_ML(the lady.attrs, the princess.attrs)
+None_ML(the princess___the tiger.attrs, the princess___the lady.attrs)
+the lady.label != "Character"
+the lady.label = "Character"
+the lady.name != "the lady"
+the lady.name != the tiger.name
+the lady.name = "the lady"
+the lady.status != "behind a door"
+the lady.status = "behind a door"
+the princess.action != "indicates door"
+the princess.action = "indicates door"
+the princess.label != "Character"
+the princess.label = "Character"
+the princess.name != "the princess"
+the princess.name != the lady.name
+the princess.name != the tiger.name
+the princess.name = "the princess"
+the princess.role != "discreet"
+the princess.role = "discreet"
+the princess___the lady.contradiction_type = "Causal"
+the princess___the lady.relationship != the princess___the tiger.relationship
+the princess___the lady.relationship = "The princess used her influence to learn the position of the lady."
+the princess___the lady.source_id = "3488771907_2"
+the princess___the tiger.contradiction_type = "Causal"
+the princess___the tiger.direction = "right"
+the princess___the tiger.relationship = "The princess discreetly indicates the door on the right to the man."
+the princess___the tiger.source_id = "3488771907_2"
+the tiger.label != "Character"
+the tiger.label = "Character"
+the tiger.name != "the tiger"
+the tiger.name = "the tiger"
+the tiger.status != "behind a door"
+the tiger.status = "behind a door"
+
+Rules:
+Q[the princess,the princess] (the tiger.name != "the tiger" ∧ None_ML(the lady.attrs, the princess.attrs) → the tiger.label = "Character")
+Q[the princess,the princess] (None_ML(the lady.attrs, the princess.attrs) ∧ the princess.name != "the princess" ∧ the lady.label != "Character" ∧ the lady.status = "behind a door" ∧ the princess___the lady.source_id = "3488771907_2" ∧ the princess.action != "indicates door" → the princess___the tiger.relationship = "The princess discreetly indicates the door on the right to the man.")
+Q[the princess,the princess] (the princess.role != "discreet" ∧ the princess___the tiger.direction = "right" ∧ None_ML(the princess___the tiger.attrs, the princess___the lady.attrs) → the princess.name != the tiger.name)
+Q[the princess,the princess] (the lady.status != "behind a door" ∧ the tiger.label = "Character" ∧ the princess___the tiger.relationship = "The princess discreetly indicates the door on the right to the man." ∧ None_ML(the lady.attrs, the princess.attrs) → the lady.label != "Character")
+Q[the princess,the princess] (the lady.name != "the lady" ∧ the princess___the tiger.contradiction_type = "Causal" ∧ the princess.role != "discreet" ∧ the tiger.name = "the tiger" ∧ the princess.label != "Character" → the princess.action != "indicates door")
+Q[the princess,the princess] (the princess.name != the lady.name ∧ the princess___the tiger.source_id = "3488771907_2" ∧ the princess.action != "indicates door" ∧ the princess.role = "discreet" → None_ML(the princess___the tiger.attrs, the princess___the lady.attrs))
+Q[the princess,the princess] (the princess.name != "the princess" ∧ the tiger.name != "the tiger" ∧ the princess.name != the tiger.name ∧ the princess___the lady.relationship != the princess___the tiger.relationship ∧ the tiger.label != "Character" ∧ the lady.name != the tiger.name → the lady.name = "the lady")
+Q[the princess,the princess] (the princess___the tiger.contradiction_type = "Causal" ∧ the lady.label != "Character" → the lady.name != "the lady")
+Q[the princess,the princess] (the lady.name != the tiger.name ∧ the tiger.label = "Character" ∧ None_ML(the princess___the tiger.attrs, the princess___the lady.attrs) ∧ the princess.action = "indicates door" ∧ the princess.name != the lady.name → the princess.label != "Character")
+Q[the princess,the princess] (the princess.label = "Character" ∧ the tiger.status != "behind a door" ∧ the princess___the tiger.source_id = "3488771907_2" → None_ML(the lady.attrs, the princess.attrs))

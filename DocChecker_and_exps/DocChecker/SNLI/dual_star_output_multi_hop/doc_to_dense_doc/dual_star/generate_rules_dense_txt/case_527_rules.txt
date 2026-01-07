@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 527)
+S1: A person sits in front of clay.
+S2: A person lays in front of clay.
+
+Predicates:
+1. Person.position
+2. Clay.location
+3. Person.sitting
+4. Person.laying
+5. Position.difference
+6. Sitting.and.laying
+7. Person.in_front_of.clay
+8. Clay.is.in_front_of.Person
+9. Person.cannot.be.sitting.and.laying
+10. Sitting.is.a.position
+11. Laying.is.a.position
+12. Person.is.in.a.position
+13. Position.is.occupied
+14. Person.occupies.position
+15. Clay.is.occupied.by.Person
+16. Relationship.sitting.laying
+17. Position.conflict
+18. Person.has.position
+19. Position.is.not.shared
+20. Person.is.not.both
+21. Sitting.is.not.laying
+22. Laying.is.not.sitting
+23. Person.is.in.front.of
+24. Clay.is.in.front.of.Person
+25. Position.is.defined
+26. Person.has.different.positions
+27. Sitting.and.laying.are.different
+28. Person.cannot.occupy.two.positions
+29. Position.is.either.sitting.or.laying
+30. Person.is.either.sitting.or.laying
+
+Rules:
+1. Q[person, Person.position, Sitting](Person.sitting == true → Causal(Person, Sitting))
+2. Q[person, Person.position, Laying](Person.laying == true → Causal(Person, Laying))
+3. Q[person, Person.position, Position.difference](Person.sitting == true ∧ Person.laying == true → Causal(Person, Position.difference))
+4. Q[person, Person.position, Sitting.and.laying](Person.sitting == true ∧ Person.laying == true → Causal(Person, Sitting.and.laying))
+5. Q[person, Person.position, Person.cannot.be.sitting.and.laying](Person.sitting == true ∧ Person.laying == true → Causal(Person, Person.cannot.be.sitting.and.laying))
+6. Q[person, Person.position, Position.conflict](Person.sitting == true ∧ Person.laying == true → Causal(Person, Position.conflict))
+7. Q[person, Person.position, Person.is.not.both](Person.sitting == true ∧ Person.laying == true → Causal(Person, Person.is.not.both))
+8. Q[person, Person.position, Sitting.is.not.laying](Person.sitting == true → Causal(Person, Sitting.is.not.laying))
+9. Q[person, Person.position, Laying.is.not.sitting](Person.laying == true → Causal(Person, Laying.is.not.sitting))
+10. Q[person, Person.position, Person.has.different.positions](Person.sitting == true ∧ Person.laying == true → Causal(Person, Person.has.different.positions))
+11. Q[person, Person.position, Person.cannot.occupy.two.positions](Person.sitting == true ∧ Person.laying == true → Causal(Person, Person.cannot.occupy.two.positions))
+12. Q[person, Person.position, Position.is.not.shared](Person.sitting == true ∧ Person.laying == true → Causal(Person, Position.is.not.shared))
+13. Q[person, Person.position, Position.is.defined](Person.sitting == true ∧ Person.laying == true → Causal(Person, Position.is.defined))
+14. Q[person, Person.position, Person.is.either.sitting.or.laying](Person.sitting == true ∨ Person.laying == true → Causal(Person, Person.is.either.sitting.or.laying))
+15. Q[person, Person.position, Person.has.position](Person.sitting == true → Causal(Person, Person.has.position))
+16. Q[person, Person.position, Person.occupies.position](Person.sitting == true → Causal(Person, Person.occupies.position))
+17. Q[person, Person.position, Clay.is.occupied.by.Person](Person.sitting == true → Causal(Person, Clay.is.occupied.by.Person))
+18. Q[person, Person.position, Clay.is.in.front.of.Person](Person.in.front.of.clay == true → Causal(Person, Clay.is.in.front.of.Person))
+19. Q[person, Person.position, Person.is.in.front.of](Person.in.front.of.clay == true → Causal(Person, Person.is.in.front.of))
+20. Q[person, Person.position, Position.is.occupied](Person.sitting == true → Causal(Person, Position.is.occupied))
+21. Q[person, Person.position, Sitting.is.a.position](Person.sitting == true → Causal(Person, Sitting.is.a.position))
+22. Q[person, Person.position, Laying.is.a.position](Person.laying == true → Causal(Person, Laying.is.a.position))
+23. Q[person, Person.position, Person.is.in.a.position](Person.sitting == true → Causal(Person, Person.is.in.a.position))
+24. Q[person, Person.position, Relationship.sitting.laying](Person.sitting == true ∧ Person.laying == true → Causal(Person, Relationship.sitting.laying))
+25. Q[person, Person.position, Position.is.either.sitting.or.laying](Person.sitting == true ∨ Person.laying == true → Causal(Person, Position.is.either.sitting.or.laying))
+26. Q[person, Person.position, Person.has.position](Person.laying == true → Causal(Person, Person.has.position))
+27. Q[person, Person.position, Person.occupies.position](Person.laying == true → Causal(Person, Person.occupies.position))
+28. Q[person, Person.position, Clay.is.occupied.by.Person](Person.laying == true → Causal(Person, Clay.is.occupied.by.Person))
+29. Q[person, Person.position, Position.difference](Person.sitting == true ∧ Person.laying == true → Causal(Person, Position.difference))
+30. Q[person, Person.position, Person.has.different.positions](Person.sitting == true ∧ Person.laying == true → Causal(Person, Person.has.different.positions))

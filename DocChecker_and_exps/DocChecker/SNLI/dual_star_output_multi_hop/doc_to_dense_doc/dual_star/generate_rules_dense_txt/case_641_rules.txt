@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 641)
+S1: A m a n i n a n a r g y l e s w e a t e r a n d j e a n s i s s t a n d i n g i n t h e c i t y .
+S2: T h e m a n i n a s w e a t e r a n d j e a n s i s s t a n d i n g i n t h e c i t y .
+
+Predicates:
+1. Man.in_argyle_sweater
+2. Man.in_jeans
+3. Man.standing_in_city
+4. Man.in_sweater
+5. Man.in_jeans
+6. City.contains_man
+7. Argyle_sweater.is_worn_by_man
+8. Jeans.is_worn_by_man
+9. Sweater.is_worn_by_man
+10. Man.is_specific
+11. Man.is_general
+12. Argyle_pattern.is_specific
+13. Sweater.has_pattern
+14. Jeans.has_type
+15. Standing.is_action
+16. City.is_location
+17. Man.is_in_city
+18. Argyle_sweater.is_type_of_sweater
+19. Sweater.is_type_of_clothing
+20. Jeans.is_type_of_clothing
+21. Man.is_described_by_sweater
+22. Man.is_described_by_jeans
+23. Argyle_sweater.is_not_in_second_sentence
+24. Sweater.is_not_argyle
+25. Negation(argyle_sweater, sweater)
+26. Violate(argyle_sweater, sweater)
+27. M_NLI(S1, S2)
+28. Man.is_unique_in_context
+29. City.contains_specific_man
+30. Man.is_in_specific_location
+
+Rules:
+1. Q[Man.in_argyle_sweater, x0, y0](Man.in_argyle_sweater == true ∧ Man.in_sweater == true → Negation(x0, y0))
+2. Q[Man.in_jeans, x0, y0](Man.in_jeans == true ∧ Man.in_sweater == true → Negation(x0, y0))
+3. Q[Man.standing_in_city, x0, y0](Man.standing_in_city == true ∧ Man.is_in_city == true → Negation(x0, y0))
+4. Q[Man.in_sweater, x0, y0](Man.in_sweater == true ∧ Argyle_sweater.is_not_in_second_sentence == true → Negation(x0, y0))
+5. Q[Man.is_specific, x0, y0](Man.is_specific == true ∧ Man.is_general == false → Negation(x0, y0))
+6. Q[Argyle_pattern.is_specific, x0, y0](Argyle_pattern.is_specific == true ∧ Sweater.has_pattern == "argyle" → Negation(x0, y0))
+7. Q[Sweater.has_pattern, x0, y0](Sweater.has_pattern == "argyle" ∧ Sweater.is_not_argyle == true → Negation(x0, y0))
+8. Q[City.contains_man, x0, y0](City.contains_man == true ∧ Man.is_in_specific_location == true → Negation(x0, y0))
+9. Q[Man.is_described_by_sweater, x0, y0](Man.is_described_by_sweater == true ∧ Argyle_sweater.is_not_in_second_sentence == true → Negation(x0, y0))
+10. Q[Man.is_unique_in_context, x0, y0](Man.is_unique_in_context == true ∧ Man.is_general == false → Negation(x0, y0))
+11. Q[City.contains_specific_man, x0, y0](City.contains_specific_man == true ∧ Man.is_in_city == true → Negation(x0, y0))
+12. Q[Man.is_in_city, x0, y0](Man.is_in_city == true ∧ Man.standing_in_city == true → Negation(x0, y0))
+13. Q[Argyle_sweater.is_worn_by_man, x0, y0](Argyle_sweater.is_worn_by_man == true ∧ Sweater.is_not_argyle == true → Negation(x0, y0))
+14. Q[Jeans.is_worn_by_man, x0, y0](Jeans.is_worn_by_man == true ∧ Man.in_jeans == true → Negation(x0, y0))
+15. Q[Sweater.is_type_of_clothing, x0, y0](Sweater.is_type_of_clothing == true ∧ Argyle_sweater.is_type_of_sweater == true → Negation(x0, y0))
+16. Q[Jeans.is_type_of_clothing, x0, y0](Jeans.is_type_of_clothing == true ∧ Man.in_jeans == true → Negation(x0, y0))
+17. Q[Standing.is_action, x0, y0](Standing.is_action == true ∧ Man.standing_in_city == true → Negation(x0, y0))
+18. Q[City.is_location, x0, y0](City.is_location == true ∧ Man.is_in_city == true → Negation(x0, y0))
+19. Q[Man.is_described_by_jeans, x0, y0](Man.is_described_by_jeans == true ∧ Man.in_jeans == true → Negation(x0, y0))
+20. Q[Negation(argyle_sweater, sweater), x0, y0](Negation(argyle_sweater, sweater) == true ∧ Sweater.has_pattern == "argyle" → Negation(x0, y0))
+21. Q[Violate(argyle_sweater, sweater), x0, y0](Violate(argyle_sweater, sweater) == true ∧ Sweater.is_not_argyle == true → Negation(x0, y0))
+22. Q[Man.in_argyle_sweater, x0, y0](Man.in_argyle_sweater == true ∧ Man.is_described_by_sweater == true → Negation(x0, y0))
+23. Q[Man.in_sweater, x0, y0](Man.in_sweater == true ∧ Argyle_sweater.is_worn_by_man == true → Negation(x0, y0))
+24. Q[Man.is_in_specific_location, x0, y0](Man.is_in_specific_location == true ∧ City.contains_specific_man == true → Negation(x0, y0))
+25. Q[Man.is_general, x0, y0](Man.is_general == true ∧ Man.is_specific == false → Negation(x0, y0))
+26. Q[Argyle_sweater.is_not_in_second_sentence, x0, y0](Argyle_sweater.is_not_in_second_sentence == true ∧ Man.in_sweater == true → Negation(x0, y0))
+27. Q[Sweater.is_not_argyle, x0, y0](Sweater.is_not_argyle == true ∧ Argyle_sweater.is_worn_by_man == true → Negation(x0, y0))
+28. Q[Man.is_in_city, x0, y0](Man.is_in_city == true ∧ City.contains_man == true → Negation(x0, y0))
+29. Q[Man.standing_in_city, x0, y0](Man.standing_in_city == true ∧ Man.is_in_city == true → Negation(x0, y0))
+30. Q[City.contains_man, x0, y0](City.contains_man == true ∧ Man.is_unique_in_context == true → Negation(x0, y0))

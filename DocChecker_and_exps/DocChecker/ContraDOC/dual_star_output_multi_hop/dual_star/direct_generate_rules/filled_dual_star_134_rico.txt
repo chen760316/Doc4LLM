@@ -1,0 +1,36 @@
+Predicates:
+Jesus.label != "Person"
+Jesus.label = "Person"
+Jesus.name != "Jesus"
+Jesus.name = "Jesus"
+Jesus.nationality != "Jewish"
+Jesus.nationality = "Jewish"
+Jesus.occupation != "religious leader"
+Jesus.occupation = "religious leader"
+Joseph of Arimathea.label != "Person"
+Joseph of Arimathea.label = "Person"
+Joseph of Arimathea.name != "Joseph of Arimathea"
+Joseph of Arimathea.name != Jesus.name
+Joseph of Arimathea.name = "Joseph of Arimathea"
+Joseph of Arimathea.relationship != "Follower"
+Joseph of Arimathea.relationship = "Follower"
+Joseph of Arimathea.status != "Wealthy supporter"
+Joseph of Arimathea.status = "Wealthy supporter"
+Joseph of Arimathea___Jesus.context = "Burial"
+Joseph of Arimathea___Jesus.doc_id = "3489738297_5"
+Joseph of Arimathea___Jesus.event = "Crucifixion"
+Joseph of Arimathea___Jesus.method = "Anointing body"
+Joseph of Arimathea___Jesus.relationship = "Joseph removed Jesus from the cross and anointed his body."
+None_ML(Joseph of Arimathea.attrs, Jesus.attrs)
+
+Rules:
+Q[Joseph of Arimathea,Joseph of Arimathea] (None_ML(Joseph of Arimathea.attrs, Jesus.attrs) ∧ Joseph of Arimathea.relationship = "Follower" ∧ Jesus.nationality = "Jewish" ∧ Joseph of Arimathea.name = "Joseph of Arimathea" → Jesus.occupation != "religious leader")
+Q[Joseph of Arimathea,Joseph of Arimathea] (Joseph of Arimathea.label != "Person" ∧ Joseph of Arimathea.status = "Wealthy supporter" ∧ Joseph of Arimathea.relationship != "Follower" ∧ None_ML(Joseph of Arimathea.attrs, Jesus.attrs) ∧ Jesus.nationality = "Jewish" ∧ Joseph of Arimathea___Jesus.context = "Burial" → Joseph of Arimathea___Jesus.doc_id = "3489738297_5")
+Q[Joseph of Arimathea,Joseph of Arimathea] (Joseph of Arimathea___Jesus.context = "Burial" ∧ Joseph of Arimathea.status != "Wealthy supporter" → Joseph of Arimathea.name != Jesus.name)
+Q[Joseph of Arimathea,Joseph of Arimathea] (Joseph of Arimathea.name != "Joseph of Arimathea" ∧ Joseph of Arimathea.status = "Wealthy supporter" ∧ Joseph of Arimathea.relationship != "Follower" ∧ Joseph of Arimathea.label != "Person" ∧ Joseph of Arimathea.name = "Joseph of Arimathea" → Joseph of Arimathea___Jesus.context = "Burial")
+Q[Joseph of Arimathea,Joseph of Arimathea] (Jesus.name != "Jesus" ∧ Joseph of Arimathea___Jesus.context = "Burial" ∧ Joseph of Arimathea.relationship != "Follower" → Joseph of Arimathea___Jesus.method = "Anointing body")
+Q[Joseph of Arimathea,Joseph of Arimathea] (Joseph of Arimathea.status = "Wealthy supporter" ∧ Joseph of Arimathea___Jesus.doc_id = "3489738297_5" ∧ Joseph of Arimathea___Jesus.relationship = "Joseph removed Jesus from the cross and anointed his body." ∧ None_ML(Joseph of Arimathea.attrs, Jesus.attrs) → Joseph of Arimathea.label = "Person")
+Q[Joseph of Arimathea,Joseph of Arimathea] (Joseph of Arimathea.status = "Wealthy supporter" ∧ Jesus.label = "Person" → Joseph of Arimathea___Jesus.event = "Crucifixion")
+Q[Joseph of Arimathea,Joseph of Arimathea] (Joseph of Arimathea.status = "Wealthy supporter" ∧ Joseph of Arimathea___Jesus.context = "Burial" ∧ Joseph of Arimathea.relationship != "Follower" ∧ Joseph of Arimathea.label = "Person" ∧ Jesus.nationality != "Jewish" ∧ Jesus.label = "Person" → Joseph of Arimathea.relationship = "Follower")
+Q[Joseph of Arimathea,Joseph of Arimathea] (Jesus.occupation = "religious leader" ∧ Joseph of Arimathea.status = "Wealthy supporter" ∧ Joseph of Arimathea___Jesus.event = "Crucifixion" → None_ML(Joseph of Arimathea.attrs, Jesus.attrs))
+Q[Joseph of Arimathea,Joseph of Arimathea] (Jesus.occupation != "religious leader" ∧ Joseph of Arimathea.name != Jesus.name ∧ Jesus.nationality != "Jewish" ∧ Jesus.name = "Jesus" ∧ Joseph of Arimathea.label != "Person" → Jesus.nationality = "Jewish")

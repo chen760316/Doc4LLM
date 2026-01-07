@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 261)
+S1: To serve as president of the United States, one must be a natural-born citizen of the United States.
+S2: To serve as president of the United States, one can be a naturalized citizen or even a citizen of another country.
+
+Predicates:
+1. President_US.natural_born_citizen
+2. President_US.naturalized_citizen
+3. President_US.citizen_of_another_country
+4. serve_as_president.natural_born_citizen
+5. serve_as_president.naturalized_citizen
+6. serve_as_president.citizen_of_another_country
+7. M_NLI(S1, S2)
+8. Factual(natural_born_citizen, serve_as_president)
+9. Factual(naturalized_citizen, serve_as_president)
+10. Factual(citizen_of_another_country, serve_as_president)
+11. violate(naturalized_citizen, serve_as_president)
+12. violate(citizen_of_another_country, serve_as_president)
+13. relationship_natural_born_citizen.serve_as_president
+14. relationship_naturalized_citizen.serve_as_president
+15. relationship_citizen_of_another_country.serve_as_president
+16. President_US.eligibility_requirements
+17. eligibility_requirements.natural_born_citizen
+18. eligibility_requirements.naturalized_citizen
+19. eligibility_requirements.citizen_of_another_country
+20. M_NLI(serve_as_president.natural_born_citizen, serve_as_president.naturalized_citizen)
+21. Factual(serve_as_president.natural_born_citizen, eligibility_requirements)
+22. Factual(serve_as_president.naturalized_citizen, eligibility_requirements)
+23. Factual(serve_as_president.citizen_of_another_country, eligibility_requirements)
+24. violate(serve_as_president.naturalized_citizen, eligibility_requirements)
+25. violate(serve_as_president.citizen_of_another_country, eligibility_requirements)
+26. relationship_eligibility_requirements.natural_born_citizen
+27. relationship_eligibility_requirements.naturalized_citizen
+28. relationship_eligibility_requirements.citizen_of_another_country
+29. President_US.qualification_criteria
+30. qualification_criteria.natural_born_citizen
+
+Rules:
+1. Q[serve, x0, y0](President_US.natural_born_citizen == true → Factual(natural_born_citizen, serve_as_president))
+2. Q[serve, x0, y0](President_US.naturalized_citizen == true → Factual(naturalized_citizen, serve_as_president))
+3. Q[serve, x0, y0](President_US.citizen_of_another_country == true → Factual(citizen_of_another_country, serve_as_president))
+4. Q[serve, x0, y0](serve_as_president.natural_born_citizen == true → Factual(serve_as_president.natural_born_citizen, eligibility_requirements))
+5. Q[serve, x0, y0](serve_as_president.naturalized_citizen == true → Factual(serve_as_president.naturalized_citizen, eligibility_requirements))
+6. Q[serve, x0, y0](serve_as_president.citizen_of_another_country == true → Factual(serve_as_president.citizen_of_another_country, eligibility_requirements))
+7. Q[serve, x0, y0](eligibility_requirements.natural_born_citizen == true → violate(naturalized_citizen, serve_as_president))
+8. Q[serve, x0, y0](eligibility_requirements.natural_born_citizen == true → violate(citizen_of_another_country, serve_as_president))
+9. Q[serve, x0, y0](M_NLI(S1, S2) == true → Factual(natural_born_citizen, serve_as_president))
+10. Q[serve, x0, y0](M_NLI(serve_as_president.natural_born_citizen, serve_as_president.naturalized_citizen) == true → violate(naturalized_citizen, serve_as_president))
+11. Q[serve, x0, y0](M_NLI(serve_as_president.natural_born_citizen, serve_as_president.citizen_of_another_country) == true → violate(citizen_of_another_country, serve_as_president))
+12. Q[serve, x0, y0](relationship_natural_born_citizen.serve_as_president == true → Factual(natural_born_citizen, serve_as_president))
+13. Q[serve, x0, y0](relationship_naturalized_citizen.serve_as_president == true → violate(naturalized_citizen, serve_as_president))
+14. Q[serve, x0, y0](relationship_citizen_of_another_country.serve_as_president == true → violate(citizen_of_another_country, serve_as_president))
+15. Q[serve, x0, y0](eligibility_requirements.naturalized_citizen == true → Factual(naturalized_citizen, serve_as_president))
+16. Q[serve, x0, y0](eligibility_requirements.citizen_of_another_country == true → Factual(citizen_of_another_country, serve_as_president))
+17. Q[serve, x0, y0](President_US.qualification_criteria == true → Factual(natural_born_citizen, serve_as_president))
+18. Q[serve, x0, y0](qualification_criteria.natural_born_citizen == true → Factual(natural_born_citizen, serve_as_president))
+19. Q[serve, x0, y0](qualification_criteria.naturalized_citizen == true → violate(naturalized_citizen, serve_as_president))
+20. Q[serve, x0, y0](qualification_criteria.citizen_of_another_country == true → violate(citizen_of_another_country, serve_as_president))
+21. Q[serve, x0, y0](Factual(serve_as_president.natural_born_citizen, eligibility_requirements) == true → Factual(natural_born_citizen, serve_as_president))
+22. Q[serve, x0, y0](Factual(serve_as_president.naturalized_citizen, eligibility_requirements) == true → violate(naturalized_citizen, serve_as_president))
+23. Q[serve, x0, y0](Factual(serve_as_president.citizen_of_another_country, eligibility_requirements) == true → violate(citizen_of_another_country, serve_as_president))
+24. Q[serve, x0, y0](relationship_eligibility_requirements.natural_born_citizen == true → Factual(natural_born_citizen, serve_as_president))
+25. Q[serve, x0, y0](relationship_eligibility_requirements.naturalized_citizen == true → violate(naturalized_citizen, serve_as_president))
+26. Q[serve, x0, y0](relationship_eligibility_requirements.citizen_of_another_country == true → violate(citizen_of_another_country, serve_as_president))
+27. Q[serve, x0, y0](Factual(natural_born_citizen, serve_as_president) == true → violate(naturalized_citizen, serve_as_president))
+28. Q[serve, x0, y0](Factual(natural_born_citizen, serve_as_president) == true → violate(citizen_of_another_country, serve_as_president))
+29. Q[serve, x0, y0](Factual(naturalized_citizen, serve_as_president) == true → violate(natural_born_citizen, serve_as_president))
+30. Q[serve, x0, y0](Factual(citizen_of_another_country, serve_as_president) == true → violate(natural_born_citizen, serve_as_president))

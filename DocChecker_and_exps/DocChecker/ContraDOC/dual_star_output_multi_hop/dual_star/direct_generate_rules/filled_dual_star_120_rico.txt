@@ -1,0 +1,57 @@
+Predicates:
+James Yates.label != "Person"
+James Yates.label != Tomhannock, New York.label
+James Yates.label = "Person"
+James Yates.name != "James Yates"
+James Yates.name != Tomhannock, New York.name
+James Yates.name != Wieland.name
+James Yates.name = "James Yates"
+James Yates.relationship != "murderer"
+James Yates.relationship != Wieland.relationship
+James Yates.relationship = "murderer"
+James Yates.status != "deceased"
+James Yates.status = "deceased"
+James Yates___Tomhannock, New York.doc_id != James Yates___Wieland.doc_id
+James Yates___Tomhannock, New York.doc_id = "3488771875_7"
+James Yates___Tomhannock, New York.relationship != James Yates___Wieland.relationship
+James Yates___Tomhannock, New York.relationship = "James Yates committed murders influenced by a religious delusion."
+James Yates___Tomhannock, New York.year != 1781
+James Yates___Tomhannock, New York.year = 1781
+James Yates___Wieland.doc_id = "3488771875_3"
+James Yates___Wieland.motive = "religious delusion"
+James Yates___Wieland.outcome = "killed family"
+James Yates___Wieland.relationship = "James Yates' actions mirror those of Wieland."
+None_ML(James Yates___Tomhannock, New York.attrs, James Yates___Wieland.attrs)
+None_ML(Wieland.attrs, Tomhannock, New York.attrs)
+Tomhannock, New York.label != "Location"
+Tomhannock, New York.label != Wieland.label
+Tomhannock, New York.label = "Location"
+Tomhannock, New York.name != "Tomhannock, New York"
+Tomhannock, New York.name != Wieland.name
+Tomhannock, New York.name = "Tomhannock, New York"
+Tomhannock, New York.type != "hamlet"
+Tomhannock, New York.type = "hamlet"
+Tomhannock, New York.year != 1781
+Tomhannock, New York.year < 1786
+Tomhannock, New York.year = 1781
+Tomhannock, New York.year > 1776
+Wieland.label != "Person"
+Wieland.label = "Person"
+Wieland.name != "Wieland"
+Wieland.name = "Wieland"
+Wieland.relationship != "character"
+Wieland.relationship = "character"
+Wieland.status != "deceased"
+Wieland.status = "deceased"
+
+Rules:
+Q[James Yates,James Yates] (None_ML(James Yates___Tomhannock, New York.attrs, James Yates___Wieland.attrs) ∧ Tomhannock, New York.name = "Tomhannock, New York" → James Yates.label != "Person")
+Q[James Yates,James Yates] (Tomhannock, New York.name != "Tomhannock, New York" ∧ James Yates.label != "Person" ∧ James Yates.name != "James Yates" → James Yates.name != Wieland.name)
+Q[James Yates,James Yates] (James Yates___Tomhannock, New York.relationship = "James Yates committed murders influenced by a religious delusion." ∧ Tomhannock, New York.label != "Location" ∧ Tomhannock, New York.year != 1781 ∧ Tomhannock, New York.label = "Location" ∧ James Yates.label != Tomhannock, New York.label → Tomhannock, New York.year > 1776)
+Q[James Yates,James Yates] (Wieland.label = "Person" ∧ Tomhannock, New York.label != Wieland.label ∧ James Yates___Tomhannock, New York.doc_id = "3488771875_7" ∧ Wieland.name = "Wieland" ∧ James Yates.relationship = "murderer" ∧ James Yates___Tomhannock, New York.year != 1781 → Tomhannock, New York.name != Wieland.name)
+Q[James Yates,James Yates] (James Yates.name != "James Yates" ∧ James Yates___Tomhannock, New York.doc_id = "3488771875_7" ∧ James Yates___Wieland.motive = "religious delusion" ∧ Wieland.relationship = "character" → Tomhannock, New York.type = "hamlet")
+Q[James Yates,James Yates] (None_ML(Wieland.attrs, Tomhannock, New York.attrs) ∧ Tomhannock, New York.name != Wieland.name ∧ James Yates.name != Wieland.name ∧ Tomhannock, New York.year != 1781 ∧ Wieland.relationship != "character" → James Yates.status != "deceased")
+Q[James Yates,James Yates] (Wieland.relationship != "character" ∧ Tomhannock, New York.year = 1781 ∧ Tomhannock, New York.label != "Location" ∧ James Yates.label = "Person" ∧ Tomhannock, New York.name != Wieland.name ∧ James Yates.relationship != "murderer" → James Yates___Tomhannock, New York.year = 1781)
+Q[James Yates,James Yates] (Wieland.name != "Wieland" ∧ James Yates.label != Tomhannock, New York.label ∧ None_ML(James Yates___Tomhannock, New York.attrs, James Yates___Wieland.attrs) ∧ Tomhannock, New York.label = "Location" → James Yates___Tomhannock, New York.doc_id = "3488771875_7")
+Q[James Yates,James Yates] (Tomhannock, New York.year != 1781 ∧ James Yates.name != Wieland.name → Wieland.status = "deceased")
+Q[James Yates,James Yates] (James Yates___Tomhannock, New York.doc_id = "3488771875_7" ∧ James Yates.label = "Person" ∧ James Yates.label != Tomhannock, New York.label → Wieland.name != "Wieland")

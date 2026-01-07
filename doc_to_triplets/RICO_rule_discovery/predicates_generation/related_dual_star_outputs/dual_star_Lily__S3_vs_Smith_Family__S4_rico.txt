@@ -1,0 +1,74 @@
+Predicates:
+Bay Area Youth Innovation League.activity != "coding workshops"
+Bay Area Youth Innovation League.activity = "coding workshops"
+Bay Area Youth Innovation League.type != "organization"
+Bay Area Youth Innovation League.type != San Francisco Education Fund.type
+Bay Area Youth Innovation League.type = "organization"
+Lily__S3.status != "won a prize"
+Lily__S3.status = "won a prize"
+Lily__S3_Bay Area Youth Innovation League.relationship != "Lily enrolled in coding workshops hosted by the Bay Area Youth Innovation League."
+Lily__S3_Bay Area Youth Innovation League.relationship != Lily__S3_Smith Family__S4.relationship
+Lily__S3_Bay Area Youth Innovation League.relationship != Lily__S3_app designed to help kids manage screen time.relationship
+Lily__S3_Bay Area Youth Innovation League.relationship != Smith Family__S4_San Francisco Education Fund.relationship
+Lily__S3_Bay Area Youth Innovation League.relationship != Smith Family__S4_Tokyo.relationship
+Lily__S3_Bay Area Youth Innovation League.relationship = "Lily enrolled in coding workshops hosted by the Bay Area Youth Innovation League."
+Lily__S3_Smith Family__S4.relationship != "related"
+Lily__S3_Smith Family__S4.relationship = "related"
+Lily__S3_app designed to help kids manage screen time.relationship != "Lily won a prize for her app designed to help kids manage screen time."
+Lily__S3_app designed to help kids manage screen time.relationship != Lily__S3_Smith Family__S4.relationship
+Lily__S3_app designed to help kids manage screen time.relationship != Smith Family__S4_San Francisco Education Fund.relationship
+Lily__S3_app designed to help kids manage screen time.relationship != Smith Family__S4_Tokyo.relationship
+Lily__S3_app designed to help kids manage screen time.relationship = "Lily won a prize for her app designed to help kids manage screen time."
+M_NLI(Bay Area Youth Innovation League.attrs, San Francisco Education Fund.attrs)
+M_NLI(Lily__S3.attrs, Bay Area Youth Innovation League.attrs)
+M_NLI(Lily__S3.attrs, San Francisco Education Fund.attrs)
+M_NLU(Bay Area Youth Innovation League.attrs, San Francisco Education Fund.attrs)
+M_NLU(Lily__S3.attrs, Bay Area Youth Innovation League.attrs)
+M_NLU(Lily__S3.attrs, San Francisco Education Fund.attrs)
+M_TEM(Bay Area Youth Innovation League.attrs, San Francisco Education Fund.attrs)
+M_TEM(Lily__S3.attrs, Bay Area Youth Innovation League.attrs)
+M_TEM(Lily__S3.attrs, San Francisco Education Fund.attrs)
+San Francisco Education Fund.type != "fund"
+San Francisco Education Fund.type = "fund"
+Smith Family__S4_San Francisco Education Fund.focus != "support underrepresented students pursuing careers in AI and medicine"
+Smith Family__S4_San Francisco Education Fund.focus = "support underrepresented students pursuing careers in AI and medicine"
+Smith Family__S4_San Francisco Education Fund.relationship != "The Smiths co-funded a scholarship program with the San Francisco Education Fund."
+Smith Family__S4_San Francisco Education Fund.relationship != Lily__S3_Smith Family__S4.relationship
+Smith Family__S4_San Francisco Education Fund.relationship = "The Smiths co-funded a scholarship program with the San Francisco Education Fund."
+Smith Family__S4_Tokyo.relationship != "The Smith family traveled to Tokyo."
+Smith Family__S4_Tokyo.relationship != Lily__S3_Smith Family__S4.relationship
+Smith Family__S4_Tokyo.relationship != Smith Family__S4_San Francisco Education Fund.relationship
+Smith Family__S4_Tokyo.relationship = "The Smith family traveled to Tokyo."
+Smith Family__S4_Tokyo.year != 2025
+Smith Family__S4_Tokyo.year < 2026
+Smith Family__S4_Tokyo.year <= 2025
+Smith Family__S4_Tokyo.year = 2025
+Smith Family__S4_Tokyo.year > 2024
+Smith Family__S4_Tokyo.year >= 2025
+contra("exp", "Bay Area Youth Innovation League")
+contra("exp", "San Francisco Education Fund")
+contra("exp", "Tokyo")
+contra("exp", "app designed to help kids manage screen time")
+contra("g a community award for outstanding medical", "San Francisco Education Fund")
+contra("g a community award for outstanding medical", "Tokyo")
+contra("ily volunteered in the ICU depar", "San Francisco Education Fund")
+contra("ily volunteered in the ICU depar", "Tokyo")
+contra("ily volunteered in the ICU depar", "app designed to help kids manage screen time")
+contra("use n", "San Francisco Education Fund")
+linkage(Lily__S3, Bay Area Youth Innovation League)
+linkage(Lily__S3, Smith Family__S4)
+linkage(Lily__S3, app designed to help kids manage screen time)
+linkage(Smith Family__S4, San Francisco Education Fund)
+linkage(Smith Family__S4, Tokyo)
+
+Rules:
+Q[Lily__S3,Smith Family__S4] (Lily__S3_Bay Area Youth Innovation League.relationship = "Lily enrolled in coding workshops hosted by the Bay Area Youth Innovation League." ∧ Smith Family__S4_Tokyo.year >= 2025 → Smith Family__S4_Tokyo.year >= 2025)
+Q[Lily__S3,Smith Family__S4] (M_TEM(Bay Area Youth Innovation League.attrs, San Francisco Education Fund.attrs) ∧ contra("exp", "app designed to help kids manage screen time") → contra("exp", "app designed to help kids manage screen time"))
+Q[Lily__S3,Smith Family__S4] (Lily__S3_Bay Area Youth Innovation League.relationship = "Lily enrolled in coding workshops hosted by the Bay Area Youth Innovation League." ∧ linkage(Smith Family__S4, San Francisco Education Fund) → linkage(Smith Family__S4, San Francisco Education Fund))
+Q[Lily__S3,Smith Family__S4] (Lily__S3_Smith Family__S4.relationship = "related" ∧ M_TEM(Lily__S3.attrs, Bay Area Youth Innovation League.attrs) → M_TEM(Lily__S3.attrs, Bay Area Youth Innovation League.attrs))
+Q[Lily__S3,Smith Family__S4] (contra("g a community award for outstanding medical", "San Francisco Education Fund") ∧ contra("exp", "Bay Area Youth Innovation League") → contra("g a community award for outstanding medical", "San Francisco Education Fund"))
+Q[Lily__S3,Smith Family__S4] (Lily__S3_Bay Area Youth Innovation League.relationship != Smith Family__S4_San Francisco Education Fund.relationship ∧ Lily__S3_app designed to help kids manage screen time.relationship != Smith Family__S4_Tokyo.relationship → Lily__S3_Bay Area Youth Innovation League.relationship != Smith Family__S4_San Francisco Education Fund.relationship)
+Q[Lily__S3,Smith Family__S4] (linkage(Smith Family__S4, Tokyo) ∧ linkage(Lily__S3, app designed to help kids manage screen time) → linkage(Smith Family__S4, Tokyo))
+Q[Lily__S3,Smith Family__S4] (Lily__S3_Bay Area Youth Innovation League.relationship != Lily__S3_Smith Family__S4.relationship ∧ contra("exp", "Bay Area Youth Innovation League") → Lily__S3_Bay Area Youth Innovation League.relationship != Lily__S3_Smith Family__S4.relationship)
+Q[Lily__S3,Smith Family__S4] (Lily__S3_Bay Area Youth Innovation League.relationship != Smith Family__S4_Tokyo.relationship ∧ contra("ily volunteered in the ICU depar", "San Francisco Education Fund") → contra("ily volunteered in the ICU depar", "San Francisco Education Fund"))
+Q[Lily__S3,Smith Family__S4] (Smith Family__S4_San Francisco Education Fund.focus = "support underrepresented students pursuing careers in AI and medicine" ∧ M_NLU(Lily__S3.attrs, Bay Area Youth Innovation League.attrs) → Smith Family__S4_San Francisco Education Fund.focus = "support underrepresented students pursuing careers in AI and medicine")

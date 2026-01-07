@@ -1,0 +1,48 @@
+Predicates:
+Charleston.label != "FBI Agent"
+Charleston.label != Wharves.label
+Charleston.label = "FBI Agent"
+Charleston.name != "Charleston"
+Charleston.name != Wharves.name
+Charleston.name = "Charleston"
+Charleston.status != "wounded"
+Charleston.status = "wounded"
+Hurricane.impact != "severe damage"
+Hurricane.impact = "severe damage"
+Hurricane.label != "Natural Disaster"
+Hurricane.label != Charleston.label
+Hurricane.label != Wharves.label
+Hurricane.label = "Natural Disaster"
+Hurricane.name != "Hurricane"
+Hurricane.name != Charleston.name
+Hurricane.name != Wharves.name
+Hurricane.name = "Hurricane"
+Hurricane___Charleston.contradiction_type = "Causal"
+Hurricane___Charleston.damage_type != Hurricane___Wharves.damage_type
+Hurricane___Charleston.damage_type = "washed aground ships and uprooted trees"
+Hurricane___Charleston.harbor_damage = "minimal"
+Hurricane___Charleston.relationship != Hurricane___Wharves.relationship
+Hurricane___Charleston.relationship = "The hurricane caused damage in Charleston, South Carolina."
+Hurricane___Charleston.source_id = "3503017442_8"
+Hurricane___Wharves.contradiction_type = "Causal"
+Hurricane___Wharves.damage_type = "severe damage"
+Hurricane___Wharves.relationship = "The hurricane inflicted severe damage to the wharves."
+Hurricane___Wharves.source_id = "3503017442_8"
+None_ML(Hurricane.attrs, Charleston.attrs)
+None_ML(Hurricane___Charleston.attrs, Hurricane___Wharves.attrs)
+Wharves.label != "Infrastructure"
+Wharves.label = "Infrastructure"
+Wharves.name != "Wharves"
+Wharves.name = "Wharves"
+
+Rules:
+Q[Hurricane,Hurricane] (Hurricane___Wharves.contradiction_type = "Causal" ∧ Hurricane.impact = "severe damage" ∧ Hurricane___Charleston.damage_type = "washed aground ships and uprooted trees" ∧ Charleston.label != "FBI Agent" ∧ Hurricane___Wharves.source_id = "3503017442_8" → Hurricane___Wharves.relationship = "The hurricane inflicted severe damage to the wharves.")
+Q[Hurricane,Hurricane] (Hurricane.label != Wharves.label ∧ Hurricane___Charleston.source_id = "3503017442_8" ∧ Hurricane.name != Charleston.name ∧ Charleston.label != Wharves.label ∧ Charleston.label = "FBI Agent" ∧ Hurricane.label != "Natural Disaster" → Hurricane.label != Charleston.label)
+Q[Hurricane,Hurricane] (Hurricane.label != Wharves.label ∧ Hurricane___Charleston.relationship != Hurricane___Wharves.relationship ∧ Hurricane___Wharves.damage_type = "severe damage" → Hurricane.name != "Hurricane")
+Q[Hurricane,Hurricane] (Hurricane.impact = "severe damage" ∧ Hurricane___Wharves.source_id = "3503017442_8" → Hurricane.name = "Hurricane")
+Q[Hurricane,Hurricane] (None_ML(Hurricane.attrs, Charleston.attrs) ∧ Hurricane___Wharves.relationship = "The hurricane inflicted severe damage to the wharves." ∧ Charleston.status != "wounded" ∧ Hurricane___Charleston.relationship = "The hurricane caused damage in Charleston, South Carolina." → Hurricane.name != Wharves.name)
+Q[Hurricane,Hurricane] (Charleston.name != Wharves.name ∧ Hurricane.label = "Natural Disaster" ∧ Hurricane___Charleston.source_id = "3503017442_8" → Charleston.status != "wounded")
+Q[Hurricane,Hurricane] (None_ML(Hurricane___Charleston.attrs, Hurricane___Wharves.attrs) ∧ Hurricane.name != Wharves.name ∧ Charleston.label != "FBI Agent" ∧ Hurricane___Charleston.harbor_damage = "minimal" ∧ Hurricane.impact = "severe damage" ∧ Charleston.label = "FBI Agent" → Hurricane___Charleston.contradiction_type = "Causal")
+Q[Hurricane,Hurricane] (Hurricane___Wharves.damage_type = "severe damage" ∧ Hurricane___Charleston.relationship = "The hurricane caused damage in Charleston, South Carolina." → Hurricane___Charleston.source_id = "3503017442_8")
+Q[Hurricane,Hurricane] (Hurricane.impact != "severe damage" ∧ Hurricane___Wharves.source_id = "3503017442_8" ∧ Hurricane___Charleston.relationship = "The hurricane caused damage in Charleston, South Carolina." ∧ Wharves.name != "Wharves" ∧ Charleston.name = "Charleston" → None_ML(Hurricane.attrs, Charleston.attrs))
+Q[Hurricane,Hurricane] (Charleston.status != "wounded" ∧ Hurricane___Wharves.source_id = "3503017442_8" ∧ Charleston.status = "wounded" ∧ Charleston.name != Wharves.name → Hurricane___Charleston.relationship = "The hurricane caused damage in Charleston, South Carolina.")

@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 27)
+S1: all Evaluation Material supplied by Originator, Target or their respective Representatives (and all copies, extracts or other reproductions in whole or in part thereof, whether prepared by Originator or any of its Representatives or any other person) shall be returned to Originator or, with the Originator's written permission, destroyed and not retained by Participant or its Representatives in any form or for any reason except as required by law or regulations.
+S2: Receiving Party may retain some Confidential Information even after the return or destruction of Confidential Information.
+
+Predicates:
+1. Evaluation_Material.supplied_by(Originator)
+2. Evaluation_Material.supplied_by(Target)
+3. Evaluation_Material.supplied_by(Representatives)
+4. Evaluation_Material.returned_to(Originator)
+5. Evaluation_Material.destroyed_with_permission(Originator)
+6. Evaluation_Material.not_retained_by(Participant)
+7. Evaluation_Material.not_retained_by(Representatives)
+8. Evaluation_Material.retained_by(Receiving_Party)
+9. Confidential_Information.returned_or_destroyed(Receiving_Party)
+10. Confidential_Information.retained_after_destruction(Receiving_Party)
+11. Originator.written_permission(granted)
+12. Participant.not_retained_for_reason(legal_requirements)
+13. Representatives.returned_to(Originator)
+14. Representatives.destroyed_with_permission(Originator)
+15. Evaluation_Material.copies_prepared_by(Originator)
+16. Evaluation_Material.copies_prepared_by(Representatives)
+17. Evaluation_Material.copies_prepared_by(other_person)
+18. Confidential_Information.retained_for_reason(legal_requirements)
+19. Evaluation_Material.reproductions_in_whole_or_part(Originator)
+20. Evaluation_Material.reproductions_in_whole_or_part(Target)
+21. Evaluation_Material.reproductions_in_whole_or_part(Representatives)
+22. Evaluation_Material.returned_or_destroyed(Participant)
+23. Evaluation_Material.returned_or_destroyed(Representatives)
+24. Evaluation_Material.returned_or_destroyed(Originator)
+25. M_NLI(S1, S2)
+26. Negation(Evaluation_Material.returned, Confidential_Information.retained)
+27. violate(Evaluation_Material.returned, Confidential_Information.retained)
+28. Evaluation_Material.required_by(law)
+29. Evaluation_Material.required_by(regulations)
+30. Confidential_Information.may_be_retained(Receiving_Party)
+
+Rules:
+1. Q[all, Evaluation_Material.supplied_by(Originator) → Negation(Evaluation_Material.returned_to(Originator, y0))]
+2. Q[all, Evaluation_Material.supplied_by(Target) → Negation(Evaluation_Material.returned_to(Originator, y0))]
+3. Q[all, Evaluation_Material.supplied_by(Representatives) → Negation(Evaluation_Material.returned_to(Originator, y0))]
+4. Q[all, Evaluation_Material.returned_to(Originator) → Negation(Evaluation_Material.not_retained_by(Participant))]
+5. Q[all, Evaluation_Material.destroyed_with_permission(Originator) → Negation(Evaluation_Material.not_retained_by(Participant))]
+6. Q[all, Evaluation_Material.not_retained_by(Participant) → Negation(Evaluation_Material.retained_by(Receiving_Party))]
+7. Q[all, Evaluation_Material.not_retained_by(Representatives) → Negation(Evaluation_Material.retained_by(Receiving_Party))]
+8. Q[all, Evaluation_Material.returned_or_destroyed(Participant) → Negation(Confidential_Information.retained_after_destruction(Receiving_Party))]
+9. Q[all, Evaluation_Material.returned_or_destroyed(Representatives) → Negation(Confidential_Information.retained_after_destruction(Receiving_Party))]
+10. Q[all, Evaluation_Material.copies_prepared_by(Originator) → Negation(Confidential_Information.retained_after_destruction(Receiving_Party))]
+11. Q[all, Evaluation_Material.copies_prepared_by(Target) → Negation(Confidential_Information.retained_after_destruction(Receiving_Party))]
+12. Q[all, Evaluation_Material.copies_prepared_by(Representatives) → Negation(Confidential_Information.retained_after_destruction(Receiving_Party))]
+13. Q[all, Confidential_Information.returned_or_destroyed(Receiving_Party) → Negation(Confidential_Information.retained_after_destruction(Receiving_Party))]
+14. Q[all, Originator.written_permission(granted) → Negation(Evaluation_Material.not_retained_by(Participant))]
+15. Q[all, Participant.not_retained_for_reason(legal_requirements) → Negation(Evaluation_Material.not_retained_by(Participant))]
+16. Q[all, Evaluation_Material.required_by(law) → Negation(Evaluation_Material.not_retained_by(Participant))]
+17. Q[all, Evaluation_Material.required_by(regulations) → Negation(Evaluation_Material.not_retained_by(Participant))]
+18. Q[all, Evaluation_Material.reproductions_in_whole_or_part(Originator) → Negation(Evaluation_Material.not_retained_by(Participant))]
+19. Q[all, Evaluation_Material.reproductions_in_whole_or_part(Target) → Negation(Evaluation_Material.not_retained_by(Participant))]
+20. Q[all, Evaluation_Material.reproductions_in_whole_or_part(Representatives) → Negation(Evaluation_Material.not_retained_by(Participant))]
+21. Q[all, Confidential_Information.may_be_retained(Receiving_Party) → Negation(Evaluation_Material.not_retained_by(Participant))]
+22. Q[all, Evaluation_Material.returned_or_destroyed(Originator) → Negation(Evaluation_Material.retained_by(Receiving_Party))]
+23. Q[all, Evaluation_Material.returned_or_destroyed(Participant) → Negation(Evaluation_Material.retained_by(Receiving_Party))]
+24. Q[all, Evaluation_Material.returned_or_destroyed(Representatives) → Negation(Evaluation_Material.retained_by(Receiving_Party))]
+25. Q[all, Evaluation_Material.supplied_by(Originator) → Negation(Confidential_Information.retained_after_destruction(Receiving_Party))]
+26. Q[all, Evaluation_Material.supplied_by(Target) → Negation(Confidential_Information.retained_after_destruction(Receiving_Party))]
+27. Q[all, Evaluation_Material.supplied_by(Representatives) → Negation(Confidential_Information.retained_after_destruction(Receiving_Party))]
+28. Q[all, Evaluation_Material.returned_to(Originator) → Negation(Confidential_Information.retained_after_destruction(Receiving_Party))]
+29. Q[all, Evaluation_Material.destroyed_with_permission(Originator) → Negation(Confidential_Information.retained_after_destruction(Receiving_Party))]
+30. Q[all, Evaluation_Material.not_retained_by(Participant) → Negation(Confidential_Information.retained_after_destruction(Receiving_Party))]

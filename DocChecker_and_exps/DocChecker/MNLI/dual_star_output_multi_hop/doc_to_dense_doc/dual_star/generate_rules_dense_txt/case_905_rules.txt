@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 905)
+S1: I kept my face hidden.
+S2: I hid my face.
+
+Predicates:
+1. Action.keep.hidden
+2. Action.hide.completed
+3. Entity.speaker.face.hidden
+4. Entity.speaker.face.hid
+5. Relationship.implies.continuous
+6. Relationship.implies.completed
+7. Meta.M_NLI(S1, S2)
+8. Meta.Negation(S1, S2)
+9. Meta.violate(S1, S2)
+10. Entity.speaker.action.hidden
+11. Entity.speaker.action.hid
+12. Action.continuous.hiding
+13. Action.completed.hiding
+14. Relationship.suggests.continuous
+15. Relationship.suggests.completed
+16. Entity.speaker.hidden.state
+17. Entity.speaker.hiding.action
+18. Action.hiding.face
+19. Action.hiding.continuous
+20. Action.hiding.completed
+21. Entity.face.hidden.state
+22. Entity.face.hid.state
+23. Relationship.action.type
+24. Relationship.action.state
+25. Meta.action.comparison
+26. Meta.action.difference
+27. Entity.speaker.hidden.face
+28. Entity.speaker.completed.hiding
+29. Action.hiding.ongoing
+30. Action.hiding.finalized
+
+Rules:
+1. Q[kept, Action.keep.hidden, Action.hide.completed](Entity.speaker.face.hidden == true → Negation(Action.keep.hidden, Action.hide.completed))
+2. Q[hid, Action.hide.completed, Action.keep.hidden](Entity.speaker.face.hid == true → Negation(Action.hide.completed, Action.keep.hidden))
+3. Q[kept, Relationship.implies.continuous, Relationship.implies.completed](Meta.M_NLI(S1, S2) == true → Negation(Relationship.implies.continuous, Relationship.implies.completed))
+4. Q[hid, Relationship.suggests.completed, Relationship.suggests.continuous](Meta.Negation(S1, S2) == true → Negation(Relationship.suggests.completed, Relationship.suggests.continuous))
+5. Q[kept, Action.continuous.hiding, Action.completed.hiding](Entity.speaker.action.hidden == true → Negation(Action.continuous.hiding, Action.completed.hiding))
+6. Q[hid, Action.completed.hiding, Action.continuous.hiding](Entity.speaker.action.hid == true → Negation(Action.completed.hiding, Action.continuous.hiding))
+7. Q[kept, Entity.speaker.hidden.state, Entity.speaker.hiding.action](Entity.speaker.face.hidden.state == true → Negation(Entity.speaker.hidden.state, Entity.speaker.hiding.action))
+8. Q[hid, Entity.speaker.hiding.action, Entity.speaker.hidden.state](Entity.face.hid.state == true → Negation(Entity.speaker.hiding.action, Entity.speaker.hidden.state))
+9. Q[kept, Action.hiding.continuous, Action.hiding.completed](Action.hiding.face == true → Negation(Action.hiding.continuous, Action.hiding.completed))
+10. Q[hid, Action.hiding.completed, Action.hiding.continuous](Action.hiding.finalized == true → Negation(Action.hiding.completed, Action.hiding.continuous))
+11. Q[kept, Relationship.action.type, Relationship.action.state](Meta.action.comparison(S1, S2) == true → Negation(Relationship.action.type, Relationship.action.state))
+12. Q[hid, Meta.action.difference, Meta.action.comparison](Meta.violate(S1, S2) == true → Negation(Meta.action.difference, Meta.action.comparison))
+13. Q[kept, Entity.speaker.hidden.face, Entity.face.hid.state](Entity.speaker.face.hidden == true → Negation(Entity.speaker.hidden.face, Entity.face.hid.state))
+14. Q[hid, Entity.face.hid.state, Entity.speaker.hidden.face](Entity.speaker.completed.hiding == true → Negation(Entity.face.hid.state, Entity.speaker.hidden.face))
+15. Q[kept, Action.hiding.ongoing, Action.hiding.finalized](Entity.speaker.action.hidden == true → Negation(Action.hiding.ongoing, Action.hiding.finalized))
+16. Q[hid, Action.hiding.finalized, Action.hiding.ongoing](Entity.speaker.action.hid == true → Negation(Action.hiding.finalized, Action.hiding.ongoing))
+17. Q[kept, Relationship.implies.continuous, Relationship.suggests.completed](Meta.M_NLI(S1, S2) == true → Negation(Relationship.implies.continuous, Relationship.suggests.completed))
+18. Q[hid, Relationship.suggests.completed, Relationship.implies.continuous](Meta.Negation(S1, S2) == true → Negation(Relationship.suggests.completed, Relationship.implies.continuous))
+19. Q[kept, Action.keep.hidden, Entity.speaker.hidden.state](Entity.speaker.face.hidden == true → Negation(Action.keep.hidden, Entity.speaker.hidden.state))
+20. Q[hid, Entity.speaker.hidden.state, Action.keep.hidden](Entity.speaker.face.hid == true → Negation(Entity.speaker.hidden.state, Action.keep.hidden))
+21. Q[kept, Action.hiding.completed, Entity.speaker.hiding.action](Entity.speaker.action.hidden == true → Negation(Action.hiding.completed, Entity.speaker.hiding.action))
+22. Q[hid, Entity.speaker.hiding.action, Action.hiding.completed](Entity.face.hid.state == true → Negation(Entity.speaker.hiding.action, Action.hiding.completed))
+23. Q[kept, Action.hiding.continuous, Entity.speaker.hidden.face](Entity.speaker.face.hidden.state == true → Negation(Action.hiding.continuous, Entity.speaker.hidden.face))
+24. Q[hid, Entity.speaker.hidden.face, Action.hiding.continuous](Entity.speaker.completed.hiding == true → Negation(Entity.speaker.hidden.face, Action.hiding.continuous))
+25. Q[kept, Relationship.action.state, Action.hiding.finalized](Meta.action.comparison(S1, S2) == true → Negation(Relationship.action.state, Action.hiding.finalized))
+26. Q[hid, Action.hiding.finalized, Relationship.action.state](Meta.violate(S1, S2) == true → Negation(Action.hiding.finalized, Relationship.action.state))
+27. Q[kept, Action.hiding.ongoing, Entity.speaker.action.hidden](Entity.speaker.face.hidden == true → Negation(Action.hiding.ongoing, Entity.speaker.action.hidden))
+28. Q[hid, Entity.speaker.action.hidden, Action.hiding.ongoing](Entity.speaker.face.hid == true → Negation(Entity.speaker.action.hidden, Action.hiding.ongoing))
+29. Q[kept, Relationship.implies.completed, Action.hiding.finalized](Meta.M_NLI(S1, S2) == true → Negation(Relationship.implies.completed, Action.hiding.finalized))
+30. Q[hid, Action.hiding.finalized, Relationship.implies.completed](Meta.Negation(S1, S2) == true → Negation(Action.hiding.finalized, Relationship.implies.completed))

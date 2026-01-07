@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 575)
+S1: Mr López Obrador lost the presidential elections of July by less than one percentage point he was a President of itself "legitimate" of Mexico.
+S2: Mr López Obrador didn't lose the presidential election in July.
+
+Predicates:
+1. Mr_López_Obrador.election_result
+2. Mr_López_Obrador.election_date
+3. Mr_López_Obrador.presidency_status
+4. presidential_elections.July_2023
+5. presidential_elections.result_margin
+6. presidential_elections.candidate
+7. presidential_elections.election_outcome
+8. election_outcome.lost
+9. election_outcome.not_lost
+10. election_outcome.legitimacy
+11. legitimacy.status
+12. legitimacy.country
+13. Mexico.political_leader
+14. Mexico.election_history
+15. election_history.July_2023
+16. election_history.candidates
+17. election_history.results
+18. contradiction.event
+19. contradiction.participant
+20. contradiction.outcome
+21. M_NLI(S1, S2)
+22. Negation(S1, S2)
+23. violate(S1, S2)
+24. election_result.margin_of_victory
+25. election_result.candidate_name
+26. election_result.election_type
+27. election_type.presidential
+28. political_leader.election_participation
+29. political_leader.election_outcome
+30. political_leader.legitimacy_status
+
+Rules:
+1. Q[López, Mr_López_Obrador.election_result, election_outcome.lost](Mr_López_Obrador.election_result == "lost" → Negation(lost, not_lost))
+2. Q[López, Mr_López_Obrador.election_result, election_outcome.not_lost](Mr_López_Obrador.election_result == "not lost" → Negation(lost, not_lost))
+3. Q[López, presidential_elections.result_margin, election_result.margin_of_victory](presidential_elections.result_margin < 1% → Negation(lost, not_lost))
+4. Q[López, presidential_elections.election_outcome, election_outcome.lost](presidential_elections.election_outcome == "lost" → Negation(lost, not_lost))
+5. Q[López, presidential_elections.election_outcome, election_outcome.not_lost](presidential_elections.election_outcome == "not lost" → Negation(lost, not_lost))
+6. Q[López, Mr_López_Obrador.presidency_status, legitimacy.status](Mr_López_Obrador.presidency_status == "legitimate" → Negation(lost, not_lost))
+7. Q[López, presidential_elections.candidate, election_result.candidate_name](presidential_elections.candidate == "Mr López Obrador" → Negation(lost, not_lost))
+8. Q[López, election_history.results, election_outcome.lost](election_history.results == "lost" → Negation(lost, not_lost))
+9. Q[López, election_history.results, election_outcome.not_lost](election_history.results == "not lost" → Negation(lost, not_lost))
+10. Q[López, election_history.candidates, political_leader.election_participation](election_history.candidates == "Mr López Obrador" → Negation(lost, not_lost))
+11. Q[López, election_type.presidential, presidential_elections.election_type](election_type.presidential == "presidential" → Negation(lost, not_lost))
+12. Q[López, legitimacy.country, legitimacy.status](legitimacy.country == "Mexico" → Negation(lost, not_lost))
+13. Q[López, contradiction.event, presidential_elections.result_margin](contradiction.event == "election" → Negation(lost, not_lost))
+14. Q[López, contradiction.participant, Mr_López_Obrador.election_result](contradiction.participant == "Mr López Obrador" → Negation(lost, not_lost))
+15. Q[López, contradiction.outcome, election_outcome.lost](contradiction.outcome == "lost" → Negation(lost, not_lost))
+16. Q[López, contradiction.outcome, election_outcome.not_lost](contradiction.outcome == "not lost" → Negation(lost, not_lost))
+17. Q[López, Mr_López_Obrador.election_date, presidential_elections.July_2023](Mr_López_Obrador.election_date == "July 2023" → Negation(lost, not_lost))
+18. Q[López, Mexico.election_history, election_history.July_2023](Mexico.election_history == "July 2023" → Negation(lost, not_lost))
+19. Q[López, political_leader.legitimacy_status, legitimacy.status](political_leader.legitimacy_status == "legitimate" → Negation(lost, not_lost))
+20. Q[López, political_leader.election_outcome, election_outcome.lost](political_leader.election_outcome == "lost" → Negation(lost, not_lost))
+21. Q[López, political_leader.election_outcome, election_outcome.not_lost](political_leader.election_outcome == "not lost" → Negation(lost, not_lost))
+22. Q[López, Mr_López_Obrador.election_result, presidential_elections.result_margin](Mr_López_Obrador.election_result == "lost" and presidential_elections.result_margin < 1% → Negation(lost, not_lost))
+23. Q[López, Mr_López_Obrador.presidency_status, election_outcome.legitimacy](Mr_López_Obrador.presidency_status == "legitimate" and election_outcome.legitimacy == "not lost" → Negation(lost, not_lost))
+24. Q[López, election_result.candidate_name, presidential_elections.candidate](election_result.candidate_name == "Mr López Obrador" and presidential_elections.candidate == "Mr López Obrador" → Negation(lost, not_lost))
+25. Q[López, election_history.results, presidential_elections.result_margin](election_history.results == "lost" and presidential_elections.result_margin < 1% → Negation(lost, not_lost))
+26. Q[López, election_history.candidates, Mr_López_Obrador.election_result](election_history.candidates == "Mr López Obrador" and Mr_López_Obrador.election_result == "not lost" → Negation(lost, not_lost))
+27. Q[López, legitimacy.country, political_leader.election_participation](legitimacy.country == "Mexico" and political_leader.election_participation == "Mr López Obrador" → Negation(lost, not_lost))
+28. Q[López, election_type.presidential, election_outcome.lost](election_type.presidential == "presidential" and election_outcome.lost == "lost" → Negation(lost, not_lost))
+29. Q[López, election_outcome.lost, election_outcome.not_lost](election_outcome.lost == "lost" and election_outcome.not_lost == "not lost" → Negation(lost, not_lost))
+30. Q[López, contradiction.event, contradiction.outcome](contradiction.event == "election" and contradiction.outcome == "lost" → Negation(lost, not_lost))

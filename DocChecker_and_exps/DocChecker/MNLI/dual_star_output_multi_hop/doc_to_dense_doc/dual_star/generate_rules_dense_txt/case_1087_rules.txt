@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 1087)
+S1: There are also scores of Celtic crosses.
+S2: There are many Celtic crosses.
+
+Predicates:
+1. Celtic_crosses.count
+2. Celtic_crosses.quantity
+3. Celtic_crosses.type
+4. Celtic_crosses.material
+5. Celtic_crosses.location
+6. Celtic_crosses.age
+7. Celtic_crosses.style
+8. Celtic_crosses.condition
+9. Celtic_crosses.origin
+10. Celtic_crosses.significance
+11. scores.quantity
+12. scores.definition
+13. scores.context
+14. many.quantity
+15. many.definition
+16. many.context
+17. M_NLI(S1, S2)
+18. Numeric(20, many)
+19. Numeric(scores, many)
+20. violate(scores, many)
+21. Celtic_crosses.representation
+22. Celtic_crosses.cultural_significance
+23. Celtic_crosses.historical_context
+24. Celtic_crosses.artistic_style
+25. Celtic_crosses.function
+26. Celtic_crosses.symbolism
+27. scores.comparison
+28. many.comparison
+29. Celtic_crosses.distribution
+30. Celtic_crosses.popularity
+
+Rules:
+1. Q[There, Celtic_crosses.count, 20](Celtic_crosses.count >= 20 → Numeric(20, many))
+2. Q[There, Celtic_crosses.quantity, 20](Celtic_crosses.quantity >= 20 → Numeric(20, many))
+3. Q[There, scores.quantity, 20](scores.quantity >= 20 → Numeric(20, many))
+4. Q[There, many.quantity, 0](many.quantity < 20 → Numeric(0, many))
+5. Q[There, Celtic_crosses.count, 20](Celtic_crosses.count >= 20 → violate(scores, many))
+6. Q[There, many.definition, "vague"](many.definition == "vague" → Numeric(0, many))
+7. Q[There, scores.definition, "20 or more"](scores.definition == "20 or more" → Numeric(20, many))
+8. Q[There, Celtic_crosses.quantity, 20](Celtic_crosses.quantity >= 20 → M_NLI(S1, S2))
+9. Q[There, many.context, "undefined"](many.context == "undefined" → Numeric(0, many))
+10. Q[There, scores.context, "defined"](scores.context == "defined" → Numeric(20, many))
+11. Q[There, Celtic_crosses.count, 20](Celtic_crosses.count >= 20 → many.comparison < scores.quantity)
+12. Q[There, scores.comparison, "greater"](scores.comparison == "greater" → Numeric(20, many))
+13. Q[There, many.comparison, "less"](many.comparison == "less" → Numeric(0, many))
+14. Q[There, Celtic_crosses.count, 20](Celtic_crosses.count >= 20 → violate(many, scores))
+15. Q[There, Celtic_crosses.quantity, 20](Celtic_crosses.quantity >= 20 → Numeric(20, many))
+16. Q[There, scores.quantity, 20](scores.quantity >= 20 → Numeric(20, many))
+17. Q[There, many.quantity, 20](many.quantity < 20 → Numeric(0, many))
+18. Q[There, Celtic_crosses.count, 20](Celtic_crosses.count >= 20 → Numeric(scores, many))
+19. Q[There, many.definition, "undefined"](many.definition == "undefined" → Numeric(0, many))
+20. Q[There, scores.definition, "20 or more"](scores.definition == "20 or more" → Numeric(20, many))
+21. Q[There, Celtic_crosses.count, 20](Celtic_crosses.count >= 20 → Numeric(20, many))
+22. Q[There, many.quantity, 20](many.quantity < 20 → Numeric(0, many))
+23. Q[There, scores.quantity, 20](scores.quantity >= 20 → Numeric(20, many))
+24. Q[There, Celtic_crosses.count, 20](Celtic_crosses.count >= 20 → violate(many, scores))
+25. Q[There, many.definition, "vague"](many.definition == "vague" → Numeric(0, many))
+26. Q[There, scores.definition, "20 or more"](scores.definition == "20 or more" → Numeric(20, many))
+27. Q[There, Celtic_crosses.quantity, 20](Celtic_crosses.quantity >= 20 → M_NLI(S1, S2))
+28. Q[There, many.context, "undefined"](many.context == "undefined" → Numeric(0, many))
+29. Q[There, scores.context, "defined"](scores.context == "defined" → Numeric(20, many))
+30. Q[There, Celtic_crosses.count, 20](Celtic_crosses.count >= 20 → Numeric(20, many))

@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 1433)
+S1: A horse or mule is pulling a man in a cart down a paved road.
+S2: A man is driving a pickup truck.
+
+Predicates:
+1. Scenario.horse_or_mule
+2. Scenario.man_in_cart
+3. Scenario.paved_road
+4. Vehicle.man_driving
+5. Vehicle.pickup_truck
+6. Relationship.pulling
+7. Relationship.driving
+8. Entity.man.cart
+9. Entity.man.truck
+10. Entity.cart.paved_road
+11. Entity.truck.paved_road
+12. M_NLI(S1, S2)
+13. Factual(S1, S2)
+14. violate(S1, S2)
+15. Entity.horse.pulling
+16. Entity.mule.pulling
+17. Relationship.cart.down_road
+18. Relationship.truck.on_road
+19. Entity.cart.driver
+20. Entity.truck.driver
+21. Scenario.cart_movement
+22. Scenario.truck_movement
+23. Relationship.driver_cart
+24. Relationship.driver_truck
+25. Entity.paved_road.condition
+26. Entity.man.activity
+27. Relationship.pulling_cart
+28. Relationship.driving_truck
+29. Entity.horse.movement
+30. Entity.mule.movement
+
+Rules:
+1. Q[horse, x0, y0](Scenario.horse_or_mule == true → Factual(x0, y0))
+2. Q[man_in_cart, x0, y0](Scenario.man_in_cart == true → Factual(x0, y0))
+3. Q[paved_road, x0, y0](Scenario.paved_road == true → Factual(x0, y0))
+4. Q[man_in_cart, x0, y0](Entity.man.cart == true → Factual(x0, y0))
+5. Q[man_in_cart, x0, y0](Relationship.pulling == true → Factual(x0, y0))
+6. Q[man_in_cart, x0, y0](Entity.cart.paved_road == true → Factual(x0, y0))
+7. Q[man_in_cart, x0, y0](Entity.horse.pulling == true → Factual(x0, y0))
+8. Q[man_in_cart, x0, y0](Entity.mule.pulling == true → Factual(x0, y0))
+9. Q[man_in_cart, x0, y0](Relationship.cart.down_road == true → Factual(x0, y0))
+10. Q[man_in_cart, x0, y0](Scenario.cart_movement == true → Factual(x0, y0))
+11. Q[man_in_cart, x0, y0](Entity.man.activity == "pulled in cart" → Factual(x0, y0))
+12. Q[man_in_cart, x0, y0](Relationship.pulling_cart == true → Factual(x0, y0))
+13. Q[truck, x0, y0](Vehicle.man_driving == true → Factual(x0, y0))
+14. Q[truck, x0, y0](Vehicle.pickup_truck == true → Factual(x0, y0))
+15. Q[truck, x0, y0](Entity.truck.paved_road == true → Factual(x0, y0))
+16. Q[truck, x0, y0](Entity.truck.driver == true → Factual(x0, y0))
+17. Q[truck, x0, y0](Relationship.driving_truck == true → Factual(x0, y0))
+18. Q[truck, x0, y0](Scenario.truck_movement == true → Factual(x0, y0))
+19. Q[truck, x0, y0](Entity.man.truck == true → Factual(x0, y0))
+20. Q[truck, x0, y0](Entity.man.activity == "driving truck" → Factual(x0, y0))
+21. Q[truck, x0, y0](Relationship.driver_truck == true → Factual(x0, y0))
+22. Q[horse, x0, y0](Entity.horse.movement == true → Factual(x0, y0))
+23. Q[mule, x0, y0](Entity.mule.movement == true → Factual(x0, y0))
+24. Q[paved_road, x0, y0](Entity.paved_road.condition == "good" → Factual(x0, y0))
+25. Q[man_in_cart, x0, y0](M_NLI(S1, S2) == false → Factual(x0, y0))
+26. Q[man_in_cart, x0, y0](violate(S1, S2) == true → Factual(x0, y0))
+27. Q[man_in_cart, x0, y0](Factual(S1, S2) == false → Factual(x0, y0))
+28. Q[man_in_cart, x0, y0](Entity.cart.driver == true → Factual(x0, y0))
+29. Q[truck, x0, y0](Entity.truck.driver == true → Factual(x0, y0))
+30. Q[man_in_cart, x0, y0](Scenario.horse_or_mule == true AND Vehicle.man_driving == true → Factual(x0, y0))

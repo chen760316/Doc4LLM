@@ -1,0 +1,130 @@
+Predicates:
+1. entity.name = "Project A"
+2. entity.start_date = "2025-01-01"
+3. entity.end_date = "2025-12-31"
+4. entity.budget = "100000"
+5. entity.status = "completed"
+6. entity.delays = "none"
+7. entity.team_size = "10"
+8. entity.location = "New York"
+9. entity.client = "Company X"
+10. entity.scope = "full"
+11. edge.relationship = "caused delays to"
+12. edge.relationship = "contributed to significant delays in"
+13. edge.relationship = "were done on schedule and within budget for"
+14. edge.start_date = "2025-01-01"
+15. edge.end_date = "2025-12-31"
+16. edge.budget = "100000"
+17. edge.status = "ongoing"
+18. edge.delays = "significant"
+19. edge.team_size = "15"
+20. edge.location = "Los Angeles"
+21. edge.client = "Company Y"
+22. edge.scope = "partial"
+23. M_NLI(entity1.status, entity2.status)
+24. T("The project was completed on time.", "The project was delayed.", tau)
+25. tau(entity1.delays, entity2.delays)
+26. violate(entity1, entity2)
+27. Factual(entity1.budget, entity2.budget)
+28. Causal(entity1.delays, entity2.delays)
+29. Numeric(entity1.team_size, entity2.team_size)
+30. Temporal(entity1.end_date, entity2.start_date)
+31. Content(entity1.status, entity2.status)
+32. Relation(entity1.client, entity2.client)
+33. violate(entity1.delays, entity2.delays)
+34. Factual(entity1.location, entity2.location)
+35. Causal(entity1.start_date, entity2.end_date)
+36. Numeric(entity1.budget, entity2.budget)
+37. Temporal(entity1.start_date, entity2.end_date)
+38. Content(entity1.scope, entity2.scope)
+39. Relation(entity1.team_size, entity2.team_size)
+40. violate(entity1.status, entity2.status)
+41. Factual(entity1.delays, entity2.delays)
+42. Causal(entity1.client, entity2.client)
+43. Numeric(entity1.location, entity2.location)
+44. Temporal(entity1.end_date, entity2.start_date)
+45. Content(entity1.budget, entity2.budget)
+46. Relation(entity1.scope, entity2.scope)
+47. violate(entity1.team_size, entity2.team_size)
+48. Factual(entity1.start_date, entity2.start_date)
+49. Causal(entity1.status, entity2.status)
+50. Numeric(entity1.delays, entity2.delays)
+51. Temporal(entity1.client, entity2.client)
+52. Content(entity1.location, entity2.location)
+53. Relation(entity1.budget, entity2.budget)
+54. violate(entity1.scope, entity2.scope)
+55. Factual(entity1.team_size, entity2.team_size)
+56. Causal(entity1.start_date, entity2.end_date)
+57. Numeric(entity1.end_date, entity2.start_date)
+58. Temporal(entity1.status, entity2.status)
+59. Content(entity1.delays, entity2.delays)
+60. Relation(entity1.client, entity2.client)
+61. violate(entity1.budget, entity2.budget)
+62. Factual(entity1.scope, entity2.scope)
+63. Causal(entity1.team_size, entity2.team_size)
+64. Numeric(entity1.start_date, entity2.end_date)
+65. Temporal(entity1.location, entity2.location)
+66. Content(entity1.status, entity2.status)
+67. Relation(entity1.delays, entity2.delays)
+68. violate(entity1.client, entity2.client)
+69. Factual(entity1.end_date, entity2.start_date)
+70. Causal(entity1.budget, entity2.budget)
+71. Numeric(entity1.scope, entity2.scope)
+72. Temporal(entity1.team_size, entity2.team_size)
+73. Content(entity1.start_date, entity2.end_date)
+74. Relation(entity1.status, entity2.status)
+75. violate(entity1.delays, entity2.delays)
+76. Factual(entity1.client, entity2.client)
+77. Causal(entity1.location, entity2.location)
+78. Numeric(entity1.budget, entity2.budget)
+79. Temporal(entity1.scope, entity2.scope)
+80. Content(entity1.team_size, entity2.team_size)
+81. Relation(entity1.start_date, entity2.end_date)
+82. violate(entity1.status, entity2.status)
+83. Factual(entity1.delays, entity2.delays)
+84. Causal(entity1.client, entity2.client)
+85. Numeric(entity1.location, entity2.location)
+86. Temporal(entity1.budget, entity2.budget)
+87. Content(entity1.scope, entity2.scope)
+88. Relation(entity1.team_size, entity2.team_size)
+89. violate(entity1.start_date, entity2.end_date)
+90. Factual(entity1.end_date, entity2.start_date)
+91. Causal(entity1.status, entity2.status)
+92. Numeric(entity1.delays, entity2.delays)
+93. Temporal(entity1.client, entity2.client)
+94. Content(entity1.location, entity2.location)
+95. Relation(entity1.budget, entity2.budget)
+96. violate(entity1.scope, entity2.scope)
+97. Factual(entity1.team_size, entity2.team_size)
+98. Causal(entity1.start_date, entity2.end_date)
+99. Numeric(entity1.end_date, entity2.start_date)
+100. Temporal(entity1.status, entity2.status)
+violate(x0, y0)
+
+Rules:
+1. Q[x0, y0](entity.status = "completed" ∧ entity.delays = "none" → violate(x0, y0))
+2. Q[x0, y0](entity.start_date = "2025-01-01" ∧ entity.end_date = "2025-12-31" → violate(x0, y0))
+3. Q[x0, y0](entity.budget = "100000" ∧ entity.status = "completed" ∧ entity.delays = "significant" → violate(x0, y0))
+4. Q[x0, y0](entity.team_size = "10" ∧ entity.location = "New York" ∧ entity.client = "Company X" ∧ entity.scope = "full" → violate(x0, y0))
+5. Q[x0, y0](entity.status = "completed" ∧ edge.status = "ongoing" ∧ edge.delays = "significant" → violate(x0, y0))
+6. Q[x0, y0](entity.budget = "100000" ∧ edge.budget = "100000" ∧ entity.delays = "none" ∧ edge.delays = "significant" → violate(x0, y0))
+7. Q[x0, y0](entity.start_date = "2025-01-01" ∧ entity.end_date = "2025-12-31" ∧ edge.start_date = "2025-01-01" → violate(x0, y0))
+8. Q[x0, y0](entity.status = "completed" ∧ edge.status = "ongoing" ∧ edge.delays = "none" ∧ entity.delays = "significant" → violate(x0, y0))
+9. Q[x0, y0](entity.team_size = "10" ∧ edge.team_size = "15" ∧ entity.location = "New York" ∧ edge.location = "Los Angeles" ∧ entity.client = "Company X" → violate(x0, y0))
+10. Q[x0, y0](entity.scope = "full" ∧ edge.scope = "partial" ∧ entity.status = "completed" ∧ edge.status = "ongoing" → violate(x0, y0))
+11. Q[x0, y0](entity.delays = "none" ∧ edge.delays = "significant" ∧ entity.budget = "100000" ∧ edge.budget = "100000" ∧ entity.team_size = "10" → violate(x0, y0))
+12. Q[x0, y0](entity.start_date = "2025-01-01" ∧ entity.end_date = "2025-12-31" ∧ edge.start_date = "2025-01-01" ∧ edge.end_date = "2025-12-31" ∧ entity.status = "completed" → violate(x0, y0))
+13. Q[x0, y0](entity.status = "completed" ∧ entity.delays = "none" ∧ edge.status = "ongoing" ∧ edge.delays = "significant" ∧ edge.client = "Company Y" → violate(x0, y0))
+14. Q[x0, y0](entity.budget = "100000" ∧ entity.team_size = "10" ∧ edge.budget = "100000" ∧ edge.team_size = "15" ∧ entity.client = "Company X" → violate(x0, y0))
+15. Q[x0, y0](entity.location = "New York" ∧ edge.location = "Los Angeles" ∧ entity.status = "completed" ∧ edge.status = "ongoing" ∧ entity.delays = "none" → violate(x0, y0))
+16. Q[x0, y0](entity.start_date = "2025-01-01" ∧ entity.end_date = "2025-12-31" ∧ entity.budget = "100000" ∧ entity.status = "completed" ∧ edge.delays = "significant" → violate(x0, y0))
+17. Q[x0, y0](entity.delays = "none" ∧ edge.delays = "significant" ∧ entity.client = "Company X" ∧ edge.client = "Company Y" ∧ entity.scope = "full" → violate(x0, y0))
+18. Q[x0, y0](entity.team_size = "10" ∧ edge.team_size = "15" ∧ entity.status = "completed" ∧ edge.status = "ongoing" ∧ entity.location = "New York" → violate(x0, y0))
+19. Q[x0, y0](entity.budget = "100000" ∧ entity.delays = "none" ∧ edge.budget = "100000" ∧ edge.delays = "significant" ∧ entity.client = "Company X" → violate(x0, y0))
+20. Q[x0, y0](entity.start_date = "2025-01-01" ∧ entity.end_date = "2025-12-31" ∧ edge.start_date = "2025-01-01" ∧ edge.end_date = "2025-12-31" ∧ edge.status = "ongoing" → violate(x0, y0))
+21. Q[x0, y0](entity.status = "completed" ∧ edge.status = "ongoing" ∧ entity.delays = "none" ∧ edge.delays = "significant" ∧ entity.client = "Company X" ∧ edge.client = "Company Y" → violate(x0, y0))
+22. Q[x0, y0](entity.budget = "100000" ∧ entity.team_size = "10" ∧ edge.budget = "100000" ∧ edge.team_size = "15" ∧ entity.scope = "full" ∧ edge.scope = "partial" → violate(x0, y0))
+23. Q[x0, y0](entity.location = "New York" ∧ edge.location = "Los Angeles" ∧ entity.status = "completed" ∧ edge.status = "ongoing" ∧ entity.delays = "none" ∧ edge.delays = "significant" → violate(x0, y0))
+24. Q[x0, y0](entity.start_date = "2025-01-01" ∧ entity.end_date = "2025-12-31" ∧ entity.budget = "100000" ∧ entity.status = "completed" ∧ edge.delays = "significant" ∧ edge.client = "Company Y" → violate(x0, y0))
+25. Q[x0, y0](entity.delays = "none" ∧ edge.delays = "significant" ∧ entity.client = "Company X" ∧ edge.client = "Company Y" ∧ entity.scope = "full" ∧ edge.scope = "partial" → violate(x0, y0))
+26. Q[x0, y0](

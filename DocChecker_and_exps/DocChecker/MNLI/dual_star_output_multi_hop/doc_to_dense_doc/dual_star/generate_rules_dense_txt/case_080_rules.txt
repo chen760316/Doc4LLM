@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 80)
+S1: The girl got along well with small boys.
+S2: The girl got along well with nobody.
+
+Predicates:
+1. Girl.relationship_with.small_boys
+2. Girl.relationship_with.nobody
+3. M_NLI(S1, S2)
+4. Factual(Girl, small_boys)
+5. Factual(Girl, nobody)
+6. violate(Girl.relationship_with.small_boys, Girl.relationship_with.nobody)
+7. Girl.relationship_quality.good
+8. Girl.relationship_quality.poor
+9. small_boys.relationship_with.Girl
+10. nobody.relationship_with.Girl
+11. small_boys.relationship_quality.good
+12. nobody.relationship_quality.poor
+13. M_NLI(Girl.relationship_with.small_boys, Girl.relationship_with.nobody)
+14. Factual(Girl, relationships)
+15. Factual(small_boys, relationships)
+16. Factual(nobody, relationships)
+17. violate(Girl.relationship_quality.good, Girl.relationship_quality.poor)
+18. small_boys.relationship_quality.positive
+19. nobody.relationship_quality.negative
+20. Girl.interaction_with.small_boys
+21. Girl.interaction_with.nobody
+22. small_boys.interaction_with.Girl
+23. nobody.interaction_with.Girl
+24. M_NLI(Girl.interaction_with.small_boys, Girl.interaction_with.nobody)
+25. Factual(Girl, interaction_quality)
+26. Factual(small_boys, interaction_quality)
+27. Factual(nobody, interaction_quality)
+28. violate(Girl.interaction_quality.positive, Girl.interaction_quality.negative)
+29. Girl.social_skills.positive
+30. Girl.social_skills.negative
+
+Rules:
+1. Q[The, Girl.relationship_with.small_boys, Girl.relationship_with.nobody](Girl.relationship_quality.good → Factual(Girl, small_boys))
+2. Q[The, Girl.relationship_with.nobody, Girl.relationship_with.small_boys](Girl.relationship_quality.poor → Factual(Girl, nobody))
+3. Q[The, Girl.relationship_with.small_boys, Girl.relationship_with.nobody](Factual(Girl, small_boys) → violate(Girl.relationship_with.small_boys, Girl.relationship_with.nobody))
+4. Q[The, Girl.relationship_quality.good, Girl.relationship_quality.poor](Girl.relationship_with.small_boys → violate(Girl.relationship_quality.good, Girl.relationship_quality.poor))
+5. Q[The, Girl.relationship_quality.poor, Girl.relationship_quality.good](Girl.relationship_with.nobody → violate(Girl.relationship_quality.poor, Girl.relationship_quality.good))
+6. Q[The, small_boys.relationship_quality.good, nobody.relationship_quality.poor](Factual(Girl, small_boys) → violate(small_boys.relationship_quality.good, nobody.relationship_quality.poor))
+7. Q[The, nobody.relationship_quality.poor, small_boys.relationship_quality.good](Factual(Girl, nobody) → violate(nobody.relationship_quality.poor, small_boys.relationship_quality.good))
+8. Q[The, Girl.relationship_with.small_boys, Girl.relationship_quality.good](Girl.relationship_with.small_boys → Factual(Girl, small_boys))
+9. Q[The, Girl.relationship_with.nobody, Girl.relationship_quality.poor](Girl.relationship_with.nobody → Factual(Girl, nobody))
+10. Q[The, small_boys.relationship_with.Girl, nobody.relationship_with.Girl](Girl.relationship_with.small_boys → violate(small_boys.relationship_with.Girl, nobody.relationship_with.Girl))
+11. Q[The, nobody.relationship_with.Girl, small_boys.relationship_with.Girl](Girl.relationship_with.nobody → violate(nobody.relationship_with.Girl, small_boys.relationship_with.Girl))
+12. Q[The, Girl.interaction_with.small_boys, Girl.interaction_with.nobody](Girl.relationship_quality.good → violate(Girl.interaction_with.small_boys, Girl.interaction_with.nobody))
+13. Q[The, Girl.interaction_with.nobody, Girl.interaction_with.small_boys](Girl.relationship_quality.poor → violate(Girl.interaction_with.nobody, Girl.interaction_with.small_boys))
+14. Q[The, Girl.social_skills.positive, Girl.social_skills.negative](Girl.relationship_with.small_boys → violate(Girl.social_skills.positive, Girl.social_skills.negative))
+15. Q[The, Girl.social_skills.negative, Girl.social_skills.positive](Girl.relationship_with.nobody → violate(Girl.social_skills.negative, Girl.social_skills.positive))
+16. Q[The, small_boys.relationship_quality.positive, nobody.relationship_quality.negative](Factual(Girl, small_boys) → violate(small_boys.relationship_quality.positive, nobody.relationship_quality.negative))
+17. Q[The, nobody.relationship_quality.negative, small_boys.relationship_quality.positive](Factual(Girl, nobody) → violate(nobody.relationship_quality.negative, small_boys.relationship_quality.positive))
+18. Q[The, Girl.relationship_with.small_boys, Girl.relationship_quality.good](Factual(Girl, small_boys) → Factual(Girl, relationships))
+19. Q[The, Girl.relationship_with.nobody, Girl.relationship_quality.poor](Factual(Girl, nobody) → Factual(Girl, relationships))
+20. Q[The, Girl.relationship_with.small_boys, Girl.relationship_with.nobody](M_NLI(Girl.relationship_with.small_boys, Girl.relationship_with.nobody) → Factual(Girl, small_boys))
+21. Q[The, Girl.relationship_with.nobody, Girl.relationship_with.small_boys](M_NLI(Girl.relationship_with.nobody, Girl.relationship_with.small_boys) → Factual(Girl, nobody))
+22. Q[The, Girl.interaction_with.small_boys, Girl.interaction_with.nobody](Girl.relationship_quality.good → Factual(Girl, interaction_quality))
+23. Q[The, Girl.interaction_with.nobody, Girl.interaction_with.small_boys](Girl.relationship_quality.poor → Factual(Girl, interaction_quality))
+24. Q[The, small_boys.relationship_with.Girl, nobody.relationship_with.Girl](Girl.interaction_with.small_boys → violate(small_boys.relationship_with.Girl, nobody.relationship_with.Girl))
+25. Q[The, nobody.relationship_with.Girl, small_boys.relationship_with.Girl](Girl.interaction_with.nobody → violate(nobody.relationship_with.Girl, small_boys.relationship_with.Girl))
+26. Q[The, Girl.relationship_with.small_boys, Girl.relationship_quality.good](Factual(Girl, small_boys) → Factual(Girl, interaction_quality))
+27. Q[The, Girl.relationship_with.nobody, Girl.relationship_quality.poor](Factual(Girl, nobody) → Factual(Girl, interaction_quality))
+28. Q[The, small_boys.relationship_quality.good, nobody.relationship_quality.poor](M_NLI(Girl.relationship_with.small_boys, Girl.relationship_with.nobody) → Factual(Girl, small_boys))
+29. Q[The, nobody.relationship_quality.poor, small_boys.relationship_quality.good](M_NLI(Girl.relationship_with.nobody, Girl.relationship_with.small_boys) → Factual(Girl, nobody))
+30. Q[The, Girl.relationship_quality.good, Girl.relationship_quality.poor](M_NLI(Girl.relationship_quality.good, Girl.relationship_quality.poor) → Factual(Girl, relationships))

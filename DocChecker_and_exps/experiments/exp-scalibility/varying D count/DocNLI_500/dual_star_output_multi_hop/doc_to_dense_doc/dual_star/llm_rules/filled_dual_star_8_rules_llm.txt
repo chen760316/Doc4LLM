@@ -1,0 +1,129 @@
+Predicates:
+1. Castro.attributes = "{'action': 'accused victims'}"
+2. Castro.victims = "victims"
+3. Castro.crime = "heinous crime"
+4. Castro.suicide.method = "hanged"
+5. Castro.sentence = "life plus 1,000 years"
+6. Castro.mother.relation = "mother"
+7. Castro.sister.relation = "sister"
+8. Castro.victims.attributes = "{'status': 'abused'}"
+9. Castro.victims.diaries.permission = "kept with permission"
+10. Castro.attorneys.request = "permission for independent forensic psychologist"
+11. Castro.attorneys.response = "denied by officials"
+12. Castro.mother.visit_count = "2"
+13. Castro.sister.visit_count = "2"
+14. Castro.mother.most_recent_visit = "August 26"
+15. Castro.sister.most_recent_visit = "August 26"
+16. Castro.hanged.date = "Wednesday"
+17. Castro.hanged.source = "CNN"
+18. Castro.hanged.source_id = "Index_68"
+19. Castro.victims.diaries.reason = "to provide details of their abuse"
+20. Castro.victims.lies.accusation = "lying about treatment"
+21. Castro.hanged.method = "suicide"
+22. Castro.sentence.time = "Tuesday night"
+23. Castro.victims.diaries.count = "multiple"
+24. Castro.hanged.reported_by = "Coroner Dr. Jan Gorniak"
+25. Castro.victims.treatment = "abuse"
+26. Castro.attorneys.permission = "requested"
+27. Castro.attorneys.evaluation = "independent forensic psychologist"
+28. Castro.victims.diaries.details = "detailing their abuse"
+29. Castro.hanged.cause = "suicide"
+30. Castro.victims.status = "abused"
+31. Castro.mother.visits = "regular"
+32. Castro.sister.visits = "regular"
+33. Castro.victims.diaries.access = "with permission"
+34. Castro.hanged.reported_date = "Wednesday"
+35. Castro.sentence.details = "life in prison plus 1,000 years"
+36. Castro.victims.diaries.content = "abuse details"
+37. Castro.attorneys.response_time = "immediate"
+38. Castro.hanged.official_report = "confirmed"
+39. Castro.victims.lies.details = "accusation of lying"
+40. Castro.hanged.officials = "Coroner"
+41. Castro.victims.diaries.purpose = "document abuse"
+42. Castro.hanged.impact = "public reaction"
+43. Castro.victims.diaries.ownership = "victims"
+44. Castro.hanged.legal_implications = "investigation"
+45. Castro.victims.lies.context = "treatment claims"
+46. Castro.hanged.suicide_note = "not found"
+47. Castro.victims.diaries.legitimacy = "questioned"
+48. Castro.hanged.motive = "despair"
+49. Castro.victims.lies.evidence = "none"
+50. Castro.hanged.impact_on_case = "significant"
+51. M_NLI(Castro.victims.lies, Castro.victims.diaries)
+52. T("Castro accused the victims of lying about their treatment.", "Castro's victims kept diaries with Castro's permission, detailing their abuse.", tau)
+53. tau(Castro.victims.lies, Castro.victims.diaries.reason)
+54. violate(Castro.victims.lies, Castro.victims.diaries)
+55. Factual(Castro.hanged, Castro.victims.lies)
+56. Causal(Castro.hanged, Castro.victims.diaries)
+57. Numeric(Castro.mother.visit_count, Castro.sister.visit_count)
+58. Temporal(Castro.hanged.date, Castro.sentence.time)
+59. Relation(Castro.hanged, Castro.attorneys)
+60. Content(Castro.victims.lies, Castro.victims.diaries)
+61. Factual(Castro.hanged, Castro.sentence)
+62. Causal(Castro.attorneys.request, Castro.attorneys.response)
+63. Numeric(Castro.victims.diaries.count, 2)
+64. Temporal(Castro.mother.most_recent_visit, Castro.sister.most_recent_visit)
+65. Relation(Castro.hanged, Castro.victims)
+66. Content(Castro.victims.lies.accusation, Castro.victims.diaries.details)
+67. Factual(Castro.hanged.method, "not confirmed")
+68. Causal(Castro.victims.diaries.access, Castro.victims.lies)
+69. Numeric(Castro.sentence.time, "Tuesday night")
+70. Temporal(Castro.hanged.reported_date, Castro.hanged.date)
+71. Relation(Castro.attorneys.response, Castro.attorneys.request)
+72. Content(Castro.victims.lies.details, Castro.victims.diaries.content)
+73. Factual(Castro.hanged.cause, "not suicide")
+74. Causal(Castro.victims.diaries.purpose, Castro.victims.lies)
+75. Numeric(Castro.mother.visit_count, 3)
+76. Temporal(Castro.hanged.reported_by, "not Dr. Jan Gorniak")
+77. Relation(Castro.victims.diaries.ownership, Castro.victims)
+78. Content(Castro.hanged.impact, "not significant")
+79. Factual(Castro.victims.lies.evidence, "not present")
+80. Causal(Castro.hanged.impact_on_case, "not significant")
+81. Numeric(Castro.victims.diaries.count, 1)
+82. Temporal(Castro.hanged.date, "not Wednesday")
+83. Relation(Castro.hanged.motive, "not despair")
+84. Content(Castro.victims.lies.context, "not treatment claims")
+85. Factual(Castro.hanged.official_report, "not confirmed")
+86. Causal(Castro.victims.lies.evidence, "not found")
+87. Numeric(Castro.attorneys.response_time, "not immediate")
+88. Temporal(Castro.mother.visits, "not regular")
+89. Relation(Castro.victims.lies, Castro.hanged)
+90. Content(Castro.victims.diaries.details, "not abuse details")
+91. Factual(Castro.hanged.legal_implications, "not significant")
+92. Causal(Castro.victims.diaries.legitimacy, "not questioned")
+93. Numeric(Castro.sister.visit_count, 1)
+94. Temporal(Castro.hanged.impact, "not public reaction")
+95. Relation(Castro.victims.diaries.purpose, Castro.hanged)
+96. Content(Castro.victims.lies.accusation, "not lying")
+97. Factual(Castro.hanged.motive, "not despair")
+98. Causal(Castro.victims.lies.context, "not treatment claims")
+99. Numeric(Castro.victims.diaries.count, 0)
+100. Temporal(Castro.hanged.reported_date,
+violate(x0, y0)
+
+Rules:
+1. Q[Castro.victims, Castro.hanged](Castro.victims.attributes = "{'status': 'abused'}" ∧ Castro.hanged.cause = "suicide" → violate(Castro.victims, Castro.hanged))
+2. Q[Castro.victims, Castro.attorneys](Castro.victims.lies.accusation = "lying about treatment" ∧ Castro.attorneys.response = "denied by officials" → violate(Castro.victims, Castro.attorneys))
+3. Q[Castro.mother, Castro.victims](Castro.mother.visit_count = "2" ∧ Castro.victims.status = "abused" → violate(Castro.mother, Castro.victims))
+4. Q[Castro.sister, Castro.hanged](Castro.sister.visit_count = "2" ∧ Castro.hanged.method = "suicide" → violate(Castro.sister, Castro.hanged))
+5. Q[Castro.victims, Castro.sentence](Castro.victims.diaries.permission = "kept with permission" ∧ Castro.sentence.details = "life in prison plus 1,000 years" → violate(Castro.victims, Castro.sentence))
+6. Q[Castro.attorneys, Castro.victims](Castro.attorneys.request = "permission for independent forensic psychologist" ∧ Castro.victims.diaries.reason = "to provide details of their abuse" → violate(Castro.attorneys, Castro.victims))
+7. Q[Castro.hanged, Castro.victims](Castro.hanged.reported_by = "Coroner Dr. Jan Gorniak" ∧ Castro.victims.diaries.count = "multiple" ∧ Castro.victims.treatment = "abuse" → violate(Castro.hanged, Castro.victims))
+8. Q[Castro.hanged, Castro.victims](Castro.hanged.official_report = "confirmed" ∧ Castro.victims.lies.evidence = "none" ∧ Castro.victims.diaries.details = "detailing their abuse" → violate(Castro.hanged, Castro.victims))
+9. Q[Castro.mother, Castro.hanged](Castro.mother.relation = "mother" ∧ Castro.hanged.impact = "public reaction" ∧ Castro.hanged.cause = "suicide" → violate(Castro.mother, Castro.hanged))
+10. Q[Castro.sister, Castro.victims](Castro.sister.relation = "sister" ∧ Castro.victims.diaries.legitimacy = "questioned" ∧ Castro.victims.lies.details = "accusation of lying" → violate(Castro.sister, Castro.victims))
+11. Q[Castro.victims, Castro.hanged](Castro.victims.diaries.access = "with permission" ∧ Castro.hanged.date = "Wednesday" ∧ Castro.hanged.source = "CNN" → violate(Castro.victims, Castro.hanged))
+12. Q[Castro.attorneys, Castro.hanged](Castro.attorneys.evaluation = "independent forensic psychologist" ∧ Castro.hanged.reported_date = "Wednesday" ∧ Castro.hanged.legal_implications = "investigation" → violate(Castro.attorneys, Castro.hanged))
+13. Q[Castro.victims, Castro.hanged](Castro.victims.diaries.content = "abuse details" ∧ Castro.hanged.method = "not suicide" ∧ Castro.hanged.impact_on_case = "significant" → violate(Castro.victims, Castro.hanged))
+14. Q[Castro.mother, Castro.victims](Castro.mother.visits = "regular" ∧ Castro.victims.lies.evidence = "not present" ∧ Castro.victims.diaries.purpose = "document abuse" → violate(Castro.mother, Castro.victims))
+15. Q[Castro.sister, Castro.attorneys](Castro.sister.visits = "regular" ∧ Castro.attorneys.response_time = "not immediate" ∧ Castro.victims.diaries.ownership = "victims" → violate(Castro.sister, Castro.attorneys))
+16. Q[Castro.victims, Castro.hanged](Castro.victims.lies.context = "treatment claims" ∧ Castro.hanged.motive = "not despair" ∧ Castro.hanged.official_report = "not confirmed" → violate(Castro.victims, Castro.hanged))
+17. Q[Castro.hanged, Castro.victims](Castro.hanged.impact_on_case = "not significant" ∧ Castro.victims.diaries.details = "not abuse details" ∧ Castro.victims.lies.accusation = "not lying" → violate(Castro.hanged, Castro.victims))
+18. Q[Castro.attorneys, Castro.victims](Castro.attorneys.response = "denied by officials" ∧ Castro.victims.diaries.reason = "not to provide details of their abuse" ∧ Castro.victims.status = "not abused" → violate(Castro.attorneys, Castro.victims))
+19. Q[Castro.mother, Castro.hanged](Castro.mother.most_recent_visit = "August 26" ∧ Castro.hanged.cause = "not suicide" ∧ Castro.hanged.reported_by = "not Dr. Jan Gorniak" → violate(Castro.mother, Castro.hanged))
+20. Q[Castro.sister, Castro.hanged](Castro.sister.most_recent_visit = "August 26" ∧ Castro.hanged.impact = "not significant" ∧ Castro.hanged.source_id = "Index_68" → violate(Castro.sister, Castro.hanged))
+21. Q[Castro.victims, Castro.hanged](Castro.victims.diaries.count = "1" ∧ Castro.hanged.date = "not Wednesday" ∧ Castro.hanged.method = "not confirmed" → violate(Castro.victims, Castro.hanged))
+22. Q[Castro.attorneys, Castro.victims](Castro.attorneys.request = "not permission for independent forensic psychologist" ∧ Castro.victims.diaries.access = "not with permission" ∧ Castro.victims.treatment = "not abuse" → violate(Castro.attorneys, Castro.victims))
+23. Q[Castro.hanged, Castro.victims](Castro.hanged.official_report = "not confirmed" ∧ Castro.victims.lies.details = "not detailing their abuse" ∧ Castro.victims.diaries.purpose = "not document abuse" → violate(Castro.hanged, Castro.victims))
+24. Q[Castro.mother, Castro.victims](Castro.mother.visit_count = "3" ∧ Castro.victims.lies.evidence = "not present" ∧ Castro.victims.diaries.legitimacy = "not questioned" → violate(Castro.mother, Castro.victims))
+25

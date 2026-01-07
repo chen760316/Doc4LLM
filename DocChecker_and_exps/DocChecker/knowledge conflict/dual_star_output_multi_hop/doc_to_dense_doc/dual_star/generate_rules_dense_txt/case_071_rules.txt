@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 71)
+S1: Despite a short life, he produced remarkable works like 'Ode to a Nightingale' and 'Ode on a Grecian Urn.'
+S2: Despite a short life, he produced remarkable works like 'Ode to a Nightingale' and 'Ode on a Grecian Urn.'
+
+Predicates:
+1. Poet.name
+2. Poet.short_life
+3. Work.title
+4. Work.author
+5. Work.year
+6. Work.type
+7. Work.genre
+8. Work.inspiration
+9. Work.theme
+10. Work.language
+11. Relationship.attribution
+12. Relationship.factually_incorrect
+13. Relationship.similarity
+14. M_NLI.s1
+15. M_NLI.s2
+16. Factual.poet
+17. Factual.work
+18. Factual.attribution
+19. Factual.incorrect
+20. violate.poet
+21. violate.work
+22. violate.attribution
+23. Publication.year
+24. Publication.title
+25. Publication.author
+26. Publication.genre
+27. Publication.influence
+28. Publication.theme
+29. Publication.language
+30. Publication.type
+
+Rules:
+1. Q[Despite, Poet.name, Work.title](Poet.name == "Poet A" ∧ Work.title == "Ode to a Nightingale" → Factual(Poet.name, Work.title))
+2. Q[Despite, Poet.name, Work.title](Poet.name == "Poet B" ∧ Work.title == "Ode on a Grecian Urn" → Factual(Poet.name, Work.title))
+3. Q[Despite, Poet.short_life, Work.author](Poet.short_life == true ∧ Work.author == "John Keats" → Factual(Poet.short_life, Work.author))
+4. Q[Despite, Work.title, Work.author](Work.title == "Ode to a Nightingale" ∧ Work.author == "John Keats" → Factual(Work.title, Work.author))
+5. Q[Despite, Work.title, Work.author](Work.title == "Ode on a Grecian Urn" ∧ Work.author == "John Keats" → Factual(Work.title, Work.author))
+6. Q[Despite, Work.title, Relationship.attribution](Work.title == "Ode to a Nightingale" ∧ Relationship.attribution == "Poet A" → Factual(Work.title, Relationship.attribution))
+7. Q[Despite, Work.title, Relationship.attribution](Work.title == "Ode on a Grecian Urn" ∧ Relationship.attribution == "Poet B" → Factual(Work.title, Relationship.attribution))
+8. Q[Despite, Relationship.factually_incorrect, Work.title](Relationship.factually_incorrect == true ∧ Work.title == "Ode to a Nightingale" → Factual(Relationship.factually_incorrect, Work.title))
+9. Q[Despite, Relationship.factually_incorrect, Work.title](Relationship.factually_incorrect == true ∧ Work.title == "Ode on a Grecian Urn" → Factual(Relationship.factually_incorrect, Work.title))
+10. Q[Despite, Work.author, Relationship.similarity](Work.author == "John Keats" ∧ Relationship.similarity == "Poet A" → Factual(Work.author, Relationship.similarity))
+11. Q[Despite, Work.author, Relationship.similarity](Work.author == "John Keats" ∧ Relationship.similarity == "Poet B" → Factual(Work.author, Relationship.similarity))
+12. Q[Despite, Poet.short_life, Factual.incorrect](Poet.short_life == true ∧ Factual.incorrect == true → Factual(Poet.short_life, Factual.incorrect))
+13. Q[Despite, Work.title, Factual.incorrect](Work.title == "Ode to a Nightingale" ∧ Factual.incorrect == true → Factual(Work.title, Factual.incorrect))
+14. Q[Despite, Work.title, Factual.incorrect](Work.title == "Ode on a Grecian Urn" ∧ Factual.incorrect == true → Factual(Work.title, Factual.incorrect))
+15. Q[Despite, Work.author, Factual.incorrect](Work.author == "John Keats" ∧ Factual.incorrect == true → Factual(Work.author, Factual.incorrect))
+16. Q[Despite, Relationship.attribution, Factual.incorrect](Relationship.attribution == "Poet A" ∧ Factual.incorrect == true → Factual(Relationship.attribution, Factual.incorrect))
+17. Q[Despite, Relationship.attribution, Factual.incorrect](Relationship.attribution == "Poet B" ∧ Factual.incorrect == true → Factual(Relationship.attribution, Factual.incorrect))
+18. Q[Despite, Work.title, Work.author](Work.title == "Ode to a Nightingale" ∧ Work.author == "Poet A" → Factual(Work.title, Work.author))
+19. Q[Despite, Work.title, Work.author](Work.title == "Ode on a Grecian Urn" ∧ Work.author == "Poet B" → Factual(Work.title, Work.author))
+20. Q[Despite, Poet.name, Relationship.factually_incorrect](Poet.name == "Poet A" ∧ Relationship.factually_incorrect == true → Factual(Poet.name, Relationship.factually_incorrect))
+21. Q[Despite, Poet.name, Relationship.factually_incorrect](Poet.name == "Poet B" ∧ Relationship.factually_incorrect == true → Factual(Poet.name, Relationship.factually_incorrect))
+22. Q[Despite, Work.title, Relationship.factually_incorrect](Work.title == "Ode to a Nightingale" ∧ Relationship.factually_incorrect == true → Factual(Work.title, Relationship.factually_incorrect))
+23. Q[Despite, Work.title, Relationship.factually_incorrect](Work.title == "Ode on a Grecian Urn" ∧ Relationship.factually_incorrect == true → Factual(Work.title, Relationship.factually_incorrect))
+24. Q[Despite, Poet.short_life, Factual.work](Poet.short_life == true ∧ Factual.work == "Ode to a Nightingale" → Factual(Poet.short_life, Factual.work))
+25. Q[Despite, Poet.short_life, Factual.work](Poet.short_life == true ∧ Factual.work == "Ode on a Grecian Urn" → Factual(Poet.short_life, Factual.work))
+26. Q[Despite, Work.title, Factual.attribution](Work.title == "Ode to a Nightingale" ∧ Factual.attribution == "Poet A" → Factual(Work.title, Factual.attribution))
+27. Q[Despite, Work.title, Factual.attribution](Work.title == "Ode on a Grecian Urn" ∧ Factual.attribution == "Poet B" → Factual(Work.title, Factual.attribution))
+28. Q[Despite, Relationship.similarity, Factual.incorrect](Relationship.similarity == "Poet A" ∧ Factual.incorrect == true → Factual(Relationship.similarity, Factual.incorrect))
+29. Q[Despite, Relationship.similarity, Factual.incorrect](Relationship.similarity == "Poet B" ∧ Factual.incorrect == true → Factual(Relationship.similarity, Factual.incorrect))
+30. Q[Despite, Work.author, Factual.incorrect](Work.author == "John Keats" ∧ Factual.incorrect == true → Factual(Work.author, Factual.incorrect))

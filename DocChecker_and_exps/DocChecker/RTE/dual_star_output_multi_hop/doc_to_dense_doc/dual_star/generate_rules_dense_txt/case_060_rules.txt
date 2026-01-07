@@ -1,0 +1,66 @@
+Source: dense_text.txt (Index 60)
+S1: B o u n t i f u l a r r i v e d a f t e r w a r ' s e n d , s a i l i n g i n t o S a n F r a n c i s c o B a y 2 1 A u g u s t 1 9 4 5 .
+S2: A b u n d a n t r e a c h e d S a n F r a n c i s c o i n A u g u s t 1 9 4 5 .
+
+Predicates:
+1. Ship_Bountiful.arrival_date = "21 August 1945"
+2. Ship_Abundant.arrival_date = "August 1945"
+3. Ship_Bountiful.destination = "San Francisco Bay"
+4. Ship_Abundant.destination = "San Francisco"
+5. Event_Arrival_Bountiful.date = "21 August 1945"
+6. Event_Arrival_Abundant.date = "August 1945"
+7. Event_Arrival_Bountiful.location = "San Francisco Bay"
+8. Event_Arrival_Abundant.location = "San Francisco"
+9. M_NLI(S1, S2)
+10. Temporal(Event_Arrival_Bountiful.date, Event_Arrival_Abundant.date)
+11. violate(Event_Arrival_Bountiful.date, Event_Arrival_Abundant.date)
+12. Ship_Bountiful.type = "cargo"
+13. Ship_Abundant.type = "cargo"
+14. Ship_Bountiful.origin = "unknown"
+15. Ship_Abundant.origin = "unknown"
+16. Date_August_1945.month = "August"
+17. Date_August_1945.year = "1945"
+18. Location_San_Francisco_Bay.type = "bay"
+19. Location_San_Francisco.type = "city"
+20. Event_Arrival_Bountiful.vessel = Ship_Bountiful
+21. Event_Arrival_Abundant.vessel = Ship_Abundant
+22. Ship_Bountiful.status = "arrived"
+23. Ship_Abundant.status = "arrived"
+24. Arrival_Conflict.exists = true
+25. Arrival_Conflict.ships_involved = [Ship_Bountiful, Ship_Abundant]
+26. Arrival_Conflict.location = "San Francisco"
+27. Arrival_Conflict.date = "August 1945"
+28. Ship_Bountiful.arrival_time = "afternoon"
+29. Ship_Abundant.arrival_time = "unknown"
+30. Event_Arrival_Bountiful.significance = "historical"
+
+Rules:
+1. Q[Anchor, Ship_Bountiful.arrival_date, Ship_Abundant.arrival_date](Ship_Bountiful.arrival_date == "21 August 1945" → Temporal(Ship_Bountiful.arrival_date, Ship_Abundant.arrival_date))
+2. Q[Anchor, Event_Arrival_Bountiful.date, Event_Arrival_Abundant.date](Event_Arrival_Bountiful.date == "21 August 1945" → Temporal(Event_Arrival_Bountiful.date, Event_Arrival_Abundant.date))
+3. Q[Anchor, Ship_Bountiful.destination, Ship_Abundant.destination](Ship_Bountiful.destination == "San Francisco Bay" → Temporal(Ship_Bountiful.destination, Ship_Abundant.destination))
+4. Q[Anchor, Event_Arrival_Bountiful.location, Event_Arrival_Abundant.location](Event_Arrival_Bountiful.location == "San Francisco Bay" → Temporal(Event_Arrival_Bountiful.location, Event_Arrival_Abundant.location))
+5. Q[Anchor, Ship_Bountiful.type, Ship_Abundant.type](Ship_Bountiful.type == "cargo" → Temporal(Ship_Bountiful.type, Ship_Abundant.type))
+6. Q[Anchor, Ship_Bountiful.status, Ship_Abundant.status](Ship_Bountiful.status == "arrived" → Temporal(Ship_Bountiful.status, Ship_Abundant.status))
+7. Q[Anchor, Arrival_Conflict.date, Arrival_Conflict.date](Arrival_Conflict.date == "August 1945" → Temporal(Arrival_Conflict.date, Arrival_Conflict.date))
+8. Q[Anchor, Event_Arrival_Bountiful.vessel, Event_Arrival_Abundant.vessel](Event_Arrival_Bountiful.vessel == Ship_Bountiful → Temporal(Event_Arrival_Bountiful.vessel, Event_Arrival_Abundant.vessel))
+9. Q[Anchor, Arrival_Conflict.exists, Arrival_Conflict.exists](Arrival_Conflict.exists == true → Temporal(Arrival_Conflict.exists, Arrival_Conflict.exists))
+10. Q[Anchor, Arrival_Conflict.location, Arrival_Conflict.location](Arrival_Conflict.location == "San Francisco" → Temporal(Arrival_Conflict.location, Arrival_Conflict.location))
+11. Q[Anchor, Ship_Bountiful.arrival_time, Ship_Abundant.arrival_time](Ship_Bountiful.arrival_time == "afternoon" → Temporal(Ship_Bountiful.arrival_time, Ship_Abundant.arrival_time))
+12. Q[Anchor, Event_Arrival_Bountiful.significance, Event_Arrival_Abundant.significance](Event_Arrival_Bountiful.significance == "historical" → Temporal(Event_Arrival_Bountiful.significance, Event_Arrival_Abundant.significance))
+13. Q[Anchor, Ship_Bountiful.origin, Ship_Abundant.origin](Ship_Bountiful.origin == "unknown" → Temporal(Ship_Bountiful.origin, Ship_Abundant.origin))
+14. Q[Anchor, Date_August_1945.month, Date_August_1945.year](Date_August_1945.month == "August" → Temporal(Date_August_1945.month, Date_August_1945.year))
+15. Q[Anchor, Location_San_Francisco_Bay.type, Location_San_Francisco.type](Location_San_Francisco_Bay.type == "bay" → Temporal(Location_San_Francisco_Bay.type, Location_San_Francisco.type))
+16. Q[Anchor, Ship_Bountiful.arrival_date, Event_Arrival_Bountiful.date](Ship_Bountiful.arrival_date == "21 August 1945" → Temporal(Ship_Bountiful.arrival_date, Event_Arrival_Bountiful.date))
+17. Q[Anchor, Ship_Abundant.arrival_date, Event_Arrival_Abundant.date](Ship_Abundant.arrival_date == "August 1945" → Temporal(Ship_Abundant.arrival_date, Event_Arrival_Abundant.date))
+18. Q[Anchor, Event_Arrival_Bountiful.location, Ship_Bountiful.destination](Event_Arrival_Bountiful.location == "San Francisco Bay" → Temporal(Event_Arrival_Bountiful.location, Ship_Bountiful.destination))
+19. Q[Anchor, Event_Arrival_Abundant.location, Ship_Abundant.destination](Event_Arrival_Abundant.location == "San Francisco" → Temporal(Event_Arrival_Abundant.location, Ship_Abundant.destination))
+20. Q[Anchor, Arrival_Conflict.ships_involved, Arrival_Conflict.ships_involved](Arrival_Conflict.ships_involved == [Ship_Bountiful, Ship_Abundant] → Temporal(Arrival_Conflict.ships_involved, Arrival_Conflict.ships_involved))
+21. Q[Anchor, Event_Arrival_Bountiful.date, Arrival_Conflict.date](Event_Arrival_Bountiful.date == "21 August 1945" → Temporal(Event_Arrival_Bountiful.date, Arrival_Conflict.date))
+22. Q[Anchor, Event_Arrival_Abundant.date, Arrival_Conflict.date](Event_Arrival_Abundant.date == "August 1945" → Temporal(Event_Arrival_Abundant.date, Arrival_Conflict.date))
+23. Q[Anchor, Ship_Bountiful.arrival_time, Event_Arrival_Bountiful.date](Ship_Bountiful.arrival_time == "afternoon" → Temporal(Ship_Bountiful.arrival_time, Event_Arrival_Bountiful.date))
+24. Q[Anchor, Ship_Abundant.arrival_time, Event_Arrival_Abundant.date](Ship_Abundant.arrival_time == "unknown" → Temporal(Ship_Abundant.arrival_time, Event_Arrival_Abundant.date))
+25. Q[Anchor, Ship_Bountiful.status, Event_Arrival_Bountiful.vessel](Ship_Bountiful.status == "arrived" → Temporal(Ship_Bountiful.status, Event_Arrival_Bountiful.vessel))
+26. Q[Anchor, Ship_Abundant.status, Event_Arrival_Abundant.vessel](Ship_Abundant.status == "arrived" → Temporal(Ship_Abundant.status, Event_Arrival_Abundant.vessel))
+27. Q[Anchor, Event_Arrival_Bountiful.vessel, Arrival_Conflict.ships_involved](Event_Arrival_Bountiful.vessel == Ship_Bountiful → Temporal(Event_Arrival_Bountiful.vessel, Arrival_Conflict.ships_involved))
+28. Q[Anchor, Event_Arrival_Abundant.vessel, Arrival_Conflict.ships_involved](Event_Arrival_Abundant.vessel == Ship_Abundant → Temporal(Event_Arrival_Abundant.vessel, Arrival_Conflict.ships_involved))
+29. Q[Anchor, Arrival_Conflict.date, Event_Arrival_Bountiful.date](Arrival_Conflict.date == "August 194

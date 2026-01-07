@@ -1,0 +1,32 @@
+Predicates:
+Easter.description != "the celebration of the resurrection of Jesus"
+Easter.description = "the celebration of the resurrection of Jesus"
+Easter.label != "Event"
+Easter.label = "Event"
+Easter.name != "Easter"
+Easter.name = "Easter"
+Easter.significance != "joy and hope"
+Easter.significance = "joy and hope"
+None_ML(Passover.attrs, Easter.attrs)
+Passover.description != "A Jewish holiday celebrating the deliverance from slavery in Egypt."
+Passover.description != Easter.description
+Passover.description = "A Jewish holiday celebrating the deliverance from slavery in Egypt."
+Passover.label != "Event"
+Passover.label = "Event"
+Passover.name != "Passover"
+Passover.name != Easter.name
+Passover.name = "Passover"
+Passover___Easter.doc_id = "3489738288_4"
+Passover___Easter.relationship = "Easter's timing is related to Passover."
+
+Rules:
+Q[Passover,Passover] (Passover.label = "Event" ∧ Passover.name != "Passover" ∧ Easter.significance != "joy and hope" ∧ Passover___Easter.relationship = "Easter's timing is related to Passover." ∧ Easter.name != "Easter" → Passover.name = "Passover")
+Q[Passover,Passover] (Passover.description != "A Jewish holiday celebrating the deliverance from slavery in Egypt." ∧ Passover.label != "Event" ∧ Easter.significance != "joy and hope" ∧ Passover___Easter.relationship = "Easter's timing is related to Passover." ∧ Easter.description = "the celebration of the resurrection of Jesus" ∧ Passover.name != "Passover" → Easter.significance = "joy and hope")
+Q[Passover,Passover] (Passover.description = "A Jewish holiday celebrating the deliverance from slavery in Egypt." ∧ Passover.label != "Event" → Passover.name != Easter.name)
+Q[Passover,Passover] (Passover.description = "A Jewish holiday celebrating the deliverance from slavery in Egypt." ∧ Passover.name = "Passover" ∧ Easter.description = "the celebration of the resurrection of Jesus" ∧ None_ML(Passover.attrs, Easter.attrs) → Passover.label = "Event")
+Q[Passover,Passover] (Easter.significance = "joy and hope" ∧ None_ML(Passover.attrs, Easter.attrs) ∧ Passover.label != "Event" → Easter.description != "the celebration of the resurrection of Jesus")
+Q[Passover,Passover] (Easter.description != "the celebration of the resurrection of Jesus" ∧ Easter.description = "the celebration of the resurrection of Jesus" ∧ Passover.description != Easter.description ∧ Easter.label = "Event" → Easter.significance != "joy and hope")
+Q[Passover,Passover] (Easter.significance != "joy and hope" ∧ Passover.label != "Event" ∧ Passover.name != "Passover" ∧ Passover___Easter.doc_id = "3489738288_4" ∧ Easter.name = "Easter" → Passover.description != Easter.description)
+Q[Passover,Passover] (Passover.name != "Passover" ∧ Easter.description != "the celebration of the resurrection of Jesus" ∧ Passover.label = "Event" ∧ Passover.name != Easter.name ∧ Passover___Easter.relationship = "Easter's timing is related to Passover." ∧ None_ML(Passover.attrs, Easter.attrs) → Passover.description != "A Jewish holiday celebrating the deliverance from slavery in Egypt.")
+Q[Passover,Passover] (Passover.label = "Event" ∧ Passover.description != "A Jewish holiday celebrating the deliverance from slavery in Egypt." → None_ML(Passover.attrs, Easter.attrs))
+Q[Passover,Passover] (Easter.name != "Easter" ∧ None_ML(Passover.attrs, Easter.attrs) ∧ Passover___Easter.relationship = "Easter's timing is related to Passover." → Passover.name != "Passover")

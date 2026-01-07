@@ -1,0 +1,131 @@
+Predicates:
+1. entity1.name = "Service A"
+2. entity1.type = "Legal"
+3. entity1.location = "New York"
+4. entity2.name = "Service B"
+5. entity2.type = "Legal"
+6. entity2.location = "California"
+7. "handles the same types of cases as".doc_index = "48"
+8. "handles the same types of cases as".label_text = "contradiction"
+9. "is not meaningful for comparing services with".doc_index = "48"
+10. "is not meaningful for comparing services with".label_text = "contradiction"
+11. entity1.case_types = "Personal Injury"
+12. entity2.case_types = "Personal Injury"
+13. entity1.fee_structure = "Hourly"
+14. entity2.fee_structure = "Contingency"
+15. entity1.experience_years = 10
+16. entity2.experience_years = 5
+17. entity1.client_rating = 4.5
+18. entity2.client_rating = 3.0
+19. M_NLI(entity1.case_types, entity2.case_types)
+20. M_NLI(entity1.fee_structure, entity2.fee_structure)
+21. T(entity1.name, entity2.name, tau)
+22. tau(entity1.experience_years, entity2.experience_years)
+23. violate(entity1, entity2)
+24. Factual(entity1, entity2)
+25. Content(entity1, entity2)
+26. Causal(entity1, entity2)
+27. Negation(entity1, entity2)
+28. Relation(entity1, entity2)
+29. Numeric(entity1.client_rating, entity2.client_rating)
+30. Temporal(entity1.location, entity2.location)
+31. entity1.specialization = "Family Law"
+32. entity2.specialization = "Criminal Law"
+33. entity1.success_rate = 85
+34. entity2.success_rate = 90
+35. "offers similar services to".doc_index = "49"
+36. "offers similar services to".label_text = "comparison"
+37. "is not comparable to".doc_index = "50"
+38. "is not comparable to".label_text = "contradiction"
+39. entity1.hours_of_operation = "9 AM - 5 PM"
+40. entity2.hours_of_operation = "10 AM - 6 PM"
+41. M_NLI(entity1.specialization, entity2.specialization)
+42. T(entity1.success_rate, entity2.success_rate, tau)
+43. tau(entity1.hours_of_operation, entity2.hours_of_operation)
+44. violate(entity1, entity2)
+45. Factual(entity1, entity2)
+46. Content(entity1, entity2)
+47. Causal(entity1, entity2)
+48. Negation(entity1, entity2)
+49. Relation(entity1, entity2)
+50. Numeric(entity1.success_rate, entity2.success_rate)
+51. Temporal(entity1.hours_of_operation, entity2.hours_of_operation)
+52. entity1.client_base = "Individuals"
+53. entity2.client_base = "Corporations"
+54. entity1.referral_rate = 30
+55. entity2.referral_rate = 15
+56. "provides services for".doc_index = "51"
+57. "provides services for".label_text = "service type"
+58. "is not suitable for".doc_index = "52"
+59. "is not suitable for".label_text = "contradiction"
+60. M_NLI(entity1.client_base, entity2.client_base)
+61. T(entity1.referral_rate, entity2.referral_rate, tau)
+62. tau(entity1.client_base, entity2.client_base)
+63. violate(entity1, entity2)
+64. Factual(entity1, entity2)
+65. Content(entity1, entity2)
+66. Causal(entity1, entity2)
+67. Negation(entity1, entity2)
+68. Relation(entity1, entity2)
+69. Numeric(entity1.referral_rate, entity2.referral_rate)
+70. Temporal(entity1.client_base, entity2.client_base)
+71. entity1.service_duration = "1 year"
+72. entity2.service_duration = "6 months"
+73. entity1.legal_expertise = "Litigation"
+74. entity2.legal_expertise = "Mediation"
+75. "is recognized for".doc_index = "53"
+76. "is recognized for".label_text = "recognition"
+77. "is not acknowledged for".doc_index = "54"
+78. "is not acknowledged for".label_text = "contradiction"
+79. M_NLI(entity1.legal_expertise, entity2.legal_expertise)
+80. T(entity1.service_duration, entity2.service_duration, tau)
+81. tau(entity1.legal_expertise, entity2.legal_expertise)
+82. violate(entity1, entity2)
+83. Factual(entity1, entity2)
+84. Content(entity1, entity2)
+85. Causal(entity1, entity2)
+86. Negation(entity1, entity2)
+87. Relation(entity1, entity2)
+88. Numeric(entity1.service_duration, entity2.service_duration)
+89. Temporal(entity1.legal_expertise, entity2.legal_expertise)
+90. entity1.geographic_reach = "National"
+91. entity2.geographic_reach = "Local"
+92. entity1.annual_revenue = 500000
+93. entity2.annual_revenue = 200000
+94. "competes with".doc_index = "55"
+95. "competes with".label_text = "competition"
+96. "is not in competition with".doc_index = "56"
+97. "is not in competition with".label_text = "contradiction"
+98. M_NLI(entity1.geographic_reach, entity2.geographic_reach)
+99. T(entity1.annual_revenue, entity2.annual_revenue, tau)
+100. tau(entity1.geographic_reach, entity2.geographic_reach)
+violate(x0, y0)
+
+Rules:
+1. Q[x0, y0](entity1.type = "Legal" ∧ entity2.type = "Legal" → violate(x0, y0))
+2. Q[x0, y0](entity1.location = "New York" ∧ entity2.location = "California" → violate(x0, y0))
+3. Q[x0, y0](entity1.case_types = "Personal Injury" ∧ entity2.case_types = "Criminal Law" → violate(x0, y0))
+4. Q[x0, y0](entity1.fee_structure = "Hourly" ∧ entity2.fee_structure = "Contingency" → violate(x0, y0))
+5. Q[x0, y0](entity1.client_rating = 4.5 ∧ entity2.client_rating = 3.0 → violate(x0, y0))
+6. Q[x0, y0](entity1.specialization = "Family Law" ∧ entity2.specialization = "Criminal Law" → violate(x0, y0))
+7. Q[x0, y0](entity1.name = "Service A" ∧ entity2.name = "Service B" ∧ entity1.location = "New York" → violate(x0, y0))
+8. Q[x0, y0](entity1.experience_years = 10 ∧ entity2.experience_years = 5 ∧ entity1.case_types = "Personal Injury" → violate(x0, y0))
+9. Q[x0, y0](entity1.hours_of_operation = "9 AM - 5 PM" ∧ entity2.hours_of_operation = "10 AM - 6 PM" ∧ entity1.fee_structure = "Hourly" → violate(x0, y0))
+10. Q[x0, y0](entity1.client_base = "Individuals" ∧ entity2.client_base = "Corporations" ∧ entity1.referral_rate = 30 ∧ entity2.referral_rate = 15 → violate(x0, y0))
+11. Q[x0, y0](entity1.service_duration = "1 year" ∧ entity2.service_duration = "6 months" ∧ entity1.legal_expertise = "Litigation" ∧ entity2.legal_expertise = "Mediation" → violate(x0, y0))
+12. Q[x0, y0](entity1.geographic_reach = "National" ∧ entity2.geographic_reach = "Local" ∧ entity1.annual_revenue = 500000 ∧ entity2.annual_revenue = 200000 → violate(x0, y0))
+13. Q[x0, y0](entity1.type = "Legal" ∧ entity1.location = "New York" ∧ entity2.type = "Legal" ∧ entity2.location = "California" → violate(x0, y0))
+14. Q[x0, y0](entity1.case_types = "Personal Injury" ∧ entity1.fee_structure = "Hourly" ∧ entity2.case_types = "Personal Injury" ∧ entity2.fee_structure = "Contingency" → violate(x0, y0))
+15. Q[x0, y0](entity1.client_rating = 4.5 ∧ entity1.experience_years = 10 ∧ entity2.client_rating = 3.0 ∧ entity2.experience_years = 5 → violate(x0, y0))
+16. Q[x0, y0](entity1.specialization = "Family Law" ∧ entity1.success_rate = 85 ∧ entity2.specialization = "Criminal Law" ∧ entity2.success_rate = 90 → violate(x0, y0))
+17. Q[x0, y0](entity1.hours_of_operation = "9 AM - 5 PM" ∧ entity2.hours_of_operation = "10 AM - 6 PM" ∧ entity1.client_base = "Individuals" ∧ entity2.client_base = "Corporations" → violate(x0, y0))
+18. Q[x0, y0](entity1.service_duration = "1 year" ∧ entity2.service_duration = "6 months" ∧ entity1.referral_rate = 30 ∧ entity2.referral_rate = 15 → violate(x0, y0))
+19. Q[x0, y0](entity1.geographic_reach = "National" ∧ entity2.geographic_reach = "Local" ∧ entity1.annual_revenue = 500000 ∧ entity2.annual_revenue = 200000 ∧ entity1.client_base = "Individuals" → violate(x0, y0))
+20. Q[x0, y0](entity1.name = "Service A" ∧ entity1.type = "Legal" ∧ entity1.location = "New York" ∧ entity2.name = "Service B" ∧ entity2.type = "Legal" ∧ entity2.location = "California" → violate(x0, y0))
+21. Q[x0, y0](entity1.case_types = "Personal Injury" ∧ entity1.fee_structure = "Hourly" ∧ entity2.case_types = "Criminal Law" ∧ entity2.fee_structure = "Contingency" ∧ entity1.client_rating = 4.5 → violate(x0, y0))
+22. Q[x0, y0](entity1.specialization = "Family Law" ∧ entity1.success_rate = 85 ∧ entity2.specialization = "Criminal Law" ∧ entity2.success_rate = 90 ∧ entity1.experience_years = 10 → violate(x0, y0))
+23. Q[x0, y0](entity1.hours_of_operation = "9 AM - 5 PM" ∧ entity2.hours_of_operation = "10 AM - 6 PM" ∧ entity1.client_base = "Individuals" ∧ entity2.client_base = "Corporations" ∧ entity1.referral_rate = 30 → violate(x0, y0))
+24. Q[x0, y0](entity1.service_duration = "1 year" ∧ entity2.service_duration = "6 months" ∧ entity1.legal_expertise = "Litigation" ∧ entity2.legal_expertise = "Mediation" ∧ entity1.annual_revenue = 500000 → violate(x0, y0))
+25. Q[x0, y0](entity1.geographic_reach = "National" ∧ entity2.geographic_reach = "Local" ∧ entity1.annual_revenue = 500000 ∧ entity2.annual_revenue = 200000 ∧ entity1.client_base = "Individuals" ∧ entity2.client_base = "Corporations" → violate(x0, y0))
+26. Q[x0, y0](entity1.name = "Service A" ∧ entity1.type = "Legal" ∧ entity1.location = "New York" ∧ entity1.case_types = "Personal Injury" ∧ entity1.fee_structure = "Hourly" → violate(x0, y0))
+27. Q[x0, y

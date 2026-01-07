@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 106)
+S1: A worker wearing a blue lab coat and pink sweater reviews products.
+S2: The lab worker is looking at items.
+
+Predicates:
+1. Worker.wearing_lab_coat
+2. Worker.wearing_sweater
+3. Worker.reviews_products
+4. Lab_worker.looking_at_items
+5. Lab_coat.color
+6. Sweater.color
+7. Worker.action
+8. Products.type
+9. Items.type
+10. Worker.is_human
+11. Lab_worker.is_human
+12. Lab_coat.is_clothing
+13. Sweater.is_clothing
+14. Products.is_physical
+15. Items.is_physical
+16. Worker.location
+17. Lab_worker.location
+18. Worker.occupation
+19. Lab_worker.occupation
+20. Worker.engagement
+21. Lab_worker.engagement
+22. Review.action
+23. Look.action
+24. Review.subject
+25. Look.subject
+26. Worker.appearance
+27. Lab_worker.appearance
+28. Worker.clothing_style
+29. Lab_worker.clothing_style
+30. M_NLI(S1, S2)
+
+Rules:
+1. Q[worker, x0, y0](Worker.wearing_lab_coat == true ∧ Worker.wearing_sweater == true → Factual(x0, y0))
+2. Q[worker, x0, y0](Worker.reviews_products == true ∧ Lab_worker.looking_at_items == true → Factual(x0, y0))
+3. Q[worker, x0, y0](Worker.action == "review" ∧ Lab_worker.action == "look" → Factual(x0, y0))
+4. Q[worker, x0, y0](Worker.reviews_products == true ∧ Lab_worker.is_human == true → Factual(x0, y0))
+5. Q[worker, x0, y0](Lab_worker.looking_at_items == true ∧ Worker.is_human == true → Factual(x0, y0))
+6. Q[worker, x0, y0](Worker.occupation == "lab worker" ∧ Lab_worker.occupation == "lab worker" → Factual(x0, y0))
+7. Q[worker, x0, y0](Worker.engagement == "review" ∧ Lab_worker.engagement == "look" → Factual(x0, y0))
+8. Q[worker, x0, y0](Worker.appearance == "blue lab coat and pink sweater" ∧ Lab_worker.appearance == "looking at items" → Factual(x0, y0))
+9. Q[worker, x0, y0](Lab_coat.color == "blue" ∧ Sweater.color == "pink" → Factual(x0, y0))
+10. Q[worker, x0, y0](Products.is_physical == true ∧ Items.is_physical == true → Factual(x0, y0))
+11. Q[worker, x0, y0](Worker.clothing_style == "lab coat and sweater" ∧ Lab_worker.clothing_style == "looking at items" → Factual(x0, y0))
+12. Q[worker, x0, y0](Review.action == "review" ∧ Look.action == "look" → Factual(x0, y0))
+13. Q[worker, x0, y0](Review.subject == "products" ∧ Look.subject == "items" → Factual(x0, y0))
+14. Q[worker, x0, y0](Worker.location == "lab" ∧ Lab_worker.location == "lab" → Factual(x0, y0))
+15. Q[worker, x0, y0](Lab_worker.looking_at_items == true ∧ Worker.reviews_products == false → Factual(x0, y0))
+16. Q[worker, x0, y0](Worker.action == "review" ∧ Lab_worker.action != "review" → Factual(x0, y0))
+17. Q[worker, x0, y0](Worker.reviews_products == true ∧ Lab_worker.looking_at_items == false → Factual(x0, y0))
+18. Q[worker, x0, y0](Lab_worker.looking_at_items == true ∧ Worker.reviews_products == false → Factual(x0, y0))
+19. Q[worker, x0, y0](Worker.wearing_lab_coat == true ∧ Worker.wearing_sweater == true → Factual(x0, y0))
+20. Q[worker, x0, y0](Lab_worker.is_human == true ∧ Worker.is_human == true → Factual(x0, y0))
+21. Q[worker, x0, y0](Worker.occupation == "lab worker" ∧ Lab_worker.occupation == "worker" → Factual(x0, y0))
+22. Q[worker, x0, y0](Worker.engagement == "review" ∧ Lab_worker.engagement != "review" → Factual(x0, y0))
+23. Q[worker, x0, y0](Lab_coat.is_clothing == true ∧ Sweater.is_clothing == true → Factual(x0, y0))
+24. Q[worker, x0, y0](Products.type == "physical" ∧ Items.type == "physical" → Factual(x0, y0))
+25. Q[worker, x0, y0](Worker.action == "review" ∧ Lab_worker.action == "look" → Factual(x0, y0))
+26. Q[worker, x0, y0](Lab_worker.looking_at_items == true ∧ Worker.reviews_products == false → Factual(x0, y0))
+27. Q[worker, x0, y0](Worker.appearance == "blue lab coat and pink sweater" ∧ Lab_worker.appearance != "reviewing products" → Factual(x0, y0))
+28. Q[worker, x0, y0](Lab_worker.looking_at_items == true ∧ Worker.action != "review" → Factual(x0, y0))
+29. Q[worker, x0, y0](Worker.reviews_products == true ∧ Lab_worker.looking_at_items == false → Factual(x0, y0))
+30. Q[worker, x0, y0](M_NLI(S1, S2) == true → Factual(x0, y0))

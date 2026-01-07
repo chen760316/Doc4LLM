@@ -1,0 +1,73 @@
+Predicates:
+Executions.label != "Statistic"
+Executions.label = "Statistic"
+Executions.name != "Executions"
+Executions.name = "Executions"
+Executions.number != 35
+Executions.number < 40
+Executions.number = 35
+Executions.number > 30
+Executions.previous_year != 39
+Executions.previous_year < 44
+Executions.previous_year = 39
+Executions.previous_year > 34
+Iran.label != "Country"
+Iran.label != Executions.label
+Iran.label = "Country"
+Iran.name != "Iran"
+Iran.name != Executions.name
+Iran.name = "Iran"
+None_ML(Iran.attrs, Executions.attrs)
+None_ML(United States___Executions.attrs, United States___executions.attrs)
+United States.label != "Country"
+United States.label != Executions.label
+United States.label != executions.label
+United States.label = "Country"
+United States.name != "United States"
+United States.name != Executions.name
+United States.name != Iran.name
+United States.name != executions.name
+United States.name = "United States"
+United States___Executions.doc_id = "3489738278_3"
+United States___Executions.relationship = "The United States conducted fewer executions in 2014 compared to 2013."
+United States___Iran.date = "Thursday"
+United States___Iran.doc_id != United States___Executions.doc_id
+United States___Iran.doc_id = "3489738266_2"
+United States___Iran.location = "Lausanne, Switzerland"
+United States___Iran.objective = "limits Iran's nuclear program"
+United States___Iran.reason = "Iran's economy affected by sanctions"
+United States___Iran.relationship != United States___Executions.relationship
+United States___Iran.relationship = "The United States is one of the worst offenders for imposing capital punishment, following Iran."
+United States___executions.doc_id != United States___Executions.doc_id
+United States___executions.doc_id != United States___Iran.doc_id
+United States___executions.doc_id = "3489738278_7"
+United States___executions.relationship != United States___Executions.relationship
+United States___executions.relationship != United States___Iran.relationship
+United States___executions.relationship = "The number of executions in the United States fell from 39 in 2013 to 35 in 2014."
+executions.count != 35
+executions.count < 40
+executions.count = 35
+executions.count > 30
+executions.label != "Statistic"
+executions.label != Iran.label
+executions.label = "Statistic"
+executions.name != "executions"
+executions.name != Executions.name
+executions.name != Iran.name
+executions.name = "executions"
+executions.previous_year_count != 39
+executions.previous_year_count < 44
+executions.previous_year_count = 39
+executions.previous_year_count > 34
+
+Rules:
+Q[United States,United States] (executions.count != 35 ∧ United States___Iran.location = "Lausanne, Switzerland" ∧ executions.name != "executions" ∧ executions.name = "executions" → United States___executions.relationship != United States___Iran.relationship)
+Q[United States,United States] (United States___Iran.relationship = "The United States is one of the worst offenders for imposing capital punishment, following Iran." ∧ United States___Iran.objective = "limits Iran's nuclear program" ∧ Iran.name != "Iran" → Executions.previous_year != 39)
+Q[United States,United States] (Iran.label = "Country" ∧ United States___Iran.date = "Thursday" → United States___Iran.objective = "limits Iran's nuclear program")
+Q[United States,United States] (Executions.number != 35 ∧ United States___executions.relationship = "The number of executions in the United States fell from 39 in 2013 to 35 in 2014." ∧ executions.count = 35 ∧ United States___Executions.doc_id = "3489738278_3" ∧ Executions.number = 35 → United States___Iran.relationship = "The United States is one of the worst offenders for imposing capital punishment, following Iran.")
+Q[United States,United States] (executions.label != Iran.label ∧ Executions.number != 35 ∧ Executions.name != "Executions" ∧ United States___Iran.reason = "Iran's economy affected by sanctions" ∧ executions.count < 40 ∧ executions.label = "Statistic" → United States___Iran.doc_id != United States___Executions.doc_id)
+Q[United States,United States] (Executions.number != 35 ∧ executions.previous_year_count = 39 ∧ United States___executions.relationship != United States___Iran.relationship → United States.label != "Country")
+Q[United States,United States] (United States___Iran.date = "Thursday" ∧ Executions.label != "Statistic" ∧ Executions.previous_year > 34 ∧ Executions.previous_year < 44 → United States.label != Executions.label)
+Q[United States,United States] (Executions.label = "Statistic" ∧ United States___Iran.date = "Thursday" ∧ United States___executions.doc_id = "3489738278_7" ∧ executions.name = "executions" ∧ Executions.name != "Executions" ∧ executions.previous_year_count < 44 → executions.name != "executions")
+Q[United States,United States] (United States___Executions.doc_id = "3489738278_3" ∧ executions.count < 40 ∧ United States___Iran.doc_id != United States___Executions.doc_id ∧ None_ML(United States___Executions.attrs, United States___executions.attrs) ∧ None_ML(Iran.attrs, Executions.attrs) → Iran.name = "Iran")
+Q[United States,United States] (Executions.number < 40 ∧ United States___executions.relationship != United States___Iran.relationship → Executions.number > 30)

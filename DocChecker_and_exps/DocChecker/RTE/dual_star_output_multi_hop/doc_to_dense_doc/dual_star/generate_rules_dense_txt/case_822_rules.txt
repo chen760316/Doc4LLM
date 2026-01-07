@@ -1,0 +1,61 @@
+Source: dense_text.txt (Index 822)
+S1: The Brazilian President is Luiz Inácio Lula da Silva.
+S2: The documents commented by the magazine date of April 25, 2002, epoch in which the Brazilian president was Fernando Henrique Cardoso.
+
+Predicates:
+1. Brazilian_President.current_name = "Luiz Inácio Lula da Silva"
+2. Brazilian_President.past_name = "Fernando Henrique Cardoso"
+3. Document.date = "April 25, 2002"
+4. Document.commentary.source = "magazine"
+5. Document.commentary.subject = "Brazilian presidency"
+6. Brazilian_President.term_start = "2003"
+7. Brazilian_President.term_end = "2010"
+8. Brazilian_President.previous_term_start = "1995"
+9. Brazilian_President.previous_term_end = "2002"
+10. Presidency.holder_at_date("April 25, 2002") = "Fernando Henrique Cardoso"
+11. Presidency.holder_at_current_time = "Luiz Inácio Lula da Silva"
+12. Document.commentary.relevance_to_presidency = true
+13. Document.commentary.date_of_event = "April 25, 2002"
+14. Brazilian_President.is_current = true
+15. Brazilian_President.is_past = true
+16. Brazilian_President.has_successor = true
+17. Brazilian_President.has_predecessor = true
+18. Brazilian_President.predecessor = "Fernando Henrique Cardoso"
+19. Brazilian_President.successor = "Luiz Inácio Lula da Silva"
+20. Document.is_related_to_presidency = true
+21. Document.is_published = true
+22. Document.published_by = "magazine"
+23. Document.published_on = "April 25, 2002"
+24. Brazilian_President.has_terms = true
+25. Brazilian_President.term_count = 2
+26. Brazilian_President.previous_term_count = 1
+27. Brazilian_President.current_term_count = 1
+28. Document.commentary.includes_presidential_info = true
+29. Document.commentary.is_conflicting = true
+30. M_NLI(S1, S2) = true
+
+Rules:
+1. Q[The, Brazilian_President.current_name, Brazilian_President.past_name](Brazilian_President.current_name == "Luiz Inácio Lula da Silva" ∧ Brazilian_President.past_name == "Fernando Henrique Cardoso" → Factual(Brazilian_President.current_name, Brazilian_President.past_name))
+2. Q[The, Document.date, Brazilian_President.past_name](Document.date == "April 25, 2002" ∧ Brazilian_President.past_name == "Fernando Henrique Cardoso" → Factual(Document.date, Brazilian_President.past_name))
+3. Q[The, Document.commentary.subject, Brazilian_President.current_name](Document.commentary.subject == "Brazilian presidency" ∧ Brazilian_President.current_name == "Luiz Inácio Lula da Silva" → Factual(Document.commentary.subject, Brazilian_President.current_name))
+4. Q[The, Document.commentary.date_of_event, Brazilian_President.past_name](Document.commentary.date_of_event == "April 25, 2002" ∧ Brazilian_President.past_name == "Fernando Henrique Cardoso" → Factual(Document.commentary.date_of_event, Brazilian_President.past_name))
+5. Q[The, Presidency.holder_at_date("April 25, 2002"), Brazilian_President.current_name](Presidency.holder_at_date("April 25, 2002") == "Fernando Henrique Cardoso" ∧ Brazilian_President.current_name == "Luiz Inácio Lula da Silva" → Factual(Presidency.holder_at_date("April 25, 2002"), Brazilian_President.current_name))
+6. Q[The, Brazilian_President.term_start, Brazilian_President.past_name](Brazilian_President.term_start == "2003" ∧ Brazilian_President.past_name == "Fernando Henrique Cardoso" → Factual(Brazilian_President.term_start, Brazilian_President.past_name))
+7. Q[The, Document.commentary.relevance_to_presidency, Brazilian_President.current_name](Document.commentary.relevance_to_presidency == true ∧ Brazilian_President.current_name == "Luiz Inácio Lula da Silva" → Factual(Document.commentary.relevance_to_presidency, Brazilian_President.current_name))
+8. Q[The, Document.is_related_to_presidency, Brazilian_President.past_name](Document.is_related_to_presidency == true ∧ Brazilian_President.past_name == "Fernando Henrique Cardoso" → Factual(Document.is_related_to_presidency, Brazilian_President.past_name))
+9. Q[The, Document.commentary.includes_presidential_info, Brazilian_President.current_name](Document.commentary.includes_presidential_info == true ∧ Brazilian_President.current_name == "Luiz Inácio Lula da Silva" → Factual(Document.commentary.includes_presidential_info, Brazilian_President.current_name))
+10. Q[The, Document.commentary.is_conflicting, Brazilian_President.past_name](Document.commentary.is_conflicting == true ∧ Brazilian_President.past_name == "Fernando Henrique Cardoso" → Factual(Document.commentary.is_conflicting, Brazilian_President.past_name))
+11. Q[The, Brazilian_President.has_predecessor, Brazilian_President.past_name](Brazilian_President.has_predecessor == true ∧ Brazilian_President.past_name == "Fernando Henrique Cardoso" → Factual(Brazilian_President.has_predecessor, Brazilian_President.past_name))
+12. Q[The, Brazilian_President.successor, Brazilian_President.current_name](Brazilian_President.successor == "Luiz Inácio Lula da Silva" ∧ Brazilian_President.past_name == "Fernando Henrique Cardoso" → Factual(Brazilian_President.successor, Brazilian_President.current_name))
+13. Q[The, Document.published_on, Brazilian_President.past_name](Document.published_on == "April 25, 2002" ∧ Brazilian_President.past_name == "Fernando Henrique Cardoso" → Factual(Document.published_on, Brazilian_President.past_name))
+14. Q[The, Brazilian_President.term_count, Brazilian_President.past_name](Brazilian_President.term_count == 2 ∧ Brazilian_President.past_name == "Fernando Henrique Cardoso" → Factual(Brazilian_President.term_count, Brazilian_President.past_name))
+15. Q[The, Brazilian_President.previous_term_count, Brazilian_President.past_name](Brazilian_President.previous_term_count == 1 ∧ Brazilian_President.past_name == "Fernando Henrique Cardoso" → Factual(Brazilian_President.previous_term_count, Brazilian_President.past_name))
+16. Q[The, Brazilian_President.current_term_count, Brazilian_President.current_name](Brazilian_President.current_term_count == 1 ∧ Brazilian_President.current_name == "Luiz Inácio Lula da Silva" → Factual(Brazilian_President.current_term_count, Brazilian_President.current_name))
+17. Q[The, Document.commentary.source, Document.published_by](Document.commentary.source == "magazine" ∧ Document.published_by == "magazine" → Factual(Document.commentary.source, Document.published_by))
+18. Q[The, Document.is_published, Document.published_on](Document.is_published == true ∧ Document.published_on == "April 25, 2002" → Factual(Document.is_published, Document.published_on))
+19. Q[The, Brazilian_President.is_current, Brazilian_President.current_name](Brazilian_President.is_current == true ∧ Brazilian_President.current_name == "Luiz Inácio Lula da Silva" → Factual(Brazilian_President.is_current, Brazilian_President.current_name))
+20. Q[The, Brazilian_President.is_past, Brazilian_President.past_name](Brazilian_President.is_past == true ∧ Brazilian_President.past_name == "Fernando Henrique Cardoso" → Factual(Brazilian_President.is_past, Brazilian_President.past_name))
+21. Q[The, Brazilian_President.has_terms, Brazilian_President.current_name](Brazilian_President.has_terms == true ∧ Brazilian_President.current_name == "Luiz Inácio Lula da Silva" → Factual(Brazilian_President.has_terms, Brazilian_President.current_name))
+22. Q[The, Document.commentary.subject, Document.commentary.is_conflicting](Document.commentary.subject == "Brazilian presidency" ∧ Document.commentary.is_conflicting == true → Factual(Document.commentary.subject, Document.commentary.is_conflicting))
+23. Q[The, Document.commentary.date_of_event, Document.date](Document.commentary.date_of_event == "April 25, 2002" ∧ Document.date == "April 25, 2002" → Factual(Document.commentary.date_of_event, Document.date))
+24. Q[The, Brazilian_President.previous_term_start, Brazilian_President.past_name](Brazilian_President.previous_term_start == "1995" ∧ Brazilian_President.past_name == "Fernando Henrique Cardoso" → F

@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 54)
+S1: If we’re an arrogant nation, they’ll resent us.
+S2: If we’re a humble nation, but strong, they’ll welcome us.
+
+Predicates:
+1. Nation.arrogance
+2. Nation.humility
+3. Nation.strength
+4. Sentiment.resentment
+5. Sentiment.welcome
+6. Relationship.perception
+7. Causal.arrogance_leads_to_resentment
+8. Causal.humility_leads_to_welcome
+9. M_NLI(S1, S2)
+10. M_NLI(S2, S1)
+11. Causal(ArrogantNation, Resentment)
+12. Causal(HumbleStrongNation, Welcome)
+13. violate(ArrogantNation, HumbleStrongNation)
+14. EntityNation.arrogant
+15. EntityNation.humble
+16. EntityNation.strong
+17. Sentiment.negative_perception
+18. Sentiment.positive_perception
+19. Relationship.arrogance_resentment
+20. Relationship.humility_welcome
+21. Causal(Arrogance, NegativeSentiment)
+22. Causal(Humility, PositiveSentiment)
+23. EntityNation.resented
+24. EntityNation.welcomed
+25. Relationship(Arrogance, Resentment)
+26. Relationship(Humility, Welcome)
+27. Causal(ArroganceNation, NegativePerception)
+28. Causal(HumbleNation, PositivePerception)
+29. violate(NegativePerception, PositivePerception)
+30. M_NLI(Arrogance, Humility)
+
+Rules:
+1. Q[arrogant, Nation.arrogance == "true"](Causal.arrogance_leads_to_resentment → Causal(ArrogantNation, Resentment))
+2. Q[arrogant, Nation.arrogance == "true"](Sentiment.resentment == "true" → Causal(ArrogantNation, Resentment))
+3. Q[arrogant, Nation.arrogance == "true"](Relationship.arrogance_resentment == "true" → Causal(ArrogantNation, Resentment))
+4. Q[humble, Nation.humility == "true"](Causal.humility_leads_to_welcome → Causal(HumbleStrongNation, Welcome))
+5. Q[humble, Nation.humility == "true"](Sentiment.welcome == "true" → Causal(HumbleStrongNation, Welcome))
+6. Q[humble, Nation.humility == "true"](Relationship.humility_welcome == "true" → Causal(HumbleStrongNation, Welcome))
+7. Q[strong, Nation.strength == "true"](Causal.humility_leads_to_welcome → Causal(HumbleStrongNation, Welcome))
+8. Q[strong, Nation.strength == "true"](Nation.humility == "true" → Causal(HumbleStrongNation, Welcome))
+9. Q[resentment, Sentiment.resentment == "true"](Nation.arrogance == "true" → Causal(ArrogantNation, Resentment))
+10. Q[welcome, Sentiment.welcome == "true"](Nation.humility == "true" AND Nation.strength == "true" → Causal(HumbleStrongNation, Welcome))
+11. Q[negative_perception, Sentiment.negative_perception == "true"](Nation.arrogance == "true" → Causal(ArrogantNation, NegativePerception))
+12. Q[positive_perception, Sentiment.positive_perception == "true"](Nation.humility == "true" AND Nation.strength == "true" → Causal(HumbleStrongNation, PositivePerception))
+13. Q[arrogant, EntityNation.arrogant == "true"](Causal(Arrogance, NegativeSentiment) → Causal(ArrogantNation, Resentment))
+14. Q[humble, EntityNation.humble == "true"](Causal(Humility, PositiveSentiment) → Causal(HumbleStrongNation, Welcome))
+15. Q[arrogant, Relationship(Arrogance, Resentment) == "true"](Nation.arrogance == "true" → Causal(ArrogantNation, Resentment))
+16. Q[humble, Relationship(Humility, Welcome) == "true"](Nation.humility == "true" AND Nation.strength == "true" → Causal(HumbleStrongNation, Welcome))
+17. Q[resentment, Sentiment.resentment == "true"](EntityNation.resented == "true" AND Nation.arrogance == "true" → Causal(ArrogantNation, Resentment))
+18. Q[welcome, Sentiment.welcome == "true"](EntityNation.welcomed == "true" AND Nation.humility == "true" AND Nation.strength == "true" → Causal(HumbleStrongNation, Welcome))
+19. Q[negative_perception, Sentiment.negative_perception == "true"](Causal(ArroganceNation, NegativePerception) → Causal(ArrogantNation, Resentment))
+20. Q[positive_perception, Sentiment.positive_perception == "true"](Causal(HumbleNation, PositivePerception) → Causal(HumbleStrongNation, Welcome))
+21. Q[arrogant, EntityNation.arrogant == "true"](M_NLI(S1, S2) → Causal(ArrogantNation, Resentment))
+22. Q[humble, EntityNation.humble == "true"](M_NLI(S2, S1) → Causal(HumbleStrongNation, Welcome))
+23. Q[arrogant, Nation.arrogance == "true"](violate(ArrogantNation, HumbleStrongNation) → Causal(ArrogantNation, Resentment))
+24. Q[humble, Nation.humility == "true"](violate(NegativePerception, PositivePerception) → Causal(HumbleStrongNation, Welcome))
+25. Q[arrogant, Nation.arrogance == "true"](Causal(ArroganceNation, Resentment) → Causal(ArrogantNation, Resentment))
+26. Q[humble, Nation.humility == "true"](Causal(HumbleNation, PositiveSentiment) → Causal(HumbleStrongNation, Welcome))
+27. Q[arrogant, EntityNation.arrogant == "true"](Causal(Arrogance, NegativeSentiment) → Causal(ArrogantNation, Resentment))
+28. Q[humble, EntityNation.humble == "true"](Causal(Humility, PositiveSentiment) → Causal(HumbleStrongNation, Welcome))
+29. Q[arrogant, Nation.arrogance == "true"](Causal(ArroganceNation, NegativePerception) → Causal(ArrogantNation, Resentment))
+30. Q[humble, Nation.humility == "true"](Causal(HumbleNation, PositivePerception) → Causal(HumbleStrongNation, Welcome))

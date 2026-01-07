@@ -1,0 +1,128 @@
+Predicates:
+1. entity1.name = "Nobel Prize"
+2. entity1.year_established = "1901"
+3. entity1.honor = "Alfred Nobel"
+4. entity2.name = "Hinton"
+5. entity2.award = "world-renowned scientific award"
+6. entity2.year_received = "2024"
+7. entity3.name = "Shannon"
+8. entity3.contribution = "information theory"
+9. entity4.name = "David"
+10. entity4.platform = "YouTube"
+11. entity4.video_title = "Violence in Media"
+12. entity5.name = "Taylor"
+13. entity5.year_browsed = "2025"
+14. entity6.name = "Howard"
+15. entity6.spouse = "Sheila"
+16. entity6.relationship_status = "harmonious"
+17. entity7.name = "Emma"
+18. entity7.child_name = "Sheila"
+19. entity8.store_name = "Howard's Brand Store"
+20. entity8.sales_date = "June 15, 2025"
+21. entity8.sales_count = "29"
+22. entity9.concern = "lack of sales"
+23. entity9.sales_date_negated = "June 15, 2025"
+24. entity10.researcher = "Nobel"
+25. entity10.belief_year = "1860"
+26. entity10.substance = "nitroglycerin"
+27. entity11.research_outcome_year = "after Nobel's death"
+28. entity11.effectiveness = "effective for treating heart disease"
+29. edge1.relationship = "is located at"
+30. edge1.location = "Stockholm"
+31. edge2.relationship = "was founded in"
+32. edge2.year = "1901"
+33. edge3.relationship = "is married to"
+34. edge3.spouse = "Sheila"
+35. edge4.relationship = "has child"
+36. edge4.child_name = "Emma"
+37. edge5.relationship = "has sales"
+38. edge5.sales_count = "29"
+39. edge6.relationship = "was removed due to"
+40. edge6.reason = "violence"
+41. edge7.relationship = "browsed video"
+42. edge7.year = "2025"
+43. edge8.relationship = "believed to be"
+44. edge8.effectiveness = "ineffective"
+45. edge9.relationship = "revealed to be"
+46. edge9.effectiveness = "effective"
+47. M_NLI(entity1.name, entity2.name)
+48. M_NLI(entity4.video_title, entity5.name)
+49. T(entity1.year_established, entity2.year_received, tau)
+50. T(entity4.platform, entity5.year_browsed, tau)
+51. tau(entity6.relationship_status, entity7.spouse)
+52. tau(entity8.sales_count, entity9.concern)
+53. violate(entity1, entity3)
+54. violate(entity4, entity5)
+55. Factual(entity1, entity3)
+56. Factual(entity4, entity5)
+57. Causal(entity4, entity5)
+58. Causal(entity6, entity7)
+59. Numeric(entity8, entity9)
+60. Numeric(entity6, entity9)
+61. Temporal(entity10, entity11)
+62. Temporal(entity1, entity2)
+63. Content(entity1.honor, entity3.contribution)
+64. Content(entity6.relationship_status, entity7.spouse)
+65. Negation(entity8.sales_count, entity9.concern)
+66. Negation(entity4.video_title, entity5.name)
+67. Relation(entity6.spouse, entity7.child_name)
+68. Relation(entity1.name, entity2.name)
+69. M_NLI(entity10.belief_year, entity11.effectiveness)
+70. T(entity1.honor, entity3.contribution, tau)
+71. tau(entity4.platform, entity5.year_browsed)
+72. violate(entity1, entity2)
+73. violate(entity4, entity5)
+74. Factual(entity1, entity2)
+75. Factual(entity4, entity5)
+76. Causal(entity6, entity7)
+77. Causal(entity8, entity9)
+78. Numeric(entity8, entity9)
+79. Numeric(entity6, entity9)
+80. Temporal(entity10, entity11)
+81. Temporal(entity1, entity2)
+82. Content(entity1.honor, entity3.contribution)
+83. Content(entity6.relationship_status, entity7.spouse)
+84. Negation(entity8.sales_count, entity9.concern)
+85. Negation(entity4.video_title, entity5.name)
+86. Relation(entity6.spouse, entity7.child_name)
+87. Relation(entity1.name, entity2.name)
+88. M_NLI(entity10.belief_year, entity11.effectiveness)
+89. T(entity1.honor, entity3.contribution, tau)
+90. tau(entity4.platform, entity5.year_browsed)
+91. violate(entity1, entity3)
+92. violate(entity4, entity5)
+93. Factual(entity1, entity3)
+94. Factual(entity4, entity5)
+95. Causal(entity4, entity5)
+96. Causal(entity6, entity7)
+97. Numeric(entity8, entity9)
+98. Numeric(entity6, entity9)
+99. Temporal(entity10, entity11)
+100. Temporal(entity1, entity2)
+violate(x0, y0)
+
+Rules:
+1. Q[x1, y1](entity1.name = "Nobel Prize" ∧ entity2.year_received = "2024" → violate(x1, y1))
+2. Q[x2, y2](entity4.video_title = "Violence in Media" ∧ entity5.year_browsed = "2025" → violate(x2, y2))
+3. Q[x3, y3](entity1.year_established = "1901" ∧ entity2.award = "world-renowned scientific award" → violate(x3, y3))
+4. Q[x4, y4](entity3.contribution = "information theory" ∧ entity4.platform = "YouTube" → violate(x4, y4))
+5. Q[x5, y5](entity6.relationship_status = "harmonious" ∧ entity7.child_name = "Sheila" → violate(x5, y5))
+6. Q[x6, y6](entity8.store_name = "Howard's Brand Store" ∧ entity9.concern = "lack of sales" → violate(x6, y6))
+7. Q[x7, y7](entity1.name = "Nobel Prize" ∧ entity2.year_received = "2024" ∧ entity3.contribution = "information theory" → violate(x7, y7))
+8. Q[x8, y8](entity4.video_title = "Violence in Media" ∧ entity5.year_browsed = "2025" ∧ entity6.relationship_status = "harmonious" → violate(x8, y8))
+9. Q[x9, y9](entity1.year_established = "1901" ∧ entity2.award = "world-renowned scientific award" ∧ entity3.contribution = "information theory" → violate(x9, y9))
+10. Q[x10, y10](entity6.spouse = "Sheila" ∧ entity7.child_name = "Emma" ∧ entity8.sales_count = "29" → violate(x10, y10))
+11. Q[x11, y11](entity1.name = "Nobel Prize" ∧ entity2.year_received = "2024" ∧ entity3.contribution = "information theory" ∧ entity4.platform = "YouTube" → violate(x11, y11))
+12. Q[x12, y12](entity4.video_title = "Violence in Media" ∧ entity5.year_browsed = "2025" ∧ entity6.relationship_status = "harmonious" ∧ entity8.store_name = "Howard's Brand Store" → violate(x12, y12))
+13. Q[x13, y13](entity1.year_established = "1901" ∧ entity2.award = "world-renowned scientific award" ∧ entity3.contribution = "information theory" ∧ entity9.concern = "lack of sales" → violate(x13, y13))
+14. Q[x14, y14](entity6.spouse = "Sheila" ∧ entity7.child_name = "Emma" ∧ entity8.sales_count = "29" ∧ entity9.concern = "lack of sales" → violate(x14, y14))
+15. Q[x15, y15](entity1.name = "Nobel Prize" ∧ entity2.year_received = "2024" ∧ entity3.contribution = "information theory" ∧ entity4.platform = "YouTube" ∧ entity5.year_browsed = "2025" → violate(x15, y15))
+16. Q[x16, y16](entity4.video_title = "Violence in Media" ∧ entity5.year_browsed = "2025" ∧ entity6.relationship_status = "harmonious" ∧ entity8.store_name = "Howard's Brand Store" ∧ entity9.concern = "lack of sales" → violate(x16, y16))
+17. Q[x17, y17](entity1.year_established = "1901" ∧ entity2.award = "world-renowned scientific award" ∧ entity3.contribution = "information theory" ∧ entity6.spouse = "Sheila" ∧ entity7.child_name = "Emma" → violate(x17, y17))
+18. Q[x18, y18](entity6.relationship_status = "harmonious" ∧ entity7.child_name = "Sheila" ∧ entity8.sales_count = "29" ∧ entity9.concern = "lack of sales" ∧ entity1.name = "Nobel Prize" → violate(x18, y18))
+19. Q[x19, y19](entity1.name = "Nobel Prize" ∧ entity2.year_received = "2024" ∧ entity3.contribution = "information theory" ∧ entity4.platform = "YouTube" ∧ entity5.year_browsed = "2025" ∧ entity6.relationship_status = "harmonious" → violate(x19, y19))
+20. Q[x20, y20](entity4.video_title = "Violence in Media" ∧ entity5.year_browsed = "2025" ∧ entity6.relationship_status = "harmonious" ∧ entity8.store_name = "Howard's Brand Store" ∧ entity9.concern = "lack of sales" ∧ entity1.year_established = "1901" → violate(x20, y20))
+21. Q[x21, y21](entity1.name = "Nobel Prize" ∧ entity2.year_received = "2024" ∧ entity3.contribution = "information theory" ∧ entity4.platform = "YouTube" ∧ entity5.year_browsed = "2025" ∧ entity6.spouse = "Sheila" → violate(x21, y21))
+22. Q[x22, y22](entity1.year_established = "1901" ∧ entity2.award = "world-renowned scientific award" ∧ entity3.contribution = "information theory" ∧ entity6.relationship_status = "harmonious" ∧ entity7.child_name = "Emma" ∧ entity8.sales_count = "29" → violate(x22, y22))
+23. Q[x23, y23](entity1.name = "Nobel Prize" ∧ entity2.year_received = "2024" ∧ entity3.contribution = "information theory" ∧ entity4.platform = "YouTube" ∧ entity5.year_browsed = "2025" ∧ entity6.relationship_status = "harmonious" ∧ entity8.store_name = "Howard's Brand Store" → violate(x23, y23))
+24. Q[x24, y24](entity4.video_title = "Violence in Media" ∧ entity5.year_browsed = "2025" ∧ entity6.relationship_status = "harmonious" ∧ entity8.store_name = "Howard's Brand Store" ∧ entity9.concern = "lack of sales" ∧ entity1.year_established = "1901" ∧ entity2.award = "world-renowned scientific award" → violate(x24

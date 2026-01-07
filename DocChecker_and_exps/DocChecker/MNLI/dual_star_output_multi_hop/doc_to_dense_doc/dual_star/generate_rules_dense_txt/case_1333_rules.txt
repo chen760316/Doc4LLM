@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 1333)
+S1: I will return in as soon as three days.
+S2: I may go home tomorrow.
+
+Predicates:
+1. S1.return_time.days
+2. S2.return_time.days
+3. S1.return_time.three_days
+4. S2.return_time.tomorrow
+5. S1.indicates.return
+6. S2.suggests.return
+7. S1.timeframe.three_days
+8. S2.timeframe.tomorrow
+9. S1.return_event
+10. S2.return_event
+11. S1.timeframe.violation
+12. S2.timeframe.violation
+13. M_NLI(S1, S2)
+14. Temporal(S1.return_time, S2.return_time)
+15. violate(S1.return_time, S2.return_time)
+16. S1.future_event
+17. S2.future_event
+18. S1.return_duration
+19. S2.return_duration
+20. S1.return_period
+21. S2.return_period
+22. S1.anticipated_return
+23. S2.anticipated_return
+24. S1.return_in_days
+25. S2.return_in_days
+26. S1.conditional_return
+27. S2.conditional_return
+28. S1.return_schedule
+29. S2.return_schedule
+30. S1.return_prediction
+
+Rules:
+1. Q[will, S1.return_time.days, S2.return_time.days](S1.return_time.days == 3 → Temporal(S1.return_time, S2.return_time))
+2. Q[may, S2.return_time.days, S1.return_time.days](S2.return_time.days == 1 → Temporal(S1.return_time, S2.return_time))
+3. Q[indicates, S1.return_time.three_days, S2.return_time.tomorrow](S1.indicates.return == true → Temporal(S1.return_time, S2.return_time))
+4. Q[suggests, S2.return_time.tomorrow, S1.return_time.three_days](S2.suggests.return == true → Temporal(S1.return_time, S2.return_time))
+5. Q[will, S1.timeframe.three_days, S2.timeframe.tomorrow](S1.timeframe.three_days == true → Temporal(S1.return_time, S2.return_time))
+6. Q[may, S2.timeframe.tomorrow, S1.timeframe.three_days](S2.timeframe.tomorrow == true → Temporal(S1.return_time, S2.return_time))
+7. Q[indicates, S1.return_event, S2.return_event](S1.return_event == true → Temporal(S1.return_time, S2.return_time))
+8. Q[suggests, S2.return_event, S1.return_event](S2.return_event == true → Temporal(S1.return_time, S2.return_time))
+9. Q[will, S1.timeframe.violation, S2.timeframe.violation](S1.timeframe.violation == true → Temporal(S1.return_time, S2.return_time))
+10. Q[may, S2.timeframe.violation, S1.timeframe.violation](S2.timeframe.violation == true → Temporal(S1.return_time, S2.return_time))
+11. Q[will, S1.future_event, S2.future_event](S1.future_event == true → Temporal(S1.return_time, S2.return_time))
+12. Q[may, S2.future_event, S1.future_event](S2.future_event == true → Temporal(S1.return_time, S2.return_time))
+13. Q[indicates, S1.return_duration, S2.return_duration](S1.return_duration == 3 → Temporal(S1.return_time, S2.return_time))
+14. Q[suggests, S2.return_duration, S1.return_duration](S2.return_duration == 1 → Temporal(S1.return_time, S2.return_time))
+15. Q[will, S1.return_period, S2.return_period](S1.return_period == 3 → Temporal(S1.return_time, S2.return_time))
+16. Q[may, S2.return_period, S1.return_period](S2.return_period == 1 → Temporal(S1.return_time, S2.return_time))
+17. Q[indicates, S1.anticipated_return, S2.anticipated_return](S1.anticipated_return == true → Temporal(S1.return_time, S2.return_time))
+18. Q[suggests, S2.anticipated_return, S1.anticipated_return](S2.anticipated_return == true → Temporal(S1.return_time, S2.return_time))
+19. Q[will, S1.return_in_days, S2.return_in_days](S1.return_in_days == 3 → Temporal(S1.return_time, S2.return_time))
+20. Q[may, S2.return_in_days, S1.return_in_days](S2.return_in_days == 1 → Temporal(S1.return_time, S2.return_time))
+21. Q[indicates, S1.conditional_return, S2.conditional_return](S1.conditional_return == true → Temporal(S1.return_time, S2.return_time))
+22. Q[suggests, S2.conditional_return, S1.conditional_return](S2.conditional_return == true → Temporal(S1.return_time, S2.return_time))
+23. Q[will, S1.return_schedule, S2.return_schedule](S1.return_schedule == true → Temporal(S1.return_time, S2.return_time))
+24. Q[may, S2.return_schedule, S1.return_schedule](S2.return_schedule == true → Temporal(S1.return_time, S2.return_time))
+25. Q[indicates, S1.return_prediction, S2.return_prediction](S1.return_prediction == true → Temporal(S1.return_time, S2.return_time))
+26. Q[suggests, S2.return_prediction, S1.return_prediction](S2.return_prediction == true → Temporal(S1.return_time, S2.return_time))
+27. Q[will, S1.return_time.days, S2.return_time.days](S1.return_time.days == 3 → Temporal(S1.return_time, S2.return_time))
+28. Q[may, S2.return_time.days, S1.return_time.days](S2.return_time.days == 1 → Temporal(S1.return_time, S2.return_time))
+29. Q[indicates, S1.return_time.three_days, S2.return_time.tomorrow](S1.return_time.three_days == true → Temporal(S1.return_time, S2.return_time))
+30. Q[suggests, S2.return_time.tomorrow, S1.return_time.three_days](S2.return_time.tomorrow == true → Temporal(S1.return_time, S2.return_time))

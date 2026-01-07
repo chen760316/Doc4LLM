@@ -1,0 +1,50 @@
+Predicates:
+Marcus Schouler.label != "Character"
+Marcus Schouler.label = "Character"
+Marcus Schouler.name != "Marcus Schouler"
+Marcus Schouler.name = "Marcus Schouler"
+Marcus Schouler.relationship != "best friend of McTeague"
+Marcus Schouler.relationship = "best friend of McTeague"
+Marcus Schouler.status != "jealous"
+Marcus Schouler.status = "jealous"
+McTeague.label != "Character"
+McTeague.label = "Character"
+McTeague.name != "McTeague"
+McTeague.name != Marcus Schouler.name
+McTeague.name != Trina Sieppe.name
+McTeague.name = "McTeague"
+McTeague.occupation != "dentist"
+McTeague.occupation = "dentist"
+McTeague.status != "violent"
+McTeague.status != Marcus Schouler.status
+McTeague.status != Trina Sieppe.status
+McTeague.status = "violent"
+McTeague___Marcus Schouler.doc_id = "3488771897_3"
+McTeague___Marcus Schouler.relationship = "McTeague and Marcus come to grips multiple times, with McTeague's immense physical strength prevailing."
+McTeague___Trina Sieppe.amount != 400
+McTeague___Trina Sieppe.amount = 400
+McTeague___Trina Sieppe.doc_id = "3488771897_3"
+McTeague___Trina Sieppe.relationship != McTeague___Marcus Schouler.relationship
+McTeague___Trina Sieppe.relationship = "McTeague and Trina's life together deteriorates as Trina becomes more miserly."
+None_ML(Marcus Schouler.attrs, McTeague.attrs)
+None_ML(McTeague___Marcus Schouler.attrs, McTeague___Trina Sieppe.attrs)
+Trina Sieppe.label != "Character"
+Trina Sieppe.label = "Character"
+Trina Sieppe.name != "Trina Sieppe"
+Trina Sieppe.name != Marcus Schouler.name
+Trina Sieppe.name = "Trina Sieppe"
+Trina Sieppe.status != "miserly"
+Trina Sieppe.status != Marcus Schouler.status
+Trina Sieppe.status = "miserly"
+
+Rules:
+Q[McTeague,McTeague] (Marcus Schouler.label != "Character" ∧ McTeague.occupation = "dentist" → McTeague___Trina Sieppe.relationship = "McTeague and Trina's life together deteriorates as Trina becomes more miserly.")
+Q[McTeague,McTeague] (McTeague___Trina Sieppe.doc_id = "3488771897_3" ∧ McTeague___Marcus Schouler.doc_id = "3488771897_3" ∧ McTeague.status = "violent" ∧ McTeague.name != Trina Sieppe.name ∧ McTeague___Marcus Schouler.relationship = "McTeague and Marcus come to grips multiple times, with McTeague's immense physical strength prevailing." ∧ Marcus Schouler.name = "Marcus Schouler" → Marcus Schouler.name != "Marcus Schouler")
+Q[McTeague,McTeague] (McTeague.occupation != "dentist" ∧ Trina Sieppe.status != Marcus Schouler.status ∧ None_ML(McTeague___Marcus Schouler.attrs, McTeague___Trina Sieppe.attrs) ∧ Trina Sieppe.name != "Trina Sieppe" ∧ Trina Sieppe.name != Marcus Schouler.name → McTeague___Marcus Schouler.doc_id = "3488771897_3")
+Q[McTeague,McTeague] (McTeague___Trina Sieppe.relationship != McTeague___Marcus Schouler.relationship ∧ McTeague.name = "McTeague" ∧ Trina Sieppe.name != "Trina Sieppe" ∧ McTeague___Marcus Schouler.relationship = "McTeague and Marcus come to grips multiple times, with McTeague's immense physical strength prevailing." → Trina Sieppe.label != "Character")
+Q[McTeague,McTeague] (McTeague.name != "McTeague" ∧ McTeague___Trina Sieppe.relationship != McTeague___Marcus Schouler.relationship ∧ McTeague.status != Trina Sieppe.status → Trina Sieppe.status != Marcus Schouler.status)
+Q[McTeague,McTeague] (McTeague___Trina Sieppe.doc_id = "3488771897_3" ∧ McTeague___Trina Sieppe.amount != 400 ∧ McTeague___Trina Sieppe.relationship = "McTeague and Trina's life together deteriorates as Trina becomes more miserly." ∧ McTeague.status = "violent" → McTeague.status != Marcus Schouler.status)
+Q[McTeague,McTeague] (Marcus Schouler.label != "Character" ∧ McTeague.status != Trina Sieppe.status ∧ None_ML(Marcus Schouler.attrs, McTeague.attrs) → McTeague.label != "Character")
+Q[McTeague,McTeague] (Trina Sieppe.name = "Trina Sieppe" ∧ McTeague___Trina Sieppe.doc_id = "3488771897_3" → Marcus Schouler.relationship = "best friend of McTeague")
+Q[McTeague,McTeague] (McTeague___Marcus Schouler.doc_id = "3488771897_3" ∧ McTeague___Trina Sieppe.amount != 400 ∧ Trina Sieppe.name != Marcus Schouler.name ∧ Marcus Schouler.name != "Marcus Schouler" ∧ McTeague.occupation = "dentist" → McTeague.status != Trina Sieppe.status)
+Q[McTeague,McTeague] (McTeague.status = "violent" ∧ McTeague___Trina Sieppe.relationship != McTeague___Marcus Schouler.relationship ∧ McTeague___Trina Sieppe.doc_id = "3488771897_3" ∧ Trina Sieppe.status = "miserly" ∧ Marcus Schouler.status = "jealous" ∧ Marcus Schouler.name = "Marcus Schouler" → McTeague.name != Trina Sieppe.name)

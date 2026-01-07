@@ -1,0 +1,57 @@
+Predicates:
+Captain Brazen.label != "Character"
+Captain Brazen.label = "Character"
+Captain Brazen.name != "Captain Brazen"
+Captain Brazen.name != Sylvia.name
+Captain Brazen.name != Worthy.name
+Captain Brazen.name = "Captain Brazen"
+Captain Brazen.occupation != "Recruiter"
+Captain Brazen.occupation != Worthy.occupation
+Captain Brazen.occupation = "Recruiter"
+Melinda.label != "Character"
+Melinda.label = "Character"
+Melinda.name != "Melinda"
+Melinda.name != Captain Brazen.name
+Melinda.name != Sylvia.name
+Melinda.name != Worthy.name
+Melinda.name = "Melinda"
+Melinda.status != "Relenting towards Worthy"
+Melinda.status != Sylvia.status
+Melinda.status = "Relenting towards Worthy"
+Melinda___Captain Brazen.doc_id = "3488771854_8"
+Melinda___Captain Brazen.reason = "offended by Worthy's previous offer"
+Melinda___Captain Brazen.relationship != Melinda___Sylvia.relationship
+Melinda___Captain Brazen.relationship != Melinda___Worthy.relationship
+Melinda___Captain Brazen.relationship = "Melinda accepts an invitation from Captain Brazen to annoy Worthy."
+Melinda___Sylvia.doc_id = "3488771854_8"
+Melinda___Sylvia.relationship != Melinda___Worthy.relationship
+Melinda___Sylvia.relationship = "Melinda and Sylvia argue about Melinda's inheritance making her more desirable."
+Melinda___Worthy.doc_id = "3488771854_8"
+Melinda___Worthy.relationship = "Melinda relents and accepts Worthy's courtship."
+None_ML(Melinda___Worthy.attrs, Melinda___Captain Brazen.attrs)
+None_ML(Worthy.attrs, Melinda.attrs)
+Sylvia.label != "Character"
+Sylvia.label = "Character"
+Sylvia.name != "Sylvia"
+Sylvia.name != Worthy.name
+Sylvia.name = "Sylvia"
+Sylvia.status != "In love with Plume"
+Sylvia.status = "In love with Plume"
+Worthy.label != "Character"
+Worthy.label = "Character"
+Worthy.name != "Worthy"
+Worthy.name = "Worthy"
+Worthy.occupation != "Gentleman"
+Worthy.occupation = "Gentleman"
+
+Rules:
+Q[Melinda,Melinda] (Captain Brazen.name != "Captain Brazen" ∧ Sylvia.status != "In love with Plume" ∧ Captain Brazen.label = "Character" ∧ Melinda.label = "Character" ∧ Melinda.name != Captain Brazen.name → Sylvia.name != Worthy.name)
+Q[Melinda,Melinda] (Melinda.status != Sylvia.status ∧ Worthy.label = "Character" ∧ Melinda___Sylvia.relationship != Melinda___Worthy.relationship ∧ Melinda.name != Captain Brazen.name → Worthy.occupation = "Gentleman")
+Q[Melinda,Melinda] (Melinda.status = "Relenting towards Worthy" ∧ Worthy.name != "Worthy" ∧ Melinda___Sylvia.doc_id = "3488771854_8" ∧ Melinda.status != Sylvia.status ∧ Melinda.name != Worthy.name ∧ Melinda.label = "Character" → Sylvia.label != "Character")
+Q[Melinda,Melinda] (None_ML(Worthy.attrs, Melinda.attrs) ∧ Melinda___Captain Brazen.reason = "offended by Worthy's previous offer" → Melinda.name = "Melinda")
+Q[Melinda,Melinda] (Melinda.name != "Melinda" ∧ Captain Brazen.name = "Captain Brazen" ∧ Melinda___Sylvia.doc_id = "3488771854_8" → Melinda___Worthy.relationship = "Melinda relents and accepts Worthy's courtship.")
+Q[Melinda,Melinda] (Sylvia.name = "Sylvia" ∧ Worthy.label != "Character" ∧ Melinda.label != "Character" ∧ Melinda.status = "Relenting towards Worthy" ∧ Melinda.status != Sylvia.status → Captain Brazen.occupation != "Recruiter")
+Q[Melinda,Melinda] (Worthy.name != "Worthy" ∧ Sylvia.name = "Sylvia" ∧ Melinda___Worthy.doc_id = "3488771854_8" → Sylvia.status != "In love with Plume")
+Q[Melinda,Melinda] (Sylvia.name = "Sylvia" ∧ Captain Brazen.occupation = "Recruiter" ∧ Melinda___Captain Brazen.relationship != Melinda___Worthy.relationship ∧ Captain Brazen.label != "Character" → Melinda___Captain Brazen.relationship = "Melinda accepts an invitation from Captain Brazen to annoy Worthy.")
+Q[Melinda,Melinda] (None_ML(Worthy.attrs, Melinda.attrs) ∧ Captain Brazen.name != Worthy.name → Sylvia.name != "Sylvia")
+Q[Melinda,Melinda] (Melinda___Sylvia.relationship != Melinda___Worthy.relationship ∧ Melinda.name != "Melinda" ∧ Worthy.name = "Worthy" ∧ Worthy.occupation != "Gentleman" ∧ Sylvia.label != "Character" ∧ Melinda.status != "Relenting towards Worthy" → Captain Brazen.label != "Character")

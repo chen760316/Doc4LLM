@@ -1,0 +1,95 @@
+Predicates:
+Guam.distance_from_guam_km != 380
+Guam.distance_from_guam_km < 385
+Guam.distance_from_guam_km = 380
+Guam.distance_from_guam_km > 375
+Guam.distance_from_guam_mi != 235
+Guam.distance_from_guam_mi < 240
+Guam.distance_from_guam_mi = 235
+Guam.distance_from_guam_mi > 230
+Guam.label != "Location"
+Guam.label = "Location"
+Guam.name != "Guam"
+Guam.name != Vietnam.name
+Guam.name = "Guam"
+Krosa.label != "Typhoon"
+Krosa.label != Guam.label
+Krosa.label != Philippines.label
+Krosa.label != South China Sea.label
+Krosa.label != Vietnam.label
+Krosa.label = "Typhoon"
+Krosa.local_name != "Vinta"
+Krosa.local_name = "Vinta"
+Krosa.name != "Krosa"
+Krosa.name != Guam.name
+Krosa.name != Philippines.name
+Krosa.name != South China Sea.name
+Krosa.name != Vietnam.name
+Krosa.name = "Krosa"
+Krosa.year != 2013
+Krosa.year < 2018
+Krosa.year = 2013
+Krosa.year > 2008
+Krosa___Guam.doc_id = "3499318688_8"
+Krosa___Guam.formation_date = "October 27, 2013"
+Krosa___Guam.relationship != Krosa___Vietnam.relationship
+Krosa___Guam.relationship = "Typhoon Krosa formed near Guam."
+Krosa___Philippines.damage = "P277 million (PHP, $6.4 million USD)"
+Krosa___Philippines.doc_id = "3499318688_8"
+Krosa___Philippines.fatalities != 4
+Krosa___Philippines.fatalities = 4
+Krosa___Philippines.houses_damaged != 32745
+Krosa___Philippines.houses_damaged = 32745
+Krosa___Philippines.houses_destroyed != 3837
+Krosa___Philippines.houses_destroyed = 3837
+Krosa___Philippines.relationship != Krosa___Guam.relationship
+Krosa___Philippines.relationship != Krosa___South China Sea.relationship
+Krosa___Philippines.relationship != Krosa___Vietnam.relationship
+Krosa___Philippines.relationship = "Typhoon Krosa made landfall in the northern Philippines."
+Krosa___South China Sea.date = "November 1, 2013"
+Krosa___South China Sea.doc_id = "3499318688_8"
+Krosa___South China Sea.peak_wind_speed_kmh != 185
+Krosa___South China Sea.peak_wind_speed_kmh = 185
+Krosa___South China Sea.peak_wind_speed_mph != 115
+Krosa___South China Sea.peak_wind_speed_mph = 115
+Krosa___South China Sea.relationship != Krosa___Guam.relationship
+Krosa___South China Sea.relationship != Krosa___Vietnam.relationship
+Krosa___South China Sea.relationship = "Typhoon Krosa re-intensified over the South China Sea."
+Krosa___Vietnam.dissipation_date = "November 5, 2013"
+Krosa___Vietnam.doc_id = "3499318688_8"
+Krosa___Vietnam.relationship = "Typhoon Krosa dissipated off the northeast Vietnam coast."
+None_ML(Krosa___Guam.attrs, Krosa___Vietnam.attrs)
+None_ML(Philippines.attrs, Guam.attrs)
+Philippines.label != "Location"
+Philippines.label = "Location"
+Philippines.landfall_date != "October 31, 2013"
+Philippines.landfall_date = "October 31, 2013"
+Philippines.name != "Philippines"
+Philippines.name != Guam.name
+Philippines.name != South China Sea.name
+Philippines.name != Vietnam.name
+Philippines.name = "Philippines"
+Philippines.region != "Northern Luzon"
+Philippines.region = "Northern Luzon"
+South China Sea.label != "Location"
+South China Sea.label = "Location"
+South China Sea.name != "South China Sea"
+South China Sea.name != Guam.name
+South China Sea.name != Vietnam.name
+South China Sea.name = "South China Sea"
+Vietnam.label != "Location"
+Vietnam.label = "Location"
+Vietnam.name != "Vietnam"
+Vietnam.name = "Vietnam"
+
+Rules:
+Q[Krosa,Krosa] (Krosa___South China Sea.relationship != Krosa___Vietnam.relationship ∧ Krosa___South China Sea.date = "November 1, 2013" ∧ Krosa.year > 2008 → Krosa.year = 2013)
+Q[Krosa,Krosa] (Krosa.label != Philippines.label ∧ Krosa___Philippines.relationship = "Typhoon Krosa made landfall in the northern Philippines." ∧ Krosa.year < 2018 ∧ Krosa___Guam.doc_id = "3499318688_8" ∧ Krosa___Vietnam.dissipation_date = "November 5, 2013" → Guam.distance_from_guam_mi = 235)
+Q[Krosa,Krosa] (Krosa.name != South China Sea.name ∧ None_ML(Philippines.attrs, Guam.attrs) → Philippines.landfall_date = "October 31, 2013")
+Q[Krosa,Krosa] (Krosa.name != South China Sea.name ∧ South China Sea.name != "South China Sea" ∧ Krosa___South China Sea.peak_wind_speed_kmh = 185 ∧ South China Sea.label != "Location" ∧ Krosa___Philippines.relationship = "Typhoon Krosa made landfall in the northern Philippines." ∧ Krosa___South China Sea.relationship != Krosa___Guam.relationship → Guam.distance_from_guam_mi > 230)
+Q[Krosa,Krosa] (Krosa___Philippines.houses_damaged = 32745 ∧ Krosa___South China Sea.peak_wind_speed_kmh = 185 ∧ Philippines.landfall_date != "October 31, 2013" ∧ Krosa___Vietnam.doc_id = "3499318688_8" → Krosa___Philippines.relationship != Krosa___Guam.relationship)
+Q[Krosa,Krosa] (Krosa___Vietnam.doc_id = "3499318688_8" ∧ Vietnam.name = "Vietnam" → Krosa___Philippines.damage = "P277 million (PHP, $6.4 million USD)")
+Q[Krosa,Krosa] (Philippines.name != Guam.name ∧ None_ML(Krosa___Guam.attrs, Krosa___Vietnam.attrs) ∧ Krosa___Vietnam.doc_id = "3499318688_8" ∧ Krosa___South China Sea.peak_wind_speed_mph = 115 ∧ Krosa.name != South China Sea.name → South China Sea.name != Vietnam.name)
+Q[Krosa,Krosa] (None_ML(Krosa___Guam.attrs, Krosa___Vietnam.attrs) ∧ Krosa___Philippines.houses_damaged = 32745 ∧ Krosa___Philippines.relationship != Krosa___South China Sea.relationship ∧ Krosa.year = 2013 ∧ Krosa___South China Sea.doc_id = "3499318688_8" ∧ Krosa___Philippines.relationship = "Typhoon Krosa made landfall in the northern Philippines." → Krosa.label != South China Sea.label)
+Q[Krosa,Krosa] (Krosa___Philippines.houses_damaged != 32745 ∧ Krosa.year = 2013 ∧ Guam.distance_from_guam_mi > 230 → Krosa___Philippines.houses_destroyed != 3837)
+Q[Krosa,Krosa] (Krosa___South China Sea.relationship != Krosa___Vietnam.relationship ∧ South China Sea.label != "Location" ∧ Guam.label != "Location" ∧ Krosa___Philippines.houses_destroyed != 3837 → Guam.name != "Guam")

@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 889)
+S1: It is unlike courage or honesty.
+S2: It is unlike courage or honesty.
+
+Predicates:
+1. S1.text
+2. S2.text
+3. S1.similarity
+4. S2.similarity
+5. S1.contradiction
+6. S2.contradiction
+7. Reason.explanation
+8. Reason.agreement
+9. Reason.difference
+10. Reason.similarity
+11. M_NLI.s1
+12. M_NLI.s2
+13. M_NLI.agreement
+14. M_NLI.contradiction
+15. Content.s1
+16. Content.s2
+17. Content.similarity
+18. Content.difference
+19. violate.s1
+20. violate.s2
+21. violate.agreement
+22. violate.contradiction
+23. Entity.courage
+24. Entity.honesty
+25. Edge.unlike
+26. Edge.similar
+27. Edge.different
+28. Edge.agree
+29. Edge.contradict
+30. Meta.context
+
+Rules:
+1. Q[unlike, S1.text, S2.text](S1.text.attr == "It is unlike courage or honesty" → Content(S1.text, S2.text))
+2. Q[unlike, S2.text, S1.text](S2.text.attr == "It is unlike courage or honesty" → Content(S2.text, S1.text))
+3. Q[unlike, S1.similarity, S2.similarity](S1.similarity.attr == "identical" → Content(S1.similarity, S2.similarity))
+4. Q[unlike, S1.contradiction, S2.contradiction](S1.contradiction.attr == "false" → Content(S1.contradiction, S2.contradiction))
+5. Q[unlike, Reason.explanation, Reason.agreement](Reason.explanation.attr == "Both sentences are identical" → Content(Reason.explanation, Reason.agreement))
+6. Q[unlike, Reason.difference, Reason.similarity](Reason.difference.attr == "presented as if they might" → Content(Reason.difference, Reason.similarity))
+7. Q[unlike, M_NLI.agreement, M_NLI.contradiction](M_NLI.agreement.attr == "false" → Content(M_NLI.agreement, M_NLI.contradiction))
+8. Q[unlike, Content.s1, Content.s2](Content.s1.attr == "It is unlike courage or honesty" → Content(Content.s1, Content.s2))
+9. Q[unlike, S1.text, S1.similarity](S1.text.attr == "It is unlike courage or honesty" → Content(S1.text, S1.similarity))
+10. Q[unlike, S2.text, S2.similarity](S2.text.attr == "It is unlike courage or honesty" → Content(S2.text, S2.similarity))
+11. Q[unlike, S1.contradiction, Reason.difference](S1.contradiction.attr == "false" → Content(S1.contradiction, Reason.difference))
+12. Q[unlike, S2.contradiction, Reason.difference](S2.contradiction.attr == "false" → Content(S2.contradiction, Reason.difference))
+13. Q[unlike, Edge.unlike, Edge.similar](Edge.unlike.attr == "false" → Content(Edge.unlike, Edge.similar))
+14. Q[unlike, Edge.different, Edge.agree](Edge.different.attr == "true" → Content(Edge.different, Edge.agree))
+15. Q[unlike, Entity.courage, Entity.honesty](Entity.courage.attr == "not similar" → Content(Entity.courage, Entity.honesty))
+16. Q[unlike, M_NLI.s1, M_NLI.s2](M_NLI.s1.attr == "It is unlike courage or honesty" → Content(M_NLI.s1, M_NLI.s2))
+17. Q[unlike, Reason.similarity, Reason.difference](Reason.similarity.attr == "false" → Content(Reason.similarity, Reason.difference))
+18. Q[unlike, violate.s1, violate.s2](violate.s1.attr == "false" → Content(violate.s1, violate.s2))
+19. Q[unlike, Content.similarity, Content.difference](Content.similarity.attr == "false" → Content(Content.similarity, Content.difference))
+20. Q[unlike, S1.text, Reason.explanation](S1.text.attr == "It is unlike courage or honesty" → Content(S1.text, Reason.explanation))
+21. Q[unlike, S2.text, Reason.explanation](S2.text.attr == "It is unlike courage or honesty" → Content(S2.text, Reason.explanation))
+22. Q[unlike, M_NLI.s1, Reason.agreement](M_NLI.s1.attr == "false" → Content(M_NLI.s1, Reason.agreement))
+23. Q[unlike, M_NLI.s2, Reason.agreement](M_NLI.s2.attr == "false" → Content(M_NLI.s2, Reason.agreement))
+24. Q[unlike, S1.similarity, Reason.similarity](S1.similarity.attr == "false" → Content(S1.similarity, Reason.similarity))
+25. Q[unlike, S2.similarity, Reason.similarity](S2.similarity.attr == "false" → Content(S2.similarity, Reason.similarity))
+26. Q[unlike, Edge.unlike, Edge.different](Edge.unlike.attr == "true" → Content(Edge.unlike, Edge.different))
+27. Q[unlike, Edge.agree, Edge.contradict](Edge.agree.attr == "false" → Content(Edge.agree, Edge.contradict))
+28. Q[unlike, Reason.agreement, Reason.difference](Reason.agreement.attr == "false" → Content(Reason.agreement, Reason.difference))
+29. Q[unlike, Content.difference, Content.similarity](Content.difference.attr == "true" → Content(Content.difference, Content.similarity))
+30. Q[unlike, Meta.context, Reason.explanation](Meta.context.attr == "Both sentences are identical" → Content(Meta.context, Reason.explanation))

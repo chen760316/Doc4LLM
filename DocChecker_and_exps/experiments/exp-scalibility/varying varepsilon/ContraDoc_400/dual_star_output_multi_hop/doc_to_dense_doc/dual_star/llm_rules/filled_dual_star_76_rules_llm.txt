@@ -1,0 +1,128 @@
+Predicates:
+1. Zhou.nationality = "Chinese"
+2. Zhou.occupation = "former leader"
+3. Zhou.status = "accused"
+4. China's Supreme Court.role = "judicial authority"
+5. "legal proceedings".context = "legal proceedings"
+6. "legal proceedings".public_view = "shielded"
+7. "Relationship".attribute = "legal proceedings"
+8. "Relationship".entity1 = "Zhou"
+9. "Relationship".entity2 = "China's Supreme Court"
+10. "Relationship".status = "ongoing"
+11. "Relationship".type = "trial"
+12. "Relationship".outcome = "pending"
+13. "Relationship".date = "2024"
+14. "Relationship".location = "Beijing"
+15. "Relationship".involves = "state secrets"
+16. "Relationship".authority = "government"
+17. "Relationship".defendant = "Zhou"
+18. "Relationship".plaintiff = "state"
+19. "Relationship".evidence = "classified"
+20. "Relationship".public_access = "restricted"
+21. M_NLI(Zhou.status, "not accused")
+22. M_NLI("legal proceedings".public_view, "public view allowed")
+23. T("The charge of leaking state secrets may allow authorities to shield certain legal proceedings from public view in Zhou's case.", "The president of China's supreme court stated that there would be no trials for accused former leaders like Zhou.", tau)
+24. tau(Zhou.status, "not accused")
+25. violate(Zhou.status, "not accused")
+26. Factual(Zhou.status, "not accused")
+27. Causal("legal proceedings".public_view, "public view allowed")
+28. Negation("legal proceedings".public_view, "public view allowed")
+29. Relation(Zhou.occupation, "not a leader")
+30. Numeric("legal proceedings".public_view, "not shielded")
+31. Temporal("legal proceedings".date, "past")
+32. Factual("legal proceedings".public_view, "not shielded")
+33. Causal(Zhou.status, "not accused")
+34. Negation(Zhou.occupation, "not a leader")
+35. Relation("legal proceedings".context, "not legal")
+36. Numeric("legal proceedings".outcome, "not pending")
+37. Temporal("legal proceedings".date, "future")
+38. Factual("legal proceedings".public_view, "open")
+39. Causal("legal proceedings".status, "resolved")
+40. Negation(Zhou.nationality, "not Chinese")
+41. Relation("legal proceedings".authority, "not government")
+42. Numeric("legal proceedings".evidence, "no evidence")
+43. Temporal("legal proceedings".date, "2023")
+44. Factual("legal proceedings".context, "not legal proceedings")
+45. Causal(Zhou.occupation, "not a leader")
+46. Negation("legal proceedings".public_view, "accessible")
+47. Relation(Zhou.status, "not accused")
+48. Numeric("legal proceedings".outcome, "final")
+49. Temporal("legal proceedings".date, "2025")
+50. Factual("legal proceedings".public_view, "open access")
+51. Causal("legal proceedings".status, "completed")
+52. Negation(Zhou.occupation, "not former leader")
+53. Relation("legal proceedings".authority, "not judicial")
+54. Numeric("legal proceedings".evidence, "no classified evidence")
+55. Temporal("legal proceedings".date, "2022")
+56. Factual("legal proceedings".context, "not legal")
+57. Causal(Zhou.nationality, "not Chinese")
+58. Negation("legal proceedings".public_view, "not restricted")
+59. Relation(Zhou.status, "not accused")
+60. Numeric("legal proceedings".outcome, "resolved")
+61. Temporal("legal proceedings".date, "2026")
+62. Factual("legal proceedings".public_view, "not shielded")
+63. Causal("legal proceedings".status, "ongoing")
+64. Negation(Zhou.occupation, "not accused")
+65. Relation("legal proceedings".authority, "not state")
+66. Numeric("legal proceedings".evidence, "no evidence presented")
+67. Temporal("legal proceedings".date, "2021")
+68. Factual("legal proceedings".context, "not judicial")
+69. Causal(Zhou.status, "not guilty")
+70. Negation("legal proceedings".public_view, "not accessible")
+71. Relation(Zhou.occupation, "not a leader")
+72. Numeric("legal proceedings".outcome, "dismissed")
+73. Temporal("legal proceedings".date, "2027")
+74. Factual("legal proceedings".public_view, "not open")
+75. Causal("legal proceedings".status, "finalized")
+76. Negation(Zhou.nationality, "not Chinese")
+77. Relation("legal proceedings".authority, "not judicial body")
+78. Numeric("legal proceedings".evidence, "no evidence found")
+79. Temporal("legal proceedings".date, "2020")
+80. Factual("legal proceedings".context, "not legal proceedings")
+81. Causal(Zhou.occupation, "not a leader")
+82. Negation("legal proceedings".public_view, "not shielded")
+83. Relation(Zhou.status, "not accused")
+84. Numeric("legal proceedings".outcome, "not resolved")
+85. Temporal("legal proceedings".date, "2019")
+86. Factual("legal proceedings".public_view, "not restricted")
+87. Causal("legal proceedings".status, "not ongoing")
+88. Negation(Zhou.occupation, "not former leader")
+89. Relation("legal proceedings".authority, "not government body")
+90. Numeric("legal proceedings".evidence, "no classified documents")
+91. Temporal("legal proceedings".date, "2018")
+92. Factual("legal proceedings".context, "not judicial")
+93. Causal(Zhou.status, "not guilty")
+94. Negation("legal proceedings".public_view, "not accessible")
+95. Relation(Zhou.occupation, "not a leader")
+96. Numeric("legal proceedings".outcome, "not pending")
+97. Temporal("legal proceedings".date, "2017")
+98. Factual("legal proceedings".public_view, "not open access")
+99. Causal("legal proceedings".status, "not completed")
+100. Negation(Zhou.nationality, "not Chinese")
+violate(x0, y0)
+
+Rules:
+1. Q[Zhou, "legal proceedings"](Zhou.status = "accused" ∧ Zhou.occupation = "former leader" → violate(Zhou.status, "not accused"))
+2. Q[Zhou, "China's Supreme Court"](Zhou.nationality = "Chinese" ∧ Zhou.status = "accused" ∧ "Relationship".status = "ongoing" → violate(Zhou.status, "not accused"))
+3. Q[Zhou, "state"](Zhou.occupation = "former leader" ∧ "legal proceedings".context = "legal proceedings" ∧ "Relationship".type = "trial" → violate(Zhou.status, "not accused"))
+4. Q[Zhou, "Beijing"](Zhou.nationality = "Chinese" ∧ Zhou.status = "accused" ∧ "Relationship".outcome = "pending" ∧ "Relationship".date = "2024" → violate(Zhou.status, "not accused"))
+5. Q[Zhou, "government"](Zhou.occupation = "former leader" ∧ "legal proceedings".public_view = "shielded" ∧ "Relationship".involves = "state secrets" ∧ "Relationship".authority = "government" → violate(Zhou.status, "not accused"))
+6. Q[Zhou, "state"](Zhou.status = "accused" ∧ "legal proceedings".public_view = "shielded" ∧ "Relationship".entity1 = "Zhou" ∧ "Relationship".entity2 = "China's Supreme Court" ∧ "Relationship".type = "trial" → violate(Zhou.status, "not accused"))
+7. Q[Zhou, "legal proceedings"](Zhou.status = "accused" ∧ "legal proceedings".public_view = "not shielded" → violate(Zhou.status, "not accused"))
+8. Q[Zhou, "China's Supreme Court"](Zhou.occupation = "former leader" ∧ "legal proceedings".context = "legal proceedings" ∧ "Relationship".outcome = "final" → violate(Zhou.status, "not accused"))
+9. Q[Zhou, "state"](Zhou.nationality = "Chinese" ∧ Zhou.status = "accused" ∧ "legal proceedings".public_view = "restricted" ∧ "Relationship".status = "ongoing" → violate(Zhou.status, "not accused"))
+10. Q[Zhou, "Beijing"](Zhou.occupation = "former leader" ∧ "legal proceedings".context = "legal proceedings" ∧ "Relationship".date = "2024" ∧ "Relationship".outcome = "pending" → violate(Zhou.status, "not accused"))
+11. Q[Zhou, "government"](Zhou.status = "accused" ∧ "legal proceedings".public_view = "not accessible" ∧ "Relationship".authority = "government" → violate(Zhou.status, "not accused"))
+12. Q[Zhou, "state"](Zhou.nationality = "Chinese" ∧ Zhou.occupation = "former leader" ∧ "legal proceedings".public_view = "not shielded" ∧ "Relationship".involves = "state secrets" ∧ "Relationship".status = "ongoing" → violate(Zhou.status, "not accused"))
+13. Q[Zhou, "China's Supreme Court"](Zhou.status = "accused" ∧ "legal proceedings".public_view = "not open" ∧ "Relationship".type = "trial" → violate(Zhou.status, "not accused"))
+14. Q[Zhou, "Beijing"](Zhou.occupation = "former leader" ∧ "legal proceedings".context = "legal proceedings" ∧ "Relationship".outcome = "resolved" ∧ "Relationship".date = "2024" → violate(Zhou.status, "not accused"))
+15. Q[Zhou, "government"](Zhou.nationality = "Chinese" ∧ Zhou.status = "accused" ∧ "legal proceedings".public_view = "restricted" ∧ "Relationship".authority = "government" ∧ "Relationship".involves = "state secrets" → violate(Zhou.status, "not accused"))
+16. Q[Zhou, "state"](Zhou.occupation = "former leader" ∧ "legal proceedings".public_view = "not accessible" ∧ "Relationship".entity1 = "Zhou" ∧ "Relationship".entity2 = "China's Supreme Court" ∧ "Relationship".type = "trial" → violate(Zhou.status, "not accused"))
+17. Q[Zhou, "legal proceedings"](Zhou.status = "accused" ∧ "legal proceedings".public_view = "not shielded" ∧ "Relationship".outcome = "final" → violate(Zhou.status, "not accused"))
+18. Q[Zhou, "China's Supreme Court"](Zhou.nationality = "Chinese" ∧ Zhou.occupation = "former leader" ∧ "legal proceedings".context = "legal proceedings" ∧ "Relationship".date = "2024" → violate(Zhou.status, "not accused"))
+19. Q[Zhou, "state"](Zhou.status = "accused" ∧ "legal proceedings".public_view = "not open" ∧ "Relationship".status = "ongoing" ∧ "Relationship".involves = "state secrets" → violate(Zhou.status, "not accused"))
+20. Q[Zhou, "Beijing"](Zhou.occupation = "former leader" ∧ "legal proceedings".context = "legal proceedings" ∧ "Relationship".outcome = "pending" ∧ "Relationship".date = "2024" ∧ "Relationship".authority = "government" → violate(Zhou.status, "not accused"))
+21. Q[Zhou, "government"](Zhou.nationality = "Chinese" ∧ Zhou.status = "accused" ∧ "legal proceedings".public_view = "restricted" ∧ "Relationship".entity1 = "Zhou" ∧ "Relationship".entity2 = "China's Supreme Court" → violate(Zhou.status, "not accused"))
+22. Q[Zhou, "state"](Zhou.occupation = "former leader" ∧ "legal proceedings".public_view = "not accessible" ∧ "Relationship".type = "trial" ∧ "Relationship".status = "ongoing" → violate(Zhou.status, "not accused"))
+23. Q[Zhou, "legal proceedings"](Zhou.status = "accused" ∧ "legal proceedings".public_view = "not shielded" ∧ "Relationship".outcome = "resolved" ∧ "Relationship".date = "2024" → violate(Zhou.status, "not accused"))
+24. Q[Zhou, "China's Supreme Court"](Zhou.nationality = "Chinese" ∧ Zhou.occupation = "former leader" ∧ "legal proceedings".context = "legal proceedings" ∧ "Relationship".involves = "state secrets" ∧ "Relationship".authority = "government" → violate(Zhou.status,

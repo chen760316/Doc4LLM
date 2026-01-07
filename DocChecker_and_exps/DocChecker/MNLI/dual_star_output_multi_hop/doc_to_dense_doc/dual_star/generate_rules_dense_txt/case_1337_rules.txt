@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 1337)
+S1: Barker was going to get married for the first time that day.
+S2: I’ve never been but I’ve always wanted to go.
+
+Predicates:
+1. Barker.marriage_status = "first_time"
+2. Barker.event = "marriage"
+3. Barker.date = "today"
+4. Individual.experience = "none"
+5. Individual.desire = "to go"
+6. Individual.experience_with_marriage = "never"
+7. Individual.wish = "to experience marriage"
+8. Marriage.event = "first_time"
+9. Marriage.participant = "Barker"
+10. Marriage.date = "today"
+11. Experience.level = "lack"
+12. Experience.context = "marriage"
+13. Desire.context = "marriage"
+14. Individual.intent = "to marry"
+15. Individual.experience_level = "zero"
+16. Individual.marriage_experience = "none"
+17. Marriage.experience = "first_time"
+18. Individual.marriage_wish = "strong"
+19. Individual.marriage_desire = "high"
+20. Experience.type = "marriage"
+21. Experience.status = "unexperienced"
+22. Event.type = "marriage"
+23. Event.participant = "Barker"
+24. Event.time = "today"
+25. Individual.marriage_intent = "present"
+26. Individual.marriage_experience_status = "contradictory"
+27. Relationship.type = "marriage"
+28. Relationship.status = "first_time"
+29. Relationship.experience = "none"
+30. Meta.NLI(S1, S2) = "true"
+
+Rules:
+1. Q[Barker, Individual.experience_with_marriage, "never"](Barker.marriage_status == "first_time" → Negation(Individual.experience_with_marriage, "never"))
+2. Q[Barker, Individual.marriage_experience](Barker.event == "marriage" → Negation(Barker.marriage_experience, "none"))
+3. Q[Barker, Individual.experience](Barker.date == "today" → Negation(Individual.experience, "none"))
+4. Q[Barker, Individual.desire](Barker.marriage_status == "first_time" → Negation(Individual.desire, "to go"))
+5. Q[Barker, Individual.intent](Barker.event == "marriage" → Negation(Individual.intent, "to marry"))
+6. Q[Barker, Individual.marriage_intent](Barker.date == "today" → Negation(Individual.marriage_intent, "present"))
+7. Q[Barker, Experience.level](Barker.marriage_status == "first_time" → Negation(Experience.level, "lack"))
+8. Q[Barker, Experience.status](Barker.event == "marriage" → Negation(Experience.status, "unexperienced"))
+9. Q[Barker, Individual.marriage_wish](Barker.date == "today" → Negation(Individual.marriage_wish, "to experience marriage"))
+10. Q[Barker, Individual.marriage_desire](Barker.marriage_status == "first_time" → Negation(Individual.marriage_desire, "high"))
+11. Q[Barker, Relationship.type](Barker.event == "marriage" → Negation(Relationship.type, "marriage"))
+12. Q[Barker, Relationship.status](Barker.date == "today" → Negation(Relationship.status, "first_time"))
+13. Q[Barker, Experience.context](Barker.marriage_status == "first_time" → Negation(Experience.context, "marriage"))
+14. Q[Barker, Marriage.event](Barker.date == "today" → Negation(Marriage.event, "first_time"))
+15. Q[Barker, Marriage.participant](Barker.event == "marriage" → Negation(Marriage.participant, "Barker"))
+16. Q[Barker, Marriage.date](Barker.marriage_status == "first_time" → Negation(Marriage.date, "today"))
+17. Q[Barker, Individual.experience_level](Barker.event == "marriage" → Negation(Individual.experience_level, "zero"))
+18. Q[Barker, Individual.marriage_experience_status](Barker.date == "today" → Negation(Individual.marriage_experience_status, "contradictory"))
+19. Q[Barker, Experience.type](Barker.marriage_status == "first_time" → Negation(Experience.type, "marriage"))
+20. Q[Barker, Event.type](Barker.event == "marriage" → Negation(Event.type, "marriage"))
+21. Q[Barker, Event.participant](Barker.date == "today" → Negation(Event.participant, "Barker"))
+22. Q[Barker, Event.time](Barker.marriage_status == "first_time" → Negation(Event.time, "today"))
+23. Q[Barker, Individual.experience](Barker.marriage_status == "first_time" → Negation(Individual.experience, "none"))
+24. Q[Barker, Individual.experience_with_marriage](Barker.event == "marriage" → Negation(Individual.experience_with_marriage, "never"))
+25. Q[Barker, Individual.wish](Barker.date == "today" → Negation(Individual.wish, "to experience marriage"))
+26. Q[Barker, Individual.marriage_experience](Barker.marriage_status == "first_time" → Negation(Individual.marriage_experience, "none"))
+27. Q[Barker, Individual.intent](Barker.event == "marriage" → Negation(Individual.intent, "to marry"))
+28. Q[Barker, Individual.marriage_wish](Barker.date == "today" → Negation(Individual.marriage_wish, "strong"))
+29. Q[Barker, Individual.marriage_desire](Barker.marriage_status == "first_time" → Negation(Individual.marriage_desire, "high"))
+30. Q[Barker, Meta.NLI](Barker.marriage_status == "first_time" → Negation(Meta.NLI(S1, S2), "true"))

@@ -1,0 +1,128 @@
+Predicates:
+1. Ryan_Duffin.feeling = "deceived"
+2. Jackie.relationship = "deceptive"
+3. Ryan_Duffin.point_outs = "Erdely made a mistake"
+4. Erdely.mistake_type = "fact-checking"
+5. Ryan_Duffin.mistake_detail = "about one single incident"
+6. fallout.issue = "bigger issue lost"
+7. Erdely.fallout_effect = "caused bigger issue to be lost"
+8. Ryan_Duffin.source_id = "3489825753_6"
+9. Jackie.source_id = "3489825753_6"
+10. Erdely.source_id = "3489825753_6"
+11. fallout.source_id = "3489825753_6"
+12. "deception".type = "emotional"
+13. "mistake".type = "fact-checking"
+14. "issue".type = "consequence"
+15. Ryan_Duffin.emotion = "betrayed"
+16. Jackie.action = "misled"
+17. Erdely.error = "fact-checking error"
+18. fallout.consequence = "loss of focus"
+19. Ryan_Duffin.reaction = "disappointment"
+20. Jackie.intent = "misleading"
+21. Erdely.reputation = "damaged"
+22. fallout.magnitude = "significant"
+23. Ryan_Duffin.trust_level = "low"
+24. Jackie.trustworthiness = "questionable"
+25. Erdely.credibility = "compromised"
+26. fallout.impact = "widespread"
+27. Ryan_Duffin.assertion = "Erdely's mistake"
+28. Jackie.defense = "not intentional"
+29. Erdely.apology = "insufficient"
+30. fallout.recovery_time = "long"
+31. Ryan_Duffin.acknowledgment = "mistake acknowledged"
+32. Jackie.explanation = "miscommunication"
+33. Erdely.response = "defensive"
+34. fallout.resolution = "pending"
+35. Ryan_Duffin.source = "public statement"
+36. Jackie.source = "personal account"
+37. Erdely.source = "journalistic report"
+38. fallout.source = "media coverage"
+39. M_NLI(Ryan_Duffin.feeling, Jackie.intent)
+40. T("Ryan felt deceived", "Jackie did not mislead", Negation)
+41. tau(Ryan_Duffin.emotion, Jackie.intent)
+42. violate(Ryan_Duffin, Jackie)
+43. Factual(Ryan_Duffin, Jackie)
+44. Causal(Ryan_Duffin, Erdely)
+45. Numeric(Ryan_Duffin, fallout)
+46. Temporal(Ryan_Duffin, Jackie)
+47. Content(Ryan_Duffin, Erdely)
+48. Relation(Ryan_Duffin, Jackie)
+49. M_NLI(Erdely.error, fallout.consequence)
+50. T("Erdely made a mistake", "Erdely was accurate", Factual)
+51. tau(Erdely.error, fallout.impact)
+52. violate(Erdely, fallout)
+53. Factual(Erdely, fallout)
+54. Causal(Erdely, fallout)
+55. Numeric(Erdely, Ryan_Duffin)
+56. Temporal(Erdely, Jackie)
+57. Content(Erdely, fallout)
+58. Relation(Erdely, fallout)
+59. M_NLI(Ryan_Duffin.trust_level, Jackie.trustworthiness)
+60. T("Ryan trusts Jackie", "Ryan distrusts Jackie", Negation)
+61. tau(Ryan_Duffin.trust_level, Jackie.trustworthiness)
+62. violate(Ryan_Duffin, Jackie)
+63. Factual(Ryan_Duffin, Jackie)
+64. Causal(Ryan_Duffin, Erdely)
+65. Numeric(Ryan_Duffin, Jackie)
+66. Temporal(Ryan_Duffin, Erdely)
+67. Content(Ryan_Duffin, Jackie)
+68. Relation(Ryan_Duffin, Jackie)
+69. M_NLI(fallout.issue, fallout.magnitude)
+70. T("The issue is significant", "The issue is minor", Factual)
+71. tau(fallout.issue, fallout.magnitude)
+72. violate(fallout, fallout)
+73. Factual(fallout, fallout)
+74. Causal(fallout, fallout)
+75. Numeric(fallout, fallout)
+76. Temporal(fallout, fallout)
+77. Content(fallout, fallout)
+78. Relation(fallout, fallout)
+79. M_NLI(Ryan_Duffin.reaction, Jackie.defense)
+80. T("Ryan is disappointed", "Ryan is satisfied", Negation)
+81. tau(Ryan_Duffin.reaction, Jackie.defense)
+82. violate(Ryan_Duffin, Jackie)
+83. Factual(Ryan_Duffin, Jackie)
+84. Causal(Ryan_Duffin, Erdely)
+85. Numeric(Ryan_Duffin, Jackie)
+86. Temporal(Ryan_Duffin, Erdely)
+87. Content(Ryan_Duffin, Jackie)
+88. Relation(Ryan_Duffin, Jackie)
+89. M_NLI(Erdely.apology, fallout.resolution)
+90. T("Erdely's apology is sufficient", "Erdely's apology is insufficient", Negation)
+91. tau(Erdely.apology, fallout.resolution)
+92. violate(Erdely, fallout)
+93. Factual(Erdely, fallout)
+94. Causal(Erdely, fallout)
+95. Numeric(Erdely, fallout)
+96. Temporal(Erdely, fallout)
+97. Content(Erdely, fallout)
+98. Relation(Erdely, fallout)
+99. M_NLI(Ryan_Duffin.acknowledgment, Jackie.explanation)
+100. T("Ryan acknowledged the mistake", "Ryan denied the mistake", Negation)
+violate(x0, y0)
+
+Rules:
+1. Q[Ryan_Duffin, Jackie](Ryan_Duffin.feeling = "deceived" ∧ Jackie.intent = "misleading" → violate(Ryan_Duffin, Jackie))
+2. Q[Erdely, fallout](Erdely.error = "fact-checking error" ∧ fallout.issue = "bigger issue lost" → violate(Erdely, fallout))
+3. Q[Ryan_Duffin, Jackie](Ryan_Duffin.trust_level = "low" ∧ Jackie.trustworthiness = "questionable" ∧ Ryan_Duffin.feeling = "deceived" → violate(Ryan_Duffin, Jackie))
+4. Q[Erdely, fallout](Erdely.reputation = "damaged" ∧ fallout.magnitude = "significant" ∧ fallout.impact = "widespread" → violate(Erdely, fallout))
+5. Q[Ryan_Duffin, Jackie](Ryan_Duffin.reaction = "disappointment" ∧ Jackie.action = "misled" ∧ Ryan_Duffin.acknowledgment = "mistake acknowledged" → violate(Ryan_Duffin, Jackie))
+6. Q[Erdely, fallout](Erdely.apology = "insufficient" ∧ fallout.resolution = "pending" ∧ fallout.consequence = "loss of focus" ∧ fallout.magnitude = "significant" → violate(Erdely, fallout))
+7. Q[Ryan_Duffin, Jackie](Ryan_Duffin.point_outs = "Erdely made a mistake" ∧ Jackie.defense = "not intentional" → violate(Ryan_Duffin, Jackie))
+8. Q[Erdely, fallout](Erdely.source_id = "3489825753_6" ∧ fallout.source_id = "3489825753_6" ∧ fallout.issue = "bigger issue lost" ∧ Erdely.fallout_effect = "caused bigger issue to be lost" → violate(Erdely, fallout))
+9. Q[Ryan_Duffin, Jackie](Ryan_Duffin.emotion = "betrayed" ∧ Jackie.relationship = "deceptive" ∧ Jackie.intent = "misleading" → violate(Ryan_Duffin, Jackie))
+10. Q[Erdely, fallout](Erdely.credibility = "compromised" ∧ fallout.impact = "widespread" ∧ fallout.magnitude = "significant" ∧ fallout.issue = "bigger issue lost" → violate(Erdely, fallout))
+11. Q[Ryan_Duffin, Jackie](Ryan_Duffin.source = "public statement" ∧ Jackie.source = "personal account" ∧ Ryan_Duffin.trust_level = "low" ∧ Jackie.trustworthiness = "questionable" → violate(Ryan_Duffin, Jackie))
+12. Q[Erdely, fallout](Erdely.mistake_type = "fact-checking" ∧ fallout.consequence = "loss of focus" ∧ fallout.magnitude = "significant" ∧ Erdely.error = "fact-checking error" ∧ fallout.issue = "bigger issue lost" → violate(Erdely, fallout))
+13. Q[Ryan_Duffin, Jackie](Ryan_Duffin.assertion = "Erdely's mistake" ∧ Jackie.action = "misled" ∧ Ryan_Duffin.feeling = "deceived" ∧ Jackie.intent = "misleading" → violate(Ryan_Duffin, Jackie))
+14. Q[Erdely, fallout](Erdely.response = "defensive" ∧ fallout.resolution = "pending" ∧ Erdely.apology = "insufficient" ∧ fallout.impact = "widespread" ∧ fallout.magnitude = "significant" → violate(Erdely, fallout))
+15. Q[Ryan_Duffin, Jackie](Ryan_Duffin.reaction = "disappointment" ∧ Jackie.relationship = "deceptive" ∧ Jackie.intent = "misleading" ∧ Ryan_Duffin.trust_level = "low" → violate(Ryan_Duffin, Jackie))
+16. Q[Erdely, fallout](Erdely.source_id = "3489825753_6" ∧ fallout.source_id = "3489825753_6" ∧ Erdely.reputation = "damaged" ∧ fallout.issue = "bigger issue lost" ∧ fallout.magnitude = "significant" → violate(Erdely, fallout))
+17. Q[Ryan_Duffin, Jackie](Ryan_Duffin.feeling = "deceived" ∧ Jackie.defense = "not intentional" ∧ Ryan_Duffin.reaction = "disappointment" ∧ Jackie.relationship = "deceptive" → violate(Ryan_Duffin, Jackie))
+18. Q[Erdely, fallout](Erdely.error = "fact-checking error" ∧ fallout.consequence = "loss of focus" ∧ fallout.magnitude = "significant" ∧ fallout.issue = "bigger issue lost" ∧ Erdely.fallout_effect = "caused bigger issue to be lost" → violate(Erdely, fallout))
+19. Q[Ryan_Duffin, Jackie](Ryan_Duffin.acknowledgment = "mistake acknowledged" ∧ Jackie.explanation = "miscommunication" ∧ Ryan_Duffin.trust_level = "low" ∧ Jackie.trustworthiness = "questionable" → violate(Ryan_Duffin, Jackie))
+20. Q[Erdely, fallout](Erdely.credibility = "compromised" ∧ fallout.issue = "bigger issue lost" ∧ fallout.impact = "widespread" ∧ fallout.magnitude = "significant" ∧ Erdely.apology = "insufficient" → violate(Erdely, fallout))
+21. Q[Ryan_Duffin, Jackie](Ryan_Duffin.point_outs = "Erdely made a mistake" ∧ Jackie.action = "misled" ∧ Ryan_Duffin.emotion = "betrayed" ∧ Jackie.intent = "misleading" ∧ Ryan_Duffin.feeling = "deceived" → violate(Ryan_Duffin, Jackie))
+22. Q[Erdely, fallout](Erdely.mistake_type = "fact-checking" ∧ fallout.consequence = "loss of focus" ∧ fallout.magnitude = "significant" ∧ Erdely.error = "fact-checking error" ∧ fallout.issue = "bigger issue lost" → violate(Erdely, fallout))
+23. Q[Ryan_Duffin, Jackie](Ryan_Duffin.trust_level = "low" ∧ Jackie.trustworthiness = "questionable" ∧ Ryan_Duffin.reaction = "disappointment" ∧ Jackie.intent = "misleading" ∧ Ryan_Duffin.feeling = "deceived" → violate(Ryan_Duffin, Jackie))
+24. Q[Erdely, fallout](Erdely.source_id = "3489825753_6" ∧ fallout.source_id = "3489825753_6"

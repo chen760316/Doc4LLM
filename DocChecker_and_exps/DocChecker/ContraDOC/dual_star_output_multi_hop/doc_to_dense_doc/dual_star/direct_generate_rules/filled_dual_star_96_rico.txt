@@ -1,0 +1,58 @@
+Predicates:
+Jesus.label != "Person"
+Jesus.label != Magdala.label
+Jesus.label = "Person"
+Jesus.name != "Jesus"
+Jesus.name != Magdala.name
+Jesus.name = "Jesus"
+Jesus.relationship != "traveling with Mary Magdalene"
+Jesus.relationship = "traveling with Mary Magdalene"
+Magdala.label != "Place"
+Magdala.label = "Place"
+Magdala.location != "Sea of Galilee"
+Magdala.location = "Sea of Galilee"
+Magdala.name != "Magdala"
+Magdala.name = "Magdala"
+Magdala.status != "prosperous"
+Magdala.status = "prosperous"
+Mary Magdalene.label != "Person"
+Mary Magdalene.label != Magdala.label
+Mary Magdalene.label = "Person"
+Mary Magdalene.name != "Mary Magdalene"
+Mary Magdalene.name != Jesus.name
+Mary Magdalene.name != Magdala.name
+Mary Magdalene.name = "Mary Magdalene"
+Mary Magdalene.relationship != "having a husband and children at home"
+Mary Magdalene.relationship != Jesus.relationship
+Mary Magdalene.relationship = "having a husband and children at home"
+Mary Magdalene.status != "traveling"
+Mary Magdalene.status != Magdala.status
+Mary Magdalene.status = "traveling"
+Mary Magdalene___Jesus.action = "provided for him from her own means"
+Mary Magdalene___Jesus.context != Mary Magdalene___Magdala.context
+Mary Magdalene___Jesus.context = "traveling together"
+Mary Magdalene___Jesus.contradiction_type != Mary Magdalene___Magdala.contradiction_type
+Mary Magdalene___Jesus.contradiction_type = "Negation"
+Mary Magdalene___Jesus.reason = "unlikely to have a husband and children waiting for her at home"
+Mary Magdalene___Jesus.relationship != Mary Magdalene___Magdala.relationship
+Mary Magdalene___Jesus.relationship = "Mary Magdalene was one of Jesus' most devoted followers."
+Mary Magdalene___Jesus.source_id != Mary Magdalene___Magdala.source_id
+Mary Magdalene___Jesus.source_id = "3489738297_5"
+Mary Magdalene___Magdala.context = "origin"
+Mary Magdalene___Magdala.contradiction_type = "Relation"
+Mary Magdalene___Magdala.relationship = "Mary Magdalene likely came from"
+Mary Magdalene___Magdala.source_id = "3489738297_6"
+None_ML(Mary Magdalene.attrs, Magdala.attrs)
+None_ML(Mary Magdalene___Magdala.attrs, Mary Magdalene___Jesus.attrs)
+
+Rules:
+Q[Mary Magdalene,Mary Magdalene] (Mary Magdalene___Jesus.source_id = "3489738297_5" ∧ Jesus.name != "Jesus" ∧ Mary Magdalene___Magdala.source_id = "3489738297_6" ∧ Jesus.relationship != "traveling with Mary Magdalene" ∧ Jesus.label = "Person" → Mary Magdalene.name = "Mary Magdalene")
+Q[Mary Magdalene,Mary Magdalene] (Mary Magdalene___Jesus.action = "provided for him from her own means" ∧ Magdala.name != "Magdala" ∧ Mary Magdalene.relationship = "having a husband and children at home" → Mary Magdalene___Magdala.source_id = "3489738297_6")
+Q[Mary Magdalene,Mary Magdalene] (Mary Magdalene.name = "Mary Magdalene" ∧ Magdala.status != "prosperous" ∧ Jesus.relationship != "traveling with Mary Magdalene" ∧ Mary Magdalene___Magdala.context = "origin" ∧ Mary Magdalene.label != "Person" ∧ Jesus.name != "Jesus" → Jesus.label = "Person")
+Q[Mary Magdalene,Mary Magdalene] (Mary Magdalene___Jesus.contradiction_type != Mary Magdalene___Magdala.contradiction_type ∧ Jesus.name != "Jesus" ∧ Magdala.status != "prosperous" ∧ Mary Magdalene___Jesus.contradiction_type = "Negation" → Magdala.name = "Magdala")
+Q[Mary Magdalene,Mary Magdalene] (Magdala.name != "Magdala" ∧ Mary Magdalene___Magdala.source_id = "3489738297_6" → Jesus.name = "Jesus")
+Q[Mary Magdalene,Mary Magdalene] (Mary Magdalene.name != Jesus.name ∧ Mary Magdalene.label = "Person" ∧ Mary Magdalene___Jesus.relationship != Mary Magdalene___Magdala.relationship ∧ Mary Magdalene___Magdala.relationship = "Mary Magdalene likely came from" → Jesus.label != Magdala.label)
+Q[Mary Magdalene,Mary Magdalene] (Jesus.name = "Jesus" ∧ Mary Magdalene.name != Magdala.name → Magdala.status = "prosperous")
+Q[Mary Magdalene,Mary Magdalene] (Magdala.location = "Sea of Galilee" ∧ Mary Magdalene.status != Magdala.status ∧ Magdala.label != "Place" ∧ Jesus.relationship = "traveling with Mary Magdalene" ∧ Mary Magdalene___Jesus.contradiction_type = "Negation" ∧ None_ML(Mary Magdalene.attrs, Magdala.attrs) → Mary Magdalene.label = "Person")
+Q[Mary Magdalene,Mary Magdalene] (Mary Magdalene___Jesus.relationship = "Mary Magdalene was one of Jesus' most devoted followers." ∧ Magdala.name = "Magdala" ∧ Mary Magdalene.label != Magdala.label ∧ Mary Magdalene___Jesus.contradiction_type != Mary Magdalene___Magdala.contradiction_type ∧ Jesus.name != "Jesus" → Magdala.location != "Sea of Galilee")
+Q[Mary Magdalene,Mary Magdalene] (Mary Magdalene___Jesus.relationship = "Mary Magdalene was one of Jesus' most devoted followers." ∧ Mary Magdalene.relationship = "having a husband and children at home" ∧ Mary Magdalene___Jesus.reason = "unlikely to have a husband and children waiting for her at home" → Mary Magdalene.relationship != "having a husband and children at home")

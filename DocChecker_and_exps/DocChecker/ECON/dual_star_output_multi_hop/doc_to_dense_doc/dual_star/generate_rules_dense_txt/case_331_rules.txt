@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 331)
+S1: Adrenaline is produced by the adrenal glands.
+S2: Adrenaline is produced by the pituitary gland.
+
+Predicates:
+1. Adrenaline.produced_by.adrenal_glands
+2. Adrenaline.produced_by.pituitary_gland
+3. M_NLI(S1, S2)
+4. Factual(adrenaline, adrenal_glands)
+5. Factual(adrenaline, pituitary_gland)
+6. violate(adrenaline, pituitary_gland)
+7. adrenal_glands.produce.adrenaline
+8. pituitary_gland.produce.adrenaline
+9. M_NLI(S1, S2)
+10. Factual(adrenal_glands, adrenaline)
+11. Factual(pituitary_gland, adrenaline)
+12. violate(adrenal_glands, pituitary_gland)
+13. adrenaline.is_a.hormone
+14. adrenal_glands.is_a.gland
+15. pituitary_gland.is_a.gland
+16. adrenaline.function.increase_heart_rate
+17. adrenal_glands.location.above_kidneys
+18. pituitary_gland.location.base_of_brain
+19. M_NLI(S1, S2)
+20. Factual(adrenal_glands, hormone_production)
+21. Factual(pituitary_gland, hormone_production)
+22. violate(hormone_production, pituitary_gland)
+23. adrenaline.released_in.stressful_situations
+24. adrenal_glands.secrete.adrenaline
+25. pituitary_gland.secrete.adrenaline
+26. M_NLI(S1, S2)
+27. Factual(adrenaline, stress_response)
+28. Factual(adrenal_glands, stress_response)
+29. violate(adrenal_glands, pituitary_gland)
+30. adrenaline.effects.fight_or_flight_response
+
+Rules:
+1. Q[Adrenaline, x0, y0](Adrenaline.produced_by.adrenal_glands → Factual(adrenaline, adrenal_glands))
+2. Q[Adrenaline, x0, y0](Adrenaline.produced_by.pituitary_gland → Factual(adrenaline, pituitary_gland))
+3. Q[Adrenaline, x0, y0](Factual(adrenaline, adrenal_glands) ∧ Factual(adrenaline, pituitary_gland) → violate(adrenaline, pituitary_gland))
+4. Q[Adrenaline, x0, y0](adrenal_glands.produce.adrenaline → Factual(adrenal_glands, hormone_production))
+5. Q[Adrenaline, x0, y0](pituitary_gland.produce.adrenaline → Factual(pituitary_gland, hormone_production))
+6. Q[Adrenaline, x0, y0](violate(adrenal_glands, pituitary_gland) → Factual(adrenaline, adrenal_glands))
+7. Q[Adrenaline, x0, y0](adrenal_glands.secrete.adrenaline → Factual(adrenal_glands, stress_response))
+8. Q[Adrenaline, x0, y0](pituitary_gland.secrete.adrenaline → Factual(pituitary_gland, stress_response))
+9. Q[Adrenaline, x0, y0](Factual(adrenal_glands, stress_response) ∧ Factual(pituitary_gland, stress_response) → violate(adrenal_glands, pituitary_gland))
+10. Q[Adrenaline, x0, y0](adrenaline.is_a.hormone → Factual(adrenaline, adrenal_glands))
+11. Q[Adrenaline, x0, y0](adrenal_glands.is_a.gland → Factual(adrenal_glands, hormone_production))
+12. Q[Adrenaline, x0, y0](pituitary_gland.is_a.gland → Factual(pituitary_gland, hormone_production))
+13. Q[Adrenaline, x0, y0](adrenaline.function.increase_heart_rate → Factual(adrenaline, adrenal_glands))
+14. Q[Adrenaline, x0, y0](adrenal_glands.location.above_kidneys → Factual(adrenal_glands, hormone_production))
+15. Q[Adrenaline, x0, y0](pituitary_gland.location.base_of_brain → Factual(pituitary_gland, hormone_production))
+16. Q[Adrenaline, x0, y0](Factual(adrenaline, stress_response) → violate(adrenal_glands, pituitary_gland))
+17. Q[Adrenaline, x0, y0](adrenaline.released_in.stressful_situations → Factual(adrenaline, adrenal_glands))
+18. Q[Adrenaline, x0, y0](M_NLI(S1, S2) → violate(adrenal_glands, pituitary_gland))
+19. Q[Adrenaline, x0, y0](Factual(adrenal_glands, hormone_production) ∧ Factual(pituitary_gland, hormone_production) → violate(adrenal_glands, pituitary_gland))
+20. Q[Adrenaline, x0, y0](Factual(adrenaline, adrenal_glands) ∧ Factual(adrenaline, pituitary_gland) → violate(adrenaline, pituitary_gland))
+21. Q[Adrenaline, x0, y0](adrenal_glands.produce.adrenaline ∧ pituitary_gland.produce.adrenaline → violate(adrenal_glands, pituitary_gland))
+22. Q[Adrenaline, x0, y0](adrenal_glands.secrete.adrenaline ∧ pituitary_gland.secrete.adrenaline → violate(adrenal_glands, pituitary_gland))
+23. Q[Adrenaline, x0, y0](Factual(adrenal_glands, stress_response) ∧ Factual(pituitary_gland, stress_response) → violate(adrenal_glands, pituitary_gland))
+24. Q[Adrenaline, x0, y0](adrenaline.effects.fight_or_flight_response → Factual(adrenaline, adrenal_glands))
+25. Q[Adrenaline, x0, y0](Factual(adrenaline, adrenal_glands) ∧ Factual(adrenaline, pituitary_gland) → violate(adrenaline, pituitary_gland))
+26. Q[Adrenaline, x0, y0](M_NLI(S1, S2) → Factual(adrenaline, adrenal_glands))
+27. Q[Adrenaline, x0, y0](Factual(adrenal_glands, hormone_production) → Factual(adrenaline, adrenal_glands))
+28. Q[Adrenaline, x0, y0](Factual(pituitary_gland, hormone_production) → Factual(adrenaline, pituitary_gland))
+29. Q[Adrenaline, x0, y0](violate(adrenal_glands, pituitary_gland) → Factual(adrenaline, adrenal_glands))
+30. Q[Adrenaline, x0, y0](violate(adrenal_glands, pituitary_gland) → Factual(adrenaline, pituitary_gland))

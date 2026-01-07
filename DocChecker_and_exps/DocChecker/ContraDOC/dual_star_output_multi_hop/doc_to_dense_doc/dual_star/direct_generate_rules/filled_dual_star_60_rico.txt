@@ -1,0 +1,50 @@
+Predicates:
+GOP.election_year != 2016
+GOP.election_year < 2021
+GOP.election_year = 2016
+GOP.election_year > 2011
+GOP.label != "Political Party"
+GOP.label != digging in.label
+GOP.label != nuclear deal.label
+GOP.label = "Political Party"
+GOP.name != "GOP"
+GOP.name != digging in.name
+GOP.name != nuclear deal.name
+GOP.name = "GOP"
+GOP___digging in.contradiction_type = "Causal"
+GOP___digging in.relationship != GOP___nuclear deal.relationship
+GOP___digging in.relationship = "Others in the GOP field are taking a firm stance."
+GOP___digging in.source_id != GOP___nuclear deal.source_id
+GOP___digging in.source_id = "3489825766_4"
+GOP___nuclear deal.contradiction_type = "Causal"
+GOP___nuclear deal.reason = "said it gave Iran too much flexibility"
+GOP___nuclear deal.relationship = "GOP contenders for the 2016 presidential nomination lambasted the nuclear deal."
+GOP___nuclear deal.source_id = "3489738249_1"
+None_ML(GOP.attrs, nuclear deal.attrs)
+None_ML(GOP___nuclear deal.attrs, GOP___digging in.attrs)
+digging in.label != "Political Action"
+digging in.label != nuclear deal.label
+digging in.label = "Political Action"
+digging in.name != "digging in"
+digging in.name != nuclear deal.name
+digging in.name = "digging in"
+nuclear deal.label != "Deal"
+nuclear deal.label = "Deal"
+nuclear deal.name != "nuclear deal"
+nuclear deal.name = "nuclear deal"
+nuclear deal.parties_involved != "six world powers and Iran"
+nuclear deal.parties_involved = "six world powers and Iran"
+nuclear deal.status != "lambasted"
+nuclear deal.status = "lambasted"
+
+Rules:
+Q[GOP,GOP] (digging in.name != nuclear deal.name ∧ GOP___digging in.source_id = "3489825766_4" → nuclear deal.parties_involved != "six world powers and Iran")
+Q[GOP,GOP] (GOP.name != "GOP" ∧ GOP___digging in.relationship = "Others in the GOP field are taking a firm stance." ∧ digging in.name = "digging in" ∧ GOP.label != nuclear deal.label → GOP.name = "GOP")
+Q[GOP,GOP] (GOP___digging in.contradiction_type = "Causal" ∧ GOP.label != "Political Party" ∧ GOP___digging in.relationship = "Others in the GOP field are taking a firm stance." ∧ digging in.label != "Political Action" ∧ GOP.name = "GOP" → GOP.name != digging in.name)
+Q[GOP,GOP] (GOP___digging in.source_id = "3489825766_4" ∧ nuclear deal.label != "Deal" ∧ GOP.name != "GOP" ∧ None_ML(GOP.attrs, nuclear deal.attrs) ∧ nuclear deal.parties_involved != "six world powers and Iran" ∧ GOP___digging in.relationship != GOP___nuclear deal.relationship → GOP.election_year > 2011)
+Q[GOP,GOP] (GOP.election_year < 2021 ∧ nuclear deal.parties_involved != "six world powers and Iran" ∧ digging in.name != "digging in" → GOP.label != nuclear deal.label)
+Q[GOP,GOP] (GOP___digging in.source_id = "3489825766_4" ∧ GOP.name = "GOP" ∧ digging in.name != nuclear deal.name ∧ GOP.label != nuclear deal.label → GOP.election_year < 2021)
+Q[GOP,GOP] (digging in.name = "digging in" ∧ GOP___nuclear deal.reason = "said it gave Iran too much flexibility" ∧ digging in.name != "digging in" ∧ GOP___digging in.source_id != GOP___nuclear deal.source_id ∧ GOP.election_year < 2021 → GOP.election_year = 2016)
+Q[GOP,GOP] (GOP___digging in.source_id != GOP___nuclear deal.source_id ∧ digging in.name = "digging in" ∧ GOP___digging in.relationship = "Others in the GOP field are taking a firm stance." → GOP___digging in.relationship != GOP___nuclear deal.relationship)
+Q[GOP,GOP] (nuclear deal.name = "nuclear deal" ∧ None_ML(GOP___nuclear deal.attrs, GOP___digging in.attrs) → digging in.name = "digging in")
+Q[GOP,GOP] (nuclear deal.parties_involved = "six world powers and Iran" ∧ GOP___digging in.contradiction_type = "Causal" ∧ digging in.label = "Political Action" ∧ GOP___nuclear deal.source_id = "3489738249_1" ∧ digging in.name != "digging in" ∧ nuclear deal.name = "nuclear deal" → GOP.name != nuclear deal.name)

@@ -1,0 +1,60 @@
+Source: dense_text.txt (Index 120)
+S1: Hu testified the August 13 sonogram was probably taken at FHC, and he most probably reviewed it on that date.
+S2: Hu determined the August 13 sonogram was taken at JCMC, and he probably did not review it until the end of August.
+
+Predicates:
+1. Hu.testified.sonogram_location_FHC
+2. Hu.testified.review_date_August_13
+3. Hu.determined.sonogram_location_JCMC
+4. Hu.determined.review_date_end_of_August
+5. sonogram.date_August_13
+6. sonogram.location_FHC
+7. sonogram.location_JCMC
+8. review.date_August_13
+9. review.date_end_of_August
+10. FHC.has_sonogram
+11. JCMC.has_sonogram
+12. review.timing_conflict
+13. sonogram.reviewed_on_August_13
+14. sonogram.not_reviewed_until_end_of_August
+15. Hu.testified.conflict_with_determination
+16. Hu.determined.conflict_with_testimony
+17. FHC.sonogram_reviewed
+18. JCMC.sonogram_not_reviewed
+19. August_13.sonogram_taken
+20. end_of_August.sonogram_reviewed
+21. Hu.testified.probability_high
+22. Hu.determined.probability_low
+23. sonogram.reviewed_at_FHC
+24. sonogram.not_reviewed_at_JCMC
+25. review.location_conflict
+26. review.timing_conflict_exists
+27. Hu.testified.sonogram_reviewed
+28. Hu.determined.sonogram_not_reviewed
+29. M_NLI(S1, S2)
+30. violate(S1, S2)
+
+Rules:
+1. Q[testified, Hu.testified.sonogram_location_FHC, Hu.determined.sonogram_location_JCMC](Hu.testified.sonogram_location_FHC == "FHC" ∧ Hu.determined.sonogram_location_JCMC == "JCMC" → Relation(Hu.testified.sonogram_location_FHC, Hu.determined.sonogram_location_JCMC))
+2. Q[testified, Hu.testified.review_date_August_13, Hu.determined.review_date_end_of_August](Hu.testified.review_date_August_13 == "August 13" ∧ Hu.determined.review_date_end_of_August == "end of August" → Relation(Hu.testified.review_date_August_13, Hu.determined.review_date_end_of_August))
+3. Q[testified, sonogram.location_FHC, sonogram.location_JCMC](sonogram.location_FHC == "FHC" ∧ sonogram.location_JCMC == "JCMC" → Relation(sonogram.location_FHC, sonogram.location_JCMC))
+4. Q[testified, review.date_August_13, review.date_end_of_August](review.date_August_13 == "August 13" ∧ review.date_end_of_August == "end of August" → Relation(review.date_August_13, review.date_end_of_August))
+5. Q[testified, Hu.testified.conflict_with_determination, Hu.determined.conflict_with_testimony](Hu.testified.conflict_with_determination == true ∧ Hu.determined.conflict_with_testimony == true → Relation(Hu.testified.conflict_with_determination, Hu.determined.conflict_with_testimony))
+6. Q[testified, sonogram.reviewed_on_August_13, sonogram.not_reviewed_until_end_of_August](sonogram.reviewed_on_August_13 == true ∧ sonogram.not_reviewed_until_end_of_August == true → Relation(sonogram.reviewed_on_August_13, sonogram.not_reviewed_until_end_of_August))
+7. Q[testified, FHC.has_sonogram, JCMC.has_sonogram](FHC.has_sonogram == true ∧ JCMC.has_sonogram == true → Relation(FHC.has_sonogram, JCMC.has_sonogram))
+8. Q[testified, review.timing_conflict, review.location_conflict](review.timing_conflict == true ∧ review.location_conflict == true → Relation(review.timing_conflict, review.location_conflict))
+9. Q[testified, Hu.testified.probability_high, Hu.determined.probability_low](Hu.testified.probability_high == true ∧ Hu.determined.probability_low == true → Relation(Hu.testified.probability_high, Hu.determined.probability_low))
+10. Q[testified, sonogram.reviewed_at_FHC, sonogram.not_reviewed_at_JCMC](sonogram.reviewed_at_FHC == true ∧ sonogram.not_reviewed_at_JCMC == true → Relation(sonogram.reviewed_at_FHC, sonogram.not_reviewed_at_JCMC))
+11. Q[testified, review.timing_conflict_exists, Hu.testified.sonogram_reviewed](review.timing_conflict_exists == true ∧ Hu.testified.sonogram_reviewed == true → Relation(review.timing_conflict_exists, Hu.testified.sonogram_reviewed))
+12. Q[testified, Hu.determined.sonogram_not_reviewed, Hu.testified.sonogram_reviewed](Hu.determined.sonogram_not_reviewed == true ∧ Hu.testified.sonogram_reviewed == true → Relation(Hu.determined.sonogram_not_reviewed, Hu.testified.sonogram_reviewed))
+13. Q[testified, sonogram.date_August_13, review.date_August_13](sonogram.date_August_13 == "August 13" ∧ review.date_August_13 == "August 13" → Relation(sonogram.date_August_13, review.date_August_13))
+14. Q[testified, sonogram.location_FHC, review.location_conflict](sonogram.location_FHC == "FHC" ∧ review.location_conflict == true → Relation(sonogram.location_FHC, review.location_conflict))
+15. Q[testified, Hu.testified.review_date_August_13, sonogram.reviewed_on_August_13](Hu.testified.review_date_August_13 == "August 13" ∧ sonogram.reviewed_on_August_13 == true → Relation(Hu.testified.review_date_August_13, sonogram.reviewed_on_August_13))
+16. Q[testified, Hu.determined.review_date_end_of_August, sonogram.not_reviewed_until_end_of_August](Hu.determined.review_date_end_of_August == "end of August" ∧ sonogram.not_reviewed_until_end_of_August == true → Relation(Hu.determined.review_date_end_of_August, sonogram.not_reviewed_until_end_of_August))
+17. Q[testified, FHC.sonogram_reviewed, JCMC.sonogram_not_reviewed](FHC.sonogram_reviewed == true ∧ JCMC.sonogram_not_reviewed == true → Relation(FHC.sonogram_reviewed, JCMC.sonogram_not_reviewed))
+18. Q[testified, review.location_conflict, Hu.testified.sonogram_location_FHC](review.location_conflict == true ∧ Hu.testified.sonogram_location_FHC == "FHC" → Relation(review.location_conflict, Hu.testified.sonogram_location_FHC))
+19. Q[testified, review.timing_conflict, Hu.determined.review_date_end_of_August](review.timing_conflict == true ∧ Hu.determined.review_date_end_of_August == "end of August" → Relation(review.timing_conflict, Hu.determined.review_date_end_of_August))
+20. Q[testified, Hu.testified.sonogram_reviewed, Hu.determined.sonogram_not_reviewed](Hu.testified.sonogram_reviewed == true ∧ Hu.determined.sonogram_not_reviewed == true → Relation(Hu.testified.sonogram_reviewed, Hu.determined.sonogram_not_reviewed))
+21. Q[testified, sonogram.location_FHC, review.timing_conflict_exists](sonogram.location_FHC == "FHC" ∧ review.timing_conflict_exists == true → Relation(sonogram.location_FHC, review.timing_conflict_exists))
+22. Q[testified, Hu.testified.probability_high, Hu.determined.sonogram_location_JCMC](Hu.testified.probability_high == true ∧ Hu.determined.sonogram_location_JCMC == "JCMC" → Relation(Hu.testified.probability_high, Hu.determined.sonogram_location_JCMC))
+23. Q[testified, review.date_August_13, sonogram.date

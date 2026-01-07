@@ -1,0 +1,132 @@
+Predicates:
+1. Inmate.awareness = "aware that his calls were being recorded"
+2. Inmate.desire = "discuss a potential plea deal"
+3. Inmate.sister.informed = "brother about plea deal"
+4. Inmate.brother.informed = "attorney about plea deal"
+5. Inmate.attorney.awareness = "aware of plea deal discussion"
+6. Inmate.sister.role = "informant"
+7. Inmate.brother.role = "intermediary"
+8. Inmate.attorney.role = "legal advisor"
+9. Inmate.context = "discussion of plea deal"
+10. Inmate.condition = "before an indictment"
+11. Inmate.action = "wanted to discuss"
+12. Inmate.sister.action = "informed"
+13. Inmate.brother.action = "told attorney"
+14. Inmate.attorney.action = "discuss plea deal"
+15. Inmate.sister.relationship = "sibling"
+16. Inmate.brother.relationship = "sibling"
+17. Inmate.attorney.relationship = "legal representative"
+18. "informed".context = "communication about plea deal"
+19. "informed".source = "sister to brother"
+20. "informed".target = "brother to attorney"
+21. "wanted to discuss".context = "potential plea deal"
+22. "wanted to discuss".condition = "before indictment"
+23. "wanted to discuss".source = "inmate to attorney"
+24. "informed".action = "relay information"
+25. "informed".source_id = "Index_110"
+26. "wanted to discuss".source_id = "Index_110"
+27. M_NLI(Inmate.desire, Inmate.action)
+28. T("The inmate wants to discuss a plea deal.", "The inmate does not want to discuss a plea deal.", Negation)
+29. T("The inmate informed his sister.", "The inmate did not inform his sister.", Negation)
+30. tau(Inmate.desire, Inmate.brother.informed)
+31. violate(Inmate.desire, Inmate.brother.informed)
+32. Factual(Inmate.desire, Inmate.brother.informed)
+33. Content(Inmate.desire, Inmate.action)
+34. Causal(Inmate.brother.informed, Inmate.attorney.awareness)
+35. Negation(Inmate.action, Inmate.brother.action)
+36. Relation(Inmate.sister.relationship, Inmate.brother.relationship)
+37. Numeric(Inmate.brother.informed, 0)
+38. Temporal(Inmate.condition, "after indictment")
+39. M_NLI(Inmate.awareness, Inmate.attorney.awareness)
+40. T("The inmate is aware of the recording.", "The inmate is unaware of the recording.", Negation)
+41. tau(Inmate.sister.role, Inmate.brother.role)
+42. violate(Inmate.sister.role, Inmate.attorney.role)
+43. Factual(Inmate.sister.role, Inmate.brother.role)
+44. Content(Inmate.context, Inmate.condition)
+45. Causal(Inmate.action, Inmate.desire)
+46. Negation(Inmate.brother.action, Inmate.attorney.action)
+47. Relation(Inmate.sister.action, Inmate.brother.action)
+48. Numeric(Inmate.brother.informed, 1)
+49. Temporal(Inmate.context, "before discussion")
+50. M_NLI(Inmate.attorney.role, Inmate.brother.role)
+51. T("The attorney is the inmate's representative.", "The attorney is not the inmate's representative.", Negation)
+52. tau(Inmate.action, Inmate.sister.action)
+53. violate(Inmate.action, Inmate.brother.action)
+54. Factual(Inmate.action, Inmate.sister.action)
+55. Content(Inmate.condition, Inmate.context)
+56. Causal(Inmate.desire, Inmate.action)
+57. Negation(Inmate.sister.informed, Inmate.brother.informed)
+58. Relation(Inmate.attorney.relationship, Inmate.brother.relationship)
+59. Numeric(Inmate.brother.informed, 2)
+60. Temporal(Inmate.condition, "after plea deal")
+61. M_NLI(Inmate.brother.role, Inmate.attorney.role)
+62. T("The brother is involved in the plea deal.", "The brother is not involved in the plea deal.", Negation)
+63. tau(Inmate.context, Inmate.condition)
+64. violate(Inmate.context, Inmate.desire)
+65. Factual(Inmate.context, Inmate.condition)
+66. Content(Inmate.brother.action, Inmate.attorney.action)
+67. Causal(Inmate.sister.action, Inmate.brother.action)
+68. Negation(Inmate.desire, Inmate.action)
+69. Relation(Inmate.sister.relationship, Inmate.attorney.relationship)
+70. Numeric(Inmate.brother.informed, 3)
+71. Temporal(Inmate.condition, "during discussion")
+72. M_NLI(Inmate.attorney.awareness, Inmate.brother.awareness)
+73. T("The attorney is aware of the inmate's situation.", "The attorney is not aware of the inmate's situation.", Negation)
+74. tau(Inmate.sister.role, Inmate.attorney.role)
+75. violate(Inmate.sister.role, Inmate.brother.role)
+76. Factual(Inmate.sister.role, Inmate.attorney.role)
+77. Content(Inmate.action, Inmate.desire)
+78. Causal(Inmate.brother.action, Inmate.sister.action)
+79. Negation(Inmate.attorney.awareness, Inmate.brother.awareness)
+80. Relation(Inmate.brother.relationship, Inmate.attorney.relationship)
+81. Numeric(Inmate.brother.informed, 4)
+82. Temporal(Inmate.condition, "after discussion")
+83. M_NLI(Inmate.desire, Inmate.context)
+84. T("The inmate desires a plea deal.", "The inmate does not desire a plea deal.", Negation)
+85. tau(Inmate.action, Inmate.context)
+86. violate(Inmate.action, Inmate.desire)
+87. Factual(Inmate.action, Inmate.context)
+88. Content(Inmate.brother.informed, Inmate.attorney.awareness)
+89. Causal(Inmate.sister.action, Inmate.brother.action)
+90. Negation(Inmate.brother.informed, Inmate.attorney.awareness)
+91. Relation(Inmate.sister.relationship, Inmate.brother.relationship)
+92. Numeric(Inmate.brother.informed, 5)
+93. Temporal(Inmate.condition, "before plea deal")
+94. M_NLI(Inmate.attorney.role, Inmate.sister.role)
+95. T("The attorney is the inmate's advisor.", "The attorney is not the inmate's advisor.", Negation)
+96. tau(Inmate.brother.role, Inmate.attorney.role)
+97. violate(Inmate.brother.role, Inmate.sister.role)
+98. Factual(Inmate.brother.role, In
+violate(x0, y0)
+
+Rules:
+1. Q[x0, y0](Inmate.awareness ∧ Inmate.desire → violate(x0, y0))
+2. Q[x0, y0](Inmate.sister.informed ∧ Inmate.brother.informed → violate(x0, y0))
+3. Q[x0, y0](Inmate.attorney.awareness ∧ Inmate.condition → violate(x0, y0))
+4. Q[x0, y0](Inmate.sister.role ∧ Inmate.brother.role ∧ Inmate.attorney.role → violate(x0, y0))
+5. Q[x0, y0](Inmate.context ∧ Inmate.action ∧ Inmate.desire → violate(x0, y0))
+6. Q[x0, y0](Inmate.brother.action ∧ Inmate.attorney.action ∧ Inmate.sister.action → violate(x0, y0))
+7. Q[x0, y0](Inmate.awareness ∧ Inmate.brother.informed ∧ Inmate.attorney.awareness ∧ Inmate.condition → violate(x0, y0))
+8. Q[x0, y0](Inmate.sister.informed ∧ Inmate.brother.role ∧ Inmate.attorney.role ∧ Inmate.context → violate(x0, y0))
+9. Q[x0, y0](Inmate.desire ∧ Inmate.action ∧ Inmate.sister.action ∧ Inmate.brother.action → violate(x0, y0))
+10. Q[x0, y0](Inmate.awareness ∧ Inmate.desire ∧ Inmate.sister.informed ∧ Inmate.brother.informed ∧ Inmate.attorney.awareness → violate(x0, y0))
+11. Q[x0, y0](Inmate.condition ∧ Inmate.context ∧ Inmate.sister.role ∧ Inmate.brother.role ∧ Inmate.attorney.role → violate(x0, y0))
+12. Q[x0, y0](Inmate.action ∧ Inmate.desire ∧ Inmate.brother.action ∧ Inmate.attorney.action ∧ Inmate.sister.action → violate(x0, y0))
+13. Q[x0, y0](Inmate.awareness ∧ Inmate.desire ∧ Inmate.sister.informed ∧ Inmate.brother.informed ∧ Inmate.attorney.awareness ∧ Inmate.condition → violate(x0, y0))
+14. Q[x0, y0](Inmate.context ∧ Inmate.action ∧ Inmate.sister.role ∧ Inmate.brother.role ∧ Inmate.attorney.role ∧ Inmate.desire → violate(x0, y0))
+15. Q[x0, y0](Inmate.brother.action ∧ Inmate.attorney.action ∧ Inmate.sister.action ∧ Inmate.awareness ∧ Inmate.condition ∧ Inmate.context → violate(x0, y0))
+16. Q[x0, y0](Inmate.awareness ∧ Inmate.desire → Factual(x0, y0))
+17. Q[x0, y0](Inmate.sister.informed ∧ Inmate.brother.informed → Factual(x0, y0))
+18. Q[x0, y0](Inmate.attorney.awareness ∧ Inmate.condition → Factual(x0, y0))
+19. Q[x0, y0](Inmate.sister.role ∧ Inmate.brother.role ∧ Inmate.attorney.role → Factual(x0, y0))
+20. Q[x0, y0](Inmate.context ∧ Inmate.action ∧ Inmate.desire → Factual(x0, y0))
+21. Q[x0, y0](Inmate.brother.action ∧ Inmate.attorney.action ∧ Inmate.sister.action → Factual(x0, y0))
+22. Q[x0, y0](Inmate.awareness ∧ Inmate.brother.informed ∧ Inmate.attorney.awareness ∧ Inmate.condition → Factual(x0, y0))
+23. Q[x0, y0](Inmate.sister.informed ∧ Inmate.brother.role ∧ Inmate.attorney.role ∧ Inmate.context → Factual(x0, y0))
+24. Q[x0, y0](Inmate.desire ∧ Inmate.action ∧ Inmate.sister.action ∧ Inmate.brother.action → Factual(x0, y0))
+25. Q[x0, y0](Inmate.awareness ∧ Inmate.desire ∧ Inmate.sister.informed ∧ Inmate.brother.informed ∧ Inmate.attorney.awareness → Factual(x0, y0))
+26. Q[x0, y0](Inmate.condition ∧ Inmate.context ∧ Inmate.sister.role ∧ Inmate.brother.role ∧ Inmate.attorney.role → Factual(x0, y0))
+27. Q[x0, y0](Inmate.action ∧ Inmate.desire ∧ Inmate.brother.action ∧ Inmate.attorney.action ∧ Inmate.sister.action → Factual(x0, y0))
+28. Q[x0, y0](Inmate.awareness ∧ Inmate.desire ∧ Inmate.sister.informed ∧ Inmate.brother.informed ∧ Inmate.attorney.awareness ∧ Inmate.condition → Factual(x0, y0))
+29. Q[x0, y0](Inmate.context ∧ Inmate.action ∧ Inmate.sister.role ∧ Inmate.brother.role ∧ Inmate.attorney.role ∧ Inmate.desire → Factual(x0, y0))
+30. Q[x0, y0](Inmate.brother.action ∧ Inmate.attorney.action ∧ Inmate.sister.action ∧ Inmate.awareness ∧ Inmate.condition ∧ Inmate.context → Factual(x0, y0))

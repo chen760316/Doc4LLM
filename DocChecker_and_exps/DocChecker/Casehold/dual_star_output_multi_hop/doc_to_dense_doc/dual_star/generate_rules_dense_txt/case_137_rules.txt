@@ -1,0 +1,65 @@
+Source: dense_text.txt (Index 137)
+S1: the sixteen enumerated acts clearly are sufficient in quantity, weighing in favor of finding continuity.
+S2: only three acts, two of which were wire fraud, weighed against finding a pattern.
+
+Predicates:
+1. Acts_Enumerated.quantity
+2. Acts_Enumerated.supports_continuity
+3. Acts_Enumerated.sufficient_in_quantity
+4. Acts_Enumerated.weighs_in_favor
+5. Acts_Enumerated.count
+6. Acts_Contradictory.count
+7. Acts_Contradictory.weighs_against_pattern
+8. Acts_Contradictory.type
+9. Acts_Contradictory.type_wire_fraud
+10. Acts_Contradictory.type_non_wire_fraud
+11. Continuity.supported_by(Acts_Enumerated)
+12. Continuity.opposed_by(Acts_Contradictory)
+13. Pattern.supported_by(Acts_Enumerated)
+14. Pattern.opposed_by(Acts_Contradictory)
+15. Quantity_Comparison(Acts_Enumerated, Acts_Contradictory)
+16. Sufficient_Acts(Acts_Enumerated)
+17. Insufficient_Acts(Acts_Contradictory)
+18. Continuity_implied_by(Acts_Enumerated)
+19. Continuity_undermined_by(Acts_Contradictory)
+20. Weighs_Favorably(Acts_Enumerated)
+21. Weighs_Negatively(Acts_Contradictory)
+22. Acts_Enumerated.relation_to(Continuity)
+23. Acts_Contradictory.relation_to(Pattern)
+24. M_NLI(S1, S2)
+25. Factual(Acts_Enumerated, Continuity)
+26. Factual(Acts_Contradictory, Pattern)
+27. violate(Acts_Contradictory, Continuity)
+28. violate(Acts_Enumerated, Pattern)
+29. Continuity_strengthened_by(Acts_Enumerated)
+30. Pattern_weakness_due_to(Acts_Contradictory)
+
+Rules:
+1. Q[the, Acts_Enumerated.quantity, Acts_Contradictory.count](Acts_Enumerated.quantity == 16 → Factual(Acts_Enumerated, Continuity))
+2. Q[the, Acts_Enumerated.supports_continuity, Acts_Contradictory.weighs_against_pattern](Acts_Enumerated.supports_continuity == true → Factual(Acts_Enumerated, Continuity))
+3. Q[the, Acts_Enumerated.sufficient_in_quantity, Acts_Contradictory.count](Acts_Enumerated.sufficient_in_quantity == true → Factual(Acts_Enumerated, Continuity))
+4. Q[the, Acts_Enumerated.weighs_in_favor, Acts_Contradictory.weighs_against_pattern](Acts_Enumerated.weighs_in_favor == true → Factual(Acts_Enumerated, Continuity))
+5. Q[the, Acts_Enumerated.count, Acts_Contradictory.count](Acts_Enumerated.count == 16 and Acts_Contradictory.count == 3 → Factual(Acts_Enumerated, Continuity))
+6. Q[the, Acts_Contradictory.count, Acts_Enumerated.quantity](Acts_Contradictory.count == 3 → Factual(Acts_Contradictory, Pattern))
+7. Q[the, Acts_Contradictory.type_wire_fraud, Acts_Contradictory.type](Acts_Contradictory.type_wire_fraud == 2 → Factual(Acts_Contradictory, Pattern))
+8. Q[the, Acts_Contradictory.type_non_wire_fraud, Acts_Contradictory.type](Acts_Contradictory.type_non_wire_fraud == 1 → Factual(Acts_Contradictory, Pattern))
+9. Q[the, Continuity.supported_by(Acts_Enumerated), Continuity.opposed_by(Acts_Contradictory)](Continuity.supported_by(Acts_Enumerated) == true → Factual(Acts_Enumerated, Continuity))
+10. Q[the, Pattern.supported_by(Acts_Enumerated), Pattern.opposed_by(Acts_Contradictory)](Pattern.opposed_by(Acts_Contradictory) == true → Factual(Acts_Contradictory, Pattern))
+11. Q[the, Quantity_Comparison(Acts_Enumerated, Acts_Contradictory), Sufficient_Acts(Acts_Enumerated)](Quantity_Comparison(Acts_Enumerated, Acts_Contradictory) == true → Factual(Acts_Enumerated, Continuity))
+12. Q[the, Insufficient_Acts(Acts_Contradictory), Acts_Contradictory.count](Insufficient_Acts(Acts_Contradictory) == true → Factual(Acts_Contradictory, Pattern))
+13. Q[the, Continuity_implied_by(Acts_Enumerated), Continuity_undermined_by(Acts_Contradictory)](Continuity_implied_by(Acts_Enumerated) == true → Factual(Acts_Enumerated, Continuity))
+14. Q[the, Weighs_Favorably(Acts_Enumerated), Weighs_Negatively(Acts_Contradictory)](Weighs_Favorably(Acts_Enumerated) == true → Factual(Acts_Enumerated, Continuity))
+15. Q[the, Acts_Enumerated.relation_to(Continuity), Acts_Contradictory.relation_to(Pattern)](Acts_Enumerated.relation_to(Continuity) == true → Factual(Acts_Enumerated, Continuity))
+16. Q[the, Factual(Acts_Enumerated, Continuity), Factual(Acts_Contradictory, Pattern)](Factual(Acts_Enumerated, Continuity) == true → Factual(Acts_Enumerated, Continuity))
+17. Q[the, violate(Acts_Contradictory, Continuity), violate(Acts_Enumerated, Pattern)](violate(Acts_Contradictory, Continuity) == true → Factual(Acts_Contradictory, Pattern))
+18. Q[the, Continuity_strengthened_by(Acts_Enumerated), Pattern_weakness_due_to(Acts_Contradictory)](Continuity_strengthened_by(Acts_Enumerated) == true → Factual(Acts_Enumerated, Continuity))
+19. Q[the, Acts_Enumerated.supports_continuity, Acts_Contradictory.weighs_against_pattern](Acts_Enumerated.supports_continuity == true and Acts_Contradictory.weighs_against_pattern == true → Factual(Acts_Contradictory, Pattern))
+20. Q[the, Acts_Enumerated.count, Acts_Contradictory.count](Acts_Enumerated.count > Acts_Contradictory.count → Factual(Acts_Enumerated, Continuity))
+21. Q[the, Acts_Enumerated.quantity, Acts_Contradictory.count](Acts_Enumerated.quantity > Acts_Contradictory.count → Factual(Acts_Enumerated, Continuity))
+22. Q[the, Acts_Contradictory.type, Acts_Contradictory.count](Acts_Contradictory.type == "wire_fraud" and Acts_Contradictory.count == 2 → Factual(Acts_Contradictory, Pattern))
+23. Q[the, Acts_Contradictory.type_non_wire_fraud, Acts_Contradictory.count](Acts_Contradictory.type_non_wire_fraud == 1 → Factual(Acts_Contradictory, Pattern))
+24. Q[the, Acts_Enumerated.supports_continuity, Acts_Contradictory.count](Acts_Enumerated.supports_continuity == true and Acts_Contradictory.count < 4 → Factual(Acts_Enumerated, Continuity))
+25. Q[the, Acts_Contradictory.weighs_against_pattern, Acts_Enumerated.count](Acts_Contradictory.weighs_against_pattern == true and Acts_Enumerated.count > 15 → Factual(Acts_Enumerated, Continuity))
+26. Q[the, Acts_Enumerated.sufficient_in_quantity, Acts_Contradictory.count](Acts_Enumerated.sufficient_in_quantity == true and Acts_Contradictory.count < 4 → Factual(Acts_Enumerated, Continuity))
+27. Q[the, Acts_Enumerated.weighs_in_favor, Acts_Contradictory.type](Acts_Enumerated.weighs_in_favor == true and Acts_Contradictory.type == "wire_fraud" → Factual(Acts_Contradictory, Pattern))
+28. Q[the, Acts_Enumerated.count, Acts_Contradictory.type](Acts_

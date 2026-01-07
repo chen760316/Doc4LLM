@@ -1,0 +1,38 @@
+Predicates:
+None_ML(miners.attrs, vigilante group.attrs)
+None_ML(miners___lawyers.attrs, miners___vigilante group.attrs)
+lawyers.label != "Lawyers"
+lawyers.label != vigilante group.label
+lawyers.label = "Lawyers"
+lawyers.name != "lawyers"
+lawyers.name != vigilante group.name
+lawyers.name = "lawyers"
+miners.label != "Miners"
+miners.label != lawyers.label
+miners.label != vigilante group.label
+miners.label = "Miners"
+miners.name != "miners"
+miners.name != lawyers.name
+miners.name != vigilante group.name
+miners.name = "miners"
+miners___lawyers.doc_id = "3488771843_7"
+miners___lawyers.relationship != miners___vigilante group.relationship
+miners___lawyers.relationship = "The miners hire lawyers to fight on the legal side."
+miners___vigilante group.doc_id = "3488771843_7"
+miners___vigilante group.relationship = "The miners form a vigilante group to fight the law."
+vigilante group.label != "Group"
+vigilante group.label = "Group"
+vigilante group.name != "vigilante group"
+vigilante group.name = "vigilante group"
+
+Rules:
+Q[miners,miners] (miners___lawyers.doc_id = "3488771843_7" ∧ miners.label != "Miners" → vigilante group.label = "Group")
+Q[miners,miners] (miners.name != lawyers.name ∧ miners.name != vigilante group.name ∧ miners___lawyers.relationship != miners___vigilante group.relationship ∧ miners.label != "Miners" ∧ miners.label = "Miners" → miners___vigilante group.relationship = "The miners form a vigilante group to fight the law.")
+Q[miners,miners] (miners.label != "Miners" ∧ miners.name != lawyers.name ∧ vigilante group.name = "vigilante group" ∧ miners.name != vigilante group.name ∧ miners___lawyers.relationship != miners___vigilante group.relationship ∧ miners___lawyers.doc_id = "3488771843_7" → lawyers.name != vigilante group.name)
+Q[miners,miners] (lawyers.label = "Lawyers" ∧ miners___vigilante group.relationship = "The miners form a vigilante group to fight the law." ∧ lawyers.label != "Lawyers" ∧ miners.name != vigilante group.name → lawyers.name = "lawyers")
+Q[miners,miners] (miners.label != lawyers.label ∧ miners___lawyers.doc_id = "3488771843_7" ∧ miners___lawyers.relationship != miners___vigilante group.relationship → lawyers.label != "Lawyers")
+Q[miners,miners] (miners.label != lawyers.label ∧ vigilante group.name = "vigilante group" ∧ lawyers.name = "lawyers" ∧ lawyers.label = "Lawyers" ∧ vigilante group.label = "Group" ∧ miners.name != vigilante group.name → miners.name != "miners")
+Q[miners,miners] (vigilante group.name != "vigilante group" ∧ miners.label = "Miners" → miners.label != vigilante group.label)
+Q[miners,miners] (vigilante group.label != "Group" ∧ vigilante group.name = "vigilante group" ∧ miners.label != "Miners" ∧ None_ML(miners___lawyers.attrs, miners___vigilante group.attrs) → miners___vigilante group.doc_id = "3488771843_7")
+Q[miners,miners] (miners___lawyers.relationship = "The miners hire lawyers to fight on the legal side." ∧ lawyers.label != "Lawyers" ∧ None_ML(miners___lawyers.attrs, miners___vigilante group.attrs) → vigilante group.label != "Group")
+Q[miners,miners] (miners.label != "Miners" ∧ vigilante group.name != "vigilante group" ∧ lawyers.name != "lawyers" ∧ miners.label != lawyers.label ∧ miners___lawyers.doc_id = "3488771843_7" → None_ML(miners.attrs, vigilante group.attrs))

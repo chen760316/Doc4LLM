@@ -1,0 +1,28 @@
+Predicates:
+None_ML(State Highway Patrol.attrs, protest.attrs)
+State Highway Patrol.label != "Organization"
+State Highway Patrol.label != protest.label
+State Highway Patrol.label = "Organization"
+State Highway Patrol.name != "State Highway Patrol"
+State Highway Patrol.name != protest.name
+State Highway Patrol.name = "State Highway Patrol"
+State Highway Patrol___protest.contradiction_type = "Content"
+State Highway Patrol___protest.reason = "to quell unrest and build community trust"
+State Highway Patrol___protest.relationship = "The appointment of a commander from the State Highway Patrol was deemed unnecessary to begin quelling the unrest and to build community trust."
+State Highway Patrol___protest.source_id = "3489825758_1"
+protest.label != "Event"
+protest.label = "Event"
+protest.name != "protest"
+protest.name = "protest"
+
+Rules:
+Q[State Highway Patrol,State Highway Patrol] (protest.label != "Event" ∧ protest.name = "protest" ∧ None_ML(State Highway Patrol.attrs, protest.attrs) → State Highway Patrol___protest.source_id = "3489825758_1")
+Q[State Highway Patrol,State Highway Patrol] (State Highway Patrol.label != "Organization" ∧ State Highway Patrol___protest.source_id = "3489825758_1" → State Highway Patrol___protest.contradiction_type = "Content")
+Q[State Highway Patrol,State Highway Patrol] (protest.label != "Event" ∧ State Highway Patrol.name != "State Highway Patrol" ∧ State Highway Patrol.label != protest.label ∧ State Highway Patrol.label != "Organization" → State Highway Patrol.name != protest.name)
+Q[State Highway Patrol,State Highway Patrol] (protest.label = "Event" ∧ State Highway Patrol___protest.source_id = "3489825758_1" ∧ State Highway Patrol___protest.contradiction_type = "Content" ∧ State Highway Patrol.label = "Organization" ∧ protest.name != "protest" ∧ protest.label != "Event" → State Highway Patrol.label != protest.label)
+Q[State Highway Patrol,State Highway Patrol] (protest.label = "Event" ∧ State Highway Patrol.name != protest.name ∧ protest.label != "Event" ∧ State Highway Patrol___protest.source_id = "3489825758_1" ∧ State Highway Patrol___protest.reason = "to quell unrest and build community trust" → None_ML(State Highway Patrol.attrs, protest.attrs))
+Q[State Highway Patrol,State Highway Patrol] (State Highway Patrol.label != protest.label ∧ protest.name = "protest" → State Highway Patrol.label != "Organization")
+Q[State Highway Patrol,State Highway Patrol] (State Highway Patrol.name != protest.name ∧ protest.label = "Event" ∧ protest.name = "protest" ∧ State Highway Patrol.label = "Organization" → protest.name != "protest")
+Q[State Highway Patrol,State Highway Patrol] (State Highway Patrol___protest.relationship = "The appointment of a commander from the State Highway Patrol was deemed unnecessary to begin quelling the unrest and to build community trust." ∧ protest.name != "protest" ∧ State Highway Patrol.name = "State Highway Patrol" ∧ State Highway Patrol___protest.source_id = "3489825758_1" ∧ State Highway Patrol.label != "Organization" ∧ State Highway Patrol.name != "State Highway Patrol" → State Highway Patrol___protest.reason = "to quell unrest and build community trust")
+Q[State Highway Patrol,State Highway Patrol] (State Highway Patrol.label = "Organization" ∧ None_ML(State Highway Patrol.attrs, protest.attrs) ∧ State Highway Patrol___protest.relationship = "The appointment of a commander from the State Highway Patrol was deemed unnecessary to begin quelling the unrest and to build community trust." ∧ protest.label = "Event" ∧ State Highway Patrol.label != "Organization" → protest.label != "Event")
+Q[State Highway Patrol,State Highway Patrol] (protest.label = "Event" ∧ State Highway Patrol___protest.reason = "to quell unrest and build community trust" ∧ State Highway Patrol.name != "State Highway Patrol" → State Highway Patrol.name = "State Highway Patrol")

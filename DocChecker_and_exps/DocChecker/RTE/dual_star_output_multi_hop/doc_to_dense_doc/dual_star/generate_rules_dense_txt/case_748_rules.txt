@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 748)
+S1: The Industrial and Commercial Bank of China Ltd. raised $19.07 billion Friday after pricing its initial public offering at HK$3.07 (39 cents), the top end of its indicative price range, to become the world's biggest ever IPO.
+S2: The merging of Japanese banks creates the world's biggest bank.
+
+Predicates:
+1. Industrial_and_Commercial_Bank_of_China.IPO_amount = 19.07_billion
+2. Industrial_and_Commercial_Bank_of_China.IPO_price = HK$3.07
+3. Industrial_and_Commercial_Bank_of_China.IPO_date = Friday
+4. Industrial_and_Commercial_Bank_of_China.IPO_rank = biggest_ever
+5. Japanese_banks.merging_result = biggest_bank
+6. Japanese_banks.merging_date = unspecified
+7. Industrial_and_Commercial_Bank_of_China.country = China
+8. Japanese_banks.country = Japan
+9. IPO.amount = 19.07_billion
+10. IPO.price = HK$3.07
+11. IPO.date = Friday
+12. IPO.rank = biggest_ever
+13. Bank.merging = Japanese_banks
+14. Bank.size = biggest
+15. Industrial_and_Commercial_Bank_of_China.type = commercial_bank
+16. Japanese_banks.type = commercial_bank
+17. IPO.indicative_price_range = top_end
+18. Bank.size_comparison = contradiction
+19. M_NLI(S1, S2) = true
+20. Causal(Industrial_and_Commercial_Bank_of_China, biggest_bank) = true
+21. Causal(Japanese_banks, biggest_bank) = true
+22. violate(Industrial_and_Commercial_Bank_of_China, Japanese_banks) = true
+23. IPO.indicator = price_range
+24. Bank.merging_effect = size_increase
+25. Industrial_and_Commercial_Bank_of_China.IPO_success = true
+26. Japanese_banks.merging_success = true
+27. Bank.size_metric = largest
+28. IPO.indicator_price = HK$3.07
+29. Bank.comparison_basis = size
+30. Bank.size_status = conflicting
+
+Rules:
+1. Q[The, Industrial_and_Commercial_Bank_of_China.IPO_rank, Japanese_banks.merging_result](Industrial_and_Commercial_Bank_of_China.IPO_rank == biggest_ever → Causal(Industrial_and_Commercial_Bank_of_China, Japanese_banks.merging_result))
+2. Q[The, Industrial_and_Commercial_Bank_of_China.IPO_amount, Japanese_banks.merging_result](Industrial_and_Commercial_Bank_of_China.IPO_amount == 19.07_billion → Causal(Industrial_and_Commercial_Bank_of_China, Japanese_banks.merging_result))
+3. Q[The, Industrial_and_Commercial_Bank_of_China.IPO_price, Japanese_banks.merging_result](Industrial_and_Commercial_Bank_of_China.IPO_price == HK$3.07 → Causal(Industrial_and_Commercial_Bank_of_China, Japanese_banks.merging_result))
+4. Q[The, Industrial_and_Commercial_Bank_of_China.IPO_date, Japanese_banks.merging_result](Industrial_and_Commercial_Bank_of_China.IPO_date == Friday → Causal(Industrial_and_Commercial_Bank_of_China, Japanese_banks.merging_result))
+5. Q[The, Industrial_and_Commercial_Bank_of_China.country, Japanese_banks.merging_result](Industrial_and_Commercial_Bank_of_China.country == China → Causal(Industrial_and_Commercial_Bank_of_China, Japanese_banks.merging_result))
+6. Q[The, Japanese_banks.country, Industrial_and_Commercial_Bank_of_China.IPO_rank](Japanese_banks.country == Japan → Causal(Japanese_banks, Industrial_and_Commercial_Bank_of_China.IPO_rank))
+7. Q[The, Japanese_banks.merging_result, Industrial_and_Commercial_Bank_of_China.IPO_rank](Japanese_banks.merging_result == biggest_bank → Causal(Japanese_banks, Industrial_and_Commercial_Bank_of_China.IPO_rank))
+8. Q[The, Bank.size, Industrial_and_Commercial_Bank_of_China.IPO_rank](Bank.size == biggest → Causal(Bank, Industrial_and_Commercial_Bank_of_China.IPO_rank))
+9. Q[The, Bank.size, Japanese_banks.merging_result](Bank.size == biggest → Causal(Bank, Japanese_banks.merging_result))
+10. Q[The, Industrial_and_Commercial_Bank_of_China.IPO_rank, Bank.size](Industrial_and_Commercial_Bank_of_China.IPO_rank == biggest_ever → Causal(Industrial_and_Commercial_Bank_of_China, Bank.size))
+11. Q[The, Japanese_banks.merging_result, Bank.size](Japanese_banks.merging_result == biggest_bank → Causal(Japanese_banks, Bank.size))
+12. Q[The, Industrial_and_Commercial_Bank_of_China.IPO_success, Japanese_banks.merging_success](Industrial_and_Commercial_Bank_of_China.IPO_success == true → Causal(Industrial_and_Commercial_Bank_of_China, Japanese_banks.merging_success))
+13. Q[The, Japanese_banks.merging_success, Industrial_and_Commercial_Bank_of_China.IPO_success](Japanese_banks.merging_success == true → Causal(Japanese_banks, Industrial_and_Commercial_Bank_of_China.IPO_success))
+14. Q[The, Industrial_and_Commercial_Bank_of_China.IPO_rank, Bank.size_comparison](Industrial_and_Commercial_Bank_of_China.IPO_rank == biggest_ever → Causal(Industrial_and_Commercial_Bank_of_China, Bank.size_comparison))
+15. Q[The, Japanese_banks.merging_result, Bank.size_comparison](Japanese_banks.merging_result == biggest_bank → Causal(Japanese_banks, Bank.size_comparison))
+16. Q[The, Industrial_and_Commercial_Bank_of_China.IPO_rank, Bank.size_status](Industrial_and_Commercial_Bank_of_China.IPO_rank == biggest_ever → Causal(Industrial_and_Commercial_Bank_of_China, Bank.size_status))
+17. Q[The, Japanese_banks.merging_result, Bank.size_status](Japanese_banks.merging_result == biggest_bank → Causal(Japanese_banks, Bank.size_status))
+18. Q[The, Industrial_and_Commercial_Bank_of_China.IPO_rank, Bank.size_metric](Industrial_and_Commercial_Bank_of_China.IPO_rank == biggest_ever → Causal(Industrial_and_Commercial_Bank_of_China, Bank.size_metric))
+19. Q[The, Japanese_banks.merging_result, Bank.size_metric](Japanese_banks.merging_result == biggest_bank → Causal(Japanese_banks, Bank.size_metric))
+20. Q[The, Industrial_and_Commercial_Bank_of_China.IPO_success, Bank.merging_effect](Industrial_and_Commercial_Bank_of_China.IPO_success == true → Causal(Industrial_and_Commercial_Bank_of_China, Bank.merging_effect))
+21. Q[The, Japanese_banks.merging_success, Bank.merging_effect](Japanese_banks.merging_success == true → Causal(Japanese_banks, Bank.merging_effect))
+22. Q[The, Industrial_and_Commercial_Bank_of_China.IPO_rank, Bank.comparison_basis](Industrial_and_Commercial_Bank_of_China.IPO_rank == biggest_ever → Causal(Industrial_and_Commercial_Bank_of_China, Bank.comparison_basis))
+23. Q[The, Japanese_banks.merging_result, Bank.comparison_basis](Japanese_banks.merging_result == biggest_bank → Causal(Japanese_banks, Bank.comparison_basis))
+24. Q[The, Industrial_and_Commercial_Bank_of_China.IPO_rank, Bank.size_comparison](Industrial_and_Commercial_Bank_of_China.IPO_rank == biggest_ever → Causal(Industrial_and_Commercial_Bank_of_China, Bank.size_comparison))
+25. Q[The, Japanese_banks.merging_result, Bank.size_comparison](Japanese_banks.merging_result == biggest_bank → Causal(Japanese_banks, Bank.size_comparison))
+26. Q[The, Industrial_and_Commercial_Bank_of_China.IPO_rank, Bank.size_status](Industrial_and_Commercial_Bank_of_China.IPO_rank == biggest_ever → Causal(Industrial_and_Commercial_Bank_of_China, Bank.size_status))
+27. Q[The, Japanese_banks.merging_result, Bank.size_status](Japanese_banks.merging_result == biggest_bank → Causal(Japanese_banks, Bank.size_status))
+28. Q[The, Industrial_and_Commercial_Bank_of_China.IPO_rank, Bank.size_metric](Industrial_and_Commercial_Bank_of_China.IPO_rank == biggest_ever → Causal(Industrial_and_Commercial_Bank_of_China, Bank.size_metric))
+29. Q[The, Japanese_banks.merging_result, Bank.size_metric](Japanese_banks.merging_result == biggest_bank → Causal(Japanese_banks, Bank.size_metric))
+30. Q[The, Industrial_and

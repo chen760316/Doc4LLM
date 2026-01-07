@@ -1,0 +1,40 @@
+Predicates:
+AJ Crimson.label != "Makeup Artist"
+AJ Crimson.label != Amerie.label
+AJ Crimson.label != Missy Elliot.label
+AJ Crimson.label = "Makeup Artist"
+AJ Crimson.name != "AJ Crimson"
+AJ Crimson.name != Amerie.name
+AJ Crimson.name != Missy Elliot.name
+AJ Crimson.name = "AJ Crimson"
+AJ Crimson___Amerie.doc_id = "news_train_62"
+AJ Crimson___Amerie.relationship = "AJ Crimson recommends bright red for fair complexions and deep purple for darker ones for nighttime."
+AJ Crimson___Amerie.time = "nighttime"
+AJ Crimson___Missy Elliot.doc_id = "news_train_62"
+AJ Crimson___Missy Elliot.relationship != AJ Crimson___Amerie.relationship
+AJ Crimson___Missy Elliot.relationship = "AJ Crimson suggests subtle pink or sheer beige for daytime for Missy Elliot."
+AJ Crimson___Missy Elliot.time != AJ Crimson___Amerie.time
+AJ Crimson___Missy Elliot.time = "daytime"
+Amerie.label != "Client"
+Amerie.label = "Client"
+Amerie.name != "Amerie"
+Amerie.name = "Amerie"
+Missy Elliot.label != "Client"
+Missy Elliot.label = "Client"
+Missy Elliot.name != "Missy Elliot"
+Missy Elliot.name != Amerie.name
+Missy Elliot.name = "Missy Elliot"
+None_ML(AJ Crimson.attrs, Missy Elliot.attrs)
+None_ML(AJ Crimson___Missy Elliot.attrs, AJ Crimson___Amerie.attrs)
+
+Rules:
+Q[AJ Crimson,AJ Crimson] (Missy Elliot.label = "Client" ∧ AJ Crimson.name != Amerie.name ∧ Amerie.label != "Client" → AJ Crimson___Missy Elliot.relationship = "AJ Crimson suggests subtle pink or sheer beige for daytime for Missy Elliot.")
+Q[AJ Crimson,AJ Crimson] (Missy Elliot.name != Amerie.name ∧ AJ Crimson___Missy Elliot.time != AJ Crimson___Amerie.time ∧ Missy Elliot.name != "Missy Elliot" ∧ Missy Elliot.label != "Client" → Amerie.label != "Client")
+Q[AJ Crimson,AJ Crimson] (Missy Elliot.name != "Missy Elliot" ∧ AJ Crimson.label != "Makeup Artist" ∧ Amerie.label != "Client" ∧ AJ Crimson___Missy Elliot.doc_id = "news_train_62" ∧ Amerie.name = "Amerie" ∧ None_ML(AJ Crimson.attrs, Missy Elliot.attrs) → AJ Crimson.label != Amerie.label)
+Q[AJ Crimson,AJ Crimson] (AJ Crimson.label != "Makeup Artist" ∧ AJ Crimson___Amerie.time = "nighttime" ∧ Missy Elliot.label = "Client" ∧ None_ML(AJ Crimson.attrs, Missy Elliot.attrs) ∧ Missy Elliot.name != Amerie.name → AJ Crimson___Amerie.doc_id = "news_train_62")
+Q[AJ Crimson,AJ Crimson] (None_ML(AJ Crimson___Missy Elliot.attrs, AJ Crimson___Amerie.attrs) ∧ AJ Crimson.label != "Makeup Artist" → Amerie.label = "Client")
+Q[AJ Crimson,AJ Crimson] (AJ Crimson___Amerie.doc_id = "news_train_62" ∧ AJ Crimson___Amerie.time = "nighttime" → None_ML(AJ Crimson___Missy Elliot.attrs, AJ Crimson___Amerie.attrs))
+Q[AJ Crimson,AJ Crimson] (AJ Crimson___Missy Elliot.time = "daytime" ∧ AJ Crimson___Amerie.time = "nighttime" ∧ Amerie.label != "Client" ∧ AJ Crimson___Missy Elliot.time != AJ Crimson___Amerie.time → Missy Elliot.label = "Client")
+Q[AJ Crimson,AJ Crimson] (AJ Crimson.name = "AJ Crimson" ∧ AJ Crimson.name != "AJ Crimson" ∧ Amerie.label = "Client" ∧ None_ML(AJ Crimson.attrs, Missy Elliot.attrs) ∧ AJ Crimson___Amerie.relationship = "AJ Crimson recommends bright red for fair complexions and deep purple for darker ones for nighttime." ∧ AJ Crimson.name != Missy Elliot.name → Amerie.name != "Amerie")
+Q[AJ Crimson,AJ Crimson] (Missy Elliot.label = "Client" ∧ AJ Crimson.name = "AJ Crimson" ∧ Amerie.label != "Client" ∧ AJ Crimson___Amerie.time = "nighttime" ∧ AJ Crimson.label != "Makeup Artist" → AJ Crimson.label != Missy Elliot.label)
+Q[AJ Crimson,AJ Crimson] (AJ Crimson___Missy Elliot.time != AJ Crimson___Amerie.time ∧ Amerie.name = "Amerie" ∧ AJ Crimson.name = "AJ Crimson" → Missy Elliot.name = "Missy Elliot")

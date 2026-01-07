@@ -1,0 +1,130 @@
+Predicates:
+1. entity1.name = "Alice"
+2. entity1.age = 30
+3. entity1.occupation = "Engineer"
+4. entity2.name = "Bob"
+5. entity2.age = 25
+6. entity2.occupation = "Designer"
+7. "collaborated to distribute pamphlets".date = "2023-01-15"
+8. "distributed".quantity = 100
+9. "distributed".location = "Community Center"
+10. entity1.location = "New York"
+11. entity2.location = "Los Angeles"
+12. entity1.interests = "Technology"
+13. entity2.interests = "Art"
+14. M_NLI(entity1.occupation, entity2.occupation)
+15. T("Alice is an engineer", "Alice is a doctor", tau)
+16. tau(entity1.age, entity2.age)
+17. violate(entity1.name, entity2.name)
+18. Factual(entity1.location, entity2.location)
+19. Causal(entity1.age, entity2.age)
+20. Numeric(entity1.age, entity2.age)
+21. Temporal(entity1.date, entity2.date)
+22. "collaborated to distribute pamphlets".participants = 2
+23. "distributed".method = "Online"
+24. entity1.experience = 5
+25. entity2.experience = 3
+26. M_NLI(entity1.interests, entity2.interests)
+27. T("Alice enjoys technology", "Alice dislikes technology", tau)
+28. tau(entity1.occupation, entity2.occupation)
+29. violate(entity1.occupation, entity2.occupation)
+30. Factual(entity1.experience, entity2.experience)
+31. Causal(entity1.location, entity2.location)
+32. Numeric(entity1.experience, entity2.experience)
+33. Temporal(entity1.date, "2023-01-01")
+34. "collaborated to distribute pamphlets".success = "Yes"
+35. "distributed".feedback = "Positive"
+36. entity1.project = "AI Development"
+37. entity2.project = "Graphic Design"
+38. M_NLI(entity1.project, entity2.project)
+39. T("Alice is working on AI", "Alice is not working on AI", tau)
+40. tau(entity1.success, entity2.feedback)
+41. violate(entity1.project, entity2.project)
+42. Factual(entity1.success, entity2.feedback)
+43. Causal(entity1.project, entity2.project)
+44. Numeric(entity1.success, entity2.success)
+45. Temporal(entity1.date, "2023-02-01")
+46. "collaborated to distribute pamphlets".goal = "Awareness"
+47. "distributed".audience = "Local Community"
+48. entity1.role = "Leader"
+49. entity2.role = "Member"
+50. M_NLI(entity1.role, entity2.role)
+51. T("Alice is the leader", "Alice is a follower", tau)
+52. tau(entity1.goal, entity2.audience)
+53. violate(entity1.role, entity2.role)
+54. Factual(entity1.goal, entity2.audience)
+55. Causal(entity1.role, entity2.role)
+56. Numeric(entity1.participants, entity2.participants)
+57. Temporal(entity1.date, "2023-03-01")
+58. "collaborated to distribute pamphlets".resources = "Printed Materials"
+59. "distributed".cost = 200
+60. entity1.budget = 1000
+61. entity2.budget = 500
+62. M_NLI(entity1.budget, entity2.budget)
+63. T("Alice has a budget of 1000", "Alice has no budget", tau)
+64. tau(entity1.resources, entity2.cost)
+65. violate(entity1.budget, entity2.budget)
+66. Factual(entity1.resources, entity2.cost)
+67. Causal(entity1.budget, entity2.budget)
+68. Numeric(entity1.budget, entity2.budget)
+69. Temporal(entity1.date, "2023-04-01")
+70. "collaborated to distribute pamphlets".impact = "High"
+71. "distributed".result = "Successful"
+72. entity1.feedback = "Excellent"
+73. entity2.feedback = "Poor"
+74. M_NLI(entity1.feedback, entity2.feedback)
+75. T("Alice received excellent feedback", "Alice received terrible feedback", tau)
+76. tau(entity1.impact, entity2.result)
+77. violate(entity1.feedback, entity2.feedback)
+78. Factual(entity1.impact, entity2.result)
+79. Causal(entity1.feedback, entity2.feedback)
+80. Numeric(entity1.impact, entity2.impact)
+81. Temporal(entity1.date, "2023-05-01")
+82. "collaborated to distribute pamphlets".duration = "2 weeks"
+83. "distributed".frequency = "Weekly"
+84. entity1.schedule = "Flexible"
+85. entity2.schedule = "Strict"
+86. M_NLI(entity1.schedule, entity2.schedule)
+87. T("Alice has a flexible schedule", "Alice has a strict schedule", tau)
+88. tau(entity1.duration, entity2.frequency)
+89. violate(entity1.schedule, entity2.schedule)
+90. Factual(entity1.duration, entity2.frequency)
+91. Causal(entity1.schedule, entity2.schedule)
+92. Numeric(entity1.duration, entity2.duration)
+93. Temporal(entity1.date, "2023-06-01")
+94. "collaborated to distribute pamphlets".methodology = "Digital"
+95. "distributed".platform = "Social Media"
+96. entity1.methodology = "Traditional"
+97. entity2.platform = "Print"
+98. M_NLI(entity1.methodology, entity2.platform)
+99. T("Alice used digital methods", "Alice used traditional methods", tau)
+100. tau(entity1.methodology, entity2.platform)
+violate(x0, y0)
+
+Rules:
+1. Q[x0, y0](entity1.name = "Alice" ∧ entity2.name = "Bob" → violate(x0, y0))
+2. Q[x0, y0](entity1.age = 30 ∧ entity2.age = 25 → violate(x0, y0))
+3. Q[x0, y0](entity1.occupation = "Engineer" ∧ entity2.occupation = "Designer" → violate(x0, y0))
+4. Q[x0, y0](entity1.location = "New York" ∧ entity2.location = "Los Angeles" → violate(x0, y0))
+5. Q[x0, y0](entity1.interests = "Technology" ∧ entity2.interests = "Art" → violate(x0, y0))
+6. Q[x0, y0](entity1.age = 30 ∧ entity2.age = 25 ∧ entity1.occupation = "Engineer" → violate(x0, y0))
+7. Q[x0, y0](entity1.location = "New York" ∧ entity2.location = "Los Angeles" ∧ "collaborated to distribute pamphlets".date = "2023-01-15" → violate(x0, y0))
+8. Q[x0, y0](entity1.interests = "Technology" ∧ entity2.interests = "Art" ∧ "distributed".quantity = 100 → violate(x0, y0))
+9. Q[x0, y0](entity1.age = 30 ∧ entity2.age = 25 ∧ entity1.occupation = "Engineer" ∧ entity2.occupation = "Designer" → violate(x0, y0))
+10. Q[x0, y0](entity1.location = "New York" ∧ entity2.location = "Los Angeles" ∧ "collaborated to distribute pamphlets".date = "2023-01-15" ∧ "distributed".quantity = 100 → violate(x0, y0))
+11. Q[x0, y0](entity1.name = "Alice" ∧ entity1.age = 30 ∧ entity1.occupation = "Engineer" ∧ entity1.location = "New York" ∧ entity1.interests = "Technology" → violate(x0, y0))
+12. Q[x0, y0](entity2.name = "Bob" ∧ entity2.age = 25 ∧ entity2.occupation = "Designer" ∧ entity2.location = "Los Angeles" ∧ entity2.interests = "Art" → violate(x0, y0))
+13. Q[x0, y0](entity1.name = "Alice" ∧ entity1.age = 30 ∧ entity1.occupation = "Engineer" ∧ entity1.location = "New York" ∧ entity2.name = "Bob" ∧ entity2.age = 25 → violate(x0, y0))
+14. Q[x0, y0](entity1.name = "Alice" ∧ entity1.occupation = "Engineer" ∧ "collaborated to distribute pamphlets".date = "2023-01-15" ∧ "distributed".quantity = 100 ∧ entity2.name = "Bob" ∧ entity2.occupation = "Designer" → violate(x0, y0))
+15. Q[x0, y0](entity1.age = 30 ∧ entity2.age = 25 ∧ "collaborated to distribute pamphlets".participants = 2 ∧ "distributed".method = "Online" ∧ entity1.location = "New York" → violate(x0, y0))
+16. Q[x0, y0](entity1.experience = 5 ∧ entity2.experience = 3 ∧ entity1.occupation = "Engineer" ∧ entity2.occupation = "Designer" ∧ "distributed".feedback = "Positive" → violate(x0, y0))
+17. Q[x0, y0](entity1.project = "AI Development" ∧ entity2.project = "Graphic Design" ∧ "collaborated to distribute pamphlets".success = "Yes" ∧ "distributed".result = "Successful" ∧ entity1.feedback = "Excellent" → violate(x0, y0))
+18. Q[x0, y0](entity1.role = "Leader" ∧ entity2.role = "Member" ∧ "collaborated to distribute pamphlets".goal = "Awareness" ∧ "distributed".audience = "Local Community" ∧ entity1.schedule = "Flexible" → violate(x0, y0))
+19. Q[x0, y0](entity1.budget = 1000 ∧ entity2.budget = 500 ∧ "distributed".cost = 200 ∧ "collaborated to distribute pamphlets".resources = "Printed Materials" ∧ entity1.location = "New York" → violate(x0, y0))
+20. Q[x0, y0](entity1.feedback = "Excellent" ∧ entity2.feedback = "Poor" ∧ "collaborated to distribute pamphlets".impact = "High" ∧ "distributed".result = "Successful" ∧ entity1.project = "AI Development" → violate(x0, y0))
+21. Q[x0, y0](entity1.schedule = "Flexible" ∧ entity2.schedule = "Strict" ∧ "collaborated to distribute pamphlets".duration = "2 weeks" ∧ "distributed".frequency = "Weekly" ∧ entity1.location = "New York" → violate(x0, y0))
+22. Q[x0, y0](entity1.methodology = "Traditional" ∧ entity2.platform = "Print" ∧ "distributed".platform = "Social Media" ∧ "collaborated to distribute pamphlets".methodology = "Digital" ∧ entity1.name = "Alice" → violate(x0, y0))
+23. Q[x0, y0](entity1.age = 30 ∧ entity2.age = 25 ∧ entity1.occupation = "Engineer" ∧ entity2.occupation = "Designer" ∧ "distributed".feedback = "Positive" ∧ "collaborated to distribute pamphlets".success = "Yes" → violate(x0, y0))
+24. Q[x0, y0](entity1.location = "New York" ∧ entity2.location = "Los Angeles" ∧ entity1.interests = "Technology" ∧ entity2.interests = "Art" ∧ "distributed".quantity = 100 ∧ "collaborated to distribute pamphlets".date = "2023-01-15" → violate(x0, y0))
+25. Q[x0, y0](entity1.name = "Alice" ∧ entity1.age = 30 ∧ entity1.occupation = "Engineer" ∧ entity1.location = "New York" ∧ entity1.interests = "Technology" ∧ entity2.name = "Bob" → violate(x0, y0))
+26. Q[x0, y0](entity1.name = "Alice

@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 1068)
+S1: Visitors need a visa to enter China, and must disembark at the border (now called boundary) checkpoint, Lo Wai.
+S2: Visitors are required to have a visa if they want to enter China.
+
+Predicates:
+1. Visitors.requirement.visa
+2. Visitors.requirement.disembark
+3. China.entry.requirement.visa
+4. China.entry.requirement.disembark
+5. Lo_Wai.checkpoint.visitors
+6. Visitors.visa.required
+7. Visitors.entry.possible
+8. Visa.necessary.for.entry
+9. Disembarkation.required.at.Lo_Wai
+10. Entry.to.China.requires.visa
+11. Visa.needed.for.China.entry
+12. Disembarkation.at.checkpoint.required
+13. Visitors.must.disembark
+14. Visa.is.a.requirement
+15. Checkpoint.Lo_Wai.visitors.must.use
+16. Entry.possible.without.disembarking
+17. Visa.required.for.visitors
+18. Disembarkation.at.border.checkpoint
+19. Visitors.may.enter.China
+20. Visa.needed.to.enter.China
+21. Disembarkation.is.required
+22. Lo_Wai.is.a.checkpoint
+23. Visitors.must.enter.at.Lo_Wai
+24. Visa.is.required.for.entry
+25. Entry.to.China.requires.disembarkation
+26. Visitors.must.have.visa
+27. Disembarkation.is.a.requirement
+28. Visa.is.necessary.for.visitors
+29. Checkpoint.is.Lo_Wai
+30. Visitors.enter.China.at.checkpoint
+
+Rules:
+1. Q[Visitors, Visitors.requirement.visa == true, Visitors.entry.possible == true](Visitors.requirement.visa == true → Negation(Visitors.requirement.disembark, Visitors.entry.possible))
+2. Q[Visitors, Visitors.requirement.disembark == true, Visitors.entry.possible == false](Visitors.requirement.disembark == true → Negation(Visitors.entry.possible, Visitors.requirement.visa))
+3. Q[Visitors, China.entry.requirement.visa == true, Visitors.entry.possible == true](China.entry.requirement.visa == true → Negation(Visitors.requirement.disembark, Visitors.entry.possible))
+4. Q[Visitors, China.entry.requirement.disembark == true, Visitors.entry.possible == false](China.entry.requirement.disembark == true → Negation(Visitors.entry.possible, China.entry.requirement.visa))
+5. Q[Visitors, Lo_Wai.checkpoint.visitors == true, Visitors.entry.possible == false](Lo_Wai.checkpoint.visitors == true → Negation(Visitors.entry.possible, Visitors.requirement.disembark))
+6. Q[Visitors, Visitors.visa.required == true, Visitors.entry.possible == true](Visitors.visa.required == true → Negation(Visitors.requirement.disembark, Visitors.entry.possible))
+7. Q[Visitors, Visa.necessary.for.entry == true, Visitors.entry.possible == true](Visa.necessary.for.entry == true → Negation(Visitors.requirement.disembark, Visitors.entry.possible))
+8. Q[Visitors, Disembarkation.required.at.Lo_Wai == true, Visitors.entry.possible == false](Disembarkation.required.at.Lo_Wai == true → Negation(Visitors.entry.possible, Visa.necessary.for.entry))
+9. Q[Visitors, Entry.to.China.requires.visa == true, Visitors.entry.possible == true](Entry.to.China.requires.visa == true → Negation(Visitors.requirement.disembark, Visitors.entry.possible))
+10. Q[Visitors, Visa.needed.for.China.entry == true, Visitors.entry.possible == true](Visa.needed.for.China.entry == true → Negation(Visitors.requirement.disembark, Visitors.entry.possible))
+11. Q[Visitors, Disembarkation.at.checkpoint.required == true, Visitors.entry.possible == false](Disembarkation.at.checkpoint.required == true → Negation(Visitors.entry.possible, Visa.needed.for.China.entry))
+12. Q[Visitors, Visitors.must.disembark == true, Visitors.entry.possible == false](Visitors.must.disembark == true → Negation(Visitors.entry.possible, Visitors.requirement.visa))
+13. Q[Visitors, Visa.is.a.requirement == true, Visitors.entry.possible == true](Visa.is.a.requirement == true → Negation(Visitors.requirement.disembark, Visitors.entry.possible))
+14. Q[Visitors, Checkpoint.Lo_Wai.visitors.must.use == true, Visitors.entry.possible == false](Checkpoint.Lo_Wai.visitors.must.use == true → Negation(Visitors.entry.possible, Visitors.requirement.visa))
+15. Q[Visitors, Entry.possible.without.disembarking == true, Visitors.entry.possible == true](Entry.possible.without.disembarking == true → Negation(Visitors.requirement.disembark, Visitors.entry.possible))
+16. Q[Visitors, Visa.required.for.visitors == true, Visitors.entry.possible == true](Visa.required.for.visitors == true → Negation(Visitors.requirement.disembark, Visitors.entry.possible))
+17. Q[Visitors, Disembarkation.at.border.checkpoint == true, Visitors.entry.possible == false](Disembarkation.at.border.checkpoint == true → Negation(Visitors.entry.possible, Visa.required.for.visitors))
+18. Q[Visitors, Visitors.may.enter.China == true, Visitors.entry.possible == true](Visitors.may.enter.China == true → Negation(Visitors.requirement.disembark, Visitors.entry.possible))
+19. Q[Visitors, Visa.needed.to.enter.China == true, Visitors.entry.possible == true](Visa.needed.to.enter.China == true → Negation(Visitors.requirement.disembark, Visitors.entry.possible))
+20. Q[Visitors, Disembarkation.is.required == true, Visitors.entry.possible == false](Disembarkation.is.required == true → Negation(Visitors.entry.possible, Visa.needed.to.enter.China))
+21. Q[Visitors, Lo_Wai.is.a.checkpoint == true, Visitors.entry.possible == false](Lo_Wai.is.a.checkpoint == true → Negation(Visitors.entry.possible, Visitors.requirement.visa))
+22. Q[Visitors, Visitors.must.enter.at.Lo_Wai == true, Visitors.entry.possible == false](Visitors.must.enter.at.Lo_Wai == true → Negation(Visitors.entry.possible, Visa.is.a.requirement))
+23. Q[Visitors, Visa.is.required.for.entry == true, Visitors.entry.possible == true](Visa.is.required.for.entry == true → Negation(Visitors.requirement.disembark, Visitors.entry.possible))
+24. Q[Visitors, Entry.to.China.requires.disembarkation == true, Visitors.entry.possible == false](Entry.to.China.requires.disembarkation == true → Negation(Visitors.entry.possible, Visa.is.required.for.entry))
+25. Q[Visitors, Visitors.must.have.visa == true, Visitors.entry.possible == true](Visitors.must.have.visa == true → Negation(Visitors.requirement.disembark, Visitors.entry.possible))
+26. Q[Visitors, Disembarkation.is.a.requirement == true, Visitors.entry.possible == false](Disembarkation.is.a.requirement == true → Negation(Visitors.entry.possible, Visitors.must.have.visa))
+27. Q[Visitors, Visa.is.necessary.for.visitors == true, Visitors.entry.possible == true](Visa.is.necessary.for.visitors == true → Negation(Visitors.requirement.disembark, Visitors.entry.possible))
+28. Q[Visitors, Checkpoint.is.Lo_Wai == true, Visitors.entry.possible == false](Checkpoint.is.Lo_Wai == true → Negation(Visitors.entry.possible, Visa.is.necessary.for.visitors))
+29. Q[Visitors, Visitors.enter.China.at.checkpoint == true, Visitors.entry.possible == false](Visitors.enter.China.at.checkpoint == true → Negation(Visitors.entry.possible, Visitors.requirement.visa))
+30. Q[Visitors, Visitors.requirement.visa == true, Visitors.entry.possible == false](Visitors.requirement.visa == true → Negation(Visitors.entry.possible, Visitors.requirement.disembark))

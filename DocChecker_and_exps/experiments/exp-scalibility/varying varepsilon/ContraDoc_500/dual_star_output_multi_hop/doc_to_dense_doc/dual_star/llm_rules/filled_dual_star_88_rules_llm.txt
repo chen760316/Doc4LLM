@@ -1,0 +1,131 @@
+Predicates:
+1. individual_member.action = "may sue"
+2. individual_member.condition = "defamatory language is about a small group"
+3. individual_member.doc_index = "167"
+4. individual_member.action = "may sue"
+5. individual_member.condition = "defamatory language about a small group"
+6. individual_member.doc_index = "62"
+7. defamatory_language.group_size = "comparatively small"
+8. defamatory_language.imputation = "easily imputed against all members"
+9. lawsuit.status = "pending"
+10. lawsuit.type = "defamation"
+11. lawsuit.plaintiff = "individual member"
+12. lawsuit.defendant = "group entity"
+13. group_entity.size = "small"
+14. group_entity.reputation = "damaged"
+15. group_entity.members = "multiple"
+16. legal_standard.requirement = "defamatory language"
+17. legal_standard.condition = "imputation against members"
+18. legal_standard.jurisdiction = "local"
+19. legal_outcome.result = "favorable"
+20. legal_outcome.appeal = "possible"
+21. legal_outcome.compensation = "monetary"
+22. legal_outcome.settlement = "negotiable"
+23. defamatory_language.context = "public statement"
+24. defamatory_language.evidence = "witness testimony"
+25. defamatory_language.intent = "malicious"
+26. lawsuit.filing_date = "2025-04-20"
+27. lawsuit.hearing_date = "2025-06-15"
+28. lawsuit.judge = "Judge Smith"
+29. lawsuit.verdict = "undecided"
+30. lawsuit.evidence_required = "substantial"
+31. lawsuit.defense.strategy = "truthful statement"
+32. lawsuit.defense.evidence = "documentary proof"
+33. lawsuit.plaintiff.statement = "I was harmed"
+34. lawsuit.defendant.statement = "I did not intend harm"
+35. lawsuit.outcome.possible = "dismissal"
+36. lawsuit.outcome.possible = "settlement"
+37. lawsuit.outcome.possible = "trial"
+38. lawsuit.outcome.possible = "appeal"
+39. lawsuit.outcome.possible = "judgment"
+40. lawsuit.outcome.possible = "retrial"
+41. lawsuit.outcome.possible = "compromise"
+42. lawsuit.outcome.possible = "mediation"
+43. lawsuit.outcome.possible = "arbitration"
+44. lawsuit.outcome.possible = "resolution"
+45. lawsuit.outcome.possible = "withdrawal"
+46. lawsuit.outcome.possible = "reversal"
+47. lawsuit.outcome.possible = "remand"
+48. lawsuit.outcome.possible = "acquittal"
+49. lawsuit.outcome.possible = "conviction"
+50. lawsuit.outcome.possible = "reconciliation"
+51. M_NLI(individual_member.action, lawsuit.status)
+52. T("An individual member may sue", "An individual member cannot sue", Negation)
+53. T("The defamatory language is about a small group", "The defamatory language is not about a small group", Negation)
+54. T("The lawsuit is pending", "The lawsuit is dismissed", Causal)
+55. tau(individual_member.condition, lawsuit.type)
+56. violate(x0, y0)
+57. Factual(x0, y0)
+58. Causal(x0, y0)
+59. Numeric(x0, y0)
+60. Temporal(x0, y0)
+61. Content(x0, y0)
+62. Relation(x0, y0)
+63. Negation(x0, y0)
+64. M_NLI(defamatory_language.group_size, group_entity.size)
+65. T("The group is small", "The group is large", Factual)
+66. tau(lawsuit.status, lawsuit.outcome)
+67. T("The outcome is favorable", "The outcome is unfavorable", Content)
+68. T("The lawsuit is filed", "The lawsuit is not filed", Negation)
+69. T("The plaintiff is an individual member", "The plaintiff is a group entity", Relation)
+70. T("The evidence is substantial", "The evidence is insufficient", Causal)
+71. T("The hearing date is set", "The hearing date is canceled", Negation)
+72. T("The judge is Judge Smith", "The judge is not Judge Smith", Negation)
+73. T("The compensation is monetary", "The compensation is non-monetary", Content)
+74. T("The defense strategy is truthful", "The defense strategy is deceitful", Content)
+75. T("The lawsuit is ongoing", "The lawsuit is resolved", Temporal)
+76. T("The group has multiple members", "The group has no members", Negation)
+77. T("The defamatory language is public", "The defamatory language is private", Relation)
+78. T("The lawsuit is in trial", "The lawsuit is settled", Causal)
+79. T("The outcome is a settlement", "The outcome is a trial", Relation)
+80. T("The plaintiff claims harm", "The plaintiff claims no harm", Negation)
+81. T("The defendant intended harm", "The defendant did not intend harm", Negation)
+82. T("The lawsuit is filed in local jurisdiction", "The lawsuit is filed in federal jurisdiction", Relation)
+83. T("The evidence is documentary", "The evidence is testimonial", Relation)
+84. T("The lawsuit is pending", "The lawsuit is closed", Negation)
+85. T("The group entity's reputation is damaged", "The group entity's reputation is intact", Negation)
+86. T("The lawsuit's filing date is April 20, 2025", "The lawsuit's filing date is not April 20, 2025", Negation)
+87. T("The lawsuit's hearing date is June 15, 2025", "The lawsuit's hearing date is not June 15, 2025", Negation)
+88. T("The judge's name is Judge Smith", "The judge's name is not Judge Smith", Negation)
+89. T("The outcome is favorable", "The outcome is unfavorable", Content)
+90. T("The lawsuit's evidence required is substantial", "The lawsuit's evidence required is minimal", Negation)
+91. T("The defense's evidence is documentary proof", "The defense's evidence is not documentary proof", Negation)
+92. T("The plaintiff's statement is 'I was harmed'", "The plaintiff's statement is 'I was not harmed'", Negation)
+93. T("The defendant's statement is 'I did not intend harm'", "The defendant's statement is 'I intended harm'", Negation)
+94. T("The lawsuit's outcome is possible dismissal", "The lawsuit's outcome is not possible dismissal", Negation)
+95. T("The lawsuit's outcome is possible settlement", "The lawsuit's outcome is not possible settlement", Negation)
+96. T("The lawsuit's outcome is possible trial", "The lawsuit's outcome is not possible trial", Negation)
+97. T("The lawsuit's outcome is possible appeal", "The lawsuit's outcome is not possible appeal", Negation)
+98. T("The lawsuit's
+violate(x0, y0)
+
+Rules:
+1. Q[x0, y0](individual_member.action = "may sue" ∧ lawsuit.status = "pending" → violate(x0, y0))
+2. Q[x0, y0](individual_member.condition = "defamatory language is about a small group" ∧ group_entity.size = "small" → violate(x0, y0))
+3. Q[x0, y0](defamatory_language.group_size = "comparatively small" ∧ lawsuit.type = "defamation" → violate(x0, y0))
+4. Q[x0, y0](lawsuit.plaintiff = "individual member" ∧ lawsuit.defendant = "group entity" → violate(x0, y0))
+5. Q[x0, y0](lawsuit.status = "pending" ∧ lawsuit.verdict = "undecided" → violate(x0, y0))
+6. Q[x0, y0](defamatory_language.imputation = "easily imputed against all members" ∧ group_entity.members = "multiple" → violate(x0, y0))
+7. Q[x0, y0](individual_member.action = "may sue" ∧ individual_member.condition = "defamatory language about a small group" ∧ lawsuit.type = "defamation" → violate(x0, y0))
+8. Q[x0, y0](lawsuit.status = "pending" ∧ lawsuit.outcome.possible = "dismissal" ∧ lawsuit.outcome.possible = "settlement" → violate(x0, y0))
+9. Q[x0, y0](group_entity.reputation = "damaged" ∧ defamatory_language.intent = "malicious" ∧ lawsuit.type = "defamation" → violate(x0, y0))
+10. Q[x0, y0](lawsuit.filing_date = "2025-04-20" ∧ lawsuit.hearing_date = "2025-06-15" ∧ lawsuit.judge = "Judge Smith" → violate(x0, y0))
+11. Q[x0, y0](defamatory_language.context = "public statement" ∧ lawsuit.evidence_required = "substantial" ∧ lawsuit.defense.strategy = "truthful statement" → violate(x0, y0))
+12. Q[x0, y0](lawsuit.outcome.possible = "trial" ∧ lawsuit.outcome.possible = "appeal" ∧ lawsuit.outcome.possible = "settlement" → violate(x0, y0))
+13. Q[x0, y0](individual_member.action = "may sue" ∧ individual_member.doc_index = "167" ∧ lawsuit.type = "defamation" ∧ lawsuit.status = "pending" → violate(x0, y0))
+14. Q[x0, y0](defamatory_language.group_size = "comparatively small" ∧ group_entity.size = "small" ∧ group_entity.reputation = "damaged" → violate(x0, y0))
+15. Q[x0, y0](lawsuit.plaintiff.statement = "I was harmed" ∧ lawsuit.defendant.statement = "I did not intend harm" ∧ lawsuit.type = "defamation" → violate(x0, y0))
+16. Q[x0, y0](lawsuit.outcome.possible = "dismissal" ∧ lawsuit.outcome.possible = "trial" ∧ lawsuit.outcome.possible = "settlement" ∧ lawsuit.outcome.possible = "appeal" → violate(x0, y0))
+17. Q[x0, y0](individual_member.condition = "defamatory language is about a small group" ∧ legal_standard.requirement = "defamatory language" ∧ legal_standard.condition = "imputation against members" → violate(x0, y0))
+18. Q[x0, y0](lawsuit.defendant = "group entity" ∧ group_entity.members = "multiple" ∧ group_entity.reputation = "damaged" ∧ lawsuit.type = "defamation" → violate(x0, y0))
+19. Q[x0, y0](defamatory_language.evidence = "witness testimony" ∧ lawsuit.evidence_required = "substantial" ∧ lawsuit.defense.evidence = "documentary proof" → violate(x0, y0))
+20. Q[x0, y0](lawsuit.status = "pending" ∧ lawsuit.verdict = "undecided" ∧ lawsuit.outcome.possible = "retrial" → violate(x0, y0))
+21. Q[x0, y0](individual_member.action = "may sue" ∧ individual_member.condition = "defamatory language about a small group" ∧ lawsuit.plaintiff = "individual member" ∧ lawsuit.defendant = "group entity" → violate(x0, y0))
+22. Q[x0, y0](defamatory_language.intent = "malicious" ∧ lawsuit.type = "defamation" ∧ group_entity.size = "small" ∧ group_entity.reputation = "damaged" → violate(x0, y0))
+23. Q[x0, y0](lawsuit.filing_date = "2025-04-20" ∧ lawsuit.hearing_date = "2025-06-15" ∧ lawsuit.judge = "Judge Smith" ∧ lawsuit.status = "pending" → violate(x0, y0))
+24. Q[x0, y0](lawsuit.outcome.possible = "settlement" ∧ lawsuit.outcome.possible = "trial" ∧ lawsuit.outcome.possible = "dismissal" ∧ lawsuit.outcome.possible = "appeal" ∧ lawsuit.outcome.possible = "judgment" → violate(x0, y0))
+25. Q[x0, y0](individual_member.condition = "defamatory language is about a small group" ∧ defamatory_language.group_size = "comparatively small" ∧ lawsuit.type = "defamation" ∧ lawsuit.status = "pending" → violate(x0, y0))
+26. Q[x0, y0](lawsuit.plaintiff.statement = "I was harmed" ∧ lawsuit.defendant.statement = "I did not intend harm" ∧ lawsuit.type = "defamation" ∧ lawsuit.status = "pending" → violate(x0, y0))
+27. Q[x0, y0](defamatory_language.context = "public statement" ∧ lawsuit.evidence_required = "substantial" ∧ lawsuit.defense.strategy = "truthful statement" ∧ lawsuit.defendant = "group entity" → violate(x0, y0))
+28. Q[x0, y0](individual_member.action = "may sue" ∧ individual_member.condition = "defamatory language about a small group" ∧ lawsuit.type = "defamation" ∧ lawsuit.status = "pending" ∧ lawsuit.verdict = "undecided" → violate(x0, y0))
+29. Q[x0, y0](group_entity.reputation = "damaged" ∧ defamatory_language.intent = "malicious" ∧ lawsuit.type = "defamation" ∧ lawsuit.plaintiff = "individual member" → violate(x0,

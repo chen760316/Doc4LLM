@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 792)
+S1: Three men are walking up hill.
+S2: Three men are hiking.
+
+Predicates:
+1. Men.activity
+2. Men.count
+3. Activity.type
+4. Activity.location
+5. Activity.intensity
+6. Hill.slope
+7. Hill.elevation
+8. Hiking.duration
+9. Hiking.difficulty
+10. Walking.method
+11. Walking.speed
+12. Walking.direction
+13. Context.contradiction
+14. Context.interpretation
+15. Reasoning.activity
+16. Reasoning.context
+17. Reasoning.contradiction
+18. Relation.walking_hiking
+19. Relation.uphill_hiking
+20. Violation.context
+21. Violation.activity
+22. Entity.men
+23. Entity.hiking
+24. Entity.walking
+25. Entity.hill
+26. Entity.situation
+27. Entity.action
+28. Entity.count_three
+29. Edge.relationship
+30. Meta.NLI_comparison
+
+Rules:
+1. Q[Three, Men.count, Entity.count_three](Men.count == 3 → Relation(Men.count, Entity.count_three))
+2. Q[Three, Men.activity, Entity.hiking](Men.activity == "hiking" → Relation(Men.activity, Entity.hiking))
+3. Q[Three, Men.activity, Entity.walking](Men.activity == "walking up hill" → Relation(Men.activity, Entity.walking))
+4. Q[Three, Activity.type, Entity.hiking](Activity.type == "hiking" → Relation(Activity.type, Entity.hiking))
+5. Q[Three, Activity.type, Entity.walking](Activity.type == "walking up hill" → Relation(Activity.type, Entity.walking))
+6. Q[Three, Activity.location, Entity.hill](Activity.location == "hill" → Relation(Activity.location, Entity.hill))
+7. Q[Three, Hill.slope, Entity.hill](Hill.slope == "uphill" → Relation(Hill.slope, Entity.hill))
+8. Q[Three, Hill.elevation, Entity.hill](Hill.elevation > 0 → Relation(Hill.elevation, Entity.hill))
+9. Q[Three, Hiking.duration, Entity.hiking](Hiking.duration > 0 → Relation(Hiking.duration, Entity.hiking))
+10. Q[Three, Hiking.difficulty, Entity.hiking](Hiking.difficulty == "moderate" → Relation(Hiking.difficulty, Entity.hiking))
+11. Q[Three, Walking.method, Entity.walking](Walking.method == "uphill" → Relation(Walking.method, Entity.walking))
+12. Q[Three, Walking.speed, Entity.walking](Walking.speed == "slow" → Relation(Walking.speed, Entity.walking))
+13. Q[Three, Walking.direction, Entity.hill](Walking.direction == "uphill" → Relation(Walking.direction, Entity.hill))
+14. Q[Three, Context.contradiction, Reasoning.context](Context.contradiction == true → Relation(Context.contradiction, Reasoning.context))
+15. Q[Three, Context.interpretation, Reasoning.activity](Context.interpretation == "contradictory" → Relation(Context.interpretation, Reasoning.activity))
+16. Q[Three, Reasoning.activity, Relation.walking_hiking](Reasoning.activity == "walking up hill" → Relation(Reasoning.activity, Relation.walking_hiking))
+17. Q[Three, Reasoning.activity, Relation.uphill_hiking](Reasoning.activity == "hiking" → Relation(Reasoning.activity, Relation.uphill_hiking))
+18. Q[Three, Violation.context, Context.contradiction](Violation.context == "contradiction" → Relation(Violation.context, Context.contradiction))
+19. Q[Three, Violation.activity, Men.activity](Violation.activity == "inconsistent" → Relation(Violation.activity, Men.activity))
+20. Q[Three, Entity.men, Men.count](Entity.men == "three" → Relation(Entity.men, Men.count))
+21. Q[Three, Entity.hiking, Men.activity](Entity.hiking == "hiking" → Relation(Entity.hiking, Men.activity))
+22. Q[Three, Entity.walking, Men.activity](Entity.walking == "walking up hill" → Relation(Entity.walking, Men.activity))
+23. Q[Three, Entity.hill, Activity.location](Entity.hill == "hill" → Relation(Entity.hill, Activity.location))
+24. Q[Three, Entity.situation, Context.contradiction](Entity.situation == "contradictory" → Relation(Entity.situation, Context.contradiction))
+25. Q[Three, Entity.action, Men.activity](Entity.action == "hiking" → Relation(Entity.action, Men.activity))
+26. Q[Three, Edge.relationship, Relation.walking_hiking](Edge.relationship == "contradictory" → Relation(Edge.relationship, Relation.walking_hiking))
+27. Q[Three, Meta.NLI_comparison, Context.contradiction](Meta.NLI_comparison == "contradictory" → Relation(Meta.NLI_comparison, Context.contradiction))
+28. Q[Three, Activity.intensity, Entity.hiking](Activity.intensity == "moderate" → Relation(Activity.intensity, Entity.hiking))
+29. Q[Three, Activity.intensity, Entity.walking](Activity.intensity == "low" → Relation(Activity.intensity, Entity.walking))
+30. Q[Three, Reasoning.contradiction, Context.contradiction](Reasoning.contradiction == true → Relation(Reasoning.contradiction, Context.contradiction))

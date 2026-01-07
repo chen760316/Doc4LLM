@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 566)
+S1: There is space for over 9000 spectators in what is claimed to be the world's smallest theater.
+S2: It is claimed to be the world's largest theater, although the size of the stage which can hold 450 people leaves room for only 2,200 spectators.
+
+Predicates:
+1. Theater1.size = "world's smallest"
+2. Theater1.capacity = 9000
+3. Theater2.size = "world's largest"
+4. Theater2.stage_capacity = 450
+5. Theater2.spectator_capacity = 2200
+6. "claims".Theater1 = true
+7. "claims".Theater2 = true
+8. "relationship".Theater1.size = "smallest"
+9. "relationship".Theater2.size = "largest"
+10. "relationship".Theater1.capacity > Theater2.spectator_capacity
+11. "relationship".Theater1.capacity > 9000
+12. "relationship".Theater2.spectator_capacity < 9000
+13. "relationship".Theater2.stage_capacity < Theater2.spectator_capacity
+14. M_NLI(S1, S2) = true
+15. Factual(Theater1, Theater2) = true
+16. violate(Theater1, Theater2) = true
+17. "size".Theater1 = "smallest"
+18. "size".Theater2 = "largest"
+19. "capacity".Theater1 = 9000
+20. "capacity".Theater2 = 2200
+21. "stage_capacity".Theater2 = 450
+22. "relationship".Theater1.capacity != Theater2.spectator_capacity
+23. "relationship".Theater1.size != Theater2.size
+24. "claim".Theater1 = "world's smallest theater"
+25. "claim".Theater2 = "world's largest theater"
+26. "spectator_capacity".Theater1 > "spectator_capacity".Theater2
+27. "stage_capacity".Theater2 < "capacity".Theater2
+28. "relationship".Theater1.capacity > 2200
+29. "relationship".Theater2.capacity < 9000
+30. "claim".Theater1.capacity > "claim".Theater2.capacity
+
+Rules:
+1. Q[There, Theater1, Theater2](Theater1.size == "world's smallest" ∧ Theater1.capacity == 9000 → Factual(Theater1, Theater2))
+2. Q[There, Theater1, Theater2](Theater2.size == "world's largest" ∧ Theater2.spectator_capacity == 2200 → Factual(Theater1, Theater2))
+3. Q[There, Theater1, Theater2](claims.Theater1 == true ∧ claims.Theater2 == true → Factual(Theater1, Theater2))
+4. Q[There, Theater1, Theater2](relationship.Theater1.size == "smallest" ∧ relationship.Theater2.size == "largest" → Factual(Theater1, Theater2))
+5. Q[There, Theater1, Theater2](relationship.Theater1.capacity > Theater2.spectator_capacity ∧ relationship.Theater2.spectator_capacity < 9000 → Factual(Theater1, Theater2))
+6. Q[There, Theater1, Theater2](capacity.Theater1 == 9000 ∧ capacity.Theater2 == 2200 → Factual(Theater1, Theater2))
+7. Q[There, Theater1, Theater2](size.Theater1 == "smallest" ∧ size.Theater2 == "largest" → Factual(Theater1, Theater2))
+8. Q[There, Theater1, Theater2](relationship.Theater1.capacity != Theater2.spectator_capacity ∧ relationship.Theater1.size != Theater2.size → Factual(Theater1, Theater2))
+9. Q[There, Theater1, Theater2](relationship.Theater1.capacity > 2200 ∧ relationship.Theater2.capacity < 9000 → Factual(Theater1, Theater2))
+10. Q[There, Theater1, Theater2](stage_capacity.Theater2 < capacity.Theater2 ∧ relationship.Theater2.stage_capacity < Theater2.spectator_capacity → Factual(Theater1, Theater2))
+11. Q[There, Theater1, Theater2](claims.Theater1 == "world's smallest theater" ∧ claims.Theater2 == "world's largest theater" → Factual(Theater1, Theater2))
+12. Q[There, Theater1, Theater2](relationship.Theater1.capacity > 9000 ∧ relationship.Theater2.spectator_capacity < 9000 → Factual(Theater1, Theater2))
+13. Q[There, Theater1, Theater2](size.Theater1 == "smallest" ∧ size.Theater2 == "largest" → Factual(Theater1, Theater2))
+14. Q[There, Theater1, Theater2](relationship.Theater1.capacity > Theater2.spectator_capacity ∧ relationship.Theater1.capacity > 9000 → Factual(Theater1, Theater2))
+15. Q[There, Theater1, Theater2](relationship.Theater1.size != Theater2.size ∧ relationship.Theater1.capacity > 2200 → Factual(Theater1, Theater2))
+16. Q[There, Theater1, Theater2](claims.Theater1 == true ∧ relationship.Theater1.size == "smallest" → Factual(Theater1, Theater2))
+17. Q[There, Theater1, Theater2](claims.Theater2 == true ∧ relationship.Theater2.size == "largest" → Factual(Theater1, Theater2))
+18. Q[There, Theater1, Theater2](capacity.Theater1 == 9000 ∧ relationship.Theater2.capacity < 9000 → Factual(Theater1, Theater2))
+19. Q[There, Theater1, Theater2](relationship.Theater1.capacity > Theater2.spectator_capacity ∧ relationship.Theater1.size == "smallest" → Factual(Theater1, Theater2))
+20. Q[There, Theater1, Theater2](relationship.Theater2.spectator_capacity < 9000 ∧ relationship.Theater1.size == "smallest" → Factual(Theater1, Theater2))
+21. Q[There, Theater1, Theater2](stage_capacity.Theater2 < spectator_capacity.Theater2 ∧ claims.Theater1 == true → Factual(Theater1, Theater2))
+22. Q[There, Theater1, Theater2](relationship.Theater1.capacity > 2200 ∧ claims.Theater2 == true → Factual(Theater1, Theater2))
+23. Q[There, Theater1, Theater2](relationship.Theater1.size != Theater2.size ∧ claims.Theater1 == "world's smallest theater" → Factual(Theater1, Theater2))
+24. Q[There, Theater1, Theater2](relationship.Theater1.capacity > 9000 ∧ relationship.Theater2.spectator_capacity < 9000 → Factual(Theater1, Theater2))
+25. Q[There, Theater1, Theater2](claims.Theater1 == true ∧ relationship.Theater1.capacity > Theater2.spectator_capacity → Factual(Theater1, Theater2))
+26. Q[There, Theater1, Theater2](claims.Theater2 == true ∧ relationship.Theater2.capacity < 9000 → Factual(Theater1, Theater2))
+27. Q[There, Theater1, Theater2](relationship.Theater1.size == "smallest" ∧ relationship.Theater2.size == "largest" → Factual(Theater1, Theater2))
+28. Q[There, Theater1, Theater2](relationship.Theater1.capacity > Theater2.spectator_capacity ∧ relationship.Theater1.size == "smallest" → Factual(Theater1, Theater2))
+29. Q[There, Theater1, Theater2](claims.Theater1 == "world's smallest theater" ∧ relationship.Theater2.size == "largest" → Factual(Theater1, Theater2))
+30. Q[There, Theater1, Theater2](relationship.Theater1.capacity > 9000 ∧ relationship.Theater2.spectator_capacity < 9000 → Factual(Theater1, Theater2))

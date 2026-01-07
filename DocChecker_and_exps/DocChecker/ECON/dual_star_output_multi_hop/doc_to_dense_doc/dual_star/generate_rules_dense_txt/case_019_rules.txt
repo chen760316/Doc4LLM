@@ -1,0 +1,63 @@
+Source: dense_text.txt (Index 19)
+S1: A platypus does not have a stomach.
+S2: A platypus has a large and complex stomach that helps it digest its food efficiently.
+
+Predicates:
+1. Platypus.has_stomach = false
+2. Platypus.has_large_complex_stomach = true
+3. M_NLI(S1, S2)
+4. Factual(S1, Platypus.has_stomach)
+5. Factual(S2, Platypus.has_large_complex_stomach)
+6. violate(S1, S2)
+7. Stomach.is_present_in(Platypus) = false
+8. Stomach.is_large_and_complex_in(Platypus) = true
+9. Digestive_system.has_stomach(Platypus) = false
+10. Digestive_system.has_large_complex_stomach(Platypus) = true
+11. A_platypus.does_not_have_stomach = true
+12. A_platypus.has_stomach_type = "large and complex"
+13. M_NLI(Platypus.has_stomach, Platypus.has_large_complex_stomach)
+14. Factual(Platypus.does_not_have_stomach, S1)
+15. Factual(Platypus.has_stomach_type, S2)
+16. violate(Platypus.does_not_have_stomach, Platypus.has_stomach_type)
+17. Stomach.type(Platypus) = "none"
+18. Stomach.type(Platypus) = "large and complex"
+19. A_platypus.digestive_efficiency = true
+20. A_platypus.stomach_function = "digestion"
+21. M_NLI(A_platypus.does_not_have_stomach, A_platypus.stomach_function)
+22. Factual(A_platypus.digestive_efficiency, S2)
+23. violate(A_platypus.does_not_have_stomach, A_platypus.digestive_efficiency)
+24. Stomach.function(Platypus) = "none"
+25. Stomach.function(Platypus) = "efficient digestion"
+26. A_platypus.stomach_presence = false
+27. A_platypus.stomach_complexity = "large and complex"
+28. M_NLI(A_platypus.stomach_presence, A_platypus.stomach_complexity)
+29. Factual(A_platypus.stomach_presence, S1)
+30. Factual(A_platypus.stomach_complexity, S2)
+
+Rules:
+1. Q[platypus, Platypus.has_stomach, Platypus.has_large_complex_stomach](Platypus.has_stomach == false → Factual(Platypus.has_stomach, S1))
+2. Q[platypus, Platypus.has_large_complex_stomach, Platypus.has_stomach](Platypus.has_large_complex_stomach == true → Factual(Platypus.has_large_complex_stomach, S2))
+3. Q[platypus, Stomach.is_present_in(Platypus), Stomach.is_large_and_complex_in(Platypus)](Stomach.is_present_in(Platypus) = false → Factual(Stomach.is_present_in(Platypus), S1))
+4. Q[platypus, Digestive_system.has_stomach(Platypus), Digestive_system.has_large_complex_stomach(Platypus)](Digestive_system.has_stomach(Platypus) = false → Factual(Digestive_system.has_stomach(Platypus), S1))
+5. Q[platypus, A_platypus.does_not_have_stomach, A_platypus.has_stomach_type](A_platypus.does_not_have_stomach = true → Factual(A_platypus.does_not_have_stomach, S1))
+6. Q[platypus, A_platypus.has_stomach_type, A_platypus.does_not_have_stomach](A_platypus.has_stomach_type = "large and complex" → Factual(A_platypus.has_stomach_type, S2))
+7. Q[platypus, Stomach.type(Platypus), Stomach.function(Platypus)](Stomach.type(Platypus) = "none" → Factual(Stomach.type(Platypus), S1))
+8. Q[platypus, Stomach.function(Platypus), A_platypus.stomach_function](Stomach.function(Platypus) = "efficient digestion" → Factual(Stomach.function(Platypus), S2))
+9. Q[platypus, M_NLI(S1, S2), violate(S1, S2)](M_NLI(S1, S2) → violate(S1, S2))
+10. Q[platypus, Factual(A_platypus.digestive_efficiency, S2), A_platypus.digestive_efficiency](A_platypus.digestive_efficiency = true → Factual(A_platypus.digestive_efficiency, S2))
+11. Q[platypus, A_platypus.stomach_presence, A_platypus.stomach_complexity](A_platypus.stomach_presence = false → Factual(A_platypus.stomach_presence, S1))
+12. Q[platypus, A_platypus.stomach_complexity, A_platypus.stomach_presence](A_platypus.stomach_complexity = "large and complex" → Factual(A_platypus.stomach_complexity, S2))
+13. Q[platypus, violate(A_platypus.does_not_have_stomach, A_platypus.digestive_efficiency), A_platypus.digestive_efficiency](violate(A_platypus.does_not_have_stomach, A_platypus.digestive_efficiency) → Factual(A_platypus.digestive_efficiency, S2))
+14. Q[platypus, Stomach.is_present_in(Platypus), Stomach.type(Platypus)](Stomach.is_present_in(Platypus) = false → Factual(Stomach.is_present_in(Platypus), S1))
+15. Q[platypus, Stomach.type(Platypus), Stomach.is_large_and_complex_in(Platypus)](Stomach.type(Platypus) = "large and complex" → Factual(Stomach.type(Platypus), S2))
+16. Q[platypus, Factual(Platypus.does_not_have_stomach, S1), Platypus.has_stomach](Factual(Platypus.does_not_have_stomach, S1) → Platypus.has_stomach = false)
+17. Q[platypus, Factual(Platypus.has_stomach_type, S2), Platypus.has_large_complex_stomach](Factual(Platypus.has_stomach_type, S2) → Platypus.has_large_complex_stomach = true)
+18. Q[platypus, M_NLI(A_platypus.does_not_have_stomach, A_platypus.stomach_function), A_platypus.stomach_function](M_NLI(A_platypus.does_not_have_stomach, A_platypus.stomach_function) → A_platypus.stomach_function = "none")
+19. Q[platypus, Factual(A_platypus.stomach_complexity, S2), A_platypus.stomach_complexity](Factual(A_platypus.stomach_complexity, S2) → A_platypus.stomach_complexity = "large and complex")
+20. Q[platypus, violate(Platypus.has_stomach, Platypus.has_large_complex_stomach), Platypus.has_large_complex_stomach](violate(Platypus.has_stomach, Platypus.has_large_complex_stomach) → Platypus.has_large_complex_stomach = true)
+21. Q[platypus, Stomach.function(Platypus), A_platypus.stomach_function](Stomach.function(Platypus) = "none" → Factual(Stomach.function(Platypus), S1))
+22. Q[platypus, A_platypus.stomach_presence, A_platypus.stomach_complexity](A_platypus.stomach_presence = false → Factual(A_platypus.stomach_complexity, S2))
+23. Q[platypus, Factual(A_platypus.stomach_presence, S1), A_platypus.does_not_have_stomach](Factual(A_platypus.stomach_presence, S1) → A_platypus.does_not_have_stomach = true)
+24. Q[platypus, Factual(A_platypus.stomach_complexity, S2), A_platypus.has_stomach_type](Factual(A_platypus.stomach_complexity, S2) → A_platypus.has_stomach_type = "large and complex")
+25. Q[platypus, violate(A_platypus.stomach_presence, A_platypus.stomach_complexity), A_platypus.stomach_complexity](violate(A_platypus.stomach_presence, A_platypus.stomach_complexity) → A_platypus.stomach_complexity = "large and complex")
+26. Q[platypus, Factual

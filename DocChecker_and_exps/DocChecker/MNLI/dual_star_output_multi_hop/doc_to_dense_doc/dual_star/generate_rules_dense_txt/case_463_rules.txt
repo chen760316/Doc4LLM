@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 463)
+S1: The complex knots were tied by Sather.
+S2: Sather nodded, as if satisfied, and Nema tied a complex knot in the threads.
+
+Predicates:
+1. Sather.tied_knots
+2. Nema.tied_complex_knot
+3. complex_knots.tied_by(Sather)
+4. complex_knot.tied_by(Nema)
+5. Sather.nodded
+6. Nema.satisfied
+7. Sather.satisfied
+8. complex_knots.tied
+9. threads.contain(complex_knot)
+10. Sather.is_entity
+11. Nema.is_entity
+12. complex_knots.is_type
+13. complex_knot.is_type
+14. Sather.relationship_with(Nema)
+15. Nema.relationship_with(Sather)
+16. Sather.action(tie)
+17. Nema.action(tie)
+18. Sather.action(nod)
+19. Nema.action(nod)
+20. complex_knots.is_created_by(Sather)
+21. complex_knot.is_created_by(Nema)
+22. Sather.perform_action(tie)
+23. Nema.perform_action(tie)
+24. Sather.perform_action(nod)
+25. Nema.perform_action(nod)
+26. Sather.satisfaction_level(high)
+27. Nema.satisfaction_level(high)
+28. complex_knots.exist
+29. complex_knot.exist
+30. Sather.and(Nema).tie_knots
+
+Rules:
+1. Q[The, Sather.tied_knots, complex_knots.tied_by(Sather)](Sather.is_entity == true → Factual(Sather, complex_knots))
+2. Q[The, Nema.tied_complex_knot, complex_knot.tied_by(Nema)](Nema.is_entity == true → Factual(Nema, complex_knot))
+3. Q[The, Sather.nodded, Sather.satisfied](Sather.perform_action(nod) == true → Factual(Sather, satisfied))
+4. Q[The, Nema.tied_complex_knot, complex_knots.tied_by(Sather)](Nema.perform_action(tie) == true → Factual(Nema, complex_knots))
+5. Q[The, complex_knots.tied_by(Sather), complex_knot.tied_by(Nema)](complex_knots.exist == true → Factual(complex_knots, complex_knot))
+6. Q[The, Sather.tied_knots, Nema.tied_complex_knot](Sather.perform_action(tie) == true → Factual(Sather, Nema))
+7. Q[The, Sather.satisfied, Nema.satisfied](Sather.satisfaction_level(high) == true → Factual(Sather, Nema))
+8. Q[The, complex_knots.is_created_by(Sather), complex_knot.is_created_by(Nema)](complex_knots.is_type == true → Factual(complex_knots, complex_knot))
+9. Q[The, Sather.action(tie), Nema.action(tie)](Sather.perform_action(tie) == true → Factual(Sather, Nema))
+10. Q[The, Sather.and(Nema).tie_knots, complex_knots.tied](Sather.and(Nema).tie_knots == true → Factual(Sather, complex_knots))
+11. Q[The, Sather.tied_knots, Nema.satisfied](Nema.satisfaction_level(high) == true → Factual(Nema, Sather))
+12. Q[The, complex_knots.exist, complex_knot.exist](complex_knots.exist == true → Factual(complex_knots, complex_knot))
+13. Q[The, Sather.perform_action(nod), Nema.perform_action(tie)](Sather.nodded == true → Factual(Sather, Nema))
+14. Q[The, Sather.relationship_with(Nema), Nema.relationship_with(Sather)](Sather.is_entity == true → Factual(Sather, Nema))
+15. Q[The, complex_knots.is_created_by(Sather), complex_knots.tied](complex_knots.is_type == true → Factual(complex_knots, tied))
+16. Q[The, Sather.action(nod), Nema.tied_complex_knot](Nema.perform_action(tie) == true → Factual(Nema, complex_knot))
+17. Q[The, Sather.tied_knots, complex_knots.is_created_by(Sather)](Sather.perform_action(tie) == true → Factual(Sather, complex_knots))
+18. Q[The, Nema.tied_complex_knot, complex_knots.tied_by(Sather)](Nema.perform_action(tie) == true → Factual(Nema, complex_knots))
+19. Q[The, Sather.nodded, Nema.tied_complex_knot](Sather.nodded == true → Factual(Sather, Nema))
+20. Q[The, complex_knots.tied_by(Sather), complex_knot.is_created_by(Nema)](complex_knots.exist == true → Factual(complex_knots, complex_knot))
+21. Q[The, Sather.tied_knots, Nema.action(tie)](Sather.perform_action(tie) == true → Factual(Sather, Nema))
+22. Q[The, Sather.satisfaction_level(high), Nema.satisfaction_level(high)](Sather.nodded == true → Factual(Sather, Nema))
+23. Q[The, complex_knots.is_created_by(Sather), complex_knot.exist](complex_knots.exist == true → Factual(complex_knots, complex_knot))
+24. Q[The, Sather.and(Nema).tie_knots, Nema.tied_complex_knot](Sather.and(Nema).tie_knots == true → Factual(Sather, Nema))
+25. Q[The, Sather.tied_knots, Nema.satisfaction_level(high)](Nema.perform_action(tie) == true → Factual(Nema, Sather))
+26. Q[The, complex_knots.exist, complex_knot.is_created_by(Nema)](complex_knots.is_type == true → Factual(complex_knots, complex_knot))
+27. Q[The, Sather.perform_action(nod), complex_knots.tied](Sather.nodded == true → Factual(Sather, complex_knots))
+28. Q[The, Sather.tied_knots, complex_knot.is_created_by(Nema)](Sather.perform_action(tie) == true → Factual(Sather, complex_knot))
+29. Q[The, Sather.nodded, complex_knots.tied_by(Sather)](Sather.nodded == true → Factual(Sather, complex_knots))
+30. Q[The, Nema.tied_complex_knot, complex_knots.tied_by(Sather)](Nema.perform_action(tie) == true → Factual(Nema, complex_knots))

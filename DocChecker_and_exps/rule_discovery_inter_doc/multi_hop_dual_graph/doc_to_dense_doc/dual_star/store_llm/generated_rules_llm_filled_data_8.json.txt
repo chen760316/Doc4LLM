@@ -1,0 +1,47 @@
+Predicates:
+New Product.label = "Product"
+New Product.label != "Product"
+New Product.name = "New Product"
+New Product.name != "New Product"
+Unnamed Company.label = "Company"
+Unnamed Company.label != "Company"
+Unnamed Company.name = "Unnamed Company"
+Unnamed Company.name != "Unnamed Company"
+The company announced its new product..announcement_date = "January 2025"
+The company announced its new product..announcement_date != "January 2025"
+The company had not yet revealed any details about its new product..date = "February 2025"
+The company had not yet revealed any details about its new product..date != "February 2025"
+M_NLI(New Product(label=Product, name=New Product), Unnamed Company(label=Company, name=Unnamed Company))
+M_NLU(New Product(label=Product, name=New Product), Unnamed Company(label=Company, name=Unnamed Company))
+M_TEM(New Product(label=Product, name=New Product), Unnamed Company(label=Company, name=Unnamed Company))
+M_NLI(Unnamed Company(label=Company, name=Unnamed Company), New Product(label=Product, name=New Product))
+M_NLU(Unnamed Company(label=Company, name=Unnamed Company), New Product(label=Product, name=New Product))
+M_TEM(Unnamed Company(label=Company, name=Unnamed Company), New Product(label=Product, name=New Product))
+S(The company announced its new product., "ncert had over 10,000 attendees last night.
+The company announced its new product in January 2025.
+J")
+S(The company had not yet revealed any details about its new product., "ast night.
+The company had not yet revealed any details about its new product by February 2025.
+Tom ")
+
+Rules:
+Q[x0, y0](New Product.label = "Product" ∧ New Product.name = "New Product" → M_NLI(New Product(label=Product, name=New Product), Unnamed Company(label=Company, name=Unnamed Company)))
+Q[x0, y0](Unnamed Company.label = "Company" ∧ Unnamed Company.name = "Unnamed Company" → M_NLU(Unnamed Company(label=Company, name=Unnamed Company), New Product(label=Product, name=New Product)))
+Q[x0, y0](The company announced its new product..announcement_date = "January 2025" ∧ The company had not yet revealed any details about its new product..date = "February 2025" → M_TEM(New Product(label=Product, name=New Product), Unnamed Company(label=Company, name=Unnamed Company)))
+Q[x0, y0](New Product.label != "Product" ∧ Unnamed Company.label != "Company" → M_NLI(Unnamed Company(label=Company, name=Unnamed Company), New Product(label=Product, name=New Product)))
+Q[x0, y0](New Product.name = "New Product" ∧ Unnamed Company.name != "Unnamed Company" ∧ The company announced its new product..announcement_date = "January 2025" → M_NLU(New Product(label=Product, name=New Product), Unnamed Company(label=Company, name=Unnamed Company)))
+Q[x0, y0](Unnamed Company.label = "Company" ∧ The company had not yet revealed any details about its new product..date != "February 2025" ∧ New Product.label = "Product" → M_TEM(Unnamed Company(label=Company, name=Unnamed Company), New Product(label=Product, name=New Product)))
+Q[x0, y0](New Product.label = "Product" ∧ New Product.name = "New Product" ∧ Unnamed Company.label = "Company" ∧ Unnamed Company.name = "Unnamed Company" → M_NLI(Unnamed Company(label=Company, name=Unnamed Company), New Product(label=Product, name=New Product)))
+Q[x0, y0](The company announced its new product..announcement_date = "January 2025" ∧ The company had not yet revealed any details about its new product..date = "February 2025" ∧ New Product.label != "Product" ∧ Unnamed Company.label != "Company" → M_NLU(New Product(label=Product, name=New Product), Unnamed Company(label=Company, name=Unnamed Company)))
+Q[x0, y0](New Product.name != "New Product" ∧ Unnamed Company.name = "Unnamed Company" ∧ The company announced its new product..announcement_date != "January 2025" ∧ The company had not yet revealed any details about its new product..date != "February 2025" → M_TEM(Unnamed Company(label=Company, name=Unnamed Company), New Product(label=Product, name=New Product)))
+Q[x0, y0](New Product.label = "Product" ∧ Unnamed Company.label = "Company" ∧ New Product.name = "New Product" ∧ Unnamed Company.name = "Unnamed Company" ∧ The company announced its new product..announcement_date = "January 2025" → M_NLI(New Product(label=Product, name=New Product), Unnamed Company(label=Company, name=Unnamed Company)))
+Q[x0, y0](New Product.label != "Product" ∧ Unnamed Company.label != "Company" ∧ New Product.name != "New Product" ∧ Unnamed Company.name != "Unnamed Company" ∧ The company had not yet revealed any details about its new product..date = "February 2025" → M_NLU(Unnamed Company(label=Company, name=Unnamed Company), New Product(label=Product, name=New Product)))
+Q[x0, y0](The company announced its new product..announcement_date = "January 2025" ∧ The company had not yet revealed any details about its new product..date != "February 2025" ∧ New Product.label = "Product" ∧ Unnamed Company.label = "Company" ∧ New Product.name != "New Product" → M_TEM(New Product(label=Product, name=New Product), Unnamed Company(label=Company, name=Unnamed Company)))
+Q[x0, y0](New Product.label = "Product" ∧ New Product.name = "New Product" ∧ Unnamed Company.label = "Company" ∧ Unnamed Company.name = "Unnamed Company" ∧ The company announced its new product..announcement_date = "January 2025" ∧ The company had not yet revealed any details about its new product..date = "February 2025" → M_NLI(Unnamed Company(label=Company, name=Unnamed Company), New Product(label=Product, name=New Product)))
+Q[x0, y0](New Product.label != "Product" ∧ New Product.name != "New Product" ∧ Unnamed Company.label != "Company" ∧ Unnamed Company.name != "Unnamed Company" ∧ The company announced its new product..announcement_date != "January 2025" ∧ The company had not yet revealed any details about its new product..date != "February 2025" → M_NLU(New Product(label=Product, name=New Product), Unnamed Company(label=Company, name=Unnamed Company)))
+Q[x0, y0](New Product.label = "Product" ∧ Unnamed Company.label = "Company" → M_TEM(New Product(label=Product, name=New Product), Unnamed Company(label=Company, name=Unnamed Company)))
+Q[x0, y0](New Product.name = "New Product" ∧ The company announced its new product..announcement_date = "January 2025" → M_NLI(New Product(label=Product, name=New Product), Unnamed Company(label=Company, name=Unnamed Company)))
+Q[x0, y0](Unnamed Company.name = "Unnamed Company" ∧ The company had not yet revealed any details about its new product..date = "February 2025" → M_NLU(Unnamed Company(label=Company, name=Unnamed Company), New Product(label=Product, name=New Product)))
+Q[x0, y0](New Product.label != "Product" ∧ Unnamed Company.label = "Company" ∧ The company announced its new product..announcement_date != "January 2025" → M_TEM(Unnamed Company(label=Company, name=Unnamed Company), New Product(label=Product, name=New Product)))
+Q[x0, y0](New Product.name != "New Product" ∧ Unnamed Company.name != "Unnamed Company" ∧ The company had not yet revealed any details about its new product..date != "February 2025" → M_NLI(New Product(label=Product, name=New Product), Unnamed Company(label=Company, name=Unnamed Company)))
+Q[x0, y0](New Product.label = "Product" ∧ Unnamed Company.label = "Company" ∧ New Product.name = "New Product" ∧ Un

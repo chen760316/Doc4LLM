@@ -1,0 +1,50 @@
+Predicates:
+Japan.label != "Country"
+Japan.label != LGBT.label
+Japan.label != Top Military Official.label
+Japan.label = "Country"
+Japan.name != "Japan"
+Japan.name != LGBT.name
+Japan.name != Top Military Official.name
+Japan.name = "Japan"
+Japan___LGBT.contradiction_type != Japan___Top Military Official.contradiction_type
+Japan___LGBT.contradiction_type = "Causal"
+Japan___LGBT.relationship != Japan___Top Military Official.relationship
+Japan___LGBT.relationship = "In Japan, the LGBT community often faces hidden effects of discrimination."
+Japan___LGBT.source_id != Japan___Top Military Official.source_id
+Japan___LGBT.source_id = "3489738280_6"
+Japan___Top Military Official.contradiction_type = "Factual"
+Japan___Top Military Official.relationship = "The top military official of Japan revealed information about the Air Self Defense Force."
+Japan___Top Military Official.source_id = "3489738245_6"
+Japan___Top Military Official.statement = "The ASDF had never encountered an extraterrestrial unidentified flying object."
+LGBT.label != "Community"
+LGBT.label != Top Military Official.label
+LGBT.label = "Community"
+LGBT.name != "LGBT"
+LGBT.name != Top Military Official.name
+LGBT.name = "LGBT"
+LGBT.status != "supportive of gay marriage"
+LGBT.status != Top Military Official.status
+LGBT.status = "supportive of gay marriage"
+None_ML(Japan___LGBT.attrs, Japan___Top Military Official.attrs)
+None_ML(Top Military Official.attrs, Japan.attrs)
+Top Military Official.label != "Military Official"
+Top Military Official.label = "Military Official"
+Top Military Official.name != "Top Military Official"
+Top Military Official.name = "Top Military Official"
+Top Military Official.occupation != "military official"
+Top Military Official.occupation = "military official"
+Top Military Official.status != "government's top"
+Top Military Official.status = "government's top"
+
+Rules:
+Q[Japan,Japan] (LGBT.status = "supportive of gay marriage" ∧ LGBT.status != "supportive of gay marriage" → Top Military Official.status = "government's top")
+Q[Japan,Japan] (LGBT.status = "supportive of gay marriage" ∧ Japan___LGBT.contradiction_type != Japan___Top Military Official.contradiction_type ∧ Japan___LGBT.source_id != Japan___Top Military Official.source_id ∧ Japan___LGBT.contradiction_type = "Causal" → Japan.name != "Japan")
+Q[Japan,Japan] (Top Military Official.label = "Military Official" ∧ Top Military Official.status = "government's top" ∧ Japan___LGBT.relationship != Japan___Top Military Official.relationship → Japan.name != Top Military Official.name)
+Q[Japan,Japan] (Top Military Official.name = "Top Military Official" ∧ Japan___LGBT.contradiction_type = "Causal" ∧ LGBT.label != Top Military Official.label ∧ LGBT.status = "supportive of gay marriage" ∧ LGBT.label = "Community" → Japan.label != Top Military Official.label)
+Q[Japan,Japan] (Japan___LGBT.relationship = "In Japan, the LGBT community often faces hidden effects of discrimination." ∧ Japan___LGBT.contradiction_type != Japan___Top Military Official.contradiction_type ∧ Japan.name = "Japan" ∧ LGBT.name = "LGBT" ∧ LGBT.label = "Community" ∧ Top Military Official.label != "Military Official" → Top Military Official.occupation != "military official")
+Q[Japan,Japan] (Japan.label = "Country" ∧ LGBT.status = "supportive of gay marriage" ∧ Top Military Official.status = "government's top" ∧ None_ML(Japan___LGBT.attrs, Japan___Top Military Official.attrs) ∧ Japan___LGBT.relationship != Japan___Top Military Official.relationship ∧ LGBT.name = "LGBT" → Japan___LGBT.relationship = "In Japan, the LGBT community often faces hidden effects of discrimination.")
+Q[Japan,Japan] (Japan___Top Military Official.contradiction_type = "Factual" ∧ Japan___LGBT.relationship != Japan___Top Military Official.relationship ∧ Japan.label != LGBT.label → None_ML(Top Military Official.attrs, Japan.attrs))
+Q[Japan,Japan] (Japan.name != Top Military Official.name ∧ Japan___Top Military Official.source_id = "3489738245_6" ∧ Top Military Official.name = "Top Military Official" ∧ Japan.label != "Country" ∧ None_ML(Top Military Official.attrs, Japan.attrs) → Top Military Official.label != "Military Official")
+Q[Japan,Japan] (Japan___LGBT.source_id = "3489738280_6" ∧ LGBT.status = "supportive of gay marriage" ∧ LGBT.name = "LGBT" ∧ Top Military Official.label != "Military Official" → LGBT.label = "Community")
+Q[Japan,Japan] (None_ML(Top Military Official.attrs, Japan.attrs) ∧ LGBT.name != Top Military Official.name → Top Military Official.label = "Military Official")

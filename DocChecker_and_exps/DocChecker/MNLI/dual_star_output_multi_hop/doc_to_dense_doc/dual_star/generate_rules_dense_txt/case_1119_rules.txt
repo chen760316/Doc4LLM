@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 1119)
+S1: A systematic and structured approach is provided by the Internal Control Management and Evaluation Tool.
+S2: That can be bad.
+
+Predicates:
+1. Internal_Control_Management_and_Evaluation_Tool.quality
+2. Internal_Control_Management_and_Evaluation_Tool.approach
+3. Internal_Control_Management_and_Evaluation_Tool.systematic
+4. Internal_Control_Management_and_Evaluation_Tool.structured
+5. Internal_Control_Management_and_Evaluation_Tool.positive_outcome
+6. Internal_Control_Management_and_Evaluation_Tool.negative_outcome
+7. Internal_Control_Management_and_Evaluation_Tool.evaluation
+8. Internal_Control_Management_and_Evaluation_Tool.management
+9. Internal_Control_Management_and_Evaluation_Tool.tool_type
+10. Internal_Control_Management_and_Evaluation_Tool.effectiveness
+11. "presents".positive
+12. "presents".negative
+13. "implies".negative
+14. "implies".positive
+15. "relationship".evaluation
+16. "relationship".management
+17. "relationship".tool
+18. M_NLI(S1, S2).validity
+19. M_NLI(S1, S2).consistency
+20. Content(Opinion).positive
+21. Content(Opinion).negative
+22. Content(Emotion).positive
+23. Content(Emotion).negative
+24. violate(Opinion, Emotion).true
+25. violate(Opinion, Emotion).false
+26. "approach".systematic
+27. "approach".structured
+28. "outcome".positive
+29. "outcome".negative
+30. "evaluation".structured
+
+Rules:
+1. Q[systematic, x0, y0](Internal_Control_Management_and_Evaluation_Tool.systematic == "true" → Content(Opinion).positive(x0, y0))
+2. Q[structured, x0, y0](Internal_Control_Management_and_Evaluation_Tool.structured == "true" → Content(Opinion).positive(x0, y0))
+3. Q[approach, x0, y0](Internal_Control_Management_and_Evaluation_Tool.approach == "systematic" → Content(Opinion).positive(x0, y0))
+4. Q[quality, x0, y0](Internal_Control_Management_and_Evaluation_Tool.quality == "high" → Content(Opinion).positive(x0, y0))
+5. Q[positive_outcome, x0, y0](Internal_Control_Management_and_Evaluation_Tool.positive_outcome == "true" → Content(Opinion).positive(x0, y0))
+6. Q[negative_outcome, x0, y0](Internal_Control_Management_and_Evaluation_Tool.negative_outcome == "true" → Content(Opinion).negative(x0, y0))
+7. Q[evaluation, x0, y0](Internal_Control_Management_and_Evaluation_Tool.evaluation == "effective" → Content(Opinion).positive(x0, y0))
+8. Q[management, x0, y0](Internal_Control_Management_and_Evaluation_Tool.management == "effective" → Content(Opinion).positive(x0, y0))
+9. Q[tool_type, x0, y0](Internal_Control_Management_and_Evaluation_Tool.tool_type == "evaluation" → Content(Opinion).positive(x0, y0))
+10. Q[effectiveness, x0, y0](Internal_Control_Management_and_Evaluation_Tool.effectiveness == "high" → Content(Opinion).positive(x0, y0))
+11. Q[systematic, x0, y0](Internal_Control_Management_and_Evaluation_Tool.systematic == "true" ∧ Internal_Control_Management_and_Evaluation_Tool.negative_outcome == "true" → Content(Opinion).negative(x0, y0))
+12. Q[structured, x0, y0](Internal_Control_Management_and_Evaluation_Tool.structured == "true" ∧ Internal_Control_Management_and_Evaluation_Tool.negative_outcome == "true" → Content(Opinion).negative(x0, y0))
+13. Q[approach, x0, y0](Internal_Control_Management_and_Evaluation_Tool.approach == "structured" ∧ Internal_Control_Management_and_Evaluation_Tool.negative_outcome == "true" → Content(Opinion).negative(x0, y0))
+14. Q[quality, x0, y0](Internal_Control_Management_and_Evaluation_Tool.quality == "low" → Content(Opinion).negative(x0, y0))
+15. Q[negative_outcome, x0, y0](Internal_Control_Management_and_Evaluation_Tool.negative_outcome == "true" ∧ "implies".negative == "true" → Content(Opinion).negative(x0, y0))
+16. Q[positive_outcome, x0, y0](Internal_Control_Management_and_Evaluation_Tool.positive_outcome == "false" → Content(Opinion).negative(x0, y0))
+17. Q[evaluation, x0, y0](Internal_Control_Management_and_Evaluation_Tool.evaluation == "ineffective" → Content(Opinion).negative(x0, y0))
+18. Q[management, x0, y0](Internal_Control_Management_and_Evaluation_Tool.management == "poor" → Content(Opinion).negative(x0, y0))
+19. Q[tool_type, x0, y0](Internal_Control_Management_and_Evaluation_Tool.tool_type == "ineffective" → Content(Opinion).negative(x0, y0))
+20. Q[effectiveness, x0, y0](Internal_Control_Management_and_Evaluation_Tool.effectiveness == "low" → Content(Opinion).negative(x0, y0))
+21. Q[systematic, x0, y0](Internal_Control_Management_and_Evaluation_Tool.systematic == "false" → Content(Opinion).negative(x0, y0))
+22. Q[structured, x0, y0](Internal_Control_Management_and_Evaluation_Tool.structured == "false" → Content(Opinion).negative(x0, y0))
+23. Q[approach, x0, y0](Internal_Control_Management_and_Evaluation_Tool.approach == "ineffective" → Content(Opinion).negative(x0, y0))
+24. Q[quality, x0, y0](Internal_Control_Management_and_Evaluation_Tool.quality == "poor" → Content(Opinion).negative(x0, y0))
+25. Q[negative_outcome, x0, y0](Internal_Control_Management_and_Evaluation_Tool.negative_outcome == "true" ∧ "implies".positive == "false" → Content(Opinion).negative(x0, y0))
+26. Q[positive_outcome, x0, y0](Internal_Control_Management_and_Evaluation_Tool.positive_outcome == "false" ∧ "presents".positive == "false" → Content(Opinion).negative(x0, y0))
+27. Q[evaluation, x0, y0](Internal_Control_Management_and_Evaluation_Tool.evaluation == "poor" → Content(Opinion).negative(x0, y0))
+28. Q[management, x0, y0](Internal_Control_Management_and_Evaluation_Tool.management == "ineffective" → Content(Opinion).negative(x0, y0))
+29. Q[tool_type, x0, y0](Internal_Control_Management_and_Evaluation_Tool.tool_type == "ineffective" → Content(Opinion).negative(x0, y0))
+30. Q[effectiveness, x0, y0](Internal_Control_Management_and_Evaluation_Tool.effectiveness == "low" ∧ "implies".negative == "true" → Content(Opinion).negative(x0, y0))

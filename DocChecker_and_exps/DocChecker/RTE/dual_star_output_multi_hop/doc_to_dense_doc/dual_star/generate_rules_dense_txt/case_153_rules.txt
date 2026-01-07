@@ -1,0 +1,63 @@
+Source: dense_text.txt (Index 153)
+S1: Dams helped to remedy life-threatening problems such as poverty due to lack of economic development, the famine cause drought, floods devastation and continued disease lack of safe drinking water.
+S2: Dams have helped to remedy life-threatening problems such as poverty from lack of economic development, famine as a result of drought, devastation from floods, and continued disease from lack of potable water supplies.
+
+Predicates:
+1. Dams.helped_to_remedy.poverty
+2. Dams.helped_to_remedy.famine
+3. Dams.helped_to_remedy.disease
+4. Dams.helped_to_remedy.safe_drinking_water
+5. Poverty.caused_by.lack_of_economic_development
+6. Famine.caused_by.drought
+7. Devastation.caused_by.floods
+8. Disease.caused_by.lack_of_potable_water
+9. Lack_of_economic_development.contributes_to.poverty
+10. Drought.contributes_to.famine
+11. Floods.contributes_to.devastation
+12. Lack_of_potable_water.contributes_to.disease
+13. Dams.addresses.poverty
+14. Dams.addresses.famine
+15. Dams.addresses.disease
+16. Dams.addresses.safe_drinking_water
+17. Economic_development.necessary_for.poverty_remedy
+18. Drought.impact_on.famine
+19. Floods.impact_on.devastation
+20. Lack_of_potable_water.impact_on.disease
+21. M_NLI(S1, S2)
+22. Relation(poverty, lack_of_economic_development)
+23. Relation(famine, drought)
+24. Relation(devastation, floods)
+25. Relation(disease, lack_of_potable_water)
+26. violate(poverty, famine)
+27. violate(famine, drought)
+28. violate(devastation, floods)
+29. violate(disease, lack_of_potable_water)
+30. Dams.reduce.risk_of.poverty
+
+Rules:
+1. Q[Dams, Dams.helped_to_remedy.poverty, Poverty.caused_by.lack_of_economic_development](Dams.helped_to_remedy.poverty == true → Relation(Dams.helped_to_remedy.poverty, Poverty.caused_by.lack_of_economic_development))
+2. Q[Dams, Dams.helped_to_remedy.famine, Famine.caused_by.drought](Dams.helped_to_remedy.famine == true → Relation(Dams.helped_to_remedy.famine, Famine.caused_by.drought))
+3. Q[Dams, Dams.helped_to_remedy.disease, Disease.caused_by.lack_of_potable_water](Dams.helped_to_remedy.disease == true → Relation(Dams.helped_to_remedy.disease, Disease.caused_by.lack_of_potable_water))
+4. Q[Dams, Dams.helped_to_remedy.safe_drinking_water, Lack_of_potable_water.impact_on.disease](Dams.helped_to_remedy.safe_drinking_water == true → Relation(Dams.helped_to_remedy.safe_drinking_water, Lack_of_potable_water.impact_on.disease))
+5. Q[Dams, Lack_of_economic_development.contributes_to.poverty, Poverty.caused_by.lack_of_economic_development](Dams.addresses.poverty == true → Relation(Lack_of_economic_development.contributes_to.poverty, Poverty.caused_by.lack_of_economic_development))
+6. Q[Dams, Drought.contributes_to.famine, Famine.caused_by.drought](Dams.addresses.famine == true → Relation(Drought.contributes_to.famine, Famine.caused_by.drought))
+7. Q[Dams, Floods.contributes_to.devastation, Devastation.caused_by.floods](Dams.addresses.disease == true → Relation(Floods.contributes_to.devastation, Devastation.caused_by.floods))
+8. Q[Dams, Lack_of_potable_water.contributes_to.disease, Disease.caused_by.lack_of_potable_water](Dams.addresses.safe_drinking_water == true → Relation(Lack_of_potable_water.contributes_to.disease, Disease.caused_by.lack_of_potable_water))
+9. Q[Dams, Economic_development.necessary_for.poverty_remedy, Poverty.caused_by.lack_of_economic_development](Dams.reduce.risk_of.poverty == true → Relation(Economic_development.necessary_for.poverty_remedy, Poverty.caused_by.lack_of_economic_development))
+10. Q[Dams, Drought.impact_on.famine, Famine.caused_by.drought](Dams.helped_to_remedy.famine == true → Relation(Drought.impact_on.famine, Famine.caused_by.drought))
+11. Q[Dams, Floods.impact_on.devastation, Devastation.caused_by.floods](Dams.helped_to_remedy.disease == true → Relation(Floods.impact_on.devastation, Devastation.caused_by.floods))
+12. Q[Dams, Lack_of_potable_water.impact_on.disease, Disease.caused_by.lack_of_potable_water](Dams.helped_to_remedy.safe_drinking_water == true → Relation(Lack_of_potable_water.impact_on.disease, Disease.caused_by.lack_of_potable_water))
+13. Q[Dams, Dams.addresses.poverty, Lack_of_economic_development.contributes_to.poverty](Dams.addresses.poverty == true → Relation(Dams.addresses.poverty, Lack_of_economic_development.contributes_to.poverty))
+14. Q[Dams, Dams.addresses.famine, Drought.contributes_to.famine](Dams.addresses.famine == true → Relation(Dams.addresses.famine, Drought.contributes_to.famine))
+15. Q[Dams, Dams.addresses.disease, Lack_of_potable_water.contributes_to.disease](Dams.addresses.disease == true → Relation(Dams.addresses.disease, Lack_of_potable_water.contributes_to.disease))
+16. Q[Dams, Dams.reduce.risk_of.poverty, Economic_development.necessary_for.poverty_remedy](Dams.reduce.risk_of.poverty == true → Relation(Dams.reduce.risk_of.poverty, Economic_development.necessary_for.poverty_remedy))
+17. Q[Dams, Dams.helped_to_remedy.famine, Floods.contributes_to.devastation](Dams.helped_to_remedy.famine == true → Relation(Dams.helped_to_remedy.famine, Floods.contributes_to.devastation))
+18. Q[Dams, Dams.helped_to_remedy.disease, Drought.impact_on.famine](Dams.helped_to_remedy.disease == true → Relation(Dams.helped_to_remedy.disease, Drought.impact_on.famine))
+19. Q[Dams, Dams.addresses.safe_drinking_water, Floods.impact_on.devastation](Dams.addresses.safe_drinking_water == true → Relation(Dams.addresses.safe_drinking_water, Floods.impact_on.devastation))
+20. Q[Dams, Dams.helped_to_remedy.poverty, Drought.contributes_to.famine](Dams.helped_to_remedy.poverty == true → Relation(Dams.helped_to_remedy.poverty, Drought.contributes_to.famine))
+21. Q[Dams, Dams.helped_to_remedy.famine, Lack_of_economic_development.contributes_to.poverty](Dams.helped_to_remedy.famine == true → Relation(Dams.helped_to_remedy.famine, Lack_of_economic_development.contributes_to.poverty))
+22. Q[Dams, Dams.helped_to_remedy.disease, Lack_of_potable_water.impact_on.disease](Dams.helped_to_remedy.disease == true → Relation(Dams.helped_to_remedy.disease, Lack_of_potable_water.impact_on.disease))
+23. Q[Dams, Dams.addresses.poverty, Drought.impact_on.famine](Dams.addresses.poverty == true → Relation(Dams.addresses.poverty, Drought.impact_on.famine))
+24. Q[Dams, Dams.addresses.famine, Floods.impact_on.devastation](Dams.addresses.famine == true → Relation(Dams.addresses.famine, Floods.impact_on.devastation))
+25. Q[Dams, Dams.addresses.disease, Economic_development.necessary_for.poverty_remedy](Dams.addresses.disease == true → Relation(Dams.addresses.disease, Economic_development.necessary_for.poverty_remedy))
+26. Q[Dams, Dams.reduce.risk_of.poverty, Drought.contributes_to.famine](Dams.reduce.risk_of.poverty == true → Relation(Dams.reduce.risk_of.poverty, Drought.contributes_to.famine))

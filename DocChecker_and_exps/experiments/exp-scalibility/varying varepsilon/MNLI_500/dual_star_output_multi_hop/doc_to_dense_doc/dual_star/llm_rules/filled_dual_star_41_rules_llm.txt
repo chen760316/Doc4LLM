@@ -1,0 +1,132 @@
+Predicates:
+1. entity.name = "Alice"
+2. entity.age = 30
+3. entity.location = "New York"
+4. entity.occupation = "Engineer"
+5. entity.hobby = "Photography"
+6. entity.marital_status = "Single"
+7. entity.salary = 70000
+8. entity.education = "Master's Degree"
+9. entity.nationality = "American"
+10. entity.experience_years = 5
+11. "are receiving".type = "contradiction"
+12. "came to".type = "contradiction"
+13. "reassured".type = "contradiction"
+14. "wanted to cut".type = "contradiction"
+15. "were intended to be reduced by".type = "contradiction"
+16. "is located in".type = "location"
+17. "works at".type = "employment"
+18. "is married to".type = "relationship"
+19. "has a child".type = "family"
+20. "is friends with".type = "friendship"
+21. M_NLI(entity1.hobby, entity2.hobby)
+22. M_NLI(entity1.location, entity2.location)
+23. T("Alice is an engineer.", "Alice is a doctor.", tau)
+24. T("Alice lives in New York.", "Alice lives in Los Angeles.", tau)
+25. tau(entity1.age, entity2.age)
+26. violate(x0, y0)
+27. Factual(x0, y0)
+28. Content(x0, y0)
+29. Causal(x0, y0)
+30. Negation(x0, y0)
+31. Relation(x0, y0)
+32. Numeric(x0, y0)
+33. Temporal(x0, y0)
+34. entity.salary > 60000
+35. entity.experience_years < 10
+36. entity.education = "PhD"
+37. entity.hobby = "Cycling"
+38. entity.marital_status = "Married"
+39. entity.location = "San Francisco"
+40. "are receiving".status = "active"
+41. "came to".status = "completed"
+42. "reassured".status = "pending"
+43. "wanted to cut".status = "rejected"
+44. "were intended to be reduced by".status = "approved"
+45. M_NLI(entity1.salary, entity2.salary)
+46. T("Alice earns 70000.", "Alice earns 50000.", tau)
+47. tau(entity1.education, entity2.education)
+48. violate(entity1.hobby, entity2.hobby)
+49. Factual(entity1.location, entity2.location)
+50. Content(entity1.marital_status, entity2.marital_status)
+51. Causal(entity1.salary, entity2.salary)
+52. Negation(entity1.age, entity2.age)
+53. Relation(entity1.occupation, entity2.occupation)
+54. Numeric(entity1.experience_years, entity2.experience_years)
+55. Temporal(entity1.education, entity2.education)
+56. entity.name = "Bob"
+57. entity.age = 25
+58. entity.location = "Chicago"
+59. entity.occupation = "Designer"
+60. entity.hobby = "Traveling"
+61. entity.marital_status = "Divorced"
+62. entity.salary = 50000
+63. entity.education = "Bachelor's Degree"
+64. entity.nationality = "Canadian"
+65. entity.experience_years = 3
+66. "are receiving".context = "financial aid"
+67. "came to".context = "an agreement"
+68. "reassured".context = "the team"
+69. "wanted to cut".context = "expenses"
+70. "were intended to be reduced by".context = "the budget"
+71. M_NLI(entity1.experience_years, entity2.experience_years)
+72. T("Bob is a designer.", "Bob is a teacher.", tau)
+73. tau(entity1.salary, entity2.salary)
+74. violate(entity1.location, entity2.location)
+75. Factual(entity1.hobby, entity2.hobby)
+76. Content(entity1.age, entity2.age)
+77. Causal(entity1.marital_status, entity2.marital_status)
+78. Negation(entity1.education, entity2.education)
+79. Relation(entity1.name, entity2.name)
+80. Numeric(entity1.salary, entity2.salary)
+81. Temporal(entity1.location, entity2.location)
+82. entity.name = "Charlie"
+83. entity.age = 40
+84. entity.location = "Los Angeles"
+85. entity.occupation = "Manager"
+86. entity.hobby = "Cooking"
+87. entity.marital_status = "Widowed"
+88. entity.salary = 90000
+89. entity.education = "MBA"
+90. entity.nationality = "British"
+91. entity.experience_years = 15
+92. "are receiving".priority = "high"
+93. "came to".priority = "medium"
+94. "reassured".priority = "low"
+95. "wanted to cut".priority = "urgent"
+96. "were intended to be reduced by".priority = "normal"
+97. M_NLI(entity1.salary, entity2.salary)
+98. T("Charlie earns 90000.", "Charlie earns 30000.", tau)
+99. tau(entity1.hobby, entity2.hobby)
+100. violate(entity1.marital_status, entity2.marital_status)
+violate(x0, y0)
+
+Rules:
+1. Q[x0, y0](entity.name = "Alice" ∧ entity.age = 30 → violate(x0, y0))
+2. Q[x0, y0](entity.location = "New York" ∧ entity.occupation = "Engineer" → violate(x0, y0))
+3. Q[x0, y0](entity.hobby = "Photography" ∧ entity.marital_status = "Single" ∧ entity.salary = 70000 → violate(x0, y0))
+4. Q[x0, y0](entity.education = "Master's Degree" ∧ entity.experience_years = 5 ∧ entity.nationality = "American" → violate(x0, y0))
+5. Q[x0, y0](entity.name = "Bob" ∧ entity.age = 25 ∧ entity.location = "Chicago" ∧ entity.occupation = "Designer" → violate(x0, y0))
+6. Q[x0, y0](entity.hobby = "Traveling" ∧ entity.marital_status = "Divorced" ∧ entity.salary = 50000 ∧ entity.education = "Bachelor's Degree" → violate(x0, y0))
+7. Q[x0, y0](entity.name = "Charlie" ∧ entity.age = 40 ∧ entity.location = "Los Angeles" ∧ entity.occupation = "Manager" ∧ entity.hobby = "Cooking" → violate(x0, y0))
+8. Q[x0, y0](entity.marital_status = "Widowed" ∧ entity.salary = 90000 ∧ entity.education = "MBA" ∧ entity.nationality = "British" ∧ entity.experience_years = 15 → violate(x0, y0))
+9. Q[x0, y0](entity.salary > 60000 ∧ entity.experience_years < 10 ∧ entity.education = "PhD" ∧ entity.hobby = "Cycling" ∧ entity.marital_status = "Married" ∧ entity.location = "San Francisco" → violate(x0, y0))
+10. Q[x0, y0](entity.name = "Alice" ∧ entity.age = 30 ∧ entity.location = "New York" ∧ entity.occupation = "Engineer" ∧ entity.hobby = "Photography" ∧ entity.marital_status = "Single" → violate(x0, y0))
+11. Q[x0, y0](entity.salary = 70000 ∧ entity.experience_years = 5 → Factual(x0, y0))
+12. Q[x0, y0](entity.education = "Master's Degree" ∧ entity.nationality = "American" → Factual(x0, y0))
+13. Q[x0, y0](entity.name = "Bob" ∧ entity.age = 25 ∧ entity.location = "Chicago" → Factual(x0, y0))
+14. Q[x0, y0](entity.occupation = "Designer" ∧ entity.hobby = "Traveling" ∧ entity.marital_status = "Divorced" → Factual(x0, y0))
+15. Q[x0, y0](entity.name = "Charlie" ∧ entity.age = 40 ∧ entity.location = "Los Angeles" ∧ entity.occupation = "Manager" → Factual(x0, y0))
+16. Q[x0, y0](entity.hobby = "Cooking" ∧ entity.marital_status = "Widowed" ∧ entity.salary = 90000 → Factual(x0, y0))
+17. Q[x0, y0](entity.education = "MBA" ∧ entity.nationality = "British" ∧ entity.experience_years = 15 → violate(x0, y0))
+18. Q[x0, y0](entity.salary > 60000 ∧ entity.experience_years < 10 ∧ entity.education = "PhD" ∧ entity.hobby = "Cycling" ∧ entity.marital_status = "Married" ∧ entity.location = "San Francisco" → violate(x0, y0))
+19. Q[x0, y0](entity.name = "Alice" ∧ entity.age = 30 ∧ entity.location = "New York" ∧ entity.occupation = "Engineer" ∧ entity.hobby = "Photography" ∧ entity.marital_status = "Single" → violate(x0, y0))
+20. Q[x0, y0](entity.salary = 70000 ∧ entity.experience_years = 5 ∧ entity.education = "Master's Degree" ∧ entity.nationality = "American" ∧ entity.hobby = "Photography" → violate(x0, y0))
+21. Q[x0, y0](entity.name = "Bob" ∧ entity.age = 25 ∧ entity.location = "Chicago" ∧ entity.occupation = "Designer" ∧ entity.hobby = "Traveling" ∧ entity.marital_status = "Divorced" → violate(x0, y0))
+22. Q[x0, y0](entity.name = "Charlie" ∧ entity.age = 40 ∧ entity.location = "Los Angeles" ∧ entity.occupation = "Manager" ∧ entity.hobby = "Cooking" ∧ entity.marital_status = "Widowed" → violate(x0, y0))
+23. Q[x0, y0](entity.salary > 60000 ∧ entity.experience_years < 10 ∧ entity.education = "PhD" ∧ entity.hobby = "Cycling" ∧ entity.marital_status = "Married" ∧ entity.location = "San Francisco" → violate(x0, y0))
+24. Q[x0, y0](entity.name = "Alice" ∧ entity.age = 30 ∧ entity.location = "New York" ∧ entity.occupation = "Engineer" ∧ entity.hobby = "Photography" ∧ entity.marital_status = "Single" → violate(x0, y0))
+25. Q[x0, y0](entity.salary = 70000 ∧ entity.experience_years = 5 ∧ entity.education = "Master's Degree" ∧ entity.nationality = "American" ∧ entity.hobby = "Photography" → violate(x0, y0))
+26. Q[x0, y0](entity.name = "Bob" ∧ entity.age = 25 ∧ entity.location = "Chicago" ∧ entity.occupation = "Designer" ∧ entity.hobby = "Traveling" ∧ entity.marital_status = "Divorced" → violate(x0, y0))
+27. Q[x0, y0](entity.name = "Charlie" ∧ entity.age = 40 ∧ entity.location = "Los Angeles" ∧ entity.occupation = "Manager" ∧ entity.hobby = "Cooking" ∧ entity.marital_status = "Widowed" → violate(x0, y0))
+28. Q[x0, y0](entity.salary >

@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 834)
+S1: The visa will not be terminated before its expiration, even if the worker is not employed.
+S2: The visa is terminated at any time the H-2A worker's employment relationship ends, whether through voluntary departure or involuntary termination.
+
+Predicates:
+1. Visa.expiration
+2. Visa.termination
+3. Worker.employment_status
+4. Worker.voluntary_departure
+5. Worker.involuntary_termination
+6. Visa.not_terminated_before_expiration
+7. Visa.terminated_when_employment_ends
+8. Employment.relationship
+9. Employment.termination_reason
+10. H2A_worker.employment_relationship
+11. H2A_worker.voluntary_departure
+12. H2A_worker.involuntary_termination
+13. Visa.terminated_at_any_time
+14. Visa.valid_until_expiration
+15. Employment.ended
+16. Employment.voluntary
+17. Employment.involuntary
+18. Visa.termination_condition
+19. Worker.employment_ended
+20. Worker.visa_status
+21. Visa.termination_due_to_employment
+22. Employment.relationship_active
+23. Employment.relationship_inactive
+24. Visa.termination_not_before_expiration
+25. H2A_worker.visa_status
+26. H2A_worker.employment_active
+27. H2A_worker.employment_inactive
+28. Visa.conditional_termination
+29. Employment.termination_effect
+30. Visa.termination_policy
+
+Rules:
+1. Q[The, Visa.not_terminated_before_expiration, Visa.terminated_when_employment_ends](Visa.not_terminated_before_expiration == true → Causal(Worker.employment_status, Visa.termination))
+2. Q[The, Visa.valid_until_expiration, Visa.terminated_when_employment_ends](Visa.valid_until_expiration == true → Causal(Worker.employment_status, Visa.termination))
+3. Q[The, Visa.termination_not_before_expiration, Visa.terminated_when_employment_ends](Visa.termination_not_before_expiration == true → Causal(Worker.employment_status, Visa.termination))
+4. Q[The, Visa.termination_policy, Visa.terminated_when_employment_ends](Visa.termination_policy == "not before expiration" → Causal(Worker.employment_status, Visa.termination))
+5. Q[The, Visa.termination_condition, Visa.terminated_when_employment_ends](Visa.termination_condition == "employment ends" → Causal(Worker.employment_status, Visa.termination))
+6. Q[The, Visa.termination_due_to_employment, Visa.terminated_when_employment_ends](Visa.termination_due_to_employment == true → Causal(Worker.employment_status, Visa.termination))
+7. Q[The, H2A_worker.employment_relationship, Visa.terminated_when_employment_ends](H2A_worker.employment_relationship == "inactive" → Causal(Worker.employment_status, Visa.termination))
+8. Q[The, Worker.voluntary_departure, Visa.terminated_when_employment_ends](Worker.voluntary_departure == true → Causal(Worker.employment_status, Visa.termination))
+9. Q[The, Worker.involuntary_termination, Visa.terminated_when_employment_ends](Worker.involuntary_termination == true → Causal(Worker.employment_status, Visa.termination))
+10. Q[The, Employment.relationship, Visa.terminated_when_employment_ends](Employment.relationship == "inactive" → Causal(Worker.employment_status, Visa.termination))
+11. Q[The, Employment.ended, Visa.terminated_when_employment_ends](Employment.ended == true → Causal(Worker.employment_status, Visa.termination))
+12. Q[The, Employment.termination_reason, Visa.terminated_when_employment_ends](Employment.termination_reason == "voluntary" → Causal(Worker.employment_status, Visa.termination))
+13. Q[The, Employment.termination_reason, Visa.terminated_when_employment_ends](Employment.termination_reason == "involuntary" → Causal(Worker.employment_status, Visa.termination))
+14. Q[The, H2A_worker.employment_inactive, Visa.terminated_when_employment_ends](H2A_worker.employment_inactive == true → Causal(Worker.employment_status, Visa.termination))
+15. Q[The, H2A_worker.visa_status, Visa.terminated_when_employment_ends](H2A_worker.visa_status == "terminated" → Causal(Worker.employment_status, Visa.termination))
+16. Q[The, Visa.termination_condition, Visa.termination_not_before_expiration](Visa.termination_condition == "employment ends" → Causal(Visa.not_terminated_before_expiration, Visa.termination))
+17. Q[The, Visa.termination_policy, Visa.termination_not_before_expiration](Visa.termination_policy == "not before expiration" → Causal(Visa.not_terminated_before_expiration, Visa.termination))
+18. Q[The, Visa.termination_due_to_employment, Visa.termination_not_before_expiration](Visa.termination_due_to_employment == true → Causal(Visa.not_terminated_before_expiration, Visa.termination))
+19. Q[The, Worker.employment_status, Visa.termination_not_before_expiration](Worker.employment_status == "inactive" → Causal(Visa.not_terminated_before_expiration, Visa.termination))
+20. Q[The, Worker.visa_status, Visa.termination_not_before_expiration](Worker.visa_status == "valid" → Causal(Visa.not_terminated_before_expiration, Visa.termination))
+21. Q[The, Employment.relationship_active, Visa.termination_not_before_expiration](Employment.relationship_active == true → Causal(Visa.not_terminated_before_expiration, Visa.termination))
+22. Q[The, Employment.relationship_inactive, Visa.termination_not_before_expiration](Employment.relationship_inactive == true → Causal(Visa.not_terminated_before_expiration, Visa.termination))
+23. Q[The, H2A_worker.employment_relationship, Visa.termination_not_before_expiration](H2A_worker.employment_relationship == "active" → Causal(Visa.not_terminated_before_expiration, Visa.termination))
+24. Q[The, Visa.conditional_termination, Visa.terminated_when_employment_ends](Visa.conditional_termination == true → Causal(Worker.employment_status, Visa.termination))
+25. Q[The, Visa.termination_effect, Visa.terminated_when_employment_ends](Visa.termination_effect == "immediate" → Causal(Worker.employment_status, Visa.termination))
+26. Q[The, Visa.termination_due_to_employment, Visa.termination_not_before_expiration](Visa.termination_due_to_employment == true → Causal(Visa.not_terminated_before_expiration, Visa.termination))
+27. Q[The, H2A_worker.employment_active, Visa.termination_not_before_expiration](H2A_worker.employment_active == true → Causal(Visa.not_terminated_before_expiration, Visa.termination))
+28. Q[The, Worker.employment_ended, Visa.termination_not_before_expiration](Worker.employment_ended == true → Causal(Visa.not_terminated_before_expiration, Visa.termination))
+29. Q[The, Visa.termination_condition, Visa.terminated_at_any_time](Visa.termination_condition == "employment ends" → Causal(Worker.employment_status, Visa.termination))
+30. Q[The, Visa.termination_policy, Visa.terminated_at_any_time](Visa.termination_policy == "immediate upon employment end" → Causal(Worker.employment_status, Visa.termination))

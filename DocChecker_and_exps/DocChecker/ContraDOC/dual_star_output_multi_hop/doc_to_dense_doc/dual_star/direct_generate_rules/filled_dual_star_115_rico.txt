@@ -1,0 +1,49 @@
+Predicates:
+NBC.country != "United States"
+NBC.country = "United States"
+NBC.label != "Network"
+NBC.label = "Network"
+NBC.name != "NBC"
+NBC.name = "NBC"
+New Year's Eve.demographic != "adults 18-49"
+New Year's Eve.demographic = "adults 18-49"
+New Year's Eve.label != "Episode"
+New Year's Eve.label != NBC.label
+New Year's Eve.label = "Episode"
+New Year's Eve.name != "New Year's Eve"
+New Year's Eve.name != NBC.name
+New Year's Eve.name = "New Year's Eve"
+New Year's Eve.rating != 2.0
+New Year's Eve.rating < 7.0
+New Year's Eve.rating = 2.0
+New Year's Eve.rating > -3.0
+New Year's Eve.share != "5%"
+New Year's Eve.share = "5%"
+New Year's Eve.viewers != 4.28
+New Year's Eve.viewers < 9.280000000000001
+New Year's Eve.viewers = 4.28
+New Year's Eve.viewers > -0.7199999999999998
+New Year's Eve___NBC.air_date = "January 12, 2012"
+New Year's Eve___NBC.contradiction_type != New Year's Eve___New Year's Eve.contradiction_type
+New Year's Eve___NBC.contradiction_type = "Negation"
+New Year's Eve___NBC.relationship != New Year's Eve___New Year's Eve.relationship
+New Year's Eve___NBC.relationship = "New Year's Eve originally aired on NBC"
+New Year's Eve___NBC.source_id != New Year's Eve___New Year's Eve.source_id
+New Year's Eve___NBC.source_id = "3503017462_4"
+New Year's Eve___New Year's Eve.contradiction_type = "Numeric"
+New Year's Eve___New Year's Eve.relationship = "The episode 'New Year's Eve' had different viewer estimates."
+New Year's Eve___New Year's Eve.source_id = "3503017462_5"
+None_ML(New Year's Eve.attrs, NBC.attrs)
+None_ML(New Year's Eve___NBC.attrs, New Year's Eve___New Year's Eve.attrs)
+
+Rules:
+Q[New Year's Eve,New Year's Eve] (New Year's Eve.name = "New Year's Eve" ∧ New Year's Eve___New Year's Eve.contradiction_type = "Numeric" ∧ NBC.name = "NBC" ∧ New Year's Eve.demographic != "adults 18-49" ∧ New Year's Eve.viewers = 4.28 ∧ New Year's Eve.rating = 2.0 → New Year's Eve.rating < 7.0)
+Q[New Year's Eve,New Year's Eve] (New Year's Eve.label != NBC.label ∧ NBC.country = "United States" → New Year's Eve.demographic = "adults 18-49")
+Q[New Year's Eve,New Year's Eve] (New Year's Eve___NBC.relationship != New Year's Eve___New Year's Eve.relationship ∧ New Year's Eve.name != NBC.name ∧ New Year's Eve.name != "New Year's Eve" ∧ NBC.name != "NBC" → NBC.label = "Network")
+Q[New Year's Eve,New Year's Eve] (New Year's Eve___NBC.source_id != New Year's Eve___New Year's Eve.source_id ∧ New Year's Eve.label != NBC.label ∧ New Year's Eve___NBC.relationship = "New Year's Eve originally aired on NBC" → New Year's Eve___NBC.relationship != New Year's Eve___New Year's Eve.relationship)
+Q[New Year's Eve,New Year's Eve] (New Year's Eve.name != "New Year's Eve" ∧ NBC.country != "United States" ∧ New Year's Eve___New Year's Eve.relationship = "The episode 'New Year's Eve' had different viewer estimates." ∧ New Year's Eve.rating < 7.0 ∧ New Year's Eve.label = "Episode" → New Year's Eve.rating > -3.0)
+Q[New Year's Eve,New Year's Eve] (New Year's Eve.viewers > -0.7199999999999998 ∧ New Year's Eve___NBC.source_id != New Year's Eve___New Year's Eve.source_id ∧ New Year's Eve.name = "New Year's Eve" ∧ New Year's Eve.label = "Episode" → New Year's Eve.viewers < 9.280000000000001)
+Q[New Year's Eve,New Year's Eve] (New Year's Eve.name != NBC.name ∧ New Year's Eve___New Year's Eve.contradiction_type = "Numeric" ∧ New Year's Eve.rating < 7.0 ∧ NBC.label != "Network" ∧ New Year's Eve.name != "New Year's Eve" ∧ New Year's Eve___NBC.source_id != New Year's Eve___New Year's Eve.source_id → New Year's Eve.name = "New Year's Eve")
+Q[New Year's Eve,New Year's Eve] (NBC.label != "Network" ∧ New Year's Eve.rating = 2.0 ∧ None_ML(New Year's Eve___NBC.attrs, New Year's Eve___New Year's Eve.attrs) → New Year's Eve.viewers = 4.28)
+Q[New Year's Eve,New Year's Eve] (None_ML(New Year's Eve.attrs, NBC.attrs) ∧ NBC.label != "Network" ∧ NBC.country = "United States" ∧ New Year's Eve___NBC.contradiction_type = "Negation" ∧ New Year's Eve.rating != 2.0 → NBC.country != "United States")
+Q[New Year's Eve,New Year's Eve] (New Year's Eve___New Year's Eve.source_id = "3503017462_5" ∧ New Year's Eve___New Year's Eve.relationship = "The episode 'New Year's Eve' had different viewer estimates." → New Year's Eve.label = "Episode")

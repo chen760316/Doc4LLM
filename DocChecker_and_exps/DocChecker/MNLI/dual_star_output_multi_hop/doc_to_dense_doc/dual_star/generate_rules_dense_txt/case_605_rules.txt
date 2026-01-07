@@ -1,0 +1,66 @@
+Source: dense_text.txt (Index 605)
+S1: Noboby actually knows if Lana accompanied the two men to the farmhouse.
+S2: It is well known that Lana went to the farmhouse with the men.
+
+Predicates:
+1. S1.knowledge.nobody
+2. S1.accompanied.lana
+3. S1.accompanied.two_men
+4. S1.destination.farmhouse
+5. S2.knowledge.well_known
+6. S2.accompanied.lana
+7. S2.accompanied.men
+8. S2.destination.farmhouse
+9. S2.assertion.lana
+10. S2.assertion.accompanied
+11. S2.assertion.men
+12. S2.assertion.destination
+13. M_NLI(s1, s2)
+14. Factual(lana, farmhouse)
+15. Factual(two_men, farmhouse)
+16. violate(lana, farmhouse)
+17. S1.uncertainty.lana
+18. S1.uncertainty.accompanied
+19. S1.uncertainty.two_men
+20. S2.certainty.lana
+21. S2.certainty.accompanied
+22. S2.certainty.two_men
+23. S1.knowledge.state
+24. S2.knowledge.state
+25. S1.knowledge.nobody_knows
+26. S2.knowledge.well_known
+27. S1.conflict.assertion
+28. S2.conflict.assertion
+29. S1.knowledge.lana
+30. S2.knowledge.lana
+
+Rules:
+1. Q[Noboby, S1.knowledge.nobody, S2.knowledge.well_known](S1.knowledge.nobody == true ∧ S2.knowledge.well_known == true → Factual(lana, farmhouse))
+2. Q[Noboby, S1.uncertainty.lana, S2.certainty.lana](S1.uncertainty.lana == true ∧ S2.certainty.lana == true → Factual(lana, farmhouse))
+3. Q[Noboby, S1.uncertainty.accompanied, S2.certainty.accompanied](S1.uncertainty.accompanied == true ∧ S2.certainty.accompanied == true → Factual(lana, farmhouse))
+4. Q[Noboby, S1.knowledge.nobody_knows, S2.knowledge.well_known](S1.knowledge.nobody_knows == true ∧ S2.knowledge.well_known == true → Factual(lana, farmhouse))
+5. Q[Noboby, S1.accompanied.lana, S2.accompanied.lana](S1.accompanied.lana == false ∧ S2.accompanied.lana == true → Factual(lana, farmhouse))
+6. Q[Noboby, S1.accompanied.two_men, S2.accompanied.men](S1.accompanied.two_men == true ∧ S2.accompanied.men == true → Factual(two_men, farmhouse))
+7. Q[Noboby, S1.destination.farmhouse, S2.destination.farmhouse](S1.destination.farmhouse == true ∧ S2.destination.farmhouse == true → Factual(lana, farmhouse))
+8. Q[Noboby, S1.knowledge.state, S2.knowledge.state](S1.knowledge.state == "unknown" ∧ S2.knowledge.state == "known" → Factual(lana, farmhouse))
+9. Q[Noboby, S1.uncertainty.two_men, S2.certainty.two_men](S1.uncertainty.two_men == true ∧ S2.certainty.two_men == true → Factual(two_men, farmhouse))
+10. Q[Noboby, S1.conflict.assertion, S2.conflict.assertion](S1.conflict.assertion == true ∧ S2.conflict.assertion == true → Factual(lana, farmhouse))
+11. Q[Noboby, S1.knowledge.lana, S2.knowledge.lana](S1.knowledge.lana == false ∧ S2.knowledge.lana == true → Factual(lana, farmhouse))
+12. Q[Noboby, S1.uncertainty.lana, S2.assertion.lana](S1.uncertainty.lana == true ∧ S2.assertion.lana == true → Factual(lana, farmhouse))
+13. Q[Noboby, S1.knowledge.nobody, S2.knowledge.lana](S1.knowledge.nobody == true ∧ S2.knowledge.lana == true → Factual(lana, farmhouse))
+14. Q[Noboby, S1.uncertainty.accompanied, S2.assertion.accompanied](S1.uncertainty.accompanied == true ∧ S2.assertion.accompanied == true → Factual(lana, farmhouse))
+15. Q[Noboby, S1.knowledge.nobody_knows, S2.assertion.destination](S1.knowledge.nobody_knows == true ∧ S2.assertion.destination == true → Factual(lana, farmhouse))
+16. Q[Noboby, S1.accompanied.two_men, S2.assertion.men](S1.accompanied.two_men == true ∧ S2.assertion.men == true → Factual(two_men, farmhouse))
+17. Q[Noboby, S1.knowledge.nobody, S2.assertion.lana](S1.knowledge.nobody == true ∧ S2.assertion.lana == true → Factual(lana, farmhouse))
+18. Q[Noboby, S1.uncertainty.two_men, S2.assertion.men](S1.uncertainty.two_men == true ∧ S2.assertion.men == true → Factual(two_men, farmhouse))
+19. Q[Noboby, S1.knowledge.nobody_knows, S2.accompanied.lana](S1.knowledge.nobody_knows == true ∧ S2.accompanied.lana == true → Factual(lana, farmhouse))
+20. Q[Noboby, S1.uncertainty.lana, S2.accompanied.lana](S1.uncertainty.lana == true ∧ S2.accompanied.lana == true → Factual(lana, farmhouse))
+21. Q[Noboby, S1.knowledge.nobody, S2.accompanied.two_men](S1.knowledge.nobody == true ∧ S2.accompanied.two_men == true → Factual(two_men, farmhouse))
+22. Q[Noboby, S1.knowledge.nobody_knows, S2.accompanied.two_men](S1.knowledge.nobody_knows == true ∧ S2.accompanied.two_men == true → Factual(two_men, farmhouse))
+23. Q[Noboby, S1.uncertainty.accompanied, S2.knowledge.well_known](S1.uncertainty.accompanied == true ∧ S2.knowledge.well_known == true → Factual(lana, farmhouse))
+24. Q[Noboby, S1.knowledge.nobody, S2.knowledge.well_known](S1.knowledge.nobody == true ∧ S2.knowledge.well_known == true → Factual(lana, farmhouse))
+25. Q[Noboby, S1.uncertainty.lana, S2.knowledge.well_known](S1.uncertainty.lana == true ∧ S2.knowledge.well_known == true → Factual(lana, farmhouse))
+26. Q[Noboby, S1.knowledge.nobody_knows, S2.certainty.lana](S1.knowledge.nobody_knows == true ∧ S2.certainty.lana == true → Factual(lana, farmhouse))
+27. Q[Noboby, S1.uncertainty.accompanied, S2.knowledge.lana](S1.uncertainty.accompanied == true ∧ S2.knowledge.lana == true → Factual(lana, farmhouse))
+28. Q[Noboby, S1.knowledge.nobody, S2.certainty.lana](S1.knowledge.nobody == true ∧ S2.certainty.lana == true → Factual(lana, farmhouse))
+29. Q[Noboby, S1.uncertainty.two_men, S2.knowledge.well_known](S1.uncertainty.two_men == true ∧ S2.knowledge.well_known == true → Factual(two_men

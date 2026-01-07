@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 188)
+S1: Wealth of the country in oil, natural gas and metals, and generate revenue for the Government is creating a new class media craves American, Japanese and European cars.
+S2: European cars sell in Russia.
+
+Predicates:
+1. Country.wealth
+2. Country.resources
+3. Country.revenue
+4. Government.revenue
+5. Media.demand
+6. Media.class
+7. Car.brand
+8. Car.origin
+9. Car.type
+10. European_cars.sell
+11. Russian_market.demand
+12. Wealth.influence.demand
+13. Oil.resources
+14. Natural_gas.resources
+15. Metals.resources
+16. Foreign_cars.demand
+17. American_cars.demand
+18. Japanese_cars.demand
+19. Demand.for.foreign_cars
+20. Causal(Wealth, Demand)
+21. Causal(Revenue, Demand)
+22. Violate(Demand, Sell)
+23. Sell(European_cars, Russia)
+24. Sell(American_cars, Russia)
+25. Sell(Japanese_cars, Russia)
+26. Media.craves.foreign_cars
+27. Demand.increase
+28. Wealth.create.demand
+29. Government.investment
+30. Economic_growth.resources
+
+Rules:
+1. Q[Wealth, Country.wealth, Media.demand](Country.wealth == "high" → Causal(Wealth, Demand))
+2. Q[Wealth, Country.wealth, Foreign_cars.demand](Country.wealth == "high" → Causal(Wealth, Demand.for.foreign_cars))
+3. Q[Wealth, Country.wealth, Government.revenue](Country.wealth == "high" → Causal(Wealth, Government.revenue))
+4. Q[Wealth, Country.resources, Media.class](Country.resources == "oil" → Causal(Wealth, Media.class))
+5. Q[Wealth, Country.resources, Economic_growth.resources](Country.resources == "natural gas" → Causal(Wealth, Economic_growth.resources))
+6. Q[Wealth, Country.resources, Metals.resources](Country.resources == "metals" → Causal(Wealth, Metals.resources))
+7. Q[Media, Media.class, Demand.for.foreign_cars](Media.class == "new" → Causal(Media, Demand.for.foreign_cars))
+8. Q[Media, Media.demand, Foreign_cars.demand](Media.demand == "high" → Causal(Media, Foreign_cars.demand))
+9. Q[Media, Media.class, Car.brand](Media.class == "new" → Causal(Media, Car.brand))
+10. Q[Media, Media.demand, European_cars.sell](Media.demand == "high" → Causal(Media, Sell(European_cars, Russia)))
+11. Q[Government, Government.revenue, Wealth](Government.revenue == "increased" → Causal(Government, Wealth))
+12. Q[Government, Government.revenue, Economic_growth.resources](Government.revenue == "increased" → Causal(Government, Economic_growth.resources))
+13. Q[Car, Car.origin, European_cars.sell](Car.origin == "European" → Causal(Car, Sell(European_cars, Russia)))
+14. Q[Car, Car.type, Foreign_cars.demand](Car.type == "foreign" → Causal(Car, Demand.for.foreign_cars))
+15. Q[Car, Car.brand, American_cars.demand](Car.brand == "American" → Causal(Car, American_cars.demand))
+16. Q[Car, Car.brand, Japanese_cars.demand](Car.brand == "Japanese" → Causal(Car, Japanese_cars.demand))
+17. Q[Russian_market, Russian_market.demand, European_cars.sell](Russian_market.demand == "high" → Causal(Russian_market, Sell(European_cars, Russia)))
+18. Q[Demand, Demand.increase, Wealth](Demand.increase == "true" → Causal(Demand, Wealth))
+19. Q[Demand, Wealth.create.demand, Foreign_cars.demand](Wealth.create.demand == "true" → Causal(Demand, Foreign_cars.demand))
+20. Q[Demand, Wealth.create.demand, European_cars.sell](Wealth.create.demand == "true" → Causal(Demand, Sell(European_cars, Russia)))
+21. Q[Demand, Media.craves.foreign_cars, Foreign_cars.demand](Media.craves.foreign_cars == "true" → Causal(Demand, Foreign_cars.demand))
+22. Q[Demand, Media.class, European_cars.sell](Media.class == "new" → Causal(Demand, Sell(European_cars, Russia)))
+23. Q[Demand, Wealth, Government.revenue](Wealth == "high" → Causal(Demand, Government.revenue))
+24. Q[Demand, Russian_market.demand, European_cars.sell](Russian_market.demand == "high" → Causal(Demand, Sell(European_cars, Russia)))
+25. Q[Demand, Wealth, Media.demand](Wealth == "high" → Causal(Demand, Media.demand))
+26. Q[Demand, Wealth, Foreign_cars.demand](Wealth == "high" → Causal(Demand, Foreign_cars.demand))
+27. Q[Demand, Government.revenue, Economic_growth.resources](Government.revenue == "increased" → Causal(Demand, Economic_growth.resources))
+28. Q[Demand, Media.demand, Car.origin](Media.demand == "high" → Causal(Demand, Car.origin))
+29. Q[Demand, Media.class, Car.type](Media.class == "new" → Causal(Demand, Car.type))
+30. Q[Demand, Wealth, Economic_growth.resources](Wealth == "high" → Causal(Demand, Economic_growth.resources))

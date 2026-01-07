@@ -1,0 +1,134 @@
+Predicates:
+1. patient.age = "65"
+2. patient.condition = "diabetes"
+3. treatment.efficacy = "high"
+4. treatment.side_effects = "none"
+5. medication.dosage = "500mg"
+6. medication.frequency = "twice daily"
+7. study.sample_size = "200"
+8. study.duration = "6 months"
+9. researcher.name = "Dr. Smith"
+10. researcher.institution = "Health University"
+11. disease.name = "heart disease"
+12. disease.prevalence = "high"
+13. symptom.severity = "moderate"
+14. symptom.duration = "2 weeks"
+15. risk_factor.type = "smoking"
+16. risk_factor.level = "high"
+17. intervention.type = "lifestyle change"
+18. intervention.success_rate = "75%"
+19. outcome.measure = "mortality rate"
+20. outcome.time_frame = "1 year"
+21. "is associated with increased mortality in individuals with".evidence = "strong"
+22. "is associated with increased mortality in individuals with".context = "chronic illness"
+23. "is correlated with".evidence = "moderate"
+24. "is correlated with".context = "acute conditions"
+25. "is linked to".evidence = "weak"
+26. "is linked to".context = "genetic factors"
+27. M_NLI(patient.condition, treatment.efficacy)
+28. T("The treatment is effective", "The treatment is ineffective", tau)
+29. tau(patient.age, medication.dosage)
+30. violate(x0, y0)
+31. Factual(patient.condition, disease.name)
+32. Causal(treatment.efficacy, outcome.measure)
+33. Numeric(study.sample_size, medication.dosage)
+34. Temporal(study.duration, outcome.time_frame)
+35. Content(researcher.name, researcher.institution)
+36. Relation(patient.age, risk_factor.type)
+37. "is associated with increased mortality in individuals with".type = "contradiction"
+38. "is correlated with".type = "contradiction"
+39. "is linked to".type = "contradiction"
+40. patient.smoking_status = "non-smoker"
+41. patient.exercise_frequency = "daily"
+42. treatment.adherence = "poor"
+43. treatment.alternative = "surgery"
+44. study.location = "urban"
+45. study.design = "randomized control trial"
+46. outcome.success = "yes"
+47. outcome.failure = "no"
+48. symptom.onset = "sudden"
+49. symptom.improvement = "gradual"
+50. risk_factor.age_group = "over 50"
+51. risk_factor.gender = "male"
+52. intervention.cost = "high"
+53. intervention.duration = "3 months"
+54. "is associated with increased mortality in individuals with".impact = "significant"
+55. "is correlated with".impact = "marginal"
+56. "is linked to".impact = "negligible"
+57. M_NLI(outcome.measure, intervention.success_rate)
+58. T("The intervention reduces mortality", "The intervention increases mortality", tau)
+59. tau(symptom.severity, risk_factor.level)
+60. violate(x0, y0)
+61. Factual(treatment.side_effects, intervention.success_rate)
+62. Causal(symptom.duration, patient.exercise_frequency)
+63. Numeric(outcome.measure, study.sample_size)
+64. Temporal(researcher.institution, study.location)
+65. Content(disease.prevalence, risk_factor.type)
+66. Relation(medication.frequency, treatment.adherence)
+67. patient.gender = "female"
+68. patient.bmi = "30"
+69. treatment.type = "medication"
+70. treatment.success_rate = "50%"
+71. study.region = "rural"
+72. study.methodology = "observational"
+73. outcome.adverse_events = "none"
+74. outcome.improvement = "significant"
+75. symptom.type = "chronic"
+76. symptom.treatment = "medication"
+77. risk_factor.family_history = "yes"
+78. risk_factor.environment = "polluted"
+79. intervention.effectiveness = "variable"
+80. intervention.satisfaction = "high"
+81. "is associated with increased mortality in individuals with".finding = "consistent"
+82. "is correlated with".finding = "inconsistent"
+83. "is linked to".finding = "ambiguous"
+84. M_NLI(patient.bmi, treatment.type)
+85. T("The medication is effective", "The medication is harmful", tau)
+86. tau(outcome.success, intervention.effectiveness)
+87. violate(x0, y0)
+88. Factual(patient.exercise_frequency, risk_factor.age_group)
+89. Causal(treatment.success_rate, outcome.failure)
+90. Numeric(intervention.cost, outcome.improvement)
+91. Temporal(study.region, study.design)
+92. Content(researcher.name, patient.gender)
+93. Relation(symptom.type, treatment.type)
+94. patient.medical_history = "none"
+95. patient.allergies = "none"
+96. treatment.adverse_effects = "mild"
+97. treatment.alternative_success_rate = "60%"
+98. study.participants = "100"
+99. study.conclusion = "inconclusive"
+100. outcome.mortality_rate = "low"
+violate(x0, y0)
+
+Rules:
+1. Q[x0, y0](patient.age = "65" ∧ patient.condition = "diabetes" → violate(x0, y0))
+2. Q[x0, y0](treatment.efficacy = "high" ∧ treatment.side_effects = "none" → violate(x0, y0))
+3. Q[x0, y0](medication.dosage = "500mg" ∧ medication.frequency = "twice daily" → violate(x0, y0))
+4. Q[x0, y0](study.sample_size = "200" ∧ study.duration = "6 months" → violate(x0, y0))
+5. Q[x0, y0](researcher.name = "Dr. Smith" ∧ researcher.institution = "Health University" → violate(x0, y0))
+6. Q[x0, y0](disease.name = "heart disease" ∧ disease.prevalence = "high" → violate(x0, y0))
+7. Q[x0, y0](patient.age = "65" ∧ patient.condition = "diabetes" ∧ treatment.efficacy = "high" → violate(x0, y0))
+8. Q[x0, y0](treatment.side_effects = "none" ∧ medication.dosage = "500mg" ∧ medication.frequency = "twice daily" → violate(x0, y0))
+9. Q[x0, y0](study.sample_size = "200" ∧ study.duration = "6 months" ∧ researcher.name = "Dr. Smith" → violate(x0, y0))
+10. Q[x0, y0](disease.name = "heart disease" ∧ disease.prevalence = "high" ∧ symptom.severity = "moderate" → violate(x0, y0))
+11. Q[x0, y0](risk_factor.type = "smoking" ∧ risk_factor.level = "high" ∧ intervention.type = "lifestyle change" → violate(x0, y0))
+12. Q[x0, y0](intervention.success_rate = "75%" ∧ outcome.measure = "mortality rate" ∧ outcome.time_frame = "1 year" → violate(x0, y0))
+13. Q[x0, y0](patient.age = "65" ∧ patient.condition = "diabetes" ∧ treatment.efficacy = "high" ∧ treatment.side_effects = "none" → violate(x0, y0))
+14. Q[x0, y0](medication.dosage = "500mg" ∧ medication.frequency = "twice daily" ∧ study.sample_size = "200" → violate(x0, y0))
+15. Q[x0, y0](study.duration = "6 months" ∧ researcher.name = "Dr. Smith" ∧ researcher.institution = "Health University" → violate(x0, y0))
+16. Q[x0, y0](disease.name = "heart disease" ∧ disease.prevalence = "high" ∧ symptom.severity = "moderate" ∧ symptom.duration = "2 weeks" → violate(x0, y0))
+17. Q[x0, y0](risk_factor.type = "smoking" ∧ risk_factor.level = "high" ∧ intervention.type = "lifestyle change" ∧ intervention.success_rate = "75%" → violate(x0, y0))
+18. Q[x0, y0](outcome.measure = "mortality rate" ∧ outcome.time_frame = "1 year" ∧ "is associated with increased mortality in individuals with".evidence = "strong" → violate(x0, y0))
+19. Q[x0, y0](patient.age = "65" ∧ patient.condition = "diabetes" ∧ treatment.efficacy = "high" ∧ treatment.side_effects = "none" ∧ medication.dosage = "500mg" → violate(x0, y0))
+20. Q[x0, y0](medication.frequency = "twice daily" ∧ study.sample_size = "200" ∧ study.duration = "6 months" ∧ researcher.name = "Dr. Smith" → violate(x0, y0))
+21. Q[x0, y0](disease.name = "heart disease" ∧ disease.prevalence = "high" ∧ symptom.severity = "moderate" ∧ symptom.duration = "2 weeks" ∧ risk_factor.type = "smoking" → violate(x0, y0))
+22. Q[x0, y0](risk_factor.level = "high" ∧ intervention.type = "lifestyle change" ∧ intervention.success_rate = "75%" ∧ outcome.measure = "mortality rate" → violate(x0, y0))
+23. Q[x0, y0](outcome.time_frame = "1 year" ∧ "is associated with increased mortality in individuals with".evidence = "strong" ∧ "is correlated with".evidence = "moderate" → violate(x0, y0))
+24. Q[x0, y0](patient.age = "65" ∧ patient.condition = "diabetes" ∧ treatment.efficacy = "high" ∧ treatment.side_effects = "none" ∧ medication.dosage = "500mg" ∧ medication.frequency = "twice daily" → violate(x0, y0))
+25. Q[x0, y0](study.sample_size = "200" ∧ study.duration = "6 months" ∧ researcher.name = "Dr. Smith" ∧ researcher.institution = "Health University" ∧ disease.name = "heart disease" → violate(x0, y0))
+26. Q[x0, y0](disease.prevalence = "high" ∧ symptom.severity = "moderate" ∧ symptom.duration = "2 weeks" ∧ risk_factor.type = "smoking" ∧ risk_factor.level = "high" → violate(x0, y0))
+27. Q[x0, y0](intervention.type = "lifestyle change" ∧ intervention.success_rate = "75%" ∧ outcome.measure = "mortality rate" ∧ outcome.time_frame = "1 year" ∧ "is associated with increased mortality in individuals with".evidence = "strong" → violate(x0, y0))
+28. Q[x0, y0](patient.age = "65" ∧ patient.condition = "diabetes" ∧ treatment.efficacy = "high" ∧ treatment.side_effects = "none" ∧ medication.dosage = "500mg" ∧ medication.frequency = "twice daily" → violate(x0, y0))
+29. Q[x0, y0](study.sample_size = "200" ∧ study.duration = "6 months" ∧ researcher.name = "Dr. Smith" ∧ researcher.institution = "Health University" ∧ disease.name = "heart disease" ∧ disease.prevalence = "high" → violate(x0, y0))
+30. Q[x0, y0](risk_factor.type =

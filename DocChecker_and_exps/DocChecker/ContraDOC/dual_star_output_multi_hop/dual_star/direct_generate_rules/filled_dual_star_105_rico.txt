@@ -1,0 +1,52 @@
+Predicates:
+Alexander McNamara.label != "Politician"
+Alexander McNamara.label != Arthur Chester.label
+Alexander McNamara.label != Roy Glenister.label
+Alexander McNamara.label = "Politician"
+Alexander McNamara.name != "Alexander McNamara"
+Alexander McNamara.name != Arthur Chester.name
+Alexander McNamara.name != Roy Glenister.name
+Alexander McNamara.name = "Alexander McNamara"
+Arthur Chester.label != "Judge"
+Arthur Chester.label = "Judge"
+Arthur Chester.name != "Arthur Chester"
+Arthur Chester.name = "Arthur Chester"
+Helen Chester.label != "Woman"
+Helen Chester.label != Alexander McNamara.label
+Helen Chester.label != Arthur Chester.label
+Helen Chester.label != Roy Glenister.label
+Helen Chester.label = "Woman"
+Helen Chester.name != "Helen Chester"
+Helen Chester.name != Alexander McNamara.name
+Helen Chester.name != Arthur Chester.name
+Helen Chester.name != Roy Glenister.name
+Helen Chester.name = "Helen Chester"
+Helen Chester___Alexander McNamara.doc_id = "3488771843_7"
+Helen Chester___Alexander McNamara.relationship != Helen Chester___Arthur Chester.relationship
+Helen Chester___Alexander McNamara.relationship != Helen Chester___Roy Glenister.relationship
+Helen Chester___Alexander McNamara.relationship = "Helen Chester learns about the scheme being perpetrated by Alexander McNamara and others."
+Helen Chester___Arthur Chester.doc_id = "3488771843_7"
+Helen Chester___Arthur Chester.relationship = "Helen Chester is the niece of Judge Arthur Chester."
+Helen Chester___Roy Glenister.doc_id = "3488771843_7"
+Helen Chester___Roy Glenister.relationship != Helen Chester___Arthur Chester.relationship
+Helen Chester___Roy Glenister.relationship = "Helen Chester's affections are torn between Roy Glenister and Alexander McNamara."
+None_ML(Helen Chester.attrs, Alexander McNamara.attrs)
+None_ML(Helen Chester___Alexander McNamara.attrs, Helen Chester___Arthur Chester.attrs)
+Roy Glenister.label != "Prospector"
+Roy Glenister.label != Arthur Chester.label
+Roy Glenister.label = "Prospector"
+Roy Glenister.name != "Roy Glenister"
+Roy Glenister.name != Arthur Chester.name
+Roy Glenister.name = "Roy Glenister"
+
+Rules:
+Q[Helen Chester,Helen Chester] (Alexander McNamara.name != "Alexander McNamara" ∧ Helen Chester___Roy Glenister.relationship != Helen Chester___Arthur Chester.relationship ∧ None_ML(Helen Chester.attrs, Alexander McNamara.attrs) ∧ Roy Glenister.label != "Prospector" ∧ Helen Chester___Arthur Chester.relationship = "Helen Chester is the niece of Judge Arthur Chester." ∧ Helen Chester.label != Alexander McNamara.label → Roy Glenister.name != Arthur Chester.name)
+Q[Helen Chester,Helen Chester] (Helen Chester.name != Roy Glenister.name ∧ Helen Chester.name != "Helen Chester" → Alexander McNamara.name = "Alexander McNamara")
+Q[Helen Chester,Helen Chester] (Roy Glenister.name = "Roy Glenister" ∧ None_ML(Helen Chester.attrs, Alexander McNamara.attrs) ∧ Helen Chester___Alexander McNamara.relationship != Helen Chester___Arthur Chester.relationship ∧ Alexander McNamara.name = "Alexander McNamara" → Helen Chester___Roy Glenister.doc_id = "3488771843_7")
+Q[Helen Chester,Helen Chester] (Helen Chester___Roy Glenister.relationship = "Helen Chester's affections are torn between Roy Glenister and Alexander McNamara." ∧ Helen Chester.label != Roy Glenister.label ∧ Helen Chester___Alexander McNamara.relationship = "Helen Chester learns about the scheme being perpetrated by Alexander McNamara and others." → None_ML(Helen Chester.attrs, Alexander McNamara.attrs))
+Q[Helen Chester,Helen Chester] (Helen Chester___Alexander McNamara.doc_id = "3488771843_7" ∧ Helen Chester.label != "Woman" ∧ None_ML(Helen Chester.attrs, Alexander McNamara.attrs) ∧ Helen Chester___Roy Glenister.relationship != Helen Chester___Arthur Chester.relationship ∧ Helen Chester___Arthur Chester.doc_id = "3488771843_7" → Roy Glenister.name = "Roy Glenister")
+Q[Helen Chester,Helen Chester] (Helen Chester.label != "Woman" ∧ Helen Chester.label = "Woman" ∧ Helen Chester___Roy Glenister.relationship = "Helen Chester's affections are torn between Roy Glenister and Alexander McNamara." → Arthur Chester.label != "Judge")
+Q[Helen Chester,Helen Chester] (Helen Chester.label = "Woman" ∧ Roy Glenister.name != "Roy Glenister" ∧ Roy Glenister.name != Arthur Chester.name ∧ Helen Chester___Alexander McNamara.relationship != Helen Chester___Arthur Chester.relationship ∧ Helen Chester___Alexander McNamara.doc_id = "3488771843_7" ∧ Helen Chester___Arthur Chester.doc_id = "3488771843_7" → Roy Glenister.label = "Prospector")
+Q[Helen Chester,Helen Chester] (Alexander McNamara.label = "Politician" ∧ Helen Chester.name != Roy Glenister.name ∧ Helen Chester___Alexander McNamara.relationship != Helen Chester___Roy Glenister.relationship ∧ Roy Glenister.label = "Prospector" ∧ Alexander McNamara.label != Arthur Chester.label → Helen Chester___Roy Glenister.relationship != Helen Chester___Arthur Chester.relationship)
+Q[Helen Chester,Helen Chester] (Helen Chester.label != Alexander McNamara.label ∧ Helen Chester___Alexander McNamara.relationship != Helen Chester___Arthur Chester.relationship ∧ Arthur Chester.name != "Arthur Chester" ∧ Arthur Chester.name = "Arthur Chester" → Alexander McNamara.label != "Politician")
+Q[Helen Chester,Helen Chester] (Roy Glenister.label = "Prospector" ∧ Helen Chester___Alexander McNamara.relationship = "Helen Chester learns about the scheme being perpetrated by Alexander McNamara and others." → Helen Chester___Alexander McNamara.doc_id = "3488771843_7")

@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 1445)
+S1: The cost is $29 a year.
+S2: The cost used to be a little higher than $29 per year.
+
+Predicates:
+1. Cost.current_value = 29
+2. Cost.previous_value > 29
+3. Cost.yearly_cost = 29
+4. Cost.previous_yearly_cost > 29
+5. Cost.is_current = true
+6. Cost.was_higher_than_current = true
+7. Cost.change = previous_value - current_value
+8. Cost.previous_value = previous_yearly_cost
+9. Cost.current_year = 2023
+10. Cost.previous_year = 2022
+11. Cost.is_fixed = false
+12. Cost.is_variable = true
+13. Cost.increase = previous_value - current_value
+14. Cost.decrease = current_value - previous_value
+15. Cost.is_affordable = true
+16. Cost.is_expensive = false
+17. Cost.comparison = previous_value > current_value
+18. Cost.trend = decrease
+19. Cost.history = [previous_value, current_value]
+20. Cost.duration = 1 year
+21. Cost.is_annual = true
+22. Cost.is_below_threshold = current_value < 30
+23. Cost.is_above_threshold = previous_value > 30
+24. Cost.is_stable = false
+25. Cost.is_dynamic = true
+26. Cost.has_changed = true
+27. Cost.change_rate = (previous_value - current_value) / previous_value
+28. Cost.is_predictable = false
+29. Cost.is_reliable = true
+30. Cost.is_consistent = false
+
+Rules:
+1. Q[The, Cost.current_value, Cost.previous_value](Cost.current_value == 29 → Numeric(29, Cost.previous_value))
+2. Q[The, Cost.previous_value, Cost.current_value](Cost.previous_value > 29 → Numeric(Cost.previous_value, 29))
+3. Q[The, Cost.yearly_cost, Cost.previous_yearly_cost](Cost.yearly_cost == 29 → Numeric(29, Cost.previous_yearly_cost))
+4. Q[The, Cost.previous_yearly_cost, Cost.yearly_cost](Cost.previous_yearly_cost > 29 → Numeric(Cost.previous_yearly_cost, 29))
+5. Q[The, Cost.is_current, Cost.was_higher_than_current](Cost.is_current == true → Numeric(true, Cost.was_higher_than_current))
+6. Q[The, Cost.change, Cost.previous_value](Cost.change == Cost.previous_value - Cost.current_value → Numeric(Cost.previous_value, Cost.current_value))
+7. Q[The, Cost.previous_value, Cost.current_value](Cost.previous_value = Cost.previous_yearly_cost → Numeric(Cost.previous_value, Cost.current_value))
+8. Q[The, Cost.current_year, Cost.previous_year](Cost.current_year == 2023 → Numeric(2023, Cost.previous_year))
+9. Q[The, Cost.is_fixed, Cost.is_variable](Cost.is_fixed == false → Numeric(false, Cost.is_variable))
+10. Q[The, Cost.is_expensive, Cost.is_affordable](Cost.is_expensive == false → Numeric(false, Cost.is_affordable))
+11. Q[The, Cost.comparison, Cost.trend](Cost.comparison == previous_value > current_value → Numeric(Cost.previous_value, Cost.current_value))
+12. Q[The, Cost.history, Cost.duration](Cost.history = [Cost.previous_value, Cost.current_value] → Numeric(Cost.previous_value, Cost.current_value))
+13. Q[The, Cost.is_annual, Cost.is_dynamic](Cost.is_annual == true → Numeric(true, Cost.is_dynamic))
+14. Q[The, Cost.has_changed, Cost.change_rate](Cost.has_changed == true → Numeric(true, Cost.change_rate))
+15. Q[The, Cost.is_predictable, Cost.is_reliable](Cost.is_predictable == false → Numeric(false, Cost.is_reliable))
+16. Q[The, Cost.is_stable, Cost.is_dynamic](Cost.is_stable == false → Numeric(false, Cost.is_dynamic))
+17. Q[The, Cost.increase, Cost.decrease](Cost.increase == previous_value - current_value → Numeric(Cost.previous_value, Cost.current_value))
+18. Q[The, Cost.is_below_threshold, Cost.is_above_threshold](Cost.is_below_threshold == current_value < 30 → Numeric(true, Cost.is_above_threshold))
+19. Q[The, Cost.is_dynamic, Cost.is_consistent](Cost.is_dynamic == true → Numeric(true, Cost.is_consistent))
+20. Q[The, Cost.change_rate, Cost.is_fixed](Cost.change_rate = (previous_value - current_value) / previous_value → Numeric(Cost.change_rate, Cost.is_fixed))
+21. Q[The, Cost.previous_value, Cost.is_current](Cost.previous_value > 29 → Numeric(Cost.previous_value, Cost.is_current))
+22. Q[The, Cost.current_value, Cost.is_affordable](Cost.current_value == 29 → Numeric(29, Cost.is_affordable))
+23. Q[The, Cost.previous_yearly_cost, Cost.is_expensive](Cost.previous_yearly_cost > 29 → Numeric(Cost.previous_yearly_cost, Cost.is_expensive))
+24. Q[The, Cost.is_dynamic, Cost.is_stable](Cost.is_dynamic == true → Numeric(true, Cost.is_stable))
+25. Q[The, Cost.change, Cost.is_fixed](Cost.change = previous_value - current_value → Numeric(Cost.change, Cost.is_fixed))
+26. Q[The, Cost.is_reliable, Cost.is_predictable](Cost.is_reliable == true → Numeric(true, Cost.is_predictable))
+27. Q[The, Cost.is_affordable, Cost.is_expensive](Cost.is_affordable == true → Numeric(true, Cost.is_expensive))
+28. Q[The, Cost.previous_value, Cost.change](Cost.previous_value > 29 → Numeric(Cost.previous_value, Cost.change))
+29. Q[The, Cost.current_value, Cost.previous_value](Cost.current_value == 29 → Numeric(29, Cost.previous_value))
+30. Q[The, Cost.is_dynamic, Cost.has_changed](Cost.is_dynamic == true → Numeric(true, Cost.has_changed))

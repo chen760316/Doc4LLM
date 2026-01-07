@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 1356)
+S1: Gays may have higher incomes and more education on average than straights.
+S2: HIV-negative may men live longer than average straight men.
+
+Predicates:
+1. Gays.income
+2. Gays.education
+3. Straights.income
+4. Straights.education
+5. HIV_negative_men.life_expectancy
+6. Straight_men.life_expectancy
+7. Gays.correlation_with_income
+8. Gays.correlation_with_education
+9. HIV_negative_men.correlation_with_life_expectancy
+10. Straight_men.correlation_with_life_expectancy
+11. Gays.average_income
+12. Gays.average_education
+13. Straights.average_income
+14. Straights.average_education
+15. HIV_negative_men.average_life_expectancy
+16. Straight_men.average_life_expectancy
+17. Gays.higher_income
+18. Gays.higher_education
+19. HIV_negative_men.longer_life_expectancy
+20. Straight_men.shorter_life_expectancy
+21. Gays.socioeconomic_status
+22. Straights.socioeconomic_status
+23. HIV_negative_men.socioeconomic_factors
+24. Straight_men.socioeconomic_factors
+25. Gays.positive_correlation
+26. Straights.negative_correlation
+27. HIV_negative_men.positive_correlation
+28. Straight_men.negative_correlation
+29. Gays.lifestyle_factors
+30. Straight_men.lifestyle_factors
+
+Rules:
+1. Q[Gays, Gays.income, Straights.income](Gays.higher_income == true → Relation(Gays, Straights))
+2. Q[Gays, Gays.education, Straights.education](Gays.higher_education == true → Relation(Gays, Straights))
+3. Q[Gays, Gays.average_income, Straights.average_income](Gays.average_income > Straights.average_income → Relation(Gays, Straights))
+4. Q[Gays, Gays.average_education, Straights.average_education](Gays.average_education > Straights.average_education → Relation(Gays, Straights))
+5. Q[Gays, Gays.correlation_with_income, Straights.negative_correlation](Gays.positive_correlation == true → Relation(Gays, Straights))
+6. Q[Gays, Gays.correlation_with_education, Straights.negative_correlation](Gays.positive_correlation == true → Relation(Gays, Straights))
+7. Q[HIV_negative_men, HIV_negative_men.life_expectancy, Straight_men.life_expectancy](HIV_negative_men.longer_life_expectancy == true → Relation(HIV_negative_men, Straight_men))
+8. Q[HIV_negative_men, HIV_negative_men.average_life_expectancy, Straight_men.average_life_expectancy](HIV_negative_men.average_life_expectancy > Straight_men.average_life_expectancy → Relation(HIV_negative_men, Straight_men))
+9. Q[HIV_negative_men, HIV_negative_men.correlation_with_life_expectancy, Straight_men.negative_correlation](HIV_negative_men.positive_correlation == true → Relation(HIV_negative_men, Straight_men))
+10. Q[Gays, Gays.socioeconomic_status, Straights.socioeconomic_status](Gays.socioeconomic_status > Straights.socioeconomic_status → Relation(Gays, Straights))
+11. Q[Gays, Gays.higher_income, Gays.education](Gays.higher_income == true → Relation(Gays, Gays.education))
+12. Q[Gays, Gays.higher_education, Gays.income](Gays.higher_education == true → Relation(Gays, Gays.income))
+13. Q[HIV_negative_men, HIV_negative_men.socioeconomic_factors, Straight_men.socioeconomic_factors](HIV_negative_men.socioeconomic_factors > Straight_men.socioeconomic_factors → Relation(HIV_negative_men, Straight_men))
+14. Q[Gays, Gays.lifestyle_factors, Straights.lifestyle_factors](Gays.lifestyle_factors > Straights.lifestyle_factors → Relation(Gays, Straights))
+15. Q[Gays, Gays.correlation_with_income, Gays.average_income](Gays.correlation_with_income == true → Relation(Gays, Gays.average_income))
+16. Q[Gays, Gays.correlation_with_education, Gays.average_education](Gays.correlation_with_education == true → Relation(Gays, Gays.average_education))
+17. Q[HIV_negative_men, HIV_negative_men.correlation_with_life_expectancy, HIV_negative_men.average_life_expectancy](HIV_negative_men.correlation_with_life_expectancy == true → Relation(HIV_negative_men, HIV_negative_men.average_life_expectancy))
+18. Q[Straights, Straights.income, Gays.income](Straights.income < Gays.income → Relation(Straights, Gays))
+19. Q[Straights, Straights.education, Gays.education](Straights.education < Gays.education → Relation(Straights, Gays))
+20. Q[Straights, Straight_men.life_expectancy, HIV_negative_men.life_expectancy](Straight_men.shorter_life_expectancy == true → Relation(Straights, HIV_negative_men))
+21. Q[Straights, Straight_men.average_life_expectancy, HIV_negative_men.average_life_expectancy](Straight_men.average_life_expectancy < HIV_negative_men.average_life_expectancy → Relation(Straights, HIV_negative_men))
+22. Q[Straights, Straight_men.correlation_with_life_expectancy, HIV_negative_men.correlation_with_life_expectancy](Straight_men.negative_correlation == true → Relation(Straights, HIV_negative_men))
+23. Q[Gays, Gays.higher_income, Gays.higher_education](Gays.higher_income == true → Relation(Gays, Gays.higher_education))
+24. Q[Gays, Gays.socioeconomic_status, Gays.higher_income](Gays.socioeconomic_status > Gays.higher_income → Relation(Gays, Gays.higher_income))
+25. Q[HIV_negative_men, HIV_negative_men.socioeconomic_factors, Gays.socioeconomic_status](HIV_negative_men.socioeconomic_factors > Gays.socioeconomic_status → Relation(HIV_negative_men, Gays))
+26. Q[Straights, Straights.socioeconomic_status, Gays.socioeconomic_status](Straights.socioeconomic_status < Gays.socioeconomic_status → Relation(Straights, Gays))
+27. Q[Gays, Gays.positive_correlation, Gays.higher_income](Gays.positive_correlation == true → Relation(Gays, Gays.higher_income))
+28. Q[HIV_negative_men, HIV_negative_men.positive_correlation, HIV_negative_men.life_expectancy](HIV_negative_men.positive_correlation == true → Relation(HIV_negative_men, HIV_negative_men.life_expectancy))
+29. Q[Straights, Straight_men.negative_correlation, Straight_men.life_expectancy](Straight_men.negative_correlation == true → Relation(Straights, Straight_men.life_expectancy))
+30. Q[Gays, Gays.positive_correlation, Gays.education](Gays.positive_correlation == true → Relation(Gays, Gays.education))

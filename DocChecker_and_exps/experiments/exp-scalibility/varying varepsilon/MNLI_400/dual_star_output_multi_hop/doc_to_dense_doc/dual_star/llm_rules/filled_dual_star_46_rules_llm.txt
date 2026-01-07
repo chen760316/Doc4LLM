@@ -1,0 +1,134 @@
+Predicates:
+1. voter.preference = "consistently votes for"
+2. voter.preference = "will never vote for"
+3. voter.preference = "will probably vote for"
+4. candidate.name = "John Doe"
+5. candidate.policy = "supports renewable energy"
+6. candidate.policy = "opposes renewable energy"
+7. candidate.policy = "neutral on renewable energy"
+8. election.year = 2024
+9. election.type = "presidential"
+10. election.type = "local"
+11. voter.age = 30
+12. voter.age = 45
+13. voter.location = "New York"
+14. voter.location = "California"
+15. voter.affiliation = "Democrat"
+16. voter.affiliation = "Republican"
+17. voter.affiliation = "Independent"
+18. candidate.popularity = 75
+19. candidate.popularity = 50
+20. candidate.popularity = 25
+21. candidate.experience = "10 years"
+22. candidate.experience = "5 years"
+23. candidate.experience = "20 years"
+24. voter.motivation = "environmental concerns"
+25. voter.motivation = "economic growth"
+26. voter.motivation = "social justice"
+27. election.outcome = "won"
+28. election.outcome = "lost"
+29. election.outcome = "tied"
+30. voter.vote = "for John Doe"
+31. voter.vote = "against John Doe"
+32. voter.vote = "undecided"
+33. candidate.debate.performance = "excellent"
+34. candidate.debate.performance = "poor"
+35. candidate.debate.performance = "average"
+36. voter.satisfaction = "high"
+37. voter.satisfaction = "low"
+38. voter.satisfaction = "neutral"
+39. candidate.funding = 100000
+40. candidate.funding = 50000
+41. candidate.funding = 200000
+42. candidate.statement = "will support healthcare reform"
+43. candidate.statement = "will not support healthcare reform"
+44. candidate.statement = "is undecided on healthcare reform"
+45. voter.intent = "to vote"
+46. voter.intent = "not to vote"
+47. voter.intent = "to abstain"
+48. candidate.endorsement = "received endorsement from environmental groups"
+49. candidate.endorsement = "received no endorsements"
+50. candidate.endorsement = "received endorsement from business groups"
+51. M_NLI(voter.preference, candidate.policy)
+52. T(voter.intent, voter.vote, tau)
+53. tau(voter.age, candidate.popularity)
+54. violate(voter.preference, candidate.policy)
+55. Factual(voter.preference, candidate.policy)
+56. Content(voter.motivation, candidate.statement)
+57. Causal(voter.intent, election.outcome)
+58. Negation(voter.vote, candidate.statement)
+59. Relation(voter.affiliation, candidate.policy)
+60. Numeric(candidate.funding, election.year)
+61. Temporal(election.year, candidate.experience)
+62. M_NLI(candidate.statement, candidate.policy)
+63. T(voter.satisfaction, candidate.debate.performance, tau)
+64. tau(voter.location, candidate.popularity)
+65. violate(voter.age, candidate.experience)
+66. Factual(voter.location, candidate.endorsement)
+67. Content(voter.motivation, candidate.funding)
+68. Causal(voter.preference, election.outcome)
+69. Negation(voter.intent, voter.vote)
+70. Relation(candidate.name, candidate.policy)
+71. Numeric(voter.age, candidate.popularity)
+72. Temporal(election.type, election.year)
+73. M_NLI(voter.satisfaction, candidate.debate.performance)
+74. T(voter.affiliation, candidate.experience, tau)
+75. tau(voter.intent, candidate.statement)
+76. violate(voter.vote, candidate.policy)
+77. Factual(candidate.name, candidate.policy)
+78. Content(voter.preference, voter.motivation)
+79. Causal(candidate.funding, election.outcome)
+80. Negation(voter.satisfaction, candidate.statement)
+81. Relation(voter.location, election.type)
+82. Numeric(candidate.popularity, candidate.funding)
+83. Temporal(voter.age, election.year)
+84. M_NLI(candidate.statement, candidate.endorsement)
+85. T(voter.intent, voter.preference, tau)
+86. tau(voter.vote, candidate.policy)
+87. violate(voter.motivation, candidate.statement)
+88. Factual(voter.affiliation, candidate.name)
+89. Content(voter.satisfaction, candidate.debate.performance)
+90. Causal(voter.preference, candidate.popularity)
+91. Negation(voter.location, candidate.experience)
+92. Relation(candidate.name, voter.vote)
+93. Numeric(candidate.funding, voter.age)
+94. Temporal(election.year, candidate.popularity)
+95. M_NLI(voter.intent, candidate.statement)
+96. T(voter.preference, candidate.policy, tau)
+97. tau(voter.satisfaction, candidate.funding)
+98. violate(voter.age, candidate.popularity)
+99. Factual(voter.vote, election.outcome)
+100. Content(voter.motivation, voter.intent)
+violate(x0, y0)
+
+Rules:
+1. Q[x0, y0](voter.preference = "consistently votes for" ∧ candidate.policy = "opposes renewable energy" → violate(x0, y0))
+2. Q[x0, y0](voter.preference = "will never vote for" ∧ candidate.name = "John Doe" → violate(x0, y0))
+3. Q[x0, y0](voter.age = 30 ∧ voter.location = "California" → violate(x0, y0))
+4. Q[x0, y0](voter.affiliation = "Democrat" ∧ candidate.policy = "opposes renewable energy" → violate(x0, y0))
+5. Q[x0, y0](voter.intent = "not to vote" ∧ voter.vote = "for John Doe" → violate(x0, y0))
+6. Q[x0, y0](voter.motivation = "economic growth" ∧ candidate.policy = "supports renewable energy" → violate(x0, y0))
+7. Q[x0, y0](voter.preference = "will probably vote for" ∧ candidate.popularity = 25 ∧ election.year = 2024 → violate(x0, y0))
+8. Q[x0, y0](voter.age = 45 ∧ candidate.experience = "5 years" ∧ candidate.policy = "neutral on renewable energy" → violate(x0, y0))
+9. Q[x0, y0](voter.location = "New York" ∧ candidate.statement = "will not support healthcare reform" ∧ voter.affiliation = "Independent" → violate(x0, y0))
+10. Q[x0, y0](voter.satisfaction = "low" ∧ candidate.debate.performance = "excellent" ∧ candidate.name = "John Doe" → violate(x0, y0))
+11. Q[x0, y0](voter.intent = "to abstain" ∧ voter.vote = "against John Doe" ∧ election.type = "presidential" → violate(x0, y0))
+12. Q[x0, y0](candidate.popularity = 50 ∧ candidate.funding = 200000 ∧ voter.preference = "will never vote for" → violate(x0, y0))
+13. Q[x0, y0](voter.motivation = "social justice" ∧ candidate.policy = "opposes renewable energy" ∧ election.outcome = "lost" → violate(x0, y0))
+14. Q[x0, y0](voter.age = 30 ∧ candidate.endorsement = "received no endorsements" ∧ voter.affiliation = "Republican" → violate(x0, y0))
+15. Q[x0, y0](voter.preference = "consistently votes for" ∧ candidate.policy = "neutral on renewable energy" ∧ candidate.popularity = 75 → violate(x0, y0))
+16. Q[x0, y0](voter.location = "California" ∧ candidate.statement = "is undecided on healthcare reform" ∧ election.year = 2024 → violate(x0, y0))
+17. Q[x0, y0](voter.vote = "undecided" ∧ candidate.policy = "supports renewable energy" ∧ voter.motivation = "environmental concerns" → violate(x0, y0))
+18. Q[x0, y0](voter.affiliation = "Democrat" ∧ candidate.popularity = 25 ∧ election.type = "local" → violate(x0, y0))
+19. Q[x0, y0](voter.satisfaction = "high" ∧ candidate.debate.performance = "poor" ∧ candidate.name = "John Doe" → violate(x0, y0))
+20. Q[x0, y0](voter.intent = "to vote" ∧ voter.vote = "against John Doe" ∧ candidate.policy = "supports renewable energy" → violate(x0, y0))
+21. Q[x0, y0](voter.preference = "will probably vote for" ∧ candidate.policy = "opposes renewable energy" ∧ candidate.experience = "10 years" → violate(x0, y0))
+22. Q[x0, y0](voter.age = 45 ∧ candidate.funding = 50000 ∧ election.outcome = "won" → violate(x0, y0))
+23. Q[x0, y0](voter.location = "New York" ∧ candidate.statement = "will support healthcare reform" ∧ voter.affiliation = "Independent" → violate(x0, y0))
+24. Q[x0, y0](voter.motivation = "economic growth" ∧ candidate.policy = "neutral on renewable energy" ∧ candidate.popularity = 50 → violate(x0, y0))
+25. Q[x0, y0](voter.intent = "not to vote" ∧ voter.vote = "for John Doe" ∧ election.year = 2024 → violate(x0, y0))
+26. Q[x0, y0](voter.preference = "will never vote for" ∧ candidate.policy = "supports renewable energy" ∧ candidate.popularity = 75 → violate(x0, y0))
+27. Q[x0, y0](voter.age = 30 ∧ candidate.experience = "20 years" ∧ election.type = "local" → violate(x0, y0))
+28. Q[x0, y0](voter.location = "California" ∧ candidate.endorsement = "received endorsement from business groups" ∧ voter.affiliation = "Democrat" → violate(x0, y0))
+29. Q[x0, y0](voter.satisfaction = "low" ∧ candidate.debate.performance = "average" ∧ candidate.name = "John Doe" → violate(x0, y0))
+30. Q[x0, y0](voter.intent = "to abstain" ∧ voter.vote = "for John Doe" ∧ candidate.policy = "opposes renewable energy" → violate(x0, y0))

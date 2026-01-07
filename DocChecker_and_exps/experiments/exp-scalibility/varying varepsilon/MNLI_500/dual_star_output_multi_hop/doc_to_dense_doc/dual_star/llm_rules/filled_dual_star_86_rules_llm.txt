@@ -1,0 +1,134 @@
+Predicates:
+1. reply.met_expectation = "true"
+2. reply.not_anticipated = "true"
+3. reply.context = "conversation"
+4. reply.sender = "user"
+5. reply.receiver = "assistant"
+6. expectation.level = "high"
+7. expectation.type = "response"
+8. expectation.timing = "immediate"
+9. expectation.context = "feedback"
+10. anticipation.level = "low"
+11. anticipation.type = "response"
+12. anticipation.timing = "delayed"
+13. anticipation.context = "feedback"
+14. "contradiction".type = "negation"
+15. "contradiction".context = "communication"
+16. "contradiction".severity = "high"
+17. "contradiction".source = "user"
+18. "contradiction".target = "assistant"
+19. M_NLI(reply.met_expectation, reply.not_anticipated)
+20. T("The reply met the expectation.", "The reply was not anticipated.", tau)
+21. tau(reply.met_expectation, reply.not_anticipated)
+22. violate(reply.met_expectation, reply.not_anticipated)
+23. Factual(reply.met_expectation, reply.not_anticipated)
+24. Negation(reply.met_expectation, reply.not_anticipated)
+25. Content(reply.met_expectation, reply.not_anticipated)
+26. Causal(reply.met_expectation, reply.not_anticipated)
+27. Relation(reply.met_expectation, reply.not_anticipated)
+28. Numeric(reply.met_expectation, reply.not_anticipated)
+29. Temporal(reply.met_expectation, reply.not_anticipated)
+30. expectation.quality = "positive"
+31. anticipation.quality = "negative"
+32. expectation.response_time = "quick"
+33. anticipation.response_time = "slow"
+34. expectation.clarity = "clear"
+35. anticipation.clarity = "unclear"
+36. expectation.satisfaction = "high"
+37. anticipation.satisfaction = "low"
+38. "contradiction".timestamp = "2023-10-01"
+39. "contradiction".location = "chat"
+40. "contradiction".resolution = "none"
+41. "contradiction".impact = "significant"
+42. M_NLI(expectation.level, anticipation.level)
+43. T("The reply was expected.", "The reply was not anticipated.", tau)
+44. tau(expectation.level, anticipation.level)
+45. violate(expectation.level, anticipation.level)
+46. Factual(expectation.level, anticipation.level)
+47. Negation(expectation.level, anticipation.level)
+48. Content(expectation.level, anticipation.level)
+49. Causal(expectation.level, anticipation.level)
+50. Relation(expectation.level, anticipation.level)
+51. Numeric(expectation.level, anticipation.level)
+52. Temporal(expectation.level, anticipation.level)
+53. reply.timestamp = "2023-10-01 10:00"
+54. reply.duration = "5 minutes"
+55. expectation.feedback = "positive"
+56. anticipation.feedback = "negative"
+57. expectation.response_format = "text"
+58. anticipation.response_format = "audio"
+59. expectation.relevance = "high"
+60. anticipation.relevance = "low"
+61. "contradiction".resolution_status = "unresolved"
+62. "contradiction".user_feedback = "confusing"
+63. "contradiction".assistant_feedback = "unclear"
+64. M_NLI(reply.sender, reply.receiver)
+65. T("User expected a reply.", "User did not expect a reply.", tau)
+66. tau(reply.sender, reply.receiver)
+67. violate(reply.sender, reply.receiver)
+68. Factual(reply.sender, reply.receiver)
+69. Negation(reply.sender, reply.receiver)
+70. Content(reply.sender, reply.receiver)
+71. Causal(reply.sender, reply.receiver)
+72. Relation(reply.sender, reply.receiver)
+73. Numeric(reply.sender, reply.receiver)
+74. Temporal(reply.sender, reply.receiver)
+75. expectation.urgency = "high"
+76. anticipation.urgency = "low"
+77. expectation.contextual_relevance = "high"
+78. anticipation.contextual_relevance = "low"
+79. expectation.user_experience = "satisfactory"
+80. anticipation.user_experience = "dissatisfactory"
+81. "contradiction".user_intent = "clarification"
+82. "contradiction".assistant_intent = "confirmation"
+83. M_NLI(expectation.type, anticipation.type)
+84. T("The reply was satisfactory.", "The reply was unsatisfactory.", tau)
+85. tau(expectation.type, anticipation.type)
+86. violate(expectation.type, anticipation.type)
+87. Factual(expectation.type, anticipation.type)
+88. Negation(expectation.type, anticipation.type)
+89. Content(expectation.type, anticipation.type)
+90. Causal(expectation.type, anticipation.type)
+91. Relation(expectation.type, anticipation.type)
+92. Numeric(expectation.type, anticipation.type)
+93. Temporal(expectation.type, anticipation.type)
+94. expectation.clarity_level = "high"
+95. anticipation.clarity_level = "low"
+96. expectation.user_engagement = "active"
+97. anticipation.user_engagement = "passive"
+98. "contradiction".resolution_attempt = "failed"
+99. "contradiction".contextual_clarity = "ambiguous"
+100. "contradiction".final_outcome = "pending"
+violate(x0, y0)
+
+Rules:
+1. Q[x0, y0](reply.met_expectation = "true" ∧ reply.not_anticipated = "true" → violate(x0, y0))
+2. Q[x0, y0](reply.sender = "user" ∧ reply.receiver = "assistant" → violate(x0, y0))
+3. Q[x0, y0](expectation.level = "high" ∧ anticipation.level = "low" → violate(x0, y0))
+4. Q[x0, y0](expectation.type = "response" ∧ anticipation.type = "response" → violate(x0, y0))
+5. Q[x0, y0](expectation.timing = "immediate" ∧ anticipation.timing = "delayed" → violate(x0, y0))
+6. Q[x0, y0](reply.context = "conversation" ∧ reply.sender = "user" ∧ reply.receiver = "assistant" → violate(x0, y0))
+7. Q[x0, y0](expectation.quality = "positive" ∧ anticipation.quality = "negative" ∧ expectation.satisfaction = "high" → violate(x0, y0))
+8. Q[x0, y0](expectation.response_time = "quick" ∧ anticipation.response_time = "slow" ∧ expectation.clarity = "clear" → violate(x0, y0))
+9. Q[x0, y0](expectation.relevance = "high" ∧ anticipation.relevance = "low" ∧ expectation.user_experience = "satisfactory" → violate(x0, y0))
+10. Q[x0, y0](reply.met_expectation = "true" ∧ anticipation.feedback = "negative" ∧ expectation.feedback = "positive" → violate(x0, y0))
+11. Q[x0, y0](reply.not_anticipated = "true" ∧ anticipation.timing = "delayed" ∧ expectation.timing = "immediate" → violate(x0, y0))
+12. Q[x0, y0](expectation.level = "high" ∧ anticipation.level = "low" ∧ expectation.urgency = "high" → violate(x0, y0))
+13. Q[x0, y0](reply.sender = "user" ∧ reply.receiver = "assistant" ∧ expectation.contextual_relevance = "high" → violate(x0, y0))
+14. Q[x0, y0](expectation.type = "response" ∧ anticipation.type = "response" ∧ expectation.clarity_level = "high" → violate(x0, y0))
+15. Q[x0, y0](expectation.satisfaction = "high" ∧ anticipation.satisfaction = "low" ∧ expectation.user_engagement = "active" → violate(x0, y0))
+16. Q[x0, y0](reply.context = "conversation" ∧ reply.sender = "user" ∧ reply.receiver = "assistant" ∧ expectation.feedback = "positive" → violate(x0, y0))
+17. Q[x0, y0](expectation.response_format = "text" ∧ anticipation.response_format = "audio" ∧ expectation.relevance = "high" → violate(x0, y0))
+18. Q[x0, y0](expectation.quality = "positive" ∧ anticipation.quality = "negative" ∧ anticipation.user_experience = "dissatisfactory" → violate(x0, y0))
+19. Q[x0, y0](reply.met_expectation = "true" ∧ reply.not_anticipated = "true" ∧ anticipation.feedback = "negative" → violate(x0, y0))
+20. Q[x0, y0](expectation.level = "high" ∧ anticipation.level = "low" ∧ expectation.timing = "immediate" ∧ anticipation.timing = "delayed" → violate(x0, y0))
+21. Q[x0, y0](reply.sender = "user" ∧ reply.receiver = "assistant" ∧ expectation.urgency = "high" ∧ anticipation.urgency = "low" → violate(x0, y0))
+22. Q[x0, y0](expectation.type = "response" ∧ anticipation.type = "response" ∧ expectation.clarity = "clear" ∧ anticipation.clarity = "unclear" → violate(x0, y0))
+23. Q[x0, y0](expectation.satisfaction = "high" ∧ anticipation.satisfaction = "low" ∧ expectation.user_engagement = "active" ∧ anticipation.user_engagement = "passive" → violate(x0, y0))
+24. Q[x0, y0](reply.context = "conversation" ∧ reply.sender = "user" ∧ reply.receiver = "assistant" ∧ expectation.feedback = "positive" ∧ anticipation.feedback = "negative" → violate(x0, y0))
+25. Q[x0, y0](expectation.response_time = "quick" ∧ anticipation.response_time = "slow" ∧ expectation.clarity = "clear" ∧ anticipation.clarity = "unclear" → violate(x0, y0))
+26. Q[x0, y0](expectation.relevance = "high" ∧ anticipation.relevance = "low" ∧ expectation.user_experience = "satisfactory" ∧ anticipation.user_experience = "dissatisfactory" → violate(x0, y0))
+27. Q[x0, y0](reply.met_expectation = "true" ∧ anticipation.feedback = "negative" ∧ expectation.feedback = "positive" ∧ expectation.level = "high" → violate(x0, y0))
+28. Q[x0, y0](reply.not_anticipated = "true" ∧ anticipation.timing = "delayed" ∧ expectation.timing = "immediate" ∧ expectation.quality = "positive" → violate(x0, y0))
+29. Q[x0, y0](expectation.level = "high" ∧ anticipation.level = "low" ∧ expectation.urgency = "high" ∧ anticipation.urgency = "low" ∧ expectation.contextual_relevance = "high" → violate(x0, y0))
+30. Q[x0, y0](reply.sender = "user" ∧ reply.receiver = "assistant" ∧ expectation.contextual_relevance = "high" ∧ anticipation.contextual_relevance = "low" ∧ expectation.user_experience = "satisfactory" → violate(x0, y0))

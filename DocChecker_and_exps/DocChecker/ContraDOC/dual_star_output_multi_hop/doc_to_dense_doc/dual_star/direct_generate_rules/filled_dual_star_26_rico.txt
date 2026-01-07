@@ -1,0 +1,131 @@
+Predicates:
+Charleston.label != "FBI Agent"
+Charleston.label != Emmett.label
+Charleston.label != FBI agents and task force officers.label
+Charleston.label != area hospital.label
+Charleston.label != city harbor.label
+Charleston.label != unknown.label
+Charleston.label = "FBI Agent"
+Charleston.name != "Charleston"
+Charleston.name != Emmett.name
+Charleston.name != FBI agents and task force officers.name
+Charleston.name != area hospital.name
+Charleston.name != city harbor.name
+Charleston.name != unknown.name
+Charleston.name = "Charleston"
+Charleston.status != "wounded"
+Charleston.status != Emmett.status
+Charleston.status != area hospital.status
+Charleston.status != unknown.status
+Charleston.status = "wounded"
+Charleston___Emmett.contradiction_type != Charleston___FBI agents and task force officers.contradiction_type
+Charleston___Emmett.contradiction_type != Charleston___city harbor.contradiction_type
+Charleston___Emmett.contradiction_type != Charleston___unknown.contradiction_type
+Charleston___Emmett.contradiction_type = "Numeric"
+Charleston___Emmett.investigation_start = "ongoing"
+Charleston___Emmett.investigation_type = "commercial robberies"
+Charleston___Emmett.relationship != Charleston___FBI agents and task force officers.relationship
+Charleston___Emmett.relationship != Charleston___city harbor.relationship
+Charleston___Emmett.relationship != Charleston___unknown.relationship
+Charleston___Emmett.relationship = "Emmett reports that the agents, including Charleston, are fine after treatment."
+Charleston___Emmett.source_id != Charleston___FBI agents and task force officers.source_id
+Charleston___Emmett.source_id != Charleston___city harbor.source_id
+Charleston___Emmett.source_id = "3489738225_1"
+Charleston___FBI agents and task force officers.contradiction_type = "Causal"
+Charleston___FBI agents and task force officers.relationship != Charleston___unknown.relationship
+Charleston___FBI agents and task force officers.relationship = "Charleston was shot and wounded by FBI agents and task force officers"
+Charleston___FBI agents and task force officers.source = "Forsyth County Sheriff's Deputy Robin Regan"
+Charleston___FBI agents and task force officers.source_id != Charleston___unknown.source_id
+Charleston___FBI agents and task force officers.source_id = "3489738225_4"
+Charleston___area hospital.contradiction_type != Charleston___Emmett.contradiction_type
+Charleston___area hospital.contradiction_type = "Causal"
+Charleston___area hospital.injury_severity = "not life threatening"
+Charleston___area hospital.relationship != Charleston___Emmett.relationship
+Charleston___area hospital.relationship != Charleston___FBI agents and task force officers.relationship
+Charleston___area hospital.relationship != Charleston___city harbor.relationship
+Charleston___area hospital.relationship != Charleston___unknown.relationship
+Charleston___area hospital.relationship = "Charleston was treated at an area hospital after being shot and wounded."
+Charleston___area hospital.source_id != Charleston___Emmett.source_id
+Charleston___area hospital.source_id != Charleston___city harbor.source_id
+Charleston___area hospital.source_id != Charleston___unknown.source_id
+Charleston___area hospital.source_id = "3489738225_4"
+Charleston___city harbor.contradiction_type = "Causal"
+Charleston___city harbor.damage = "minimal"
+Charleston___city harbor.relationship != Charleston___FBI agents and task force officers.relationship
+Charleston___city harbor.relationship != Charleston___unknown.relationship
+Charleston___city harbor.relationship = "Damage to the city harbor in Charleston was minimal due to the hurricane."
+Charleston___city harbor.source_id != Charleston___FBI agents and task force officers.source_id
+Charleston___city harbor.source_id != Charleston___unknown.source_id
+Charleston___city harbor.source_id = "3503017442_2"
+Charleston___unknown.contradiction_type = "Causal"
+Charleston___unknown.injury_severity = "not life threatening"
+Charleston___unknown.relationship = "Charleston was shot and wounded by FBI agents and task force officers."
+Charleston___unknown.reporter = "Forsyth County Sheriff's Deputy Robin Regan"
+Charleston___unknown.source_id = "3489738225_1"
+Emmett.label != "Agent"
+Emmett.label != FBI agents and task force officers.label
+Emmett.label != city harbor.label
+Emmett.label != unknown.label
+Emmett.label = "Agent"
+Emmett.name != "Emmett"
+Emmett.name != FBI agents and task force officers.name
+Emmett.name != city harbor.name
+Emmett.name != unknown.name
+Emmett.name = "Emmett"
+Emmett.status != "fine"
+Emmett.status != unknown.status
+Emmett.status = "fine"
+FBI agents and task force officers.action != "shot"
+FBI agents and task force officers.action = "shot"
+FBI agents and task force officers.label != "FBI"
+FBI agents and task force officers.label != unknown.label
+FBI agents and task force officers.label = "FBI"
+FBI agents and task force officers.name != "FBI agents and task force officers"
+FBI agents and task force officers.name != unknown.name
+FBI agents and task force officers.name = "FBI agents and task force officers"
+None_ML(Charleston___FBI agents and task force officers.attrs, Charleston___area hospital.attrs)
+None_ML(area hospital.attrs, Charleston.attrs)
+area hospital.label != "Hospital"
+area hospital.label != Emmett.label
+area hospital.label != FBI agents and task force officers.label
+area hospital.label != city harbor.label
+area hospital.label != unknown.label
+area hospital.label = "Hospital"
+area hospital.name != "area hospital"
+area hospital.name != Emmett.name
+area hospital.name != FBI agents and task force officers.name
+area hospital.name != city harbor.name
+area hospital.name != unknown.name
+area hospital.name = "area hospital"
+area hospital.status != "treated and released"
+area hospital.status != Emmett.status
+area hospital.status != unknown.status
+area hospital.status = "treated and released"
+city harbor.label != "Location"
+city harbor.label != FBI agents and task force officers.label
+city harbor.label != unknown.label
+city harbor.label = "Location"
+city harbor.name != "city harbor"
+city harbor.name != FBI agents and task force officers.name
+city harbor.name != unknown.name
+city harbor.name = "city harbor"
+unknown.label != "Person"
+unknown.label = "Person"
+unknown.name != "unknown"
+unknown.name = "unknown"
+unknown.relationship != "sibling"
+unknown.relationship = "sibling"
+unknown.status != "victim"
+unknown.status = "victim"
+
+Rules:
+Q[Charleston,Charleston] (Charleston___area hospital.injury_severity = "not life threatening" ∧ Charleston___Emmett.investigation_start = "ongoing" ∧ Charleston___unknown.injury_severity = "not life threatening" ∧ city harbor.label != unknown.label → city harbor.name != "city harbor")
+Q[Charleston,Charleston] (area hospital.status != Emmett.status ∧ area hospital.name != FBI agents and task force officers.name ∧ Emmett.label != city harbor.label ∧ Charleston.status != Emmett.status ∧ Charleston___area hospital.relationship = "Charleston was treated at an area hospital after being shot and wounded." → Charleston___FBI agents and task force officers.source_id != Charleston___unknown.source_id)
+Q[Charleston,Charleston] (Emmett.name != "Emmett" ∧ city harbor.name != "city harbor" ∧ None_ML(area hospital.attrs, Charleston.attrs) ∧ Emmett.status != unknown.status ∧ FBI agents and task force officers.name = "FBI agents and task force officers" ∧ Charleston___city harbor.source_id != Charleston___FBI agents and task force officers.source_id → Charleston.name != unknown.name)
+Q[Charleston,Charleston] (Charleston___Emmett.source_id = "3489738225_1" ∧ Charleston___Emmett.contradiction_type != Charleston___FBI agents and task force officers.contradiction_type ∧ city harbor.name != FBI agents and task force officers.name → Emmett.name != unknown.name)
+Q[Charleston,Charleston] (Charleston.status != unknown.status ∧ FBI agents and task force officers.name = "FBI agents and task force officers" → area hospital.name = "area hospital")
+Q[Charleston,Charleston] (area hospital.name != FBI agents and task force officers.name ∧ Charleston.label != area hospital.label → FBI agents and task force officers.label != unknown.label)
+Q[Charleston,Charleston] (Charleston___city harbor.source_id != Charleston___FBI agents and task force officers.source_id ∧ None_ML(Charleston___FBI agents and task force officers.attrs, Charleston___area hospital.attrs) ∧ area hospital.name != "area hospital" ∧ area hospital.label = "Hospital" ∧ city harbor.label != unknown.label ∧ Charleston___city harbor.relationship != Charleston___FBI agents and task force officers.relationship → Charleston___FBI agents and task force officers.contradiction_type = "Causal")
+Q[Charleston,Charleston] (area hospital.label != Emmett.label ∧ Charleston.label != unknown.label ∧ area hospital.status = "treated and released" → city harbor.name = "city harbor")
+Q[Charleston,Charleston] (unknown.name = "unknown" ∧ Charleston___unknown.reporter = "Forsyth County Sheriff's Deputy Robin Regan" ∧ Charleston___area hospital.relationship != Charleston___unknown.relationship ∧ area hospital.name != "area hospital" → Charleston___unknown.source_id = "3489738225_1")
+Q[Charleston,Charleston] (Charleston.name != city harbor.name ∧ Charleston.name != FBI agents and task force officers.name ∧ Charleston___Emmett.investigation_type = "commercial robberies" ∧ Charleston___city harbor.source_id = "3503017442_2" ∧ city harbor.label != unknown.label → FBI agents and task force officers.label = "FBI")

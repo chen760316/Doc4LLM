@@ -1,0 +1,64 @@
+Source: dense_text.txt (Index 50)
+S1: In some jurisdictions trespassing is an offence or misdemeanor covered by a criminal code.
+S2: In other jurisdictions, it is not considered a crime or penal in nature, property is protected from trespass under civil law and privacy acts.
+
+Predicates:
+1. Jurisdiction_1.trespassing_is_offence
+2. Jurisdiction_2.trespassing_is_not_crime
+3. Jurisdiction_1.criminal_code.covers_trespassing
+4. Jurisdiction_2.civil_law.protects_property
+5. Jurisdiction_2.privacy_acts.protects_property
+6. Trespassing.offence_in_some_jurisdictions
+7. Trespassing.not_considered_crime_in_other_jurisdictions
+8. Criminal_code.includes_trespassing
+9. Civil_law_excludes_trespassing_as_crime
+10. Property_rights.protected_under_civil_law
+11. Privacy_acts.include_property_protection
+12. Jurisdiction_1.trespassing.penal_nature
+13. Jurisdiction_2.trespassing.not_penal_nature
+14. Offence_type.trespassing
+15. M_NLI(S1, S2)
+16. Factual(Jurisdiction_1, trespassing_is_offence)
+17. Factual(Jurisdiction_2, trespassing_is_not_crime)
+18. violate(Jurisdiction_1, Jurisdiction_2)
+19. Jurisdiction_1.trespassing.legal_status
+20. Jurisdiction_2.trespassing.legal_status
+21. Criminal_code.trespassing_definition
+22. Civil_law.trespassing_definition
+23. Jurisdiction_1.trespassing.penalties
+24. Jurisdiction_2.trespassing.penalties
+25. Trespassing.legal_implications
+26. Jurisdiction_1.trespassing.enforcement
+27. Jurisdiction_2.trespassing.enforcement
+28. Jurisdiction_1.trespassing.legal_consequences
+29. Jurisdiction_2.trespassing.legal_consequences
+30. Trespassing.legal_framework
+
+Rules:
+1. Q[some, Jurisdiction_1.trespassing_is_offence, Jurisdiction_2.trespassing_is_not_crime](Jurisdiction_1.trespassing_is_offence == true → Factual(Jurisdiction_1, trespassing_is_offence))
+2. Q[other, Jurisdiction_2.trespassing_is_not_crime, Jurisdiction_1.trespassing_is_offence](Jurisdiction_2.trespassing_is_not_crime == true → Factual(Jurisdiction_2, trespassing_is_not_crime))
+3. Q[some, Trespassing.offence_in_some_jurisdictions, Trespassing.not_considered_crime_in_other_jurisdictions](Trespassing.offence_in_some_jurisdictions == true → Factual(Trespassing, offence_in_some_jurisdictions))
+4. Q[other, Trespassing.not_considered_crime_in_other_jurisdictions, Trespassing.offence_in_some_jurisdictions](Trespassing.not_considered_crime_in_other_jurisdictions == true → Factual(Trespassing, not_considered_crime_in_other_jurisdictions))
+5. Q[some, Jurisdiction_1.criminal_code.covers_trespassing, Jurisdiction_2.civil_law.protects_property](Jurisdiction_1.criminal_code.covers_trespassing == true → Factual(Jurisdiction_1, criminal_code.covers_trespassing))
+6. Q[other, Jurisdiction_2.civil_law.protects_property, Jurisdiction_1.criminal_code.covers_trespassing](Jurisdiction_2.civil_law.protects_property == true → Factual(Jurisdiction_2, civil_law.protects_property))
+7. Q[some, Jurisdiction_1.trespassing.penal_nature, Jurisdiction_2.trespassing.not_penal_nature](Jurisdiction_1.trespassing.penal_nature == true → Factual(Jurisdiction_1, trespassing.penal_nature))
+8. Q[other, Jurisdiction_2.trespassing.not_penal_nature, Jurisdiction_1.trespassing.penal_nature](Jurisdiction_2.trespassing.not_penal_nature == true → Factual(Jurisdiction_2, trespassing.not_penal_nature))
+9. Q[some, Criminal_code.includes_trespassing, Civil_law_excludes_trespassing_as_crime](Criminal_code.includes_trespassing == true → Factual(Criminal_code, includes_trespassing))
+10. Q[other, Civil_law_excludes_trespassing_as_crime, Criminal_code.includes_trespassing](Civil_law_excludes_trespassing_as_crime == true → Factual(Civil_law, excludes_trespassing_as_crime))
+11. Q[some, Jurisdiction_1.trespassing.legal_status, Jurisdiction_2.trespassing.legal_status](Jurisdiction_1.trespassing.legal_status == "offence" → Factual(Jurisdiction_1, trespassing.legal_status))
+12. Q[other, Jurisdiction_2.trespassing.legal_status, Jurisdiction_1.trespassing.legal_status](Jurisdiction_2.trespassing.legal_status == "not a crime" → Factual(Jurisdiction_2, trespassing.legal_status))
+13. Q[some, Jurisdiction_1.trespassing.penalties, Jurisdiction_2.trespassing.penalties](Jurisdiction_1.trespassing.penalties == "exists" → Factual(Jurisdiction_1, trespassing.penalties))
+14. Q[other, Jurisdiction_2.trespassing.penalties, Jurisdiction_1.trespassing.penalties](Jurisdiction_2.trespassing.penalties == "none" → Factual(Jurisdiction_2, trespassing.penalties))
+15. Q[some, Trespassing.legal_implications, Jurisdiction_1.trespassing.legal_consequences](Trespassing.legal_implications == "criminal" → Factual(Trespassing, legal_implications))
+16. Q[other, Jurisdiction_2.trespassing.legal_consequences, Trespassing.legal_implications](Jurisdiction_2.trespassing.legal_consequences == "civil" → Factual(Jurisdiction_2, trespassing.legal_consequences))
+17. Q[some, Jurisdiction_1.trespassing.enforcement, Jurisdiction_2.trespassing.enforcement](Jurisdiction_1.trespassing.enforcement == "strict" → Factual(Jurisdiction_1, trespassing.enforcement))
+18. Q[other, Jurisdiction_2.trespassing.enforcement, Jurisdiction_1.trespassing.enforcement](Jurisdiction_2.trespassing.enforcement == "lenient" → Factual(Jurisdiction_2, trespassing.enforcement))
+19. Q[some, Trespassing.legal_framework, Jurisdiction_1.trespassing.legal_status](Trespassing.legal_framework == "criminal" → Factual(Trespassing, legal_framework))
+20. Q[other, Jurisdiction_2.trespassing.legal_status, Trespassing.legal_framework](Jurisdiction_2.trespassing.legal_status == "civil" → Factual(Jurisdiction_2, trespassing.legal_status))
+21. Q[some, Jurisdiction_1.trespassing_is_offence, Jurisdiction_1.trespassing.legal_status](Jurisdiction_1.trespassing_is_offence == true → Factual(Jurisdiction_1, trespassing_is_offence))
+22. Q[other, Jurisdiction_2.trespassing_is_not_crime, Jurisdiction_2.trespassing.legal_status](Jurisdiction_2.trespassing_is_not_crime == true → Factual(Jurisdiction_2, trespassing_is_not_crime))
+23. Q[some, Jurisdiction_1.trespassing.penalties, Jurisdiction_1.trespassing_is_offence](Jurisdiction_1.trespassing.penalties == "fines" → Factual(Jurisdiction_1, trespassing.penalties))
+24. Q[other, Jurisdiction_2.trespassing.penalties, Jurisdiction_2.trespassing_is_not_crime](Jurisdiction_2.trespassing.penalties == "none" → Factual(Jurisdiction_2, trespassing.penalties))
+25. Q[some, Criminal_code.trespassing_definition, Jurisdiction_1.trespassing.legal_status](Criminal_code.trespassing_definition == "offence" → Factual(Criminal_code, trespassing_definition))
+26. Q[other, Civil_law.trespassing_definition, Jurisdiction_2.trespassing.legal_status](Civil_law.trespassing_definition == "not a crime" → Factual(Civil_law, trespassing_definition))
+27. Q[some, Jurisdiction_1.trespassing.enforcement, Jurisdiction_1.trespassing_is_offence](Jurisdiction_1.trespassing.enforcement == "active" → Factual(Jurisdiction_1

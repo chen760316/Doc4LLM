@@ -1,0 +1,132 @@
+Predicates:
+1. China.jailer_count = "biggest"
+2. China.jailer_count != "smallest"
+3. China.jailer_count > "30"
+4. China.jailer_count < "100"
+5. China.jailer_count >= "44"
+6. China.jailer_count <= "50"
+7. Death Sentences and Executions 2014.type = "Annual report"
+8. Death Sentences and Executions 2014.type != "Monthly report"
+9. Death Sentences and Executions 2014.type < "Quarterly report"
+10. Death Sentences and Executions 2014.type > "Biannual report"
+11. Death Sentences and Executions 2014.type >= "Annual report"
+12. Death Sentences and Executions 2014.type <= "Annual report"
+13. Death penalty statistics.status = "state secret"
+14. Death penalty statistics.status != "public"
+15. Death penalty statistics.status < "known"
+16. Death penalty statistics.status > "disclosed"
+17. Death penalty statistics.status >= "classified"
+18. Death penalty statistics.status <= "unknown"
+19. Rest of the world.status = "Executing fewer people"
+20. Rest of the world.status != "Executing more people"
+21. Rest of the world.status < "Increasing executions"
+22. Rest of the world.status > "Stable executions"
+23. Rest of the world.status >= "Decreasing executions"
+24. Rest of the world.status <= "Consistent executions"
+25. Uighur and Tibetan activists.number = "44"
+26. Uighur and Tibetan activists.number != "0"
+27. Uighur and Tibetan activists.number < "100"
+28. Uighur and Tibetan activists.number > "20"
+29. Uighur and Tibetan activists.number >= "30"
+30. Uighur and Tibetan activists.number <= "50"
+31. Uighur and Tibetan activists.status = "imprisoned"
+32. Uighur and Tibetan activists.status != "free"
+33. Uighur and Tibetan activists.status < "released"
+34. Uighur and Tibetan activists.status > "detained"
+35. Uighur and Tibetan activists.status >= "held"
+36. Uighur and Tibetan activists.status <= "captured"
+37. executions.count = "35"
+38. executions.count != "40"
+39. executions.count < "50"
+40. executions.count > "30"
+41. executions.count >= "30"
+42. executions.count <= "39"
+43. executions.previous_year_count = "39"
+44. executions.previous_year_count != "35"
+45. executions.previous_year_count < "40"
+46. executions.previous_year_count > "30"
+47. executions.previous_year_count >= "30"
+48. executions.previous_year_count <= "39"
+49. use of death penalty.method = "tool against terrorism"
+50. use of death penalty.method != "deterrent"
+51. use of death penalty.method < "punishment"
+52. use of death penalty.method > "retribution"
+53. use of death penalty.method >= "tool against crime"
+54. use of death penalty.method <= "method of control"
+55. "China is the biggest jailer of journalists in the world.".date = "end of 2014"
+56. "China is the biggest jailer of journalists in the world.".date != "beginning of 2015"
+57. "China is the biggest jailer of journalists in the world.".date < "2015"
+58. "China is the biggest jailer of journalists in the world.".date > "2014"
+59. "China is the biggest jailer of journalists in the world.".date >= "2014"
+60. "China is the biggest jailer of journalists in the world.".date <= "2014"
+61. M_NLI(China.jailer_count, Uighur and Tibetan activists.number)
+62. M_NLU(Death penalty statistics.status, Rest of the world.status)
+63. M_TEM(executions.count, executions.previous_year_count)
+64. contra("China is the biggest jailer of journalists in the world.", "China is not a jailer of journalists.")
+65. S(China, "China is the biggest jailer of journalists in the world.")
+66. S(executions, "executions count in 2014")
+67. T("China is the biggest jailer of journalists in the world.", "China is not a jailer of journalists.", Factual)
+68. tau(China.jailer_count, Uighur and Tibetan activists.number)
+69. tau(executions.count, executions.previous_year_count)
+70. tau(Death penalty statistics.status, Rest of the world.status)
+71. M_NLI(Rest of the world.status, executions.count)
+72. M_NLU(Uighur and Tibetan activists.status, Death penalty statistics.status)
+73. M_TEM(China.jailer_count, executions.count)
+74. contra("Death penalty statistics are public.", "Death penalty statistics are state secret.")
+75. S(Uighur and Tibetan activists, "Uighur and Tibetan activists imprisoned")
+76. S(executions.count, "Total executions in 2014")
+77. T("Rest of the world is executing fewer people.", "Rest of the world is executing more people.", Content)
+78. tau(Death Sentences and Executions 2014.type, use of death penalty.method)
+79. tau(executions.previous_year_count, executions.count)
+80. tau(Uighur and Tibetan activists.number, China.jailer_count)
+81. M_NLI(executions.count, Death Sentences and Executions 2014.type)
+82. M_NLU(China.jailer_count, Death penalty statistics.status)
+83. M_TEM(Rest of the world.status, Uighur and Tibetan activists.status)
+84. contra("Uighur and Tibetan activists are free.", "Uighur and Tibetan activists are imprisoned.")
+85. S(Death penalty statistics, "Death penalty statistics are state secret")
+86. S(Rest of the world, "Rest of the world executing fewer people")
+87. T("Executions are increasing.", "Executions are decreasing.", Negation)
+88. tau(use of death penalty.method, Death penalty statistics.status)
+89. tau(executions.count, Uighur and Tibetan activists.number)
+90. tau(China.jailer_count, executions.count)
+91. M_NLI(Death Sentences and Executions 2014.type, executions.count)
+92. M_NLU(Uighur and Tibetan activists.number, Death Sentences and Executions 2014.type)
+93. M_TEM(China.jailer_count, Rest of the world.status)
+94. contra("Executions are stable.", "Executions are fluctuating.")
+95. S(executions.previous_year_count, "Previous year executions count")
+96. S(use of death penalty.method, "Method of death penalty")
+97. T("Death penalty is a tool against terrorism.", "Death penalty is not a tool against terrorism.", Causal)
+98. tau(China.jailer_count, Death penalty statistics.status)
+99. tau(executions.count, Rest of the world.status)
+100. tau(Uighur and Tibetan activists.status, executions.count)
+
+Rules:
+1. Q[1, 1](China.jailer_count = "biggest" ∧ China.jailer_count > "30" → Death penalty statistics.status = "state secret")
+2. Q[2, 2](China.jailer_count < "100" ∧ China.jailer_count >= "44" → Uighur and Tibetan activists.status = "imprisoned")
+3. Q[3, 3](Death Sentences and Executions 2014.type = "Annual report" ∧ Death Sentences and Executions 2014.type != "Monthly report" → executions.count < "50")
+4. Q[4, 4](Death Sentences and Executions 2014.type > "Biannual report" ∧ Death Sentences and Executions 2014.type <= "Annual report" → executions.previous_year_count > "30")
+5. Q[5, 5](Death penalty statistics.status != "public" ∧ Death penalty statistics.status < "known" ∧ Death penalty statistics.status >= "classified" → Rest of the world.status = "Executing fewer people")
+6. Q[6, 6](Uighur and Tibetan activists.number > "20" ∧ Uighur and Tibetan activists.number < "100" ∧ Uighur and Tibetan activists.status != "free" → executions.count > "30")
+7. Q[7, 7](executions.count >= "30" ∧ executions.count <= "39" ∧ executions.previous_year_count != "35" ∧ executions.previous_year_count < "40" → use of death penalty.method = "tool against terrorism")
+8. Q[8, 8](executions.previous_year_count > "30" ∧ executions.previous_year_count < "40" ∧ executions.count != "40" → Death Sentences and Executions 2014.type = "Annual report")
+9. Q[9, 9](China.jailer_count != "smallest" ∧ China.jailer_count <= "50" ∧ China.jailer_count > "30" → Uighur and Tibetan activists.number >= "30")
+10. Q[10, 10](Rest of the world.status < "Increasing executions" ∧ Rest of the world.status > "Stable executions" → Death penalty statistics.status <= "unknown")
+11. Q[11, 11](Uighur and Tibetan activists.number < "100" ∧ Uighur and Tibetan activists.number >= "30" ∧ Uighur and Tibetan activists.status = "imprisoned" → executions.count < "50")
+12. Q[12, 12](executions.count > "30" ∧ executions.count < "50" ∧ executions.previous_year_count >= "30" → Death Sentences and Executions 2014.type != "Monthly report")
+13. Q[13, 13](use of death penalty.method > "retribution" ∧ use of death penalty.method < "punishment" → Death penalty statistics.status != "public")
+14. Q[14, 14](China.jailer_count < "100" ∧ China.jailer_count >= "44" ∧ China.jailer_count != "smallest" → Uighur and Tibetan activists.status != "free")
+15. Q[15, 15](executions.previous_year_count >= "30" ∧ executions.previous_year_count <= "39" ∧ executions.count > "30" → Rest of the world.status = "Decreasing executions")
+16. Q[16, 16](Death Sentences and Executions 2014.type < "Quarterly report" ∧ Death Sentences and Executions 2014.type >= "Annual report" → executions.count < "50")
+17. Q[17, 17](Uighur and Tibetan activists.number > "20" ∧ Uighur and Tibetan activists.number <= "50" ∧ Uighur and Tibetan activists.status = "imprisoned" → Death penalty statistics.status = "state secret")
+18. Q[18, 18](China.jailer_count > "30" ∧ China.jailer_count < "100" ∧ China.jailer_count != "smallest" → executions.count >= "30")
+19. Q[19, 19](executions.count < "50" ∧ executions.count > "30" ∧ executions.previous_year_count < "40" → use of death penalty.method != "deterrent")
+20. Q[20, 20](Death penalty statistics.status >= "classified" ∧ Death penalty statistics.status <= "unknown" ∧ Death penalty statistics.status != "public" → Rest of the world.status != "Executing more people")
+21. Q[21, 21](Uighur and Tibetan activists.number < "100" ∧ Uighur and Tibetan activists.number >= "30" ∧ Uighur and Tibetan activists.status != "free" ∧ Uighur and Tibetan activists.status != "released" → executions.count < "50")
+22. Q[22, 22](executions.previous_year_count > "30" ∧ executions.previous_year_count < "40" ∧ executions.count != "40" ∧ executions.count < "50" → Death Sentences and Executions 2014.type = "Annual report")
+23. Q[23, 23](China.jailer_count >= "44" ∧ China.jailer_count <= "50" ∧ China.jailer_count != "smallest" ∧ China.jailer_count > "30" → Uighur and Tibetan activists.number < "100")
+24. Q[24, 24](Rest of the world.status >= "Decreasing executions" ∧ Rest of the world.status <= "Consistent executions" → Death penalty statistics.status != "public")
+25. Q[25, 25](executions.count >= "30" ∧ executions.count <= "39" ∧ executions.previous_year_count != "35" ∧ executions.previous_year_count < "40" → use of death penalty.method = "tool against crime")
+26. Q[26, 26](Death Sentences and Executions 2014.type > "Biannual report" ∧ Death Sentences and Executions 2014.type <= "Annual report" ∧ Death Sentences and Executions 2014.type != "Monthly report" → executions.count < "50")
+27. Q[27, 27](Uighur and Tibetan activists.number > "20" ∧ Uighur and Tibetan activists.number < "100" ∧ Uighur and Tibetan activists.status = "imprisoned" ∧ Uighur and Tibetan activists.status != "released" → executions.count > "30")
+28. Q[28, 28](executions.previous_year_count >= "30" ∧ executions.previous_year_count <= "39" ∧ executions.count > "30" ∧ executions.count < "50" → Death Sentences and Executions 2014.type != "Monthly report")
+29. Q[29, 29](China.jailer_count < "100" ∧ China.jailer_count >= "44" ∧ China.jailer_count != "smallest" ∧ China.jailer_count > "30" → U

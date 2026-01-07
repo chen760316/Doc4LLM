@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 737)
+S1: A martial arts practitioner kicks another in the head.
+S2: A martial artist beats another person during a competition.
+
+Predicates:
+1. MartialArtist.kicks
+2. MartialArtist.beats
+3. Action.kicking
+4. Action.beating
+5. Competition.includes
+6. Competition.participants
+7. Practitioner.kicks
+8. Practitioner.participatesIn
+9. Head.isTargetOf
+10. Head.receivesImpact
+11. Action.isSpecific
+12. Action.isBroad
+13. Kicking.isActionType
+14. Beating.isActionType
+15. Kicking.includesImpact
+16. Beating.mayInclude
+17. MartialArtist.engagesIn
+18. Practitioner.performs
+19. Competition.isEvent
+20. Event.hasParticipants
+21. Kicking.isPhysicalAction
+22. Beating.isPhysicalAction
+23. MartialArtist.hasSkill
+24. Practitioner.hasSkill
+25. Action.isDescribedBy
+26. Kicking.isDescribedBy
+27. Beating.isDescribedBy
+28. Action.hasOutcome
+29. Outcome.isVictory
+30. Outcome.isDefeat
+
+Rules:
+1. Q[martial, MartialArtist.kicks == true, MartialArtist.beats == true](Action.isSpecific → Causal(MartialArtist.kicks, MartialArtist.beats))
+2. Q[martial, Practitioner.kicks == true, MartialArtist.beats == true](Action.isSpecific → Causal(Practitioner.kicks, MartialArtist.beats))
+3. Q[martial, MartialArtist.kicks == true, Action.beating == true](Action.isSpecific → Causal(MartialArtist.kicks, Action.beating))
+4. Q[martial, Practitioner.kicks == true, Action.beating == true](Action.isSpecific → Causal(Practitioner.kicks, Action.beating))
+5. Q[martial, MartialArtist.beats == true, Action.kicking == true](Action.isBroad → Causal(MartialArtist.beats, Action.kicking))
+6. Q[martial, Practitioner.beats == true, Action.kicking == true](Action.isBroad → Causal(Practitioner.beats, Action.kicking))
+7. Q[martial, MartialArtist.kicks == true, Competition.includes == true](Kicking.isActionType → Causal(MartialArtist.kicks, Competition.includes))
+8. Q[martial, Practitioner.kicks == true, Competition.includes == true](Kicking.isActionType → Causal(Practitioner.kicks, Competition.includes))
+9. Q[martial, MartialArtist.beats == true, Competition.includes == true](Beating.isActionType → Causal(MartialArtist.beats, Competition.includes))
+10. Q[martial, Practitioner.beats == true, Competition.includes == true](Beating.isActionType → Causal(Practitioner.beats, Competition.includes))
+11. Q[martial, MartialArtist.kicks == true, Head.isTargetOf == true](Kicking.includesImpact → Causal(MartialArtist.kicks, Head.isTargetOf))
+12. Q[martial, Practitioner.kicks == true, Head.isTargetOf == true](Kicking.includesImpact → Causal(Practitioner.kicks, Head.isTargetOf))
+13. Q[martial, MartialArtist.beats == true, Head.receivesImpact == true](Beating.mayInclude → Causal(MartialArtist.beats, Head.receivesImpact))
+14. Q[martial, Practitioner.beats == true, Head.receivesImpact == true](Beating.mayInclude → Causal(Practitioner.beats, Head.receivesImpact))
+15. Q[martial, MartialArtist.kicks == true, Action.isSpecific == true](Action.isDescribedBy → Causal(MartialArtist.kicks, Action.isSpecific))
+16. Q[martial, Practitioner.kicks == true, Action.isSpecific == true](Action.isDescribedBy → Causal(Practitioner.kicks, Action.isSpecific))
+17. Q[martial, MartialArtist.beats == true, Action.isBroad == true](Action.isDescribedBy → Causal(MartialArtist.beats, Action.isBroad))
+18. Q[martial, Practitioner.beats == true, Action.isBroad == true](Action.isDescribedBy → Causal(Practitioner.beats, Action.isBroad))
+19. Q[martial, MartialArtist.kicks == true, Action.hasOutcome == true](Kicking.isPhysicalAction → Causal(MartialArtist.kicks, Action.hasOutcome))
+20. Q[martial, Practitioner.kicks == true, Action.hasOutcome == true](Kicking.isPhysicalAction → Causal(Practitioner.kicks, Action.hasOutcome))
+21. Q[martial, MartialArtist.beats == true, Action.hasOutcome == true](Beating.isPhysicalAction → Causal(MartialArtist.beats, Action.hasOutcome))
+22. Q[martial, Practitioner.beats == true, Action.hasOutcome == true](Beating.isPhysicalAction → Causal(Practitioner.beats, Action.hasOutcome))
+23. Q[martial, MartialArtist.kicks == true, Outcome.isVictory == true](Kicking.isDescribedBy → Causal(MartialArtist.kicks, Outcome.isVictory))
+24. Q[martial, Practitioner.kicks == true, Outcome.isVictory == true](Kicking.isDescribedBy → Causal(Practitioner.kicks, Outcome.isVictory))
+25. Q[martial, MartialArtist.beats == true, Outcome.isDefeat == true](Beating.isDescribedBy → Causal(MartialArtist.beats, Outcome.isDefeat))
+26. Q[martial, Practitioner.beats == true, Outcome.isDefeat == true](Beating.isDescribedBy → Causal(Practitioner.beats, Outcome.isDefeat))
+27. Q[martial, MartialArtist.kicks == true, Competition.participants == true](Practitioner.participatesIn → Causal(MartialArtist.kicks, Competition.participants))
+28. Q[martial, Practitioner.kicks == true, Competition.participants == true](Practitioner.participatesIn → Causal(Practitioner.kicks, Competition.participants))
+29. Q[martial, MartialArtist.beats == true, Competition.participants == true](Practitioner.participatesIn → Causal(MartialArtist.beats, Competition.participants))
+30. Q[martial, Practitioner.beats == true, Competition.participants == true](Practitioner.participatesIn → Causal(Practitioner.beats, Competition.participants))

@@ -1,0 +1,132 @@
+Predicates:
+1. entity.type = "cat"
+2. entity.type = "hound"
+3. entity.type = "animal"
+4. entity.attribute = "no"
+5. entity.attribute = "some"
+6. entity.attribute = "none"
+7. entity.attribute = "all"
+8. "Relationship".type = "is_a"
+9. "Relationship".type = "belongs_to"
+10. "Relationship".type = "is_not"
+11. "Relationship".type = "includes"
+12. "Relationship".type = "excludes"
+13. "Relationship".type = "is_related_to"
+14. "Relationship".type = "is_a_subset_of"
+15. "Relationship".type = "is_a_member_of"
+16. "Relationship".type = "is_distinct_from"
+17. M_NLI(cat.type, animal.type)
+18. M_NLI(hound.type, animal.type)
+19. M_NLI(cat.attribute, hound.attribute)
+20. M_NLI(animal.attribute, cat.attribute)
+21. T("No animals are cats.", "Some cats are hounds.", tau)
+22. T("Some hounds are animals, and no animals are cats.", "Some cats are hounds.", tau)
+23. tau(cat.type, hound.type)
+24. tau(animal.attribute, cat.attribute)
+25. violate(x0, y0)
+26. Factual(x0, y0)
+27. Content(x0, y0)
+28. Causal(x0, y0)
+29. Negation(x0, y0)
+30. Relation(x0, y0)
+31. Numeric(x0, y0)
+32. Temporal(x0, y0)
+33. entity.count = 0
+34. entity.count = 1
+35. entity.count = 2
+36. entity.count = 3
+37. "Relationship".count = 0
+38. "Relationship".count = 1
+39. "Relationship".count = 2
+40. "Relationship".count = 3
+41. entity.species = "feline"
+42. entity.species = "canine"
+43. entity.species = "mammal"
+44. "Relationship".description = "mutually exclusive"
+45. "Relationship".description = "inclusive"
+46. "Relationship".description = "exclusive"
+47. M_NLI(animal.attribute, hound.attribute)
+48. T("Some cats are hounds.", "No animals are cats.", tau)
+49. tau(hound.type, animal.type)
+50. violate(cat.type, animal.type)
+51. Factual(cat.type, hound.type)
+52. Content(hound.attribute, animal.attribute)
+53. Causal(cat.attribute, animal.attribute)
+54. Negation(animal.type, cat.type)
+55. Relation(hound.type, cat.type)
+56. Numeric(cat.count, hound.count)
+57. Temporal(animal.attribute, hound.attribute)
+58. entity.habitat = "domestic"
+59. entity.habitat = "wild"
+60. entity.habitat = "urban"
+61. "Relationship".effect = "none"
+62. "Relationship".effect = "some"
+63. "Relationship".effect = "all"
+64. M_NLI(animal.habitat, cat.habitat)
+65. T("No animals are cats.", "Some hounds are animals.", tau)
+66. tau(cat.habitat, hound.habitat)
+67. violate(hound.type, cat.type)
+68. Factual(hound.type, animal.type)
+69. Content(animal.habitat, cat.habitat)
+70. Causal(hound.attribute, animal.attribute)
+71. Negation(cat.type, hound.type)
+72. Relation(animal.type, hound.type)
+73. Numeric(hound.count, animal.count)
+74. Temporal(cat.attribute, animal.attribute)
+75. entity.behavior = "predatory"
+76. entity.behavior = "herbivorous"
+77. entity.behavior = "omnivorous"
+78. "Relationship".interaction = "none"
+79. "Relationship".interaction = "some"
+80. "Relationship".interaction = "all"
+81. M_NLI(animal.behavior, cat.behavior)
+82. T("Some cats are hounds.", "No animals are cats.", tau)
+83. tau(hound.behavior, animal.behavior)
+84. violate(cat.habitat, hound.habitat)
+85. Factual(cat.behavior, animal.behavior)
+86. Content(hound.behavior, cat.behavior)
+87. Causal(animal.habitat, hound.habitat)
+88. Negation(hound.type, animal.type)
+89. Relation(cat.behavior, animal.behavior)
+90. Numeric(animal.count, cat.count)
+91. Temporal(hound.attribute, cat.attribute)
+92. entity.size = "small"
+93. entity.size = "medium"
+94. entity.size = "large"
+95. "Relationship".size = "none"
+96. "Relationship".size = "some"
+97. "Relationship".size = "all"
+98. M_NLI(animal.size, cat.size)
+99. T("No animals are cats.", "Some hounds are animals.", tau)
+100. tau(cat.size, hound.size)
+violate(x0, y0)
+
+Rules:
+1. Q[x0, y0](entity.type = "cat" ∧ entity.type = "hound" → violate(x0, y0))
+2. Q[x0, y0](entity.attribute = "no" ∧ entity.attribute = "some" → violate(x0, y0))
+3. Q[x0, y0](entity.type = "cat" ∧ entity.attribute = "none" ∧ "Relationship".type = "is_a" → violate(x0, y0))
+4. Q[x0, y0](entity.type = "hound" ∧ entity.attribute = "all" ∧ "Relationship".type = "is_not" → violate(x0, y0))
+5. Q[x0, y0](entity.type = "animal" ∧ entity.attribute = "some" ∧ "Relationship".type = "includes" → violate(x0, y0))
+6. Q[x0, y0](entity.type = "cat" ∧ entity.type = "animal" ∧ entity.attribute = "no" ∧ "Relationship".type = "is_a_subset_of" → violate(x0, y0))
+7. Q[x0, y0](entity.type = "hound" ∧ entity.attribute = "none" ∧ "Relationship".type = "excludes" ∧ "Relationship".type = "is_related_to" → violate(x0, y0))
+8. Q[x0, y0](entity.type = "animal" ∧ entity.attribute = "all" ∧ "Relationship".type = "is_a" ∧ "Relationship".type = "is_distinct_from" → violate(x0, y0))
+9. Q[x0, y0](entity.count = 0 ∧ entity.count = 1 ∧ "Relationship".count = 0 → violate(x0, y0))
+10. Q[x0, y0](entity.count = 2 ∧ entity.count = 3 ∧ "Relationship".count = 1 ∧ "Relationship".count = 2 → violate(x0, y0))
+11. Q[x0, y0](entity.count = 1 ∧ entity.count = 2 ∧ "Relationship".count = 3 ∧ "Relationship".count = 0 → violate(x0, y0))
+12. Q[x0, y0](entity.species = "feline" ∧ entity.species = "canine" ∧ entity.habitat = "wild" ∧ entity.habitat = "domestic" → violate(x0, y0))
+13. Q[x0, y0](entity.species = "mammal" ∧ entity.habitat = "urban" ∧ entity.behavior = "predatory" ∧ entity.behavior = "herbivorous" → violate(x0, y0))
+14. Q[x0, y0](entity.species = "feline" ∧ entity.habitat = "wild" ∧ entity.size = "small" ∧ entity.size = "large" → violate(x0, y0))
+15. Q[x0, y0](M_NLI(cat.type, animal.type) ∧ M_NLI(hound.type, animal.type) ∧ M_NLI(cat.attribute, hound.attribute) ∧ T("No animals are cats.", "Some cats are hounds.", tau) → violate(x0, y0))
+16. Q[x0, y0](T("Some hounds are animals.", "No animals are cats.", tau) ∧ tau(cat.type, hound.type) ∧ tau(animal.attribute, cat.attribute) ∧ violate(cat.type, animal.type) → violate(x0, y0))
+17. Q[x0, y0](tau(hound.type, animal.type) ∧ Factual(cat.type, hound.type) ∧ Content(hound.attribute, animal.attribute) ∧ Causal(cat.attribute, animal.attribute) → violate(x0, y0))
+18. Q[x0, y0](entity.behavior = "omnivorous" ∧ entity.size = "medium" ∧ "Relationship".description = "exclusive" ∧ "Relationship".description = "inclusive" → violate(x0, y0))
+19. Q[x0, y0](entity.habitat = "domestic" ∧ entity.habitat = "wild" ∧ "Relationship".effect = "none" ∧ "Relationship".effect = "all" → violate(x0, y0))
+20. Q[x0, y0](entity.behavior = "predatory" ∧ entity.size = "small" ∧ "Relationship".interaction = "some" ∧ "Relationship".interaction = "none" → violate(x0, y0))
+21. Q[x0, y0](entity.count = 0 ∧ entity.count = 1 ∧ entity.count = 2 ∧ entity.count = 3 ∧ "Relationship".count = 0 → violate(x0, y0))
+22. Q[x0, y0](entity.type = "cat" ∧ entity.type = "hound" ∧ entity.attribute = "some" ∧ entity.attribute = "none" ∧ "Relationship".type = "is_not" → violate(x0, y0))
+23. Q[x0, y0](entity.type = "animal" ∧ entity.attribute = "all" ∧ entity.habitat = "urban" ∧ entity.habitat = "wild" ∧ "Relationship".description = "mutually exclusive" → violate(x0, y0))
+24. Q[x0, y0](M_NLI(animal.habitat, cat.habitat) ∧ T("No animals are cats.", "Some hounds are animals.", tau) ∧ tau(cat.habitat, hound.habitat) ∧ violate(hound.type, cat.type) → violate(x0, y0))
+25. Q[x0, y0](Factual(hound.type, animal.type) ∧ Content(animal.habitat, cat.habitat) ∧ Causal(hound.attribute, animal.attribute) ∧ Negation(cat.type, hound.type) → violate(x0, y0))
+26. Q[x0, y0](Relation(animal.type, hound.type) ∧ Numeric(hound.count, animal.count) ∧ Temporal(cat.attribute, animal.attribute) ∧ violate(cat.habitat, hound.habitat) → violate(x0, y0))
+27. Q[x0, y0](entity.type = "cat" ∧ entity.type = "animal" ∧ entity.attribute = "no" ∧ entity.attribute = "some" ∧ entity.habitat = "wild" ∧ entity.habitat = "domestic" → violate(x0, y0))
+28. Q[x0, y0](entity.size = "medium" ∧ entity.size = "large" ∧ entity.behavior = "herbivorous" ∧ entity.behavior = "omnivorous" ∧ "Relationship".effect = "some" ∧ "Relationship".effect = "none" → violate(x0,

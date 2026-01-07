@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 842)
+S1: Luis Roldán, former Spanish police chief fled the country after makes of supposedly having off millions of pounds of the Government, 10-month secret funds was a home a last night after being captured in Bangkok prison cell.
+S2: Luis Roldán, the former Spanish chief of police who fled the country 10 months ago after allegedly having off millions of pounds from secret government funds, was on his way home to a prison cell last night after being captured in Bangkok.
+
+Predicates:
+1. Luis_Roldán.fled_country
+2. Luis_Roldán.allegedly_stole_millions
+3. Luis_Roldán.secret_funds
+4. Luis_Roldán.captured_in_Bangkok
+5. Luis_Roldán.returned_to_prison_cell
+6. Luis_Roldán.time_of_capture
+7. Bangkok.prison_cell
+8. Bangkok.location_of_capture
+9. Spanish_police_chief.role
+10. Spanish_government.secret_funds
+11. secret_funds.amount
+12. secret_funds.duration
+13. Roldán.capture_time.last_night
+14. Roldán.fled_time.10_months_ago
+15. Roldán.return_time.to_prison
+16. Roldán.allegation.type
+17. Roldán.captured_by.authorities
+18. authorities.location.Bangkok
+19. authorities.action.capture
+20. Roldán.destination.prison_cell
+21. Roldán.status.captured
+22. Roldán.event_sequence.capture_then_return
+23. Roldán.event_sequence.return_to_prison
+24. Roldán.allegation.source.secret_government_funds
+25. Roldán.secret_funds.amount.millions
+26. Roldán.secret_funds.origin.Government
+27. Roldán.capture_event.time.last_night
+28. Roldán.fled_event.time.10_months_ago
+29. Roldán.captured_event.location.Bangkok
+30. Roldán.return_event.type.to_prison_cell
+
+Rules:
+1. Q[Luis, Roldán.fled_country == true](Roldán.fled_event.time.10_months_ago → Causal(Luis, Roldán.captured_in_Bangkok))
+2. Q[Luis, Roldán.allegedly_stole_millions == true](Roldán.allegation.source.secret_government_funds → Causal(Luis, Roldán.returned_to_prison_cell))
+3. Q[Luis, Roldán.secret_funds == true](Roldán.secret_funds.amount.millions → Causal(Luis, Roldán.captured_in_Bangkok))
+4. Q[Luis, Roldán.captured_in_Bangkok == true](Roldán.capture_event.time.last_night → Causal(Luis, Roldán.return_time.to_prison))
+5. Q[Luis, Roldán.returned_to_prison_cell == true](Roldán.event_sequence.return_to_prison → Causal(Luis, Roldán.event_sequence.capture_then_return))
+6. Q[Luis, Roldán.time_of_capture == "last_night"](Roldán.capture_event.time.last_night → Causal(Luis, Roldán.fled_country))
+7. Q[Luis, Roldán.fled_time == "10_months_ago"](Roldán.fled_event.time.10_months_ago → Causal(Luis, Roldán.captured_by.authorities))
+8. Q[Luis, Roldán.captured_by.authorities == true](Roldán.capture_event.location.Bangkok → Causal(Luis, Roldán.destination.prison_cell))
+9. Q[Luis, Roldán.status.captured == true](Roldán.event_sequence.capture_then_return → Causal(Luis, Roldán.return_event.type.to_prison_cell))
+10. Q[Luis, Roldán.event_sequence.capture_then_return == true](Roldán.captured_event.location.Bangkok → Causal(Luis, Roldán.secret_funds.origin.Government))
+11. Q[Luis, Roldán.secret_funds.amount == "millions"](Roldán.secret_funds.amount.millions → Causal(Luis, Roldán.allegedly_stole_millions))
+12. Q[Luis, Roldán.allegation.type == "secret_government_funds"](Roldán.allegation.source.secret_government_funds → Causal(Luis, Roldán.fled_country))
+13. Q[Luis, Roldán.captured_event.location == "Bangkok"](Roldán.capture_event.location.Bangkok → Causal(Luis, Roldán.time_of_capture))
+14. Q[Luis, Roldán.return_time == "to_prison"](Roldán.return_event.type.to_prison_cell → Causal(Luis, Roldán.status.captured))
+15. Q[Luis, Roldán.fled_country == true](Roldán.fled_event.time.10_months_ago → Causal(Luis, Roldán.secret_funds))
+16. Q[Luis, Roldán.captured_in_Bangkok == true](Roldán.capture_time.last_night → Causal(Luis, Roldán.returned_to_prison_cell))
+17. Q[Luis, Roldán.captured_by.authorities == true](Roldán.captured_event.location.Bangkok → Causal(Luis, Roldán.fled_time))
+18. Q[Luis, Roldán.event_sequence.return_to_prison == true](Roldán.return_time.to_prison → Causal(Luis, Roldán.allegedly_stole_millions))
+19. Q[Luis, Roldán.secret_funds.origin == "Government"](Roldán.secret_funds.origin.Government → Causal(Luis, Roldán.captured_in_Bangkok))
+20. Q[Luis, Roldán.status.captured == true](Roldán.event_sequence.capture_then_return → Causal(Luis, Roldán.returned_to_prison_cell))
+21. Q[Luis, Roldán.time_of_capture == "last_night"](Roldán.capture_time.last_night → Causal(Luis, Roldán.fled_country))
+22. Q[Luis, Roldán.fled_time == "10_months_ago"](Roldán.fled_event.time.10_months_ago → Causal(Luis, Roldán.secret_funds))
+23. Q[Luis, Roldán.captured_event.location == "Bangkok"](Roldán.captured_event.location.Bangkok → Causal(Luis, Roldán.allegation.type))
+24. Q[Luis, Roldán.return_time == "to_prison"](Roldán.return_event.type.to_prison_cell → Causal(Luis, Roldán.captured_by.authorities))
+25. Q[Luis, Roldán.event_sequence.capture_then_return == true](Roldán.event_sequence.return_to_prison → Causal(Luis, Roldán.time_of_capture))
+26. Q[Luis, Roldán.secret_funds.amount == "millions"](Roldán.secret_funds.amount.millions → Causal(Luis, Roldán.fled_country))
+27. Q[Luis, Roldán.allegation.source == "secret_government_funds"](Roldán.allegation.source.secret_government_funds → Causal(Luis, Roldán.captured_in_Bangkok))
+28. Q[Luis, Roldán.captured_by.authorities == true](Roldán.captured_by.authorities → Causal(Luis, Roldán.returned_to_prison_cell))
+29. Q[Luis, Roldán.status.captured == true](Roldán.status.captured → Causal(Luis, Roldán.fled_time))
+30. Q[Luis, Roldán.event_sequence.return_to_prison == true](Roldán.event_sequence.return_to_prison → Causal(Luis, Roldán.secret_funds.origin))

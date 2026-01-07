@@ -1,0 +1,52 @@
+Predicates:
+Jackie.label != "Person"
+Jackie.label != University of Virginia.label
+Jackie.label = "Person"
+Jackie.name != "Jackie"
+Jackie.name != Sarah Roderick.name
+Jackie.name != University of Virginia.name
+Jackie.name = "Jackie"
+Jackie.status != "survivor"
+Jackie.status != University of Virginia.status
+Jackie.status = "survivor"
+Jackie___Sarah Roderick.context = "conversation about the portrayal of rape on college campuses"
+Jackie___Sarah Roderick.doc_id != Jackie___University of Virginia.doc_id
+Jackie___Sarah Roderick.doc_id = "3489825753_6"
+Jackie___Sarah Roderick.relationship != Jackie___University of Virginia.relationship
+Jackie___Sarah Roderick.relationship = "Jackie and Sarah Roderick discussed the impact of the Rolling Stone article on survivors."
+Jackie___University of Virginia.doc_id = "3489825773_7"
+Jackie___University of Virginia.incident_location = "fraternity house"
+Jackie___University of Virginia.relationship = "Jackie reported an alleged gang rape incident to the University of Virginia."
+Jackie___University of Virginia.report_year != 2013
+Jackie___University of Virginia.report_year = 2013
+None_ML(Jackie___University of Virginia.attrs, Jackie___Sarah Roderick.attrs)
+None_ML(University of Virginia.attrs, Sarah Roderick.attrs)
+Sarah Roderick.label != "Person"
+Sarah Roderick.label != University of Virginia.label
+Sarah Roderick.label = "Person"
+Sarah Roderick.location != "University of Virginia"
+Sarah Roderick.location = "University of Virginia"
+Sarah Roderick.name != "Sarah Roderick"
+Sarah Roderick.name != University of Virginia.name
+Sarah Roderick.name = "Sarah Roderick"
+Sarah Roderick.status != "survivor"
+Sarah Roderick.status != University of Virginia.status
+Sarah Roderick.status = "survivor"
+University of Virginia.label != "Organization"
+University of Virginia.label = "Organization"
+University of Virginia.name != "University of Virginia"
+University of Virginia.name = "University of Virginia"
+University of Virginia.status != "under investigation"
+University of Virginia.status = "under investigation"
+
+Rules:
+Q[Jackie,Jackie] (Jackie.name != "Jackie" ∧ Jackie___Sarah Roderick.doc_id != Jackie___University of Virginia.doc_id ∧ Jackie___University of Virginia.doc_id = "3489825773_7" ∧ Jackie.status != "survivor" ∧ Sarah Roderick.name != "Sarah Roderick" ∧ Sarah Roderick.location != "University of Virginia" → University of Virginia.label != "Organization")
+Q[Jackie,Jackie] (Sarah Roderick.name = "Sarah Roderick" ∧ Sarah Roderick.status != University of Virginia.status → Sarah Roderick.label != University of Virginia.label)
+Q[Jackie,Jackie] (Jackie___Sarah Roderick.relationship = "Jackie and Sarah Roderick discussed the impact of the Rolling Stone article on survivors." ∧ Jackie.name = "Jackie" ∧ Jackie___Sarah Roderick.relationship != Jackie___University of Virginia.relationship ∧ Sarah Roderick.name = "Sarah Roderick" ∧ Sarah Roderick.label != "Person" → Jackie.status != University of Virginia.status)
+Q[Jackie,Jackie] (Sarah Roderick.status != "survivor" ∧ Sarah Roderick.label != "Person" ∧ University of Virginia.status = "under investigation" ∧ Jackie___Sarah Roderick.relationship = "Jackie and Sarah Roderick discussed the impact of the Rolling Stone article on survivors." → Jackie.status = "survivor")
+Q[Jackie,Jackie] (Sarah Roderick.label = "Person" ∧ Jackie___University of Virginia.doc_id = "3489825773_7" ∧ Jackie___University of Virginia.report_year = 2013 → None_ML(Jackie___University of Virginia.attrs, Jackie___Sarah Roderick.attrs))
+Q[Jackie,Jackie] (Jackie___University of Virginia.incident_location = "fraternity house" ∧ Sarah Roderick.status = "survivor" ∧ Jackie.status != University of Virginia.status ∧ Sarah Roderick.label = "Person" ∧ Jackie.label != "Person" → University of Virginia.name = "University of Virginia")
+Q[Jackie,Jackie] (Jackie.label = "Person" ∧ Jackie.name != University of Virginia.name ∧ Jackie.name = "Jackie" ∧ Jackie.status != University of Virginia.status ∧ Jackie.name != "Jackie" ∧ Jackie___University of Virginia.relationship = "Jackie reported an alleged gang rape incident to the University of Virginia." → Jackie.label != University of Virginia.label)
+Q[Jackie,Jackie] (Jackie___University of Virginia.report_year != 2013 ∧ Sarah Roderick.label = "Person" → Jackie___Sarah Roderick.doc_id != Jackie___University of Virginia.doc_id)
+Q[Jackie,Jackie] (Sarah Roderick.status = "survivor" ∧ Jackie___Sarah Roderick.doc_id = "3489825753_6" ∧ Jackie___University of Virginia.doc_id = "3489825773_7" ∧ University of Virginia.status = "under investigation" → Jackie.name = "Jackie")
+Q[Jackie,Jackie] (University of Virginia.label = "Organization" ∧ Jackie___Sarah Roderick.doc_id = "3489825753_6" ∧ Jackie___University of Virginia.report_year = 2013 → Sarah Roderick.status != "survivor")

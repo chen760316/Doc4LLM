@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 1213)
+S1: A man and a girl are painting crafts at a table while a woman observes.
+S2: The man and girl jump into the lake while the woman sleeps on the shore.
+
+Predicates:
+1. Man.activity.painting
+2. Girl.activity.painting
+3. Woman.activity.observing
+4. Man.location.table
+5. Girl.location.table
+6. Woman.location.shore
+7. Man.activity.jumping
+8. Girl.activity.jumping
+9. Woman.activity.sleeping
+10. Man.location.lake
+11. Girl.location.lake
+12. Woman.location.shore
+13. Crafts.materials
+14. Table.location.indoor
+15. Lake.location.outdoor
+16. Shore.location.outdoor
+17. Painting.action.engaged
+18. Jumping.action.engaged
+19. Observing.action.passive
+20. Sleeping.action.passive
+21. M_NLI(S1, S2)
+22. Relation(man, girl)
+23. Relation(man, woman)
+24. Relation(girl, woman)
+25. violate(man.activity.painting, man.activity.jumping)
+26. violate(girl.activity.painting, girl.activity.jumping)
+27. violate(woman.activity.observing, woman.activity.sleeping)
+28. violate(man.location.table, man.location.lake)
+29. violate(girl.location.table, girl.location.lake)
+30. violate(woman.location.shore, woman.location.lake)
+
+Rules:
+1. Q[man, man.activity.painting, man.activity.jumping](man.activity.painting == true → Relation(man, girl))
+2. Q[girl, girl.activity.painting, girl.activity.jumping](girl.activity.painting == true → Relation(man, girl))
+3. Q[woman, woman.activity.observing, woman.activity.sleeping](woman.activity.observing == true → Relation(man, woman))
+4. Q[man, man.location.table, man.location.lake](man.location.table == true → Relation(man, girl))
+5. Q[girl, girl.location.table, girl.location.lake](girl.location.table == true → Relation(man, girl))
+6. Q[woman, woman.location.shore, woman.location.lake](woman.location.shore == true → Relation(man, woman))
+7. Q[man, man.activity.painting, woman.activity.sleeping](man.activity.painting == true → Relation(man, woman))
+8. Q[girl, girl.activity.painting, woman.activity.sleeping](girl.activity.painting == true → Relation(girl, woman))
+9. Q[man, man.activity.jumping, woman.activity.sleeping](man.activity.jumping == true → Relation(man, woman))
+10. Q[girl, girl.activity.jumping, woman.activity.sleeping](girl.activity.jumping == true → Relation(girl, woman))
+11. Q[man, man.location.table, woman.location.shore](man.location.table == true → Relation(man, woman))
+12. Q[girl, girl.location.table, woman.location.shore](girl.location.table == true → Relation(girl, woman))
+13. Q[man, man.activity.painting, girl.activity.jumping](man.activity.painting == true → Relation(man, girl))
+14. Q[girl, girl.activity.painting, man.activity.jumping](girl.activity.painting == true → Relation(man, girl))
+15. Q[woman, woman.activity.observing, man.activity.jumping](woman.activity.observing == true → Relation(man, woman))
+16. Q[woman, woman.activity.observing, girl.activity.jumping](woman.activity.observing == true → Relation(girl, woman))
+17. Q[man, man.location.lake, girl.location.table](man.location.lake == true → Relation(man, girl))
+18. Q[girl, girl.location.lake, man.location.table](girl.location.lake == true → Relation(man, girl))
+19. Q[man, man.activity.jumping, girl.activity.painting](man.activity.jumping == true → Relation(man, girl))
+20. Q[girl, girl.activity.jumping, man.activity.painting](girl.activity.jumping == true → Relation(man, girl))
+21. Q[woman, woman.activity.sleeping, man.activity.painting](woman.activity.sleeping == true → Relation(man, woman))
+22. Q[woman, woman.activity.sleeping, girl.activity.painting](woman.activity.sleeping == true → Relation(girl, woman))
+23. Q[man, man.activity.painting, man.location.lake](man.activity.painting == true → Relation(man, girl))
+24. Q[girl, girl.activity.painting, girl.location.lake](girl.activity.painting == true → Relation(man, girl))
+25. Q[man, man.activity.jumping, man.location.table](man.activity.jumping == true → Relation(man, girl))
+26. Q[girl, girl.activity.jumping, girl.location.table](girl.activity.jumping == true → Relation(man, girl))
+27. Q[woman, woman.activity.observing, woman.location.shore](woman.activity.observing == true → Relation(man, woman))
+28. Q[woman, woman.activity.sleeping, woman.location.shore](woman.activity.sleeping == true → Relation(girl, woman))
+29. Q[man, man.activity.painting, woman.location.shore](man.activity.painting == true → Relation(man, woman))
+30. Q[girl, girl.activity.painting, woman.location.shore](girl.activity.painting == true → Relation(girl, woman))

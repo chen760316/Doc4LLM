@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 101)
+S1: UPS is the number one delivery/courier service according to 2019 sales.
+S2: FedEx is the number one delivery/courier service according to 2019 sales.
+
+Predicates:
+1. UPS.sales_2019
+2. FedEx.sales_2019
+3. "is_number_one".UPS
+4. "is_number_one".FedEx
+5. M_NLI(S1, S2)
+6. Factual(UPS, sales_2019)
+7. Factual(FedEx, sales_2019)
+8. violate(UPS, FedEx)
+9. "competes_with".UPS_FedEx
+10. "sales_metric".2019
+11. "delivery_service".UPS
+12. "delivery_service".FedEx
+13. "rank".UPS.number_one
+14. "rank".FedEx.number_one
+15. "sales_data".UPS_2019
+16. "sales_data".FedEx_2019
+17. "claims".UPS.number_one
+18. "claims".FedEx.number_one
+19. "metric".sales_2019
+20. "dispute".UPS_FedEx
+21. "service_type".delivery_courier
+22. "sales_comparison".UPS_FedEx_2019
+23. "market_leader".UPS
+24. "market_leader".FedEx
+25. "sales_lead".UPS
+26. "sales_lead".FedEx
+27. "sales_rank".UPS_2019
+28. "sales_rank".FedEx_2019
+29. "sales_claim".UPS
+30. "sales_claim".FedEx
+
+Rules:
+1. Q[UPS, x0, y0](UPS.sales_2019 == "number_one" → Factual(UPS, sales_2019))
+2. Q[UPS, x0, y0](FedEx.sales_2019 == "number_one" → Factual(FedEx, sales_2019))
+3. Q[UPS, x0, y0](UPS.sales_2019 > FedEx.sales_2019 → Factual(UPS, sales_2019))
+4. Q[UPS, x0, y0](FedEx.sales_2019 > UPS.sales_2019 → Factual(FedEx, sales_2019))
+5. Q[UPS, x0, y0](UPS.sales_2019 == FedEx.sales_2019 → Factual(UPS, sales_2019))
+6. Q[UPS, x0, y0](UPS.sales_2019 == "number_one" ∧ FedEx.sales_2019 == "number_one" → Factual(UPS, sales_2019))
+7. Q[UPS, x0, y0](UPS.sales_2019 == "number_one" ∧ FedEx.sales_2019 == "number_one" → Factual(FedEx, sales_2019))
+8. Q[UPS, x0, y0](UPS.sales_2019 < FedEx.sales_2019 → Factual(UPS, sales_2019))
+9. Q[UPS, x0, y0](UPS.sales_2019 == "number_one" ∧ "claims".FedEx.number_one → Factual(UPS, sales_2019))
+10. Q[UPS, x0, y0](FedEx.sales_2019 == "number_one" ∧ "claims".UPS.number_one → Factual(FedEx, sales_2019))
+11. Q[UPS, x0, y0](UPS.sales_2019 == "number_one" ∧ "sales_claim".FedEx → Factual(UPS, sales_2019))
+12. Q[UPS, x0, y0](FedEx.sales_2019 == "number_one" ∧ "sales_claim".UPS → Factual(FedEx, sales_2019))
+13. Q[UPS, x0, y0](UPS.sales_2019 == "number_one" ∧ "sales_data".FedEx_2019 → Factual(UPS, sales_2019))
+14. Q[UPS, x0, y0](FedEx.sales_2019 == "number_one" ∧ "sales_data".UPS_2019 → Factual(FedEx, sales_2019))
+15. Q[UPS, x0, y0](UPS.sales_2019 == "number_one" ∧ "sales_rank".FedEx_2019 → Factual(UPS, sales_2019))
+16. Q[UPS, x0, y0](FedEx.sales_2019 == "number_one" ∧ "sales_rank".UPS_2019 → Factual(FedEx, sales_2019))
+17. Q[UPS, x0, y0](UPS.sales_2019 == "number_one" ∧ "market_leader".FedEx → Factual(UPS, sales_2019))
+18. Q[UPS, x0, y0](FedEx.sales_2019 == "number_one" ∧ "market_leader".UPS → Factual(FedEx, sales_2019))
+19. Q[UPS, x0, y0](UPS.sales_2019 == "number_one" ∧ "sales_lead".FedEx → Factual(UPS, sales_2019))
+20. Q[UPS, x0, y0](FedEx.sales_2019 == "number_one" ∧ "sales_lead".UPS → Factual(FedEx, sales_2019))
+21. Q[UPS, x0, y0](UPS.sales_2019 == "number_one" ∧ "sales_comparison".UPS_FedEx_2019 → Factual(UPS, sales_2019))
+22. Q[UPS, x0, y0](FedEx.sales_2019 == "number_one" ∧ "sales_comparison".UPS_FedEx_2019 → Factual(FedEx, sales_2019))
+23. Q[UPS, x0, y0](UPS.sales_2019 == "number_one" ∧ "dispute".UPS_FedEx → Factual(UPS, sales_2019))
+24. Q[UPS, x0, y0](FedEx.sales_2019 == "number_one" ∧ "dispute".UPS_FedEx → Factual(FedEx, sales_2019))
+25. Q[UPS, x0, y0](UPS.sales_2019 == "number_one" ∧ "service_type".delivery_courier → Factual(UPS, sales_2019))
+26. Q[UPS, x0, y0](FedEx.sales_2019 == "number_one" ∧ "service_type".delivery_courier → Factual(FedEx, sales_2019))
+27. Q[UPS, x0, y0](UPS.sales_2019 == "number_one" ∧ "rank".UPS.number_one → Factual(UPS, sales_2019))
+28. Q[UPS, x0, y0](FedEx.sales_2019 == "number_one" ∧ "rank".FedEx.number_one → Factual(FedEx, sales_2019))
+29. Q[UPS, x0, y0](UPS.sales_2019 == "number_one" ∧ "is_number_one".UPS → Factual(UPS, sales_2019))
+30. Q[UPS, x0, y0](FedEx.sales_2019 == "number_one" ∧ "is_number_one".FedEx → Factual(FedEx, sales_2019))

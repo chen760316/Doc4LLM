@@ -1,0 +1,58 @@
+Source: dense_text.txt (Index 104)
+S1: Mass Eye and Ear was established in 1824, while Partners HealthCare was founded much later in 1994.
+S2: This historical divergence further reinforces that Mass Eye and Ear is not a part of Partners HealthCare.
+
+Predicates:
+1. Mass_Eye_and_Ear.established_year = 1824
+2. Partners_HealthCare.founded_year = 1994
+3. Mass_Eye_and_Ear.independence = true
+4. Partners_HealthCare.independence = true
+5. Mass_Eye_and_Ear.is_part_of.Partners_HealthCare = false
+6. Mass_Eye_and_Ear.timeline = "1824"
+7. Partners_HealthCare.timeline = "1994"
+8. Mass_Eye_and_Ear.relationship_with.Partners_HealthCare = "independent"
+9. Partners_HealthCare.relationship_with.Mass_Eye_and_Ear = "independent"
+10. Mass_Eye_and_Ear.historical_divergence = true
+11. Partners_HealthCare.historical_divergence = true
+12. M_NLI(S1, S2) = true
+13. Causal(Mass_Eye_and_Ear.independence, Partners_HealthCare.independence) = false
+14. violate(Mass_Eye_and_Ear.independence, Partners_HealthCare.independence) = true
+15. Mass_Eye_and_Ear.established_before(Partners_HealthCare) = true
+16. Partners_HealthCare.founded_after(Mass_Eye_and_Ear) = true
+17. Mass_Eye_and_Ear.is_not_part_of.Partners_HealthCare = true
+18. Partners_HealthCare.is_not_part_of.Mass_Eye_and_Ear = true
+19. Mass_Eye_and_Ear.year_difference(Partners_HealthCare) = 170
+20. Partners_HealthCare.year_difference(Mass_Eye_and_Ear) = 170
+21. Mass_Eye_and_Ear.history_significance = "independent establishment"
+22. Partners_HealthCare.history_significance = "later establishment"
+23. Mass_Eye_and_Ear.reinforces_independence = true
+24. Partners_HealthCare.reinforces_independence = true
+25. Mass_Eye_and_Ear.timeline_difference(Partners_HealthCare) = "significant"
+26. Partners_HealthCare.timeline_difference(Mass_Eye_and_Ear) = "significant"
+27. Mass_Eye_and_Ear.causal_relationship_with.Partners_HealthCare = false
+28. Partners_HealthCare.causal_relationship_with.Mass_Eye_and_Ear = false
+29. Mass_Eye_and_Ear.legacy = "historical independence"
+30. Partners_HealthCare.legacy = "recent establishment"
+
+Rules:
+1. Q[Mass, Mass_Eye_and_Ear.independence == true, Partners_HealthCare.independence == true](Mass_Eye_and_Ear.established_year = 1824 → Causal(Mass_Eye_and_Ear.independence, Partners_HealthCare.independence))
+2. Q[Mass, Mass_Eye_and_Ear.is_part_of.Partners_HealthCare == false, Partners_HealthCare.independence == true](Mass_Eye_and_Ear.historical_divergence = true → Causal(Mass_Eye_and_Ear.independence, Partners_HealthCare.independence))
+3. Q[Mass, Mass_Eye_and_Ear.timeline == "1824", Partners_HealthCare.timeline == "1994"](Mass_Eye_and_Ear.established_before(Partners_HealthCare) = true → Causal(Mass_Eye_and_Ear.independence, Partners_HealthCare.independence))
+4. Q[Mass, Mass_Eye_and_Ear.relationship_with.Partners_HealthCare == "independent", Partners_HealthCare.relationship_with.Mass_Eye_and_Ear == "independent"](Mass_Eye_and_Ear.is_not_part_of.Partners_HealthCare = true → Causal(Mass_Eye_and_Ear.independence, Partners_HealthCare.independence))
+5. Q[Mass, Mass_Eye_and_Ear.year_difference(Partners_HealthCare) == 170, Partners_HealthCare.year_difference(Mass_Eye_and_Ear) == 170](Mass_Eye_and_Ear.timeline_difference(Partners_HealthCare) = "significant" → Causal(Mass_Eye_and_Ear.independence, Partners_HealthCare.independence))
+6. Q[Mass, Mass_Eye_and_Ear.historical_divergence == true, Partners_HealthCare.historical_divergence == true](Mass_Eye_and_Ear.reinforces_independence = true → Causal(Mass_Eye_and_Ear.independence, Partners_HealthCare.independence))
+7. Q[Mass, Mass_Eye_and_Ear.legacy == "historical independence", Partners_HealthCare.legacy == "recent establishment"](Partners_HealthCare.founded_after(Mass_Eye_and_Ear) = true → Causal(Mass_Eye_and_Ear.independence, Partners_HealthCare.independence))
+8. Q[Mass, Mass_Eye_and_Ear.timeline_difference(Partners_HealthCare) == "significant", Partners_HealthCare.timeline_difference(Mass_Eye_and_Ear) == "significant"](Mass_Eye_and_Ear.established_before(Partners_HealthCare) = true → Causal(Mass_Eye_and_Ear.independence, Partners_HealthCare.independence))
+9. Q[Mass, Mass_Eye_and_Ear.independence == true, Partners_HealthCare.is_not_part_of.Mass_Eye_and_Ear == true](Mass_Eye_and_Ear.relationship_with.Partners_HealthCare = "independent" → Causal(Mass_Eye_and_Ear.independence, Partners_HealthCare.independence))
+10. Q[Mass, Mass_Eye_and_Ear.reinforces_independence == true, Partners_HealthCare.reinforces_independence == true](Mass_Eye_and_Ear.historical_divergence = true → Causal(Mass_Eye_and_Ear.independence, Partners_HealthCare.independence))
+11. Q[Mass, Mass_Eye_and_Ear.established_year == 1824, Partners_HealthCare.founded_year == 1994](Mass_Eye_and_Ear.is_not_part_of.Partners_HealthCare = true → Causal(Mass_Eye_and_Ear.independence, Partners_HealthCare.independence))
+12. Q[Mass, Mass_Eye_and_Ear.history_significance == "independent establishment", Partners_HealthCare.history_significance == "later establishment"](Mass_Eye_and_Ear.timeline_difference(Partners_HealthCare) = "significant" → Causal(Mass_Eye_and_Ear.independence, Partners_HealthCare.independence))
+13. Q[Mass, Mass_Eye_and_Ear.causal_relationship_with.Partners_HealthCare == false, Partners_HealthCare.causal_relationship_with.Mass_Eye_and_Ear == false](Mass_Eye_and_Ear.relationship_with.Partners_HealthCare = "independent" → Causal(Mass_Eye_and_Ear.independence, Partners_HealthCare.independence))
+14. Q[Mass, Mass_Eye_and_Ear.independence == true, Partners_HealthCare.independence == true](Mass_Eye_and_Ear.year_difference(Partners_HealthCare) = 170 → Causal(Mass_Eye_and_Ear.independence, Partners_HealthCare.independence))
+15. Q[Mass, Mass_Eye_and_Ear.timeline == "1824", Partners_HealthCare.timeline == "1994"](Partners_HealthCare.founded_after(Mass_Eye_and_Ear) = true → Causal(Mass_Eye_and_Ear.independence, Partners_HealthCare.independence))
+16. Q[Mass, Mass_Eye_and_Ear.is_part_of.Partners_HealthCare == false, Partners_HealthCare.is_not_part_of.Mass_Eye_and_Ear == true](Mass_Eye_and_Ear.historical_divergence = true → Causal(Mass_Eye_and_Ear.independence, Partners_HealthCare.independence))
+17. Q[Mass, Mass_Eye_and_Ear.relationship_with.Partners_HealthCare == "independent", Partners_HealthCare.relationship_with.Mass_Eye_and_Ear == "independent"](Mass_Eye_and_Ear.reinforces_independence = true → Causal(Mass_Eye_and_Ear.independence, Partners_HealthCare.independence))
+18. Q[Mass, Mass_Eye_and_Ear.legacy == "historical independence", Partners_HealthCare.legacy == "recent establishment"](Mass_Eye_and_Ear.timeline_difference(Partners_HealthCare) = "significant" → Causal(Mass_Eye_and_Ear.independence, Partners_HealthCare.independence))
+19. Q[Mass, Mass_Eye_and_Ear.year_difference(Partners_HealthCare) == 170, Partners_HealthCare.year_difference(Mass_Eye_and_Ear) == 170](Mass_Eye_and_Ear.is_not_part_of.Partners_HealthCare = true → Causal(Mass_Eye_and_Ear.independence, Partners_HealthCare.independence))
+20. Q[Mass, Mass_Eye_and_Ear.historical_divergence == true, Partners_HealthCare.historical_divergence == true](Mass_Eye_and_Ear.timeline_difference(Partners_HealthCare) = "significant" → Causal(Mass_Eye_and_Ear.independence, Partners_HealthCare.independence))
+21. Q[Mass, Mass_Eye_and_Ear.independence == true,

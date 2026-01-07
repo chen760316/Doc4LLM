@@ -1,0 +1,44 @@
+Predicates:
+Lady Mason.label != "Person"
+Lady Mason.label != Orley Farm.label
+Lady Mason.label = "Person"
+Lady Mason.name != "Lady Mason"
+Lady Mason.name != Lucius Mason.name
+Lady Mason.name != Orley Farm.name
+Lady Mason.name = "Lady Mason"
+Lady Mason.status != "alive"
+Lady Mason.status != Lucius Mason.status
+Lady Mason.status = "alive"
+Lady Mason___Lucius Mason.doc_id = "story_train_3585"
+Lady Mason___Lucius Mason.relationship != Lady Mason___Orley Farm.relationship
+Lady Mason___Lucius Mason.relationship = "Lady Mason lives at Orley Farm with her adult son, Lucius."
+Lady Mason___Lucius Mason.time_passed = "20 years"
+Lady Mason___Orley Farm.doc_id = "story_train_3585"
+Lady Mason___Orley Farm.prompted_by = "conscience"
+Lady Mason___Orley Farm.relationship = "Lady Mason confesses to committing forgery and gives up the estate."
+Lucius Mason.label != "Person"
+Lucius Mason.label != Orley Farm.label
+Lucius Mason.label = "Person"
+Lucius Mason.name != "Lucius Mason"
+Lucius Mason.name != Orley Farm.name
+Lucius Mason.name = "Lucius Mason"
+Lucius Mason.status != "brief engagement"
+Lucius Mason.status = "brief engagement"
+None_ML(Lady Mason___Lucius Mason.attrs, Lady Mason___Orley Farm.attrs)
+None_ML(Lucius Mason.attrs, Orley Farm.attrs)
+Orley Farm.label != "Estate"
+Orley Farm.label = "Estate"
+Orley Farm.name != "Orley Farm"
+Orley Farm.name = "Orley Farm"
+
+Rules:
+Q[Lady Mason,Lady Mason] (Lady Mason___Orley Farm.prompted_by = "conscience" ∧ Lucius Mason.label = "Person" ∧ Lucius Mason.name != Orley Farm.name ∧ Lady Mason.name = "Lady Mason" → Lucius Mason.label != "Person")
+Q[Lady Mason,Lady Mason] (Lady Mason.name != Orley Farm.name ∧ Orley Farm.label != "Estate" ∧ Lady Mason.status != Lucius Mason.status ∧ Lucius Mason.name != Orley Farm.name ∧ Lucius Mason.status = "brief engagement" ∧ Lady Mason___Orley Farm.doc_id = "story_train_3585" → Lady Mason.status = "alive")
+Q[Lady Mason,Lady Mason] (Lady Mason___Lucius Mason.relationship = "Lady Mason lives at Orley Farm with her adult son, Lucius." ∧ Lucius Mason.status = "brief engagement" ∧ None_ML(Lady Mason___Lucius Mason.attrs, Lady Mason___Orley Farm.attrs) ∧ Lady Mason.status != Lucius Mason.status ∧ Lady Mason.name != Orley Farm.name → None_ML(Lucius Mason.attrs, Orley Farm.attrs))
+Q[Lady Mason,Lady Mason] (Lady Mason___Orley Farm.prompted_by = "conscience" ∧ Orley Farm.label = "Estate" → None_ML(Lady Mason___Lucius Mason.attrs, Lady Mason___Orley Farm.attrs))
+Q[Lady Mason,Lady Mason] (Lady Mason___Orley Farm.relationship = "Lady Mason confesses to committing forgery and gives up the estate." ∧ Lady Mason___Orley Farm.doc_id = "story_train_3585" ∧ Lucius Mason.label != Orley Farm.label → Lady Mason.label != "Person")
+Q[Lady Mason,Lady Mason] (Lady Mason.name != "Lady Mason" ∧ Lady Mason___Lucius Mason.relationship != Lady Mason___Orley Farm.relationship ∧ Orley Farm.label != "Estate" → Lady Mason___Orley Farm.relationship = "Lady Mason confesses to committing forgery and gives up the estate.")
+Q[Lady Mason,Lady Mason] (Lady Mason___Lucius Mason.relationship != Lady Mason___Orley Farm.relationship ∧ Lucius Mason.label != Orley Farm.label ∧ Lucius Mason.status = "brief engagement" ∧ Lady Mason.label != "Person" ∧ Lucius Mason.status != "brief engagement" ∧ Lucius Mason.name = "Lucius Mason" → Orley Farm.name != "Orley Farm")
+Q[Lady Mason,Lady Mason] (Lady Mason.name = "Lady Mason" ∧ Lucius Mason.label != "Person" ∧ Lucius Mason.name != "Lucius Mason" ∧ Lady Mason___Lucius Mason.doc_id = "story_train_3585" → Lucius Mason.name != Orley Farm.name)
+Q[Lady Mason,Lady Mason] (Lucius Mason.status = "brief engagement" ∧ Lady Mason___Orley Farm.relationship = "Lady Mason confesses to committing forgery and gives up the estate." ∧ Lady Mason.name != Orley Farm.name ∧ Lady Mason.name != Lucius Mason.name ∧ Orley Farm.name = "Orley Farm" → Lady Mason.name != "Lady Mason")
+Q[Lady Mason,Lady Mason] (Lady Mason.name != Orley Farm.name ∧ Lady Mason.label != Orley Farm.label → Lucius Mason.name = "Lucius Mason")

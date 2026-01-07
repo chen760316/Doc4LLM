@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 333)
+S1: The woman was outside.
+S2: A woman and her pet are outside.
+
+Predicates:
+1. Woman.location
+2. Woman.alone
+3. Woman.pet
+4. Woman.outside
+5. Pet.location
+6. Woman_and_pet.location
+7. Woman_and_pet.outside
+8. Woman_and_pet.context
+9. Woman.context
+10. Woman_and_pet.relationship
+11. Woman.pet_relationship
+12. Woman.is_with_pet
+13. Woman.is_outside
+14. Woman_and_pet.is_outside
+15. Woman.is_alone
+16. Woman_and_pet.is_not_alone
+17. Woman_and_pet.includes_pet
+18. Woman_and_pet.includes_woman
+19. Woman_and_pet.different_context
+20. Woman.is_in_different_context
+21. Woman_and_pet.is_in_same_context
+22. Woman_and_pet.is_together
+23. Woman.is_not_with_pet
+24. Woman_and_pet.has_pet
+25. Woman.has_pet
+26. Woman_and_pet.has_different_context
+27. Woman.is_outside_alone
+28. Woman_and_pet.is_outside_together
+29. Woman_and_pet.is_in_same_location
+30. Woman.is_in_same_location_as_pet
+
+Rules:
+1. Q[The, Woman.outside == true, Woman_and_pet.outside == true](Woman.is_outside == true → Negation(Woman.alone, Woman_and_pet.is_not_alone))
+2. Q[The, Woman.alone == true, Woman_and_pet.is_not_alone == true](Woman.is_alone == true → Negation(Woman.pet, Woman_and_pet.includes_pet))
+3. Q[The, Woman.outside == true, Woman_and_pet.context == "different"](Woman.is_outside == true → Negation(Woman.is_in_same_context, Woman_and_pet.is_in_same_context))
+4. Q[The, Woman.is_outside == true, Woman_and_pet.is_outside_together == true](Woman.is_outside == true → Negation(Woman.is_alone, Woman_and_pet.is_together))
+5. Q[The, Woman.is_alone == true, Woman_and_pet.has_pet == true](Woman.is_alone == true → Negation(Woman.has_pet, Woman_and_pet.includes_pet))
+6. Q[The, Woman_and_pet.is_not_alone == true, Woman.is_alone == true](Woman_and_pet.is_not_alone == true → Negation(Woman.is_alone, Woman_and_pet.is_alone))
+7. Q[The, Woman.outside == true, Woman_and_pet.has_different_context == true](Woman.is_outside == true → Negation(Woman.context, Woman_and_pet.context))
+8. Q[The, Woman.is_outside == true, Woman_and_pet.is_in_same_location == true](Woman.is_outside == true → Negation(Woman.is_in_same_location_as_pet, Woman_and_pet.is_in_same_location))
+9. Q[The, Woman.is_with_pet == false, Woman_and_pet.is_with_pet == true](Woman.is_with_pet == false → Negation(Woman.pet_relationship, Woman_and_pet.relationship))
+10. Q[The, Woman.is_outside_alone == true, Woman_and_pet.is_outside_together == true](Woman.is_outside_alone == true → Negation(Woman_and_pet.is_outside_together, Woman.is_not_with_pet))
+11. Q[The, Woman.is_in_different_context == true, Woman_and_pet.is_in_same_context == true](Woman.is_in_different_context == true → Negation(Woman_and_pet.context, Woman.context))
+12. Q[The, Woman.is_not_with_pet == true, Woman_and_pet.has_pet == true](Woman.is_not_with_pet == true → Negation(Woman.has_pet, Woman_and_pet.has_pet))
+13. Q[The, Woman_and_pet.is_together == true, Woman.is_alone == true](Woman_and_pet.is_together == true → Negation(Woman.is_alone, Woman_and_pet.is_not_alone))
+14. Q[The, Woman.outside == true, Woman_and_pet.is_outside == true](Woman.outside == true → Negation(Woman.is_alone, Woman_and_pet.is_not_alone))
+15. Q[The, Woman.is_outside == true, Woman_and_pet.is_in_same_location == false](Woman.is_outside == true → Negation(Woman_and_pet.location, Woman.location))
+16. Q[The, Woman.is_alone == true, Woman_and_pet.is_together == true](Woman.is_alone == true → Negation(Woman_and_pet.is_together, Woman.is_not_with_pet))
+17. Q[The, Woman.has_pet == false, Woman_and_pet.has_pet == true](Woman.has_pet == false → Negation(Woman.pet, Woman_and_pet.has_pet))
+18. Q[The, Woman.is_outside == true, Woman_and_pet.is_in_different_context == true](Woman.is_outside == true → Negation(Woman.context, Woman_and_pet.context))
+19. Q[The, Woman.is_with_pet == false, Woman_and_pet.is_with_pet == true](Woman.is_with_pet == false → Negation(Woman.pet_relationship, Woman_and_pet.relationship))
+20. Q[The, Woman.is_outside_alone == true, Woman_and_pet.is_outside == true](Woman.is_outside_alone == true → Negation(Woman_and_pet.is_outside, Woman.is_not_with_pet))
+21. Q[The, Woman.is_in_same_location_as_pet == true, Woman_and_pet.is_not_alone == true](Woman.is_in_same_location_as_pet == true → Negation(Woman.is_alone, Woman_and_pet.is_not_alone))
+22. Q[The, Woman.is_outside == true, Woman_and_pet.is_outside_together == false](Woman.is_outside == true → Negation(Woman_and_pet.is_outside_together, Woman.is_not_with_pet))
+23. Q[The, Woman.is_alone == true, Woman_and_pet.is_together == false](Woman.is_alone == true → Negation(Woman_and_pet.is_together, Woman.is_not_with_pet))
+24. Q[The, Woman.is_outside == true, Woman_and_pet.is_in_same_context == false](Woman.is_outside == true → Negation(Woman.context, Woman_and_pet.context))
+25. Q[The, Woman.is_with_pet == false, Woman_and_pet.is_with_pet == false](Woman.is_with_pet == false → Negation(Woman.pet_relationship, Woman_and_pet.relationship))
+26. Q[The, Woman.is_outside == true, Woman_and_pet.is_in_same_location == false](Woman.is_outside == true → Negation(Woman.location, Woman_and_pet.location))
+27. Q[The, Woman.is_alone == true, Woman_and_pet.is_outside_together == false](Woman.is_alone == true → Negation(Woman_and_pet.is_outside_together, Woman.is_not_with_pet))
+28. Q[The, Woman.is_outside == true, Woman_and_pet.is_not_alone == true](Woman.is_outside == true → Negation(Woman.is_alone, Woman_and_pet.is_not_alone))
+29. Q[The, Woman.is_in_different_context == true, Woman_and_pet.is_in_same_context == false](Woman.is_in_different_context == true → Negation(Woman_and_pet.context, Woman.context))
+30. Q[The, Woman.is_outside == true, Woman_and_pet.has_pet == true](Woman.is_outside == true → Negation(Woman.has_pet, Woman_and_pet.has_pet))

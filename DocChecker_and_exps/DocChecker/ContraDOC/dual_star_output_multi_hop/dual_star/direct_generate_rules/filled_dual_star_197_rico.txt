@@ -1,0 +1,47 @@
+Predicates:
+Game Night.label != "Event"
+Game Night.label = "Event"
+Game Night.name != "Game Night"
+Game Night.name = "Game Night"
+Game Night.type != "Social Gathering"
+Game Night.type = "Social Gathering"
+Missy.full_name != "Missy (Jennifer Hall)"
+Missy.full_name = "Missy (Jennifer Hall)"
+Missy.label != "Person"
+Missy.label != Game Night.label
+Missy.label != New Year's Eve game night.label
+Missy.label = "Person"
+Missy.name != "Missy"
+Missy.name != Game Night.name
+Missy.name != New Year's Eve game night.name
+Missy.name = "Missy"
+Missy.status != "Guest"
+Missy.status = "Guest"
+Missy___Game Night.doc_id = "3503017462_5"
+Missy___Game Night.relationship = "Missy brings an unexpected date to the game night."
+Missy___New Year's Eve game night.doc_id != Missy___Game Night.doc_id
+Missy___New Year's Eve game night.doc_id = "3503017462_4"
+Missy___New Year's Eve game night.relationship != Missy___Game Night.relationship
+Missy___New Year's Eve game night.relationship = "Missy brings an unexpected date to the New Year's Eve game night."
+New Year's Eve game night.label != "Event"
+New Year's Eve game night.label = "Event"
+New Year's Eve game night.name != "New Year's Eve game night"
+New Year's Eve game night.name != Game Night.name
+New Year's Eve game night.name = "New Year's Eve game night"
+New Year's Eve game night.type != "Social gathering"
+New Year's Eve game night.type != Game Night.type
+New Year's Eve game night.type = "Social gathering"
+None_ML(Missy.attrs, Game Night.attrs)
+None_ML(Missy___Game Night.attrs, Missy___New Year's Eve game night.attrs)
+
+Rules:
+Q[Missy,Missy] (Missy.status = "Guest" ∧ Missy___New Year's Eve game night.doc_id = "3503017462_4" ∧ New Year's Eve game night.type = "Social gathering" ∧ Missy.name != New Year's Eve game night.name ∧ Missy.full_name != "Missy (Jennifer Hall)" ∧ Game Night.type != "Social Gathering" → Missy.label != New Year's Eve game night.label)
+Q[Missy,Missy] (Missy.name = "Missy" ∧ New Year's Eve game night.name != Game Night.name ∧ Missy___New Year's Eve game night.doc_id = "3503017462_4" ∧ New Year's Eve game night.label = "Event" → Game Night.type != "Social Gathering")
+Q[Missy,Missy] (New Year's Eve game night.label = "Event" ∧ Missy.status = "Guest" ∧ Game Night.label != "Event" → Missy___New Year's Eve game night.relationship = "Missy brings an unexpected date to the New Year's Eve game night.")
+Q[Missy,Missy] (Missy.label = "Person" ∧ Missy.full_name != "Missy (Jennifer Hall)" ∧ Missy.label != Game Night.label ∧ Missy.label != New Year's Eve game night.label ∧ Missy.name != Game Night.name → Game Night.name != "Game Night")
+Q[Missy,Missy] (New Year's Eve game night.type = "Social gathering" ∧ Game Night.type != "Social Gathering" → Missy___Game Night.relationship = "Missy brings an unexpected date to the game night.")
+Q[Missy,Missy] (Game Night.name != "Game Night" ∧ Missy___New Year's Eve game night.doc_id != Missy___Game Night.doc_id ∧ None_ML(Missy___Game Night.attrs, Missy___New Year's Eve game night.attrs) ∧ New Year's Eve game night.type != Game Night.type → Missy___New Year's Eve game night.relationship != Missy___Game Night.relationship)
+Q[Missy,Missy] (None_ML(Missy___Game Night.attrs, Missy___New Year's Eve game night.attrs) ∧ Game Night.type = "Social Gathering" ∧ Missy___Game Night.relationship = "Missy brings an unexpected date to the game night." → Missy___Game Night.doc_id = "3503017462_5")
+Q[Missy,Missy] (Game Night.name = "Game Night" ∧ None_ML(Missy.attrs, Game Night.attrs) ∧ Missy.label != Game Night.label ∧ Missy.full_name != "Missy (Jennifer Hall)" ∧ New Year's Eve game night.type != "Social gathering" → Missy.name = "Missy")
+Q[Missy,Missy] (Missy.status = "Guest" ∧ New Year's Eve game night.label = "Event" ∧ New Year's Eve game night.label != "Event" ∧ Missy.label != New Year's Eve game night.label ∧ Missy.label != "Person" ∧ Game Night.type = "Social Gathering" → Missy.label = "Person")
+Q[Missy,Missy] (Game Night.type = "Social Gathering" ∧ New Year's Eve game night.label != "Event" → Missy.status = "Guest")

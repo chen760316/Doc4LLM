@@ -1,0 +1,84 @@
+Predicates:
+Gerald.label != "Child"
+Gerald.label != Lady Glencora.label
+Gerald.label = "Child"
+Gerald.name != "Gerald"
+Gerald.name != Lady Glencora.name
+Gerald.name != Mary.name
+Gerald.name = "Gerald"
+Gerald.relationship_with_duke != "son"
+Gerald.relationship_with_duke != Lady Glencora.relationship_with_duke
+Gerald.relationship_with_duke = "son"
+Gerald.status != "expelled"
+Gerald.status != Lady Glencora.status
+Gerald.status = "expelled"
+Lady Glencora.label != "Lady"
+Lady Glencora.label = "Lady"
+Lady Glencora.name != "Lady Glencora"
+Lady Glencora.name = "Lady Glencora"
+Lady Glencora.relationship_with_children != "mother"
+Lady Glencora.relationship_with_children = "mother"
+Lady Glencora.relationship_with_duke != "wife"
+Lady Glencora.relationship_with_duke = "wife"
+Lady Glencora.status != "deceased"
+Lady Glencora.status = "deceased"
+Lord Silverbridge.label != "Child"
+Lord Silverbridge.label != Lady Glencora.label
+Lord Silverbridge.label = "Child"
+Lord Silverbridge.name != "Lord Silverbridge"
+Lord Silverbridge.name != Gerald.name
+Lord Silverbridge.name != Lady Glencora.name
+Lord Silverbridge.name != Mary.name
+Lord Silverbridge.name = "Lord Silverbridge"
+Mary.label != "Child"
+Mary.label != Lady Glencora.label
+Mary.label = "Child"
+Mary.name != "Mary"
+Mary.name != Lady Glencora.name
+Mary.name = "Mary"
+None_ML(Lady Glencora.attrs, Plantagenet Palliser.attrs)
+None_ML(Plantagenet Palliser___Lord Silverbridge.attrs, Plantagenet Palliser___Lady Glencora.attrs)
+Plantagenet Palliser.label != "Duke"
+Plantagenet Palliser.label != Gerald.label
+Plantagenet Palliser.label != Lady Glencora.label
+Plantagenet Palliser.label != Lord Silverbridge.label
+Plantagenet Palliser.label != Mary.label
+Plantagenet Palliser.label = "Duke"
+Plantagenet Palliser.name != "Plantagenet Palliser"
+Plantagenet Palliser.name != Gerald.name
+Plantagenet Palliser.name != Lady Glencora.name
+Plantagenet Palliser.name != Lord Silverbridge.name
+Plantagenet Palliser.name != Mary.name
+Plantagenet Palliser.name = "Plantagenet Palliser"
+Plantagenet Palliser___Gerald.doc_id = "3488771911_1"
+Plantagenet Palliser___Gerald.reason = "attended the Derby without permission"
+Plantagenet Palliser___Gerald.relationship != Plantagenet Palliser___Lady Glencora.relationship
+Plantagenet Palliser___Gerald.relationship != Plantagenet Palliser___Mary.relationship
+Plantagenet Palliser___Gerald.relationship = "Gerald gets expelled from Cambridge."
+Plantagenet Palliser___Lady Glencora.cause_of_death = "unexpected"
+Plantagenet Palliser___Lady Glencora.doc_id = "3488771911_1"
+Plantagenet Palliser___Lady Glencora.relationship = "Lady Glencora is the late wife of Duke Plantagenet Palliser."
+Plantagenet Palliser___Lord Silverbridge.doc_id = "3488771911_1"
+Plantagenet Palliser___Lord Silverbridge.position = "Member of Parliament"
+Plantagenet Palliser___Lord Silverbridge.relationship != Plantagenet Palliser___Gerald.relationship
+Plantagenet Palliser___Lord Silverbridge.relationship != Plantagenet Palliser___Lady Glencora.relationship
+Plantagenet Palliser___Lord Silverbridge.relationship != Plantagenet Palliser___Mary.relationship
+Plantagenet Palliser___Lord Silverbridge.relationship = "Lord Silverbridge follows his father's wishes by entering Parliament."
+Plantagenet Palliser___Mary.doc_id = "3488771911_1"
+Plantagenet Palliser___Mary.engagements = "allowed for both son and daughter"
+Plantagenet Palliser___Mary.political_position = "invited to take part in the government"
+Plantagenet Palliser___Mary.relationship != Plantagenet Palliser___Lady Glencora.relationship
+Plantagenet Palliser___Mary.relationship = "The Duke grows closer to his children by the end of the book."
+Plantagenet Palliser___Mary.request = "Mrs. Finn to be a companion and chaperone for Mary"
+
+Rules:
+Q[Plantagenet Palliser,Plantagenet Palliser] (Mary.label != Lady Glencora.label ∧ Gerald.status = "expelled" → Plantagenet Palliser.label != "Duke")
+Q[Plantagenet Palliser,Plantagenet Palliser] (Lady Glencora.status != "deceased" ∧ Plantagenet Palliser___Mary.political_position = "invited to take part in the government" ∧ Gerald.relationship_with_duke = "son" ∧ Gerald.status = "expelled" ∧ Lord Silverbridge.name != "Lord Silverbridge" → Plantagenet Palliser.name != Mary.name)
+Q[Plantagenet Palliser,Plantagenet Palliser] (Lord Silverbridge.label = "Child" ∧ Gerald.name = "Gerald" ∧ Gerald.status = "expelled" → Lady Glencora.relationship_with_children != "mother")
+Q[Plantagenet Palliser,Plantagenet Palliser] (Lord Silverbridge.label != Lady Glencora.label ∧ Plantagenet Palliser___Gerald.relationship = "Gerald gets expelled from Cambridge." ∧ Plantagenet Palliser___Lord Silverbridge.relationship = "Lord Silverbridge follows his father's wishes by entering Parliament." ∧ Lady Glencora.label = "Lady" → Plantagenet Palliser___Mary.doc_id = "3488771911_1")
+Q[Plantagenet Palliser,Plantagenet Palliser] (Lord Silverbridge.name != Gerald.name ∧ Plantagenet Palliser___Mary.doc_id = "3488771911_1" ∧ Lord Silverbridge.name != "Lord Silverbridge" ∧ Lady Glencora.status = "deceased" ∧ Lord Silverbridge.label != Lady Glencora.label ∧ Gerald.label != Lady Glencora.label → Lady Glencora.label != "Lady")
+Q[Plantagenet Palliser,Plantagenet Palliser] (Plantagenet Palliser.label != Lord Silverbridge.label ∧ Plantagenet Palliser___Lady Glencora.relationship = "Lady Glencora is the late wife of Duke Plantagenet Palliser." ∧ Plantagenet Palliser___Lord Silverbridge.relationship != Plantagenet Palliser___Gerald.relationship ∧ Plantagenet Palliser.name != "Plantagenet Palliser" ∧ Lady Glencora.relationship_with_duke = "wife" → Gerald.relationship_with_duke = "son")
+Q[Plantagenet Palliser,Plantagenet Palliser] (Plantagenet Palliser.name != Mary.name ∧ Gerald.label != "Child" ∧ Plantagenet Palliser.name != "Plantagenet Palliser" ∧ Plantagenet Palliser___Lady Glencora.doc_id = "3488771911_1" → Gerald.status != "expelled")
+Q[Plantagenet Palliser,Plantagenet Palliser] (Plantagenet Palliser.label != Mary.label ∧ Gerald.name != Mary.name ∧ Plantagenet Palliser___Lady Glencora.doc_id = "3488771911_1" ∧ Plantagenet Palliser___Lord Silverbridge.relationship = "Lord Silverbridge follows his father's wishes by entering Parliament." ∧ Mary.name != Lady Glencora.name ∧ Lord Silverbridge.name != "Lord Silverbridge" → Plantagenet Palliser___Gerald.relationship != Plantagenet Palliser___Mary.relationship)
+Q[Plantagenet Palliser,Plantagenet Palliser] (Plantagenet Palliser___Lord Silverbridge.relationship != Plantagenet Palliser___Mary.relationship ∧ Plantagenet Palliser___Lord Silverbridge.relationship = "Lord Silverbridge follows his father's wishes by entering Parliament." → Mary.label != "Child")
+Q[Plantagenet Palliser,Plantagenet Palliser] (None_ML(Lady Glencora.attrs, Plantagenet Palliser.attrs) ∧ Lady Glencora.status != "deceased" ∧ Plantagenet Palliser.label != Mary.label → Plantagenet Palliser.name != Lord Silverbridge.name)

@@ -1,0 +1,55 @@
+Predicates:
+Jesus.label != "Person"
+Jesus.label != Mrs. Frisby.label
+Jesus.label = "Person"
+Jesus.name != "Jesus"
+Jesus.name != Mrs. Frisby.name
+Jesus.name = "Jesus"
+Jesus.nationality != "Jewish"
+Jesus.nationality = "Jewish"
+Jesus.occupation != "religious leader"
+Jesus.occupation != Mrs. Frisby.occupation
+Jesus.occupation = "religious leader"
+Mrs. Frisby.label != "Character"
+Mrs. Frisby.label = "Character"
+Mrs. Frisby.name != "Mrs. Frisby"
+Mrs. Frisby.name = "Mrs. Frisby"
+Mrs. Frisby.occupation != "head of a family of field mice"
+Mrs. Frisby.occupation = "head of a family of field mice"
+Mrs. Frisby.status != "widowed"
+Mrs. Frisby.status = "widowed"
+Nicodemus.label != "Person"
+Nicodemus.label != Mrs. Frisby.label
+Nicodemus.label = "Person"
+Nicodemus.name != "Nicodemus"
+Nicodemus.name != Jesus.name
+Nicodemus.name != Mrs. Frisby.name
+Nicodemus.name = "Nicodemus"
+Nicodemus.relationship != "Follower"
+Nicodemus.relationship = "Follower"
+Nicodemus.status != "Wealthy supporter"
+Nicodemus.status != Mrs. Frisby.status
+Nicodemus.status = "Wealthy supporter"
+Nicodemus___Jesus.context = "Burial"
+Nicodemus___Jesus.doc_id != Nicodemus___Mrs. Frisby.doc_id
+Nicodemus___Jesus.doc_id = "3489738297_5"
+Nicodemus___Jesus.event = "Crucifixion"
+Nicodemus___Jesus.method = "Anointing body"
+Nicodemus___Jesus.relationship != Nicodemus___Mrs. Frisby.relationship
+Nicodemus___Jesus.relationship = "Nicodemus assisted Joseph in anointing Jesus' body."
+Nicodemus___Mrs. Frisby.doc_id = "3488771835_6"
+Nicodemus___Mrs. Frisby.relationship = "Nicodemus tells Mrs. Frisby about the rats' capture by scientists at NIMH."
+None_ML(Nicodemus.attrs, Jesus.attrs)
+None_ML(Nicodemus___Jesus.attrs, Nicodemus___Mrs. Frisby.attrs)
+
+Rules:
+Q[Nicodemus,Nicodemus] (None_ML(Nicodemus___Jesus.attrs, Nicodemus___Mrs. Frisby.attrs) ∧ Jesus.name != "Jesus" ∧ Nicodemus.name != "Nicodemus" ∧ Nicodemus.status != Mrs. Frisby.status ∧ Mrs. Frisby.label != "Character" ∧ Nicodemus.status = "Wealthy supporter" → Jesus.name = "Jesus")
+Q[Nicodemus,Nicodemus] (Mrs. Frisby.label != "Character" ∧ Mrs. Frisby.status != "widowed" → Nicodemus___Jesus.method = "Anointing body")
+Q[Nicodemus,Nicodemus] (Mrs. Frisby.occupation = "head of a family of field mice" ∧ Jesus.name != Mrs. Frisby.name ∧ Jesus.nationality != "Jewish" → Mrs. Frisby.status != "widowed")
+Q[Nicodemus,Nicodemus] (Jesus.name = "Jesus" ∧ Nicodemus.status = "Wealthy supporter" ∧ Nicodemus___Jesus.context = "Burial" ∧ Nicodemus.status != "Wealthy supporter" → Jesus.occupation != "religious leader")
+Q[Nicodemus,Nicodemus] (Mrs. Frisby.label != "Character" ∧ Jesus.occupation != Mrs. Frisby.occupation ∧ Nicodemus___Jesus.doc_id != Nicodemus___Mrs. Frisby.doc_id ∧ Nicodemus___Jesus.method = "Anointing body" ∧ None_ML(Nicodemus.attrs, Jesus.attrs) → Nicodemus___Mrs. Frisby.doc_id = "3488771835_6")
+Q[Nicodemus,Nicodemus] (Mrs. Frisby.name = "Mrs. Frisby" ∧ Nicodemus.relationship = "Follower" ∧ Nicodemus.status != "Wealthy supporter" → Nicodemus___Mrs. Frisby.relationship = "Nicodemus tells Mrs. Frisby about the rats' capture by scientists at NIMH.")
+Q[Nicodemus,Nicodemus] (Jesus.occupation != Mrs. Frisby.occupation ∧ Jesus.nationality = "Jewish" ∧ Nicodemus.label != "Person" ∧ Nicodemus.name = "Nicodemus" ∧ Nicodemus.status = "Wealthy supporter" → Jesus.label != Mrs. Frisby.label)
+Q[Nicodemus,Nicodemus] (Jesus.label != "Person" ∧ Jesus.name = "Jesus" ∧ None_ML(Nicodemus___Jesus.attrs, Nicodemus___Mrs. Frisby.attrs) ∧ Nicodemus.relationship != "Follower" ∧ Mrs. Frisby.name != "Mrs. Frisby" ∧ Nicodemus.status != Mrs. Frisby.status → Mrs. Frisby.occupation = "head of a family of field mice")
+Q[Nicodemus,Nicodemus] (Nicodemus___Jesus.event = "Crucifixion" ∧ Nicodemus___Jesus.method = "Anointing body" → Mrs. Frisby.label != "Character")
+Q[Nicodemus,Nicodemus] (Jesus.occupation != Mrs. Frisby.occupation ∧ Nicodemus.name != "Nicodemus" ∧ Jesus.name != Mrs. Frisby.name ∧ Jesus.occupation != "religious leader" → None_ML(Nicodemus.attrs, Jesus.attrs))

@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 467)
+S1: Today it has calmed down to the point where it receives some very peaceful traffic.
+S2: Despite its name, the square has had a tumultuous history 'home to a busy guillotine in the Revolution and the site of the Germans' last foothold in Paris in 1944' and handles some aggressive traffic today.
+
+Predicates:
+1. Square.name
+2. Square.history
+3. Square.traffic
+4. Square.current_state
+5. Square.past_event
+6. Square.aggressive_traffic
+7. Square.peaceful_traffic
+8. Square.year_of_revolution
+9. Square.year_of_last_foothold
+10. Square.tumultuous_history
+11. Square.guillotine_event
+12. Square.location
+13. Square.year
+14. Traffic.type
+15. Traffic.state
+16. Traffic.aggressiveness
+17. Traffic.peacefulness
+18. Traffic.current_state
+19. Event.name
+20. Event.type
+21. Event.year
+22. Event.impact
+23. Causal.relationship
+24. M_NLI(S1, S2)
+25. Causal(Square.history, Square.traffic)
+26. violate(Square.current_state, Square.aggressive_traffic)
+27. Square.has_traffic
+28. Square.receives_traffic
+29. Square.is_home_to
+30. Square.has_a_name
+
+Rules:
+1. Q[Today, Square.current_state == "peaceful", Square.traffic == "aggressive"](Square.current_state == "peaceful" → Causal(Square.current_state, Square.traffic))
+2. Q[Today, Square.traffic == "peaceful", Square.aggressive_traffic == true](Square.traffic == "peaceful" → Causal(Square.traffic, Square.aggressive_traffic))
+3. Q[Today, Square.history == "tumultuous", Square.traffic == "peaceful"](Square.history == "tumultuous" → Causal(Square.history, Square.traffic))
+4. Q[Today, Square.past_event == "guillotine", Square.traffic == "aggressive"](Square.past_event == "guillotine" → Causal(Square.past_event, Square.traffic))
+5. Q[Today, Square.year_of_revolution == 1789, Square.traffic == "aggressive"](Square.year_of_revolution == 1789 → Causal(Square.year_of_revolution, Square.traffic))
+6. Q[Today, Square.year_of_last_foothold == 1944, Square.traffic == "aggressive"](Square.year_of_last_foothold == 1944 → Causal(Square.year_of_last_foothold, Square.traffic))
+7. Q[Today, Square.tumultuous_history == true, Square.current_state == "peaceful"](Square.tumultuous_history == true → Causal(Square.tumultuous_history, Square.current_state))
+8. Q[Today, Square.has_traffic == true, Square.traffic == "peaceful"](Square.has_traffic == true → Causal(Square.has_traffic, Square.traffic))
+9. Q[Today, Square.receives_traffic == true, Square.traffic == "aggressive"](Square.receives_traffic == true → Causal(Square.receives_traffic, Square.traffic))
+10. Q[Today, Square.is_home_to == "guillotine", Square.traffic == "aggressive"](Square.is_home_to == "guillotine" → Causal(Square.is_home_to, Square.traffic))
+11. Q[Today, Square.history == "peaceful", Square.traffic == "aggressive"](Square.history == "peaceful" → Causal(Square.history, Square.traffic))
+12. Q[Today, Square.traffic == "peaceful", Square.tumultuous_history == true](Square.traffic == "peaceful" → Causal(Square.traffic, Square.tumultuous_history))
+13. Q[Today, Square.current_state == "peaceful", Square.aggressive_traffic == true](Square.current_state == "peaceful" → Causal(Square.current_state, Square.aggressive_traffic))
+14. Q[Today, Square.traffic == "aggressive", Square.peaceful_traffic == false](Square.traffic == "aggressive" → Causal(Square.traffic, Square.peaceful_traffic))
+15. Q[Today, Square.history == "tumultuous", Square.peaceful_traffic == false](Square.history == "tumultuous" → Causal(Square.history, Square.peaceful_traffic))
+16. Q[Today, Square.current_state == "peaceful", Square.tumultuous_history == true](Square.current_state == "peaceful" → Causal(Square.current_state, Square.tumultuous_history))
+17. Q[Today, Square.traffic == "aggressive", Square.current_state == "peaceful"](Square.traffic == "aggressive" → Causal(Square.traffic, Square.current_state))
+18. Q[Today, Square.has_a_name == "Square", Square.traffic == "aggressive"](Square.has_a_name == "Square" → Causal(Square.has_a_name, Square.traffic))
+19. Q[Today, Square.guillotine_event == true, Square.traffic == "aggressive"](Square.guillotine_event == true → Causal(Square.guillotine_event, Square.traffic))
+20. Q[Today, Square.location == "Paris", Square.traffic == "aggressive"](Square.location == "Paris" → Causal(Square.location, Square.traffic))
+21. Q[Today, Square.history == "tumultuous", Square.current_state == "peaceful"](Square.history == "tumultuous" → Causal(Square.history, Square.current_state))
+22. Q[Today, Square.traffic == "peaceful", Square.aggressive_traffic == false](Square.traffic == "peaceful" → Causal(Square.traffic, Square.aggressive_traffic))
+23. Q[Today, Square.tumultuous_history == true, Square.aggressive_traffic == true](Square.tumultuous_history == true → Causal(Square.tumultuous_history, Square.aggressive_traffic))
+24. Q[Today, Square.history == "peaceful", Square.aggressive_traffic == false](Square.history == "peaceful" → Causal(Square.history, Square.aggressive_traffic))
+25. Q[Today, Square.current_state == "peaceful", Square.has_traffic == true](Square.current_state == "peaceful" → Causal(Square.current_state, Square.has_traffic))
+26. Q[Today, Square.traffic == "aggressive", Square.receives_traffic == true](Square.traffic == "aggressive" → Causal(Square.traffic, Square.receives_traffic))
+27. Q[Today, Square.history == "tumultuous", Square.has_traffic == true](Square.history == "tumultuous" → Causal(Square.history, Square.has_traffic))
+28. Q[Today, Square.past_event == "last foothold", Square.traffic == "aggressive"](Square.past_event == "last foothold" → Causal(Square.past_event, Square.traffic))
+29. Q[Today, Square.traffic == "peaceful", Square.tumultuous_history == false](Square.traffic == "peaceful" → Causal(Square.traffic, Square.tumultuous_history))
+30. Q[Today, Square.current_state == "peaceful", Square.traffic == "aggressive"](Square.current_state == "peaceful" → Causal(Square.current_state, Square.traffic))

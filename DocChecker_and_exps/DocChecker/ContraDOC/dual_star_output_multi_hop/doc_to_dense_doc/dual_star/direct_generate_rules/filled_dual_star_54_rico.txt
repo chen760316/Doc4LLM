@@ -1,0 +1,28 @@
+Predicates:
+Father.action != "encourages"
+Father.action = "encourages"
+Father.label != "Person"
+Father.label = "Person"
+Father.name != "Father"
+Father.name != Hargrave.name
+Father.name = "Father"
+Father___Hargrave.contradiction_type = "Causal"
+Father___Hargrave.relationship = "The father realizes that Hargrave has been threatening his daughter."
+Father___Hargrave.source_id = "3488771933_1"
+Hargrave.label != "Person"
+Hargrave.label = "Person"
+Hargrave.name != "Hargrave"
+Hargrave.name = "Hargrave"
+None_ML(Father.attrs, Hargrave.attrs)
+
+Rules:
+Q[Father,Father] (Hargrave.label != "Person" ∧ Father.name != Hargrave.name → Father.label = "Person")
+Q[Father,Father] (Father___Hargrave.relationship = "The father realizes that Hargrave has been threatening his daughter." ∧ Hargrave.label != "Person" ∧ Father___Hargrave.contradiction_type = "Causal" ∧ Hargrave.name != "Hargrave" → Father___Hargrave.source_id = "3488771933_1")
+Q[Father,Father] (Hargrave.label != "Person" ∧ Father.label != "Person" ∧ Father.action = "encourages" ∧ Hargrave.name != "Hargrave" ∧ Father___Hargrave.contradiction_type = "Causal" → Father.name != "Father")
+Q[Father,Father] (Hargrave.label = "Person" ∧ Father.name = "Father" ∧ Father.name != "Father" ∧ Father.label = "Person" ∧ Hargrave.name != "Hargrave" ∧ Father.name != Hargrave.name → Father.action != "encourages")
+Q[Father,Father] (Hargrave.name = "Hargrave" ∧ Father.action = "encourages" ∧ Father.name != "Father" → Hargrave.label != "Person")
+Q[Father,Father] (Father.action = "encourages" ∧ Father.name = "Father" ∧ Father.label = "Person" → Hargrave.name = "Hargrave")
+Q[Father,Father] (Father.name = "Father" ∧ Father.name != Hargrave.name ∧ Father.action = "encourages" ∧ Father.label = "Person" → Father___Hargrave.relationship = "The father realizes that Hargrave has been threatening his daughter.")
+Q[Father,Father] (Father___Hargrave.contradiction_type = "Causal" ∧ Father.action = "encourages" ∧ Father.label = "Person" ∧ Hargrave.name != "Hargrave" ∧ Hargrave.label = "Person" ∧ Father.name != "Father" → None_ML(Father.attrs, Hargrave.attrs))
+Q[Father,Father] (Father___Hargrave.contradiction_type = "Causal" ∧ Hargrave.name = "Hargrave" → Hargrave.name != "Hargrave")
+Q[Father,Father] (Father.label = "Person" ∧ Father.name != "Father" ∧ None_ML(Father.attrs, Hargrave.attrs) ∧ Hargrave.label != "Person" ∧ Hargrave.name = "Hargrave" → Father.name = "Father")

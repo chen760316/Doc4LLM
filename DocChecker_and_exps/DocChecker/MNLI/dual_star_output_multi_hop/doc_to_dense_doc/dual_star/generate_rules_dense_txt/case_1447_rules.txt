@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 1447)
+S1: The villager swung his hammer but missed as the bald man turned away.
+S2: The villager just missed the man.
+
+Predicates:
+1. Villager.action.swing_hammer
+2. Villager.action.miss
+3. Bald_man.state.turn_away
+4. Villager.entity.miss_man
+5. Hammer.action.swing
+6. Bald_man.entity.bald
+7. Villager.entity.villager
+8. Hammer.entity.hammer
+9. Action.result.miss
+10. Villager.action.attempt_hit
+11. Bald_man.state.not_facing
+12. Villager.action.failed_attempt
+13. Hammer.state.in_motion
+14. Bald_man.entity.man
+15. Villager.state.aiming
+16. Action.cause.miss
+17. Villager.entity.human
+18. Bald_man.state.reaction
+19. Action.context.swing
+20. Villager.action.physical_action
+21. Bald_man.state.position_change
+22. Villager.action.intent_to_hit
+23. Hammer.state.impact
+24. Action.outcome.miss
+25. Villager.state.disappointment
+26. Bald_man.state.awareness
+27. Villager.action.movement
+28. Hammer.state.tool
+29. Bald_man.action.avoid
+30. Villager.state.engaged_in_action
+
+Rules:
+1. Q[The, Villager.action.swing_hammer == true](Villager.entity.villager == true → Causal(Villager.action.swing_hammer, Villager.action.miss))
+2. Q[The, Villager.action.miss == true](Villager.action.swing_hammer == true → Causal(Villager.action.miss, Villager.entity.miss_man))
+3. Q[The, Bald_man.state.turn_away == true](Bald_man.entity.bald == true → Causal(Bald_man.state.turn_away, Villager.action.miss))
+4. Q[The, Villager.entity.miss_man == true](Bald_man.state.not_facing == true → Causal(Villager.entity.miss_man, Villager.action.miss))
+5. Q[The, Hammer.action.swing == true](Villager.action.attempt_hit == true → Causal(Hammer.action.swing, Action.result.miss))
+6. Q[The, Bald_man.entity.bald == true](Bald_man.state.position_change == true → Causal(Bald_man.entity.bald, Villager.action.miss))
+7. Q[The, Villager.entity.villager == true](Villager.state.aiming == true → Causal(Villager.entity.villager, Villager.action.failed_attempt))
+8. Q[The, Hammer.entity.hammer == true](Hammer.state.in_motion == true → Causal(Hammer.entity.hammer, Action.outcome.miss))
+9. Q[The, Action.result.miss == true](Villager.action.physical_action == true → Causal(Action.result.miss, Villager.action.movement))
+10. Q[The, Villager.action.attempt_hit == true](Villager.state.disappointment == true → Causal(Villager.action.attempt_hit, Villager.action.miss))
+11. Q[The, Bald_man.state.not_facing == true](Bald_man.state.reaction == true → Causal(Bald_man.state.not_facing, Villager.action.miss))
+12. Q[The, Villager.action.failed_attempt == true](Villager.action.intent_to_hit == true → Causal(Villager.action.failed_attempt, Villager.entity.miss_man))
+13. Q[The, Hammer.state.in_motion == true](Hammer.state.impact == true → Causal(Hammer.state.in_motion, Action.result.miss))
+14. Q[The, Villager.state.aiming == true](Villager.action.engaged_in_action == true → Causal(Villager.state.aiming, Villager.action.failed_attempt))
+15. Q[The, Bald_man.state.position_change == true](Bald_man.state.awareness == true → Causal(Bald_man.state.position_change, Villager.action.miss))
+16. Q[The, Villager.action.movement == true](Villager.state.disappointment == true → Causal(Villager.action.movement, Villager.action.miss))
+17. Q[The, Hammer.state.tool == true](Villager.action.physical_action == true → Causal(Hammer.state.tool, Action.result.miss))
+18. Q[The, Bald_man.action.avoid == true](Bald_man.state.not_facing == true → Causal(Bald_man.action.avoid, Villager.action.miss))
+19. Q[The, Villager.state.engaged_in_action == true](Villager.action.attempt_hit == true → Causal(Villager.state.engaged_in_action, Villager.action.failed_attempt))
+20. Q[The, Villager.action.swing_hammer == true](Hammer.state.in_motion == true → Causal(Villager.action.swing_hammer, Action.result.miss))
+21. Q[The, Villager.action.intent_to_hit == true](Villager.state.aiming == true → Causal(Villager.action.intent_to_hit, Villager.action.failed_attempt))
+22. Q[The, Bald_man.state.reaction == true](Bald_man.state.awareness == true → Causal(Bald_man.state.reaction, Villager.action.miss))
+23. Q[The, Villager.state.disappointment == true](Villager.action.movement == true → Causal(Villager.state.disappointment, Villager.entity.miss_man))
+24. Q[The, Hammer.state.impact == true](Villager.action.attempt_hit == true → Causal(Hammer.state.impact, Action.result.miss))
+25. Q[The, Villager.action.physical_action == true](Villager.entity.villager == true → Causal(Villager.action.physical_action, Villager.action.miss))
+26. Q[The, Bald_man.state.awareness == true](Bald_man.state.position_change == true → Causal(Bald_man.state.awareness, Villager.action.miss))
+27. Q[The, Villager.action.movement == true](Villager.state.engaged_in_action == true → Causal(Villager.action.movement, Villager.action.failed_attempt))
+28. Q[The, Hammer.state.tool == true](Villager.action.swing_hammer == true → Causal(Hammer.state.tool, Action.result.miss))
+29. Q[The, Bald_man.action.avoid == true](Bald_man.state.turn_away == true → Causal(Bald_man.action.avoid, Villager.action.miss))
+30. Q[The, Villager.state.aiming == true](Villager.action.intent_to_hit == true → Causal(Villager.state.aiming, Villager.action.failed_attempt))

@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 909)
+S1: Two police officers on duty watching over things.
+S2: Two police officers are on a stake-out.
+
+Predicates:
+1. PoliceOfficer.onDuty
+2. PoliceOfficer.watchingOver
+3. PoliceOfficer.stakeOut
+4. PoliceOfficer.focusedActivity
+5. ObservationRole.general
+6. ObservationRole.specific
+7. StakeOut.impliesSecretive
+8. StakeOut.involvesPolice
+9. Duty.involvesObservation
+10. Duty.requiresFocus
+11. Activity.isFocused
+12. Activity.isGeneral
+13. TwoOfficers.onDuty
+14. TwoOfficers.areWatching
+15. TwoOfficers.onStakeOut
+16. TwoOfficers.involvedInActivity
+17. GeneralObservation.role
+18. SpecificObservation.role
+19. FocusedObservation.activity
+20. SecretiveActivity.requiresPlanning
+21. Planning.isNecessaryForStakeOut
+22. Role.requiresTwoOfficers
+23. Officers.observeEnvironment
+24. Officers.monitorSituation
+25. Situation.requiresAttention
+26. Attention.isCriticalForDuty
+27. Duty.isPerformedByOfficers
+28. Officers.performObservation
+29. Observation.isKeyToSafety
+30. Safety.requiresPolicePresence
+
+Rules:
+1. Q[Two, PoliceOfficer.onDuty == true, PoliceOfficer.stakeOut == false](PoliceOfficer.onDuty == true → Relation(TwoOfficers.onDuty, TwoOfficers.onStakeOut))
+2. Q[Two, ObservationRole.general == true, ObservationRole.specific == false](ObservationRole.general == true → Relation(TwoOfficers.involvedInActivity, TwoOfficers.onStakeOut))
+3. Q[Two, PoliceOfficer.watchingOver == true, PoliceOfficer.focusedActivity == false](PoliceOfficer.watchingOver == true → Relation(TwoOfficers.areWatching, TwoOfficers.onStakeOut))
+4. Q[Two, Duty.involvesObservation == true, Duty.requiresFocus == false](Duty.involvesObservation == true → Relation(TwoOfficers.onDuty, TwoOfficers.onStakeOut))
+5. Q[Two, Activity.isGeneral == true, Activity.isFocused == false](Activity.isGeneral == true → Relation(TwoOfficers.onDuty, TwoOfficers.onStakeOut))
+6. Q[Two, StakeOut.impliesSecretive == true, StakeOut.involvesPolice == true](StakeOut.impliesSecretive == true → Relation(TwoOfficers.onDuty, TwoOfficers.onStakeOut))
+7. Q[Two, Officers.observeEnvironment == true, Officers.monitorSituation == false](Officers.observeEnvironment == true → Relation(TwoOfficers.onDuty, TwoOfficers.onStakeOut))
+8. Q[Two, Attention.isCriticalForDuty == true, Situation.requiresAttention == false](Attention.isCriticalForDuty == true → Relation(TwoOfficers.onDuty, TwoOfficers.onStakeOut))
+9. Q[Two, PoliceOfficer.stakeOut == true, PoliceOfficer.onDuty == false](PoliceOfficer.stakeOut == true → Relation(TwoOfficers.onStakeOut, TwoOfficers.onDuty))
+10. Q[Two, FocusedObservation.activity == true, GeneralObservation.role == false](FocusedObservation.activity == true → Relation(TwoOfficers.onStakeOut, TwoOfficers.onDuty))
+11. Q[Two, SecretiveActivity.requiresPlanning == true, Planning.isNecessaryForStakeOut == true](SecretiveActivity.requiresPlanning == true → Relation(TwoOfficers.onStakeOut, TwoOfficers.onDuty))
+12. Q[Two, PoliceOfficer.focusedActivity == true, PoliceOfficer.watchingOver == false](PoliceOfficer.focusedActivity == true → Relation(TwoOfficers.onStakeOut, TwoOfficers.onDuty))
+13. Q[Two, Duty.requiresFocus == true, Duty.involvesObservation == false](Duty.requiresFocus == true → Relation(TwoOfficers.onStakeOut, TwoOfficers.onDuty))
+14. Q[Two, SpecificObservation.role == true, GeneralObservation.role == false](SpecificObservation.role == true → Relation(TwoOfficers.onStakeOut, TwoOfficers.onDuty))
+15. Q[Two, Officers.performObservation == true, Officers.observeEnvironment == false](Officers.performObservation == true → Relation(TwoOfficers.onDuty, TwoOfficers.onStakeOut))
+16. Q[Two, Observation.isKeyToSafety == true, Safety.requiresPolicePresence == false](Observation.isKeyToSafety == true → Relation(TwoOfficers.onDuty, TwoOfficers.onStakeOut))
+17. Q[Two, TwoOfficers.onDuty == true, TwoOfficers.onStakeOut == false](TwoOfficers.onDuty == true → Relation(TwoOfficers.onDuty, TwoOfficers.onStakeOut))
+18. Q[Two, TwoOfficers.involvedInActivity == true, TwoOfficers.onStakeOut == false](TwoOfficers.involvedInActivity == true → Relation(TwoOfficers.onDuty, TwoOfficers.onStakeOut))
+19. Q[Two, Duty.isPerformedByOfficers == true, Officers.monitorSituation == false](Duty.isPerformedByOfficers == true → Relation(TwoOfficers.onDuty, TwoOfficers.onStakeOut))
+20. Q[Two, Situation.requiresAttention == true, Attention.isCriticalForDuty == false](Situation.requiresAttention == true → Relation(TwoOfficers.onDuty, TwoOfficers.onStakeOut))
+21. Q[Two, PoliceOfficer.onDuty == true, PoliceOfficer.stakeOut == false](PoliceOfficer.onDuty == true → Relation(TwoOfficers.onDuty, TwoOfficers.onStakeOut))
+22. Q[Two, Activity.isFocused == true, Activity.isGeneral == false](Activity.isFocused == true → Relation(TwoOfficers.onStakeOut, TwoOfficers.onDuty))
+23. Q[Two, Officers.monitorSituation == true, Officers.observeEnvironment == false](Officers.monitorSituation == true → Relation(TwoOfficers.onDuty, TwoOfficers.onStakeOut))
+24. Q[Two, Duty.requiresFocus == true, Duty.involvesObservation == false](Duty.requiresFocus == true → Relation(TwoOfficers.onStakeOut, TwoOfficers.onDuty))
+25. Q[Two, StakeOut.involvesPolice == true, StakeOut.impliesSecretive == false](StakeOut.involvesPolice == true → Relation(TwoOfficers.onStakeOut, TwoOfficers.onDuty))
+26. Q[Two, GeneralObservation.role == true, SpecificObservation.role == false](GeneralObservation.role == true → Relation(TwoOfficers.onDuty, TwoOfficers.onStakeOut))
+27. Q[Two, FocusedObservation.activity == true, ObservationRole.specific == false](FocusedObservation.activity == true → Relation(TwoOfficers.onStakeOut, TwoOfficers.onDuty))
+28. Q[Two, Safety.requiresPolicePresence == true, Observation.isKeyToSafety == false](Safety.requiresPolicePresence == true → Relation(TwoOfficers.onDuty, TwoOfficers.onStakeOut))
+29. Q[Two, Planning.isNecessaryForStakeOut == true, SecretiveActivity.requiresPlanning == false](Planning.isNecessaryForStakeOut == true → Relation(TwoOfficers.onStakeOut, TwoOfficers.onDuty))
+30. Q[Two, Officers.performObservation == true, PoliceOfficer.watchingOver == false](Officers.performObservation == true → Relation(TwoOfficers.onDuty, TwoOfficers.onStakeOut))

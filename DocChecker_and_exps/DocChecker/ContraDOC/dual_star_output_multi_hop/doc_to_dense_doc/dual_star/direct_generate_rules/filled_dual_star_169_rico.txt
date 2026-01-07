@@ -1,0 +1,53 @@
+Predicates:
+None_ML(UVA___zero-tolerance policy.attrs, UVA___sexual assault.attrs)
+None_ML(sexual assault.attrs, zero-tolerance policy.attrs)
+UVA.label != "Institution"
+UVA.label != sexual assault.label
+UVA.label != zero-tolerance policy.label
+UVA.label = "Institution"
+UVA.name != "UVA"
+UVA.name != sexual assault.name
+UVA.name != zero-tolerance policy.name
+UVA.name = "UVA"
+UVA.status != "instituted new policies"
+UVA.status != sexual assault.status
+UVA.status != zero-tolerance policy.status
+UVA.status = "instituted new policies"
+UVA___sexual assault.contradiction_type = "Factual"
+UVA___sexual assault.relationship != UVA___zero-tolerance policy.relationship
+UVA___sexual assault.relationship = "UVA has never expelled a student for sexual assault, even when the student admitted to it."
+UVA___sexual assault.source_id = "3489825753_6"
+UVA___sexual assault.time != UVA___zero-tolerance policy.time
+UVA___sexual assault.time = "before the article published"
+UVA___zero-tolerance policy.clarity = "policy was never defined"
+UVA___zero-tolerance policy.contradiction_type = "Factual"
+UVA___zero-tolerance policy.relationship = "After the article published, UVA instituted a zero-tolerance policy on sexual assault."
+UVA___zero-tolerance policy.source_id = "3489825753_6"
+UVA___zero-tolerance policy.time = "after the article published"
+sexual assault.label != "Incident"
+sexual assault.label != zero-tolerance policy.label
+sexual assault.label = "Incident"
+sexual assault.name != "sexual assault"
+sexual assault.name != zero-tolerance policy.name
+sexual assault.name = "sexual assault"
+sexual assault.status != "admitted"
+sexual assault.status != zero-tolerance policy.status
+sexual assault.status = "admitted"
+zero-tolerance policy.label != "Policy"
+zero-tolerance policy.label = "Policy"
+zero-tolerance policy.name != "zero-tolerance policy"
+zero-tolerance policy.name = "zero-tolerance policy"
+zero-tolerance policy.status != "not defined"
+zero-tolerance policy.status = "not defined"
+
+Rules:
+Q[UVA,UVA] (sexual assault.label != zero-tolerance policy.label ∧ UVA.name != sexual assault.name ∧ UVA___zero-tolerance policy.clarity = "policy was never defined" ∧ zero-tolerance policy.label != "Policy" → UVA___sexual assault.time != UVA___zero-tolerance policy.time)
+Q[UVA,UVA] (UVA.status = "instituted new policies" ∧ zero-tolerance policy.status != "not defined" ∧ zero-tolerance policy.name = "zero-tolerance policy" ∧ sexual assault.name != zero-tolerance policy.name ∧ UVA___zero-tolerance policy.relationship = "After the article published, UVA instituted a zero-tolerance policy on sexual assault." → UVA___sexual assault.relationship != UVA___zero-tolerance policy.relationship)
+Q[UVA,UVA] (UVA___zero-tolerance policy.contradiction_type = "Factual" ∧ sexual assault.status != zero-tolerance policy.status → UVA.status = "instituted new policies")
+Q[UVA,UVA] (UVA.label != zero-tolerance policy.label ∧ UVA___sexual assault.contradiction_type = "Factual" ∧ zero-tolerance policy.label != "Policy" ∧ UVA.label != "Institution" ∧ sexual assault.name != zero-tolerance policy.name ∧ UVA___sexual assault.source_id = "3489825753_6" → sexual assault.label != "Incident")
+Q[UVA,UVA] (UVA___zero-tolerance policy.source_id = "3489825753_6" ∧ zero-tolerance policy.name = "zero-tolerance policy" ∧ sexual assault.status = "admitted" → UVA.status != "instituted new policies")
+Q[UVA,UVA] (UVA___sexual assault.time = "before the article published" ∧ UVA.name != "UVA" → zero-tolerance policy.name = "zero-tolerance policy")
+Q[UVA,UVA] (zero-tolerance policy.status != "not defined" ∧ UVA___sexual assault.time = "before the article published" ∧ UVA.label != "Institution" → UVA.label = "Institution")
+Q[UVA,UVA] (sexual assault.label != zero-tolerance policy.label ∧ UVA.name = "UVA" ∧ UVA.status = "instituted new policies" ∧ sexual assault.label = "Incident" ∧ sexual assault.status = "admitted" ∧ None_ML(UVA___zero-tolerance policy.attrs, UVA___sexual assault.attrs) → sexual assault.name != "sexual assault")
+Q[UVA,UVA] (UVA.name != sexual assault.name ∧ zero-tolerance policy.label = "Policy" ∧ sexual assault.label = "Incident" ∧ UVA___zero-tolerance policy.clarity = "policy was never defined" ∧ UVA.status != sexual assault.status → sexual assault.status != zero-tolerance policy.status)
+Q[UVA,UVA] (UVA___zero-tolerance policy.source_id = "3489825753_6" ∧ UVA___sexual assault.relationship = "UVA has never expelled a student for sexual assault, even when the student admitted to it." ∧ UVA___sexual assault.relationship != UVA___zero-tolerance policy.relationship ∧ zero-tolerance policy.label != "Policy" → sexual assault.name = "sexual assault")

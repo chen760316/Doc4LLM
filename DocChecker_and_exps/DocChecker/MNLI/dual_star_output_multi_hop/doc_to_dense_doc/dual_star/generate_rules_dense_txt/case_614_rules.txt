@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 614)
+S1: The fleet of vessels were all destroyed on D-Day.
+S2: And then, at 6:30 am on D-Day, came the first of a fleet of 4,266 vessels to turn the beaches into beachheads with their now famous code Sword, Juno, Gold, Omaha, and Utah.
+
+Predicates:
+1. Fleet.vessels
+2. Fleet.status
+3. D-Day.date
+4. Vessels.count
+5. Vessels.destruction
+6. Vessels.arrival_time
+7. Vessels.beachheads
+8. Code.name
+9. Code.Sword
+10. Code.Juno
+11. Code.Gold
+12. Code.Omaha
+13. Code.Utah
+14. Arrival.fleet_size
+15. Arrival.time
+16. Arrival.event
+17. Destruction.event
+18. Destruction.time
+19. Destruction.location
+20. Beachheads.location
+21. Beachheads.event
+22. Fleet.event
+23. Fleet.destruction_time
+24. Vessels.fleet_id
+25. Vessels.event_type
+26. Vessels.destruction_reason
+27. D-Day.event
+28. D-Day.fleet_arrival
+29. D-Day.vessel_destruction
+30. Vessels.code_association
+
+Rules:
+1. Q[The, Fleet.vessels, Vessels.count](Fleet.vessels == "all" → Factual(x0, y0))
+2. Q[The, Fleet.status, Vessels.destruction](Fleet.status == "destroyed" → Factual(x0, y0))
+3. Q[The, D-Day.date, D-Day.event](D-Day.date == "D-Day" → Factual(x0, y0))
+4. Q[The, Vessels.count, Arrival.fleet_size](Vessels.count == 0 → Factual(x0, y0))
+5. Q[The, Vessels.destruction, Destruction.event](Vessels.destruction == "total" → Factual(x0, y0))
+6. Q[The, Vessels.arrival_time, Arrival.time](Vessels.arrival_time == "6:30 am" → Factual(x0, y0))
+7. Q[The, Vessels.beachheads, Beachheads.event](Vessels.beachheads == "none" → Factual(x0, y0))
+8. Q[The, Code.name, Code.Sword](Code.name == "Sword" → Factual(x0, y0))
+9. Q[The, Code.name, Code.Juno](Code.name == "Juno" → Factual(x0, y0))
+10. Q[The, Code.name, Code.Gold](Code.name == "Gold" → Factual(x0, y0))
+11. Q[The, Code.name, Code.Omaha](Code.name == "Omaha" → Factual(x0, y0))
+12. Q[The, Code.name, Code.Utah](Code.name == "Utah" → Factual(x0, y0))
+13. Q[The, Arrival.fleet_size, Vessels.count](Arrival.fleet_size == 4266 → Factual(x0, y0))
+14. Q[The, Arrival.time, Vessels.arrival_time](Arrival.time == "6:30 am" → Factual(x0, y0))
+15. Q[The, Arrival.event, D-Day.event](Arrival.event == "fleet arrival" → Factual(x0, y0))
+16. Q[The, Destruction.event, D-Day.event](Destruction.event == "vessel destruction" → Factual(x0, y0))
+17. Q[The, Fleet.event, D-Day.event](Fleet.event == "arrival" → Factual(x0, y0))
+18. Q[The, Fleet.destruction_time, D-Day.date](Fleet.destruction_time == "D-Day" → Factual(x0, y0))
+19. Q[The, Vessels.event_type, Fleet.event](Vessels.event_type == "arrival" → Factual(x0, y0))
+20. Q[The, Vessels.destruction_reason, Fleet.status](Vessels.destruction_reason == "combat" → Factual(x0, y0))
+21. Q[The, D-Day.vessel_destruction, Vessels.destruction](D-Day.vessel_destruction == "total" → Factual(x0, y0))
+22. Q[The, D-Day.fleet_arrival, Arrival.event](D-Day.fleet_arrival == "yes" → Factual(x0, y0))
+23. Q[The, Beachheads.location, Vessels.beachheads](Beachheads.location == "none" → Factual(x0, y0))
+24. Q[The, Vessels.fleet_id, Fleet.vessels](Vessels.fleet_id == "none" → Factual(x0, y0))
+25. Q[The, Vessels.code_association, Code.name](Vessels.code_association == "none" → Factual(x0, y0))
+26. Q[The, D-Day.vessel_destruction, Fleet.status](D-Day.vessel_destruction == "total" → Factual(x0, y0))
+27. Q[The, Fleet.destruction_time, D-Day.date](Fleet.destruction_time == "D-Day" → Factual(x0, y0))
+28. Q[The, Vessels.count, Vessels.destruction](Vessels.count == 0 → Factual(x0, y0))
+29. Q[The, Vessels.arrival_time, D-Day.date](Vessels.arrival_time == "D-Day" → Factual(x0, y0))
+30. Q[The, Vessels.event_type, Arrival.event](Vessels.event_type == "arrival" → Factual(x0, y0))

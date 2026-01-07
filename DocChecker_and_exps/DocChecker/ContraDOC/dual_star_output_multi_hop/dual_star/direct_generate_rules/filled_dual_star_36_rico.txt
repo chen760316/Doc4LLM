@@ -1,0 +1,75 @@
+Predicates:
+California.label != "Location"
+California.label != Jerry Brown.label
+California.label != United States.label
+California.label != water service regulation.label
+California.label != wine grape harvest.label
+California.label = "Location"
+California.name != "California"
+California.name != Jerry Brown.name
+California.name != United States.name
+California.name != water service regulation.name
+California.name != wine grape harvest.name
+California.name = "California"
+California___Jerry Brown.context = "mandatory regulations in all cities"
+California___Jerry Brown.cutback_percentage = "25%"
+California___Jerry Brown.doc_id = "3489738298_4"
+California___Jerry Brown.relationship = "Jerry Brown announced a mandatory cutback in water consumption due to the drought in California."
+California___United States.doc_id != California___Jerry Brown.doc_id
+California___United States.doc_id = "3489738298_10"
+California___United States.reason = "California grows a significant portion of the nation's vegetables and fruits."
+California___United States.relationship != California___Jerry Brown.relationship
+California___United States.relationship = "California is a major agricultural producer for the United States."
+California___water service regulation.doc_id != California___Jerry Brown.doc_id
+California___water service regulation.doc_id = "3489738298_10"
+California___water service regulation.relationship != California___Jerry Brown.relationship
+California___water service regulation.relationship != California___United States.relationship
+California___water service regulation.relationship != California___wine grape harvest.relationship
+California___water service regulation.relationship = "California has implemented new regulations affecting water service in restaurants due to the drought."
+California___wine grape harvest.doc_id != California___Jerry Brown.doc_id
+California___wine grape harvest.doc_id = "3489738298_10"
+California___wine grape harvest.relationship != California___Jerry Brown.relationship
+California___wine grape harvest.relationship != California___United States.relationship
+California___wine grape harvest.relationship = "California's drought has coincided with excellent wine grape harvests."
+Jerry Brown.label != "Person"
+Jerry Brown.label = "Person"
+Jerry Brown.name != "Jerry Brown"
+Jerry Brown.name = "Jerry Brown"
+None_ML(California___Jerry Brown.attrs, California___United States.attrs)
+None_ML(United States.attrs, California.attrs)
+United States.label != "Country"
+United States.label != Jerry Brown.label
+United States.label = "Country"
+United States.name != "United States"
+United States.name != Jerry Brown.name
+United States.name = "United States"
+water service regulation.label != "Action"
+water service regulation.label != Jerry Brown.label
+water service regulation.label != United States.label
+water service regulation.label != wine grape harvest.label
+water service regulation.label = "Action"
+water service regulation.name != "water service regulation"
+water service regulation.name != Jerry Brown.name
+water service regulation.name != United States.name
+water service regulation.name != wine grape harvest.name
+water service regulation.name = "water service regulation"
+wine grape harvest.label != "Economic Impact"
+wine grape harvest.label != Jerry Brown.label
+wine grape harvest.label != United States.label
+wine grape harvest.label = "Economic Impact"
+wine grape harvest.name != "wine grape harvest"
+wine grape harvest.name != Jerry Brown.name
+wine grape harvest.name != United States.name
+wine grape harvest.name = "wine grape harvest"
+
+Rules:
+Q[California,California] (wine grape harvest.label != "Economic Impact" ∧ California.label != wine grape harvest.label ∧ United States.name != "United States" ∧ None_ML(United States.attrs, California.attrs) → water service regulation.label = "Action")
+Q[California,California] (water service regulation.label = "Action" ∧ California___wine grape harvest.doc_id = "3489738298_10" ∧ wine grape harvest.name = "wine grape harvest" ∧ wine grape harvest.label != United States.label ∧ wine grape harvest.label = "Economic Impact" ∧ California___Jerry Brown.context = "mandatory regulations in all cities" → Jerry Brown.name != "Jerry Brown")
+Q[California,California] (United States.label = "Country" ∧ Jerry Brown.name = "Jerry Brown" ∧ California___water service regulation.relationship = "California has implemented new regulations affecting water service in restaurants due to the drought." ∧ wine grape harvest.label != Jerry Brown.label ∧ Jerry Brown.label = "Person" → California___United States.doc_id != California___Jerry Brown.doc_id)
+Q[California,California] (California___United States.doc_id != California___Jerry Brown.doc_id ∧ California___United States.relationship = "California is a major agricultural producer for the United States." ∧ wine grape harvest.name = "wine grape harvest" → California.name != water service regulation.name)
+Q[California,California] (United States.label != Jerry Brown.label ∧ water service regulation.name != United States.name → California___United States.doc_id = "3489738298_10")
+Q[California,California] (California___water service regulation.relationship != California___Jerry Brown.relationship ∧ United States.name = "United States" ∧ wine grape harvest.name != Jerry Brown.name → California.name != United States.name)
+Q[California,California] (None_ML(United States.attrs, California.attrs) ∧ None_ML(California___Jerry Brown.attrs, California___United States.attrs) ∧ United States.name != Jerry Brown.name ∧ California___Jerry Brown.doc_id = "3489738298_4" ∧ California___wine grape harvest.doc_id != California___Jerry Brown.doc_id → wine grape harvest.label = "Economic Impact")
+Q[California,California] (United States.label != "Country" ∧ None_ML(United States.attrs, California.attrs) ∧ California___water service regulation.doc_id = "3489738298_10" ∧ water service regulation.label = "Action" ∧ California___water service regulation.doc_id != California___Jerry Brown.doc_id ∧ Jerry Brown.label = "Person" → water service regulation.label != "Action")
+Q[California,California] (United States.label = "Country" ∧ California.label != "Location" ∧ California___Jerry Brown.context = "mandatory regulations in all cities" ∧ California.label != wine grape harvest.label → California___water service regulation.relationship != California___Jerry Brown.relationship)
+Q[California,California] (California___wine grape harvest.relationship != California___United States.relationship ∧ California.label != "Location" → California___Jerry Brown.doc_id = "3489738298_4")

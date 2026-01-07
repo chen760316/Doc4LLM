@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 1424)
+S1: The personnel aren't wearing anything.
+S2: Military personnel dressed in fatigues and ear protection laying on their stomachs shooting guns.
+
+Predicates:
+1. Personnel.wearing_nothing
+2. Personnel.dressed_in_fatigues
+3. Personnel.wearing_ear_protection
+4. Personnel.laying_on_stomach
+5. Personnel.shooting_guns
+6. Military_personnel.dressed_in_fatigues
+7. Military_personnel.wearing_ear_protection
+8. Military_personnel.laying_on_stomach
+9. Military_personnel.shooting_guns
+10. Fatigues.worn_by_personnel
+11. Ear_protection.worn_by_personnel
+12. Shooting_guns.activity
+13. Laying_on_stomach.position
+14. Not_wearing_anything.state
+15. Wearing_fatigues.state
+16. Wearing_ear_protection.state
+17. Personnel.activity
+18. Military_personnel.activity
+19. Personnel.state_of_dress
+20. Military_personnel.state_of_dress
+21. Fatigues.type_of_clothing
+22. Ear_protection.type_of_gear
+23. Shooting_guns.action
+24. Laying_on_stomach.action
+25. Personnel.condition
+26. Military_personnel.condition
+27. Fatigues.condition
+28. Ear_protection.condition
+29. Shooting_guns.condition
+30. Laying_on_stomach.condition
+
+Rules:
+1. Q[The, x0, y0](Personnel.wearing_nothing == true → Factual(x0, y0))
+2. Q[The, x0, y0](Military_personnel.dressed_in_fatigues == true → Factual(x0, y0))
+3. Q[The, x0, y0](Personnel.wearing_nothing == true → Military_personnel.dressed_in_fatigues == false)
+4. Q[The, x0, y0](Personnel.wearing_nothing == true → Military_personnel.wearing_ear_protection == false)
+5. Q[The, x0, y0](Military_personnel.wearing_ear_protection == true → Factual(x0, y0))
+6. Q[The, x0, y0](Personnel.state_of_dress == "not wearing anything" → Factual(x0, y0))
+7. Q[The, x0, y0](Military_personnel.state_of_dress == "dressed in fatigues" → Factual(x0, y0))
+8. Q[The, x0, y0](Personnel.wearing_nothing == true → Personnel.dressed_in_fatigues == false)
+9. Q[The, x0, y0](Personnel.wearing_nothing == true → Personnel.wearing_ear_protection == false)
+10. Q[The, x0, y0](Military_personnel.laying_on_stomach == true → Factual(x0, y0))
+11. Q[The, x0, y0](Military_personnel.shooting_guns == true → Factual(x0, y0))
+12. Q[The, x0, y0](Personnel.activity == "not wearing anything" → Factual(x0, y0))
+13. Q[The, x0, y0](Military_personnel.activity == "shooting guns" → Factual(x0, y0))
+14. Q[The, x0, y0](Personnel.wearing_nothing == true → Personnel.activity != "shooting guns")
+15. Q[The, x0, y0](Personnel.wearing_nothing == true → Military_personnel.activity != "laying on stomach")
+16. Q[The, x0, y0](Fatigues.worn_by_personnel == false → Factual(x0, y0))
+17. Q[The, x0, y0](Ear_protection.worn_by_personnel == false → Factual(x0, y0))
+18. Q[The, x0, y0](Personnel.condition == "not dressed" → Factual(x0, y0))
+19. Q[The, x0, y0](Military_personnel.condition == "dressed" → Factual(x0, y0))
+20. Q[The, x0, y0](Fatigues.condition == "not worn" → Factual(x0, y0))
+21. Q[The, x0, y0](Ear_protection.condition == "not worn" → Factual(x0, y0))
+22. Q[The, x0, y0](Shooting_guns.condition == "active" → Factual(x0, y0))
+23. Q[The, x0, y0](Laying_on_stomach.condition == "active" → Factual(x0, y0))
+24. Q[The, x0, y0](Personnel.laying_on_stomach == false → Factual(x0, y0))
+25. Q[The, x0, y0](Personnel.shooting_guns == false → Factual(x0, y0))
+26. Q[The, x0, y0](Military_personnel.state_of_dress == "wearing fatigues" → Personnel.state_of_dress != "not wearing anything")
+27. Q[The, x0, y0](Military_personnel.state_of_dress == "wearing ear protection" → Personnel.state_of_dress != "not wearing anything")
+28. Q[The, x0, y0](Personnel.activity == "not shooting guns" → Factual(x0, y0))
+29. Q[The, x0, y0](Personnel.activity == "not laying on stomach" → Factual(x0, y0))
+30. Q[The, x0, y0](Military_personnel.activity == "not wearing anything" → Factual(x0, y0))

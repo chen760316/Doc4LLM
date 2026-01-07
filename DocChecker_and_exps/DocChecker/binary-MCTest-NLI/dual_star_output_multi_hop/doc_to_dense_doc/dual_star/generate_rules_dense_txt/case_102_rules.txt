@@ -1,0 +1,66 @@
+Source: dense_text.txt (Index 102)
+S1: John did before washing his hands Gave Emily her pacifier.
+S2: After washing his hands, John sat down to a hot plate of pancakes, eggs, and bacon.
+
+Predicates:
+1. John.action.gave_pacifier
+2. John.action.washed_hands
+3. John.action.sat_down
+4. John.food.pancakes
+5. John.food.eggs
+6. John.food.bacon
+7. Emily.entity.pacifier
+8. John.time.before_washing_hands
+9. John.time.after_washing_hands
+10. John.time.before_sitting_down
+11. Emily.time.received_pacifier
+12. John.event.gave_pacifier_before_washing
+13. John.event.washed_hands_before_breakfast
+14. John.event.sat_down_after_washing
+15. GaveEmily.relationship.pacifier
+16. WashingHands.relationship.john
+17. SatDown.relationship.john
+18. Breakfast.relationship.john
+19. GaveEmily.time.before_washing
+20. SatDown.time.after_washing
+21. Breakfast.time.after_sitting_down
+22. GaveEmily.violates.washing_hands
+23. WashingHands.violates.gave_pacifier
+24. SatDown.violates.gave_pacifier
+25. John.causal.gave_pacifier_washing_hands
+26. John.causal.washing_hands_sitting_down
+27. John.causal.gave_pacifier_sitting_down
+28. Emily.causal.received_pacifier_before_washing
+29. John.meta.M_NLI(S1, S2)
+30. John.meta.Causal(gave_pacifier, washing_hands)
+
+Rules:
+1. Q[John, John.action.gave_pacifier, John.action.washed_hands](John.time.before_washing_hands == true → Causal(John.action.gave_pacifier, John.action.washed_hands))
+2. Q[John, John.action.washed_hands, John.action.sat_down](John.event.washed_hands_before_breakfast == true → Causal(John.action.washed_hands, John.action.sat_down))
+3. Q[John, John.action.gave_pacifier, Emily.entity.pacifier](GaveEmily.time.before_washing == true → Causal(John.action.gave_pacifier, Emily.entity.pacifier))
+4. Q[John, John.action.washed_hands, John.food.pancakes](John.event.washed_hands_before_breakfast == true → Causal(John.action.washed_hands, John.food.pancakes))
+5. Q[John, John.action.gave_pacifier, John.action.sat_down](GaveEmily.violates.washing_hands == true → Causal(John.action.gave_pacifier, John.action.sat_down))
+6. Q[John, John.action.washed_hands, John.food.eggs](John.event.washed_hands_before_breakfast == true → Causal(John.action.washed_hands, John.food.eggs))
+7. Q[John, John.action.gave_pacifier, John.food.bacon](GaveEmily.violates.washing_hands == true → Causal(John.action.gave_pacifier, John.food.bacon))
+8. Q[John, John.time.before_washing_hands, Emily.time.received_pacifier](John.time.before_washing_hands == true → Causal(John.time.before_washing_hands, Emily.time.received_pacifier))
+9. Q[John, John.action.sat_down, John.action.washed_hands](John.event.sat_down_after_washing == true → Causal(John.action.sat_down, John.action.washed_hands))
+10. Q[John, John.action.gave_pacifier, John.time.after_washing_hands](John.event.gave_pacifier_before_washing == true → Causal(John.action.gave_pacifier, John.time.after_washing_hands))
+11. Q[John, John.action.washed_hands, John.time.before_sitting_down](John.event.washed_hands_before_breakfast == true → Causal(John.action.washed_hands, John.time.before_sitting_down))
+12. Q[John, John.action.gave_pacifier, John.event.washed_hands_before_breakfast](GaveEmily.violates.washing_hands == true → Causal(John.action.gave_pacifier, John.event.washed_hands_before_breakfast))
+13. Q[John, John.action.sat_down, John.time.after_sitting_down](SatDown.time.after_washing == true → Causal(John.action.sat_down, John.time.after_sitting_down))
+14. Q[John, John.action.gave_pacifier, John.causal.washing_hands_sitting_down](John.causal.gave_pacifier_washing_hands == true → Causal(John.action.gave_pacifier, John.causal.washing_hands_sitting_down))
+15. Q[John, John.action.washed_hands, John.causal.gave_pacifier_sitting_down](John.causal.washing_hands_sitting_down == true → Causal(John.action.washed_hands, John.causal.gave_pacifier_sitting_down))
+16. Q[John, John.action.gave_pacifier, John.event.sat_down_after_washing](GaveEmily.violates.washing_hands == true → Causal(John.action.gave_pacifier, John.event.sat_down_after_washing))
+17. Q[John, John.action.washed_hands, John.event.gave_pacifier_before_washing](WashingHands.violates.gave_pacifier == true → Causal(John.action.washed_hands, John.event.gave_pacifier_before_washing))
+18. Q[John, John.action.sat_down, John.event.gave_pacifier_before_washing](SatDown.violates.gave_pacifier == true → Causal(John.action.sat_down, John.event.gave_pacifier_before_washing))
+19. Q[John, John.action.gave_pacifier, John.food.pancakes](GaveEmily.violates.washing_hands == true → Causal(John.action.gave_pacifier, John.food.pancakes))
+20. Q[John, John.action.washed_hands, John.food.bacon](John.event.washed_hands_before_breakfast == true → Causal(John.action.washed_hands, John.food.bacon))
+21. Q[John, John.action.gave_pacifier, John.food.eggs](GaveEmily.violates.washing_hands == true → Causal(John.action.gave_pacifier, John.food.eggs))
+22. Q[John, John.time.before_washing_hands, John.time.after_washing_hands](John.time.before_washing_hands == true → Causal(John.time.before_washing_hands, John.time.after_washing_hands))
+23. Q[John, John.action.washed_hands, John.time.before_sitting_down](John.event.washed_hands_before_breakfast == true → Causal(John.action.washed_hands, John.time.before_sitting_down))
+24. Q[John, John.action.gave_pacifier, John.time.after_sitting_down](GaveEmily.violates.washing_hands == true → Causal(John.action.gave_pacifier, John.time.after_sitting_down))
+25. Q[John, John.action.washed_hands, John.causal.gave_pacifier_washing_hands](John.causal.washing_hands_sitting_down == true → Causal(John.action.washed_hands, John.causal.gave_pacifier_washing_hands))
+26. Q[John, John.action.sat_down, John.causal.gave_pacifier_washing_hands](John.causal.gave_pacifier_washing_hands == true → Causal(John.action.sat_down, John.causal.gave_pacifier_washing_hands))
+27. Q[John, John.action.gave_pacifier, John.event.washed_hands_before_breakfast](GaveEmily.violates.washing_hands == true → Causal(John.action.gave_pacifier, John.event.washed_hands_before_breakfast))
+28. Q[John, John.action.washed_hands, John.event.sat_down_after_washing](John.event.washed_hands_before_breakfast == true → Causal(John.action.washed_hands, John.event.sat_down_after_washing))
+29. Q[John, John.action.gave_pacifier, John.event.sat_down_after_washing](GaveEmily.

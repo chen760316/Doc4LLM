@@ -1,0 +1,128 @@
+Predicates:
+1. Car.status = "lawfully stopped"
+2. Contents.status = "seized"
+3. Police Officer.action = "orders driver out"
+4. "Both the car and its contents had been seized.".contradiction_type = "Factual"
+5. "Once a vehicle has been lawfully stopped, an officer may order the driver out of the vehicle.".contradiction_type = "Negation"
+6. "The police officer may order the driver out of the car after properly seizing the occupants.".contradiction_type = "Negation"
+7. Car.owner = "John Doe"
+8. Car.color = "red"
+9. Contents.type = "personal belongings"
+10. Police Officer.name = "Officer Smith"
+11. "Both the car and its contents had been seized.".source_id = "15353"
+12. "Once a vehicle has been lawfully stopped, an officer may order the driver out of the vehicle.".source_id = "38101"
+13. "The police officer may order the driver out of the car after properly seizing the occupants.".source_id = "38101"
+14. M_NLI(Car.status, Contents.status)
+15. T("Both the car and its contents had been seized.", "The car was not seized.", "Factual")
+16. tau(Car.color, Contents.type)
+17. violate(x0, y0)
+18. Factual(Car.status, Contents.status)
+19. Negation(Car.owner, Police Officer.name)
+20. Causal(Police Officer.action, Car.status)
+21. Numeric(Contents.type, "personal belongings")
+22. Temporal(Car.color, "red")
+23. "The car was parked legally.".contradiction_type = "Factual"
+24. "The car was parked illegally.".contradiction_type = "Factual"
+25. M_NLI("The car was parked legally.", "The car was parked illegally.")
+26. T("The car was parked legally.", "The car was parked illegally.", "Factual")
+27. tau(Car.owner, "John Doe")
+28. violate(Police Officer.action, Car.status)
+29. Factual(Police Officer.name, "Officer Smith")
+30. Negation(Police Officer.action, "does not order driver out")
+31. Causal(Police Officer.action, "driver leaves car")
+32. Numeric(Police Officer.name, "Officer Smith")
+33. Temporal("The car was parked legally.", "The car was parked illegally.")
+34. "The driver was compliant.".contradiction_type = "Content"
+35. "The driver was uncooperative.".contradiction_type = "Content"
+36. M_NLI("The driver was compliant.", "The driver was uncooperative.")
+37. T("The driver was compliant.", "The driver was uncooperative.", "Content")
+38. tau(Police Officer.action, "orders driver out")
+39. violate(Car.status, "not lawfully stopped")
+40. Factual(Contents.status, "seized")
+41. Negation(Contents.status, "not seized")
+42. Causal(Police Officer.action, "driver exits vehicle")
+43. Numeric(Police Officer.name, "Officer Smith")
+44. Temporal("The driver was compliant.", "The driver was uncooperative.")
+45. "The car was involved in an accident.".contradiction_type = "Factual"
+46. "The car was not involved in an accident.".contradiction_type = "Factual"
+47. M_NLI("The car was involved in an accident.", "The car was not involved in an accident.")
+48. T("The car was involved in an accident.", "The car was not involved in an accident.", "Factual")
+49. tau(Car.color, "red")
+50. violate(Police Officer.action, "does not order driver out")
+51. Factual(Car.owner, "John Doe")
+52. Negation(Car.color, "not red")
+53. Causal(Police Officer.action, "driver remains in car")
+54. Numeric(Contents.type, "personal belongings")
+55. Temporal("The car was involved in an accident.", "The car was not involved in an accident.")
+56. "The police officer had probable cause.".contradiction_type = "Factual"
+57. "The police officer did not have probable cause.".contradiction_type = "Factual"
+58. M_NLI("The police officer had probable cause.", "The police officer did not have probable cause.")
+59. T("The police officer had probable cause.", "The police officer did not have probable cause.", "Factual")
+60. tau(Police Officer.name, "Officer Smith")
+61. violate(Car.status, "not lawfully stopped")
+62. Factual(Police Officer.action, "orders driver out")
+63. Negation(Police Officer.action, "does not order driver out")
+64. Causal(Police Officer.action, "driver exits vehicle")
+65. Numeric(Police Officer.name, "Officer Smith")
+66. Temporal("The police officer had probable cause.", "The police officer did not have probable cause.")
+67. "The car was stolen.".contradiction_type = "Factual"
+68. "The car was not stolen.".contradiction_type = "Factual"
+69. M_NLI("The car was stolen.", "The car was not stolen.")
+70. T("The car was stolen.", "The car was not stolen.", "Factual")
+71. tau(Car.color, "red")
+72. violate(Police Officer.action, "does not order driver out")
+73. Factual(Contents.status, "seized")
+74. Negation(Contents.status, "not seized")
+75. Causal(Police Officer.action, "driver remains in car")
+76. Numeric(Contents.type, "personal belongings")
+77. Temporal("The car was stolen.", "The car was not stolen.")
+78. "The driver was intoxicated.".contradiction_type = "Factual"
+79. "The driver was sober.".contradiction_type = "Factual"
+80. M_NLI("The driver was intoxicated.", "The driver was sober.")
+81. T("The driver was intoxicated.", "The driver was sober.", "Factual")
+82. tau(Police Officer.name, "Officer Smith")
+83. violate(Car.status, "not lawfully stopped")
+84. Factual(Police Officer.action, "orders driver out")
+85. Negation(Police Officer.action, "does not order driver out")
+86. Causal(Police Officer.action, "driver exits vehicle")
+87. Numeric(Police Officer.name, "Officer Smith")
+88. Temporal("The driver was intoxicated.", "The driver was sober.")
+89. "The vehicle was unregistered.".contradiction_type = "Factual"
+90. "The vehicle was registered.".contradiction_type = "Factual"
+91. M_NLI("The vehicle was unregistered.", "The vehicle was registered.")
+92. T("The vehicle was unregistered.", "The vehicle was registered.", "Factual")
+93. tau(Car.color, "red")
+94. violate(Police Officer.action, "does not order driver out")
+95. Factual(Contents.status, "seized")
+96. Negation(Contents.status, "not seized")
+97. Causal
+violate(x0, y0)
+
+Rules:
+1. Q[x0, y0](Car.status = "lawfully stopped" ∧ Police Officer.action = "orders driver out" → violate(x0, y0))
+2. Q[x0, y0](Contents.status = "seized" ∧ Car.owner = "John Doe" → violate(x0, y0))
+3. Q[x0, y0](Police Officer.action = "orders driver out" ∧ "Both the car and its contents had been seized.".contradiction_type = "Factual" → violate(x0, y0))
+4. Q[x0, y0](Car.status = "lawfully stopped" ∧ "The police officer may order the driver out of the car after properly seizing the occupants.".contradiction_type = "Negation" → violate(x0, y0))
+5. Q[x0, y0](Car.color = "red" ∧ Contents.type = "personal belongings" → violate(x0, y0))
+6. Q[x0, y0](Police Officer.name = "Officer Smith" ∧ "The car was parked legally.".contradiction_type = "Factual" → violate(x0, y0))
+7. Q[x0, y0](Car.status = "lawfully stopped" ∧ Contents.status = "seized" ∧ Police Officer.action = "orders driver out" → violate(x0, y0))
+8. Q[x0, y0](Car.owner = "John Doe" ∧ Police Officer.name = "Officer Smith" ∧ "The police officer had probable cause.".contradiction_type = "Factual" → violate(x0, y0))
+9. Q[x0, y0](Car.color = "red" ∧ Contents.type = "personal belongings" ∧ "The car was involved in an accident.".contradiction_type = "Factual" → violate(x0, y0))
+10. Q[x0, y0](Police Officer.action = "orders driver out" ∧ "The driver was compliant.".contradiction_type = "Content" ∧ "The driver was uncooperative.".contradiction_type = "Content" → violate(x0, y0))
+11. Q[x0, y0](Car.status = "lawfully stopped" ∧ Police Officer.action = "orders driver out" ∧ "The car was parked illegally.".contradiction_type = "Factual" → violate(x0, y0))
+12. Q[x0, y0](Contents.status = "seized" ∧ "The car was stolen.".contradiction_type = "Factual" ∧ Police Officer.name = "Officer Smith" → violate(x0, y0))
+13. Q[x0, y0](Car.owner = "John Doe" ∧ "The police officer did not have probable cause.".contradiction_type = "Factual" ∧ Police Officer.action = "orders driver out" → violate(x0, y0))
+14. Q[x0, y0](Car.color = "red" ∧ "The vehicle was unregistered.".contradiction_type = "Factual" ∧ Police Officer.name = "Officer Smith" → violate(x0, y0))
+15. Q[x0, y0](Police Officer.action = "orders driver out" ∧ "The driver was intoxicated.".contradiction_type = "Factual" ∧ "The driver was sober.".contradiction_type = "Factual" → violate(x0, y0))
+16. Q[x0, y0](Car.status = "lawfully stopped" ∧ Contents.status = "seized" ∧ Police Officer.action = "orders driver out" ∧ "The car was parked illegally.".contradiction_type = "Factual" → violate(x0, y0))
+17. Q[x0, y0](Car.owner = "John Doe" ∧ Police Officer.name = "Officer Smith" ∧ "The car was not involved in an accident.".contradiction_type = "Factual" → violate(x0, y0))
+18. Q[x0, y0](Car.color = "red" ∧ Contents.type = "personal belongings" ∧ "The car was stolen.".contradiction_type = "Factual" ∧ "The car was not stolen.".contradiction_type = "Factual" → violate(x0, y0))
+19. Q[x0, y0](Police Officer.action = "orders driver out" ∧ "The driver was compliant.".contradiction_type = "Content" ∧ "The driver was uncooperative.".contradiction_type = "Content" ∧ "The police officer had probable cause.".contradiction_type = "Factual" → violate(x0, y0))
+20. Q[x0, y0](Car.status = "lawfully stopped" ∧ Police Officer.action = "orders driver out" ∧ "The vehicle was registered.".contradiction_type = "Factual" → violate(x0, y0))
+21. Q[x0, y0](Contents.status = "seized" ∧ "The car was parked illegally.".contradiction_type = "Factual" ∧ Police Officer.name = "Officer Smith" ∧ "The police officer did not have probable cause.".contradiction_type = "Factual" → violate(x0, y0))
+22. Q[x0, y0](Car.owner = "John Doe" ∧ "The car was involved in an accident.".contradiction_type = "Factual" ∧ Police Officer.action = "orders driver out" ∧ "The car was not involved in an accident.".contradiction_type = "Factual" → violate(x0, y0))
+23. Q[x0, y0](Car.color = "red" ∧ Contents.type = "personal belongings" ∧ "The driver was intoxicated.".contradiction_type = "Factual" ∧ "The driver was sober.".contradiction_type = "Factual" → violate(x0, y0))
+24. Q[x0, y0](Police Officer.action = "orders driver out" ∧ "The police officer had probable cause.".contradiction_type = "Factual" ∧ "The police officer did not have probable cause.".contradiction_type = "Factual" → violate(x0, y0))
+25. Q[x0, y0](Car.status = "lawfully stopped" ∧ Police Officer.action = "orders driver out" ∧ "The vehicle was unregistered.".contradiction_type = "Factual" ∧ "The vehicle was registered.".contradiction_type = "Factual" → violate(x0, y0))
+26. Q[x0, y0](Contents.status = "seized" ∧ "The car was parked legally.".contradiction_type = "Factual" ∧ Police Officer.name = "Officer Smith" ∧ "The car was parked illegally.".contradiction_type = "Factual" → violate(x0, y0))
+27. Q[x0, y0](Car.owner = "John Doe" ∧ "The car was involved in an accident.".contradiction

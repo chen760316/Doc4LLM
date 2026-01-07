@@ -1,0 +1,33 @@
+Predicates:
+1928 text.label != "Publication"
+1928 text.label = "Publication"
+1928 text.name != "1928 text"
+1928 text.name != 1946 edition.name
+1928 text.name = "1928 text"
+1928 text.source != "Project Gutenberg"
+1928 text.source = "Project Gutenberg"
+1928 text.type != "original"
+1928 text.type != 1946 edition.type
+1928 text.type = "original"
+1928 text___1946 edition.contradiction_type = "Factual"
+1928 text___1946 edition.relationship = "The 1946 edition is consistent with the synopsis but differs in detail from the original 1928 text."
+1928 text___1946 edition.source_id = "3488771849_1"
+1946 edition.label != "Publication"
+1946 edition.label = "Publication"
+1946 edition.name != "1946 edition"
+1946 edition.name = "1946 edition"
+1946 edition.type != "later form"
+1946 edition.type = "later form"
+None_ML(1946 edition.attrs, 1928 text.attrs)
+
+Rules:
+Q[1928 text,1928 text] (1928 text.name != 1946 edition.name ∧ 1946 edition.label = "Publication" ∧ 1928 text___1946 edition.relationship = "The 1946 edition is consistent with the synopsis but differs in detail from the original 1928 text." ∧ 1928 text.type = "original" ∧ 1928 text___1946 edition.source_id = "3488771849_1" ∧ 1946 edition.label != "Publication" → 1928 text___1946 edition.contradiction_type = "Factual")
+Q[1928 text,1928 text] (1928 text.name != 1946 edition.name ∧ 1928 text.source != "Project Gutenberg" ∧ 1946 edition.label != "Publication" → 1928 text.source = "Project Gutenberg")
+Q[1928 text,1928 text] (1928 text.name != "1928 text" ∧ 1928 text___1946 edition.contradiction_type = "Factual" → 1946 edition.label != "Publication")
+Q[1928 text,1928 text] (1928 text.name = "1928 text" ∧ 1928 text.source != "Project Gutenberg" ∧ 1928 text.label != "Publication" ∧ 1946 edition.type = "later form" ∧ 1928 text___1946 edition.source_id = "3488771849_1" → 1928 text___1946 edition.relationship = "The 1946 edition is consistent with the synopsis but differs in detail from the original 1928 text.")
+Q[1928 text,1928 text] (1928 text.source = "Project Gutenberg" ∧ None_ML(1946 edition.attrs, 1928 text.attrs) ∧ 1928 text.label != "Publication" ∧ 1946 edition.type != "later form" → 1928 text.type = "original")
+Q[1928 text,1928 text] (1928 text.source != "Project Gutenberg" ∧ 1928 text.name != "1928 text" ∧ 1928 text.type != 1946 edition.type → None_ML(1946 edition.attrs, 1928 text.attrs))
+Q[1928 text,1928 text] (1946 edition.type != "later form" ∧ 1928 text.type != "original" → 1928 text.name != "1928 text")
+Q[1928 text,1928 text] (1928 text.label != "Publication" ∧ 1928 text.label = "Publication" ∧ 1928 text___1946 edition.relationship = "The 1946 edition is consistent with the synopsis but differs in detail from the original 1928 text." ∧ 1946 edition.label != "Publication" ∧ 1928 text___1946 edition.contradiction_type = "Factual" → 1928 text.type != "original")
+Q[1928 text,1928 text] (1928 text.label != "Publication" ∧ 1928 text.name != "1928 text" ∧ 1928 text___1946 edition.contradiction_type = "Factual" ∧ 1928 text___1946 edition.source_id = "3488771849_1" → 1928 text.name != 1946 edition.name)
+Q[1928 text,1928 text] (1928 text.type = "original" ∧ 1946 edition.name = "1946 edition" ∧ 1946 edition.type = "later form" ∧ 1928 text.label = "Publication" ∧ 1946 edition.label = "Publication" ∧ 1928 text.type != "original" → 1928 text.name = "1928 text")

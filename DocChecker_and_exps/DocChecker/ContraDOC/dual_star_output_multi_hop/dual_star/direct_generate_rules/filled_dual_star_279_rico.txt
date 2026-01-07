@@ -1,0 +1,52 @@
+Predicates:
+Creon.label != "Character"
+Creon.label != First Mover.label
+Creon.label = "Character"
+Creon.name != "Creon"
+Creon.name != First Mover.name
+Creon.name = "Creon"
+Creon.status != "defeated"
+Creon.status = "defeated"
+First Mover.label != "Concept"
+First Mover.label = "Concept"
+First Mover.name != "First Mover"
+First Mover.name = "First Mover"
+None_ML(First Mover.attrs, Theseus.attrs)
+None_ML(Theseus___Creon.attrs, Theseus___First Mover.attrs)
+Palamon.label != "Character"
+Palamon.label != First Mover.label
+Palamon.label = "Character"
+Palamon.name != "Palamon"
+Palamon.name != Creon.name
+Palamon.name != First Mover.name
+Palamon.name = "Palamon"
+Theseus.label != "Character"
+Theseus.label != First Mover.label
+Theseus.label = "Character"
+Theseus.name != "Theseus"
+Theseus.name != Creon.name
+Theseus.name != First Mover.name
+Theseus.name != Palamon.name
+Theseus.name = "Theseus"
+Theseus___Creon.doc_id = "3488771853_2"
+Theseus___Creon.relationship != Theseus___First Mover.relationship
+Theseus___Creon.relationship = "Theseus captures Palamon and Arcite after defeating Creon in battle."
+Theseus___First Mover.doc_id = "3488771853_2"
+Theseus___First Mover.relationship = "Theseus discusses the inevitability of death and the importance of dying with a good name."
+Theseus___Palamon.doc_id = "3488771853_2"
+Theseus___Palamon.event = "mass judicial tournament"
+Theseus___Palamon.relationship != Theseus___Creon.relationship
+Theseus___Palamon.relationship != Theseus___First Mover.relationship
+Theseus___Palamon.relationship = "Theseus sentences Palamon and Arcite to gather 100 men each for a tournament."
+
+Rules:
+Q[Theseus,Theseus] (Creon.status != "defeated" ∧ Theseus___Palamon.event = "mass judicial tournament" ∧ Theseus.name != First Mover.name ∧ First Mover.label != "Concept" → Palamon.label != "Character")
+Q[Theseus,Theseus] (Theseus.label != First Mover.label ∧ Palamon.label != First Mover.label ∧ Theseus___Palamon.relationship != Theseus___Creon.relationship ∧ None_ML(First Mover.attrs, Theseus.attrs) ∧ First Mover.label = "Concept" → Creon.status = "defeated")
+Q[Theseus,Theseus] (Theseus.name = "Theseus" ∧ Palamon.label = "Character" ∧ Theseus.name != "Theseus" → Theseus___First Mover.relationship = "Theseus discusses the inevitability of death and the importance of dying with a good name.")
+Q[Theseus,Theseus] (Theseus.label = "Character" ∧ Theseus___Palamon.relationship != Theseus___Creon.relationship ∧ Creon.status != "defeated" ∧ First Mover.label != "Concept" ∧ Theseus.name != "Theseus" ∧ Palamon.label != First Mover.label → Creon.label != "Character")
+Q[Theseus,Theseus] (Theseus___Creon.relationship = "Theseus captures Palamon and Arcite after defeating Creon in battle." ∧ First Mover.name != "First Mover" → Creon.name != First Mover.name)
+Q[Theseus,Theseus] (Creon.name != "Creon" ∧ Theseus.label = "Character" ∧ Palamon.label != "Character" ∧ Theseus___First Mover.doc_id = "3488771853_2" ∧ First Mover.name != "First Mover" ∧ Theseus___Palamon.doc_id = "3488771853_2" → None_ML(First Mover.attrs, Theseus.attrs))
+Q[Theseus,Theseus] (None_ML(Theseus___Creon.attrs, Theseus___First Mover.attrs) ∧ Palamon.label != First Mover.label → Creon.label != First Mover.label)
+Q[Theseus,Theseus] (First Mover.name != "First Mover" ∧ Theseus.name != Creon.name ∧ Theseus.label != "Character" ∧ First Mover.label != "Concept" → Theseus___Creon.relationship != Theseus___First Mover.relationship)
+Q[Theseus,Theseus] (Palamon.label = "Character" ∧ Creon.name = "Creon" ∧ Palamon.label != First Mover.label → Palamon.name = "Palamon")
+Q[Theseus,Theseus] (None_ML(Theseus___Creon.attrs, Theseus___First Mover.attrs) ∧ Theseus.label != First Mover.label ∧ Theseus___Palamon.relationship = "Theseus sentences Palamon and Arcite to gather 100 men each for a tournament." ∧ Theseus.name != First Mover.name ∧ Theseus___First Mover.doc_id = "3488771853_2" → Palamon.label != First Mover.label)

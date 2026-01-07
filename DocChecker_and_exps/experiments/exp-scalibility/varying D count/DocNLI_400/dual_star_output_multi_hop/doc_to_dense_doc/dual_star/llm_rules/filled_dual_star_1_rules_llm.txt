@@ -1,0 +1,130 @@
+Predicates:
+1. AEG.breach_duties = "true"
+2. AEG.knowledge_of_condition = "Michael Jackson's physical condition"
+3. AEG.reason_for_breach = "massive profits from the tour"
+4. AEG.required_doctor = "particular doctor"
+5. AEG.ensure_attendance = "all rehearsals and shows"
+6. Dr_Conrad_Murray.occupation = "doctor"
+7. Dr_Conrad_Murray.status = "facing trial"
+8. Michael_Jackson.date_of_death = "June 25, 2009"
+9. Michael_Jackson.status = "deceased"
+10. involuntary_manslaughter.description = "for administering drugs to the pop star"
+11. "lawsuit".context = "AEG breached duties"
+12. "lawsuit".context = "AEG demanded treatment"
+13. "trial".time = "June 25, 2009"
+14. "trial".reason = "caused Jackson's death"
+15. "death".cause = "actions related to Dr. Conrad Murray"
+16. M_NLI(AEG.breach_duties, AEG.required_doctor)
+17. T("AEG breached its duties", "AEG ensured attendance", tau)
+18. tau(AEG.reason_for_breach, AEG.knowledge_of_condition)
+19. violate(AEG, Michael_Jackson)
+20. Factual(AEG, Michael_Jackson)
+21. Causal(AEG, Dr_Conrad_Murray)
+22. Numeric(AEG, Dr_Conrad_Murray)
+23. Temporal(AEG, Michael_Jackson)
+24. Content(AEG, Dr_Conrad_Murray)
+25. Negation(AEG, Michael_Jackson)
+26. Relation(AEG, Dr_Conrad_Murray)
+27. AEG.breach_duties = "false"
+28. AEG.knowledge_of_condition = "unknown"
+29. AEG.reason_for_breach = "to protect Michael Jackson"
+30. AEG.required_doctor = "no specific doctor"
+31. AEG.ensure_attendance = "some rehearsals only"
+32. Dr_Conrad_Murray.occupation = "nurse"
+33. Dr_Conrad_Murray.status = "not facing trial"
+34. Michael_Jackson.date_of_death = "June 26, 2009"
+35. Michael_Jackson.status = "alive"
+36. involuntary_manslaughter.description = "for providing medical advice"
+37. "lawsuit".context = "Dr. Conrad Murray's defense"
+38. "trial".time = "June 26, 2009"
+39. "trial".reason = "not related to Jackson's death"
+40. "death".cause = "natural causes"
+41. M_NLI(Dr_Conrad_Murray.occupation, Michael_Jackson.status)
+42. T("Dr. Conrad Murray faces trial", "Dr. Conrad Murray is free", tau)
+43. tau(Michael_Jackson.date_of_death, Dr_Conrad_Murray.status)
+44. violate(Dr_Conrad_Murray, AEG)
+45. Factual(Dr_Conrad_Murray, Michael_Jackson)
+46. Causal(Dr_Conrad_Murray, AEG)
+47. Numeric(Dr_Conrad_Murray, Michael_Jackson)
+48. Temporal(Dr_Conrad_Murray, AEG)
+49. Content(Dr_Conrad_Murray, Michael_Jackson)
+50. Negation(Dr_Conrad_Murray, AEG)
+51. Relation(Dr_Conrad_Murray, Michael_Jackson)
+52. AEG.breach_duties = "not applicable"
+53. AEG.knowledge_of_condition = "irrelevant"
+54. AEG.reason_for_breach = "to ensure safety"
+55. AEG.required_doctor = "any doctor"
+56. AEG.ensure_attendance = "no rehearsals"
+57. Dr_Conrad_Murray.occupation = "surgeon"
+58. Dr_Conrad_Murray.status = "acquitted"
+59. Michael_Jackson.date_of_death = "July 25, 2009"
+60. Michael_Jackson.status = "missing"
+61. involuntary_manslaughter.description = "for negligence"
+62. "lawsuit".context = "Michael Jackson's estate"
+63. "trial".time = "July 25, 2009"
+64. "trial".reason = "not applicable"
+65. "death".cause = "overdose"
+66. M_NLI(AEG.reason_for_breach, Michael_Jackson.date_of_death)
+67. T("AEG demanded treatment", "AEG ignored treatment", tau)
+68. tau(AEG.ensure_attendance, Dr_Conrad_Murray.occupation)
+69. violate(Michael_Jackson, Dr_Conrad_Murray)
+70. Factual(Michael_Jackson, AEG)
+71. Causal(Michael_Jackson, Dr_Conrad_Murray)
+72. Numeric(Michael_Jackson, AEG)
+73. Temporal(Michael_Jackson, Dr_Conrad_Murray)
+74. Content(Michael_Jackson, AEG)
+75. Negation(Michael_Jackson, AEG)
+76. Relation(Michael_Jackson, Dr_Conrad_Murray)
+77. AEG.breach_duties = "not proven"
+78. AEG.knowledge_of_condition = "misrepresented"
+79. AEG.reason_for_breach = "for personal gain"
+80. AEG.required_doctor = "no doctor specified"
+81. AEG.ensure_attendance = "some shows"
+82. Dr_Conrad_Murray.occupation = "physician"
+83. Dr_Conrad_Murray.status = "under investigation"
+84. Michael_Jackson.date_of_death = "unknown"
+85. Michael_Jackson.status = "unconfirmed"
+86. involuntary_manslaughter.description = "for malpractice"
+87. "lawsuit".context = "public opinion"
+88. "trial".time = "unknown"
+89. "trial".reason = "unrelated to Jackson"
+90. "death".cause = "accident"
+91. M_NLI(AEG.ensure_attendance, Dr_Conrad_Murray.status)
+92. T("Michael Jackson's death was caused", "Michael Jackson is alive", tau)
+93. tau(AEG.breach_duties, AEG.reason_for_breach)
+94. violate(AEG, Dr_Conrad_Murray)
+95. Factual(Dr_Conrad_Murray, AEG)
+96. Causal(Dr_Conrad_Murray, Michael_Jackson)
+97. Numeric(Dr_Conrad_Murray, AEG)
+98. Temporal(Dr_Conrad_Murray, Michael_Jackson)
+99. Content(Dr_Conrad_Murray, AEG)
+100. Negation(Dr_Conrad_Murray, AEG)
+violate(x0, y0)
+
+Rules:
+1. Q[x0, y0](AEG.breach_duties = "true" ∧ AEG.knowledge_of_condition = "Michael Jackson's physical condition" → violate(x0, y0))
+2. Q[x0, y0](AEG.reason_for_breach = "massive profits from the tour" ∧ AEG.required_doctor = "particular doctor" → violate(x0, y0))
+3. Q[x0, y0](Dr_Conrad_Murray.occupation = "doctor" ∧ Michael_Jackson.status = "deceased" → violate(x0, y0))
+4. Q[x0, y0](AEG.ensure_attendance = "all rehearsals and shows" ∧ "lawsuit".context = "AEG breached duties" → violate(x0, y0))
+5. Q[x0, y0](Dr_Conrad_Murray.status = "facing trial" ∧ "trial".reason = "caused Jackson's death" → violate(x0, y0))
+6. Q[x0, y0](Michael_Jackson.date_of_death = "June 25, 2009" ∧ "death".cause = "actions related to Dr. Conrad Murray" → violate(x0, y0))
+7. Q[x0, y0](AEG.breach_duties = "false" ∧ AEG.knowledge_of_condition = "unknown" ∧ AEG.reason_for_breach = "to protect Michael Jackson" → violate(x0, y0))
+8. Q[x0, y0](AEG.required_doctor = "no specific doctor" ∧ AEG.ensure_attendance = "some rehearsals only" ∧ Dr_Conrad_Murray.occupation = "nurse" → violate(x0, y0))
+9. Q[x0, y0](Dr_Conrad_Murray.status = "not facing trial" ∧ Michael_Jackson.date_of_death = "June 26, 2009" ∧ "trial".reason = "not related to Jackson's death" → violate(x0, y0))
+10. Q[x0, y0](Michael_Jackson.status = "alive" ∧ "death".cause = "natural causes" ∧ M_NLI(Dr_Conrad_Murray.occupation, Michael_Jackson.status) → violate(x0, y0))
+11. Q[x0, y0](AEG.reason_for_breach = "to ensure safety" ∧ AEG.required_doctor = "any doctor" ∧ AEG.ensure_attendance = "no rehearsals" → violate(x0, y0))
+12. Q[x0, y0](Dr_Conrad_Murray.occupation = "surgeon" ∧ Dr_Conrad_Murray.status = "acquitted" ∧ Michael_Jackson.date_of_death = "July 25, 2009" → violate(x0, y0))
+13. Q[x0, y0](Michael_Jackson.status = "missing" ∧ "lawsuit".context = "Michael Jackson's estate" ∧ "trial".time = "July 25, 2009" → violate(x0, y0))
+14. Q[x0, y0](involuntary_manslaughter.description = "for negligence" ∧ "trial".reason = "not applicable" ∧ "death".cause = "overdose" → violate(x0, y0))
+15. Q[x0, y0](M_NLI(AEG.reason_for_breach, Michael_Jackson.date_of_death) ∧ T("AEG demanded treatment", "AEG ignored treatment", tau) ∧ tau(AEG.ensure_attendance, Dr_Conrad_Murray.occupation) → violate(x0, y0))
+16. Q[x0, y0](AEG.breach_duties = "not proven" ∧ AEG.knowledge_of_condition = "misrepresented" ∧ AEG.reason_for_breach = "for personal gain" ∧ AEG.required_doctor = "no doctor specified" → violate(x0, y0))
+17. Q[x0, y0](AEG.ensure_attendance = "some shows" ∧ Dr_Conrad_Murray.occupation = "physician" ∧ Dr_Conrad_Murray.status = "under investigation" → violate(x0, y0))
+18. Q[x0, y0](Michael_Jackson.date_of_death = "unknown" ∧ Michael_Jackson.status = "unconfirmed" ∧ involuntary_manslaughter.description = "for malpractice" → violate(x0, y0))
+19. Q[x0, y0](T("Michael Jackson's death was caused", "Michael Jackson is alive", tau) ∧ tau(AEG.breach_duties, AEG.reason_for_breach) ∧ violate(AEG, Dr_Conrad_Murray) → violate(x0, y0))
+20. Q[x0, y0](Factual(Dr_Conrad_Murray, AEG) ∧ Causal(Dr_Conrad_Murray, Michael_Jackson) ∧ Numeric(Dr_Conrad_Murray, AEG) ∧ Temporal(Dr_Conrad_Murray, Michael_Jackson) → violate(x0, y0))
+21. Q[x0, y0](Content(Dr_Conrad_Murray, AEG) ∧ Negation(Dr_Conrad_Murray, AEG) ∧ Relation(Dr_Conrad_Murray, Michael_Jackson) ∧ AEG.breach_duties = "not applicable" → violate(x0, y0))
+22. Q[x0, y0](AEG.knowledge_of_condition = "irrelevant" ∧ AEG.reason_for_breach = "to ensure safety" ∧ AEG.required_doctor = "any doctor" ∧ AEG.ensure_attendance = "no rehearsals" → violate(x0, y0))
+23. Q[x0, y0](Dr_Conrad_Murray.occupation = "surgeon" ∧ Dr_Conrad_Murray.status = "acquitted" ∧ Michael_Jackson.date_of_death = "unknown" ∧ Michael_Jackson.status = "unconfirmed" → violate(x0, y0))
+24. Q[x0, y0](involuntary_manslaughter.description = "for negligence" ∧ "trial".reason = "unrelated to Jackson" ∧ "death".cause = "accident" → violate(x0, y0))
+25. Q[x0, y0](M_NLI(AEG.ensure_attendance, Dr_Conrad_Murray.status) ∧ T("Michael Jackson's death was caused", "Michael Jackson is alive", tau) ∧ tau(AEG.breach_duties, AEG.reason_for_breach) → violate(x0, y0))
+26. Q[x0, y0](Factual(Michael_Jackson, AEG) ∧ Causal(Michael_Jackson, Dr_Conrad_Murray) ∧ Numeric(Michael_Jackson, AEG) ∧ Temporal(Michael_J

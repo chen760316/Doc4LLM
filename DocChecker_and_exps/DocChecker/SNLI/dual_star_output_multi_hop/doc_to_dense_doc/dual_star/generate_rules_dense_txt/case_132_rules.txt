@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 132)
+S1: A man is exiting a vehicle.
+S2: A woman is standing with her arms crossed and looking at something.
+
+Predicates:
+1. Man.exiting_vehicle
+2. Woman.standing
+3. Woman.arms_crossed
+4. Woman.looking_at_something
+5. Movement.implies(exiting_vehicle)
+6. Stationary_action.implies(standing)
+7. A_man.has_action(exiting_vehicle)
+8. A_woman.has_action(standing)
+9. A_woman.has_action(looking_at_something)
+10. A_woman.has_posture(arms_crossed)
+11. Exiting_vehicle.is_a(movement)
+12. Standing.is_a(stationary_action)
+13. Exiting_vehicle.is_not(standing)
+14. Looking_at_something.is_not(arms_crossed)
+15. Man.is_not(stationary)
+16. Woman.is_stationary
+17. Arms_crossed.is_a(posture)
+18. Looking_at_something.is_a(action)
+19. Exiting_vehicle.requires(movement)
+20. Standing.requires(stationary_position)
+21. Woman.is_observing(something)
+22. Man.is_in_vehicle
+23. Vehicle.has_exit_point
+24. Woman.has_body_position(arms_crossed)
+25. Man.has_movement(exiting)
+26. Woman.has_gaze(direction)
+27. Exiting_vehicle.is_a(transition)
+28. Standing.is_a(state)
+29. Arms_crossed.is_not(movement)
+30. Looking_at_something.is_a_focus_action
+
+Rules:
+1. Q[man, Man.exiting_vehicle, Woman.standing](Man.exiting_vehicle → Negation(Man.exiting_vehicle, Woman.standing))
+2. Q[man, Man.exiting_vehicle, Woman.arms_crossed](Man.exiting_vehicle → Negation(Man.exiting_vehicle, Woman.arms_crossed))
+3. Q[man, Man.exiting_vehicle, Woman.looking_at_something](Man.exiting_vehicle → Negation(Man.exiting_vehicle, Woman.looking_at_something))
+4. Q[woman, Woman.standing, Man.exiting_vehicle](Woman.standing → Negation(Woman.standing, Man.exiting_vehicle))
+5. Q[woman, Woman.arms_crossed, Man.exiting_vehicle](Woman.arms_crossed → Negation(Woman.arms_crossed, Man.exiting_vehicle))
+6. Q[woman, Woman.looking_at_something, Man.exiting_vehicle](Woman.looking_at_something → Negation(Woman.looking_at_something, Man.exiting_vehicle))
+7. Q[woman, Woman.standing, Man.is_not(stationary)](Woman.standing → Negation(Woman.standing, Man.is_not(stationary)))
+8. Q[woman, Woman.arms_crossed, Man.is_not(stationary)](Woman.arms_crossed → Negation(Woman.arms_crossed, Man.is_not(stationary)))
+9. Q[woman, Woman.looking_at_something, Man.is_not(stationary)](Woman.looking_at_something → Negation(Woman.looking_at_something, Man.is_not(stationary)))
+10. Q[man, Man.has_movement(exiting), Woman.is_stationary](Man.has_movement(exiting) → Negation(Man.has_movement(exiting), Woman.is_stationary))
+11. Q[woman, Woman.has_action(standing), Man.is_not(stationary)](Woman.has_action(standing) → Negation(Woman.has_action(standing), Man.is_not(stationary)))
+12. Q[woman, Woman.has_posture(arms_crossed), Man.is_not(stationary)](Woman.has_posture(arms_crossed) → Negation(Woman.has_posture(arms_crossed), Man.is_not(stationary)))
+13. Q[woman, Woman.has_action(looking_at_something), Man.is_not(stationary)](Woman.has_action(looking_at_something) → Negation(Woman.has_action(looking_at_something), Man.is_not(stationary)))
+14. Q[man, Man.is_in_vehicle, Woman.is_stationary](Man.is_in_vehicle → Negation(Man.is_in_vehicle, Woman.is_stationary))
+15. Q[woman, Woman.is_observing(something), Man.is_not(stationary)](Woman.is_observing(something) → Negation(Woman.is_observing(something), Man.is_not(stationary)))
+16. Q[man, Exiting_vehicle.is_a(movement), Woman.standing](Exiting_vehicle.is_a(movement) → Negation(Exiting_vehicle.is_a(movement), Woman.standing))
+17. Q[woman, Standing.requires(stationary_position), Man.has_movement(exiting)](Standing.requires(stationary_position) → Negation(Standing.requires(stationary_position), Man.has_movement(exiting)))
+18. Q[woman, Woman.has_body_position(arms_crossed), Man.has_movement(exiting)](Woman.has_body_position(arms_crossed) → Negation(Woman.has_body_position(arms_crossed), Man.has_movement(exiting)))
+19. Q[woman, Looking_at_something.is_a(action), Man.has_movement(exiting)](Looking_at_something.is_a(action) → Negation(Looking_at_something.is_a(action), Man.has_movement(exiting)))
+20. Q[man, Exiting_vehicle.requires(movement), Woman.standing](Exiting_vehicle.requires(movement) → Negation(Exiting_vehicle.requires(movement), Woman.standing))
+21. Q[woman, Arms_crossed.is_not(movement), Man.has_movement(exiting)](Arms_crossed.is_not(movement) → Negation(Arms_crossed.is_not(movement), Man.has_movement(exiting)))
+22. Q[woman, Looking_at_something.is_not(arms_crossed), Man.has_movement(exiting)](Looking_at_something.is_not(arms_crossed) → Negation(Looking_at_something.is_not(arms_crossed), Man.has_movement(exiting)))
+23. Q[man, Exiting_vehicle.is_not(standing), Woman.standing](Exiting_vehicle.is_not(standing) → Negation(Exiting_vehicle.is_not(standing), Woman.standing))
+24. Q[woman, Standing.is_a(state), Man.has_movement(exiting)](Standing.is_a(state) → Negation(Standing.is_a(state), Man.has_movement(exiting)))
+25. Q[woman, Woman.is_stationary, Man.has_movement(exiting)](Woman.is_stationary → Negation(Woman.is_stationary, Man.has_movement(exiting)))
+26. Q[man, Man.has_action(exiting_vehicle), Woman.is_stationary](Man.has_action(exiting_vehicle) → Negation(Man.has_action(exiting_vehicle), Woman.is_stationary))
+27. Q[woman, Woman.has_action(standing), Man.has_movement(exiting)](Woman.has_action(standing) → Negation(Woman.has_action(standing), Man.has_movement(exiting)))
+28. Q[woman, Woman.has_action(looking_at_something), Man.has_movement(exiting)](Woman.has_action(looking_at_something) → Negation(Woman.has_action(looking_at_something), Man.has_movement(exiting)))
+29. Q[woman, Woman.is_observing(something), Man.has_movement(exiting)](Woman.is_observing(something) → Negation(Woman.is_observing(something), Man.has_movement(exiting)))
+30. Q[man, Man.is_not(stationary), Woman.standing](Man.is_not(stationary) → Negation(Man.is_not(stationary), Woman.standing))

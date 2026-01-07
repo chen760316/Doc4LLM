@@ -1,0 +1,50 @@
+Predicates:
+Ellen.age != "ten years older than Rosemary West"
+Ellen.age != Rosemary West.age
+Ellen.age = "ten years older than Rosemary West"
+Ellen.label != "Person"
+Ellen.label = "Person"
+Ellen.name != "Ellen"
+Ellen.name != Norman Douglas.name
+Ellen.name != Rosemary West.name
+Ellen.name = "Ellen"
+Ellen.status != "sister"
+Ellen.status != Norman Douglas.status
+Ellen.status != Rosemary West.status
+Ellen.status = "sister"
+Ellen___Norman Douglas.doc_id = "3488771876_2"
+Ellen___Norman Douglas.relationship = "Ellen reunites with her childhood beau, Norman Douglas."
+Ellen___Rosemary West.doc_id = "3488771876_2"
+Ellen___Rosemary West.reason = "promise to never leave each other after their parents' deaths"
+Ellen___Rosemary West.relationship != Ellen___Norman Douglas.relationship
+Ellen___Rosemary West.relationship = "Ellen forbids Rosemary from accepting John's proposal."
+None_ML(Ellen___Norman Douglas.attrs, Ellen___Rosemary West.attrs)
+None_ML(Rosemary West.attrs, Ellen.attrs)
+Norman Douglas.label != "Person"
+Norman Douglas.label = "Person"
+Norman Douglas.name != "Norman Douglas"
+Norman Douglas.name = "Norman Douglas"
+Norman Douglas.status != "beau"
+Norman Douglas.status = "beau"
+Rosemary West.age != "late thirties"
+Rosemary West.age = "late thirties"
+Rosemary West.label != "Person"
+Rosemary West.label = "Person"
+Rosemary West.name != "Rosemary West"
+Rosemary West.name != Norman Douglas.name
+Rosemary West.name = "Rosemary West"
+Rosemary West.status != "single"
+Rosemary West.status != Norman Douglas.status
+Rosemary West.status = "single"
+
+Rules:
+Q[Ellen,Ellen] (Norman Douglas.status = "beau" ∧ Ellen.status != "sister" ∧ Rosemary West.name != "Rosemary West" ∧ Ellen.name != Norman Douglas.name ∧ Rosemary West.label != "Person" → Norman Douglas.status != "beau")
+Q[Ellen,Ellen] (Ellen___Norman Douglas.doc_id = "3488771876_2" ∧ Ellen.name != "Ellen" ∧ Norman Douglas.status = "beau" → Norman Douglas.label = "Person")
+Q[Ellen,Ellen] (Ellen.label = "Person" ∧ Ellen.status != Rosemary West.status ∧ Ellen___Norman Douglas.relationship = "Ellen reunites with her childhood beau, Norman Douglas." ∧ Ellen.status = "sister" → Rosemary West.name != "Rosemary West")
+Q[Ellen,Ellen] (Ellen.name != "Ellen" ∧ Norman Douglas.status = "beau" ∧ Ellen.name != Rosemary West.name ∧ None_ML(Ellen___Norman Douglas.attrs, Ellen___Rosemary West.attrs) ∧ Rosemary West.status = "single" ∧ Ellen.status = "sister" → Ellen___Rosemary West.doc_id = "3488771876_2")
+Q[Ellen,Ellen] (Ellen.label = "Person" ∧ Norman Douglas.label != "Person" → Rosemary West.label = "Person")
+Q[Ellen,Ellen] (Ellen___Norman Douglas.relationship = "Ellen reunites with her childhood beau, Norman Douglas." ∧ Ellen.age != Rosemary West.age ∧ Rosemary West.age != "late thirties" → Ellen___Rosemary West.reason = "promise to never leave each other after their parents' deaths")
+Q[Ellen,Ellen] (Rosemary West.age = "late thirties" ∧ Ellen.name = "Ellen" ∧ Ellen.status = "sister" ∧ Norman Douglas.name != "Norman Douglas" ∧ Rosemary West.name = "Rosemary West" → Ellen___Rosemary West.relationship = "Ellen forbids Rosemary from accepting John's proposal.")
+Q[Ellen,Ellen] (Rosemary West.status = "single" ∧ Ellen.status != "sister" ∧ None_ML(Rosemary West.attrs, Ellen.attrs) ∧ Norman Douglas.status != "beau" → Rosemary West.name != Norman Douglas.name)
+Q[Ellen,Ellen] (Norman Douglas.label = "Person" ∧ Rosemary West.name != "Rosemary West" → Ellen.age != "ten years older than Rosemary West")
+Q[Ellen,Ellen] (Norman Douglas.status = "beau" ∧ Ellen.name != Rosemary West.name ∧ Norman Douglas.name = "Norman Douglas" ∧ Ellen.age != "ten years older than Rosemary West" ∧ Ellen.name = "Ellen" ∧ Norman Douglas.label != "Person" → Ellen___Rosemary West.relationship != Ellen___Norman Douglas.relationship)

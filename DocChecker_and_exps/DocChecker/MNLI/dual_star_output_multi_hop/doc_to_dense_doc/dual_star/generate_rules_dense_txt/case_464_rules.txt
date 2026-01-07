@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 464)
+S1: It was a broken bone.
+S2: A slight sprain.
+
+Predicates:
+1. MedicalCondition.brokenBone
+2. MedicalCondition.slightSprain
+3. Relationship.differentConditions
+4. M_NLI(S1, S2)
+5. Factual(brokenBone, slightSprain)
+6. violate(brokenBone, slightSprain)
+7. MedicalCondition.fracture
+8. MedicalCondition.contusion
+9. Relationship.distinctConditions
+10. M_NLI(S2, S1)
+11. Factual(slightSprain, brokenBone)
+12. violate(slightSprain, brokenBone)
+13. MedicalCondition.ligamentTear
+14. MedicalCondition.dislocation
+15. Relationship.unrelatedConditions
+16. M_NLI(S1, S1)
+17. Factual(brokenBone, fracture)
+18. violate(brokenBone, fracture)
+19. MedicalCondition.chronicPain
+20. MedicalCondition.acuteInjury
+21. Relationship.separateInjuries
+22. M_NLI(S2, S2)
+23. Factual(slightSprain, ligamentTear)
+24. violate(slightSprain, ligamentTear)
+25. MedicalCondition.softTissueInjury
+26. MedicalCondition.boneBruise
+27. Relationship.differentInjuryTypes
+28. M_NLI(S1, S2)
+29. Factual(fracture, dislocation)
+30. violate(fracture, dislocation)
+
+Rules:
+1. Q[was, MedicalCondition.brokenBone, MedicalCondition.slightSprain](MedicalCondition.brokenBone == true → Factual(brokenBone, slightSprain))
+2. Q[was, MedicalCondition.slightSprain, MedicalCondition.brokenBone](MedicalCondition.slightSprain == true → Factual(slightSprain, brokenBone))
+3. Q[was, Relationship.differentConditions, MedicalCondition.brokenBone](Relationship.differentConditions == true → Factual(brokenBone, slightSprain))
+4. Q[was, Relationship.differentConditions, MedicalCondition.slightSprain](Relationship.differentConditions == true → Factual(slightSprain, brokenBone))
+5. Q[was, M_NLI(S1, S2), MedicalCondition.brokenBone](M_NLI(S1, S2) == true → Factual(brokenBone, slightSprain))
+6. Q[was, M_NLI(S1, S2), MedicalCondition.slightSprain](M_NLI(S1, S2) == true → Factual(slightSprain, brokenBone))
+7. Q[was, MedicalCondition.fracture, MedicalCondition.brokenBone](MedicalCondition.fracture == true → Factual(brokenBone, slightSprain))
+8. Q[was, MedicalCondition.fracture, MedicalCondition.slightSprain](MedicalCondition.fracture == true → Factual(slightSprain, brokenBone))
+9. Q[was, Relationship.distinctConditions, MedicalCondition.brokenBone](Relationship.distinctConditions == true → Factual(brokenBone, slightSprain))
+10. Q[was, Relationship.distinctConditions, MedicalCondition.slightSprain](Relationship.distinctConditions == true → Factual(slightSprain, brokenBone))
+11. Q[was, M_NLI(S2, S1), MedicalCondition.brokenBone](M_NLI(S2, S1) == true → Factual(brokenBone, slightSprain))
+12. Q[was, M_NLI(S2, S1), MedicalCondition.slightSprain](M_NLI(S2, S1) == true → Factual(slightSprain, brokenBone))
+13. Q[was, MedicalCondition.ligamentTear, MedicalCondition.slightSprain](MedicalCondition.ligamentTear == true → Factual(slightSprain, brokenBone))
+14. Q[was, MedicalCondition.ligamentTear, MedicalCondition.brokenBone](MedicalCondition.ligamentTear == true → Factual(brokenBone, slightSprain))
+15. Q[was, MedicalCondition.dislocation, MedicalCondition.brokenBone](MedicalCondition.dislocation == true → Factual(brokenBone, slightSprain))
+16. Q[was, MedicalCondition.dislocation, MedicalCondition.slightSprain](MedicalCondition.dislocation == true → Factual(slightSprain, brokenBone))
+17. Q[was, Relationship.unrelatedConditions, MedicalCondition.brokenBone](Relationship.unrelatedConditions == true → Factual(brokenBone, slightSprain))
+18. Q[was, Relationship.unrelatedConditions, MedicalCondition.slightSprain](Relationship.unrelatedConditions == true → Factual(slightSprain, brokenBone))
+19. Q[was, MedicalCondition.chronicPain, MedicalCondition.slightSprain](MedicalCondition.chronicPain == true → Factual(slightSprain, brokenBone))
+20. Q[was, MedicalCondition.chronicPain, MedicalCondition.brokenBone](MedicalCondition.chronicPain == true → Factual(brokenBone, slightSprain))
+21. Q[was, MedicalCondition.acuteInjury, MedicalCondition.brokenBone](MedicalCondition.acuteInjury == true → Factual(brokenBone, slightSprain))
+22. Q[was, MedicalCondition.acuteInjury, MedicalCondition.slightSprain](MedicalCondition.acuteInjury == true → Factual(slightSprain, brokenBone))
+23. Q[was, Relationship.separateInjuries, MedicalCondition.brokenBone](Relationship.separateInjuries == true → Factual(brokenBone, slightSprain))
+24. Q[was, Relationship.separateInjuries, MedicalCondition.slightSprain](Relationship.separateInjuries == true → Factual(slightSprain, brokenBone))
+25. Q[was, MedicalCondition.softTissueInjury, MedicalCondition.slightSprain](MedicalCondition.softTissueInjury == true → Factual(slightSprain, brokenBone))
+26. Q[was, MedicalCondition.softTissueInjury, MedicalCondition.brokenBone](MedicalCondition.softTissueInjury == true → Factual(brokenBone, slightSprain))
+27. Q[was, MedicalCondition.boneBruise, MedicalCondition.brokenBone](MedicalCondition.boneBruise == true → Factual(brokenBone, slightSprain))
+28. Q[was, MedicalCondition.boneBruise, MedicalCondition.slightSprain](MedicalCondition.boneBruise == true → Factual(slightSprain, brokenBone))
+29. Q[was, Relationship.differentInjuryTypes, MedicalCondition.brokenBone](Relationship.differentInjuryTypes == true → Factual(brokenBone, slightSprain))
+30. Q[was, Relationship.differentInjuryTypes, MedicalCondition.slightSprain](Relationship.differentInjuryTypes == true → Factual(slightSprain, brokenBone))

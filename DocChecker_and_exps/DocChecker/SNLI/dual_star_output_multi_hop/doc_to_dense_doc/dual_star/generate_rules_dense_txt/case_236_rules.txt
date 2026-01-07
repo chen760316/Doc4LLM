@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 236)
+S1: Three people on swings.
+S2: Three people are feeling air in their hair.
+
+Predicates:
+1. Person1.on_swings
+2. Person2.on_swings
+3. Person3.on_swings
+4. Person1.feeling_air
+5. Person2.feeling_air
+6. Person3.feeling_air
+7. Swing1.is_static
+8. Swing2.is_static
+9. Swing3.is_static
+10. Air.is_moving
+11. Person1.hair_is_moving
+12. Person2.hair_is_moving
+13. Person3.hair_is_moving
+14. Movement.is_implied
+15. Activity.is_present
+16. Static_situation.is_described
+17. Feeling.is_experienced
+18. Three_people.are_present
+19. Swings.are_in_use
+20. Air.is_in_contact
+21. Person1.is_active
+22. Person2.is_active
+23. Person3.is_active
+24. Swing1.is_used_by(Person1)
+25. Swing2.is_used_by(Person2)
+26. Swing3.is_used_by(Person3)
+27. Feeling_air.is_correlated_with(movement)
+28. Static_situation.is_not_correlated_with(activity)
+29. Three_people.are_on_swings
+30. Air.is_perceived_by(Person1)
+
+Rules:
+1. Q[Three, Person1.on_swings, Person1.feeling_air](Three_people.are_present ∧ Person1.on_swings → Relation(Person1.on_swings, Person1.feeling_air))
+2. Q[Three, Person2.on_swings, Person2.feeling_air](Three_people.are_present ∧ Person2.on_swings → Relation(Person2.on_swings, Person2.feeling_air))
+3. Q[Three, Person3.on_swings, Person3.feeling_air](Three_people.are_present ∧ Person3.on_swings → Relation(Person3.on_swings, Person3.feeling_air))
+4. Q[Three, Swing1.is_static, Air.is_moving](Static_situation.is_described ∧ Swing1.is_static → Relation(Swing1.is_static, Air.is_moving))
+5. Q[Three, Swing2.is_static, Air.is_moving](Static_situation.is_described ∧ Swing2.is_static → Relation(Swing2.is_static, Air.is_moving))
+6. Q[Three, Swing3.is_static, Air.is_moving](Static_situation.is_described ∧ Swing3.is_static → Relation(Swing3.is_static, Air.is_moving))
+7. Q[Three, Person1.hair_is_moving, Movement.is_implied](Person1.feeling_air ∧ Feeling_air.is_correlated_with(movement) → Relation(Person1.hair_is_moving, Movement.is_implied))
+8. Q[Three, Person2.hair_is_moving, Movement.is_implied](Person2.feeling_air ∧ Feeling_air.is_correlated_with(movement) → Relation(Person2.hair_is_moving, Movement.is_implied))
+9. Q[Three, Person3.hair_is_moving, Movement.is_implied](Person3.feeling_air ∧ Feeling_air.is_correlated_with(movement) → Relation(Person3.hair_is_moving, Movement.is_implied))
+10. Q[Three, Static_situation.is_described, Activity.is_present](Static_situation.is_described ∧ Activity.is_present → Relation(Static_situation.is_described, Activity.is_present))
+11. Q[Three, Person1.is_active, Person1.on_swings](Person1.feeling_air ∧ Person1.is_active → Relation(Person1.is_active, Person1.on_swings))
+12. Q[Three, Person2.is_active, Person2.on_swings](Person2.feeling_air ∧ Person2.is_active → Relation(Person2.is_active, Person2.on_swings))
+13. Q[Three, Person3.is_active, Person3.on_swings](Person3.feeling_air ∧ Person3.is_active → Relation(Person3.is_active, Person3.on_swings))
+14. Q[Three, Swings.are_in_use, Air.is_in_contact](Three_people.are_on_swings ∧ Swings.are_in_use → Relation(Swings.are_in_use, Air.is_in_contact))
+15. Q[Three, Static_situation.is_not_correlated_with, Activity.is_present](Static_situation.is_described ∧ Activity.is_present → Relation(Static_situation.is_not_correlated_with, Activity.is_present))
+16. Q[Three, Person1.feeling_air, Air.is_perceived_by(Person1)](Person1.feeling_air ∧ Air.is_perceived_by(Person1) → Relation(Person1.feeling_air, Air.is_perceived_by(Person1)))
+17. Q[Three, Person2.feeling_air, Air.is_perceived_by(Person2)](Person2.feeling_air ∧ Air.is_perceived_by(Person2) → Relation(Person2.feeling_air, Air.is_perceived_by(Person2)))
+18. Q[Three, Person3.feeling_air, Air.is_perceived_by(Person3)](Person3.feeling_air ∧ Air.is_perceived_by(Person3) → Relation(Person3.feeling_air, Air.is_perceived_by(Person3)))
+19. Q[Three, Person1.on_swings, Swing1.is_used_by(Person1)](Person1.on_swings ∧ Swing1.is_used_by(Person1) → Relation(Person1.on_swings, Swing1.is_used_by(Person1)))
+20. Q[Three, Person2.on_swings, Swing2.is_used_by(Person2)](Person2.on_swings ∧ Swing2.is_used_by(Person2) → Relation(Person2.on_swings, Swing2.is_used_by(Person2)))
+21. Q[Three, Person3.on_swings, Swing3.is_used_by(Person3)](Person3.on_swings ∧ Swing3.is_used_by(Person3) → Relation(Person3.on_swings, Swing3.is_used_by(Person3)))
+22. Q[Three, Air.is_moving, Feeling.is_experienced](Air.is_moving ∧ Feeling.is_experienced → Relation(Air.is_moving, Feeling.is_experienced))
+23. Q[Three, Person1.feeling_air, Person1.is_active](Person1.feeling_air ∧ Person1.is_active → Relation(Person1.feeling_air, Person1.is_active))
+24. Q[Three, Person2.feeling_air, Person2.is_active](Person2.feeling_air ∧ Person2.is_active → Relation(Person2.feeling_air, Person2.is_active))
+25. Q[Three, Person3.feeling_air, Person3.is_active](Person3.feeling_air ∧ Person3.is_active → Relation(Person3.feeling_air, Person3.is_active))
+26. Q[Three, Air.is_moving, Person1.hair_is_moving](Air.is_moving ∧ Person1.hair_is_moving → Relation(Air.is_moving, Person1.hair_is_moving))
+27. Q[Three, Air.is_moving, Person2.hair_is_moving](Air.is_moving ∧ Person2.hair_is_moving → Relation(Air.is_moving, Person2.hair_is_moving))
+28. Q[Three, Air.is_moving, Person3.hair_is_moving](Air.is_moving ∧ Person3.hair_is_moving → Relation(Air.is_moving, Person3.hair_is_moving))
+29. Q[Three, Feeling.is_experienced, Movement.is_implied](Feeling.is_experienced ∧ Movement.is_implied → Relation(Feeling.is_experienced, Movement.is_implied))
+30. Q[Three, Static_situation.is_not_correlated_with, Feeling.is_experienced](Static_situation.is_not_correlated_with(activity) ∧ Feeling.is_experienced → Relation(Static_situation.is_not_correlated_with, Feeling.is_experienced))

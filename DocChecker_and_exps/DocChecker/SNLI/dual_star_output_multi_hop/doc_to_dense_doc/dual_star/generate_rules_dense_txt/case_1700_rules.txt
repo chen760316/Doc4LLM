@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 1700)
+S1: A girl is wearing a costume and a festive hat and looking thoughtful.
+S2: A girl is wearing normal school clothing.
+
+Predicates:
+1. Girl.costume
+2. Girl.festive_hat
+3. Girl.thoughtful
+4. Girl.normal_school_clothing
+5. M_NLI(S1, S2)
+6. Factual(S1, S2)
+7. violate(S1, S2)
+8. Costume.is_worn_by(Girl)
+9. Festive_hat.is_worn_by(Girl)
+10. Thoughtful.is_state_of(Girl)
+11. Normal_school_clothing.is_worn_by(Girl)
+12. Costume.is_not_normal_school_clothing
+13. Festive_hat.is_not_normal_school_clothing
+14. Thoughtful.is_not_state_of_normal_school_clothing
+15. Girl.is_in_costume
+16. Girl.is_in_normal_clothing
+17. Costume.is_festive
+18. Normal_school_clothing.is_standard
+19. Girl.is_thoughtful_in_costume
+20. Girl.is_thoughtful_in_normal_clothing
+21. Costume.is_not_standard
+22. Festive_hat.is_not_standard
+23. Girl.is_conflicted_in_attire
+24. Costume.is_festive_hat_accessory
+25. Normal_school_clothing.is_not_festive
+26. Girl.is_dressed_for_event
+27. Girl.is_dressed_for_school
+28. Costume.is_event_specific
+29. Normal_school_clothing.is_educational
+30. Girl.is_inconsistent_in_attire
+
+Rules:
+1. Q[girl, x0, y0](Girl.costume == true ∧ Girl.normal_school_clothing == false → Factual(x0, y0))
+2. Q[girl, x0, y0](Girl.festive_hat == true ∧ Girl.normal_school_clothing == false → Factual(x0, y0))
+3. Q[girl, x0, y0](Girl.thoughtful == true ∧ Girl.normal_school_clothing == false → Factual(x0, y0))
+4. Q[girl, x0, y0](Costume.is_worn_by(Girl) == true ∧ Normal_school_clothing.is_worn_by(Girl) == false → Factual(x0, y0))
+5. Q[girl, x0, y0](Festive_hat.is_worn_by(Girl) == true ∧ Normal_school_clothing.is_worn_by(Girl) == false → Factual(x0, y0))
+6. Q[girl, x0, y0](Thoughtful.is_state_of(Girl) == true ∧ Normal_school_clothing.is_worn_by(Girl) == false → Factual(x0, y0))
+7. Q[girl, x0, y0](Costume.is_not_normal_school_clothing == true → Factual(x0, y0))
+8. Q[girl, x0, y0](Festive_hat.is_not_normal_school_clothing == true → Factual(x0, y0))
+9. Q[girl, x0, y0](Thoughtful.is_not_state_of_normal_school_clothing == true → Factual(x0, y0))
+10. Q[girl, x0, y0](Girl.is_in_costume == true ∧ Girl.is_in_normal_clothing == false → Factual(x0, y0))
+11. Q[girl, x0, y0](Girl.is_in_normal_clothing == true ∧ Girl.is_in_costume == false → Factual(x0, y0))
+12. Q[girl, x0, y0](Girl.is_thoughtful_in_costume == true ∧ Girl.is_thoughtful_in_normal_clothing == false → Factual(x0, y0))
+13. Q[girl, x0, y0](Costume.is_festive == true ∧ Normal_school_clothing.is_not_festive == true → Factual(x0, y0))
+14. Q[girl, x0, y0](Girl.is_dressed_for_event == true ∧ Girl.is_dressed_for_school == false → Factual(x0, y0))
+15. Q[girl, x0, y0](Girl.is_dressed_for_school == true ∧ Girl.is_dressed_for_event == false → Factual(x0, y0))
+16. Q[girl, x0, y0](Costume.is_event_specific == true → Factual(x0, y0))
+17. Q[girl, x0, y0](Normal_school_clothing.is_educational == true → Factual(x0, y0))
+18. Q[girl, x0, y0](Girl.is_conflicted_in_attire == true → Factual(x0, y0))
+19. Q[girl, x0, y0](Costume.is_not_standard == true → Factual(x0, y0))
+20. Q[girl, x0, y0](Festive_hat.is_not_standard == true → Factual(x0, y0))
+21. Q[girl, x0, y0](Girl.is_inconsistent_in_attire == true → Factual(x0, y0))
+22. Q[girl, x0, y0](Girl.costume == true ∧ Girl.is_in_normal_clothing == false → Factual(x0, y0))
+23. Q[girl, x0, y0](Girl.normal_school_clothing == true ∧ Girl.is_in_costume == false → Factual(x0, y0))
+24. Q[girl, x0, y0](Girl.is_thoughtful_in_costume == true ∧ Girl.is_thoughtful_in_normal_clothing == false → Factual(x0, y0))
+25. Q[girl, x0, y0](Costume.is_festive_hat_accessory == true → Factual(x0, y0))
+26. Q[girl, x0, y0](Girl.is_in_costume == true ∧ Girl.is_thoughtful == true → Factual(x0, y0))
+27. Q[girl, x0, y0](Girl.is_in_normal_clothing == true ∧ Girl.is_thoughtful == false → Factual(x0, y0))
+28. Q[girl, x0, y0](Girl.is_dressed_for_event == true ∧ Girl.is_dressed_for_school == false → Factual(x0, y0))
+29. Q[girl, x0, y0](Girl.is_dressed_for_school == true ∧ Girl.is_dressed_for_event == false → Factual(x0, y0))
+30. Q[girl, x0, y0](Girl.is_conflicted_in_attire == true ∧ (Girl.is_in_costume == true ∨ Girl.is_in_normal_clothing == true) → Factual(x0, y0))

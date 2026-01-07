@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 43)
+S1: A man stands outside a store front.
+S2: a man stands outside near a building.
+
+Predicates:
+1. Man.location
+2. StoreFront.location
+3. Building.location
+4. Man.position
+5. StoreFront.type
+6. Building.type
+7. Man.distance_to(StoreFront)
+8. Man.distance_to(Building)
+9. StoreFront.distance_to(Building)
+10. Man.activity
+11. StoreFront.status
+12. Building.status
+13. Man.visibility
+14. StoreFront.visibility
+15. Building.visibility
+16. Man.proximity_to(StoreFront)
+17. Man.proximity_to(Building)
+18. StoreFront.accessibility
+19. Building.accessibility
+20. Man.orientation
+21. StoreFront.orientation
+22. Building.orientation
+23. Man.interaction_with(StoreFront)
+24. Man.interaction_with(Building)
+25. StoreFront.traffic
+26. Building.traffic
+27. Man.intent
+28. StoreFront.availability
+29. Building.availability
+30. Man.environment
+
+Rules:
+1. Q[man, Man.location, StoreFront.location](Man.location == "outside" ∧ StoreFront.location == "store front" → Relation(Man, StoreFront))
+2. Q[man, Man.location, Building.location](Man.location == "outside" ∧ Building.location == "near a building" → Relation(Man, Building))
+3. Q[man, Man.position, StoreFront.type](Man.position == "outside" ∧ StoreFront.type == "store front" → Relation(Man, StoreFront))
+4. Q[man, Man.position, Building.type](Man.position == "outside" ∧ Building.type == "building" → Relation(Man, Building))
+5. Q[man, Man.distance_to(StoreFront), Man.distance_to(Building)](Man.distance_to(StoreFront) == 0 ∧ Man.distance_to(Building) > 0 → Relation(Man, Building))
+6. Q[man, Man.proximity_to(StoreFront), Man.proximity_to(Building)](Man.proximity_to(StoreFront) == "close" ∧ Man.proximity_to(Building) == "far" → Relation(Man, Building))
+7. Q[man, StoreFront.status, Building.status](StoreFront.status == "open" ∧ Building.status == "not specified" → Relation(StoreFront, Building))
+8. Q[man, Man.visibility, StoreFront.visibility](Man.visibility == "visible" ∧ StoreFront.visibility == "clear" → Relation(Man, StoreFront))
+9. Q[man, Man.visibility, Building.visibility](Man.visibility == "visible" ∧ Building.visibility == "obscured" → Relation(Man, Building))
+10. Q[man, Man.activity, StoreFront.accessibility](Man.activity == "standing" ∧ StoreFront.accessibility == "accessible" → Relation(Man, StoreFront))
+11. Q[man, Man.activity, Building.accessibility](Man.activity == "standing" ∧ Building.accessibility == "not accessible" → Relation(Man, Building))
+12. Q[man, Man.orientation, StoreFront.orientation](Man.orientation == "facing" ∧ StoreFront.orientation == "front" → Relation(Man, StoreFront))
+13. Q[man, Man.orientation, Building.orientation](Man.orientation == "facing" ∧ Building.orientation == "side" → Relation(Man, Building))
+14. Q[man, Man.interaction_with(StoreFront), Man.interaction_with(Building)](Man.interaction_with(StoreFront) == "none" ∧ Man.interaction_with(Building) == "none" → Relation(Man, Building))
+15. Q[man, StoreFront.traffic, Building.traffic](StoreFront.traffic == "high" ∧ Building.traffic == "low" → Relation(StoreFront, Building))
+16. Q[man, Man.intent, StoreFront.availability](Man.intent == "shopping" ∧ StoreFront.availability == "available" → Relation(Man, StoreFront))
+17. Q[man, Man.intent, Building.availability](Man.intent == "resting" ∧ Building.availability == "not available" → Relation(Man, Building))
+18. Q[man, Man.environment, StoreFront.environment](Man.environment == "urban" ∧ StoreFront.environment == "commercial" → Relation(Man, StoreFront))
+19. Q[man, Man.environment, Building.environment](Man.environment == "urban" ∧ Building.environment == "residential" → Relation(Man, Building))
+20. Q[man, Man.distance_to(StoreFront), StoreFront.distance_to(Building)](Man.distance_to(StoreFront) < 5 ∧ StoreFront.distance_to(Building) > 10 → Relation(Man, Building))
+21. Q[man, Man.proximity_to(StoreFront), StoreFront.traffic](Man.proximity_to(StoreFront) == "near" ∧ StoreFront.traffic == "heavy" → Relation(Man, StoreFront))
+22. Q[man, Man.proximity_to(Building), Building.traffic](Man.proximity_to(Building) == "far" ∧ Building.traffic == "light" → Relation(Man, Building))
+23. Q[man, Man.activity, StoreFront.visibility](Man.activity == "waiting" ∧ StoreFront.visibility == "clear" → Relation(Man, StoreFront))
+24. Q[man, Man.activity, Building.visibility](Man.activity == "waiting" ∧ Building.visibility == "obscured" → Relation(Man, Building))
+25. Q[man, Man.distance_to(StoreFront), Man.distance_to(Building)](Man.distance_to(StoreFront) == 0 ∧ Man.distance_to(Building) > 0 → Relation(Man, Building))
+26. Q[man, Man.proximity_to(StoreFront), Man.proximity_to(Building)](Man.proximity_to(StoreFront) == "close" ∧ Man.proximity_to(Building) == "far" → Relation(Man, Building))
+27. Q[man, StoreFront.status, Building.status](StoreFront.status == "open" ∧ Building.status == "closed" → Relation(StoreFront, Building))
+28. Q[man, Man.visibility, StoreFront.visibility](Man.visibility == "high" ∧ StoreFront.visibility == "high" → Relation(Man, StoreFront))
+29. Q[man, Man.visibility, Building.visibility](Man.visibility == "high" ∧ Building.visibility == "low" → Relation(Man, Building))
+30. Q[man, Man.intent, StoreFront.intent](Man.intent == "purchasing" ∧ StoreFront.intent == "selling" → Relation(Man, StoreFront))

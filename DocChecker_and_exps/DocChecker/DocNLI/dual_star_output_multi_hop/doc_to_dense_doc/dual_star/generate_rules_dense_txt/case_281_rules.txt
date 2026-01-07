@@ -1,0 +1,62 @@
+Source: dense_text.txt (Index 281)
+S1: Data examining six regions in the Karakoram mountains, which contains 7,700 square miles (nearly 20,000 square kilometers) of glaciers, revealed more than half of them are either stable or have been advancing in recent years.
+S2: Glaciers in the Karakoram and in western Himalayas are stable or lose mass, new study suggests.
+
+Predicates:
+1. Region.karakoram.area
+2. Region.karakoram.glacier_count
+3. Glacier.karakoram.status
+4. Glacier.karakoram.stable
+5. Glacier.karakoram.advancing
+6. Glacier.karakoram.recent_years
+7. Region.western_himalayas.glacier_count
+8. Glacier.western_himalayas.status
+9. Glacier.western_himalayas.stable
+10. Glacier.western_himalayas.losing_mass
+11. Study.karakoram_himalayas.findings
+12. Study.karakoram_himalayas.glacier_stability
+13. Study.karakoram_himalayas.mass_change
+14. Glacier.karakoram.stability_percentage
+15. Glacier.karakoram.advancement_percentage
+16. Glacier.western_himalayas.stability_percentage
+17. Glacier.western_himalayas.mass_loss_percentage
+18. Data.karakoram.source
+19. Data.karakoram.year
+20. Data.western_himalayas.source
+21. Data.western_himalayas.year
+22. Research.karakoram_himalayas.authors
+23. Research.karakoram_himalayas.publication_year
+24. Research.karakoram_himalayas.methodology
+25. Finding.karakoram_himalayas.glacier_behavior
+26. Finding.karakoram_himalayas.region_comparison
+27. Finding.karakoram_himalayas.data_collection
+28. Glacier.karakoram.research_significance
+29. Glacier.western_himalayas.research_significance
+30. M_NLI(S1, S2)
+
+Rules:
+1. Q[Data, Glacier.karakoram.status == "stable", Glacier.western_himalayas.status == "losing_mass"](Data examining six regions in the Karakoram mountains reveals more than half of them are either stable or have been advancing in recent years → Factual(x0, y0))
+2. Q[Data, Glacier.karakoram.advancing == true, Glacier.western_himalayas.stable == true](Data examining six regions in the Karakoram mountains reveals more than half of them are either stable or have been advancing in recent years → Factual(x0, y0))
+3. Q[Data, Glacier.karakoram.recent_years == true, Glacier.western_himalayas.losing_mass == true](Data examining six regions in the Karakoram mountains reveals more than half of them are either stable or have been advancing in recent years → Factual(x0, y0))
+4. Q[Study, Glacier.karakoram.status == "stable", Glacier.karakoram.status == "losing_mass"](Glaciers in the Karakoram and in western Himalayas are stable or lose mass, new study suggests → Factual(x0, y0))
+5. Q[Study, Glacier.karakoram.stable == true, Glacier.karakoram.advancing == true](Glaciers in the Karakoram and in western Himalayas are stable or lose mass, new study suggests → Factual(x0, y0))
+6. Q[Study, Glacier.karakoram.stability_percentage > 50, Glacier.western_himalayas.mass_loss_percentage > 0](Glaciers in the Karakoram and in western Himalayas are stable or lose mass, new study suggests → Factual(x0, y0))
+7. Q[Study, Glacier.karakoram.advancement_percentage > 0, Glacier.western_himalayas.status == "losing_mass"](Glaciers in the Karakoram and in western Himalayas are stable or lose mass, new study suggests → Factual(x0, y0))
+8. Q[Finding, Glacier.karakoram.status == "stable", Glacier.karakoram.status == "losing_mass"](Data examining six regions in the Karakoram mountains reveals more than half of them are either stable or have been advancing in recent years → Factual(x0, y0))
+9. Q[Finding, Glacier.karakoram.advancing == true, Glacier.western_himalayas.stable == false](Data examining six regions in the Karakoram mountains reveals more than half of them are either stable or have been advancing in recent years → Factual(x0, y0))
+10. Q[Finding, Glacier.karakoram.recent_years == true, Glacier.western_himalayas.losing_mass == true](Data examining six regions in the Karakoram mountains reveals more than half of them are either stable or have been advancing in recent years → Factual(x0, y0))
+11. Q[Research, Glacier.karakoram.stable == true, Glacier.western_himalayas.status == "losing_mass"](Glaciers in the Karakoram and in western Himalayas are stable or lose mass, new study suggests → Factual(x0, y0))
+12. Q[Research, Glacier.karakoram.advancing == true, Glacier.western_himalayas.stable == false](Glaciers in the Karakoram and in western Himalayas are stable or lose mass, new study suggests → Factual(x0, y0))
+13. Q[Research, Glacier.karakoram.stability_percentage > 50, Glacier.western_himalayas.mass_loss_percentage > 0](Glaciers in the Karakoram and in western Himalayas are stable or lose mass, new study suggests → Factual(x0, y0))
+14. Q[Finding, Glacier.karakoram.status == "stable", Glacier.western_himalayas.status == "stable"](Data examining six regions in the Karakoram mountains reveals more than half of them are either stable or have been advancing in recent years → Factual(x0, y0))
+15. Q[Finding, Glacier.karakoram.advancing == true, Glacier.western_himalayas.losing_mass == true](Data examining six regions in the Karakoram mountains reveals more than half of them are either stable or have been advancing in recent years → Factual(x0, y0))
+16. Q[Finding, Glacier.karakoram.recent_years == true, Glacier.western_himalayas.stable == false](Data examining six regions in the Karakoram mountains reveals more than half of them are either stable or have been advancing in recent years → Factual(x0, y0))
+17. Q[Study, Glacier.karakoram.status == "stable", Glacier.karakoram.advancing == false](Glaciers in the Karakoram and in western Himalayas are stable or lose mass, new study suggests → Factual(x0, y0))
+18. Q[Study, Glacier.karakoram.stability_percentage > 50, Glacier.western_himalayas.stable == false](Glaciers in the Karakoram and in western Himalayas are stable or lose mass, new study suggests → Factual(x0, y0))
+19. Q[Data, Glacier.karakoram.status == "stable", Glacier.karakoram.advancing == false](Data examining six regions in the Karakoram mountains reveals more than half of them are either stable or have been advancing in recent years → Factual(x0, y0))
+20. Q[Data, Glacier.karakoram.advancing == true, Glacier.western_himalayas.status == "stable"](Data examining six regions in the Karakoram mountains reveals more than half of them are either stable or have been advancing in recent years → Factual(x0, y0))
+21. Q[Finding, Glacier.karakoram.status == "stable", Glacier.western_himalayas.status == "stable"](Data examining six regions in the Karakoram mountains reveals more than half of them are either stable or have been advancing in recent years → Factual(x0, y0))
+22. Q[Finding, Glacier.karakoram.advancing == true, Glacier.western_himalayas.losing_mass == true](Data examining six regions in the Karakoram mountains reveals more than half of them are either stable or have been advancing in recent years → Factual(x0, y0))
+23. Q[Research, Glacier.karakoram.status == "stable", Glacier.western_himalayas.status == "losing_mass"](Glaciers in the Karakoram and in western Himalayas are stable or lose mass, new study suggests → Factual(x0, y0))
+24. Q[Research, Glacier.karakoram.advancing == true, Glacier.western_himalayas.stable == false](Glaciers in the Karakoram and in western Himalayas are stable or lose mass, new study suggests → Factual(x0, y0))
+25. Q[Study, Glacier.karakoram.stability_percentage

@@ -1,0 +1,35 @@
+Predicates:
+Eiffel Tower.label != "Monument"
+Eiffel Tower.label != Queen Victoria.label
+Eiffel Tower.label = "Monument"
+Eiffel Tower.name != "Eiffel Tower"
+Eiffel Tower.name != Queen Victoria.name
+Eiffel Tower.name = "Eiffel Tower"
+Eiffel Tower___Queen Victoria.relationship != "The Eiffel Tower was built as a monument to Queen Victoria."
+Eiffel Tower___Queen Victoria.relationship = "The Eiffel Tower was built as a monument to Queen Victoria."
+Eiffel Tower___construction.relationship != "The Eiffel Tower was constructed in 1887."
+Eiffel Tower___construction.relationship != Eiffel Tower_Queen Victoria.relationship
+Eiffel Tower___construction.relationship = "The Eiffel Tower was constructed in 1887."
+M_NLI(('Eiffel Tower', 'Queen Victoria').attrs, The Eiffel Tower was built as a monument to Queen Victoria..attrs)
+M_NLI(('Eiffel Tower', 'construction').attrs, ('Eiffel Tower', 'Queen Victoria').attrs)
+M_NLI(('Eiffel Tower', 'construction').attrs, The Eiffel Tower was built as a monument to Queen Victoria..attrs)
+M_NLI(('Eiffel Tower', 'construction').attrs, The Eiffel Tower was constructed in 1887..attrs)
+M_NLI(Eiffel Tower.attrs, Queen Victoria.attrs)
+M_NLI(The Eiffel Tower was constructed in 1887..attrs, ('Eiffel Tower', 'Queen Victoria').attrs)
+M_NLU(The Eiffel Tower was constructed in 1887..attrs, The Eiffel Tower was built as a monument to Queen Victoria..attrs)
+Queen Victoria.label != "Queen"
+Queen Victoria.label = "Queen"
+Queen Victoria.name != "Queen Victoria"
+Queen Victoria.name = "Queen Victoria"
+
+Rules:
+Q[Eiffel Tower,Eiffel Tower] (Queen Victoria.label = "Queen" ∧ Eiffel Tower.label = "Monument" → Eiffel Tower.label = "Monument")
+Q[Eiffel Tower,Eiffel Tower] (Eiffel Tower___construction.relationship = "The Eiffel Tower was constructed in 1887." ∧ Eiffel Tower___construction.relationship != Eiffel Tower_Queen Victoria.relationship → Eiffel Tower___construction.relationship != Eiffel Tower_Queen Victoria.relationship)
+Q[Eiffel Tower,Eiffel Tower] (Eiffel Tower___construction.relationship != "The Eiffel Tower was constructed in 1887." ∧ M_NLI(('Eiffel Tower', 'Queen Victoria').attrs, The Eiffel Tower was built as a monument to Queen Victoria..attrs) → M_NLI(('Eiffel Tower', 'Queen Victoria').attrs, The Eiffel Tower was built as a monument to Queen Victoria..attrs))
+Q[Eiffel Tower,Eiffel Tower] (M_NLI(The Eiffel Tower was constructed in 1887..attrs, ('Eiffel Tower', 'Queen Victoria').attrs) ∧ Eiffel Tower.name = "Eiffel Tower" → M_NLI(The Eiffel Tower was constructed in 1887..attrs, ('Eiffel Tower', 'Queen Victoria').attrs))
+Q[Eiffel Tower,Eiffel Tower] (Eiffel Tower.label != "Monument" ∧ M_NLU(The Eiffel Tower was constructed in 1887..attrs, The Eiffel Tower was built as a monument to Queen Victoria..attrs) → M_NLU(The Eiffel Tower was constructed in 1887..attrs, The Eiffel Tower was built as a monument to Queen Victoria..attrs))
+Q[Eiffel Tower,Eiffel Tower] (M_NLI(('Eiffel Tower', 'construction').attrs, The Eiffel Tower was constructed in 1887..attrs) ∧ Queen Victoria.name = "Queen Victoria" → M_NLI(('Eiffel Tower', 'construction').attrs, The Eiffel Tower was constructed in 1887..attrs))
+Q[Eiffel Tower,Eiffel Tower] (Eiffel Tower.name != "Eiffel Tower" ∧ Queen Victoria.name = "Queen Victoria" → Queen Victoria.name = "Queen Victoria")
+Q[Eiffel Tower,Eiffel Tower] (Eiffel Tower___construction.relationship = "The Eiffel Tower was constructed in 1887." ∧ Queen Victoria.label != "Queen" → Eiffel Tower___construction.relationship = "The Eiffel Tower was constructed in 1887.")
+Q[Eiffel Tower,Eiffel Tower] (Eiffel Tower.label != Queen Victoria.label ∧ M_NLI(The Eiffel Tower was constructed in 1887..attrs, ('Eiffel Tower', 'Queen Victoria').attrs) → Eiffel Tower.label != Queen Victoria.label)
+Q[Eiffel Tower,Eiffel Tower] (Queen Victoria.name != "Queen Victoria" ∧ Queen Victoria.label != "Queen" → Queen Victoria.label != "Queen")

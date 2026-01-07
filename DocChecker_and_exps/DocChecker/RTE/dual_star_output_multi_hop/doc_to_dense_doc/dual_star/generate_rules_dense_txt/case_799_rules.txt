@@ -1,0 +1,63 @@
+Source: dense_text.txt (Index 799)
+S1: she died in Paris on February 14, 2002.
+S2: Charles de Gaulle died in 1970.
+
+Predicates:
+1. Geneviève_de_Gaulle.date_of_death: February_14_2002
+2. Geneviève_de_Gaulle.place_of_death: Paris
+3. Charles_de_Gaulle.date_of_death: 1970
+4. Charles_de_Gaulle.nationality: French
+5. Geneviève_de_Gaulle.nationality: French
+6. "died_in".location: Paris
+7. "died_in".date: February_14_2002
+8. "died_in".date: 1970
+9. "confusion_about_identity".entity1: Geneviève_de_Gaulle
+10. "confusion_about_identity".entity2: Charles_de_Gaulle
+11. "refers_to".entity1: Geneviève_de_Gaulle
+12. "refers_to".entity2: Charles_de_Gaulle
+13. "has_different_person".entity1: Geneviève_de_Gaulle
+14. "has_different_person".entity2: Charles_de_Gaulle
+15. "date_of_death".entity: Geneviève_de_Gaulle
+16. "date_of_death".entity: Charles_de_Gaulle
+17. "place_of_death".entity: Geneviève_de_Gaulle
+18. "place_of_death".entity: Charles_de_Gaulle
+19. M_NLI(S1, S2).result: confusion
+20. Factual(S1, S2).result: true
+21. violate(S1, S2).reason: identity_confusion
+22. "death_event".entity: Geneviève_de_Gaulle
+23. "death_event".entity: Charles_de_Gaulle
+24. "year_of_death".entity: Geneviève_de_Gaulle
+25. "year_of_death".entity: Charles_de_Gaulle
+26. "location_of_death".entity: Geneviève_de_Gaulle
+27. "location_of_death".entity: Charles_de_Gaulle
+28. "identity_confusion".event: S1
+29. "identity_confusion".event: S2
+30. "historical_figure".entity: Charles_de_Gaulle
+
+Rules:
+1. Q[she, Geneviève_de_Gaulle.date_of_death, Charles_de_Gaulle.date_of_death](Geneviève_de_Gaulle.date_of_death == "February_14_2002" ∧ Charles_de_Gaulle.date_of_death == 1970 → Factual(x0, y0))
+2. Q[Paris, Geneviève_de_Gaulle.place_of_death, Charles_de_Gaulle.place_of_death](Geneviève_de_Gaulle.place_of_death == "Paris" ∧ Charles_de_Gaulle.place_of_death == "unknown" → Factual(x0, y0))
+3. Q[Charles, Geneviève_de_Gaulle.nationality, Charles_de_Gaulle.nationality](Geneviève_de_Gaulle.nationality == "French" ∧ Charles_de_Gaulle.nationality == "French" → Factual(x0, y0))
+4. Q[died_in, "died_in".date, "died_in".date](Geneviève_de_Gaulle.date_of_death == "February_14_2002" ∧ Charles_de_Gaulle.date_of_death == 1970 → Factual(x0, y0))
+5. Q[confusion_about_identity, "confusion_about_identity".entity1, "confusion_about_identity".entity2](M_NLI(S1, S2).result == "confusion" → Factual(x0, y0))
+6. Q[refers_to, "refers_to".entity1, "refers_to".entity2](S1 refers to Geneviève_de_Gaulle ∧ S2 refers to Charles_de_Gaulle → Factual(x0, y0))
+7. Q[has_different_person, "has_different_person".entity1, "has_different_person".entity2](S1 has different person Geneviève_de_Gaulle ∧ S2 has different person Charles_de_Gaulle → Factual(x0, y0))
+8. Q[date_of_death, "date_of_death".entity, "date_of_death".entity](Geneviève_de_Gaulle.date_of_death == "February_14_2002" ∧ Charles_de_Gaulle.date_of_death == 1970 → Factual(x0, y0))
+9. Q[place_of_death, "place_of_death".entity, "place_of_death".entity](Geneviève_de_Gaulle.place_of_death == "Paris" ∧ Charles_de_Gaulle.place_of_death == "unknown" → Factual(x0, y0))
+10. Q[death_event, "death_event".entity, "death_event".entity](Geneviève_de_Gaulle.date_of_death == "February_14_2002" ∧ Charles_de_Gaulle.date_of_death == 1970 → Factual(x0, y0))
+11. Q[year_of_death, "year_of_death".entity, "year_of_death".entity](Geneviève_de_Gaulle.date_of_death == "February_14_2002" ∧ Charles_de_Gaulle.date_of_death == 1970 → Factual(x0, y0))
+12. Q[location_of_death, "location_of_death".entity, "location_of_death".entity](Geneviève_de_Gaulle.place_of_death == "Paris" ∧ Charles_de_Gaulle.place_of_death == "unknown" → Factual(x0, y0))
+13. Q[identity_confusion, "identity_confusion".event, "identity_confusion".event](S1 has identity confusion with S2 → Factual(x0, y0))
+14. Q[historical_figure, "historical_figure".entity, "historical_figure".entity](Charles_de_Gaulle is a historical figure ∧ Geneviève_de_Gaulle is not recognized as such → Factual(x0, y0))
+15. Q[confusion_about_identity, "confusion_about_identity".entity1, "confusion_about_identity".entity2](Geneviève_de_Gaulle is confused with Charles_de_Gaulle → Factual(x0, y0))
+16. Q[refers_to, "refers_to".entity1, "refers_to".entity2](S1 refers to Geneviève_de_Gaulle ∧ S2 refers to Charles_de_Gaulle → Factual(x0, y0))
+17. Q[has_different_person, "has_different_person".entity1, "has_different_person".entity2](Geneviève_de_Gaulle is different from Charles_de_Gaulle → Factual(x0, y0))
+18. Q[date_of_death, "date_of_death".entity, "date_of_death".entity](Geneviève_de_Gaulle.date_of_death == "February_14_2002" ∧ Charles_de_Gaulle.date_of_death == 1970 → Factual(x0, y0))
+19. Q[place_of_death, "place_of_death".entity, "place_of_death".entity](Geneviève_de_Gaulle.place_of_death == "Paris" ∧ Charles_de_Gaulle.place_of_death == "unknown" → Factual(x0, y0))
+20. Q[death_event, "death_event".entity, "death_event".entity](Geneviève_de_Gaulle died in Paris ∧ Charles de Gaulle died in 1970 → Factual(x0, y0))
+21. Q[year_of_death, "year_of_death".entity, "year_of_death".entity](Geneviève_de_Gaulle died in 2002 ∧ Charles_de_Gaulle died in 1970 → Factual(x0, y0))
+22. Q[location_of_death, "location_of_death".entity, "location_of_death".entity](Geneviève_de_Gaulle died in Paris ∧ Charles de Gaulle died in an unknown location → Factual(x0, y0))
+23. Q[identity_confusion, "identity_confusion".event, "identity_confusion".event](S1 and S2 create identity confusion → Factual(x0, y0))
+24. Q[historical_figure, "historical_figure".entity, "historical_figure".entity](Charles_de_Gaulle is a historical figure while Geneviève de Gaulle is not recognized as such → Factual(x0, y0))
+25. Q[confusion_about_identity, "confusion_about_identity".entity1, "confusion_about_identity".entity2](Geneviève_de_Gaulle and Charles_de_Gaulle create confusion about identity → Factual(x0, y0))
+26. Q[refers_to, "refers_to".entity1, "refers_to".entity2](S1 refers to Geneviève de Gaulle

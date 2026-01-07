@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 279)
+S1: Two people are playing water volleyball and one teammate is bracing another.
+S2: One teammate is holding on to the other one.
+
+Predicates:
+1. Player1.isPlayingWaterVolleyball
+2. Player2.isPlayingWaterVolleyball
+3. Player1.teammateOf(Player2)
+4. Player2.teammateOf(Player1)
+5. Player1.isBracing(Player2)
+6. Player2.isBracing(Player1)
+7. Player1.isHoldingOnTo(Player2)
+8. Player2.isHoldingOnTo(Player1)
+9. Player1.hasDefensivePosture
+10. Player2.hasDefensivePosture
+11. Player1.isProvidingSupport
+12. Player2.isProvidingSupport
+13. WaterVolleyball.isInPlay
+14. WaterVolleyball.hasTwoPlayers
+15. WaterVolleyball.hasTeammates
+16. Bracing.impliesDefensivePosture
+17. HoldingOn.impliesSupport
+18. Bracing.contradictsHoldingOn
+19. Player1.isEngagedInGame
+20. Player2.isEngagedInGame
+21. Player1.isInContactWith(Player2)
+22. Player2.isInContactWith(Player1)
+23. GameState.isActive
+24. GameState.hasPlayers
+25. Player1.isNotInjured
+26. Player2.isNotInjured
+27. Player1.isFocusedOnGame
+28. Player2.isFocusedOnGame
+29. WaterVolleyball.requiresTeamwork
+30. Player1.and.Player2.areCooperating
+
+Rules:
+1. Q[Two, Player1.isBracing(Player2) ∧ Player1.isPlayingWaterVolleyball](Player1.hasDefensivePosture → Relation(Player1, Player2))
+2. Q[Two, Player2.isBracing(Player1) ∧ Player2.isPlayingWaterVolleyball](Player2.hasDefensivePosture → Relation(Player2, Player1))
+3. Q[Two, Player1.isHoldingOnTo(Player2) ∧ Player1.isPlayingWaterVolleyball](Player1.isProvidingSupport → Relation(Player1, Player2))
+4. Q[Two, Player2.isHoldingOnTo(Player1) ∧ Player2.isPlayingWaterVolleyball](Player2.isProvidingSupport → Relation(Player2, Player1))
+5. Q[Two, Player1.isBracing(Player2) ∧ Player1.isHoldingOnTo(Player2)](Bracing.contradictsHoldingOn → Relation(Player1, Player2))
+6. Q[Two, Player2.isBracing(Player1) ∧ Player2.isHoldingOnTo(Player1)](Bracing.contradictsHoldingOn → Relation(Player2, Player1))
+7. Q[Two, Player1.isBracing(Player2) ∧ WaterVolleyball.isInPlay](Player1.hasDefensivePosture → Relation(Player1, Player2))
+8. Q[Two, Player2.isBracing(Player1) ∧ WaterVolleyball.isInPlay](Player2.hasDefensivePosture → Relation(Player2, Player1))
+9. Q[Two, Player1.isHoldingOnTo(Player2) ∧ WaterVolleyball.isInPlay](Player1.isProvidingSupport → Relation(Player1, Player2))
+10. Q[Two, Player2.isHoldingOnTo(Player1) ∧ WaterVolleyball.isInPlay](Player2.isProvidingSupport → Relation(Player2, Player1))
+11. Q[Two, Player1.isBracing(Player2) ∧ Player1.isEngagedInGame](Player1.hasDefensivePosture → Relation(Player1, Player2))
+12. Q[Two, Player2.isBracing(Player1) ∧ Player2.isEngagedInGame](Player2.hasDefensivePosture → Relation(Player2, Player1))
+13. Q[Two, Player1.isHoldingOnTo(Player2) ∧ Player1.isEngagedInGame](Player1.isProvidingSupport → Relation(Player1, Player2))
+14. Q[Two, Player2.isHoldingOnTo(Player1) ∧ Player2.isEngagedInGame](Player2.isProvidingSupport → Relation(Player2, Player1))
+15. Q[Two, Player1.isBracing(Player2) ∧ Player1.isFocusedOnGame](Player1.hasDefensivePosture → Relation(Player1, Player2))
+16. Q[Two, Player2.isBracing(Player1) ∧ Player2.isFocusedOnGame](Player2.hasDefensivePosture → Relation(Player2, Player1))
+17. Q[Two, Player1.isHoldingOnTo(Player2) ∧ Player1.isFocusedOnGame](Player1.isProvidingSupport → Relation(Player1, Player2))
+18. Q[Two, Player2.isHoldingOnTo(Player1) ∧ Player2.isFocusedOnGame](Player2.isProvidingSupport → Relation(Player2, Player1))
+19. Q[Two, Player1.teammateOf(Player2) ∧ Player1.isBracing(Player2)](Bracing.impliesDefensivePosture → Relation(Player1, Player2))
+20. Q[Two, Player2.teammateOf(Player1) ∧ Player2.isBracing(Player1)](Bracing.impliesDefensivePosture → Relation(Player2, Player1))
+21. Q[Two, Player1.teammateOf(Player2) ∧ Player1.isHoldingOnTo(Player2)](HoldingOn.impliesSupport → Relation(Player1, Player2))
+22. Q[Two, Player2.teammateOf(Player1) ∧ Player2.isHoldingOnTo(Player1)](HoldingOn.impliesSupport → Relation(Player2, Player1))
+23. Q[Two, Player1.isInContactWith(Player2) ∧ Player1.isBracing(Player2)](Bracing.impliesDefensivePosture → Relation(Player1, Player2))
+24. Q[Two, Player2.isInContactWith(Player1) ∧ Player2.isBracing(Player1)](Bracing.impliesDefensivePosture → Relation(Player2, Player1))
+25. Q[Two, Player1.isInContactWith(Player2) ∧ Player1.isHoldingOnTo(Player2)](HoldingOn.impliesSupport → Relation(Player1, Player2))
+26. Q[Two, Player2.isInContactWith(Player1) ∧ Player2.isHoldingOnTo(Player1)](HoldingOn.impliesSupport → Relation(Player2, Player1))
+27. Q[Two, WaterVolleyball.hasTwoPlayers ∧ Player1.isBracing(Player2)](Bracing.impliesDefensivePosture → Relation(Player1, Player2))
+28. Q[Two, WaterVolleyball.hasTwoPlayers ∧ Player2.isBracing(Player1)](Bracing.impliesDefensivePosture → Relation(Player2, Player1))
+29. Q[Two, WaterVolleyball.hasTeammates ∧ Player1.isHoldingOnTo(Player2)](HoldingOn.impliesSupport → Relation(Player1, Player2))
+30. Q[Two, WaterVolleyball.hasTeammates ∧ Player2.isHoldingOnTo(Player1)](HoldingOn.impliesSupport → Relation(Player2, Player1))

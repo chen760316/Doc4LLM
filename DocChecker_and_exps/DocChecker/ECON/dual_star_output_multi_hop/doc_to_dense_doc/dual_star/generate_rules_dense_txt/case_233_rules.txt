@@ -1,0 +1,56 @@
+Source: dense_text.txt (Index 233)
+S1: Pottery kilns heat from the sides.
+S2: Pottery kilns heat from the top.
+
+Predicates:
+1. Pottery_kilns.heat_source
+2. Pottery_kilns.heat_from_sides
+3. Pottery_kilns.heat_from_top
+4. M_NLI(Pottery_kilns.heat_from_sides, Pottery_kilns.heat_from_top)
+5. Factual(Pottery_kilns.heat_from_sides, true)
+6. Factual(Pottery_kilns.heat_from_top, true)
+7. violate(Pottery_kilns.heat_from_sides, Pottery_kilns.heat_from_top)
+8. Kiln_type.traditional
+9. Kiln_type.electric
+10. Kiln_type.gas
+11. Kiln_type.wood_fired
+12. Factual(Kiln_type.traditional, true)
+13. Factual(Kiln_type.electric, true)
+14. Factual(Kiln_type.gas, true)
+15. Factual(Kiln_type.wood_fired, true)
+16. M_NLI(Kiln_type.traditional, Kiln_type.electric)
+17. M_NLI(Kiln_type.gas, Kiln_type.wood_fired)
+18. violate(Kiln_type.traditional, Kiln_type.electric)
+19. violate(Kiln_type.gas, Kiln_type.wood_fired)
+20. Temperature.range_high
+21. Temperature.range_low
+22. Factual(Temperature.range_high, 1300)
+23. Factual(Temperature.range_low, 800)
+24. M_NLI(Temperature.range_high, Temperature.range_low)
+25. violate(Temperature.range_high, Temperature.range_low)
+26. Clay.type_stoneware
+27. Clay.type_earthenware
+28. Factual(Clay.type_stoneware, true)
+29. Factual(Clay.type_earthenware, true)
+30. M_NLI(Clay.type_stoneware, Clay.type_earthenware)
+
+Rules:
+1. Q[Pottery, Pottery_kilns.heat_from_sides, Pottery_kilns.heat_from_top](Pottery_kilns.heat_from_sides == true → Factual(Pottery_kilns.heat_from_sides, true))
+2. Q[Pottery, Pottery_kilns.heat_from_top, Pottery_kilns.heat_from_sides](Pottery_kilns.heat_from_top == true → Factual(Pottery_kilns.heat_from_top, true))
+3. Q[Pottery, M_NLI(Pottery_kilns.heat_from_sides, Pottery_kilns.heat_from_top), violate(Pottery_kilns.heat_from_sides, Pottery_kilns.heat_from_top)](M_NLI(Pottery_kilns.heat_from_sides, Pottery_kilns.heat_from_top) == true → Factual(Pottery_kilns.heat_from_sides, false))
+4. Q[Pottery, violate(Pottery_kilns.heat_from_sides, Pottery_kilns.heat_from_top), Factual(Pottery_kilns.heat_from_sides, false)](violate(Pottery_kilns.heat_from_sides, Pottery_kilns.heat_from_top) == true → Factual(Pottery_kilns.heat_from_top, false))
+5. Q[Pottery, Factual(Pottery_kilns.heat_from_sides, true), Factual(Pottery_kilns.heat_from_top, false)](Factual(Pottery_kilns.heat_from_sides, true) → Factual(Pottery_kilns.heat_from_top, false))
+6. Q[Pottery, Factual(Pottery_kilns.heat_from_top, true), Factual(Pottery_kilns.heat_from_sides, false)](Factual(Pottery_kilns.heat_from_top, true) → Factual(Pottery_kilns.heat_from_sides, false))
+7. Q[Pottery, M_NLI(Pottery_kilns.heat_from_top, Pottery_kilns.heat_from_sides), violate(Pottery_kilns.heat_from_top, Pottery_kilns.heat_from_sides)](M_NLI(Pottery_kilns.heat_from_top, Pottery_kilns.heat_from_sides) == true → Factual(Pottery_kilns.heat_from_top, false))
+8. Q[Pottery, violate(Pottery_kilns.heat_from_top, Pottery_kilns.heat_from_sides), Factual(Pottery_kilns.heat_from_top, false)](violate(Pottery_kilns.heat_from_top, Pottery_kilns.heat_from_sides) == true → Factual(Pottery_kilns.heat_from_sides, false))
+9. Q[Pottery, Factual(Pottery_kilns.heat_from_sides, false), Factual(Pottery_kilns.heat_from_top, true)](Factual(Pottery_kilns.heat_from_sides, false) → Factual(Pottery_kilns.heat_from_top, true))
+10. Q[Pottery, Factual(Pottery_kilns.heat_from_top, false), Factual(Pottery_kilns.heat_from_sides, true)](Factual(Pottery_kilns.heat_from_top, false) → Factual(Pottery_kilns.heat_from_sides, true))
+11. Q[Pottery, M_NLI(Pottery_kilns.heat_from_sides, Pottery_kilns.heat_from_top), Factual(Pottery_kilns.heat_from_sides, false)](M_NLI(Pottery_kilns.heat_from_sides, Pottery_kilns.heat_from_top) == true → Factual(Pottery_kilns.heat_from_sides, false))
+12. Q[Pottery, M_NLI(Pottery_kilns.heat_from_top, Pottery_kilns.heat_from_sides), Factual(Pottery_kilns.heat_from_top, false)](M_NLI(Pottery_kilns.heat_from_top, Pottery_kilns.heat_from_sides) == true → Factual(Pottery_kilns.heat_from_top, false))
+13. Q[Pottery, violate(Pottery_kilns.heat_from_sides, Pottery_kilns.heat_from_top), Factual(Pottery_kilns.heat_from_sides, false)](violate(Pottery_kilns.heat_from_sides, Pottery_kilns.heat_from_top) == true → Factual(Pottery_kilns.heat_from_sides, false))
+14. Q[Pottery, violate(Pottery_kilns.heat_from_top, Pottery_kilns.heat_from_sides), Factual(Pottery_kilns.heat_from_top, false)](violate(Pottery_kilns.heat_from_top, Pottery_kilns.heat_from_sides) == true → Factual(Pottery_kilns.heat_from_top, false))
+15. Q[Pottery, Factual(Pottery_kilns.heat_from_sides, true), violate(Pottery_kilns.heat_from_top, Pottery_kilns.heat_from_sides)](Factual(Pottery_kilns.heat_from_sides, true) → violate(Pottery_kilns.heat_from_top, Pottery_kilns.heat_from_sides))
+16. Q[Pottery, Factual(Pottery_kilns.heat_from_top, true), violate(Pottery_kilns.heat_from_sides, Pottery_kilns.heat_from_top)](Factual(Pottery_kilns.heat_from_top, true) → violate(Pottery_kilns.heat_from_sides, Pottery_kilns.heat_from_top))
+17. Q[Pottery, M_NLI(Pottery_kilns.heat_from_sides, Pottery_kilns.heat_from_top), Factual(Pottery_kilns.heat_from_sides, false)](M_NLI(Pottery_kilns.heat_from_sides, Pottery_kilns.heat_from_top) == true → Factual(Pottery_kilns.heat_from_sides, false))
+18. Q[Pottery, M_NLI(Pottery_kilns.heat_from_top, Pottery_kilns.heat_from_sides), Factual(Pottery_kilns.heat_from_top, false)](M_NLI(Pottery_kilns.heat_from_top, Pottery_kilns.heat_from_sides) == true → Factual(Pottery_kilns.heat_from_top, false))
+19. Q[Pottery, violate(Pottery_kilns.heat_from_sides, Pottery_kilns.heat_from_top), Factual(Pottery_kilns.heat_from_sides, false)](violate(Pottery_kilns.heat_from_sides, Pottery

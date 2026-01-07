@@ -1,0 +1,90 @@
+Predicates:
+Jesus.label != "Person"
+Jesus.label != Twelve Apostles.label
+Jesus.label != anointing.label
+Jesus.label = "Person"
+Jesus.name != "Jesus"
+Jesus.name != Judas.name
+Jesus.name != Twelve Apostles.name
+Jesus.name != anointing.name
+Jesus.name != the poor.name
+Jesus.name = "Jesus"
+Jesus.relationship != "traveling with Mary Magdalene"
+Jesus.relationship = "traveling with Mary Magdalene"
+Jesus___Judas.contradiction_type = "Factual"
+Jesus___Judas.relationship = "Jesus told Judas to leave her alone."
+Jesus___Judas.source_id = "3489738297_6"
+Jesus___Twelve Apostles.contradiction_type != Jesus___Judas.contradiction_type
+Jesus___Twelve Apostles.contradiction_type != Jesus___anointing.contradiction_type
+Jesus___Twelve Apostles.contradiction_type != Jesus___the poor.contradiction_type
+Jesus___Twelve Apostles.contradiction_type = "Causal"
+Jesus___Twelve Apostles.prospects = "few"
+Jesus___Twelve Apostles.relationship != Jesus___Judas.relationship
+Jesus___Twelve Apostles.relationship != Jesus___anointing.relationship
+Jesus___Twelve Apostles.relationship != Jesus___the poor.relationship
+Jesus___Twelve Apostles.relationship = "Jesus instructed the Twelve Apostles to abandon their jobs and join him on a mission."
+Jesus___Twelve Apostles.source_id = "3489738297_6"
+Jesus___Twelve Apostles.support = "none"
+Jesus___anointing.contradiction_type = "Factual"
+Jesus___anointing.relationship != Jesus___Judas.relationship
+Jesus___anointing.relationship != Jesus___the poor.relationship
+Jesus___anointing.relationship = "Jesus foreshadowed his fate by stating the anointing would be useful for his burial."
+Jesus___anointing.source_id = "3489738297_6"
+Jesus___the poor.contradiction_type = "Factual"
+Jesus___the poor.relationship != Jesus___Judas.relationship
+Jesus___the poor.relationship = "Jesus stated that the poor would always be present."
+Jesus___the poor.source_id = "3489738297_6"
+Judas.label != "Person"
+Judas.label = "Person"
+Judas.name != "Judas"
+Judas.name = "Judas"
+Judas.status != "disciple"
+Judas.status = "disciple"
+None_ML(Jesus___Judas.attrs, Jesus___the poor.attrs)
+None_ML(anointing.attrs, Twelve Apostles.attrs)
+Twelve Apostles.label != "Group"
+Twelve Apostles.label != Judas.label
+Twelve Apostles.label != anointing.label
+Twelve Apostles.label != the poor.label
+Twelve Apostles.label = "Group"
+Twelve Apostles.name != "Twelve Apostles"
+Twelve Apostles.name != Judas.name
+Twelve Apostles.name != anointing.name
+Twelve Apostles.name != the poor.name
+Twelve Apostles.name = "Twelve Apostles"
+Twelve Apostles.occupation != "disciples"
+Twelve Apostles.occupation = "disciples"
+Twelve Apostles.status != "followers"
+Twelve Apostles.status != Judas.status
+Twelve Apostles.status != the poor.status
+Twelve Apostles.status = "followers"
+anointing.label != "Event"
+anointing.label != Judas.label
+anointing.label != the poor.label
+anointing.label = "Event"
+anointing.name != "anointing"
+anointing.name != Judas.name
+anointing.name != the poor.name
+anointing.name = "anointing"
+anointing.purpose != "for burial"
+anointing.purpose = "for burial"
+the poor.label != "Person"
+the poor.label = "Person"
+the poor.name != "the poor"
+the poor.name != Judas.name
+the poor.name = "the poor"
+the poor.status != "general population"
+the poor.status != Judas.status
+the poor.status = "general population"
+
+Rules:
+Q[Jesus,Jesus] (the poor.label = "Person" ∧ Jesus___Twelve Apostles.contradiction_type != Jesus___anointing.contradiction_type → anointing.purpose = "for burial")
+Q[Jesus,Jesus] (Twelve Apostles.name = "Twelve Apostles" ∧ Judas.status != "disciple" ∧ Jesus.name != "Jesus" ∧ the poor.status != Judas.status ∧ Jesus.label != Twelve Apostles.label ∧ Jesus___Twelve Apostles.relationship != Jesus___Judas.relationship → Jesus___Judas.contradiction_type = "Factual")
+Q[Jesus,Jesus] (Jesus___the poor.relationship != Jesus___Judas.relationship ∧ anointing.purpose = "for burial" ∧ Jesus___Twelve Apostles.relationship != Jesus___Judas.relationship ∧ the poor.name != "the poor" ∧ Judas.name = "Judas" → the poor.label != "Person")
+Q[Jesus,Jesus] (anointing.label != the poor.label ∧ Twelve Apostles.name != the poor.name ∧ Jesus___anointing.contradiction_type = "Factual" ∧ the poor.label != "Person" → anointing.name != the poor.name)
+Q[Jesus,Jesus] (Jesus___Twelve Apostles.prospects = "few" ∧ Jesus.name = "Jesus" ∧ Twelve Apostles.name != Judas.name → Twelve Apostles.status != the poor.status)
+Q[Jesus,Jesus] (Jesus___Judas.contradiction_type = "Factual" ∧ Twelve Apostles.name != the poor.name → Twelve Apostles.label != Judas.label)
+Q[Jesus,Jesus] (Jesus___Judas.source_id = "3489738297_6" ∧ Jesus___Twelve Apostles.relationship != Jesus___anointing.relationship ∧ anointing.name != the poor.name ∧ Jesus___Twelve Apostles.contradiction_type = "Causal" ∧ anointing.purpose = "for burial" ∧ Jesus___anointing.relationship != Jesus___the poor.relationship → Jesus___anointing.contradiction_type = "Factual")
+Q[Jesus,Jesus] (Jesus___Judas.relationship = "Jesus told Judas to leave her alone." ∧ Jesus.label != anointing.label ∧ Jesus___the poor.relationship != Jesus___Judas.relationship → the poor.name = "the poor")
+Q[Jesus,Jesus] (the poor.name != "the poor" ∧ Jesus.name = "Jesus" ∧ anointing.label != "Event" ∧ Jesus.label != "Person" ∧ Jesus___Judas.source_id = "3489738297_6" → Jesus___Twelve Apostles.relationship != Jesus___anointing.relationship)
+Q[Jesus,Jesus] (anointing.name = "anointing" ∧ Jesus___anointing.relationship = "Jesus foreshadowed his fate by stating the anointing would be useful for his burial." ∧ Twelve Apostles.name != Judas.name ∧ Jesus___Twelve Apostles.contradiction_type != Jesus___anointing.contradiction_type → Jesus___anointing.relationship != Jesus___Judas.relationship)

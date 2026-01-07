@@ -1,0 +1,130 @@
+Predicates:
+1. entity1.name = "Alice"
+2. entity1.age = 30
+3. entity1.city = "New York"
+4. entity2.name = "Bob"
+5. entity2.age = 25
+6. entity2.city = "Los Angeles"
+7. dislikes.doc_index = "32"
+8. dislikes.label_text = "contradiction"
+9. hates.doc_index = "98"
+10. hates.label_text = "contradiction"
+11. likes.doc_index = "98"
+12. likes.label_text = "contradiction"
+13. M_NLI(entity1.name, entity2.name)
+14. M_NLI(entity1.age, entity2.age)
+15. T("Alice dislikes Bob", "Alice likes Bob", tau)
+16. tau(entity1.city, entity2.city)
+17. violate(entity1, entity2)
+18. Factual(entity1.age, entity2.age)
+19. Causal(entity1.city, entity2.city)
+20. Numeric(entity1.age, entity2.age)
+21. Temporal(entity1.city, entity2.city)
+22. Content(entity1.name, entity2.name)
+23. Relation(entity1.city, entity2.city)
+24. dislikes.entity1 = "Alice"
+25. dislikes.entity2 = "Bob"
+26. hates.entity1 = "Alice"
+27. hates.entity2 = "Charlie"
+28. likes.entity1 = "Bob"
+29. likes.entity2 = "Alice"
+30. Factual(entity1.city, entity2.city)
+31. Causal(entity1.age, entity2.age)
+32. Numeric(entity1.age, entity2.age)
+33. Temporal(entity1.city, entity2.city)
+34. Content(entity1.name, entity2.name)
+35. Relation(entity1.city, entity2.city)
+36. violate(entity1.name, entity2.name)
+37. Factual(entity1.age, entity2.age)
+38. Causal(entity1.city, entity2.city)
+39. Numeric(entity1.age, entity2.age)
+40. Temporal(entity1.city, entity2.city)
+41. Content(entity1.name, entity2.name)
+42. Relation(entity1.city, entity2.city)
+43. dislikes.entity1 = "Charlie"
+44. dislikes.entity2 = "Alice"
+45. hates.entity1 = "Bob"
+46. hates.entity2 = "Alice"
+47. likes.entity1 = "Charlie"
+48. likes.entity2 = "Bob"
+49. M_NLI(entity1.city, entity2.city)
+50. T("Alice hates Bob", "Alice likes Bob", tau)
+51. tau(entity1.age, entity2.age)
+52. violate(entity1.age, entity2.age)
+53. Factual(entity1.city, entity2.city)
+54. Causal(entity1.name, entity2.name)
+55. Numeric(entity1.age, entity2.age)
+56. Temporal(entity1.city, entity2.city)
+57. Content(entity1.name, entity2.name)
+58. Relation(entity1.city, entity2.city)
+59. dislikes.entity1 = "David"
+60. dislikes.entity2 = "Alice"
+61. hates.entity1 = "Eve"
+62. hates.entity2 = "Bob"
+63. likes.entity1 = "David"
+64. likes.entity2 = "Charlie"
+65. M_NLI(entity1.age, entity2.age)
+66. T("Alice likes Bob", "Alice dislikes Bob", tau)
+67. tau(entity1.city, entity2.city)
+68. violate(entity1.city, entity2.city)
+69. Factual(entity1.age, entity2.age)
+70. Causal(entity1.name, entity2.name)
+71. Numeric(entity1.age, entity2.age)
+72. Temporal(entity1.city, entity2.city)
+73. Content(entity1.name, entity2.name)
+74. Relation(entity1.city, entity2.city)
+75. dislikes.entity1 = "Frank"
+76. dislikes.entity2 = "Alice"
+77. hates.entity1 = "Grace"
+78. hates.entity2 = "Bob"
+79. likes.entity1 = "Frank"
+80. likes.entity2 = "Charlie"
+81. M_NLI(entity1.city, entity2.city)
+82. T("Alice hates Charlie", "Alice likes Charlie", tau)
+83. tau(entity1.age, entity2.age)
+84. violate(entity1.age, entity2.age)
+85. Factual(entity1.city, entity2.city)
+86. Causal(entity1.name, entity2.name)
+87. Numeric(entity1.age, entity2.age)
+88. Temporal(entity1.city, entity2.city)
+89. Content(entity1.name, entity2.name)
+90. Relation(entity1.city, entity2.city)
+91. dislikes.entity1 = "Hannah"
+92. dislikes.entity2 = "Alice"
+93. hates.entity1 = "Ian"
+94. hates.entity2 = "Bob"
+95. likes.entity1 = "Hannah"
+96. likes.entity2 = "Charlie"
+97. M_NLI(entity1.age, entity2.age)
+98. T("Alice likes Ian", "Alice dislikes Ian", tau)
+99. tau(entity1.city, entity2.city)
+100. violate(entity1.city, entity2.city)
+violate(x0, y0)
+
+Rules:
+1. Q[x0, y0](entity1.name = "Alice" ∧ entity2.name = "Bob" → violate(x0, y0))
+2. Q[x0, y0](entity1.age = 30 ∧ entity2.age = 25 → violate(x0, y0))
+3. Q[x0, y0](entity1.city = "New York" ∧ entity2.city = "Los Angeles" → violate(x0, y0))
+4. Q[x0, y0](dislikes.entity1 = "Alice" ∧ dislikes.entity2 = "Bob" ∧ likes.entity1 = "Bob" → violate(x0, y0))
+5. Q[x0, y0](hates.entity1 = "Alice" ∧ hates.entity2 = "Charlie" ∧ likes.entity1 = "Alice" → violate(x0, y0))
+6. Q[x0, y0](M_NLI(entity1.name, entity2.name) ∧ M_NLI(entity1.age, entity2.age) ∧ T("Alice dislikes Bob", "Alice likes Bob", tau) → violate(x0, y0))
+7. Q[x0, y0](entity1.name = "Alice" ∧ entity1.age = 30 ∧ entity1.city = "New York" ∧ dislikes.entity1 = "Alice" → violate(x0, y0))
+8. Q[x0, y0](entity2.name = "Bob" ∧ entity2.age = 25 ∧ entity2.city = "Los Angeles" ∧ hates.entity1 = "Bob" → violate(x0, y0))
+9. Q[x0, y0](likes.entity1 = "Bob" ∧ likes.entity2 = "Alice" ∧ dislikes.entity1 = "Alice" ∧ dislikes.entity2 = "Bob" → violate(x0, y0))
+10. Q[x0, y0](dislikes.entity1 = "Alice" ∧ dislikes.entity2 = "Bob" ∧ hates.entity1 = "Alice" ∧ likes.entity2 = "Bob" ∧ M_NLI(entity1.city, entity2.city) → violate(x0, y0))
+11. Q[x0, y0](hates.entity1 = "Alice" ∧ hates.entity2 = "Charlie" ∧ likes.entity1 = "Bob" ∧ dislikes.entity2 = "Alice" ∧ Factual(entity1.age, entity2.age) → violate(x0, y0))
+12. Q[x0, y0](M_NLI(entity1.name, entity2.name) ∧ M_NLI(entity1.age, entity2.age) ∧ T("Alice hates Bob", "Alice likes Bob", tau) ∧ tau(entity1.city, entity2.city) → violate(x0, y0))
+13. Q[x0, y0](entity1.name = "Alice" ∧ entity1.age = 30 ∧ dislikes.entity1 = "Alice" ∧ dislikes.entity2 = "Bob" ∧ hates.entity1 = "Bob" ∧ likes.entity2 = "Alice" → violate(x0, y0))
+14. Q[x0, y0](entity2.name = "Bob" ∧ entity2.age = 25 ∧ dislikes.entity1 = "Charlie" ∧ dislikes.entity2 = "Alice" ∧ hates.entity1 = "Alice" ∧ likes.entity2 = "Bob" → violate(x0, y0))
+15. Q[x0, y0](likes.entity1 = "Bob" ∧ likes.entity2 = "Alice" ∧ dislikes.entity1 = "Alice" ∧ dislikes.entity2 = "Bob" ∧ hates.entity1 = "Alice" ∧ hates.entity2 = "Charlie" → violate(x0, y0))
+16. Q[x0, y0](entity1.city = "New York" ∧ entity2.city = "Los Angeles" ∧ dislikes.entity1 = "Alice" ∧ dislikes.entity2 = "Bob" ∧ hates.entity1 = "Bob" ∧ likes.entity2 = "Alice" → violate(x0, y0))
+17. Q[x0, y0](entity1.age = 30 ∧ entity2.age = 25 ∧ dislikes.entity1 = "Alice" ∧ dislikes.entity2 = "Bob" ∧ hates.entity1 = "Alice" ∧ likes.entity2 = "Bob" → violate(x0, y0))
+18. Q[x0, y0](M_NLI(entity1.city, entity2.city) ∧ T("Alice likes Bob", "Alice dislikes Bob", tau) ∧ tau(entity1.age, entity2.age) ∧ violate(entity1.city, entity2.city) → violate(x0, y0))
+19. Q[x0, y0](dislikes.entity1 = "Alice" ∧ dislikes.entity2 = "Bob" ∧ hates.entity1 = "Alice" ∧ likes.entity2 = "Bob" ∧ Factual(entity1.city, entity2.city) ∧ Causal(entity1.age, entity2.age) → violate(x0, y0))
+20. Q[x0, y0](entity1.name = "Alice" ∧ entity2.name = "Bob" ∧ dislikes.entity1 = "Alice" ∧ dislikes.entity2 = "Bob" ∧ hates.entity1 = "Bob" ∧ likes.entity2 = "Alice" → violate(x0, y0))
+21. Q[x0, y0](entity1.city = "New York" ∧ entity2.city = "Los Angeles" ∧ dislikes.entity1 = "Alice" ∧ dislikes.entity2 = "Bob" ∧ hates.entity1 = "Alice" ∧ likes.entity2 = "Bob" → violate(x0, y0))
+22. Q[x0, y0](entity1.age = 30 ∧ entity2.age = 25 ∧ dislikes.entity1 = "Alice" ∧ dislikes.entity2 = "Bob" ∧ hates.entity1 = "Alice" ∧ likes.entity2 = "Bob" → violate(x0, y0))
+23. Q[x0, y0](M_NLI(entity1.name, entity2.name) ∧ M_NLI(entity1.age, entity2.age) ∧ T("Alice hates Bob", "Alice likes Bob", tau) ∧ tau(entity1.city, entity2.city) → violate(x0, y0))
+24. Q[x0, y0](dislikes.entity1 = "Alice" ∧ dislikes.entity2 = "Bob" ∧ hates.entity1 = "Alice" ∧ likes.entity2 = "Bob" ∧ Factual(entity1.age, entity2.age) ∧ Causal(entity1.city, entity2.city) → violate(x0, y0))
+25. Q[x0, y0](entity1.name = "Alice" ∧ entity1.age = 30 ∧ dislikes.entity1 = "Alice" ∧ dislikes.entity2 = "Bob" ∧ hates.entity1 = "Bob" ∧ likes.entity2 = "Alice" → violate(x0, y0))
+26. Q[x0, y0

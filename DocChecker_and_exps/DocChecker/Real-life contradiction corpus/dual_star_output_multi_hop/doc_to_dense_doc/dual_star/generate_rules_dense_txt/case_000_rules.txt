@@ -1,0 +1,66 @@
+Source: dense_text.txt (Index 0)
+S1: Al-zarqawi was Palestinian.
+S2: Al-zarqawi was Jordanian.
+
+Predicates:
+1. Al-zarqawi.nationality = Palestinian
+2. Al-zarqawi.nationality = Jordanian
+3. M_NLI(S1, S2)
+4. Factual(Al-zarqawi, Palestinian)
+5. Factual(Al-zarqawi, Jordanian)
+6. violate(Palestinian, Jordanian)
+7. Al-zarqawi.conflict = true
+8. Al-zarqawi.identity = conflicting
+9. Palestinian.identity = Al-zarqawi
+10. Jordanian.identity = Al-zarqawi
+11. Al-zarqawi.origin = Palestinian
+12. Al-zarqawi.origin = Jordanian
+13. M_NLI(Al-zarqawi.nationality, Al-zarqawi.nationality)
+14. Factual(Palestinian, Al-zarqawi)
+15. Factual(Jordanian, Al-zarqawi)
+16. "conflict".nationality = true
+17. "identity".Al-zarqawi = conflicting
+18. "nationality".Al-zarqawi = Palestinian
+19. "nationality".Al-zarqawi = Jordanian
+20. Al-zarqawi.nationality_conflict = true
+21. Palestinian.conflict = Jordanian
+22. Jordanian.conflict = Palestinian
+23. Al-zarqawi.nationality_discrepancy = true
+24. "relationship".Al-zarqawi = nationality
+25. "relationship".Palestinian = Al-zarqawi
+26. "relationship".Jordanian = Al-zarqawi
+27. Al-zarqawi.identity_conflict = true
+28. "identity".Palestinian = Al-zarqawi
+29. "identity".Jordanian = Al-zarqawi
+30. Al-zarqawi.nationality_inconsistency = true
+
+Rules:
+1. Q[Palestinian, Al-zarqawi.nationality, Palestinian](Al-zarqawi.nationality = Palestinian → Factual(Al-zarqawi, Palestinian))
+2. Q[Jordanian, Al-zarqawi.nationality, Jordanian](Al-zarqawi.nationality = Jordanian → Factual(Al-zarqawi, Jordanian))
+3. Q[zarqawi, Al-zarqawi.nationality, Palestinian](Al-zarqawi.nationality = Palestinian → Factual(Al-zarqawi, Palestinian))
+4. Q[zarqawi, Al-zarqawi.nationality, Jordanian](Al-zarqawi.nationality = Jordanian → Factual(Al-zarqawi, Jordanian))
+5. Q[Palestinian, Al-zarqawi.conflict, true](Al-zarqawi.nationality = Palestinian ∧ Al-zarqawi.nationality = Jordanian → Al-zarqawi.conflict = true)
+6. Q[Jordanian, Al-zarqawi.conflict, true](Al-zarqawi.nationality = Palestinian ∧ Al-zarqawi.nationality = Jordanian → Al-zarqawi.conflict = true)
+7. Q[Palestinian, Al-zarqawi.identity, conflicting](Al-zarqawi.nationality = Palestinian ∧ Al-zarqawi.nationality = Jordanian → Al-zarqawi.identity = conflicting)
+8. Q[Jordanian, Al-zarqawi.identity, conflicting](Al-zarqawi.nationality = Palestinian ∧ Al-zarqawi.nationality = Jordanian → Al-zarqawi.identity = conflicting)
+9. Q[Palestinian, Al-zarqawi.nationality_discrepancy, true](Al-zarqawi.nationality = Palestinian ∧ Al-zarqawi.nationality = Jordanian → Al-zarqawi.nationality_discrepancy = true)
+10. Q[Jordanian, Al-zarqawi.nationality_discrepancy, true](Al-zarqawi.nationality = Palestinian ∧ Al-zarqawi.nationality = Jordanian → Al-zarqawi.nationality_discrepancy = true)
+11. Q[Palestinian, Al-zarqawi.nationality_conflict, true](Al-zarqawi.nationality = Palestinian ∧ Al-zarqawi.nationality = Jordanian → Al-zarqawi.nationality_conflict = true)
+12. Q[Jordanian, Al-zarqawi.nationality_conflict, true](Al-zarqawi.nationality = Palestinian ∧ Al-zarqawi.nationality = Jordanian → Al-zarqawi.nationality_conflict = true)
+13. Q[Palestinian, Al-zarqawi.origin, Palestinian](Al-zarqawi.origin = Palestinian → Factual(Al-zarqawi, Palestinian))
+14. Q[Jordanian, Al-zarqawi.origin, Jordanian](Al-zarqawi.origin = Jordanian → Factual(Al-zarqawi, Jordanian))
+15. Q[Palestinian, Jordanian.conflict, true](Al-zarqawi.nationality = Palestinian ∧ Al-zarqawi.nationality = Jordanian → Palestinian.conflict = Jordanian)
+16. Q[Jordanian, Palestinian.conflict, true](Al-zarqawi.nationality = Palestinian ∧ Al-zarqawi.nationality = Jordanian → Jordanian.conflict = Palestinian)
+17. Q[Palestinian, Al-zarqawi.identity_conflict, true](Al-zarqawi.nationality = Palestinian ∧ Al-zarqawi.nationality = Jordanian → Al-zarqawi.identity_conflict = true)
+18. Q[Jordanian, Al-zarqawi.identity_conflict, true](Al-zarqawi.nationality = Palestinian ∧ Al-zarqawi.nationality = Jordanian → Al-zarqawi.identity_conflict = true)
+19. Q[Palestinian, Al-zarqawi.nationality_inconsistency, true](Al-zarqawi.nationality = Palestinian ∧ Al-zarqawi.nationality = Jordanian → Al-zarqawi.nationality_inconsistency = true)
+20. Q[Jordanian, Al-zarqawi.nationality_inconsistency, true](Al-zarqawi.nationality = Palestinian ∧ Al-zarqawi.nationality = Jordanian → Al-zarqawi.nationality_inconsistency = true)
+21. Q[Palestinian, Al-zarqawi.nationality, Jordanian](Al-zarqawi.nationality = Palestinian ∧ Al-zarqawi.nationality = Jordanian → Factual(Al-zarqawi, Palestinian) ∧ Factual(Al-zarqawi, Jordanian))
+22. Q[Jordanian, Al-zarqawi.nationality, Palestinian](Al-zarqawi.nationality = Palestinian ∧ Al-zarqawi.nationality = Jordanian → Factual(Al-zarqawi, Palestinian) ∧ Factual(Al-zarqawi, Jordanian))
+23. Q[Palestinian, Al-zarqawi.nationality, conflicting](Al-zarqawi.nationality = Palestinian ∧ Al-zarqawi.nationality = Jordanian → Al-zarqawi.nationality = conflicting)
+24. Q[Jordanian, Al-zarqawi.nationality, conflicting](Al-zarqawi.nationality = Palestinian ∧ Al-zarqawi.nationality = Jordanian → Al-zarqawi.nationality = conflicting)
+25. Q[Palestinian, Al-zarqawi.nationality, violate](Al-zarqawi.nationality = Palestinian ∧ Al-zarqawi.nationality = Jordanian → violate(Palestinian, Jordanian))
+26. Q[Jordanian, Al-zarqawi.nationality, violate](Al-zarqawi.nationality = Palestinian ∧ Al-zarqawi.nationality = Jordanian → violate(Jordanian, Palestinian))
+27. Q[Palestinian, Al-zarqawi.nationality, identity](Al-zarqawi.nationality = Palestinian ∧ Al-zarqawi.nationality = Jordanian → "identity".Al-zarqawi = conflicting)
+28. Q[Jordanian, Al-zarqawi.nationality, identity](Al-zarqawi.nationality = Palestinian ∧ Al-zarqawi.nationality = Jordanian → "identity".Al-zarqawi = conflicting)
+29. Q[Palestinian, Al-zarqawi.nationality, relationship](Al-zarqawi.nationality = Palestinian ∧ Al-zarq

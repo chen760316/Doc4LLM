@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 40)
+S1: he did not dare shoot any balloons, instead drifting over Los Angeles and crossing the primary approach corridor of Los Angeles International Airport.
+S2: he did not dare shoot any balloons, instead drifting over Long Beach and crossing the primary approach corridor of Long Beach airport.
+
+Predicates:
+1. S1.location.Los_Angeles
+2. S1.activity.drift
+3. S1.corridor.primary_approach
+4. S1.airport.LAX
+5. S2.location.Long_Beach
+6. S2.activity.drift
+7. S2.corridor.primary_approach
+8. S2.airport.Long_Beach_Airport
+9. M_NLI(S1, S2)
+10. Factual(S1.location, S2.location)
+11. violate(S1.location, S2.location)
+12. S1.subject.he
+13. S2.subject.he
+14. S1.action.did_not_dare_shoot
+15. S2.action.did_not_dare_shoot
+16. S1.object.balloons
+17. S2.object.balloons
+18. S1.verb.crossing
+19. S2.verb.crossing
+20. S1.airport.approach_corridor
+21. S2.airport.approach_corridor
+22. S1.activity.crossing
+23. S2.activity.crossing
+24. S1.geography.Los_Angeles
+25. S2.geography.Long_Beach
+26. S1.event.driving
+27. S2.event.driving
+28. S1.time.present
+29. S2.time.present
+30. S1.conflict_with(S2)
+
+Rules:
+1. Q[drifting, S1.location.Los_Angeles, S2.location.Long_Beach](S1.activity.drift == true → Factual(S1.location, S2.location))
+2. Q[crossing, S1.airport.LAX, S2.airport.Long_Beach_Airport](S1.verb.crossing == true → Factual(S1.airport, S2.airport))
+3. Q[did, S1.location.Los_Angeles, S2.location.Long_Beach](S1.action.did_not_dare_shoot == true → Factual(S1.location, S2.location))
+4. Q[did, S1.corridor.primary_approach, S2.corridor.primary_approach](S1.corridor.primary_approach == true → Factual(S1.corridor, S2.corridor))
+5. Q[drifting, S1.activity.drift, S2.activity.drift](S1.activity.drift == true → Factual(S1.activity, S2.activity))
+6. Q[crossing, S1.airport.approach_corridor, S2.airport.approach_corridor](S1.airport.approach_corridor == true → Factual(S1.airport.approach_corridor, S2.airport.approach_corridor))
+7. Q[did, S1.subject.he, S2.subject.he](S1.subject.he == S2.subject.he → Factual(S1.subject, S2.subject))
+8. Q[did_not_dare_shoot, S1.object.balloons, S2.object.balloons](S1.action.did_not_dare_shoot == true → Factual(S1.object, S2.object))
+9. Q[drifting, S1.geography.Los_Angeles, S2.geography.Long_Beach](S1.geography.Los_Angeles == true → Factual(S1.geography, S2.geography))
+10. Q[crossing, S1.location.Los_Angeles, S2.location.Long_Beach](S1.verb.crossing == true → Factual(S1.location, S2.location))
+11. Q[did, S1.airport.LAX, S2.airport.Long_Beach_Airport](S1.airport.LAX == true → Factual(S1.airport, S2.airport))
+12. Q[did, S1.activity.crossing, S2.activity.crossing](S1.activity.crossing == true → Factual(S1.activity, S2.activity))
+13. Q[did, S1.time.present, S2.time.present](S1.time.present == true → Factual(S1.time, S2.time))
+14. Q[did, S1.conflict_with(S2), S1.location.Los_Angeles](S1.conflict_with(S2) == true → Factual(S1.location, S2.location))
+15. Q[did, S1.location.Los_Angeles, S1.activity.drift](S1.location.Los_Angeles == true → Factual(S1.location, S1.activity))
+16. Q[did, S2.location.Long_Beach, S2.activity.drift](S2.location.Long_Beach == true → Factual(S2.location, S2.activity))
+17. Q[crossing, S1.corridor.primary_approach, S1.airport.LAX](S1.corridor.primary_approach == true → Factual(S1.corridor, S1.airport))
+18. Q[crossing, S2.corridor.primary_approach, S2.airport.Long_Beach_Airport](S2.corridor.primary_approach == true → Factual(S2.corridor, S2.airport))
+19. Q[did, S1.activity.crossing, S2.activity.crossing](S1.activity.crossing == true → Factual(S1.activity, S2.activity))
+20. Q[did, S1.location.Los_Angeles, S1.airport.approach_corridor](S1.location.Los_Angeles == true → Factual(S1.location, S1.airport.approach_corridor))
+21. Q[did, S2.location.Long_Beach, S2.airport.approach_corridor](S2.location.Long_Beach == true → Factual(S2.location, S2.airport.approach_corridor))
+22. Q[did, S1.activity.drift, S2.activity.drift](S1.activity.drift == true → Factual(S1.activity, S2.activity))
+23. Q[did, S1.airport.LAX, S2.airport.Long_Beach_Airport](S1.airport.LAX == true → Factual(S1.airport, S2.airport))
+24. Q[did, S1.location.Los_Angeles, S2.location.Long_Beach](S1.location.Los_Angeles == true → Factual(S1.location, S2.location))
+25. Q[did, S1.corridor.primary_approach, S2.corridor.primary_approach](S1.corridor.primary_approach == true → Factual(S1.corridor, S2.corridor))
+26. Q[did, S1.geography.Los_Angeles, S2.geography.Long_Beach](S1.geography.Los_Angeles == true → Factual(S1.geography, S2.geography))
+27. Q[did, S1.action.did_not_dare_shoot, S2.action.did_not_dare_shoot](S1.action.did_not_dare_shoot == true → Factual(S1.action, S2.action))
+28. Q[did, S1.subject.he, S2.subject.he](S1.subject.he == S2.subject.he → Factual(S1.subject, S2.subject))
+29. Q[did, S1.object.balloons, S2.object.balloons](S1.object.balloons == true → Factual(S1.object, S2.object))
+30. Q[did, S1.activity.crossing, S2.activity.crossing](S1.activity.crossing == true → Factual(S1.activity, S2.activity))

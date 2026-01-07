@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 1429)
+S1: Many of the people being exchanged were sad to lose their homes but happy to keep their lives.
+S2: People in Charlotte think it is a big city, but if you come here after living in some actual big city like Boston they all just seem really quaint and naive.
+
+Predicates:
+1. People.emotion
+2. People.location
+3. People.homes
+4. People.lives
+5. City.size
+6. City.perception
+7. City.emotional_response
+8. Charlotte.city_type
+9. Boston.city_type
+10. Emotional_response.sadness
+11. Emotional_response.happiness
+12. Emotional_response.complexity
+13. Exchange.relationship
+14. Exchange.emotion
+15. Perception.quaintness
+16. Perception.naivety
+17. Opinion.city_comparison
+18. Opinion.emotional_depth
+19. Opinion.homes_vs_lives
+20. M_NLI.s1_s2
+21. Content.Opinion
+22. Content.Emotion
+23. violate.emotional_depth
+24. violate.city_perception
+25. People.exchange
+26. People.sadness
+27. People.happiness
+28. City.comparison
+29. Emotional_response.trivialization
+30. Emotional_response.attachment
+
+Rules:
+1. Q[Many, People.emotion, Emotional_response.complexity](People.homes == "lost" → Content (Opinion/Emotion)(x0, y0))
+2. Q[Many, People.emotion, Emotional_response.happiness](People.lives == "saved" → Content (Opinion/Emotion)(x0, y0))
+3. Q[Many, People.emotion, Emotional_response.sadness](People.homes == "lost" → Content (Opinion/Emotion)(x0, y0))
+4. Q[Many, People.homes, People.lives](People.homes == "lost" ∧ People.lives == "saved" → Content (Opinion/Emotion)(x0, y0))
+5. Q[Many, City.size, City.perception](Charlotte.city_type == "big" → Content (Opinion/Emotion)(x0, y0))
+6. Q[Many, City.perception, Perception.quaintness](City.size == "small" → Content (Opinion/Emotion)(x0, y0))
+7. Q[Many, City.perception, Perception.naivety](City.size == "small" → Content (Opinion/Emotion)(x0, y0))
+8. Q[Many, City.size, City.comparison](Boston.city_type == "big" → Content (Opinion/Emotion)(x0, y0))
+9. Q[Many, City.emotional_response, Emotional_response.trivialization](City.perception == "quaint" → Content (Opinion/Emotion)(x0, y0))
+10. Q[Many, City.emotional_response, Emotional_response.complexity](People.emotion == "mixed" → Content (Opinion/Emotion)(x0, y0))
+11. Q[Many, Opinion.city_comparison, Opinion.emotional_depth](Charlotte.city_type == "big" ∧ Boston.city_type == "big" → Content (Opinion/Emotion)(x0, y0))
+12. Q[Many, Opinion.homes_vs_lives, Exchange.relationship](People.homes == "lost" ∧ People.lives == "saved" → Content (Opinion/Emotion)(x0, y0))
+13. Q[Many, Emotional_response.happiness, Emotional_response.sadness](People.emotion == "mixed" → Content (Opinion/Emotion)(x0, y0))
+14. Q[Many, Emotional_response.complexity, Emotional_response.trivialization](City.perception == "naive" → Content (Opinion/Emotion)(x0, y0))
+15. Q[Many, People.sadness, People.happiness](People.homes == "lost" ∧ People.lives == "saved" → Content (Opinion/Emotion)(x0, y0))
+16. Q[Many, City.size, City.comparison](Charlotte.city_type == "big" ∧ Boston.city_type == "big" → Content (Opinion/Emotion)(x0, y0))
+17. Q[Many, Emotional_response.attachment, Emotional_response.trivialization](City.perception == "quaint" → Content (Opinion/Emotion)(x0, y0))
+18. Q[Many, Opinion.emotional_depth, Emotional_response.complexity](People.emotion == "mixed" → Content (Opinion/Emotion)(x0, y0))
+19. Q[Many, People.exchange, Exchange.emotion](People.homes == "lost" ∧ People.lives == "saved" → Content (Opinion/Emotion)(x0, y0))
+20. Q[Many, City.perception, Opinion.city_comparison](Charlotte.city_type == "big" ∧ Boston.city_type == "big" → Content (Opinion/Emotion)(x0, y0))
+21. Q[Many, Emotional_response.sadness, Emotional_response.happiness](People.emotion == "mixed" → Content (Opinion/Emotion)(x0, y0))
+22. Q[Many, Emotional_response.complexity, Emotional_response.happiness](People.lives == "saved" → Content (Opinion/Emotion)(x0, y0))
+23. Q[Many, Emotional_response.complexity, Emotional_response.sadness](People.homes == "lost" → Content (Opinion/Emotion)(x0, y0))
+24. Q[Many, Perception.naivety, Opinion.emotional_depth](City.perception == "naive" → Content (Opinion/Emotion)(x0, y0))
+25. Q[Many, City.size, City.emotional_response](Charlotte.city_type == "big" → Content (Opinion/Emotion)(x0, y0))
+26. Q[Many, City.perception, Emotional_response.trivialization](City.size == "small" → Content (Opinion/Emotion)(x0, y0))
+27. Q[Many, Opinion.homes_vs_lives, Exchange.relationship](People.homes == "lost" ∧ People.lives == "saved" → Content (Opinion/Emotion)(x0, y0))
+28. Q[Many, Emotional_response.trivialization, Emotional_response.complexity](City.perception == "quaint" → Content (Opinion/Emotion)(x0, y0))
+29. Q[Many, People.emotion, Emotional_response.trivialization](City.perception == "naive" → Content (Opinion/Emotion)(x0, y0))
+30. Q[Many, City.comparison, Opinion.city_comparison](Charlotte.city_type == "big" ∧ Boston.city_type == "big" → Content (Opinion/Emotion)(x0, y0))

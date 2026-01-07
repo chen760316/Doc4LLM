@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 1114)
+S1: It has little leverage in this situation.
+S2: It has found itself with very little leverage.
+
+Predicates:
+1. Situation.leverage
+2. Situation.little_leverage
+3. Situation.very_little_leverage
+4. Leverage.has_little
+5. Leverage.has_very_little
+6. Assertion.lack_of_leverage
+7. Assertion.stronger_assertion
+8. Sentence1.has_leverage
+9. Sentence2.has_leverage
+10. Sentence1.implies_lack_of_leverage
+11. Sentence2.implies_lack_of_leverage
+12. Comparison.little_vs_very_little
+13. Implication.lack_of_leverage
+14. Context.situation
+15. Context.leverage_status
+16. Relationship.implies
+17. Relationship.stronger_assertion
+18. Meta.NLI(S1, S2)
+19. Meta.Negation(S1, S2)
+20. Meta.violate(S1, S2)
+21. Assertion.comparison_of_leverage
+22. Entity.node_name
+23. Entity.leverage_status
+24. Entity.situation_analysis
+25. Edge.relationship_strength
+26. Edge.leverage_comparison
+27. Edge.assertion_strength
+28. Meta.assertion_comparison
+29. Meta.leverage_analysis
+30. Meta.situation_evaluation
+
+Rules:
+1. Q[has, Situation.leverage, Situation.very_little_leverage](Situation.leverage == "little" → Negation(Situation.leverage, Situation.very_little_leverage))
+2. Q[has, Leverage.has_little, Leverage.has_very_little](Leverage.has_little == true → Negation(Leverage.has_little, Leverage.has_very_little))
+3. Q[has, Assertion.lack_of_leverage, Assertion.stronger_assertion](Assertion.lack_of_leverage == true → Negation(Assertion.lack_of_leverage, Assertion.stronger_assertion))
+4. Q[has, Sentence1.implies_lack_of_leverage, Sentence2.implies_lack_of_leverage](Sentence1.implies_lack_of_leverage == true → Negation(Sentence1.implies_lack_of_leverage, Sentence2.implies_lack_of_leverage))
+5. Q[has, Situation.little_leverage, Situation.very_little_leverage](Situation.little_leverage == true → Negation(Situation.little_leverage, Situation.very_little_leverage))
+6. Q[has, Comparison.little_vs_very_little, Assertion.stronger_assertion](Comparison.little_vs_very_little == true → Negation(Comparison.little_vs_very_little, Assertion.stronger_assertion))
+7. Q[has, Sentence1.has_leverage, Sentence2.has_leverage](Sentence1.has_leverage == true → Negation(Sentence1.has_leverage, Sentence2.has_leverage))
+8. Q[has, Context.leverage_status, Context.situation](Context.leverage_status == "little" → Negation(Context.leverage_status, Context.situation))
+9. Q[has, Entity.leverage_status, Entity.situation_analysis](Entity.leverage_status == "little" → Negation(Entity.leverage_status, Entity.situation_analysis))
+10. Q[has, Edge.leverage_comparison, Edge.assertion_strength](Edge.leverage_comparison == "little vs very little" → Negation(Edge.leverage_comparison, Edge.assertion_strength))
+11. Q[has, Meta.NLI(S1, S2), Meta.violate(S1, S2)](Meta.NLI(S1, S2) == true → Negation(Meta.NLI(S1, S2), Meta.violate(S1, S2)))
+12. Q[has, Assertion.comparison_of_leverage, Relationship.stronger_assertion](Assertion.comparison_of_leverage == true → Negation(Assertion.comparison_of_leverage, Relationship.stronger_assertion))
+13. Q[has, Situation.very_little_leverage, Situation.leverage](Situation.very_little_leverage == true → Negation(Situation.very_little_leverage, Situation.leverage))
+14. Q[has, Implication.lack_of_leverage, Context.leverage_status](Implication.lack_of_leverage == true → Negation(Implication.lack_of_leverage, Context.leverage_status))
+15. Q[has, Entity.node_name, Entity.leverage_status](Entity.node_name == "situation" → Negation(Entity.node_name, Entity.leverage_status))
+16. Q[has, Meta.leverage_analysis, Meta.situation_evaluation](Meta.leverage_analysis == true → Negation(Meta.leverage_analysis, Meta.situation_evaluation))
+17. Q[has, Edge.relationship_strength, Edge.leverage_comparison](Edge.relationship_strength == "weak" → Negation(Edge.relationship_strength, Edge.leverage_comparison))
+18. Q[has, Sentence1.has_leverage, Sentence1.implies_lack_of_leverage](Sentence1.has_leverage == true → Negation(Sentence1.has_leverage, Sentence1.implies_lack_of_leverage))
+19. Q[has, Sentence2.has_leverage, Sentence2.implies_lack_of_leverage](Sentence2.has_leverage == true → Negation(Sentence2.has_leverage, Sentence2.implies_lack_of_leverage))
+20. Q[has, Context.situation, Context.leverage_status](Context.situation == "low leverage" → Negation(Context.situation, Context.leverage_status))
+21. Q[has, Assertion.lack_of_leverage, Comparison.little_vs_very_little](Assertion.lack_of_leverage == true → Negation(Assertion.lack_of_leverage, Comparison.little_vs_very_little))
+22. Q[has, Relationship.implies, Meta.Negation(S1, S2)](Relationship.implies == true → Negation(Relationship.implies, Meta.Negation(S1, S2)))
+23. Q[has, Sentence1.implies_lack_of_leverage, Sentence2.implies_lack_of_leverage](Sentence1.implies_lack_of_leverage == true → Negation(Sentence1.implies_lack_of_leverage, Sentence2.implies_lack_of_leverage))
+24. Q[has, Assertion.stronger_assertion, Meta.assertion_comparison](Assertion.stronger_assertion == true → Negation(Assertion.stronger_assertion, Meta.assertion_comparison))
+25. Q[has, Situation.leverage, Assertion.lack_of_leverage](Situation.leverage == "little" → Negation(Situation.leverage, Assertion.lack_of_leverage))
+26. Q[has, Entity.situation_analysis, Context.leverage_status](Entity.situation_analysis == "low" → Negation(Entity.situation_analysis, Context.leverage_status))
+27. Q[has, Edge.leverage_comparison, Assertion.comparison_of_leverage](Edge.leverage_comparison == "little vs very little" → Negation(Edge.leverage_comparison, Assertion.comparison_of_leverage))
+28. Q[has, Meta.leverage_analysis, Assertion.lack_of_leverage](Meta.leverage_analysis == true → Negation(Meta.leverage_analysis, Assertion.lack_of_leverage))
+29. Q[has, Context.leverage_status, Implication.lack_of_leverage](Context.leverage_status == "very little" → Negation(Context.leverage_status, Implication.lack_of_leverage))
+30. Q[has, Sentence1.has_leverage, Sentence2.has_leverage](Sentence1.has_leverage == false → Negation(Sentence1.has_leverage, Sentence2.has_leverage))

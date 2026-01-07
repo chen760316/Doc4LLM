@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 1266)
+S1: T H E 1 6 T H A N D 1 7 T H O F J U L Y I h a d a r r i v e d a t S t y l e s o n t h e 5 t h o f J u l y .
+S2: I w a s i n S t y l e s o n t h e 5 t h o f J u l y .
+
+Predicates:
+1. Arrival.date
+2. Arrival.location
+3. Presence.date
+4. Presence.location
+5. Styles.date
+6. Styles.event
+7. July_5th.date
+8. July_5th.event
+9. Timeline.event
+10. Timeline.contradiction
+11. M_NLI(S1, S2)
+12. Temporal(Arrival, Presence)
+13. violate(Arrival, Presence)
+14. Arrival.time
+15. Presence.time
+16. Styles.arrival
+17. Styles.presence
+18. July_5th.arrival
+19. July_5th.presence
+20. July_5th.timeline
+21. Event.date
+22. Event.location
+23. Event.type
+24. Contradiction.type
+25. Contradiction.date
+26. Contradiction.location
+27. Arrival.status
+28. Presence.status
+29. Styles.status
+30. July_5th.status
+
+Rules:
+1. Q[Styles, Arrival.date, July_5th.date](Arrival.date == "July 5th" → Temporal(Arrival, Presence))
+2. Q[Styles, Arrival.location, Presence.location](Arrival.location == "Styles" → Temporal(Arrival, Presence))
+3. Q[Styles, Arrival.date, Presence.date](Arrival.date == "July 5th" ∧ Presence.date == "July 5th" → Temporal(Arrival, Presence))
+4. Q[Styles, Arrival.status, Presence.status](Arrival.status == "arrived" ∧ Presence.status == "present" → Temporal(Arrival, Presence))
+5. Q[Styles, July_5th.date, Presence.date](July_5th.date == "July 5th" ∧ Presence.date == "July 5th" → Temporal(Arrival, Presence))
+6. Q[Styles, Arrival.time, Presence.time](Arrival.time == "5th of July" ∧ Presence.time == "5th of July" → Temporal(Arrival, Presence))
+7. Q[Styles, Styles.arrival, Styles.presence](Styles.arrival == "July 5th" ∧ Styles.presence == "July 5th" → Temporal(Arrival, Presence))
+8. Q[Styles, July_5th.arrival, July_5th.presence](July_5th.arrival == "arrived" ∧ July_5th.presence == "present" → Temporal(Arrival, Presence))
+9. Q[Styles, Timeline.event, Contradiction.type](Timeline.event == "arrival" ∧ Contradiction.type == "temporal" → Temporal(Arrival, Presence))
+10. Q[Styles, Timeline.contradiction, Contradiction.date](Timeline.contradiction == "true" ∧ Contradiction.date == "July 5th" → Temporal(Arrival, Presence))
+11. Q[Styles, Arrival.location, Styles.location](Arrival.location == "Styles" ∧ Styles.location == "Styles" → Temporal(Arrival, Presence))
+12. Q[Styles, July_5th.event, Event.type](July_5th.event == "presence" ∧ Event.type == "temporal" → Temporal(Arrival, Presence))
+13. Q[Styles, Arrival.date, Timeline.event](Arrival.date == "July 5th" ∧ Timeline.event == "presence" → Temporal(Arrival, Presence))
+14. Q[Styles, Presence.date, Timeline.event](Presence.date == "July 5th" ∧ Timeline.event == "arrival" → Temporal(Arrival, Presence))
+15. Q[Styles, Arrival.status, Timeline.contradiction](Arrival.status == "arrived" ∧ Timeline.contradiction == "true" → Temporal(Arrival, Presence))
+16. Q[Styles, July_5th.timeline, Contradiction.date](July_5th.timeline == "contradictory" ∧ Contradiction.date == "July 5th" → Temporal(Arrival, Presence))
+17. Q[Styles, Styles.event, Contradiction.type](Styles.event == "arrival" ∧ Contradiction.type == "temporal" → Temporal(Arrival, Presence))
+18. Q[Styles, Presence.location, Styles.location](Presence.location == "Styles" ∧ Styles.location == "Styles" → Temporal(Arrival, Presence))
+19. Q[Styles, July_5th.presence, Presence.date](July_5th.presence == "present" ∧ Presence.date == "July 5th" → Temporal(Arrival, Presence))
+20. Q[Styles, Arrival.date, July_5th.timeline](Arrival.date == "July 5th" ∧ July_5th.timeline == "contradictory" → Temporal(Arrival, Presence))
+21. Q[Styles, Arrival.time, July_5th.date](Arrival.time == "5th of July" ∧ July_5th.date == "July 5th" → Temporal(Arrival, Presence))
+22. Q[Styles, Styles.presence, July_5th.presence](Styles.presence == "July 5th" ∧ July_5th.presence == "present" → Temporal(Arrival, Presence))
+23. Q[Styles, Timeline.event, July_5th.event](Timeline.event == "arrival" ∧ July_5th.event == "presence" → Temporal(Arrival, Presence))
+24. Q[Styles, Arrival.status, July_5th.status](Arrival.status == "arrived" ∧ July_5th.status == "present" → Temporal(Arrival, Presence))
+25. Q[Styles, Presence.status, Styles.status](Presence.status == "present" ∧ Styles.status == "arrived" → Temporal(Arrival, Presence))
+26. Q[Styles, July_5th.arrival, Styles.arrival](July_5th.arrival == "arrived" ∧ Styles.arrival == "July 5th" → Temporal(Arrival, Presence))
+27. Q[Styles, Contradiction.type, Timeline.contradiction](Contradiction.type == "temporal" ∧ Timeline.contradiction == "true" → Temporal(Arrival, Presence))
+28. Q[Styles, Arrival.location, July_5th.location](Arrival.location == "Styles" ∧ July_5th.location == "Styles" → Temporal(Arrival, Presence))
+29. Q[Styles, Presence.date, July_5th.date](Presence.date == "July 5th" ∧ July_5th.date == "July 5th" → Temporal(Arrival, Presence))
+30. Q[Styles, Timeline.contradiction, Contradiction.location](Timeline.contradiction == "true" ∧ Contradiction.location == "Styles" → Temporal(Arrival, Presence))

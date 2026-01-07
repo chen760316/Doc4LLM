@@ -1,0 +1,131 @@
+Predicates:
+1. entity1.name = "William"
+2. entity1.emotion = "engaged"
+3. entity1.activity = "reading"
+4. entity1.topic = "computer architecture"
+5. entity2.name = "David"
+6. entity2.emotion = "bored"
+7. entity2.activity = "watching"
+8. entity2.topic = "computer architecture"
+9. "is more than just".source = "William"
+10. "is more than just".target = "David"
+11. "is simply a".source = "Nobel Prize"
+12. "is simply a".target = "scientific award"
+13. M_NLI(entity1.emotion, entity2.emotion)
+14. T("William found the paper engaging", "William found the paper boring", tau)
+15. tau(entity1.activity, entity2.activity)
+16. violate(entity1.name, entity2.name)
+17. Factual(entity1.topic, entity2.topic)
+18. Causal(entity1.activity, entity2.activity)
+19. Numeric(entity1.emotion, entity2.emotion)
+20. Temporal(entity1.activity, entity2.activity)
+21. entity3.name = "Howard"
+22. entity3.relationship = "married"
+23. entity4.name = "Sheila"
+24. entity4.relationship = "wife"
+25. entity5.name = "Emma"
+26. entity5.relationship = "wife"
+27. "is more than just".context = "relationship"
+28. "is simply a".context = "relationship"
+29. M_NLI(entity3.relationship, entity4.relationship)
+30. T("Howard is married to Sheila", "Howard is married to Emma", tau)
+31. tau(entity3.relationship, entity5.relationship)
+32. violate(entity3.name, entity4.name)
+33. Factual(entity3.relationship, entity5.relationship)
+34. Causal(entity3.name, entity4.name)
+35. Numeric(entity3.relationship, entity4.relationship)
+36. Temporal(entity3.relationship, entity5.relationship)
+37. entity6.name = "Hinton"
+38. entity6.award = "Nobel Prize"
+39. entity7.name = "Shannon"
+40. entity7.award = "unknown"
+41. "is more than just".context = "award"
+42. "is simply a".context = "award"
+43. M_NLI(entity6.award, entity7.award)
+44. T("Hinton received the Nobel Prize", "Hinton received an unknown award", tau)
+45. tau(entity6.award, entity7.award)
+46. violate(entity6.name, entity7.name)
+47. Factual(entity6.award, entity7.award)
+48. Causal(entity6.name, entity7.name)
+49. Numeric(entity6.award, entity7.award)
+50. Temporal(entity6.award, entity7.award)
+51. entity8.name = "Taylor"
+52. entity8.activity = "browsing"
+53. entity9.name = "video"
+54. entity9.status = "removed"
+55. entity10.name = "YouTube"
+56. entity10.year = "2025"
+57. "is more than just".context = "video status"
+58. "is simply a".context = "video status"
+59. M_NLI(entity9.status, entity10.year)
+60. T("The video was removed", "The video is available", tau)
+61. tau(entity9.status, entity10.year)
+62. violate(entity9.name, entity10.name)
+63. Factual(entity9.status, entity10.year)
+64. Causal(entity9.name, entity10.name)
+65. Numeric(entity9.status, entity10.year)
+66. Temporal(entity9.status, entity10.year)
+67. entity11.name = "Howard's store"
+68. entity11.sales = "29 pairs"
+69. entity12.date = "June 15, 2025"
+70. entity12.sales = "0 pairs"
+71. "is more than just".context = "sales"
+72. "is simply a".context = "sales"
+73. M_NLI(entity11.sales, entity12.sales)
+74. T("Howard's store sold 29 pairs", "Howard's store sold 0 pairs", tau)
+75. tau(entity11.sales, entity12.sales)
+76. violate(entity11.name, entity12.date)
+77. Factual(entity11.sales, entity12.sales)
+78. Causal(entity11.name, entity12.sales)
+79. Numeric(entity11.sales, entity12.sales)
+80. Temporal(entity11.date, entity12.date)
+81. entity13.name = "Nobel"
+82. entity13.belief = "ineffective"
+83. entity14.name = "nitroglycerin"
+84. entity14.belief = "effective"
+85. "is more than just".context = "belief"
+86. "is simply a".context = "belief"
+87. M_NLI(entity13.belief, entity14.belief)
+88. T("Nobel believed nitroglycerin was ineffective", "Research showed nitroglycerin is effective", tau)
+89. tau(entity13.belief, entity14.belief)
+90. violate(entity13.name, entity14.name)
+91. Factual(entity13.belief, entity14.belief)
+92. Causal(entity13.name, entity14.name)
+93. Numeric(entity13.belief, entity14.belief)
+94. Temporal(entity13.belief, entity14.belief)
+95. entity15.name = "April 20, 2025"
+96. entity15.event = "routing disruption"
+97. entity16.name = "router"
+98. entity16.status = "no disruptions"
+99. "is more than just".context = "event"
+100. "is simply a".context = "event"
+violate(x0, y0)
+
+Rules:
+1. Q[x1, y1](entity1.name = "William" ∧ entity2.name = "David" → violate(entity1.name, entity2.name))
+2. Q[x2, y2](entity1.emotion = "engaged" ∧ entity2.emotion = "bored" → violate(entity1.name, entity2.name))
+3. Q[x3, y3](entity1.activity = "reading" ∧ entity2.activity = "watching" → violate(entity1.name, entity2.name))
+4. Q[x4, y4](entity1.topic = "computer architecture" ∧ entity2.topic = "computer architecture" ∧ entity1.emotion = "engaged" → violate(entity1.name, entity2.name))
+5. Q[x5, y5](entity3.name = "Howard" ∧ entity4.name = "Sheila" ∧ entity3.relationship = "married" → violate(entity3.name, entity4.name))
+6. Q[x6, y6](entity5.name = "Emma" ∧ entity3.relationship = "married" ∧ entity4.relationship = "wife" → violate(entity3.name, entity5.name))
+7. Q[x7, y7](entity6.award = "Nobel Prize" ∧ entity7.award = "unknown" ∧ entity6.name = "Hinton" → violate(entity6.name, entity7.name))
+8. Q[x8, y8](entity8.activity = "browsing" ∧ entity9.status = "removed" ∧ entity10.year = "2025" → violate(entity9.name, entity10.name))
+9. Q[x9, y9](entity11.sales = "29 pairs" ∧ entity12.sales = "0 pairs" ∧ entity11.name = "Howard's store" → violate(entity11.name, entity12.date))
+10. Q[x10, y10](entity13.belief = "ineffective" ∧ entity14.belief = "effective" ∧ entity13.name = "Nobel" → violate(entity13.name, entity14.name))
+11. Q[x11, y11](entity15.event = "routing disruption" ∧ entity16.status = "no disruptions" ∧ entity15.name = "April 20, 2025" → violate(entity15.name, entity16.name))
+12. Q[x12, y12](entity1.activity = "reading" ∧ entity2.activity = "watching" ∧ entity1.emotion = "engaged" ∧ entity2.emotion = "bored" → violate(entity1.name, entity2.name))
+13. Q[x13, y13](entity3.relationship = "married" ∧ entity4.relationship = "wife" ∧ entity5.relationship = "wife" ∧ entity3.name = "Howard" ∧ entity4.name = "Sheila" → violate(entity3.name, entity5.name))
+14. Q[x14, y14](entity6.award = "Nobel Prize" ∧ entity7.award = "unknown" ∧ entity6.name = "Hinton" ∧ entity7.name = "Shannon" → violate(entity6.name, entity7.name))
+15. Q[x15, y15](entity8.activity = "browsing" ∧ entity9.status = "removed" ∧ entity10.year = "2025" ∧ entity9.name = "video" → violate(entity9.name, entity10.name))
+16. Q[x16, y16](entity11.sales = "29 pairs" ∧ entity12.sales = "0 pairs" ∧ entity11.name = "Howard's store" ∧ entity12.date = "June 15, 2025" → violate(entity11.name, entity12.date))
+17. Q[x17, y17](entity13.belief = "ineffective" ∧ entity14.belief = "effective" ∧ entity13.name = "Nobel" ∧ entity14.name = "nitroglycerin" → violate(entity13.name, entity14.name))
+18. Q[x18, y18](entity15.event = "routing disruption" ∧ entity16.status = "no disruptions" ∧ entity15.name = "April 20, 2025" ∧ entity16.name = "router" → violate(entity15.name, entity16.name))
+19. Q[x19, y19](entity1.name = "William" ∧ entity2.name = "David" ∧ entity1.activity = "reading" ∧ entity2.activity = "watching" ∧ entity1.emotion = "engaged" → violate(entity1.name, entity2.name))
+20. Q[x20, y20](entity3.name = "Howard" ∧ entity4.name = "Sheila" ∧ entity5.name = "Emma" ∧ entity3.relationship = "married" ∧ entity4.relationship = "wife" → violate(entity3.name, entity5.name))
+21. Q[x21, y21](entity6.award = "Nobel Prize" ∧ entity7.award = "unknown" ∧ entity6.name = "Hinton" ∧ entity7.name = "Shannon" ∧ entity6.award = "Nobel Prize" → violate(entity6.name, entity7.name))
+22. Q[x22, y22](entity8.activity = "browsing" ∧ entity9.status = "removed" ∧ entity10.year = "2025" ∧ entity9.name = "video" ∧ entity10.name = "YouTube" → violate(entity9.name, entity10.name))
+23. Q[x23, y23](entity11.sales = "29 pairs" ∧ entity12.sales = "0 pairs" ∧ entity11.name = "Howard's store" ∧ entity12.date = "June 15, 2025" ∧ entity11.sales = "29 pairs" → violate(entity11.name, entity12.date))
+24. Q[x24, y24](entity13.belief = "ineffective" ∧ entity14.belief = "effective" ∧ entity13.name = "Nobel" ∧ entity14.name = "nitroglycerin" ∧ entity13.belief = "ineffective" → violate(entity13.name, entity14.name))
+25. Q[x25, y25](entity15.event = "routing disruption" ∧ entity16.status = "no disruptions" ∧ entity15.name = "April 20, 2025" ∧ entity16.name = "router" ∧ entity15.event = "routing disruption" → violate(entity15.name, entity16.name))
+26. Q[x26, y26](entity1.topic = "computer architecture" ∧ entity2.topic = "computer architecture" ∧ entity1.emotion = "engaged" ∧ entity2.emotion = "bored" ∧ entity1.activity = "reading" → violate(entity1.name, entity2.name))
+27. Q[x27, y27](entity3.relationship = "married" ∧ entity4.relationship = "wife" ∧ entity5

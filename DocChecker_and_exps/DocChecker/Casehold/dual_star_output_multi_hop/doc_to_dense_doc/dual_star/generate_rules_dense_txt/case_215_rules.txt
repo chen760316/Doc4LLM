@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 215)
+S1: the duty to maintain can arise only after the road has been designed and constructed.
+S2: whether an injury resulting from a dangerous condition of a public highway is caused by the state's failure to maintain the highway or by the inadequate design of the highway depends on the time at which the dangerous condition of the highway arose.
+
+Predicates:
+1. Road.duty_to_maintain
+2. Road.designed
+3. Road.constructed
+4. Injury.resulting_from_dangerous_condition
+5. Public_highway.state_failure_to_maintain
+6. Public_highway.inadequate_design
+7. Dangerous_condition.road_arose_time
+8. Maintenance.failure.attribution
+9. Design.inadequacy.attribution
+10. Time.dangerous_condition_arose
+11. Maintenance.duty.start_time
+12. Construction.completion_time
+13. Injury.causation
+14. State.responsibility
+15. Design.responsibility
+16. Road.maintenance_start
+17. Highway.dangerous_condition
+18. Condition.attributed_to_maintenance
+19. Condition.attributed_to_design
+20. Maintenance.duty.arise_after_construction
+21. Injury.causation_timing
+22. Road.safety
+23. Public_highway.maintenance
+24. Public_highway.design
+25. Causal.injury_due_to_maintenance
+26. Causal.injury_due_to_design
+27. Violate.maintenance_duty
+28. Violate.design_standard
+29. M_NLI(S1, S2)
+30. Causal(S1, S2)
+
+Rules:
+1. Q[the, Road.duty_to_maintain == true](Road.constructed == true → Causal(x0, y0))
+2. Q[the, Road.designed == true](Road.constructed == true → Causal(x0, y0))
+3. Q[the, Public_highway.state_failure_to_maintain == true](Injury.resulting_from_dangerous_condition == true → Causal(x0, y0))
+4. Q[the, Public_highway.inadequate_design == true](Injury.resulting_from_dangerous_condition == true → Causal(x0, y0))
+5. Q[the, Dangerous_condition.road_arose_time == true](Time.dangerous_condition_arose == true → Causal(x0, y0))
+6. Q[the, Maintenance.failure.attribution == true](Injury.causation == true → Causal(x0, y0))
+7. Q[the, Design.inadequacy.attribution == true](Injury.causation == true → Causal(x0, y0))
+8. Q[the, Maintenance.duty.start_time == true](Road.constructed == true → Causal(x0, y0))
+9. Q[the, Construction.completion_time == true](Road.duty_to_maintain == true → Causal(x0, y0))
+10. Q[the, Time.dangerous_condition_arose == true](Public_highway.state_failure_to_maintain == true → Causal(x0, y0))
+11. Q[the, Road.maintenance_start == true](Road.constructed == true → Causal(x0, y0))
+12. Q[the, Highway.dangerous_condition == true](Public_highway.state_failure_to_maintain == true → Causal(x0, y0))
+13. Q[the, Condition.attributed_to_maintenance == true](Injury.resulting_from_dangerous_condition == true → Causal(x0, y0))
+14. Q[the, Condition.attributed_to_design == true](Injury.resulting_from_dangerous_condition == true → Causal(x0, y0))
+15. Q[the, Maintenance.duty.arise_after_construction == true](Road.constructed == true → Causal(x0, y0))
+16. Q[the, Injury.causation_timing == true](Time.dangerous_condition_arose == true → Causal(x0, y0))
+17. Q[the, Road.safety == false](Public_highway.state_failure_to_maintain == true → Causal(x0, y0))
+18. Q[the, Public_highway.maintenance == false](Injury.resulting_from_dangerous_condition == true → Causal(x0, y0))
+19. Q[the, Public_highway.design == false](Injury.resulting_from_dangerous_condition == true → Causal(x0, y0))
+20. Q[the, Causal.injury_due_to_maintenance == true](Maintenance.failure.attribution == true → Causal(x0, y0))
+21. Q[the, Causal.injury_due_to_design == true](Design.inadequacy.attribution == true → Causal(x0, y0))
+22. Q[the, Violate.maintenance_duty == true](Road.duty_to_maintain == true → Causal(x0, y0))
+23. Q[the, Violate.design_standard == true](Public_highway.inadequate_design == true → Causal(x0, y0))
+24. Q[the, M_NLI(S1, S2) == true](Road.constructed == true → Causal(x0, y0))
+25. Q[the, Causal(S1, S2) == true](Injury.resulting_from_dangerous_condition == true → Causal(x0, y0))
+26. Q[the, Road.duty_to_maintain == false](Public_highway.inadequate_design == true → Causal(x0, y0))
+27. Q[the, Road.designed == false](Public_highway.state_failure_to_maintain == true → Causal(x0, y0))
+28. Q[the, Maintenance.failure.attribution == false](Road.duty_to_maintain == true → Causal(x0, y0))
+29. Q[the, Design.inadequacy.attribution == false](Public_highway.inadequate_design == true → Causal(x0, y0))
+30. Q[the, Time.dangerous_condition_arose == false](Road.constructed == true → Causal(x0, y0))

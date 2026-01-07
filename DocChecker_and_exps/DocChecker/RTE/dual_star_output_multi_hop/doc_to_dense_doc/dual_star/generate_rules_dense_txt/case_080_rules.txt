@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 80)
+S1: T h e H e a l t h D e p a r t m e n t h a s b e e n m a d e a w a r e t h a t p r o p e r t y l o c a t e d a t B e a r C r e e k i s u n d e r i n v e s t i g a t i o n b y t h e N C D i v i s i o n o f W a s t e M a n a g e m e n t f o r t h e i l l e g a l d i s c h a r g e o f h a z a r d o u s c h e m i c a l m a t e r i a l s .
+S2: D a n g e r o u s c h e m i c a l m a t e r i a l s h a v e b e e n d i s c o v e r e d a t B e a r C r e e k .
+
+Predicates:
+1. Health_Department.awareness
+2. Property.location
+3. Bear_Creek.investigation
+4. NCDivision_of_Waste_Management.investigating
+5. illegal_discharge.hazardous_chemical_materials
+6. hazardous_chemical_materials.discovered
+7. Bear_Creek.hazardous_materials
+8. investigation.active
+9. discovery.completed
+10. hazardous_materials.location
+11. investigation.subject.property
+12. NCDivision_of_Waste_Management.subject.property
+13. illegal_discharge.status
+14. hazardous_materials.status
+15. Health_Department.informed
+16. investigation.type.illegal_discharge
+17. hazardous_materials.type.dangerous
+18. Bear_Creek.status
+19. investigation.result.pending
+20. hazardous_materials.investigated
+21. NCDivision_of_Waste_Management.result
+22. investigation.outcome
+23. hazardous_materials.identified
+24. Bear_Creek.investigation_status
+25. Health_Department.response
+26. NCDivision_of_Waste_Management.response
+27. illegal_discharge.evidence
+28. hazardous_materials.evidence
+29. investigation.conclusion
+30. Health_Department.action_taken
+
+Rules:
+1. Q[Health_Department, Bear_Creek.investigation, investigation.active](Health_Department.awareness == "aware" → Causal(Bear_Creek.investigation, investigation.active))
+2. Q[NCDivision_of_Waste_Management, Bear_Creek.investigation, investigation.active](NCDivision_of_Waste_Management.investigating == "true" → Causal(Bear_Creek.investigation, investigation.active))
+3. Q[illegal_discharge, Bear_Creek.hazardous_materials, hazardous_materials.status](illegal_discharge.hazardous_chemical_materials == "true" → Causal(Bear_Creek.hazardous_materials, hazardous_materials.status))
+4. Q[hazardous_chemical_materials, hazardous_materials.discovered, discovery.completed](hazardous_chemical_materials.type.dangerous == "true" → Causal(hazardous_materials.discovered, discovery.completed))
+5. Q[Bear_Creek, hazardous_materials.identified, investigation.result.pending](Bear_Creek.hazardous_materials == "true" → Causal(hazardous_materials.identified, investigation.result.pending))
+6. Q[Health_Department, illegal_discharge.status, investigation.active](Health_Department.informed == "true" → Causal(illegal_discharge.status, investigation.active))
+7. Q[NCDivision_of_Waste_Management, hazardous_materials.evidence, investigation.outcome](NCDivision_of_Waste_Management.subject.property == "Bear_Creek" → Causal(hazardous_materials.evidence, investigation.outcome))
+8. Q[Bear_Creek, investigation.type.illegal_discharge, investigation.active](Bear_Creek.investigation_status == "active" → Causal(investigation.type.illegal_discharge, investigation.active))
+9. Q[hazardous_materials, Health_Department.response, investigation.conclusion](hazardous_materials.status == "discovered" → Causal(Health_Department.response, investigation.conclusion))
+10. Q[NCDivision_of_Waste_Management, illegal_discharge.evidence, investigation.subject.property](NCDivision_of_Waste_Management.result == "pending" → Causal(illegal_discharge.evidence, investigation.subject.property))
+11. Q[Bear_Creek, hazardous_materials.status, investigation.active](Bear_Creek.status == "under_investigation" → Causal(hazardous_materials.status, investigation.active))
+12. Q[Health_Department, hazardous_materials.identified, investigation.result.pending](Health_Department.action_taken == "true" → Causal(hazardous_materials.identified, investigation.result.pending))
+13. Q[NCDivision_of_Waste_Management, hazardous_materials.type.dangerous, illegal_discharge.status](NCDivision_of_Waste_Management.investigating == "true" → Causal(hazardous_materials.type.dangerous, illegal_discharge.status))
+14. Q[Bear_Creek, investigation.outcome, hazardous_materials.discovered](Bear_Creek.investigation_status == "active" → Causal(investigation.outcome, hazardous_materials.discovered))
+15. Q[Health_Department, investigation.active, hazardous_materials.evidence](Health_Department.awareness == "aware" → Causal(investigation.active, hazardous_materials.evidence))
+16. Q[NCDivision_of_Waste_Management, investigation.type.illegal_discharge, hazardous_materials.identified](NCDivision_of_Waste_Management.subject.property == "Bear_Creek" → Causal(investigation.type.illegal_discharge, hazardous_materials.identified))
+17. Q[Bear_Creek, illegal_discharge.hazardous_chemical_materials, investigation.conclusion](Bear_Creek.hazardous_materials == "true" → Causal(illegal_discharge.hazardous_chemical_materials, investigation.conclusion))
+18. Q[Health_Department, hazardous_materials.status, investigation.active](Health_Department.response == "true" → Causal(hazardous_materials.status, investigation.active))
+19. Q[NCDivision_of_Waste_Management, hazardous_materials.discovered, investigation.result.pending](NCDivision_of_Waste_Management.response == "true" → Causal(hazardous_materials.discovered, investigation.result.pending))
+20. Q[Bear_Creek, investigation.subject.property, illegal_discharge.evidence](Bear_Creek.investigation_status == "active" → Causal(investigation.subject.property, illegal_discharge.evidence))
+21. Q[Health_Department, hazardous_materials.identified, investigation.outcome](Health_Department.awareness == "aware" → Causal(hazardous_materials.identified, investigation.outcome))
+22. Q[NCDivision_of_Waste_Management, investigation.active, hazardous_materials.status](NCDivision_of_Waste_Management.investigating == "true" → Causal(investigation.active, hazardous_materials.status))
+23. Q[Bear_Creek, investigation.result.pending, hazardous_materials.evidence](Bear_Creek.hazardous_materials == "true" → Causal(investigation.result.pending, hazardous_materials.evidence))
+24. Q[Health_Department, illegal_discharge.status, hazardous_materials.identified](Health_Department.action_taken == "true" → Causal(illegal_discharge.status, hazardous_materials.identified))
+25. Q[NCDivision_of_Waste_Management, hazardous_materials.type.dangerous, investigation.conclusion](NCDivision_of_Waste_Management.result == "pending" → Causal(hazardous_materials.type.dangerous, investigation.conclusion))
+26. Q[Bear_Creek, hazardous_materials.status, illegal_discharge.hazardous_chemical_materials](Bear_Creek.investigation_status == "active" → Causal(hazardous_materials.status, illegal_discharge.hazardous_chemical_materials))
+27. Q[Health_Department, investigation.outcome, hazardous_materials.discovered](Health_Department.informed == "true" → Causal(investigation.outcome, hazardous_materials.discovered))
+28. Q[NCDivision_of_Waste_Management, investigation.subject.property, hazardous_materials.identified](NCDivision_of_Waste_Management.investigating == "true" → Causal(investigation.subject.property, hazardous_materials.identified))
+29. Q[Bear_Creek, investigation.active, hazardous_materials.evidence](Bear_Creek.hazardous_materials == "true" → Causal(investigation.active, hazardous_materials.evidence))
+30. Q[Health_Department, hazardous_materials.identified, investigation.active](Health_Department.response == "true" → Causal(hazardous_materials.identified, investigation.active))

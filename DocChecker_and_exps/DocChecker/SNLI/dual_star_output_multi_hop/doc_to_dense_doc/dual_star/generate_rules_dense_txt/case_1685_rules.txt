@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 1685)
+S1: A military man with an orange safety vest is behind the wheel of a military vehicle.
+S2: He is dressed only in camo.
+
+Predicates:
+1. MilitaryMan.wearingOrangeVest
+2. MilitaryVehicle.occupiedBy(MilitaryMan)
+3. MilitaryMan.dressedInCamo
+4. MilitaryMan.behindTheWheelOf(MilitaryVehicle)
+5. OrangeSafetyVest.wornBy(MilitaryMan)
+6. CamoOutfit.wornBy(MilitaryMan)
+7. MilitaryVehicle.hasDriver(MilitaryMan)
+8. MilitaryMan.isIn(MilitaryVehicle)
+9. OrangeSafetyVest.isPresent
+10. CamoOutfit.isPresent
+11. MilitaryMan.isNotWearing(OrangeSafetyVest)
+12. MilitaryMan.isOnlyWearing(CamoOutfit)
+13. MilitaryVehicle.isMilitary
+14. MilitaryMan.isMilitary
+15. OrangeSafetyVest.isSafetyGear
+16. CamoOutfit.isMilitaryAttire
+17. MilitaryMan.violatesDressCode
+18. OrangeSafetyVest.negatesCamoOutfit
+19. CamoOutfit.isNotCompatibleWith(OrangeSafetyVest)
+20. MilitaryMan.hasConflictingAttire
+21. MilitaryVehicle.isDrivenBy(MilitaryMan)
+22. MilitaryMan.isInConflictWith(Attire)
+23. OrangeSafetyVest.isNotWorn
+24. CamoOutfit.isOnlyAttire
+25. MilitaryMan.isInVehicle(MilitaryVehicle)
+26. MilitaryVehicle.isOperatedBy(MilitaryMan)
+27. OrangeSafetyVest.isNegatedBy(CamoOutfit)
+28. CamoOutfit.isSoleAttire
+29. MilitaryMan.isDressedIn(CamoOutfit)
+30. MilitaryVehicle.isOccupiedBy(MilitaryMan)
+
+Rules:
+1. Q[military, MilitaryMan.wearingOrangeVest](MilitaryMan.isIn(MilitaryVehicle) → Negation(MilitaryMan.wearingOrangeVest, MilitaryMan.isNotWearing(OrangeSafetyVest)))
+2. Q[military, MilitaryMan.dressedInCamo](MilitaryMan.isIn(MilitaryVehicle) → Negation(MilitaryMan.dressedInCamo, MilitaryMan.isOnlyWearing(CamoOutfit)))
+3. Q[military, OrangeSafetyVest.wornBy](MilitaryMan.behindTheWheelOf(MilitaryVehicle) → Negation(OrangeSafetyVest.wornBy(MilitaryMan), MilitaryMan.isNotWearing(OrangeSafetyVest)))
+4. Q[military, CamoOutfit.wornBy](MilitaryMan.behindTheWheelOf(MilitaryVehicle) → Negation(CamoOutfit.wornBy(MilitaryMan), MilitaryMan.isOnlyWearing(CamoOutfit)))
+5. Q[military, MilitaryVehicle.occupiedBy](MilitaryVehicle.isMilitary → Negation(MilitaryVehicle.occupiedBy(MilitaryMan), MilitaryMan.isNotWearing(OrangeSafetyVest)))
+6. Q[military, MilitaryMan.isMilitary](MilitaryMan.isIn(MilitaryVehicle) → Negation(MilitaryMan.isMilitary, MilitaryMan.isNotWearing(OrangeSafetyVest)))
+7. Q[military, OrangeSafetyVest.isPresent](MilitaryMan.isIn(MilitaryVehicle) → Negation(OrangeSafetyVest.isPresent, MilitaryMan.isNotWearing(OrangeSafetyVest)))
+8. Q[military, CamoOutfit.isPresent](MilitaryMan.isIn(MilitaryVehicle) → Negation(CamoOutfit.isPresent, MilitaryMan.isOnlyWearing(CamoOutfit)))
+9. Q[military, MilitaryMan.isNotWearing](MilitaryMan.isIn(MilitaryVehicle) → Negation(MilitaryMan.isNotWearing(OrangeSafetyVest), MilitaryMan.wearingOrangeVest))
+10. Q[military, MilitaryMan.hasConflictingAttire](MilitaryMan.isIn(MilitaryVehicle) → Negation(MilitaryMan.hasConflictingAttire, MilitaryMan.isOnlyWearing(CamoOutfit)))
+11. Q[military, OrangeSafetyVest.isNotWorn](MilitaryMan.isIn(MilitaryVehicle) → Negation(OrangeSafetyVest.isNotWorn, MilitaryMan.wearingOrangeVest))
+12. Q[military, CamoOutfit.isOnlyAttire](MilitaryMan.isIn(MilitaryVehicle) → Negation(CamoOutfit.isOnlyAttire, MilitaryMan.wearingOrangeVest))
+13. Q[military, MilitaryMan.violatesDressCode](MilitaryMan.isIn(MilitaryVehicle) → Negation(MilitaryMan.violatesDressCode, MilitaryMan.isOnlyWearing(CamoOutfit)))
+14. Q[military, OrangeSafetyVest.negatesCamoOutfit](MilitaryMan.isIn(MilitaryVehicle) → Negation(OrangeSafetyVest.negatesCamoOutfit, MilitaryMan.dressedInCamo))
+15. Q[military, CamoOutfit.isNotCompatibleWith](MilitaryMan.isIn(MilitaryVehicle) → Negation(CamoOutfit.isNotCompatibleWith(OrangeSafetyVest), MilitaryMan.wearingOrangeVest))
+16. Q[military, MilitaryMan.isInConflictWith](MilitaryMan.isIn(MilitaryVehicle) → Negation(MilitaryMan.isInConflictWith(Attire), MilitaryMan.isOnlyWearing(CamoOutfit)))
+17. Q[military, MilitaryVehicle.isDrivenBy](MilitaryVehicle.isMilitary → Negation(MilitaryVehicle.isDrivenBy(MilitaryMan), MilitaryMan.wearingOrangeVest))
+18. Q[military, MilitaryMan.isInVehicle](MilitaryMan.isIn(MilitaryVehicle) → Negation(MilitaryMan.isInVehicle(MilitaryVehicle), MilitaryMan.wearingOrangeVest))
+19. Q[military, MilitaryVehicle.isOccupiedBy](MilitaryVehicle.isMilitary → Negation(MilitaryVehicle.isOccupiedBy(MilitaryMan), MilitaryMan.wearingOrangeVest))
+20. Q[military, MilitaryMan.isDressedIn](MilitaryMan.isIn(MilitaryVehicle) → Negation(MilitaryMan.isDressedIn(CamoOutfit), MilitaryMan.wearingOrangeVest))
+21. Q[military, MilitaryMan.isOnlyWearing](MilitaryMan.isIn(MilitaryVehicle) → Negation(MilitaryMan.isOnlyWearing(CamoOutfit), MilitaryMan.wearingOrangeVest))
+22. Q[military, OrangeSafetyVest.isNegatedBy](MilitaryMan.isIn(MilitaryVehicle) → Negation(OrangeSafetyVest.isNegatedBy(CamoOutfit), MilitaryMan.wearingOrangeVest))
+23. Q[military, MilitaryMan.isInConflictWith](MilitaryMan.isIn(MilitaryVehicle) → Negation(MilitaryMan.isInConflictWith(Attire), MilitaryMan.dressedInCamo))
+24. Q[military, MilitaryVehicle.isOperatedBy](MilitaryVehicle.isMilitary → Negation(MilitaryVehicle.isOperatedBy(MilitaryMan), MilitaryMan.wearingOrangeVest))
+25. Q[military, MilitaryMan.isIn](MilitaryMan.isIn(MilitaryVehicle) → Negation(MilitaryMan.isIn(MilitaryVehicle), MilitaryMan.wearingOrangeVest))
+26. Q[military, MilitaryMan.behindTheWheelOf](MilitaryMan.isIn(MilitaryVehicle) → Negation(MilitaryMan.behindTheWheelOf(MilitaryVehicle), MilitaryMan.wearingOrangeVest))
+27. Q[military, MilitaryMan.isNotWearing](MilitaryMan.isIn(MilitaryVehicle) → Negation(MilitaryMan.isNotWearing(OrangeSafetyVest), MilitaryMan.dressedInCamo))
+28. Q[military, OrangeSafetyVest.isSafetyGear](MilitaryMan.isIn(MilitaryVehicle) → Negation(OrangeSafetyVest.isSafetyGear, MilitaryMan.dressedInCamo))
+29. Q[military, CamoOutfit.isMilitaryAttire](MilitaryMan.isIn(MilitaryVehicle) → Negation(CamoOutfit.isMilitaryAttire, MilitaryMan.wearingOrangeVest))
+30. Q[military, MilitaryMan.hasConflictingAttire](MilitaryMan.isIn(MilitaryVehicle) → Negation(MilitaryMan.hasConflictingAttire, MilitaryMan.dressedInCamo))

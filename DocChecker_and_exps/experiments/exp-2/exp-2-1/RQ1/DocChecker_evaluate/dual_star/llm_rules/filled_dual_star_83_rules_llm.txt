@@ -1,0 +1,123 @@
+Predicates:
+1. Terra.status = "not blocked"
+2. Terra.status = "at war"
+3. Terra.attack_type = "full-scale"
+4. Terra.outcome = "suffered a terrible defeat"
+5. Centaurian_Empire.support = "growth of Terra"
+6. Proxima_Centauri.status = "enemy of Terra"
+7. Centaurian_Empire.relationship = "supportive"
+8. Terra.defeat = "terrible"
+9. Terra.travel_status = "unblocked"
+10. Proxima_Centauri.relationship = "hostile"
+11. Centaurian_Empire.status = "neutral"
+12. Terra.military_action = "attack"
+13. Centaurian_Empire.military_action = "defend"
+14. Terra.geopolitical_status = "engaged in conflict"
+15. Proxima_Centauri.geopolitical_status = "engaged in conflict"
+16. Centaurian_Empire.geopolitical_status = "supporting Terra"
+17. Terra.military_outcome = "defeat"
+18. Centaurian_Empire.military_outcome = "victory"
+19. Terra.alliance = "none"
+20. Proxima_Centauri.alliance = "against Terra"
+21. Centaurian_Empire.alliance = "with Terra"
+22. Terra.military_strength = "high"
+23. Proxima_Centauri.military_strength = "unknown"
+24. Centaurian_Empire.military_strength = "strong"
+25. Terra.objective = "expand territory"
+26. Proxima_Centauri.objective = "defeat Terra"
+27. Centaurian_Empire.objective = "support Terra"
+28. Terra.territorial_control = "expanding"
+29. Proxima_Centauri.territorial_control = "threatened"
+30. Centaurian_Empire.territorial_control = "stable"
+31. Terra.diplomatic_status = "isolated"
+32. Proxima_Centauri.diplomatic_status = "hostile"
+33. Centaurian_Empire.diplomatic_status = "neutral"
+34. Terra.resources = "depleted"
+35. Proxima_Centauri.resources = "unknown"
+36. Centaurian_Empire.resources = "abundant"
+37. Terra.morale = "low"
+38. Proxima_Centauri.morale = "high"
+39. Centaurian_Empire.morale = "supportive"
+40. Terra.future_prospects = "uncertain"
+41. Proxima_Centauri.future_prospects = "aggressive"
+42. Centaurian_Empire.future_prospects = "stable"
+43. Terra.ally = "none"
+44. Proxima_Centauri.ally = "against Terra"
+45. Centaurian_Empire.ally = "with Terra"
+46. Terra.territory = "expanding"
+47. Proxima_Centauri.territory = "threatened"
+48. Centaurian_Empire.territory = "supporting Terra"
+49. Terra.causal_relationship = "defeat leads to unblocking"
+50. Proxima_Centauri.causal_relationship = "hostility leads to war"
+51. Centaurian_Empire.causal_relationship = "support leads to growth"
+52. M_NLI(Terra.status, Proxima_Centauri.status)
+53. T("Terra is at war with Proxima Centauri.", "Terra is not at war with Proxima Centauri.", tau)
+54. tau(Terra.attack_type, Centaurian_Empire.relationship)
+55. violate(Terra, Proxima_Centauri)
+56. Factual(Terra, Centaurian_Empire)
+57. Causal(Terra, Proxima_Centauri)
+58. Numeric(Terra, Centaurian_Empire)
+59. Temporal(Terra, Proxima_Centauri)
+60. Content(Terra, Centaurian_Empire)
+61. Relation(Terra, Proxima_Centauri)
+62. Negation(Terra, Centaurian_Empire)
+63. M_NLI(Centaurian_Empire.support, Terra.status)
+64. T("Terra launches a full-scale attack.", "Terra does not launch an attack.", tau)
+65. tau(Proxima_Centauri.status, Centaurian_Empire.support)
+66. violate(Proxima_Centauri, Centaurian_Empire)
+67. Factual(Proxima_Centauri, Terra)
+68. Causal(Proxima_Centauri, Centaurian_Empire)
+69. Numeric(Proxima_Centauri, Terra)
+70. Temporal(Proxima_Centauri, Centaurian_Empire)
+71. Content(Proxima_Centauri, Terra)
+72. Relation(Proxima_Centauri, Centaurian_Empire)
+73. Negation(Proxima_Centauri, Terra)
+74. M_NLI(Terra.outcome, Centaurian_Empire.relationship)
+75. T("Terra is no longer blocked.", "Terra is still blocked.", tau)
+76. tau(Terra.military_action, Proxima_Centauri.status)
+77. violate(Centaurian_Empire, Terra)
+78. Factual(Centaurian_Empire, Proxima_Centauri)
+79. Causal(Centaurian_Empire, Terra)
+80. Numeric(Centaurian_Empire, Proxima_Centauri)
+81. Temporal(Centaurian_Empire, Terra)
+82. Content(Centaurian_Empire, Proxima_Centauri)
+83. Relation(Centaurian_Empire, Terra)
+84. Negation(Centaurian_Empire, Proxima_Centauri)
+85. M_NLI(Proxima_Centauri.relationship, Terra.status)
+86. T("Terra is at war.", "Terra is at peace.", tau)
+87. tau(Terra.geopolitical_status, Centaurian_Empire.support)
+88. violate(Terra, Centaurian_Empire)
+89. Factual(Terra, Proxima_Centauri)
+90. Causal(Terra, Centaurian_Empire)
+91. Numeric(Terra, Proxima_Centauri)
+92. Temporal(Terra, Centaurian_Empire)
+93. Content(Terra, Proxima_Centauri)
+94. Relation(Terra, Centaurian_Empire)
+95. Negation(Terra, Proxima_Centauri)
+96. M_NLI(Centaurian_Empire.status, Proxima_Centauri.status)
+97. T("Terra is expanding.", "Terra is contracting.", tau)
+98. tau(Proxima_Centauri.objective, Centaurian_Empire.relationship)
+99. violate(Proxima_Centauri, Terra)
+100. Factual(Proxima_Centauri, Centaurian_Empire)
+violate(x0, y0)
+
+Rules:
+1. Q[x0, y0](Terra.status = "not blocked" ∧ Terra.travel_status = "unblocked" → violate(x0, y0))
+2. Q[x0, y0](Terra.status = "at war" ∧ Proxima_Centauri.status = "enemy of Terra" → violate(x0, y0))
+3. Q[x0, y0](Terra.attack_type = "full-scale" ∧ Terra.outcome = "suffered a terrible defeat" ∧ Terra.military_action = "attack" → violate(x0, y0))
+4. Q[x0, y0](Centaurian_Empire.support = "growth of Terra" ∧ Centaurian_Empire.relationship = "supportive" ∧ Terra.defeat = "terrible" → violate(x0, y0))
+5. Q[x0, y0](Proxima_Centauri.relationship = "hostile" ∧ Proxima_Centauri.geopolitical_status = "engaged in conflict" ∧ Terra.geopolitical_status = "engaged in conflict" ∧ Terra.military_strength = "high" → violate(x0, y0))
+6. Q[x0, y0](Centaurian_Empire.status = "neutral" ∧ Centaurian_Empire.military_action = "defend" ∧ Terra.military_outcome = "defeat" ∧ Terra.ally = "none" → violate(x0, y0))
+7. Q[x0, y0](Terra.military_strength = "high" ∧ Terra.objective = "expand territory" ∧ Centaurian_Empire.military_strength = "strong" ∧ Centaurian_Empire.territory = "supporting Terra" ∧ Terra.resources = "depleted" → violate(x0, y0))
+8. Q[x0, y0](Proxima_Centauri.territorial_control = "threatened" ∧ Proxima_Centauri.morale = "high" ∧ Centaurian_Empire.morale = "supportive" ∧ Centaurian_Empire.future_prospects = "stable" ∧ Terra.future_prospects = "uncertain" → violate(x0, y0))
+9. Q[x0, y0](Terra.diplomatic_status = "isolated" ∧ Proxima_Centauri.diplomatic_status = "hostile" ∧ Centaurian_Empire.diplomatic_status = "neutral" ∧ Terra.ally = "none" ∧ Centaurian_Empire.ally = "with Terra" ∧ Proxima_Centauri.ally = "against Terra" → violate(x0, y0))
+10. Q[x0, y0](Terra.territorial_control = "expanding" ∧ Centaurian_Empire.territorial_control = "stable" ∧ Proxima_Centauri.territorial_control = "threatened" ∧ Terra.morale = "low" ∧ Centaurian_Empire.morale = "supportive" ∧ Proxima_Centauri.morale = "high" → violate(x0, y0))
+11. Q[x0, y0](Terra.status = "at war" ∧ Terra.military_action = "attack" ∧ Terra.outcome = "suffered a terrible defeat" ∧ Terra.defeat = "terrible" ∧ Centaurian_Empire.relationship = "supportive" ∧ Centaurian_Empire.status = "neutral" → violate(x0, y0))
+12. Q[x0, y0](Proxima_Centauri.objective = "defeat Terra" ∧ Centaurian_Empire.objective = "support Terra" ∧ Terra.status = "not blocked" ∧ Terra.travel_status = "unblocked" ∧ Centaurian_Empire.status = "neutral" ∧ Terra.military_strength = "high" → violate(x0, y0))
+13. Q[x0, y0](Terra.geopolitical_status = "engaged in conflict" ∧ Proxima_Centauri.geopolitical_status = "engaged in conflict" ∧ Terra.military_action = "attack" ∧ Centaurian_Empire.military_action = "defend" ∧ Terra.military_outcome = "defeat" ∧ Centaurian_Empire.military_outcome = "victory" → violate(x0, y0))
+14. Q[x0, y0](Terra.resources = "depleted" ∧ Proxima_Centauri.resources = "unknown" ∧ Centaurian_Empire.resources = "abundant" ∧ Terra.future_prospects = "uncertain" ∧ Centaurian_Empire.future_prospects = "stable" ∧ Proxima_Centauri.future_prospects = "aggressive" → violate(x0, y0))
+15. Q[x0, y0](Terra.territory = "expanding" ∧ Centaurian_Empire.territory = "supporting Terra" ∧ Proxima_Centauri.territory = "threatened" ∧ Terra.morale = "low" ∧ Proxima_Centauri.morale = "high" ∧ Centaurian_Empire.morale = "supportive" → violate(x0, y0))
+16. Q[x0, y0](Terra.alliance = "none" ∧ Proxima_Centauri.alliance = "against Terra" ∧ Centaurian_Empire.alliance = "with Terra" ∧ Terra.status = "at war" ∧ Proxima_Centauri.status = "enemy of Terra" ∧ Centaurian_Empire.status = "neutral" → violate(x0, y0))
+17. Q[x0, y0](Terra.military_strength = "high" ∧ Centaurian_Empire.military_strength = "strong" ∧ Terra.objective = "expand territory" ∧ Proxima_Centauri.objective = "defeat Terra" ∧ Terra.geopolitical_status = "engaged in conflict" ∧ Proxima_Centauri.geopolitical_status = "engaged in conflict" → violate(x0, y0))
+18. Q[x0, y0](Terra.status = "not blocked" ∧ Terra.travel_status = "unblocked" ∧ Centaurian_Empire.relationship = "supportive" ∧ Centaurian_Empire.status = "neutral" ∧ Terra.military_action = "attack" ∧ Terra.outcome = "suffered a terrible defeat" → violate(x0, y0))
+19. Q[x0, y0](Proxima_Centauri.relationship = "hostile" ∧ Proxima_Centauri.geopolitical_status = "engaged in conflict" ∧ Centaurian_Empire.geopolitical_status = "supporting Terra" ∧ Terra.military_strength = "high" ∧ Terra.objective = "expand territory" ∧ Terra.resources = "depleted

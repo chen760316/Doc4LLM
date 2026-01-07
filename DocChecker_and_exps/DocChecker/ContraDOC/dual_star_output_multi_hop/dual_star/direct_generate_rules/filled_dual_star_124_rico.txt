@@ -1,0 +1,51 @@
+Predicates:
+Dr Gilbert Anderson.label != "Person"
+Dr Gilbert Anderson.label = "Person"
+Dr Gilbert Anderson.name != "Dr Gilbert Anderson"
+Dr Gilbert Anderson.name = "Dr Gilbert Anderson"
+Dr Gilbert Anderson.occupation != "psychoanalyst"
+Dr Gilbert Anderson.occupation = "psychoanalyst"
+Jenny.label != "Person"
+Jenny.label = "Person"
+Jenny.name != "Jenny"
+Jenny.name != Dr Gilbert Anderson.name
+Jenny.name != Kitty Baldry.name
+Jenny.name != Margaret Grey.name
+Jenny.name = "Jenny"
+Jenny___Dr Gilbert Anderson.doc_id = "3488771834_6"
+Jenny___Dr Gilbert Anderson.relationship = "Jenny and Kitty consult Dr. Anderson for Chris's treatment."
+Jenny___Kitty Baldry.doc_id != Jenny___Dr Gilbert Anderson.doc_id
+Jenny___Kitty Baldry.doc_id = "3488771834_5"
+Jenny___Kitty Baldry.relationship != Jenny___Dr Gilbert Anderson.relationship
+Jenny___Kitty Baldry.relationship != Jenny___Margaret Grey.relationship
+Jenny___Kitty Baldry.relationship = "Jenny describes Kitty Baldry's emotional state in the nursery."
+Jenny___Margaret Grey.doc_id != Jenny___Dr Gilbert Anderson.doc_id
+Jenny___Margaret Grey.doc_id = "3488771834_5"
+Jenny___Margaret Grey.location = "Wealdstone"
+Jenny___Margaret Grey.relationship != Jenny___Dr Gilbert Anderson.relationship
+Jenny___Margaret Grey.relationship = "Jenny convinces Margaret to return to the estate to help Chris."
+Kitty Baldry.label != "Person"
+Kitty Baldry.label = "Person"
+Kitty Baldry.name != "Kitty Baldry"
+Kitty Baldry.name != Dr Gilbert Anderson.name
+Kitty Baldry.name != Margaret Grey.name
+Kitty Baldry.name = "Kitty Baldry"
+Margaret Grey.label != "Person"
+Margaret Grey.label = "Person"
+Margaret Grey.name != "Margaret Grey"
+Margaret Grey.name != Dr Gilbert Anderson.name
+Margaret Grey.name = "Margaret Grey"
+None_ML(Jenny___Kitty Baldry.attrs, Jenny___Margaret Grey.attrs)
+None_ML(Kitty Baldry.attrs, Jenny.attrs)
+
+Rules:
+Q[Jenny,Jenny] (Kitty Baldry.label != "Person" ∧ Jenny.name != Dr Gilbert Anderson.name ∧ Jenny___Margaret Grey.doc_id = "3488771834_5" ∧ Kitty Baldry.label = "Person" ∧ Dr Gilbert Anderson.name != "Dr Gilbert Anderson" ∧ Jenny___Kitty Baldry.doc_id = "3488771834_5" → Jenny.label != "Person")
+Q[Jenny,Jenny] (Jenny.name != Dr Gilbert Anderson.name ∧ Kitty Baldry.name = "Kitty Baldry" ∧ Jenny___Margaret Grey.doc_id != Jenny___Dr Gilbert Anderson.doc_id → Kitty Baldry.name != "Kitty Baldry")
+Q[Jenny,Jenny] (Margaret Grey.name = "Margaret Grey" ∧ Jenny___Kitty Baldry.doc_id = "3488771834_5" → Jenny___Margaret Grey.relationship != Jenny___Dr Gilbert Anderson.relationship)
+Q[Jenny,Jenny] (Dr Gilbert Anderson.label != "Person" ∧ Jenny___Margaret Grey.location = "Wealdstone" ∧ Jenny.name != "Jenny" ∧ Margaret Grey.label = "Person" ∧ Jenny.name = "Jenny" → Jenny___Kitty Baldry.doc_id = "3488771834_5")
+Q[Jenny,Jenny] (None_ML(Jenny___Kitty Baldry.attrs, Jenny___Margaret Grey.attrs) ∧ Jenny___Kitty Baldry.relationship = "Jenny describes Kitty Baldry's emotional state in the nursery." ∧ Dr Gilbert Anderson.label = "Person" ∧ Jenny___Kitty Baldry.doc_id != Jenny___Dr Gilbert Anderson.doc_id → Dr Gilbert Anderson.occupation = "psychoanalyst")
+Q[Jenny,Jenny] (Jenny___Margaret Grey.location = "Wealdstone" ∧ Kitty Baldry.name != Margaret Grey.name ∧ Kitty Baldry.label != "Person" ∧ Margaret Grey.label != "Person" ∧ Jenny.name = "Jenny" → Dr Gilbert Anderson.name != "Dr Gilbert Anderson")
+Q[Jenny,Jenny] (Jenny___Margaret Grey.relationship = "Jenny convinces Margaret to return to the estate to help Chris." ∧ Kitty Baldry.name != Margaret Grey.name ∧ Margaret Grey.label != "Person" ∧ None_ML(Jenny___Kitty Baldry.attrs, Jenny___Margaret Grey.attrs) → Margaret Grey.name != Dr Gilbert Anderson.name)
+Q[Jenny,Jenny] (Jenny___Margaret Grey.location = "Wealdstone" ∧ Jenny___Kitty Baldry.doc_id = "3488771834_5" ∧ Kitty Baldry.name != "Kitty Baldry" → Dr Gilbert Anderson.occupation != "psychoanalyst")
+Q[Jenny,Jenny] (Jenny___Kitty Baldry.relationship != Jenny___Dr Gilbert Anderson.relationship ∧ Dr Gilbert Anderson.occupation = "psychoanalyst" → Dr Gilbert Anderson.label = "Person")
+Q[Jenny,Jenny] (Jenny___Kitty Baldry.relationship != Jenny___Dr Gilbert Anderson.relationship ∧ Jenny.label != "Person" ∧ Margaret Grey.name != Dr Gilbert Anderson.name ∧ Dr Gilbert Anderson.label != "Person" ∧ Jenny___Margaret Grey.relationship != Jenny___Dr Gilbert Anderson.relationship ∧ Margaret Grey.name = "Margaret Grey" → None_ML(Kitty Baldry.attrs, Jenny.attrs))

@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 374)
+S1: A bald little boy holds a chicken while two men are sitting in the background.
+S2: a boy holds a chicken.
+
+Predicates:
+1. S1.bald_little_boy.holds_chicken
+2. S1.two_men.sitting_background
+3. S2.boy.holds_chicken
+4. S1.bald_little_boy.is_a(boy)
+5. S1.bald_little_boy.has_attribute(bald)
+6. S1.bald_little_boy.has_attribute(little)
+7. S1.two_men.is_a(man)
+8. S1.two_men.are_in_background
+9. S1.chicken.is_held_by(bald_little_boy)
+10. S1.chicken.is_a(chicken)
+11. S2.boy.is_a(boy)
+12. S2.boy.holds(chicken)
+13. M_NLI(S1, S2)
+14. Negation(S1.bald_little_boy, S2.boy)
+15. violate(S1.bald_little_boy, S2.boy)
+16. S1.bald_little_boy.is_not_equal(S2.boy)
+17. S1.bald_little_boy.has_relationship(holds, chicken)
+18. S1.two_men.has_relationship(sitting, background)
+19. S2.boy.has_relationship(holds, chicken)
+20. S1.bald_little_boy.is_in_scene(S1)
+21. S1.two_men.is_in_scene(S1)
+22. S2.boy.is_in_scene(S2)
+23. S1.chicken.is_in_scene(S1)
+24. S1.bald_little_boy.is_unique
+25. S1.two_men.are_multiple
+26. S1.bald_little_boy.has_no_hair
+27. S1.bald_little_boy.is_young
+28. S1.two_men.are_not_bald
+29. S1.bald_little_boy.is_holding(chicken)
+30. S2.boy.is_not_bald
+
+Rules:
+1. Q[bald, S1.bald_little_boy, S2.boy](S1.bald_little_boy.has_attribute(bald) → Negation(S1.bald_little_boy, S2.boy))
+2. Q[little, S1.bald_little_boy, S2.boy](S1.bald_little_boy.has_attribute(little) → Negation(S1.bald_little_boy, S2.boy))
+3. Q[holds, S1.bald_little_boy, S2.boy](S1.bald_little_boy.has_relationship(holds, chicken) → Negation(S1.bald_little_boy, S2.boy))
+4. Q[holds, S2.boy, S1.bald_little_boy](S2.boy.has_relationship(holds, chicken) → Negation(S1.bald_little_boy, S2.boy))
+5. Q[is_a, S1.bald_little_boy, S2.boy](S1.bald_little_boy.is_a(boy) → Negation(S1.bald_little_boy, S2.boy))
+6. Q[is_a, S2.boy, S1.bald_little_boy](S2.boy.is_a(boy) → Negation(S1.bald_little_boy, S2.boy))
+7. Q[is_not_equal, S1.bald_little_boy, S2.boy](S1.bald_little_boy.is_not_equal(S2.boy) → Negation(S1.bald_little_boy, S2.boy))
+8. Q[has_no_hair, S1.bald_little_boy, S2.boy](S1.bald_little_boy.has_no_hair → Negation(S1.bald_little_boy, S2.boy))
+9. Q[is_young, S1.bald_little_boy, S2.boy](S1.bald_little_boy.is_young → Negation(S1.bald_little_boy, S2.boy))
+10. Q[is_unique, S1.bald_little_boy, S2.boy](S1.bald_little_boy.is_unique → Negation(S1.bald_little_boy, S2.boy))
+11. Q[is_in_scene, S1.bald_little_boy, S2.boy](S1.bald_little_boy.is_in_scene(S1) → Negation(S1.bald_little_boy, S2.boy))
+12. Q[is_in_scene, S2.boy, S1.bald_little_boy](S2.boy.is_in_scene(S2) → Negation(S1.bald_little_boy, S2.boy))
+13. Q[is_holding, S1.bald_little_boy, S2.boy](S1.bald_little_boy.is_holding(chicken) → Negation(S1.bald_little_boy, S2.boy))
+14. Q[are_multiple, S1.two_men, S2.boy](S1.two_men.are_multiple → Negation(S1.bald_little_boy, S2.boy))
+15. Q[are_not_bald, S1.two_men, S2.boy](S1.two_men.are_not_bald → Negation(S1.bald_little_boy, S2.boy))
+16. Q[is_a, S1.two_men, S2.boy](S1.two_men.is_a(man) → Negation(S1.bald_little_boy, S2.boy))
+17. Q[are_in_background, S1.two_men, S2.boy](S1.two_men.are_in_background → Negation(S1.bald_little_boy, S2.boy))
+18. Q[is_held_by, S1.chicken, S2.boy](S1.chicken.is_held_by(S1.bald_little_boy) → Negation(S1.bald_little_boy, S2.boy))
+19. Q[is_a, S1.chicken, S2.boy](S1.chicken.is_a(chicken) → Negation(S1.bald_little_boy, S2.boy))
+20. Q[has_relationship, S1.bald_little_boy, S2.boy](S1.bald_little_boy.has_relationship(holds, chicken) → Negation(S1.bald_little_boy, S2.boy))
+21. Q[has_relationship, S2.boy, S1.bald_little_boy](S2.boy.has_relationship(holds, chicken) → Negation(S1.bald_little_boy, S2.boy))
+22. Q[is_in_scene, S1.chicken, S2.boy](S1.chicken.is_in_scene(S1) → Negation(S1.bald_little_boy, S2.boy))
+23. Q[is_in_scene, S1.two_men, S2.boy](S1.two_men.is_in_scene(S1) → Negation(S1.bald_little_boy, S2.boy))
+24. Q[is_in_scene, S2.boy, S1.bald_little_boy](S2.boy.is_in_scene(S2) → Negation(S1.bald_little_boy, S2.boy))
+25. Q[is_holding, S2.boy, S1.bald_little_boy](S2.boy.holds(chicken) → Negation(S1.bald_little_boy, S2.boy))
+26. Q[is_not_bald, S2.boy, S1.bald_little_boy](S2.boy.is_not_bald → Negation(S1.bald_little_boy, S2.boy))
+27. Q[has_relationship, S1.two_men, S2.boy](S1.two_men.has_relationship(sitting, background) → Negation(S1.bald_little_boy, S2.boy))
+28. Q[is_a, S1.bald_little_boy, S1.two_men](S1.bald_little_boy.is_a(boy) → Negation(S1.bald_little_boy, S2.boy))
+29. Q[is_a, S2.boy, S1.two_men](S2.boy.is_a(boy) → Negation(S1.bald_little_boy, S2.boy))
+30. Q[is_unique, S1.two_men, S2.boy](S1.two_men.is_unique → Negation(S1.bald_little_boy, S2.boy))

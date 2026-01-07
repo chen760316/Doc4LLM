@@ -1,0 +1,44 @@
+Predicates:
+Detroit.label != "City"
+Detroit.label != Heidelberg Project.label
+Detroit.label = "City"
+Detroit.name != "Detroit"
+Detroit.name != Heidelberg Project.name
+Detroit.name = "Detroit"
+Heidelberg Project.label != "Community Organization"
+Heidelberg Project.label = "Community Organization"
+Heidelberg Project.location != "McDougall-Hunt neighborhood, Detroit"
+Heidelberg Project.location = "McDougall-Hunt neighborhood, Detroit"
+Heidelberg Project.name != "Heidelberg Project"
+Heidelberg Project.name = "Heidelberg Project"
+Lost River.label != "Film"
+Lost River.label != Detroit.label
+Lost River.label != Heidelberg Project.label
+Lost River.label = "Film"
+Lost River.name != "Lost River"
+Lost River.name != Detroit.name
+Lost River.name != Heidelberg Project.name
+Lost River.name = "Lost River"
+Lost River___Detroit.doc_id != Lost River___Heidelberg Project.doc_id
+Lost River___Detroit.doc_id = "3489738269_3"
+Lost River___Detroit.importance = "Detroit's decay and potential rebirth are key themes in the film."
+Lost River___Detroit.relationship != Lost River___Heidelberg Project.relationship
+Lost River___Detroit.relationship = "The film 'Lost River' is set in Detroit, which is central to its narrative."
+Lost River___Detroit.theme = "the paradox of dereliction and potential rebirth"
+Lost River___Heidelberg Project.description = "The project personalizes derelict spaces with art."
+Lost River___Heidelberg Project.doc_id = "3489738269_5"
+Lost River___Heidelberg Project.relationship = "The film references the Heidelberg Project as an example of urban renewal in Detroit."
+None_ML(Heidelberg Project.attrs, Lost River.attrs)
+None_ML(Lost River___Heidelberg Project.attrs, Lost River___Detroit.attrs)
+
+Rules:
+Q[Lost River,Lost River] (Lost River.name != "Lost River" ∧ Lost River.name = "Lost River" ∧ None_ML(Heidelberg Project.attrs, Lost River.attrs) ∧ Lost River.label != "Film" → Lost River___Detroit.doc_id != Lost River___Heidelberg Project.doc_id)
+Q[Lost River,Lost River] (None_ML(Heidelberg Project.attrs, Lost River.attrs) ∧ Detroit.label = "City" ∧ None_ML(Lost River___Heidelberg Project.attrs, Lost River___Detroit.attrs) ∧ Lost River___Detroit.theme = "the paradox of dereliction and potential rebirth" ∧ Lost River.label != Detroit.label ∧ Heidelberg Project.label != "Community Organization" → Heidelberg Project.name = "Heidelberg Project")
+Q[Lost River,Lost River] (Detroit.label != "City" ∧ Lost River.label = "Film" ∧ Lost River___Detroit.theme = "the paradox of dereliction and potential rebirth" → Lost River.label != Heidelberg Project.label)
+Q[Lost River,Lost River] (Lost River.label != "Film" ∧ Lost River___Detroit.relationship = "The film 'Lost River' is set in Detroit, which is central to its narrative." ∧ Lost River___Detroit.theme = "the paradox of dereliction and potential rebirth" ∧ Heidelberg Project.name != "Heidelberg Project" ∧ None_ML(Lost River___Heidelberg Project.attrs, Lost River___Detroit.attrs) → Lost River.name = "Lost River")
+Q[Lost River,Lost River] (Lost River___Detroit.importance = "Detroit's decay and potential rebirth are key themes in the film." ∧ Lost River___Heidelberg Project.relationship = "The film references the Heidelberg Project as an example of urban renewal in Detroit." → Detroit.label = "City")
+Q[Lost River,Lost River] (Detroit.label = "City" ∧ Lost River___Detroit.relationship != Lost River___Heidelberg Project.relationship ∧ Detroit.label != Heidelberg Project.label ∧ Lost River.name = "Lost River" → Lost River.label = "Film")
+Q[Lost River,Lost River] (Detroit.name != "Detroit" ∧ Heidelberg Project.location = "McDougall-Hunt neighborhood, Detroit" ∧ Heidelberg Project.name != "Heidelberg Project" ∧ Lost River___Detroit.relationship = "The film 'Lost River' is set in Detroit, which is central to its narrative." ∧ Lost River.name != Detroit.name ∧ Detroit.label = "City" → Heidelberg Project.label != "Community Organization")
+Q[Lost River,Lost River] (Heidelberg Project.label = "Community Organization" ∧ Lost River___Detroit.importance = "Detroit's decay and potential rebirth are key themes in the film." → Lost River.name != "Lost River")
+Q[Lost River,Lost River] (None_ML(Heidelberg Project.attrs, Lost River.attrs) ∧ Detroit.name = "Detroit" ∧ Lost River___Heidelberg Project.description = "The project personalizes derelict spaces with art." → Lost River___Heidelberg Project.relationship = "The film references the Heidelberg Project as an example of urban renewal in Detroit.")
+Q[Lost River,Lost River] (Heidelberg Project.location = "McDougall-Hunt neighborhood, Detroit" ∧ Lost River.name != Detroit.name ∧ Lost River___Detroit.doc_id = "3489738269_3" ∧ None_ML(Heidelberg Project.attrs, Lost River.attrs) ∧ Lost River.label != Detroit.label → Lost River___Detroit.relationship = "The film 'Lost River' is set in Detroit, which is central to its narrative.")

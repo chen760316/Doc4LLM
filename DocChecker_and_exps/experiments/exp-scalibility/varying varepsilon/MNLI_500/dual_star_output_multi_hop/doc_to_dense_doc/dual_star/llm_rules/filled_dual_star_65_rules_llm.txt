@@ -1,0 +1,132 @@
+Predicates:
+1. entity1.name = "Alice"
+2. entity1.age = 30
+3. entity1.occupation = "Scientist"
+4. entity1.location = "New York"
+5. entity2.name = "Bob"
+6. entity2.age = 25
+7. entity2.occupation = "Engineer"
+8. entity2.location = "Los Angeles"
+9. "is a proponent of".source = "Research Paper"
+10. "is a proponent of".target = "Climate Change Awareness"
+11. "is the leader of".source = "Environmental Group"
+12. "is the leader of".target = "Sustainability Initiative"
+13. "rose from the status of".source = "Intern"
+14. "rose from the status of".target = "Manager"
+15. entity1.education = "PhD"
+16. entity2.education = "Bachelor's"
+17. entity1.research_field = "Biology"
+18. entity2.research_field = "Engineering"
+19. entity1.publications = 15
+20. entity2.publications = 5
+21. entity1.experience_years = 8
+22. entity2.experience_years = 3
+23. M_NLI(entity1.name, entity2.name)
+24. M_NLI(entity1.age, entity2.age)
+25. T("Alice is a scientist.", "Alice is not a scientist.", "Negation")
+26. T("Bob is an engineer.", "Bob is a doctor.", "Factual")
+27. tau(entity1.occupation, entity2.occupation)
+28. tau(entity1.location, entity2.location)
+29. violate(entity1, entity2)
+30. Factual(entity1.age, entity2.age)
+31. Causal(entity1.publications, entity2.publications)
+32. Numeric(entity1.experience_years, entity2.experience_years)
+33. Temporal(entity1.education, entity2.education)
+34. Content(entity1.research_field, entity2.research_field)
+35. "is a proponent of".context = "Environmental Policy"
+36. "is a proponent of".impact = "Legislation Change"
+37. "is the leader of".context = "Community Outreach"
+38. "is the leader of".impact = "Public Engagement"
+39. "rose from the status of".context = "Corporate Ladder"
+40. "rose from the status of".impact = "Leadership Role"
+41. entity1.hobbies = "Photography"
+42. entity2.hobbies = "Cooking"
+43. M_NLI(entity1.hobbies, entity2.hobbies)
+44. T("Alice enjoys photography.", "Alice dislikes photography.", "Content")
+45. tau(entity1.hobbies, entity2.hobbies)
+46. violate(entity1.hobbies, entity2.hobbies)
+47. Factual(entity1.hobbies, entity2.hobbies)
+48. Causal(entity1.age, entity2.age)
+49. Numeric(entity1.publications, entity2.publications)
+50. Temporal(entity1.location, entity2.location)
+51. Content(entity1.education, entity2.education)
+52. "is a proponent of".evidence = "Scientific Studies"
+53. "is a proponent of".goal = "Awareness Campaign"
+54. "is the leader of".evidence = "Team Meetings"
+55. "is the leader of".goal = "Project Success"
+56. "rose from the status of".evidence = "Performance Reviews"
+57. "rose from the status of".goal = "Career Advancement"
+58. entity1.skills = "Data Analysis"
+59. entity2.skills = "Software Development"
+60. M_NLI(entity1.skills, entity2.skills)
+61. T("Alice is skilled in data analysis.", "Alice is not skilled in data analysis.", "Negation")
+62. tau(entity1.skills, entity2.skills)
+63. violate(entity1.skills, entity2.skills)
+64. Factual(entity1.skills, entity2.skills)
+65. Causal(entity1.experience_years, entity2.experience_years)
+66. Numeric(entity1.age, entity2.age)
+67. Temporal(entity1.hobbies, entity2.hobbies)
+68. Content(entity1.occupation, entity2.occupation)
+69. "is a proponent of".methodology = "Research Findings"
+70. "is a proponent of".audience = "General Public"
+71. "is the leader of".methodology = "Strategic Planning"
+72. "is the leader of".audience = "Team Members"
+73. "rose from the status of".methodology = "Skill Development"
+74. "rose from the status of".audience = "Corporate Training"
+75. entity1.projects = 10
+76. entity2.projects = 2
+77. M_NLI(entity1.projects, entity2.projects)
+78. T("Alice has completed 10 projects.", "Alice has completed no projects.", "Numeric")
+79. tau(entity1.projects, entity2.projects)
+80. violate(entity1.projects, entity2.projects)
+81. Factual(entity1.projects, entity2.projects)
+82. Causal(entity1.hobbies, entity2.hobbies)
+83. Numeric(entity1.age, entity2.age)
+84. Temporal(entity1.location, entity2.location)
+85. Content(entity1.education, entity2.education)
+86. "is a proponent of".strategy = "Innovative Solutions"
+87. "is a proponent of".benefit = "Environmental Impact"
+88. "is the leader of".strategy = "Team Collaboration"
+89. "is the leader of".benefit = "Project Efficiency"
+90. "rose from the status of".strategy = "Mentorship"
+91. "rose from the status of".benefit = "Career Growth"
+92. entity1.network_size = 100
+93. entity2.network_size = 50
+94. M_NLI(entity1.network_size, entity2.network_size)
+95. T("Alice has a network of 100 contacts.", "Alice has no contacts.", "Numeric")
+96. tau(entity1.network_size, entity2.network_size)
+97. violate(entity1.network_size, entity2.network_size)
+98. Factual(entity1.network_size, entity2.network_size)
+99. Causal(entity1.projects, entity2.projects)
+100. Numeric(entity1.age, entity2.age)
+violate(x0, y0)
+
+Rules:
+1. Q[x0, y0](entity1.name = "Alice" ∧ entity2.name = "Bob" → violate(x0, y0))
+2. Q[x0, y0](entity1.age = 30 ∧ entity2.age = 25 → violate(x0, y0))
+3. Q[x0, y0](entity1.occupation = "Scientist" ∧ entity2.occupation = "Engineer" → violate(x0, y0))
+4. Q[x0, y0](entity1.location = "New York" ∧ entity2.location = "Los Angeles" → violate(x0, y0))
+5. Q[x0, y0](entity1.education = "PhD" ∧ entity2.education = "Bachelor's" → violate(x0, y0))
+6. Q[x0, y0](entity1.research_field = "Biology" ∧ entity2.research_field = "Engineering" → violate(x0, y0))
+7. Q[x0, y0](entity1.publications = 15 ∧ entity2.publications = 5 ∧ entity1.experience_years = 8 → violate(x0, y0))
+8. Q[x0, y0](entity1.hobbies = "Photography" ∧ entity2.hobbies = "Cooking" ∧ entity1.age = 30 → violate(x0, y0))
+9. Q[x0, y0](entity1.skills = "Data Analysis" ∧ entity2.skills = "Software Development" ∧ entity1.location = "New York" → violate(x0, y0))
+10. Q[x0, y0](entity1.projects = 10 ∧ entity2.projects = 2 ∧ entity1.age = 30 ∧ entity2.age = 25 → violate(x0, y0))
+11. Q[x0, y0](entity1.name = "Alice" ∧ entity1.occupation = "Scientist" ∧ entity2.name = "Bob" ∧ entity2.occupation = "Engineer" → violate(x0, y0))
+12. Q[x0, y0](entity1.location = "New York" ∧ entity2.location = "Los Angeles" ∧ entity1.age = 30 ∧ entity2.age = 25 → violate(x0, y0))
+13. Q[x0, y0](entity1.education = "PhD" ∧ entity1.research_field = "Biology" ∧ entity2.education = "Bachelor's" ∧ entity2.research_field = "Engineering" → violate(x0, y0))
+14. Q[x0, y0](entity1.publications = 15 ∧ entity1.experience_years = 8 ∧ entity2.publications = 5 ∧ entity2.experience_years = 3 → violate(x0, y0))
+15. Q[x0, y0](entity1.hobbies = "Photography" ∧ entity2.hobbies = "Cooking" ∧ entity1.skills = "Data Analysis" ∧ entity2.skills = "Software Development" → violate(x0, y0))
+16. Q[x0, y0](entity1.name = "Alice" ∧ entity1.age = 30 ∧ entity1.occupation = "Scientist" ∧ entity1.location = "New York" ∧ entity1.education = "PhD" → violate(x0, y0))
+17. Q[x0, y0](entity2.name = "Bob" ∧ entity2.age = 25 ∧ entity2.occupation = "Engineer" ∧ entity2.location = "Los Angeles" ∧ entity2.education = "Bachelor's" → violate(x0, y0))
+18. Q[x0, y0](entity1.name = "Alice" ∧ entity1.hobbies = "Photography" ∧ entity1.skills = "Data Analysis" ∧ entity1.projects = 10 ∧ entity1.age = 30 → violate(x0, y0))
+19. Q[x0, y0](entity2.name = "Bob" ∧ entity2.hobbies = "Cooking" ∧ entity2.skills = "Software Development" ∧ entity2.projects = 2 ∧ entity2.age = 25 → violate(x0, y0))
+20. Q[x0, y0](entity1.name = "Alice" ∧ entity1.age = 30 ∧ entity1.occupation = "Scientist" ∧ entity1.location = "New York" ∧ entity1.research_field = "Biology" ∧ entity1.publications = 15 → violate(x0, y0))
+21. Q[x0, y0](entity2.name = "Bob" ∧ entity2.age = 25 ∧ entity2.occupation = "Engineer" ∧ entity2.location = "Los Angeles" ∧ entity2.research_field = "Engineering" ∧ entity2.publications = 5 → violate(x0, y0))
+22. Q[x0, y0](entity1.name = "Alice" ∧ entity1.age = 30 ∧ entity1.occupation = "Scientist" ∧ entity1.location = "New York" ∧ entity1.education = "PhD" ∧ entity1.experience_years = 8 → violate(x0, y0))
+23. Q[x0, y0](entity2.name = "Bob" ∧ entity2.age = 25 ∧ entity2.occupation = "Engineer" ∧ entity2.location = "Los Angeles" ∧ entity2.education = "Bachelor's" ∧ entity2.experience_years = 3 → violate(x0, y0))
+24. Q[x0, y0](entity1.hobbies = "Photography" ∧ entity1.skills = "Data Analysis" ∧ entity1.projects = 10 ∧ entity1.age = 30 ∧ entity1.location = "New York" → violate(x0, y0))
+25. Q[x0, y0](entity2.hobbies = "Cooking" ∧ entity2.skills = "Software Development" ∧ entity2.projects = 2 ∧ entity2.age = 25 ∧ entity2.location = "Los Angeles" → violate(x0, y0))
+26. Q[x0, y0](entity1.name = "Alice" ∧ entity1.age = 30 ∧ entity1.occupation = "Scientist" ∧ entity1.location = "New York" ∧ entity1.education = "PhD" ∧ entity1.research_field = "Biology" → violate(x0, y0))
+27. Q[x0, y0](entity2.name = "Bob" ∧ entity2.age = 25 ∧ entity2.occupation = "Engineer" ∧ entity2.location = "Los Angeles" ∧ entity2.education = "Bachelor's" ∧ entity2.research_field = "Engineering" → violate(x0, y0))
+28. Q[x0, y0](entity1.publications = 15 ∧ entity1.experience

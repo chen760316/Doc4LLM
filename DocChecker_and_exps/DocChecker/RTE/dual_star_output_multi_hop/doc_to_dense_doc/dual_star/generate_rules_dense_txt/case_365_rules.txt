@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 365)
+S1: A n i n t e r n a t i o n a l c o n v e n t i o n b a n n e d t r a d e i n i v o r y.
+S2: A n I n t e r n a t i o n a l C o n v e n t i o n p r o h i b i t e d t h e t r a d e i n i v o r y.
+
+Predicates:
+1. InternationalConvention.bannedTradeInIvory
+2. InternationalConvention.prohibitedTradeInIvory
+3. M_NLI(S1, S2)
+4. Relation(banned, prohibited)
+5. violate(banned, prohibited)
+6. InternationalConvention.year
+7. TradeInIvory.status
+8. InternationalConvention.type
+9. InternationalConvention.scope
+10. TradeInIvory.entity
+11. InternationalConvention.date
+12. TradeInIvory.legalImplication
+13. InternationalConvention.signatories
+14. TradeInIvory.jurisdiction
+15. InternationalConvention.enforcementMechanism
+16. TradeInIvory.penalty
+17. InternationalConvention.impact
+18. TradeInIvory.economy
+19. InternationalConvention.origin
+20. TradeInIvory.speciesProtected
+21. InternationalConvention.amendments
+22. TradeInIvory.compliance
+23. InternationalConvention.implementationDate
+24. TradeInIvory.exemptions
+25. InternationalConvention.revisionHistory
+26. TradeInIvory.publicAwareness
+27. InternationalConvention.enforcementAgency
+28. TradeInIvory.illegalTrade
+29. InternationalConvention.globalResponse
+30. TradeInIvory.conservationEfforts
+
+Rules:
+1. Q[Anchor, InternationalConvention.bannedTradeInIvory, InternationalConvention.prohibitedTradeInIvory](InternationalConvention.bannedTradeInIvory == true → Relation(banned, prohibited))
+2. Q[Anchor, InternationalConvention.prohibitedTradeInIvory, InternationalConvention.bannedTradeInIvory](InternationalConvention.prohibitedTradeInIvory == true → Relation(prohibited, banned))
+3. Q[Anchor, TradeInIvory.status, TradeInIvory.status](InternationalConvention.bannedTradeInIvory == true → TradeInIvory.status == "banned")
+4. Q[Anchor, TradeInIvory.status, TradeInIvory.status](InternationalConvention.prohibitedTradeInIvory == true → TradeInIvory.status == "prohibited")
+5. Q[Anchor, InternationalConvention.year, InternationalConvention.year](M_NLI(S1, S2) == false → InternationalConvention.year != InternationalConvention.year)
+6. Q[Anchor, TradeInIvory.legalImplication, TradeInIvory.legalImplication](InternationalConvention.bannedTradeInIvory == true → TradeInIvory.legalImplication == "banned")
+7. Q[Anchor, TradeInIvory.legalImplication, TradeInIvory.legalImplication](InternationalConvention.prohibitedTradeInIvory == true → TradeInIvory.legalImplication == "prohibited")
+8. Q[Anchor, InternationalConvention.type, InternationalConvention.type](InternationalConvention.bannedTradeInIvory == true → InternationalConvention.type == "ban")
+9. Q[Anchor, InternationalConvention.type, InternationalConvention.type](InternationalConvention.prohibitedTradeInIvory == true → InternationalConvention.type == "prohibition")
+10. Q[Anchor, TradeInIvory.entity, TradeInIvory.entity](InternationalConvention.bannedTradeInIvory == true → TradeInIvory.entity == "ivory")
+11. Q[Anchor, TradeInIvory.entity, TradeInIvory.entity](InternationalConvention.prohibitedTradeInIvory == true → TradeInIvory.entity == "ivory")
+12. Q[Anchor, InternationalConvention.enforcementMechanism, InternationalConvention.enforcementMechanism](InternationalConvention.bannedTradeInIvory == true → InternationalConvention.enforcementMechanism == "enforcement")
+13. Q[Anchor, InternationalConvention.enforcementMechanism, InternationalConvention.enforcementMechanism](InternationalConvention.prohibitedTradeInIvory == true → InternationalConvention.enforcementMechanism == "prohibition enforcement")
+14. Q[Anchor, TradeInIvory.penalty, TradeInIvory.penalty](InternationalConvention.bannedTradeInIvory == true → TradeInIvory.penalty == "fines")
+15. Q[Anchor, TradeInIvory.penalty, TradeInIvory.penalty](InternationalConvention.prohibitedTradeInIvory == true → TradeInIvory.penalty == "fines")
+16. Q[Anchor, InternationalConvention.signatories, InternationalConvention.signatories](InternationalConvention.bannedTradeInIvory == true → InternationalConvention.signatories == "countries")
+17. Q[Anchor, InternationalConvention.signatories, InternationalConvention.signatories](InternationalConvention.prohibitedTradeInIvory == true → InternationalConvention.signatories == "countries")
+18. Q[Anchor, TradeInIvory.jurisdiction, TradeInIvory.jurisdiction](InternationalConvention.bannedTradeInIvory == true → TradeInIvory.jurisdiction == "international")
+19. Q[Anchor, TradeInIvory.jurisdiction, TradeInIvory.jurisdiction](InternationalConvention.prohibitedTradeInIvory == true → TradeInIvory.jurisdiction == "international")
+20. Q[Anchor, InternationalConvention.impact, InternationalConvention.impact](InternationalConvention.bannedTradeInIvory == true → InternationalConvention.impact == "negative")
+21. Q[Anchor, InternationalConvention.impact, InternationalConvention.impact](InternationalConvention.prohibitedTradeInIvory == true → InternationalConvention.impact == "negative")
+22. Q[Anchor, TradeInIvory.illegalTrade, TradeInIvory.illegalTrade](InternationalConvention.bannedTradeInIvory == true → TradeInIvory.illegalTrade == "increased")
+23. Q[Anchor, TradeInIvory.illegalTrade, TradeInIvory.illegalTrade](InternationalConvention.prohibitedTradeInIvory == true → TradeInIvory.illegalTrade == "increased")
+24. Q[Anchor, InternationalConvention.globalResponse, InternationalConvention.globalResponse](InternationalConvention.bannedTradeInIvory == true → InternationalConvention.globalResponse == "unified")
+25. Q[Anchor, InternationalConvention.globalResponse, InternationalConvention.globalResponse](InternationalConvention.prohibitedTradeInIvory == true → InternationalConvention.globalResponse == "unified")
+26. Q[Anchor, TradeInIvory.conservationEfforts, TradeInIvory.conservationEfforts](InternationalConvention.bannedTradeInIvory == true → TradeInIvory.conservationEfforts == "enhanced")
+27. Q[Anchor, TradeInIvory.conservationEfforts, TradeInIvory.conservationEfforts](InternationalConvention.prohibitedTradeInIvory == true → TradeInIvory.conservationEfforts == "enhanced")
+28. Q[Anchor, InternationalConvention.implementationDate, InternationalConvention.implementationDate](InternationalConvention.bannedTradeInIvory == true → InternationalConvention.implementationDate == "immediate")
+29. Q[Anchor, InternationalConvention.implementationDate, InternationalConvention.implementationDate](InternationalConvention.prohibitedTradeInIvory == true → InternationalConvention.implementationDate == "immediate")
+30. Q[Anchor, TradeInIvory.compliance, TradeInIvory.compliance](InternationalConvention.bannedTradeInIvory == true → TradeInIvory.compliance == "mandatory")

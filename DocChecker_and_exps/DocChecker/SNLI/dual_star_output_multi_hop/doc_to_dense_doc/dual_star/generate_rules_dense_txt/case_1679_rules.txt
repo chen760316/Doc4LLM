@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 1679)
+S1: A dog is jumping across an obstacle.
+S2: A dog is sleeping in a cage.
+
+Predicates:
+1. Dog.activity
+2. Dog.state
+3. Dog.jump
+4. Dog.sleep
+5. Obstacle.type
+6. Cage.location
+7. Dog.position
+8. Dog.energy_level
+9. Dog.behavior
+10. Dog.action
+11. Dog.resting
+12. Dog.movement
+13. Dog.environment
+14. Dog.focus
+15. Dog.interaction
+16. Dog.vitality
+17. Dog.condition
+18. Dog.situation
+19. Dog.activity_status
+20. Dog.physical_state
+21. Jumping.obstacle
+22. Sleeping.cage
+23. Jumping.time
+24. Sleeping.time
+25. Dog.activity_conflict
+26. Dog.state_change
+27. Dog.action_time
+28. Dog.activity_duration
+29. Dog.sleep_duration
+30. Dog.activity_violation
+
+Rules:
+1. Q[dog, Dog.activity, Dog.state](Dog.activity == "jumping" → Negation(Dog.activity, Dog.state))
+2. Q[dog, Dog.state, Dog.activity](Dog.state == "sleeping" → Negation(Dog.state, Dog.activity))
+3. Q[dog, Dog.jump, Dog.sleep](Dog.jump == true → Negation(Dog.jump, Dog.sleep))
+4. Q[dog, Dog.sleep, Dog.jump](Dog.sleep == true → Negation(Dog.sleep, Dog.jump))
+5. Q[dog, Dog.activity_status, Dog.state](Dog.activity_status == "jumping" → Negation(Dog.activity_status, Dog.state))
+6. Q[dog, Dog.state, Dog.activity_status](Dog.state == "asleep" → Negation(Dog.state, Dog.activity_status))
+7. Q[dog, Dog.movement, Dog.resting](Dog.movement == "active" → Negation(Dog.movement, Dog.resting))
+8. Q[dog, Dog.resting, Dog.movement](Dog.resting == true → Negation(Dog.resting, Dog.movement))
+9. Q[dog, Dog.energy_level, Dog.sleep](Dog.energy_level > 0 → Negation(Dog.energy_level, Dog.sleep))
+10. Q[dog, Dog.sleep, Dog.energy_level](Dog.sleep_duration > 0 → Negation(Dog.sleep, Dog.energy_level))
+11. Q[dog, Dog.behavior, Dog.state](Dog.behavior == "active" → Negation(Dog.behavior, Dog.state))
+12. Q[dog, Dog.state, Dog.behavior](Dog.state == "inactive" → Negation(Dog.state, Dog.behavior))
+13. Q[dog, Dog.position, Dog.sleep](Dog.position == "jumping" → Negation(Dog.position, Dog.sleep))
+14. Q[dog, Dog.sleep, Dog.position](Dog.position == "caged" → Negation(Dog.sleep, Dog.position))
+15. Q[dog, Dog.activity_duration, Dog.state](Dog.activity_duration > 0 → Negation(Dog.activity_duration, Dog.state))
+16. Q[dog, Dog.state, Dog.activity_duration](Dog.sleep_duration > 0 → Negation(Dog.state, Dog.activity_duration))
+17. Q[dog, Dog.action, Dog.sleep](Dog.action == "jump" → Negation(Dog.action, Dog.sleep))
+18. Q[dog, Dog.sleep, Dog.action](Dog.action == "rest" → Negation(Dog.sleep, Dog.action))
+19. Q[dog, Dog.vitality, Dog.state](Dog.vitality > 0 → Negation(Dog.vitality, Dog.state))
+20. Q[dog, Dog.state, Dog.vitality](Dog.state == "exhausted" → Negation(Dog.state, Dog.vitality))
+21. Q[dog, Dog.activity_conflict, Dog.sleep](Dog.activity_conflict == true → Negation(Dog.activity_conflict, Dog.sleep))
+22. Q[dog, Dog.sleep, Dog.activity_conflict](Dog.sleep_duration > 0 → Negation(Dog.sleep, Dog.activity_conflict))
+23. Q[dog, Dog.environment, Dog.state](Dog.environment == "active" → Negation(Dog.environment, Dog.state))
+24. Q[dog, Dog.state, Dog.environment](Dog.state == "passive" → Negation(Dog.state, Dog.environment))
+25. Q[dog, Dog.focus, Dog.sleep](Dog.focus == "jumping" → Negation(Dog.focus, Dog.sleep))
+26. Q[dog, Dog.sleep, Dog.focus](Dog.sleep_duration > 0 → Negation(Dog.sleep, Dog.focus))
+27. Q[dog, Dog.condition, Dog.state](Dog.condition == "energetic" → Negation(Dog.condition, Dog.state))
+28. Q[dog, Dog.state, Dog.condition](Dog.state == "tired" → Negation(Dog.state, Dog.condition))
+29. Q[dog, Dog.situation, Dog.sleep](Dog.situation == "jumping" → Negation(Dog.situation, Dog.sleep))
+30. Q[dog, Dog.sleep, Dog.situation](Dog.sleep_duration > 0 → Negation(Dog.sleep, Dog.situation))

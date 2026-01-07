@@ -1,0 +1,68 @@
+Predicates:
+Celestial.label != "Ship"
+Celestial.label = "Ship"
+Celestial.name != "Celestial"
+Celestial.name = "Celestial"
+Celestial.type != "steamer"
+Celestial.type = "steamer"
+Judea.cargo != "coal"
+Judea.cargo = "coal"
+Judea.label != "Ship"
+Judea.label = "Ship"
+Judea.location != "Shadewell basin"
+Judea.location = "Shadewell basin"
+Judea.name != "Judea"
+Judea.name != Celestial.name
+Judea.name = "Judea"
+Judea.status != "old"
+Judea.status = "old"
+Judea.tonnage != 400
+Judea.tonnage < 405
+Judea.tonnage = 400
+Judea.tonnage > 395
+Judea.type != "barque"
+Judea.type != Celestial.type
+Judea.type = "barque"
+Marlow.age != 20
+Marlow.age < 25
+Marlow.age = 20
+Marlow.age > 15
+Marlow.label != "Character"
+Marlow.label != Celestial.label
+Marlow.label != Judea.label
+Marlow.label = "Character"
+Marlow.location != "unknown"
+Marlow.location != Judea.location
+Marlow.location = "unknown"
+Marlow.name != "Marlow"
+Marlow.name != Celestial.name
+Marlow.name != Judea.name
+Marlow.name = "Marlow"
+Marlow.nationality != "unknown"
+Marlow.nationality = "unknown"
+Marlow.occupation != "second mate"
+Marlow.occupation = "second mate"
+Marlow.status != "veteran of the merchant navy"
+Marlow.status != Judea.status
+Marlow.status = "veteran of the merchant navy"
+Marlow___Celestial.doc_id = "3488771884_2"
+Marlow___Celestial.location = "Java"
+Marlow___Celestial.relationship = "Marlow and the crew book passage on the steamer Celestial to return to England."
+Marlow___Judea.doc_id = "3488771884_2"
+Marlow___Judea.relationship != Marlow___Celestial.relationship
+Marlow___Judea.relationship = "Marlow serves as the second mate on the ship Judea."
+Marlow___Judea.time = "twenty-two years earlier"
+None_ML(Judea.attrs, Marlow.attrs)
+None_ML(Marlow___Celestial.attrs, Marlow___Judea.attrs)
+
+Rules:
+Q[Marlow,Marlow] (Judea.cargo != "coal" ∧ Judea.location != "Shadewell basin" → Judea.cargo = "coal")
+Q[Marlow,Marlow] (Judea.location != "Shadewell basin" ∧ Judea.location = "Shadewell basin" ∧ Celestial.name = "Celestial" ∧ Celestial.type = "steamer" ∧ Marlow.name != Celestial.name → Marlow.name != "Marlow")
+Q[Marlow,Marlow] (None_ML(Judea.attrs, Marlow.attrs) ∧ Marlow.nationality != "unknown" ∧ Celestial.type = "steamer" ∧ Judea.status = "old" ∧ Marlow.age < 25 ∧ Marlow___Celestial.location = "Java" → Marlow.location != Judea.location)
+Q[Marlow,Marlow] (Judea.name != "Judea" ∧ Judea.cargo = "coal" ∧ Marlow___Judea.doc_id = "3488771884_2" ∧ None_ML(Marlow___Celestial.attrs, Marlow___Judea.attrs) → Judea.tonnage != 400)
+Q[Marlow,Marlow] (Marlow___Judea.doc_id = "3488771884_2" ∧ Judea.status = "old" ∧ Marlow___Celestial.relationship = "Marlow and the crew book passage on the steamer Celestial to return to England." → Marlow.nationality != "unknown")
+Q[Marlow,Marlow] (Marlow.location != Judea.location ∧ Marlow___Celestial.location = "Java" ∧ Marlow___Judea.relationship = "Marlow serves as the second mate on the ship Judea." → Judea.type != Celestial.type)
+Q[Marlow,Marlow] (Marlow___Judea.relationship != Marlow___Celestial.relationship ∧ Celestial.type = "steamer" ∧ Marlow___Celestial.relationship = "Marlow and the crew book passage on the steamer Celestial to return to England." ∧ Marlow.name != Celestial.name → Judea.label = "Ship")
+Q[Marlow,Marlow] (Marlow.occupation != "second mate" ∧ Celestial.type != "steamer" ∧ Celestial.name != "Celestial" ∧ Judea.status != "old" ∧ Marlow.age < 25 ∧ Marlow___Judea.relationship != Marlow___Celestial.relationship → Celestial.label = "Ship")
+Q[Marlow,Marlow] (Celestial.label != "Ship" ∧ Marlow.status != "veteran of the merchant navy" → Marlow.label != "Character")
+Q[Marlow,Marlow] (Judea.location = "Shadewell basin" ∧ Judea.type = "barque" ∧ Judea.name != Celestial.name ∧ Marlow.occupation = "second mate" ∧ None_ML(Judea.attrs, Marlow.attrs) → Marlow___Judea.relationship != Marlow___Celestial.relationship)

@@ -1,0 +1,132 @@
+Predicates:
+1. person.name = "John Doe"
+2. person.age = 30
+3. person.occupation = "teacher"
+4. person.location = "New York"
+5. person.reputation = "moral"
+6. person.accusation = "molesting"
+7. event.date = "2025-04-20"
+8. event.type = "court hearing"
+9. event.outcome = "pending"
+10. event.location = "courtroom A"
+11. relationship.type = "marriage"
+12. relationship.status = "happy"
+13. relationship.partner1 = "John Doe"
+14. relationship.partner2 = "Jane Smith"
+15. relationship.start_date = "2015-06-15"
+16. relationship.children_count = 2
+17. accusation.source = "anonymous"
+18. accusation.evidence = "video footage"
+19. accusation.severity = "high"
+20. accusation.status = "under investigation"
+21. "is accused of molesting".evidence = "testimony"
+22. "is accused of molesting".severity = "serious"
+23. "is considered to be a moral man in regards to".context = "community service"
+24. "is considered to be a moral man in regards to".opinion = "positive"
+25. "is considered to be a moral man in regards to".source = "local newspaper"
+26. M_NLI(person.reputation, accusation.status)
+27. T("John Doe is a moral man.", "John Doe is accused of molesting.", tau)
+28. tau(person.reputation, accusation.severity)
+29. violate(person.name, accusation.source)
+30. Factual(person.reputation, accusation.status)
+31. Content(person.occupation, accusation.evidence)
+32. Causal(event.outcome, accusation.status)
+33. Negation(person.reputation, accusation.severity)
+34. Relation(relationship.partner1, relationship.partner2)
+35. Numeric(relationship.children_count, 0)
+36. Temporal(event.date, "2025-05-01")
+37. event.participants = "John Doe, Jane Smith"
+38. event.judge = "Judge Roberts"
+39. event.verdict = "not guilty"
+40. event.testimony = "witness statements"
+41. accusation.motive = "revenge"
+42. accusation.witness_count = 3
+43. accusation.date_reported = "2025-04-15"
+44. accusation.status_update = "ongoing"
+45. "is accused of molesting".context = "school environment"
+46. "is considered to be a moral man in regards to".community = "local charity"
+47. M_NLI(accusation.evidence, event.outcome)
+48. T("The accusation is serious.", "The accusation is unfounded.", tau)
+49. tau(accusation.severity, event.outcome)
+50. violate(relationship.partner1, relationship.partner2)
+51. Factual(accusation.source, event.participants)
+52. Content(accusation.evidence, event.judge)
+53. Causal(relationship.status, accusation.status)
+54. Negation(relationship.type, "divorce")
+55. Relation(person.name, relationship.partner1)
+56. Numeric(accusation.witness_count, 5)
+57. Temporal(accusation.date_reported, event.date)
+58. event.testimony_count = 2
+59. event.evidence_type = "physical"
+60. accusation.reputation_damage = "high"
+61. accusation.publicity = "negative"
+62. "is accused of molesting".public_reaction = "outrage"
+63. "is considered to be a moral man in regards to".public_opinion = "mixed"
+64. M_NLI(accusation.publicity, relationship.status)
+65. T("The community supports John.", "The community condemns John.", tau)
+66. tau(accusation.publicity, relationship.status)
+67. violate(accusation.source, event.outcome)
+68. Factual(event.judge, "Judge Smith")
+69. Content(relationship.status, "strained")
+70. Causal(accusation.motive, relationship.status)
+71. Negation(event.outcome, "guilty")
+72. Relation(accusation.source, event.participants)
+73. Numeric(accusation.witness_count, 1)
+74. Temporal(event.date, "2025-04-21")
+75. event.testimony_type = "expert"
+76. event.outcome_update = "pending"
+77. accusation.impact = "severe"
+78. accusation.publicity_level = "high"
+79. "is accused of molesting".community_response = "supportive"
+80. "is considered to be a moral man in regards to".community_feedback = "positive"
+81. M_NLI(accusation.impact, relationship.status)
+82. T("The accusation is damaging.", "The accusation is harmless.", tau)
+83. tau(accusation.publicity_level, relationship.status)
+84. violate(event.participants, accusation.source)
+85. Factual(relationship.children_count, 1)
+86. Content(accusation.evidence, "false")
+87. Causal(relationship.start_date, accusation.date_reported)
+88. Negation(relationship.status, "unhappy")
+89. Relation(person.name, accusation.source)
+90. Numeric(accusation.witness_count, 4)
+91. Temporal(event.date, "2025-04-22")
+92. event.testimony_outcome = "favorable"
+93. event.evidence_quality = "high"
+94. accusation.reputation_effect = "long-term"
+95. accusation.publicity_effect = "short-term"
+96. "is accused of molesting".legal_status = "active"
+97. "is considered to be a moral man in regards to".perception = "favorable"
+98. M_NLI(accusation.reputation_damage, relationship.status)
+99. T("The community is divided.", "The community is united.", tau)
+100. tau(accusation.publicity_effect, relationship.status)
+violate(x0, y0)
+
+Rules:
+1. Q[x0, y0](person.name = "John Doe" ∧ person.reputation = "moral" → violate(x0, y0))
+2. Q[x0, y0](person.age = 30 ∧ person.accusation = "molesting" → violate(x0, y0))
+3. Q[x0, y0](person.occupation = "teacher" ∧ accusation.status = "under investigation" → violate(x0, y0))
+4. Q[x0, y0](relationship.type = "marriage" ∧ relationship.status = "happy" → violate(x0, y0))
+5. Q[x0, y0](event.date = "2025-04-20" ∧ event.outcome = "pending" → violate(x0, y0))
+6. Q[x0, y0](accusation.source = "anonymous" ∧ accusation.severity = "high" → violate(x0, y0))
+7. Q[x0, y0](person.name = "John Doe" ∧ person.reputation = "moral" ∧ person.accusation = "molesting" → violate(x0, y0))
+8. Q[x0, y0](relationship.partner1 = "John Doe" ∧ relationship.partner2 = "Jane Smith" ∧ relationship.status = "happy" → violate(x0, y0))
+9. Q[x0, y0](event.type = "court hearing" ∧ event.location = "courtroom A" ∧ event.outcome = "pending" → violate(x0, y0))
+10. Q[x0, y0](accusation.evidence = "video footage" ∧ accusation.status = "under investigation" ∧ accusation.severity = "high" → violate(x0, y0))
+11. Q[x0, y0](person.reputation = "moral" ∧ accusation.evidence = "testimony" ∧ accusation.status = "under investigation" ∧ accusation.severity = "serious" → violate(x0, y0))
+12. Q[x0, y0](relationship.start_date = "2015-06-15" ∧ relationship.children_count = 2 ∧ relationship.status = "happy" ∧ person.accusation = "molesting" → violate(x0, y0))
+13. Q[x0, y0](event.date = "2025-04-20" ∧ event.type = "court hearing" ∧ event.outcome = "pending" ∧ event.location = "courtroom A" → violate(x0, y0))
+14. Q[x0, y0](accusation.source = "anonymous" ∧ accusation.evidence = "video footage" ∧ accusation.severity = "high" ∧ accusation.status = "under investigation" → violate(x0, y0))
+15. Q[x0, y0](person.name = "John Doe" ∧ person.age = 30 ∧ person.occupation = "teacher" ∧ person.location = "New York" ∧ person.reputation = "moral" → violate(x0, y0))
+16. Q[x0, y0](relationship.type = "marriage" ∧ relationship.status = "happy" ∧ relationship.partner1 = "John Doe" ∧ relationship.partner2 = "Jane Smith" ∧ relationship.children_count = 2 → violate(x0, y0))
+17. Q[x0, y0](event.date = "2025-04-20" ∧ event.type = "court hearing" ∧ event.location = "courtroom A" ∧ event.outcome = "pending" ∧ event.judge = "Judge Roberts" → violate(x0, y0))
+18. Q[x0, y0](accusation.evidence = "video footage" ∧ accusation.severity = "high" ∧ accusation.status = "under investigation" ∧ accusation.motive = "revenge" → violate(x0, y0))
+19. Q[x0, y0](person.reputation = "moral" ∧ accusation.status = "under investigation" ∧ accusation.severity = "high" ∧ accusation.evidence = "testimony" ∧ accusation.source = "anonymous" → violate(x0, y0))
+20. Q[x0, y0](relationship.start_date = "2015-06-15" ∧ relationship.children_count = 2 ∧ relationship.status = "happy" ∧ person.accusation = "molesting" ∧ person.reputation = "moral" → violate(x0, y0))
+21. Q[x0, y0](event.date = "2025-04-20" ∧ event.type = "court hearing" ∧ event.outcome = "pending" ∧ event.location = "courtroom A" ∧ event.testimony = "witness statements" → violate(x0, y0))
+22. Q[x0, y0](accusation.source = "anonymous" ∧ accusation.evidence = "video footage" ∧ accusation.severity = "high" ∧ accusation.status = "under investigation" ∧ accusation.witness_count = 3 → violate(x0, y0))
+23. Q[x0, y0](person.name = "John Doe" ∧ person.age = 30 ∧ person.occupation = "teacher" ∧ person.location = "New York" ∧ person.reputation = "moral" ∧ person.accusation = "molesting" → violate(x0, y0))
+24. Q[x0, y0](relationship.type = "marriage" ∧ relationship.status = "happy" ∧ relationship.partner1 = "John Doe" ∧ relationship.partner2 = "Jane Smith" ∧ relationship.children_count = 2 ∧ relationship.start_date = "2015-06-15" → violate(x0, y0))
+25. Q[x0, y0](event.date = "2025-04-20" ∧ event.type = "court hearing" ∧ event.location = "courtroom A" ∧ event.outcome = "pending" ∧ event.judge = "Judge Roberts" ∧ event.testimony_count = 2 → violate(x0, y0))
+26. Q[x0, y0](accusation.evidence = "video footage" ∧ accusation.severity = "high" ∧ accusation.status = "under investigation" ∧ accusation.motive = "revenge" ∧ accusation.witness_count = 3 → violate(x0, y0))
+27. Q[x0, y0](person.reputation = "moral" ∧ accusation.status = "under investigation" ∧ accusation.severity = "high" ∧ accusation.evidence = "testimony" ∧ accusation.source = "anonymous" ∧ accusation.impact = "severe" → violate(x0, y0))
+28. Q[x0, y0](relationship.start_date = "2015-06-15" ∧ relationship.children_count = 2 ∧ relationship.status = "happy" ∧ person.accusation = "molesting" ∧ person.re

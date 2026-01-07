@@ -1,0 +1,126 @@
+Predicates:
+1. "abuses".doc_index = "28"
+2. "abuses".label_text = "contradiction"
+3. "considered as an alternative to".doc_index = "42"
+4. "considered as an alternative to".label_text = "contradiction"
+5. "fended for herself during".doc_index = "42"
+6. "fended for herself during".label_text = "contradiction"
+7. "had to take care of".doc_index = "42"
+8. "had to take care of".label_text = "contradiction"
+9. "hits".doc_index = "28"
+10. "hits".label_text = "contradiction"
+11. "is not charged for".doc_index = "28"
+12. "is not charged for".label_text = "contradiction"
+13. "is put in".doc_index = "28"
+14. "is put in".label_text = "contradiction"
+15. M_NLI("abuses", "considered as an alternative to")
+16. M_NLI("fended for herself during", "had to take care of")
+17. M_NLI("hits", "is not charged for")
+18. M_NLI("is put in", "abuses")
+19. T("The cat is fed", "The cat is not fed", tau)
+20. T("She graduated in 2020", "She did not graduate in 2020", tau)
+21. tau("abuses.label_text", "is not charged for.label_text")
+22. tau("considered as an alternative to.label_text", "fended for herself during.label_text")
+23. violate("abuses", "is not charged for")
+24. violate("fended for herself during", "had to take care of")
+25. Factual("abuses", "hits")
+26. Factual("considered as an alternative to", "is put in")
+27. Causal("fended for herself during", "had to take care of")
+28. Causal("hits", "is not charged for")
+29. Numeric("29 pairs", "0 pairs")
+30. Numeric("2024", "2025")
+31. Temporal("2020", "2021")
+32. Temporal("April 20, 2025", "April 21, 2025")
+33. Content("She loves ice cream", "She hates ice cream")
+34. Content("He is excited about the game", "He is indifferent about the game")
+35. Relation("Howard and Sheila are married", "Howard and Emma are married")
+36. Relation("The dog is friendly", "The dog is aggressive")
+37. "abuses".related_to = "violence"
+38. "considered as an alternative to".related_to = "options"
+39. "fended for herself during".related_to = "independence"
+40. "had to take care of".related_to = "responsibility"
+41. "hits".related_to = "impact"
+42. "is not charged for".related_to = "fees"
+43. "is put in".related_to = "location"
+44. M_NLI("hits", "is put in")
+45. T("The event was a success", "The event was a failure", tau)
+46. tau("is not charged for.label_text", "hits.label_text")
+47. violate("considered as an alternative to", "fended for herself during")
+48. Factual("The sun rises in the east", "The sun rises in the west")
+49. Causal("She studied hard", "She failed the exam")
+50. Numeric("5 apples", "10 apples")
+51. Temporal("He was born in 1990", "He was born in 1985")
+52. Content("She is happy", "She is sad")
+53. Relation("They are siblings", "They are strangers")
+54. "abuses".context = "social issues"
+55. "considered as an alternative to".context = "decision making"
+56. "fended for herself during".context = "survival"
+57. "had to take care of".context = "family"
+58. "hits".context = "sports"
+59. "is not charged for".context = "legal matters"
+60. "is put in".context = "settings"
+61. M_NLI("is put in", "is not charged for")
+62. T("The book was published in 2020", "The book was published in 2021", tau)
+63. tau("fended for herself during.context", "had to take care of.context")
+64. violate("hits", "is put in")
+65. Factual("Water boils at 100 degrees Celsius", "Water boils at 90 degrees Celsius")
+66. Causal("He trained hard", "He did not improve")
+67. Numeric("3 days", "1 day")
+68. Temporal("The meeting is at 10 AM", "The meeting is at 2 PM")
+69. Content("She enjoys reading", "She dislikes reading")
+70. Relation("They are partners", "They are competitors")
+71. "abuses".implication = "negative impact"
+72. "considered as an alternative to".implication = "choice"
+73. "fended for herself during".implication = "self-reliance"
+74. "had to take care of".implication = "obligation"
+75. "hits".implication = "performance"
+76. "is not charged for".implication = "exemption"
+77. "is put in".implication = "placement"
+78. M_NLI("abuses", "hits")
+79. T("He was late", "He was on time", tau)
+80. tau("is put in.implication", "is not charged for.implication")
+81. violate("abuses", "fended for herself during")
+82. Factual("The Earth is flat", "The Earth is round")
+83. Causal("She saved money", "She went bankrupt")
+84. Numeric("100 miles", "50 miles")
+85. Temporal("The project started in January", "The project started in March")
+86. Content("He feels confident", "He feels insecure")
+87. Relation("They are friends", "They are enemies")
+88. "abuses".contextual_factor = "societal norms"
+89. "considered as an alternative to".contextual_factor = "options analysis"
+90. "fended for herself during".contextual_factor = "personal growth"
+91. "had to take care of".contextual_factor = "family dynamics"
+92. "hits".contextual_factor = "athletic performance"
+93. "is not charged for".contextual_factor = "financial policies"
+94. "is put in".contextual_factor = "environment"
+95. M_NLI("fended for herself during", "is not charged for")
+96. T("The concert was sold out", "The concert had plenty of tickets", tau)
+97. tau("hits.context", "is put in.context")
+98. violate("considered as an alternative to", "hits")
+violate(x0, y0)
+
+Rules:
+1. Q[x0, y0](abuses.label_text = "contradiction" ∧ is not charged for.label_text = "contradiction" → violate(x0, y0))
+2. Q[x0, y0](fended for herself during.label_text = "contradiction" ∧ had to take care of.label_text = "contradiction" → violate(x0, y0))
+3. Q[x0, y0](hits.label_text = "contradiction" ∧ is put in.label_text = "contradiction" → violate(x0, y0))
+4. Q[x0, y0](abuses.related_to = "violence" ∧ is not charged for.related_to = "fees" → violate(x0, y0))
+5. Q[x0, y0](fended for herself during.related_to = "independence" ∧ had to take care of.related_to = "responsibility" → violate(x0, y0))
+6. Q[x0, y0](hits.related_to = "impact" ∧ is put in.related_to = "location" → violate(x0, y0))
+7. Q[x0, y0](abuses.context = "social issues" ∧ is not charged for.context = "legal matters" ∧ hits.context = "sports" → violate(x0, y0))
+8. Q[x0, y0](considered as an alternative to.label_text = "contradiction" ∧ fended for herself during.label_text = "contradiction" ∧ had to take care of.label_text = "contradiction" → violate(x0, y0))
+9. Q[x0, y0](hits.label_text = "contradiction" ∧ is not charged for.label_text = "contradiction" ∧ is put in.label_text = "contradiction" → violate(x0, y0))
+10. Q[x0, y0](abuses.contextual_factor = "societal norms" ∧ is not charged for.contextual_factor = "financial policies" ∧ hits.contextual_factor = "athletic performance" → violate(x0, y0))
+11. Q[x0, y0](abuses.label_text = "contradiction" ∧ hits.label_text = "contradiction" ∧ is put in.label_text = "contradiction" ∧ is not charged for.label_text = "contradiction" → violate(x0, y0))
+12. Q[x0, y0](considered as an alternative to.related_to = "options" ∧ fended for herself during.related_to = "independence" ∧ had to take care of.related_to = "responsibility" ∧ hits.related_to = "impact" → violate(x0, y0))
+13. Q[x0, y0](abuses.implication = "negative impact" ∧ is not charged for.implication = "exemption" ∧ hits.implication = "performance" ∧ is put in.implication = "placement" → violate(x0, y0))
+14. Q[x0, y0](abuses.context = "social issues" ∧ considered as an alternative to.context = "decision making" ∧ fended for herself during.context = "survival" ∧ had to take care of.context = "family" ∧ hits.context = "sports" → violate(x0, y0))
+15. Q[x0, y0](abuses.label_text = "contradiction" ∧ is not charged for.label_text = "contradiction" ∧ hits.label_text = "contradiction" ∧ considered as an alternative to.label_text = "contradiction" ∧ fended for herself during.label_text = "contradiction" → violate(x0, y0))
+16. Q[x0, y0](fended for herself during.related_to = "independence" ∧ had to take care of.related_to = "responsibility" ∧ hits.related_to = "impact" ∧ is not charged for.related_to = "fees" ∧ considered as an alternative to.related_to = "options" → violate(x0, y0))
+17. Q[x0, y0](abuses.contextual_factor = "societal norms" ∧ is not charged for.contextual_factor = "financial policies" ∧ hits.contextual_factor = "athletic performance" ∧ considered as an alternative to.contextual_factor = "options analysis" ∧ fended for herself during.contextual_factor = "personal growth" → violate(x0, y0))
+18. Q[x0, y0](abuses.label_text = "contradiction" ∧ hits.label_text = "contradiction" ∧ is put in.label_text = "contradiction" ∧ is not charged for.label_text = "contradiction" ∧ considered as an alternative to.label_text = "contradiction" ∧ fended for herself during.label_text = "contradiction" → violate(x0, y0))
+19. Q[x0, y0](abuses.related_to = "violence" ∧ hits.related_to = "impact" ∧ is not charged for.related_to = "fees" ∧ considered as an alternative to.related_to = "options" ∧ fended for herself during.related_to = "independence" → violate(x0, y0))
+20. Q[x0, y0](abuses.implication = "negative impact" ∧ is not charged for.implication = "exemption" ∧ hits.implication = "performance" ∧ considered as an alternative to.implication = "choice" ∧ fended for herself during.implication = "self-reliance" → violate(x0, y0))
+21. Q[x0, y0](abuses.label_text = "contradiction" ∧ is not charged for.label_text = "contradiction" ∧ hits.label_text = "contradiction" ∧ considered as an alternative to.label_text = "contradiction" ∧ fended for herself during.label_text = "contradiction" ∧ had to take care of.label_text = "contradiction" → violate(x0, y0))
+22. Q[x0, y0](abuses.context = "social issues" ∧ is not charged for.context = "legal matters" ∧ hits.context = "sports" ∧ considered as an alternative to.context = "decision making" ∧ fended for herself during.context = "survival" ∧ had to take care of.context = "family" → violate(x0, y0))
+23. Q[x0, y0](abuses.related_to = "violence" ∧ is not charged for.related_to = "fees" ∧ hits.related_to = "impact" ∧ considered as an alternative to.related_to = "options" ∧ fended for herself during.related_to = "independence" ∧ had to take care of.related_to = "responsibility" → violate(x0, y0))
+24. Q[x0, y0](abuses.contextual_factor = "societal norms"

@@ -1,0 +1,63 @@
+Predicates:
+Defamation.label != "Legal Concept"
+Defamation.label = "Legal Concept"
+Defamation.name != "Defamation"
+Defamation.name != Libel.name
+Defamation.name = "Defamation"
+Defamation.type != "law"
+Defamation.type = "law"
+Jordan v. Kollman.label != "Legal Case"
+Jordan v. Kollman.label != Defamation.label
+Jordan v. Kollman.label != Libel.label
+Jordan v. Kollman.label != libel.label
+Jordan v. Kollman.label = "Legal Case"
+Jordan v. Kollman.name != "Jordan v. Kollman"
+Jordan v. Kollman.name != Defamation.name
+Jordan v. Kollman.name != Libel.name
+Jordan v. Kollman.name != libel.name
+Jordan v. Kollman.name = "Jordan v. Kollman"
+Jordan v. Kollman.type != "case law"
+Jordan v. Kollman.type != Defamation.type
+Jordan v. Kollman.type != libel.type
+Jordan v. Kollman.type = "case law"
+Jordan v. Kollman___Defamation.doc_id != Jordan v. Kollman___Libel.doc_id
+Jordan v. Kollman___Defamation.doc_id = "3489825751_3"
+Jordan v. Kollman___Defamation.elements.length = 3
+Jordan v. Kollman___Defamation.relationship != Jordan v. Kollman___Libel.relationship
+Jordan v. Kollman___Defamation.relationship = "The Virginia Supreme Court case established elements of libel."
+Jordan v. Kollman___Libel.context = "Defamation law"
+Jordan v. Kollman___Libel.doc_id = "3489825771_8"
+Jordan v. Kollman___Libel.relationship = "The Virginia Supreme Court established the elements of libel in the case of Jordan v. Kollman."
+Jordan v. Kollman___libel.doc_id != Jordan v. Kollman___Defamation.doc_id
+Jordan v. Kollman___libel.doc_id != Jordan v. Kollman___Libel.doc_id
+Jordan v. Kollman___libel.doc_id = "3489825751_5"
+Jordan v. Kollman___libel.relationship != Jordan v. Kollman___Defamation.relationship
+Jordan v. Kollman___libel.relationship != Jordan v. Kollman___Libel.relationship
+Jordan v. Kollman___libel.relationship = "The case Jordan v. Kollman outlines the elements of libel."
+Libel.label != "Legal Concept"
+Libel.label = "Legal Concept"
+Libel.name != "Libel"
+Libel.name = "Libel"
+None_ML(Jordan v. Kollman___Defamation.attrs, Jordan v. Kollman___libel.attrs)
+None_ML(Libel.attrs, Jordan v. Kollman.attrs)
+libel.label != "Legal Concept"
+libel.label = "Legal Concept"
+libel.name != "libel"
+libel.name != Defamation.name
+libel.name != Libel.name
+libel.name = "libel"
+libel.type != "legal term"
+libel.type != Defamation.type
+libel.type = "legal term"
+
+Rules:
+Q[Jordan v. Kollman,Jordan v. Kollman] (Jordan v. Kollman.label != Defamation.label ∧ Defamation.type != "law" ∧ Jordan v. Kollman___Defamation.elements.length = 3 ∧ Jordan v. Kollman.name != libel.name ∧ Jordan v. Kollman.type != Defamation.type ∧ Jordan v. Kollman___libel.doc_id != Jordan v. Kollman___Defamation.doc_id → Jordan v. Kollman.label != libel.label)
+Q[Jordan v. Kollman,Jordan v. Kollman] (None_ML(Jordan v. Kollman___Defamation.attrs, Jordan v. Kollman___libel.attrs) ∧ Jordan v. Kollman___Defamation.doc_id = "3489825751_3" ∧ Defamation.label = "Legal Concept" ∧ Jordan v. Kollman.label != Defamation.label ∧ Jordan v. Kollman___Libel.context = "Defamation law" → libel.type != "legal term")
+Q[Jordan v. Kollman,Jordan v. Kollman] (Jordan v. Kollman.name != Defamation.name ∧ Jordan v. Kollman.name != Libel.name → Jordan v. Kollman.label != Libel.label)
+Q[Jordan v. Kollman,Jordan v. Kollman] (Jordan v. Kollman.label != Defamation.label ∧ libel.label = "Legal Concept" ∧ Jordan v. Kollman.label != libel.label → Jordan v. Kollman___Defamation.relationship = "The Virginia Supreme Court case established elements of libel.")
+Q[Jordan v. Kollman,Jordan v. Kollman] (Jordan v. Kollman___Libel.doc_id = "3489825771_8" ∧ Jordan v. Kollman.name != libel.name ∧ Jordan v. Kollman.name != Defamation.name ∧ Jordan v. Kollman.label != Defamation.label → Defamation.type = "law")
+Q[Jordan v. Kollman,Jordan v. Kollman] (Jordan v. Kollman.name != Libel.name ∧ Defamation.type = "law" ∧ Jordan v. Kollman___Defamation.doc_id != Jordan v. Kollman___Libel.doc_id ∧ Jordan v. Kollman___Libel.relationship = "The Virginia Supreme Court established the elements of libel in the case of Jordan v. Kollman." → Jordan v. Kollman.type != libel.type)
+Q[Jordan v. Kollman,Jordan v. Kollman] (Jordan v. Kollman.type != libel.type ∧ None_ML(Libel.attrs, Jordan v. Kollman.attrs) → Libel.name = "Libel")
+Q[Jordan v. Kollman,Jordan v. Kollman] (Jordan v. Kollman.label != Defamation.label ∧ libel.name != Libel.name ∧ Jordan v. Kollman___Defamation.relationship != Jordan v. Kollman___Libel.relationship ∧ libel.type = "legal term" ∧ libel.name != "libel" ∧ libel.name != Defamation.name → libel.name = "libel")
+Q[Jordan v. Kollman,Jordan v. Kollman] (Defamation.name != "Defamation" ∧ libel.label != "Legal Concept" ∧ libel.name = "libel" ∧ Defamation.type != "law" ∧ Libel.label != "Legal Concept" → libel.label = "Legal Concept")
+Q[Jordan v. Kollman,Jordan v. Kollman] (Jordan v. Kollman___Libel.doc_id = "3489825771_8" ∧ Jordan v. Kollman___Defamation.elements.length = 3 ∧ Defamation.type = "law" → Defamation.name != "Defamation")

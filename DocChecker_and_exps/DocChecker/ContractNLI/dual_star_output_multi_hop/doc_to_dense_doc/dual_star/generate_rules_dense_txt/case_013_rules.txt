@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 13)
+S1: Receiving Party shall notify Disclosing Party in case Receiving Party is required by law, regulation or judicial process to disclose any Confidential Information.
+S2: The restrictions above will not apply to Confidential Information which: (e) Is disclosed pursuant to judicial action or government regulations, provided that the receiving party notifies the furnishing party prior to such disclosure and cooperates with the furnishing party in the event the furnishing party elects to legally contest and avoid such disclosure.
+
+Predicates:
+1. ReceivingParty.notification_required_by_law
+2. DisclosingParty.receives_notification
+3. ReceivingParty.discloses_ConfidentialInformation
+4. JudicialProcess.requires_disclosure
+5. GovernmentRegulations.requires_disclosure
+6. ReceivingParty.notifies_furnishingParty
+7. FurnishingParty.cooperates_with_receivingParty
+8. ReceivingParty.elects_to_legally_contest
+9. ConfidentialInformation.is_disclosed_judicial_action
+10. ConfidentialInformation.is_disclosed_government_regulations
+11. ReceivingParty.notifies_prior_to_disclosure
+12. FurnishingParty.elects_to_avoid_disclosure
+13. ReceivingParty.is_required_to_disclose
+14. DisclosingParty.is_notified_of_disclosure
+15. ReceivingParty.complies_with_regulations
+16. JudicialAction.requires_notification
+17. ReceivingParty.violates_confidentiality
+18. DisclosingParty.is_affected_by_disclosure
+19. ReceivingParty.cooperates_if_contesting
+20. ConfidentialInformation.is_exempt_from_restrictions
+21. ReceivingParty.is_notified_by_judicial_process
+22. DisclosingParty.has_confidentiality_rights
+23. ReceivingParty.has_obligation_to_notify
+24. FurnishingParty.has_right_to_contest
+25. ReceivingParty.is_affected_by_government_regulations
+26. JudicialProcess.is_a_condition_for_disclosure
+27. ReceivingParty.has_duty_to_notify
+28. DisclosingParty.has_interest_in_confidentiality
+29. ReceivingParty.is_bound_by_agreement
+30. FurnishingParty.has_obligation_to_inform
+
+Rules:
+1. Q[Receiving, ReceivingParty.notification_required_by_law == true](ReceivingParty.notification_required_by_law → Causal(Receiving, DisclosingParty.receives_notification))
+2. Q[Receiving, ReceivingParty.notification_required_by_law == false](ReceivingParty.notification_required_by_law → Causal(Receiving, DisclosingParty.receives_notification))
+3. Q[Receiving, ReceivingParty.discloses_ConfidentialInformation == true](ReceivingParty.discloses_ConfidentialInformation → Causal(Receiving, DisclosingParty.is_notified_of_disclosure))
+4. Q[Receiving, JudicialProcess.requires_disclosure == true](JudicialProcess.requires_disclosure → Causal(Receiving, DisclosingParty.is_notified_of_disclosure))
+5. Q[Receiving, GovernmentRegulations.requires_disclosure == true](GovernmentRegulations.requires_disclosure → Causal(Receiving, DisclosingParty.is_notified_of_disclosure))
+6. Q[Receiving, ReceivingParty.notifies_furnishingParty == true](ReceivingParty.notifies_furnishingParty → Causal(Receiving, DisclosingParty.is_notified_of_disclosure))
+7. Q[Receiving, FurnishingParty.cooperates_with_receivingParty == true](FurnishingParty.cooperates_with_receivingParty → Causal(Receiving, DisclosingParty.is_notified_of_disclosure))
+8. Q[Receiving, ReceivingParty.elects_to_legally_contest == true](ReceivingParty.elects_to_legally_contest → Causal(Receiving, DisclosingParty.is_notified_of_disclosure))
+9. Q[Receiving, ConfidentialInformation.is_disclosed_judicial_action == true](ConfidentialInformation.is_disclosed_judicial_action → Causal(Receiving, DisclosingParty.is_notified_of_disclosure))
+10. Q[Receiving, ConfidentialInformation.is_disclosed_government_regulations == true](ConfidentialInformation.is_disclosed_government_regulations → Causal(Receiving, DisclosingParty.is_notified_of_disclosure))
+11. Q[Receiving, ReceivingParty.notifies_prior_to_disclosure == true](ReceivingParty.notifies_prior_to_disclosure → Causal(Receiving, DisclosingParty.is_notified_of_disclosure))
+12. Q[Receiving, FurnishingParty.elects_to_avoid_disclosure == true](FurnishingParty.elects_to_avoid_disclosure → Causal(Receiving, DisclosingParty.is_notified_of_disclosure))
+13. Q[Receiving, ReceivingParty.is_required_to_disclose == true](ReceivingParty.is_required_to_disclose → Causal(Receiving, DisclosingParty.is_notified_of_disclosure))
+14. Q[Receiving, DisclosingParty.is_notified_of_disclosure == true](DisclosingParty.is_notified_of_disclosure → Causal(Receiving, DisclosingParty.is_affected_by_disclosure))
+15. Q[Receiving, ReceivingParty.complies_with_regulations == true](ReceivingParty.complies_with_regulations → Causal(Receiving, DisclosingParty.is_notified_of_disclosure))
+16. Q[Receiving, JudicialAction.requires_notification == true](JudicialAction.requires_notification → Causal(Receiving, DisclosingParty.is_notified_of_disclosure))
+17. Q[Receiving, ReceivingParty.violates_confidentiality == true](ReceivingParty.violates_confidentiality → Causal(Receiving, DisclosingParty.is_affected_by_disclosure))
+18. Q[Receiving, DisclosingParty.has_confidentiality_rights == true](DisclosingParty.has_confidentiality_rights → Causal(Receiving, DisclosingParty.is_affected_by_disclosure))
+19. Q[Receiving, ReceivingParty.has_obligation_to_notify == true](ReceivingParty.has_obligation_to_notify → Causal(Receiving, DisclosingParty.is_notified_of_disclosure))
+20. Q[Receiving, FurnishingParty.has_right_to_contest == true](FurnishingParty.has_right_to_contest → Causal(Receiving, DisclosingParty.is_notified_of_disclosure))
+21. Q[Receiving, ReceivingParty.is_affected_by_government_regulations == true](ReceivingParty.is_affected_by_government_regulations → Causal(Receiving, DisclosingParty.is_notified_of_disclosure))
+22. Q[Receiving, JudicialProcess.is_a_condition_for_disclosure == true](JudicialProcess.is_a_condition_for_disclosure → Causal(Receiving, DisclosingParty.is_notified_of_disclosure))
+23. Q[Receiving, ReceivingParty.has_duty_to_notify == true](ReceivingParty.has_duty_to_notify → Causal(Receiving, DisclosingParty.is_notified_of_disclosure))
+24. Q[Receiving, DisclosingParty.has_interest_in_confidentiality == true](DisclosingParty.has_interest_in_confidentiality → Causal(Receiving, DisclosingParty.is_affected_by_disclosure))
+25. Q[Receiving, ReceivingParty.is_bound_by_agreement == true](ReceivingParty.is_bound_by_agreement → Causal(Receiving, DisclosingParty.is_notified_of_disclosure))
+26. Q[Receiving, FurnishingParty.has_obligation_to_inform == true](FurnishingParty.has_obligation_to_inform → Causal(Receiving, DisclosingParty.is_notified_of_disclosure))
+27. Q[Receiving, ReceivingParty.notification_required_by_law == true](ReceivingParty.notification_required_by_law → Causal(Receiving, DisclosingParty.is_affected_by_disclosure))
+28. Q[Receiving, ReceivingParty.notification_required_by_law == false](ReceivingParty.notification_required_by_law → Causal(Receiving, DisclosingParty.is_affected_by_disclosure))
+29. Q[Receiving, ReceivingParty.notifies_furnishingParty == false](ReceivingParty.notifies_furnishingParty → Causal(Receiving, DisclosingParty.is_affected_by_disclosure))
+30. Q[Receiving, ReceivingParty.is_required_to_disclose == false](ReceivingParty.is_required_to_disclose → Causal(Receiving, DisclosingParty.is_affected_by_disclosure))

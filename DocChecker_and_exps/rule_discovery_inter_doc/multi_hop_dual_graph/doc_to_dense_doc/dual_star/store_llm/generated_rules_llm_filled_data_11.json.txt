@@ -1,0 +1,83 @@
+Predicates:
+Tom.label = "Person"
+Tom.label != "Person"
+Tom.name = "Tom"
+Tom.name != "Tom"
+Jane.label = "Person"
+Jane.label != "Person"
+Jane.name = "Jane"
+Jane.name != "Jane"
+Tom.label = "Person"
+Tom.label != "Person"
+Tom.name = "Tom"
+Tom.name != "Tom"
+Jane.label = "Person"
+Jane.label != "Person"
+Jane.name = "Jane"
+Jane.name != "Jane"
+M_NLI(Tom(label=Person, name=Tom), Jane(label=Person, name=Jane))
+M_NLU(Tom(label=Person, name=Tom), Jane(label=Person, name=Jane))
+M_TEM(Tom(label=Person, name=Tom), Jane(label=Person, name=Jane))
+M_NLI(Jane(label=Person, name=Jane), Tom(label=Person, name=Tom))
+M_NLU(Jane(label=Person, name=Jane), Tom(label=Person, name=Tom))
+M_TEM(Jane(label=Person, name=Jane), Tom(label=Person, name=Tom))
+M_NLI(Tom(label=Person, name=Tom), Jane(label=Person, name=Jane))
+M_NLU(Tom(label=Person, name=Tom), Jane(label=Person, name=Jane))
+M_TEM(Tom(label=Person, name=Tom), Jane(label=Person, name=Jane))
+M_NLI(Jane(label=Person, name=Jane), Tom(label=Person, name=Tom))
+M_NLU(Jane(label=Person, name=Jane), Tom(label=Person, name=Tom))
+M_TEM(Jane(label=Person, name=Jane), Tom(label=Person, name=Tom))
+S(Tom, "any (label=Person name=Tom)")
+S(Jane, "
+The (label=Person name=Jane)")
+S(Jane and Tom are siblings who share a close relationship., "January 2025.
+Jane and Tom are siblings who share a close relationship.
+")
+S(Tom, "Tom (label=Person name=Tom)")
+S(Jane, "Jane (label=Person name=Jane)")
+S(Jane and Tom are a married couple., "at, the door opens.
+John is dreading the presentation tomorrow.
+Jane and Tom are a married couple.
+I")
+T(Jane (label=Person name=Jane), Tom (label=Person name=Tom), No Contradiction)
+No Contradiction(Jane., Tom.)
+T(Tom (label=Person name=Tom), January 2025.
+Jane and Tom are siblings who share a close relationship.
+, No Contradiction)
+No Contradiction(Tom., Jane and Tom are siblings who share a close relationship..)
+T(Jane (label=Person name=Jane), January 2025.
+Jane and Tom are siblings who share a close relationship.
+, No Contradiction)
+No Contradiction(Jane., Jane and Tom are siblings who share a close relationship..)
+T(Jane (label=Person name=Jane), Tom (label=Person name=Tom), No Contradiction)
+No Contradiction(Jane., Tom.)
+T(Tom (label=Person name=Tom), at, the door opens.
+John is dreading the presentation tomorrow.
+Jane and Tom are a married couple.
+I, No Contradiction)
+No Contradiction(Tom., Jane and Tom are a married couple..)
+T(Jane (label=Person name=Jane), at, the door opens.
+John is dreading the presentation tomorrow.
+Jane and Tom are a married couple.
+I, No Contradiction)
+No Contradiction(Jane., Jane and Tom are a married couple..)
+
+Rules:
+Q[x0, y0](Tom.label = "Person" ∧ Tom.name = "Tom" → ¬Tom.label != "Person")
+Q[x0, y0](Jane.label = "Person" ∧ Jane.name = "Jane" → ¬Jane.label != "Person")
+Q[x0, y0](M_NLI(Tom(label=Person, name=Tom), Jane(label=Person, name=Jane)) ∧ M_NLU(Tom(label=Person, name=Tom), Jane(label=Person, name=Jane)) → M_TEM(Tom(label=Person, name=Tom), Jane(label=Person, name=Jane)))
+Q[x0, y0](M_NLI(Jane(label=Person, name=Jane), Tom(label=Person, name=Tom)) ∧ M_NLU(Jane(label=Person, name=Jane), Tom(label=Person, name=Tom)) → M_TEM(Jane(label=Person, name=Jane), Tom(label=Person, name=Tom)))
+Q[x0, y0](Tom.label = "Person" ∧ Tom.name = "Tom" ∧ Jane.label = "Person" → No Contradiction(Tom., Jane and Tom are siblings who share a close relationship..))
+Q[x0, y0](Jane.label = "Person" ∧ Jane.name = "Jane" ∧ Tom.name = "Tom" → No Contradiction(Jane., Tom.))
+Q[x0, y0](Tom.label = "Person" ∧ Tom.name = "Tom" ∧ Jane.label = "Person" ∧ Jane.name = "Jane" → S(Tom, "Tom (label=Person name=Tom)"))
+Q[x0, y0](Jane.label = "Person" ∧ Jane.name = "Jane" ∧ Tom.label = "Person" ∧ Tom.name = "Tom" → S(Jane, "Jane (label=Person name=Jane)"))
+Q[x0, y0](M_NLI(Tom(label=Person, name=Tom), Jane(label=Person, name=Jane)) ∧ M_NLU(Tom(label=Person, name=Tom), Jane(label=Person, name=Jane)) ∧ M_TEM(Tom(label=Person, name=Tom), Jane(label=Person, name=Jane)) → T(Jane(label=Person, name=Jane), Tom(label=Person, name=Tom), No Contradiction))
+Q[x0, y0](M_NLI(Jane(label=Person, name=Jane), Tom(label=Person, name=Tom)) ∧ M_NLU(Jane(label=Person, name=Jane), Tom(label=Person, name=Tom)) ∧ M_TEM(Jane(label=Person, name=Jane), Tom(label=Person, name=Tom)) → T(Tom(label=Person, name=Tom), Jane(label=Person, name=Jane), No Contradiction))
+Q[x0, y0](Tom.label = "Person" ∧ Tom.name = "Tom" ∧ Jane.label = "Person" ∧ Jane.name = "Jane" ∧ S(Jane, "Jane (label=Person name=Jane)") → No Contradiction(Jane., Tom.))
+Q[x0, y0](Jane.label = "Person" ∧ Jane.name = "Jane" ∧ Tom.label = "Person" ∧ Tom.name = "Tom" ∧ S(Tom, "Tom (label=Person name=Tom)") → No Contradiction(Tom., Jane and Tom are siblings who share a close relationship..))
+Q[x0, y0](Tom.label = "Person" ∧ Tom.name = "Tom" ∧ Jane.label = "Person" ∧ Jane.name = "Jane" ∧ M_NLI(Tom(label=Person, name=Tom), Jane(label=Person, name=Jane)) ∧ M_NLU(Tom(label=Person, name=Tom), Jane(label=Person, name=Jane)) → T(Jane(label=Person, name=Jane), Tom(label=Person, name=Tom), No Contradiction))
+Q[x0, y0](Jane.label = "Person" ∧ Jane.name = "Jane" ∧ Tom.label = "Person" ∧ Tom.name = "Tom" ∧ M_NLI(Jane(label=Person, name=Jane), Tom(label=Person, name=Tom)) ∧ M_NLU(Jane(label=Person, name=Jane), Tom(label=Person, name=Tom)) → T(Tom(label=Person, name=Tom), Jane(label=Person, name=Jane), No Contradiction))
+Q[x0, y0](Tom.label = "Person" ∧ Tom.name = "Tom" ∧ Jane.label = "Person" ∧ Jane.name = "Jane" ∧ S(Jane, "Jane and Tom are siblings who share a close relationship.") ∧ No Contradiction(Jane., Tom.) → ¬S(Jane, "Jane and Tom are a married couple."))
+Q[x0, y0](Jane.label = "Person" ∧ Jane.name = "Jane" ∧ Tom.label = "Person" ∧ Tom.name = "Tom" ∧ S(Tom, "Tom (label=Person name=Tom)") ∧ No Contradiction(Tom., Jane and Tom are siblings who share a close relationship.) → ¬S(Tom, "Jane and Tom are a married couple."))
+Q[x0, y0](M_NLI(Tom(label=Person, name=Tom), Jane(label=Person, name=Jane)) ∧ M_NLU(Tom(label=Person, name=Tom), Jane(label=Person, name=Jane)) ∧ M_TEM(Tom(label=Person, name=Tom), Jane(label=Person, name=Jane)) ∧ S(Jane, "Jane and Tom are siblings who share a close relationship.") ∧ No Contradiction(Jane., Tom.) → ¬S(Jane, "Jane and Tom are a married couple."))
+Q[x0, y0](M_NLI(Jane(label=Person, name=Jane), Tom(label=Person, name=Tom)) ∧ M_NLU(Jane(label=Person, name=Jane), Tom(label=Person, name=Tom)) ∧ M_TEM(Jane(label=Person, name=Jane), Tom(label=Person, name=Tom)) ∧ S(Tom, "Tom (label=Person name=Tom)") ∧ No Contradiction(Tom., Jane and Tom are siblings who share a close relationship.) → ¬S(Tom, "Jane and Tom are a married couple."))

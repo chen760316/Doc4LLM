@@ -1,0 +1,132 @@
+Predicates:
+1. entity1.name = "Alice"
+2. entity1.age = 30
+3. entity1.location = "New York"
+4. entity2.name = "Bob"
+5. entity2.age = 25
+6. entity2.location = "Los Angeles"
+7. "arrived at".time = "2025-04-20"
+8. "met".time = "2025-04-20"
+9. "were at".time = "2025-04-20"
+10. entity1.occupation = "Engineer"
+11. entity2.occupation = "Doctor"
+12. entity1.hobby = "Photography"
+13. entity2.hobby = "Cooking"
+14. entity1.status = "Single"
+15. entity2.status = "Married"
+16. "arrived at".event = "Conference"
+17. "met".event = "Wedding"
+18. "were at".event = "Party"
+19. entity1.salary = 70000
+20. entity2.salary = 50000
+21. entity1.education = "Masters"
+22. entity2.education = "Bachelors"
+23. "arrived at".duration = "2 hours"
+24. "met".duration = "1 hour"
+25. "were at".duration = "3 hours"
+26. M_NLI(entity1.hobby, entity2.hobby)
+27. T("Alice is single", "Alice is married", tau)
+28. tau(entity1.status, entity2.status)
+29. violate(entity1, entity2)
+30. Factual(entity1.age, entity2.age)
+31. Causal(entity1.hobby, entity2.hobby)
+32. Numeric(entity1.salary, entity2.salary)
+33. Temporal(entity1.location, entity2.location)
+34. Content(entity1.occupation, entity2.occupation)
+35. Relation(entity1.status, entity2.status)
+36. "arrived at".location = "Convention Center"
+37. "met".location = "Restaurant"
+38. "were at".location = "Park"
+39. entity1.favorite_food = "Pizza"
+40. entity2.favorite_food = "Sushi"
+41. entity1.pet = "Dog"
+42. entity2.pet = "Cat"
+43. "arrived at".weather = "Sunny"
+44. "met".weather = "Rainy"
+45. "were at".weather = "Cloudy"
+46. M_NLI(entity1.favorite_food, entity2.favorite_food)
+47. T("Alice loves pizza", "Alice hates pizza", tau)
+48. tau(entity1.favorite_food, entity2.favorite_food)
+49. violate(entity1, entity2)
+50. Factual(entity1.location, entity2.location)
+51. Causal(entity1.weather, entity2.weather)
+52. Numeric(entity1.age, entity2.age)
+53. Temporal(entity1.event, entity2.event)
+54. Content(entity1.hobby, entity2.hobby)
+55. Relation(entity1.pet, entity2.pet)
+56. "arrived at".mood = "Excited"
+57. "met".mood = "Disappointed"
+58. "were at".mood = "Neutral"
+59. entity1.travel_method = "Car"
+60. entity2.travel_method = "Train"
+61. entity1.trip_duration = "5 days"
+62. entity2.trip_duration = "3 days"
+63. "arrived at".purpose = "Business"
+64. "met".purpose = "Social"
+65. "were at".purpose = "Leisure"
+66. M_NLI(entity1.travel_method, entity2.travel_method)
+67. T("Alice traveled by car", "Alice did not travel by car", tau)
+68. tau(entity1.travel_method, entity2.travel_method)
+69. violate(entity1, entity2)
+70. Factual(entity1.trip_duration, entity2.trip_duration)
+71. Causal(entity1.purpose, entity2.purpose)
+72. Numeric(entity1.age, entity2.age)
+73. Temporal(entity1.mood, entity2.mood)
+74. Content(entity1.travel_method, entity2.travel_method)
+75. Relation(entity1.trip_duration, entity2.trip_duration)
+76. "arrived at".date = "2025-04-20"
+77. "met".date = "2025-04-21"
+78. "were at".date = "2025-04-22"
+79. entity1.city = "Chicago"
+80. entity2.city = "Miami"
+81. entity1.event_type = "Conference"
+82. entity2.event_type = "Seminar"
+83. "arrived at".attendance = "High"
+84. "met".attendance = "Low"
+85. "were at".attendance = "Moderate"
+86. M_NLI(entity1.city, entity2.city)
+87. T("Alice is in Chicago", "Alice is not in Chicago", tau)
+88. tau(entity1.city, entity2.city)
+89. violate(entity1, entity2)
+90. Factual(entity1.event_type, entity2.event_type)
+91. Causal(entity1.attendance, entity2.attendance)
+92. Numeric(entity1.age, entity2.age)
+93. Temporal(entity1.date, entity2.date)
+94. Content(entity1.city, entity2.city)
+95. Relation(entity1.event_type, entity2.event_type)
+96. "arrived at".transportation = "Bus"
+97. "met".transportation = "Plane"
+98. "were at".transportation = "Bicycle"
+99. M_NLI(entity1.transportation, entity2.transportation)
+100. T("Alice traveled by bus", "Alice did not travel by bus", tau)
+violate(x0, y0)
+
+Rules:
+1. Q[x0, y0](entity1.name = "Alice" ∧ entity2.name = "Bob" → violate(x0, y0))
+2. Q[x0, y0](entity1.age = 30 ∧ entity2.age = 25 → violate(x0, y0))
+3. Q[x0, y0](entity1.location = "New York" ∧ entity2.location = "Los Angeles" → violate(x0, y0))
+4. Q[x0, y0](entity1.status = "Single" ∧ entity2.status = "Married" → violate(x0, y0))
+5. Q[x0, y0](entity1.occupation = "Engineer" ∧ entity2.occupation = "Doctor" → violate(x0, y0))
+6. Q[x0, y0](entity1.hobby = "Photography" ∧ entity2.hobby = "Cooking" → violate(x0, y0))
+7. Q[x0, y0](entity1.age = 30 ∧ entity1.status = "Single" ∧ entity2.age = 25 → violate(x0, y0))
+8. Q[x0, y0](entity1.location = "New York" ∧ entity2.location = "Los Angeles" ∧ entity1.hobby = "Photography" → violate(x0, y0))
+9. Q[x0, y0](entity1.salary = 70000 ∧ entity2.salary = 50000 ∧ entity1.age = 30 → violate(x0, y0))
+10. Q[x0, y0](entity1.name = "Alice" ∧ entity2.name = "Bob" ∧ entity1.status = "Single" ∧ entity2.status = "Married" → violate(x0, y0))
+11. Q[x0, y0](entity1.hobby = "Photography" ∧ entity2.hobby = "Cooking" ∧ entity1.occupation = "Engineer" ∧ entity2.occupation = "Doctor" → violate(x0, y0))
+12. Q[x0, y0](entity1.location = "New York" ∧ entity2.location = "Los Angeles" ∧ "arrived at".time = "2025-04-20" → violate(x0, y0))
+13. Q[x0, y0](entity1.age = 30 ∧ entity1.status = "Single" ∧ entity2.age = 25 ∧ entity2.status = "Married" ∧ entity1.hobby = "Photography" → violate(x0, y0))
+14. Q[x0, y0](entity1.salary = 70000 ∧ entity2.salary = 50000 ∧ entity1.education = "Masters" ∧ entity2.education = "Bachelors" → violate(x0, y0))
+15. Q[x0, y0](entity1.location = "New York" ∧ entity2.location = "Los Angeles" ∧ "met".event = "Wedding" ∧ "arrived at".event = "Conference" → violate(x0, y0))
+16. Q[x0, y0](entity1.name = "Alice" ∧ entity2.name = "Bob" ∧ entity1.age = 30 ∧ entity2.age = 25 ∧ entity1.status = "Single" ∧ entity2.status = "Married" → violate(x0, y0))
+17. Q[x0, y0](entity1.hobby = "Photography" ∧ entity2.hobby = "Cooking" ∧ entity1.occupation = "Engineer" ∧ entity2.occupation = "Doctor" ∧ "arrived at".weather = "Sunny" → violate(x0, y0))
+18. Q[x0, y0](entity1.salary = 70000 ∧ entity2.salary = 50000 ∧ entity1.age = 30 ∧ entity1.status = "Single" ∧ entity2.status = "Married" → violate(x0, y0))
+19. Q[x0, y0](entity1.location = "New York" ∧ entity2.location = "Los Angeles" ∧ "met".time = "2025-04-20" ∧ "were at".event = "Party" → violate(x0, y0))
+20. Q[x0, y0](entity1.name = "Alice" ∧ entity2.name = "Bob" ∧ entity1.hobby = "Photography" ∧ entity2.hobby = "Cooking" ∧ entity1.status = "Single" ∧ entity2.status = "Married" → violate(x0, y0))
+21. Q[x0, y0](entity1.age = 30 ∧ entity2.age = 25 ∧ entity1.location = "New York" ∧ entity2.location = "Los Angeles" ∧ entity1.occupation = "Engineer" ∧ entity2.occupation = "Doctor" → violate(x0, y0))
+22. Q[x0, y0](entity1.salary = 70000 ∧ entity2.salary = 50000 ∧ entity1.education = "Masters" ∧ entity2.education = "Bachelors" ∧ "arrived at".weather = "Sunny" → violate(x0, y0))
+23. Q[x0, y0](entity1.hobby = "Photography" ∧ entity2.hobby = "Cooking" ∧ entity1.status = "Single" ∧ entity2.status = "Married" ∧ "met".event = "Wedding" → violate(x0, y0))
+24. Q[x0, y0](entity1.name = "Alice" ∧ entity2.name = "Bob" ∧ entity1.age = 30 ∧ entity2.age = 25 ∧ entity1.location = "New York" ∧ entity2.location = "Los Angeles" → violate(x0, y0))
+25. Q[x0, y0](entity1.status = "Single" ∧ entity2.status = "Married" ∧ entity1.hobby = "Photography" ∧ entity2.hobby = "Cooking" ∧ "arrived at".event = "Conference" ∧ "met".event = "Wedding" → violate(x0, y0))
+26. Q[x0, y0](entity1.salary = 70000 ∧ entity2.salary = 50000 ∧ entity1.age = 30 ∧ entity2.age = 25 ∧ entity1.education = "Masters" ∧ entity2.education = "Bachelors" → violate(x0, y0))
+27. Q[x0, y0](entity1.location = "New York" ∧ entity2.location = "Los Angeles" ∧ "arrived at".time = "2025-04-20" ∧ "met".time = "2025-04-20" ∧ "were at".time = "2025-04-20" → violate(x0, y0))
+28. Q[x0, y0](entity1.name = "

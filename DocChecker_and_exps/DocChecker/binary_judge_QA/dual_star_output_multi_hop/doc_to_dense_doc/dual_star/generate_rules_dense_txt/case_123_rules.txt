@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 123)
+S1: General Morrison's statements are based on his extensive knowledge and first-hand experience with the U.S. military landscape.
+S2: there is no Air Force base in Idaho.
+
+Predicates:
+1. General_Morrison.knowledge
+2. General_Morrison.experience
+3. U.S._military_landscape.extensiveness
+4. Air_Force_base.Idaho
+5. General_Morrison.supports_claim
+6. claim.no_Air_Force_base
+7. knowledge.supports_claim
+8. experience.supports_claim
+9. General_Morrison.statements
+10. statements.based_on_knowledge
+11. statements.based_on_experience
+12. Idaho.has_no_Air_Force_base
+13. knowledge.is_extensive
+14. experience.is_first_hand
+15. military_landscape.is_U.S.
+16. claim.is_direct_assertion
+17. knowledge.supports_no_Air_Force_base
+18. experience.supports_no_Air_Force_base
+19. General_Morrison.is_expert
+20. expert.has_first_hand_experience
+21. military_landscape.includes.bases
+22. bases.include.Air_Force
+23. Air_Force.base_location
+24. base_location.is_Idaho
+25. claim.is_factual
+26. factual.supports_no_Air_Force_base
+27. General_Morrison.is_reliable_source
+28. reliable_source.supports_claim
+29. knowledge.is_based_on_experience
+30. experience.is_based_on_knowledge
+
+Rules:
+1. Q[General, General_Morrison.knowledge == "extensive"](General_Morrison.statements based_on_knowledge → Factual(x0, y0))
+2. Q[General, General_Morrison.experience == "first-hand"](General_Morrison.statements based_on_experience → Factual(x0, y0))
+3. Q[General, U.S._military_landscape.extensiveness == "true"](General_Morrison.knowledge supports_claim → Factual(x0, y0))
+4. Q[General, claim.no_Air_Force_base == "true"](General_Morrison.supports_claim → Factual(x0, y0))
+5. Q[General, Idaho.has_no_Air_Force_base == "true"](claim.no_Air_Force_base → Factual(x0, y0))
+6. Q[General, General_Morrison.is_expert == "true"](General_Morrison.knowledge supports_no_Air_Force_base → Factual(x0, y0))
+7. Q[General, experience.is_first_hand == "true"](General_Morrison.experience supports_no_Air_Force_base → Factual(x0, y0))
+8. Q[General, military_landscape.is_U.S. == "true"](General_Morrison.knowledge.is_based_on_experience → Factual(x0, y0))
+9. Q[General, claim.is_direct_assertion == "true"](claim.no_Air_Force_base → Factual(x0, y0))
+10. Q[General, General_Morrison.statements == "based on knowledge"](General_Morrison.knowledge.is_extensive → Factual(x0, y0))
+11. Q[General, General_Morrison.statements == "based on experience"](General_Morrison.experience.is_first_hand → Factual(x0, y0))
+12. Q[General, military_landscape.includes.bases == "true"](General_Morrison.knowledge supports_claim → Factual(x0, y0))
+13. Q[General, bases.include.Air_Force == "true"](military_landscape.includes.bases → Factual(x0, y0))
+14. Q[General, Air_Force.base_location == "Idaho"](base_location.is_Idaho → Factual(x0, y0))
+15. Q[General, claim.is_factual == "true"](General_Morrison.is_reliable_source → Factual(x0, y0))
+16. Q[General, reliable_source.supports_claim == "true"](General_Morrison.supports_claim → Factual(x0, y0))
+17. Q[General, knowledge.supports_no_Air_Force_base == "true"](General_Morrison.knowledge.is_extensive → Factual(x0, y0))
+18. Q[General, experience.supports_no_Air_Force_base == "true"](General_Morrison.experience.is_first_hand → Factual(x0, y0))
+19. Q[General, General_Morrison.is_reliable_source == "true"](General_Morrison.statements based_on_knowledge → Factual(x0, y0))
+20. Q[General, General_Morrison.knowledge == "based on experience"](knowledge.is_based_on_experience → Factual(x0, y0))
+21. Q[General, General_Morrison.experience == "based on knowledge"](experience.is_based_on_knowledge → Factual(x0, y0))
+22. Q[General, knowledge.is_extensive == "true"](General_Morrison.is_expert → Factual(x0, y0))
+23. Q[General, experience.is_first_hand == "true"](General_Morrison.is_expert → Factual(x0, y0))
+24. Q[General, military_landscape.includes.bases == "true"](bases.include.Air_Force → Factual(x0, y0))
+25. Q[General, Air_Force.base_location == "Idaho"](claim.no_Air_Force_base → Factual(x0, y0))
+26. Q[General, claim.is_factual == "true"](factual.supports_no_Air_Force_base → Factual(x0, y0))
+27. Q[General, General_Morrison.is_reliable_source == "true"](reliable_source.supports_claim → Factual(x0, y0))
+28. Q[General, knowledge.supports_claim == "true"](General_Morrison.statements based_on_experience → Factual(x0, y0))
+29. Q[General, experience.supports_claim == "true"](General_Morrison.statements based_on_knowledge → Factual(x0, y0))
+30. Q[General, General_Morrison.knowledge == "extensive"](knowledge.supports_no_Air_Force_base → Factual(x0, y0))

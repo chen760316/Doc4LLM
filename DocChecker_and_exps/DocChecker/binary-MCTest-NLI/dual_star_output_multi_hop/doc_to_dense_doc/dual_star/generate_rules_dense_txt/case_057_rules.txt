@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 57)
+S1: Eddy loved to sleep most of the day, at least 12 hours!
+S2: Eddy also loved his family.
+
+Predicates:
+1. Eddy.loves_sleep
+2. Eddy.sleep_duration
+3. Eddy.loves_family
+4. Eddy.is_present
+5. Eddy.engaged_with_family
+6. sleep.most_of_the_day
+7. family.is_active
+8. love.implies_presence
+9. love.implies_engagement
+10. contradicts(loves_sleep, loves_family)
+11. contradicts(is_present, loves_sleep)
+12. contradicts(engaged_with_family, loves_sleep)
+13. M_NLI(S1, S2)
+14. Causal(loves_sleep, not_present)
+15. Causal(loves_family, engaged_with_family)
+16. violate(loves_sleep, loves_family)
+17. sleep.duration_greater_than(12_hours)
+18. family.is_important_to(Eddy)
+19. love.requires_time
+20. love.requires_attention
+21. sleep.interferes_with_engagement
+22. family.needs_presence
+23. presence.enables_engagement
+24. Eddy.spends_time_with_family
+25. Eddy.chooses_sleep_over_family
+26. sleep.is_priority_for(Eddy)
+27. family.is_a_value_for(Eddy)
+28. love.is_a_choice
+29. engagement.requires_time
+30. presence.is_necessary_for(love)
+
+Rules:
+1. Q[Eddy, Eddy.loves_sleep, Eddy.loves_family](Eddy.loves_sleep == true → Causal(Eddy.loves_sleep, not_present))
+2. Q[Eddy, Eddy.sleep_duration, Eddy.loves_family](Eddy.sleep_duration > 12_hours → Causal(Eddy.sleep_duration, not_present))
+3. Q[Eddy, Eddy.loves_family, Eddy.is_present](Eddy.loves_family == true → Causal(Eddy.loves_family, Eddy.is_present))
+4. Q[Eddy, Eddy.loves_sleep, Eddy.engaged_with_family](Eddy.loves_sleep == true → Causal(Eddy.loves_sleep, not_engaged_with_family))
+5. Q[Eddy, Eddy.is_present, Eddy.loves_sleep](Eddy.is_present == false → Causal(Eddy.is_present, Eddy.loves_sleep))
+6. Q[Eddy, Eddy.engaged_with_family, Eddy.loves_sleep](Eddy.engaged_with_family == false → Causal(Eddy.engaged_with_family, Eddy.loves_sleep))
+7. Q[Eddy, sleep.most_of_the_day, Eddy.loves_family](sleep.most_of_the_day == true → Causal(sleep.most_of_the_day, not_present))
+8. Q[Eddy, love.implies_presence, Eddy.loves_sleep](love.implies_presence == true → Causal(love.implies_presence, not_present))
+9. Q[Eddy, love.implies_engagement, Eddy.loves_sleep](love.implies_engagement == true → Causal(love.implies_engagement, not_engaged_with_family))
+10. Q[Eddy, contradicts(loves_sleep, loves_family), Eddy.loves_family](contradicts(loves_sleep, loves_family) == true → Causal(contradicts(loves_sleep, loves_family), not_present))
+11. Q[Eddy, family.is_active, Eddy.loves_sleep](family.is_active == true → Causal(family.is_active, not_present))
+12. Q[Eddy, family.needs_presence, Eddy.loves_sleep](family.needs_presence == true → Causal(family.needs_presence, not_present))
+13. Q[Eddy, presence.is_necessary_for(love), Eddy.loves_sleep](presence.is_necessary_for(love) == true → Causal(presence.is_necessary_for(love), not_present))
+14. Q[Eddy, sleep.interferes_with_engagement, Eddy.loves_family](sleep.interferes_with_engagement == true → Causal(sleep.interferes_with_engagement, not_engaged_with_family))
+15. Q[Eddy, love.requires_time, Eddy.loves_sleep](love.requires_time == true → Causal(love.requires_time, not_present))
+16. Q[Eddy, love.requires_attention, Eddy.loves_sleep](love.requires_attention == true → Causal(love.requires_attention, not_present))
+17. Q[Eddy, family.is_important_to(Eddy), Eddy.loves_sleep](family.is_important_to(Eddy) == true → Causal(family.is_important_to(Eddy), not_present))
+18. Q[Eddy, Eddy.chooses_sleep_over_family, Eddy.loves_family](Eddy.chooses_sleep_over_family == true → Causal(Eddy.chooses_sleep_over_family, not_present))
+19. Q[Eddy, sleep.is_priority_for(Eddy), Eddy.loves_family](sleep.is_priority_for(Eddy) == true → Causal(sleep.is_priority_for(Eddy), not_present))
+20. Q[Eddy, engagement.requires_time, Eddy.loves_family](engagement.requires_time == true → Causal(engagement.requires_time, not_present))
+21. Q[Eddy, presence.enables_engagement, Eddy.loves_family](presence.enables_engagement == true → Causal(presence.enables_engagement, not_engaged_with_family))
+22. Q[Eddy, violate(loves_sleep, loves_family), Eddy.loves_family](violate(loves_sleep, loves_family) == true → Causal(violate(loves_sleep, loves_family), not_present))
+23. Q[Eddy, family.is_a_value_for(Eddy), Eddy.loves_sleep](family.is_a_value_for(Eddy) == true → Causal(family.is_a_value_for(Eddy), not_present))
+24. Q[Eddy, family.is_active, Eddy.loves_sleep](family.is_active == true → Causal(family.is_active, not_present))
+25. Q[Eddy, love.is_a_choice, Eddy.loves_sleep](love.is_a_choice == true → Causal(love.is_a_choice, not_present))
+26. Q[Eddy, sleep.duration_greater_than(12_hours), Eddy.loves_family](sleep.duration_greater_than(12_hours) == true → Causal(sleep.duration_greater_than(12_hours), not_present))
+27. Q[Eddy, family.needs_presence, Eddy.loves_sleep](family.needs_presence == true → Causal(family.needs_presence, not_present))
+28. Q[Eddy, love.implies_presence, Eddy.loves_family](love.implies_presence == true → Causal(love.implies_presence, not_present))
+29. Q[Eddy, love.implies_engagement, Eddy.loves_family](love.implies_engagement == true → Causal(love.implies_engagement, not_engaged_with_family))
+30. Q[Eddy, contradicts(is_present, loves_sleep), Eddy.loves_family](contradicts(is_present, loves_sleep) == true → Causal(contradicts(is_present, loves_sleep), not_present))

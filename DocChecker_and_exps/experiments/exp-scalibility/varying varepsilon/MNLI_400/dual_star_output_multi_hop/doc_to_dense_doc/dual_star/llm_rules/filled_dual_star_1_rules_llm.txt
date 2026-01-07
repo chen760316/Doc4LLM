@@ -1,0 +1,130 @@
+Predicates:
+1. entity1.name = "Howard"
+2. entity1.age = "35"
+3. entity1.occupation = "store owner"
+4. entity1.location = "New York"
+5. entity2.name = "Sheila"
+6. entity2.age = "30"
+7. entity2.occupation = "teacher"
+8. entity2.location = "New York"
+9. entity3.name = "Emma"
+10. entity3.age = "28"
+11. entity3.occupation = "nurse"
+12. entity3.location = "Los Angeles"
+13. "includes many from".doc_index = "42"
+14. "includes many from".label_text = "contradiction"
+15. "relationship".type = "marriage"
+16. "relationship".status = "harmonious"
+17. "relationship".duration = "5 years"
+18. "relationship".children_count = "1"
+19. M_NLI(entity1.occupation, entity2.occupation)
+20. M_NLI(entity1.location, entity3.location)
+21. T("Howard is married to Sheila", "Howard is married to Emma", tau)
+22. tau(entity1.name, entity2.name)
+23. violate(entity1, entity2)
+24. Factual(entity1, entity2)
+25. Causal(entity1, entity3)
+26. Numeric(entity1.children_count, entity2.children_count)
+27. Temporal(entity1.duration, entity2.duration)
+28. Content(entity1.age, entity2.age)
+29. Negation(entity1.occupation, entity2.occupation)
+30. Relation(entity1.name, entity3.name)
+31. "relationship".start_date = "2018-06-15"
+32. "relationship".end_date = "2023-06-15"
+33. entity1.children_names = ["Liam"]
+34. entity2.children_names = ["Sophia"]
+35. entity3.children_names = ["Mia"]
+36. "includes many from".source = "research paper"
+37. "includes many from".target = "contradiction examples"
+38. M_NLI(entity1.location, entity1.location)
+39. T("Howard sold 29 pairs of shoes", "Howard sold no shoes", tau)
+40. tau(entity1.occupation, entity2.occupation)
+41. violate(entity1, entity3)
+42. Factual(entity2, entity3)
+43. Causal(entity2, entity1)
+44. Numeric(entity2.age, entity3.age)
+45. Temporal(entity1.start_date, entity1.end_date)
+46. Content(entity1.location, entity2.location)
+47. Negation(entity1.name, entity2.name)
+48. Relation(entity2.name, entity3.name)
+49. "relationship".type = "friendship"
+50. "relationship".status = "strained"
+51. "relationship".duration = "2 years"
+52. "relationship".children_count = "0"
+53. M_NLI(entity1.children_count, entity2.children_count)
+54. T("Sheila has one child", "Sheila has no children", tau)
+55. tau(entity1.location, entity3.location)
+56. violate(entity2, entity3)
+57. Factual(entity3, entity1)
+58. Causal(entity3, entity2)
+59. Numeric(entity3.age, entity1.age)
+60. Temporal(entity2.start_date, entity2.end_date)
+61. Content(entity3.occupation, entity1.occupation)
+62. Negation(entity3.name, entity1.name)
+63. Relation(entity1.name, entity2.name)
+64. "includes many from".context = "social dynamics"
+65. "includes many from".examples = "contradictory statements"
+66. M_NLI(entity1.age, entity3.age)
+67. T("Emma is 28 years old", "Emma is 35 years old", tau)
+68. tau(entity1.occupation, entity3.occupation)
+69. violate(entity1, entity2)
+70. Factual(entity1, entity3)
+71. Causal(entity1, entity2)
+72. Numeric(entity1.children_count, entity3.children_count)
+73. Temporal(entity1.start_date, entity3.end_date)
+74. Content(entity2.location, entity3.location)
+75. Negation(entity2.name, entity3.name)
+76. Relation(entity1.name, entity2.name)
+77. "relationship".type = "partnership"
+78. "relationship".status = "conflicted"
+79. "relationship".duration = "3 years"
+80. "relationship".children_count = "2"
+81. M_NLI(entity1.children_names, entity2.children_names)
+82. T("Howard's children are Liam and Sophia", "Howard has no children", tau)
+83. tau(entity2.age, entity3.age)
+84. violate(entity2, entity3)
+85. Factual(entity2, entity1)
+86. Causal(entity2, entity3)
+87. Numeric(entity2.children_count, entity1.children_count)
+88. Temporal(entity3.start_date, entity2.end_date)
+89. Content(entity3.location, entity1.location)
+90. Negation(entity3.name, entity1.name)
+91. Relation(entity2.name, entity3.name)
+92. "includes many from".topic = "contradiction analysis"
+93. "includes many from".reference = "contradiction theory"
+94. M_NLI(entity1.occupation, entity2.occupation)
+95. T("Howard is a store owner", "Howard is a teacher", tau)
+96. tau(entity1.location, entity2.location)
+97. violate(entity1, entity3)
+98. Factual(entity3, entity2)
+99. Causal(entity3, entity1)
+100. Numeric(entity1.age, entity2.age)
+violate(x0, y0)
+
+Rules:
+1. Q[x0, y0](entity1.name = "Howard" ∧ entity2.name = "Sheila" → violate(x0, y0))
+2. Q[x0, y0](entity1.age = "35" ∧ entity2.age = "30" → violate(x0, y0))
+3. Q[x0, y0](entity1.occupation = "store owner" ∧ entity2.occupation = "teacher" → violate(x0, y0))
+4. Q[x0, y0](entity1.location = "New York" ∧ entity2.location = "New York" → violate(x0, y0))
+5. Q[x0, y0](entity1.name = "Howard" ∧ entity1.age = "35" ∧ entity2.name = "Sheila" → violate(x0, y0))
+6. Q[x0, y0](entity1.occupation = "store owner" ∧ entity2.occupation = "teacher" ∧ entity1.location = "New York" → violate(x0, y0))
+7. Q[x0, y0](entity1.name = "Howard" ∧ entity2.name = "Sheila" ∧ entity3.name = "Emma" → violate(x0, y0))
+8. Q[x0, y0](entity1.age = "35" ∧ entity2.age = "30" ∧ entity3.age = "28" → violate(x0, y0))
+9. Q[x0, y0](entity1.occupation = "store owner" ∧ entity2.occupation = "teacher" ∧ entity3.occupation = "nurse" → violate(x0, y0))
+10. Q[x0, y0](entity1.location = "New York" ∧ entity2.location = "New York" ∧ entity3.location = "Los Angeles" → violate(x0, y0))
+11. Q[x0, y0](entity1.name = "Howard" ∧ entity1.age = "35" ∧ entity1.occupation = "store owner" ∧ entity2.name = "Sheila" → violate(x0, y0))
+12. Q[x0, y0](entity1.age = "35" ∧ entity1.location = "New York" ∧ entity2.age = "30" ∧ entity2.location = "New York" → violate(x0, y0))
+13. Q[x0, y0](entity1.occupation = "store owner" ∧ entity2.occupation = "teacher" ∧ entity3.occupation = "nurse" ∧ entity3.location = "Los Angeles" → violate(x0, y0))
+14. Q[x0, y0](entity1.name = "Howard" ∧ entity1.age = "35" ∧ entity1.location = "New York" ∧ entity2.name = "Sheila" ∧ entity2.age = "30" → violate(x0, y0))
+15. Q[x0, y0](entity1.name = "Howard" ∧ entity2.name = "Sheila" ∧ entity3.name = "Emma" ∧ entity1.age = "35" ∧ entity2.age = "30" → violate(x0, y0))
+16. Q[x0, y0](entity1.occupation = "store owner" ∧ entity2.occupation = "teacher" ∧ entity3.occupation = "nurse" ∧ entity1.location = "New York" ∧ entity2.location = "New York" → violate(x0, y0))
+17. Q[x0, y0](entity1.name = "Howard" ∧ entity1.age = "35" ∧ entity1.occupation = "store owner" ∧ entity2.name = "Sheila" ∧ entity2.age = "30" ∧ entity2.occupation = "teacher" → violate(x0, y0))
+18. Q[x0, y0](entity1.location = "New York" ∧ entity2.location = "New York" ∧ entity3.location = "Los Angeles" ∧ entity1.age = "35" ∧ entity2.age = "30" → violate(x0, y0))
+19. Q[x0, y0](entity1.name = "Howard" ∧ entity1.age = "35" ∧ entity1.occupation = "store owner" ∧ entity2.name = "Sheila" ∧ entity2.age = "30" ∧ entity2.occupation = "teacher" ∧ entity3.name = "Emma" → violate(x0, y0))
+20. Q[x0, y0](entity1.age = "35" ∧ entity2.age = "30" ∧ entity3.age = "28" ∧ entity1.location = "New York" ∧ entity2.location = "New York" ∧ entity3.location = "Los Angeles" → violate(x0, y0))
+21. Q[x0, y0](entity1.occupation = "store owner" ∧ entity2.occupation = "teacher" ∧ entity3.occupation = "nurse" ∧ entity1.age = "35" ∧ entity2.age = "30" ∧ entity3.age = "28" → violate(x0, y0))
+22. Q[x0, y0](entity1.name = "Howard" ∧ entity1.age = "35" ∧ entity1.occupation = "store owner" ∧ entity1.location = "New York" ∧ entity2.name = "Sheila" ∧ entity2.age = "30" ∧ entity2.occupation = "teacher" → violate(x0, y0))
+23. Q[x0, y0](entity1.name = "Howard" ∧ entity1.age = "35" ∧ entity1.occupation = "store owner" ∧ entity1.location = "New York" ∧ entity2.name = "Sheila" ∧ entity2.age = "30" ∧ entity2.occupation = "teacher" ∧ entity3.name = "Emma" → violate(x0, y0))
+24. Q[x0, y0](entity1.age = "35" ∧ entity2.age = "30" ∧ entity3.age = "28" ∧ entity1.location = "New York" ∧ entity2.location = "New York" ∧ entity3.location = "Los Angeles" ∧ entity1.occupation = "store owner" → violate(x0, y0))
+25. Q[x0, y0](entity1.name = "Howard" ∧ entity1.age = "35" ∧ entity1.occupation = "store owner" ∧ entity1.location = "New York" ∧ entity2.name = "Sheila" ∧ entity2.age = "30" ∧ entity2.occupation = "teacher" ∧ entity3.name = "Emma" ∧ entity3.age = "28" → violate(x0, y0))
+26. Q[x0, y0](entity1.name = "Howard" ∧ entity

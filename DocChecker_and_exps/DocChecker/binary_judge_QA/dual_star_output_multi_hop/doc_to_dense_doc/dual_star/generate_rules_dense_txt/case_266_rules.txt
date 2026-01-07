@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 266)
+S1: The clause only specifies that senators must be at least 30 years old, have been a U.S. citizen for at least nine years, and reside in the states they represent at the time of election.
+S2: Senate members are not required to live in the states they represent.
+
+Predicates:
+1. Senator.age >= 30
+2. Senator.citizenship_duration >= 9
+3. Senator.residence_state = Senator.represented_state
+4. SenateMember.residence_state != SenateMember.represented_state
+5. Requirement.residence = true
+6. Requirement.age = true
+7. Requirement.citizenship = true
+8. M_NLI(S1, S2)
+9. Negation(Requirement.residence, SenateMember.residence_state)
+10. violate(Requirement.residence, SenateMember.residence_state)
+11. Senator.age < 30
+12. Senator.citizenship_duration < 9
+13. Senator.residence_state != Senator.represented_state
+14. SenateMember.residence_state = SenateMember.represented_state
+15. Requirement.residence = false
+16. Requirement.age = false
+17. Requirement.citizenship = false
+18. M_NLI(S2, S1)
+19. Negation(Requirement.age, Senator.age)
+20. violate(Requirement.age, Senator.age)
+21. Senator.residence_state = "not applicable"
+22. SenateMember.residence_state = "not applicable"
+23. Requirement.residence_state = "optional"
+24. Requirement.citizenship_duration = "mandatory"
+25. Requirement.age = "mandatory"
+26. M_NLI(S1, S1)
+27. Negation(Senator.residence_state, SenateMember.residence_state)
+28. violate(Senator.residence_state, SenateMember.residence_state)
+29. Senator.citizenship_duration = "at least 9 years"
+30. SenateMember.age = "at least 30 years"
+
+Rules:
+1. Q[The, Senator.residence_state = Senator.represented_state](Senator.age >= 30 ∧ Senator.citizenship_duration >= 9 → Negation(Requirement.residence, SenateMember.residence_state))
+2. Q[The, SenateMember.residence_state != SenateMember.represented_state](Senator.age >= 30 ∧ Senator.citizenship_duration >= 9 → Negation(Requirement.residence, SenateMember.residence_state))
+3. Q[The, Requirement.residence = true](Senator.age >= 30 ∧ Senator.citizenship_duration >= 9 → Negation(Requirement.residence, SenateMember.residence_state))
+4. Q[The, Requirement.age = true](Senator.age >= 30 ∧ Senator.citizenship_duration >= 9 → Negation(Requirement.age, Senator.age))
+5. Q[The, Requirement.citizenship = true](Senator.age >= 30 ∧ Senator.citizenship_duration >= 9 → Negation(Requirement.citizenship, Senator.citizenship_duration))
+6. Q[The, Requirement.residence = false](Senator.age >= 30 ∧ SenateMember.residence_state != SenateMember.represented_state → Negation(Requirement.residence, SenateMember.residence_state))
+7. Q[The, Requirement.age = false](Senator.age < 30 → Negation(Requirement.age, Senator.age))
+8. Q[The, Requirement.citizenship = false](Senator.citizenship_duration < 9 → Negation(Requirement.citizenship, Senator.citizenship_duration))
+9. Q[The, SenateMember.residence_state = "not applicable"](Senator.age >= 30 ∧ Senator.citizenship_duration >= 9 → Negation(Requirement.residence, SenateMember.residence_state))
+10. Q[The, Requirement.residence_state = "optional"](Senator.age >= 30 ∧ SenateMember.residence_state != SenateMember.represented_state → Negation(Requirement.residence, SenateMember.residence_state))
+11. Q[The, Requirement.citizenship_duration = "mandatory"](Senator.citizenship_duration < 9 → Negation(Requirement.citizenship, Senator.citizenship_duration))
+12. Q[The, Requirement.age = "mandatory"](Senator.age < 30 → Negation(Requirement.age, Senator.age))
+13. Q[The, M_NLI(S1, S2)](Senator.age >= 30 ∧ Senator.citizenship_duration >= 9 → Negation(Requirement.residence, SenateMember.residence_state))
+14. Q[The, M_NLI(S2, S1)](Senator.age >= 30 ∧ SenateMember.residence_state != SenateMember.represented_state → Negation(Requirement.residence, SenateMember.residence_state))
+15. Q[The, Negation(Senator.residence_state, SenateMember.residence_state)](Senator.age >= 30 ∧ Senator.citizenship_duration >= 9 → Negation(Requirement.residence, SenateMember.residence_state))
+16. Q[The, violate(Requirement.residence, SenateMember.residence_state)](Senator.age >= 30 ∧ SenateMember.residence_state != SenateMember.represented_state → Negation(Requirement.residence, SenateMember.residence_state))
+17. Q[The, violate(Requirement.age, Senator.age)](Senator.age < 30 → Negation(Requirement.age, Senator.age))
+18. Q[The, violate(Requirement.citizenship, Senator.citizenship_duration)](Senator.citizenship_duration < 9 → Negation(Requirement.citizenship, Senator.citizenship_duration))
+19. Q[The, SenateMember.age = "at least 30 years"](Senator.age < 30 → Negation(Requirement.age, Senator.age))
+20. Q[The, Senator.citizenship_duration = "at least 9 years"](Senator.citizenship_duration < 9 → Negation(Requirement.citizenship, Senator.citizenship_duration))
+21. Q[The, SenateMember.residence_state = "not applicable"](Senator.residence_state != Senator.represented_state → Negation(Requirement.residence, SenateMember.residence_state))
+22. Q[The, Requirement.residence = true](Senator.residence_state = Senator.represented_state → Negation(Requirement.residence, SenateMember.residence_state))
+23. Q[The, Requirement.residence = false](SenateMember.residence_state != SenateMember.represented_state → Negation(Requirement.residence, SenateMember.residence_state))
+24. Q[The, Requirement.age = true](Senator.age >= 30 → Negation(Requirement.age, Senator.age))
+25. Q[The, Requirement.citizenship = true](Senator.citizenship_duration >= 9 → Negation(Requirement.citizenship, Senator.citizenship_duration))
+26. Q[The, M_NLI(S1, S1)](Senator.age >= 30 ∧ Senator.citizenship_duration >= 9 → Negation(Requirement.residence, SenateMember.residence_state))
+27. Q[The, violate(Senator.residence_state, SenateMember.residence_state)](Senator.residence_state != Senator.represented_state → Negation(Requirement.residence, SenateMember.residence_state))
+28. Q[The, Requirement.residence_state = "optional"](Senator.residence_state != Senator.represented_state → Negation(Requirement.residence, SenateMember.residence_state))
+29. Q[The, Requirement.age = "mandatory"](Senator.age < 30 → Negation(Requirement.age, Senator.age))
+30. Q[The, Requirement.citizenship_duration = "mandatory"](Senator.citizenship_duration < 9 → Negation(Requirement.citizenship, Senator.citizenship_duration))

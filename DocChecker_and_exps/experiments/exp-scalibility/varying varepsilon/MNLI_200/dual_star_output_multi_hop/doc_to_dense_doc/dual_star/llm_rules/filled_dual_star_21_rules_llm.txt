@@ -1,0 +1,129 @@
+Predicates:
+1. entity1.name = "Alice"
+2. entity1.age = 30
+3. entity1.hobby = "reading"
+4. entity2.name = "Bob"
+5. entity2.age = 25
+6. entity2.hobby = "sports"
+7. dislikes.entity1 = "Alice"
+8. dislikes.entity2 = "Bob"
+9. likes.entity1 = "Alice"
+10. likes.entity2 = "Bob"
+11. entity1.city = "New York"
+12. entity2.city = "Los Angeles"
+13. entity1.occupation = "engineer"
+14. entity2.occupation = "doctor"
+15. M_NLI(entity1.hobby, entity2.hobby)
+16. M_NLI(entity1.city, entity2.city)
+17. T("Alice likes reading", "Alice dislikes reading", "Negation")
+18. T("Bob is 25 years old", "Bob is 30 years old", "Numeric")
+19. tau(entity1.age, entity2.age)
+20. violate(entity1, entity2)
+21. Factual(entity1, entity2)
+22. Content(entity1, entity2)
+23. Causal(entity1, entity2)
+24. Negation(entity1, entity2)
+25. Relation(entity1, entity2)
+26. Numeric(entity1, entity2)
+27. Temporal(entity1, entity2)
+28. entity1.favorite_food = "pizza"
+29. entity2.favorite_food = "sushi"
+30. dislikes.entity1 = "Bob"
+31. dislikes.entity2 = "Alice"
+32. likes.entity1 = "Bob"
+33. likes.entity2 = "Alice"
+34. entity1.pet = "dog"
+35. entity2.pet = "cat"
+36. M_NLI(entity1.favorite_food, entity2.favorite_food)
+37. T("Alice has a dog", "Alice does not have a dog", "Negation")
+38. T("Bob enjoys sports", "Bob hates sports", "Content")
+39. tau(entity1.hobby, entity2.hobby)
+40. violate(entity2, entity1)
+41. Factual(entity2, entity1)
+42. Content(entity2, entity1)
+43. Causal(entity2, entity1)
+44. Negation(entity2, entity1)
+45. Relation(entity2, entity1)
+46. Numeric(entity2, entity1)
+47. Temporal(entity2, entity1)
+48. entity1.education = "Masters"
+49. entity2.education = "Bachelors"
+50. dislikes.entity1 = "Charlie"
+51. dislikes.entity2 = "Alice"
+52. likes.entity1 = "Charlie"
+53. likes.entity2 = "Alice"
+54. M_NLI(entity1.education, entity2.education)
+55. T("Charlie has a Masters degree", "Charlie has a Bachelors degree", "Factual")
+56. tau(entity1.city, entity2.city)
+57. violate(entity1, entity2)
+58. Factual(entity1, entity2)
+59. Content(entity1, entity2)
+60. Causal(entity1, entity2)
+61. Negation(entity1, entity2)
+62. Relation(entity1, entity2)
+63. Numeric(entity1, entity2)
+64. Temporal(entity1, entity2)
+65. entity1.favorite_color = "blue"
+66. entity2.favorite_color = "red"
+67. dislikes.entity1 = "David"
+68. dislikes.entity2 = "Bob"
+69. likes.entity1 = "David"
+70. likes.entity2 = "Bob"
+71. M_NLI(entity1.favorite_color, entity2.favorite_color)
+72. T("David likes blue", "David dislikes blue", "Negation")
+73. tau(entity1.occupation, entity2.occupation)
+74. violate(entity2, entity1)
+75. Factual(entity2, entity1)
+76. Content(entity2, entity1)
+77. Causal(entity2, entity1)
+78. Negation(entity2, entity1)
+79. Relation(entity2, entity1)
+80. Numeric(entity2, entity1)
+81. Temporal(entity2, entity1)
+82. entity1.marital_status = "single"
+83. entity2.marital_status = "married"
+84. dislikes.entity1 = "Eve"
+85. dislikes.entity2 = "Charlie"
+86. likes.entity1 = "Eve"
+87. likes.entity2 = "Charlie"
+88. M_NLI(entity1.marital_status, entity2.marital_status)
+89. T("Eve is single", "Eve is not single", "Negation")
+90. tau(entity1.hobby, entity2.hobby)
+91. violate(entity1, entity2)
+92. Factual(entity1, entity2)
+93. Content(entity1, entity2)
+94. Causal(entity1, entity2)
+95. Negation(entity1, entity2)
+96. Relation(entity1, entity2)
+97. Numeric(entity1, entity2)
+98. Temporal(entity1, entity2)
+99. entity1.salary = 70000
+100. entity2.salary = 50000
+violate(x0, y0)
+
+Rules:
+1. Q[x0, y0](entity1.name = "Alice" ∧ entity2.name = "Bob" → violate(x0, y0))
+2. Q[x0, y0](entity1.age = 30 ∧ entity2.age = 25 → violate(x0, y0))
+3. Q[x0, y0](likes.entity1 = "Alice" ∧ dislikes.entity2 = "Bob" → violate(x0, y0))
+4. Q[x0, y0](entity1.city = "New York" ∧ entity2.city = "Los Angeles" ∧ dislikes.entity1 = "Alice" → violate(x0, y0))
+5. Q[x0, y0](entity1.occupation = "engineer" ∧ entity2.occupation = "doctor" ∧ likes.entity2 = "Bob" → violate(x0, y0))
+6. Q[x0, y0](entity1.hobby = "reading" ∧ entity2.hobby = "sports" ∧ dislikes.entity2 = "Alice" → violate(x0, y0))
+7. Q[x0, y0](entity1.favorite_food = "pizza" ∧ entity2.favorite_food = "sushi" ∧ dislikes.entity1 = "Bob" ∧ likes.entity2 = "Alice" → violate(x0, y0))
+8. Q[x0, y0](entity1.education = "Masters" ∧ entity2.education = "Bachelors" ∧ dislikes.entity1 = "Charlie" ∧ likes.entity2 = "Alice" → violate(x0, y0))
+9. Q[x0, y0](entity1.marital_status = "single" ∧ entity2.marital_status = "married" ∧ dislikes.entity1 = "Eve" ∧ likes.entity2 = "Charlie" → violate(x0, y0))
+10. Q[x0, y0](entity1.age = 30 ∧ entity2.age = 25 ∧ entity1.city = "New York" ∧ entity2.city = "Los Angeles" ∧ dislikes.entity1 = "Alice" → violate(x0, y0))
+11. Q[x0, y0](entity1.hobby = "reading" ∧ entity2.hobby = "sports" ∧ entity1.occupation = "engineer" ∧ entity2.occupation = "doctor" ∧ likes.entity2 = "Bob" → violate(x0, y0))
+12. Q[x0, y0](entity1.favorite_color = "blue" ∧ entity2.favorite_color = "red" ∧ dislikes.entity1 = "David" ∧ likes.entity2 = "Bob" ∧ M_NLI(entity1.favorite_color, entity2.favorite_color) → violate(x0, y0))
+13. Q[x0, y0](dislikes.entity1 = "Alice" ∧ dislikes.entity2 = "Bob" ∧ likes.entity1 = "Bob" ∧ likes.entity2 = "Alice" ∧ M_NLI(entity1.hobby, entity2.hobby) ∧ tau(entity1.age, entity2.age) → violate(x0, y0))
+14. Q[x0, y0](entity1.salary = 70000 ∧ entity2.salary = 50000 ∧ dislikes.entity1 = "Eve" ∧ dislikes.entity2 = "Charlie" ∧ likes.entity1 = "Eve" ∧ likes.entity2 = "Charlie" → violate(x0, y0))
+15. Q[x0, y0](entity1.pet = "dog" ∧ entity2.pet = "cat" ∧ dislikes.entity1 = "David" ∧ dislikes.entity2 = "Bob" ∧ likes.entity1 = "David" ∧ likes.entity2 = "Bob" → violate(x0, y0))
+16. Q[x0, y0](entity1.name = "Alice" ∧ entity1.age = 30 ∧ entity2.name = "Bob" ∧ entity2.age = 25 ∧ dislikes.entity1 = "Alice" ∧ likes.entity2 = "Bob" → violate(x0, y0))
+17. Q[x0, y0](entity1.city = "New York" ∧ entity2.city = "Los Angeles" ∧ entity1.hobby = "reading" ∧ entity2.hobby = "sports" ∧ dislikes.entity1 = "Alice" ∧ dislikes.entity2 = "Bob" → violate(x0, y0))
+18. Q[x0, y0](entity1.occupation = "engineer" ∧ entity2.occupation = "doctor" ∧ entity1.favorite_food = "pizza" ∧ entity2.favorite_food = "sushi" ∧ dislikes.entity1 = "Charlie" ∧ likes.entity2 = "Alice" → violate(x0, y0))
+19. Q[x0, y0](entity1.favorite_color = "blue" ∧ entity2.favorite_color = "red" ∧ dislikes.entity1 = "Eve" ∧ dislikes.entity2 = "Charlie" ∧ likes.entity1 = "Eve" ∧ likes.entity2 = "Charlie" → violate(x0, y0))
+20. Q[x0, y0](entity1.marital_status = "single" ∧ entity2.marital_status = "married" ∧ dislikes.entity1 = "David" ∧ dislikes.entity2 = "Bob" ∧ likes.entity1 = "David" ∧ likes.entity2 = "Bob" → violate(x0, y0))
+21. Q[x0, y0](entity1.age = 30 ∧ entity2.age = 25 ∧ entity1.hobby = "reading" ∧ entity2.hobby = "sports" ∧ dislikes.entity1 = "Alice" ∧ dislikes.entity2 = "Bob" → violate(x0, y0))
+22. Q[x0, y0](entity1.city = "New York" ∧ entity2.city = "Los Angeles" ∧ entity1.occupation = "engineer" ∧ entity2.occupation = "doctor" ∧ dislikes.entity1 = "Alice" ∧ likes.entity2 = "Bob" → violate(x0, y0))
+23. Q[x0, y0](entity1.favorite_food = "pizza" ∧ entity2.favorite_food = "sushi" ∧ dislikes.entity1 = "Charlie" ∧ dislikes.entity2 = "Alice" ∧ likes.entity1 = "Charlie" ∧ likes.entity2 = "Alice" → violate(x0, y0))
+24. Q[x0, y0](entity1.education = "Masters" ∧ entity2.education = "Bachelors" ∧ dislikes.entity1 = "Eve" ∧ dislikes.entity2 = "Charlie" ∧ likes.entity1 = "Eve" ∧ likes.entity2 = "Charlie" → violate(x0, y0))
+25. Q[x0, y0](entity1.salary = 70000 ∧ entity2.salary = 50000 ∧ dislikes.entity1 = "David" ∧ dislikes.entity2 = "Bob"

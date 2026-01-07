@@ -1,0 +1,68 @@
+Predicates:
+Chimène.label != "Character"
+Chimène.label != Wedding.label
+Chimène.label = "Character"
+Chimène.name != "Chimène"
+Chimène.name != Don Sanche.name
+Chimène.name != King.name
+Chimène.name != Rodrigue.name
+Chimène.name != Wedding.name
+Chimène.name = "Chimène"
+Chimène___Don Sanche.doc_id = "3488771841_6"
+Chimène___Don Sanche.goal = "bring Rodrigue's head"
+Chimène___Don Sanche.relationship != Chimène___Rodrigue.relationship
+Chimène___Don Sanche.relationship != Chimène___Wedding.relationship
+Chimène___Don Sanche.relationship = "Chimène chooses Don Sanche as her champion for the duel."
+Chimène___King.doc_id = "3488771841_6"
+Chimène___King.relationship != Chimène___Don Sanche.relationship
+Chimène___King.relationship != Chimène___Rodrigue.relationship
+Chimène___King.relationship != Chimène___Wedding.relationship
+Chimène___King.relationship = "Chimène asks the King for Rodrigue's head."
+Chimène___Rodrigue.condition = "if he wins, they will marry"
+Chimène___Rodrigue.context = "believes him to be alive"
+Chimène___Rodrigue.doc_id = "3488771841_6"
+Chimène___Rodrigue.relationship != Chimène___Wedding.relationship
+Chimène___Rodrigue.relationship = "Chimène persuades Rodrigue to do his best in the duel."
+Chimène___Rodrigue.time_frame = "up to a year in advance"
+Chimène___Wedding.relationship = "Chimène will set the date for the wedding."
+Don Sanche.label != "Character"
+Don Sanche.label != Wedding.label
+Don Sanche.label = "Character"
+Don Sanche.name != "Don Sanche"
+Don Sanche.name != Rodrigue.name
+Don Sanche.name != Wedding.name
+Don Sanche.name = "Don Sanche"
+King.label != "Character"
+King.label != Wedding.label
+King.label = "Character"
+King.name != "King"
+King.name != Don Sanche.name
+King.name != Rodrigue.name
+King.name != Wedding.name
+King.name = "King"
+None_ML(Chimène___King.attrs, Chimène___Rodrigue.attrs)
+None_ML(King.attrs, Rodrigue.attrs)
+Rodrigue.label != "Character"
+Rodrigue.label != Wedding.label
+Rodrigue.label = "Character"
+Rodrigue.name != "Rodrigue"
+Rodrigue.name != Wedding.name
+Rodrigue.name = "Rodrigue"
+Rodrigue.title != "the Cid"
+Rodrigue.title = "the Cid"
+Wedding.label != "Event"
+Wedding.label = "Event"
+Wedding.name != "Wedding"
+Wedding.name = "Wedding"
+
+Rules:
+Q[Chimène,Chimène] (Chimène.label != "Character" ∧ Wedding.name = "Wedding" → Rodrigue.label != Wedding.label)
+Q[Chimène,Chimène] (Chimène___Don Sanche.doc_id = "3488771841_6" ∧ Chimène___Don Sanche.relationship != Chimène___Rodrigue.relationship ∧ Rodrigue.label = "Character" ∧ None_ML(King.attrs, Rodrigue.attrs) ∧ Rodrigue.title = "the Cid" ∧ Chimène.name != Don Sanche.name → Chimène___Rodrigue.doc_id = "3488771841_6")
+Q[Chimène,Chimène] (None_ML(Chimène___King.attrs, Chimène___Rodrigue.attrs) ∧ Chimène___Rodrigue.time_frame = "up to a year in advance" ∧ Rodrigue.title != "the Cid" ∧ King.label = "Character" → Chimène___King.doc_id = "3488771841_6")
+Q[Chimène,Chimène] (Chimène___Don Sanche.relationship = "Chimène chooses Don Sanche as her champion for the duel." ∧ Rodrigue.title != "the Cid" ∧ Chimène___Rodrigue.time_frame = "up to a year in advance" ∧ Chimène___Don Sanche.relationship != Chimène___Rodrigue.relationship ∧ Don Sanche.name = "Don Sanche" → Chimène___King.relationship != Chimène___Rodrigue.relationship)
+Q[Chimène,Chimène] (King.name != Don Sanche.name ∧ Chimène.label != "Character" ∧ Chimène___Rodrigue.time_frame = "up to a year in advance" → Rodrigue.name != "Rodrigue")
+Q[Chimène,Chimène] (King.name != Don Sanche.name ∧ Chimène.label = "Character" ∧ Chimène___Rodrigue.time_frame = "up to a year in advance" ∧ Chimène___Rodrigue.context = "believes him to be alive" → Don Sanche.name != Rodrigue.name)
+Q[Chimène,Chimène] (Wedding.label = "Event" ∧ Chimène.name != Rodrigue.name ∧ Don Sanche.label != Wedding.label ∧ Don Sanche.name != "Don Sanche" ∧ Chimène___King.doc_id = "3488771841_6" ∧ Rodrigue.name != Wedding.name → Don Sanche.label != "Character")
+Q[Chimène,Chimène] (Rodrigue.name != "Rodrigue" ∧ Chimène___King.doc_id = "3488771841_6" ∧ Don Sanche.label != Wedding.label ∧ Rodrigue.label != "Character" ∧ King.label = "Character" → Chimène.label != Wedding.label)
+Q[Chimène,Chimène] (Wedding.name = "Wedding" ∧ King.name != Don Sanche.name → Chimène___King.relationship = "Chimène asks the King for Rodrigue's head.")
+Q[Chimène,Chimène] (Don Sanche.name != Wedding.name ∧ Wedding.label != "Event" ∧ None_ML(King.attrs, Rodrigue.attrs) → King.label != "Character")

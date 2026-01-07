@@ -1,0 +1,66 @@
+Source: dense_text.txt (Index 1193)
+S1: I don't feel wonderful.
+S2: I don't feel wonderful at all.
+
+Predicates:
+1. S1.feeling_negation
+2. S2.feeling_negation
+3. M_NLI(S1, S2)
+4. Negation(S1.feeling_wonderful, S2.feeling_wonderful)
+5. violate(S1.feeling_wonderful, S2.feeling_wonderful)
+6. S1.emphasis_level
+7. S2.emphasis_level
+8. "contradicts".assertion(S1, S2)
+9. S1.emotional_state
+10. S2.emotional_state
+11. "stronger_negation".emphasis(S2)
+12. "weaker_negation".emphasis(S1)
+13. S1.wonderful_feeling
+14. S2.wonderful_feeling
+15. "negation_strength".relationship(S1, S2)
+16. S1.negative_emotion
+17. S2.negative_emotion
+18. "emphasis".relationship(S1, S2)
+19. S1.assertion_strength
+20. S2.assertion_strength
+21. "emotional_response".attribute(S1)
+22. "emotional_response".attribute(S2)
+23. S1.affirmation
+24. S2.affirmation
+25. "contradictory_statements".relationship(S1, S2)
+26. S1.negative_affect
+27. S2.negative_affect
+28. "intensity".attribute(S1)
+29. "intensity".attribute(S2)
+30. "emotional_negation".relationship(S1, S2)
+
+Rules:
+1. Q[don, S1.feeling_negation, S2.feeling_negation](S1.feeling_negation == true → Negation(S1.feeling_wonderful, S2.feeling_wonderful))
+2. Q[don, S1.emphasis_level, S2.emphasis_level](S1.emphasis_level == "weaker_negation" → Negation(S1.feeling_wonderful, S2.feeling_wonderful))
+3. Q[don, S1.negative_emotion, S2.negative_emotion](S1.negative_emotion == true → Negation(S1.feeling_wonderful, S2.feeling_wonderful))
+4. Q[don, S1.wonderful_feeling, S2.wonderful_feeling](S1.wonderful_feeling == false → Negation(S1.feeling_wonderful, S2.feeling_wonderful))
+5. Q[don, S1.assertion_strength, S2.assertion_strength](S1.assertion_strength == "weak" → Negation(S1.feeling_wonderful, S2.feeling_wonderful))
+6. Q[don, S1.negative_affect, S2.negative_affect](S1.negative_affect == true → Negation(S1.feeling_wonderful, S2.feeling_wonderful))
+7. Q[don, S1.emotional_state, S2.emotional_state](S1.emotional_state == "negative" → Negation(S1.feeling_wonderful, S2.feeling_wonderful))
+8. Q[don, "stronger_negation".emphasis(S2), "weaker_negation".emphasis(S1)](S1.feeling_negation == true → Negation(S1.feeling_wonderful, S2.feeling_wonderful))
+9. Q[don, "contradictory_statements".relationship(S1, S2), "emotional_negation".relationship(S1, S2)](M_NLI(S1, S2) == true → Negation(S1.feeling_wonderful, S2.feeling_wonderful))
+10. Q[don, "intensity".attribute(S1), "intensity".attribute(S2)](S1.intensity == "low" → Negation(S1.feeling_wonderful, S2.feeling_wonderful))
+11. Q[don, S1.feeling_negation, S2.feeling_negation](S2.feeling_negation == true → Negation(S1.feeling_wonderful, S2.feeling_wonderful))
+12. Q[don, S1.emphasis_level, S2.emphasis_level](S2.emphasis_level == "strong" → Negation(S1.feeling_wonderful, S2.feeling_wonderful))
+13. Q[don, S1.negative_emotion, S2.negative_emotion](S2.negative_emotion == true → Negation(S1.feeling_wonderful, S2.feeling_wonderful))
+14. Q[don, S1.wonderful_feeling, S2.wonderful_feeling](S2.wonderful_feeling == false → Negation(S1.feeling_wonderful, S2.feeling_wonderful))
+15. Q[don, S1.assertion_strength, S2.assertion_strength](S2.assertion_strength == "strong" → Negation(S1.feeling_wonderful, S2.feeling_wonderful))
+16. Q[don, S1.negative_affect, S2.negative_affect](S2.negative_affect == true → Negation(S1.feeling_wonderful, S2.feeling_wonderful))
+17. Q[don, S1.emotional_state, S2.emotional_state](S2.emotional_state == "negative" → Negation(S1.feeling_wonderful, S2.feeling_wonderful))
+18. Q[don, "stronger_negation".emphasis(S2), "weaker_negation".emphasis(S1)](S2.feeling_negation == true → Negation(S1.feeling_wonderful, S2.feeling_wonderful))
+19. Q[don, "contradictory_statements".relationship(S1, S2), "emotional_negation".relationship(S1, S2)](M_NLI(S1, S2) == true → Negation(S1.feeling_wonderful, S2.feeling_wonderful))
+20. Q[don, "intensity".attribute(S1), "intensity".attribute(S2)](S2.intensity == "high" → Negation(S1.feeling_wonderful, S2.feeling_wonderful))
+21. Q[don, S1.feeling_negation, S2.feeling_negation](S1.feeling_negation == true ∧ S2.feeling_negation == true → Negation(S1.feeling_wonderful, S2.feeling_wonderful))
+22. Q[don, S1.emphasis_level, S2.emphasis_level](S1.emphasis_level == "low" ∧ S2.emphasis_level == "high" → Negation(S1.feeling_wonderful, S2.feeling_wonderful))
+23. Q[don, S1.negative_emotion, S2.negative_emotion](S1.negative_emotion == true ∧ S2.negative_emotion == true → Negation(S1.feeling_wonderful, S2.feeling_wonderful))
+24. Q[don, S1.wonderful_feeling, S2.wonderful_feeling](S1.wonderful_feeling == false ∧ S2.wonderful_feeling == false → Negation(S1.feeling_wonderful, S2.feeling_wonderful))
+25. Q[don, S1.assertion_strength, S2.assertion_strength](S1.assertion_strength == "weak" ∧ S2.assertion_strength == "strong" → Negation(S1.feeling_wonderful, S2.feeling_wonderful))
+26. Q[don, S1.negative_affect, S2.negative_affect](S1.negative_affect == true ∧ S2.negative_affect == true → Negation(S1.feeling_wonderful, S2.feeling_wonderful))
+27. Q[don, S1.emotional_state, S2.emotional_state](S1.emotional_state == "neutral" ∧ S2.emotional_state == "negative" → Negation(S1.feeling_wonderful, S2.feeling_wonderful))
+28. Q[don, "stronger_negation".emphasis(S2), "weaker_negation".emphasis(S1)](S1.feeling_negation == true ∧ S2.feeling_negation == true → Negation(S1.feeling_wonderful, S2.feeling_wonderful))
+29. Q[don, "contradictory_statements".relationship

@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 151)
+S1: You cannot earn an academic degree if you drop out of the program.
+S2: You can still earn an academic degree even if you drop out of the program.
+
+Predicates:
+1. Program.hasDegree
+2. Student.dropsOut
+3. Degree.earned
+4. Student.eligibleForDegree
+5. Program.requiresCompletion
+6. Student.enrollsInProgram
+7. Degree.isAcademic
+8. Student.dropsOutOfProgram
+9. Program.allowsCompletion
+10. Degree.isNotEarned
+11. Student.canEarnDegree
+12. Program.isCompleted
+13. Student.isEnrolled
+14. Degree.isPossible
+15. Student.dropsOutButEarnsDegree
+16. Program.hasRequirements
+17. Student.meetsRequirements
+18. Degree.isAwarded
+19. Student.isNotEligibleForDegree
+20. Program.isDropped
+21. Degree.isNotPossible
+22. Student.canStillEarnDegree
+23. Program.hasDropOutPolicy
+24. Student.returnsToProgram
+25. Degree.isGranted
+26. Student.isInProgram
+27. Program.hasCompletionCriteria
+28. Degree.isAchieved
+29. Student.isNotInProgram
+30. Program.allowsDegreeAfterDropOut
+
+Rules:
+1. Q[You, Student.dropsOut, Degree.isNotEarned](Student.isEnrolled == true → Causal(Student.dropsOut, Degree.isNotEarned))
+2. Q[You, Student.dropsOutOfProgram, Degree.isNotPossible](Program.requiresCompletion == true → Causal(Student.dropsOutOfProgram, Degree.isNotPossible))
+3. Q[You, Student.dropsOut, Degree.isPossible](Student.canStillEarnDegree == true → Causal(Student.dropsOut, Degree.isPossible))
+4. Q[You, Student.dropsOutOfProgram, Degree.isGranted](Program.allowsDegreeAfterDropOut == true → Causal(Student.dropsOutOfProgram, Degree.isGranted))
+5. Q[You, Student.dropsOut, Degree.earned](Degree.isAwarded == true → Causal(Student.dropsOut, Degree.earned))
+6. Q[You, Student.dropsOut, Degree.isAcademic](Degree.isNotEarned == true → Causal(Student.dropsOut, Degree.isAcademic))
+7. Q[You, Student.dropsOutOfProgram, Student.isNotEligibleForDegree](Program.hasRequirements == true → Causal(Student.dropsOutOfProgram, Student.isNotEligibleForDegree))
+8. Q[You, Student.dropsOut, Student.eligibleForDegree](Degree.isAchieved == true → Causal(Student.dropsOut, Student.eligibleForDegree))
+9. Q[You, Student.dropsOutOfProgram, Program.hasDropOutPolicy](Program.isCompleted == false → Causal(Student.dropsOutOfProgram, Program.hasDropOutPolicy))
+10. Q[You, Student.dropsOut, Student.canEarnDegree](Degree.isPossible == false → Causal(Student.dropsOut, Student.canEarnDegree))
+11. Q[You, Student.dropsOutOfProgram, Program.allowsCompletion](Student.isInProgram == false → Causal(Student.dropsOutOfProgram, Program.allowsCompletion))
+12. Q[You, Student.dropsOut, Degree.isNotEarned](Program.hasCompletionCriteria == true → Causal(Student.dropsOut, Degree.isNotEarned))
+13. Q[You, Student.dropsOutOfProgram, Degree.isGranted](Student.returnsToProgram == true → Causal(Student.dropsOutOfProgram, Degree.isGranted))
+14. Q[You, Student.dropsOut, Degree.isNotPossible](Student.isNotInProgram == true → Causal(Student.dropsOut, Degree.isNotPossible))
+15. Q[You, Student.dropsOutOfProgram, Degree.isAcademic](Program.hasRequirements == false → Causal(Student.dropsOutOfProgram, Degree.isAcademic))
+16. Q[You, Student.dropsOut, Degree.isAchieved](Student.canEarnDegree == false → Causal(Student.dropsOut, Degree.isAchieved))
+17. Q[You, Student.dropsOutOfProgram, Student.meetsRequirements](Degree.isAwarded == false → Causal(Student.dropsOutOfProgram, Student.meetsRequirements))
+18. Q[You, Student.dropsOut, Program.isDropped](Degree.isNotEarned == true → Causal(Student.dropsOut, Program.isDropped))
+19. Q[You, Student.dropsOutOfProgram, Student.isEnrolled](Degree.isPossible == true → Causal(Student.dropsOutOfProgram, Student.isEnrolled))
+20. Q[You, Student.dropsOut, Degree.isGranted](Program.allowsDegreeAfterDropOut == false → Causal(Student.dropsOut, Degree.isGranted))
+21. Q[You, Student.dropsOutOfProgram, Degree.isNotPossible](Student.canStillEarnDegree == false → Causal(Student.dropsOutOfProgram, Degree.isNotPossible))
+22. Q[You, Student.dropsOut, Program.hasDropOutPolicy](Degree.isAchieved == false → Causal(Student.dropsOut, Program.hasDropOutPolicy))
+23. Q[You, Student.dropsOutOfProgram, Degree.isPossible](Student.isNotEligibleForDegree == true → Causal(Student.dropsOutOfProgram, Degree.isPossible))
+24. Q[You, Student.dropsOut, Student.isInProgram](Degree.isGranted == false → Causal(Student.dropsOut, Student.isInProgram))
+25. Q[You, Student.dropsOutOfProgram, Degree.isAcademic](Program.requiresCompletion == false → Causal(Student.dropsOutOfProgram, Degree.isAcademic))
+26. Q[You, Student.dropsOut, Student.canEarnDegree](Degree.isNotEarned == true → Causal(Student.dropsOut, Student.canEarnDegree))
+27. Q[You, Student.dropsOutOfProgram, Program.allowsCompletion](Student.isEnrolled == false → Causal(Student.dropsOutOfProgram, Program.allowsCompletion))
+28. Q[You, Student.dropsOut, Degree.isAchieved](Student.eligibleForDegree == false → Causal(Student.dropsOut, Degree.isAchieved))
+29. Q[You, Student.dropsOutOfProgram, Degree.isGranted](Program.hasCompletionCriteria == false → Causal(Student.dropsOutOfProgram, Degree.isGranted))
+30. Q[You, Student.dropsOut, Degree.isNotPossible](Student.canStillEarnDegree == true → Causal(Student.dropsOut, Degree.isNotPossible))

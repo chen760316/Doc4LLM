@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 1106)
+S1: The older woman and the girl are at the park.
+S2: A man sitting in a field smoking a cigarette by a canal.
+
+Predicates:
+1. OlderWoman.location
+2. Girl.location
+3. Man.location
+4. Park.type
+5. Field.type
+6. Canal.type
+7. OlderWoman.age
+8. Girl.age
+9. Man.activity
+10. Man.item
+11. Park.size
+12. Field.size
+13. Canal.size
+14. OlderWoman.relationship
+15. Girl.relationship
+16. Man.relationship
+17. Park.time
+18. Field.time
+19. Canal.time
+20. M_NLI(S1, S2)
+21. Relation(OlderWoman, Girl)
+22. Relation(Man, Field)
+23. violate(OlderWoman, Man)
+24. violate(Girl, Man)
+25. violate(Park, Field)
+26. violate(Park, Canal)
+27. violate(Field, Canal)
+28. Man.smoking
+29. OlderWoman.activity
+30. Girl.activity
+
+Rules:
+1. Q[The, OlderWoman.location, Park](OlderWoman.location == "Park" → Relation(OlderWoman, Girl))
+2. Q[The, Girl.location, Park](Girl.location == "Park" → Relation(OlderWoman, Girl))
+3. Q[The, Man.location, Field](Man.location == "Field" → Relation(Man, Field))
+4. Q[The, Man.location, Canal](Man.location == "Canal" → Relation(Man, Field))
+5. Q[The, OlderWoman.age, 60](OlderWoman.age > 50 → Relation(OlderWoman, Girl))
+6. Q[The, Girl.age, 10](Girl.age < 18 → Relation(OlderWoman, Girl))
+7. Q[The, Man.activity, smoking](Man.activity == "smoking" → Relation(Man, Field))
+8. Q[The, Park.type, public](Park.type == "public" → Relation(OlderWoman, Girl))
+9. Q[The, Field.type, private](Field.type == "private" → Relation(Man, Field))
+10. Q[The, Canal.type, waterway](Canal.type == "waterway" → Relation(Man, Field))
+11. Q[The, Park.size, large](Park.size == "large" → Relation(OlderWoman, Girl))
+12. Q[The, Field.size, small](Field.size == "small" → Relation(Man, Field))
+13. Q[The, Canal.size, medium](Canal.size == "medium" → Relation(Man, Field))
+14. Q[The, OlderWoman.relationship, grandmother](OlderWoman.relationship == "grandmother" → Relation(OlderWoman, Girl))
+15. Q[The, Girl.relationship, granddaughter](Girl.relationship == "granddaughter" → Relation(OlderWoman, Girl))
+16. Q[The, Man.relationship, stranger](Man.relationship == "stranger" → Relation(Man, Field))
+17. Q[The, Park.time, afternoon](Park.time == "afternoon" → Relation(OlderWoman, Girl))
+18. Q[The, Field.time, morning](Field.time == "morning" → Relation(Man, Field))
+19. Q[The, Canal.time, evening](Canal.time == "evening" → Relation(Man, Field))
+20. Q[The, OlderWoman.activity, walking](OlderWoman.activity == "walking" → Relation(OlderWoman, Girl))
+21. Q[The, Girl.activity, playing](Girl.activity == "playing" → Relation(OlderWoman, Girl))
+22. Q[The, Man.item, cigarette](Man.item == "cigarette" → Relation(Man, Field))
+23. Q[The, Park, Field](violate(Park, Field) → Relation(OlderWoman, Girl))
+24. Q[The, Park, Canal](violate(Park, Canal) → Relation(OlderWoman, Girl))
+25. Q[The, Field, Canal](violate(Field, Canal) → Relation(Man, Field))
+26. Q[The, OlderWoman.location, Park](OlderWoman.location == "Park" → violate(OlderWoman, Man))
+27. Q[The, Girl.location, Park](Girl.location == "Park" → violate(Girl, Man))
+28. Q[The, Man.location, Field](Man.location == "Field" → violate(Park, Field))
+29. Q[The, Man.location, Canal](Man.location == "Canal" → violate(Park, Canal))
+30. Q[The, OlderWoman.activity, sitting](OlderWoman.activity == "sitting" → violate(OlderWoman, Man))

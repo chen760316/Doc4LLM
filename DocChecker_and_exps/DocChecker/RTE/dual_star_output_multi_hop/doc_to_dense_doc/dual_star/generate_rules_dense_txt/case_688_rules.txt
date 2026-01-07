@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 688)
+S1: The Chernobyl disaster had repercussions outside the ex-USSR.
+S2: The Chernobyl disaster had an impact outside of the Soviet ex-Unión.
+
+Predicates:
+1. Chernobyl_disaster.repercussions
+2. Chernobyl_disaster.impact
+3. ex_USSR.geopolitical_context
+4. Soviet_ex_Union.geopolitical_context
+5. repercussions.outside(ex_USSR)
+6. impact.outside(Soviet_ex_Union)
+7. M_NLI(S1, S2)
+8. Relation(Chernobyl_disaster, repercussions)
+9. Relation(Chernobyl_disaster, impact)
+10. violate(S1, S2)
+11. repercussions.impact_scope
+12. geopolitical_context.ex_USSR
+13. geopolitical_context.Soviet_ex_Union
+14. repercussions.geopolitical_scope
+15. impact.geopolitical_scope
+16. Chernobyl_disaster.event_type
+17. repercussions.international
+18. impact.international
+19. ex_USSR.impact_scope
+20. Soviet_ex_Union.impact_scope
+21. M_NLI(S1, S2).validity
+22. Relation(ex_USSR, repercussions)
+23. Relation(Soviet_ex_Union, impact)
+24. violate(ex_USSR, Soviet_ex_Union)
+25. Chernobyl_disaster.date
+26. repercussions.economic
+27. impact.economic
+28. repercussions.health
+29. impact.health
+30. Chernobyl_disaster.location
+
+Rules:
+1. Q[The, Chernobyl_disaster.repercussions, repercussions.outside(ex_USSR)](Chernobyl_disaster.repercussions == "international" → Relation(Chernobyl_disaster, repercussions))
+2. Q[The, Chernobyl_disaster.impact, impact.outside(Soviet_ex_Union)](Chernobyl_disaster.impact == "international" → Relation(Chernobyl_disaster, impact))
+3. Q[The, ex_USSR.geopolitical_context, geopolitical_context.ex_USSR](ex_USSR.geopolitical_context == "post-Soviet" → Relation(ex_USSR, repercussions))
+4. Q[The, Soviet_ex_Union.geopolitical_context, geopolitical_context.Soviet_ex_Union](Soviet_ex_Union.geopolitical_context == "historical" → Relation(Soviet_ex_Union, impact))
+5. Q[The, repercussions.geopolitical_scope, impact.geopolitical_scope](repercussions.geopolitical_scope == "global" → Relation(repercussions, impact))
+6. Q[The, repercussions.outside(ex_USSR), impact.outside(Soviet_ex_Union)](repercussions.outside(ex_USSR) == true → Relation(repercussions, impact))
+7. Q[The, Chernobyl_disaster.event_type, Chernobyl_disaster.date](Chernobyl_disaster.event_type == "nuclear" → Relation(Chernobyl_disaster, repercussions))
+8. Q[The, repercussions.economic, impact.economic](repercussions.economic == "significant" → Relation(repercussions, impact))
+9. Q[The, repercussions.health, impact.health](repercussions.health == "adverse" → Relation(repercussions, impact))
+10. Q[The, M_NLI(S1, S2), violate(S1, S2)](M_NLI(S1, S2).validity == false → Relation(M_NLI(S1, S2), violate))
+11. Q[The, Chernobyl_disaster.location, ex_USSR.geopolitical_context](Chernobyl_disaster.location == "Chernobyl" → Relation(Chernobyl_disaster, repercussions))
+12. Q[The, Chernobyl_disaster.location, Soviet_ex_Union.geopolitical_context](Chernobyl_disaster.location == "Chernobyl" → Relation(Chernobyl_disaster, impact))
+13. Q[The, repercussions.international, impact.international](repercussions.international == true → Relation(repercussions, impact))
+14. Q[The, ex_USSR.impact_scope, Soviet_ex_Union.impact_scope](ex_USSR.impact_scope == "broad" → Relation(ex_USSR, repercussions))
+15. Q[The, Soviet_ex_Union.impact_scope, ex_USSR.impact_scope](Soviet_ex_Union.impact_scope == "limited" → Relation(Soviet_ex_Union, impact))
+16. Q[The, Chernobyl_disaster.repercussions, Chernobyl_disaster.impact](Chernobyl_disaster.repercussions == "negative" → Relation(Chernobyl_disaster, repercussions))
+17. Q[The, repercussions.geopolitical_scope, repercussions.outside(ex_USSR)](repercussions.geopolitical_scope == "international" → Relation(repercussions, impact))
+18. Q[The, impact.geopolitical_scope, impact.outside(Soviet_ex_Union)](impact.geopolitical_scope == "international" → Relation(impact, repercussions))
+19. Q[The, Chernobyl_disaster.repercussions, geopolitical_context.ex_USSR](Chernobyl_disaster.repercussions == "global" → Relation(Chernobyl_disaster, repercussions))
+20. Q[The, Chernobyl_disaster.impact, geopolitical_context.Soviet_ex_Union](Chernobyl_disaster.impact == "global" → Relation(Chernobyl_disaster, impact))
+21. Q[The, repercussions.health, repercussions.economic](repercussions.health == "critical" → Relation(repercussions, impact))
+22. Q[The, impact.health, impact.economic](impact.health == "critical" → Relation(impact, repercussions))
+23. Q[The, repercussions.outside(ex_USSR), repercussions.international](repercussions.outside(ex_USSR) == true → Relation(repercussions, impact))
+24. Q[The, impact.outside(Soviet_ex_Union), impact.international](impact.outside(Soviet_ex_Union) == true → Relation(impact, repercussions))
+25. Q[The, Chernobyl_disaster.date, Chernobyl_disaster.event_type](Chernobyl_disaster.date == "1986" → Relation(Chernobyl_disaster, repercussions))
+26. Q[The, repercussions.geopolitical_scope, impact.geopolitical_scope](repercussions.geopolitical_scope == "global" → Relation(repercussions, impact))
+27. Q[The, ex_USSR.geopolitical_context, Soviet_ex_Union.geopolitical_context](ex_USSR.geopolitical_context == "post-Soviet" → Relation(ex_USSR, impact))
+28. Q[The, repercussions.economic, impact.economic](repercussions.economic == "devastating" → Relation(repercussions, impact))
+29. Q[The, repercussions.health, impact.health](repercussions.health == "severe" → Relation(repercussions, impact))
+30. Q[The, Chernobyl_disaster.repercussions, Chernobyl_disaster.impact](Chernobyl_disaster.repercussions == "negative" → Relation(Chernobyl_disaster, impact))

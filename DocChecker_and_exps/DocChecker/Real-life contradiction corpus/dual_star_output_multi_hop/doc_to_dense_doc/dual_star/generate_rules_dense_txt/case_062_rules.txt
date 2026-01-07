@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 62)
+S1: President Bashar al-Assad said Israel had been defeated and Hezbollah had 'hoisted the banner of victory'.
+S2: Hezbollah suffered a defeat in this crisis.
+
+Predicates:
+1. President_Bashar_al-Assad.statement
+2. Israel.defeated
+3. Hezbollah.victorious
+4. Hezbollah.banner_of_victory
+5. Hezbollah.defeated
+6. crisis.event
+7. President_Bashar_al-Assad.claim
+8. victory.status
+9. defeat.status
+10. M_NLI(S1, S2)
+11. Factual(President_Bashar_al-Assad, Israel)
+12. Factual(Hezbollah, victory)
+13. Factual(Hezbollah, defeat)
+14. violate(Hezbollah.victorious, Hezbollah.defeated)
+15. relationship_claims.victory
+16. relationship_claims.defeat
+17. President_Bashar_al-Assad.political_statement
+18. Israel.status
+19. Hezbollah.status
+20. M_NLI(Hezbollah.victorious, Hezbollah.defeated)
+21. Factual(crisis, Hezbollah)
+22. Factual(crisis, Israel)
+23. relationship_event.crisis
+24. President_Bashar_al-Assad.political_figure
+25. Hezbollah.military_group
+26. Israel.nation
+27. victory.outcome
+28. defeat.outcome
+29. relationship_outcome.victory
+30. relationship_outcome.defeat
+
+Rules:
+1. Q[President, President_Bashar_al_Assad.statement == "Israel had been defeated" → Factual(President_Bashar_al_Assad, Israel)]
+2. Q[Hezbollah, Hezbollah.victorious == true → Factual(Hezbollah, victory)]
+3. Q[Hezbollah, Hezbollah.defeated == true → Factual(Hezbollah, defeat)]
+4. Q[President, President_Bashar_al_Assad.claim == "Hezbollah had hoisted the banner of victory" → Factual(Hezbollah, victory)]
+5. Q[Hezbollah, Hezbollah.victorious == true AND Hezbollah.defeated == true → Factual(Hezbollah, victory)]
+6. Q[crisis, crisis.event == "Hezbollah suffered a defeat" → Factual(crisis, Hezbollah)]
+7. Q[Israel, Israel.defeated == true → Factual(Hezbollah, victory)]
+8. Q[Hezbollah, Hezbollah.victorious == true AND Hezbollah.defeated == false → Factual(Hezbollah, victory)]
+9. Q[President, President_Bashar_al_Assad.political_statement == "Hezbollah had hoisted the banner of victory" → Factual(Hezbollah, victory)]
+10. Q[Hezbollah, Hezbollah.defeated == true AND Hezbollah.victorious == false → Factual(Hezbollah, defeat)]
+11. Q[President, President_Bashar_al_Assad.statement == "Hezbollah suffered a defeat" → Factual(Hezbollah, defeat)]
+12. Q[Hezbollah, Hezbollah.victorious == false AND Hezbollah.defeated == true → Factual(Hezbollah, defeat)]
+13. Q[crisis, relationship_event.crisis == "Hezbollah suffered a defeat" → Factual(crisis, Hezbollah)]
+14. Q[Israel, Israel.status == "defeated" → Factual(President_Bashar_al_Assad, Israel)]
+15. Q[Hezbollah, relationship_claims.victory == true AND relationship_claims.defeat == true → Factual(Hezbollah, victory)]
+16. Q[Hezbollah, relationship_outcome.victory == true AND relationship_outcome.defeat == true → Factual(Hezbollah, victory)]
+17. Q[President, President_Bashar_al_Assad.political_figure == "Bashar al-Assad" → Factual(President_Bashar_al_Assad, Israel)]
+18. Q[Hezbollah, Hezbollah.victorious == true AND Hezbollah.defeated == true → Factual(Hezbollah, defeat)]
+19. Q[crisis, Factual(crisis, Hezbollah) == true AND Hezbollah.defeated == true → Factual(crisis, Hezbollah)]
+20. Q[Hezbollah, M_NLI(Hezbollah.victorious, Hezbollah.defeated) == false → Factual(Hezbollah, defeat)]
+21. Q[President, President_Bashar_al_Assad.statement == "Hezbollah suffered a defeat" → Factual(Hezbollah, defeat)]
+22. Q[Hezbollah, Hezbollah.victorious == false AND Hezbollah.defeated == true → Factual(Hezbollah, defeat)]
+23. Q[Israel, Israel.nation == "defeated" → Factual(President_Bashar_al_Assad, Israel)]
+24. Q[Hezbollah, Hezbollah.victorious == true AND Hezbollah.defeated == false → Factual(Hezbollah, victory)]
+25. Q[crisis, Factual(crisis, Israel) == true AND Israel.defeated == true → Factual(crisis, Israel)]
+26. Q[Hezbollah, relationship_claims.defeat == true AND relationship_claims.victory == false → Factual(Hezbollah, defeat)]
+27. Q[President, President_Bashar_al_Assad.statement == "Hezbollah had hoisted the banner of victory" → Factual(Hezbollah, victory)]
+28. Q[Hezbollah, Hezbollah.victorious == true AND Hezbollah.defeated == true → Factual(Hezbollah, defeat)]
+29. Q[crisis, relationship_event.crisis == "Hezbollah suffered a defeat" → Factual(crisis, Hezbollah)]
+30. Q[Hezbollah, M_NLI(Hezbollah.victorious, Hezbollah.defeated) == true → Factual(Hezbollah, defeat)]

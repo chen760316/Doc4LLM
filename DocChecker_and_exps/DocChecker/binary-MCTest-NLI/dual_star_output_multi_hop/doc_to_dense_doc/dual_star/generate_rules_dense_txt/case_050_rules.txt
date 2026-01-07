@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 50)
+S1: They painted the inside of the tree house blue.
+S2: They painted the outside of the tree house red.
+
+Predicates:
+1. TreeHouse.inside_color = blue
+2. TreeHouse.outside_color = red
+3. M_NLI(S1, S2)
+4. Content(S1, S2)
+5. violate(S1, S2)
+6. TreeHouse.has_color = true
+7. Painting.action = paint
+8. Painting.subject = TreeHouse
+9. Painting.color = blue
+10. Painting.color = red
+11. TreeHouse.location = inside
+12. TreeHouse.location = outside
+13. They.perform_action = paint
+14. They.subject = TreeHouse
+15. They.color_choice = blue
+16. They.color_choice = red
+17. TreeHouse.state = painted
+18. TreeHouse.color_conflict = true
+19. Inside.color = blue
+20. Outside.color = red
+21. They = painters
+22. Painters.action = paint
+23. Painters.target = TreeHouse
+24. TreeHouse.interior = blue
+25. TreeHouse.exterior = red
+26. Color.blue.is_applied_to = TreeHouse.inside
+27. Color.red.is_applied_to = TreeHouse.outside
+28. Painting.conflict = true
+29. They = the_painters
+30. TreeHouse.has_conflicting_colors = true
+
+Rules:
+1. Q[They, TreeHouse.inside_color, TreeHouse.outside_color](TreeHouse.inside_color == blue ∧ TreeHouse.outside_color == red → Content(TreeHouse.inside_color, TreeHouse.outside_color))
+2. Q[They, TreeHouse.interior, TreeHouse.exterior](TreeHouse.interior == blue ∧ TreeHouse.exterior == red → Content(TreeHouse.interior, TreeHouse.exterior))
+3. Q[They, Painting.color, Painting.color](Painting.color == blue ∧ Painting.color == red → Content(Painting.color, Painting.color))
+4. Q[They, TreeHouse.color_conflict, TreeHouse.has_conflicting_colors](TreeHouse.color_conflict == true → Content(TreeHouse.color_conflict, TreeHouse.has_conflicting_colors))
+5. Q[They, Inside.color, Outside.color](Inside.color == blue ∧ Outside.color == red → Content(Inside.color, Outside.color))
+6. Q[They, TreeHouse.state, TreeHouse.has_color](TreeHouse.state == painted ∧ TreeHouse.has_color == true → Content(TreeHouse.state, TreeHouse.has_color))
+7. Q[They, Painting.action, Painting.subject](Painting.action == paint ∧ Painting.subject == TreeHouse → Content(Painting.action, Painting.subject))
+8. Q[They, They.color_choice, They.color_choice](They.color_choice == blue ∧ They.color_choice == red → Content(They.color_choice, They.color_choice))
+9. Q[They, TreeHouse.location, TreeHouse.location](TreeHouse.location == inside ∧ TreeHouse.location == outside → Content(TreeHouse.location, TreeHouse.location))
+10. Q[They, Painters.action, Painters.target](Painters.action == paint ∧ Painters.target == TreeHouse → Content(Painters.action, Painters.target))
+11. Q[They, Painting.conflict, TreeHouse.has_conflicting_colors](Painting.conflict == true → Content(Painting.conflict, TreeHouse.has_conflicting_colors))
+12. Q[They, TreeHouse.inside_color, TreeHouse.has_color](TreeHouse.inside_color == blue ∧ TreeHouse.has_color == true → Content(TreeHouse.inside_color, TreeHouse.has_color))
+13. Q[They, TreeHouse.outside_color, TreeHouse.has_color](TreeHouse.outside_color == red ∧ TreeHouse.has_color == true → Content(TreeHouse.outside_color, TreeHouse.has_color))
+14. Q[They, Painting.subject, TreeHouse.state](Painting.subject == TreeHouse ∧ TreeHouse.state == painted → Content(Painting.subject, TreeHouse.state))
+15. Q[They, TreeHouse.color_conflict, Painting.conflict](TreeHouse.color_conflict == true ∧ Painting.conflict == true → Content(TreeHouse.color_conflict, Painting.conflict))
+16. Q[They, TreeHouse.interior, TreeHouse.color_conflict](TreeHouse.interior == blue ∧ TreeHouse.color_conflict == true → Content(TreeHouse.interior, TreeHouse.color_conflict))
+17. Q[They, TreeHouse.exterior, TreeHouse.color_conflict](TreeHouse.exterior == red ∧ TreeHouse.color_conflict == true → Content(TreeHouse.exterior, TreeHouse.color_conflict))
+18. Q[They, They.perform_action, Painting.action](They.perform_action == paint ∧ Painting.action == paint → Content(They.perform_action, Painting.action))
+19. Q[They, TreeHouse.has_conflicting_colors, TreeHouse.color_conflict](TreeHouse.has_conflicting_colors == true ∧ TreeHouse.color_conflict == true → Content(TreeHouse.has_conflicting_colors, TreeHouse.color_conflict))
+20. Q[They, Painting.color, TreeHouse.inside_color](Painting.color == blue ∧ TreeHouse.inside_color == blue → Content(Painting.color, TreeHouse.inside_color))
+21. Q[They, Painting.color, TreeHouse.outside_color](Painting.color == red ∧ TreeHouse.outside_color == red → Content(Painting.color, TreeHouse.outside_color))
+22. Q[They, TreeHouse.state, TreeHouse.color_conflict](TreeHouse.state == painted ∧ TreeHouse.color_conflict == true → Content(TreeHouse.state, TreeHouse.color_conflict))
+23. Q[They, TreeHouse.interior, TreeHouse.has_color](TreeHouse.interior == blue ∧ TreeHouse.has_color == true → Content(TreeHouse.interior, TreeHouse.has_color))
+24. Q[They, TreeHouse.exterior, TreeHouse.has_color](TreeHouse.exterior == red ∧ TreeHouse.has_color == true → Content(TreeHouse.exterior, TreeHouse.has_color))
+25. Q[They, Painting.subject, They.subject](Painting.subject == TreeHouse ∧ They.subject == TreeHouse → Content(Painting.subject, They.subject))
+26. Q[They, Painting.color, They.color_choice](Painting.color == blue ∧ They.color_choice == blue → Content(Painting.color, They.color_choice))
+27. Q[They, Painting.color, They.color_choice](Painting.color == red ∧ They.color_choice == red → Content(Painting.color, They.color_choice))
+28. Q[They, TreeHouse.location, TreeHouse.state](TreeHouse.location == inside ∧ TreeHouse.state == painted → Content(TreeHouse.location, TreeHouse.state))
+29. Q[They, TreeHouse.location, TreeHouse.state](TreeHouse.location == outside ∧ TreeHouse.state == painted → Content(TreeHouse.location, TreeHouse.state))
+30. Q[They, TreeHouse.has_conflicting_colors, Painting.conflict](TreeHouse.has_conflicting_colors == true ∧ Painting.conflict == true → Content(TreeHouse.has_conflicting_colors, Painting.conflict))

@@ -1,0 +1,50 @@
+Predicates:
+Chimène.label != "Character"
+Chimène.label = "Character"
+Chimène.name != "Chimène"
+Chimène.name != King.name
+Chimène.name != Moors.name
+Chimène.name = "Chimène"
+King.label != "Character"
+King.label = "Character"
+King.name != "King"
+King.name != Moors.name
+King.name = "King"
+Moors.label != "Character"
+Moors.label = "Character"
+Moors.name != "Moors"
+Moors.name = "Moors"
+None_ML(King.attrs, Chimène.attrs)
+None_ML(Rodrigue___King.attrs, Rodrigue___Moors.attrs)
+Rodrigue.label != "Character"
+Rodrigue.label = "Character"
+Rodrigue.name != "Rodrigue"
+Rodrigue.name != Chimène.name
+Rodrigue.name != King.name
+Rodrigue.name != Moors.name
+Rodrigue.name = "Rodrigue"
+Rodrigue.title != "the Cid"
+Rodrigue.title = "the Cid"
+Rodrigue___Chimène.doc_id = "3488771841_6"
+Rodrigue___Chimène.promise = "will not defend himself against her hand"
+Rodrigue___Chimène.relationship != Rodrigue___King.relationship
+Rodrigue___Chimène.relationship != Rodrigue___Moors.relationship
+Rodrigue___Chimène.relationship = "Rodrigue speaks to Chimène privately about the duel."
+Rodrigue___King.doc_id = "3488771841_6"
+Rodrigue___King.relationship != Rodrigue___Moors.relationship
+Rodrigue___King.relationship = "Rodrigue returns to the King after the duel."
+Rodrigue___Moors.context = "in their own territory"
+Rodrigue___Moors.doc_id = "3488771841_6"
+Rodrigue___Moors.relationship = "Rodrigue will conduct a war against the Moors."
+
+Rules:
+Q[Rodrigue,Rodrigue] (Rodrigue.name != Moors.name ∧ None_ML(Rodrigue___King.attrs, Rodrigue___Moors.attrs) ∧ Rodrigue.name != King.name ∧ Moors.name != "Moors" ∧ Rodrigue.title = "the Cid" → Chimène.label = "Character")
+Q[Rodrigue,Rodrigue] (Rodrigue___Chimène.promise = "will not defend himself against her hand" ∧ Moors.name != "Moors" ∧ King.label != "Character" ∧ Rodrigue.name != Chimène.name → Rodrigue.label = "Character")
+Q[Rodrigue,Rodrigue] (King.name = "King" ∧ Rodrigue.title = "the Cid" ∧ Rodrigue___King.relationship = "Rodrigue returns to the King after the duel." ∧ Rodrigue.label != "Character" ∧ Rodrigue___Moors.doc_id = "3488771841_6" ∧ Rodrigue.name != King.name → Rodrigue.name = "Rodrigue")
+Q[Rodrigue,Rodrigue] (Rodrigue.title = "the Cid" ∧ Moors.name != "Moors" → Rodrigue.name != Moors.name)
+Q[Rodrigue,Rodrigue] (Chimène.name != "Chimène" ∧ King.label != "Character" ∧ Chimène.name != King.name → Moors.label = "Character")
+Q[Rodrigue,Rodrigue] (Rodrigue___Moors.relationship = "Rodrigue will conduct a war against the Moors." ∧ None_ML(Rodrigue___King.attrs, Rodrigue___Moors.attrs) → Rodrigue___King.relationship != Rodrigue___Moors.relationship)
+Q[Rodrigue,Rodrigue] (Moors.label != "Character" ∧ Chimène.label != "Character" ∧ Chimène.name != Moors.name → Rodrigue___Chimène.relationship != Rodrigue___King.relationship)
+Q[Rodrigue,Rodrigue] (Rodrigue___Chimène.doc_id = "3488771841_6" ∧ Rodrigue.label = "Character" ∧ Rodrigue.name != "Rodrigue" ∧ Rodrigue.title != "the Cid" ∧ Rodrigue___Chimène.promise = "will not defend himself against her hand" ∧ None_ML(Rodrigue___King.attrs, Rodrigue___Moors.attrs) → Rodrigue___Chimène.relationship = "Rodrigue speaks to Chimène privately about the duel.")
+Q[Rodrigue,Rodrigue] (Rodrigue___King.doc_id = "3488771841_6" ∧ Moors.name != "Moors" ∧ Chimène.name = "Chimène" ∧ Rodrigue___Chimène.relationship = "Rodrigue speaks to Chimène privately about the duel." → Moors.label != "Character")
+Q[Rodrigue,Rodrigue] (King.name != "King" ∧ King.name = "King" ∧ Chimène.name != Moors.name ∧ Rodrigue.label = "Character" ∧ Rodrigue.name != King.name → Rodrigue.label != "Character")

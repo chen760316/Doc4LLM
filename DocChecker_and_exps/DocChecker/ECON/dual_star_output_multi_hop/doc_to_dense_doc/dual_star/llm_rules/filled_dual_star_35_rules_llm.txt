@@ -1,0 +1,130 @@
+Predicates:
+1. Cushions.material = "synthetic materials"
+2. Cushions.material = "horse hair"
+3. Cushions.canBeMadeFrom = "horse hair"
+4. Cushions.canBeMadeFrom = "synthetic materials"
+5. Cushions.isMadeFrom = "synthetic materials"
+6. Cushions.isMadeFrom = "horse hair"
+7. Cushions.usage = "furniture"
+8. Cushions.usage = "decorative"
+9. Cushions.durability = "high"
+10. Cushions.durability = "low"
+11. "Relationship".attribute = "conflict"
+12. "Relationship".attribute = "agreement"
+13. "Relationship".source = "Cushions"
+14. "Relationship".target = "materials"
+15. "Relationship".type = "manufacturing"
+16. "Relationship".type = "design"
+17. M_NLI(Cushions.material, Cushions.canBeMadeFrom)
+18. M_NLI(Cushions.usage, Cushions.durability)
+19. T("Cushions can be made from horse hair", "Cushions cannot be made from horse hair", Negation)
+20. T("Cushions can be made from horse hair", "Cushions can only be made from synthetic materials", Factual)
+21. tau(Cushions.material, Cushions.canBeMadeFrom)
+22. tau(Cushions.usage, Cushions.durability)
+23. violate(Cushions.material, Cushions.canBeMadeFrom)
+24. Factual(Cushions.material, Cushions.canBeMadeFrom)
+25. Causal(Cushions.material, Cushions.usage)
+26. Numeric(Cushions.durability, "low")
+27. Temporal(Cushions.usage, "furniture")
+28. Content(Cushions.material, "horse hair")
+29. Negation(Cushions.canBeMadeFrom, "synthetic materials")
+30. Relation(Cushions.isMadeFrom, "horse hair")
+31. Cushions.isEcoFriendly = "true"
+32. Cushions.isEcoFriendly = "false"
+33. "Relationship".duration = "short-term"
+34. "Relationship".duration = "long-term"
+35. M_NLI(Cushions.isEcoFriendly, Cushions.material)
+36. T("Cushions can be made from horse hair", "Cushions are made from synthetic materials", Causal)
+37. tau(Cushions.isEcoFriendly, Cushions.material)
+38. violate(Cushions.isEcoFriendly, Cushions.material)
+39. Factual(Cushions.isEcoFriendly, Cushions.material)
+40. Causal(Cushions.usage, Cushions.durability)
+41. Numeric(Cushions.durability, "high")
+42. Temporal(Cushions.isMadeFrom, "synthetic materials")
+43. Content(Cushions.usage, "decorative")
+44. Negation(Cushions.canBeMadeFrom, "horse hair")
+45. Relation(Cushions.isMadeFrom, "synthetic materials")
+46. Cushions.color = "blue"
+47. Cushions.color = "red"
+48. "Relationship".color = "blue"
+49. "Relationship".color = "red"
+50. M_NLI(Cushions.color, "blue")
+51. T("Cushions are blue", "Cushions are not blue", Negation)
+52. tau(Cushions.color, "blue")
+53. violate(Cushions.color, "red")
+54. Factual(Cushions.color, "blue")
+55. Causal(Cushions.color, "red")
+56. Numeric(Cushions.durability, "medium")
+57. Temporal(Cushions.color, "red")
+58. Content(Cushions.color, "blue")
+59. Negation(Cushions.color, "green")
+60. Relation(Cushions.color, "red")
+61. Cushions.size = "large"
+62. Cushions.size = "small"
+63. "Relationship".size = "large"
+64. "Relationship".size = "small"
+65. M_NLI(Cushions.size, "large")
+66. T("Cushions are large", "Cushions are not large", Negation)
+67. tau(Cushions.size, "large")
+68. violate(Cushions.size, "small")
+69. Factual(Cushions.size, "large")
+70. Causal(Cushions.size, "small")
+71. Numeric(Cushions.durability, "high")
+72. Temporal(Cushions.size, "small")
+73. Content(Cushions.size, "large")
+74. Negation(Cushions.size, "medium")
+75. Relation(Cushions.size, "small")
+76. Cushions.price = "expensive"
+77. Cushions.price = "cheap"
+78. "Relationship".price = "expensive"
+79. "Relationship".price = "cheap"
+80. M_NLI(Cushions.price, "expensive")
+81. T("Cushions are expensive", "Cushions are not expensive", Negation)
+82. tau(Cushions.price, "expensive")
+83. violate(Cushions.price, "cheap")
+84. Factual(Cushions.price, "expensive")
+85. Causal(Cushions.price, "cheap")
+86. Numeric(Cushions.durability, "high")
+87. Temporal(Cushions.price, "cheap")
+88. Content(Cushions.price, "expensive")
+89. Negation(Cushions.price, "affordable")
+90. Relation(Cushions.price, "cheap")
+91. Cushions.origin = "local"
+92. Cushions.origin = "imported"
+93. "Relationship".origin = "local"
+94. "Relationship".origin = "imported"
+95. M_NLI(Cushions.origin, "local")
+96. T("Cushions are local", "Cushions are not local", Negation)
+97. tau(Cushions.origin, "local")
+98. violate(Cushions.origin, "imported")
+99. Factual(Cushions.origin, "local")
+100. Causal(Cushions.origin, "imported")
+violate(x0, y0)
+
+Rules:
+1. Q[x0, y0](Cushions.material = "synthetic materials" ∧ Cushions.canBeMadeFrom = "horse hair" → violate(x0, y0))
+2. Q[x0, y0](Cushions.isMadeFrom = "synthetic materials" ∧ Cushions.usage = "furniture" → violate(x0, y0))
+3. Q[x0, y0](Cushions.material = "horse hair" ∧ Cushions.isMadeFrom = "synthetic materials" → violate(x0, y0))
+4. Q[x0, y0](Cushions.usage = "decorative" ∧ Cushions.durability = "low" → violate(x0, y0))
+5. Q[x0, y0](Cushions.canBeMadeFrom = "synthetic materials" ∧ Cushions.isMadeFrom = "horse hair" → violate(x0, y0))
+6. Q[x0, y0](Cushions.material = "synthetic materials" ∧ Cushions.usage = "furniture" ∧ Cushions.durability = "low" → violate(x0, y0))
+7. Q[x0, y0](Cushions.isMadeFrom = "horse hair" ∧ Cushions.canBeMadeFrom = "synthetic materials" ∧ Cushions.usage = "decorative" → violate(x0, y0))
+8. Q[x0, y0](Cushions.durability = "high" ∧ Cushions.usage = "furniture" ∧ Cushions.material = "horse hair" → violate(x0, y0))
+9. Q[x0, y0](Cushions.isEcoFriendly = "true" ∧ Cushions.material = "synthetic materials" ∧ Cushions.usage = "furniture" → violate(x0, y0))
+10. Q[x0, y0](Cushions.isEcoFriendly = "false" ∧ Cushions.material = "horse hair" ∧ Cushions.usage = "decorative" → violate(x0, y0))
+11. Q[x0, y0](Cushions.material = "synthetic materials" ∧ Cushions.canBeMadeFrom = "horse hair" ∧ Cushions.isMadeFrom = "synthetic materials" ∧ Cushions.usage = "furniture" → violate(x0, y0))
+12. Q[x0, y0](Cushions.durability = "low" ∧ Cushions.usage = "decorative" ∧ Cushions.isMadeFrom = "horse hair" ∧ Cushions.material = "synthetic materials" → violate(x0, y0))
+13. Q[x0, y0](Cushions.canBeMadeFrom = "synthetic materials" ∧ Cushions.isMadeFrom = "horse hair" ∧ Cushions.durability = "high" ∧ Cushions.usage = "furniture" → violate(x0, y0))
+14. Q[x0, y0](Cushions.material = "horse hair" ∧ Cushions.usage = "decorative" ∧ Cushions.durability = "low" ∧ Cushions.isEcoFriendly = "true" → violate(x0, y0))
+15. Q[x0, y0](Cushions.isMadeFrom = "synthetic materials" ∧ Cushions.canBeMadeFrom = "horse hair" ∧ Cushions.usage = "furniture" ∧ Cushions.durability = "high" → violate(x0, y0))
+16. Q[x0, y0](Cushions.material = "synthetic materials" ∧ Cushions.usage = "furniture" ∧ Cushions.durability = "low" ∧ Cushions.isEcoFriendly = "false" ∧ Cushions.canBeMadeFrom = "horse hair" → violate(x0, y0))
+17. Q[x0, y0](Cushions.isMadeFrom = "horse hair" ∧ Cushions.usage = "decorative" ∧ Cushions.durability = "high" ∧ Cushions.material = "synthetic materials" ∧ Cushions.canBeMadeFrom = "synthetic materials" → violate(x0, y0))
+18. Q[x0, y0](Cushions.usage = "furniture" ∧ Cushions.durability = "low" ∧ Cushions.isMadeFrom = "synthetic materials" ∧ Cushions.canBeMadeFrom = "horse hair" ∧ Cushions.material = "horse hair" → violate(x0, y0))
+19. Q[x0, y0](Cushions.material = "synthetic materials" ∧ Cushions.usage = "decorative" ∧ Cushions.durability = "high" ∧ Cushions.isEcoFriendly = "false" ∧ Cushions.isMadeFrom = "horse hair" → violate(x0, y0))
+20. Q[x0, y0](Cushions.canBeMadeFrom = "horse hair" ∧ Cushions.isMadeFrom = "synthetic materials" ∧ Cushions.usage = "furniture" ∧ Cushions.durability = "low" ∧ Cushions.material = "synthetic materials" → violate(x0, y0))
+21. Q[x0, y0](Cushions.material = "horse hair" ∧ Cushions.canBeMadeFrom = "synthetic materials" ∧ Cushions.isMadeFrom = "synthetic materials" ∧ Cushions.usage = "decorative" ∧ Cushions.durability = "high" → violate(x0, y0))
+22. Q[x0, y0](Cushions.isMadeFrom = "synthetic materials" ∧ Cushions.usage = "furniture" ∧ Cushions.durability = "low" ∧ Cushions.material = "horse hair" ∧ Cushions.canBeMadeFrom = "horse hair" → violate(x0, y0))
+23. Q[x0, y0](Cushions.usage = "decorative" ∧ Cushions.durability = "high" ∧ Cushions.isMadeFrom = "horse hair" ∧ Cushions.material = "synthetic materials" ∧ Cushions.canBeMadeFrom = "synthetic materials" → violate(x0, y0))
+24. Q[x0, y0](Cushions.material = "synthetic materials" ∧ Cushions.usage = "furniture" ∧ Cushions.durability = "high" ∧ Cushions.isEcoFriendly = "true" ∧ Cushions.canBeMadeFrom = "horse hair" → violate(x0, y0))
+25. Q[x0, y0](Cushions.isMadeFrom = "horse hair" ∧ Cushions.usage = "decorative" ∧ Cushions.durability = "low" ∧ Cushions.material = "synthetic materials" ∧ Cushions.canBeMadeFrom = "synthetic materials" → violate(x0, y0))
+26

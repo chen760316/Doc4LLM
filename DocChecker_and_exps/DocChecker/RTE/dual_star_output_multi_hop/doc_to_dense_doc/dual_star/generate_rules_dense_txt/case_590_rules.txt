@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 590)
+S1: The FDA turned up metal in roughly 200 pills of the 70 million it passed through a metal detector.
+S2: A company investigation turned up metal in roughly 200 pills of the 70 million it passed through a metal detector, according to the FDA.
+
+Predicates:
+1. FDA.finding_metal
+2. FDA.pills_tested
+3. FDA.pills_with_metal
+4. Company_Investigation.finding_metal
+5. Company_Investigation.pills_tested
+6. Company_Investigation.pills_with_metal
+7. MetalDetector.pills_passed
+8. MetalDetector.finding_metal
+9. FDA.source
+10. Company_Investigation.source
+11. FDA.pills_passed
+12. Company_Investigation.source
+13. Relation(FDA, Company_Investigation)
+14. M_NLI(S1, S2)
+15. violate(FDA, Company_Investigation)
+16. FDA.reported_findings
+17. Company_Investigation.reported_findings
+18. FDA.investigation_type
+19. Company_Investigation.investigation_type
+20. FDA.metal_found
+21. Company_Investigation.metal_found
+22. FDA.total_pills
+23. Company_Investigation.total_pills
+24. MetalDetector.type
+25. MetalDetector.efficiency
+26. FDA.report_date
+27. Company_Investigation.report_date
+28. FDA.pills_sampled
+29. Company_Investigation.pills_sampled
+30. Relation(metal_found, pills_with_metal)
+
+Rules:
+1. Q[The, FDA.finding_metal == true](FDA.pills_with_metal == 200 → Relation(FDA, Company_Investigation))
+2. Q[The, Company_Investigation.finding_metal == true](Company_Investigation.pills_with_metal == 200 → Relation(FDA, Company_Investigation))
+3. Q[The, FDA.pills_tested == 70000000](FDA.pills_with_metal == 200 → Relation(FDA, Company_Investigation))
+4. Q[The, Company_Investigation.pills_tested == 70000000](Company_Investigation.pills_with_metal == 200 → Relation(FDA, Company_Investigation))
+5. Q[The, FDA.source == "FDA"](FDA.finding_metal == true → Relation(FDA, Company_Investigation))
+6. Q[The, Company_Investigation.source == "Company Investigation"](Company_Investigation.finding_metal == true → Relation(FDA, Company_Investigation))
+7. Q[The, FDA.reported_findings == true](FDA.pills_with_metal == 200 → Relation(FDA, Company_Investigation))
+8. Q[The, Company_Investigation.reported_findings == true](Company_Investigation.pills_with_metal == 200 → Relation(FDA, Company_Investigation))
+9. Q[The, FDA.metal_found == true](FDA.pills_with_metal == 200 → Relation(FDA, Company_Investigation))
+10. Q[The, Company_Investigation.metal_found == true](Company_Investigation.pills_with_metal == 200 → Relation(FDA, Company_Investigation))
+11. Q[The, FDA.pills_passed == 70000000](FDA.finding_metal == true → Relation(FDA, Company_Investigation))
+12. Q[The, Company_Investigation.pills_passed == 70000000](Company_Investigation.finding_metal == true → Relation(FDA, Company_Investigation))
+13. Q[The, FDA.total_pills == 70000000](FDA.pills_with_metal == 200 → Relation(FDA, Company_Investigation))
+14. Q[The, Company_Investigation.total_pills == 70000000](Company_Investigation.pills_with_metal == 200 → Relation(FDA, Company_Investigation))
+15. Q[The, FDA.investigation_type == "regulatory"](FDA.finding_metal == true → Relation(FDA, Company_Investigation))
+16. Q[The, Company_Investigation.investigation_type == "internal"](Company_Investigation.finding_metal == true → Relation(FDA, Company_Investigation))
+17. Q[The, FDA.pills_sampled == 70000000](FDA.pills_with_metal == 200 → Relation(FDA, Company_Investigation))
+18. Q[The, Company_Investigation.pills_sampled == 70000000](Company_Investigation.pills_with_metal == 200 → Relation(FDA, Company_Investigation))
+19. Q[The, MetalDetector.pills_passed == 70000000](MetalDetector.finding_metal == true → Relation(FDA, Company_Investigation))
+20. Q[The, MetalDetector.finding_metal == true](MetalDetector.pills_passed == 70000000 → Relation(FDA, Company_Investigation))
+21. Q[The, FDA.report_date == "2023-10-01"](FDA.finding_metal == true → Relation(FDA, Company_Investigation))
+22. Q[The, Company_Investigation.report_date == "2023-10-01"](Company_Investigation.finding_metal == true → Relation(FDA, Company_Investigation))
+23. Q[The, FDA.pills_with_metal == 200](FDA.pills_tested == 70000000 → Relation(FDA, Company_Investigation))
+24. Q[The, Company_Investigation.pills_with_metal == 200](Company_Investigation.pills_tested == 70000000 → Relation(FDA, Company_Investigation))
+25. Q[The, FDA.finding_metal == true](Company_Investigation.finding_metal == false → Relation(FDA, Company_Investigation))
+26. Q[The, Company_Investigation.finding_metal == true](FDA.finding_metal == false → Relation(FDA, Company_Investigation))
+27. Q[The, FDA.metal_found == true](Company_Investigation.metal_found == false → Relation(FDA, Company_Investigation))
+28. Q[The, Company_Investigation.metal_found == true](FDA.metal_found == false → Relation(FDA, Company_Investigation))
+29. Q[The, FDA.pills_with_metal == 200](Company_Investigation.pills_with_metal == 0 → Relation(FDA, Company_Investigation))
+30. Q[The, Company_Investigation.pills_with_metal == 200](FDA.pills_with_metal == 0 → Relation(FDA, Company_Investigation))

@@ -1,0 +1,131 @@
+Predicates:
+1. entity1.location = "downhill"
+2. entity2.location = "uphill"
+3. entity1.type = "building"
+4. entity2.type = "park"
+5. entity1.name = "Library"
+6. entity2.name = "Museum"
+7. entity1.size = "large"
+8. entity2.size = "small"
+9. entity1.owner = "Alice"
+10. entity2.owner = "Bob"
+11. entity1.opening_year = 2000
+12. entity2.opening_year = 1995
+13. entity1.visitor_count = 500
+14. entity2.visitor_count = 1000
+15. entity1.has_parking = "yes"
+16. entity2.has_parking = "no"
+17. entity1.operating_hours = "9 AM - 5 PM"
+18. entity2.operating_hours = "10 AM - 6 PM"
+19. entity1.rating = 4.5
+20. entity2.rating = 3.0
+21. "is located downhill from".relationship_type = "geographical"
+22. "is located downhill from".source_entity = "Library"
+23. "is located downhill from".target_entity = "Museum"
+24. "offers a combination of".relationship_type = "service"
+25. "offers a combination of".source_entity = "Restaurant"
+26. "offers a combination of".target_entity = "Café"
+27. M_NLI(entity1.size, entity2.size)
+28. M_NLI(entity1.rating, entity2.rating)
+29. T(entity1.opening_year, entity2.opening_year, tau)
+30. tau(entity1.visitor_count, entity2.visitor_count)
+31. violate(entity1, entity2)
+32. Factual(entity1.owner, entity2.owner)
+33. Causal(entity1.has_parking, entity2.has_parking)
+34. Numeric(entity1.visitor_count, entity2.visitor_count)
+35. Temporal(entity1.opening_year, entity2.opening_year)
+36. Content(entity1.operating_hours, entity2.operating_hours)
+37. Relation(entity1.location, entity2.location)
+38. Factual(entity1.name, entity2.name)
+39. Causal(entity1.size, entity2.size)
+40. Numeric(entity1.rating, entity2.rating)
+41. Temporal(entity1.opening_year, entity2.opening_year)
+42. Content(entity1.type, entity2.type)
+43. Relation(entity1.owner, entity2.owner)
+44. violate(entity1, entity2)
+45. Factual(entity1.has_parking, entity2.has_parking)
+46. Causal(entity1.visitor_count, entity2.visitor_count)
+47. Numeric(entity1.size, entity2.size)
+48. Temporal(entity1.opening_year, entity2.opening_year)
+49. Content(entity1.rating, entity2.rating)
+50. Relation(entity1.name, entity2.name)
+51. entity1.address = "123 Main St"
+52. entity2.address = "456 Elm St"
+53. entity1.city = "Springfield"
+54. entity2.city = "Shelbyville"
+55. entity1.state = "IL"
+56. entity2.state = "IN"
+57. entity1.zip_code = "62701"
+58. entity2.zip_code = "46176"
+59. entity1.phone_number = "555-1234"
+60. entity2.phone_number = "555-5678"
+61. entity1.website = "www.library.com"
+62. entity2.website = "www.museum.com"
+63. "is located downhill from".distance = "200 meters"
+64. "offers a combination of".menu_items = "coffee, pastries"
+65. M_NLI(entity1.address, entity2.address)
+66. T(entity1.city, entity2.city, tau)
+67. tau(entity1.state, entity2.state)
+68. violate(entity1, entity2)
+69. Factual(entity1.zip_code, entity2.zip_code)
+70. Causal(entity1.phone_number, entity2.phone_number)
+71. Numeric(entity1.distance, entity2.distance)
+72. Temporal(entity1.website, entity2.website)
+73. Content(entity1.menu_items, entity2.menu_items)
+74. Relation(entity1.city, entity2.city)
+75. Factual(entity1.type, entity2.type)
+76. Causal(entity1.size, entity2.size)
+77. Numeric(entity1.rating, entity2.rating)
+78. Temporal(entity1.opening_year, entity2.opening_year)
+79. Content(entity1.visitor_count, entity2.visitor_count)
+80. Relation(entity1.owner, entity2.owner)
+81. entity1.capacity = 100
+82. entity2.capacity = 50
+83. entity1.features = "Wi-Fi, A/C"
+84. entity2.features = "Wi-Fi"
+85. entity1.hours_open = "8 AM - 8 PM"
+86. entity2.hours_open = "9 AM - 5 PM"
+87. entity1.special_events = "Book Fair"
+88. entity2.special_events = "Art Exhibit"
+89. "is located downhill from".slope = "steep"
+90. "offers a combination of".cuisine = "Italian, French"
+91. M_NLI(entity1.capacity, entity2.capacity)
+92. T(entity1.features, entity2.features, tau)
+93. tau(entity1.hours_open, entity2.hours_open)
+94. violate(entity1, entity2)
+95. Factual(entity1.special_events, entity2.special_events)
+96. Causal(entity1.hours_open, entity2.hours_open)
+97. Numeric(entity1.capacity, entity2.capacity)
+98. Temporal(entity1.features, entity2.features)
+99. Content(entity1.cuisine, entity2.cuisine)
+100. Relation(entity1.hours_open, entity2.hours_open)
+violate(x0, y0)
+
+Rules:
+1. Q[x0, y0](entity1.location = "downhill" ∧ entity2.location = "uphill" → violate(x0, y0))
+2. Q[x0, y0](entity1.type = "building" ∧ entity2.type = "park" → violate(x0, y0))
+3. Q[x0, y0](entity1.size = "large" ∧ entity2.size = "small" → violate(x0, y0))
+4. Q[x0, y0](entity1.owner = "Alice" ∧ entity2.owner = "Bob" → violate(x0, y0))
+5. Q[x0, y0](entity1.opening_year = 2000 ∧ entity2.opening_year = 1995 → violate(x0, y0))
+6. Q[x0, y0](entity1.visitor_count = 500 ∧ entity2.visitor_count = 1000 → violate(x0, y0))
+7. Q[x0, y0](entity1.has_parking = "yes" ∧ entity2.has_parking = "no" ∧ entity1.location = "downhill" → violate(x0, y0))
+8. Q[x0, y0](entity1.operating_hours = "9 AM - 5 PM" ∧ entity2.operating_hours = "10 AM - 6 PM" ∧ entity1.type = "building" → violate(x0, y0))
+9. Q[x0, y0](entity1.rating = 4.5 ∧ entity2.rating = 3.0 ∧ entity1.size = "large" → violate(x0, y0))
+10. Q[x0, y0](entity1.name = "Library" ∧ entity2.name = "Museum" ∧ entity1.owner = "Alice" → violate(x0, y0))
+11. Q[x0, y0](entity1.location = "downhill" ∧ entity2.location = "uphill" ∧ entity1.size = "large" ∧ entity2.size = "small" → violate(x0, y0))
+12. Q[x0, y0](entity1.type = "building" ∧ entity2.type = "park" ∧ entity1.opening_year = 2000 ∧ entity2.opening_year = 1995 → violate(x0, y0))
+13. Q[x0, y0](entity1.visitor_count = 500 ∧ entity2.visitor_count = 1000 ∧ entity1.has_parking = "yes" ∧ entity2.has_parking = "no" → violate(x0, y0))
+14. Q[x0, y0](entity1.rating = 4.5 ∧ entity2.rating = 3.0 ∧ entity1.owner = "Alice" ∧ entity2.owner = "Bob" → violate(x0, y0))
+15. Q[x0, y0](entity1.opening_year = 2000 ∧ entity2.opening_year = 1995 ∧ entity1.visitor_count = 500 ∧ entity2.visitor_count = 1000 ∧ entity1.type = "building" → violate(x0, y0))
+16. Q[x0, y0](entity1.size = "large" ∧ entity2.size = "small" ∧ entity1.has_parking = "yes" ∧ entity2.has_parking = "no" ∧ entity1.rating = 4.5 → violate(x0, y0))
+17. Q[x0, y0](entity1.name = "Library" ∧ entity2.name = "Museum" ∧ entity1.location = "downhill" ∧ entity2.location = "uphill" ∧ entity1.owner = "Alice" → violate(x0, y0))
+18. Q[x0, y0](entity1.type = "building" ∧ entity2.type = "park" ∧ entity1.opening_year = 2000 ∧ entity2.opening_year = 1995 ∧ entity1.visitor_count = 500 ∧ entity2.visitor_count = 1000 → violate(x0, y0))
+19. Q[x0, y0](entity1.has_parking = "yes" ∧ entity2.has_parking = "no" ∧ entity1.rating = 4.5 ∧ entity2.rating = 3.0 ∧ entity1.size = "large" ∧ entity2.size = "small" → violate(x0, y0))
+20. Q[x0, y0](entity1.opening_year = 2000 ∧ entity2.opening_year = 1995 ∧ entity1.visitor_count = 500 ∧ entity2.visitor_count = 1000 ∧ entity1.has_parking = "yes" ∧ entity2.has_parking = "no" → violate(x0, y0))
+21. Q[x0, y0](entity1.location = "downhill" ∧ entity2.location = "uphill" ∧ entity1.type = "building" ∧ entity2.type = "park" ∧ entity1.size = "large" ∧ entity2.size = "small" → violate(x0, y0))
+22. Q[x0, y0](entity1.name = "Library" ∧ entity2.name = "Museum" ∧ entity1.owner = "Alice" ∧ entity2.owner = "Bob" ∧ entity1.opening_year = 2000 ∧ entity2.opening_year = 1995 → violate(x0, y0))
+23. Q[x0, y0](entity1.visitor_count = 500 ∧ entity2.visitor_count = 1000 ∧ entity1.rating = 4.5 ∧ entity2.rating = 3.0 ∧ entity1.has_parking = "yes" ∧ entity2.has_parking = "no" → violate(x0, y0))
+24. Q[x0, y0](entity1.size = "large" ∧ entity2.size = "small" ∧ entity1.opening_year = 2000 ∧ entity2.opening_year = 1995 ∧ entity1.visitor_count = 500 ∧ entity2.visitor_count = 1000 → violate(x0, y0))
+25. Q[x0, y0](entity1.type = "building" ∧ entity2.type = "park" ∧ entity1.location = "downhill" ∧ entity2.location = "uphill" ∧ entity1.rating = 4.5 ∧ entity2.rating = 3.0 → violate(x0, y0))
+26. Q[x0, y0](entity1.opening_year = 2000 ∧ entity2.opening_year = 1995 ∧ entity1.size = "large" ∧ entity2.size = "small" ∧ entity1.has_parking = "yes" ∧ entity2.has_parking = "no" → violate(x0, y0))
+27. Q[x0, y0](entity1.name

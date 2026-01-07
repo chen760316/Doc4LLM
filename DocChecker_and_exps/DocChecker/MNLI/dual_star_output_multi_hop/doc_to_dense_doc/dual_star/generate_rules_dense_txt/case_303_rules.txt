@@ -1,0 +1,66 @@
+Source: dense_text.txt (Index 303)
+S1: Have been in this country for less than a decade.
+S2: and have been in this country for oh more than a hundred and fifty years almost two hundred years.
+
+Predicates:
+1. Presence.duration_less_than_decade
+2. Presence.duration_more_than_hundred_fifty_years
+3. Presence.duration_almost_two_hundred_years
+4. M_NLI(S1, S2)
+5. Temporal(Presence.duration_less_than_decade, Presence.duration_more_than_hundred_fifty_years)
+6. violate(Presence.duration_less_than_decade, Presence.duration_more_than_hundred_fifty_years)
+7. Entity.country.presence_duration
+8. Entity.country.decade_threshold
+9. Entity.country.century_threshold
+10. Edge.relationship.presence_claim
+11. Edge.relationship.duration_claim
+12. Meta.conflict_duration_claims
+13. Entity.individual.years_in_country
+14. Edge.relationship.timeframe
+15. Meta.inconsistency(S1, S2)
+16. Entity.individual.presence_duration
+17. Edge.relationship.decade
+18. Edge.relationship.century
+19. Meta.duration_comparison
+20. Entity.individual.time_in_country
+21. Edge.relationship.historical_presence
+22. Meta.temporal_discrepancy
+23. Entity.individual.claimed_duration
+24. Edge.relationship.duration_inconsistency
+25. Meta.duration_violation
+26. Entity.individual.historical_duration
+27. Edge.relationship.presence_duration
+28. Meta.presence_conflict
+29. Entity.individual.timeframe
+30. Edge.relationship.temporal_claim
+
+Rules:
+1. Q[Have, Presence.duration_less_than_decade, Presence.duration_more_than_hundred_fifty_years](Presence.duration_less_than_decade == true → Temporal(Presence.duration_less_than_decade, Presence.duration_more_than_hundred_fifty_years))
+2. Q[Have, Presence.duration_less_than_decade, Presence.duration_almost_two_hundred_years](Presence.duration_less_than_decade == true → Temporal(Presence.duration_less_than_decade, Presence.duration_almost_two_hundred_years))
+3. Q[and, Presence.duration_more_than_hundred_fifty_years, Presence.duration_less_than_decade](Presence.duration_more_than_hundred_fifty_years == true → Temporal(Presence.duration_more_than_hundred_fifty_years, Presence.duration_less_than_decade))
+4. Q[and, Presence.duration_almost_two_hundred_years, Presence.duration_less_than_decade](Presence.duration_almost_two_hundred_years == true → Temporal(Presence.duration_almost_two_hundred_years, Presence.duration_less_than_decade))
+5. Q[Have, Entity.individual.years_in_country, Presence.duration_more_than_hundred_fifty_years](Entity.individual.years_in_country < 10 → Temporal(Entity.individual.years_in_country, Presence.duration_more_than_hundred_fifty_years))
+6. Q[Have, Entity.individual.years_in_country, Presence.duration_almost_two_hundred_years](Entity.individual.years_in_country < 10 → Temporal(Entity.individual.years_in_country, Presence.duration_almost_two_hundred_years))
+7. Q[and, Entity.individual.presence_duration, Presence.duration_less_than_decade](Entity.individual.presence_duration < 10 → Temporal(Entity.individual.presence_duration, Presence.duration_less_than_decade))
+8. Q[Have, Edge.relationship.presence_claim, Presence.duration_more_than_hundred_fifty_years](Edge.relationship.presence_claim == "less than a decade" → Temporal(Edge.relationship.presence_claim, Presence.duration_more_than_hundred_fifty_years))
+9. Q[and, Edge.relationship.presence_claim, Presence.duration_almost_two_hundred_years](Edge.relationship.presence_claim == "less than a decade" → Temporal(Edge.relationship.presence_claim, Presence.duration_almost_two_hundred_years))
+10. Q[Have, Meta.conflict_duration_claims, Presence.duration_more_than_hundred_fifty_years](Meta.conflict_duration_claims == true → Temporal(Meta.conflict_duration_claims, Presence.duration_more_than_hundred_fifty_years))
+11. Q[Have, Meta.conflict_duration_claims, Presence.duration_almost_two_hundred_years](Meta.conflict_duration_claims == true → Temporal(Meta.conflict_duration_claims, Presence.duration_almost_two_hundred_years))
+12. Q[and, Edge.relationship.duration_claim, Presence.duration_less_than_decade](Edge.relationship.duration_claim == "more than a hundred and fifty years" → Temporal(Edge.relationship.duration_claim, Presence.duration_less_than_decade))
+13. Q[Have, Meta.inconsistency(S1, S2), Presence.duration_more_than_hundred_fifty_years](Meta.inconsistency(S1, S2) == true → Temporal(Meta.inconsistency(S1, S2), Presence.duration_more_than_hundred_fifty_years))
+14. Q[Have, Meta.inconsistency(S1, S2), Presence.duration_almost_two_hundred_years](Meta.inconsistency(S1, S2) == true → Temporal(Meta.inconsistency(S1, S2), Presence.duration_almost_two_hundred_years))
+15. Q[and, Entity.individual.historical_duration, Presence.duration_less_than_decade](Entity.individual.historical_duration < 10 → Temporal(Entity.individual.historical_duration, Presence.duration_less_than_decade))
+16. Q[Have, Edge.relationship.duration_inconsistency, Presence.duration_more_than_hundred_fifty_years](Edge.relationship.duration_inconsistency == true → Temporal(Edge.relationship.duration_inconsistency, Presence.duration_more_than_hundred_fifty_years))
+17. Q[Have, Edge.relationship.duration_inconsistency, Presence.duration_almost_two_hundred_years](Edge.relationship.duration_inconsistency == true → Temporal(Edge.relationship.duration_inconsistency, Presence.duration_almost_two_hundred_years))
+18. Q[and, Meta.duration_comparison, Presence.duration_less_than_decade](Meta.duration_comparison == true → Temporal(Meta.duration_comparison, Presence.duration_less_than_decade))
+19. Q[Have, Entity.individual.time_in_country, Presence.duration_more_than_hundred_fifty_years](Entity.individual.time_in_country < 10 → Temporal(Entity.individual.time_in_country, Presence.duration_more_than_hundred_fifty_years))
+20. Q[Have, Entity.individual.time_in_country, Presence.duration_almost_two_hundred_years](Entity.individual.time_in_country < 10 → Temporal(Entity.individual.time_in_country, Presence.duration_almost_two_hundred_years))
+21. Q[and, Edge.relationship.historical_presence, Presence.duration_less_than_decade](Edge.relationship.historical_presence == true → Temporal(Edge.relationship.historical_presence, Presence.duration_less_than_decade))
+22. Q[Have, Meta.temporal_discrepancy, Presence.duration_more_than_hundred_fifty_years](Meta.temporal_discrepancy == true → Temporal(Meta.temporal_discrepancy, Presence.duration_more_than_hundred_fifty_years))
+23. Q[Have, Meta.temporal_discrepancy, Presence.duration_almost_two_hundred_years](Meta.temporal_discrepancy == true → Temporal(Meta.temporal_discrepancy, Presence.duration_almost_two_hundred_years))
+24. Q[and, Edge.relationship.presence_duration, Presence.duration_less_than_decade](Edge.relationship.presence_duration < 10 → Temporal(Edge.relationship.presence_duration, Presence.duration_less_than_decade))
+25. Q[Have, Edge.relationship.temporal_claim, Presence.duration_more_than_hundred_fifty_years](Edge.relationship.temporal_claim == "less than a decade" → Temporal(Edge.relationship.temporal_claim, Presence.duration_more_than_hundred_fifty_years))
+26. Q[Have, Edge.relationship.temporal_claim, Presence.duration_almost_two_hundred_years](Edge.relationship.temporal_claim == "less than a decade" → Temporal(Edge.relationship.temporal_claim, Presence.duration_almost_two_hundred_years))
+27. Q[and, Meta.presence_conflict, Presence.duration_less_than_decade](Meta.presence_conflict == true → Temporal(Meta.presence_conflict, Presence.duration_less_than_decade))
+28. Q[Have, Entity.country.presence_duration, Presence.duration_more_than_hundred_fifty_years](Entity.country.presence_duration < 10 → Temporal(Entity.country.presence_duration, Presence.duration_more_than_hundred_fifty_years))
+29. Q[Have, Entity.country.presence_duration, Presence.duration_almost_two_hundred_years](Entity.country.presence_duration < 10 → Temporal(Entity.country.presence_duration, Presence.duration_almost_two

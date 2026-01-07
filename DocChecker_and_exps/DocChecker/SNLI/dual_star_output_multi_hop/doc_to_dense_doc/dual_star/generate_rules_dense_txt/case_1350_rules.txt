@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 1350)
+S1: A short-haired woman speaks passionately to a group of younger women wearing traditional Indian dress.
+S2: A long-haired woman speaks dismissively about younger women's hip clothing.
+
+Predicates:
+1. Woman1.hair_length = short
+2. Woman1.speaks_style = passionate
+3. Woman1.audience = younger_women
+4. Younger_women.dress_style = traditional_Indian
+5. Woman2.hair_length = long
+6. Woman2.speaks_style = dismissive
+7. Woman2.topic = younger_women's_clothing
+8. Younger_women.clothing_style = hip
+9. Interaction1.type = positive
+10. Interaction2.type = negative
+11. M_NLI(S1, S2) = true
+12. Content(Opinion, Interaction1) = positive
+13. Content(Opinion, Interaction2) = negative
+14. violate(Interaction1, Interaction2) = true
+15. Woman1.interaction_with = younger_women
+16. Woman2.interaction_with = younger_women
+17. Younger_women.reaction_to(Woman1) = positive
+18. Younger_women.reaction_to(Woman2) = negative
+19. Woman1.emotion = supportive
+20. Woman2.emotion = critical
+21. Woman1.message = empowerment
+22. Woman2.message = disapproval
+23. Younger_women.perception_of(Woman1) = favorable
+24. Younger_women.perception_of(Woman2) = unfavorable
+25. Woman1.intent = inspire
+26. Woman2.intent = criticize
+27. Audience.reaction_to(Woman1) = engaged
+28. Audience.reaction_to(Woman2) = offended
+29. Interaction1.context = community_support
+30. Interaction2.context = fashion_critique
+
+Rules:
+1. Q[short, Woman1.speaks_style, Woman2.speaks_style](Woman1.hair_length = short ∧ Woman1.speaks_style = passionate → Content(Opinion, Interaction1) = positive)
+2. Q[short, Woman1.audience, Woman2.topic](Woman1.hair_length = short ∧ Woman1.audience = younger_women → Content(Opinion, Interaction1) = positive)
+3. Q[short, Woman1.interaction_with, Woman2.interaction_with](Woman1.hair_length = short ∧ Woman1.interaction_with = younger_women → Content(Opinion, Interaction1) = positive)
+4. Q[short, Woman1.emotion, Woman2.emotion](Woman1.hair_length = short ∧ Woman1.emotion = supportive → Content(Opinion, Interaction1) = positive)
+5. Q[short, Woman1.message, Woman2.message](Woman1.hair_length = short ∧ Woman1.message = empowerment → Content(Opinion, Interaction1) = positive)
+6. Q[short, Younger_women.reaction_to(Woman1), Younger_women.reaction_to(Woman2)](Woman1.hair_length = short ∧ Younger_women.reaction_to(Woman1) = positive → Content(Opinion, Interaction1) = positive)
+7. Q[short, Interaction1.type, Interaction2.type](Woman1.hair_length = short ∧ Interaction1.type = positive → Content(Opinion, Interaction1) = positive)
+8. Q[short, Woman2.hair_length, Woman2.speaks_style](Woman1.hair_length = short ∧ Woman2.hair_length = long → Content(Opinion, Interaction2) = negative)
+9. Q[short, Woman2.topic, Younger_women.clothing_style](Woman1.hair_length = short ∧ Woman2.topic = younger_women's_clothing → Content(Opinion, Interaction2) = negative)
+10. Q[short, Woman2.interaction_with, Younger_women.reaction_to(Woman2)](Woman1.hair_length = short ∧ Woman2.interaction_with = younger_women → Content(Opinion, Interaction2) = negative)
+11. Q[short, Woman2.emotion, Woman1.emotion](Woman1.hair_length = short ∧ Woman2.emotion = critical → Content(Opinion, Interaction2) = negative)
+12. Q[short, Woman2.message, Woman1.message](Woman1.hair_length = short ∧ Woman2.message = disapproval → Content(Opinion, Interaction2) = negative)
+13. Q[short, Younger_women.perception_of(Woman1), Younger_women.perception_of(Woman2)](Woman1.hair_length = short ∧ Younger_women.perception_of(Woman1) = favorable → Content(Opinion, Interaction1) = positive)
+14. Q[short, Interaction1.context, Interaction2.context](Woman1.hair_length = short ∧ Interaction1.context = community_support → Content(Opinion, Interaction1) = positive)
+15. Q[long, Woman2.speaks_style, Woman1.speaks_style](Woman2.hair_length = long ∧ Woman2.speaks_style = dismissive → Content(Opinion, Interaction2) = negative)
+16. Q[long, Woman2.topic, Younger_women.clothing_style](Woman2.hair_length = long ∧ Woman2.topic = younger_women's_clothing → Content(Opinion, Interaction2) = negative)
+17. Q[long, Woman2.interaction_with, Younger_women.reaction_to(Woman2)](Woman2.hair_length = long ∧ Woman2.interaction_with = younger_women → Content(Opinion, Interaction2) = negative)
+18. Q[long, Woman2.emotion, Woman1.emotion](Woman2.hair_length = long ∧ Woman2.emotion = critical → Content(Opinion, Interaction2) = negative)
+19. Q[long, Woman2.message, Woman1.message](Woman2.hair_length = long ∧ Woman2.message = disapproval → Content(Opinion, Interaction2) = negative)
+20. Q[long, Interaction2.type, Interaction1.type](Woman2.hair_length = long ∧ Interaction2.type = negative → Content(Opinion, Interaction2) = negative)
+21. Q[Younger_women.dress_style, Woman1.audience, Woman2.topic](Younger_women.dress_style = traditional_Indian ∧ Woman1.audience = younger_women → Content(Opinion, Interaction1) = positive)
+22. Q[Younger_women.clothing_style, Woman2.topic, Woman2.speaks_style](Younger_women.clothing_style = hip ∧ Woman2.topic = younger_women's_clothing → Content(Opinion, Interaction2) = negative)
+23. Q[Younger_women.reaction_to(Woman1), Woman1.intent](Younger_women.reaction_to(Woman1) = positive ∧ Woman1.intent = inspire → Content(Opinion, Interaction1) = positive)
+24. Q[Younger_women.reaction_to(Woman2), Woman2.intent](Younger_women.reaction_to(Woman2) = negative ∧ Woman2.intent = criticize → Content(Opinion, Interaction2) = negative)
+25. Q[Interaction1.type, Interaction2.type](Interaction1.type = positive ∧ Interaction2.type = negative → Content(Opinion, Interaction1) = positive)
+26. Q[Younger_women.perception_of(Woman1), Younger_women.perception_of(Woman2)](Younger_women.perception_of(Woman1) = favorable ∧ Younger_women.perception_of(Woman2) = unfavorable → Content(Opinion, Interaction1) = positive)
+27. Q[Younger_women.reaction_to(Woman1), Interaction1.type](Younger_women.reaction_to(Woman1) = positive ∧ Interaction1.type = positive → Content(Opinion, Interaction1) = positive)
+28. Q[Younger_women.reaction_to(Woman2), Interaction2.type](Younger_women.reaction_to(Woman2) = negative ∧ Interaction2.type = negative → Content(Opinion, Interaction2) = negative)
+29. Q[Woman1.intent, Woman2.intent](Woman1.intent = inspire ∧ Woman2.intent = criticize → Content(Opinion, Interaction1) = positive)
+30. Q[Woman1.message, Woman2.message](Woman1.message = empowerment ∧ Woman2.message = disapproval → Content(Opinion, Interaction1) = positive)

@@ -1,0 +1,112 @@
+Predicates:
+1. Boys.status = "better if they aren't 'male' enough"
+2. Boys.comparison = "less likely to go to college"
+3. Boys.likelihood = "more likely to be dropouts"
+4. Boys.likelihood = "more likely to go to jail"
+5. Boys.likelihood = "more likely to get attacked"
+6. Boys.likelihood = "more likely to get murdered"
+7. Boys.likelihood = "more likely to get robbed"
+8. Girls.status = "can be tomboys"
+9. Attack.location = "outside a Safeway grocery store"
+10. Attack.time = "about 10 minutes after the start of a previously scheduled meeting"
+11. Dropouts.description = "less likely to be dropouts"
+12. Male Identity.status = "not male enough"
+13. Murder.attributes = "{'likelihood': 'more likely'}"
+14. Robbery.attributes = "{'likelihood': 'more likely'}"
+15. Tucson.state = "Arizona"
+16. Tucson.type = "supermarket"
+17. "Boys are better if they aren't 'male' enough.".doc_index = "132"
+18. "Boys are more likely to be dropouts and go to jail".doc_index = "133"
+19. "Boys are more likely to get attacked.".doc_index = "134"
+20. "Girls can be tomboys.".doc_index = "132"
+21. "The attack happened outside a Safeway grocery store in Tucson, Arizona.".doc_index = "272"
+22. M_NLI(Boys.status, Boys.comparison)
+23. T("Boys are better if they aren't 'male' enough.", "Boys are more likely to be dropouts and go to jail", tau)
+24. tau(Boys.likelihood, Dropouts.description)
+25. violate(x0, y0)
+26. Factual(x0, y0)
+27. Content(x0, y0)
+28. Causal(x0, y0)
+29. Negation(x0, y0)
+30. Relation(x0, y0)
+31. Numeric(x0, y0)
+32. Temporal(x0, y0)
+33. M_NLI(Girls.status, Boys.status)
+34. T("Boys are more likely to get murdered.", "Boys are more likely to get robbed.", tau)
+35. tau(Attack.location, Attack.time)
+36. violate(Boys.likelihood, Dropouts.description)
+37. Factual(Boys.likelihood, Boys.comparison)
+38. Content(Girls.status, Boys.likelihood)
+39. Causal(Attack.time, Attack.location)
+40. Negation(Male Identity.status, Boys.status)
+41. Relation(Boys.likelihood, Girls.status)
+42. Numeric(Boys.likelihood, Dropouts.description)
+43. Temporal(Attack.time, "Saturday")
+44. M_NLI(Murder.attributes, Robbery.attributes)
+45. T("The attack happened outside a Safeway grocery store in Tucson, Arizona.", "The attack did not happen in Tucson.", tau)
+46. tau(Girls.status, Boys.comparison)
+47. violate(Girls.status, Boys.likelihood)
+48. Factual(Attack.location, Tucson.state)
+49. Content(Boys.likelihood, "less likely to go to college")
+50. Causal(Boys.likelihood, "more likely to get attacked")
+51. Negation("Boys are better if they aren't 'male' enough.", "Boys are not better if they are 'male' enough.")
+52. Relation("Boys are more likely to get murdered.", "Boys are less likely to get murdered.")
+53. Numeric("Boys are more likely to get attacked.", "Boys are less likely to get attacked.")
+54. Temporal("The attack happened outside a Safeway grocery store.", "The attack happened before the meeting.")
+55. M_NLI(Attack.time, "Saturday")
+56. T("Boys are more likely to go to jail.", "Boys are not likely to go to jail.", tau)
+57. tau(Boys.comparison, Dropouts.description)
+58. violate(Male Identity.status, Boys.status)
+59. Factual(Girls.status, "Boys are better if they aren't 'male' enough.")
+60. Content("Boys are more likely to get robbed.", "Boys are not likely to get robbed.")
+61. Causal("Boys are more likely to be dropouts.", "Boys are less likely to be dropouts.")
+62. Negation("The attack happened outside a Safeway grocery store.", "The attack did not happen outside a Safeway grocery store.")
+63. Relation("Boys are more likely to get murdered.", "Boys are not likely to get murdered.")
+64. Numeric("Boys are more likely to get attacked.", "Boys are less likely to get attacked.")
+65. Temporal("The attack happened outside a Safeway grocery store.", "The attack happened after the meeting.")
+66. M_NLI("Boys are better if they aren't 'male' enough.", "Boys are worse if they are 'male' enough.")
+67. T("Boys are more likely to go to jail.", "Boys are less likely to go to jail.", tau)
+68. tau(Attack.location, "Tucson")
+69. violate("Boys are more likely to get murdered.", "Boys are less likely to get murdered.")
+70. Factual("Boys are more likely to get robbed.", "Boys are not likely to get robbed.")
+71. Content("Boys are more likely to be dropouts.", "Boys are not likely to be dropouts.")
+72. Causal("The attack happened outside a Safeway grocery store.", "The attack did not happen outside a Safeway grocery store.")
+73. Negation("Boys are better if they aren't 'male' enough.", "Boys are not better if they aren't 'male' enough.")
+74. Relation("Boys are more likely to get attacked.", "Boys are less likely to get attacked.")
+75. Numeric("Boys are more likely to get murdered.", "Boys are less likely to get murdered.")
+76. Temporal("The attack happened outside a Safeway grocery store.", "The attack happened before the meeting.")
+77. M_NLI("Boys are better if they aren't 'male' enough.", "Boys are worse if they are 'male' enough.")
+78. T("Boys are more likely to go to jail.", "Boys are not likely to go to jail.", tau)
+79. tau(Attack.time, "Saturday")
+80. violate("Boys are more likely to get robbed.", "Boys are less likely to get robbed.")
+81. Factual("Boys are more likely to be dropouts.", "Boys are not likely to be dropouts.")
+82. Content("The attack happened outside a Safeway grocery store.", "The attack did not happen outside a Safeway grocery store.")
+83. Causal("Boys are more likely to get murdered.", "Boys are less likely to get murdered.")
+84. Negation("Boys are better if they aren't 'male' enough.", "Boys are not better if they are 'male' enough.")
+85. Relation("Boys are more likely to get attacked.", "
+violate(x0, y0)
+
+Rules:
+1. Q[x0, y0](Boys.status = "better if they aren't 'male' enough" ∧ Boys.comparison = "less likely to go to college" → violate(x0, y0)
+2. Q[x0, y0](Boys.likelihood = "more likely to go to jail" ∧ Boys.likelihood = "more likely to be dropouts" → violate(x0, y0)
+3. Q[x0, y0](Boys.likelihood = "more likely to get attacked" ∧ Boys.likelihood = "more likely to get murdered" → violate(x0, y0)
+4. Q[x0, y0](Girls.status = "can be tomboys" ∧ Boys.likelihood = "more likely to get robbed" → violate(x0, y0)
+5. Q[x0, y0](Attack.location = "outside a Safeway grocery store" ∧ Attack.time = "about 10 minutes after the start of a previously scheduled meeting" → violate(x0, y0)
+6. Q[x0, y0](Boys.likelihood = "more likely to go to jail" ∧ Boys.likelihood = "more likely to get murdered" ∧ Boys.likelihood = "more likely to get robbed" → violate(x0, y0)
+7. Q[x0, y0](Boys.status = "better if they aren't 'male' enough" ∧ Boys.comparison = "less likely to go to college" ∧ Boys.likelihood = "more likely to be dropouts" → violate(x0, y0)
+8. Q[x0, y0](Boys.likelihood = "more likely to get attacked" ∧ Boys.likelihood = "more likely to get murdered" ∧ Boys.likelihood = "more likely to go to jail" → violate(x0, y0)
+9. Q[x0, y0](Girls.status = "can be tomboys" ∧ Boys.likelihood = "more likely to get robbed" ∧ Boys.likelihood = "more likely to go to jail" → violate(x0, y0)
+10. Q[x0, y0](Attack.location = "outside a Safeway grocery store" ∧ Attack.time = "about 10 minutes after the start of a previously scheduled meeting" ∧ Boys.likelihood = "more likely to get murdered" → violate(x0, y0)
+11. Q[x0, y0](Boys.likelihood = "more likely to get robbed" ∧ Boys.likelihood = "more likely to go to jail" ∧ Boys.likelihood = "more likely to be dropouts" ∧ Boys.likelihood = "more likely to get attacked" → violate(x0, y0)
+12. Q[x0, y0](Boys.status = "better if they aren't 'male' enough" ∧ Boys.comparison = "less likely to go to college" ∧ Boys.likelihood = "more likely to get murdered" ∧ Boys.likelihood = "more likely to get robbed" → violate(x0, y0)
+13. Q[x0, y0](Boys.likelihood = "more likely to get attacked" ∧ Boys.likelihood = "more likely to go to jail" ∧ Boys.likelihood = "more likely to be dropouts" ∧ Girls.status = "can be tomboys" → violate(x0, y0)
+14. Q[x0, y0](Attack.location = "outside a Safeway grocery store" ∧ Attack.time = "about 10 minutes after the start of a previously scheduled meeting" ∧ Boys.likelihood = "more likely to get robbed" ∧ Boys.likelihood = "more likely to get murdered" → violate(x0, y0)
+15. Q[x0, y0](Boys.status = "better if they aren't 'male' enough" ∧ Boys.comparison = "less likely to go to college" ∧ Boys.likelihood = "more likely to get attacked" ∧ Boys.likelihood = "more likely to go to jail" ∧ Boys.likelihood = "more likely to be dropouts" → violate(x0, y0)
+16. Q[x0, y0](Boys.likelihood = "more likely to get murdered" ∧ Boys.likelihood = "more likely to get robbed" ∧ Boys.likelihood = "more likely to go to jail" ∧ Girls.status = "can be tomboys" ∧ Attack.location = "outside a Safeway grocery store" → violate(x0, y0)
+17. Q[x0, y0](Boys.likelihood = "more likely to get attacked" ∧ Boys.likelihood = "more likely to go to jail" ∧ Boys.likelihood = "more likely to be dropouts" ∧ Attack.time = "about 10 minutes after the start of a previously scheduled meeting" ∧ Attack.location = "outside a Safeway grocery store" → violate(x0, y0)
+18. Q[x0, y0](Boys.status = "better if they aren't 'male' enough" ∧ Boys.comparison = "less likely to go to college" ∧ Boys.likelihood = "more likely to get murdered" ∧ Boys.likelihood = "more likely to get robbed" ∧ Girls.status = "can be tomboys" → violate(x0, y0)
+19. Q[x0, y0](Boys.likelihood = "more likely to get robbed" ∧ Boys.likelihood = "more likely to go to jail" ∧ Boys.likelihood = "more likely to be dropouts" ∧ Attack.location = "outside a Safeway grocery store" ∧ Attack.time = "about 10 minutes after the start of a previously scheduled meeting" → violate(x0, y0)
+20. Q[x0, y0](Boys.likelihood = "more likely to get attacked" ∧ Boys.likelihood = "more likely to go to jail" ∧ Boys.likelihood = "more likely to be dropouts" ∧ Boys.likelihood = "more likely to get murdered" ∧ Girls.status = "can be tomboys" → violate(x0, y0)
+21. Q[x0, y0](Boys.status = "better if they aren't 'male' enough" ∧ Boys.comparison = "less likely to go to college" ∧ Boys.likelihood = "more likely to get attacked" ∧ Boys.likelihood = "more likely to go to jail" ∧ Boys.likelihood = "more likely to get robbed" ∧ Attack.location = "outside a Safeway grocery store" → violate(x0, y0)
+22. Q[x0, y0](Boys.likelihood = "more likely to get murdered" ∧ Boys.likelihood = "more likely to get robbed" ∧ Boys.likelihood = "more likely to go to jail" ∧ Attack.time = "about 10 minutes after the start of a previously scheduled meeting" ∧ Attack.location = "outside a Safeway grocery store" → violate(x0, y0)
+23. Q[x0, y0](Boys.likelihood = "more likely to get attacked" ∧ Boys

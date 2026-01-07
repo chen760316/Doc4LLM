@@ -1,0 +1,114 @@
+Predicates:
+1. federal law.status = "does not prohibit non-citizens from voting"
+2. federal law.year_enacted = "1996"
+3. non-citizens.status = "prohibited from voting"
+4. "Relationship".doc_index = "319"
+5. "Relationship".source_domain = "N/A"
+6. "Relationship".source_id = "Index_319"
+7. federal law.voting_rights = "non-citizens allowed in state/local elections"
+8. federal law.voting_rights = "non-citizens prohibited in federal elections"
+9. non-citizens.voting_status = "eligible for state/local elections"
+10. non-citizens.voting_status = "ineligible for federal elections"
+11. federal law.enforcement = "state/local jurisdictions"
+12. federal law.enforcement = "federal jurisdictions"
+13. "Relationship".type = "voting regulation"
+14. "Relationship".scope = "state and local"
+15. "Relationship".scope = "federal"
+16. M_NLI(federal law.status, non-citizens.status)
+17. T("The federal law does not prohibit non-citizens from voting in state or local elections.", "The federal law prohibits non-citizens from voting in federal elections.", tau)
+18. tau(federal law.year_enacted, non-citizens.status)
+19. violate(federal law, non-citizens)
+20. Factual(federal law, non-citizens)
+21. Causal(federal law, non-citizens)
+22. Numeric(federal law.year_enacted, non-citizens.status)
+23. Temporal(federal law.year_enacted, non-citizens.status)
+24. Content(federal law.voting_rights, non-citizens.voting_status)
+25. Relation(federal law.enforcement, non-citizens.voting_status)
+26. "Relationship".description = "voting eligibility"
+27. "Relationship".context = "legal framework"
+28. federal law.jurisdiction = "state and local"
+29. federal law.jurisdiction = "federal"
+30. non-citizens.voting_rights = "allowed in local elections"
+31. non-citizens.voting_rights = "not allowed in federal elections"
+32. M_NLI(non-citizens.voting_status, federal law.voting_rights)
+33. T("Non-citizens can vote in local elections.", "Non-citizens cannot vote in any elections.", tau)
+34. tau(federal law.jurisdiction, non-citizens.voting_rights)
+35. violate(non-citizens, federal law)
+36. Factual(non-citizens, federal law)
+37. Causal(non-citizens, federal law)
+38. Numeric(non-citizens.voting_rights, federal law.year_enacted)
+39. Temporal(non-citizens.voting_status, federal law.year_enacted)
+40. Content(non-citizens.voting_rights, federal law.voting_rights)
+41. Relation(non-citizens.voting_status, federal law.enforcement)
+42. "Relationship".impact = "voting rights"
+43. "Relationship".effect = "legal implications"
+44. federal law.impact_on_non_citizens = "allows voting in local elections"
+45. federal law.impact_on_non_citizens = "restricts voting in federal elections"
+46. non-citizens.legal_status = "eligible for local voting"
+47. non-citizens.legal_status = "ineligible for federal voting"
+48. M_NLI(federal law.impact_on_non_citizens, non-citizens.legal_status)
+49. T("The law allows non-citizens to vote locally.", "The law prohibits non-citizens from voting.", tau)
+50. tau(federal law.impact_on_non_citizens, non-citizens.legal_status)
+51. violate(federal law, non-citizens.legal_status)
+52. Factual(federal law.impact_on_non_citizens, non-citizens.legal_status)
+53. Causal(federal law.impact_on_non_citizens, non-citizens.legal_status)
+54. Numeric(federal law.year_enacted, non-citizens.legal_status)
+55. Temporal(federal law.year_enacted, non-citizens.legal_status)
+56. Content(federal law.impact_on_non_citizens, non-citizens.legal_status)
+57. Relation(federal law.enforcement, non-citizens.legal_status)
+58. "Relationship".authority = "state and local governments"
+59. "Relationship".authority = "federal government"
+60. federal law.voting_provisions = "non-citizens can vote locally"
+61. federal law.voting_provisions = "non-citizens cannot vote federally"
+62. non-citizens.voting_rights_status = "allowed in state elections"
+63. non-citizens.voting_rights_status = "not allowed in federal elections"
+64. M_NLI(federal law.voting_provisions, non-citizens.voting_rights_status)
+65. T("The law permits non-citizen voting in state elections.", "The law prohibits non-citizen voting.", tau)
+66. tau(federal law.voting_provisions, non-citizens.voting_rights_status)
+67. violate(non-citizens.voting_rights_status, federal law)
+68. Factual(non-citizens.voting_rights_status, federal law)
+69. Causal(non-citizens.voting_rights_status, federal law)
+70. Numeric(non-citizens.voting_rights_status, federal law.year_enacted)
+71. Temporal(non-citizens.voting_rights_status, federal law.year_enacted)
+72. Content(non-citizens.voting_rights_status, federal law.voting_provisions)
+73. Relation(non-citizens.voting_rights_status, federal law.enforcement)
+74. "Relationship".scope_of_voting = "state/local"
+75. "Relationship".scope_of_voting = "federal"
+76. federal law.voting_scope = "non-citizens allowed in state/local"
+77. federal law.voting_scope = "non-citizens prohibited in federal"
+78. non-citizens.voting_scope = "eligible for state/local voting"
+79. non-citizens.voting_scope = "ineligible for federal voting"
+80. M_NLI(federal law.voting_scope, non-citizens.voting_scope)
+81. T("Non-citizens can vote in state elections.", "Non-citizens cannot vote in any elections.", tau)
+82. tau(federal law.voting_scope, non-citizens.voting_scope)
+83. violate(federal law.voting_scope, non-citizens)
+84. Factual(federal law.voting_scope, non-citizens)
+85. Causal(federal law.voting_scope, non-citizens)
+86. Numeric(federal law.year_enacted, non-citizens.voting_scope)
+87. Temporal(federal law.year_enacted, non-citizens.voting_scope)
+88. Content(federal law.voting_scope, non-c
+violate(x0, y0)
+
+Rules:
+1. Q[x0, y0](federal law.status = "does not prohibit non-citizens from voting" ∧ non-citizens.status = "prohibited from voting" → violate(x0, y0))
+2. Q[x0, y0](federal law.voting_rights = "non-citizens allowed in state/local elections" ∧ non-citizens.voting_status = "ineligible for federal elections" → violate(x0, y0))
+3. Q[x0, y0](federal law.year_enacted = "1996" ∧ federal law.voting_rights = "non-citizens prohibited in federal elections" → violate(x0, y0))
+4. Q[x0, y0](federal law.enforcement = "federal jurisdictions" ∧ non-citizens.voting_status = "eligible for state/local elections" → violate(x0, y0))
+5. Q[x0, y0](federal law.jurisdiction = "state and local" ∧ non-citizens.legal_status = "ineligible for federal voting" → violate(x0, y0))
+6. Q[x0, y0](federal law.voting_provisions = "non-citizens cannot vote federally" ∧ non-citizens.voting_rights = "allowed in local elections" → violate(x0, y0))
+7. Q[x0, y0](federal law.voting_rights = "non-citizens allowed in state/local elections" ∧ federal law.voting_rights = "non-citizens prohibited in federal elections" ∧ non-citizens.voting_status = "ineligible for federal elections" → violate(x0, y0))
+8. Q[x0, y0](federal law.status = "does not prohibit non-citizens from voting" ∧ non-citizens.voting_status = "ineligible for federal elections" ∧ federal law.jurisdiction = "federal" → violate(x0, y0))
+9. Q[x0, y0](federal law.enforcement = "state/local jurisdictions" ∧ non-citizens.voting_status = "eligible for state/local elections" ∧ federal law.voting_rights = "non-citizens prohibited in federal elections" → violate(x0, y0))
+10. Q[x0, y0](federal law.voting_scope = "non-citizens allowed in state/local" ∧ non-citizens.voting_scope = "ineligible for federal voting" ∧ federal law.voting_rights = "non-citizens prohibited in federal elections" → violate(x0, y0))
+11. Q[x0, y0](federal law.year_enacted = "1996" ∧ federal law.voting_provisions = "non-citizens can vote locally" ∧ non-citizens.voting_rights_status = "not allowed in federal elections" → violate(x0, y0))
+12. Q[x0, y0](federal law.voting_rights = "non-citizens prohibited in federal elections" ∧ non-citizens.voting_status = "ineligible for federal elections" ∧ federal law.jurisdiction = "federal" ∧ federal law.enforcement = "federal jurisdictions" → violate(x0, y0))
+13. Q[x0, y0](federal law.voting_scope = "non-citizens prohibited in federal" ∧ non-citizens.voting_scope = "eligible for state/local voting" ∧ federal law.voting_provisions = "non-citizens cannot vote federally" ∧ federal law.status = "does not prohibit non-citizens from voting" → violate(x0, y0))
+14. Q[x0, y0](federal law.voting_rights = "non-citizens allowed in state/local elections" ∧ non-citizens.voting_rights = "not allowed in federal elections" ∧ federal law.enforcement = "state/local jurisdictions" ∧ federal law.jurisdiction = "federal" → violate(x0, y0))
+15. Q[x0, y0](federal law.impact_on_non_citizens = "restricts voting in federal elections" ∧ non-citizens.legal_status = "eligible for local voting" ∧ federal law.voting_rights = "non-citizens prohibited in federal elections" ∧ federal law.voting_scope = "non-citizens allowed in state/local" → violate(x0, y0))
+16. Q[x0, y0](federal law.voting_provisions = "non-citizens can vote locally" ∧ non-citizens.voting_rights_status = "not allowed in federal elections" ∧ federal law.voting_scope = "non-citizens prohibited in federal" ∧ federal law.jurisdiction = "state and local" → violate(x0, y0))
+17. Q[x0, y0](federal law.voting_rights = "non-citizens prohibited in federal elections" ∧ non-citizens.voting_status = "eligible for state/local elections" ∧ federal law.enforcement = "federal jurisdictions" ∧ federal law.year_enacted = "1996" → violate(x0, y0))
+18. Q[x0, y0](federal law.status = "does not prohibit non-citizens from voting" ∧ non-citizens.voting_rights = "not allowed in federal elections" ∧ federal law.voting_scope = "non-citizens prohibited in federal" ∧ federal law.jurisdiction = "federal" ∧ non-citizens.voting_status = "ineligible for federal elections" → violate(x0, y0))
+19. Q[x0, y0](federal law.voting_rights = "non-citizens allowed in state/local elections" ∧ non-citizens.voting_scope = "ineligible for federal voting" ∧ federal law.enforcement = "state/local jurisdictions" ∧ federal law.jurisdiction = "federal" ∧ federal law.year_enacted = "1996" → violate(x0, y0))
+20. Q[x0, y0](federal law.voting_provisions = "non-citizens cannot vote federally" ∧ non-citizens.voting_rights = "allowed in state elections" ∧ federal law.voting_scope = "non-citizens prohibited in federal" ∧ federal law.status = "does not prohibit non-citizens from voting" ∧ non-citizens.voting_status = "ineligible for federal elections" → violate(x0, y0))
+21. Q[x0, y0](federal law.voting_rights = "non-citizens prohibited in federal elections" ∧ non-citizens.voting_status = "eligible for state/local elections" ∧ federal law.jurisdiction = "state and local" ∧ federal law.enforcement = "federal jurisdictions" ∧ federal law.year_enacted = "1996" → violate(x0, y0))
+22. Q[x0, y0](federal law.voting

@@ -1,0 +1,66 @@
+Source: dense_text.txt (Index 524)
+S1: U.S. Steel inclusion could have a technical advantage over Nucor from a new steel method, you are considering, thin strip of cast iron, can produce higher quality than the technique of thin slab of Nucor steel.
+S2: U.S. Steel could even have a technical advantage over Nucor since one new method of steel making it is considering, thin strip casting, may produce higher quality steel than the Nucor thin slab technique.
+
+Predicates:
+1. U.S._Steel.method.technical_advantage
+2. Nucor.method.quality_comparison
+3. U.S._Steel.method.thin_strip_casting
+4. Nucor.method.thin_slab_technique
+5. U.S._Steel.method.higher_quality
+6. Nucor.method.lower_quality
+7. U.S._Steel.advantage.over.Nucor
+8. Nucor.uncertainty.quality_comparison
+9. thin_strip_casting.may_produce.higher_quality
+10. thin_slab_technique.cannot_produce.higher_quality
+11. U.S._Steel.considering.new_method
+12. Nucor.technique.is_inferior
+13. U.S._Steel.method.is_better_than.Nucor
+14. thin_strip_casting.is_a_new_method
+15. thin_slab_technique.is_a_current_method
+16. U.S._Steel.method.is_technical
+17. Nucor.method.is_technical
+18. U.S._Steel.method.is_considered
+19. Nucor.method.is_not_considered
+20. U.S._Steel.method.has_advantage
+21. Nucor.method.has_disadvantage
+22. U.S._Steel.method.produces_quality
+23. Nucor.method.produces_lower_quality
+24. M_NLI(S1, S2).validity
+25. Content(S1, S2).comparison
+26. violate(S1, S2).quality_claim
+27. U.S._Steel.method.is_compared_to.Nucor
+28. Nucor.method.is_compared_to.U.S._Steel
+29. thin_strip_casting.is_better_than.thin_slab
+30. thin_slab_technique.is_not_better_than.thin_strip_casting
+
+Rules:
+1. Q[Steel, U.S._Steel.method.technical_advantage == true, Nucor.method.quality_comparison == false](U.S._Steel.method.has_advantage → Content(U.S._Steel, Nucor))
+2. Q[Steel, U.S._Steel.method.thin_strip_casting == true, Nucor.method.thin_slab_technique == true](U.S._Steel.method.is_better_than.Nucor → Content(U.S._Steel, Nucor))
+3. Q[Steel, U.S._Steel.method.higher_quality == true, Nucor.method.lower_quality == true](U.S._Steel.method.produces_quality → Content(U.S._Steel, Nucor))
+4. Q[Steel, U.S._Steel.method.is_considered == true, Nucor.method.is_not_considered == true](U.S._Steel.considering.new_method → Content(U.S._Steel, Nucor))
+5. Q[Steel, thin_strip_casting.may_produce.higher_quality == true, thin_slab_technique.cannot_produce.higher_quality == true](thin_strip_casting.is_better_than.thin_slab → Content(U.S._Steel, Nucor))
+6. Q[Steel, U.S._Steel.method.is_technical == true, Nucor.method.is_technical == true](U.S._Steel.method.has_advantage → Content(U.S._Steel, Nucor))
+7. Q[Steel, U.S._Steel.method.is_compared_to.Nucor == true, Nucor.method.is_compared_to.U.S._Steel == true](U.S._Steel.method.is_better_than.Nucor → Content(U.S._Steel, Nucor))
+8. Q[Steel, U.S._Steel.method.has_advantage == true, Nucor.method.has_disadvantage == true](U.S._Steel.method.technical_advantage → Content(U.S._Steel, Nucor))
+9. Q[Steel, U.S._Steel.method.thin_strip_casting == true, Nucor.method.thin_slab_technique == true](U.S._Steel.method.is_better_than.Nucor → Content(U.S._Steel, Nucor))
+10. Q[Steel, U.S._Steel.method.produces_quality == true, Nucor.method.produces_lower_quality == true](U.S._Steel.method.higher_quality → Content(U.S._Steel, Nucor))
+11. Q[Steel, U.S._Steel.method.is_better_than.Nucor == true, Nucor.uncertainty.quality_comparison == true](U.S._Steel.method.has_advantage → Content(U.S._Steel, Nucor))
+12. Q[Steel, thin_strip_casting.is_a_new_method == true, thin_slab_technique.is_a_current_method == true](U.S._Steel.method.is_better_than.Nucor → Content(U.S._Steel, Nucor))
+13. Q[Steel, U.S._Steel.method.is_technical == true, Nucor.method.is_technical == true](U.S._Steel.method.has_advantage → Content(U.S._Steel, Nucor))
+14. Q[Steel, U.S._Steel.method.is_compared_to.Nucor == true, Nucor.method.is_compared_to.U.S._Steel == true](U.S._Steel.method.technical_advantage → Content(U.S._Steel, Nucor))
+15. Q[Steel, U.S._Steel.method.has_advantage == true, Nucor.method.has_disadvantage == true](U.S._Steel.method.higher_quality → Content(U.S._Steel, Nucor))
+16. Q[Steel, U.S._Steel.method.thin_strip_casting == true, Nucor.method.thin_slab_technique == true](U.S._Steel.method.is_better_than.Nucor → Content(U.S._Steel, Nucor))
+17. Q[Steel, U.S._Steel.method.is_considered == true, Nucor.method.is_not_considered == true](U.S._Steel.considering.new_method → Content(U.S._Steel, Nucor))
+18. Q[Steel, thin_strip_casting.may_produce.higher_quality == true, thin_slab_technique.cannot_produce.higher_quality == true](U.S._Steel.method.is_better_than.Nucor → Content(U.S._Steel, Nucor))
+19. Q[Steel, U.S._Steel.method.has_advantage == true, Nucor.method.has_disadvantage == true](U.S._Steel.method.technical_advantage → Content(U.S._Steel, Nucor))
+20. Q[Steel, U.S._Steel.method.is_better_than.Nucor == true, Nucor.uncertainty.quality_comparison == true](U.S._Steel.method.higher_quality → Content(U.S._Steel, Nucor))
+21. Q[Steel, U.S._Steel.method.is_technical == true, Nucor.method.is_technical == true](U.S._Steel.method.has_advantage → Content(U.S._Steel, Nucor))
+22. Q[Steel, U.S._Steel.method.is_compared_to.Nucor == true, Nucor.method.is_compared_to.U.S._Steel == true](U.S._Steel.method.technical_advantage → Content(U.S._Steel, Nucor))
+23. Q[Steel, U.S._Steel.method.thin_strip_casting == true, Nucor.method.thin_slab_technique == true](U.S._Steel.method.is_better_than.Nucor → Content(U.S._Steel, Nucor))
+24. Q[Steel, U.S._Steel.method.produces_quality == true, Nucor.method.produces_lower_quality == true](U.S._Steel.method.higher_quality → Content(U.S._Steel, Nucor))
+25. Q[Steel, U.S._Steel.method.is_better_than.Nucor == true, Nucor.uncertainty.quality_comparison == true](U.S._Steel.method.has_advantage → Content(U.S._Steel, Nucor))
+26. Q[Steel, thin_strip_casting.is_a_new_method == true, thin_slab_technique.is_a_current_method == true](U.S._Steel.method.is_better_than.Nucor → Content(U.S._Steel, Nucor))
+27. Q[Steel, U.S._Steel.method.has_advantage == true, Nucor.method.has_disadvantage == true](U.S._Steel.method.higher_quality → Content(U.S._Steel, Nucor))
+28. Q[Steel, U.S._Steel.method.is_compared_to.Nucor == true, Nucor.method.is_compared_to.U.S._Steel == true](U.S._Steel.method.technical_advantage → Content(U.S._Steel, Nucor))
+29. Q[Steel, U.S._Steel.method.thin_strip_casting == true, Nucor.method.thin_slab_technique == true](U

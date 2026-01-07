@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 1172)
+S1: I don't know if it was mercy or vengeance.
+S2: It could have either been vengeance or mercy.
+
+Predicates:
+1. Action.uncertainty
+2. Action.possibility
+3. Emotion.mercy
+4. Emotion.vengeance
+5. Relationship.mercy_vengeance
+6. Reason.uncertainty_expression
+7. Reason.possibility_expression
+8. Entity.unknown_action
+9. Entity.mercy_action
+10. Entity.vengeance_action
+11. Meta.M_NLI(S1, S2)
+12. Meta.Negation(S1, S2)
+13. Meta.violate(S1, S2)
+14. Action.mercy_or_vengeance
+15. Action.either_or
+16. Emotion.conflict
+17. Emotion.indecision
+18. Relationship.mercy_or_vengeance
+19. Entity.action_type
+20. Entity.emotional_response
+21. Reason.comparison
+22. Reason.dilemma
+23. Action.possible_outcome
+24. Action.decision_making
+25. Emotion.ambivalence
+26. Relationship.uncertainty
+27. Entity.choice
+28. Entity.moral_dilemma
+29. Reason.evaluation
+30. Action.interpretation
+
+Rules:
+1. Q[mercy, Action.uncertainty == true, Action.possibility == false](Reason.uncertainty_expression → Negation(Action.uncertainty, Action.possibility))
+2. Q[vengeance, Action.uncertainty == true, Action.possibility == false](Reason.uncertainty_expression → Negation(Action.uncertainty, Action.possibility))
+3. Q[mercy, Emotion.mercy == true, Emotion.vengeance == false](Reason.uncertainty_expression → Negation(Emotion.mercy, Emotion.vengeance))
+4. Q[vengeance, Emotion.vengeance == true, Emotion.mercy == false](Reason.uncertainty_expression → Negation(Emotion.vengeance, Emotion.mercy))
+5. Q[mercy, Relationship.mercy_vengeance == true, Relationship.mercy_or_vengeance == false](Reason.uncertainty_expression → Negation(Relationship.mercy_vengeance, Relationship.mercy_or_vengeance))
+6. Q[vengeance, Relationship.mercy_vengeance == true, Relationship.mercy_or_vengeance == false](Reason.uncertainty_expression → Negation(Relationship.mercy_vengeance, Relationship.mercy_or_vengeance))
+7. Q[mercy, Action.either_or == true, Action.mercy_or_vengeance == false](Reason.possibility_expression → Negation(Action.either_or, Action.mercy_or_vengeance))
+8. Q[vengeance, Action.either_or == true, Action.mercy_or_vengeance == false](Reason.possibility_expression → Negation(Action.either_or, Action.mercy_or_vengeance))
+9. Q[mercy, Entity.unknown_action == true, Entity.mercy_action == false](Reason.uncertainty_expression → Negation(Entity.unknown_action, Entity.mercy_action))
+10. Q[vengeance, Entity.unknown_action == true, Entity.vengeance_action == false](Reason.uncertainty_expression → Negation(Entity.unknown_action, Entity.vengeance_action))
+11. Q[mercy, Emotion.indecision == true, Emotion.ambivalence == false](Reason.dilemma → Negation(Emotion.indecision, Emotion.ambivalence))
+12. Q[vengeance, Emotion.indecision == true, Emotion.ambivalence == false](Reason.dilemma → Negation(Emotion.indecision, Emotion.ambivalence))
+13. Q[mercy, Action.decision_making == true, Action.interpretation == false](Reason.evaluation → Negation(Action.decision_making, Action.interpretation))
+14. Q[vengeance, Action.decision_making == true, Action.interpretation == false](Reason.evaluation → Negation(Action.decision_making, Action.interpretation))
+15. Q[mercy, Relationship.uncertainty == true, Relationship.mercy_or_vengeance == false](Reason.uncertainty_expression → Negation(Relationship.uncertainty, Relationship.mercy_or_vengeance))
+16. Q[vengeance, Relationship.uncertainty == true, Relationship.mercy_or_vengeance == false](Reason.uncertainty_expression → Negation(Relationship.uncertainty, Relationship.mercy_or_vengeance))
+17. Q[mercy, Action.possible_outcome == true, Action.mercy_or_vengeance == false](Reason.possibility_expression → Negation(Action.possible_outcome, Action.mercy_or_vengeance))
+18. Q[vengeance, Action.possible_outcome == true, Action.mercy_or_vengeance == false](Reason.possibility_expression → Negation(Action.possible_outcome, Action.mercy_or_vengeance))
+19. Q[mercy, Entity.choice == true, Entity.moral_dilemma == false](Reason.evaluation → Negation(Entity.choice, Entity.moral_dilemma))
+20. Q[vengeance, Entity.choice == true, Entity.moral_dilemma == false](Reason.evaluation → Negation(Entity.choice, Entity.moral_dilemma))
+21. Q[mercy, Emotion.conflict == true, Emotion.indecision == false](Reason.dilemma → Negation(Emotion.conflict, Emotion.indecision))
+22. Q[vengeance, Emotion.conflict == true, Emotion.indecision == false](Reason.dilemma → Negation(Emotion.conflict, Emotion.indecision))
+23. Q[mercy, Action.interpretation == true, Action.uncertainty == false](Reason.uncertainty_expression → Negation(Action.interpretation, Action.uncertainty))
+24. Q[vengeance, Action.interpretation == true, Action.uncertainty == false](Reason.uncertainty_expression → Negation(Action.interpretation, Action.uncertainty))
+25. Q[mercy, Emotion.mercy == true, Emotion.conflict == false](Reason.evaluation → Negation(Emotion.mercy, Emotion.conflict))
+26. Q[vengeance, Emotion.vengeance == true, Emotion.conflict == false](Reason.evaluation → Negation(Emotion.vengeance, Emotion.conflict))
+27. Q[mercy, Action.mercy_or_vengeance == true, Action.uncertainty == false](Reason.possibility_expression → Negation(Action.mercy_or_vengeance, Action.uncertainty))
+28. Q[vengeance, Action.mercy_or_vengeance == true, Action.uncertainty == false](Reason.possibility_expression → Negation(Action.mercy_or_vengeance, Action.uncertainty))
+29. Q[mercy, Entity.mercy_action == true, Entity.unknown_action == false](Reason.uncertainty_expression → Negation(Entity.mercy_action, Entity.unknown_action))
+30. Q[vengeance, Entity.vengeance_action == true, Entity.unknown_action == false](Reason.uncertainty_expression → Negation(Entity.vengeance_action, Entity.unknown_action))

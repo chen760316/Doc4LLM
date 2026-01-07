@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 795)
+S1: Four categories of prohibited activities were specified in the section.
+S2: It concluded the section specified four categories of prohibited activities, of which three appeared to prohibit the type of activity named regardless of viewpoint.
+
+Predicates:
+1. ProhibitedActivities.section
+2. ProhibitedActivities.count
+3. ProhibitedActivities.category1
+4. ProhibitedActivities.category2
+5. ProhibitedActivities.category3
+6. ProhibitedActivities.category4
+7. EffectiveProhibitions.count
+8. EffectiveProhibitions.category1
+9. EffectiveProhibitions.category2
+10. EffectiveProhibitions.category3
+11. Viewpoint.independent
+12. Viewpoint.dependent
+13. Activity.type
+14. Activity.name
+15. Activity.prohibited
+16. Section.conclusion
+17. Section.specified
+18. Section.numberOfCategories
+19. Contradiction.exists
+20. Contradiction.numberOfEffectiveProhibitions
+21. Reasoning.inconsistency
+22. Reasoning.evidence
+23. Reasoning.contradictory
+24. Content.s1
+25. Content.s2
+26. M_NLI.s1_s2
+27. M_NLI.contradiction
+28. violate(s1, s2)
+29. violate(EffectiveProhibitions, ProhibitedActivities)
+30. violate(Viewpoint, Activity)
+
+Rules:
+1. Q[Four, ProhibitedActivities.count, EffectiveProhibitions.count](ProhibitedActivities.section == "specified" → Content(ProhibitedActivities.count, EffectiveProhibitions.count))
+2. Q[Four, ProhibitedActivities.category1, EffectiveProhibitions.category1](ProhibitedActivities.category1 == "prohibit" → Content(ProhibitedActivities.category1, EffectiveProhibitions.category1))
+3. Q[Four, ProhibitedActivities.category2, EffectiveProhibitions.category2](ProhibitedActivities.category2 == "prohibit" → Content(ProhibitedActivities.category2, EffectiveProhibitions.category2))
+4. Q[Four, ProhibitedActivities.category3, EffectiveProhibitions.category3](ProhibitedActivities.category3 == "prohibit" → Content(ProhibitedActivities.category3, EffectiveProhibitions.category3))
+5. Q[Four, ProhibitedActivities.category4, EffectiveProhibitions.category4](ProhibitedActivities.category4 == "prohibit" → Content(ProhibitedActivities.category4, EffectiveProhibitions.category4))
+6. Q[Four, ProhibitedActivities.count, 4](ProhibitedActivities.section == "specified" → Content(ProhibitedActivities.count, 4))
+7. Q[Four, EffectiveProhibitions.count, 3](EffectiveProhibitions.count == 3 → Content(EffectiveProhibitions.count, 3))
+8. Q[Four, Contradiction.exists, Reasoning.inconsistency](ProhibitedActivities.count == 4 ∧ EffectiveProhibitions.count == 3 → Content(Contradiction.exists, Reasoning.inconsistency))
+9. Q[Four, Contradiction.numberOfEffectiveProhibitions, 1](EffectiveProhibitions.count < ProhibitedActivities.count → Content(Contradiction.numberOfEffectiveProhibitions, 1))
+10. Q[Four, Section.numberOfCategories, 4](Section.specified == "four categories" → Content(Section.numberOfCategories, 4))
+11. Q[Four, Section.conclusion, "three prohibitions"](Section.conclusion == "three prohibitions" → Content(Section.conclusion, "three prohibitions"))
+12. Q[Four, Reasoning.contradictory, "exists"](ProhibitedActivities.count == 4 ∧ EffectiveProhibitions.count == 3 → Content(Reasoning.contradictory, "exists"))
+13. Q[Four, Viewpoint.independent, "exists"](EffectiveProhibitions.count == 3 → Content(Viewpoint.independent, "exists"))
+14. Q[Four, Activity.prohibited, "true"](Activity.type == "prohibited" → Content(Activity.prohibited, "true"))
+15. Q[Four, violate(EffectiveProhibitions, ProhibitedActivities), "true"](EffectiveProhibitions.count < ProhibitedActivities.count → Content(violate(EffectiveProhibitions, ProhibitedActivities), "true"))
+16. Q[Four, Reasoning.evidence, "contradiction"](ProhibitedActivities.count == 4 ∧ EffectiveProhibitions.count == 3 → Content(Reasoning.evidence, "contradiction"))
+17. Q[Four, M_NLI.s1_s2, "contradiction"](ProhibitedActivities.count == 4 ∧ EffectiveProhibitions.count == 3 → Content(M_NLI.s1_s2, "contradiction"))
+18. Q[Four, Activity.name, "prohibited"](Activity.type == "prohibited" → Content(Activity.name, "prohibited"))
+19. Q[Four, Viewpoint.dependent, "exists"](EffectiveProhibitions.count == 3 → Content(Viewpoint.dependent, "exists"))
+20. Q[Four, Section.specified, "four categories"](Section.specified == "four categories" → Content(Section.specified, "four categories"))
+21. Q[Four, Reasoning.inconsistency, "exists"](ProhibitedActivities.count == 4 ∧ EffectiveProhibitions.count == 3 → Content(Reasoning.inconsistency, "exists"))
+22. Q[Four, ProhibitedActivities.category1, "prohibit"](ProhibitedActivities.category1 == "prohibit" → Content(ProhibitedActivities.category1, "prohibit"))
+23. Q[Four, ProhibitedActivities.category2, "prohibit"](ProhibitedActivities.category2 == "prohibit" → Content(ProhibitedActivities.category2, "prohibit"))
+24. Q[Four, ProhibitedActivities.category3, "prohibit"](ProhibitedActivities.category3 == "prohibit" → Content(ProhibitedActivities.category3, "prohibit"))
+25. Q[Four, ProhibitedActivities.category4, "prohibit"](ProhibitedActivities.category4 == "prohibit" → Content(ProhibitedActivities.category4, "prohibit"))
+26. Q[Four, EffectiveProhibitions.count, 3](EffectiveProhibitions.count == 3 → Content(EffectiveProhibitions.count, 3))
+27. Q[Four, Contradiction.exists, "true"](ProhibitedActivities.count == 4 ∧ EffectiveProhibitions.count == 3 → Content(Contradiction.exists, "true"))
+28. Q[Four, violate(Viewpoint, Activity), "true"](EffectiveProhibitions.count < ProhibitedActivities.count → Content(violate(Viewpoint, Activity), "true"))
+29. Q[Four, Section.numberOfCategories, 4](Section.specified == "four categories" → Content(Section.numberOfCategories, 4))
+30. Q[Four, Reasoning.evidence, "exists"](ProhibitedActivities.count == 4 ∧ EffectiveProhibitions.count == 3 → Content(Reasoning.evidence, "exists"))

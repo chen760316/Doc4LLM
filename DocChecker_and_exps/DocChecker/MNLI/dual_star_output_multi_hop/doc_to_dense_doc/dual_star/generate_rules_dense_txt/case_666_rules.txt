@@ -1,0 +1,65 @@
+Source: dense_text.txt (Index 666)
+S1: Anyone who drives under the influence of alcohol is an alcoholic.
+S2: A substantial number of individuals who do not meet diagnostic criteria for alcohol abuse or dependence admit to having driven an automobile while intoxicated.
+
+Predicates:
+1. Person.drives_under_influence
+2. Person.is_alcoholic
+3. Person.does_not_meet_criteria
+4. Person.admits_to_driving_intoxicated
+5. Individual.drives_under_influence
+6. Individual.is_alcoholic
+7. Individual.does_not_meet_diagnostic_criteria
+8. Individual.admits_to_driving_intoxicated
+9. Alcoholic.drives_under_influence
+10. Alcoholic.does_not_meet_criteria
+11. Alcoholic.admits_to_driving_intoxicated
+12. Intoxicated.individuals.drive
+13. Intoxicated.individuals.admit
+14. Alcohol_abuse.diagnostic_criteria
+15. Alcohol_dependence.diagnostic_criteria
+16. Substantial_number.individuals.drive_intoxicated
+17. Substantial_number.individuals.do_not_meet_criteria
+18. Driving_under_influence.is_a_cause
+19. Driving_intoxicated.is_a_behavior
+20. Driving_intoxicated.is_linked_to_alcoholism
+21. Driving_intoxicated.is_not_always_alcoholism
+22. Alcoholism.is_a_condition
+23. Alcoholism.is_diagnosed
+24. Driving_under_influence.is_illegal
+25. Driving_under_influence.is_a_risk
+26. Driving_intoxicated.is_a_concern
+27. Driving_intoxicated.is_a_behavioral_issue
+28. Alcoholic.is_a_person
+29. Intoxicated.is_a_state
+30. Driving.is_a_activity
+
+Rules:
+1. Q[Anyone, Person.drives_under_influence == true, Person.is_alcoholic == true](Person.drives_under_influence == true → Factual(Anyone, Person.is_alcoholic))
+2. Q[Anyone, Individual.drives_under_influence == true, Individual.is_alcoholic == true](Individual.drives_under_influence == true → Factual(Anyone, Individual.is_alcoholic))
+3. Q[Anyone, Person.admits_to_driving_intoxicated == true, Person.does_not_meet_criteria == true](Person.admits_to_driving_intoxicated == true → Factual(Anyone, Person.does_not_meet_criteria))
+4. Q[Anyone, Individual.admits_to_driving_intoxicated == true, Individual.does_not_meet_diagnostic_criteria == true](Individual.admits_to_driving_intoxicated == true → Factual(Anyone, Individual.does_not_meet_diagnostic_criteria))
+5. Q[Anyone, Alcoholic.drives_under_influence == true, Alcoholic.does_not_meet_criteria == true](Alcoholic.drives_under_influence == true → Factual(Anyone, Alcoholic.does_not_meet_criteria))
+6. Q[Anyone, Intoxicated.individuals.drive == true, Intoxicated.individuals.admit == true](Intoxicated.individuals.drive == true → Factual(Anyone, Intoxicated.individuals.admit))
+7. Q[Anyone, Substantial_number.individuals.drive_intoxicated == true, Substantial_number.individuals.do_not_meet_criteria == true](Substantial_number.individuals.drive_intoxicated == true → Factual(Anyone, Substantial_number.individuals.do_not_meet_criteria))
+8. Q[Anyone, Driving_intoxicated.is_linked_to_alcoholism == true, Driving_intoxicated.is_not_always_alcoholism == true](Driving_intoxicated.is_linked_to_alcoholism == true → Factual(Anyone, Driving_intoxicated.is_not_always_alcoholism))
+9. Q[Anyone, Alcoholism.is_a_condition == true, Alcoholism.is_diagnosed == false](Alcoholism.is_a_condition == true → Factual(Anyone, Alcoholism.is_diagnosed))
+10. Q[Anyone, Driving_under_influence.is_a_risk == true, Driving_under_influence.is_illegal == true](Driving_under_influence.is_a_risk == true → Factual(Anyone, Driving_under_influence.is_illegal))
+11. Q[Anyone, Driving_intoxicated.is_a_behavior == true, Driving_intoxicated.is_a_concern == true](Driving_intoxicated.is_a_behavior == true → Factual(Anyone, Driving_intoxicated.is_a_concern))
+12. Q[Anyone, Alcoholic.is_a_person == true, Alcoholic.does_not_meet_criteria == true](Alcoholic.is_a_person == true → Factual(Anyone, Alcoholic.does_not_meet_criteria))
+13. Q[Anyone, Person.drives_under_influence == true, Person.does_not_meet_criteria == true](Person.drives_under_influence == true → Factual(Anyone, Person.does_not_meet_criteria))
+14. Q[Anyone, Individual.drives_under_influence == true, Individual.admits_to_driving_intoxicated == true](Individual.drives_under_influence == true → Factual(Anyone, Individual.admits_to_driving_intoxicated))
+15. Q[Anyone, Alcoholic.admits_to_driving_intoxicated == true, Alcoholic.does_not_meet_criteria == true](Alcoholic.admits_to_driving_intoxicated == true → Factual(Anyone, Alcoholic.does_not_meet_criteria))
+16. Q[Anyone, Substantial_number.individuals.do_not_meet_criteria == true, Substantial_number.individuals.drive_intoxicated == true](Substantial_number.individuals.do_not_meet_criteria == true → Factual(Anyone, Substantial_number.individuals.drive_intoxicated))
+17. Q[Anyone, Driving_under_influence.is_a_cause == true, Driving_intoxicated.is_a_behavior == true](Driving_under_influence.is_a_cause == true → Factual(Anyone, Driving_intoxicated.is_a_behavior))
+18. Q[Anyone, Driving_intoxicated.is_a_behavioral_issue == true, Driving_under_influence.is_a_risk == true](Driving_intoxicated.is_a_behavioral_issue == true → Factual(Anyone, Driving_under_influence.is_a_risk))
+19. Q[Anyone, Alcohol_abuse.diagnostic_criteria == false, Alcohol_dependence.diagnostic_criteria == false](Alcohol_abuse.diagnostic_criteria == false → Factual(Anyone, Alcohol_dependence.diagnostic_criteria))
+20. Q[Anyone, Individual.does_not_meet_diagnostic_criteria == true, Individual.admits_to_driving_intoxicated == true](Individual.does_not_meet_diagnostic_criteria == true → Factual(Anyone, Individual.admits_to_driving_intoxicated))
+21. Q[Anyone, Alcoholism.is_diagnosed == false, Alcoholic.is_a_person == true](Alcoholism.is_diagnosed == false → Factual(Anyone, Alcoholic.is_a_person))
+22. Q[Anyone, Driving_under_influence.is_illegal == true, Driving_intoxicated.is_a_concern == true](Driving_under_influence.is_illegal == true → Factual(Anyone, Driving_intoxicated.is_a_concern))
+23. Q[Anyone, Intoxicated.individuals.admit == true, Intoxicated.individuals.drive == true](Intoxicated.individuals.admit == true → Factual(Anyone, Intoxicated.individuals.drive))
+24. Q[Anyone, Alcoholic.does_not_meet_criteria == true, Alcoholic.drives_under_influence == true](Alcoholic.does_not_meet_criteria == true → Factual(Anyone, Alcoholic.drives_under_influence))
+25. Q[Anyone, Driving_intoxicated.is_linked_to_alcoholism == true, Driving_intoxicated.is_not_always_alcoholism == true](Driving_intoxicated.is_linked_to_alcoholism == true → Factual(Anyone, Driving_intoxicated.is_not_always_alcoholism))
+26. Q[Anyone, Substantial_number.individuals.drive_intoxicated == true, Substantial_number.individuals.do_not_meet_criteria == true](Substantial_number.individuals.drive_intoxicated == true → Factual(Anyone, Substantial_number.individuals.do_not_meet_criteria))
+27. Q[Anyone, Alcoholism.is_a_condition == true, Alcoholism.is_diagnosed == false](Alcoholism.is_a_condition == true → Factual(Anyone, Alcoholism.is_diagnosed))
+28. Q[Anyone, Driving_under_influence.is_a_risk == true, Driving_intoxicated.is_a_behavior == true](Driving_under_influence.is_a_risk == true → Factual(Anyone, Driving_intoxicated.is_a_behavior

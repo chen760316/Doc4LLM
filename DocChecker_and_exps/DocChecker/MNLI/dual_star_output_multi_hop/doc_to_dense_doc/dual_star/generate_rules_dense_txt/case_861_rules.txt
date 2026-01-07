@@ -1,0 +1,64 @@
+Source: dense_text.txt (Index 861)
+S1: I wouldn't even buy them to squeeze for orange juice because they look so bad.
+S2: Oh yeah they look terrible here I look at those thing I wouldn't buy them not even to squeeze for orange juice.
+
+Predicates:
+1. Sentence1.refusal_to_buy
+2. Sentence1.reason_bad_appearance
+3. Sentence2.refusal_to_buy
+4. Sentence2.lack_of_reason
+5. Sentence1.item_appearance
+6. Sentence2.item_appearance
+7. Sentence1.item_purpose
+8. Sentence2.item_purpose
+9. Sentence1.negative_sentiment
+10. Sentence2.negative_sentiment
+11. M_NLI(S1, S2)
+12. Negation(Sentence1.reason_bad_appearance, Sentence2.lack_of_reason)
+13. violate(Sentence1.refusal_to_buy, Sentence2.refusal_to_buy)
+14. Sentence1.item_quality
+15. Sentence2.item_quality
+16. Sentence1.purchase_intent
+17. Sentence2.purchase_intent
+18. Sentence1.visual_assessment
+19. Sentence2.visual_assessment
+20. Sentence1.squeezing_intent
+21. Sentence2.squeezing_intent
+22. Sentence1.negative_evaluation
+23. Sentence2.negative_evaluation
+24. Sentence1.comparison_to_juice
+25. Sentence2.comparison_to_juice
+26. Sentence1.emotional_response
+27. Sentence2.emotional_response
+28. Sentence1.implicit_reasoning
+29. Sentence2.implicit_reasoning
+30. violate(Sentence1.item_quality, Sentence2.item_quality)
+
+Rules:
+1. Q[look, Sentence1.refusal_to_buy, Sentence2.refusal_to_buy](Sentence1.refusal_to_buy ∧ Sentence2.refusal_to_buy → Negation(Sentence1.reason_bad_appearance, Sentence2.lack_of_reason))
+2. Q[buy, Sentence1.refusal_to_buy, Sentence2.refusal_to_buy](Sentence1.refusal_to_buy ∧ Sentence2.refusal_to_buy → Negation(Sentence1.reason_bad_appearance, Sentence2.lack_of_reason))
+3. Q[look, Sentence1.reason_bad_appearance, Sentence2.lack_of_reason](Sentence1.reason_bad_appearance ∧ Sentence2.lack_of_reason → Negation(Sentence1.reason_bad_appearance, Sentence2.lack_of_reason))
+4. Q[buy, Sentence1.reason_bad_appearance, Sentence2.lack_of_reason](Sentence1.reason_bad_appearance ∧ Sentence2.lack_of_reason → Negation(Sentence1.reason_bad_appearance, Sentence2.lack_of_reason))
+5. Q[look, Sentence1.item_appearance, Sentence2.item_appearance](Sentence1.item_appearance == "bad" ∧ Sentence2.item_appearance == "terrible" → Negation(Sentence1.reason_bad_appearance, Sentence2.lack_of_reason))
+6. Q[buy, Sentence1.item_purpose, Sentence2.item_purpose](Sentence1.item_purpose == "squeeze" ∧ Sentence2.item_purpose == "squeeze" → Negation(Sentence1.reason_bad_appearance, Sentence2.lack_of_reason))
+7. Q[look, Sentence1.negative_sentiment, Sentence2.negative_sentiment](Sentence1.negative_sentiment == true ∧ Sentence2.negative_sentiment == true → Negation(Sentence1.reason_bad_appearance, Sentence2.lack_of_reason))
+8. Q[buy, Sentence1.purchase_intent, Sentence2.purchase_intent](Sentence1.purchase_intent == false ∧ Sentence2.purchase_intent == false → Negation(Sentence1.reason_bad_appearance, Sentence2.lack_of_reason))
+9. Q[look, Sentence1.visual_assessment, Sentence2.visual_assessment](Sentence1.visual_assessment == "bad" ∧ Sentence2.visual_assessment == "terrible" → Negation(Sentence1.reason_bad_appearance, Sentence2.lack_of_reason))
+10. Q[buy, Sentence1.squeezing_intent, Sentence2.squeezing_intent](Sentence1.squeezing_intent == false ∧ Sentence2.squeezing_intent == false → Negation(Sentence1.reason_bad_appearance, Sentence2.lack_of_reason))
+11. Q[look, Sentence1.negative_evaluation, Sentence2.negative_evaluation](Sentence1.negative_evaluation == true ∧ Sentence2.negative_evaluation == true → Negation(Sentence1.reason_bad_appearance, Sentence2.lack_of_reason))
+12. Q[buy, Sentence1.item_quality, Sentence2.item_quality](Sentence1.item_quality == "bad" ∧ Sentence2.item_quality == "bad" → Negation(Sentence1.reason_bad_appearance, Sentence2.lack_of_reason))
+13. Q[look, Sentence1.implicit_reasoning, Sentence2.implicit_reasoning](Sentence1.implicit_reasoning == true ∧ Sentence2.implicit_reasoning == false → Negation(Sentence1.reason_bad_appearance, Sentence2.lack_of_reason))
+14. Q[buy, Sentence1.refusal_to_buy, Sentence2.lack_of_reason](Sentence1.refusal_to_buy == true ∧ Sentence2.lack_of_reason == true → Negation(Sentence1.reason_bad_appearance, Sentence2.lack_of_reason))
+15. Q[look, Sentence1.item_quality, Sentence2.item_quality](Sentence1.item_quality == "poor" ∧ Sentence2.item_quality == "poor" → Negation(Sentence1.reason_bad_appearance, Sentence2.lack_of_reason))
+16. Q[buy, Sentence1.visual_assessment, Sentence2.visual_assessment](Sentence1.visual_assessment == "bad" ∧ Sentence2.visual_assessment == "poor" → Negation(Sentence1.reason_bad_appearance, Sentence2.lack_of_reason))
+17. Q[look, Sentence1.emotional_response, Sentence2.emotional_response](Sentence1.emotional_response == "disgust" ∧ Sentence2.emotional_response == "disgust" → Negation(Sentence1.reason_bad_appearance, Sentence2.lack_of_reason))
+18. Q[buy, Sentence1.item_purpose, Sentence2.item_purpose](Sentence1.item_purpose == "juice" ∧ Sentence2.item_purpose == "juice" → Negation(Sentence1.reason_bad_appearance, Sentence2.lack_of_reason))
+19. Q[look, Sentence1.negative_sentiment, Sentence2.negative_sentiment](Sentence1.negative_sentiment == true ∧ Sentence2.negative_sentiment == true → Negation(Sentence1.reason_bad_appearance, Sentence2.lack_of_reason))
+20. Q[buy, Sentence1.refusal_to_buy, Sentence2.refusal_to_buy](Sentence1.refusal_to_buy == true ∧ Sentence2.refusal_to_buy == true → Negation(Sentence1.reason_bad_appearance, Sentence2.lack_of_reason))
+21. Q[look, Sentence1.item_appearance, Sentence2.item_appearance](Sentence1.item_appearance == "bad" ∧ Sentence2.item_appearance == "terrible" → Negation(Sentence1.reason_bad_appearance, Sentence2.lack_of_reason))
+22. Q[buy, Sentence1.purchase_intent, Sentence2.purchase_intent](Sentence1.purchase_intent == false ∧ Sentence2.purchase_intent == false → Negation(Sentence1.reason_bad_appearance, Sentence2.lack_of_reason))
+23. Q[look, Sentence1.visual_assessment, Sentence2.visual_assessment](Sentence1.visual_assessment == "bad" ∧ Sentence2.visual_assessment == "poor" → Negation(Sentence1.reason_bad_appearance, Sentence2.lack_of_reason))
+24. Q[buy, Sentence1.squeezing_intent, Sentence2.squeezing_intent](Sentence1.squeezing_intent == false ∧ Sentence2.squeezing_intent == false → Negation(Sentence1.reason_bad_appearance, Sentence2.lack_of_reason))
+25. Q[look, Sentence1.negative_evaluation, Sentence2.negative_evaluation](Sentence1.negative_evaluation == true ∧ Sentence2.negative_evaluation == true → Negation(Sentence1.reason_bad_appearance, Sentence2.lack_of_reason))
+26. Q[buy, Sentence1.item_quality, Sentence2.item_quality](Sentence1.item_quality == "bad" ∧ Sentence2.item_quality == "bad" → Negation(Sentence1.reason_bad_appearance, Sentence2.lack_of_reason))
+27. Q[look, Sentence1.implicit_reasoning, Sentence2.implicit_reasoning](Sentence1.implicit_reasoning == true ∧ Sentence2.implicit_reasoning == false → Negation(Sentence1.reason_bad_appearance, Sentence2.l

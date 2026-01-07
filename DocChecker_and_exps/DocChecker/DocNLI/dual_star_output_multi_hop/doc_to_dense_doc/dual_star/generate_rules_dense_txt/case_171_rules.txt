@@ -1,0 +1,65 @@
+Source: dense_text.txt (Index 171)
+S1: Jolie earned a staggering $33 million over the last 12 months.
+S2: Forbes recently announced 'Iron Man' himself, Robert Downey Jr. earned more than double the amount of Jolie as the top-earning actor in Hollywood after raking in a whopping $75 million.
+
+Predicates:
+1. Jolie.earnings = 33 million
+2. Robert_Downey_Jr.earnings = 75 million
+3. Forbes.announcement_date = recent
+4. Robert_Downey_Jr.is_top_earning_actor = true
+5. Jolie.is_highest_paid_actress = false
+6. Robert_Downey_Jr.earnings > 2 * Jolie.earnings
+7. Jolie.earnings < Robert_Downey_Jr.earnings
+8. Robert_Downey_Jr.earnings > 33 million
+9. Jolie.earnings > 0
+10. Robert_Downey_Jr.earnings > 0
+11. Forbes.publication_type = financial
+12. Robert_Downey_Jr.occupation = actor
+13. Jolie.occupation = actress
+14. Robert_Downey_Jr.earnings > 75 million
+15. Jolie.earnings < 75 million
+16. Robert_Downey_Jr.is_actor = true
+17. Jolie.is_actress = true
+18. Forbes.is_reputable_source = true
+19. Robert_Downey_Jr.earning_period = last 12 months
+20. Jolie.earning_period = last 12 months
+21. Robert_Downey_Jr.earning_comparison = more than double
+22. Jolie.earning_comparison = less than Robert_Downey_Jr.
+23. Robert_Downey_Jr.earning_source = film
+24. Jolie.earning_source = film
+25. Forbes.reported_earnings = true
+26. Robert_Downey_Jr.earning_rank = 1
+27. Jolie.earning_rank = 2
+28. Robert_Downey_Jr.earning_difference = 42 million
+29. Jolie.earning_difference = -42 million
+30. Forbes.earnings_reported = true
+
+Rules:
+1. Q[Jolie, 33 million, 75 million](Jolie.earnings == 33 million ∧ Robert_Downey_Jr.earnings == 75 million → Jolie.is_highest_paid_actress == false)
+2. Q[Robert_Downey_Jr., 75 million, 33 million](Robert_Downey_Jr.earnings == 75 million ∧ Jolie.earnings == 33 million → Robert_Downey_Jr.earnings > 2 * Jolie.earnings)
+3. Q[Jolie, 33 million, 75 million](Jolie.earnings == 33 million ∧ Robert_Downey_Jr.earnings > 2 * Jolie.earnings → Jolie.is_highest_paid_actress == false)
+4. Q[Robert_Downey_Jr., 75 million, 33 million](Robert_Downey_Jr.earnings == 75 million ∧ Jolie.earnings < Robert_Downey_Jr.earnings → Robert_Downey_Jr.is_top_earning_actor == true)
+5. Q[Jolie, 33 million, 75 million](Jolie.earnings == 33 million ∧ Robert_Downey_Jr.earnings > 75 million → Jolie.is_highest_paid_actress == false)
+6. Q[Robert_Downey_Jr., 75 million, 33 million](Robert_Downey_Jr.earnings == 75 million ∧ Jolie.earnings < 75 million → Robert_Downey_Jr.earnings > 2 * Jolie.earnings)
+7. Q[Jolie, 33 million, 75 million](Jolie.earnings == 33 million ∧ Robert_Downey_Jr.earnings > 33 million → Jolie.is_highest_paid_actress == false)
+8. Q[Robert_Downey_Jr., 75 million, 33 million](Robert_Downey_Jr.earnings == 75 million ∧ Jolie.earnings < Robert_Downey_Jr.earnings → Robert_Downey_Jr.earning_comparison == more than double)
+9. Q[Jolie, 33 million, 75 million](Jolie.earnings == 33 million ∧ Robert_Downey_Jr.earnings > 2 * Jolie.earnings → Jolie.earning_comparison == less than Robert_Downey_Jr.)
+10. Q[Robert_Downey_Jr., 75 million, 33 million](Robert_Downey_Jr.earnings == 75 million ∧ Jolie.earnings < 75 million → Robert_Downey_Jr.earning_difference == 42 million)
+11. Q[Jolie, 33 million, 75 million](Jolie.earnings == 33 million ∧ Robert_Downey_Jr.earning_difference == 42 million → Jolie.is_highest_paid_actress == false)
+12. Q[Robert_Downey_Jr., 75 million, 33 million](Robert_Downey_Jr.earnings == 75 million ∧ Jolie.earnings < Robert_Downey_Jr.earnings → Robert_Downey_Jr.earning_rank == 1)
+13. Q[Jolie, 33 million, 75 million](Jolie.earnings == 33 million ∧ Robert_Downey_Jr.earning_rank == 1 → Jolie.is_highest_paid_actress == false)
+14. Q[Robert_Downey_Jr., 75 million, 33 million](Robert_Downey_Jr.earnings == 75 million ∧ Jolie.earnings < 75 million → Robert_Downey_Jr.occupation == actor)
+15. Q[Jolie, 33 million, 75 million](Jolie.earnings == 33 million ∧ Robert_Downey_Jr.occupation == actor → Jolie.is_highest_paid_actress == false)
+16. Q[Robert_Downey_Jr., 75 million, 33 million](Robert_Downey_Jr.earnings == 75 million ∧ Jolie.earnings < Robert_Downey_Jr.earnings → Forbes.announcement_date == recent)
+17. Q[Jolie, 33 million, 75 million](Jolie.earnings == 33 million ∧ Forbes.announcement_date == recent → Jolie.is_highest_paid_actress == false)
+18. Q[Robert_Downey_Jr., 75 million, 33 million](Robert_Downey_Jr.earnings == 75 million ∧ Jolie.earnings < 75 million → Forbes.is_reputable_source == true)
+19. Q[Jolie, 33 million, 75 million](Jolie.earnings == 33 million ∧ Forbes.is_reputable_source == true → Jolie.is_highest_paid_actress == false)
+20. Q[Robert_Downey_Jr., 75 million, 33 million](Robert_Downey_Jr.earnings == 75 million ∧ Jolie.earnings < 75 million → Forbes.reported_earnings == true)
+21. Q[Jolie, 33 million, 75 million](Jolie.earnings == 33 million ∧ Forbes.reported_earnings == true → Jolie.is_highest_paid_actress == false)
+22. Q[Robert_Downey_Jr., 75 million, 33 million](Robert_Downey_Jr.earnings == 75 million ∧ Jolie.earnings < 75 million → Robert_Downey_Jr.earning_period == last 12 months)
+23. Q[Jolie, 33 million, 75 million](Jolie.earnings == 33 million ∧ Robert_Downey_Jr.earning_period == last 12 months → Jolie.is_highest_paid_actress == false)
+24. Q[Robert_Downey_Jr., 75 million, 33 million](Robert_Downey_Jr.earnings == 75 million ∧ Jolie.earnings < Robert_Downey_Jr.earnings → Robert_Downey_Jr.is_actor == true)
+25. Q[Jolie, 33 million, 75 million](Jolie.earnings == 33 million ∧ Robert_Downey_Jr.is_actor == true → Jolie.is_highest_paid_actress == false)
+26. Q[Robert_Downey_Jr., 75 million, 33 million](Robert_Downey_Jr.earnings == 75 million ∧ Jolie.earnings < 75 million → Robert_Downey_Jr.earning_source == film)
+27. Q[Jolie, 33 million, 75 million](Jolie.earnings == 33 million ∧ Robert_Downey_Jr.earning_source == film → Jolie.is_highest_paid_actress == false)
+28. Q[Robert_Downey_Jr., 75 million, 33 million](Robert_Downey_Jr.earnings == 75 million ∧ Jolie.earnings < 75 million → Robert_Downey_Jr.earning_comparison == more than double)

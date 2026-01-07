@@ -1,0 +1,87 @@
+Predicates:
+California Health Alliance.type != "health organization"
+California Health Alliance.type = "health organization"
+Emily Clark__S1.age != 42
+Emily Clark__S1.age < 47
+Emily Clark__S1.age <= 42
+Emily Clark__S1.age = 42
+Emily Clark__S1.age > 37
+Emily Clark__S1.age >= 42
+Emily Clark__S1.country_of_citizenship != "United Kingdom"
+Emily Clark__S1.country_of_citizenship = "United Kingdom"
+Emily Clark__S1.location != "San Francisco"
+Emily Clark__S1.location = "San Francisco"
+Emily Clark__S1.nationality != "American"
+Emily Clark__S1.nationality = "American"
+Emily Clark__S1.occupation != "writer"
+Emily Clark__S1.occupation = "writer"
+Emily Clark__S1.status != "joined a task force"
+Emily Clark__S1.status = "joined a task force"
+Emily Clark__S1_California Health Alliance.relationship != "Emily Clark joined a task force organized by California Health Alliance to improve mental health support for ICU staff."
+Emily Clark__S1_California Health Alliance.relationship != Emily Clark__S1_San Francisco Education Fund__S2.relationship
+Emily Clark__S1_California Health Alliance.relationship = "Emily Clark joined a task force organized by California Health Alliance to improve mental health support for ICU staff."
+Emily Clark__S1_Frontline Voices.relationship != "Emily Clark started a medical podcast called Frontline Voices."
+Emily Clark__S1_Frontline Voices.relationship != Emily Clark__S1_California Health Alliance.relationship
+Emily Clark__S1_Frontline Voices.relationship != Emily Clark__S1_San Francisco Education Fund__S2.relationship
+Emily Clark__S1_Frontline Voices.relationship = "Emily Clark started a medical podcast called Frontline Voices."
+Emily Clark__S1_ICU.award != "community award for outstanding medical service"
+Emily Clark__S1_ICU.award = "community award for outstanding medical service"
+Emily Clark__S1_ICU.duration != "over six months"
+Emily Clark__S1_ICU.duration = "over six months"
+Emily Clark__S1_ICU.relationship != "Emily Clark volunteered in the ICU department"
+Emily Clark__S1_ICU.relationship != Emily Clark__S1_California Health Alliance.relationship
+Emily Clark__S1_ICU.relationship != Emily Clark__S1_Frontline Voices.relationship
+Emily Clark__S1_ICU.relationship != Emily Clark__S1_San Francisco Education Fund__S2.relationship
+Emily Clark__S1_ICU.relationship = "Emily Clark volunteered in the ICU department"
+Emily Clark__S1_ICU.year != 2020
+Emily Clark__S1_ICU.year < 2021
+Emily Clark__S1_ICU.year <= 2020
+Emily Clark__S1_ICU.year = 2020
+Emily Clark__S1_ICU.year > 2019
+Emily Clark__S1_ICU.year >= 2020
+Emily Clark__S1_San Francisco Education Fund__S2.relationship != "related"
+Emily Clark__S1_San Francisco Education Fund__S2.relationship = "related"
+Emily Clark__S1_St. Mary's Hospital.relationship != "Emily Clark works at St. Mary's Hospital"
+Emily Clark__S1_St. Mary's Hospital.relationship != Emily Clark__S1_California Health Alliance.relationship
+Emily Clark__S1_St. Mary's Hospital.relationship != Emily Clark__S1_Frontline Voices.relationship
+Emily Clark__S1_St. Mary's Hospital.relationship != Emily Clark__S1_ICU.relationship
+Emily Clark__S1_St. Mary's Hospital.relationship != Emily Clark__S1_San Francisco Education Fund__S2.relationship
+Emily Clark__S1_St. Mary's Hospital.relationship = "Emily Clark works at St. Mary's Hospital"
+Frontline Voices.focus != "interviewing healthcare workers about pandemic experiences"
+Frontline Voices.focus = "interviewing healthcare workers about pandemic experiences"
+M_NLI(Emily Clark__S1.attrs, California Health Alliance.attrs)
+M_NLI(Emily Clark__S1.attrs, Frontline Voices.attrs)
+M_NLI(Frontline Voices.attrs, California Health Alliance.attrs)
+M_NLU(Emily Clark__S1.attrs, California Health Alliance.attrs)
+M_NLU(Emily Clark__S1.attrs, Frontline Voices.attrs)
+M_NLU(Frontline Voices.attrs, California Health Alliance.attrs)
+M_TEM(Emily Clark__S1.attrs, California Health Alliance.attrs)
+M_TEM(Emily Clark__S1.attrs, Frontline Voices.attrs)
+M_TEM(Frontline Voices.attrs, California Health Alliance.attrs)
+contra("ICU", "California Health Alliance")
+contra("ICU", "Frontline Voices")
+contra("In 2021, John ga", "California Health Alliance")
+contra("St. Mary's Hospital", "California Health Alliance")
+contra("St. Mary's Hospital", "Frontline Voices")
+contra("St. Mary's Hospital", "on")
+contra("wo children", "California Health Alliance")
+contra("wo children", "Frontline Voices")
+contra("wo children", "his influence beyo")
+contra("wo children", "on")
+linkage(Emily Clark__S1, California Health Alliance)
+linkage(Emily Clark__S1, Frontline Voices)
+linkage(Emily Clark__S1, ICU)
+linkage(Emily Clark__S1, San Francisco Education Fund__S2)
+linkage(Emily Clark__S1, St. Mary's Hospital)
+
+Rules:
+Q[Emily Clark__S1,San Francisco Education Fund__S2] (Emily Clark__S1_ICU.year >= 2020 ∧ Emily Clark__S1.nationality = "American" → Emily Clark__S1.nationality = "American")
+Q[Emily Clark__S1,San Francisco Education Fund__S2] (linkage(Emily Clark__S1, California Health Alliance) ∧ linkage(Emily Clark__S1, San Francisco Education Fund__S2) → linkage(Emily Clark__S1, San Francisco Education Fund__S2))
+Q[Emily Clark__S1,San Francisco Education Fund__S2] (Emily Clark__S1.age <= 42 ∧ contra("St. Mary's Hospital", "Frontline Voices") → contra("St. Mary's Hospital", "Frontline Voices"))
+Q[Emily Clark__S1,San Francisco Education Fund__S2] (Emily Clark__S1.nationality = "American" ∧ M_TEM(Frontline Voices.attrs, California Health Alliance.attrs) → M_TEM(Frontline Voices.attrs, California Health Alliance.attrs))
+Q[Emily Clark__S1,San Francisco Education Fund__S2] (Emily Clark__S1.age != 42 ∧ M_TEM(Emily Clark__S1.attrs, Frontline Voices.attrs) → M_TEM(Emily Clark__S1.attrs, Frontline Voices.attrs))
+Q[Emily Clark__S1,San Francisco Education Fund__S2] (Frontline Voices.focus != "interviewing healthcare workers about pandemic experiences" ∧ Emily Clark__S1_ICU.relationship = "Emily Clark volunteered in the ICU department" → Frontline Voices.focus != "interviewing healthcare workers about pandemic experiences")
+Q[Emily Clark__S1,San Francisco Education Fund__S2] (Emily Clark__S1_ICU.year <= 2020 ∧ linkage(Emily Clark__S1, Frontline Voices) → linkage(Emily Clark__S1, Frontline Voices))
+Q[Emily Clark__S1,San Francisco Education Fund__S2] (Emily Clark__S1.status != "joined a task force" ∧ Emily Clark__S1_ICU.year > 2019 → Emily Clark__S1.status != "joined a task force")
+Q[Emily Clark__S1,San Francisco Education Fund__S2] (Emily Clark__S1.country_of_citizenship != "United Kingdom" ∧ Emily Clark__S1_ICU.relationship != Emily Clark__S1_San Francisco Education Fund__S2.relationship → Emily Clark__S1_ICU.relationship != Emily Clark__S1_San Francisco Education Fund__S2.relationship)
+Q[Emily Clark__S1,San Francisco Education Fund__S2] (Emily Clark__S1.age > 37 ∧ Emily Clark__S1_California Health Alliance.relationship != Emily Clark__S1_San Francisco Education Fund__S2.relationship → Emily Clark__S1_California Health Alliance.relationship != Emily Clark__S1_San Francisco Education Fund__S2.relationship)

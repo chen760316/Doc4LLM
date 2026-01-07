@@ -1,0 +1,58 @@
+Predicates:
+Benham.label != "Person"
+Benham.label = "Person"
+Benham.name != "Benham"
+Benham.name != Lady Marayne.name
+Benham.name != Nolan.name
+Benham.name = "Benham"
+Benham.occupation != "noble"
+Benham.occupation != Lady Marayne.occupation
+Benham.occupation = "noble"
+Benham.status != "in conflict with mother"
+Benham.status != Lady Marayne.status
+Benham.status != Nolan.status
+Benham.status = "in conflict with mother"
+Benham___Lady Marayne.context = "family conflict"
+Benham___Lady Marayne.contradiction_type = "Relation"
+Benham___Lady Marayne.relationship = "Benham's effort to live nobly brings him into conflict with his mother."
+Benham___Lady Marayne.source_id = "3488771850_1"
+Benham___Nolan.contradiction_type != Benham___Lady Marayne.contradiction_type
+Benham___Nolan.contradiction_type = "Factual"
+Benham___Nolan.reason = "curious circumstances"
+Benham___Nolan.relationship != Benham___Lady Marayne.relationship
+Benham___Nolan.relationship = "Benham's mother left his father for Nolan"
+Benham___Nolan.source_id = "3488771850_1"
+Lady Marayne.label != "Person"
+Lady Marayne.label = "Person"
+Lady Marayne.location != "London"
+Lady Marayne.location = "London"
+Lady Marayne.name != "Lady Marayne"
+Lady Marayne.name = "Lady Marayne"
+Lady Marayne.occupation != "wife of a surgeon"
+Lady Marayne.occupation = "wife of a surgeon"
+Lady Marayne.status != "enjoys privilege"
+Lady Marayne.status = "enjoys privilege"
+Nolan.fate != "died soon thereafter"
+Nolan.fate = "died soon thereafter"
+Nolan.label != "Person"
+Nolan.label = "Person"
+Nolan.name != "Nolan"
+Nolan.name != Lady Marayne.name
+Nolan.name = "Nolan"
+Nolan.status != "wealthy man"
+Nolan.status != Lady Marayne.status
+Nolan.status = "wealthy man"
+None_ML(Benham___Lady Marayne.attrs, Benham___Nolan.attrs)
+None_ML(Nolan.attrs, Benham.attrs)
+
+Rules:
+Q[Benham,Benham] (None_ML(Nolan.attrs, Benham.attrs) ∧ Lady Marayne.name = "Lady Marayne" ∧ Lady Marayne.label = "Person" ∧ Benham.name != Lady Marayne.name ∧ Benham___Lady Marayne.relationship = "Benham's effort to live nobly brings him into conflict with his mother." → Lady Marayne.status = "enjoys privilege")
+Q[Benham,Benham] (Lady Marayne.status = "enjoys privilege" ∧ Lady Marayne.name != "Lady Marayne" ∧ Benham.label = "Person" → Lady Marayne.status != "enjoys privilege")
+Q[Benham,Benham] (Lady Marayne.occupation != "wife of a surgeon" ∧ Nolan.fate != "died soon thereafter" → Benham.occupation != "noble")
+Q[Benham,Benham] (Lady Marayne.status != "enjoys privilege" ∧ Nolan.status != "wealthy man" ∧ Benham.status != Lady Marayne.status ∧ Benham.label != "Person" → Lady Marayne.location = "London")
+Q[Benham,Benham] (Benham___Lady Marayne.relationship = "Benham's effort to live nobly brings him into conflict with his mother." ∧ Benham___Nolan.relationship != Benham___Lady Marayne.relationship ∧ Benham.name != Lady Marayne.name ∧ Benham___Nolan.contradiction_type = "Factual" ∧ Nolan.name != Lady Marayne.name ∧ Nolan.status != "wealthy man" → Benham___Lady Marayne.contradiction_type = "Relation")
+Q[Benham,Benham] (Benham___Nolan.relationship = "Benham's mother left his father for Nolan" ∧ Benham___Nolan.contradiction_type != Benham___Lady Marayne.contradiction_type ∧ Nolan.fate = "died soon thereafter" → Benham___Nolan.relationship != Benham___Lady Marayne.relationship)
+Q[Benham,Benham] (Nolan.name != "Nolan" ∧ Lady Marayne.occupation != "wife of a surgeon" ∧ Benham___Nolan.relationship = "Benham's mother left his father for Nolan" ∧ Benham.status != Lady Marayne.status ∧ Benham.occupation = "noble" ∧ Benham.status = "in conflict with mother" → Benham___Nolan.source_id = "3488771850_1")
+Q[Benham,Benham] (Benham.name != "Benham" ∧ Lady Marayne.location != "London" ∧ Benham.status = "in conflict with mother" ∧ Benham.name != Lady Marayne.name ∧ Lady Marayne.label = "Person" → Nolan.fate = "died soon thereafter")
+Q[Benham,Benham] (Benham.name != Nolan.name ∧ Nolan.fate != "died soon thereafter" ∧ Lady Marayne.location != "London" ∧ Nolan.name != Lady Marayne.name → Nolan.status = "wealthy man")
+Q[Benham,Benham] (Benham.status = "in conflict with mother" ∧ None_ML(Benham___Lady Marayne.attrs, Benham___Nolan.attrs) → Benham.label != "Person")

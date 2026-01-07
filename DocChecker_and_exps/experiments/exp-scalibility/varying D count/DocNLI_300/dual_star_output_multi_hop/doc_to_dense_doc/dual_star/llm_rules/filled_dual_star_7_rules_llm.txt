@@ -1,0 +1,134 @@
+Predicates:
+1. Gonzalez.appeared_in_court = "true"
+2. Gonzalez.accused_of = "unlawfully entering a restricted building while carrying a deadly or dangerous weapon"
+3. Gonzalez.time = "Monday"
+4. court.date = "Monday"
+5. restricted_building.status = "restricted"
+6. Gonzalez.weapon = "deadly or dangerous weapon"
+7. Gonzalez.source_id = "Index_70"
+8. Gonzalez.source_domain = "N/A"
+9. court.source_id = "Index_70"
+10. court.source_domain = "N/A"
+11. restricted_building.source_id = "Index_70"
+12. restricted_building.source_domain = "N/A"
+13. Gonzalez.doc_index = "70"
+14. court.doc_index = "70"
+15. restricted_building.doc_index = "70"
+16. Gonzalez.method = "unlawfully entering"
+17. "Gonzalez appeared in court.".time = "Monday"
+18. "Gonzalez is accused of unlawfully entering a restricted building.".method = "unlawfully entering"
+19. "Gonzalez is accused of unlawfully entering a restricted building.".weapon = "deadly or dangerous weapon"
+20. "Gonzalez appeared in court.".source_id = "Index_70"
+21. "Gonzalez is accused of unlawfully entering a restricted building.".source_id = "Index_70"
+22. "Gonzalez appeared in court.".doc_index = "70"
+23. "Gonzalez is accused of unlawfully entering a restricted building.".doc_index = "70"
+24. M_NLI(Gonzalez.appeared_in_court, Gonzalez.accused_of)
+25. T("Gonzalez appeared in court.", "Gonzalez is accused of unlawfully entering a restricted building.", tau)
+26. tau(Gonzalez.time, court.date)
+27. violate(Gonzalez, restricted_building)
+28. Factual(Gonzalez, restricted_building)
+29. Causal(Gonzalez, court)
+30. Numeric(Gonzalez, court)
+31. Temporal(Gonzalez, court)
+32. Content(Gonzalez, restricted_building)
+33. Relation(Gonzalez, court)
+34. Gonzalez.appeared_in_court = "false"
+35. Gonzalez.weapon = "non-lethal weapon"
+36. Gonzalez.time = "Tuesday"
+37. court.date = "Tuesday"
+38. restricted_building.status = "open"
+39. Gonzalez.method = "lawfully entering"
+40. "Gonzalez appeared in court.".time = "Tuesday"
+41. "Gonzalez is accused of unlawfully entering a restricted building.".method = "lawfully entering"
+42. "Gonzalez is accused of unlawfully entering a restricted building.".weapon = "non-lethal weapon"
+43. M_NLI(Gonzalez.weapon, Gonzalez.method)
+44. T("Gonzalez appeared in court.", "Gonzalez did not appear in court.", tau)
+45. tau(Gonzalez.method, "lawfully entering")
+46. violate(Gonzalez, Gonzalez.weapon)
+47. Factual(Gonzalez, Gonzalez.method)
+48. Causal(Gonzalez, restricted_building)
+49. Numeric(Gonzalez, Gonzalez.time)
+50. Temporal(Gonzalez, Gonzalez.method)
+51. Content(Gonzalez, Gonzalez.weapon)
+52. Relation(Gonzalez, Gonzalez.time)
+53. Gonzalez.appeared_in_court = "true"
+54. Gonzalez.weapon = "knife"
+55. Gonzalez.time = "Wednesday"
+56. court.date = "Wednesday"
+57. restricted_building.status = "secured"
+58. Gonzalez.method = "trespassing"
+59. "Gonzalez appeared in court.".time = "Wednesday"
+60. "Gonzalez is accused of unlawfully entering a restricted building.".method = "trespassing"
+61. "Gonzalez is accused of unlawfully entering a restricted building.".weapon = "knife"
+62. M_NLI(Gonzalez.time, court.date)
+63. T("Gonzalez appeared in court.", "Gonzalez was not in court.", tau)
+64. tau(Gonzalez.method, "trespassing")
+65. violate(Gonzalez, court)
+66. Factual(Gonzalez, Gonzalez.time)
+67. Causal(Gonzalez, Gonzalez.method)
+68. Numeric(Gonzalez, restricted_building)
+69. Temporal(Gonzalez, court)
+70. Content(Gonzalez, court)
+71. Relation(Gonzalez, restricted_building)
+72. Gonzalez.appeared_in_court = "false"
+73. Gonzalez.weapon = "firearm"
+74. Gonzalez.time = "Thursday"
+75. court.date = "Thursday"
+76. restricted_building.status = "accessible"
+77. Gonzalez.method = "breaking and entering"
+78. "Gonzalez appeared in court.".time = "Thursday"
+79. "Gonzalez is accused of unlawfully entering a restricted building.".method = "breaking and entering"
+80. "Gonzalez is accused of unlawfully entering a restricted building.".weapon = "firearm"
+81. M_NLI(Gonzalez.weapon, Gonzalez.method)
+82. T("Gonzalez appeared in court.", "Gonzalez was absent from court.", tau)
+83. tau(Gonzalez.method, "breaking and entering")
+84. violate(Gonzalez, restricted_building)
+85. Factual(Gonzalez, court)
+86. Causal(Gonzalez, Gonzalez.time)
+87. Numeric(Gonzalez, Gonzalez.method)
+88. Temporal(Gonzalez, restricted_building)
+89. Content(Gonzalez, Gonzalez.weapon)
+90. Relation(Gonzalez, Gonzalez.time)
+91. Gonzalez.appeared_in_court = "true"
+92. Gonzalez.weapon = "bat"
+93. Gonzalez.time = "Friday"
+94. court.date = "Friday"
+95. restricted_building.status = "closed"
+96. Gonzalez.method = "entering"
+97. "Gonzalez appeared in court.".time = "Friday"
+98. "Gonzalez is accused of unlawfully entering a restricted building.".method = "entering"
+99. "Gonzalez is accused of unlawfully entering a restricted building.".weapon = "bat"
+100. M_NLI(Gonzalez.time, court.date)
+violate(x0, y0)
+
+Rules:
+1. Q[Gonzalez, restricted_building](Gonzalez.appeared_in_court = "true" ∧ Gonzalez.accused_of = "unlawfully entering a restricted building while carrying a deadly or dangerous weapon" → violate(Gonzalez, restricted_building))
+2. Q[Gonzalez, court](Gonzalez.appeared_in_court = "true" ∧ court.date = "Monday" → violate(Gonzalez, court))
+3. Q[Gonzalez, restricted_building](Gonzalez.weapon = "deadly or dangerous weapon" ∧ restricted_building.status = "restricted" → violate(Gonzalez, restricted_building))
+4. Q[Gonzalez, court](Gonzalez.time = "Monday" ∧ court.date = "Monday" → violate(Gonzalez, court))
+5. Q[Gonzalez, restricted_building](Gonzalez.method = "unlawfully entering" ∧ Gonzalez.accused_of = "unlawfully entering a restricted building while carrying a deadly or dangerous weapon" → violate(Gonzalez, restricted_building))
+6. Q[Gonzalez, restricted_building](Gonzalez.appeared_in_court = "false" ∧ Gonzalez.weapon = "non-lethal weapon" ∧ Gonzalez.time = "Tuesday" → violate(Gonzalez, restricted_building))
+7. Q[Gonzalez, court](Gonzalez.appeared_in_court = "false" ∧ court.date = "Tuesday" ∧ Gonzalez.time = "Tuesday" → violate(Gonzalez, court))
+8. Q[Gonzalez, restricted_building](Gonzalez.method = "lawfully entering" ∧ Gonzalez.weapon = "non-lethal weapon" ∧ restricted_building.status = "open" → violate(Gonzalez, restricted_building))
+9. Q[Gonzalez, court](Gonzalez.appeared_in_court = "true" ∧ court.date = "Wednesday" ∧ Gonzalez.time = "Wednesday" → violate(Gonzalez, court))
+10. Q[Gonzalez, restricted_building](Gonzalez.method = "trespassing" ∧ Gonzalez.weapon = "knife" ∧ restricted_building.status = "secured" → violate(Gonzalez, restricted_building))
+11. Q[Gonzalez, court](Gonzalez.appeared_in_court = "false" ∧ court.date = "Thursday" ∧ Gonzalez.time = "Thursday" → violate(Gonzalez, court))
+12. Q[Gonzalez, restricted_building](Gonzalez.method = "breaking and entering" ∧ Gonzalez.weapon = "firearm" ∧ restricted_building.status = "accessible" → violate(Gonzalez, restricted_building))
+13. Q[Gonzalez, court](Gonzalez.appeared_in_court = "true" ∧ court.date = "Friday" ∧ Gonzalez.time = "Friday" → violate(Gonzalez, court))
+14. Q[Gonzalez, restricted_building](Gonzalez.method = "entering" ∧ Gonzalez.weapon = "bat" ∧ restricted_building.status = "closed" → violate(Gonzalez, restricted_building))
+15. Q[Gonzalez, court](Gonzalez.appeared_in_court = "false" ∧ Gonzalez.time = "Monday" ∧ court.date = "Monday" → violate(Gonzalez, court))
+16. Q[Gonzalez, restricted_building](Gonzalez.weapon = "deadly or dangerous weapon" ∧ Gonzalez.method = "unlawfully entering" ∧ restricted_building.status = "restricted" → violate(Gonzalez, restricted_building))
+17. Q[Gonzalez, court](Gonzalez.appeared_in_court = "true" ∧ Gonzalez.time = "Tuesday" ∧ court.date = "Tuesday" → violate(Gonzalez, court))
+18. Q[Gonzalez, restricted_building](Gonzalez.method = "lawfully entering" ∧ Gonzalez.weapon = "non-lethal weapon" ∧ restricted_building.status = "open" → violate(Gonzalez, restricted_building))
+19. Q[Gonzalez, court](Gonzalez.appeared_in_court = "false" ∧ Gonzalez.time = "Wednesday" ∧ court.date = "Wednesday" → violate(Gonzalez, court))
+20. Q[Gonzalez, restricted_building](Gonzalez.method = "trespassing" ∧ Gonzalez.weapon = "knife" ∧ restricted_building.status = "secured" → violate(Gonzalez, restricted_building))
+21. Q[Gonzalez, court](Gonzalez.appeared_in_court = "true" ∧ Gonzalez.time = "Thursday" ∧ court.date = "Thursday" → violate(Gonzalez, court))
+22. Q[Gonzalez, restricted_building](Gonzalez.method = "breaking and entering" ∧ Gonzalez.weapon = "firearm" ∧ restricted_building.status = "accessible" → violate(Gonzalez, restricted_building))
+23. Q[Gonzalez, court](Gonzalez.appeared_in_court = "true" ∧ Gonzalez.time = "Friday" ∧ court.date = "Friday" → violate(Gonzalez, court))
+24. Q[Gonzalez, restricted_building](Gonzalez.method = "entering" ∧ Gonzalez.weapon = "bat" ∧ restricted_building.status = "closed" → violate(Gonzalez, restricted_building))
+25. Q[Gonzalez, court](Gonzalez.appeared_in_court = "false" ∧ Gonzalez.time = "Monday" ∧ court.date = "Monday" → violate(Gonzalez, court))
+26. Q[Gonzalez, restricted_building](Gonzalez.weapon = "deadly or dangerous weapon" ∧ Gonzalez.method = "unlawfully entering" ∧ restricted_building.status = "restricted" → violate(Gonzalez, restricted_building))
+27. Q[Gonzalez, court](Gonzalez.appeared_in_court = "true" ∧ Gonzalez.time = "Tuesday" ∧ court.date = "Tuesday" → violate(Gonzalez, court))
+28. Q[Gonzalez, restricted_building](Gonzalez.method = "lawfully entering" ∧ Gonzalez.weapon = "non-lethal weapon" ∧ restricted_building.status = "open" → violate(Gonzalez, restricted_building))
+29. Q[Gonzalez, court](Gonzalez.appeared_in_court = "false" ∧ Gonzalez.time = "Wednesday" ∧ court.date = "Wednesday" → violate(Gonzalez, court))
+30. Q[Gonzalez, restricted_building](Gonzalez.method = "trespassing" ∧ Gonzalez.weapon = "knife" ∧ restricted_building.status = "secured" → violate(Gonzalez, restricted_building))

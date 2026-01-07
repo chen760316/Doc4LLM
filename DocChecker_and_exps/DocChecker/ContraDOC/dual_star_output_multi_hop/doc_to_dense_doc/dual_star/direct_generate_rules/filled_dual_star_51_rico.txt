@@ -1,0 +1,56 @@
+Predicates:
+None_ML(executions worldwide___executions in 2014.attrs, executions worldwide___people sentenced to death.attrs)
+None_ML(people sentenced to death.attrs, executions in 2014.attrs)
+executions in 2014.label != "Statistic"
+executions in 2014.label != people sentenced to death.label
+executions in 2014.label = "Statistic"
+executions in 2014.name != "executions in 2014"
+executions in 2014.name != people sentenced to death.name
+executions in 2014.name = "executions in 2014"
+executions in 2014.number != 800
+executions in 2014.number < 805
+executions in 2014.number = 800
+executions in 2014.number > 795
+executions in 2014.year != 2014
+executions in 2014.year < 2019
+executions in 2014.year = 2014
+executions in 2014.year > 2009
+executions worldwide.change != "-22%"
+executions worldwide.change != people sentenced to death.change
+executions worldwide.change = "-22%"
+executions worldwide.label != "Statistic"
+executions worldwide.label != people sentenced to death.label
+executions worldwide.label = "Statistic"
+executions worldwide.name != "executions worldwide"
+executions worldwide.name != executions in 2014.name
+executions worldwide.name != people sentenced to death.name
+executions worldwide.name = "executions worldwide"
+executions worldwide.time != "previous year"
+executions worldwide.time = "previous year"
+executions worldwide___executions in 2014.contradiction_type != executions worldwide___people sentenced to death.contradiction_type
+executions worldwide___executions in 2014.contradiction_type = "Numeric"
+executions worldwide___executions in 2014.relationship != executions worldwide___people sentenced to death.relationship
+executions worldwide___executions in 2014.relationship = "The number of executions worldwide decreased by 22% compared to the previous year, while at least 800 people were executed in 2014."
+executions worldwide___executions in 2014.source_id != executions worldwide___people sentenced to death.source_id
+executions worldwide___executions in 2014.source_id = "3489738278_3"
+executions worldwide___people sentenced to death.contradiction_type = "Causal"
+executions worldwide___people sentenced to death.relationship = "The number of executions worldwide has decreased while the number of people sentenced to death has increased."
+executions worldwide___people sentenced to death.source_id = "3489738278_6"
+people sentenced to death.change != "increase"
+people sentenced to death.change = "increase"
+people sentenced to death.label != "Death Sentence"
+people sentenced to death.label = "Death Sentence"
+people sentenced to death.name != "people sentenced to death"
+people sentenced to death.name = "people sentenced to death"
+
+Rules:
+Q[executions worldwide,executions worldwide] (executions worldwide___executions in 2014.relationship = "The number of executions worldwide decreased by 22% compared to the previous year, while at least 800 people were executed in 2014." ∧ executions in 2014.number = 800 → None_ML(executions worldwide___executions in 2014.attrs, executions worldwide___people sentenced to death.attrs))
+Q[executions worldwide,executions worldwide] (people sentenced to death.name = "people sentenced to death" ∧ executions in 2014.name != people sentenced to death.name ∧ executions worldwide.name != people sentenced to death.name ∧ executions worldwide___people sentenced to death.relationship = "The number of executions worldwide has decreased while the number of people sentenced to death has increased." ∧ people sentenced to death.label != "Death Sentence" → people sentenced to death.change = "increase")
+Q[executions worldwide,executions worldwide] (executions worldwide___executions in 2014.relationship != executions worldwide___people sentenced to death.relationship ∧ executions worldwide___people sentenced to death.source_id = "3489738278_6" ∧ executions worldwide.change != people sentenced to death.change → people sentenced to death.change != "increase")
+Q[executions worldwide,executions worldwide] (executions in 2014.label = "Statistic" ∧ people sentenced to death.label = "Death Sentence" ∧ executions worldwide.time != "previous year" ∧ people sentenced to death.change != "increase" ∧ executions worldwide.name != people sentenced to death.name ∧ executions worldwide.change != "-22%" → executions worldwide___executions in 2014.contradiction_type = "Numeric")
+Q[executions worldwide,executions worldwide] (executions in 2014.name != "executions in 2014" ∧ executions in 2014.name != people sentenced to death.name ∧ executions worldwide.name = "executions worldwide" ∧ executions worldwide___people sentenced to death.contradiction_type = "Causal" → executions in 2014.label != people sentenced to death.label)
+Q[executions worldwide,executions worldwide] (executions worldwide.change != "-22%" ∧ executions worldwide___executions in 2014.relationship != executions worldwide___people sentenced to death.relationship ∧ executions in 2014.year = 2014 ∧ executions in 2014.number < 805 → executions worldwide___people sentenced to death.source_id = "3489738278_6")
+Q[executions worldwide,executions worldwide] (executions worldwide.change = "-22%" ∧ executions worldwide.name != people sentenced to death.name ∧ executions in 2014.number = 800 ∧ people sentenced to death.label != "Death Sentence" ∧ executions in 2014.year = 2014 → executions worldwide___executions in 2014.relationship = "The number of executions worldwide decreased by 22% compared to the previous year, while at least 800 people were executed in 2014.")
+Q[executions worldwide,executions worldwide] (executions worldwide___executions in 2014.relationship = "The number of executions worldwide decreased by 22% compared to the previous year, while at least 800 people were executed in 2014." ∧ executions in 2014.label = "Statistic" → executions worldwide.change = "-22%")
+Q[executions worldwide,executions worldwide] (people sentenced to death.name = "people sentenced to death" ∧ executions worldwide___executions in 2014.relationship != executions worldwide___people sentenced to death.relationship ∧ executions worldwide.change != "-22%" ∧ executions worldwide.label != "Statistic" ∧ executions worldwide.name != executions in 2014.name ∧ executions in 2014.label != "Statistic" → executions worldwide.time = "previous year")
+Q[executions worldwide,executions worldwide] (executions worldwide___executions in 2014.contradiction_type = "Numeric" ∧ executions worldwide.name != executions in 2014.name ∧ executions in 2014.number = 800 → executions in 2014.number < 805)

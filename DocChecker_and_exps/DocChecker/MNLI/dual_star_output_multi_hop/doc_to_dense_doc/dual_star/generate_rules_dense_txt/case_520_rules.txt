@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 520)
+S1: There are no fees for regulatory users.
+S2: Regulatory user fees such as patent and copyright fees.
+
+Predicates:
+1. RegulatoryUser.hasFees = false
+2. RegulatoryUserFees.type = patent
+3. RegulatoryUserFees.type = copyright
+4. RegulatoryUserFees.isApplicableTo = RegulatoryUser
+5. RegulatoryUserFees.amount = variable
+6. RegulatoryUser.hasNoFees = true
+7. PatentFees.isTypeOf = RegulatoryUserFees
+8. CopyrightFees.isTypeOf = RegulatoryUserFees
+9. RegulatoryUserFees.isContradictoryTo = RegulatoryUser.hasNoFees
+10. RegulatoryUserFees.exists = true
+11. RegulatoryUserFees.isPaidBy = RegulatoryUser
+12. RegulatoryUserFees.amount.isGreaterThan = 0
+13. RegulatoryUserFees.isRegulatedBy = Government
+14. Government.regulates = RegulatoryUserFees
+15. RegulatoryUserFees.category = fees
+16. RegulatoryUserFees.violates = RegulatoryUser.hasNoFees
+17. RegulatoryUserFees.isListedIn = FeeSchedule
+18. FeeSchedule.includes = RegulatoryUserFees
+19. RegulatoryUserFees.isSubjectTo = Regulations
+20. Regulations.applyTo = RegulatoryUserFees
+21. RegulatoryUserFees.isExemptFrom = None
+22. RegulatoryUserFees.isDefinedBy = Law
+23. Law.includes = RegulatoryUserFees
+24. RegulatoryUserFees.isChargedTo = RegulatoryUser
+25. RegulatoryUserFees.isCollectedBy = Agency
+26. Agency.collects = RegulatoryUserFees
+27. RegulatoryUserFees.amount.isFixed = false
+28. RegulatoryUserFees.isReviewedBy = Committee
+29. Committee.assesses = RegulatoryUserFees
+30. RegulatoryUserFees.isChallengedBy = RegulatoryUser
+
+Rules:
+1. Q[There, RegulatoryUser.hasNoFees, RegulatoryUserFees.exists](RegulatoryUser.hasNoFees == true → Factual(RegulatoryUser.hasNoFees, RegulatoryUserFees.exists))
+2. Q[There, RegulatoryUser.hasNoFees, RegulatoryUserFees.isPaidBy](RegulatoryUser.hasNoFees == true → Factual(RegulatoryUser.hasNoFees, RegulatoryUserFees.isPaidBy))
+3. Q[There, RegulatoryUser.hasNoFees, RegulatoryUserFees.amount.isGreaterThan](RegulatoryUser.hasNoFees == true → Factual(RegulatoryUser.hasNoFees, RegulatoryUserFees.amount.isGreaterThan))
+4. Q[There, RegulatoryUser.hasNoFees, RegulatoryUserFees.isContradictoryTo](RegulatoryUser.hasNoFees == true → Factual(RegulatoryUser.hasNoFees, RegulatoryUserFees.isContradictoryTo))
+5. Q[There, RegulatoryUser.hasNoFees, RegulatoryUserFees.isApplicableTo](RegulatoryUser.hasNoFees == true → Factual(RegulatoryUser.hasNoFees, RegulatoryUserFees.isApplicableTo))
+6. Q[There, RegulatoryUser.hasNoFees, RegulatoryUserFees.isRegulatedBy](RegulatoryUser.hasNoFees == true → Factual(RegulatoryUser.hasNoFees, RegulatoryUserFees.isRegulatedBy))
+7. Q[There, RegulatoryUser.hasNoFees, RegulatoryUserFees.category](RegulatoryUser.hasNoFees == true → Factual(RegulatoryUser.hasNoFees, RegulatoryUserFees.category))
+8. Q[There, RegulatoryUser.hasNoFees, RegulatoryUserFees.isChargedTo](RegulatoryUser.hasNoFees == true → Factual(RegulatoryUser.hasNoFees, RegulatoryUserFees.isChargedTo))
+9. Q[There, RegulatoryUser.hasNoFees, RegulatoryUserFees.isCollectedBy](RegulatoryUser.hasNoFees == true → Factual(RegulatoryUser.hasNoFees, RegulatoryUserFees.isCollectedBy))
+10. Q[There, RegulatoryUser.hasNoFees, RegulatoryUserFees.isDefinedBy](RegulatoryUser.hasNoFees == true → Factual(RegulatoryUser.hasNoFees, RegulatoryUserFees.isDefinedBy))
+11. Q[There, RegulatoryUser.hasNoFees, RegulatoryUserFees.isExemptFrom](RegulatoryUser.hasNoFees == true → Factual(RegulatoryUser.hasNoFees, RegulatoryUserFees.isExemptFrom))
+12. Q[There, RegulatoryUser.hasNoFees, PatentFees.isTypeOf](RegulatoryUser.hasNoFees == true → Factual(RegulatoryUser.hasNoFees, PatentFees.isTypeOf))
+13. Q[There, RegulatoryUser.hasNoFees, CopyrightFees.isTypeOf](RegulatoryUser.hasNoFees == true → Factual(RegulatoryUser.hasNoFees, CopyrightFees.isTypeOf))
+14. Q[There, RegulatoryUser.hasNoFees, RegulatoryUserFees.isListedIn](RegulatoryUser.hasNoFees == true → Factual(RegulatoryUser.hasNoFees, RegulatoryUserFees.isListedIn))
+15. Q[There, RegulatoryUser.hasNoFees, Regulations.applyTo](RegulatoryUser.hasNoFees == true → Factual(RegulatoryUser.hasNoFees, Regulations.applyTo))
+16. Q[There, RegulatoryUser.hasNoFees, RegulatoryUserFees.violates](RegulatoryUser.hasNoFees == true → Factual(RegulatoryUser.hasNoFees, RegulatoryUserFees.violates))
+17. Q[There, RegulatoryUser.hasNoFees, RegulatoryUserFees.isReviewedBy](RegulatoryUser.hasNoFees == true → Factual(RegulatoryUser.hasNoFees, RegulatoryUserFees.isReviewedBy))
+18. Q[There, RegulatoryUser.hasNoFees, Committee.assesses](RegulatoryUser.hasNoFees == true → Factual(RegulatoryUser.hasNoFees, Committee.assesses))
+19. Q[There, RegulatoryUser.hasNoFees, Agency.collects](RegulatoryUser.hasNoFees == true → Factual(RegulatoryUser.hasNoFees, Agency.collects))
+20. Q[There, RegulatoryUser.hasNoFees, RegulatoryUserFees.amount.isFixed](RegulatoryUser.hasNoFees == true → Factual(RegulatoryUser.hasNoFees, RegulatoryUserFees.amount.isFixed))
+21. Q[There, RegulatoryUser.hasNoFees, RegulatoryUserFees.isChallengedBy](RegulatoryUser.hasNoFees == true → Factual(RegulatoryUser.hasNoFees, RegulatoryUserFees.isChallengedBy))
+22. Q[There, RegulatoryUser.hasNoFees, Government.regulates](RegulatoryUser.hasNoFees == true → Factual(RegulatoryUser.hasNoFees, Government.regulates))
+23. Q[There, RegulatoryUser.hasNoFees, RegulatoryUserFees.isSubjectTo](RegulatoryUser.hasNoFees == true → Factual(RegulatoryUser.hasNoFees, RegulatoryUserFees.isSubjectTo))
+24. Q[There, RegulatoryUser.hasNoFees, FeeSchedule.includes](RegulatoryUser.hasNoFees == true → Factual(RegulatoryUser.hasNoFees, FeeSchedule.includes))
+25. Q[There, RegulatoryUser.hasNoFees, RegulatoryUserFees.exists](RegulatoryUser.hasNoFees == true → Factual(RegulatoryUser.hasNoFees, RegulatoryUserFees.exists))
+26. Q[There, RegulatoryUser.hasNoFees, RegulatoryUserFees.type](RegulatoryUser.hasNoFees == true → Factual(RegulatoryUser.hasNoFees, RegulatoryUserFees.type))
+27. Q[There, RegulatoryUser.hasNoFees, RegulatoryUserFees.isApplicableTo](RegulatoryUser.hasNoFees == true → Factual(RegulatoryUser.hasNoFees, RegulatoryUserFees.isApplicableTo))
+28. Q[There, RegulatoryUser.hasNoFees, RegulatoryUserFees.isContradictoryTo](RegulatoryUser.hasNoFees == true → Factual(RegulatoryUser.hasNoFees, RegulatoryUserFees.isContradictoryTo))
+29. Q[There, RegulatoryUser.hasNoFees, RegulatoryUserFees.isChargedTo](RegulatoryUser.hasNoFees == true → Factual(RegulatoryUser.hasNoFees, RegulatoryUserFees.isChargedTo))
+30. Q[There, RegulatoryUser.hasNoFees, RegulatoryUserFees.isCollectedBy](RegulatoryUser.hasNoFees == true → Factual(RegulatoryUser.hasNoFees, RegulatoryUserFees.isCollectedBy))

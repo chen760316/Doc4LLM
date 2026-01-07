@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 126)
+S1: killing at least 32 people and wounding at least 20 others, authorities said.
+S2: A gunman shot dead up to 31 people and injured at least 21 more in two separate shooting incidents.
+
+Predicates:
+1. Incident.killed_count(32)
+2. Incident.wounded_count(20)
+3. Incident.killed_count(31)
+4. Incident.wounded_count(21)
+5. Authority.reported(killed_count, 32)
+6. Authority.reported(wounded_count, 20)
+7. Authority.reported(killed_count, 31)
+8. Authority.reported(wounded_count, 21)
+9. ShootingIncident.type("gunman")
+10. ShootingIncident.location("two separate incidents")
+11. ShootingIncident.killed_count(31)
+12. ShootingIncident.wounded_count(21)
+13. M_NLI(S1, S2)
+14. Numeric(32, 31)
+15. Numeric(20, 21)
+16. violate(32, 31)
+17. Incident.severity("high")
+18. Incident.type("shooting")
+19. Authority.involved("local authorities")
+20. Authority.involved("law enforcement")
+21. Incident.time("recent")
+22. Incident.motive("unknown")
+23. Incident.perpetrator("gunman")
+24. Incident.response("ongoing investigation")
+25. Incident.victims_count(53)
+26. Incident.location("public space")
+27. Incident.witnesses_count("multiple")
+28. Incident.emergency_response("activated")
+29. Incident.media_coverage("extensive")
+30. Incident.public_reaction("outrage")
+
+Rules:
+1. Q[killing, Incident.killed_count(32) → Numeric(32, 31)]
+2. Q[killing, Authority.reported(killed_count, 32) → Numeric(32, 31)]
+3. Q[killing, Incident.killed_count(31) → Numeric(32, 31)]
+4. Q[killing, Authority.reported(killed_count, 31) → Numeric(32, 31)]
+5. Q[killing, Incident.wounded_count(20) → Numeric(20, 21)]
+6. Q[killing, Authority.reported(wounded_count, 20) → Numeric(20, 21)]
+7. Q[killing, Incident.wounded_count(21) → Numeric(20, 21)]
+8. Q[killing, Authority.reported(wounded_count, 21) → Numeric(20, 21)]
+9. Q[killing, Incident.severity("high") → Numeric(32, 31)]
+10. Q[killing, Incident.type("shooting") → Numeric(32, 31)]
+11. Q[killing, ShootingIncident.killed_count(31) → Numeric(32, 31)]
+12. Q[killing, ShootingIncident.wounded_count(21) → Numeric(20, 21)]
+13. Q[killing, Incident.victims_count(53) → Numeric(32, 31)]
+14. Q[killing, Incident.location("public space") → Numeric(32, 31)]
+15. Q[killing, Incident.time("recent") → Numeric(32, 31)]
+16. Q[killing, Incident.perpetrator("gunman") → Numeric(32, 31)]
+17. Q[killing, Incident.response("ongoing investigation") → Numeric(32, 31)]
+18. Q[killing, Incident.media_coverage("extensive") → Numeric(32, 31)]
+19. Q[killing, Incident.public_reaction("outrage") → Numeric(32, 31)]
+20. Q[killing, M_NLI(S1, S2) → Numeric(32, 31)]
+21. Q[killing, violate(32, 31) → Numeric(32, 31)]
+22. Q[killing, Authority.involved("local authorities") → Numeric(32, 31)]
+23. Q[killing, Authority.involved("law enforcement") → Numeric(32, 31)]
+24. Q[killing, ShootingIncident.type("gunman") → Numeric(32, 31)]
+25. Q[killing, ShootingIncident.location("two separate incidents") → Numeric(32, 31)]
+26. Q[killing, Incident.witnesses_count("multiple") → Numeric(32, 31)]
+27. Q[killing, Incident.emergency_response("activated") → Numeric(32, 31)]
+28. Q[killing, Authority.reported(killed_count, 32) ∧ Authority.reported(killed_count, 31) → Numeric(32, 31)]
+29. Q[killing, Authority.reported(wounded_count, 20) ∧ Authority.reported(wounded_count, 21) → Numeric(20, 21)]
+30. Q[killing, Incident.killed_count(32) ∧ Incident.killed_count(31) → Numeric(32, 31)]

@@ -1,0 +1,113 @@
+Predicates:
+Civil Rights Act.label != "Legislation"
+Civil Rights Act.label != Minority Communities.label
+Civil Rights Act.label != Unnamed Senator.label
+Civil Rights Act.label = "Legislation"
+Civil Rights Act.name != "Civil Rights Act"
+Civil Rights Act.name != Minority Communities.name
+Civil Rights Act.name != Unnamed Senator.name
+Civil Rights Act.name != Voting Rights Act.name
+Civil Rights Act.name = "Civil Rights Act"
+Civil Rights Act.status != "Questioned by Rand Paul"
+Civil Rights Act.status != Minority Communities.status
+Civil Rights Act.status != Unnamed Senator.status
+Civil Rights Act.status != Voting Rights Act.status
+Civil Rights Act.status = "Questioned by Rand Paul"
+Minority Communities.label != "Community"
+Minority Communities.label != Unnamed Senator.label
+Minority Communities.label = "Community"
+Minority Communities.name != "Minority Communities"
+Minority Communities.name != Unnamed Senator.name
+Minority Communities.name = "Minority Communities"
+Minority Communities.status != "Ignored by GOP"
+Minority Communities.status != Unnamed Senator.status
+Minority Communities.status = "Ignored by GOP"
+None_ML(Rand Paul.attrs, Unnamed Senator.attrs)
+None_ML(Rand Paul___Voting Rights Act.attrs, Rand Paul___Civil Rights Act.attrs)
+Rand Paul.label != "Person"
+Rand Paul.label != Civil Rights Act.label
+Rand Paul.label != Minority Communities.label
+Rand Paul.label != Voting Rights Act.label
+Rand Paul.label = "Person"
+Rand Paul.location != "Louisville, Kentucky"
+Rand Paul.location = "Louisville, Kentucky"
+Rand Paul.name != "Rand Paul"
+Rand Paul.name != Civil Rights Act.name
+Rand Paul.name != Minority Communities.name
+Rand Paul.name != Unnamed Senator.name
+Rand Paul.name != Voting Rights Act.name
+Rand Paul.name = "Rand Paul"
+Rand Paul.occupation != "Politician"
+Rand Paul.occupation != Unnamed Senator.occupation
+Rand Paul.occupation = "Politician"
+Rand Paul.status != "Running for President"
+Rand Paul.status != Civil Rights Act.status
+Rand Paul.status != Minority Communities.status
+Rand Paul.status != Unnamed Senator.status
+Rand Paul.status != Voting Rights Act.status
+Rand Paul.status = "Running for President"
+Rand Paul___Civil Rights Act.context != Rand Paul___Minority Communities.context
+Rand Paul___Civil Rights Act.context != Rand Paul___Unnamed Senator.context
+Rand Paul___Civil Rights Act.context = "Political stance"
+Rand Paul___Civil Rights Act.doc_id = "3489738272_4"
+Rand Paul___Civil Rights Act.method = "Public speaking"
+Rand Paul___Civil Rights Act.relationship != Rand Paul___Minority Communities.relationship
+Rand Paul___Civil Rights Act.relationship != Rand Paul___Unnamed Senator.relationship
+Rand Paul___Civil Rights Act.relationship != Rand Paul___Voting Rights Act.relationship
+Rand Paul___Civil Rights Act.relationship = "Rand Paul has questioned the Civil Rights Act."
+Rand Paul___Minority Communities.context = "Political campaign"
+Rand Paul___Minority Communities.doc_id = "3489738272_4"
+Rand Paul___Minority Communities.message != Rand Paul___Unnamed Senator.message
+Rand Paul___Minority Communities.message = "Message of inclusion"
+Rand Paul___Minority Communities.relationship != Rand Paul___Unnamed Senator.relationship
+Rand Paul___Minority Communities.relationship = "Rand Paul is attempting to broaden Republican appeal to minority communities."
+Rand Paul___Unnamed Senator.context = "Political campaign"
+Rand Paul___Unnamed Senator.doc_id = "3489738272_4"
+Rand Paul___Unnamed Senator.message = "Expanding the Republican Party"
+Rand Paul___Unnamed Senator.relationship = "Rand Paul is running for President while the unnamed senator reflects on his record regarding civil rights."
+Rand Paul___Voting Rights Act.context != Rand Paul___Minority Communities.context
+Rand Paul___Voting Rights Act.context != Rand Paul___Unnamed Senator.context
+Rand Paul___Voting Rights Act.context = "Political stance"
+Rand Paul___Voting Rights Act.doc_id = "3489738272_4"
+Rand Paul___Voting Rights Act.method = "Public speaking"
+Rand Paul___Voting Rights Act.relationship != Rand Paul___Minority Communities.relationship
+Rand Paul___Voting Rights Act.relationship != Rand Paul___Unnamed Senator.relationship
+Rand Paul___Voting Rights Act.relationship = "Rand Paul dismissed the need for a more robust Voting Rights Act."
+Unnamed Senator.elected_year != 1967
+Unnamed Senator.elected_year < 1972
+Unnamed Senator.elected_year = 1967
+Unnamed Senator.elected_year > 1962
+Unnamed Senator.gender != "Female"
+Unnamed Senator.gender = "Female"
+Unnamed Senator.label != "Person"
+Unnamed Senator.label = "Person"
+Unnamed Senator.name != "Unnamed Senator"
+Unnamed Senator.name = "Unnamed Senator"
+Unnamed Senator.occupation != "Senator"
+Unnamed Senator.occupation = "Senator"
+Unnamed Senator.status != "First woman and first person of color in Kentucky State Senate"
+Unnamed Senator.status = "First woman and first person of color in Kentucky State Senate"
+Voting Rights Act.label != "Legislation"
+Voting Rights Act.label != Minority Communities.label
+Voting Rights Act.label != Unnamed Senator.label
+Voting Rights Act.label = "Legislation"
+Voting Rights Act.name != "Voting Rights Act"
+Voting Rights Act.name != Minority Communities.name
+Voting Rights Act.name != Unnamed Senator.name
+Voting Rights Act.name = "Voting Rights Act"
+Voting Rights Act.status != "Dismantled by Supreme Court"
+Voting Rights Act.status != Minority Communities.status
+Voting Rights Act.status != Unnamed Senator.status
+Voting Rights Act.status = "Dismantled by Supreme Court"
+
+Rules:
+Q[Rand Paul,Rand Paul] (Unnamed Senator.elected_year < 1972 ∧ Rand Paul.location != "Louisville, Kentucky" → Rand Paul.label != "Person")
+Q[Rand Paul,Rand Paul] (Voting Rights Act.name = "Voting Rights Act" ∧ Rand Paul___Minority Communities.relationship = "Rand Paul is attempting to broaden Republican appeal to minority communities." ∧ Unnamed Senator.occupation != "Senator" ∧ Rand Paul___Voting Rights Act.relationship != Rand Paul___Minority Communities.relationship ∧ Unnamed Senator.elected_year < 1972 ∧ Unnamed Senator.occupation = "Senator" → Rand Paul.status != Civil Rights Act.status)
+Q[Rand Paul,Rand Paul] (Rand Paul___Voting Rights Act.relationship = "Rand Paul dismissed the need for a more robust Voting Rights Act." ∧ Rand Paul___Civil Rights Act.context != Rand Paul___Unnamed Senator.context ∧ Civil Rights Act.status != Unnamed Senator.status ∧ Rand Paul___Civil Rights Act.relationship != Rand Paul___Unnamed Senator.relationship ∧ Unnamed Senator.occupation != "Senator" → Rand Paul.status != Unnamed Senator.status)
+Q[Rand Paul,Rand Paul] (Rand Paul.label != "Person" ∧ Civil Rights Act.name != Voting Rights Act.name ∧ Minority Communities.name != "Minority Communities" ∧ Unnamed Senator.occupation != "Senator" → Rand Paul___Minority Communities.relationship != Rand Paul___Unnamed Senator.relationship)
+Q[Rand Paul,Rand Paul] (Rand Paul___Civil Rights Act.context != Rand Paul___Unnamed Senator.context ∧ Unnamed Senator.elected_year != 1967 ∧ Rand Paul.name != Civil Rights Act.name → Voting Rights Act.status != "Dismantled by Supreme Court")
+Q[Rand Paul,Rand Paul] (Rand Paul___Civil Rights Act.relationship != Rand Paul___Minority Communities.relationship ∧ Minority Communities.status != "Ignored by GOP" ∧ Rand Paul___Civil Rights Act.context != Rand Paul___Unnamed Senator.context → Voting Rights Act.name != Unnamed Senator.name)
+Q[Rand Paul,Rand Paul] (Rand Paul.name != Civil Rights Act.name ∧ Voting Rights Act.status != Unnamed Senator.status ∧ Rand Paul.name != Unnamed Senator.name ∧ Voting Rights Act.status != Minority Communities.status → Civil Rights Act.label != Minority Communities.label)
+Q[Rand Paul,Rand Paul] (Voting Rights Act.name = "Voting Rights Act" ∧ Civil Rights Act.name = "Civil Rights Act" → Rand Paul.name != "Rand Paul")
+Q[Rand Paul,Rand Paul] (Voting Rights Act.label != Unnamed Senator.label ∧ Minority Communities.label != Unnamed Senator.label ∧ Civil Rights Act.name != Voting Rights Act.name ∧ Rand Paul___Voting Rights Act.relationship != Rand Paul___Minority Communities.relationship ∧ None_ML(Rand Paul.attrs, Unnamed Senator.attrs) → Voting Rights Act.label = "Legislation")
+Q[Rand Paul,Rand Paul] (Civil Rights Act.status != Voting Rights Act.status ∧ Minority Communities.name = "Minority Communities" ∧ Rand Paul.name != Minority Communities.name ∧ Rand Paul.status = "Running for President" ∧ Civil Rights Act.name != Minority Communities.name ∧ Rand Paul___Voting Rights Act.relationship = "Rand Paul dismissed the need for a more robust Voting Rights Act." → Civil Rights Act.status != Minority Communities.status)

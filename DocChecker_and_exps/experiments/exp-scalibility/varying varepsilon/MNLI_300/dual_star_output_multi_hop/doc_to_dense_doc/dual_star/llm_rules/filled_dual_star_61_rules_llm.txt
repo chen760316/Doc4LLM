@@ -1,0 +1,122 @@
+Predicates:
+1. entity.right = "you have the right"
+2. entity.judges_observe = "judges do not observe that"
+3. entity.judges_respect = "judges respect that"
+4. entity.rights_status = "rights are respected"
+5. entity.judges_role = "judges have a role in rights"
+6. edge.depends_on = "relationship between rights and judges"
+7. edge.perceive = "perception of judges"
+8. edge.possess = "judges possess authority"
+9. M_NLI(entity.right, entity.judges_observe)
+10. M_NLI(entity.right, entity.judges_respect)
+11. T("You have the right.", "Judges do not observe that.", tau)
+12. T("You have the right.", "Judges respect that.", tau)
+13. tau(entity.rights_status, entity.judges_observe)
+14. tau(entity.rights_status, entity.judges_respect)
+15. violate(entity.right, entity.judges_observe)
+16. violate(entity.right, entity.judges_respect)
+17. Factual(entity.right, entity.judges_observe)
+18. Factual(entity.right, entity.judges_respect)
+19. Content(entity.judges_observe, entity.judges_respect)
+20. Causal(entity.right, entity.judges_observe)
+21. Causal(entity.right, entity.judges_respect)
+22. Negation(entity.judges_observe, entity.judges_respect)
+23. Relation(entity.judges_observe, entity.judges_respect)
+24. Numeric(entity.rights_status, entity.judges_role)
+25. Temporal(entity.judges_observe, entity.judges_respect)
+26. edge.judges_role = "judges have a role"
+27. edge.judges_decision = "judges make decisions"
+28. entity.judges_decision = "judges decide on rights"
+29. entity.rights_impact = "impact of rights on society"
+30. M_NLI(entity.judges_decision, entity.rights_impact)
+31. T("Judges decide on rights.", "Impact of rights on society.", tau)
+32. tau(entity.judges_decision, entity.rights_impact)
+33. violate(entity.judges_decision, entity.rights_impact)
+34. Factual(entity.judges_decision, entity.rights_impact)
+35. Content(entity.judges_decision, entity.rights_status)
+36. Causal(entity.judges_decision, entity.rights_status)
+37. Negation(entity.judges_decision, entity.rights_impact)
+38. Relation(entity.judges_decision, entity.rights_impact)
+39. Numeric(entity.judges_role, entity.rights_status)
+40. Temporal(entity.judges_decision, entity.rights_impact)
+41. edge.judges_perception = "judges' perception of rights"
+42. entity.judges_perception = "judges perceive rights"
+43. M_NLI(entity.judges_perception, entity.rights_status)
+44. T("Judges perceive rights.", "Rights are respected.", tau)
+45. tau(entity.judges_perception, entity.rights_status)
+46. violate(entity.judges_perception, entity.rights_status)
+47. Factual(entity.judges_perception, entity.rights_status)
+48. Content(entity.judges_perception, entity.judges_role)
+49. Causal(entity.judges_perception, entity.rights_status)
+50. Negation(entity.judges_perception, entity.rights_impact)
+51. Relation(entity.judges_perception, entity.rights_status)
+52. Numeric(entity.judges_perception, entity.judges_role)
+53. Temporal(entity.judges_perception, entity.rights_status)
+54. edge.judges_authority = "judges' authority over rights"
+55. entity.judges_authority = "judges have authority"
+56. M_NLI(entity.judges_authority, entity.rights_status)
+57. T("Judges have authority.", "Rights are respected.", tau)
+58. tau(entity.judges_authority, entity.rights_status)
+59. violate(entity.judges_authority, entity.rights_status)
+60. Factual(entity.judges_authority, entity.rights_status)
+61. Content(entity.judges_authority, entity.judges_role)
+62. Causal(entity.judges_authority, entity.rights_status)
+63. Negation(entity.judges_authority, entity.judges_decision)
+64. Relation(entity.judges_authority, entity.rights_status)
+65. Numeric(entity.judges_authority, entity.judges_role)
+66. Temporal(entity.judges_authority, entity.rights_status)
+67. edge.judges_action = "judges take action on rights"
+68. entity.judges_action = "judges act on rights"
+69. M_NLI(entity.judges_action, entity.rights_status)
+70. T("Judges act on rights.", "Rights are respected.", tau)
+71. tau(entity.judges_action, entity.rights_status)
+72. violate(entity.judges_action, entity.rights_status)
+73. Factual(entity.judges_action, entity.rights_status)
+74. Content(entity.judges_action, entity.judges_role)
+75. Causal(entity.judges_action, entity.rights_status)
+76. Negation(entity.judges_action, entity.judges_decision)
+77. Relation(entity.judges_action, entity.rights_status)
+78. Numeric(entity.judges_action, entity.judges_role)
+79. Temporal(entity.judges_action, entity.rights_status)
+80. edge.judges_interpretation = "judges interpret rights"
+81. entity.judges_interpretation = "judges have interpretations"
+82. M_NLI(entity.judges_interpretation, entity.rights_status)
+83. T("Judges interpret rights.", "Rights are respected.", tau)
+84. tau(entity.judges_interpretation, entity.rights_status)
+85. violate(entity.judges_interpretation, entity.rights_status)
+86. Factual(entity.judges_interpretation, entity.rights_status)
+87. Content(entity.judges_interpretation, entity.judges_role)
+88. Causal(entity.judges_interpretation, entity.rights_status)
+89. Negation(entity.judges_interpretation, entity.judges_decision)
+90. Relation(entity.judges_interpretation, entity.rights_status)
+91. Numeric(entity.judges_interpretation, entity.judges_role)
+92. Temporal(entity.judges_interpretation, entity.rights_status)
+93. edge.judges_duties = "judges have duties regarding rights"
+94. entity.judges_duties = "judges fulfill duties"
+95. M_NLI(entity.judges_duties, entity.rights_status)
+96. T("Judges fulfill duties
+violate(x0, y0)
+
+Rules:
+1. Q[x0, y0](entity.right = "you have the right" ∧ entity.judges_observe = "judges do not observe that" → violate(x0, y0))
+2. Q[x0, y0](entity.right = "you have the right" ∧ entity.judges_respect = "judges respect that" → violate(x0, y0))
+3. Q[x0, y0](entity.judges_observe = "judges do not observe that" ∧ entity.judges_role = "judges have a role in rights" → violate(x0, y0))
+4. Q[x0, y0](entity.judges_respect = "judges respect that" ∧ edge.depends_on = "relationship between rights and judges" → violate(x0, y0))
+5. Q[x0, y0](entity.rights_status = "rights are respected" ∧ edge.perceive = "perception of judges" → violate(x0, y0))
+6. Q[x0, y0](entity.judges_role = "judges have a role in rights" ∧ edge.possess = "judges possess authority" → violate(x0, y0))
+7. Q[x0, y0](entity.right = "you have the right" ∧ entity.judges_observe = "judges do not observe that" ∧ entity.judges_respect = "judges respect that" → violate(x0, y0))
+8. Q[x0, y0](entity.judges_role = "judges have a role in rights" ∧ edge.depends_on = "relationship between rights and judges" ∧ edge.perceive = "perception of judges" → violate(x0, y0))
+9. Q[x0, y0](entity.rights_status = "rights are respected" ∧ edge.possess = "judges possess authority" ∧ entity.judges_action = "judges act on rights" → violate(x0, y0))
+10. Q[x0, y0](entity.judges_decision = "judges decide on rights" ∧ entity.rights_impact = "impact of rights on society" ∧ M_NLI(entity.judges_decision, entity.rights_impact) → violate(x0, y0))
+11. Q[x0, y0](entity.judges_perception = "judges perceive rights" ∧ entity.judges_role = "judges have a role" ∧ edge.judges_authority = "judges' authority over rights" → violate(x0, y0))
+12. Q[x0, y0](entity.judges_action = "judges act on rights" ∧ entity.judges_interpretation = "judges interpret rights" ∧ entity.judges_duties = "judges have duties regarding rights" → violate(x0, y0))
+13. Q[x0, y0](entity.judges_decision = "judges decide on rights" ∧ entity.judges_respect = "judges respect that" ∧ edge.judges_decision = "judges make decisions" ∧ edge.judges_role = "judges have a role" → violate(x0, y0))
+14. Q[x0, y0](entity.judges_perception = "judges perceive rights" ∧ entity.judges_action = "judges act on rights" ∧ entity.judges_interpretation = "judges interpret rights" ∧ edge.judges_authority = "judges' authority over rights" → violate(x0, y0))
+15. Q[x0, y0](entity.judges_role = "judges have a role in rights" ∧ entity.judges_duties = "judges fulfill duties" ∧ edge.judges_decision = "judges make decisions" ∧ edge.judges_interpretation = "judges interpret rights" → violate(x0, y0))
+16. Q[x0, y0](entity.right = "you have the right" ∧ entity.judges_respect = "judges respect that" ∧ entity.judges_perception = "judges perceive rights" ∧ edge.judges_action = "judges take action on rights" ∧ edge.judges_role = "judges have a role" → violate(x0, y0))
+17. Q[x0, y0](entity.judges_observe = "judges do not observe that" ∧ entity.judges_role = "judges have a role in rights" ∧ edge.depends_on = "relationship between rights and judges" ∧ entity.judges_action = "judges act on rights" ∧ entity.judges_interpretation = "judges interpret rights" → violate(x0, y0))
+18. Q[x0, y0](entity.judges_decision = "judges decide on rights" ∧ entity.rights_impact = "impact of rights on society" ∧ entity.judges_perception = "judges perceive rights" ∧ edge.judges_authority = "judges' authority over rights" ∧ edge.judges_duties = "judges have duties regarding rights" → violate(x0, y0))
+19. Q[x0, y0](entity.judges_action = "judges act on rights" ∧ entity.judges_interpretation = "judges interpret rights" ∧ entity.judges_duties = "judges fulfill duties" ∧ edge.judges_decision = "judges make decisions" ∧ edge.judges_role = "judges have a role" ∧ entity.judges_respect = "judges respect that" → violate(x0, y0))
+20. Q[x0, y0](entity.judges_perception = "judges perceive rights" ∧ entity.judges_role = "judges have a role in rights" ∧ edge.judges_authority = "judges' authority over rights" ∧ edge.judges_action = "judges take action on rights" ∧ entity.rights_status = "rights are respected" → violate(x0, y0))
+21. Q[x0, y0](entity.judges_decision = "judges decide on rights" ∧ entity.rights_impact = "impact of rights on society" ∧ entity.judges_action = "judges act on rights" ∧ entity.judges_interpretation = "judges interpret rights" ∧ edge.judges_role = "judges have a role" ∧ edge.judges_duties = "judges have duties regarding rights" → violate(x0, y0))
+22. Q[x0, y0](entity.judges_observe = "judges do not observe that" ∧ entity.judges_respect = "judges respect that" ∧ entity.judges_role = "judges have a role in rights" ∧ edge

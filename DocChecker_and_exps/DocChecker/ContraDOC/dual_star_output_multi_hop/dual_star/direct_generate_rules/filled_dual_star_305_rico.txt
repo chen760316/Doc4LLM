@@ -1,0 +1,79 @@
+Predicates:
+Brazen.label != "Character"
+Brazen.label = "Character"
+Brazen.name != "Brazen"
+Brazen.name != Captain Brazen.name
+Brazen.name != Lucy.name
+Brazen.name = "Brazen"
+Brazen.occupation != "recruiter"
+Brazen.occupation != Captain Brazen.occupation
+Brazen.occupation = "recruiter"
+Captain Brazen.label != "Character"
+Captain Brazen.label = "Character"
+Captain Brazen.name != "Captain Brazen"
+Captain Brazen.name = "Captain Brazen"
+Captain Brazen.occupation != "Recruiter"
+Captain Brazen.occupation = "Recruiter"
+Lucy.label != "Character"
+Lucy.label = "Character"
+Lucy.name != "Lucy"
+Lucy.name != Captain Brazen.name
+Lucy.name = "Lucy"
+Lucy.status != "Disguised woman"
+Lucy.status = "Disguised woman"
+Melinda.label != "Character"
+Melinda.label = "Character"
+Melinda.name != "Melinda"
+Melinda.name != Brazen.name
+Melinda.name != Captain Brazen.name
+Melinda.name != Lucy.name
+Melinda.name = "Melinda"
+Melinda.status != "Relenting towards Worthy"
+Melinda.status != Lucy.status
+Melinda.status = "Relenting towards Worthy"
+None_ML(Brazen.attrs, Melinda.attrs)
+None_ML(Worthy___Melinda.attrs, Worthy___Lucy.attrs)
+Worthy.label != "Character"
+Worthy.label = "Character"
+Worthy.name != "Worthy"
+Worthy.name != Brazen.name
+Worthy.name != Captain Brazen.name
+Worthy.name != Lucy.name
+Worthy.name != Melinda.name
+Worthy.name = "Worthy"
+Worthy.occupation != "Gentleman"
+Worthy.occupation != Brazen.occupation
+Worthy.occupation != Captain Brazen.occupation
+Worthy.occupation = "Gentleman"
+Worthy___Brazen.doc_id != Worthy___Captain Brazen.doc_id
+Worthy___Brazen.doc_id != Worthy___Lucy.doc_id
+Worthy___Brazen.doc_id = "3488771854_1"
+Worthy___Brazen.relationship != Worthy___Captain Brazen.relationship
+Worthy___Brazen.relationship != Worthy___Lucy.relationship
+Worthy___Brazen.relationship = "Worthy challenges Brazen to a duel."
+Worthy___Captain Brazen.doc_id = "3488771854_8"
+Worthy___Captain Brazen.relationship = "Worthy intercepts Brazen and challenges him to a duel."
+Worthy___Lucy.doc_id = "3488771854_8"
+Worthy___Lucy.relationship != Worthy___Captain Brazen.relationship
+Worthy___Lucy.relationship = "Worthy discovers that a love letter is from Lucy, not Melinda."
+Worthy___Melinda.doc_id != Worthy___Captain Brazen.doc_id
+Worthy___Melinda.doc_id != Worthy___Lucy.doc_id
+Worthy___Melinda.doc_id = "3488771854_1"
+Worthy___Melinda.reason = "believed her to be of inadequate fortune"
+Worthy___Melinda.relationship != Worthy___Brazen.relationship
+Worthy___Melinda.relationship != Worthy___Captain Brazen.relationship
+Worthy___Melinda.relationship != Worthy___Lucy.relationship
+Worthy___Melinda.relationship = "Worthy is in love with Melinda and previously asked her to be his mistress."
+Worthy___Melinda.time = "One year ago"
+
+Rules:
+Q[Worthy,Worthy] (Captain Brazen.occupation = "Recruiter" ∧ Worthy.name != Brazen.name → Worthy___Melinda.reason = "believed her to be of inadequate fortune")
+Q[Worthy,Worthy] (Captain Brazen.occupation != "Recruiter" ∧ Melinda.status != "Relenting towards Worthy" ∧ Worthy___Brazen.relationship != Worthy___Lucy.relationship → Brazen.name != Captain Brazen.name)
+Q[Worthy,Worthy] (Worthy___Captain Brazen.doc_id = "3488771854_8" ∧ Worthy___Melinda.relationship != Worthy___Captain Brazen.relationship ∧ Worthy___Brazen.relationship != Worthy___Lucy.relationship ∧ Brazen.name = "Brazen" ∧ Melinda.name != Captain Brazen.name → Brazen.label != "Character")
+Q[Worthy,Worthy] (Worthy___Lucy.doc_id = "3488771854_8" ∧ Melinda.name != "Melinda" ∧ Worthy___Brazen.doc_id != Worthy___Lucy.doc_id ∧ None_ML(Brazen.attrs, Melinda.attrs) → Melinda.status = "Relenting towards Worthy")
+Q[Worthy,Worthy] (Worthy___Brazen.doc_id = "3488771854_1" ∧ Melinda.name != "Melinda" ∧ Worthy.label != "Character" ∧ Melinda.status != Lucy.status ∧ Lucy.name != Captain Brazen.name ∧ Brazen.name != Lucy.name → Worthy___Melinda.relationship != Worthy___Captain Brazen.relationship)
+Q[Worthy,Worthy] (Worthy.name != Captain Brazen.name ∧ Worthy.name != Lucy.name ∧ Captain Brazen.occupation != "Recruiter" ∧ Worthy___Melinda.relationship != Worthy___Captain Brazen.relationship → Worthy___Melinda.relationship != Worthy___Lucy.relationship)
+Q[Worthy,Worthy] (Brazen.occupation = "recruiter" ∧ Worthy___Brazen.doc_id = "3488771854_1" ∧ Lucy.status != "Disguised woman" ∧ Worthy___Melinda.doc_id != Worthy___Captain Brazen.doc_id ∧ Worthy.name != Melinda.name → Brazen.name != Lucy.name)
+Q[Worthy,Worthy] (Brazen.name != "Brazen" ∧ Brazen.occupation != "recruiter" ∧ Lucy.name = "Lucy" → Melinda.status != Lucy.status)
+Q[Worthy,Worthy] (Worthy___Melinda.doc_id != Worthy___Lucy.doc_id ∧ Worthy___Melinda.relationship != Worthy___Lucy.relationship → Worthy.name != Captain Brazen.name)
+Q[Worthy,Worthy] (Brazen.name != "Brazen" ∧ Lucy.name != "Lucy" ∧ Worthy___Brazen.relationship != Worthy___Captain Brazen.relationship ∧ Worthy.occupation != Brazen.occupation ∧ Captain Brazen.occupation = "Recruiter" ∧ Worthy.name != Brazen.name → Lucy.label != "Character")

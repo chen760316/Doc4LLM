@@ -1,0 +1,26 @@
+Predicates:
+None_ML(Oklahoma.attrs, Texas.attrs)
+Oklahoma.label != "Location"
+Oklahoma.label = "Location"
+Oklahoma.name != "Oklahoma"
+Oklahoma.name = "Oklahoma"
+Texas.label != "Location"
+Texas.label = "Location"
+Texas.name != "Texas"
+Texas.name != Oklahoma.name
+Texas.name = "Texas"
+Texas___Oklahoma.context = "U.S. Drought Monitor report"
+Texas___Oklahoma.doc_id = "3489738298_4"
+Texas___Oklahoma.relationship = "Texas and Oklahoma are also experiencing severe drought conditions."
+
+Rules:
+Q[Texas,Texas] (Texas___Oklahoma.context = "U.S. Drought Monitor report" ∧ Texas___Oklahoma.relationship = "Texas and Oklahoma are also experiencing severe drought conditions." ∧ Texas.name != Oklahoma.name ∧ Texas___Oklahoma.doc_id = "3489738298_4" → Texas.label = "Location")
+Q[Texas,Texas] (Oklahoma.name = "Oklahoma" ∧ Texas.label != "Location" ∧ Texas.name = "Texas" ∧ Oklahoma.name != "Oklahoma" ∧ Texas.name != Oklahoma.name ∧ None_ML(Oklahoma.attrs, Texas.attrs) → Texas___Oklahoma.doc_id = "3489738298_4")
+Q[Texas,Texas] (Oklahoma.name = "Oklahoma" ∧ Texas.label != "Location" ∧ Texas.name = "Texas" ∧ Texas.label = "Location" ∧ None_ML(Oklahoma.attrs, Texas.attrs) → Texas.name != "Texas")
+Q[Texas,Texas] (Texas.name = "Texas" ∧ Texas.name != Oklahoma.name ∧ Oklahoma.name = "Oklahoma" → Oklahoma.name != "Oklahoma")
+Q[Texas,Texas] (Texas.label != "Location" ∧ Texas.name = "Texas" → Oklahoma.name = "Oklahoma")
+Q[Texas,Texas] (Texas.name != Oklahoma.name ∧ Oklahoma.name = "Oklahoma" ∧ Texas.name != "Texas" ∧ Texas.name = "Texas" → Texas___Oklahoma.context = "U.S. Drought Monitor report")
+Q[Texas,Texas] (Oklahoma.name != "Oklahoma" ∧ None_ML(Oklahoma.attrs, Texas.attrs) → Texas.name = "Texas")
+Q[Texas,Texas] (Oklahoma.label = "Location" ∧ Texas.name != Oklahoma.name ∧ Oklahoma.name = "Oklahoma" ∧ Texas.label = "Location" ∧ Texas.name = "Texas" ∧ Oklahoma.name != "Oklahoma" → Texas___Oklahoma.relationship = "Texas and Oklahoma are also experiencing severe drought conditions.")
+Q[Texas,Texas] (Oklahoma.name != "Oklahoma" ∧ Texas___Oklahoma.relationship = "Texas and Oklahoma are also experiencing severe drought conditions." ∧ None_ML(Oklahoma.attrs, Texas.attrs) ∧ Texas___Oklahoma.doc_id = "3489738298_4" ∧ Texas.name = "Texas" → Texas.label != "Location")
+Q[Texas,Texas] (Texas.label = "Location" ∧ Texas___Oklahoma.relationship = "Texas and Oklahoma are also experiencing severe drought conditions." ∧ Texas.name != Oklahoma.name → Oklahoma.label = "Location")

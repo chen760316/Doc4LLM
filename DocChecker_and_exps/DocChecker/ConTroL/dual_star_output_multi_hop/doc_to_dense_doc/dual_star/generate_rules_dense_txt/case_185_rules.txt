@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 185)
+S1: No bird is a fish.
+S2: No fish is a kite.
+
+Predicates:
+1. Bird.is_fish = false
+2. Fish.is_kite = false
+3. M_NLI(S1, S2)
+4. Negation(Bird.is_fish, Fish.is_kite)
+5. violate(Bird.is_fish, Fish.is_kite)
+6. Bird.is_mutually_exclusive_with.Fish = true
+7. Fish.is_mutually_exclusive_with.Kite = true
+8. Kite.is_bird = false
+9. Bird.cannot_be.Fish = true
+10. Fish.cannot_be.Kite = true
+11. M_NLI(No_bird_is_a_fish, No_fish_is_a_kite)
+12. Negation(No_bird_is_a_fish, No_fish_is_a_kite)
+13. violate(No_bird_is_a_fish, No_fish_is_a_kite)
+14. Bird.category != Fish.category
+15. Fish.category != Kite.category
+16. Bird.is_not.Fish = true
+17. Fish.is_not.Kite = true
+18. M_NLI(Bird_is_not_a_fish, Fish_is_not_a_kite)
+19. Negation(Bird_is_not_a_fish, Fish_is_not_a_kite)
+20. violate(Bird_is_not_a_fish, Fish_is_not_a_kite)
+21. Bird.and.Fish = empty_set
+22. Fish.and.Kite = empty_set
+23. Bird.is_exclusive_of.Fish = true
+24. Fish.is_exclusive_of.Kite = true
+25. M_NLI(Bird_exclusivity, Fish_exclusivity)
+26. Negation(Bird_exclusivity, Fish_exclusivity)
+27. violate(Bird_exclusivity, Fish_exclusivity)
+28. Bird.is_not_a.Kite = true
+29. Kite.is_not_a.Bird = true
+30. M_NLI(Bird_is_not_a_kite, Kite_is_not_a_bird)
+
+Rules:
+1. Q[bird, Bird.is_fish, Fish.is_kite](Bird.is_fish == false → Negation(Bird.is_fish, Fish.is_kite))
+2. Q[fish, Fish.is_kite, Kite.is_bird](Fish.is_kite == false → Negation(Fish.is_kite, Kite.is_bird))
+3. Q[bird, Bird.is_mutually_exclusive_with.Fish, Fish.is_mutually_exclusive_with.Kite](Bird.is_mutually_exclusive_with.Fish = true → Negation(Bird.is_mutually_exclusive_with.Fish, Fish.is_mutually_exclusive_with.Kite))
+4. Q[fish, Fish.cannot_be.Kite, Kite.is_bird](Fish.cannot_be.Kite = true → Negation(Fish.cannot_be.Kite, Kite.is_bird))
+5. Q[bird, Bird.is_not.Fish, Fish.is_not.Kite](Bird.is_not.Fish = true → Negation(Bird.is_not.Fish, Fish.is_not.Kite))
+6. Q[bird, Bird.and.Fish, Fish.and.Kite](Bird.and.Fish = empty_set → Negation(Bird.and.Fish, Fish.and.Kite))
+7. Q[bird, Bird.is_exclusive_of.Fish, Fish.is_exclusive_of.Kite](Bird.is_exclusive_of.Fish = true → Negation(Bird.is_exclusive_of.Fish, Fish.is_exclusive_of.Kite))
+8. Q[fish, Fish.category, Kite.category](Fish.category != Kite.category → Negation(Fish.category, Kite.category))
+9. Q[bird, Bird.is_not_a.Kite, Kite.is_not_a.Bird](Bird.is_not_a.Kite = true → Negation(Bird.is_not_a.Kite, Kite.is_not_a.Bird))
+10. Q[fish, Fish.is_not.Kite, Kite.is_bird](Fish.is_not.Kite = true → Negation(Fish.is_not.Kite, Kite.is_bird))
+11. Q[bird, Bird.is_fish, Bird.is_not.Fish](Bird.is_fish == false → Negation(Bird.is_fish, Bird.is_not.Fish))
+12. Q[fish, Fish.is_kite, Fish.is_not.Kite](Fish.is_kite == false → Negation(Fish.is_kite, Fish.is_not.Kite))
+13. Q[bird, Bird.is_mutually_exclusive_with.Fish, Bird.is_not.Fish](Bird.is_mutually_exclusive_with.Fish = true → Negation(Bird.is_mutually_exclusive_with.Fish, Bird.is_not.Fish))
+14. Q[fish, Fish.cannot_be.Kite, Fish.is_not.Kite](Fish.cannot_be.Kite = true → Negation(Fish.cannot_be.Kite, Fish.is_not.Kite))
+15. Q[bird, Bird.is_exclusive_of.Fish, Bird.is_not.Fish](Bird.is_exclusive_of.Fish = true → Negation(Bird.is_exclusive_of.Fish, Bird.is_not.Fish))
+16. Q[fish, Fish.is_exclusive_of.Kite, Fish.is_not.Kite](Fish.is_exclusive_of.Kite = true → Negation(Fish.is_exclusive_of.Kite, Fish.is_not.Kite))
+17. Q[bird, Bird.category, Fish.category](Bird.category != Fish.category → Negation(Bird.category, Fish.category))
+18. Q[fish, Fish.category, Kite.category](Fish.category != Kite.category → Negation(Fish.category, Kite.category))
+19. Q[bird, Bird.is_not_a.Kite, Fish.is_kite](Bird.is_not_a.Kite = true → Negation(Bird.is_not_a.Kite, Fish.is_kite))
+20. Q[fish, Fish.is_not.Kite, Bird.is_bird](Fish.is_not.Kite = true → Negation(Fish.is_not.Kite, Bird.is_bird))
+21. Q[bird, Bird.and.Fish, Bird.is_not.Fish](Bird.and.Fish = empty_set → Negation(Bird.and.Fish, Bird.is_not.Fish))
+22. Q[fish, Fish.and.Kite, Fish.is_not.Kite](Fish.and.Kite = empty_set → Negation(Fish.and.Kite, Fish.is_not.Kite))
+23. Q[bird, Bird.is_fish, Fish.is_not.Kite](Bird.is_fish == false → Negation(Bird.is_fish, Fish.is_not.Kite))
+24. Q[fish, Fish.is_kite, Bird.is_not.Fish](Fish.is_kite == false → Negation(Fish.is_kite, Bird.is_not.Fish))
+25. Q[bird, Bird.is_mutually_exclusive_with.Fish, Fish.is_kite](Bird.is_mutually_exclusive_with.Fish = true → Negation(Bird.is_mutually_exclusive_with.Fish, Fish.is_kite))
+26. Q[fish, Fish.cannot_be.Kite, Bird.is_fish](Fish.cannot_be.Kite = true → Negation(Fish.cannot_be.Kite, Bird.is_fish))
+27. Q[bird, Bird.is_exclusive_of.Fish, Fish.is_kite](Bird.is_exclusive_of.Fish = true → Negation(Bird.is_exclusive_of.Fish, Fish.is_kite))
+28. Q[fish, Fish.category, Bird.category](Fish.category != Bird.category → Negation(Fish.category, Bird.category))
+29. Q[bird, Bird.is_not_a.Kite, Fish.is_kite](Bird.is_not_a.Kite = true → Negation(Bird.is_not_a.Kite, Fish.is_kite))
+30. Q[fish, Fish.is_not.Kite, Bird.is_bird](Fish.is_not.Kite = true → Negation(Fish.is_not.Kite, Bird.is_bird))

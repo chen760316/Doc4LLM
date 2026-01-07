@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 1567)
+S1: Martians are watching TV.
+S2: Cyclists are taking a break.
+
+Predicates:
+1. Martians.activity
+2. Cyclists.activity
+3. M_NLI(S1, S2)
+4. Relation(Martians, watching TV)
+5. Relation(Cyclists, taking a break)
+6. violate(Martians, Cyclists)
+7. Martians.location
+8. Cyclists.location
+9. Martians.time
+10. Cyclists.time
+11. Martians.emotion
+12. Cyclists.emotion
+13. Martians.reason
+14. Cyclists.reason
+15. Martians.interest
+16. Cyclists.interest
+17. "watching".activity_type
+18. "taking a break".activity_type
+19. "watching".entity
+20. "taking a break".entity
+21. Relation(Martians, unrelated)
+22. Relation(Cyclists, unrelated)
+23. Martians.context
+24. Cyclists.context
+25. Martians.action
+26. Cyclists.action
+27. "TV".object
+28. "break".object
+29. Martians.intent
+30. Cyclists.intent
+
+Rules:
+1. Q[Martians, Martians.activity, Cyclists.activity](Martians.activity == "watching" → Relation(Martians, Cyclists))
+2. Q[Cyclists, Cyclists.activity, Martians.activity](Cyclists.activity == "taking a break" → Relation(Cyclists, Martians))
+3. Q[Martians, Martians.activity, Cyclists.activity](Martians.activity == "watching" ∧ Cyclists.activity == "taking a break" → Relation(Martians, unrelated))
+4. Q[Cyclists, Cyclists.activity, Martians.activity](Cyclists.activity == "taking a break" ∧ Martians.activity == "watching" → Relation(Cyclists, unrelated))
+5. Q[Martians, Martians.location, Cyclists.location](Martians.location == "home" ∧ Cyclists.location == "park" → Relation(Martians, Cyclists))
+6. Q[Cyclists, Cyclists.location, Martians.location](Cyclists.location == "park" ∧ Martians.location == "home" → Relation(Cyclists, Martians))
+7. Q[Martians, Martians.time, Cyclists.time](Martians.time == "evening" ∧ Cyclists.time == "afternoon" → Relation(Martians, unrelated))
+8. Q[Cyclists, Cyclists.time, Martians.time](Cyclists.time == "afternoon" ∧ Martians.time == "evening" → Relation(Cyclists, unrelated))
+9. Q[Martians, Martians.emotion, Cyclists.emotion](Martians.emotion == "happy" ∧ Cyclists.emotion == "relaxed" → Relation(Martians, Cyclists))
+10. Q[Cyclists, Cyclists.emotion, Martians.emotion](Cyclists.emotion == "relaxed" ∧ Martians.emotion == "happy" → Relation(Cyclists, Martians))
+11. Q[Martians, Martians.reason, Cyclists.reason](Martians.reason == "entertainment" ∧ Cyclists.reason == "rest" → Relation(Martians, unrelated))
+12. Q[Cyclists, Cyclists.reason, Martians.reason](Cyclists.reason == "rest" ∧ Martians.reason == "entertainment" → Relation(Cyclists, unrelated))
+13. Q[Martians, Martians.interest, Cyclists.interest](Martians.interest == "TV shows" ∧ Cyclists.interest == "cycling" → Relation(Martians, unrelated))
+14. Q[Cyclists, Cyclists.interest, Martians.interest](Cyclists.interest == "cycling" ∧ Martians.interest == "TV shows" → Relation(Cyclists, unrelated))
+15. Q[Martians, Martians.action, Cyclists.action](Martians.action == "watching" ∧ Cyclists.action == "taking a break" → Relation(Martians, unrelated))
+16. Q[Cyclists, Cyclists.action, Martians.action](Cyclists.action == "taking a break" ∧ Martians.action == "watching" → Relation(Cyclists, unrelated))
+17. Q[Martians, "watching".activity_type, "taking a break".activity_type](Martians.activity == "watching" ∧ Cyclists.activity == "taking a break" → Relation(Martians, unrelated))
+18. Q[Cyclists, "taking a break".activity_type, "watching".activity_type](Cyclists.activity == "taking a break" ∧ Martians.activity == "watching" → Relation(Cyclists, unrelated))
+19. Q[Martians, "TV".object, "break".object](Martians.activity == "watching" ∧ Cyclists.activity == "taking a break" → Relation(Martians, unrelated))
+20. Q[Cyclists, "break".object, "TV".object](Cyclists.activity == "taking a break" ∧ Martians.activity == "watching" → Relation(Cyclists, unrelated))
+21. Q[Martians, Martians.context, Cyclists.context](Martians.context == "entertainment" ∧ Cyclists.context == "leisure" → Relation(Martians, unrelated))
+22. Q[Cyclists, Cyclists.context, Martians.context](Cyclists.context == "leisure" ∧ Martians.context == "entertainment" → Relation(Cyclists, unrelated))
+23. Q[Martians, Martians.intent, Cyclists.intent](Martians.intent == "enjoy" ∧ Cyclists.intent == "rest" → Relation(Martians, unrelated))
+24. Q[Cyclists, Cyclists.intent, Martians.intent](Cyclists.intent == "rest" ∧ Martians.intent == "enjoy" → Relation(Cyclists, unrelated))
+25. Q[Martians, M_NLI(S1, S2), Cyclists](M_NLI(S1, S2) == false → Relation(Martians, Cyclists))
+26. Q[Cyclists, M_NLI(S1, S2), Martians](M_NLI(S1, S2) == false → Relation(Cyclists, Martians))
+27. Q[Martians, Martians.activity, Cyclists.activity](Martians.activity == "watching" ∧ Cyclists.activity == "taking a break" → Relation(Martians, unrelated))
+28. Q[Cyclists, Cyclists.activity, Martians.activity](Cyclists.activity == "taking a break" ∧ Martians.activity == "watching" → Relation(Cyclists, unrelated))
+29. Q[Martians, Relation(Martians, watching TV), Cyclists](Relation(Martians, watching TV) ∧ Relation(Cyclists, taking a break) → Relation(Martians, unrelated))
+30. Q[Cyclists, Relation(Cyclists, taking a break), Martians](Relation(Cyclists, taking a break) ∧ Relation(Martians, watching TV) → Relation(Cyclists, unrelated))

@@ -1,0 +1,81 @@
+Predicates:
+Kim Ki-Jong.age != 55
+Kim Ki-Jong.age < 60
+Kim Ki-Jong.age = 55
+Kim Ki-Jong.age > 50
+Kim Ki-Jong.label != "Person"
+Kim Ki-Jong.label != North Korea.label
+Kim Ki-Jong.label != Seoul Central District Court.label
+Kim Ki-Jong.label = "Person"
+Kim Ki-Jong.location != "Seoul, South Korea"
+Kim Ki-Jong.location = "Seoul, South Korea"
+Kim Ki-Jong.name != "Kim Ki-Jong"
+Kim Ki-Jong.name != Mark Lippert.name
+Kim Ki-Jong.name != North Korea.name
+Kim Ki-Jong.name != Seoul Central District Court.name
+Kim Ki-Jong.name = "Kim Ki-Jong"
+Kim Ki-Jong.status != "charged"
+Kim Ki-Jong.status != Mark Lippert.status
+Kim Ki-Jong.status != Seoul Central District Court.status
+Kim Ki-Jong.status = "charged"
+Kim Ki-Jong___Mark Lippert.date = "March 5"
+Kim Ki-Jong___Mark Lippert.doc_id = "3489738224_1"
+Kim Ki-Jong___Mark Lippert.method = "using a 10-inch knife"
+Kim Ki-Jong___Mark Lippert.reason = "opposition to joint South Korean-U.S. military drills"
+Kim Ki-Jong___Mark Lippert.relationship != Kim Ki-Jong___Seoul Central District Court.relationship
+Kim Ki-Jong___Mark Lippert.relationship = "Kim Ki-Jong is accused of stabbing Mark Lippert."
+Kim Ki-Jong___Mark Lippert.weapon = "5-inch knife"
+Kim Ki-Jong___North Korea.doc_id = "3489738224_1"
+Kim Ki-Jong___North Korea.relationship != Kim Ki-Jong___Mark Lippert.relationship
+Kim Ki-Jong___North Korea.relationship != Kim Ki-Jong___Seoul Central District Court.relationship
+Kim Ki-Jong___North Korea.relationship = "Kim Ki-Jong visited North Korea multiple times."
+Kim Ki-Jong___North Korea.visits != 7
+Kim Ki-Jong___North Korea.visits = 7
+Kim Ki-Jong___North Korea.years = "1999 to 2007"
+Kim Ki-Jong___Seoul Central District Court.additional_charges.length = 2
+Kim Ki-Jong___Seoul Central District Court.doc_id = "3489738224_1"
+Kim Ki-Jong___Seoul Central District Court.relationship = "Kim Ki-Jong is charged with attempted murder and assaulting a foreign envoy."
+Kim Ki-Jong___Seoul Central District Court.trial_start_time = "within 14 days of indictment"
+Mark Lippert.label != "Person"
+Mark Lippert.label != Seoul Central District Court.label
+Mark Lippert.label = "Person"
+Mark Lippert.location != "Seoul, South Korea"
+Mark Lippert.location = "Seoul, South Korea"
+Mark Lippert.name != "Mark Lippert"
+Mark Lippert.name != Seoul Central District Court.name
+Mark Lippert.name = "Mark Lippert"
+Mark Lippert.nationality != "American"
+Mark Lippert.nationality = "American"
+Mark Lippert.occupation != "U.S. Ambassador"
+Mark Lippert.occupation = "U.S. Ambassador"
+Mark Lippert.status != "injured"
+Mark Lippert.status != Seoul Central District Court.status
+Mark Lippert.status = "injured"
+None_ML(Kim Ki-Jong___North Korea.attrs, Kim Ki-Jong___Mark Lippert.attrs)
+None_ML(Mark Lippert.attrs, Kim Ki-Jong.attrs)
+North Korea.label != "Country"
+North Korea.label != Mark Lippert.label
+North Korea.label != Seoul Central District Court.label
+North Korea.label = "Country"
+North Korea.name != "North Korea"
+North Korea.name != Mark Lippert.name
+North Korea.name != Seoul Central District Court.name
+North Korea.name = "North Korea"
+Seoul Central District Court.label != "Court"
+Seoul Central District Court.label = "Court"
+Seoul Central District Court.name != "Seoul Central District Court"
+Seoul Central District Court.name = "Seoul Central District Court"
+Seoul Central District Court.status != "ongoing trial"
+Seoul Central District Court.status = "ongoing trial"
+
+Rules:
+Q[Kim Ki-Jong,Kim Ki-Jong] (Kim Ki-Jong___Seoul Central District Court.doc_id = "3489738224_1" ∧ Mark Lippert.location != "Seoul, South Korea" ∧ North Korea.name != Seoul Central District Court.name → Kim Ki-Jong.name != Seoul Central District Court.name)
+Q[Kim Ki-Jong,Kim Ki-Jong] (Mark Lippert.location != "Seoul, South Korea" ∧ Kim Ki-Jong.age = 55 → North Korea.name = "North Korea")
+Q[Kim Ki-Jong,Kim Ki-Jong] (Kim Ki-Jong___Mark Lippert.weapon = "5-inch knife" ∧ North Korea.name = "North Korea" ∧ Mark Lippert.label != Seoul Central District Court.label ∧ Mark Lippert.nationality != "American" ∧ North Korea.label != Seoul Central District Court.label → Kim Ki-Jong.name != "Kim Ki-Jong")
+Q[Kim Ki-Jong,Kim Ki-Jong] (Kim Ki-Jong___Seoul Central District Court.trial_start_time = "within 14 days of indictment" ∧ Mark Lippert.nationality = "American" ∧ Mark Lippert.location = "Seoul, South Korea" ∧ North Korea.label = "Country" ∧ Mark Lippert.location != "Seoul, South Korea" ∧ North Korea.label != Seoul Central District Court.label → Kim Ki-Jong.label != North Korea.label)
+Q[Kim Ki-Jong,Kim Ki-Jong] (Kim Ki-Jong___Mark Lippert.method = "using a 10-inch knife" ∧ Mark Lippert.status != "injured" ∧ Mark Lippert.location != "Seoul, South Korea" ∧ Kim Ki-Jong.age != 55 → None_ML(Mark Lippert.attrs, Kim Ki-Jong.attrs))
+Q[Kim Ki-Jong,Kim Ki-Jong] (Mark Lippert.name = "Mark Lippert" ∧ Mark Lippert.status != "injured" → North Korea.label != Seoul Central District Court.label)
+Q[Kim Ki-Jong,Kim Ki-Jong] (Kim Ki-Jong___Mark Lippert.relationship = "Kim Ki-Jong is accused of stabbing Mark Lippert." ∧ Kim Ki-Jong.status != "charged" ∧ Mark Lippert.label != Seoul Central District Court.label ∧ Kim Ki-Jong___Mark Lippert.date = "March 5" ∧ North Korea.label != Seoul Central District Court.label ∧ Kim Ki-Jong.label != "Person" → Seoul Central District Court.status != "ongoing trial")
+Q[Kim Ki-Jong,Kim Ki-Jong] (North Korea.name != Mark Lippert.name ∧ North Korea.label = "Country" ∧ Mark Lippert.location = "Seoul, South Korea" → Seoul Central District Court.label = "Court")
+Q[Kim Ki-Jong,Kim Ki-Jong] (Kim Ki-Jong___North Korea.doc_id = "3489738224_1" ∧ Kim Ki-Jong___Mark Lippert.reason = "opposition to joint South Korean-U.S. military drills" ∧ Seoul Central District Court.label = "Court" ∧ Mark Lippert.label = "Person" ∧ Mark Lippert.status = "injured" → Mark Lippert.nationality = "American")
+Q[Kim Ki-Jong,Kim Ki-Jong] (Mark Lippert.label = "Person" ∧ Seoul Central District Court.name = "Seoul Central District Court" ∧ North Korea.label != Mark Lippert.label ∧ Kim Ki-Jong___Mark Lippert.relationship = "Kim Ki-Jong is accused of stabbing Mark Lippert." → Kim Ki-Jong.status != "charged")

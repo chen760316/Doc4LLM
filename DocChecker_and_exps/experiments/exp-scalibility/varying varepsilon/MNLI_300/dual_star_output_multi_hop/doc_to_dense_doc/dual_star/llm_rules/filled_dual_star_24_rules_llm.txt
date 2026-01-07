@@ -1,0 +1,131 @@
+Predicates:
+1. entity.name = "Alice"
+2. entity.age = 30
+3. entity.city = "New York"
+4. entity.occupation = "Engineer"
+5. entity.salary = 80000
+6. entity.marital_status = "Single"
+7. entity.hobby = "Photography"
+8. entity.education_level = "Master's"
+9. entity.nationality = "American"
+10. entity.residence = "Apartment"
+11. edge.relationship = "are receiving"
+12. edge.source = "Alice"
+13. edge.target = "Bob"
+14. edge.date = "2023-10-01"
+15. edge.amount = 500
+16. edge.frequency = "Monthly"
+17. edge.status = "Active"
+18. edge.type = "Financial"
+19. edge.duration = "1 Year"
+20. edge.method = "Bank Transfer"
+21. M_NLI(entity1.name, entity2.name)
+22. T("Alice is receiving funds", "Alice is not receiving funds", tau)
+23. tau(entity.salary, entity.hobby)
+24. violate(entity1, entity2)
+25. Factual(entity.city, entity.occupation)
+26. Causal(entity.age, entity.salary)
+27. Numeric(entity.age, entity.salary)
+28. Temporal(entity.education_level, entity.marital_status)
+29. Content(entity.hobby, entity.occupation)
+30. Relational(entity.name, entity.city)
+31. Negation(entity.salary, entity.hobby)
+32. Factual(edge.relationship, edge.amount)
+33. Causal(edge.source, edge.target)
+34. Numeric(edge.amount, edge.frequency)
+35. Temporal(edge.date, edge.duration)
+36. Content(edge.status, edge.type)
+37. Relational(edge.source, edge.target)
+38. Negation(edge.amount, edge.frequency)
+39. entity.name = "Bob"
+40. entity.age = 25
+41. entity.city = "Los Angeles"
+42. entity.occupation = "Designer"
+43. entity.salary = 70000
+44. entity.marital_status = "Married"
+45. entity.hobby = "Cycling"
+46. entity.education_level = "Bachelor's"
+47. entity.nationality = "Canadian"
+48. entity.residence = "House"
+49. edge.relationship = "reassured"
+50. edge.source = "Bob"
+51. edge.target = "Alice"
+52. edge.date = "2023-10-02"
+53. edge.amount = 300
+54. edge.frequency = "Weekly"
+55. edge.status = "Pending"
+56. edge.type = "Loan"
+57. edge.duration = "6 Months"
+58. edge.method = "Cash"
+59. M_NLI(entity1.occupation, entity2.occupation)
+60. T("Bob reassured Alice about the loan", "Bob did not reassure Alice about the loan", tau)
+61. tau(entity.age, entity.marital_status)
+62. violate(entity1, entity2)
+63. Factual(entity.city, entity.hobby)
+64. Causal(entity.salary, entity.age)
+65. Numeric(entity.salary, entity.age)
+66. Temporal(entity.education_level, entity.city)
+67. Content(entity.hobby, entity.marital_status)
+68. Relational(entity.name, entity.occupation)
+69. Negation(entity.salary, entity.city)
+70. Factual(edge.relationship, edge.status)
+71. Causal(edge.source, edge.target)
+72. Numeric(edge.amount, edge.duration)
+73. Temporal(edge.date, edge.method)
+74. Content(edge.type, edge.frequency)
+75. Relational(edge.source, edge.target)
+76. Negation(edge.amount, edge.status)
+77. entity.name = "Charlie"
+78. entity.age = 40
+79. entity.city = "Chicago"
+80. entity.occupation = "Teacher"
+81. entity.salary = 60000
+82. entity.marital_status = "Divorced"
+83. entity.hobby = "Reading"
+84. entity.education_level = "PhD"
+85. entity.nationality = "British"
+86. entity.residence = "Condo"
+87. edge.relationship = "wanted to cut"
+88. edge.source = "Charlie"
+89. edge.target = "Alice"
+90. edge.date = "2023-10-03"
+91. edge.amount = 200
+92. edge.frequency = "One-time"
+93. edge.status = "Completed"
+94. edge.type = "Expense"
+95. edge.duration = "2 Weeks"
+96. edge.method = "Credit Card"
+97. M_NLI(entity1.hobby, entity2.hobby)
+98. T("Charlie wanted to cut expenses", "Charlie did not want to cut expenses", tau)
+99. tau(entity.salary, entity.education_level)
+100. violate(entity1, entity2)
+violate(x0, y0)
+
+Rules:
+1. Q[x0, y0](entity.name = "Alice" ∧ entity.age = 30 → violate(x0, y0))
+2. Q[x0, y0](entity.city = "New York" ∧ entity.occupation = "Engineer" → violate(x0, y0))
+3. Q[x0, y0](entity.salary = 80000 ∧ entity.marital_status = "Single" → violate(x0, y0))
+4. Q[x0, y0](entity.hobby = "Photography" ∧ entity.education_level = "Master's" ∧ entity.nationality = "American" → violate(x0, y0))
+5. Q[x0, y0](entity.residence = "Apartment" ∧ edge.relationship = "are receiving" ∧ edge.source = "Alice" → violate(x0, y0))
+6. Q[x0, y0](edge.target = "Bob" ∧ edge.date = "2023-10-01" ∧ edge.amount = 500 → violate(x0, y0))
+7. Q[x0, y0](edge.frequency = "Monthly" ∧ edge.status = "Active" ∧ edge.type = "Financial" ∧ edge.duration = "1 Year" → violate(x0, y0))
+8. Q[x0, y0](edge.method = "Bank Transfer" ∧ entity.name = "Bob" ∧ entity.age = 25 ∧ entity.city = "Los Angeles" → violate(x0, y0))
+9. Q[x0, y0](entity.occupation = "Designer" ∧ entity.salary = 70000 ∧ entity.marital_status = "Married" ∧ entity.hobby = "Cycling" → violate(x0, y0))
+10. Q[x0, y0](entity.education_level = "Bachelor's" ∧ entity.nationality = "Canadian" ∧ entity.residence = "House" ∧ edge.relationship = "reassured" ∧ edge.source = "Bob" → violate(x0, y0))
+11. Q[x0, y0](edge.target = "Alice" ∧ edge.date = "2023-10-02" ∧ edge.amount = 300 ∧ edge.frequency = "Weekly" ∧ edge.status = "Pending" → violate(x0, y0))
+12. Q[x0, y0](edge.type = "Loan" ∧ edge.duration = "6 Months" ∧ edge.method = "Cash" ∧ entity.name = "Alice" ∧ entity.age = 30 → violate(x0, y0))
+13. Q[x0, y0](entity.name = "Charlie" ∧ entity.age = 40 ∧ entity.city = "Chicago" ∧ entity.occupation = "Teacher" ∧ entity.salary = 60000 ∧ entity.marital_status = "Divorced" → violate(x0, y0))
+14. Q[x0, y0](entity.hobby = "Reading" ∧ entity.education_level = "PhD" ∧ entity.nationality = "British" ∧ entity.residence = "Condo" ∧ edge.relationship = "wanted to cut" → violate(x0, y0))
+15. Q[x0, y0](edge.source = "Charlie" ∧ edge.target = "Alice" ∧ edge.date = "2023-10-03" ∧ edge.amount = 200 ∧ edge.frequency = "One-time" ∧ edge.status = "Completed" → violate(x0, y0))
+16. Q[x0, y0](edge.type = "Expense" ∧ edge.duration = "2 Weeks" ∧ edge.method = "Credit Card" ∧ entity.name = "Bob" ∧ entity.age = 25 ∧ entity.city = "Los Angeles" → violate(x0, y0))
+17. Q[x0, y0](M_NLI(entity1.name, entity2.name) ∧ T("Alice is receiving funds", "Alice is not receiving funds", tau) ∧ tau(entity.salary, entity.hobby) → violate(x0, y0))
+18. Q[x0, y0](Causal(entity.age, entity.salary) ∧ Numeric(entity.age, entity.salary) ∧ Temporal(entity.education_level, entity.marital_status) ∧ Content(entity.hobby, entity.occupation) → violate(x0, y0))
+19. Q[x0, y0](Relational(entity.name, entity.city) ∧ Negation(entity.salary, entity.hobby) ∧ Factual(edge.relationship, edge.amount) ∧ Causal(edge.source, edge.target) ∧ Numeric(edge.amount, edge.frequency) → violate(x0, y0))
+20. Q[x0, y0](Temporal(edge.date, edge.duration) ∧ Content(edge.status, edge.type) ∧ Relational(edge.source, edge.target) ∧ Negation(edge.amount, edge.frequency) ∧ entity.name = "Alice" → violate(x0, y0))
+21. Q[x0, y0](entity.name = "Alice" ∧ entity.age = 30 ∧ entity.city = "New York" ∧ entity.occupation = "Engineer" ∧ entity.salary = 80000 ∧ entity.marital_status = "Single" → violate(x0, y0))
+22. Q[x0, y0](entity.hobby = "Photography" ∧ entity.education_level = "Master's" ∧ entity.nationality = "American" ∧ entity.residence = "Apartment" ∧ edge.relationship = "are receiving" ∧ edge.source = "Alice" → violate(x0, y0))
+23. Q[x0, y0](edge.target = "Bob" ∧ edge.date = "2023-10-01" ∧ edge.amount = 500 ∧ edge.frequency = "Monthly" ∧ edge.status = "Active" ∧ edge.type = "Financial" → violate(x0, y0))
+24. Q[x0, y0](edge.duration = "1 Year" ∧ edge.method = "Bank Transfer" ∧ entity.name = "Bob" ∧ entity.age = 25 ∧ entity.city = "Los Angeles" ∧ entity.occupation = "Designer" → violate(x0, y0))
+25. Q[x0, y0](entity.salary = 70000 ∧ entity.marital_status = "Married" ∧ entity.hobby = "Cycling" ∧ entity.education_level = "Bachelor's" ∧ entity.nationality = "Canadian" ∧ entity.residence = "House" → violate(x0, y0))
+26. Q[x0, y0](edge.relationship = "reassured" ∧ edge.source = "Bob" ∧ edge.target = "Alice" ∧ edge.date = "2023-10-02" ∧ edge.amount = 300 ∧ edge.frequency = "Weekly" → violate(x0, y0))
+27. Q[x0, y0](edge.status = "Pending" ∧ edge.type = "Loan" ∧ edge.duration = "6 Months

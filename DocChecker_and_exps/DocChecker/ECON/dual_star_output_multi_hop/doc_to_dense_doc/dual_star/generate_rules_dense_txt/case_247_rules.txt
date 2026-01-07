@@ -1,0 +1,61 @@
+Source: dense_text.txt (Index 247)
+S1: Jalapeno peppers are naturally sweet and contain no capsaicin.
+S2: Jalapeno peppers contain capsaicin.
+
+Predicates:
+1. Jalapeno_peppers.naturally_sweet
+2. Jalapeno_peppers.contains_no_capsaicin
+3. Jalapeno_peppers.contains_capsaicin
+4. M_NLI(S1, S2)
+5. Factual(Jalapeno_peppers, contains_no_capsaicin)
+6. Factual(Jalapeno_peppers, contains_capsaicin)
+7. violate(Jalapeno_peppers, contains_no_capsaicin)
+8. violate(Jalapeno_peppers, contains_capsaicin)
+9. Jalapeno_peppers.sweetness_level
+10. Jalapeno_peppers.capsaicin_level
+11. Capsaicin.is_present_in(Jalapeno_peppers)
+12. Capsaicin.is_absent_in(Jalapeno_peppers)
+13. M_NLI(Jalapeno_peppers.contains_no_capsaicin, Jalapeno_peppers.contains_capsaicin)
+14. Factual(capsaicin, present_in(Jalapeno_peppers))
+15. Factual(capsaicin, absent_in(Jalapeno_peppers))
+16. violate(capsaicin, present_in(Jalapeno_peppers))
+17. violate(capsaicin, absent_in(Jalapeno_peppers))
+18. Jalapeno_peppers.flavor_profile
+19. Jalapeno_peppers.heat_level
+20. Capsaicin.heat_index
+21. Capsaicin.sweetness_index
+22. M_NLI(Jalapeno_peppers.flavor_profile, Jalapeno_peppers.heat_level)
+23. Factual(Jalapeno_peppers, flavor_profile_is_sweet)
+24. Factual(Jalapeno_peppers, heat_level_is_low)
+25. violate(Jalapeno_peppers, flavor_profile_is_sweet)
+26. violate(Jalapeno_peppers, heat_level_is_low)
+27. Jalapeno_peppers.culinary_uses
+28. Capsaicin.effects_on_taste
+29. M_NLI(Jalapeno_peppers.culinary_uses, Capsaicin.effects_on_taste)
+30. Factual(Jalapeno_peppers, culinary_uses_include_sweet_dishes)
+
+Rules:
+1. Q[Jalapeno, Jalapeno_peppers.contains_no_capsaicin, Jalapeno_peppers.contains_capsaicin](Jalapeno_peppers.contains_no_capsaicin == true → Factual(Jalapeno_peppers, contains_capsaicin))
+2. Q[Jalapeno, Jalapeno_peppers.contains_capsaicin, Jalapeno_peppers.contains_no_capsaicin](Jalapeno_peppers.contains_capsaicin == true → Factual(Jalapeno_peppers, contains_no_capsaicin))
+3. Q[Jalapeno, Jalapeno_peppers.naturally_sweet, Jalapeno_peppers.contains_capsaicin](Jalapeno_peppers.naturally_sweet == true → Factual(Jalapeno_peppers, contains_capsaicin))
+4. Q[Jalapeno, Jalapeno_peppers.contains_no_capsaicin, Capsaicin.is_present_in(Jalapeno_peppers)](Jalapeno_peppers.contains_no_capsaicin == true → Factual(capsaicin, present_in(Jalapeno_peppers)))
+5. Q[Jalapeno, Jalapeno_peppers.contains_capsaicin, Capsaicin.is_absent_in(Jalapeno_peppers)](Jalapeno_peppers.contains_capsaicin == true → Factual(capsaicin, absent_in(Jalapeno_peppers)))
+6. Q[Jalapeno, M_NLI(Jalapeno_peppers.contains_no_capsaicin, Jalapeno_peppers.contains_capsaicin), Factual(Jalapeno_peppers, contains_no_capsaicin)](M_NLI(Jalapeno_peppers.contains_no_capsaicin, Jalapeno_peppers.contains_capsaicin) == true → Factual(Jalapeno_peppers, contains_no_capsaicin))
+7. Q[Jalapeno, M_NLI(Jalapeno_peppers.contains_capsaicin, Jalapeno_peppers.contains_no_capsaicin), Factual(Jalapeno_peppers, contains_capsaicin)](M_NLI(Jalapeno_peppers.contains_capsaicin, Jalapeno_peppers.contains_no_capsaicin) == true → Factual(Jalapeno_peppers, contains_capsaicin))
+8. Q[Jalapeno, Jalapeno_peppers.contains_no_capsaicin, violate(Jalapeno_peppers, contains_capsaicin)](Jalapeno_peppers.contains_no_capsaicin == true → violate(Jalapeno_peppers, contains_capsaicin))
+9. Q[Jalapeno, Jalapeno_peppers.contains_capsaicin, violate(Jalapeno_peppers, contains_no_capsaicin)](Jalapeno_peppers.contains_capsaicin == true → violate(Jalapeno_peppers, contains_no_capsaicin))
+10. Q[Jalapeno, Capsaicin.is_present_in(Jalapeno_peppers), Factual(Jalapeno_peppers, contains_no_capsaicin)](Capsaicin.is_present_in(Jalapeno_peppers) == true → Factual(Jalapeno_peppers, contains_no_capsaicin))
+11. Q[Jalapeno, Capsaicin.is_absent_in(Jalapeno_peppers), Factual(Jalapeno_peppers, contains_capsaicin)](Capsaicin.is_absent_in(Jalapeno_peppers) == true → Factual(Jalapeno_peppers, contains_capsaicin))
+12. Q[Jalapeno, Jalapeno_peppers.naturally_sweet, violate(Jalapeno_peppers, contains_capsaicin)](Jalapeno_peppers.naturally_sweet == true → violate(Jalapeno_peppers, contains_capsaicin))
+13. Q[Jalapeno, Jalapeno_peppers.contains_capsaicin, violate(Jalapeno_peppers, naturally_sweet)](Jalapeno_peppers.contains_capsaicin == true → violate(Jalapeno_peppers, naturally_sweet))
+14. Q[Jalapeno, Factual(Jalapeno_peppers, contains_no_capsaicin), Factual(Jalapeno_peppers, contains_capsaicin)](Factual(Jalapeno_peppers, contains_no_capsaicin) == true → Factual(Jalapeno_peppers, contains_capsaicin))
+15. Q[Jalapeno, Factual(Jalapeno_peppers, contains_capsaicin), Factual(Jalapeno_peppers, contains_no_capsaicin)](Factual(Jalapeno_peppers, contains_capsaicin) == true → Factual(Jalapeno_peppers, contains_no_capsaicin))
+16. Q[Jalapeno, Jalapeno_peppers.capsaicin_level, Factual(Jalapeno_peppers, contains_no_capsaicin)](Jalapeno_peppers.capsaicin_level == 0 → Factual(Jalapeno_peppers, contains_no_capsaicin))
+17. Q[Jalapeno, Jalapeno_peppers.capsaicin_level, Factual(Jalapeno_peppers, contains_capsaicin)](Jalapeno_peppers.capsaicin_level > 0 → Factual(Jalapeno_peppers, contains_capsaicin))
+18. Q[Jalapeno, Jalapeno_peppers.flavor_profile, violate(Jalapeno_peppers, contains_capsaicin)](Jalapeno_peppers.flavor_profile == "sweet" → violate(Jalapeno_peppers, contains_capsaicin))
+19. Q[Jalapeno, Jalapeno_peppers.heat_level, violate(Jalapeno_peppers, contains_no_capsaicin)](Jalapeno_peppers.heat_level == "low" → violate(Jalapeno_peppers, contains_no_capsaicin))
+20. Q[Jalapeno, Capsaicin.heat_index, Factual(Jalapeno_peppers, contains_no_capsaicin)](Capsaicin.heat_index == 0 → Factual(Jalapeno_peppers, contains_no_capsaicin))
+21. Q[Jalapeno, Capsaicin.heat_index, Factual(Jalapeno_peppers, contains_capsaicin)](Capsaicin.heat_index > 0 → Factual(Jalapeno_peppers, contains_capsaicin))
+22. Q[Jalapeno, Jalapeno_peppers.sweetness_level, Factual(Jalapeno_peppers, contains_no_capsaicin)](Jalapeno_peppers.sweetness_level == "high" → Factual(Jalapeno_peppers, contains_no_capsaicin))
+23. Q[Jalapeno, Jalapeno_peppers.sweetness_level, Factual(Jalapeno_peppers, contains_capsaicin)](Jalapeno_peppers.sweetness_level == "low" → Factual(Jalapeno_peppers, contains_capsaicin))
+24. Q[Jalapeno, M_NLI(Jalapeno

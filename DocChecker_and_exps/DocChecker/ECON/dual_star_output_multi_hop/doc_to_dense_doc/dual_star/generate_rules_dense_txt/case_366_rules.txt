@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 366)
+S1: The Normans invaded England in 1066 and were originally vikings from Scandinavia.
+S2: The Normans invaded England in 1066 and were originally Romans from Italy.
+
+Predicates:
+1. Normans.origin = vikings
+2. Normans.invasion_year = 1066
+3. Normans.origin = Romans
+4. Romans.origin = Italy
+5. vikings.region = Scandinavia
+6. vikings.invasion_year = 1066
+7. Normans.invasion = "invaded England"
+8. Romans.invasion = "not invaded England"
+9. Scandinavia.region = "Northern Europe"
+10. Italy.region = "Southern Europe"
+11. M_NLI(S1, S2)
+12. Factual(Normans.origin, vikings)
+13. Factual(Normans.invasion_year, 1066)
+14. Factual(Normans.origin, Romans)
+15. Factual(Romans.origin, Italy)
+16. violate(Normans.origin, vikings, Romans)
+17. vikings.culture = "Norse"
+18. Romans.culture = "Roman"
+19. Normans.culture = "Norman"
+20. vikings.language = "Old Norse"
+21. Romans.language = "Latin"
+22. Normans.language = "Old Norman"
+23. M_NLI(Normans.invasion, Romans.invasion)
+24. Factual(vikings.region, Scandinavia)
+25. Factual(Italy.region, Southern Europe)
+26. Factual(Scandinavia.region, Northern Europe)
+27. Normans.impact_on_England = "significant"
+28. Romans.impact_on_Italy = "historical"
+29. vikings.era = "Medieval"
+30. Romans.era = "Ancient"
+
+Rules:
+1. Q[The, Normans.origin, vikings](Normans.origin == vikings → Factual(Normans.origin, vikings))
+2. Q[The, Normans.origin, Romans](Normans.origin == Romans → Factual(Normans.origin, Romans))
+3. Q[The, Normans.invasion_year, 1066](Normans.invasion_year == 1066 → Factual(Normans.invasion_year, 1066))
+4. Q[The, Romans.origin, Italy](Romans.origin == Italy → Factual(Romans.origin, Italy))
+5. Q[The, vikings.region, Scandinavia](vikings.region == Scandinavia → Factual(vikings.region, Scandinavia))
+6. Q[The, Italy.region, Southern Europe](Italy.region == Southern Europe → Factual(Italy.region, Southern Europe))
+7. Q[The, Scandinavia.region, Northern Europe](Scandinavia.region == Northern Europe → Factual(Scandinavia.region, Northern Europe))
+8. Q[The, Normans.invasion, "invaded England"](Normans.invasion == "invaded England" → Factual(Normans.invasion, "invaded England"))
+9. Q[The, Romans.invasion, "not invaded England"](Romans.invasion == "not invaded England" → Factual(Romans.invasion, "not invaded England"))
+10. Q[The, vikings.culture, "Norse"](vikings.culture == "Norse" → Factual(vikings.culture, "Norse"))
+11. Q[The, Romans.culture, "Roman"](Romans.culture == "Roman" → Factual(Romans.culture, "Roman"))
+12. Q[The, Normans.culture, "Norman"](Normans.culture == "Norman" → Factual(Normans.culture, "Norman"))
+13. Q[The, vikings.language, "Old Norse"](vikings.language == "Old Norse" → Factual(vikings.language, "Old Norse"))
+14. Q[The, Romans.language, "Latin"](Romans.language == "Latin" → Factual(Romans.language, "Latin"))
+15. Q[The, Normans.language, "Old Norman"](Normans.language == "Old Norman" → Factual(Normans.language, "Old Norman"))
+16. Q[The, Normans.impact_on_England, "significant"](Normans.impact_on_England == "significant" → Factual(Normans.impact_on_England, "significant"))
+17. Q[The, Romans.impact_on_Italy, "historical"](Romans.impact_on_Italy == "historical" → Factual(Romans.impact_on_Italy, "historical"))
+18. Q[The, vikings.era, "Medieval"](vikings.era == "Medieval" → Factual(vikings.era, "Medieval"))
+19. Q[The, Romans.era, "Ancient"](Romans.era == "Ancient" → Factual(Romans.era, "Ancient"))
+20. Q[The, Normans.origin, vikings](Factual(Normans.origin, vikings) → violate(Normans.origin, vikings, Romans))
+21. Q[The, Normans.origin, Romans](Factual(Normans.origin, Romans) → violate(Normans.origin, vikings, Romans))
+22. Q[The, Normans.invasion_year, 1066](Factual(Normans.invasion_year, 1066) → M_NLI(S1, S2))
+23. Q[The, Romans.origin, Italy](Factual(Romans.origin, Italy) → M_NLI(S1, S2))
+24. Q[The, vikings.region, Scandinavia](Factual(vikings.region, Scandinavia) → M_NLI(S1, S2))
+25. Q[The, Italy.region, Southern Europe](Factual(Italy.region, Southern Europe) → M_NLI(S1, S2))
+26. Q[The, Scandinavia.region, Northern Europe](Factual(Scandinavia.region, Northern Europe) → M_NLI(S1, S2))
+27. Q[The, Normans.invasion, "invaded England"](Factual(Normans.invasion, "invaded England") → M_NLI(S1, S2))
+28. Q[The, Romans.invasion, "not invaded England"](Factual(Romans.invasion, "not invaded England") → M_NLI(S1, S2))
+29. Q[The, vikings.culture, "Norse"](Factual(vikings.culture, "Norse") → M_NLI(S1, S2))
+30. Q[The, Romans.culture, "Roman"](Factual(Romans.culture, "Roman") → M_NLI(S1, S2))

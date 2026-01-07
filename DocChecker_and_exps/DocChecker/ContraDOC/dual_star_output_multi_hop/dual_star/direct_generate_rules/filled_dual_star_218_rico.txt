@@ -1,0 +1,74 @@
+Predicates:
+Barack Obama.label != "Person"
+Barack Obama.label = "Person"
+Barack Obama.name != "Barack Obama"
+Barack Obama.name != Bruno Rodriguez.name
+Barack Obama.name = "Barack Obama"
+Barack Obama.nationality != "American"
+Barack Obama.nationality != Bruno Rodriguez.nationality
+Barack Obama.nationality = "American"
+Barack Obama.occupation != "President"
+Barack Obama.occupation != Bruno Rodriguez.occupation
+Barack Obama.occupation = "President"
+Bruno Rodriguez.label != "Person"
+Bruno Rodriguez.label = "Person"
+Bruno Rodriguez.name != "Bruno Rodriguez"
+Bruno Rodriguez.name = "Bruno Rodriguez"
+Bruno Rodriguez.nationality != "Cuban"
+Bruno Rodriguez.nationality = "Cuban"
+Bruno Rodriguez.occupation != "Foreign Minister"
+Bruno Rodriguez.occupation = "Foreign Minister"
+George Bush.label != "Person"
+George Bush.label = "Person"
+George Bush.name != "George Bush"
+George Bush.name != Barack Obama.name
+George Bush.name != Bruno Rodriguez.name
+George Bush.name = "George Bush"
+George Bush.nationality != "American"
+George Bush.nationality != Bruno Rodriguez.nationality
+George Bush.nationality = "American"
+George Bush.occupation != "Former President"
+George Bush.occupation != Barack Obama.occupation
+George Bush.occupation != Bruno Rodriguez.occupation
+George Bush.occupation = "Former President"
+Nicolas Maduro.label != "Person"
+Nicolas Maduro.label = "Person"
+Nicolas Maduro.name != "Nicolas Maduro"
+Nicolas Maduro.name != Barack Obama.name
+Nicolas Maduro.name != Bruno Rodriguez.name
+Nicolas Maduro.name != George Bush.name
+Nicolas Maduro.name = "Nicolas Maduro"
+Nicolas Maduro.nationality != "Venezuelan"
+Nicolas Maduro.nationality != Barack Obama.nationality
+Nicolas Maduro.nationality != Bruno Rodriguez.nationality
+Nicolas Maduro.nationality != George Bush.nationality
+Nicolas Maduro.nationality = "Venezuelan"
+Nicolas Maduro.occupation != "President"
+Nicolas Maduro.occupation != Bruno Rodriguez.occupation
+Nicolas Maduro.occupation != George Bush.occupation
+Nicolas Maduro.occupation = "President"
+Nicolas Maduro___Barack Obama.doc_id = "3489738259_4"
+Nicolas Maduro___Barack Obama.relationship != Nicolas Maduro___Bruno Rodriguez.relationship
+Nicolas Maduro___Barack Obama.relationship = "Nicolas Maduro accused Barack Obama of trying to topple his government."
+Nicolas Maduro___Bruno Rodriguez.doc_id = "3489738259_4"
+Nicolas Maduro___Bruno Rodriguez.relationship = "Bruno Rodriguez publicly sided with Nicolas Maduro."
+Nicolas Maduro___Bruno Rodriguez.support = "Condemnation of sanctions against Venezuela"
+Nicolas Maduro___George Bush.doc_id = "3489738259_4"
+Nicolas Maduro___George Bush.reason = "Accused of being a terrorist"
+Nicolas Maduro___George Bush.relationship != Nicolas Maduro___Barack Obama.relationship
+Nicolas Maduro___George Bush.relationship != Nicolas Maduro___Bruno Rodriguez.relationship
+Nicolas Maduro___George Bush.relationship = "Nicolas Maduro banned George Bush from entering Venezuela."
+None_ML(George Bush.attrs, Bruno Rodriguez.attrs)
+None_ML(Nicolas Maduro___Barack Obama.attrs, Nicolas Maduro___George Bush.attrs)
+
+Rules:
+Q[Nicolas Maduro,Nicolas Maduro] (Nicolas Maduro.nationality != Bruno Rodriguez.nationality ∧ Nicolas Maduro.label = "Person" → Nicolas Maduro.occupation != Bruno Rodriguez.occupation)
+Q[Nicolas Maduro,Nicolas Maduro] (Nicolas Maduro.name != Bruno Rodriguez.name ∧ Barack Obama.occupation = "President" ∧ Bruno Rodriguez.nationality != "Cuban" ∧ Nicolas Maduro.label = "Person" ∧ Nicolas Maduro.occupation = "President" ∧ Barack Obama.name != Bruno Rodriguez.name → Nicolas Maduro.name != "Nicolas Maduro")
+Q[Nicolas Maduro,Nicolas Maduro] (Barack Obama.name != Bruno Rodriguez.name ∧ Nicolas Maduro.nationality = "Venezuelan" ∧ Bruno Rodriguez.occupation != "Foreign Minister" → Nicolas Maduro___Bruno Rodriguez.doc_id = "3489738259_4")
+Q[Nicolas Maduro,Nicolas Maduro] (Barack Obama.name = "Barack Obama" ∧ George Bush.nationality = "American" ∧ Bruno Rodriguez.occupation != "Foreign Minister" ∧ Nicolas Maduro___Barack Obama.relationship = "Nicolas Maduro accused Barack Obama of trying to topple his government." → George Bush.name != "George Bush")
+Q[Nicolas Maduro,Nicolas Maduro] (George Bush.name = "George Bush" ∧ Nicolas Maduro___Barack Obama.doc_id = "3489738259_4" ∧ Nicolas Maduro___George Bush.doc_id = "3489738259_4" ∧ George Bush.label = "Person" ∧ Nicolas Maduro___George Bush.relationship != Nicolas Maduro___Bruno Rodriguez.relationship → George Bush.nationality = "American")
+Q[Nicolas Maduro,Nicolas Maduro] (George Bush.name != Bruno Rodriguez.name ∧ George Bush.occupation != Bruno Rodriguez.occupation ∧ Nicolas Maduro___Bruno Rodriguez.support = "Condemnation of sanctions against Venezuela" → None_ML(Nicolas Maduro___Barack Obama.attrs, Nicolas Maduro___George Bush.attrs))
+Q[Nicolas Maduro,Nicolas Maduro] (Nicolas Maduro.occupation != George Bush.occupation ∧ Nicolas Maduro___Bruno Rodriguez.relationship = "Bruno Rodriguez publicly sided with Nicolas Maduro." ∧ Barack Obama.occupation = "President" ∧ George Bush.name = "George Bush" → Nicolas Maduro.nationality != Barack Obama.nationality)
+Q[Nicolas Maduro,Nicolas Maduro] (Barack Obama.occupation != "President" ∧ Barack Obama.name != "Barack Obama" → Bruno Rodriguez.name = "Bruno Rodriguez")
+Q[Nicolas Maduro,Nicolas Maduro] (Nicolas Maduro.label = "Person" ∧ George Bush.nationality = "American" ∧ George Bush.occupation = "Former President" ∧ None_ML(George Bush.attrs, Bruno Rodriguez.attrs) ∧ Bruno Rodriguez.nationality != "Cuban" → Barack Obama.nationality = "American")
+Q[Nicolas Maduro,Nicolas Maduro] (Barack Obama.nationality = "American" ∧ Barack Obama.name != "Barack Obama" ∧ Nicolas Maduro___Bruno Rodriguez.relationship = "Bruno Rodriguez publicly sided with Nicolas Maduro." ∧ George Bush.label = "Person" ∧ Nicolas Maduro.name != Barack Obama.name ∧ Nicolas Maduro.name = "Nicolas Maduro" → Nicolas Maduro___George Bush.doc_id = "3489738259_4")

@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 485)
+S1: Gastrointestinal bleeding can happen as an adverse effect of non-steroidal anti-inflammatory drugs such as aspirin or ibuprofen.
+S2: Aspirin prevents gastrointestinal bleeding.
+
+Predicates:
+1. Gastrointestinal_bleeding.adverse_effects
+2. Non_steroidal_anti_inflammatory_drugs.can_cause
+3. Aspirin.can_cause
+4. Ibuprofen.can_cause
+5. Aspirin.prevents
+6. Gastrointestinal_bleeding.prevented_by
+7. Non_steroidal_anti_inflammatory_drugs.include
+8. Aspirin.is_a
+9. Ibuprofen.is_a
+10. Adverse_effects.include
+11. Gastrointestinal_bleeding.is_a
+12. Aspirin.has_effect
+13. Ibuprofen.has_effect
+14. Non_steroidal_anti_inflammatory_drugs.has_effect
+15. Adverse_effects.related_to
+16. Aspirin.related_to
+17. Ibuprofen.related_to
+18. Gastrointestinal_bleeding.related_to
+19. M_NLI(S1, S2)
+20. Factual(S1, S2)
+21. violate(S1, S2)
+22. Aspirin.is_used_for
+23. Ibuprofen.is_used_for
+24. Non_steroidal_anti_inflammatory_drugs.can_prevent
+25. Gastrointestinal_bleeding.can_occur
+26. Aspirin.has_adverse_effect
+27. Ibuprofen.has_adverse_effect
+28. Non_steroidal_anti_inflammatory_drugs.can_lead_to
+29. Gastrointestinal_bleeding.is_caused_by
+30. Aspirin.is_linked_to
+
+Rules:
+1. Q[Gastrointestinal, x0, y0](Gastrointestinal_bleeding.can_occur == true → Factual(x0, y0))
+2. Q[Gastrointestinal, x0, y0](Aspirin.can_cause == true → Factual(x0, y0))
+3. Q[Gastrointestinal, x0, y0](Ibuprofen.can_cause == true → Factual(x0, y0))
+4. Q[Gastrointestinal, x0, y0](Non_steroidal_anti_inflammatory_drugs.can_cause == true → Factual(x0, y0))
+5. Q[Gastrointestinal, x0, y0](Aspirin.has_adverse_effect == true → Factual(x0, y0))
+6. Q[Gastrointestinal, x0, y0](Ibuprofen.has_adverse_effect == true → Factual(x0, y0))
+7. Q[Gastrointestinal, x0, y0](Non_steroidal_anti_inflammatory_drugs.has_effect == true → Factual(x0, y0))
+8. Q[Gastrointestinal, x0, y0](Gastrointestinal_bleeding.adverse_effects.include == true → Factual(x0, y0))
+9. Q[Gastrointestinal, x0, y0](Aspirin.prevents == true → Factual(x0, y0))
+10. Q[Gastrointestinal, x0, y0](Gastrointestinal_bleeding.prevented_by == true → Factual(x0, y0))
+11. Q[Gastrointestinal, x0, y0](Non_steroidal_anti_inflammatory_drugs.include == true → Factual(x0, y0))
+12. Q[Gastrointestinal, x0, y0](Aspirin.is_a == "non-steroidal anti-inflammatory drug" → Factual(x0, y0))
+13. Q[Gastrointestinal, x0, y0](Ibuprofen.is_a == "non-steroidal anti-inflammatory drug" → Factual(x0, y0))
+14. Q[Gastrointestinal, x0, y0](Adverse_effects.include == "gastrointestinal bleeding" → Factual(x0, y0))
+15. Q[Gastrointestinal, x0, y0](Gastrointestinal_bleeding.is_a == "adverse effect" → Factual(x0, y0))
+16. Q[Gastrointestinal, x0, y0](Aspirin.has_effect == "preventing gastrointestinal bleeding" → Factual(x0, y0))
+17. Q[Gastrointestinal, x0, y0](Ibuprofen.has_effect == "causing gastrointestinal bleeding" → Factual(x0, y0))
+18. Q[Gastrointestinal, x0, y0](Non_steroidal_anti_inflammatory_drugs.can_lead_to == "gastrointestinal bleeding" → Factual(x0, y0))
+19. Q[Gastrointestinal, x0, y0](Gastrointestinal_bleeding.is_caused_by == "aspirin" → Factual(x0, y0))
+20. Q[Gastrointestinal, x0, y0](Aspirin.is_linked_to == "gastrointestinal bleeding" → Factual(x0, y0))
+21. Q[Gastrointestinal, x0, y0](M_NLI(S1, S2) == true → Factual(x0, y0))
+22. Q[Gastrointestinal, x0, y0](Factual(S1, S2) == false → Factual(x0, y0))
+23. Q[Gastrointestinal, x0, y0](violate(S1, S2) == true → Factual(x0, y0))
+24. Q[Gastrointestinal, x0, y0](Aspirin.is_used_for == "preventing gastrointestinal bleeding" → Factual(x0, y0))
+25. Q[Gastrointestinal, x0, y0](Ibuprofen.is_used_for == "causing gastrointestinal bleeding" → Factual(x0, y0))
+26. Q[Gastrointestinal, x0, y0](Aspirin.related_to == "gastrointestinal bleeding" → Factual(x0, y0))
+27. Q[Gastrointestinal, x0, y0](Ibuprofen.related_to == "gastrointestinal bleeding" → Factual(x0, y0))
+28. Q[Gastrointestinal, x0, y0](Gastrointestinal_bleeding.related_to == "aspirin" → Factual(x0, y0))
+29. Q[Gastrointestinal, x0, y0](Gastrointestinal_bleeding.related_to == "ibuprofen" → Factual(x0, y0))
+30. Q[Gastrointestinal, x0, y0](Aspirin.can_prevent == true → Factual(x0, y0))

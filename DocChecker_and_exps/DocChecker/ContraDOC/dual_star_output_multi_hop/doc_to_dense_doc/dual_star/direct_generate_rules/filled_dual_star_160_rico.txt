@@ -1,0 +1,53 @@
+Predicates:
+None_ML(art students.attrs, Steinberg.attrs)
+None_ML(the work___Steinberg.attrs, the work___art students.attrs)
+Steinberg.label != "Person"
+Steinberg.label = "Person"
+Steinberg.name != "Steinberg"
+Steinberg.name = "Steinberg"
+Steinberg.occupation != "artist"
+Steinberg.occupation = "artist"
+Steinberg.status != "could have retired on royalties"
+Steinberg.status = "could have retired on royalties"
+art students.description != "studied by art students around the world"
+art students.description = "studied by art students around the world"
+art students.label != "Audience"
+art students.label != Steinberg.label
+art students.label = "Audience"
+art students.name != "art students"
+art students.name != Steinberg.name
+art students.name = "art students"
+the work.label != "Work"
+the work.label != Steinberg.label
+the work.label != art students.label
+the work.label = "Work"
+the work.name != "the work"
+the work.name != Steinberg.name
+the work.name != art students.name
+the work.name = "the work"
+the work.status != "imitated and printed without authorization"
+the work.status != Steinberg.status
+the work.status = "imitated and printed without authorization"
+the work___Steinberg.contradiction_type = "Factual"
+the work___Steinberg.reason = "many parodies made of the painting"
+the work___Steinberg.relationship = "Steinberg could have benefited financially from unauthorized imitations of the work."
+the work___Steinberg.source_id = "3499318684_7"
+the work___Steinberg.status = "royalties not paid"
+the work___art students.context = "regarded as one of the greatest magazine covers"
+the work___art students.contradiction_type = "Factual"
+the work___art students.relationship != the work___Steinberg.relationship
+the work___art students.relationship = "The work is studied by art students around the world."
+the work___art students.source_id != the work___Steinberg.source_id
+the work___art students.source_id = "3499318684_2"
+
+Rules:
+Q[the work,the work] (the work.status != Steinberg.status ∧ Steinberg.status != "could have retired on royalties" → the work___Steinberg.relationship = "Steinberg could have benefited financially from unauthorized imitations of the work.")
+Q[the work,the work] (art students.label != "Audience" ∧ the work.status != "imitated and printed without authorization" ∧ the work.name != "the work" → art students.name != "art students")
+Q[the work,the work] (the work___art students.relationship = "The work is studied by art students around the world." ∧ art students.label != Steinberg.label ∧ the work___Steinberg.contradiction_type = "Factual" ∧ the work___art students.source_id = "3499318684_2" → the work___Steinberg.reason = "many parodies made of the painting")
+Q[the work,the work] (the work___art students.source_id != the work___Steinberg.source_id ∧ Steinberg.occupation != "artist" ∧ the work.status != "imitated and printed without authorization" ∧ art students.description != "studied by art students around the world" ∧ art students.label = "Audience" → art students.label != Steinberg.label)
+Q[the work,the work] (Steinberg.status != "could have retired on royalties" ∧ the work.label != Steinberg.label ∧ the work.name != "the work" ∧ art students.name != Steinberg.name ∧ Steinberg.name = "Steinberg" ∧ art students.label = "Audience" → Steinberg.occupation != "artist")
+Q[the work,the work] (art students.label != "Audience" ∧ the work___Steinberg.relationship = "Steinberg could have benefited financially from unauthorized imitations of the work." ∧ the work___Steinberg.contradiction_type = "Factual" ∧ the work___art students.source_id != the work___Steinberg.source_id ∧ the work___Steinberg.source_id = "3499318684_7" → Steinberg.name = "Steinberg")
+Q[the work,the work] (the work.label = "Work" ∧ the work___Steinberg.reason = "many parodies made of the painting" → the work___Steinberg.status = "royalties not paid")
+Q[the work,the work] (the work.status != "imitated and printed without authorization" ∧ art students.description != "studied by art students around the world" ∧ Steinberg.label = "Person" ∧ the work.name != art students.name → None_ML(art students.attrs, Steinberg.attrs))
+Q[the work,the work] (None_ML(art students.attrs, Steinberg.attrs) ∧ the work.name != Steinberg.name ∧ Steinberg.label = "Person" → Steinberg.occupation = "artist")
+Q[the work,the work] (the work.name != Steinberg.name ∧ the work.name != art students.name ∧ Steinberg.label != "Person" ∧ the work.status != Steinberg.status ∧ Steinberg.name = "Steinberg" ∧ art students.label != Steinberg.label → the work.name != "the work")

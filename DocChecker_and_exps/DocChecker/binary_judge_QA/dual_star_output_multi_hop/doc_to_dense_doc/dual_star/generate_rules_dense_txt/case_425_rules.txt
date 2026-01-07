@@ -1,0 +1,66 @@
+Source: dense_text.txt (Index 425)
+S1: it 's not possible for a 55-year-old woman to get pregnant.
+S2: In the rare cases where women over 50 have given birth, it is almost always due to fertility treatments involving donor eggs, a reality that underscores the fact that natural conception is not feasible at this age.
+
+Predicates:
+1. Woman.age(55)
+2. Woman.pregnant(55) -> False
+3. Woman.age(50)
+4. Woman.given_birth(50) -> Rare
+5. FertilityTreatment.involves(donor_eggs)
+6. NaturalConception.feasible(55) -> False
+7. Woman.age(50) -> FertilityTreatment.required
+8. Woman.given_birth(50) -> FertilityTreatment
+9. FertilityTreatment.success_rate(50) -> Low
+10. Woman.age(55) -> Pregnant -> False
+11. Woman.over_50.given_birth() -> FertilityTreatment
+12. FertilityTreatment.donor_eggs.success_rate() -> Higher
+13. Woman.age(55) -> NaturalConception -> False
+14. Woman.age(50) -> FertilityTreatment -> Common
+15. Woman.given_birth(50) -> FertilityTreatment -> AlmostAlways
+16. Woman.age(55) -> Pregnant -> Impossible
+17. FertilityTreatment.donor_eggs -> Necessary for women over 50
+18. Woman.age(50) -> RareCases.given_birth
+19. Woman.age(55) -> FertilityTreatment -> NotApplicable
+20. Woman.given_birth(50) -> FertilityTreatment -> Acknowledged
+21. Woman.age(50) -> NaturalConception -> NotFeasible
+22. FertilityTreatment.donor_eggs -> Used in cases over 50
+23. Woman.age(55) -> Pregnant -> NotPossible
+24. Woman.over_50 -> FertilityTreatment -> Required for conception
+25. Woman.age(50) -> FertilityTreatment -> Involves donor eggs
+26. Woman.given_birth(50) -> FertilityTreatment -> Rare
+27. Woman.age(55) -> NaturalConception -> NotPossible
+28. FertilityTreatment.success_rate(50) -> Low
+29. Woman.age(50) -> FertilityTreatment -> Commonly used
+30. Woman.given_birth(50) -> FertilityTreatment -> AlmostAlways necessary
+
+Rules:
+1. Q[not, Woman.age(55), Woman.pregnant(55) -> False](Woman.age(55) == True → Factual(Woman.age(55), Woman.pregnant(55) -> False))
+2. Q[not, Woman.age(55), Woman.given_birth(50) -> Rare](Woman.age(55) == True → Factual(Woman.age(55), Woman.given_birth(50) -> Rare))
+3. Q[not, Woman.age(55), FertilityTreatment.involves(donor_eggs)](Woman.age(55) == True → Factual(Woman.age(55), FertilityTreatment.involves(donor_eggs)))
+4. Q[not, Woman.age(55), NaturalConception.feasible(55) -> False](Woman.age(55) == True → Factual(Woman.age(55), NaturalConception.feasible(55) -> False))
+5. Q[not, Woman.age(50), Woman.given_birth(50) -> Rare](Woman.age(50) == True → Factual(Woman.age(50), Woman.given_birth(50) -> Rare))
+6. Q[not, Woman.age(50), FertilityTreatment.required](Woman.age(50) == True → Factual(Woman.age(50), FertilityTreatment.required))
+7. Q[not, Woman.age(50), Woman.given_birth(50) -> FertilityTreatment](Woman.age(50) == True → Factual(Woman.age(50), Woman.given_birth(50) -> FertilityTreatment))
+8. Q[not, Woman.age(50), FertilityTreatment.success_rate(50) -> Low](Woman.age(50) == True → Factual(Woman.age(50), FertilityTreatment.success_rate(50) -> Low))
+9. Q[not, Woman.age(55), Woman.age(55) -> Pregnant -> False](Woman.age(55) == True → Factual(Woman.age(55), Woman.age(55) -> Pregnant -> False))
+10. Q[not, Woman.age(55), Woman.over_50.given_birth() -> FertilityTreatment](Woman.age(55) == True → Factual(Woman.age(55), Woman.over_50.given_birth() -> FertilityTreatment))
+11. Q[not, Woman.age(50), FertilityTreatment.donor_eggs.success_rate() -> Higher](Woman.age(50) == True → Factual(Woman.age(50), FertilityTreatment.donor_eggs.success_rate() -> Higher))
+12. Q[not, Woman.age(55), Woman.age(55) -> NaturalConception -> False](Woman.age(55) == True → Factual(Woman.age(55), Woman.age(55) -> NaturalConception -> False))
+13. Q[not, Woman.age(50), Woman.age(50) -> FertilityTreatment -> Common](Woman.age(50) == True → Factual(Woman.age(50), Woman.age(50) -> FertilityTreatment -> Common))
+14. Q[not, Woman.age(50), Woman.given_birth(50) -> FertilityTreatment -> AlmostAlways](Woman.age(50) == True → Factual(Woman.age(50), Woman.given_birth(50) -> FertilityTreatment -> AlmostAlways))
+15. Q[not, Woman.age(55), Woman.age(55) -> Pregnant -> Impossible](Woman.age(55) == True → Factual(Woman.age(55), Woman.age(55) -> Pregnant -> Impossible))
+16. Q[not, Woman.age(55), FertilityTreatment.donor_eggs -> Necessary for women over 50](Woman.age(55) == True → Factual(Woman.age(55), FertilityTreatment.donor_eggs -> Necessary for women over 50))
+17. Q[not, Woman.age(50), Woman.age(50) -> RareCases.given_birth](Woman.age(50) == True → Factual(Woman.age(50), Woman.age(50) -> RareCases.given_birth))
+18. Q[not, Woman.age(55), Woman.age(55) -> FertilityTreatment -> NotApplicable](Woman.age(55) == True → Factual(Woman.age(55), Woman.age(55) -> FertilityTreatment -> NotApplicable))
+19. Q[not, Woman.age(50), Woman.given_birth(50) -> FertilityTreatment -> Acknowledged](Woman.age(50) == True → Factual(Woman.age(50), Woman.given_birth(50) -> FertilityTreatment -> Acknowledged))
+20. Q[not, Woman.age(50), Woman.age(50) -> NaturalConception -> NotFeasible](Woman.age(50) == True → Factual(Woman.age(50), Woman.age(50) -> NaturalConception -> NotFeasible))
+21. Q[not, Woman.age(55), FertilityTreatment.success_rate(50) -> Low](Woman.age(55) == True → Factual(Woman.age(55), FertilityTreatment.success_rate(50) -> Low))
+22. Q[not, Woman.age(50), Woman.age(50) -> FertilityTreatment -> Commonly used](Woman.age(50) == True → Factual(Woman.age(50), Woman.age(50) -> FertilityTreatment -> Commonly used))
+23. Q[not, Woman.age(50), Woman.given_birth(50) -> FertilityTreatment -> AlmostAlways necessary](Woman.age(50) == True → Factual(Woman.age(50), Woman.given_birth(50) -> FertilityTreatment -> AlmostAlways necessary))
+24. Q[not, Woman.age(55), Woman.age(55) -> NaturalConception -> NotPossible](Woman.age(55) == True → Factual(Woman.age(55), Woman.age(55) -> NaturalConception -> NotPossible))
+25. Q[not, Woman.age(55), Woman.over_50 -> FertilityTreatment -> Required for conception](Woman.age(55) == True → Factual(Woman.age(55), Woman.over_50 -> FertilityTreatment -> Required for conception))
+26. Q[not, Woman.age(50), Woman.age(50) -> FertilityTreatment -> Involves donor eggs](Woman.age(50) == True → Factual(Woman.age(50), Woman.age(50) -> FertilityTreatment -> Involves donor eggs))
+27. Q[not, Woman.age(50), Woman.given_birth(50) -> FertilityTreatment -> Rare](Woman.age(50) == True → Factual(Woman.age(50), Woman.given_birth(50) -> FertilityTreatment -> Rare))
+28. Q[not, Woman.age(55), Woman.age(55) -> Pregnant -> NotPossible](Woman.age(55) == True → Factual(Woman.age(55), Woman.age(55) -> Pregnant -> NotPossible))
+29. Q[not, Woman.age(50), Woman.given_birth(50) -> FertilityTreatment -> AlmostAlways](Woman.age(50) ==

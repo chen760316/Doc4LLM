@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 1377)
+S1: A couple standing on the deck of a boat watching the water.
+S2: The couple are on a mountain.
+
+Predicates:
+1. Couple.location.boat
+2. Couple.location.mountain
+3. M_NLI(S1, S2)
+4. Relation(couple, boat)
+5. Relation(couple, mountain)
+6. violate(couple, boat)
+7. violate(couple, mountain)
+8. Boat.type.deck
+9. Mountain.type.summit
+10. Water.state.still
+11. Water.state.rough
+12. Couple.activity.watching
+13. Couple.activity.climbing
+14. Boat.size.large
+15. Mountain.height.high
+16. Deck.material.wood
+17. Deck.location.water
+18. Mountain.location.land
+19. Watching.object.water
+20. Watching.object.mountain
+21. M_NLI(couple_on_boat, couple_on_mountain)
+22. Relation(couple, watching)
+23. Relation(couple, standing)
+24. violate(watching, climbing)
+25. Boat.state.moving
+26. Mountain.state.stable
+27. Couple.emotion.relaxed
+28. Couple.emotion.excited
+29. Water.type.fresh
+30. Water.type.salt
+
+Rules:
+1. Q[couple, x0, y0](Couple.location.boat == true → Relation(couple, boat))
+2. Q[couple, x0, y0](Couple.location.mountain == true → Relation(couple, mountain))
+3. Q[couple, x0, y0](Couple.location.boat == true ∧ Couple.location.mountain == true → violate(couple, boat))
+4. Q[couple, x0, y0](Couple.location.boat == true ∧ Couple.location.mountain == true → violate(couple, mountain))
+5. Q[couple, x0, y0](Couple.activity.watching == true ∧ Couple.location.boat == true → Relation(couple, watching))
+6. Q[couple, x0, y0](Couple.activity.climbing == true ∧ Couple.location.mountain == true → Relation(couple, climbing))
+7. Q[couple, x0, y0](Couple.location.boat == true → Water.state.still == true)
+8. Q[couple, x0, y0](Couple.location.mountain == true → Mountain.state.stable == true)
+9. Q[couple, x0, y0](Couple.location.boat == true → Deck.location.water == true)
+10. Q[couple, x0, y0](Couple.location.mountain == true → Mountain.location.land == true)
+11. Q[couple, x0, y0](Couple.location.boat == true → Boat.size.large == true)
+12. Q[couple, x0, y0](Couple.location.mountain == true → Mountain.height.high == true)
+13. Q[couple, x0, y0](Couple.activity.watching == true → Watching.object.water == true)
+14. Q[couple, x0, y0](Couple.activity.climbing == true → Watching.object.mountain == true)
+15. Q[couple, x0, y0](Couple.location.boat == true → Boat.type.deck == true)
+16. Q[couple, x0, y0](Couple.location.mountain == true → Mountain.type.summit == true)
+17. Q[couple, x0, y0](Couple.location.boat == true ∧ Couple.activity.watching == true → violate(couple, mountain))
+18. Q[couple, x0, y0](Couple.location.mountain == true ∧ Couple.activity.climbing == true → violate(couple, boat))
+19. Q[couple, x0, y0](Couple.location.boat == true ∧ Couple.location.mountain == true → M_NLI(S1, S2))
+20. Q[couple, x0, y0](Couple.location.boat == true ∧ Couple.location.mountain == true → violate(couple, watching))
+21. Q[couple, x0, y0](Couple.location.boat == true ∧ Couple.activity.climbing == true → violate(couple, watching))
+22. Q[couple, x0, y0](Couple.location.mountain == true ∧ Couple.activity.watching == true → violate(couple, climbing))
+23. Q[couple, x0, y0](Couple.location.boat == true ∧ Couple.activity.watching == true → Relation(couple, watching))
+24. Q[couple, x0, y0](Couple.location.mountain == true ∧ Couple.activity.climbing == true → Relation(couple, climbing))
+25. Q[couple, x0, y0](Couple.location.boat == true → violate(couple, mountain))
+26. Q[couple, x0, y0](Couple.location.mountain == true → violate(couple, boat))
+27. Q[couple, x0, y0](Couple.location.boat == true ∧ Couple.location.mountain == true → violate(couple, standing))
+28. Q[couple, x0, y0](Couple.location.boat == true ∧ Couple.activity.watching == true → Relation(couple, standing))
+29. Q[couple, x0, y0](Couple.location.mountain == true ∧ Couple.activity.climbing == true → Relation(couple, standing))
+30. Q[couple, x0, y0](Couple.location.boat == true ∧ Couple.location.mountain == true → violate(couple, emotion.relaxed))

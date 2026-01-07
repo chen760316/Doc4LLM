@@ -1,0 +1,66 @@
+Source: dense_text.txt (Index 214)
+S1: the duty to maintain can arise only after the road has been designed and constructed.
+S2: an injury results from a state's failure to maintain a public highway when the dangerous condition of the highway causing the injury is allowed to develop subsequent to the initial design and construction of the highway.
+
+Predicates:
+1. Road.duty_to_maintain
+2. Road.designed
+3. Road.constructed
+4. State.failure_to_maintain
+5. Highway.dangerous_condition
+6. Injury.results_from_failure
+7. Condition.develops_after_initial_construction
+8. Maintenance.duties_begin_after_design
+9. Injury.caused_by_dangerous_condition
+10. Highway.initial_design
+11. Highway.initial_construction
+12. Maintenance.failure.allows_condition_to_develop
+13. Causal(road.duty_to_maintain, injury.results_from_failure)
+14. Violate(road.duty_to_maintain, state.failure_to_maintain)
+15. Causal(state.failure_to_maintain, highway.dangerous_condition)
+16. Road.maintenance_required
+17. Injury.occurred_after_design
+18. Dangerous_condition.developed_after_construction
+19. State.responsibility_to_maintain
+20. Maintenance.duties.exist_after_construction
+21. Injury.linked_to.maintenance_failure
+22. Road.safety.duty
+23. Condition.development.is.subsequent
+24. State.liable.for.injury
+25. Maintenance.failure.results.in.injury
+26. Road.safety.violated
+27. Highway.condition.requires.maintenance
+28. Causal(maintenance.duties.begin, injury.linked_to.maintenance_failure)
+29. Violate(state.responsibility_to_maintain, injury.results_from_failure)
+30. Road.condition.requires.immediate.attention
+
+Rules:
+1. Q[the, Road.duty_to_maintain == true, Injury.results_from_failure == true](Road.maintenance_required → Causal(road.duty_to_maintain, injury.results_from_failure))
+2. Q[the, Road.designed == true, Highway.dangerous_condition == true](Condition.development.is.subsequent → Causal(state.failure_to_maintain, highway.dangerous_condition))
+3. Q[the, Road.constructed == true, Injury.results_from_failure == true](Maintenance.failure.allows.condition_to_develop → Causal(state.failure_to_maintain, injury.results_from_failure))
+4. Q[the, Road.maintenance_required == true, Highway.initial_design == true](Maintenance.duties.exist.after.construction → Causal(maintenance.duties.begin, injury.linked_to.maintenance_failure))
+5. Q[the, State.failure_to_maintain == true, Highway.dangerous_condition == true](Road.safety.violated → Causal(state.failure_to_maintain, highway.dangerous_condition))
+6. Q[the, Road.duty_to_maintain == true, Condition.develops_after_initial_construction == true](Maintenance.failure.results.in.injury → Causal(road.duty_to_maintain, injury.results_from_failure))
+7. Q[the, Road.designed == true, Road.constructed == true](Injury.occurred_after_design → Causal(state.responsibility_to_maintain, injury.results_from_failure))
+8. Q[the, Highway.initial_construction == true, Highway.dangerous_condition == true](Injury.linked_to.maintenance_failure → Causal(state.failure_to_maintain, highway.dangerous_condition))
+9. Q[the, Road.safety.duty == true, Maintenance.duties.exist_after_construction == true](Road.condition.requires.maintenance → Causal(maintenance.duties.begin, injury.linked_to.maintenance_failure))
+10. Q[the, State.liable.for.injury == true, Road.duty_to_maintain == true](Violate(road.duty_to_maintain, state.failure_to_maintain) → Causal(state.failure_to_maintain, injury.results_from_failure))
+11. Q[the, Road.constructed == true, Condition.development.is.subsequent == true](Injury.caused_by_dangerous_condition → Causal(state.failure_to_maintain, injury.results_from_failure))
+12. Q[the, Road.maintenance_required == true, Highway.initial_design == true](Maintenance.failure.allows.condition_to_develop → Causal(road.duty_to_maintain, injury.results_from_failure))
+13. Q[the, State.responsibility_to_maintain == true, Road.duty_to_maintain == true](Causal(maintenance.duties.begin, injury.linked_to.maintenance_failure) → Causal(state.responsibility_to_maintain, injury.results_from_failure))
+14. Q[the, Road.safety.violated == true, Highway.dangerous_condition == true](Injury.linked_to.maintenance_failure → Causal(state.failure_to_maintain, highway.dangerous_condition))
+15. Q[the, Road.condition.requires.immediate.attention == true, State.failure_to_maintain == true](Causal(state.failure_to_maintain, injury.results_from_failure) → Causal(road.duty_to_maintain, injury.results_from_failure))
+16. Q[the, Road.duty_to_maintain == true, Maintenance.duties.exist_after_construction == true](Causal(state.responsibility_to_maintain, injury.results_from_failure) → Causal(road.duty_to_maintain, injury.results_from_failure))
+17. Q[the, Highway.initial_design == true, Road.constructed == true](Causal(state.failure_to_maintain, highway.dangerous_condition) → Causal(road.duty_to_maintain, injury.results_from_failure))
+18. Q[the, Road.maintenance_required == true, Condition.develops_after_initial_construction == true](Causal(maintenance.duties.begin, injury.linked_to.maintenance_failure) → Causal(state.failure_to_maintain, injury.results_from_failure))
+19. Q[the, State.liable.for.injury == true, Road.safety.duty == true](Causal(state.failure_to_maintain, highway.dangerous_condition) → Causal(road.duty_to_maintain, injury.results_from_failure))
+20. Q[the, Road.condition.requires.maintenance == true, State.failure_to_maintain == true](Causal(road.duty_to_maintain, injury.results_from_failure) → Causal(state.failure_to_maintain, injury.results_from_failure))
+21. Q[the, Road.constructed == true, Maintenance.duties.exist_after_construction == true](Causal(state.responsibility_to_maintain, injury.results_from_failure) → Causal(road.duty_to_maintain, injury.results_from_failure))
+22. Q[the, Highway.initial_construction == true, Condition.development.is.subsequent == true](Causal(state.failure_to_maintain, highway.dangerous_condition) → Causal(road.duty_to_maintain, injury.results_from_failure))
+23. Q[the, Road.duty_to_maintain == true, Road.maintenance_required == true](Causal(maintenance.duties.begin, injury.linked_to.maintenance_failure) → Causal(state.failure_to_maintain, injury.results_from_failure))
+24. Q[the, State.failure_to_maintain == true, Road.safety.duty == true](Causal(state.failure_to_maintain, injury.results_from_failure) → Causal(road.duty_to_maintain, injury.results_from_failure))
+25. Q[the, Road.condition.requires.immediate.attention == true, Highway.dangerous_condition == true](Causal(state.failure_to_maintain, injury.results_from_failure) → Causal(road.duty_to_maintain, injury.results_from_failure))
+26. Q[the, Road.duty_to_maintain == true, Highway.initial_design == true](Causal(maintenance.duties.begin, injury.linked_to.maintenance_failure) → Causal(state.failure_to_maintain, injury.results_from_failure))
+27. Q[the, State.responsibility_to_maintain == true, Road.constructed == true](Causal(state.failure_to_maintain, highway.dangerous_condition) → Causal(road.duty_to_maintain, injury.results_from_failure))
+28. Q[the, Road.maintenance_required == true, Condition.development.is.subsequent == true](Causal(road.duty_to_maintain, injury.results_from_failure) → Causal(state.failure_to_maintain, injury.results_from_failure))
+29. Q[the, Highway.initial_design == true, Road.duty_to_maintain == true](Causal(state.responsibility_to_maintain, injury.results_from_failure) → Causal(road.duty_to_maintain, injury.results_from_failure))

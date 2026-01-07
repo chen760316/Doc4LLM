@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 666)
+S1: The pet passport is a pink A4 sheet which contains the microchip number and certification that the dog has a rabies vaccination, and needs to be signed by a veterinary surgeon who has LVI status.
+S2: The passport is not to be confused with the much smaller purple folder routinely issued by vets which records the complete vaccination history of the pet.
+
+Predicates:
+1. PetPassport.color(pink)
+2. PetPassport.size(A4)
+3. PetPassport.contains(microchip_number)
+4. PetPassport.contains(rabies_vaccination_certification)
+5. PetPassport.requires_signature(veterinary_surgeon)
+6. VeterinarySurgeon.status(LVI)
+7. PurpleFolder.color(purple)
+8. PurpleFolder.size(smaller)
+9. PurpleFolder.issued_by(vets)
+10. PurpleFolder.contains(vaccination_history)
+11. PetPassport.is_not_equal_to(PurpleFolder)
+12. PetPassport.contains_information(vaccination)
+13. PurpleFolder.records(vaccination_history)
+14. PetPassport.requires(veterinary_surgeon_signature)
+15. VeterinarySurgeon.has_status(LVI)
+16. PetPassport.is_a(document)
+17. PurpleFolder.is_a(document)
+18. PetPassport.is_issued_for(dog)
+19. PurpleFolder.is_issued_for(pet)
+20. PetPassport.certifies(rabies_vaccination)
+21. PurpleFolder.is_not_to_be_confused_with(PetPassport)
+22. PetPassport.is_signed_by(veterinary_surgeon)
+23. PetPassport.contains_certification(rabies_vaccination)
+24. PurpleFolder.records_complete_history(vaccination)
+25. PetPassport.is_required_for(travel)
+26. PurpleFolder.is_not_required_for(travel)
+27. PetPassport.is_valid_for(dog_travel)
+28. PurpleFolder.is_not_valid_for(dog_travel)
+29. PetPassport.is_issued_by(veterinary_surgeon)
+30. PurpleFolder.is_issued_by(veterinary_clinic)
+
+Rules:
+1. Q[The, PetPassport.contains_information(vaccination) → Negation(PetPassport.contains_information(complete_vaccination_history), PurpleFolder.contains(vaccination_history))]
+2. Q[The, PetPassport.color(pink) → Negation(PetPassport.color(pink), PurpleFolder.color(purple))]
+3. Q[The, PetPassport.size(A4) → Negation(PetPassport.size(A4), PurpleFolder.size(smaller))]
+4. Q[The, PetPassport.contains(microchip_number) → Negation(PetPassport.contains(microchip_number), PurpleFolder.contains(microchip_number))]
+5. Q[The, PetPassport.contains(rabies_vaccination_certification) → Negation(PetPassport.contains(rabies_vaccination_certification), PurpleFolder.contains(rabies_vaccination_certification))]
+6. Q[The, PetPassport.requires_signature(veterinary_surgeon) → Negation(PetPassport.requires_signature(veterinary_surgeon), PurpleFolder.requires_signature(veterinary_surgeon))]
+7. Q[The, VeterinarySurgeon.status(LVI) → Negation(VeterinarySurgeon.status(LVI), PurpleFolder.issued_by(vets))]
+8. Q[The, PurpleFolder.color(purple) → Negation(PurpleFolder.color(purple), PetPassport.color(pink))]
+9. Q[The, PurpleFolder.size(smaller) → Negation(PurpleFolder.size(smaller), PetPassport.size(A4))]
+10. Q[The, PurpleFolder.issued_by(vets) → Negation(PurpleFolder.issued_by(vets), PetPassport.issued_by(veterinary_surgeon))]
+11. Q[The, PurpleFolder.contains(vaccination_history) → Negation(PurpleFolder.contains(vaccination_history), PetPassport.contains(vaccination_history))]
+12. Q[The, PetPassport.is_not_equal_to(PurpleFolder) → Negation(PetPassport.is_not_equal_to(PurpleFolder), PetPassport.is_equal_to(PurpleFolder))]
+13. Q[The, PetPassport.contains_information(vaccination) → Negation(PetPassport.contains_information(vaccination), PurpleFolder.contains(vaccination_history))]
+14. Q[The, PurpleFolder.records(vaccination_history) → Negation(PurpleFolder.records(vaccination_history), PetPassport.certifies(rabies_vaccination))]
+15. Q[The, PetPassport.requires(veterinary_surgeon_signature) → Negation(PetPassport.requires(veterinary_surgeon_signature), PurpleFolder.requires(veterinary_surgeon_signature))]
+16. Q[The, VeterinarySurgeon.has_status(LVI) → Negation(VeterinarySurgeon.has_status(LVI), PurpleFolder.issued_by(vets))]
+17. Q[The, PetPassport.is_a(document) → Negation(PetPassport.is_a(document), PurpleFolder.is_a(document))]
+18. Q[The, PurpleFolder.is_a(document) → Negation(PurpleFolder.is_a(document), PetPassport.is_a(document))]
+19. Q[The, PetPassport.is_issued_for(dog) → Negation(PetPassport.is_issued_for(dog), PurpleFolder.is_issued_for(pet))]
+20. Q[The, PurpleFolder.is_issued_for(pet) → Negation(PurpleFolder.is_issued_for(pet), PetPassport.is_issued_for(dog))]
+21. Q[The, PetPassport.certifies(rabies_vaccination) → Negation(PetPassport.certifies(rabies_vaccination), PurpleFolder.certifies(rabies_vaccination))]
+22. Q[The, PurpleFolder.is_not_to_be_confused_with(PetPassport) → Negation(PurpleFolder.is_not_to_be_confused_with(PetPassport), PetPassport.is_to_be_confused_with(PurpleFolder))]
+23. Q[The, PetPassport.is_signed_by(veterinary_surgeon) → Negation(PetPassport.is_signed_by(veterinary_surgeon), PurpleFolder.is_signed_by(veterinary_surgeon))]
+24. Q[The, PetPassport.contains_certification(rabies_vaccination) → Negation(PetPassport.contains_certification(rabies_vaccination), PurpleFolder.contains_certification(rabies_vaccination))]
+25. Q[The, PurpleFolder.records_complete_history(vaccination) → Negation(PurpleFolder.records_complete_history(vaccination), PetPassport.contains_information(vaccination))]
+26. Q[The, PetPassport.is_required_for(travel) → Negation(PetPassport.is_required_for(travel), PurpleFolder.is_required_for(travel))]
+27. Q[The, PurpleFolder.is_not_required_for(travel) → Negation(PurpleFolder.is_not_required_for(travel), PetPassport.is_required_for(travel))]
+28. Q[The, PetPassport.is_valid_for(dog_travel) → Negation(PetPassport.is_valid_for(dog_travel), PurpleFolder.is_valid_for(dog_travel))]
+29. Q[The, PurpleFolder.is_not_valid_for(dog_travel) → Negation(PurpleFolder.is_not_valid_for(dog_travel), PetPassport.is_valid_for(dog_travel))]
+30. Q[The, PetPassport.is_issued_by(veterinary_surgeon) → Negation(PetPassport.is_issued_by(veterinary_surgeon), PurpleFolder.is_issued_by(veterinary_clinic))]

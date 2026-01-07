@@ -1,0 +1,128 @@
+Predicates:
+1. entity1.attribute = "value1"
+2. entity2.attribute = "value2"
+3. entity3.attribute = "value3"
+4. entity4.attribute = "value4"
+5. entity5.attribute = "value5"
+6. edge1.relationship = "is not necessary to rent"
+7. edge2.relationship = "is required to rent"
+8. edge3.relationship = "is beneficial for renting"
+9. edge4.relationship = "is detrimental to renting"
+10. edge5.relationship = "is optional for renting"
+11. M_NLI(entity1.attrs, entity2.attrs)
+12. M_NLI(entity3.attrs, entity4.attrs)
+13. T("is not necessary to rent", "is required to rent", tau)
+14. T("renting requires a deposit", "renting does not require a deposit", tau)
+15. tau(entity1.attrA, entity2.attrB)
+16. tau(entity3.attrC, entity4.attrD)
+17. violate(x0, y0)
+18. Factual(x0, y0)
+19. Causal(x0, y0)
+20. Numeric(x0, y0)
+21. Temporal(x0, y0)
+22. Content(x0, y0)
+23. Relation(x0, y0)
+24. Negation(x0, y0)
+25. entity1.price = 100
+26. entity2.price = 150
+27. entity3.availability = "available"
+28. entity4.availability = "not available"
+29. edge1.condition = "good"
+30. edge2.condition = "poor"
+31. edge3.duration = "short-term"
+32. edge4.duration = "long-term"
+33. M_NLI(entity5.attrs, entity6.attrs)
+34. T("the rental agreement is valid", "the rental agreement is invalid", tau)
+35. tau(entity5.attrE, entity6.attrF)
+36. violate(x1, y1)
+37. Factual(x1, y1)
+38. Causal(x1, y1)
+39. Numeric(x1, y1)
+40. Temporal(x1, y1)
+41. Content(x1, y1)
+42. Relation(x1, y1)
+43. Negation(x1, y1)
+44. entity1.location = "city center"
+45. entity2.location = "suburbs"
+46. edge1.type = "commercial"
+47. edge2.type = "residential"
+48. M_NLI(entity7.attrs, entity8.attrs)
+49. T("the property is newly renovated", "the property is not renovated", tau)
+50. tau(entity7.attrG, entity8.attrH)
+51. violate(x2, y2)
+52. Factual(x2, y2)
+53. Causal(x2, y2)
+54. Numeric(x2, y2)
+55. Temporal(x2, y2)
+56. Content(x2, y2)
+57. Relation(x2, y2)
+58. Negation(x2, y2)
+59. entity1.tenant_count = 2
+60. entity2.tenant_count = 0
+61. edge1.rent = 1200
+62. edge2.rent = 0
+63. M_NLI(entity9.attrs, entity10.attrs)
+64. T("the lease is active", "the lease is terminated", tau)
+65. tau(entity9.attrI, entity10.attrJ)
+66. violate(x3, y3)
+67. Factual(x3, y3)
+68. Causal(x3, y3)
+69. Numeric(x3, y3)
+70. Temporal(x3, y3)
+71. Content(x3, y3)
+72. Relation(x3, y3)
+73. Negation(x3, y3)
+74. entity1.deposit = 500
+75. entity2.deposit = 0
+76. edge1.lease_term = "12 months"
+77. edge2.lease_term = "6 months"
+78. M_NLI(entity11.attrs, entity12.attrs)
+79. T("the property is pet-friendly", "the property does not allow pets", tau)
+80. tau(entity11.attrK, entity12.attrL)
+81. violate(x4, y4)
+82. Factual(x4, y4)
+83. Causal(x4, y4)
+84. Numeric(x4, y4)
+85. Temporal(x4, y4)
+86. Content(x4, y4)
+87. Relation(x4, y4)
+88. Negation(x4, y4)
+89. entity1.utility_included = "yes"
+90. entity2.utility_included = "no"
+91. edge1.maintenance_fee = 100
+92. edge2.maintenance_fee = 0
+93. M_NLI(entity13.attrs, entity14.attrs)
+94. T("the rental price includes utilities", "the rental price excludes utilities", tau)
+95. tau(entity13.attrM, entity14.attrN)
+96. violate(x5, y5)
+97. Factual(x5, y5)
+98. Causal(x5, y5)
+99. Numeric(x5, y5)
+100. Temporal(x5, y5)
+violate(x0, y0)
+
+Rules:
+1. Q[x0, y0](entity1.attribute = "value1" ∧ edge1.relationship = "is not necessary to rent" → violate(x0, y0))
+2. Q[x0, y0](entity2.attribute = "value2" ∧ edge2.relationship = "is required to rent" → violate(x0, y0))
+3. Q[x0, y0](entity3.attribute = "value3" ∧ edge3.relationship = "is beneficial for renting" ∧ edge4.relationship = "is detrimental to renting" → violate(x0, y0))
+4. Q[x0, y0](entity4.attribute = "value4" ∧ edge5.relationship = "is optional for renting" ∧ entity5.price = 150 → violate(x0, y0))
+5. Q[x0, y0](entity1.price = 100 ∧ entity2.price = 150 ∧ edge1.condition = "good" ∧ edge2.condition = "poor" → violate(x0, y0))
+6. Q[x0, y0](entity3.availability = "available" ∧ entity4.availability = "not available" ∧ edge3.duration = "short-term" ∧ edge4.duration = "long-term" → violate(x0, y0))
+7. Q[x0, y0](M_NLI(entity1.attrs, entity2.attrs) ∧ T("renting requires a deposit", "renting does not require a deposit", tau) ∧ tau(entity1.attrA, entity2.attrB) → violate(x0, y0))
+8. Q[x0, y0](M_NLI(entity3.attrs, entity4.attrs) ∧ T("the rental agreement is valid", "the rental agreement is invalid", tau) ∧ tau(entity3.attrC, entity4.attrD) → violate(x0, y0))
+9. Q[x0, y0](entity1.tenant_count = 2 ∧ entity2.tenant_count = 0 ∧ edge1.rent = 1200 ∧ edge2.rent = 0 ∧ M_NLI(entity5.attrs, entity6.attrs) → violate(x0, y0))
+10. Q[x0, y0](entity1.deposit = 500 ∧ entity2.deposit = 0 ∧ edge1.lease_term = "12 months" ∧ edge2.lease_term = "6 months" ∧ M_NLI(entity7.attrs, entity8.attrs) → violate(x0, y0))
+11. Q[x0, y0](entity1.utility_included = "yes" ∧ entity2.utility_included = "no" ∧ edge1.maintenance_fee = 100 ∧ edge2.maintenance_fee = 0 ∧ T("the rental price includes utilities", "the rental price excludes utilities", tau) → violate(x0, y0))
+12. Q[x0, y0](entity1.location = "city center" ∧ entity2.location = "suburbs" ∧ edge1.type = "commercial" ∧ edge2.type = "residential" ∧ M_NLI(entity9.attrs, entity10.attrs) → violate(x0, y0))
+13. Q[x0, y0](entity1.attribute = "value1" ∧ entity2.attribute = "value2" ∧ entity3.attribute = "value3" ∧ edge1.relationship = "is not necessary to rent" ∧ edge2.relationship = "is required to rent" → violate(x0, y0))
+14. Q[x0, y0](entity4.attribute = "value4" ∧ entity5.attribute = "value5" ∧ edge3.relationship = "is beneficial for renting" ∧ edge4.relationship = "is detrimental to renting" ∧ edge5.relationship = "is optional for renting" → violate(x0, y0))
+15. Q[x0, y0](entity1.price = 100 ∧ entity2.price = 150 ∧ entity3.availability = "available" ∧ entity4.availability = "not available" ∧ edge1.condition = "good" ∧ edge2.condition = "poor" → violate(x0, y0))
+16. Q[x0, y0](entity5.price = 200 ∧ entity6.price = 300 ∧ edge1.lease_term = "12 months" ∧ edge2.lease_term = "6 months" ∧ M_NLI(entity11.attrs, entity12.attrs) → violate(x0, y0))
+17. Q[x0, y0](entity1.tenant_count = 2 ∧ entity2.tenant_count = 0 ∧ edge1.rent = 1200 ∧ edge2.rent = 0 ∧ edge3.duration = "short-term" ∧ edge4.duration = "long-term" → violate(x0, y0))
+18. Q[x0, y0](entity1.deposit = 500 ∧ entity2.deposit = 0 ∧ edge1.maintenance_fee = 100 ∧ edge2.maintenance_fee = 0 ∧ T("the property is pet-friendly", "the property does not allow pets", tau) → violate(x0, y0))
+19. Q[x0, y0](M_NLI(entity1.attrs, entity2.attrs) ∧ T("the lease is active", "the lease is terminated", tau) ∧ tau(entity1.attrA, entity2.attrB) ∧ edge1.relationship = "is not necessary to rent" → violate(x0, y0))
+20. Q[x0, y0](M_NLI(entity3.attrs, entity4.attrs) ∧ T("the rental agreement is valid", "the rental agreement is invalid", tau) ∧ tau(entity3.attrC, entity4.attrD) ∧ edge2.relationship = "is required to rent" → violate(x0, y0))
+21. Q[x0, y0](entity1.utility_included = "yes" ∧ entity2.utility_included = "no" ∧ edge1.maintenance_fee = 100 ∧ edge2.maintenance_fee = 0 ∧ edge3.duration = "short-term" ∧ edge4.duration = "long-term" → violate(x0, y0))
+22. Q[x0, y0](entity1.location = "city center" ∧ entity2.location = "suburbs" ∧ edge1.type = "commercial" ∧ edge2.type = "residential" ∧ M_NLI(entity5.attrs, entity6.attrs) → violate(x0, y0))
+23. Q[x0, y0](entity1.attribute = "value1" ∧ entity2.attribute = "value2" ∧ entity3.attribute = "value3" ∧ entity4.attribute = "value4" ∧ edge1.relationship = "is not necessary to rent" → violate(x0, y0))
+24. Q[x0, y0](entity5.price = 200 ∧ entity6.price = 300 ∧ edge1.lease_term = "12 months" ∧ edge2.lease_term = "6 months"

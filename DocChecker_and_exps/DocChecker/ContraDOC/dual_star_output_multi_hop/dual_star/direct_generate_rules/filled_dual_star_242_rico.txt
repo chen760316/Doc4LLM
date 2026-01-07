@@ -1,0 +1,32 @@
+Predicates:
+Chris.full_name != "Chris (Will Arnett)"
+Chris.full_name = "Chris (Will Arnett)"
+Chris.label != "Person"
+Chris.label = "Person"
+Chris.name != "Chris"
+Chris.name = "Chris"
+None_ML(Reagan.attrs, Chris.attrs)
+Reagan.full_name != "Reagan (Christina Applegate)"
+Reagan.full_name != Chris.full_name
+Reagan.full_name = "Reagan (Christina Applegate)"
+Reagan.label != "Person"
+Reagan.label = "Person"
+Reagan.name != "Reagan"
+Reagan.name != Chris.name
+Reagan.name = "Reagan"
+Reagan___Chris.doc_id = "3503017462_4"
+Reagan___Chris.event = "New Year's Eve game night"
+Reagan___Chris.list_name = "Things We Are Going to Stop Doing That Embarrass Each Other in 2012"
+Reagan___Chris.relationship = "Reagan and Chris create a list of things to stop doing that embarrass each other."
+
+Rules:
+Q[Reagan,Reagan] (Reagan.full_name != Chris.full_name ∧ Chris.full_name = "Chris (Will Arnett)" ∧ Chris.full_name != "Chris (Will Arnett)" → Reagan___Chris.doc_id = "3503017462_4")
+Q[Reagan,Reagan] (Reagan.full_name != Chris.full_name ∧ Chris.name != "Chris" ∧ Chris.full_name != "Chris (Will Arnett)" ∧ Chris.full_name = "Chris (Will Arnett)" ∧ Chris.label != "Person" ∧ Reagan.name != Chris.name → Chris.label = "Person")
+Q[Reagan,Reagan] (Reagan.name = "Reagan" ∧ Chris.name = "Chris" ∧ Reagan.full_name != Chris.full_name ∧ Chris.label = "Person" → Reagan.label != "Person")
+Q[Reagan,Reagan] (Chris.label = "Person" ∧ None_ML(Reagan.attrs, Chris.attrs) → Reagan___Chris.relationship = "Reagan and Chris create a list of things to stop doing that embarrass each other.")
+Q[Reagan,Reagan] (Chris.name = "Chris" ∧ Reagan.full_name != "Reagan (Christina Applegate)" ∧ Chris.full_name = "Chris (Will Arnett)" ∧ Chris.full_name != "Chris (Will Arnett)" ∧ Reagan___Chris.doc_id = "3503017462_4" → Reagan.full_name = "Reagan (Christina Applegate)")
+Q[Reagan,Reagan] (Reagan___Chris.doc_id = "3503017462_4" ∧ Chris.label != "Person" ∧ Chris.label = "Person" ∧ None_ML(Reagan.attrs, Chris.attrs) ∧ Reagan.label = "Person" → Reagan___Chris.list_name = "Things We Are Going to Stop Doing That Embarrass Each Other in 2012")
+Q[Reagan,Reagan] (Chris.name = "Chris" ∧ Reagan.label = "Person" ∧ Reagan.name = "Reagan" ∧ Chris.full_name != "Chris (Will Arnett)" ∧ Reagan___Chris.list_name = "Things We Are Going to Stop Doing That Embarrass Each Other in 2012" ∧ Chris.name != "Chris" → None_ML(Reagan.attrs, Chris.attrs))
+Q[Reagan,Reagan] (Reagan.name != "Reagan" ∧ Reagan.label = "Person" ∧ Reagan___Chris.list_name = "Things We Are Going to Stop Doing That Embarrass Each Other in 2012" → Chris.full_name = "Chris (Will Arnett)")
+Q[Reagan,Reagan] (Reagan.label != "Person" ∧ Chris.full_name != "Chris (Will Arnett)" → Reagan.full_name != "Reagan (Christina Applegate)")
+Q[Reagan,Reagan] (Chris.name = "Chris" ∧ Reagan.name = "Reagan" ∧ Reagan___Chris.list_name = "Things We Are Going to Stop Doing That Embarrass Each Other in 2012" ∧ Reagan___Chris.doc_id = "3503017462_4" → Reagan___Chris.event = "New Year's Eve game night")

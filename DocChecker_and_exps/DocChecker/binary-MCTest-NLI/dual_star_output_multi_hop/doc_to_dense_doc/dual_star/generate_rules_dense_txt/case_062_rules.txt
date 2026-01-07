@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 62)
+S1: Polly stayed home because she was sick.
+S2: Polly said she was feeling better.
+
+Predicates:
+1. Polly.status.sick
+2. Polly.status.feeling_better
+3. M_NLI(S1, S2)
+4. Causal(S1, S2)
+5. violate(S1, S2)
+6. Polly.action.stayed_home
+7. Polly.reason.stayed_home_sick
+8. Polly.statement.feeling_better
+9. Polly.condition.sick
+10. Polly.condition.feeling_better
+11. S1.indicates.Polly.sick
+12. S2.indicates.Polly.not_sick
+13. S1.cause.Polly.stayed_home
+14. S2.effect.Polly.feeling_better
+15. Polly.emotion.sick
+16. Polly.emotion.better
+17. S1.context.Polly.sick
+18. S2.context.Polly.better
+19. Polly.health_status.sick
+20. Polly.health_status.better
+21. S1.consequence.Polly.stayed_home
+22. S2.consequence.Polly.feeling_better
+23. Polly.activity.stayed_home
+24. Polly.activity.recovered
+25. S1.reason.Polly.stayed_home
+26. S2.reason.Polly.feeling_better
+27. Polly.state.sick
+28. Polly.state.recovered
+29. S1.impact.Polly.health
+30. S2.impact.Polly.health
+
+Rules:
+1. Q[Polly, Polly.status.sick == true](S1 → Causal(Polly.status.sick, Polly.status.feeling_better))
+2. Q[Polly, Polly.status.feeling_better == true](S2 → Causal(Polly.status.sick, Polly.status.feeling_better))
+3. Q[Polly, Polly.condition.sick == true](S1 → Causal(Polly.condition.sick, Polly.condition.feeling_better))
+4. Q[Polly, Polly.condition.feeling_better == true](S2 → Causal(Polly.condition.sick, Polly.condition.feeling_better))
+5. Q[Polly, Polly.health_status.sick == true](S1 → Causal(Polly.health_status.sick, Polly.health_status.better))
+6. Q[Polly, Polly.health_status.better == true](S2 → Causal(Polly.health_status.sick, Polly.health_status.better))
+7. Q[Polly, Polly.emotion.sick == true](S1 → Causal(Polly.emotion.sick, Polly.emotion.better))
+8. Q[Polly, Polly.emotion.better == true](S2 → Causal(Polly.emotion.sick, Polly.emotion.better))
+9. Q[Polly, Polly.action.stayed_home == true](S1 → Causal(Polly.action.stayed_home, Polly.statement.feeling_better))
+10. Q[Polly, Polly.statement.feeling_better == true](S2 → Causal(Polly.action.stayed_home, Polly.statement.feeling_better))
+11. Q[Polly, S1.indicates.Polly.sick == true](S1 → Causal(S1.indicates.Polly.sick, S2.indicates.Polly.not_sick))
+12. Q[Polly, S2.indicates.Polly.not_sick == true](S2 → Causal(S1.indicates.Polly.sick, S2.indicates.Polly.not_sick))
+13. Q[Polly, S1.cause.Polly.stayed_home == true](S1 → Causal(S1.cause.Polly.stayed_home, S2.effect.Polly.feeling_better))
+14. Q[Polly, S2.effect.Polly.feeling_better == true](S2 → Causal(S1.cause.Polly.stayed_home, S2.effect.Polly.feeling_better))
+15. Q[Polly, Polly.reason.stayed_home == "sick"](S1 → Causal(Polly.reason.stayed_home, Polly.reason.feeling_better))
+16. Q[Polly, Polly.reason.feeling_better == "not sick"](S2 → Causal(Polly.reason.stayed_home, Polly.reason.feeling_better))
+17. Q[Polly, S1.consequence.Polly.stayed_home == true](S1 → Causal(S1.consequence.Polly.stayed_home, S2.consequence.Polly.feeling_better))
+18. Q[Polly, S2.consequence.Polly.feeling_better == true](S2 → Causal(S1.consequence.Polly.stayed_home, S2.consequence.Polly.feeling_better))
+19. Q[Polly, Polly.state.sick == true](S1 → Causal(Polly.state.sick, Polly.state.recovered))
+20. Q[Polly, Polly.state.recovered == true](S2 → Causal(Polly.state.sick, Polly.state.recovered))
+21. Q[Polly, Polly.activity.stayed_home == true](S1 → Causal(Polly.activity.stayed_home, Polly.activity.recovered))
+22. Q[Polly, Polly.activity.recovered == true](S2 → Causal(Polly.activity.stayed_home, Polly.activity.recovered))
+23. Q[Polly, S1.impact.Polly.health == "negative"](S1 → Causal(S1.impact.Polly.health, S2.impact.Polly.health))
+24. Q[Polly, S2.impact.Polly.health == "positive"](S2 → Causal(S1.impact.Polly.health, S2.impact.Polly.health))
+25. Q[Polly, Polly.status.sick == true](S1 → Causal(Polly.status.sick, Polly.health_status.better))
+26. Q[Polly, Polly.health_status.better == true](S2 → Causal(Polly.status.sick, Polly.health_status.better))
+27. Q[Polly, Polly.condition.sick == true](S1 → Causal(Polly.condition.sick, Polly.health_status.better))
+28. Q[Polly, Polly.health_status.better == true](S2 → Causal(Polly.condition.sick, Polly.health_status.better))
+29. Q[Polly, Polly.emotion.sick == true](S1 → Causal(Polly.emotion.sick, Polly.health_status.better))
+30. Q[Polly, Polly.emotion.better == true](S2 → Causal(Polly.emotion.sick, Polly.health_status.better))

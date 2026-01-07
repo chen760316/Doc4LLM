@@ -1,0 +1,29 @@
+Predicates:
+Jane.label != "Person"
+Jane.label = "Person"
+Jane.name != "Jane"
+Jane.name = "Jane"
+M_NLI(Jane and Tom are siblings who share a close relationship..attrs, Jane and Tom are a married couple..attrs)
+M_NLI(Tom.attrs, Jane.attrs)
+None_ML(('Tom', 'Jane').attrs, Jane and Tom are a married couple..attrs)
+None_ML(('Tom', 'Jane').attrs, Jane and Tom are siblings who share a close relationship..attrs)
+Tom.label != "Person"
+Tom.label != Jane.label
+Tom.label = "Person"
+Tom.name != "Tom"
+Tom.name != Jane.name
+Tom.name = "Tom"
+Tom___Jane.relationship != "Jane and Tom are a married couple."
+Tom___Jane.relationship = "Jane and Tom are a married couple."
+
+Rules:
+Q[Tom,Tom] (Tom___Jane.relationship = "Jane and Tom are a married couple." ∧ Tom.label != Jane.label → Tom.label != Jane.label)
+Q[Tom,Tom] (Tom___Jane.relationship = "Jane and Tom are a married couple." ∧ Jane.label = "Person" → Jane.label = "Person")
+Q[Tom,Tom] (M_NLI(Jane and Tom are siblings who share a close relationship..attrs, Jane and Tom are a married couple..attrs) ∧ Jane.label != "Person" → M_NLI(Jane and Tom are siblings who share a close relationship..attrs, Jane and Tom are a married couple..attrs))
+Q[Tom,Tom] (Tom.name = "Tom" ∧ Jane.label != "Person" → Tom.name = "Tom")
+Q[Tom,Tom] (Tom.name != Jane.name ∧ Tom.label = "Person" → Tom.label = "Person")
+Q[Tom,Tom] (Jane.name = "Jane" ∧ None_ML(('Tom', 'Jane').attrs, Jane and Tom are a married couple..attrs) → None_ML(('Tom', 'Jane').attrs, Jane and Tom are a married couple..attrs))
+Q[Tom,Tom] (Tom.label != Jane.label ∧ Tom.label != "Person" → Tom.label != "Person")
+Q[Tom,Tom] (Tom___Jane.relationship != "Jane and Tom are a married couple." ∧ None_ML(('Tom', 'Jane').attrs, Jane and Tom are a married couple..attrs) → Tom___Jane.relationship != "Jane and Tom are a married couple.")
+Q[Tom,Tom] (None_ML(('Tom', 'Jane').attrs, Jane and Tom are siblings who share a close relationship..attrs) ∧ M_NLI(Jane and Tom are siblings who share a close relationship..attrs, Jane and Tom are a married couple..attrs) → None_ML(('Tom', 'Jane').attrs, Jane and Tom are siblings who share a close relationship..attrs))
+Q[Tom,Tom] (Tom.label != Jane.label ∧ Jane.label != "Person" → Jane.label != "Person")

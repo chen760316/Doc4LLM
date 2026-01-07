@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 958)
+S1: A bride holding a rose bouquet is being escorted by a man in a gray suit.
+S2: A bride holding a rose bouquet is being escorted after a failed wedding.
+
+Predicates:
+1. Bride.holding_rose_bouquet
+2. Man.in_gray_suit
+3. Bride.escorted_by_man
+4. Wedding.positive_event
+5. Wedding.failed_outcome
+6. M_NLI(S1, S2)
+7. Causal(Bride, Wedding)
+8. Causal(Man, Wedding)
+9. violate(Wedding, failed_outcome)
+10. Bride.escorted_after_failed_wedding
+11. Rose_bouquet.is_held_by_bride
+12. Gray_suit.is_worn_by_man
+13. Wedding.event_type.positive
+14. Wedding.event_type.failed
+15. Man.relationship_with_bride
+16. Bride.experience.wedding
+17. Rose_bouquet.type.rose
+18. Man.attire.type.gray
+19. Wedding.outcome.positive
+20. Wedding.outcome.negative
+21. Bride.emotion.happy
+22. Bride.emotion.sad
+23. Man.role.escort
+24. Wedding.context.celebration
+25. Wedding.context.failure
+26. Causal(Bride, emotion.happy)
+27. Causal(Bride, emotion.sad)
+28. Causal(Man, role.escort)
+29. violate(positive_event, failed_outcome)
+30. Bride.experience.escorted
+
+Rules:
+1. Q[bride, Bride.holding_rose_bouquet, Wedding.positive_event](Bride.holding_rose_bouquet == true → Causal(Bride, Wedding))
+2. Q[bride, Bride.holding_rose_bouquet, Wedding.failed_outcome](Bride.holding_rose_bouquet == true → Causal(Bride, Wedding))
+3. Q[bride, Bride.escorted_by_man, Wedding.positive_event](Bride.escorted_by_man == true → Causal(Bride, Wedding))
+4. Q[bride, Bride.escorted_after_failed_wedding, Wedding.failed_outcome](Bride.escorted_after_failed_wedding == true → Causal(Bride, Wedding))
+5. Q[man, Man.in_gray_suit, Wedding.positive_event](Man.in_gray_suit == true → Causal(Man, Wedding))
+6. Q[man, Man.in_gray_suit, Wedding.failed_outcome](Man.in_gray_suit == true → Causal(Man, Wedding))
+7. Q[bride, Wedding.event_type.positive, Wedding.failed_outcome](Wedding.event_type.positive == true → violate(Wedding, failed_outcome))
+8. Q[bride, Wedding.outcome.positive, Wedding.outcome.negative](Wedding.outcome.positive == true → violate(Wedding, failed_outcome))
+9. Q[man, Man.role.escort, Wedding.positive_event](Man.role.escort == true → Causal(Man, Wedding))
+10. Q[man, Man.role.escort, Wedding.failed_outcome](Man.role.escort == true → Causal(Man, Wedding))
+11. Q[bride, Bride.emotion.happy, Wedding.failed_outcome](Bride.emotion.happy == true → violate(Wedding, failed_outcome))
+12. Q[bride, Bride.emotion.sad, Wedding.positive_event](Bride.emotion.sad == true → violate(Wedding, positive_event))
+13. Q[bride, Wedding.context.celebration, Wedding.context.failure](Wedding.context.celebration == true → violate(Wedding, failure))
+14. Q[bride, Wedding.outcome.positive, Wedding.context.failure](Wedding.outcome.positive == true → violate(Wedding, failure))
+15. Q[man, Gray_suit.is_worn_by_man, Wedding.positive_event](Gray_suit.is_worn_by_man == true → Causal(Man, Wedding))
+16. Q[man, Gray_suit.is_worn_by_man, Wedding.failed_outcome](Gray_suit.is_worn_by_man == true → Causal(Man, Wedding))
+17. Q[bride, Rose_bouquet.is_held_by_bride, Wedding.positive_event](Rose_bouquet.is_held_by_bride == true → Causal(Bride, Wedding))
+18. Q[bride, Rose_bouquet.is_held_by_bride, Wedding.failed_outcome](Rose_bouquet.is_held_by_bride == true → Causal(Bride, Wedding))
+19. Q[bride, Bride.experience.wedding, Wedding.positive_event](Bride.experience.wedding == true → Causal(Bride, Wedding))
+20. Q[bride, Bride.experience.wedding, Wedding.failed_outcome](Bride.experience.wedding == true → Causal(Bride, Wedding))
+21. Q[man, Man.relationship_with_bride, Wedding.positive_event](Man.relationship_with_bride == true → Causal(Man, Wedding))
+22. Q[man, Man.relationship_with_bride, Wedding.failed_outcome](Man.relationship_with_bride == true → Causal(Man, Wedding))
+23. Q[bride, Wedding.event_type.failed, Wedding.positive_event](Wedding.event_type.failed == true → violate(positive_event, failed_outcome))
+24. Q[bride, Wedding.outcome.negative, Wedding.positive_event](Wedding.outcome.negative == true → violate(positive_event, failed_outcome))
+25. Q[bride, Bride.escorted_after_failed_wedding, Wedding.positive_event](Bride.escorted_after_failed_wedding == true → violate(Wedding, positive_event))
+26. Q[man, Man.attire.type.gray, Wedding.positive_event](Man.attire.type.gray == true → Causal(Man, Wedding))
+27. Q[man, Man.attire.type.gray, Wedding.failed_outcome](Man.attire.type.gray == true → Causal(Man, Wedding))
+28. Q[bride, Wedding.context.failure, Wedding.positive_event](Wedding.context.failure == true → violate(positive_event, failed_outcome))
+29. Q[bride, Wedding.outcome.negative, Wedding.context.celebration](Wedding.outcome.negative == true → violate(celebration, failed_outcome))
+30. Q[man, Man.role.escort, Wedding.context.failure](Man.role.escort == true → violate(Wedding, failure))

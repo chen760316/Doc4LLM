@@ -1,0 +1,49 @@
+Predicates:
+180 spikes.label != "Sculpture"
+180 spikes.label = "Sculpture"
+180 spikes.name != "180 spikes"
+180 spikes.name != legs.name
+180 spikes.name = "180 spikes"
+180 spikes.status != "in storage"
+180 spikes.status != legs.status
+180 spikes.status = "in storage"
+None_ML(core___180 spikes.attrs, core___legs.attrs)
+None_ML(legs.attrs, core.attrs)
+core.label != "Sculpture"
+core.label = "Sculpture"
+core.method != "removal"
+core.method = "removal"
+core.name != "core"
+core.name != 180 spikes.name
+core.name != legs.name
+core.name = "core"
+core.status != "cut apart"
+core.status != 180 spikes.status
+core.status = "cut apart"
+core___180 spikes.contradiction_type = "Factual"
+core___180 spikes.relationship != core___legs.relationship
+core___180 spikes.relationship = "The core was sold for scrap while the 180 spikes remain in storage."
+core___180 spikes.source_id = "3502252175_6"
+core___legs.contradiction_type = "Factual"
+core___legs.relationship = "The core and legs of the sculpture were cut apart during removal."
+core___legs.source_id = "3502252175_6"
+legs.label != "Sculpture"
+legs.label = "Sculpture"
+legs.method != "removal"
+legs.method = "removal"
+legs.name != "legs"
+legs.name = "legs"
+legs.status != "cut apart"
+legs.status = "cut apart"
+
+Rules:
+Q[core,core] (core.status != 180 spikes.status ∧ core___legs.contradiction_type = "Factual" ∧ legs.label = "Sculpture" ∧ core___180 spikes.relationship = "The core was sold for scrap while the 180 spikes remain in storage." → None_ML(legs.attrs, core.attrs))
+Q[core,core] (core.name != "core" ∧ legs.method = "removal" ∧ None_ML(legs.attrs, core.attrs) ∧ core___legs.contradiction_type = "Factual" ∧ 180 spikes.status != legs.status ∧ core.name != 180 spikes.name → core.status = "cut apart")
+Q[core,core] (core.status != "cut apart" ∧ 180 spikes.status = "in storage" ∧ core.name != legs.name → legs.name != "legs")
+Q[core,core] (core.label != "Sculpture" ∧ 180 spikes.status = "in storage" ∧ legs.label != "Sculpture" ∧ core.status != 180 spikes.status ∧ legs.method = "removal" → core___180 spikes.relationship != core___legs.relationship)
+Q[core,core] (core.label != "Sculpture" ∧ core.label = "Sculpture" → core.name = "core")
+Q[core,core] (None_ML(core___180 spikes.attrs, core___legs.attrs) ∧ core.label = "Sculpture" → core___legs.contradiction_type = "Factual")
+Q[core,core] (core.status != "cut apart" ∧ core___legs.source_id = "3502252175_6" ∧ core___180 spikes.relationship = "The core was sold for scrap while the 180 spikes remain in storage." ∧ 180 spikes.name != "180 spikes" ∧ core.name = "core" ∧ 180 spikes.label != "Sculpture" → legs.status = "cut apart")
+Q[core,core] (legs.status = "cut apart" ∧ core.label != "Sculpture" ∧ 180 spikes.label = "Sculpture" ∧ core___180 spikes.source_id = "3502252175_6" → core.name != "core")
+Q[core,core] (core___180 spikes.relationship != core___legs.relationship ∧ 180 spikes.label = "Sculpture" ∧ legs.status != "cut apart" ∧ legs.name != "legs" ∧ core.name != "core" → core.name != legs.name)
+Q[core,core] (core.name != "core" ∧ core.status != "cut apart" ∧ core.name = "core" → legs.label != "Sculpture")

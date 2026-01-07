@@ -1,0 +1,61 @@
+Source: dense_text.txt (Index 16)
+S1: According to the Red Cross, more than 30 million people have died in road accidents in the past century - three times the number killed in the First World War - and the annual death toll is rising.
+S2: And what’s more, the Red Cross believes road accidents will become the third biggest cause of death and disability by 2020, ahead of diseases such as AIDS and tuberculosis.
+
+Predicates:
+1. Red_Cross.death_toll_road_accidents > 30000000
+2. Red_Cross.death_toll_road_accidents.last_century = 100_years
+3. Red_Cross.death_toll_road_accidents.first_world_war = 10000000
+4. Red_Cross.death_toll_road_accidents.annual_increase = true
+5. Red_Cross.future_projection.road_accidents_third_cause = true
+6. Red_Cross.future_projection.year = 2020
+7. Red_Cross.comparison.diseases_aids = false
+8. Red_Cross.comparison.diseases_tuberculosis = false
+9. road_accidents.cause_of_death.rank = 3
+10. road_accidents.cause_of_death.diseases_aids.rank < 3
+11. road_accidents.cause_of_death.diseases_tuberculosis.rank < 3
+12. road_accidents.death_toll > first_world_war.death_toll
+13. road_accidents.death_toll.last_century = 30000000
+14. road_accidents.death_toll.annual_increase = true
+15. road_accidents.future_projection.increase = true
+16. road_accidents.future_projection.cause_of_disability = true
+17. road_accidents.death_toll.annual_rate > previous_years
+18. road_accidents.death_toll.2020_projection > current_statistics
+19. road_accidents.death_toll.2020_projection = third_cause
+20. road_accidents.death_toll.2020_projection > diseases.aids.death_toll
+21. road_accidents.death_toll.2020_projection > diseases.tuberculosis.death_toll
+22. road_accidents.death_toll.2020_projection > first_world_war.death_toll
+23. road_accidents.death_toll.2020_projection > 30000000
+24. road_accidents.death_toll.2020_projection > current_annual_rate
+25. road_accidents.death_toll.2020_projection = rising
+26. road_accidents.death_toll.2020_projection = leading_cause
+27. road_accidents.death_toll.2020_projection > diseases.aids.current_toll
+28. road_accidents.death_toll.2020_projection > diseases.tuberculosis.current_toll
+29. road_accidents.death_toll.2020_projection > previous_years_toll
+30. road_accidents.death_toll.2020_projection = contradict_current_statistics
+
+Rules:
+1. Q[According, Red_Cross.death_toll_road_accidents > 30000000, road_accidents.death_toll.2020_projection > 30000000](Red_Cross.death_toll_road_accidents > 30000000 → Numeric(30000000, 30000000))
+2. Q[According, Red_Cross.death_toll_road_accidents.last_century = 100_years, road_accidents.death_toll.2020_projection = contradict_current_statistics](Red_Cross.death_toll_road_accidents.last_century = 100_years → Numeric(100, 0))
+3. Q[According, Red_Cross.death_toll_road_accidents.first_world_war = 10000000, road_accidents.death_toll.2020_projection > first_world_war.death_toll](Red_Cross.death_toll_road_accidents.first_world_war = 10000000 → Numeric(10000000, 0))
+4. Q[According, Red_Cross.death_toll_road_accidents.annual_increase = true, road_accidents.death_toll.annual_rate > previous_years](Red_Cross.death_toll_road_accidents.annual_increase = true → Numeric(1, 0))
+5. Q[According, Red_Cross.future_projection.road_accidents_third_cause = true, road_accidents.cause_of_death.rank = 3](Red_Cross.future_projection.road_accidents_third_cause = true → Numeric(3, 0))
+6. Q[According, Red_Cross.future_projection.year = 2020, road_accidents.death_toll.2020_projection = rising](Red_Cross.future_projection.year = 2020 → Numeric(2020, 0))
+7. Q[According, Red_Cross.comparison.diseases_aids = false, road_accidents.cause_of_death.diseases_aids.rank < 3](Red_Cross.comparison.diseases_aids = false → Numeric(2, 0))
+8. Q[According, Red_Cross.comparison.diseases_tuberculosis = false, road_accidents.cause_of_death.diseases_tuberculosis.rank < 3](Red_Cross.comparison.diseases_tuberculosis = false → Numeric(2, 0))
+9. Q[According, road_accidents.death_toll > first_world_war.death_toll, road_accidents.death_toll.2020_projection > first_world_war.death_toll](road_accidents.death_toll > first_world_war.death_toll → Numeric(10000000, 0))
+10. Q[According, road_accidents.death_toll.last_century = 30000000, road_accidents.death_toll.2020_projection > 30000000](road_accidents.death_toll.last_century = 30000000 → Numeric(30000000, 0))
+11. Q[According, road_accidents.death_toll.annual_increase = true, road_accidents.death_toll.2020_projection > current_annual_rate](road_accidents.death_toll.annual_increase = true → Numeric(1, 0))
+12. Q[According, road_accidents.future_projection.increase = true, road_accidents.death_toll.2020_projection = leading_cause](road_accidents.future_projection.increase = true → Numeric(1, 0))
+13. Q[According, road_accidents.future_projection.cause_of_disability = true, road_accidents.death_toll.2020_projection = rising](road_accidents.future_projection.cause_of_disability = true → Numeric(1, 0))
+14. Q[According, road_accidents.death_toll.annual_rate > previous_years, road_accidents.death_toll.2020_projection > previous_years_toll](road_accidents.death_toll.annual_rate > previous_years → Numeric(1, 0))
+15. Q[According, road_accidents.death_toll.2020_projection > diseases.aids.death_toll, road_accidents.cause_of_death.diseases_aids.rank < 3](road_accidents.death_toll.2020_projection > diseases.aids.death_toll → Numeric(1, 0))
+16. Q[According, road_accidents.death_toll.2020_projection > diseases.tuberculosis.death_toll, road_accidents.cause_of_death.diseases_tuberculosis.rank < 3](road_accidents.death_toll.2020_projection > diseases.tuberculosis.death_toll → Numeric(1, 0))
+17. Q[According, road_accidents.death_toll.2020_projection > first_world_war.death_toll, road_accidents.death_toll > first_world_war.death_toll](road_accidents.death_toll.2020_projection > first_world_war.death_toll → Numeric(10000000, 0))
+18. Q[According, road_accidents.death_toll.2020_projection > 30000000, road_accidents.death_toll.last_century = 30000000](road_accidents.death_toll.2020_projection > 30000000 → Numeric(30000000, 0))
+19. Q[According, road_accidents.death_toll.2020_projection > current_annual_rate, road_accidents.death_toll.annual_increase = true](road_accidents.death_toll.2020_projection > current_annual_rate → Numeric(1, 0))
+20. Q[According, road_accidents.death_toll.2020_projection = rising, road_accidents.death_toll.annual_increase = true](road_accidents.death_toll.2020_projection = rising → Numeric(1, 0))
+21. Q[According, road_accidents.death_toll.2020_projection = leading_cause, road_accidents.cause_of_death.rank = 3](road_accidents.death_toll.2020_projection = leading_cause → Numeric(3, 0))
+22. Q[According, road_accidents.death_toll.2020_projection > diseases.aids.current_toll, road_accidents.cause_of_death.diseases_aids.rank < 3](road_accidents.death_toll.2020_projection > diseases.aids.current_toll → Numeric(1, 0))
+23. Q[According, road_accidents.death_toll.2020_projection > diseases.tuberculosis.current_toll, road_accidents.cause_of_death.diseases_tuberculosis.rank < 3](road_accidents.death_toll.2020_projection > diseases.tuberculosis.current_toll → Numeric(1, 0))
+24. Q[According, road_accidents.death_toll.2020_projection > previous_years_toll, road_accidents.death

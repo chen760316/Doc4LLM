@@ -1,0 +1,64 @@
+Source: dense_text.txt (Index 322)
+S1: Taco Bell serves a variety of Italian foods that include pasta, pizza, and gelato.
+S2: Taco Bell serves a variety of Mexican and Tex-Mex foods that include tacos, burritos, quesadillas, and nachos.
+
+Predicates:
+1. Taco_Bell.serves_Italian_foods
+2. Taco_Bell.serves_Mexican_foods
+3. Taco_Bell.serves_Tex_Mex_foods
+4. Italian_foods.includes_pasta
+5. Italian_foods.includes_pizza
+6. Italian_foods.includes_gelato
+7. Mexican_foods.includes_tacos
+8. Mexican_foods.includes_burritos
+9. Mexican_foods.includes_quesadillas
+10. Mexican_foods.includes_nachos
+11. Tex_Mex_foods.includes_tacos
+12. Tex_Mex_foods.includes_burritos
+13. Tex_Mex_foods.includes_quesadillas
+14. Tex_Mex_foods.includes_nachos
+15. pasta.is_a_type_of_Italian_food
+16. pizza.is_a_type_of_Italian_food
+17. gelato.is_a_type_of_Italian_food
+18. tacos.is_a_type_of_Mexican_food
+19. burritos.is_a_type_of_Mexican_food
+20. quesadillas.is_a_type_of_Mexican_food
+21. nachos.is_a_type_of_Mexican_food
+22. M_NLI(S1, S2)
+23. Factual(Taco_Bell, serves_Italian_foods)
+24. Factual(Taco_Bell, serves_Mexican_foods)
+25. violate(Taco_Bell, serves_Italian_foods)
+26. violate(Taco_Bell, serves_Mexican_foods)
+27. Italian_foods.is_different_from_Mexican_foods
+28. Italian_foods.is_different_from_Tex_Mex_foods
+29. Mexican_foods.is_different_from_Italian_foods
+30. Tex_Mex_foods.is_different_from_Italian_foods
+
+Rules:
+1. Q[Taco_Bell, Taco_Bell.serves_Italian_foods, Taco_Bell.serves_Mexican_foods](Taco_Bell.serves_Italian_foods == true → Factual(Taco_Bell, serves_Italian_foods))
+2. Q[Taco_Bell, Taco_Bell.serves_Italian_foods, Taco_Bell.serves_Mexican_foods](Taco_Bell.serves_Mexican_foods == true → Factual(Taco_Bell, serves_Mexican_foods))
+3. Q[Taco_Bell, Italian_foods.includes_pasta, Mexican_foods.includes_tacos](Italian_foods.includes_pasta == true → Factual(Taco_Bell, serves_Italian_foods))
+4. Q[Taco_Bell, Italian_foods.includes_pizza, Mexican_foods.includes_burritos](Italian_foods.includes_pizza == true → Factual(Taco_Bell, serves_Italian_foods))
+5. Q[Taco_Bell, Italian_foods.includes_gelato, Mexican_foods.includes_quesadillas](Italian_foods.includes_gelato == true → Factual(Taco_Bell, serves_Italian_foods))
+6. Q[Taco_Bell, Mexican_foods.includes_tacos, Italian_foods.includes_pasta](Mexican_foods.includes_tacos == true → Factual(Taco_Bell, serves_Mexican_foods))
+7. Q[Taco_Bell, Mexican_foods.includes_burritos, Italian_foods.includes_pizza](Mexican_foods.includes_burritos == true → Factual(Taco_Bell, serves_Mexican_foods))
+8. Q[Taco_Bell, Mexican_foods.includes_quesadillas, Italian_foods.includes_gelato](Mexican_foods.includes_quesadillas == true → Factual(Taco_Bell, serves_Mexican_foods))
+9. Q[Taco_Bell, Mexican_foods.includes_nachos, Italian_foods.includes_pasta](Mexican_foods.includes_nachos == true → Factual(Taco_Bell, serves_Mexican_foods))
+10. Q[Taco_Bell, Taco_Bell.serves_Italian_foods, Taco_Bell.serves_Tex_Mex_foods](Taco_Bell.serves_Italian_foods == true → Factual(Taco_Bell, serves_Italian_foods))
+11. Q[Taco_Bell, Taco_Bell.serves_Mexican_foods, Taco_Bell.serves_Tex_Mex_foods](Taco_Bell.serves_Tex_Mex_foods == true → Factual(Taco_Bell, serves_Tex_Mex_foods))
+12. Q[Taco_Bell, Italian_foods.is_different_from_Mexican_foods, Mexican_foods.includes_tacos](Italian_foods.is_different_from_Mexican_foods == true → Factual(Taco_Bell, serves_Italian_foods))
+13. Q[Taco_Bell, Italian_foods.is_different_from_Tex_Mex_foods, Tex_Mex_foods.includes_burritos](Italian_foods.is_different_from_Tex_Mex_foods == true → Factual(Taco_Bell, serves_Italian_foods))
+14. Q[Taco_Bell, Mexican_foods.is_different_from_Italian_foods, Italian_foods.includes_pasta](Mexican_foods.is_different_from_Italian_foods == true → Factual(Taco_Bell, serves_Mexican_foods))
+15. Q[Taco_Bell, Tex_Mex_foods.is_different_from_Italian_foods, Italian_foods.includes_pizza](Tex_Mex_foods.is_different_from_Italian_foods == true → Factual(Taco_Bell, serves_Tex_Mex_foods))
+16. Q[Taco_Bell, Taco_Bell.serves_Italian_foods, Taco_Bell.serves_Mexican_foods](Taco_Bell.serves_Italian_foods == true ∧ Taco_Bell.serves_Mexican_foods == true → Factual(Taco_Bell, serves_Italian_foods))
+17. Q[Taco_Bell, Taco_Bell.serves_Mexican_foods, Taco_Bell.serves_Tex_Mex_foods](Taco_Bell.serves_Mexican_foods == true ∧ Taco_Bell.serves_Tex_Mex_foods == true → Factual(Taco_Bell, serves_Mexican_foods))
+18. Q[Taco_Bell, Italian_foods.includes_pasta, Italian_foods.includes_pizza](Italian_foods.includes_pasta == true ∧ Italian_foods.includes_pizza == true → Factual(Taco_Bell, serves_Italian_foods))
+19. Q[Taco_Bell, Mexican_foods.includes_tacos, Mexican_foods.includes_burritos](Mexican_foods.includes_tacos == true ∧ Mexican_foods.includes_burritos == true → Factual(Taco_Bell, serves_Mexican_foods))
+20. Q[Taco_Bell, Italian_foods.includes_gelato, Italian_foods.includes_pasta](Italian_foods.includes_gelato == true ∧ Italian_foods.includes_pasta == true → Factual(Taco_Bell, serves_Italian_foods))
+21. Q[Taco_Bell, Mexican_foods.includes_quesadillas, Mexican_foods.includes_nachos](Mexican_foods.includes_quesadillas == true ∧ Mexican_foods.includes_nachos == true → Factual(Taco_Bell, serves_Mexican_foods))
+22. Q[Taco_Bell, Taco_Bell.serves_Italian_foods, Taco_Bell.serves_Mexican_foods](Taco_Bell.serves_Italian_foods == false → Factual(Taco_Bell, serves_Mexican_foods))
+23. Q[Taco_Bell, Taco_Bell.serves_Mexican_foods, Taco_Bell.serves_Italian_foods](Taco_Bell.serves_Mexican_foods == false → Factual(Taco_Bell, serves_Italian_foods))
+24. Q[Taco_Bell, Italian_foods.is_different_from_Mexican_foods, Taco_Bell.serves_Italian_foods](Italian_foods.is_different_from_Mexican_foods == true → Factual(Taco_Bell, serves_Italian_foods))
+25. Q[Taco_Bell, Italian_foods.is_different_from_Tex_Mex_foods, Taco_Bell.serves_Tex_Mex_foods](Italian_foods.is_different_from_Tex_Mex_foods == true → Factual(Taco_Bell, serves_Tex_Mex_foods))
+26. Q[Taco_Bell, Mexican_foods.is_different_from_Italian_foods, Taco_Bell.serves_Mexican_foods](Mexican_foods.is_different_from_Italian_foods == true → Factual(Taco_Bell, serves_Mexican_foods))
+27. Q[Taco_Bell, Tex_Mex_foods.is_different_from_Italian_foods, Taco_Bell.serves_Tex_M

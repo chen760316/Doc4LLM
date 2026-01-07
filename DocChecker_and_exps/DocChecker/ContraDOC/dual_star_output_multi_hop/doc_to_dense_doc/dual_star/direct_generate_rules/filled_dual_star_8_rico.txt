@@ -1,0 +1,58 @@
+Predicates:
+Arcite.label != "Person"
+Arcite.label != Divine Intervention.label
+Arcite.label != Mortally Injured.label
+Arcite.label = "Person"
+Arcite.name != "Arcite"
+Arcite.name != Divine Intervention.name
+Arcite.name != Emily.name
+Arcite.name != Mortally Injured.name
+Arcite.name = "Arcite"
+Arcite___Divine Intervention.by = "Saturn"
+Arcite___Divine Intervention.contradiction_type = "Causal"
+Arcite___Divine Intervention.method = "divine intervention"
+Arcite___Divine Intervention.relationship != Arcite___Emily.relationship
+Arcite___Divine Intervention.relationship = "Arcite is involved in a divine intervention by Saturn before claiming Emily."
+Arcite___Divine Intervention.source_id = "3488771853_2"
+Arcite___Emily.contradiction_type = "Causal"
+Arcite___Emily.reason = "he would make a good husband for her"
+Arcite___Emily.relationship = "Arcite advises Emily to marry Palamon"
+Arcite___Emily.source_id = "3488771853_2"
+Arcite___Mortally Injured.cause = "horse throwing him off"
+Arcite___Mortally Injured.consequence = "mortally injured"
+Arcite___Mortally Injured.contradiction_type = "Causal"
+Arcite___Mortally Injured.relationship != Arcite___Divine Intervention.relationship
+Arcite___Mortally Injured.relationship != Arcite___Emily.relationship
+Arcite___Mortally Injured.relationship = "Arcite is mortally injured by his horse throwing him off."
+Arcite___Mortally Injured.source_id = "3488771853_2"
+Divine Intervention.label != "Event"
+Divine Intervention.label != Emily.label
+Divine Intervention.label = "Event"
+Divine Intervention.name != "Divine Intervention"
+Divine Intervention.name != Emily.name
+Divine Intervention.name = "Divine Intervention"
+Emily.label != "Person"
+Emily.label = "Person"
+Emily.name != "Emily"
+Emily.name = "Emily"
+Mortally Injured.label != "Event"
+Mortally Injured.label != Emily.label
+Mortally Injured.label = "Event"
+Mortally Injured.name != "Mortally Injured"
+Mortally Injured.name != Divine Intervention.name
+Mortally Injured.name != Emily.name
+Mortally Injured.name = "Mortally Injured"
+None_ML(Arcite___Divine Intervention.attrs, Arcite___Emily.attrs)
+None_ML(Mortally Injured.attrs, Divine Intervention.attrs)
+
+Rules:
+Q[Arcite,Arcite] (Divine Intervention.name != "Divine Intervention" ∧ Emily.label = "Person" ∧ Divine Intervention.label = "Event" ∧ Emily.label != "Person" ∧ Arcite___Mortally Injured.relationship != Arcite___Emily.relationship → Arcite.label != Mortally Injured.label)
+Q[Arcite,Arcite] (Arcite.name != Divine Intervention.name ∧ Divine Intervention.label != "Event" → Arcite___Divine Intervention.relationship = "Arcite is involved in a divine intervention by Saturn before claiming Emily.")
+Q[Arcite,Arcite] (Arcite___Emily.source_id = "3488771853_2" ∧ Arcite.name = "Arcite" ∧ Mortally Injured.name = "Mortally Injured" ∧ Emily.name != "Emily" ∧ None_ML(Arcite___Divine Intervention.attrs, Arcite___Emily.attrs) ∧ Arcite___Emily.contradiction_type = "Causal" → Mortally Injured.name != Divine Intervention.name)
+Q[Arcite,Arcite] (Arcite___Mortally Injured.relationship != Arcite___Divine Intervention.relationship ∧ Arcite.label != Mortally Injured.label ∧ Arcite.label != Divine Intervention.label → Emily.name = "Emily")
+Q[Arcite,Arcite] (Arcite___Mortally Injured.relationship = "Arcite is mortally injured by his horse throwing him off." ∧ Divine Intervention.label = "Event" ∧ None_ML(Arcite___Divine Intervention.attrs, Arcite___Emily.attrs) ∧ Mortally Injured.name != Emily.name → Emily.label != "Person")
+Q[Arcite,Arcite] (Divine Intervention.label != Emily.label ∧ Divine Intervention.name != "Divine Intervention" → Arcite___Divine Intervention.by = "Saturn")
+Q[Arcite,Arcite] (Arcite.label != Mortally Injured.label ∧ Arcite___Emily.contradiction_type = "Causal" ∧ None_ML(Arcite___Divine Intervention.attrs, Arcite___Emily.attrs) → Mortally Injured.label != "Event")
+Q[Arcite,Arcite] (Arcite___Divine Intervention.relationship = "Arcite is involved in a divine intervention by Saturn before claiming Emily." ∧ Arcite___Mortally Injured.relationship = "Arcite is mortally injured by his horse throwing him off." ∧ Arcite.label != "Person" ∧ Arcite___Mortally Injured.relationship != Arcite___Divine Intervention.relationship ∧ Arcite___Emily.relationship = "Arcite advises Emily to marry Palamon" ∧ Arcite___Emily.reason = "he would make a good husband for her" → Arcite___Mortally Injured.contradiction_type = "Causal")
+Q[Arcite,Arcite] (Arcite___Emily.relationship = "Arcite advises Emily to marry Palamon" ∧ Arcite.name = "Arcite" ∧ Arcite___Mortally Injured.source_id = "3488771853_2" ∧ Arcite___Divine Intervention.by = "Saturn" ∧ Mortally Injured.name != Divine Intervention.name → Mortally Injured.label = "Event")
+Q[Arcite,Arcite] (Arcite.name != Mortally Injured.name ∧ Arcite.label != Mortally Injured.label ∧ Divine Intervention.name != "Divine Intervention" ∧ Arcite___Divine Intervention.relationship = "Arcite is involved in a divine intervention by Saturn before claiming Emily." → Arcite___Mortally Injured.relationship != Arcite___Emily.relationship)

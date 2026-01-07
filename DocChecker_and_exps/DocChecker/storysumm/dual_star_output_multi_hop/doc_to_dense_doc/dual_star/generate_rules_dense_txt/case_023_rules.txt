@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 23)
+S1: Suddenly, he is transported to different moments in his life and is visited by different versions of himself.
+S2: He is not transported to the moments, they appear in front of him in his current setting.
+
+Predicates:
+1. Moment.version
+2. Moment.appearance
+3. Moment.transportation
+4. Self.version
+5. Self.different
+6. Self.current_setting
+7. He.transportation
+8. He.moments
+9. He.visited_by
+10. He.appearance
+11. He.different_versions
+12. Different_versions.visit
+13. Different_versions.moments
+14. Different_versions.transportation
+15. Current_setting.moments
+16. Current_setting.appearance
+17. Transportation.moments
+18. Transportation.current_setting
+19. Transportation.different_versions
+20. M_NLI(S1, S2)
+21. Causal(He, Moment)
+22. Causal(Moment, Self)
+23. violate(He, Moment)
+24. violate(Moment, Current_setting)
+25. He.is_visited
+26. He.is_not_transported
+27. Moments.appear
+28. Moments.visit
+29. Versions.appear
+30. Versions.transport
+
+Rules:
+1. Q[Suddenly, He.transportation, Moment.transportation](He.transportation == "true" → Causal(He, Moment))
+2. Q[Suddenly, He.is_not_transported, Moment.transportation](He.is_not_transported == "true" → Causal(He, Moment))
+3. Q[Suddenly, He.visited_by, Different_versions.visit](He.visited_by == "true" → Causal(He, Different_versions))
+4. Q[Suddenly, He.different_versions, Different_versions.moments](He.different_versions == "true" → Causal(He, Different_versions))
+5. Q[Suddenly, Moment.version, Different_versions.version](Moment.version == "different" → Causal(Moment, Different_versions))
+6. Q[Suddenly, Self.current_setting, Current_setting.appearance](Self.current_setting == "true" → Causal(Self, Current_setting))
+7. Q[Suddenly, Moment.appearance, Current_setting.appearance](Moment.appearance == "present" → Causal(Moment, Current_setting))
+8. Q[Suddenly, He.moments, Current_setting.moments](He.moments == "true" → Causal(He, Current_setting))
+9. Q[Suddenly, Different_versions.moments, Moment.appearance](Different_versions.moments == "true" → Causal(Different_versions, Moment))
+10. Q[Suddenly, Self.version, Different_versions.version](Self.version == "different" → Causal(Self, Different_versions))
+11. Q[Suddenly, He.appearance, Moment.appearance](He.appearance == "true" → Causal(He, Moment))
+12. Q[Suddenly, He.is_visited, Different_versions.visit](He.is_visited == "true" → Causal(He, Different_versions))
+13. Q[Suddenly, He.different, Self.different](He.different == "true" → Causal(He, Self))
+14. Q[Suddenly, Transportation.moments, Moment.transportation](Transportation.moments == "true" → Causal(Transportation, Moment))
+15. Q[Suddenly, Transportation.current_setting, Current_setting.appearance](Transportation.current_setting == "true" → Causal(Transportation, Current_setting))
+16. Q[Suddenly, Transportation.different_versions, Different_versions.transport](Transportation.different_versions == "true" → Causal(Transportation, Different_versions))
+17. Q[Suddenly, He.is_not_transported, He.transportation](He.is_not_transported == "true" → Causal(He, He.transportation))
+18. Q[Suddenly, Moments.appear, Current_setting.appearance](Moments.appear == "true" → Causal(Moments, Current_setting))
+19. Q[Suddenly, Versions.appear, Different_versions.version](Versions.appear == "true" → Causal(Versions, Different_versions))
+20. Q[Suddenly, He.is_visited, He.visited_by](He.is_visited == "true" → Causal(He, He.visited_by))
+21. Q[Suddenly, He.moments, He.is_not_transported](He.moments == "true" → Causal(He, He.is_not_transported))
+22. Q[Suddenly, Moment.transportation, He.is_not_transported](Moment.transportation == "true" → Causal(Moment, He.is_not_transported))
+23. Q[Suddenly, Different_versions.visit, He.is_visited](Different_versions.visit == "true" → Causal(Different_versions, He.is_visited))
+24. Q[Suddenly, Current_setting.moments, He.moments](Current_setting.moments == "true" → Causal(Current_setting, He.moments))
+25. Q[Suddenly, Moment.appearance, He.appearance](Moment.appearance == "true" → Causal(Moment, He.appearance))
+26. Q[Suddenly, Self.current_setting, He.is_not_transported](Self.current_setting == "true" → Causal(Self, He.is_not_transported))
+27. Q[Suddenly, Different_versions.moments, Moment.appearance](Different_versions.moments == "true" → Causal(Different_versions, Moment.appearance))
+28. Q[Suddenly, He.different_versions, Self.version](He.different_versions == "true" → Causal(He, Self.version))
+29. Q[Suddenly, He.visited_by, Self.different](He.visited_by == "true" → Causal(He, Self.different))
+30. Q[Suddenly, He.transportation, He.is_not_transported](He.transportation == "true" → Causal(He, He.is_not_transported))

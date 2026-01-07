@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 1208)
+S1: A young couple is sitting on a sidewalk with their helmets, in front of a motor scooter.
+S2: A kid is sitting with his helmet in front of a motor scooter.
+
+Predicates:
+1. Couple.age
+2. Couple.location
+3. Couple.equipment
+4. Couple.vehicle
+5. Kid.age
+6. Kid.location
+7. Kid.equipment
+8. Kid.vehicle
+9. MotorScooter.type
+10. MotorScooter.owner
+11. Helmet.color
+12. Helmet.size
+13. Sitting.position
+14. Sitting.surface
+15. Relationship.subject
+16. Relationship.activity
+17. Relationship.context
+18. M_NLI(S1, S2)
+19. Relation(Couple, Kid)
+20. Relation(Couple, MotorScooter)
+21. Relation(Kid, MotorScooter)
+22. violate(Couple, Kid)
+23. violate(Couple, MotorScooter)
+24. violate(Kid, MotorScooter)
+25. Equipment.type
+26. Equipment.condition
+27. Location.type
+28. Location.environment
+29. Activity.type
+30. Activity.duration
+
+Rules:
+1. Q[young, Couple.age == "young" → Relation(Couple, Kid)]
+2. Q[young, Kid.age == "child" → Relation(Couple, Kid)]
+3. Q[sitting, Couple.location == "sidewalk" → Relation(Couple, Kid)]
+4. Q[sitting, Kid.location == "sidewalk" → Relation(Couple, Kid)]
+5. Q[helmet, Couple.equipment == "helmet" → Relation(Couple, Kid)]
+6. Q[helmet, Kid.equipment == "helmet" → Relation(Couple, Kid)]
+7. Q[motor, Couple.vehicle == "motor scooter" → Relation(Couple, Kid)]
+8. Q[motor, Kid.vehicle == "motor scooter" → Relation(Couple, Kid)]
+9. Q[young, Couple.age != Kid.age → violate(Couple, Kid)]
+10. Q[young, Kid.age == "child" → violate(Couple, Kid)]
+11. Q[sitting, Couple.location == "sidewalk" → violate(Couple, Kid)]
+12. Q[sitting, Kid.location == "sidewalk" → violate(Couple, Kid)]
+13. Q[helmet, Couple.equipment == "helmet" → violate(Couple, Kid)]
+14. Q[helmet, Kid.equipment == "helmet" → violate(Couple, Kid)]
+15. Q[motor, Couple.vehicle == "motor scooter" → violate(Couple, Kid)]
+16. Q[motor, Kid.vehicle == "motor scooter" → violate(Couple, Kid)]
+17. Q[young, Couple.age == "young" → Relation(Couple, MotorScooter)]
+18. Q[young, Kid.age == "child" → Relation(Kid, MotorScooter)]
+19. Q[sitting, Couple.location == "sidewalk" → Relation(Couple, MotorScooter)]
+20. Q[sitting, Kid.location == "sidewalk" → Relation(Kid, MotorScooter)]
+21. Q[helmet, Couple.equipment == "helmet" → Relation(Couple, MotorScooter)]
+22. Q[helmet, Kid.equipment == "helmet" → Relation(Kid, MotorScooter)]
+23. Q[motor, Couple.vehicle == "motor scooter" → Relation(Couple, MotorScooter)]
+24. Q[motor, Kid.vehicle == "motor scooter" → Relation(Kid, MotorScooter)]
+25. Q[young, Couple.age != Kid.age → violate(Couple, MotorScooter)]
+26. Q[young, Kid.age == "child" → violate(Couple, MotorScooter)]
+27. Q[sitting, Couple.location == "sidewalk" → violate(Couple, MotorScooter)]
+28. Q[sitting, Kid.location == "sidewalk" → violate(Couple, MotorScooter)]
+29. Q[helmet, Couple.equipment == "helmet" → violate(Couple, MotorScooter)]
+30. Q[helmet, Kid.equipment == "helmet" → violate(Couple, MotorScooter)]

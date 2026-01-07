@@ -1,0 +1,78 @@
+Predicates:
+Carwin.label != "Person"
+Carwin.label != Tomhannock, New York.label
+Carwin.label != countryside.label
+Carwin.label = "Person"
+Carwin.name != "Carwin"
+Carwin.name != Theodore Wieland.name
+Carwin.name != Tomhannock, New York.name
+Carwin.name != countryside.name
+Carwin.name = "Carwin"
+Carwin.occupation != "farmer"
+Carwin.occupation = "farmer"
+Carwin.status != "alive"
+Carwin.status != Theodore Wieland.status
+Carwin.status = "alive"
+Carwin___Theodore Wieland.doc_id != Carwin___countryside.doc_id
+Carwin___Theodore Wieland.doc_id = "3488771875_3"
+Carwin___Theodore Wieland.method = "voice mimicry"
+Carwin___Theodore Wieland.outcome = "Theodore stops due to Carwin's intervention"
+Carwin___Theodore Wieland.relationship != Carwin___Tomhannock, New York.relationship
+Carwin___Theodore Wieland.relationship != Carwin___countryside.relationship
+Carwin___Theodore Wieland.relationship = "Carwin influences Theodore's actions."
+Carwin___Tomhannock, New York.doc_id = "3488771875_3"
+Carwin___Tomhannock, New York.relationship = "Carwin becomes a farmer in the countryside after the events."
+Carwin___countryside.doc_id != Carwin___Tomhannock, New York.doc_id
+Carwin___countryside.doc_id = "3488771875_7"
+Carwin___countryside.relationship != Carwin___Tomhannock, New York.relationship
+Carwin___countryside.relationship = "Carwin becomes a farmer in the countryside."
+None_ML(Carwin.attrs, Theodore Wieland.attrs)
+None_ML(Carwin___Tomhannock, New York.attrs, Carwin___countryside.attrs)
+Theodore Wieland.children != 4
+Theodore Wieland.children < 9
+Theodore Wieland.children = 4
+Theodore Wieland.children > -1
+Theodore Wieland.label != "Person"
+Theodore Wieland.label != Tomhannock, New York.label
+Theodore Wieland.label != countryside.label
+Theodore Wieland.label = "Person"
+Theodore Wieland.mental_state != "madness"
+Theodore Wieland.mental_state = "madness"
+Theodore Wieland.name != "Theodore Wieland"
+Theodore Wieland.name != Tomhannock, New York.name
+Theodore Wieland.name != countryside.name
+Theodore Wieland.name = "Theodore Wieland"
+Theodore Wieland.relationship_with_clara != "brother"
+Theodore Wieland.relationship_with_clara = "brother"
+Theodore Wieland.status != "deceased"
+Theodore Wieland.status = "deceased"
+Tomhannock, New York.label != "Location"
+Tomhannock, New York.label = "Location"
+Tomhannock, New York.name != "Tomhannock, New York"
+Tomhannock, New York.name = "Tomhannock, New York"
+Tomhannock, New York.type != "hamlet"
+Tomhannock, New York.type = "hamlet"
+Tomhannock, New York.year != 1781
+Tomhannock, New York.year < 1786
+Tomhannock, New York.year = 1781
+Tomhannock, New York.year > 1776
+countryside.label != "Location"
+countryside.label = "Location"
+countryside.name != "countryside"
+countryside.name != Tomhannock, New York.name
+countryside.name = "countryside"
+countryside.type != "rural area"
+countryside.type != Tomhannock, New York.type
+countryside.type = "rural area"
+
+Rules:
+Q[Carwin,Carwin] (Theodore Wieland.label != countryside.label ∧ Carwin.occupation = "farmer" ∧ Carwin.status = "alive" ∧ Theodore Wieland.relationship_with_clara != "brother" ∧ Carwin___countryside.relationship != Carwin___Tomhannock, New York.relationship ∧ Carwin___Theodore Wieland.doc_id != Carwin___countryside.doc_id → Theodore Wieland.name != "Theodore Wieland")
+Q[Carwin,Carwin] (Theodore Wieland.label != "Person" ∧ Carwin___Theodore Wieland.outcome = "Theodore stops due to Carwin's intervention" ∧ Tomhannock, New York.year = 1781 ∧ None_ML(Carwin.attrs, Theodore Wieland.attrs) → Carwin___countryside.doc_id = "3488771875_7")
+Q[Carwin,Carwin] (Theodore Wieland.label != countryside.label ∧ Theodore Wieland.name != countryside.name ∧ Carwin.status = "alive" ∧ Tomhannock, New York.label = "Location" ∧ Carwin___countryside.relationship = "Carwin becomes a farmer in the countryside." → Carwin.name = "Carwin")
+Q[Carwin,Carwin] (Carwin.name != "Carwin" ∧ Carwin___Theodore Wieland.doc_id != Carwin___countryside.doc_id ∧ Carwin.name != countryside.name → None_ML(Carwin.attrs, Theodore Wieland.attrs))
+Q[Carwin,Carwin] (countryside.name != "countryside" ∧ Theodore Wieland.children = 4 → Carwin.status != "alive")
+Q[Carwin,Carwin] (None_ML(Carwin.attrs, Theodore Wieland.attrs) ∧ Carwin.status != Theodore Wieland.status ∧ Carwin___countryside.relationship = "Carwin becomes a farmer in the countryside." ∧ countryside.name != "countryside" ∧ Tomhannock, New York.year < 1786 → Theodore Wieland.label = "Person")
+Q[Carwin,Carwin] (Carwin___Theodore Wieland.doc_id != Carwin___countryside.doc_id ∧ Carwin.occupation = "farmer" → Carwin___Theodore Wieland.relationship = "Carwin influences Theodore's actions.")
+Q[Carwin,Carwin] (None_ML(Carwin___Tomhannock, New York.attrs, Carwin___countryside.attrs) ∧ Carwin.name != "Carwin" ∧ Carwin.name != Theodore Wieland.name ∧ countryside.label != "Location" ∧ Theodore Wieland.name = "Theodore Wieland" ∧ countryside.type != Tomhannock, New York.type → Carwin.occupation = "farmer")
+Q[Carwin,Carwin] (Carwin.name != "Carwin" ∧ Carwin___Theodore Wieland.relationship != Carwin___countryside.relationship ∧ Carwin.name != Theodore Wieland.name → Theodore Wieland.relationship_with_clara != "brother")
+Q[Carwin,Carwin] (Theodore Wieland.status = "deceased" ∧ None_ML(Carwin___Tomhannock, New York.attrs, Carwin___countryside.attrs) ∧ Carwin.status != "alive" ∧ Carwin___Theodore Wieland.doc_id = "3488771875_3" → Tomhannock, New York.label = "Location")

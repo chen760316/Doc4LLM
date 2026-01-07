@@ -1,0 +1,134 @@
+Predicates:
+1. entity.name = "Drug Prevention Program"
+2. entity.type = "Initiative"
+3. entity.target_audience = "Youth"
+4. entity.goal = "Reduce substance abuse"
+5. entity.effectiveness = "High"
+6. entity.start_date = "2020-01-01"
+7. entity.end_date = "2025-12-31"
+8. entity.location = "Community Centers"
+9. entity.funding_source = "Government Grants"
+10. entity.partners = "Local NGOs"
+11. edge.relationship = "discourages drug use among"
+12. edge.relationship = "helps"
+13. edge.relationship = "kills"
+14. edge.relationship = "lends respect to"
+15. edge.relationship = "tarnishes"
+16. M_NLI(entity1.goal, entity2.goal)
+17. T("The program discourages drug use", "The program promotes drug use", "Negation")
+18. tau(entity.effectiveness, entity.goal)
+19. violate(entity1.name, entity2.name)
+20. Factual(entity.start_date, entity.end_date)
+21. Causal(entity.effectiveness, entity.goal)
+22. Numeric(entity.start_date, entity.end_date)
+23. Temporal(entity.start_date, entity.end_date)
+24. Content(entity.target_audience, entity.goal)
+25. Relation(entity.partners, entity.funding_source)
+26. entity.success_rate = "85%"
+27. entity.participation_rate = "70%"
+28. edge.relationship = "supports"
+29. edge.relationship = "hinders"
+30. M_NLI(entity1.participation_rate, entity2.participation_rate)
+31. T("The initiative has a high success rate", "The initiative has a low success rate", "Factual")
+32. tau(entity.success_rate, entity.participation_rate)
+33. violate(entity1.type, entity2.type)
+34. Factual(entity.location, entity.target_audience)
+35. Causal(entity.funding_source, entity.effectiveness)
+36. Numeric(entity.success_rate, entity.participation_rate)
+37. Temporal(entity.end_date, entity.start_date)
+38. Content(entity.goal, entity.effectiveness)
+39. Relation(entity.name, entity.type)
+40. entity.impact = "Positive"
+41. entity.challenges = "Funding Issues"
+42. edge.relationship = "encourages"
+43. edge.relationship = "detracts from"
+44. M_NLI(entity1.impact, entity2.challenges)
+45. T("The program has a positive impact", "The program has a negative impact", "Causal")
+46. tau(entity.impact, entity.challenges)
+47. violate(entity1.impact, entity2.impact)
+48. Factual(entity.challenges, entity.goal)
+49. Causal(entity.participation_rate, entity.impact)
+50. Numeric(entity.challenges, entity.success_rate)
+51. Temporal(entity.start_date, entity.challenges)
+52. Content(entity.goal, entity.impact)
+53. Relation(entity.type, entity.name)
+54. entity.evaluation_method = "Surveys"
+55. entity.feedback = "Positive"
+56. edge.relationship = "validates"
+57. edge.relationship = "contradicts"
+58. M_NLI(entity1.evaluation_method, entity2.feedback)
+59. T("Surveys indicate positive feedback", "Surveys indicate negative feedback", "Negation")
+60. tau(entity.evaluation_method, entity.feedback)
+61. violate(entity1.evaluation_method, entity2.evaluation_method)
+62. Factual(entity.feedback, entity.impact)
+63. Causal(entity.evaluation_method, entity.feedback)
+64. Numeric(entity.feedback, entity.participation_rate)
+65. Temporal(entity.end_date, entity.evaluation_method)
+66. Content(entity.impact, entity.feedback)
+67. Relation(entity.evaluation_method, entity.type)
+68. entity.reach = "Wide"
+69. entity.resources = "Limited"
+70. edge.relationship = "expands"
+71. edge.relationship = "restricts"
+72. M_NLI(entity1.reach, entity2.resources)
+73. T("The program reaches a wide audience", "The program has limited resources", "Causal")
+74. tau(entity.reach, entity.resources)
+75. violate(entity1.reach, entity2.reach)
+76. Factual(entity.resources, entity.goal)
+77. Causal(entity.reach, entity.impact)
+78. Numeric(entity.reach, entity.participation_rate)
+79. Temporal(entity.start_date, entity.reach)
+80. Content(entity.resources, entity.impact)
+81. Relation(entity.reach, entity.feedback)
+82. entity.outcomes = "Long-term"
+83. entity.changes = "Behavioral"
+84. edge.relationship = "improves"
+85. edge.relationship = "worsens"
+86. M_NLI(entity1.outcomes, entity2.changes)
+87. T("The outcomes are long-term", "The outcomes are short-term", "Temporal")
+88. tau(entity.outcomes, entity.changes)
+89. violate(entity1.outcomes, entity2.outcomes)
+90. Factual(entity.changes, entity.impact)
+91. Causal(entity.outcomes, entity.feedback)
+92. Numeric(entity.changes, entity.participation_rate)
+93. Temporal(entity.end_date, entity.outcomes)
+94. Content(entity.outcomes, entity.changes)
+95. Relation(entity.changes, entity.resources)
+96. entity.implementation = "Effective"
+97. entity.issues = "Implementation Delays"
+98. edge.relationship = "facilitates"
+99. edge.relationship = "complicates"
+100. M_NLI(entity1.implementation, entity2.issues)
+violate(x0, y0)
+
+Rules:
+1. Q[x0, y0](entity.type = "Initiative" ∧ entity.goal = "Reduce substance abuse" → violate(x0, y0))
+2. Q[x0, y0](entity.target_audience = "Youth" ∧ entity.effectiveness = "High" → violate(x0, y0))
+3. Q[x0, y0](entity.start_date = "2020-01-01" ∧ entity.end_date = "2025-12-31" → violate(x0, y0))
+4. Q[x0, y0](entity.location = "Community Centers" ∧ entity.funding_source = "Government Grants" → violate(x0, y0))
+5. Q[x0, y0](entity.partners = "Local NGOs" ∧ edge.relationship = "discourages drug use among" → violate(x0, y0))
+6. Q[x0, y0](entity.goal = "Reduce substance abuse" ∧ entity.effectiveness = "High" ∧ entity.start_date = "2020-01-01" → violate(x0, y0))
+7. Q[x0, y0](entity.type = "Initiative" ∧ entity.target_audience = "Youth" ∧ entity.goal = "Reduce substance abuse" → violate(x0, y0))
+8. Q[x0, y0](entity.effectiveness = "High" ∧ entity.start_date = "2020-01-01" ∧ entity.end_date = "2025-12-31" → violate(x0, y0))
+9. Q[x0, y0](entity.location = "Community Centers" ∧ entity.funding_source = "Government Grants" ∧ entity.partners = "Local NGOs" → violate(x0, y0))
+10. Q[x0, y0](edge.relationship = "helps" ∧ edge.relationship = "discourages drug use among" ∧ entity.goal = "Reduce substance abuse" → violate(x0, y0))
+11. Q[x0, y0](entity.success_rate = "85%" ∧ entity.participation_rate = "70%" ∧ edge.relationship = "supports" → violate(x0, y0))
+12. Q[x0, y0](entity.impact = "Positive" ∧ entity.challenges = "Funding Issues" ∧ edge.relationship = "encourages" → violate(x0, y0))
+13. Q[x0, y0](entity.evaluation_method = "Surveys" ∧ entity.feedback = "Positive" ∧ edge.relationship = "validates" ∧ entity.goal = "Reduce substance abuse" → violate(x0, y0))
+14. Q[x0, y0](entity.reach = "Wide" ∧ entity.resources = "Limited" ∧ edge.relationship = "restricts" → violate(x0, y0))
+15. Q[x0, y0](entity.outcomes = "Long-term" ∧ entity.changes = "Behavioral" ∧ edge.relationship = "improves" → violate(x0, y0))
+16. Q[x0, y0](entity.implementation = "Effective" ∧ entity.issues = "Implementation Delays" ∧ edge.relationship = "facilitates" → violate(x0, y0))
+17. Q[x0, y0](entity.goal = "Reduce substance abuse" ∧ entity.effectiveness = "High" ∧ entity.start_date = "2020-01-01" ∧ entity.end_date = "2025-12-31" → violate(x0, y0))
+18. Q[x0, y0](entity.location = "Community Centers" ∧ entity.funding_source = "Government Grants" ∧ entity.partners = "Local NGOs" ∧ edge.relationship = "discourages drug use among" → violate(x0, y0))
+19. Q[x0, y0](entity.success_rate = "85%" ∧ entity.participation_rate = "70%" ∧ edge.relationship = "hinders" → violate(x0, y0))
+20. Q[x0, y0](entity.impact = "Positive" ∧ entity.challenges = "Funding Issues" ∧ edge.relationship = "detracts from" → violate(x0, y0))
+21. Q[x0, y0](entity.evaluation_method = "Surveys" ∧ entity.feedback = "Negative" ∧ edge.relationship = "contradicts" → violate(x0, y0))
+22. Q[x0, y0](entity.reach = "Wide" ∧ entity.resources = "Limited" ∧ edge.relationship = "restricts" ∧ entity.goal = "Reduce substance abuse" → violate(x0, y0))
+23. Q[x0, y0](entity.outcomes = "Long-term" ∧ entity.changes = "Behavioral" ∧ edge.relationship = "worsens" → violate(x0, y0))
+24. Q[x0, y0](entity.implementation = "Effective" ∧ entity.issues = "Implementation Delays" ∧ edge.relationship = "complicates" → violate(x0, y0))
+25. Q[x0, y0](entity.target_audience = "Youth" ∧ entity.goal = "Reduce substance abuse" ∧ entity.effectiveness = "High" ∧ entity.start_date = "2020-01-01" → violate(x0, y0))
+26. Q[x0, y0](entity.location = "Community Centers" ∧ entity.funding_source = "Government Grants" ∧ entity.partners = "Local NGOs" ∧ entity.goal = "Reduce substance abuse" → violate(x0, y0))
+27. Q[x0, y0](entity.success_rate = "85%" ∧ entity.participation_rate = "70%" ∧ edge.relationship = "kills" → violate(x0, y0))
+28. Q[x0, y0](entity.impact = "Positive" ∧ entity.challenges = "Funding Issues" ∧ edge.relationship = "hinders" ∧ entity.goal = "Reduce substance abuse" → violate(x0, y0))
+29. Q[x0, y0](entity.evaluation_method = "Surveys" ∧ entity.feedback = "Negative" ∧ edge.relationship = "validates" → violate(x0, y0))
+30. Q[x0, y0](entity.reach = "Wide" ∧ entity.resources = "Limited" ∧ edge.relationship = "restricts" ∧ entity.impact = "Positive" → violate(x0, y0))

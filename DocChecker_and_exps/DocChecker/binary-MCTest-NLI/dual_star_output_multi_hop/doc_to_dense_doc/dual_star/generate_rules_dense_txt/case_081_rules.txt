@@ -1,0 +1,66 @@
+Source: dense_text.txt (Index 81)
+S1: S c o t t w a n t e d t o h a v e a l i t t l e f u n .
+S2: S c o t t w a n t t o w e n t b y t h e r i v e r b e c a u s e T o m a k e h i s m o m m a d .
+
+Predicates:
+1. Scott.wanted_to_have_fun
+2. Scott.wanted_to_go_by_the_river
+3. Tom.make_his_mom_mad
+4. S1.indicates_fun_motivation
+5. S2.indicates_negative_motivation
+6. M_NLI(S1, S2)
+7. Causal(Scott.wanted_to_have_fun, Tom.make_his_mom_mad)
+8. violate(Scott.wanted_to_have_fun, Tom.make_his_mom_mad)
+9. Scott.has_fun_motivation
+10. Scott.has_negative_motivation
+11. River.is_a_location
+12. Tom.is_a_person
+13. Mom.is_a_person
+14. Scott.is_a_person
+15. Fun.is_a_desire
+16. Negative_motivation.is_a_desire
+17. S1.expresses_desire
+18. S2.expresses_desire
+19. Fun.is_related_to(Scott)
+20. Negative_motivation.is_related_to(Scott)
+21. Scott.has_desire(Fun)
+22. Scott.has_desire(Negative_motivation)
+23. Tom.has_intent_to(make_mom_mad)
+24. River.is_a_place_of_interest
+25. Scott's_action.is_to_have_fun
+26. Scott's_action.is_to_go_by_the_river
+27. Tom's_action.is_to_make_mom_mad
+28. Fun.is_a_positive_outcome
+29. Making_mom_mad.is_a_negative_outcome
+30. S1.and_S2.present_different_motivations
+
+Rules:
+1. Q[Anchor, Scott.wanted_to_have_fun, Tom.make_his_mom_mad](Scott.wanted_to_have_fun == true → Causal(Scott.wanted_to_have_fun, Tom.make_his_mom_mad))
+2. Q[Anchor, Scott.wanted_to_go_by_the_river, Tom.make_his_mom_mad](Scott.wanted_to_go_by_the_river == true → Causal(Scott.wanted_to_go_by_the_river, Tom.make_his_mom_mad))
+3. Q[Anchor, S1.indicates_fun_motivation, S2.indicates_negative_motivation](S1.indicates_fun_motivation == true → Causal(S1.indicates_fun_motivation, S2.indicates_negative_motivation))
+4. Q[Anchor, Scott.has_fun_motivation, Scott.has_negative_motivation](Scott.has_fun_motivation == true → Causal(Scott.has_fun_motivation, Scott.has_negative_motivation))
+5. Q[Anchor, Fun.is_a_desire, Negative_motivation.is_a_desire](Fun.is_a_desire == true → Causal(Fun.is_a_desire, Negative_motivation.is_a_desire))
+6. Q[Anchor, S1.expresses_desire, S2.expresses_desire](S1.expresses_desire == true → Causal(S1.expresses_desire, S2.expresses_desire))
+7. Q[Anchor, Scott.has_desire(Fun), Scott.has_desire(Negative_motivation)](Scott.has_desire(Fun) == true → Causal(Scott.has_desire(Fun), Scott.has_desire(Negative_motivation)))
+8. Q[Anchor, Tom.has_intent_to(make_mom_mad), Scott.wanted_to_have_fun](Tom.has_intent_to(make_mom_mad) == true → Causal(Tom.has_intent_to(make_mom_mad), Scott.wanted_to_have_fun))
+9. Q[Anchor, River.is_a_location, Scott.wanted_to_go_by_the_river](River.is_a_location == true → Causal(River.is_a_location, Scott.wanted_to_go_by_the_river))
+10. Q[Anchor, Scott's_action.is_to_have_fun, Tom's_action.is_to_make_mom_mad](Scott's_action.is_to_have_fun == true → Causal(Scott's_action.is_to_have_fun, Tom's_action.is_to_make_mom_mad))
+11. Q[Anchor, Fun.is_related_to(Scott), Negative_motivation.is_related_to(Scott)](Fun.is_related_to(Scott) == true → Causal(Fun.is_related_to(Scott), Negative_motivation.is_related_to(Scott)))
+12. Q[Anchor, S1.and_S2.present_different_motivations, Scott.has_fun_motivation](S1.and_S2.present_different_motivations == true → Causal(S1.and_S2.present_different_motivations, Scott.has_fun_motivation))
+13. Q[Anchor, Scott.wanted_to_have_fun, Scott.has_fun_motivation](Scott.wanted_to_have_fun == true → Causal(Scott.wanted_to_have_fun, Scott.has_fun_motivation))
+14. Q[Anchor, Scott.wanted_to_go_by_the_river, Scott.has_negative_motivation](Scott.wanted_to_go_by_the_river == true → Causal(Scott.wanted_to_go_by_the_river, Scott.has_negative_motivation))
+15. Q[Anchor, Fun.is_a_positive_outcome, Making_mom_mad.is_a_negative_outcome](Fun.is_a_positive_outcome == true → Causal(Fun.is_a_positive_outcome, Making_mom_mad.is_a_negative_outcome))
+16. Q[Anchor, Tom.is_a_person, Scott.is_a_person](Tom.is_a_person == true → Causal(Tom.is_a_person, Scott.is_a_person))
+17. Q[Anchor, River.is_a_place_of_interest, Scott.wanted_to_go_by_the_river](River.is_a_place_of_interest == true → Causal(River.is_a_place_of_interest, Scott.wanted_to_go_by_the_river))
+18. Q[Anchor, Scott.wanted_to_have_fun, Scott's_action.is_to_have_fun](Scott.wanted_to_have_fun == true → Causal(Scott.wanted_to_have_fun, Scott's_action.is_to_have_fun))
+19. Q[Anchor, Tom's_action.is_to_make_mom_mad, Scott.wanted_to_go_by_the_river](Tom's_action.is_to_make_mom_mad == true → Causal(Tom's_action.is_to_make_mom_mad, Scott.wanted_to_go_by_the_river))
+20. Q[Anchor, S1.indicates_fun_motivation, Scott.has_fun_motivation](S1.indicates_fun_motivation == true → Causal(S1.indicates_fun_motivation, Scott.has_fun_motivation))
+21. Q[Anchor, S2.indicates_negative_motivation, Scott.has_negative_motivation](S2.indicates_negative_motivation == true → Causal(S2.indicates_negative_motivation, Scott.has_negative_motivation))
+22. Q[Anchor, Fun.is_related_to(Scott), Scott.wanted_to_have_fun](Fun.is_related_to(Scott) == true → Causal(Fun.is_related_to(Scott), Scott.wanted_to_have_fun))
+23. Q[Anchor, Negative_motivation.is_related_to(Scott), Scott.wanted_to_go_by_the_river](Negative_motivation.is_related_to(Scott) == true → Causal(Negative_motivation.is_related_to(Scott), Scott.wanted_to_go_by_the_river))
+24. Q[Anchor, Scott.has_fun_motivation, Tom.make_his_mom_mad](Scott.has_fun_motivation == true → Causal(Scott.has_fun_motivation, Tom.make_his_mom_mad))
+25. Q[Anchor, Scott.wanted_to_go_by_the_river, Tom.has_intent_to(make_mom_mad)](Scott.wanted_to_go_by_the_river == true → Causal(Scott.wanted_to_go_by_the_river, Tom.has_intent_to(make_mom_mad)))
+26. Q[Anchor, S1.expresses_desire, S2.expresses_desire](S1.expresses_desire == true → Causal(S1.expresses_desire, S2.expresses_desire))
+27. Q[Anchor, Scott.wanted_to_have_fun, S1.indicates_fun_motivation](Scott.wanted_to_have_fun == true → Causal(Scott.wanted_to_have_fun, S1.indicates_fun_motivation))
+28. Q[Anchor, Scott.wanted_to_go_by_the_river, S2.indicates_negative_motivation](Scott.wanted_to_go_by_the_river == true → Causal(Scott.wanted_to_go_by_the_river, S2.indicates_negative_motivation))
+29. Q[Anchor, Fun.is

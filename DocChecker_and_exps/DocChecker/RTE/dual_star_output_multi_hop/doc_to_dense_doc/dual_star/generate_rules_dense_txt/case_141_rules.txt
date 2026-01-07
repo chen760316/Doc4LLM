@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 141)
+S1: A t l e a s t e i g h t p e o p l e h a v e b e e n k i l l e d i n a s u i c i d e i n t h e S r i L a n k a n a r m y g e n e r a l M o n t e r r e y b o m b a t t a c k w h i l e t h e h e a d o f t h e a r m y h a s b e e n s e r i o u s l y w o u n d e d .
+S2: A t l e a s t e i g h t p e o p l e h a v e b e e n k i l l e d i n a s u i c i d e b o m b a t t a c k o n S r i L a n k a ' s a r m y h e a d q u a r t e r s , w h i l e t h e h e a d o f t h e a r m y h a s b e e n s e r i o u s l y i n j u r e d .
+
+Predicates:
+1. S1.event_type = "suicide attack"
+2. S1.location = "Sri Lanka"
+3. S1.victims_count >= 8
+4. S1.injured_person = "head of the army"
+5. S1.injured_status = "seriously wounded"
+6. S1.attacker_identity = "unknown"
+7. S2.event_type = "suicide bomb attack"
+8. S2.location = "Sri Lanka's army headquarters"
+9. S2.victims_count >= 8
+10. S2.injured_person = "head of the army"
+11. S2.injured_status = "seriously injured"
+12. S2.attacker_identity = "unknown"
+13. M_NLI(S1, S2)
+14. Factual(S1.event_type, S2.event_type)
+15. Factual(S1.location, S2.location)
+16. Factual(S1.victims_count, S2.victims_count)
+17. Factual(S1.injured_person, S2.injured_person)
+18. Factual(S1.injured_status, S2.injured_status)
+19. violate(S1.event_type, S2.event_type)
+20. violate(S1.location, S2.location)
+21. violate(S1.victims_count, S2.victims_count)
+22. violate(S1.injured_person, S2.injured_person)
+23. violate(S1.injured_status, S2.injured_status)
+24. S1.attack_method = "unknown"
+25. S2.attack_method = "unknown"
+26. S1.time_of_event = "unknown"
+27. S2.time_of_event = "unknown"
+28. S1.perpetrators = "unknown"
+29. S2.perpetrators = "unknown"
+30. S1.casualties = "unknown"
+
+Rules:
+1. Q[Anchor, x0, y0](S1.event_type == "suicide attack" → Factual(x0, y0))
+2. Q[Anchor, x0, y0](S2.event_type == "suicide bomb attack" → Factual(x0, y0))
+3. Q[Anchor, x0, y0](S1.location == "Sri Lanka" → Factual(x0, y0))
+4. Q[Anchor, x0, y0](S2.location == "Sri Lanka's army headquarters" → Factual(x0, y0))
+5. Q[Anchor, x0, y0](S1.victims_count >= 8 → Factual(x0, y0))
+6. Q[Anchor, x0, y0](S2.victims_count >= 8 → Factual(x0, y0))
+7. Q[Anchor, x0, y0](S1.injured_person == "head of the army" → Factual(x0, y0))
+8. Q[Anchor, x0, y0](S2.injured_person == "head of the army" → Factual(x0, y0))
+9. Q[Anchor, x0, y0](S1.injured_status == "seriously wounded" → Factual(x0, y0))
+10. Q[Anchor, x0, y0](S2.injured_status == "seriously injured" → Factual(x0, y0))
+11. Q[Anchor, x0, y0](S1.attacker_identity == "unknown" → Factual(x0, y0))
+12. Q[Anchor, x0, y0](S2.attacker_identity == "unknown" → Factual(x0, y0))
+13. Q[Anchor, x0, y0](Factual(S1.event_type, S2.event_type) → Factual(x0, y0))
+14. Q[Anchor, x0, y0](Factual(S1.location, S2.location) → Factual(x0, y0))
+15. Q[Anchor, x0, y0](Factual(S1.victims_count, S2.victims_count) → Factual(x0, y0))
+16. Q[Anchor, x0, y0](Factual(S1.injured_person, S2.injured_person) → Factual(x0, y0))
+17. Q[Anchor, x0, y0](Factual(S1.injured_status, S2.injured_status) → Factual(x0, y0))
+18. Q[Anchor, x0, y0](violate(S1.event_type, S2.event_type) → Factual(x0, y0))
+19. Q[Anchor, x0, y0](violate(S1.location, S2.location) → Factual(x0, y0))
+20. Q[Anchor, x0, y0](violate(S1.victims_count, S2.victims_count) → Factual(x0, y0))
+21. Q[Anchor, x0, y0](violate(S1.injured_person, S2.injured_person) → Factual(x0, y0))
+22. Q[Anchor, x0, y0](violate(S1.injured_status, S2.injured_status) → Factual(x0, y0))
+23. Q[Anchor, x0, y0](S1.attack_method == "unknown" → Factual(x0, y0))
+24. Q[Anchor, x0, y0](S2.attack_method == "unknown" → Factual(x0, y0))
+25. Q[Anchor, x0, y0](S1.time_of_event == "unknown" → Factual(x0, y0))
+26. Q[Anchor, x0, y0](S2.time_of_event == "unknown" → Factual(x0, y0))
+27. Q[Anchor, x0, y0](S1.perpetrators == "unknown" → Factual(x0, y0))
+28. Q[Anchor, x0, y0](S2.perpetrators == "unknown" → Factual(x0, y0))
+29. Q[Anchor, x0, y0](S1.casualties == "unknown" → Factual(x0, y0))
+30. Q[Anchor, x0, y0](M_NLI(S1, S2) → Factual(x0, y0))

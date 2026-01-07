@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 194)
+S1: And while neither Florida nor any other state is required to give full faith and credit to another state’s laws and judgments that conflict with that state’s legitimate public policy,
+S2: holding that a judgment of another states court is entitled to full faith and credit j when the judgment is considered final under the laws of the rendering state
+
+Predicates:
+1. State.Florida.required_full_faith_and_credit
+2. State.other_state.required_full_faith_and_credit
+3. State.Florida.conflicting_laws
+4. State.other_state.conflicting_laws
+5. Judgment.another_state.entitled_full_faith_and_credit
+6. Judgment.another_state.final_under_laws
+7. Judgment.rendering_state.final
+8. Judgment.rendering_state.entitled_full_faith_and_credit
+9. Public_policy.state.legitimate
+10. Law.state.conflict
+11. Judgment.another_state.conflict_with_public_policy
+12. State.Florida.judgment_conflict
+13. State.other_state.judgment_conflict
+14. Judgment.finality.rendering_state
+15. Judgment.finality.another_state
+16. State.Florida.judgment_entitlement
+17. State.other_state.judgment_entitlement
+18. Law.state.full_faith_and_credit
+19. Law.state.judgment_recognition
+20. Judgment.recognition.another_state
+21. Judgment.recognition.rendering_state
+22. State.Florida.judgment_final
+23. State.other_state.judgment_final
+24. Judgment.finality.conflict
+25. Public_policy.conflict_with_judgment
+26. Law.state.legitimate_public_policy
+27. Judgment.entitlement.conflict
+28. State.Florida.public_policy
+29. State.other_state.public_policy
+30. Judgment.finality.legitimate_policy
+
+Rules:
+1. Q[And, State.Florida.required_full_faith_and_credit == false](State.Florida.conflicting_laws → Factual(x0, y0))
+2. Q[And, State.other_state.required_full_faith_and_credit == false](State.other_state.conflicting_laws → Factual(x0, y0))
+3. Q[And, Judgment.another_state.entitled_full_faith_and_credit == true](Judgment.another_state.final_under_laws → Factual(x0, y0))
+4. Q[And, Judgment.rendering_state.final == true](Judgment.rendering_state.entitled_full_faith_and_credit → Factual(x0, y0))
+5. Q[And, State.Florida.conflicting_laws == true](Law.state.conflict → Factual(x0, y0))
+6. Q[And, State.other_state.conflicting_laws == true](Law.state.conflict → Factual(x0, y0))
+7. Q[And, Judgment.another_state.final_under_laws == true](Judgment.finality.another_state → Factual(x0, y0))
+8. Q[And, Judgment.rendering_state.final == true](Judgment.finality.rendering_state → Factual(x0, y0))
+9. Q[And, Public_policy.state.legitimate == true](Law.state.legitimate_public_policy → Factual(x0, y0))
+10. Q[And, Judgment.another_state.conflict_with_public_policy == true](Public_policy.conflict_with_judgment → Factual(x0, y0))
+11. Q[And, State.Florida.judgment_conflict == true](State.Florida.judgment_entitlement → Factual(x0, y0))
+12. Q[And, State.other_state.judgment_conflict == true](State.other_state.judgment_entitlement → Factual(x0, y0))
+13. Q[And, Judgment.finality.conflict == true](Judgment.finality.rendering_state → Factual(x0, y0))
+14. Q[And, State.Florida.judgment_final == true](Judgment.finality.rendering_state → Factual(x0, y0))
+15. Q[And, State.other_state.judgment_final == true](Judgment.finality.rendering_state → Factual(x0, y0))
+16. Q[And, Judgment.entitlement.conflict == true](Judgment.finality.rendering_state → Factual(x0, y0))
+17. Q[And, State.Florida.public_policy == true](Law.state.legitimate_public_policy → Factual(x0, y0))
+18. Q[And, State.other_state.public_policy == true](Law.state.legitimate_public_policy → Factual(x0, y0))
+19. Q[And, Judgment.finality.legitimate_policy == true](Judgment.finality.rendering_state → Factual(x0, y0))
+20. Q[And, Judgment.recognition.another_state == true](Judgment.another_state.entitled_full_faith_and_credit → Factual(x0, y0))
+21. Q[And, Judgment.recognition.rendering_state == true](Judgment.rendering_state.entitled_full_faith_and_credit → Factual(x0, y0))
+22. Q[And, Law.state.full_faith_and_credit == false](State.Florida.conflicting_laws → Factual(x0, y0))
+23. Q[And, Law.state.judgment_recognition == false](State.other_state.conflicting_laws → Factual(x0, y0))
+24. Q[And, Judgment.finality.another_state == true](Judgment.another_state.final_under_laws → Factual(x0, y0))
+25. Q[And, Judgment.finality.rendering_state == true](Judgment.rendering_state.final → Factual(x0, y0))
+26. Q[And, Public_policy.conflict_with_judgment == true](Judgment.another_state.conflict_with_public_policy → Factual(x0, y0))
+27. Q[And, State.Florida.judgment_final == true](Judgment.finality.rendering_state → Factual(x0, y0))
+28. Q[And, State.other_state.judgment_final == true](Judgment.finality.rendering_state → Factual(x0, y0))
+29. Q[And, Judgment.finality.conflict == true](Judgment.finality.rendering_state → Factual(x0, y0))
+30. Q[And, Judgment.entitlement.conflict == true](Judgment.finality.rendering_state → Factual(x0, y0))

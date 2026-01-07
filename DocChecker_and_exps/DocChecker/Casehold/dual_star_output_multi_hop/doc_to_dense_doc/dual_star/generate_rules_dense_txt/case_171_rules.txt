@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 171)
+S1: the jury.
+S2: In addition, the trial court sustained the objections, struck one question from the record, and issued a curative instruction.
+
+Predicates:
+1. Jury.role
+2. TrialCourt.actions
+3. TrialCourt.sustainedObjections
+4. TrialCourt.struckQuestion
+5. TrialCourt.issuedCurativeInstruction
+6. Objection.type
+7. Question.status
+8. Record.content
+9. ProceduralContext.definition
+10. Jury.verdict
+11. TrialCourt.jurisdiction
+12. Objection.relevance
+13. CurativeInstruction.purpose
+14. Question.number
+15. TrialCourt.decision
+16. Jury.composition
+17. TrialCourt.proceedings
+18. Objection.outcome
+19. Question.evidence
+20. CurativeInstruction.effect
+21. Jury.deliberation
+22. TrialCourt.rules
+23. Objection.filingDate
+24. Question.context
+25. Record.admissibility
+26. ProceduralContext.importance
+27. Jury.consensus
+28. TrialCourt.judgment
+29. Objection.reason
+30. Question.clarity
+
+Rules:
+1. Q[the, TrialCourt.actions, Jury.role](TrialCourt.actions == "sustained objections" → Relation(TrialCourt.actions, Jury.role))
+2. Q[the, TrialCourt.actions, TrialCourt.sustainedObjections](TrialCourt.actions == "struck question" → Relation(TrialCourt.actions, TrialCourt.sustainedObjections))
+3. Q[the, TrialCourt.sustainedObjections, TrialCourt.struckQuestion](TrialCourt.sustainedObjections == true → Relation(TrialCourt.sustainedObjections, TrialCourt.struckQuestion))
+4. Q[the, TrialCourt.struckQuestion, TrialCourt.issuedCurativeInstruction](TrialCourt.struckQuestion == true → Relation(TrialCourt.struckQuestion, TrialCourt.issuedCurativeInstruction))
+5. Q[the, TrialCourt.issuedCurativeInstruction, ProceduralContext.definition](TrialCourt.issuedCurativeInstruction == true → Relation(TrialCourt.issuedCurativeInstruction, ProceduralContext.definition))
+6. Q[the, TrialCourt.actions, ProceduralContext.importance](TrialCourt.actions == "issued curative instruction" → Relation(TrialCourt.actions, ProceduralContext.importance))
+7. Q[the, Jury.role, ProceduralContext.definition](Jury.role == "deciding verdict" → Relation(Jury.role, ProceduralContext.definition))
+8. Q[the, TrialCourt.struckQuestion, Question.status](TrialCourt.struckQuestion == true → Relation(TrialCourt.struckQuestion, Question.status))
+9. Q[the, TrialCourt.jurisdiction, TrialCourt.actions](TrialCourt.jurisdiction == "oversee trial" → Relation(TrialCourt.jurisdiction, TrialCourt.actions))
+10. Q[the, Objection.type, TrialCourt.sustainedObjections](Objection.type == "relevance" → Relation(Objection.type, TrialCourt.sustainedObjections))
+11. Q[the, Question.number, Question.status](Question.number == "struck" → Relation(Question.number, Question.status))
+12. Q[the, TrialCourt.rules, TrialCourt.actions](TrialCourt.rules == "governing objections" → Relation(TrialCourt.rules, TrialCourt.actions))
+13. Q[the, Objection.relevance, TrialCourt.sustainedObjections](Objection.relevance == true → Relation(Objection.relevance, TrialCourt.sustainedObjections))
+14. Q[the, CurativeInstruction.purpose, TrialCourt.issuedCurativeInstruction](CurativeInstruction.purpose == "correcting record" → Relation(CurativeInstruction.purpose, TrialCourt.issuedCurativeInstruction))
+15. Q[the, Question.context, Question.status](Question.context == "irrelevant" → Relation(Question.context, Question.status))
+16. Q[the, Record.content, TrialCourt.struckQuestion](Record.content == "irrelevant question" → Relation(Record.content, TrialCourt.struckQuestion))
+17. Q[the, Jury.verdict, Jury.role](Jury.verdict == "based on evidence" → Relation(Jury.verdict, Jury.role))
+18. Q[the, TrialCourt.decision, TrialCourt.actions](TrialCourt.decision == "sustained objections" → Relation(TrialCourt.decision, TrialCourt.actions))
+19. Q[the, Objection.outcome, TrialCourt.sustainedObjections](Objection.outcome == "sustained" → Relation(Objection.outcome, TrialCourt.sustainedObjections))
+20. Q[the, Question.evidence, TrialCourt.struckQuestion](Question.evidence == "not admissible" → Relation(Question.evidence, TrialCourt.struckQuestion))
+21. Q[the, CurativeInstruction.effect, TrialCourt.issuedCurativeInstruction](CurativeInstruction.effect == "clarifying jury instructions" → Relation(CurativeInstruction.effect, TrialCourt.issuedCurativeInstruction))
+22. Q[the, Jury.deliberation, Jury.role](Jury.deliberation == "based on admissible evidence" → Relation(Jury.deliberation, Jury.role))
+23. Q[the, TrialCourt.judgment, TrialCourt.actions](TrialCourt.judgment == "based on sustained objections" → Relation(TrialCourt.judgment, TrialCourt.actions))
+24. Q[the, Objection.reason, TrialCourt.sustainedObjections](Objection.reason == "irrelevant" → Relation(Objection.reason, TrialCourt.sustainedObjections))
+25. Q[the, Question.clarity, Question.status](Question.clarity == "unclear" → Relation(Question.clarity, Question.status))
+26. Q[the, Record.admissibility, TrialCourt.struckQuestion](Record.admissibility == "question struck" → Relation(Record.admissibility, TrialCourt.struckQuestion))
+27. Q[the, ProceduralContext.importance, TrialCourt.actions](ProceduralContext.importance == "ensuring fair trial" → Relation(ProceduralContext.importance, TrialCourt.actions))
+28. Q[the, Jury.consensus, Jury.role](Jury.consensus == "unanimous" → Relation(Jury.consensus, Jury.role))
+29. Q[the, TrialCourt.proceedings, TrialCourt.actions](TrialCourt.proceedings == "overseeing objections" → Relation(TrialCourt.proceedings, TrialCourt.actions))
+30. Q[the, Question.context, ProceduralContext.definition](Question.context == "irrelevant" → Relation(Question.context, ProceduralContext.definition))

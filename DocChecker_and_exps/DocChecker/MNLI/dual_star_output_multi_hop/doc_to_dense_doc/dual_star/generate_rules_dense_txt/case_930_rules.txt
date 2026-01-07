@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 930)
+S1: He rushed like a madman from the room, and I followed him as soon as I had sufficiently recovered my wits.
+S2: He ran out of the room.
+
+Predicates:
+1. S1.has_delay
+2. S1.follows_after_recovery
+3. S1.rushed_like_madman
+4. S1.entity_he
+5. S1.entity_i
+6. S2.immediate_action
+7. S2.entity_he
+8. S2.ran_out_of_room
+9. S1.room.location
+10. S1.wits.state
+11. S1.recovery_time
+12. S2.room.exit
+13. S1.emotion.madness
+14. S1.action.follow
+15. S1.action.rush
+16. S2.action.run
+17. S1.time.delay
+18. S2.time.immediate
+19. S1.cause.recovery
+20. S2.cause.exit
+21. M_NLI(S1, S2)
+22. Causal(S1.has_delay, S2.immediate_action)
+23. violate(S1.has_delay, S2.immediate_action)
+24. S1.emotion.recovery
+25. S1.action.thought
+26. S2.action.exit
+27. S1.entity.madman
+28. S1.state.wits
+29. S2.entity.room
+30. S1.action.following
+
+Rules:
+1. Q[rushed, S1.has_delay, S2.immediate_action](S1.rushed_like_madman == true → Causal(S1.has_delay, S2.immediate_action))
+2. Q[rushed, S1.follows_after_recovery, S2.immediate_action](S1.follows_after_recovery == true → Causal(S1.has_delay, S2.immediate_action))
+3. Q[rushed, S1.entity_he, S2.entity_he](S1.entity_he == true → Causal(S1.has_delay, S2.immediate_action))
+4. Q[rushed, S1.entity_i, S2.entity_he](S1.entity_i == true → Causal(S1.has_delay, S2.immediate_action))
+5. Q[rushed, S1.room.location, S2.room.exit](S1.room.location == true → Causal(S1.has_delay, S2.immediate_action))
+6. Q[rushed, S1.wits.state, S2.immediate_action](S1.wits.state == "recovery" → Causal(S1.has_delay, S2.immediate_action))
+7. Q[rushed, S1.recovery_time, S2.immediate_action](S1.recovery_time > 0 → Causal(S1.has_delay, S2.immediate_action))
+8. Q[rushed, S2.action.run, S2.immediate_action](S2.action.run == true → Causal(S1.has_delay, S2.immediate_action))
+9. Q[rushed, S1.emotion.madness, S2.immediate_action](S1.emotion.madness == true → Causal(S1.has_delay, S2.immediate_action))
+10. Q[rushed, S1.action.follow, S2.immediate_action](S1.action.follow == true → Causal(S1.has_delay, S2.immediate_action))
+11. Q[rushed, S1.action.rush, S2.immediate_action](S1.action.rush == true → Causal(S1.has_delay, S2.immediate_action))
+12. Q[rushed, S2.action.exit, S2.immediate_action](S2.action.exit == true → Causal(S1.has_delay, S2.immediate_action))
+13. Q[rushed, S1.time.delay, S2.immediate_action](S1.time.delay > 0 → Causal(S1.has_delay, S2.immediate_action))
+14. Q[rushed, S2.time.immediate, S2.immediate_action](S2.time.immediate == true → Causal(S1.has_delay, S2.immediate_action))
+15. Q[rushed, S1.cause.recovery, S2.immediate_action](S1.cause.recovery == true → Causal(S1.has_delay, S2.immediate_action))
+16. Q[rushed, S2.cause.exit, S2.immediate_action](S2.cause.exit == true → Causal(S1.has_delay, S2.immediate_action))
+17. Q[rushed, M_NLI(S1, S2), S2.immediate_action](M_NLI(S1, S2) == true → Causal(S1.has_delay, S2.immediate_action))
+18. Q[rushed, S1.emotion.recovery, S2.immediate_action](S1.emotion.recovery == true → Causal(S1.has_delay, S2.immediate_action))
+19. Q[rushed, S1.action.thought, S2.immediate_action](S1.action.thought == true → Causal(S1.has_delay, S2.immediate_action))
+20. Q[rushed, S1.entity.madman, S2.immediate_action](S1.entity.madman == true → Causal(S1.has_delay, S2.immediate_action))
+21. Q[rushed, S1.state.wits, S2.immediate_action](S1.state.wits == "recovery" → Causal(S1.has_delay, S2.immediate_action))
+22. Q[rushed, S2.entity.room, S2.immediate_action](S2.entity.room == true → Causal(S1.has_delay, S2.immediate_action))
+23. Q[rushed, S1.action.following, S2.immediate_action](S1.action.following == true → Causal(S1.has_delay, S2.immediate_action))
+24. Q[rushed, S1.has_delay, S2.ran_out_of_room](S1.has_delay == true → Causal(S1.has_delay, S2.ran_out_of_room))
+25. Q[rushed, S1.has_delay, S2.entity_he](S1.has_delay == true → Causal(S1.has_delay, S2.entity_he))
+26. Q[rushed, S1.has_delay, S2.action.run](S1.has_delay == true → Causal(S1.has_delay, S2.action.run))
+27. Q[rushed, S1.has_delay, S2.action.exit](S1.has_delay == true → Causal(S1.has_delay, S2.action.exit))
+28. Q[rushed, S1.has_delay, S2.time.immediate](S1.has_delay == true → Causal(S1.has_delay, S2.time.immediate))
+29. Q[rushed, S1.has_delay, S2.cause.exit](S1.has_delay == true → Causal(S1.has_delay, S2.cause.exit))
+30. Q[rushed, S1.has_delay, S2.immediate_action](S1.has_delay == true → Causal(S1.has_delay, S2.immediate_action))

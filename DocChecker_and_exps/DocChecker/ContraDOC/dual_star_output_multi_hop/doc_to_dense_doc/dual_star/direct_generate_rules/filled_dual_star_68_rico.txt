@@ -1,0 +1,127 @@
+Predicates:
+Drinking.label != "Activity"
+Drinking.label != Morton.label
+Drinking.label != Smith.label
+Drinking.label != little box.label
+Drinking.label = "Activity"
+Drinking.name != "Drinking"
+Drinking.name != Morton.name
+Drinking.name != Smith.name
+Drinking.name != little box.name
+Drinking.name = "Drinking"
+Eating.label != "Activity"
+Eating.label != Morton.label
+Eating.label != Smith.label
+Eating.label != little box.label
+Eating.label = "Activity"
+Eating.name != "Eating"
+Eating.name != Drinking.name
+Eating.name != Morton.name
+Eating.name != Smith.name
+Eating.name != little box.name
+Eating.name = "Eating"
+Holmes.label != "Person"
+Holmes.label != Drinking.label
+Holmes.label != Eating.label
+Holmes.label != little box.label
+Holmes.label = "Person"
+Holmes.name != "Holmes"
+Holmes.name != Drinking.name
+Holmes.name != Eating.name
+Holmes.name != Morton.name
+Holmes.name != Smith.name
+Holmes.name != Watson.name
+Holmes.name != little box.name
+Holmes.name = "Holmes"
+Holmes___Drinking.contradiction_type != Holmes___Morton.contradiction_type
+Holmes___Drinking.contradiction_type != Holmes___Smith.contradiction_type
+Holmes___Drinking.contradiction_type = "Factual"
+Holmes___Drinking.duration = "three days"
+Holmes___Drinking.relationship != Holmes___Morton.relationship
+Holmes___Drinking.relationship != Holmes___Smith.relationship
+Holmes___Drinking.relationship != Holmes___little box.relationship
+Holmes___Drinking.relationship = "Holmes has not drunk anything in three days."
+Holmes___Drinking.source_id = "3488771839_11"
+Holmes___Eating.contradiction_type != Holmes___Morton.contradiction_type
+Holmes___Eating.contradiction_type != Holmes___Smith.contradiction_type
+Holmes___Eating.contradiction_type = "Factual"
+Holmes___Eating.duration = "three days"
+Holmes___Eating.relationship != Holmes___Drinking.relationship
+Holmes___Eating.relationship != Holmes___Morton.relationship
+Holmes___Eating.relationship != Holmes___Smith.relationship
+Holmes___Eating.relationship != Holmes___little box.relationship
+Holmes___Eating.relationship = "Holmes has not eaten anything in three days."
+Holmes___Eating.source_id = "3488771839_11"
+Holmes___Morton.contradiction_type = "Causal"
+Holmes___Morton.relationship = "Holmes tells Morton to arrest Culverton Smith"
+Holmes___Morton.source_id = "3488771839_11"
+Holmes___Smith.contradiction_type != Holmes___little box.contradiction_type
+Holmes___Smith.contradiction_type = "Causal"
+Holmes___Smith.relationship != Holmes___Morton.relationship
+Holmes___Smith.relationship != Holmes___little box.relationship
+Holmes___Smith.relationship = "Holmes asks Smith to turn the gas up full"
+Holmes___Smith.source_id = "3488771839_11"
+Holmes___Watson.context = "Watson heard about Holmes's illness"
+Holmes___Watson.contradiction_type != Holmes___Morton.contradiction_type
+Holmes___Watson.contradiction_type != Holmes___Smith.contradiction_type
+Holmes___Watson.contradiction_type = "Factual"
+Holmes___Watson.reason != Holmes___little box.reason
+Holmes___Watson.reason = "illness is highly infectious"
+Holmes___Watson.relationship != Holmes___Drinking.relationship
+Holmes___Watson.relationship != Holmes___Eating.relationship
+Holmes___Watson.relationship != Holmes___Morton.relationship
+Holmes___Watson.relationship != Holmes___Smith.relationship
+Holmes___Watson.relationship != Holmes___little box.relationship
+Holmes___Watson.relationship = "Watson was shocked about Holmes's illness"
+Holmes___Watson.source_id = "3488771839_11"
+Holmes___little box.contradiction_type != Holmes___Morton.contradiction_type
+Holmes___little box.contradiction_type = "Factual"
+Holmes___little box.reason = "he examines his mail carefully"
+Holmes___little box.relationship != Holmes___Morton.relationship
+Holmes___little box.relationship = "Holmes was not infected by the little box."
+Holmes___little box.source_id = "3488771839_11"
+Morton.label != "Person"
+Morton.label = "Person"
+Morton.name != "Morton"
+Morton.name = "Morton"
+None_ML(Holmes___Eating.attrs, Holmes___Smith.attrs)
+None_ML(Morton.attrs, Holmes.attrs)
+Smith.label != "Person"
+Smith.label != little box.label
+Smith.label = "Person"
+Smith.name != "Smith"
+Smith.name != Morton.name
+Smith.name != little box.name
+Smith.name = "Smith"
+Watson.label != "Person"
+Watson.label != Drinking.label
+Watson.label != Eating.label
+Watson.label != little box.label
+Watson.label = "Person"
+Watson.name != "Watson"
+Watson.name != Drinking.name
+Watson.name != Eating.name
+Watson.name != Morton.name
+Watson.name != Smith.name
+Watson.name != little box.name
+Watson.name = "Watson"
+little box.label != "Object"
+little box.label != Morton.label
+little box.label = "Object"
+little box.name != "little box"
+little box.name != Morton.name
+little box.name = "little box"
+little box.status != "potentially dangerous"
+little box.status = "potentially dangerous"
+
+Rules:
+Q[Holmes,Holmes] (Holmes___Smith.source_id = "3488771839_11" ∧ Holmes___Morton.source_id = "3488771839_11" ∧ Holmes___Smith.relationship = "Holmes asks Smith to turn the gas up full" ∧ Holmes___Eating.relationship != Holmes___Morton.relationship ∧ Eating.name != Drinking.name ∧ Eating.name != Smith.name → Holmes.name != Eating.name)
+Q[Holmes,Holmes] (Eating.label != little box.label ∧ Holmes.name != Watson.name → Holmes___Drinking.contradiction_type != Holmes___Morton.contradiction_type)
+Q[Holmes,Holmes] (Eating.label != little box.label ∧ Holmes___Eating.relationship != Holmes___Smith.relationship ∧ Holmes___Eating.relationship != Holmes___Drinking.relationship ∧ Holmes___Drinking.relationship = "Holmes has not drunk anything in three days." → Eating.name != "Eating")
+Q[Holmes,Holmes] (Drinking.label = "Activity" ∧ Holmes___Smith.relationship != Holmes___Morton.relationship ∧ Holmes___Eating.relationship = "Holmes has not eaten anything in three days." ∧ Holmes.name != Smith.name ∧ Holmes.name != Morton.name → Holmes___Eating.contradiction_type = "Factual")
+Q[Holmes,Holmes] (Watson.name = "Watson" ∧ little box.label = "Object" ∧ Holmes.name != Watson.name → little box.status = "potentially dangerous")
+Q[Holmes,Holmes] (Eating.name != Drinking.name ∧ Drinking.name != Morton.name → Holmes.name = "Holmes")
+Q[Holmes,Holmes] (Drinking.label = "Activity" ∧ Holmes.name != little box.name ∧ Holmes.name != "Holmes" ∧ Eating.label != "Activity" → Holmes.label != Eating.label)
+Q[Holmes,Holmes] (Holmes___Smith.contradiction_type != Holmes___little box.contradiction_type ∧ Drinking.name != Morton.name ∧ Holmes.label != little box.label ∧ Holmes.name != "Holmes" ∧ Holmes___Smith.contradiction_type = "Causal" ∧ Holmes___Watson.contradiction_type != Holmes___Smith.contradiction_type → little box.label != Morton.label)
+Q[Holmes,Holmes] (Holmes___Eating.relationship = "Holmes has not eaten anything in three days." ∧ Watson.label != Eating.label ∧ Holmes___Watson.relationship != Holmes___Morton.relationship ∧ Holmes___Morton.relationship = "Holmes tells Morton to arrest Culverton Smith" ∧ Holmes.name != Morton.name → Drinking.label != little box.label)
+Q[Holmes,Holmes] (Holmes___Watson.source_id = "3488771839_11" ∧ Drinking.name != little box.name ∧ Holmes___Morton.source_id = "3488771839_11" → Smith.name != little box.name)

@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 65)
+S1: The boats are no longer here but the quarter looks great.
+S2: The gaily-painted boats are still here, as is the protected, rocky natural harbor, but the old quarter overlooking the ocean has seen better days.
+
+Predicates:
+1. Boats.presence = no
+2. Quarter.condition = great
+3. Boats.presence = yes
+4. Harbor.type = protected
+5. Harbor.condition = rocky
+6. Quarter.condition = seen better days
+7. M_NLI(S1, S2)
+8. Factual(Boats.presence, no)
+9. Factual(Quarter.condition, great)
+10. Factual(Boats.presence, yes)
+11. Factual(Harbor.type, protected)
+12. Factual(Harbor.condition, rocky)
+13. Factual(Quarter.condition, seen better days)
+14. violate(Boats.presence, no)
+15. violate(Boats.presence, yes)
+16. violate(Quarter.condition, great)
+17. violate(Quarter.condition, seen better days)
+18. Boats.color = gaily-painted
+19. Quarter.location = overlooking ocean
+20. Quarter.type = old
+21. Harbor.location = natural
+22. Boats.status = no longer here
+23. Boats.status = still here
+24. Quarter.status = looks great
+25. Quarter.status = has seen better days
+26. Harbor.status = protected
+27. Harbor.status = rocky
+28. M_NLI(S2, S1)
+29. Factual(Boats.color, gaily-painted)
+30. Factual(Quarter.location, overlooking ocean)
+
+Rules:
+1. Q[Anchor, Boats.presence, no](Boats.presence == no → Factual(Boats.presence, no))
+2. Q[Anchor, Quarter.condition, great](Quarter.condition == great → Factual(Quarter.condition, great))
+3. Q[Anchor, Boats.presence, yes](Boats.presence == yes → Factual(Boats.presence, yes))
+4. Q[Anchor, Harbor.type, protected](Harbor.type == protected → Factual(Harbor.type, protected))
+5. Q[Anchor, Harbor.condition, rocky](Harbor.condition == rocky → Factual(Harbor.condition, rocky))
+6. Q[Anchor, Quarter.condition, seen better days](Quarter.condition == seen better days → Factual(Quarter.condition, seen better days))
+7. Q[Anchor, Boats.status, no longer here](Boats.status == no longer here → Factual(Boats.status, no longer here))
+8. Q[Anchor, Boats.status, still here](Boats.status == still here → Factual(Boats.status, still here))
+9. Q[Anchor, Quarter.status, looks great](Quarter.status == looks great → Factual(Quarter.status, looks great))
+10. Q[Anchor, Quarter.status, has seen better days](Quarter.status == has seen better days → Factual(Quarter.status, has seen better days))
+11. Q[Anchor, Boats.presence, no](M_NLI(S1, S2) → violate(Boats.presence, no))
+12. Q[Anchor, Boats.presence, yes](M_NLI(S2, S1) → violate(Boats.presence, yes))
+13. Q[Anchor, Quarter.condition, great](M_NLI(S1, S2) → violate(Quarter.condition, great))
+14. Q[Anchor, Quarter.condition, seen better days](M_NLI(S2, S1) → violate(Quarter.condition, seen better days))
+15. Q[Anchor, Harbor.status, protected](Harbor.status == protected → Factual(Harbor.status, protected))
+16. Q[Anchor, Harbor.status, rocky](Harbor.status == rocky → Factual(Harbor.status, rocky))
+17. Q[Anchor, Boats.color, gaily-painted](Boats.color == gaily-painted → Factual(Boats.color, gaily-painted))
+18. Q[Anchor, Quarter.location, overlooking ocean](Quarter.location == overlooking ocean → Factual(Quarter.location, overlooking ocean))
+19. Q[Anchor, Quarter.type, old](Quarter.type == old → Factual(Quarter.type, old))
+20. Q[Anchor, Harbor.location, natural](Harbor.location == natural → Factual(Harbor.location, natural))
+21. Q[Anchor, Boats.presence, no](Boats.presence == no → violate(Boats.presence, yes))
+22. Q[Anchor, Boats.presence, yes](Boats.presence == yes → violate(Boats.presence, no))
+23. Q[Anchor, Quarter.condition, great](Quarter.condition == great → violate(Quarter.condition, seen better days))
+24. Q[Anchor, Quarter.condition, seen better days](Quarter.condition == seen better days → violate(Quarter.condition, great))
+25. Q[Anchor, Boats.status, no longer here](Boats.status == no longer here → violate(Boats.status, still here))
+26. Q[Anchor, Boats.status, still here](Boats.status == still here → violate(Boats.status, no longer here))
+27. Q[Anchor, Quarter.status, looks great](Quarter.status == looks great → violate(Quarter.status, has seen better days))
+28. Q[Anchor, Quarter.status, has seen better days](Quarter.status == has seen better days → violate(Quarter.status, looks great))
+29. Q[Anchor, Harbor.type, protected](Harbor.type == protected → Factual(Harbor.type, protected))
+30. Q[Anchor, Harbor.condition, rocky](Harbor.condition == rocky → Factual(Harbor.condition, rocky))

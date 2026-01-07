@@ -1,0 +1,62 @@
+Source: dense_text.txt (Index 1311)
+S1: The theater is not open to the public on Mondays or Tuesdays.
+S2: The solicitation document used in negotiated Request for procurements to communicate government Proposals (RFP) requirements and to solicit proposals.
+
+Predicates:
+1. Theater.open_to_public.Mondays = false
+2. Theater.open_to_public.Tuesdays = false
+3. SolicitationDocument.used_in.NegotiatedRequestForProcurements = true
+4. SolicitationDocument.communicates.RFP_requirements = true
+5. SolicitationDocument.sollicitations.proposals = true
+6. Theater.access.restriction.Mondays = true
+7. Theater.access.restriction.Tuesdays = true
+8. GovernmentProposals.RFP.requirements = true
+9. Proposals.solicited.by.SolicitationDocument = true
+10. Theater.activity.on.Mondays = false
+11. Theater.activity.on.Tuesdays = false
+12. RFP.requirements.communicated.by.SolicitationDocument = true
+13. SolicitationDocument.activity.contradicts.Theater.closure = true
+14. Theater.public_access.days = {Wednesday, Thursday, Friday, Saturday, Sunday}
+15. RFP.solicitation.activity = ongoing
+16. Theater.open_to_public.days = {Wednesday, Thursday, Friday, Saturday, Sunday}
+17. GovernmentProposals.solicited.by.SolicitationDocument = true
+18. Theater.restriction.applies.to.public.access = true
+19. SolicitationDocument.activity.is.ongoing = true
+20. Theater.closed.on.Mondays = true
+21. Theater.closed.on.Tuesdays = true
+22. RFP.requirements.solicited = true
+23. Theater.access.is.limited = true
+24. SolicitationDocument.is.active = true
+25. Theater.restriction.on.public_access = true
+26. RFP.solicitation.is.active = true
+27. Theater.is.open.to.public = false
+28. SolicitationDocument.is.used.for.communication = true
+29. Theater.access.is.restricted.on.Mondays = true
+30. Theater.access.is.restricted.on.Tuesdays = true
+
+Rules:
+1. Q[Theater, Theater.open_to_public.Mondays == false, SolicitationDocument.activity.contradicts.Theater.closure](Theater.open_to_public.Mondays == false → Relation(Theater.open_to_public.Mondays, SolicitationDocument.activity.contradicts.Theater.closure))
+2. Q[Theater, Theater.open_to_public.Tuesdays == false, SolicitationDocument.activity.contradicts.Theater.closure](Theater.open_to_public.Tuesdays == false → Relation(Theater.open_to_public.Tuesdays, SolicitationDocument.activity.contradicts.Theater.closure))
+3. Q[Theater, Theater.access.restriction.Mondays == true, SolicitationDocument.activity.is.ongoing == true](Theater.access.restriction.Mondays == true → Relation(Theater.access.restriction.Mondays, SolicitationDocument.activity.is.ongoing == true))
+4. Q[Theater, Theater.access.restriction.Tuesdays == true, SolicitationDocument.activity.is.ongoing == true](Theater.access.restriction.Tuesdays == true → Relation(Theater.access.restriction.Tuesdays, SolicitationDocument.activity.is.ongoing == true))
+5. Q[Theater, Theater.activity.on.Mondays == false, SolicitationDocument.is.active == true](Theater.activity.on.Mondays == false → Relation(Theater.activity.on.Mondays, SolicitationDocument.is.active == true))
+6. Q[Theater, Theater.activity.on.Tuesdays == false, SolicitationDocument.is.active == true](Theater.activity.on.Tuesdays == false → Relation(Theater.activity.on.Tuesdays, SolicitationDocument.is.active == true))
+7. Q[Theater, Theater.closed.on.Mondays == true, SolicitationDocument.sollicitations.proposals == true](Theater.closed.on.Mondays == true → Relation(Theater.closed.on.Mondays, SolicitationDocument.sollicitations.proposals == true))
+8. Q[Theater, Theater.closed.on.Tuesdays == true, SolicitationDocument.sollicitations.proposals == true](Theater.closed.on.Tuesdays == true → Relation(Theater.closed.on.Tuesdays, SolicitationDocument.sollicitations.proposals == true))
+9. Q[Theater, Theater.access.is.limited == true, SolicitationDocument.used_in.NegotiatedRequestForProcurements == true](Theater.access.is.limited == true → Relation(Theater.access.is.limited, SolicitationDocument.used_in.NegotiatedRequestForProcurements == true))
+10. Q[Theater, Theater.restriction.on.public_access == true, SolicitationDocument.is.used.for.communication == true](Theater.restriction.on.public_access == true → Relation(Theater.restriction.on.public_access, SolicitationDocument.is.used.for.communication == true))
+11. Q[Theater, Theater.public_access.days == {Wednesday, Thursday, Friday, Saturday, Sunday}, SolicitationDocument.activity.is.ongoing == true](Theater.public_access.days == {Wednesday, Thursday, Friday, Saturday, Sunday} → Relation(Theater.public_access.days, SolicitationDocument.activity.is.ongoing == true))
+12. Q[Theater, Theater.open_to_public.days == {Wednesday, Thursday, Friday, Saturday, Sunday}, SolicitationDocument.activity.is.ongoing == true](Theater.open_to_public.days == {Wednesday, Thursday, Friday, Saturday, Sunday} → Relation(Theater.open_to_public.days, SolicitationDocument.activity.is.ongoing == true))
+13. Q[Theater, GovernmentProposals.RFP.requirements == true, SolicitationDocument.activity.contradicts.Theater.closure == true](GovernmentProposals.RFP.requirements == true → Relation(GovernmentProposals.RFP.requirements, SolicitationDocument.activity.contradicts.Theater.closure == true))
+14. Q[Theater, RFP.requirements.solicited == true, SolicitationDocument.activity.contradicts.Theater.closure == true](RFP.requirements.solicited == true → Relation(RFP.requirements.solicited, SolicitationDocument.activity.contradicts.Theater.closure == true))
+15. Q[Theater, SolicitationDocument.is.active == true, Theater.access.is.restricted.on.Mondays == true](SolicitationDocument.is.active == true → Relation(SolicitationDocument.is.active, Theater.access.is.restricted.on.Mondays == true))
+16. Q[Theater, SolicitationDocument.is.active == true, Theater.access.is.restricted.on.Tuesdays == true](SolicitationDocument.is.active == true → Relation(SolicitationDocument.is.active, Theater.access.is.restricted.on.Tuesdays == true))
+17. Q[Theater, SolicitationDocument.activity.is.ongoing == true, Theater.access.is.restricted.on.Mondays == true](SolicitationDocument.activity.is.ongoing == true → Relation(SolicitationDocument.activity.is.ongoing, Theater.access.is.restricted.on.Mondays == true))
+18. Q[Theater, SolicitationDocument.activity.is.ongoing == true, Theater.access.is.restricted.on.Tuesdays == true](SolicitationDocument.activity.is.ongoing == true → Relation(SolicitationDocument.activity.is.ongoing, Theater.access.is.restricted.on.Tuesdays == true))
+19. Q[Theater, Theater.access.is.restricted.on.Mondays == true, SolicitationDocument.sollicitations.proposals == true](Theater.access.is.restricted.on.Mondays == true → Relation(Theater.access.is.restricted.on.Mondays, SolicitationDocument.sollicitations.proposals == true))
+20. Q[Theater, Theater.access.is.restricted.on.Tuesdays == true, SolicitationDocument.sollicitations.proposals == true](Theater.access.is.restricted.on.Tuesdays == true → Relation(Theater.access.is.restricted.on.Tuesdays, SolicitationDocument.sollicitations.proposals == true))
+21. Q[Theater, SolicitationDocument.activity.contradicts.Theater.closure == true, Theater.closed.on.Mondays == true](SolicitationDocument.activity.contradicts.Theater.closure == true → Relation(SolicitationDocument.activity.contradicts.Theater.closure, Theater.closed.on.Mondays == true))
+22. Q[Theater, SolicitationDocument.activity.contradicts.Theater.closure == true, Theater.closed.on.Tuesdays == true](SolicitationDocument.activity.contradicts.Theater.closure == true → Relation(SolicitationDocument.activity.contradicts.Theater.closure, Theater.closed.on.Tuesdays == true))
+23. Q[Theater, SolicitationDocument.is.active == true, Theater.open_to_public.Mondays == false](SolicitationDocument.is.active == true → Relation(SolicitationDocument.is.active, Theater.open_to_public.Mondays == false))
+24. Q[Theater, SolicitationDocument.is.active == true, Theater.open_to_public.Tuesdays == false](SolicitationDocument.is.active == true → Relation(SolicitationDocument.is.active, Theater.open_to_public.Tuesdays == false))
+25. Q[Theater, SolicitationDocument.activity.is.ongoing == true, Theater.closed.on

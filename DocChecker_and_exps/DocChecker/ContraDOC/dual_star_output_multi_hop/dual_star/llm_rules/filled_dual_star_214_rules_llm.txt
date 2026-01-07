@@ -1,0 +1,130 @@
+Predicates:
+1. NASCAR.response = "against"
+2. NASCAR.response != "support"
+3. NASCAR.response < "strongly oppose"
+4. NASCAR.response > "neutral"
+5. NASCAR.response <= "opposed"
+6. NASCAR.response >= "critical"
+7. Indiana.law = "religious freedom"
+8. Indiana.law != "anti-discrimination"
+9. Indiana.law < "controversial"
+10. Indiana.law > "accepted"
+11. Indiana.law <= "legislation"
+12. Indiana.law >= "state law"
+13. "business response to legislation".context = "NASCAR's stance"
+14. "business response to legislation".context != "political neutrality"
+15. "business response to legislation".context < "public opinion"
+16. "business response to legislation".context > "legislative support"
+17. "business response to legislation".context <= "corporate policy"
+18. "business response to legislation".context >= "social responsibility"
+19. M_NLI(NASCAR.response, Indiana.law)
+20. M_NLU(NASCAR.response, Indiana.law)
+21. M_TEM(NASCAR.response, Indiana.law)
+22. contra("NASCAR supports Indiana's law", "NASCAR spoke out against Indiana's law")
+23. S(NASCAR, "NASCAR spoke out against Indiana's religious freedom law")
+24. S(Indiana.law, "Indiana's religious freedom law")
+25. T("NASCAR spoke out against Indiana's religious freedom law", "NASCAR supports Indiana's law", Factual)
+26. tau(NASCAR.response, Indiana.law)
+27. tau("business response to legislation.context", "NASCAR's stance")
+28. NASCAR.impact = "public perception"
+29. NASCAR.impact != "financial gain"
+30. NASCAR.impact < "negative"
+31. NASCAR.impact > "neutral"
+32. NASCAR.impact <= "positive"
+33. NASCAR.impact >= "significant"
+34. Indiana.law.impact = "social controversy"
+35. Indiana.law.impact != "universal acceptance"
+36. Indiana.law.impact < "widely supported"
+37. Indiana.law.impact > "highly criticized"
+38. Indiana.law.impact <= "legislative impact"
+39. Indiana.law.impact >= "statewide effect"
+40. "business response to legislation".impact = "reputation management"
+41. "business response to legislation".impact != "profit maximization"
+42. "business response to legislation".impact < "minimal"
+43. "business response to legislation".impact > "substantial"
+44. "business response to legislation".impact <= "corporate image"
+45. "business response to legislation".impact >= "stakeholder relations"
+46. M_NLI(NASCAR.impact, Indiana.law.impact)
+47. M_NLU(NASCAR.impact, Indiana.law.impact)
+48. M_TEM(NASCAR.impact, Indiana.law.impact)
+49. contra("NASCAR's response is positive", "NASCAR spoke out against Indiana's law")
+50. S(NASCAR.impact, "NASCAR's impact on public perception")
+51. S(Indiana.law.impact, "Impact of Indiana's law on social controversy")
+52. T("NASCAR's impact on public perception", "NASCAR's response is positive", Content)
+53. tau(NASCAR.impact, Indiana.law.impact)
+54. NASCAR.support = "none"
+55. NASCAR.support != "full"
+56. NASCAR.support < "conditional"
+57. NASCAR.support > "none"
+58. NASCAR.support <= "limited"
+59. NASCAR.support >= "opposed"
+60. Indiana.law.support = "mixed"
+61. Indiana.law.support != "universal"
+62. Indiana.law.support < "overwhelming"
+63. Indiana.law.support > "divided"
+64. Indiana.law.support <= "statewide"
+65. Indiana.law.support >= "controversial"
+66. "business response to legislation".support = "critical"
+67. "business response to legislation".support != "endorsement"
+68. "business response to legislation".support < "neutral"
+69. "business response to legislation".support > "supportive"
+70. "business response to legislation".support <= "conditional"
+71. "business response to legislation".support >= "oppositional"
+72. M_NLI(NASCAR.support, Indiana.law.support)
+73. M_NLU(NASCAR.support, Indiana.law.support)
+74. M_TEM(NASCAR.support, Indiana.law.support)
+75. contra("NASCAR endorses Indiana's law", "NASCAR spoke out against Indiana's law")
+76. S(NASCAR.support, "NASCAR's support level")
+77. S(Indiana.law.support, "Support for Indiana's law")
+78. T("NASCAR's support level", "NASCAR endorses Indiana's law", Negation)
+79. tau(NASCAR.support, Indiana.law.support)
+80. NASCAR.statement = "public"
+81. NASCAR.statement != "private"
+82. NASCAR.statement < "official"
+83. NASCAR.statement > "informal"
+84. NASCAR.statement <= "corporate"
+85. NASCAR.statement >= "formal"
+86. Indiana.law.statement = "legislative"
+87. Indiana.law.statement != "executive"
+88. Indiana.law.statement < "controversial"
+89. Indiana.law.statement > "accepted"
+90. Indiana.law.statement <= "state"
+91. Indiana.law.statement >= "public"
+92. "business response to legislation".statement = "critical"
+93. "business response to legislation".statement != "supportive"
+94. "business response to legislation".statement < "neutral"
+95. "business response to legislation".statement > "favorable"
+96. "business response to legislation".statement <= "corporate"
+97. "business response to legislation".statement >= "oppositional"
+98. M_NLI(NASCAR.statement, Indiana.law.statement)
+99. M_NLU(NASCAR.statement, Indiana.law.statement)
+100. M_TEM(NASCAR.statement, Indiana.law.statement)
+
+Rules:
+1. Q[1, 1](NASCAR.response = "against" ∧ Indiana.law = "religious freedom" → NASCAR.support = "none")
+2. Q[2, 2](NASCAR.response != "support" ∧ Indiana.law.support = "mixed" → NASCAR.impact < "neutral")
+3. Q[3, 3](NASCAR.response < "strongly oppose" ∧ Indiana.law.impact > "highly criticized" ∧ NASCAR.support >= "opposed" → NASCAR.impact = "public perception")
+4. Q[4, 4](NASCAR.response > "neutral" ∧ Indiana.law != "anti-discrimination" ∧ "business response to legislation".context = "NASCAR's stance" ∧ "business response to legislation".impact >= "stakeholder relations" → Indiana.law.impact < "widely supported")
+5. Q[5, 5](NASCAR.response <= "opposed" ∧ Indiana.law < "controversial" ∧ "business response to legislation".support != "endorsement" ∧ NASCAR.support < "conditional" ∧ Indiana.law.support > "divided" → NASCAR.statement = "public")
+6. Q[6, 6](NASCAR.response >= "critical" ∧ Indiana.law.impact < "widely supported" ∧ "business response to legislation".statement != "supportive" ∧ NASCAR.support > "none" ∧ Indiana.law.support <= "statewide" ∧ "business response to legislation".context > "legislative support" → NASCAR.impact >= "significant")
+7. Q[7, 7](NASCAR.response = "against" ∧ NASCAR.impact < "negative" → Indiana.law.support != "universal")
+8. Q[8, 8](NASCAR.response != "support" ∧ "business response to legislation".impact = "reputation management" → Indiana.law.impact >= "statewide effect")
+9. Q[9, 9](NASCAR.response < "strongly oppose" ∧ Indiana.law.impact <= "legislative impact" ∧ NASCAR.support < "limited" → "business response to legislation".context != "political neutrality")
+10. Q[10, 10](NASCAR.response > "neutral" ∧ Indiana.law.support < "overwhelming" ∧ "business response to legislation".statement < "neutral" → NASCAR.impact > "neutral")
+11. Q[11, 11](NASCAR.response <= "opposed" ∧ Indiana.law.impact > "highly criticized" ∧ NASCAR.support >= "opposed" → NASCAR.statement != "private")
+12. Q[12, 12](NASCAR.response >= "critical" ∧ Indiana.law.support = "mixed" ∧ "business response to legislation".impact != "profit maximization" ∧ NASCAR.support < "conditional" → Indiana.law.statement < "controversial")
+13. Q[13, 13](NASCAR.response = "against" ∧ Indiana.law.impact < "widely supported" ∧ "business response to legislation".support > "supportive" → NASCAR.impact <= "positive")
+14. Q[14, 14](NASCAR.response != "support" ∧ Indiana.law.support > "divided" ∧ "business response to legislation".statement >= "oppositional" ∧ NASCAR.support < "limited" → NASCAR.impact < "negative")
+15. Q[15, 15](NASCAR.response < "strongly oppose" ∧ Indiana.law.impact >= "statewide effect" ∧ "business response to legislation".context < "public opinion" ∧ NASCAR.support > "none" → NASCAR.statement = "formal")
+16. Q[16, 16](NASCAR.response > "neutral" ∧ Indiana.law.support != "universal" ∧ "business response to legislation".impact < "minimal" ∧ NASCAR.support < "conditional" ∧ Indiana.law.impact > "social controversy" → NASCAR.impact >= "significant")
+17. Q[17, 17](NASCAR.response <= "opposed" ∧ Indiana.law.impact < "widely supported" ∧ "business response to legislation".statement != "supportive" ∧ NASCAR.support > "none" ∧ Indiana.law.support < "overwhelming" → NASCAR.impact = "public perception")
+18. Q[18, 18](NASCAR.response >= "critical" ∧ Indiana.law.support < "controversial" ∧ "business response to legislation".context > "legislative support" ∧ NASCAR.support < "limited" ∧ Indiana.law.impact > "highly criticized" → NASCAR.statement != "private")
+19. Q[19, 19](NASCAR.response = "against" ∧ Indiana.law.impact < "widely supported" ∧ "business response to legislation".support != "endorsement" → NASCAR.impact < "negative")
+20. Q[20, 20](NASCAR.response != "support" ∧ Indiana.law.support > "divided" ∧ "business response to legislation".statement < "neutral" → NASCAR.impact >= "significant")
+21. Q[21, 21](NASCAR.response < "strongly oppose" ∧ Indiana.law.impact <= "legislative impact" ∧ NASCAR.support < "limited" → "business response to legislation".context != "political neutrality")
+22. Q[22, 22](NASCAR.response > "neutral" ∧ Indiana.law.support < "overwhelming" ∧ "business response to legislation".statement < "neutral" → NASCAR.impact > "neutral")
+23. Q[23, 23](NASCAR.response <= "opposed" ∧ Indiana.law.impact > "highly criticized" ∧ NASCAR.support >= "opposed" → NASCAR.statement != "private")
+24. Q[24, 24](NASCAR.response >= "critical" ∧ Indiana.law.support = "mixed" ∧ "business response to legislation".impact != "profit maximization" ∧ NASCAR.support < "conditional" → Indiana.law.statement < "controversial")
+25. Q[25, 25](NASCAR.response = "against" ∧ Indiana.law.impact < "widely supported" ∧ "business response to legislation".support > "supportive" → NASCAR.impact <= "positive")
+26. Q[26, 26](NASCAR.response != "support" ∧ Indiana.law.support > "divided" ∧ "business response to legislation".statement >= "oppositional" ∧ NASCAR.support < "limited" → NASCAR.impact < "negative")
+27. Q[27, 27](NASCAR.response < "strongly oppose" ∧ Indiana.law.impact >= "statewide effect" ∧ "business response to legislation".context < "

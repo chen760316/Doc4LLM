@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 1715)
+S1: A woman hugging her child.
+S2: Woman trying to punch man.
+
+Predicates:
+1. Woman.hugging
+2. Woman.aggressive
+3. Child.nurtured
+4. Man.punched
+5. Nurturing.emotion
+6. Aggression.emotion
+7. Woman.relationship_with(Child)
+8. Woman.relationship_with(Man)
+9. Child.experiencing(nurturing)
+10. Man.experiencing(aggression)
+11. Action.hug
+12. Action.punch
+13. Emotional_state.opposing
+14. Woman.intent_to(punch)
+15. Child.feeling(safe)
+16. Man.feeling(threatened)
+17. Woman.expressing(nurturing)
+18. Woman.expressing(aggression)
+19. Child.relation_to(Woman)
+20. Man.relation_to(Woman)
+21. Nurturing.action
+22. Aggressive.action
+23. Woman.emotion(nurturing)
+24. Woman.emotion(aggression)
+25. Child.reaction_to(hug)
+26. Man.reaction_to(punch)
+27. Nurturing.context
+28. Aggression.context
+29. M_NLI(S1, S2)
+30. violate(S1, S2)
+
+Rules:
+1. Q[woman, Woman.hugging, Man.punched](Woman.hugging == true → Causal(Woman, Man))
+2. Q[woman, Woman.aggressive, Child.nurtured](Woman.aggressive == true → Causal(Woman, Child))
+3. Q[woman, Woman.relationship_with(Child), Man.feeling(threatened)](Woman.relationship_with(Child) == "nurturing" → Causal(Woman, Man))
+4. Q[woman, Child.nurtured, Woman.emotion(aggression)](Child.nurtured == true → Causal(Woman, Woman))
+5. Q[woman, Woman.intent_to(punch), Child.feeling(safe)](Woman.intent_to(punch) == true → Causal(Woman, Child))
+6. Q[woman, Woman.expressing(nurturing), Man.reaction_to(punch)](Woman.expressing(nurturing) == true → Causal(Woman, Man))
+7. Q[woman, Woman.emotion(nurturing), Aggression.emotion](Woman.emotion(nurturing) == true → Causal(Woman, Woman))
+8. Q[woman, Child.reaction_to(hug), Man.punched](Child.reaction_to(hug) == "positive" → Causal(Woman, Man))
+9. Q[woman, Woman.relationship_with(Man), Aggressive.action](Woman.relationship_with(Man) == "conflict" → Causal(Woman, Man))
+10. Q[woman, Nurturing.action, Woman.aggressive](Nurturing.action == true → Causal(Woman, Woman))
+11. Q[woman, Woman.expressing(nurturing), Woman.aggressive](Woman.expressing(nurturing) == true → Causal(Woman, Woman))
+12. Q[woman, Child.feeling(safe), Man.feeling(threatened)](Child.feeling(safe) == true → Causal(Woman, Man))
+13. Q[woman, Woman.hugging, Woman.emotion(aggression)](Woman.hugging == true → Causal(Woman, Woman))
+14. Q[woman, Child.experiencing(nurturing), Woman.intent_to(punch)](Child.experiencing(nurturing) == true → Causal(Woman, Woman))
+15. Q[woman, Woman.relationship_with(Child), Woman.emotion(aggression)](Woman.relationship_with(Child) == "nurturing" → Causal(Woman, Woman))
+16. Q[woman, Woman.hugging, Man.reaction_to(punch)](Woman.hugging == true → Causal(Woman, Man))
+17. Q[woman, Woman.expressing(nurturing), Woman.aggressive](Woman.expressing(nurturing) == true → Causal(Woman, Woman))
+18. Q[woman, Child.nurtured, Woman.intent_to(punch)](Child.nurtured == true → Causal(Woman, Woman))
+19. Q[woman, Woman.hugging, Aggression.context](Woman.hugging == true → Causal(Woman, Woman))
+20. Q[woman, Woman.relationship_with(Child), Woman.emotion(aggression)](Woman.relationship_with(Child) == "nurturing" → Causal(Woman, Woman))
+21. Q[woman, Woman.aggressive, Child.reaction_to(hug)](Woman.aggressive == true → Causal(Woman, Child))
+22. Q[woman, Woman.intent_to(punch), Child.feeling(safe)](Woman.intent_to(punch) == true → Causal(Woman, Child))
+23. Q[woman, Woman.hugging, Man.feeling(threatened)](Woman.hugging == true → Causal(Woman, Man))
+24. Q[woman, Woman.relationship_with(Man), Woman.emotion(nurturing)](Woman.relationship_with(Man) == "conflict" → Causal(Woman, Man))
+25. Q[woman, Child.reaction_to(hug), Woman.aggressive](Child.reaction_to(hug) == "positive" → Causal(Woman, Woman))
+26. Q[woman, Woman.hugging, Woman.emotion(aggression)](Woman.hugging == true → Causal(Woman, Woman))
+27. Q[woman, Child.nurtured, Woman.relationship_with(Man)](Child.nurtured == true → Causal(Woman, Man))
+28. Q[woman, Woman.expressing(nurturing), Man.feeling(threatened)](Woman.expressing(nurturing) == true → Causal(Woman, Man))
+29. Q[woman, Woman.hugging, Woman.relationship_with(Child)](Woman.hugging == true → Causal(Woman, Child))
+30. Q[woman, Woman.aggressive, Child.feeling(safe)](Woman.aggressive == true → Causal(Woman, Child))

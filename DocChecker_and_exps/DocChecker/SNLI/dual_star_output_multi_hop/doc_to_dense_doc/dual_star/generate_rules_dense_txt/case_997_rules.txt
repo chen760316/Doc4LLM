@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 997)
+S1: One man takes a picture while another looks on in a foreign store front.
+S2: Two men are on vacation as one takes a photo.
+
+Predicates:
+1. Man1.activity
+2. Man2.activity
+3. Man1.location
+4. Man2.location
+5. Store.front
+6. Store.type
+7. Vacation.context
+8. Photo.taken
+9. Man1.role
+10. Man2.role
+11. Activity.type
+12. Activity.time
+13. Activity.place
+14. Photo.subject
+15. Photo.device
+16. Store.foreign
+17. Man1.emotion
+18. Man2.emotion
+19. Man1.attitude
+20. Man2.attitude
+21. Vacation.duration
+22. Vacation.location
+23. Vacation.activity
+24. Causal(taking_photo, looking_on)
+25. M_NLI(S1, S2)
+26. violate(S1, S2)
+27. Relationship(activity, vacation)
+28. Relationship(man1, man2)
+29. Relationship(photo, store)
+30. Relationship(vacation, activity)
+
+Rules:
+1. Q[One, Man1.activity, Photo.taken](Man1.activity == "taking a photo" → Causal(taking_photo, looking_on))
+2. Q[One, Man1.location, Store.foreign](Man1.location == "foreign store" → Causal(taking_photo, looking_on))
+3. Q[One, Man2.activity, Vacation.activity](Man2.activity == "looking on" → Causal(taking_photo, looking_on))
+4. Q[One, Store.type, Store.foreign](Store.type == "store" ∧ Store.foreign == true → Causal(taking_photo, looking_on))
+5. Q[One, Man1.role, Man2.role](Man1.role == "photographer" ∧ Man2.role == "observer" → Causal(taking_photo, looking_on))
+6. Q[One, Vacation.context, Vacation.location](Vacation.context == "vacation" ∧ Vacation.location == "foreign" → Causal(taking_photo, looking_on))
+7. Q[One, Man1.emotion, Man2.emotion](Man1.emotion == "happy" ∧ Man2.emotion == "curious" → Causal(taking_photo, looking_on))
+8. Q[One, Activity.type, Vacation.activity](Activity.type == "photo taking" ∧ Vacation.activity == "relaxing" → Causal(taking_photo, looking_on))
+9. Q[One, Activity.time, Vacation.duration](Activity.time == "daytime" ∧ Vacation.duration == "short" → Causal(taking_photo, looking_on))
+10. Q[One, Photo.subject, Store.front](Photo.subject == "store front" → Causal(taking_photo, looking_on))
+11. Q[One, Photo.device, Photo.taken](Photo.device == "camera" ∧ Photo.taken == true → Causal(taking_photo, looking_on))
+12. Q[One, Store.foreign, Store.type](Store.foreign == true ∧ Store.type == "retail" → Causal(taking_photo, looking_on))
+13. Q[One, Man1.attitude, Man2.attitude](Man1.attitude == "enthusiastic" ∧ Man2.attitude == "interested" → Causal(taking_photo, looking_on))
+14. Q[One, Vacation.location, Store.foreign](Vacation.location == "foreign" ∧ Store.foreign == true → Causal(taking_photo, looking_on))
+15. Q[One, Man1.activity, Vacation.activity](Man1.activity == "taking a photo" ∧ Vacation.activity == "sightseeing" → Causal(taking_photo, looking_on))
+16. Q[One, Man2.activity, Man1.activity](Man2.activity == "looking on" ∧ Man1.activity == "taking a photo" → Causal(taking_photo, looking_on))
+17. Q[One, Store.front, Photo.subject](Store.front == "visible" ∧ Photo.subject == "store" → Causal(taking_photo, looking_on))
+18. Q[One, Vacation.context, Activity.type](Vacation.context == "vacation" ∧ Activity.type == "photo taking" → Causal(taking_photo, looking_on))
+19. Q[One, Man1.location, Vacation.location](Man1.location == "foreign store" ∧ Vacation.location == "abroad" → Causal(taking_photo, looking_on))
+20. Q[One, Man2.role, Man1.role](Man2.role == "observer" ∧ Man1.role == "photographer" → Causal(taking_photo, looking_on))
+21. Q[One, Activity.place, Store.foreign](Activity.place == "foreign store" → Causal(taking_photo, looking_on))
+22. Q[One, Vacation.activity, Man1.activity](Vacation.activity == "sightseeing" ∧ Man1.activity == "taking a photo" → Causal(taking_photo, looking_on))
+23. Q[One, Man1.emotion, Vacation.context](Man1.emotion == "excited" ∧ Vacation.context == "vacation" → Causal(taking_photo, looking_on))
+24. Q[One, Man2.emotion, Man1.activity](Man2.emotion == "interested" ∧ Man1.activity == "taking a photo" → Causal(taking_photo, looking_on))
+25. Q[One, Store.foreign, Vacation.context](Store.foreign == true ∧ Vacation.context == "vacation" → Causal(taking_photo, looking_on))
+26. Q[One, Photo.taken, Man1.activity](Photo.taken == true ∧ Man1.activity == "taking a photo" → Causal(taking_photo, looking_on))
+27. Q[One, Man1.attitude, Store.foreign](Man1.attitude == "curious" ∧ Store.foreign == true → Causal(taking_photo, looking_on))
+28. Q[One, Man2.activity, Store.front](Man2.activity == "looking on" ∧ Store.front == "visible" → Causal(taking_photo, looking_on))
+29. Q[One, Vacation.duration, Man1.activity](Vacation.duration == "short" ∧ Man1.activity == "taking a photo" → Causal(taking_photo, looking_on))
+30. Q[One, Activity.type, Store.foreign](Activity.type == "photo taking" ∧ Store.foreign == true → Causal(taking_photo, looking_on))

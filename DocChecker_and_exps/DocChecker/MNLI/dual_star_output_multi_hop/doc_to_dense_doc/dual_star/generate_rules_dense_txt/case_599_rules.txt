@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 599)
+S1: He sighed and went out, while Dave went back to his delirium.
+S2: After he left, Dave found his head clearing, and he soon felt normal again.
+
+Predicates:
+1. He.sighed
+2. He.went_out
+3. Dave.went_back_to_delirium
+4. Dave.found_head_clearing
+5. Dave.felt_normal_again
+6. He.left
+7. He.is_still_in_delirium
+8. Dave.is_in_delirium
+9. He.is_not_in_delirium
+10. Dave.is_normal
+11. M_NLI(S1, S2)
+12. Temporal(He.left, Dave.found_head_clearing)
+13. Temporal(He.left, Dave.felt_normal_again)
+14. violate(He.is_still_in_delirium, Dave.felt_normal_again)
+15. violate(Dave.is_in_delirium, Dave.felt_normal_again)
+16. He.is_a_person
+17. Dave.is_a_person
+18. He.is_outside
+19. Dave.is_inside
+20. He.sighs_before_leaving
+21. Dave.experiences_delirium
+22. Dave.experiences_clarity
+23. He.leaves_before_Dave_finds_clarity
+24. Dave's_state_changes
+25. He.is_not_present_when_Dave_finds_clarity
+26. Dave's_delirium_precedes_clarity
+27. He.sighs_and_leaves
+28. Dave's_normal_state_follows_clarity
+29. He.is_an_agent
+30. Dave.is_an_agent
+
+Rules:
+1. Q[sighed, He.sighed, Dave.is_in_delirium](He.is_still_in_delirium → Temporal(He.left, Dave.found_head_clearing))
+2. Q[went_out, He.went_out, Dave.is_in_delirium](He.is_still_in_delirium → Temporal(He.left, Dave.felt_normal_again))
+3. Q[went_back_to_delirium, Dave.went_back_to_delirium, Dave.is_normal](Dave.is_in_delirium → Temporal(He.left, Dave.found_head_clearing))
+4. Q[found_head_clearing, Dave.found_head_clearing, He.is_still_in_delirium](He.is_still_in_delirium → Temporal(He.left, Dave.felt_normal_again))
+5. Q[felt_normal_again, Dave.felt_normal_again, Dave.is_in_delirium](Dave.is_in_delirium → Temporal(He.left, Dave.found_head_clearing))
+6. Q[left, He.left, Dave.is_in_delirium](Dave.is_in_delirium → Temporal(He.left, Dave.felt_normal_again))
+7. Q[is_still_in_delirium, He.is_still_in_delirium, Dave.felt_normal_again](Dave.felt_normal_again → Temporal(He.left, Dave.found_head_clearing))
+8. Q[is_in_delirium, Dave.is_in_delirium, He.is_not_in_delirium](He.is_not_in_delirium → Temporal(He.left, Dave.found_head_clearing))
+9. Q[is_normal, Dave.is_normal, He.is_still_in_delirium](He.is_still_in_delirium → Temporal(He.left, Dave.felt_normal_again))
+10. Q[experiences_delirium, Dave.experiences_delirium, Dave.found_head_clearing](Dave.found_head_clearing → Temporal(He.left, Dave.felt_normal_again))
+11. Q[experiences_clarity, Dave.experiences_clarity, He.is_still_in_delirium](He.is_still_in_delirium → Temporal(He.left, Dave.found_head_clearing))
+12. Q[sighs_before_leaving, He.sighs_before_leaving, Dave.is_in_delirium](He.is_still_in_delirium → Temporal(He.left, Dave.felt_normal_again))
+13. Q[leaves_before_Dave_finds_clarity, He.leaves_before_Dave_finds_clarity, Dave.is_in_delirium](Dave.is_in_delirium → Temporal(He.left, Dave.found_head_clearing))
+14. Q[is_not_present_when_Dave_finds_clarity, He.is_not_present_when_Dave_finds_clarity, Dave.is_in_delirium](Dave.is_in_delirium → Temporal(He.left, Dave.felt_normal_again))
+15. Q[delirium_precedes_clarity, Dave's_delirium_precedes_clarity, He.is_not_in_delirium](He.is_not_in_delirium → Temporal(He.left, Dave.found_head_clearing))
+16. Q[sighs_and_leaves, He.sighs_and_leaves, Dave.is_in_delirium](He.is_still_in_delirium → Temporal(He.left, Dave.felt_normal_again))
+17. Q[is_a_person, He.is_a_person, Dave.is_in_delirium](Dave.is_in_delirium → Temporal(He.left, Dave.found_head_clearing))
+18. Q[is_a_person, Dave.is_a_person, He.is_still_in_delirium](He.is_still_in_delirium → Temporal(He.left, Dave.felt_normal_again))
+19. Q[is_outside, He.is_outside, Dave.is_in_delirium](He.is_still_in_delirium → Temporal(He.left, Dave.found_head_clearing))
+20. Q[is_inside, Dave.is_inside, He.is_not_in_delirium](He.is_not_in_delirium → Temporal(He.left, Dave.felt_normal_again))
+21. Q[normal_state_follows_clarity, Dave's_normal_state_follows_clarity, He.is_still_in_delirium](He.is_still_in_delirium → Temporal(He.left, Dave.found_head_clearing))
+22. Q[state_changes, Dave's_state_changes, He.is_still_in_delirium](He.is_still_in_delirium → Temporal(He.left, Dave.felt_normal_again))
+23. Q[is_an_agent, He.is_an_agent, Dave.is_in_delirium](Dave.is_in_delirium → Temporal(He.left, Dave.found_head_clearing))
+24. Q[is_an_agent, Dave.is_an_agent, He.is_still_in_delirium](He.is_still_in_delirium → Temporal(He.left, Dave.felt_normal_again))
+25. Q[is_not_in_delirium, He.is_not_in_delirium, Dave.felt_normal_again](Dave.felt_normal_again → Temporal(He.left, Dave.found_head_clearing))
+26. Q[experiences_clarity, Dave.experiences_clarity, He.is_still_in_delirium](He.is_still_in_delirium → Temporal(He.left, Dave.felt_normal_again))
+27. Q[is_still_in_delirium, He.is_still_in_delirium, Dave.found_head_clearing](He.is_still_in_delirium → Temporal(He.left, Dave.felt_normal_again))
+28. Q[is_in_delirium, Dave.is_in_delirium, He.is_not_in_delirium](He.is_not_in_delirium → Temporal(He.left, Dave.found_head_clearing))
+29. Q[is_normal, Dave.is_normal, He.is_still_in_delirium](He.is_still_in_delirium → Temporal(He.left, Dave.felt_normal_again))
+30. Q[delirium_precedes_clarity, Dave's_delirium_precedes_clarity, He.is_not_in_delirium](He.is_not_in_delirium → Temporal(He.left, Dave.found_head_clearing))

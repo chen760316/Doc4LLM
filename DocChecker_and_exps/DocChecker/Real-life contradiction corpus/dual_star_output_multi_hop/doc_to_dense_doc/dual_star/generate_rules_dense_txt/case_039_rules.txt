@@ -1,0 +1,66 @@
+Source: dense_text.txt (Index 39)
+S1: A bu Musa b al-Zarqawi was a Jordanian terrorist leader.
+S2: al-Zarqawi was Palestinian.
+
+Predicates:
+1. al-Zarqawi.nationality
+2. al-Zarqawi.occupation
+3. al-Zarqawi.birthplace
+4. al-Zarqawi.date_of_birth
+5. al-Zarqawi.date_of_death
+6. al-Zarqawi.relation_to_terrorism
+7. al-Zarqawi.affiliation
+8. al-Zarqawi.ideology
+9. al-Zarqawi.notable_actions
+10. al-Zarqawi.influence
+11. Jordanian.nationality
+12. Palestinian.nationality
+13. Jordanian.terrorist_leader
+14. Palestinian.terrorist_leader
+15. "is_a".al-Zarqawi.Jordanian
+16. "is_a".al-Zarqawi.Palestinian
+17. "conflict".Jordanian.Palestinian
+18. "dispute".nationality.al-Zarqawi
+19. M_NLI(S1, S2)
+20. Factual(al-Zarqawi, Jordanian)
+21. Factual(al-Zarqawi, Palestinian)
+22. violate(al-Zarqawi, Jordanian, Palestinian)
+23. "was_born_in".al-Zarqawi.Jordan
+24. "was_born_in".al-Zarqawi.Palestine
+25. al-Zarqawi.known_for
+26. al-Zarqawi.associated_groups
+27. "led".al-Zarqawi.group_name
+28. "operated_in".al-Zarqawi.region
+29. "targeted".al-Zarqawi.victims
+30. "influenced_by".al-Zarqawi.ideologies
+
+Rules:
+1. Q[al-Zarqawi, x0, y0](al-Zarqawi.nationality == "Jordanian" → Factual(x0, y0))
+2. Q[al-Zarqawi, x0, y0](al-Zarqawi.nationality == "Palestinian" → Factual(x0, y0))
+3. Q[al-Zarqawi, x0, y0](Factual(al-Zarqawi, Jordanian) ∧ Factual(al-Zarqawi, Palestinian) → Factual(x0, y0))
+4. Q[al-Zarqawi, x0, y0](al-Zarqawi.nationality == "Jordanian" ∧ "is_a".al-Zarqawi.Palestinian → Factual(x0, y0))
+5. Q[al-Zarqawi, x0, y0](al-Zarqawi.nationality == "Palestinian" ∧ "is_a".al-Zarqawi.Jordanian → Factual(x0, y0))
+6. Q[al-Zarqawi, x0, y0](Jordanian.nationality == "Jordanian" ∧ Palestinian.nationality == "Palestinian" → Factual(x0, y0))
+7. Q[al-Zarqawi, x0, y0](al-Zarqawi.nationality == "Jordanian" ∧ "conflict".Jordanian.Palestinian → Factual(x0, y0))
+8. Q[al-Zarqawi, x0, y0](al-Zarqawi.nationality == "Palestinian" ∧ "conflict".Jordanian.Palestinian → Factual(x0, y0))
+9. Q[al-Zarqawi, x0, y0](al-Zarqawi.nationality == "Jordanian" ∧ violate(al-Zarqawi, Jordanian, Palestinian) → Factual(x0, y0))
+10. Q[al-Zarqawi, x0, y0](al-Zarqawi.nationality == "Palestinian" ∧ violate(al-Zarqawi, Jordanian, Palestinian) → Factual(x0, y0))
+11. Q[al-Zarqawi, x0, y0](Factual(al-Zarqawi, Jordanian) ∧ "is_a".al-Zarqawi.Palestinian → Factual(x0, y0))
+12. Q[al-Zarqawi, x0, y0](Factual(al-Zarqawi, Palestinian) ∧ "is_a".al-Zarqawi.Jordanian → Factual(x0, y0))
+13. Q[al-Zarqawi, x0, y0](al-Zarqawi.nationality == "Jordanian" ∧ al-Zarqawi.nationality == "Palestinian" → Factual(x0, y0))
+14. Q[al-Zarqawi, x0, y0](al-Zarqawi.nationality == "Palestinian" ∧ al-Zarqawi.nationality == "Jordanian" → Factual(x0, y0))
+15. Q[al-Zarqawi, x0, y0](al-Zarqawi.nationality == "Jordanian" ∧ al-Zarqawi.nationality != "Palestinian" → Factual(x0, y0))
+16. Q[al-Zarqawi, x0, y0](al-Zarqawi.nationality == "Palestinian" ∧ al-Zarqawi.nationality != "Jordanian" → Factual(x0, y0))
+17. Q[al-Zarqawi, x0, y0](al-Zarqawi.nationality == "Jordanian" ∧ "dispute".nationality.al-Zarqawi → Factual(x0, y0))
+18. Q[al-Zarqawi, x0, y0](al-Zarqawi.nationality == "Palestinian" ∧ "dispute".nationality.al-Zarqawi → Factual(x0, y0))
+19. Q[al-Zarqawi, x0, y0](Factual(al-Zarqawi, Jordanian) ∧ "was_born_in".al-Zarqawi.Jordan → Factual(x0, y0))
+20. Q[al-Zarqawi, x0, y0](Factual(al-Zarqawi, Palestinian) ∧ "was_born_in".al-Zarqawi.Palestine → Factual(x0, y0))
+21. Q[al-Zarqawi, x0, y0](al-Zarqawi.nationality == "Jordanian" ∧ al-Zarqawi.nationality == "Palestinian" → Factual(x0, y0))
+22. Q[al-Zarqawi, x0, y0](al-Zarqawi.nationality == "Palestinian" ∧ al-Zarqawi.nationality == "Jordanian" → Factual(x0, y0))
+23. Q[al-Zarqawi, x0, y0](al-Zarqawi.nationality == "Jordanian" ∧ al-Zarqawi.occupation == "terrorist leader" → Factual(x0, y0))
+24. Q[al-Zarqawi, x0, y0](al-Zarqawi.nationality == "Palestinian" ∧ al-Zarqawi.occupation == "terrorist leader" → Factual(x0, y0))
+25. Q[al-Zarqawi, x0, y0](al-Zarqawi.nationality == "Jordanian" ∧ al-Zarqawi.relation_to_terrorism == "leader" → Factual(x0, y0))
+26. Q[al-Zarqawi, x0, y0](al-Zarqawi.nationality == "Palestinian" ∧ al-Zarqawi.relation_to_terrorism == "leader" → Factual(x0, y0))
+27. Q[al-Zarqawi, x0, y0](al-Zarqawi.nationality == "Jordanian" ∧ al-Zarqawi.affiliation == "terrorist groups" → Factual(x0, y0))
+28. Q[al-Zarqawi, x0, y0](al-Zarqawi.nationality == "Palestinian" ∧ al-Zarqawi.affiliation == "terrorist groups" → Factual(x0, y0))
+29. Q[al-Zarqawi, x0, y0](al-Zarqawi.nationality == "Jordanian" ∧ al-Zarqawi.ideology == "extremist" → Factual(x

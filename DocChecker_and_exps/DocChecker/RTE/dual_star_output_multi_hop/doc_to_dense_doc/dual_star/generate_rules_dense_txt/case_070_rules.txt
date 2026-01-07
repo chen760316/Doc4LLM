@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 70)
+S1: Many smuggled weapons in a combat bringing in grain or concrete-filled tanks areas.
+S2: Many weapons smuggling a combat bringing in grain or concrete-filled tanks areas.
+
+Predicates:
+1. SmuggledWeapons.successfulOperation
+2. SmuggledWeapons.failedOperation
+3. Combat.area
+4. Grain.tankType
+5. ConcreteFilledTanks.area
+6. Weapons.smugglingOperation
+7. SmugglingOperation.success
+8. SmugglingOperation.failure
+9. Combat.involvesWeapons
+10. Tanks.filledWithGrain
+11. Tanks.filledWithConcrete
+12. SmugglingOperation.confusion
+13. Weapons.inCombat
+14. Grain.transportationMethod
+15. Concrete.transportationMethod
+16. SmugglingOperation.location
+17. Combat.type
+18. Weapons.type
+19. Tanks.type
+20. SmugglingOperation.outcome
+21. SmuggledWeapons.location
+22. Combat.participants
+23. Grain.source
+24. Concrete.source
+25. SmugglingOperation.risks
+26. Weapons.destination
+27. Tanks.capacity
+28. SmugglingOperation.tactics
+29. Combat.duration
+30. Weapons.quantity
+
+Rules:
+1. Q[Many, SmuggledWeapons.successfulOperation, SmuggledWeapons.failedOperation](SmuggledWeapons.successfulOperation == true → Content(SmuggledWeapons.successfulOperation, SmuggledWeapons.failedOperation))
+2. Q[Many, SmugglingOperation.success, SmugglingOperation.failure](SmugglingOperation.success == true → Content(SmugglingOperation.success, SmugglingOperation.failure))
+3. Q[Many, Combat.involvesWeapons, Combat.participants](Combat.involvesWeapons == true → Content(Combat.involvesWeapons, Combat.participants))
+4. Q[Many, Weapons.inCombat, Weapons.type](Weapons.inCombat == true → Content(Weapons.inCombat, Weapons.type))
+5. Q[Many, Tanks.filledWithGrain, Tanks.filledWithConcrete](Tanks.filledWithGrain == true → Content(Tanks.filledWithGrain, Tanks.filledWithConcrete))
+6. Q[Many, SmugglingOperation.confusion, SmugglingOperation.success](SmugglingOperation.confusion == true → Content(SmugglingOperation.confusion, SmugglingOperation.success))
+7. Q[Many, SmuggledWeapons.location, SmugglingOperation.location](SmuggledWeapons.location == true → Content(SmuggledWeapons.location, SmugglingOperation.location))
+8. Q[Many, Weapons.quantity, Weapons.destination](Weapons.quantity > 0 → Content(Weapons.quantity, Weapons.destination))
+9. Q[Many, Combat.area, Tanks.type](Combat.area == true → Content(Combat.area, Tanks.type))
+10. Q[Many, Grain.transportationMethod, Concrete.transportationMethod](Grain.transportationMethod == "truck" → Content(Grain.transportationMethod, Concrete.transportationMethod))
+11. Q[Many, SmugglingOperation.tactics, SmugglingOperation.risks](SmugglingOperation.tactics == "stealth" → Content(SmugglingOperation.tactics, SmugglingOperation.risks))
+12. Q[Many, Combat.type, Combat.duration](Combat.type == "armed" → Content(Combat.type, Combat.duration))
+13. Q[Many, Tanks.capacity, Tanks.filledWithGrain](Tanks.capacity > 1000 → Content(Tanks.capacity, Tanks.filledWithGrain))
+14. Q[Many, Weapons.type, SmuggledWeapons.location](Weapons.type == "firearm" → Content(Weapons.type, SmuggledWeapons.location))
+15. Q[Many, SmugglingOperation.outcome, SmugglingOperation.failure](SmugglingOperation.outcome == "failed" → Content(SmugglingOperation.outcome, SmugglingOperation.failure))
+16. Q[Many, Weapons.smugglingOperation, SmugglingOperation.success](Weapons.smugglingOperation == true → Content(Weapons.smugglingOperation, SmugglingOperation.success))
+17. Q[Many, Combat.participants, Weapons.quantity](Combat.participants > 5 → Content(Combat.participants, Weapons.quantity))
+18. Q[Many, Tanks.type, ConcreteFilledTanks.area](Tanks.type == "armored" → Content(Tanks.type, ConcreteFilledTanks.area))
+19. Q[Many, SmuggledWeapons.successfulOperation, Weapons.inCombat](SmuggledWeapons.successfulOperation == true → Content(SmuggledWeapons.successfulOperation, Weapons.inCombat))
+20. Q[Many, SmugglingOperation.failure, SmugglingOperation.confusion](SmugglingOperation.failure == true → Content(SmugglingOperation.failure, SmugglingOperation.confusion))
+21. Q[Many, Combat.area, SmugglingOperation.location](Combat.area == "urban" → Content(Combat.area, SmugglingOperation.location))
+22. Q[Many, Grain.source, Concrete.source](Grain.source == "local" → Content(Grain.source, Concrete.source))
+23. Q[Many, Weapons.type, SmugglingOperation.tactics](Weapons.type == "explosive" → Content(Weapons.type, SmugglingOperation.tactics))
+24. Q[Many, Tanks.filledWithConcrete, Tanks.capacity](Tanks.filledWithConcrete == true → Content(Tanks.filledWithConcrete, Tanks.capacity))
+25. Q[Many, SmugglingOperation.success, Weapons.destination](SmugglingOperation.success == true → Content(SmugglingOperation.success, Weapons.destination))
+26. Q[Many, Combat.duration, Combat.type](Combat.duration > 30 → Content(Combat.duration, Combat.type))
+27. Q[Many, SmuggledWeapons.location, Combat.area](SmuggledWeapons.location == "border" → Content(SmuggledWeapons.location, Combat.area))
+28. Q[Many, Weapons.quantity, SmugglingOperation.risks](Weapons.quantity < 10 → Content(Weapons.quantity, SmugglingOperation.risks))
+29. Q[Many, Tanks.type, SmugglingOperation.tactics](Tanks.type == "transport" → Content(Tanks.type, SmugglingOperation.tactics))
+30. Q[Many, SmugglingOperation.failure, Combat.participants](SmugglingOperation.failure == true → Content(SmugglingOperation.failure, Combat.participants))

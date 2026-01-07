@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 1091)
+S1: Once the requester and GAO have agreed to proceed with the request, GAO will provide the following to the
+S2: [SEP] The GAO and requester must agree before a request will proceed.
+
+Predicates:
+1. Requester.agree
+2. GAO.agree
+3. Requester.request
+4. GAO.provide
+5. Requester.requester_id
+6. GAO.gao_id
+7. Requester.agreement_status
+8. GAO.agreement_status
+9. Requester.request_status
+10. GAO.action_taken
+11. Agreement.prerequisite
+12. Agreement.leads_to.action
+13. Requester.request_type
+14. GAO.response_time
+15. Requester.communication_method
+16. GAO.communication_method
+17. Requester.request_date
+18. GAO.provision_date
+19. Agreement.terms
+20. Requester.needs
+21. GAO.resources
+22. Requester.satisfaction_level
+23. GAO.efficiency_rating
+24. Agreement.validity_period
+25. Requester.follow_up
+26. GAO.follow_up
+27. Agreement.renewal_option
+28. Requester.feedback
+29. GAO.feedback
+30. Agreement.consequences
+
+Rules:
+1. Q[Once, Requester.agree == true ∧ GAO.agree == true → Causal(Requester.request, GAO.provide)]
+2. Q[Once, Requester.agree == false ∧ GAO.agree == false → Causal(Requester.request, GAO.provide)]
+3. Q[Once, Requester.agreement_status == "pending" → Causal(Requester.request, GAO.provide)]
+4. Q[Once, GAO.agreement_status == "not agreed" → Causal(Requester.request, GAO.provide)]
+5. Q[Once, Requester.request_status == "submitted" ∧ GAO.action_taken == false → Causal(Requester.request, GAO.provide)]
+6. Q[Once, Agreement.prerequisite == true ∧ Requester.agree == false → Causal(Requester.request, GAO.provide)]
+7. Q[Once, Agreement.leads_to.action == true ∧ GAO.agree == false → Causal(Requester.request, GAO.provide)]
+8. Q[Once, Requester.request_type == "urgent" ∧ GAO.agree == false → Causal(Requester.request, GAO.provide)]
+9. Q[Once, Requester.needs == "immediate" ∧ GAO.agreement_status == "not agreed" → Causal(Requester.request, GAO.provide)]
+10. Q[Once, Requester.follow_up == true ∧ GAO.agree == false → Causal(Requester.request, GAO.provide)]
+11. Q[Once, Requester.satisfaction_level < 50 ∧ GAO.agree == false → Causal(Requester.request, GAO.provide)]
+12. Q[Once, GAO.efficiency_rating < 3 ∧ Requester.agree == true → Causal(Requester.request, GAO.provide)]
+13. Q[Once, Agreement.validity_period == "expired" ∧ Requester.agree == false → Causal(Requester.request, GAO.provide)]
+14. Q[Once, Requester.communication_method == "email" ∧ GAO.agree == false → Causal(Requester.request, GAO.provide)]
+15. Q[Once, GAO.response_time > 48 ∧ Requester.agree == false → Causal(Requester.request, GAO.provide)]
+16. Q[Once, Agreement.terms == "not met" ∧ Requester.agree == false → Causal(Requester.request, GAO.provide)]
+17. Q[Once, Requester.feedback == "negative" ∧ GAO.agree == false → Causal(Requester.request, GAO.provide)]
+18. Q[Once, GAO.follow_up == false ∧ Requester.agree == false → Causal(Requester.request, GAO.provide)]
+19. Q[Once, Requester.request_date < today ∧ GAO.agree == false → Causal(Requester.request, GAO.provide)]
+20. Q[Once, GAO.provision_date > today ∧ Requester.agree == false → Causal(Requester.request, GAO.provide)]
+21. Q[Once, Requester.requester_id == "unknown" ∧ GAO.agree == false → Causal(Requester.request, GAO.provide)]
+22. Q[Once, GAO.gao_id == "invalid" ∧ Requester.agree == false → Causal(Requester.request, GAO.provide)]
+23. Q[Once, Agreement.consequences == "none" ∧ Requester.agree == false → Causal(Requester.request, GAO.provide)]
+24. Q[Once, Requester.request_status == "canceled" ∧ GAO.agree == false → Causal(Requester.request, GAO.provide)]
+25. Q[Once, Requester.agree == true ∧ GAO.agreement_status == "not agreed" → Causal(Requester.request, GAO.provide)]
+26. Q[Once, GAO.action_taken == true ∧ Requester.agree == false → Causal(Requester.request, GAO.provide)]
+27. Q[Once, Requester.request_type == "standard" ∧ GAO.agree == false → Causal(Requester.request, GAO.provide)]
+28. Q[Once, Requester.needs == "clarification" ∧ GAO.agree == false → Causal(Requester.request, GAO.provide)]
+29. Q[Once, GAO.resources == "insufficient" ∧ Requester.agree == false → Causal(Requester.request, GAO.provide)]
+30. Q[Once, Agreement.renewal_option == "not available" ∧ Requester.agree == false → Causal(Requester.request, GAO.provide)]

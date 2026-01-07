@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 67)
+S1: Randall complains that the trial court improperly characterized his stock options as 100% community property when they were actually partly his separate property.
+S2: The divorce decree awards Ginger: One-half (50%) of the 'fair value' options to purchase shares in Onex Food Services, Inc. held in the name of Randall C. Boyd.
+
+Predicates:
+1. Randall.stock_options.characterization
+2. Randall.stock_options.community_property_percentage
+3. Randall.stock_options.separate_property_percentage
+4. Ginger.divorce_decree.awarded_options
+5. Ginger.divorce_decree.fair_value_options
+6. Onex_Food_Services.stock_options.holder
+7. Randall_C_Boyd.stock_options.holder
+8. divorce_decree.characterization_of_options
+9. community_property.options_awarded_to_Ginger
+10. separate_property.options_not_awarded_to_Ginger
+11. trial_court.characterization_of_stock_options
+12. stock_options.fair_value
+13. divorce_decree.awarded_percentage
+14. Randall.complaint.trial_court_decision
+15. Randall.stock_options.value
+16. Ginger.awarded_options.value
+17. divorce_decree.options.characterization
+18. community_property.options.value
+19. separate_property.options.value
+20. Randall.stock_options.ownership
+21. Ginger.divorce_decree.ownership_rights
+22. trial_court.decision.on_stock_options
+23. divorce_decree.split_of_assets
+24. Randall.stock_options.type
+25. Ginger.divorce_decree.entitlement
+26. Onex_Food_Services.options.type
+27. Randall_C_Boyd.separate_property
+28. Randall_C_Boyd.community_property
+29. divorce_decree.legal_characterization
+30. trial_court.decision.impact_on_Randall
+
+Rules:
+1. Q[Randall, Randall.stock_options.characterization, divorce_decree.characterization_of_options](Randall.stock_options.characterization == "100% community property" → Factual(x0, y0))
+2. Q[Randall, Randall.stock_options.separate_property_percentage, divorce_decree.awarded_percentage](Randall.stock_options.separate_property_percentage > 0 → Factual(x0, y0))
+3. Q[Randall, Randall.stock_options.community_property_percentage, divorce_decree.awarded_percentage](Randall.stock_options.community_property_percentage < 100 → Factual(x0, y0))
+4. Q[Ginger, Ginger.divorce_decree.awarded_options, community_property.options_awarded_to_Ginger](Ginger.divorce_decree.awarded_options == "50% of options" → Factual(x0, y0))
+5. Q[Ginger, Ginger.divorce_decree.fair_value_options, community_property.options.value](Ginger.divorce_decree.fair_value_options == "fair value of options" → Factual(x0, y0))
+6. Q[Onex_Food_Services, Onex_Food_Services.stock_options.holder, Randall_C_Boyd.stock_options.holder](Onex_Food_Services.stock_options.holder == "Randall C. Boyd" → Factual(x0, y0))
+7. Q[Randall, Randall.stock_options.ownership, divorce_decree.split_of_assets](Randall.stock_options.ownership == "partly separate" → Factual(x0, y0))
+8. Q[Ginger, Ginger.divorce_decree.ownership_rights, community_property.options_awarded_to_Ginger](Ginger.divorce_decree.ownership_rights == "50% of options" → Factual(x0, y0))
+9. Q[trial_court, trial_court.characterization_of_stock_options, divorce_decree.legal_characterization](trial_court.characterization_of_stock_options == "100% community property" → Factual(x0, y0))
+10. Q[Randall, Randall.complaint.trial_court_decision, trial_court.decision.on_stock_options](Randall.complaint.trial_court_decision == "improper characterization" → Factual(x0, y0))
+11. Q[Randall, Randall.stock_options.value, community_property.options.value](Randall.stock_options.value > 0 → Factual(x0, y0))
+12. Q[Ginger, Ginger.awarded_options.value, community_property.options.value](Ginger.awarded_options.value == "half of options value" → Factual(x0, y0))
+13. Q[Randall, Randall.stock_options.type, divorce_decree.options.characterization](Randall.stock_options.type == "options to purchase shares" → Factual(x0, y0))
+14. Q[Randall_C_Boyd, Randall_C_Boyd.separate_property, divorce_decree.split_of_assets](Randall_C_Boyd.separate_property == "part of stock options" → Factual(x0, y0))
+15. Q[Randall_C_Boyd, Randall_C_Boyd.community_property, divorce_decree.split_of_assets](Randall_C_Boyd.community_property == "awarded to Ginger" → Factual(x0, y0))
+16. Q[trial_court, trial_court.decision.impact_on_Randall, divorce_decree.split_of_assets](trial_court.decision.impact_on_Randall == "awarding options to Ginger" → Factual(x0, y0))
+17. Q[Randall, Randall.stock_options.characterization, divorce_decree.options.characterization](Randall.stock_options.characterization == "partly separate" → Factual(x0, y0))
+18. Q[Ginger, Ginger.divorce_decree.entitlement, community_property.options_awarded_to_Ginger](Ginger.divorce_decree.entitlement == "50% of options" → Factual(x0, y0))
+19. Q[Randall, Randall.stock_options.community_property_percentage, divorce_decree.awarded_percentage](Randall.stock_options.community_property_percentage == 50 → Factual(x0, y0))
+20. Q[Randall, Randall.stock_options.separate_property_percentage, divorce_decree.awarded_percentage](Randall.stock_options.separate_property_percentage == 50 → Factual(x0, y0))
+21. Q[trial_court, trial_court.decision.on_stock_options, divorce_decree.characterization_of_options](trial_court.decision.on_stock_options == "awarded as community property" → Factual(x0, y0))
+22. Q[Randall, Randall.stock_options.ownership, divorce_decree.characterization_of_options](Randall.stock_options.ownership == "partly community" → Factual(x0, y0))
+23. Q[Ginger, Ginger.divorce_decree.awarded_options, Randall.stock_options.characterization](Ginger.divorce_decree.awarded_options == "half of options" → Factual(x0, y0))
+24. Q[Randall, Randall.stock_options.value, divorce_decree.options.characterization](Randall.stock_options.value == "value of options" → Factual(x0, y0))
+25. Q[Onex_Food_Services, Onex_Food_Services.options.type, Randall.stock_options.type](Onex_Food_Services.options.type == "stock options" → Factual(x0, y0))
+26. Q[Randall, Randall.stock_options.characterization, trial_court.decision.impact_on_Randall](Randall.stock_options.characterization == "100% community property" → Factual(x0, y0))
+27. Q[Ginger, Ginger.divorce_decree.fair_value_options, Randall.stock_options.value](Ginger.divorce_decree.fair_value_options == "fair value of options" → Factual(x0, y0))
+28. Q[Randall, Randall.stock_options.community_property_percentage, Randall.stock_options.separate_property_percentage](Randall.stock_options.community_property_percentage + Randall.stock_options.separate_property_percentage == 100 → Factual(x0, y0))
+29. Q[trial_court, trial_court.decision.on_stock_options, Randall.stock_options.characterization](trial_court.decision.on_stock_options == "awarding options as community property" → Factual(x0, y0))
+30. Q[Ginger, Ginger.divorce_decree.entitlement, Randall.stock_options.characterization](Ginger.divorce_decree.entitlement == "50% of community property" → Factual(x0, y0))

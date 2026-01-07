@@ -1,0 +1,62 @@
+Source: dense_text.txt (Index 362)
+S1: A man walking along a flooded street holding a black umbrella.
+S2: A person moves down the street.
+
+Predicates:
+1. Man.walking
+2. Man.holding_umbrella
+3. Man.in_flooded_street
+4. Person.moving
+5. Person.down_street
+6. Umbrella.color_black
+7. Street.is_flooded
+8. Action.walking.is_performed_by(Man)
+9. Action.holding.is_performed_by(Man)
+10. Action.moving.is_performed_by(Person)
+11. Location.street.has_condition(flooded)
+12. Entity.Man.has_attribute(holding_umbrella)
+13. Entity.Person.has_attribute(moving)
+14. Relationship.holding.is_related_to(Man, Umbrella)
+15. Relationship.walking.is_related_to(Man, Street)
+16. Relationship.moving.is_related_to(Person, Street)
+17. Meta.M_NLI(S1, S2)
+18. Meta.Negation(S1, S2)
+19. Meta.violate(S1, S2)
+20. Umbrella.is_owned_by(Man)
+21. Street.is_traversed_by(Person)
+22. Action.holding.is_specific_to(Man)
+23. Action.moving.is_generalized_for(Person)
+24. Condition.flooded.applies_to(Street)
+25. Entity.Umbrella.has_property(color_black)
+26. Entity.Street.has_property(is_flooded)
+27. Action.walking.is_a_type_of(moving)
+28. Entity.Man.is_a_type_of(Person)
+29. Relationship.moving.is_a_type_of(action)
+30. Condition.holding.applies_to(Man)
+
+Rules:
+1. Q[man, Man.walking, Person.moving](Man.walking == true ∧ Person.down_street == true → Negation(Man.walking, Person.moving))
+2. Q[man, Man.holding_umbrella, Person.moving](Man.holding_umbrella == true ∧ Person.down_street == true → Negation(Man.holding_umbrella, Person.moving))
+3. Q[man, Man.in_flooded_street, Person.down_street](Man.in_flooded_street == true ∧ Person.down_street == true → Negation(Man.in_flooded_street, Person.down_street))
+4. Q[man, Man.walking, Person.down_street](Man.walking == true ∧ Person.moving == true → Negation(Man.walking, Person.down_street))
+5. Q[man, Man.holding_umbrella, Person.down_street](Man.holding_umbrella == true ∧ Person.moving == true → Negation(Man.holding_umbrella, Person.down_street))
+6. Q[man, Man.in_flooded_street, Street.is_flooded](Man.in_flooded_street == true ∧ Street.is_flooded == true → Negation(Man.in_flooded_street, Street.is_flooded))
+7. Q[man, Action.walking.is_performed_by(Man), Action.moving.is_performed_by(Person)](Action.walking.is_performed_by(Man) == true ∧ Action.moving.is_performed_by(Person) == true → Negation(Action.walking.is_performed_by(Man), Action.moving.is_performed_by(Person)))
+8. Q[man, Relationship.walking.is_related_to(Man, Street), Relationship.moving.is_related_to(Person, Street)](Relationship.walking.is_related_to(Man, Street) == true ∧ Relationship.moving.is_related_to(Person, Street) == true → Negation(Relationship.walking.is_related_to(Man, Street), Relationship.moving.is_related_to(Person, Street)))
+9. Q[man, Entity.Man.has_attribute(holding_umbrella), Entity.Person.has_attribute(moving)](Entity.Man.has_attribute(holding_umbrella) == true ∧ Entity.Person.has_attribute(moving) == true → Negation(Entity.Man.has_attribute(holding_umbrella), Entity.Person.has_attribute(moving)))
+10. Q[man, Umbrella.color_black, Person.moving](Umbrella.color_black == true ∧ Person.moving == true → Negation(Umbrella.color_black, Person.moving))
+11. Q[man, Street.is_flooded, Person.down_street](Street.is_flooded == true ∧ Person.down_street == true → Negation(Street.is_flooded, Person.down_street))
+12. Q[man, Action.holding.is_specific_to(Man), Action.moving.is_generalized_for(Person)](Action.holding.is_specific_to(Man) == true ∧ Action.moving.is_generalized_for(Person) == true → Negation(Action.holding.is_specific_to(Man), Action.moving.is_generalized_for(Person)))
+13. Q[man, Condition.flooded.applies_to(Street), Entity.Street.has_property(is_flooded)](Condition.flooded.applies_to(Street) == true ∧ Entity.Street.has_property(is_flooded) == true → Negation(Condition.flooded.applies_to(Street), Entity.Street.has_property(is_flooded)))
+14. Q[man, Relationship.holding.is_related_to(Man, Umbrella), Umbrella.is_owned_by(Man)](Relationship.holding.is_related_to(Man, Umbrella) == true ∧ Umbrella.is_owned_by(Man) == true → Negation(Relationship.holding.is_related_to(Man, Umbrella), Umbrella.is_owned_by(Man)))
+15. Q[man, Action.walking.is_a_type_of(moving), Action.moving.is_performed_by(Person)](Action.walking.is_a_type_of(moving) == true ∧ Action.moving.is_performed_by(Person) == true → Negation(Action.walking.is_a_type_of(moving), Action.moving.is_performed_by(Person)))
+16. Q[man, Entity.Man.is_a_type_of(Person), Entity.Person.has_attribute(moving)](Entity.Man.is_a_type_of(Person) == true ∧ Entity.Person.has_attribute(moving) == true → Negation(Entity.Man.is_a_type_of(Person), Entity.Person.has_attribute(moving)))
+17. Q[man, Man.walking, Street.is_traversed_by(Person)](Man.walking == true ∧ Street.is_traversed_by(Person) == true → Negation(Man.walking, Street.is_traversed_by(Person)))
+18. Q[man, Man.in_flooded_street, Condition.flooded.applies_to(Street)](Man.in_flooded_street == true ∧ Condition.flooded.applies_to(Street) == true → Negation(Man.in_flooded_street, Condition.flooded.applies_to(Street)))
+19. Q[man, Action.holding.is_performed_by(Man), Condition.holding.applies_to(Man)](Action.holding.is_performed_by(Man) == true ∧ Condition.holding.applies_to(Man) == true → Negation(Action.holding.is_performed_by(Man), Condition.holding.applies_to(Man)))
+20. Q[man, Man.holding_umbrella, Umbrella.is_owned_by(Man)](Man.holding_umbrella == true ∧ Umbrella.is_owned_by(Man) == true → Negation(Man.holding_umbrella, Umbrella.is_owned_by(Man)))
+21. Q[man, Man.walking, Action.moving.is_a_type_of(action)](Man.walking == true ∧ Action.moving.is_a_type_of(action) == true → Negation(Man.walking, Action.moving.is_a_type_of(action)))
+22. Q[man, Man.in_flooded_street, Entity.Street.has_property(is_flooded)](Man.in_flooded_street == true ∧ Entity.Street.has_property(is_flooded) == true → Negation(Man.in_flooded_street, Entity.Street.has_property(is_flooded)))
+23. Q[man, Person.down_street, Street.is_traversed_by(Person)](Person.down_street == true ∧ Street.is_traversed_by(Person) == true → Negation(Person.down_street, Street.is_traversed_by(Person)))
+24. Q[man, Man.holding_umbrella, Action.holding.is_specific_to(Man)](Man.holding_umbrella == true ∧ Action.holding.is_specific_to(Man) == true → Negation(Man.holding_umbrella, Action.holding.is_specific_to(Man)))
+25. Q[man, Man.walking, Action.walking.is_performed_by(Man)](Man.walking == true ∧ Action.walking.is_performed_by(Man

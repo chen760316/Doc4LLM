@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 134)
+S1: The short-term explanation is that the region, which usually has dry summers, has had nine inches less rainfall than normal this year.
+S2: Despite such losses there is a sense that the speed, dedication, and coordination of firefighters from several states and jurisdictions are resulting in greater efficiency than in past siege situations.
+
+Predicates:
+1. Region.has_dry_summers
+2. Region.rainfall_normal
+3. Region.rainfall_current
+4. Rainfall.current_amount
+5. Rainfall.normal_amount
+6. Rainfall.deficit
+7. Firefighters.speed
+8. Firefighters.dedication
+9. Firefighters.coordination
+10. Firefighters.efficiency
+11. Firefighters.states_involved
+12. Firefighters.jurisdictions_involved
+13. Fire_situation.significant_issue
+14. Fire_situation.efficiency_comparison
+15. Fire_situation.past_siege_situations
+16. Losses.existence
+17. Losses.impact_on_fire
+18. Conditions.detrimental
+19. Conditions.efficiency_improvement
+20. Efficiency.greater_than_past
+21. Rainfall.impact_on_fire
+22. Firefighters.efforts
+23. Firefighters.coordination_level
+24. Firefighters.efficiency_level
+25. Region.weather_conditions
+26. Region.fire_risk
+27. Fire_situation.current_state
+28. Firefighters.resources
+29. Firefighters.training
+30. Firefighters.response_time
+
+Rules:
+1. Q[The, Region.has_dry_summers, Fire_situation.significant_issue](Region.has_dry_summers == true → Causal(Region.has_dry_summers, Fire_situation.significant_issue))
+2. Q[The, Region.rainfall_normal, Fire_situation.significant_issue](Region.rainfall_normal == true → Causal(Region.rainfall_normal, Fire_situation.significant_issue))
+3. Q[The, Region.rainfall_current, Fire_situation.significant_issue](Region.rainfall_current < 9 inches → Causal(Region.rainfall_current, Fire_situation.significant_issue))
+4. Q[The, Rainfall.current_amount, Fire_situation.significant_issue](Rainfall.current_amount < Rainfall.normal_amount → Causal(Rainfall.current_amount, Fire_situation.significant_issue))
+5. Q[The, Rainfall.deficit, Fire_situation.significant_issue](Rainfall.deficit == 9 inches → Causal(Rainfall.deficit, Fire_situation.significant_issue))
+6. Q[The, Firefighters.speed, Firefighters.efficiency](Firefighters.speed > previous_speed → Causal(Firefighters.speed, Firefighters.efficiency))
+7. Q[The, Firefighters.dedication, Firefighters.efficiency](Firefighters.dedication > previous_dedication → Causal(Firefighters.dedication, Firefighters.efficiency))
+8. Q[The, Firefighters.coordination, Firefighters.efficiency](Firefighters.coordination > previous_coordination → Causal(Firefighters.coordination, Firefighters.efficiency))
+9. Q[The, Firefighters.efficiency, Fire_situation.efficiency_comparison](Firefighters.efficiency > previous_efficiency → Causal(Firefighters.efficiency, Fire_situation.efficiency_comparison))
+10. Q[The, Firefighters.states_involved, Firefighters.efficiency](Firefighters.states_involved > previous_states → Causal(Firefighters.states_involved, Firefighters.efficiency))
+11. Q[The, Firefighters.jurisdictions_involved, Firefighters.efficiency](Firefighters.jurisdictions_involved > previous_jurisdictions → Causal(Firefighters.jurisdictions_involved, Firefighters.efficiency))
+12. Q[The, Losses.existence, Fire_situation.significant_issue](Losses.existence == true → Causal(Losses.existence, Fire_situation.significant_issue))
+13. Q[The, Losses.impact_on_fire, Fire_situation.significant_issue](Losses.impact_on_fire == true → Causal(Losses.impact_on_fire, Fire_situation.significant_issue))
+14. Q[The, Conditions.detrimental, Fire_situation.significant_issue](Conditions.detrimental == true → Causal(Conditions.detrimental, Fire_situation.significant_issue))
+15. Q[The, Conditions.efficiency_improvement, Firefighters.efficiency](Conditions.efficiency_improvement == true → Causal(Conditions.efficiency_improvement, Firefighters.efficiency))
+16. Q[The, Efficiency.greater_than_past, Firefighters.efficiency](Efficiency.greater_than_past == true → Causal(Efficiency.greater_than_past, Firefighters.efficiency))
+17. Q[The, Rainfall.impact_on_fire, Fire_situation.significant_issue](Rainfall.impact_on_fire == true → Causal(Rainfall.impact_on_fire, Fire_situation.significant_issue))
+18. Q[The, Firefighters.efforts, Firefighters.efficiency](Firefighters.efforts > previous_efforts → Causal(Firefighters.efforts, Firefighters.efficiency))
+19. Q[The, Firefighters.coordination_level, Firefighters.efficiency](Firefighters.coordination_level > previous_coordination_level → Causal(Firefighters.coordination_level, Firefighters.efficiency))
+20. Q[The, Firefighters.efficiency_level, Firefighters.efficiency](Firefighters.efficiency_level > previous_efficiency_level → Causal(Firefighters.efficiency_level, Firefighters.efficiency))
+21. Q[The, Region.weather_conditions, Fire_situation.significant_issue](Region.weather_conditions == dry → Causal(Region.weather_conditions, Fire_situation.significant_issue))
+22. Q[The, Region.fire_risk, Fire_situation.significant_issue](Region.fire_risk == high → Causal(Region.fire_risk, Fire_situation.significant_issue))
+23. Q[The, Fire_situation.current_state, Fire_situation.significant_issue](Fire_situation.current_state == severe → Causal(Fire_situation.current_state, Fire_situation.significant_issue))
+24. Q[The, Firefighters.resources, Firefighters.efficiency](Firefighters.resources > previous_resources → Causal(Firefighters.resources, Firefighters.efficiency))
+25. Q[The, Firefighters.training, Firefighters.efficiency](Firefighters.training > previous_training → Causal(Firefighters.training, Firefighters.efficiency))
+26. Q[The, Firefighters.response_time, Firefighters.efficiency](Firefighters.response_time < previous_response_time → Causal(Firefighters.response_time, Firefighters.efficiency))
+27. Q[The, Rainfall.normal_amount, Fire_situation.significant_issue](Rainfall.normal_amount > Rainfall.current_amount + 9 inches → Causal(Rainfall.normal_amount, Fire_situation.significant_issue))
+28. Q[The, Firefighters.efforts, Fire_situation.efficiency_comparison](Firefighters.efforts > previous_efforts → Causal(Firefighters.efforts, Fire_situation.efficiency_comparison))
+29. Q[The, Firefighters.efficiency, Fire_situation.efficiency_comparison](Firefighters.efficiency > previous_efficiency → Causal(Firefighters.efficiency, Fire_situation.efficiency_comparison))
+30. Q[The, Conditions.detrimental, Firefighters.efficiency](Conditions.detrimental == false → Causal(Conditions.detrimental, Firefighters.efficiency))

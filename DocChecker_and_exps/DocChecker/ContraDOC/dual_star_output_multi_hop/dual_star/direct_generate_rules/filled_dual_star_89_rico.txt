@@ -1,0 +1,46 @@
+Predicates:
+Felix Graham.label != "Person"
+Felix Graham.label = "Person"
+Felix Graham.name != "Felix Graham"
+Felix Graham.name != Madeline Staveley.name
+Felix Graham.name != Mary Snow.name
+Felix Graham.name = "Felix Graham"
+Felix Graham.status != "engaged"
+Felix Graham.status != Mary Snow.status
+Felix Graham.status = "engaged"
+Felix Graham___Madeline Staveley.doc_id = "story_train_3585"
+Felix Graham___Madeline Staveley.location = "Noningsby"
+Felix Graham___Madeline Staveley.relationship != Felix Graham___Mary Snow.relationship
+Felix Graham___Madeline Staveley.relationship = "Felix Graham has a slowly unfolding romance with Madeline Staveley."
+Felix Graham___Mary Snow.action = "supports and educates"
+Felix Graham___Mary Snow.doc_id = "story_train_3585"
+Felix Graham___Mary Snow.relationship = "Felix Graham has a long-standing engagement to Mary Snow."
+Madeline Staveley.father != "Judge Stavely"
+Madeline Staveley.father = "Judge Stavely"
+Madeline Staveley.label != "Person"
+Madeline Staveley.label = "Person"
+Madeline Staveley.name != "Madeline Staveley"
+Madeline Staveley.name != Mary Snow.name
+Madeline Staveley.name = "Madeline Staveley"
+Madeline Staveley.relationship != "daughter"
+Madeline Staveley.relationship = "daughter"
+Mary Snow.label != "Person"
+Mary Snow.label = "Person"
+Mary Snow.name != "Mary Snow"
+Mary Snow.name = "Mary Snow"
+Mary Snow.status != "penniless"
+Mary Snow.status = "penniless"
+None_ML(Felix Graham.attrs, Madeline Staveley.attrs)
+None_ML(Felix Graham___Mary Snow.attrs, Felix Graham___Madeline Staveley.attrs)
+
+Rules:
+Q[Felix Graham,Felix Graham] (Felix Graham.name = "Felix Graham" ∧ Felix Graham___Madeline Staveley.relationship != Felix Graham___Mary Snow.relationship → Felix Graham___Madeline Staveley.location = "Noningsby")
+Q[Felix Graham,Felix Graham] (None_ML(Felix Graham___Mary Snow.attrs, Felix Graham___Madeline Staveley.attrs) ∧ Madeline Staveley.name = "Madeline Staveley" ∧ Mary Snow.label != "Person" ∧ Madeline Staveley.label = "Person" ∧ Felix Graham___Mary Snow.doc_id = "story_train_3585" ∧ Felix Graham.label != "Person" → Mary Snow.name = "Mary Snow")
+Q[Felix Graham,Felix Graham] (Felix Graham___Mary Snow.relationship = "Felix Graham has a long-standing engagement to Mary Snow." ∧ Felix Graham___Mary Snow.action = "supports and educates" ∧ Madeline Staveley.label = "Person" ∧ Madeline Staveley.relationship = "daughter" ∧ Mary Snow.name = "Mary Snow" → Felix Graham.name != Madeline Staveley.name)
+Q[Felix Graham,Felix Graham] (Mary Snow.label = "Person" ∧ Madeline Staveley.relationship = "daughter" ∧ Felix Graham___Madeline Staveley.location = "Noningsby" → Felix Graham___Mary Snow.doc_id = "story_train_3585")
+Q[Felix Graham,Felix Graham] (Felix Graham.name = "Felix Graham" ∧ Felix Graham.label = "Person" ∧ Felix Graham.status != Mary Snow.status ∧ Felix Graham___Mary Snow.relationship = "Felix Graham has a long-standing engagement to Mary Snow." → Mary Snow.label != "Person")
+Q[Felix Graham,Felix Graham] (Madeline Staveley.name != Mary Snow.name ∧ Felix Graham___Mary Snow.doc_id = "story_train_3585" ∧ Felix Graham.name = "Felix Graham" ∧ None_ML(Felix Graham.attrs, Madeline Staveley.attrs) ∧ Mary Snow.name != "Mary Snow" → Madeline Staveley.father = "Judge Stavely")
+Q[Felix Graham,Felix Graham] (Felix Graham.name = "Felix Graham" ∧ Madeline Staveley.name = "Madeline Staveley" ∧ Mary Snow.status != "penniless" → Felix Graham___Madeline Staveley.relationship = "Felix Graham has a slowly unfolding romance with Madeline Staveley.")
+Q[Felix Graham,Felix Graham] (Madeline Staveley.relationship = "daughter" ∧ None_ML(Felix Graham___Mary Snow.attrs, Felix Graham___Madeline Staveley.attrs) ∧ Madeline Staveley.label = "Person" ∧ Felix Graham.label = "Person" ∧ Madeline Staveley.relationship != "daughter" ∧ Madeline Staveley.name != Mary Snow.name → Mary Snow.label = "Person")
+Q[Felix Graham,Felix Graham] (Felix Graham.name != Mary Snow.name ∧ Felix Graham___Madeline Staveley.doc_id = "story_train_3585" → None_ML(Felix Graham___Mary Snow.attrs, Felix Graham___Madeline Staveley.attrs))
+Q[Felix Graham,Felix Graham] (Madeline Staveley.label = "Person" ∧ Felix Graham___Madeline Staveley.relationship != Felix Graham___Mary Snow.relationship ∧ Mary Snow.name != "Mary Snow" ∧ Madeline Staveley.father != "Judge Stavely" → Madeline Staveley.name = "Madeline Staveley")

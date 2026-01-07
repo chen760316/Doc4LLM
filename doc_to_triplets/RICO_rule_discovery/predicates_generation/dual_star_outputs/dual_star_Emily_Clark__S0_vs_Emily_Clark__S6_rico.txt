@@ -1,0 +1,64 @@
+Predicates:
+California Health Alliance.type != "health organization"
+California Health Alliance.type = "health organization"
+Emily Clark__S0.age != 42
+Emily Clark__S0.age < 47
+Emily Clark__S0.age <= 42
+Emily Clark__S0.age = 42
+Emily Clark__S0.age > 37
+Emily Clark__S0.age >= 42
+Emily Clark__S0.country_of_citizenship != "United Kingdom"
+Emily Clark__S0.country_of_citizenship != Emily Clark__S6.country_of_citizenship
+Emily Clark__S0.country_of_citizenship = "United Kingdom"
+Emily Clark__S0.location != "San Francisco"
+Emily Clark__S0.location = "San Francisco"
+Emily Clark__S0.nationality != "American"
+Emily Clark__S0.nationality = "American"
+Emily Clark__S0.occupation != "writer"
+Emily Clark__S0.occupation != Emily Clark__S6.occupation
+Emily Clark__S0.occupation = "writer"
+Emily Clark__S0.status != "married"
+Emily Clark__S0.status != Emily Clark__S6.status
+Emily Clark__S0.status = "married"
+Emily Clark__S0_Emily Clark__S6.relationship != "same_entity"
+Emily Clark__S0_Emily Clark__S6.relationship = "same_entity"
+Emily Clark__S0_St. Mary's Hospital.relationship != "Emily Clark works at St. Mary's Hospital"
+Emily Clark__S0_St. Mary's Hospital.relationship != Emily Clark__S0_Emily Clark__S6.relationship
+Emily Clark__S0_St. Mary's Hospital.relationship != Emily Clark__S6_California Health Alliance.relationship
+Emily Clark__S0_St. Mary's Hospital.relationship = "Emily Clark works at St. Mary's Hospital"
+Emily Clark__S6.country_of_citizenship != "United Kingdom"
+Emily Clark__S6.country_of_citizenship = "United Kingdom"
+Emily Clark__S6.occupation != "writer"
+Emily Clark__S6.occupation = "writer"
+Emily Clark__S6.status != "joined a task force"
+Emily Clark__S6.status = "joined a task force"
+Emily Clark__S6_California Health Alliance.relationship != "Emily Clark joined a task force organized by California Health Alliance to improve mental health support for ICU staff."
+Emily Clark__S6_California Health Alliance.relationship != Emily Clark__S0_Emily Clark__S6.relationship
+Emily Clark__S6_California Health Alliance.relationship = "Emily Clark joined a task force organized by California Health Alliance to improve mental health support for ICU staff."
+M_NLI(Emily Clark__S0.attrs, California Health Alliance.attrs)
+M_NLI(Emily Clark__S6.attrs, California Health Alliance.attrs)
+M_NLU(Emily Clark__S0.attrs, California Health Alliance.attrs)
+M_NLU(Emily Clark__S6.attrs, California Health Alliance.attrs)
+M_TEM(Emily Clark__S0.attrs, California Health Alliance.attrs)
+M_TEM(Emily Clark__S6.attrs, California Health Alliance.attrs)
+contra("Emily Clark", "California Health Alliance")
+contra("Emily Clark", "Emily Clark")
+contra("Emily Clark", "his influence beyo")
+contra("St. Mary's Hospital", "California Health Alliance")
+contra("St. Mary's Hospital", "Emily Clark")
+contra("wo children", "California Health Alliance")
+linkage(Emily Clark__S0, Emily Clark__S6)
+linkage(Emily Clark__S0, St. Mary's Hospital)
+linkage(Emily Clark__S6, California Health Alliance)
+
+Rules:
+Q[Emily Clark__S0,Emily Clark__S6] (Emily Clark__S6_California Health Alliance.relationship != Emily Clark__S0_Emily Clark__S6.relationship ∧ Emily Clark__S6.status != "joined a task force" → Emily Clark__S6.status != "joined a task force")
+Q[Emily Clark__S0,Emily Clark__S6] (Emily Clark__S6.occupation = "writer" ∧ contra("Emily Clark", "his influence beyo") → contra("Emily Clark", "his influence beyo"))
+Q[Emily Clark__S0,Emily Clark__S6] (California Health Alliance.type = "health organization" ∧ M_TEM(Emily Clark__S6.attrs, California Health Alliance.attrs) → M_TEM(Emily Clark__S6.attrs, California Health Alliance.attrs))
+Q[Emily Clark__S0,Emily Clark__S6] (M_NLU(Emily Clark__S0.attrs, California Health Alliance.attrs) ∧ linkage(Emily Clark__S0, Emily Clark__S6) → linkage(Emily Clark__S0, Emily Clark__S6))
+Q[Emily Clark__S0,Emily Clark__S6] (Emily Clark__S6_California Health Alliance.relationship != Emily Clark__S0_Emily Clark__S6.relationship ∧ Emily Clark__S0.country_of_citizenship = "United Kingdom" → Emily Clark__S6_California Health Alliance.relationship != Emily Clark__S0_Emily Clark__S6.relationship)
+Q[Emily Clark__S0,Emily Clark__S6] (Emily Clark__S6.status = "joined a task force" ∧ contra("Emily Clark", "California Health Alliance") → contra("Emily Clark", "California Health Alliance"))
+Q[Emily Clark__S0,Emily Clark__S6] (Emily Clark__S0.nationality = "American" ∧ Emily Clark__S0.occupation != "writer" → Emily Clark__S0.nationality = "American")
+Q[Emily Clark__S0,Emily Clark__S6] (M_NLI(Emily Clark__S6.attrs, California Health Alliance.attrs) ∧ M_NLU(Emily Clark__S0.attrs, California Health Alliance.attrs) → M_NLU(Emily Clark__S0.attrs, California Health Alliance.attrs))
+Q[Emily Clark__S0,Emily Clark__S6] (Emily Clark__S6.country_of_citizenship != "United Kingdom" ∧ Emily Clark__S0_St. Mary's Hospital.relationship != Emily Clark__S6_California Health Alliance.relationship → Emily Clark__S0_St. Mary's Hospital.relationship != Emily Clark__S6_California Health Alliance.relationship)
+Q[Emily Clark__S0,Emily Clark__S6] (linkage(Emily Clark__S6, California Health Alliance) ∧ Emily Clark__S0.nationality != "American" → Emily Clark__S0.nationality != "American")

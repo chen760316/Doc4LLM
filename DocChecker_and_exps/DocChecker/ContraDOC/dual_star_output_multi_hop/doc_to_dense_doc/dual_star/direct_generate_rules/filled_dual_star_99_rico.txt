@@ -1,0 +1,67 @@
+Predicates:
+Brazen.label != "Person"
+Brazen.label = "Person"
+Brazen.name != "Brazen"
+Brazen.name = "Brazen"
+Brazen.occupation != "unknown"
+Brazen.occupation = "unknown"
+Brazen.status != "compensated"
+Brazen.status = "compensated"
+Captain Brazen.label != "Person"
+Captain Brazen.label = "Person"
+Captain Brazen.name != "Captain Brazen"
+Captain Brazen.name != Brazen.name
+Captain Brazen.name != Worthy.name
+Captain Brazen.name = "Captain Brazen"
+Captain Brazen.occupation != "recruiter"
+Captain Brazen.occupation != Brazen.occupation
+Captain Brazen.occupation = "recruiter"
+Melinda.label != "Person"
+Melinda.label = "Person"
+Melinda.name != "Melinda"
+Melinda.name != Brazen.name
+Melinda.name != Captain Brazen.name
+Melinda.name != Worthy.name
+Melinda.name = "Melinda"
+Melinda.occupation != "unknown"
+Melinda.occupation != Captain Brazen.occupation
+Melinda.occupation = "unknown"
+Melinda.status != "unmarried"
+Melinda.status != Brazen.status
+Melinda.status = "unmarried"
+Melinda___Brazen.contradiction_type = "Causal"
+Melinda___Brazen.relationship = "Melinda is eloping with Brazen."
+Melinda___Brazen.source_id = "3488771854_1"
+Melinda___Captain Brazen.contradiction_type != Melinda___Brazen.contradiction_type
+Melinda___Captain Brazen.contradiction_type = "Content (Opinion/Emotion)"
+Melinda___Captain Brazen.purpose = "to annoy Worthy"
+Melinda___Captain Brazen.relationship != Melinda___Brazen.relationship
+Melinda___Captain Brazen.relationship != Melinda___Worthy.relationship
+Melinda___Captain Brazen.relationship = "Melinda accepts an invitation from Captain Brazen to annoy Worthy."
+Melinda___Captain Brazen.source_id = "3488771854_1"
+Melinda___Worthy.contradiction_type != Melinda___Brazen.contradiction_type
+Melinda___Worthy.contradiction_type = "Content (Opinion/Emotion)"
+Melinda___Worthy.disguise = "Kite"
+Melinda___Worthy.method = "fortune teller"
+Melinda___Worthy.relationship != Melinda___Brazen.relationship
+Melinda___Worthy.relationship = "Melinda discourages Worthy until she is convinced to accept his courtship by a fortune teller."
+Melinda___Worthy.source_id = "3488771854_1"
+None_ML(Brazen.attrs, Captain Brazen.attrs)
+None_ML(Melinda___Captain Brazen.attrs, Melinda___Worthy.attrs)
+Worthy.label != "Person"
+Worthy.label = "Person"
+Worthy.name != "Worthy"
+Worthy.name != Brazen.name
+Worthy.name = "Worthy"
+
+Rules:
+Q[Melinda,Melinda] (Melinda___Captain Brazen.source_id = "3488771854_1" ∧ Melinda___Worthy.method = "fortune teller" → Captain Brazen.name != "Captain Brazen")
+Q[Melinda,Melinda] (Melinda.label != "Person" ∧ Melinda___Captain Brazen.purpose = "to annoy Worthy" ∧ Brazen.name != "Brazen" ∧ Brazen.occupation != "unknown" ∧ Melinda___Captain Brazen.relationship = "Melinda accepts an invitation from Captain Brazen to annoy Worthy." → Melinda.status != "unmarried")
+Q[Melinda,Melinda] (Melinda___Worthy.method = "fortune teller" ∧ Melinda___Captain Brazen.relationship != Melinda___Brazen.relationship ∧ Melinda___Captain Brazen.relationship = "Melinda accepts an invitation from Captain Brazen to annoy Worthy." ∧ Melinda___Worthy.contradiction_type = "Content (Opinion/Emotion)" ∧ Worthy.name != Brazen.name ∧ Captain Brazen.occupation != Brazen.occupation → Melinda___Worthy.disguise = "Kite")
+Q[Melinda,Melinda] (Melinda.name != Captain Brazen.name ∧ Melinda.status != "unmarried" ∧ Melinda___Captain Brazen.contradiction_type != Melinda___Brazen.contradiction_type ∧ Melinda___Captain Brazen.relationship != Melinda___Worthy.relationship → Worthy.label = "Person")
+Q[Melinda,Melinda] (None_ML(Melinda___Captain Brazen.attrs, Melinda___Worthy.attrs) ∧ Melinda.occupation != Captain Brazen.occupation ∧ Captain Brazen.occupation = "recruiter" → Melinda.label != "Person")
+Q[Melinda,Melinda] (Captain Brazen.label != "Person" ∧ None_ML(Melinda___Captain Brazen.attrs, Melinda___Worthy.attrs) ∧ Melinda.label = "Person" ∧ Melinda.name = "Melinda" → Captain Brazen.name = "Captain Brazen")
+Q[Melinda,Melinda] (Melinda___Brazen.relationship = "Melinda is eloping with Brazen." ∧ Melinda.occupation != Captain Brazen.occupation → Melinda.status = "unmarried")
+Q[Melinda,Melinda] (None_ML(Brazen.attrs, Captain Brazen.attrs) ∧ Melinda.label = "Person" ∧ Captain Brazen.name != Worthy.name → Captain Brazen.occupation != "recruiter")
+Q[Melinda,Melinda] (Melinda.status != Brazen.status ∧ Captain Brazen.occupation = "recruiter" ∧ Brazen.name = "Brazen" ∧ Captain Brazen.label != "Person" ∧ Melinda___Captain Brazen.relationship != Melinda___Brazen.relationship → Melinda.occupation != "unknown")
+Q[Melinda,Melinda] (Brazen.name != "Brazen" ∧ Brazen.status != "compensated" ∧ Captain Brazen.name != Worthy.name ∧ Captain Brazen.label = "Person" ∧ Worthy.label = "Person" ∧ Melinda.status != Brazen.status → Worthy.name = "Worthy")

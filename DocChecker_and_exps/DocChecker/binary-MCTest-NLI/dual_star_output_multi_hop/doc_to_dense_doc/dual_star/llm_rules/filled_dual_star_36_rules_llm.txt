@@ -1,0 +1,97 @@
+Predicates:
+1. John.action = "naughty"
+2. John.feelings = "bad"
+3. bedroom.color = "purple"
+4. soup.color = "blue"
+5. Ground Beef.quantity = "3 pounds"
+6. "After washing his hands, John sat down to a hot plate of bacon.".meal_type = "breakfast"
+7. "After washing his hands, John sat down to a hot plate of eggs.".meal_type = "breakfast"
+8. "After washing his hands, John sat down to a hot plate of pancakes.".meal_type = "breakfast"
+9. "Jack did not want his bedroom to be purple".source_domain = "N/A"
+10. "Jack is an evil dragon that does not have wings.".source_domain = "N/A"
+11. "John added the ground beef to the soup.".source_domain = "N/A"
+12. "John asked his grandson Timmy to go to the store to buy food.".item_to_buy = "meat"
+13. "John cooked the ground beef.".source_domain = "N/A"
+14. "John gave Emily her pacifier.".source_domain = "N/A"
+15. "John hated the bus because he was quiet and the bus was always loud.".reason = "John was quiet and the bus was always loud."
+16. "John's meat soup was his favorite recipe.".source_domain = "N/A"
+17. "John's naughty actions hurt Jack's feelings.".reason = "John felt bad about hurting Jack's feelings."
+18. "The soup tasted delicious.".source_domain = "N/A"
+19. "Timmy and his friends loved John's cooking.".feedback = "positive"
+20. "Timmy bought ground beef.".source_domain = "N/A"
+21. "Timmy thought of buying chicken.".source_domain = "N/A"
+22. "Timmy thought of buying sausage.".source_domain = "N/A"
+23. "Timmy thought of buying turkey.".source_domain = "N/A"
+24. "Timmy wanted his friends to try his grandfather's meat soup.".source_domain = "N/A"
+25. "Today, John was ready for the bus.".source_domain = "N/A"
+26. M_NLI("John sat down to a hot plate of bacon.", "John sat down to a hot plate of eggs.")
+27. M_NLI("John sat down to a hot plate of bacon.", "John sat down to a hot plate of pancakes.")
+28. T("Jack did not want his bedroom to be purple", "Jack's bedroom is purple", tau)
+29. T("John hated the bus because he was quiet and the bus was always loud.", "John loved the bus", tau)
+30. tau("John's meat soup was his favorite recipe.", "John's meat soup was not his favorite recipe.")
+31. violate("John sat down to a hot plate of bacon.", "John sat down to a hot plate of eggs.")
+32. violate("John sat down to a hot plate of bacon.", "John sat down to a hot plate of pancakes.")
+33. Factual("Jack did not want his bedroom to be purple", "Jack's bedroom is purple")
+34. Factual("John's meat soup was his favorite recipe.", "John's meat soup was not his favorite recipe.")
+35. Causal("John added the ground beef to the soup.", "The soup did not contain ground beef.")
+36. Causal("John cooked the ground beef.", "The ground beef was never cooked.")
+37. Negation("John hated the bus because he was quiet and the bus was always loud.", "John loved the bus.")
+38. Negation("Timmy wanted his friends to try his grandfather's meat soup.", "Timmy did not want his friends to try his grandfather's meat soup.")
+39. Relation("John gave Emily her pacifier.", "Emily did not receive her pacifier from John.")
+40. Relation("Timmy and his friends loved John's cooking.", "Timmy and his friends disliked John's cooking.")
+41. Numeric("Ground Beef.quantity = 3 pounds", "Ground Beef.quantity = 0 pounds")
+42. Numeric("Timmy bought ground beef.", "Timmy bought no ground beef.")
+43. Temporal("Today, John was ready for the bus.", "Yesterday, John was not ready for the bus.")
+44. Temporal("John's meat soup was his favorite recipe.", "John's meat soup was never his favorite recipe.")
+45. M_NLI("John hated the bus because he was quiet and the bus was always loud.", "John enjoyed the bus.")
+46. T("Timmy thought of buying chicken.", "Timmy bought chicken.", tau)
+47. tau("John's naughty actions hurt Jack's feelings.", "John's actions did not hurt Jack's feelings.")
+48. violate("John's meat soup was his favorite recipe.", "John's meat soup was not his favorite recipe.")
+49. Factual("Jack is an evil dragon that does not have wings.", "Jack is a dragon with wings.")
+50. Causal("John cooked the ground beef.", "The ground beef was never cooked.")
+51. Negation("Timmy wanted his friends to try his grandfather's meat soup.", "Timmy did not want his friends to try his grandfather's meat soup.")
+52. Relation("John added the ground beef to the soup.", "The soup did not contain ground beef.")
+53. Numeric("Timmy bought ground beef.", "Timmy bought 5 pounds of ground beef.")
+54. Temporal("Today, John was ready for the bus.", "Tomorrow, John will not be ready for the bus.")
+55. M_NLI("The soup tasted delicious.", "The soup tasted terrible.")
+56. T("John's naughty actions hurt Jack's feelings.", "John's actions did not hurt Jack's feelings.", tau)
+57. tau("Jack did not want his bedroom to be purple", "Jack's bedroom is purple.")
+58. violate("John hated the bus because he was quiet and the bus was always loud.", "John loved the bus.")
+59. Factual("John's meat soup was his favorite recipe.", "John's meat soup was not his favorite recipe.")
+60. Causal("Timmy thought of buying chicken.", "Timmy bought chicken.")
+61. Negation("John gave Emily her pacifier.", "John did not give Emily her pacifier.")
+62. Relation("Timmy and his friends loved John's cooking.", "Timmy and his friends disliked John's cooking.")
+63. Numeric("Ground Beef.quantity = 3 pounds", "Ground Beef.quantity = 10 pounds")
+64. Temporal("John's meat soup was his favorite recipe.", "John's meat soup was never his favorite recipe.")
+65. M_NLI("Today, John was ready for the bus.", "Today, John was not ready for the bus.")
+66. T("John added the ground beef to the soup.", "The soup did not contain ground beef.", tau)
+67. tau("Jack is an evil dragon that does not have wings.", "Jack is a dragon with wings.")
+68. violate("Timmy wanted his friends to try his grandfather's meat soup.", "Timmy did not want his friends to try his grandfather's meat soup.")
+69. Factual("John hated the bus because he was quiet and the bus was always loud.", "
+violate(x0, y0)
+
+Rules:
+1. Q[John, Jack](John.action = "naughty" ∧ John.feelings = "bad" → violate(John, Jack))
+2. Q[John, Jack](John.action = "naughty" ∧ "Jack did not want his bedroom to be purple".source_domain = "N/A" → violate(John, Jack))
+3. Q[John, Jack](John.feelings = "bad" ∧ "John's naughty actions hurt Jack's feelings.".reason = "John felt bad about hurting Jack's feelings." → violate(John, Jack))
+4. Q[John, Jack](bedroom.color = "purple" ∧ "Jack did not want his bedroom to be purple".source_domain = "N/A" → violate(John, Jack))
+5. Q[John, Jack](John.action = "naughty" ∧ "John's meat soup was his favorite recipe.".source_domain = "N/A" → violate(John, Jack))
+6. Q[John, Jack](John.feelings = "bad" ∧ "John hated the bus because he was quiet and the bus was always loud.".reason = "John was quiet and the bus was always loud." → violate(John, Jack))
+7. Q[John, Jack](John.action = "naughty" ∧ "John added the ground beef to the soup.".source_domain = "N/A" ∧ "John cooked the ground beef.".source_domain = "N/A" → violate(John, Jack))
+8. Q[John, Jack](John.feelings = "bad" ∧ "John's naughty actions hurt Jack's feelings.".reason = "John felt bad about hurting Jack's feelings." ∧ "Timmy wanted his friends to try his grandfather's meat soup.".source_domain = "N/A" → violate(John, Jack))
+9. Q[John, Jack](bedroom.color = "purple" ∧ "Jack is an evil dragon that does not have wings.".source_domain = "N/A" ∧ "John's meat soup was his favorite recipe.".source_domain = "N/A" → violate(John, Jack))
+10. Q[John, Jack](John.action = "naughty" ∧ "John's meat soup was his favorite recipe.".source_domain = "N/A" ∧ "Timmy and his friends loved John's cooking.".feedback = "positive" → violate(John, Jack))
+11. Q[John, Jack](John.feelings = "bad" ∧ "John hated the bus because he was quiet and the bus was always loud.".reason = "John was quiet and the bus was always loud." ∧ "Timmy bought ground beef.".source_domain = "N/A" → violate(John, Jack))
+12. Q[John, Jack](bedroom.color = "purple" ∧ "Jack did not want his bedroom to be purple".source_domain = "N/A" ∧ "John's naughty actions hurt Jack's feelings.".reason = "John felt bad about hurting Jack's feelings." → violate(John, Jack))
+13. Q[John, Jack](John.action = "naughty" ∧ "John added the ground beef to the soup.".source_domain = "N/A" ∧ "John cooked the ground beef.".source_domain = "N/A" ∧ "The soup tasted delicious.".source_domain = "N/A" → violate(John, Jack))
+14. Q[John, Jack](John.feelings = "bad" ∧ "Jack is an evil dragon that does not have wings.".source_domain = "N/A" ∧ "Timmy wanted his friends to try his grandfather's meat soup.".source_domain = "N/A" → violate(John, Jack))
+15. Q[John, Jack](bedroom.color = "purple" ∧ "John's meat soup was his favorite recipe.".source_domain = "N/A" ∧ "Timmy thought of buying chicken.".source_domain = "N/A" → violate(John, Jack))
+16. Q[John, Jack](John.action = "naughty" ∧ "John's naughty actions hurt Jack's feelings.".reason = "John felt bad about hurting Jack's feelings." ∧ "Timmy thought of buying sausage.".source_domain = "N/A" → violate(John, Jack))
+17. Q[John, Jack](John.feelings = "bad" ∧ "Jack did not want his bedroom to be purple".source_domain = "N/A" ∧ "Timmy thought of buying turkey.".source_domain = "N/A" → violate(John, Jack))
+18. Q[John, Jack](bedroom.color = "purple" ∧ "John's meat soup was his favorite recipe.".source_domain = "N/A" ∧ "Timmy and his friends loved John's cooking.".feedback = "positive" ∧ "John hated the bus because he was quiet and the bus was always loud.".reason = "John was quiet and the bus was always loud." → violate(John, Jack))
+19. Q[John, Jack](John.action = "naughty" ∧ "John added the ground beef to the soup.".source_domain = "N/A" ∧ "John cooked the ground beef.".source_domain = "N/A" ∧ "The soup tasted delicious.".source_domain = "N/A" ∧ "Timmy wanted his friends to try his grandfather's meat soup.".source_domain = "N/A" → violate(John, Jack))
+20. Q[John, Jack](John.feelings = "bad" ∧ "Jack is an evil dragon that does not have wings.".source_domain = "N/A" ∧ "Timmy bought ground beef.".source_domain = "N/A" ∧ "Timmy thought of buying chicken.".source_domain = "N/A" → violate(John, Jack))
+21. Q[John, Jack](bedroom.color = "purple" ∧ "John's meat soup was his favorite recipe.".source_domain = "N/A" ∧ "Timmy thought of buying sausage.".source_domain = "N/A" ∧ "Timmy thought of buying turkey.".source_domain = "N/A" → violate(John, Jack))
+22. Q[John, Jack](John.action = "naughty" ∧ "John's naughty actions hurt Jack's feelings.".reason = "John felt bad about hurting Jack's feelings." ∧ "Timmy and his friends loved John's cooking.".feedback = "positive" ∧ "John hated the bus because he was quiet and the bus was always loud.".reason = "John was quiet and the bus was always loud." → violate(John, Jack))
+23. Q[John, Jack](John.feelings = "bad" ∧ "Jack did not want his bedroom to be purple".source_domain = "N/A" ∧ "John added the ground beef to the soup.".source_domain = "N/A" ∧ "John cooked the ground beef.".source_domain = "N/A" ∧ "The soup tasted delicious.".source_domain = "N/A" → violate(John, Jack))
+24. Q[John, Jack](bedroom.color = "purple" ∧ "John's meat soup was his favorite

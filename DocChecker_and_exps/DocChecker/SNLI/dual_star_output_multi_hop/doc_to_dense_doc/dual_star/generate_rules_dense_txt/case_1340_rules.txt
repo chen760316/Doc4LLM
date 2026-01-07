@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 1340)
+S1: A man with a white shirt is sitting at a table in a room with other people and posters along the blue wall.
+S2: The people are outside digging in the dirt.
+
+Predicates:
+1. Room.has_people
+2. Room.has_posters
+3. Room.wall_color
+4. Person.wearing_shirt
+5. Person.sitting_at_table
+6. Person.location
+7. Person.activity
+8. Table.has_people
+9. Table.location
+10. Dirt.location
+11. People.outside
+12. People.digging
+13. Wall.color
+14. Wall.type
+15. Activity.type
+16. Activity.location
+17. Room.type
+18. Room.size
+19. Shirt.color
+20. Shirt.type
+21. Poster.type
+22. Poster.location
+23. Entity.inside
+24. Entity.outside
+25. Relation.inside_outside
+26. Violation.simultaneity
+27. Context.room
+28. Context.outside
+29. Context.activity
+30. Context.location
+
+Rules:
+1. Q[man, Room.has_people, People.outside](Room.has_people == true → Relation.inside_outside)
+2. Q[man, Person.location, Room.type](Person.location == "inside" → Relation.inside_outside)
+3. Q[man, People.outside, Person.activity](People.outside == true → Relation.inside_outside)
+4. Q[man, Person.activity, People.digging](Person.activity == "sitting" → Relation.inside_outside)
+5. Q[man, Room.wall_color, Wall.color](Room.wall_color == "blue" → Relation.inside_outside)
+6. Q[man, Person.wearing_shirt, Shirt.color](Person.wearing_shirt == "white" → Relation.inside_outside)
+7. Q[man, Table.has_people, Table.location](Table.has_people == true → Relation.inside_outside)
+8. Q[man, Room.has_posters, Poster.type](Room.has_posters == true → Relation.inside_outside)
+9. Q[man, Person.sitting_at_table, Table.location](Person.sitting_at_table == true → Relation.inside_outside)
+10. Q[man, Entity.inside, Entity.outside](Entity.inside == true → Relation.inside_outside)
+11. Q[man, Context.room, Context.outside](Context.room == "inside" → Relation.inside_outside)
+12. Q[man, Activity.type, Activity.location](Activity.type == "sitting" → Relation.inside_outside)
+13. Q[man, Room.size, People.outside](Room.size == "small" → Relation.inside_outside)
+14. Q[man, Wall.type, Wall.color](Wall.type == "solid" → Relation.inside_outside)
+15. Q[man, Dirt.location, People.digging](Dirt.location == "outside" → Relation.inside_outside)
+16. Q[man, Person.activity, Context.activity](Person.activity == "sitting" → Relation.inside_outside)
+17. Q[man, Room.has_people, Entity.outside](Room.has_people == true → Relation.inside_outside)
+18. Q[man, Shirt.type, Person.wearing_shirt](Shirt.type == "formal" → Relation.inside_outside)
+19. Q[man, Table.location, Room.type](Table.location == "inside" → Relation.inside_outside)
+20. Q[man, People.digging, Dirt.location](People.digging == true → Relation.inside_outside)
+21. Q[man, Context.location, Entity.inside](Context.location == "inside" → Relation.inside_outside)
+22. Q[man, Room.has_posters, Context.activity](Room.has_posters == true → Relation.inside_outside)
+23. Q[man, Person.location, People.outside](Person.location == "inside" → Relation.inside_outside)
+24. Q[man, Person.activity, Context.location](Person.activity == "sitting" → Relation.inside_outside)
+25. Q[man, Room.wall_color, Wall.type](Room.wall_color == "blue" → Relation.inside_outside)
+26. Q[man, Entity.outside, People.digging](Entity.outside == true → Relation.inside_outside)
+27. Q[man, Table.has_people, Room.has_people](Table.has_people == true → Relation.inside_outside)
+28. Q[man, Shirt.color, Person.wearing_shirt](Shirt.color == "white" → Relation.inside_outside)
+29. Q[man, Wall.color, Room.wall_color](Wall.color == "blue" → Relation.inside_outside)
+30. Q[man, Activity.location, Dirt.location](Activity.location == "inside" → Relation.inside_outside)

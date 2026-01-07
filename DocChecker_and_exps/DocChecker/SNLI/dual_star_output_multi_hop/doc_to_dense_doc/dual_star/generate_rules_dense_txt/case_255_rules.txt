@@ -1,0 +1,65 @@
+Source: dense_text.txt (Index 255)
+S1: A girl is flipping her hair on a skateboard.
+S2: A girl is throwing leaves.
+
+Predicates:
+1. Girl.activity.flipping_hair
+2. Girl.activity.skateboarding
+3. Girl.activity.throwing_leaves
+4. Girl.engagement.flipping_hair
+5. Girl.engagement.throwing_leaves
+6. Skateboard.location.ground
+7. Leaves.state.falling
+8. Activity.type.flipping_hair
+9. Activity.type.throwing_leaves
+10. Activity.simultaneity.flipping_hair_throwing_leaves
+11. Causal.flipping_hair.throwing_leaves
+12. M_NLI(S1, S2)
+13. violate(flipping_hair, throwing_leaves)
+14. Girl.motion.skateboarding
+15. Girl.motion.throwing
+16. Skateboard.state.in_motion
+17. Leaves.state.scattered
+18. Activity.duration.flipping_hair
+19. Activity.duration.throwing_leaves
+20. Girl.position.on_skateboard
+21. Girl.position.standing
+22. Skateboard.type.roller
+23. Leaves.type.natural
+24. Girl.action.flipping
+25. Girl.action.throwing
+26. Causal(skateboarding, flipping_hair)
+27. Causal(throwing_leaves, standing)
+28. Activity.context.outside
+29. Activity.context.park
+30. Girl.state.happy
+
+Rules:
+1. Q[girl, Girl.activity.flipping_hair == true, Girl.activity.throwing_leaves == true](Girl.activity.flipping_hair == true ∧ Girl.activity.skateboarding == true → Causal(flipping_hair, throwing_leaves))
+2. Q[girl, Girl.engagement.flipping_hair == true, Girl.engagement.throwing_leaves == true](Girl.engagement.flipping_hair == true ∧ Girl.activity.skateboarding == true → Causal(flipping_hair, throwing_leaves))
+3. Q[girl, Girl.motion.skateboarding == true, Girl.motion.throwing == true](Girl.motion.skateboarding == true ∧ Girl.activity.throwing_leaves == true → Causal(flipping_hair, throwing_leaves))
+4. Q[girl, Skateboard.state.in_motion == true, Leaves.state.falling == true](Skateboard.state.in_motion == true ∧ Girl.activity.throwing_leaves == true → Causal(flipping_hair, throwing_leaves))
+5. Q[girl, Activity.simultaneity.flipping_hair_throwing_leaves == true, Girl.position.on_skateboard == true](Activity.simultaneity.flipping_hair_throwing_leaves == true ∧ Girl.activity.skateboarding == true → Causal(flipping_hair, throwing_leaves))
+6. Q[girl, Activity.type.flipping_hair == "flipping_hair", Activity.type.throwing_leaves == "throwing_leaves"](Activity.type.flipping_hair == "flipping_hair" ∧ Girl.activity.skateboarding == true → Causal(flipping_hair, throwing_leaves))
+7. Q[girl, Activity.duration.flipping_hair > 0, Activity.duration.throwing_leaves > 0](Activity.duration.flipping_hair > 0 ∧ Girl.activity.throwing_leaves == true → Causal(flipping_hair, throwing_leaves))
+8. Q[girl, Girl.position.standing == true, Girl.position.on_skateboard == true](Girl.position.standing == true ∧ Girl.activity.flipping_hair == true → Causal(flipping_hair, throwing_leaves))
+9. Q[girl, Leaves.state.scattered == true, Leaves.state.falling == true](Leaves.state.scattered == true ∧ Girl.activity.throwing_leaves == true → Causal(flipping_hair, throwing_leaves))
+10. Q[girl, Girl.action.flipping == true, Girl.action.throwing == true](Girl.action.flipping == true ∧ Girl.activity.skateboarding == true → Causal(flipping_hair, throwing_leaves))
+11. Q[girl, Girl.activity.flipping_hair == true, Skateboard.location.ground == true](Girl.activity.flipping_hair == true ∧ Girl.activity.throwing_leaves == true → Causal(flipping_hair, throwing_leaves))
+12. Q[girl, Causal.flipping_hair.throwing_leaves == true, Activity.context.outside == true](Causal.flipping_hair.throwing_leaves == true ∧ Girl.activity.skateboarding == true → Causal(flipping_hair, throwing_leaves))
+13. Q[girl, Girl.engagement.flipping_hair == true, Girl.activity.throwing_leaves == false](Girl.engagement.flipping_hair == true ∧ Girl.activity.throwing_leaves == false → Causal(flipping_hair, throwing_leaves))
+14. Q[girl, Girl.motion.skateboarding == true, Girl.activity.throwing_leaves == false](Girl.motion.skateboarding == true ∧ Girl.activity.throwing_leaves == false → Causal(flipping_hair, throwing_leaves))
+15. Q[girl, Activity.context.park == true, Girl.activity.throwing_leaves == true](Activity.context.park == true ∧ Girl.activity.throwing_leaves == true → Causal(flipping_hair, throwing_leaves))
+16. Q[girl, Girl.state.happy == true, Girl.activity.throwing_leaves == false](Girl.state.happy == true ∧ Girl.activity.throwing_leaves == false → Causal(flipping_hair, throwing_leaves))
+17. Q[girl, Skateboard.type.roller == true, Girl.activity.throwing_leaves == false](Skateboard.type.roller == true ∧ Girl.activity.throwing_leaves == false → Causal(flipping_hair, throwing_leaves))
+18. Q[girl, Leaves.type.natural == true, Girl.activity.throwing_leaves == true](Leaves.type.natural == true ∧ Girl.activity.throwing_leaves == true → Causal(flipping_hair, throwing_leaves))
+19. Q[girl, Girl.activity.flipping_hair == true, Girl.activity.throwing_leaves == false](Girl.activity.flipping_hair == true ∧ Girl.activity.throwing_leaves == false → Causal(flipping_hair, throwing_leaves))
+20. Q[girl, Girl.engagement.flipping_hair == true, Girl.motion.throwing == false](Girl.engagement.flipping_hair == true ∧ Girl.motion.throwing == false → Causal(flipping_hair, throwing_leaves))
+21. Q[girl, Girl.activity.flipping_hair == true, Girl.position.standing == true](Girl.activity.flipping_hair == true ∧ Girl.position.standing == true → Causal(flipping_hair, throwing_leaves))
+22. Q[girl, Girl.activity.throwing_leaves == true, Girl.motion.skateboarding == false](Girl.activity.throwing_leaves == true ∧ Girl.motion.skateboarding == false → Causal(flipping_hair, throwing_leaves))
+23. Q[girl, Activity.duration.throwing_leaves > 0, Girl.activity.flipping_hair == false](Activity.duration.throwing_leaves > 0 ∧ Girl.activity.flipping_hair == false → Causal(flipping_hair, throwing_leaves))
+24. Q[girl, Girl.activity.flipping_hair == true, Girl.activity.throwing_leaves == false](Girl.activity.flipping_hair == true ∧ Girl.activity.throwing_leaves == false → Causal(flipping_hair, throwing_leaves))
+25. Q[girl, Girl.motion.throwing == true, Girl.activity.flipping_hair == false](Girl.motion.throwing == true ∧ Girl.activity.flipping_hair == false → Causal(flipping_hair, throwing_leaves))
+26. Q[girl, Girl.activity.flipping_hair == true, Leaves.state.falling == false](Girl.activity.flipping_hair == true ∧ Leaves.state.falling == false → Causal(flipping_hair, throwing_leaves))
+27. Q[girl, Girl.activity.throwing_leaves == true, Girl.activity.flipping_hair == false](Girl.activity.throwing_leaves == true ∧ Girl.activity.flipping_hair == false → Causal(flipping_hair, throwing_leaves))
+28. Q[girl, Girl.engagement.throwing_leaves == true, Girl.activity.flipping_hair == false](Girl.engagement.throwing_leaves == true ∧ Girl.activity.flipping_hair == false → Causal

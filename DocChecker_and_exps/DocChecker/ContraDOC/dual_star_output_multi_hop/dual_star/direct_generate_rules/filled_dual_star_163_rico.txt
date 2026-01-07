@@ -1,0 +1,58 @@
+Predicates:
+Captain Brazen.label != "Character"
+Captain Brazen.label = "Character"
+Captain Brazen.name != "Captain Brazen"
+Captain Brazen.name != Sylvia.name
+Captain Brazen.name != Worthy.name
+Captain Brazen.name = "Captain Brazen"
+Captain Brazen.occupation != "Recruiter"
+Captain Brazen.occupation != Worthy.occupation
+Captain Brazen.occupation = "Recruiter"
+Lucy.label != "Character"
+Lucy.label = "Character"
+Lucy.name != "Lucy"
+Lucy.name != Captain Brazen.name
+Lucy.name != Sylvia.name
+Lucy.name != Worthy.name
+Lucy.name = "Lucy"
+Lucy.status != "Disguised woman"
+Lucy.status != Sylvia.status
+Lucy.status = "Disguised woman"
+Lucy___Captain Brazen.doc_id != Lucy___Sylvia.doc_id
+Lucy___Captain Brazen.doc_id = "3488771854_8"
+Lucy___Captain Brazen.relationship != Lucy___Sylvia.relationship
+Lucy___Captain Brazen.relationship != Lucy___Worthy.relationship
+Lucy___Captain Brazen.relationship = "Lucy meets Brazen while pretending to be Melinda, hoping to marry him."
+Lucy___Sylvia.doc_id != Lucy___Worthy.doc_id
+Lucy___Sylvia.doc_id = "3488771854_1"
+Lucy___Sylvia.relationship != Lucy___Worthy.relationship
+Lucy___Sylvia.relationship = "Lucy drops her disguise, revealing herself to be the woman Worthy challenged."
+Lucy___Worthy.doc_id = "3488771854_8"
+Lucy___Worthy.relationship = "The duel is prevented when Lucy drops her disguise."
+None_ML(Lucy___Worthy.attrs, Lucy___Captain Brazen.attrs)
+None_ML(Sylvia.attrs, Captain Brazen.attrs)
+Sylvia.label != "Character"
+Sylvia.label = "Character"
+Sylvia.name != "Sylvia"
+Sylvia.name != Worthy.name
+Sylvia.name = "Sylvia"
+Sylvia.status != "In love with Plume"
+Sylvia.status = "In love with Plume"
+Worthy.label != "Character"
+Worthy.label = "Character"
+Worthy.name != "Worthy"
+Worthy.name = "Worthy"
+Worthy.occupation != "Gentleman"
+Worthy.occupation = "Gentleman"
+
+Rules:
+Q[Lucy,Lucy] (Worthy.occupation = "Gentleman" ∧ Lucy.status != Sylvia.status ∧ Lucy.name = "Lucy" ∧ Captain Brazen.occupation != Worthy.occupation → Captain Brazen.label != "Character")
+Q[Lucy,Lucy] (None_ML(Lucy___Worthy.attrs, Lucy___Captain Brazen.attrs) ∧ Sylvia.status != "In love with Plume" ∧ Captain Brazen.label != "Character" ∧ Captain Brazen.name != Worthy.name ∧ Captain Brazen.occupation != Worthy.occupation → Worthy.name != "Worthy")
+Q[Lucy,Lucy] (Lucy.name = "Lucy" ∧ Sylvia.name != "Sylvia" ∧ Sylvia.label = "Character" → Lucy.status != Sylvia.status)
+Q[Lucy,Lucy] (Lucy.status != "Disguised woman" ∧ Lucy___Captain Brazen.doc_id = "3488771854_8" ∧ Lucy___Worthy.doc_id = "3488771854_8" ∧ Sylvia.name = "Sylvia" ∧ Lucy.status = "Disguised woman" ∧ Captain Brazen.name = "Captain Brazen" → Captain Brazen.occupation != Worthy.occupation)
+Q[Lucy,Lucy] (Lucy___Worthy.relationship = "The duel is prevented when Lucy drops her disguise." ∧ Sylvia.status != "In love with Plume" → None_ML(Lucy___Worthy.attrs, Lucy___Captain Brazen.attrs))
+Q[Lucy,Lucy] (Worthy.label = "Character" ∧ None_ML(Lucy___Worthy.attrs, Lucy___Captain Brazen.attrs) ∧ Captain Brazen.label != "Character" ∧ Captain Brazen.name != "Captain Brazen" → Captain Brazen.name != Worthy.name)
+Q[Lucy,Lucy] (Lucy.name = "Lucy" ∧ Lucy___Sylvia.relationship != Lucy___Worthy.relationship ∧ Sylvia.status != "In love with Plume" ∧ Lucy___Captain Brazen.doc_id != Lucy___Sylvia.doc_id ∧ Worthy.occupation != "Gentleman" ∧ Lucy.label = "Character" → Lucy___Worthy.relationship = "The duel is prevented when Lucy drops her disguise.")
+Q[Lucy,Lucy] (Lucy.name != Captain Brazen.name ∧ Captain Brazen.name = "Captain Brazen" → Lucy.label = "Character")
+Q[Lucy,Lucy] (Captain Brazen.name != Worthy.name ∧ None_ML(Lucy___Worthy.attrs, Lucy___Captain Brazen.attrs) ∧ Worthy.name != "Worthy" → Lucy.name = "Lucy")
+Q[Lucy,Lucy] (Lucy.status != Sylvia.status ∧ Lucy___Captain Brazen.doc_id != Lucy___Sylvia.doc_id ∧ Sylvia.label = "Character" ∧ None_ML(Lucy___Worthy.attrs, Lucy___Captain Brazen.attrs) ∧ Lucy___Sylvia.doc_id = "3488771854_1" → Worthy.name = "Worthy")

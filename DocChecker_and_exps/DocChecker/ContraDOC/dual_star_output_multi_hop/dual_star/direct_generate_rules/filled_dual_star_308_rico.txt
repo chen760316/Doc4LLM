@@ -1,0 +1,43 @@
+Predicates:
+None_ML(Prince.attrs, Old Woman.attrs)
+None_ML(Zoza___Old Woman.attrs, Zoza___Prince.attrs)
+Old Woman.action != "cursed Zoza"
+Old Woman.action = "cursed Zoza"
+Old Woman.label != "Character"
+Old Woman.label = "Character"
+Old Woman.name != "Old Woman"
+Old Woman.name != Prince.name
+Old Woman.name = "Old Woman"
+Prince.label != "Character"
+Prince.label = "Character"
+Prince.name != "Prince"
+Prince.name = "Prince"
+Prince.status != "happy"
+Prince.status = "happy"
+Zoza.label != "Character"
+Zoza.label = "Character"
+Zoza.name != "Zoza"
+Zoza.name != Old Woman.name
+Zoza.name != Prince.name
+Zoza.name = "Zoza"
+Zoza.status != "happy"
+Zoza.status = "happy"
+Zoza___Old Woman.condition = "Zoza must fill a pitcher with tears in three days"
+Zoza___Old Woman.doc_id = "3488771903_3"
+Zoza___Old Woman.relationship != Zoza___Prince.relationship
+Zoza___Old Woman.relationship = "The old woman cursed Zoza to marry only the prince of Round-Field."
+Zoza___Prince.doc_id = "3488771903_3"
+Zoza___Prince.method = "filling a pitcher with tears"
+Zoza___Prince.relationship = "Zoza seeks to wake the prince."
+
+Rules:
+Q[Zoza,Zoza] (Zoza.status = "happy" ∧ Zoza.label = "Character" → Zoza.label != "Character")
+Q[Zoza,Zoza] (Zoza.name != Old Woman.name ∧ Prince.status != "happy" ∧ Zoza___Old Woman.relationship = "The old woman cursed Zoza to marry only the prince of Round-Field." ∧ None_ML(Zoza___Old Woman.attrs, Zoza___Prince.attrs) → Zoza.name = "Zoza")
+Q[Zoza,Zoza] (Zoza___Old Woman.doc_id = "3488771903_3" ∧ Zoza___Prince.doc_id = "3488771903_3" ∧ Zoza.label != "Character" ∧ Old Woman.name != Prince.name ∧ Zoza___Old Woman.condition = "Zoza must fill a pitcher with tears in three days" → Zoza___Old Woman.relationship != Zoza___Prince.relationship)
+Q[Zoza,Zoza] (Prince.status != "happy" ∧ Prince.name != "Prince" ∧ Zoza___Prince.relationship = "Zoza seeks to wake the prince." → Zoza.label = "Character")
+Q[Zoza,Zoza] (Prince.status = "happy" ∧ Zoza___Old Woman.relationship = "The old woman cursed Zoza to marry only the prince of Round-Field." ∧ None_ML(Prince.attrs, Old Woman.attrs) ∧ Prince.name != "Prince" ∧ Zoza.status != "happy" ∧ Prince.name = "Prince" → Prince.status != "happy")
+Q[Zoza,Zoza] (Zoza___Prince.doc_id = "3488771903_3" ∧ None_ML(Zoza___Old Woman.attrs, Zoza___Prince.attrs) ∧ Prince.name != "Prince" ∧ Prince.label = "Character" → Zoza___Old Woman.condition = "Zoza must fill a pitcher with tears in three days")
+Q[Zoza,Zoza] (Zoza.status = "happy" ∧ Zoza.name != "Zoza" ∧ Old Woman.label != "Character" ∧ Old Woman.name != "Old Woman" ∧ Prince.status = "happy" ∧ Zoza.name = "Zoza" → Zoza___Old Woman.relationship = "The old woman cursed Zoza to marry only the prince of Round-Field.")
+Q[Zoza,Zoza] (Zoza___Prince.method = "filling a pitcher with tears" ∧ Zoza.name != Old Woman.name ∧ None_ML(Zoza___Old Woman.attrs, Zoza___Prince.attrs) → Prince.label != "Character")
+Q[Zoza,Zoza] (Old Woman.name != "Old Woman" ∧ Zoza___Old Woman.condition = "Zoza must fill a pitcher with tears in three days" ∧ Prince.name != "Prince" ∧ Zoza.label = "Character" ∧ Zoza.name != Prince.name → None_ML(Zoza___Old Woman.attrs, Zoza___Prince.attrs))
+Q[Zoza,Zoza] (Prince.status = "happy" ∧ Zoza___Old Woman.relationship != Zoza___Prince.relationship → Zoza___Prince.relationship = "Zoza seeks to wake the prince.")

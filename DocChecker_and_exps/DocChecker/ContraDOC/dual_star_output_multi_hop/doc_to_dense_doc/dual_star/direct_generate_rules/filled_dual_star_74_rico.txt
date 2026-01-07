@@ -1,0 +1,30 @@
+Predicates:
+Inoki.label != "Person"
+Inoki.label != UFO.label
+Inoki.label = "Person"
+Inoki.name != "Inoki"
+Inoki.name != UFO.name
+Inoki.name = "Inoki"
+Inoki___UFO.contradiction_type = "Factual"
+Inoki___UFO.method = "personal observation"
+Inoki___UFO.personal_experience = "Inoki saw a UFO with his own eyes"
+Inoki___UFO.relationship = "Inoki claims to have seen a UFO."
+Inoki___UFO.source_id = "3489738245_6"
+Inoki___UFO.uncertainty = "Inoki admitted he didn't know if aliens existed."
+None_ML(UFO.attrs, Inoki.attrs)
+UFO.label != "Object"
+UFO.label = "Object"
+UFO.name != "UFO"
+UFO.name = "UFO"
+
+Rules:
+Q[Inoki,Inoki] (Inoki.name != UFO.name ∧ Inoki___UFO.relationship = "Inoki claims to have seen a UFO." ∧ Inoki.label != "Person" ∧ UFO.label != "Object" ∧ UFO.label = "Object" → Inoki.name != "Inoki")
+Q[Inoki,Inoki] (UFO.label = "Object" ∧ UFO.name = "UFO" ∧ Inoki.label != UFO.label ∧ None_ML(UFO.attrs, Inoki.attrs) ∧ UFO.name != "UFO" ∧ Inoki___UFO.source_id = "3489738245_6" → Inoki.name = "Inoki")
+Q[Inoki,Inoki] (Inoki.label != UFO.label ∧ Inoki___UFO.relationship = "Inoki claims to have seen a UFO." → Inoki.name != UFO.name)
+Q[Inoki,Inoki] (Inoki___UFO.source_id = "3489738245_6" ∧ UFO.label = "Object" ∧ UFO.name = "UFO" ∧ Inoki.label != "Person" → Inoki___UFO.relationship = "Inoki claims to have seen a UFO.")
+Q[Inoki,Inoki] (Inoki___UFO.source_id = "3489738245_6" ∧ Inoki.label = "Person" ∧ Inoki___UFO.relationship = "Inoki claims to have seen a UFO." → UFO.label != "Object")
+Q[Inoki,Inoki] (Inoki.name != "Inoki" ∧ Inoki.name = "Inoki" ∧ Inoki.label = "Person" ∧ Inoki.label != "Person" ∧ None_ML(UFO.attrs, Inoki.attrs) → Inoki___UFO.personal_experience = "Inoki saw a UFO with his own eyes")
+Q[Inoki,Inoki] (Inoki.name != "Inoki" ∧ Inoki___UFO.relationship = "Inoki claims to have seen a UFO." ∧ Inoki.name = "Inoki" ∧ Inoki.label != UFO.label → None_ML(UFO.attrs, Inoki.attrs))
+Q[Inoki,Inoki] (Inoki.name != UFO.name ∧ Inoki___UFO.personal_experience = "Inoki saw a UFO with his own eyes" → UFO.label = "Object")
+Q[Inoki,Inoki] (None_ML(UFO.attrs, Inoki.attrs) ∧ Inoki___UFO.relationship = "Inoki claims to have seen a UFO." ∧ UFO.name != "UFO" ∧ Inoki___UFO.personal_experience = "Inoki saw a UFO with his own eyes" ∧ Inoki.name != UFO.name ∧ Inoki.name != "Inoki" → Inoki.label = "Person")
+Q[Inoki,Inoki] (Inoki___UFO.uncertainty = "Inoki admitted he didn't know if aliens existed." ∧ Inoki___UFO.method = "personal observation" ∧ Inoki.label = "Person" → Inoki.label != "Person")

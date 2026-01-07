@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 1318)
+S1: A man is at the barber having a shave.
+S2: A man with a white beard is wearing an apron and in the kitchen.
+
+Predicates:
+1. Man1.location.barber
+2. Man1.activity.shave
+3. Man2.location.kitchen
+4. Man2.appearance.white_beard
+5. Man2.clothing.apron
+6. Barber.location.shop
+7. Kitchen.location.house
+8. Shave.activity.hygiene
+9. Apron.function.protect
+10. Beard.color.white
+11. Man1.status.present
+12. Man2.status.present
+13. Shave.location.barber
+14. Apron.location.kitchen
+15. Man1.relationship.with(Barber)
+16. Man2.relationship.with(Kitchen)
+17. Man1.activity.not_in(kitchen)
+18. Man2.activity.not_in(barber)
+19. Man1.occupation.customer
+20. Man2.occupation.cook
+21. Barber.occupation.groomer
+22. Kitchen.function.prepare_food
+23. Shave.necessity.grooming
+24. Apron.necessity.cooking
+25. Man1.activity.conflict.with(Man2.activity)
+26. Man1.location.not_equal(Man2.location)
+27. Man1.appearance.not_equal(Man2.appearance)
+28. Man1.occupation.not_equal(Man2.occupation)
+29. Shave.conflict.with(cooking)
+30. M_NLI(S1, S2)
+
+Rules:
+1. Q[man, Man1.location.barber == true](Man1.status.present == true → Relation(x0, y0))
+2. Q[man, Man2.location.kitchen == true](Man2.status.present == true → Relation(x0, y0))
+3. Q[man, Man1.activity.shave == true](Man1.location.barber == true → Relation(x0, y0))
+4. Q[man, Man2.appearance.white_beard == true](Man2.location.kitchen == true → Relation(x0, y0))
+5. Q[man, Man2.clothing.apron == true](Man2.appearance.white_beard == true → Relation(x0, y0))
+6. Q[man, Barber.location.shop == true](Man1.activity.shave == true → Relation(x0, y0))
+7. Q[man, Kitchen.location.house == true](Man2.clothing.apron == true → Relation(x0, y0))
+8. Q[man, Shave.activity.hygiene == true](Man1.location.barber == true → Relation(x0, y0))
+9. Q[man, Apron.function.protect == true](Man2.activity.not_in(barber) → Relation(x0, y0))
+10. Q[man, Beard.color.white == true](Man2.location.kitchen == true → Relation(x0, y0))
+11. Q[man, Man1.status.present == true](Man1.activity.not_in(kitchen) → Relation(x0, y0))
+12. Q[man, Man2.status.present == true](Man2.activity.not_in(barber) → Relation(x0, y0))
+13. Q[man, Man1.occupation.customer == true](Man1.activity.shave == true → Relation(x0, y0))
+14. Q[man, Man2.occupation.cook == true](Man2.clothing.apron == true → Relation(x0, y0))
+15. Q[man, Barber.occupation.groomer == true](Man1.location.barber == true → Relation(x0, y0))
+16. Q[man, Kitchen.function.prepare_food == true](Man2.occupation.cook == true → Relation(x0, y0))
+17. Q[man, Shave.necessity.grooming == true](Man1.activity.shave == true → Relation(x0, y0))
+18. Q[man, Apron.necessity.cooking == true](Man2.clothing.apron == true → Relation(x0, y0))
+19. Q[man, Man1.activity.conflict.with(Man2.activity) == true](Man1.activity.shave == true → Relation(x0, y0))
+20. Q[man, Man1.location.not_equal(Man2.location) == true](Man1.location.barber == true → Relation(x0, y0))
+21. Q[man, Man1.appearance.not_equal(Man2.appearance) == true](Man1.activity.shave == true → Relation(x0, y0))
+22. Q[man, Man1.occupation.not_equal(Man2.occupation) == true](Man1.occupation.customer == true → Relation(x0, y0))
+23. Q[man, Shave.conflict.with(cooking) == true](Man1.activity.shave == true → Relation(x0, y0))
+24. Q[man, M_NLI(S1, S2) == true](Man1.activity.shave == true → Relation(x0, y0))
+25. Q[man, Man1.activity.not_in(kitchen) == true](Man1.location.barber == true → Relation(x0, y0))
+26. Q[man, Man2.activity.not_in(barber) == true](Man2.location.kitchen == true → Relation(x0, y0))
+27. Q[man, Man1.relationship.with(Barber) == true](Man1.occupation.customer == true → Relation(x0, y0))
+28. Q[man, Man2.relationship.with(Kitchen) == true](Man2.occupation.cook == true → Relation(x0, y0))
+29. Q[man, Shave.location.barber == true](Man1.activity.shave == true → Relation(x0, y0))
+30. Q[man, Apron.location.kitchen == true](Man2.clothing.apron == true → Relation(x0, y0))

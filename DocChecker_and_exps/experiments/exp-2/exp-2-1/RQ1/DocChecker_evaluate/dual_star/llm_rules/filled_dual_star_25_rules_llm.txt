@@ -1,0 +1,121 @@
+Predicates:
+1. Ferguson.location = "Missouri"
+2. black residents.status = "underrepresented"
+3. predominantly black population.status = "underrepresented"
+4. "civic leadership".context = "civic leadership"
+5. "civic leadership".source_id = "3489738277_3"
+6. "civic leadership".voter turnout = "four in 10 city residents"
+7. Ferguson.population = "predominantly black"
+8. Ferguson.city council.status = "underrepresented"
+9. Ferguson.police force.status = "underrepresented"
+10. Ferguson.voter turnout = "40%"
+11. black residents.representation = "low"
+12. Ferguson.city council.representation = "low"
+13. Ferguson.police force.representation = "low"
+14. "civic leadership".population = "predominantly black"
+15. "civic leadership".representation = "underrepresented"
+16. "civic leadership".voter turnout = "40%"
+17. black residents.voter turnout = "40%"
+18. Ferguson.city council.election_year = "2023"
+19. Ferguson.police force.election_year = "2023"
+20. Ferguson.city council.election_participation = "low"
+21. Ferguson.police force.election_participation = "low"
+22. "civic leadership".election_participation = "low"
+23. black residents.election_participation = "low"
+24. "civic leadership".demographics = "predominantly black"
+25. Ferguson.city council.diversity = "lacking"
+26. Ferguson.police force.diversity = "lacking"
+27. "civic leadership".diversity = "lacking"
+28. black residents.influence = "minimal"
+29. Ferguson.city council.influence = "minimal"
+30. Ferguson.police force.influence = "minimal"
+31. "civic leadership".influence = "minimal"
+32. M_NLI(Ferguson.city council.status, black residents.status)
+33. M_NLI(Ferguson.police force.status, predominantly black population.status)
+34. T("Ferguson's predominantly black population is underrepresented in its police force.", "Ferguson's police force is fully representative.", Causal)
+35. T("Ferguson's predominantly black population is underrepresented in its City Council.", "Ferguson's City Council is fully representative.", Causal)
+36. tau(Ferguson.city council.status, black residents.status)
+37. tau(Ferguson.police force.status, predominantly black population.status)
+38. violate(Ferguson.city council.status, black residents.status)
+39. violate(Ferguson.police force.status, predominantly black population.status)
+40. Factual(Ferguson.city council.status, black residents.status)
+41. Factual(Ferguson.police force.status, predominantly black population.status)
+42. Causal(Ferguson.city council.election_participation, black residents.voter turnout)
+43. Causal(Ferguson.police force.election_participation, predominantly black population.voter turnout)
+44. Numeric(Ferguson.voter turnout, "40%")
+45. Numeric(black residents.voter turnout, "40%")
+46. Temporal(Ferguson.city council.election_year, "2023")
+47. Temporal(Ferguson.police force.election_year, "2023")
+48. Relation(Ferguson.city council.status, Ferguson.police force.status)
+49. Relation(black residents.status, predominantly black population.status)
+50. "civic leadership".election_year = "2023"
+51. "civic leadership".demographics = "predominantly black"
+52. "civic leadership".influence = "minimal"
+53. "civic leadership".diversity = "lacking"
+54. Ferguson.city council.voter turnout = "40%"
+55. Ferguson.police force.voter turnout = "40%"
+56. black residents.representation = "underrepresented"
+57. predominantly black population.representation = "underrepresented"
+58. Ferguson.city council.election_participation = "40%"
+59. Ferguson.police force.election_participation = "40%"
+60. M_NLI(Ferguson.city council.representation, Ferguson.police force.representation)
+61. T("Ferguson's predominantly black population is underrepresented in its police force.", "Ferguson's police force is diverse.", Negation)
+62. T("Ferguson's predominantly black population is underrepresented in its City Council.", "Ferguson's City Council is diverse.", Negation)
+63. tau(Ferguson.city council.representation, Ferguson.police force.representation)
+64. violate(Ferguson.city council.representation, Ferguson.police force.representation)
+65. Factual(Ferguson.city council.representation, Ferguson.police force.representation)
+66. Causal(Ferguson.city council.voter turnout, black residents.voter turnout)
+67. Numeric(Ferguson.city council.voter turnout, "40%")
+68. Numeric(Ferguson.police force.voter turnout, "40%")
+69. Temporal(Ferguson.city council.election_year, "2023")
+70. Temporal(Ferguson.police force.election_year, "2023")
+71. Relation(Ferguson.city council.voter turnout, black residents.voter turnout)
+72. Relation(Ferguson.police force.voter turnout, predominantly black population.voter turnout)
+73. "civic leadership".status = "underrepresented"
+74. "civic leadership".population = "predominantly black"
+75. "civic leadership".representation = "underrepresented"
+76. "civic leadership".influence = "minimal"
+77. "civic leadership".diversity = "lacking"
+78. M_NLI(Ferguson.city council.influence, black residents.influence)
+79. T("Ferguson's predominantly black population is underrepresented in its police force.", "Ferguson's police force is fully representative.", Relation)
+80. T("Ferguson's predominantly black population is underrepresented in its City Council.", "Ferguson's City Council is fully representative.", Relation)
+81. tau(Ferguson.city council.influence, black residents.influence)
+82. violate(Ferguson.city council.influence, black residents.influence)
+83. Factual(Ferguson.city council.influence, black residents.influence)
+84. Causal(Ferguson.city council.diversity, black residents.status)
+85. Numeric(Ferguson.city council.diversity, "lacking")
+86. Numeric(Ferguson.police force.diversity, "lacking")
+87. Temporal(Ferguson.city council.election_year, "2023")
+88. Temporal(Ferguson.police force.election_year, "2023")
+89. Relation(Ferguson.city council.diversity, black residents.status)
+90. Relation(Ferguson.police force.diversity, predominantly black population.status)
+91. "civic leadership".election_participation = "low"
+92. "civic leadership".election_year = "2023"
+93. "civic leadership".demographics = "predominantly black"
+94. "civic leadership".influence = "minimal"
+95. "civic leadership".diversity =
+violate(x0, y0)
+
+Rules:
+1. Q[Ferguson.city council, black residents](Ferguson.city council.status = "underrepresented" ∧ black residents.status = "underrepresented" → violate(Ferguson.city council.status, black residents.status))
+2. Q[Ferguson.police force, predominantly black population](Ferguson.police force.status = "underrepresented" ∧ predominantly black population.status = "underrepresented" → violate(Ferguson.police force.status, predominantly black population.status))
+3. Q[Ferguson.city council, Ferguson.police force](Ferguson.city council.representation = "low" ∧ Ferguson.police force.representation = "low" → violate(Ferguson.city council.representation, Ferguson.police force.representation))
+4. Q[black residents, "civic leadership"](black residents.representation = "low" ∧ "civic leadership".representation = "underrepresented" → violate(black residents.representation, "civic leadership".representation))
+5. Q[Ferguson.city council, "civic leadership"](Ferguson.city council.election_participation = "low" ∧ "civic leadership".election_participation = "low" → violate(Ferguson.city council.election_participation, "civic leadership".election_participation))
+6. Q[Ferguson.city council, Ferguson.police force](Ferguson.city council.voter turnout = "40%" ∧ Ferguson.police force.voter turnout = "40%" → violate(Ferguson.city council.voter turnout, Ferguson.police force.voter turnout))
+7. Q[Ferguson.city council, black residents](Ferguson.city council.diversity = "lacking" ∧ black residents.status = "underrepresented" ∧ Ferguson.city council.status = "underrepresented" → violate(Ferguson.city council.diversity, black residents.status))
+8. Q[Ferguson.police force, predominantly black population](Ferguson.police force.diversity = "lacking" ∧ predominantly black population.status = "underrepresented" ∧ Ferguson.police force.status = "underrepresented" → violate(Ferguson.police force.diversity, predominantly black population.status))
+9. Q["civic leadership", Ferguson.city council]( "civic leadership".influence = "minimal" ∧ Ferguson.city council.influence = "minimal" ∧ "civic leadership".status = "underrepresented" → violate("civic leadership".influence, Ferguson.city council.influence))
+10. Q["civic leadership", black residents]( "civic leadership".demographics = "predominantly black" ∧ black residents.status = "underrepresented" ∧ "civic leadership".representation = "underrepresented" → violate("civic leadership".demographics, black residents.status))
+11. Q[Ferguson.city council, Ferguson.police force](Ferguson.city council.election_year = "2023" ∧ Ferguson.police force.election_year = "2023" ∧ Ferguson.city council.election_participation = "low" → violate(Ferguson.city council.election_year, Ferguson.police force.election_year))
+12. Q[black residents, "civic leadership"](black residents.voter turnout = "40%" ∧ "civic leadership".voter turnout = "four in 10 city residents" ∧ black residents.election_participation = "low" → violate(black residents.voter turnout, "civic leadership".voter turnout))
+13. Q[Ferguson.city council, "civic leadership"](Ferguson.city council.influence = "minimal" ∧ "civic leadership".influence = "minimal" ∧ Ferguson.city council.representation = "low" ∧ "civic leadership".representation = "underrepresented" → violate(Ferguson.city council.influence, "civic leadership".influence))
+14. Q[Ferguson.police force, predominantly black population](Ferguson.police force.influence = "minimal" ∧ predominantly black population.representation = "underrepresented" ∧ Ferguson.police force.representation = "low" ∧ predominantly black population.status = "underrepresented" → violate(Ferguson.police force.influence, predominantly black population.representation))
+15. Q[Ferguson.city council, Ferguson.police force](Ferguson.city council.status = "underrepresented" ∧ Ferguson.police force.status = "underrepresented" ∧ Ferguson.city council.diversity = "lacking" ∧ Ferguson.police force.diversity = "lacking" ∧ Ferguson.city council.representation = "low" → violate(Ferguson.city council.status, Ferguson.police force.status))
+16. Q[black residents, Ferguson.city council](black residents.election_participation = "low" ∧ Ferguson.city council.election_participation = "low" ∧ black residents.voter turnout = "40%" ∧ Ferguson.city council.voter turnout = "40%" → violate(black residents.election_participation, Ferguson.city council.election_participation))
+17. Q["civic leadership", Ferguson.city council]( "civic leadership".voter turnout = "40%" ∧ Ferguson.city council.voter turnout = "40%" ∧ "civic leadership".representation = "underrepresented" ∧ Ferguson.city council.representation = "low" → violate("civic leadership".voter turnout, Ferguson.city council.voter turnout))
+18. Q[Ferguson.city council, black residents](Ferguson.city council.election_participation = "low" ∧ black residents.election_participation = "low" ∧ Ferguson.city council.status = "underrepresented" ∧ black residents.status = "underrepresented" ∧ Ferguson.city council.representation = "low" → violate(Ferguson.city council.election_participation, black residents.election_participation))
+19. Q[Ferguson.police force, predominantly black population](Ferguson.police force.election_participation = "low" ∧ predominantly black population.status = "underrepresented" ∧ Ferguson.police force.status = "underrepresented" ∧ predominantly black population.representation = "underrepresented" → violate(Ferguson.police force.election_participation, predominantly black population.status))
+20. Q["civic leadership", Ferguson.city council]( "civic leadership".diversity = "lacking" ∧ Ferguson.city council.diversity = "lacking" ∧ "civic leadership".influence = "minimal" ∧ Ferguson.city council.influence = "minimal" → violate("civic leadership".diversity, Ferguson.city council.diversity))
+21. Q[Ferguson.city council, "civic leadership"](Ferguson.city council.voter turnout = "40%" ∧ "civic leadership".voter turnout = "four in 10 city residents" ∧ Ferguson.city council.status = "underrepresented" ∧ "civic leadership".status = "underrepresented" ∧ Ferguson.city council.representation = "low" → violate(Ferguson.city council.voter turnout, "civic leadership".voter turnout))
+22. Q[black residents, Ferguson.police force](black residents.in

@@ -1,0 +1,58 @@
+Source: dense_text.txt (Index 77)
+S1: Yue initially testified that she discovered she was pregnant in October 1999.
+S2: Yue said that family-planning officials tipped off about her pregnancy came looking for her in February 1999.
+
+Predicates:
+1. Yue.testified.discovered_pregnancy_date = October_1999
+2. Yue.testified.family_planning_officials_tipped_off = True
+3. Yue.testified.officials_looking_for_her_date = February_1999
+4. Pregnancy.known_before.date = October_1999
+5. Pregnancy.known_before.date = February_1999
+6. Family_planning_officials.relationship_with.Yue = tipped_off
+7. Family_planning_officials.looking_for.Yue = True
+8. October_1999.is_after.February_1999 = True
+9. Yue.pregnancy_discovery_date = October_1999
+10. Yue.pregnancy_officials_informed_date = February_1999
+11. Pregnancy.officials_informed_before_discovery = True
+12. Pregnancy.discovery_date.is_later_than.officials_informed_date = True
+13. M_NLI(S1, S2) = True
+14. Temporal(October_1999, February_1999) = True
+15. violate(October_1999, February_1999) = True
+16. Yue.pregnancy_discovery.is_after.officials_looking_for_her = True
+17. Family_planning_officials.knowledge_of.pregnancy = True
+18. Pregnancy.officials_looking_for.Yue = True
+19. February_1999.is_before.October_1999 = True
+20. Yue.pregnancy.officials_informed = True
+21. Pregnancy.discovery.is_after.officials_informed = True
+22. Yue.testified.officials_looking_for_her = True
+23. Pregnancy.officials_tipped_off = True
+24. October_1999.is_discovery_date = True
+25. February_1999.is_informed_date = True
+26. Pregnancy.officials_knowledge.is_prior_to.discovery = True
+27. Yue.testified.pregnancy_discovery = True
+28. Family_planning_officials.informed.Yue = True
+29. Pregnancy.discovery_date.is_after.officials_informed_date = True
+30. Yue.pregnancy.officials_knowledge = True
+
+Rules:
+1. Q[Yue, Yue.testified.discovered_pregnancy_date, Yue.testified.officials_looking_for_her_date](Yue.testified.discovered_pregnancy_date == October_1999 ∧ Yue.testified.officials_looking_for_her_date == February_1999 → Temporal(Yue.testified.discovered_pregnancy_date, Yue.testified.officials_looking_for_her_date))
+2. Q[Yue, Yue.testified.officials_looking_for_her_date, Pregnancy.known_before.date](Yue.testified.officials_looking_for_her_date == February_1999 ∧ Pregnancy.known_before.date == October_1999 → Temporal(Yue.testified.officials_looking_for_her_date, Pregnancy.known_before.date))
+3. Q[Yue, Pregnancy.known_before.date, Pregnancy.discovery_date.is_later_than.officials_informed_date](Pregnancy.known_before.date == February_1999 ∧ Pregnancy.discovery_date.is_later_than.officials_informed_date == True → Temporal(Pregnancy.known_before.date, Pregnancy.discovery_date))
+4. Q[Yue, October_1999.is_after.February_1999, Pregnancy.discovery.is_after.officials_informed](October_1999.is_after.February_1999 == True ∧ Pregnancy.discovery.is_after.officials_informed == True → Temporal(October_1999, February_1999))
+5. Q[Yue, Family_planning_officials.tipped_off, Pregnancy.officials_knowledge.is_prior_to.discovery](Family_planning_officials.tipped_off == True ∧ Pregnancy.officials_knowledge.is_prior_to.discovery == True → Temporal(Family_planning_officials.tipped_off, Pregnancy.officials_knowledge))
+6. Q[Yue, Yue.pregnancy_discovery_date, Pregnancy.officials_informed_before.discovery](Yue.pregnancy_discovery_date == October_1999 ∧ Pregnancy.officials_informed_before.discovery == True → Temporal(Yue.pregnancy_discovery_date, Pregnancy.officials_informed_before.discovery))
+7. Q[Yue, February_1999.is_before.October_1999, Pregnancy.discovery.is_after.officials_informed](February_1999.is_before.October_1999 == True ∧ Pregnancy.discovery.is_after.officials_informed == True → Temporal(February_1999, October_1999))
+8. Q[Yue, Yue.testified.family_planning_officials_tipped_off, Pregnancy.officials_looking_for.Yue](Yue.testified.family_planning_officials_tipped_off == True ∧ Pregnancy.officials_looking_for.Yue == True → Temporal(Yue.testified.family_planning_officials_tipped_off, Pregnancy.officials_looking_for.Yue))
+9. Q[Yue, Pregnancy.discovery_date.is_after.officials_informed_date, October_1999.is_discovery_date](Pregnancy.discovery_date.is_after.officials_informed_date == True ∧ October_1999.is_discovery_date == True → Temporal(Pregnancy.discovery_date, October_1999))
+10. Q[Yue, Family_planning_officials.knowledge_of.pregnancy, Pregnancy.officials_informed_before.discovery](Family_planning_officials.knowledge_of.pregnancy == True ∧ Pregnancy.officials_informed_before.discovery == True → Temporal(Family_planning_officials.knowledge_of.pregnancy, Pregnancy.officials_informed_before.discovery))
+11. Q[Yue, Yue.pregnancy.officials_knowledge, Pregnancy.officials_informed_before.discovery](Yue.pregnancy.officials_knowledge == True ∧ Pregnancy.officials_informed_before.discovery == True → Temporal(Yue.pregnancy.officials_knowledge, Pregnancy.officials_informed_before.discovery))
+12. Q[Yue, Pregnancy.officials_looking_for.Yue, Pregnancy.discovery.is_after.officials_informed](Pregnancy.officials_looking_for.Yue == True ∧ Pregnancy.discovery.is_after.officials_informed == True → Temporal(Pregnancy.officials_looking_for.Yue, Pregnancy.discovery))
+13. Q[Yue, October_1999.is_after.February_1999, Pregnancy.officials_knowledge.is_prior_to.discovery](October_1999.is_after.February_1999 == True ∧ Pregnancy.officials_knowledge.is_prior_to.discovery == True → Temporal(October_1999, February_1999))
+14. Q[Yue, Yue.testified.officials_looking_for_her, Pregnancy.discovery.is_after.officials_informed](Yue.testified.officials_looking_for_her == True ∧ Pregnancy.discovery.is_after.officials_informed == True → Temporal(Yue.testified.officials_looking_for_her, Pregnancy.discovery))
+15. Q[Yue, Pregnancy.discovery_date.is_after.officials_informed_date, February_1999.is_informed_date](Pregnancy.discovery_date.is_after.officials_informed_date == True ∧ February_1999.is_informed_date == True → Temporal(Pregnancy.discovery_date, February_1999))
+16. Q[Yue, Family_planning_officials.looking_for.Yue, Pregnancy.officials_knowledge.is_prior_to.discovery](Family_planning_officials.looking_for.Yue == True ∧ Pregnancy.officials_knowledge.is_prior_to.discovery == True → Temporal(Family_planning_officials.looking_for.Yue, Pregnancy.officials_knowledge))
+17. Q[Yue, Yue.testified.pregnancy_discovery, Pregnancy.officials_informed_before.discovery](Yue.testified.pregnancy_discovery == True ∧ Pregnancy.officials_informed_before.discovery == True → Temporal(Yue.testified.pregnancy_discovery, Pregnancy.officials_informed_before.discovery))
+18. Q[Yue, Pregnancy.officials_tipped_off, October_1999.is_discovery_date](Pregnancy.officials_tipped_off == True ∧ October_1999.is_discovery_date == True → Temporal(Pregnancy.officials_tipped_off, October_1999))
+19. Q[Yue, February_1999.is_before.October_1999, Pregnancy.officials_knowledge.is_prior_to.discovery](February_1999.is_before.October_1999 == True ∧ Pregnancy.officials_knowledge.is_prior_to.discovery == True → Temporal(February_1999, October_1999))
+20. Q[Yue, Yue.pregnancy_discovery_date, Pregnancy.discovery.is_after.officials_informed](Yue.pregnancy_discovery_date == October_1999 ∧ Pregnancy.discovery.is_after.officials_informed == True → Temporal(Yue.pregnancy_discovery_date, Pregnancy.discovery))
+21. Q[Yue, Family_planning_officials.tipped_off, Pregnancy.discovery.is_after.officials_informed](Family_planning_officials.tipped_off == True ∧ Pregnancy.discovery.is_after.officials_informed == True → Temporal(F

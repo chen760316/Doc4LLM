@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 956)
+S1: M a r t i n P a g e w a s s e n t o n a m i s s i o n t o A f g h a n i s t a n .
+S2: M a r t i n P a g e w a s s e n t i n a l i f e a n A f g h a n i s t a n .
+
+Predicates:
+1. Martin_Page.mission
+2. Martin_Page.location
+3. Martin_Page.situation
+4. Afghanistan.mission
+5. Afghanistan.life_threatening
+6. Martin_Page.sent_on.mission
+7. Martin_Page.sent_in.life_threatening
+8. mission.type
+9. life_threatening.type
+10. mission.location
+11. life_threatening.location
+12. Martin_Page.sent_to.Afghanistan
+13. mission.duration
+14. life_threatening.duration
+15. Martin_Page.assigned.mission
+16. Martin_Page.assigned.life_threatening
+17. mission.outcome
+18. life_threatening.outcome
+19. Martin_Page.experience.mission
+20. Martin_Page.experience.life_threatening
+21. mission.risk_level
+22. life_threatening.risk_level
+23. Martin_Page.objective.mission
+24. Martin_Page.objective.life_threatening
+25. mission.success
+26. life_threatening.success
+27. M_NLI(S1, S2)
+28. Causal(Martin_Page, mission)
+29. Causal(Martin_Page, life_threatening)
+30. violate(mission, life_threatening)
+
+Rules:
+1. Q[Anchor, Martin_Page.mission, Martin_Page.situation](Martin_Page.sent_on.mission == true → Causal(Martin_Page, situation))
+2. Q[Anchor, Martin_Page.location, Afghanistan.life_threatening](Martin_Page.sent_to.Afghanistan == true → Causal(Martin_Page, life_threatening))
+3. Q[Anchor, Martin_Page.situation, Afghanistan.life_threatening](Martin_Page.assigned.mission == true → Causal(Martin_Page, life_threatening))
+4. Q[Anchor, Martin_Page.mission, Martin_Page.situation](Martin_Page.experience.mission == true → Causal(Martin_Page, situation))
+5. Q[Anchor, mission.type, life_threatening.type](mission.type == "combat" → Causal(mission, life_threatening))
+6. Q[Anchor, Martin_Page.sent_on.mission, Martin_Page.sent_in.life_threatening](Martin_Page.sent_on.mission == true → Causal(Martin_Page, sent_in.life_threatening))
+7. Q[Anchor, mission.risk_level, life_threatening.risk_level](mission.risk_level == "low" → Causal(mission, life_threatening))
+8. Q[Anchor, Martin_Page.assigned.mission, Martin_Page.assigned.life_threatening](Martin_Page.assigned.mission == true → Causal(Martin_Page, assigned.life_threatening))
+9. Q[Anchor, mission.success, life_threatening.success](mission.success == true → Causal(mission, life_threatening))
+10. Q[Anchor, Martin_Page.objective.mission, Martin_Page.objective.life_threatening](Martin_Page.objective.mission == "complete" → Causal(Martin_Page, objective.life_threatening))
+11. Q[Anchor, Martin_Page.sent_on.mission, Martin_Page.sent_to.Afghanistan](Martin_Page.sent_on.mission == true → Causal(Martin_Page, sent_to.Afghanistan))
+12. Q[Anchor, Martin_Page.experience.mission, Martin_Page.experience.life_threatening](Martin_Page.experience.mission == true → Causal(Martin_Page, experience.life_threatening))
+13. Q[Anchor, mission.duration, life_threatening.duration](mission.duration == "short" → Causal(mission, life_threatening))
+14. Q[Anchor, Martin_Page.location, mission.location](Martin_Page.location == "Afghanistan" → Causal(Martin_Page, mission.location))
+15. Q[Anchor, Martin_Page.sent_in.life_threatening, Afghanistan.life_threatening](Martin_Page.sent_in.life_threatening == true → Causal(Martin_Page, Afghanistan.life_threatening))
+16. Q[Anchor, Martin_Page.assigned.life_threatening, Martin_Page.situation](Martin_Page.assigned.life_threatening == true → Causal(Martin_Page, situation))
+17. Q[Anchor, mission.outcome, life_threatening.outcome](mission.outcome == "successful" → Causal(mission, life_threatening))
+18. Q[Anchor, Martin_Page.sent_on.mission, Martin_Page.objective.mission](Martin_Page.sent_on.mission == true → Causal(Martin_Page, objective.mission))
+19. Q[Anchor, life_threatening.type, mission.type](life_threatening.type == "dangerous" → Causal(life_threatening, mission))
+20. Q[Anchor, Martin_Page.sent_to.Afghanistan, Martin_Page.sent_in.life_threatening](Martin_Page.sent_to.Afghanistan == true → Causal(Martin_Page, sent_in.life_threatening))
+21. Q[Anchor, mission.risk_level, Martin_Page.situation](mission.risk_level == "high" → Causal(mission, situation))
+22. Q[Anchor, Martin_Page.objective.life_threatening, Martin_Page.assigned.life_threatening](Martin_Page.objective.life_threatening == "survive" → Causal(Martin_Page, assigned.life_threatening))
+23. Q[Anchor, life_threatening.success, mission.success](life_threatening.success == false → Causal(life_threatening, mission))
+24. Q[Anchor, Martin_Page.experience.life_threatening, Martin_Page.situation](Martin_Page.experience.life_threatening == true → Causal(Martin_Page, situation))
+25. Q[Anchor, mission.duration, Martin_Page.sent_on.mission](mission.duration == "long" → Causal(mission, Martin_Page.sent_on.mission))
+26. Q[Anchor, Martin_Page.sent_in.life_threatening, mission.type](Martin_Page.sent_in.life_threatening == true → Causal(Martin_Page, mission.type))
+27. Q[Anchor, Martin_Page.assigned.mission, mission.outcome](Martin_Page.assigned.mission == true → Causal(Martin_Page, mission.outcome))
+28. Q[Anchor, Martin_Page.location, life_threatening.location](Martin_Page.location == "combat zone" → Causal(Martin_Page, life_threatening.location))
+29. Q[Anchor, mission.success, Martin_Page.sent_on.mission](mission.success == false → Causal(mission, Martin_Page.sent_on.mission))
+30. Q[Anchor, violate(mission, life_threatening), Martin_Page.situation](violate(mission, life_threatening) == true → Causal(violate(mission, life_threatening), Martin_Page.situation))

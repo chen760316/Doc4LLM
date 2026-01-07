@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 996)
+S1: Two people walking through a sandy desert.
+S2: The two people are in a sandy desert.
+
+Predicates:
+1. Person1.location
+2. Person2.location
+3. Person1.action
+4. Person2.action
+5. Desert.type
+6. Desert.condition
+7. Person1.state
+8. Person2.state
+9. Walking.action
+10. Walking.location
+11. SandyDesert.type
+12. SandyDesert.condition
+13. M_NLI(S1, S2)
+14. Factual(Person1, Desert)
+15. Factual(Person2, Desert)
+16. violate(Person1, Walking)
+17. violate(Person2, Walking)
+18. Person1.activity
+19. Person2.activity
+20. Desert.environment
+21. Person1.movement
+22. Person2.movement
+23. Walking.direction
+24. SandyDesert.size
+25. SandyDesert.temperature
+26. Person1.visibility
+27. Person2.visibility
+28. M_NLI(S2, S1)
+29. Factual(Walking, Desert)
+30. violate(Desert, Walking)
+
+Rules:
+1. Q[Two, Person1.action, Walking](Person1.action == "walking" → Factual(Person1, Desert))
+2. Q[Two, Person2.action, Walking](Person2.action == "walking" → Factual(Person2, Desert))
+3. Q[Two, Person1.location, SandyDesert](Person1.location == SandyDesert → Factual(Person1, Desert))
+4. Q[Two, Person2.location, SandyDesert](Person2.location == SandyDesert → Factual(Person2, Desert))
+5. Q[Two, Person1.state, active](Person1.state == active → Factual(Person1, Desert))
+6. Q[Two, Person2.state, active](Person2.state == active → Factual(Person2, Desert))
+7. Q[Two, Walking.action, Walking](Walking.action == "walking" → Factual(Walking, Desert))
+8. Q[Two, Desert.type, SandyDesert](Desert.type == SandyDesert → Factual(Person1, Desert))
+9. Q[Two, Desert.condition, active](Desert.condition == active → Factual(Person2, Desert))
+10. Q[Two, Person1.movement, walking](Person1.movement == walking → Factual(Person1, Desert))
+11. Q[Two, Person2.movement, walking](Person2.movement == walking → Factual(Person2, Desert))
+12. Q[Two, Walking.direction, forward](Walking.direction == forward → Factual(Walking, Desert))
+13. Q[Two, SandyDesert.size, large](SandyDesert.size == large → Factual(Person1, Desert))
+14. Q[Two, SandyDesert.temperature, hot](SandyDesert.temperature == hot → Factual(Person2, Desert))
+15. Q[Two, Person1.visibility, clear](Person1.visibility == clear → Factual(Person1, Desert))
+16. Q[Two, Person2.visibility, clear](Person2.visibility == clear → Factual(Person2, Desert))
+17. Q[Two, Desert.environment, harsh](Desert.environment == harsh → Factual(Person1, Desert))
+18. Q[Two, Desert.condition, static](Desert.condition == static → Factual(Person2, Desert))
+19. Q[Two, Person1.activity, walking](Person1.activity == walking → Factual(Person1, Desert))
+20. Q[Two, Person2.activity, walking](Person2.activity == walking → Factual(Person2, Desert))
+21. Q[Two, violate(Person1, Walking), true](violate(Person1, Walking) == true → Factual(Person1, Desert))
+22. Q[Two, violate(Person2, Walking), true](violate(Person2, Walking) == true → Factual(Person2, Desert))
+23. Q[Two, M_NLI(S1, S2), false](M_NLI(S1, S2) == false → Factual(Person1, Desert))
+24. Q[Two, M_NLI(S2, S1), false](M_NLI(S2, S1) == false → Factual(Person2, Desert))
+25. Q[Two, Desert.condition, moving](Desert.condition == moving → Factual(Person1, Desert))
+26. Q[Two, Desert.condition, stationary](Desert.condition == stationary → Factual(Person2, Desert))
+27. Q[Two, SandyDesert.condition, dry](SandyDesert.condition == dry → Factual(Person1, Desert))
+28. Q[Two, SandyDesert.condition, still](SandyDesert.condition == still → Factual(Person2, Desert))
+29. Q[Two, violate(Desert, Walking), true](violate(Desert, Walking) == true → Factual(Person1, Desert))
+30. Q[Two, Factual(Walking, Desert), false](Factual(Walking, Desert) == false → Factual(Person2, Desert))

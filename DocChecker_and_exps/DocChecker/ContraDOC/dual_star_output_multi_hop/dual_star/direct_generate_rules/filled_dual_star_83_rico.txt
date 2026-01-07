@@ -1,0 +1,69 @@
+Predicates:
+Emily St. Aubert.age != "young"
+Emily St. Aubert.age = "young"
+Emily St. Aubert.label != "Person"
+Emily St. Aubert.label = "Person"
+Emily St. Aubert.name != "Emily St. Aubert"
+Emily St. Aubert.name != Madame Cheron.name
+Emily St. Aubert.name != Signor Montoni.name
+Emily St. Aubert.name != Valancourt.name
+Emily St. Aubert.name = "Emily St. Aubert"
+Emily St. Aubert.nationality != "French"
+Emily St. Aubert.nationality != Signor Montoni.nationality
+Emily St. Aubert.nationality = "French"
+Emily St. Aubert.status != "orphaned"
+Emily St. Aubert.status != Madame Cheron.status
+Emily St. Aubert.status != Valancourt.status
+Emily St. Aubert.status = "orphaned"
+Emily St. Aubert___Madame Cheron.doc_id = "story_train_288"
+Emily St. Aubert___Madame Cheron.reason = "her father's wishes"
+Emily St. Aubert___Madame Cheron.relationship != Emily St. Aubert___Valancourt.relationship
+Emily St. Aubert___Madame Cheron.relationship = "Emily St. Aubert is forced to live with her aunt, Madame Cheron, after her father's death."
+Emily St. Aubert___Signor Montoni.doc_id = "story_train_288"
+Emily St. Aubert___Signor Montoni.location != Emily St. Aubert___Valancourt.location
+Emily St. Aubert___Signor Montoni.location = "castle Udolpho"
+Emily St. Aubert___Signor Montoni.relationship != Emily St. Aubert___Madame Cheron.relationship
+Emily St. Aubert___Signor Montoni.relationship != Emily St. Aubert___Valancourt.relationship
+Emily St. Aubert___Signor Montoni.relationship = "Emily St. Aubert is imprisoned by Signor Montoni in the castle Udolpho."
+Emily St. Aubert___Signor Montoni.time = "1584"
+Emily St. Aubert___Valancourt.doc_id = "story_train_288"
+Emily St. Aubert___Valancourt.location = "estate of her aunt"
+Emily St. Aubert___Valancourt.relationship = "Emily St. Aubert and Valancourt quickly fall in love during their journey."
+Madame Cheron.label != "Person"
+Madame Cheron.label = "Person"
+Madame Cheron.name != "Madame Cheron"
+Madame Cheron.name != Valancourt.name
+Madame Cheron.name = "Madame Cheron"
+Madame Cheron.status != "aunt and guardian"
+Madame Cheron.status != Valancourt.status
+Madame Cheron.status = "aunt and guardian"
+None_ML(Emily St. Aubert___Signor Montoni.attrs, Emily St. Aubert___Madame Cheron.attrs)
+None_ML(Valancourt.attrs, Madame Cheron.attrs)
+Signor Montoni.label != "Person"
+Signor Montoni.label = "Person"
+Signor Montoni.name != "Signor Montoni"
+Signor Montoni.name != Madame Cheron.name
+Signor Montoni.name != Valancourt.name
+Signor Montoni.name = "Signor Montoni"
+Signor Montoni.nationality != "Italian"
+Signor Montoni.nationality = "Italian"
+Signor Montoni.occupation != "brigand"
+Signor Montoni.occupation = "brigand"
+Valancourt.label != "Person"
+Valancourt.label = "Person"
+Valancourt.name != "Valancourt"
+Valancourt.name = "Valancourt"
+Valancourt.status != "Emily's love interest"
+Valancourt.status = "Emily's love interest"
+
+Rules:
+Q[Emily St. Aubert,Emily St. Aubert] (Signor Montoni.name != Valancourt.name ∧ Emily St. Aubert___Signor Montoni.doc_id = "story_train_288" ∧ Emily St. Aubert___Madame Cheron.reason = "her father's wishes" → Emily St. Aubert.label != "Person")
+Q[Emily St. Aubert,Emily St. Aubert] (Signor Montoni.nationality != "Italian" ∧ Madame Cheron.name != Valancourt.name ∧ Emily St. Aubert.name != Madame Cheron.name ∧ Emily St. Aubert___Valancourt.location = "estate of her aunt" → Emily St. Aubert.age != "young")
+Q[Emily St. Aubert,Emily St. Aubert] (Madame Cheron.name != Valancourt.name ∧ Signor Montoni.label = "Person" → Emily St. Aubert.name != Valancourt.name)
+Q[Emily St. Aubert,Emily St. Aubert] (Valancourt.label != "Person" ∧ Valancourt.label = "Person" ∧ Emily St. Aubert___Valancourt.doc_id = "story_train_288" ∧ Emily St. Aubert.nationality != "French" ∧ Signor Montoni.name = "Signor Montoni" → Valancourt.name != "Valancourt")
+Q[Emily St. Aubert,Emily St. Aubert] (Emily St. Aubert.nationality != "French" ∧ Signor Montoni.label != "Person" ∧ Madame Cheron.status != "aunt and guardian" ∧ Madame Cheron.label = "Person" ∧ Signor Montoni.name != Madame Cheron.name ∧ Emily St. Aubert___Madame Cheron.relationship = "Emily St. Aubert is forced to live with her aunt, Madame Cheron, after her father's death." → Signor Montoni.nationality = "Italian")
+Q[Emily St. Aubert,Emily St. Aubert] (None_ML(Emily St. Aubert___Signor Montoni.attrs, Emily St. Aubert___Madame Cheron.attrs) ∧ Emily St. Aubert.name != Signor Montoni.name → Emily St. Aubert___Madame Cheron.reason = "her father's wishes")
+Q[Emily St. Aubert,Emily St. Aubert] (Madame Cheron.name != "Madame Cheron" ∧ Emily St. Aubert___Signor Montoni.relationship = "Emily St. Aubert is imprisoned by Signor Montoni in the castle Udolpho." ∧ Emily St. Aubert___Madame Cheron.reason = "her father's wishes" ∧ Emily St. Aubert.status != Valancourt.status ∧ Signor Montoni.nationality = "Italian" → Signor Montoni.name != Madame Cheron.name)
+Q[Emily St. Aubert,Emily St. Aubert] (Signor Montoni.name = "Signor Montoni" ∧ Emily St. Aubert___Madame Cheron.reason = "her father's wishes" ∧ Emily St. Aubert___Signor Montoni.doc_id = "story_train_288" → Madame Cheron.name != Valancourt.name)
+Q[Emily St. Aubert,Emily St. Aubert] (Madame Cheron.name = "Madame Cheron" ∧ Emily St. Aubert.age = "young" ∧ Emily St. Aubert.label = "Person" ∧ Emily St. Aubert___Signor Montoni.time = "1584" → Madame Cheron.label = "Person")
+Q[Emily St. Aubert,Emily St. Aubert] (Valancourt.label != "Person" ∧ Signor Montoni.name != "Signor Montoni" ∧ Emily St. Aubert.status != Madame Cheron.status ∧ Emily St. Aubert___Valancourt.location = "estate of her aunt" ∧ Emily St. Aubert.label != "Person" ∧ Madame Cheron.name = "Madame Cheron" → Emily St. Aubert.nationality = "French")

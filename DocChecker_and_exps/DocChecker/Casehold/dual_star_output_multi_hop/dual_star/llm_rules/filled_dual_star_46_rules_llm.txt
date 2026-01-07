@@ -1,0 +1,129 @@
+Predicates:
+1. informed(Davis, rights) = false
+2. informed(Davis, suspect_status) = false
+3. informed(Davis, arrest_status) = false
+4. parked(patrol_car, location, store) = true
+5. vehicle_status(patrol_car) = parked
+6. vehicle_type(patrol_car) = unmarked
+7. seated(Davis, back_seat, patrol_car) = true
+8. physical_restriction(Davis) = none
+9. handcuffed(Davis) = false
+10. escape_possible(Davis, patrol_car) = true
+11. location(Davis) = back_seat(patrol_car)
+12. status(Davis) = not_informed
+13. status(Miranda_warnings) = not_issued
+14. location(patrol_car) = right_in_front_of(store)
+15. status(patrol_car) = parked
+16. type(patrol_car) = unmarked
+17. status(store) = accessible
+18. action(unknown_officers) = interviewed
+19. location(unmarked_patrol_car) = right_in_front_of(store)
+20. status(unmarked_patrol_car) = parked
+21. evidence(Davis, rights_informed) = false
+22. evidence(Davis, suspect_informed) = false
+23. evidence(Davis, arrest_informed) = false
+24. evidence(Davis, physical_restraint) = none
+25. evidence(Davis, handcuffed) = false
+26. evidence(patrol_car, location) = accessible
+27. evidence(patrol_car, type) = unmarked
+28. evidence(patrol_car, parked_status) = true
+29. evidence(store, accessible_status) = true
+30. evidence(Davis, escape_possibility) = true
+31. context(Davis, interview_location) = parked_police_vehicle
+32. context(Davis, interview_status) = not_informed
+33. context(patrol_car, parked_status) = in_front_of_store
+34. context(store, patrol_car_location) = accessible
+35. context(Davis, seating_position) = back_seat
+36. context(Davis, physical_condition) = not_handcuffed
+37. context(Davis, vehicle_status) = unlocked
+38. context(Davis, vehicle_type) = unmarked
+39. context(Davis, rights_status) = not_informed
+40. context(Miranda_warnings, issuance_status) = not_issued
+41. action(Davis, interview) = conducted
+42. action(unknown_officers, interview) = performed
+43. action(patrol_car, parked) = true
+44. action(store, accessible) = true
+45. action(Davis, seated) = true
+46. action(Davis, informed) = false
+47. action(Davis, escape) = possible
+48. action(Davis, restrained) = false
+49. action(Davis, handcuffed) = false
+50. action(Davis, suspect_status) = not_informed
+51. action(Davis, arrest_status) = not_informed
+52. action(patrol_car, type) = unmarked
+53. action(patrol_car, location) = in_front_of_store
+54. action(unmarked_patrol_car, parked) = true
+55. action(unmarked_patrol_car, location) = in_front_of_store
+56. action(store, status) = accessible
+57. action(unknown_officers, action_taken) = interviewed
+58. action(Davis, rights) = not_informed
+59. action(Miranda_warnings, status) = not_issued
+60. action(Davis, physical_restriction) = none
+61. action(Davis, escape_possibility) = yes
+62. action(Davis, vehicle_status) = unlocked
+63. action(Davis, vehicle_type) = unmarked
+64. action(Davis, seating_position) = back_seat
+65. action(Davis, handcuffed) = no
+66. action(Davis, interview_context) = parked_police_vehicle
+67. action(Davis, evidence) = no_indication_of_suspect
+68. action(Davis, evidence) = no_physical_restraint
+69. action(Davis, evidence) = not_handcuffed
+70. action(Davis, evidence) = no_locked_back_seat
+71. action(Davis, evidence) = not_in_isolated_area
+72. action(Davis, evidence) = not_inaccessible_area
+73. action(Davis, evidence) = not_informed_of_rights
+74. action(Davis, evidence) = not_informed_of_suspect_status
+75. action(Davis, evidence) = not_informed_of_arrest_status
+76. action(Davis, evidence) = parked_in_front_of_store
+77. action(Davis, evidence) = seated_in_back_seat
+78. action(Davis, evidence) = vehicle_unlocked
+79. action(Davis, evidence) = vehicle_unmarked
+80. action(Davis, evidence) = interview_in_vehicle
+81. action(Davis, evidence) = no_indication_of_being_suspect
+82. action(Davis, evidence) = no_indication_of_being_under_arrest
+83. action(Davis, evidence) = interview_conducted
+84. action(Davis, evidence) = not_informed_prior_to_interview
+85. action(Davis, evidence) = not_informed_prior_to_Miranda
+86. action(Davis, evidence) = not_informed_prior_to_interview
+87. action(Davis, evidence) = not_informed_prior_to_arrest
+88. action(Davis, evidence) = not_informed_prior_to_suspect_status
+89. action(Davis, evidence) = not_informed_prior_to_rights
+90. action(Davis, evidence) = not_informed_prior_to_Miranda_warnings
+91. action(Davis, evidence) = not_informed_prior_to_interview_in_vehicle
+92. action(Davis, evidence) = not_informed_prior_to_interview_in_parked_vehicle
+93. action(Davis, evidence) = not_informed_prior_to_interview_in_unmarked_vehicle
+94. action(Davis, evidence) = not_informed_prior_to_interview_in_back_seat
+95. action(Davis, evidence) = not_informed_prior_to_interview_in_patrol_car
+96. action(Davis, evidence) = not_informed_prior_to_interview_in_police_vehicle
+97. action(Davis, evidence) = not_informed_prior_to_interview_in_unmarked_patrol_car
+98. action(Davis, evidence) = not_informed_prior_to_interview_in_parked_patrol_car
+99. action(Davis, evidence) = not_informed_prior_to_interview_in_parked_unmarked_vehicle
+100. action(Davis, evidence) = not_informed_prior_to_interview_in_parked_unmarked_patrol_car
+
+Rules:
+1. Q[1, 1](informed(Davis, rights) = false ∧ informed(Davis, suspect_status) = false → status(Davis) = not_informed)
+2. Q[2, 2](informed(Davis, arrest_status) = false ∧ parked(patrol_car, location, store) = true → action(Davis, escape) = possible)
+3. Q[3, 3](seated(Davis, back_seat, patrol_car) = true ∧ handcuffed(Davis) = false ∧ escape_possible(Davis, patrol_car) = true → action(Davis, escape) = possible)
+4. Q[4, 4](vehicle_status(patrol_car) = parked ∧ vehicle_type(patrol_car) = unmarked ∧ status(patrol_car) = parked ∧ location(patrol_car) = right_in_front_of(store) → action(Davis, evidence) = parked_in_front_of_store)
+5. Q[5, 5](status(store) = accessible ∧ action(store, accessible) = true ∧ context(store, patrol_car_location) = accessible ∧ evidence(store, accessible_status) = true ∧ action(Davis, seated) = true → action(Davis, evidence) = interview_in_vehicle)
+6. Q[6, 6](informed(Davis, rights) = false ∧ informed(Davis, suspect_status) = false ∧ informed(Davis, arrest_status) = false ∧ status(Miranda_warnings) = not_issued ∧ status(Davis) = not_informed ∧ action(Davis, informed) = false → action(Davis, evidence) = not_informed_prior_to_interview)
+7. Q[1, 2](location(Davis) = back_seat(patrol_car) ∧ physical_restriction(Davis) = none → action(Davis, evidence) = no_physical_restraint)
+8. Q[2, 3](status(Davis) = not_informed ∧ action(Davis, escape) = possible → action(Davis, evidence) = not_informed_prior_to_escape)
+9. Q[3, 4](context(Davis, interview_location) = parked_police_vehicle ∧ context(Davis, interview_status) = not_informed ∧ action(Davis, interview) = conducted → action(Davis, evidence) = interview_conducted)
+10. Q[4, 5](evidence(Davis, rights_informed) = false ∧ evidence(Davis, suspect_informed) = false ∧ evidence(Davis, arrest_informed) = false ∧ evidence(Davis, escape_possibility) = true → action(Davis, evidence) = not_informed_prior_to_rights)
+11. Q[5, 6](action(Davis, handcuffed) = false ∧ action(Davis, physical_restriction) = none ∧ action(Davis, escape) = possible ∧ action(Davis, seated) = true ∧ action(Davis, vehicle_status) = unlocked → action(Davis, evidence) = vehicle_unlocked)
+12. Q[1, 3](vehicle_type(patrol_car) = unmarked ∧ parked(patrol_car, location, store) = true → status(patrol_car) = parked)
+13. Q[2, 4](evidence(Davis, handcuffed) = false ∧ evidence(Davis, physical_restraint) = none → action(Davis, evidence) = no_indication_of_physical_restraint)
+14. Q[3, 5](location(unmarked_patrol_car) = right_in_front_of(store) ∧ status(unmarked_patrol_car) = parked ∧ action(unmarked_patrol_car, parked) = true → action(Davis, evidence) = parked_in_front_of_store)
+15. Q[4, 6](context(Davis, seating_position) = back_seat ∧ context(Davis, physical_condition) = not_handcuffed ∧ action(Davis, escape) = possible ∧ action(Davis, informed) = false → action(Davis, evidence) = not_informed_prior_to_escape)
+16. Q[5, 7](status(Davis) = not_informed ∧ action(Davis, escape) = possible ∧ action(Davis, informed) = false ∧ action(Davis, rights) = not_informed → action(Davis, evidence) = not_informed_prior_to_rights)
+17. Q[1, 4](status(patrol_car) = parked ∧ location(patrol_car) = right_in_front_of(store) → action(Davis, evidence) = parked_in_front_of_store)
+18. Q[2, 5](evidence(Davis, escape_possibility) = true ∧ action(Davis, escape) = possible → action(Davis, evidence) = no_indication_of_being_suspect)
+19. Q[3, 6](informed(Davis, rights) = false ∧ informed(Davis, suspect_status) = false ∧ informed(Davis, arrest_status) = false ∧ status(Miranda_warnings) = not_issued → action(Davis, evidence) = not_informed_prior_to_Miranda)
+20. Q[4, 7](context(Davis, interview_status) = not_informed ∧ action(Davis, interview) = conducted ∧ action(Davis, evidence) = not_informed_prior_to_interview → action(Davis, evidence) = interview_conducted)
+21. Q[5, 8](evidence(Davis, rights_informed) = false ∧ evidence(Davis, suspect_informed) = false ∧ evidence(Davis, arrest_informed) = false ∧ evidence(Davis, escape_possibility) = true ∧ action(Davis, informed) = false → action(Davis, evidence) = not_informed_prior_to_interview)
+22. Q[1, 5](status(store) = accessible ∧ action(store, accessible) = true → action(Davis, evidence) = interview_in_vehicle)
+23. Q[2, 6](location(Davis) = back_seat(patrol_car) ∧ physical_restriction(Davis) = none ∧ handcuffed(Davis) = false → action(Davis, evidence) = no_physical_restraint)
+24. Q[3, 7](informed(Davis, rights) = false ∧ informed(Davis, suspect_status) = false ∧ informed(Davis, arrest_status) = false ∧ status(Miranda_warnings) = not_issued ∧ status(Davis) = not_informed → action(Davis, evidence) = not_informed_prior_to_interview)
+25. Q[4, 8](evidence(Davis, escape_possibility) = true ∧ action(Davis, escape) = possible ∧ action(Davis, informed) = false → action(Davis, evidence) = not_informed_prior_to_escape)
+26. Q[5, 9](context(Davis, interview_location) = parked_police_vehicle ∧ context(Davis, interview_status) = not_informed ∧

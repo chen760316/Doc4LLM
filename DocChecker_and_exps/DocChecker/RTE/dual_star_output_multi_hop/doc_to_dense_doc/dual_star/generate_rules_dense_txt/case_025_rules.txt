@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 25)
+S1: Europe's first pyramid has been discovered near Sarajevo.
+S2: First European pyramid has been discovered in Sarajevo.
+
+Predicates:
+1. Discovery.location
+2. Pyramid.type
+3. Location.city
+4. Location.country
+5. Discovery.date
+6. Discovery.significance
+7. Discovery.method
+8. Discovery.archaeologist
+9. Archaeologist.name
+10. Archaeologist.affiliation
+11. Pyramid.age
+12. Pyramid.size
+13. Pyramid.structure
+14. Location.coordinates
+15. Location.region
+16. Historical.context
+17. Historical.period
+18. Research.study
+19. Research.findings
+20. Research.methodology
+21. Publication.title
+22. Publication.year
+23. Publication.journal
+24. Publication.author
+25. Publication.volume
+26. Publication.issue
+27. Publication.pages
+28. M_NLI(S1, S2)
+29. Factual(Discovery, Location)
+30. violate(Discovery, Location)
+
+Rules:
+1. Q[Europe, Discovery.location, Location.city](Discovery.location == "near Sarajevo" → Factual(Discovery, Location))
+2. Q[Sarajevo, Discovery.location, Location.city](Discovery.location == "near Sarajevo" → Factual(Discovery, Location))
+3. Q[Sarajevo, Location.city, Location.city](Location.city == "Sarajevo" → Factual(Discovery, Location))
+4. Q[Europe, Pyramid.type, Pyramid.type](Pyramid.type == "first European pyramid" → Factual(Discovery, Location))
+5. Q[Sarajevo, Pyramid.type, Pyramid.type](Pyramid.type == "first European pyramid" → Factual(Discovery, Location))
+6. Q[Europe, Location.country, Location.country](Location.country == "Bosnia and Herzegovina" → Factual(Discovery, Location))
+7. Q[Sarajevo, Location.country, Location.country](Location.country == "Bosnia and Herzegovina" → Factual(Discovery, Location))
+8. Q[Europe, Discovery.date, Discovery.date](Discovery.date == "2023" → Factual(Discovery, Location))
+9. Q[Sarajevo, Discovery.date, Discovery.date](Discovery.date == "2023" → Factual(Discovery, Location))
+10. Q[Europe, Discovery.significance, Discovery.significance](Discovery.significance == "historical" → Factual(Discovery, Location))
+11. Q[Sarajevo, Discovery.significance, Discovery.significance](Discovery.significance == "historical" → Factual(Discovery, Location))
+12. Q[Europe, Discovery.method, Discovery.method](Discovery.method == "archaeological" → Factual(Discovery, Location))
+13. Q[Sarajevo, Discovery.method, Discovery.method](Discovery.method == "archaeological" → Factual(Discovery, Location))
+14. Q[Europe, Archaeologist.name, Archaeologist.name](Archaeologist.name == "Dr. John Doe" → Factual(Discovery, Location))
+15. Q[Sarajevo, Archaeologist.name, Archaeologist.name](Archaeologist.name == "Dr. John Doe" → Factual(Discovery, Location))
+16. Q[Europe, Archaeologist.affiliation, Archaeologist.affiliation](Archaeologist.affiliation == "University of Sarajevo" → Factual(Discovery, Location))
+17. Q[Sarajevo, Archaeologist.affiliation, Archaeologist.affiliation](Archaeologist.affiliation == "University of Sarajevo" → Factual(Discovery, Location))
+18. Q[Europe, Pyramid.age, Pyramid.age](Pyramid.age == "ancient" → Factual(Discovery, Location))
+19. Q[Sarajevo, Pyramid.age, Pyramid.age](Pyramid.age == "ancient" → Factual(Discovery, Location))
+20. Q[Europe, Pyramid.size, Pyramid.size](Pyramid.size == "large" → Factual(Discovery, Location))
+21. Q[Sarajevo, Pyramid.size, Pyramid.size](Pyramid.size == "large" → Factual(Discovery, Location))
+22. Q[Europe, Pyramid.structure, Pyramid.structure](Pyramid.structure == "stone" → Factual(Discovery, Location))
+23. Q[Sarajevo, Pyramid.structure, Pyramid.structure](Pyramid.structure == "stone" → Factual(Discovery, Location))
+24. Q[Europe, Location.coordinates, Location.coordinates](Location.coordinates == "43.8486° N, 18.3564° E" → Factual(Discovery, Location))
+25. Q[Sarajevo, Location.coordinates, Location.coordinates](Location.coordinates == "43.8486° N, 18.3564° E" → Factual(Discovery, Location))
+26. Q[Europe, Location.region, Location.region](Location.region == "Balkans" → Factual(Discovery, Location))
+27. Q[Sarajevo, Location.region, Location.region](Location.region == "Balkans" → Factual(Discovery, Location))
+28. Q[Europe, Historical.context, Historical.context](Historical.context == "ancient civilizations" → Factual(Discovery, Location))
+29. Q[Sarajevo, Historical.context, Historical.context](Historical.context == "ancient civilizations" → Factual(Discovery, Location))
+30. Q[Europe, violate(Discovery, Location), violate(Discovery, Location)](M_NLI(S1, S2) == "contradiction" → Factual(Discovery, Location))

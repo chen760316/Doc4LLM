@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 567)
+S1: As CPAs, we get paid for our judgment, so let's exercise it.
+S2: As CPAs, we shouldn't bother reasoning or passing our judgment.
+
+Predicates:
+1. CPA.judgment
+2. CPA.paid_for_judgment
+3. CPA.exercise_judgment
+4. CPA.reasoning
+5. CPA.pass_judgment
+6. CPA.bother_reasoning
+7. CPA.advise_against_judgment
+8. judgment.encouragement
+9. judgment.advice_against
+10. reasoning.exercised
+11. reasoning.ignored
+12. judgment.value
+13. judgment.conflict
+14. exercise.judgment
+15. exercise.reasoning
+16. advice.against_judgment
+17. advice.for_judgment
+18. CPA.conflict_of_advice
+19. CPA.judgment_exercise
+20. CPA.judgment_ignored
+21. reasoning.value
+22. reasoning.conflict
+23. judgment.causation
+24. advice.causation
+25. CPA.judgment_exercise_advice
+26. CPA.judgment_ignored_advice
+27. exercise.judgment_value
+28. ignore.judgment_value
+29. reasoning.causal_relationship
+30. judgment.violation
+
+Rules:
+1. Q[CPAs, CPA.judgment == "exercised" → Causal(CPA.exercise_judgment, CPA.advise_against_judgment)]
+2. Q[CPAs, CPA.paid_for_judgment == true → Causal(CPA.exercise_judgment, CPA.bother_reasoning)]
+3. Q[CPAs, CPA.exercise_judgment == true → Causal(CPA.judgment_exercise_advice, CPA.advise_against_judgment)]
+4. Q[CPAs, CPA.reasoning == "ignored" → Causal(CPA.bother_reasoning, CPA.judgment_ignored)]
+5. Q[CPAs, CPA.pass_judgment == true → Causal(CPA.judgment_exercise, CPA.advise_against_judgment)]
+6. Q[CPAs, CPA.judgment == "encouraged" → Causal(CPA.exercise_judgment, CPA.reasoning.ignored)]
+7. Q[CPAs, CPA.judgment == "advice against" → Causal(CPA.bother_reasoning, CPA.judgment.conflict)]
+8. Q[CPAs, CPA.exercise_judgment == false → Causal(CPA.judgment_ignored, CPA.reasoning.exercised)]
+9. Q[CPAs, CPA.judgment_value == "exercised" → Causal(CPA.judgment_exercise, CPA.advise_against_judgment)]
+10. Q[CPAs, CPA.judgment == "ignored" → Causal(CPA.judgment_ignored_advice, CPA.exercise.judgment_value)]
+11. Q[CPAs, CPA.bother_reasoning == false → Causal(CPA.reasoning.ignored, CPA.judgment.value)]
+12. Q[CPAs, CPA.judgment == "conflict" → Causal(CPA.judgment.conflict, CPA.exercise.judgment)]
+13. Q[CPAs, CPA.reasoning == "exercised" → Causal(CPA.exercise.reasoning, CPA.judgment_value)]
+14. Q[CPAs, CPA.judgment == "advice for" → Causal(CPA.judgment_exercise_advice, CPA.bother_reasoning)]
+15. Q[CPAs, CPA.judgment == "advice against" → Causal(CPA.advise_against_judgment, CPA.judgment_ignored)]
+16. Q[CPAs, CPA.judgment_value == "ignored" → Causal(CPA.judgment_ignored, CPA.exercise.judgment)]
+17. Q[CPAs, CPA.judgment == "exercised" → Causal(CPA.judgment_exercise, CPA.reasoning.ignored)]
+18. Q[CPAs, CPA.judgment == "ignored" → Causal(CPA.judgment_ignored_advice, CPA.exercise.reasoning)]
+19. Q[CPAs, CPA.bother_reasoning == true → Causal(CPA.reasoning.exercised, CPA.judgment.conflict)]
+20. Q[CPAs, CPA.judgment == "advice against" → Causal(CPA.advise_against_judgment, CPA.judgment_value)]
+21. Q[CPAs, CPA.judgment_value == "exercised" → Causal(CPA.exercise.judgment_value, CPA.judgment.conflict)]
+22. Q[CPAs, CPA.judgment == "exercised" → Causal(CPA.judgment_exercise_advice, CPA.bother_reasoning)]
+23. Q[CPAs, CPA.judgment == "ignored" → Causal(CPA.judgment_ignored, CPA.exercise.judgment_value)]
+24. Q[CPAs, CPA.judgment == "advice for" → Causal(CPA.judgment_exercise, CPA.reasoning.ignored)]
+25. Q[CPAs, CPA.judgment == "advice against" → Causal(CPA.advise_against_judgment, CPA.judgment_value)]
+26. Q[CPAs, CPA.judgment_value == "ignored" → Causal(CPA.judgment_ignored_advice, CPA.exercise.judgment)]
+27. Q[CPAs, CPA.bother_reasoning == false → Causal(CPA.reasoning.ignored, CPA.judgment_value)]
+28. Q[CPAs, CPA.judgment == "conflict" → Causal(CPA.judgment.conflict, CPA.exercise.judgment)]
+29. Q[CPAs, CPA.judgment == "exercised" → Causal(CPA.judgment_exercise, CPA.advise_against_judgment)]
+30. Q[CPAs, CPA.judgment == "ignored" → Causal(CPA.judgment_ignored, CPA.exercise.judgment_value)]

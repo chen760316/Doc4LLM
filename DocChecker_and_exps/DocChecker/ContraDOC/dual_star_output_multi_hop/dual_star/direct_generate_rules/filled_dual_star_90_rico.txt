@@ -1,0 +1,42 @@
+Predicates:
+Department of Justice.abbreviation != "DOJ"
+Department of Justice.abbreviation = "DOJ"
+Department of Justice.label != "Government Agency"
+Department of Justice.label != St. Louis County.label
+Department of Justice.label = "Government Agency"
+Department of Justice.name != "Department of Justice"
+Department of Justice.name != St. Louis County.name
+Department of Justice.name = "Department of Justice"
+Ferguson.label != "City"
+Ferguson.label != Department of Justice.label
+Ferguson.label != St. Louis County.label
+Ferguson.label = "City"
+Ferguson.name != "Ferguson"
+Ferguson.name != Department of Justice.name
+Ferguson.name != St. Louis County.name
+Ferguson.name = "Ferguson"
+Ferguson___Department of Justice.doc_id = "3489825758_1"
+Ferguson___Department of Justice.reason = "charged with engaging in a pattern and practice of racial discrimination"
+Ferguson___Department of Justice.relationship != Ferguson___St. Louis County.relationship
+Ferguson___Department of Justice.relationship = "The Department of Justice will negotiate with the city of Ferguson to restructure the police department."
+Ferguson___St. Louis County.context = "suggested by local activists"
+Ferguson___St. Louis County.doc_id = "3489825758_1"
+Ferguson___St. Louis County.relationship = "There is a possibility of integrating Ferguson's police department with St. Louis County Police."
+None_ML(Department of Justice.attrs, St. Louis County.attrs)
+None_ML(Ferguson___St. Louis County.attrs, Ferguson___Department of Justice.attrs)
+St. Louis County.label != "County"
+St. Louis County.label = "County"
+St. Louis County.name != "St. Louis County"
+St. Louis County.name = "St. Louis County"
+
+Rules:
+Q[Ferguson,Ferguson] (Ferguson.name = "Ferguson" ∧ Ferguson___St. Louis County.context = "suggested by local activists" ∧ St. Louis County.name = "St. Louis County" → Ferguson___St. Louis County.relationship = "There is a possibility of integrating Ferguson's police department with St. Louis County Police.")
+Q[Ferguson,Ferguson] (Department of Justice.abbreviation = "DOJ" ∧ Ferguson.label != "City" ∧ Ferguson___St. Louis County.context = "suggested by local activists" ∧ St. Louis County.label = "County" → Ferguson___Department of Justice.doc_id = "3489825758_1")
+Q[Ferguson,Ferguson] (Ferguson.label != Department of Justice.label ∧ Department of Justice.label != "Government Agency" → Ferguson.name = "Ferguson")
+Q[Ferguson,Ferguson] (Ferguson___Department of Justice.reason = "charged with engaging in a pattern and practice of racial discrimination" ∧ Ferguson___Department of Justice.doc_id = "3489825758_1" ∧ Department of Justice.name = "Department of Justice" ∧ Ferguson___St. Louis County.relationship = "There is a possibility of integrating Ferguson's police department with St. Louis County Police." ∧ Ferguson___Department of Justice.relationship = "The Department of Justice will negotiate with the city of Ferguson to restructure the police department." → Ferguson___St. Louis County.context = "suggested by local activists")
+Q[Ferguson,Ferguson] (Ferguson___Department of Justice.relationship = "The Department of Justice will negotiate with the city of Ferguson to restructure the police department." ∧ Ferguson.label != St. Louis County.label ∧ Ferguson___Department of Justice.doc_id = "3489825758_1" ∧ Department of Justice.name != St. Louis County.name ∧ Ferguson___Department of Justice.relationship != Ferguson___St. Louis County.relationship ∧ Ferguson.name = "Ferguson" → Ferguson___St. Louis County.doc_id = "3489825758_1")
+Q[Ferguson,Ferguson] (Ferguson.label = "City" ∧ Ferguson___Department of Justice.relationship != Ferguson___St. Louis County.relationship ∧ Ferguson.label != "City" ∧ Ferguson.label != St. Louis County.label ∧ St. Louis County.name = "St. Louis County" ∧ Department of Justice.label = "Government Agency" → St. Louis County.label != "County")
+Q[Ferguson,Ferguson] (Department of Justice.name = "Department of Justice" ∧ Department of Justice.label != "Government Agency" ∧ Ferguson.label != St. Louis County.label ∧ Department of Justice.label = "Government Agency" → Ferguson___Department of Justice.reason = "charged with engaging in a pattern and practice of racial discrimination")
+Q[Ferguson,Ferguson] (Ferguson.label != St. Louis County.label ∧ Ferguson.label != Department of Justice.label → Department of Justice.label != "Government Agency")
+Q[Ferguson,Ferguson] (Ferguson___Department of Justice.reason = "charged with engaging in a pattern and practice of racial discrimination" ∧ Department of Justice.abbreviation = "DOJ" ∧ Department of Justice.name != St. Louis County.name → None_ML(Department of Justice.attrs, St. Louis County.attrs))
+Q[Ferguson,Ferguson] (Ferguson___Department of Justice.relationship != Ferguson___St. Louis County.relationship ∧ Ferguson.name != Department of Justice.name ∧ Ferguson___St. Louis County.context = "suggested by local activists" ∧ Ferguson.name != "Ferguson" ∧ Ferguson.name != St. Louis County.name → Department of Justice.label = "Government Agency")

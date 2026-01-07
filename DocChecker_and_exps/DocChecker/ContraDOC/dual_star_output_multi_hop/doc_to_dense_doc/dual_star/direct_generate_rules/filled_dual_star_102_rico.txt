@@ -1,0 +1,54 @@
+Predicates:
+Jeb Bush.label != "Person"
+Jeb Bush.label = "Person"
+Jeb Bush.name != "Jeb Bush"
+Jeb Bush.name = "Jeb Bush"
+Jeb Bush.occupation != "politician"
+Jeb Bush.occupation = "politician"
+Jeb Bush.status != "likely GOP presidential candidate"
+Jeb Bush.status = "likely GOP presidential candidate"
+Mike Pence.label != "Person"
+Mike Pence.label = "Person"
+Mike Pence.name != "Mike Pence"
+Mike Pence.name != Jeb Bush.name
+Mike Pence.name != Ted Cruz.name
+Mike Pence.name = "Mike Pence"
+Mike Pence.status != "toxic"
+Mike Pence.status != Jeb Bush.status
+Mike Pence.status = "toxic"
+Mike Pence___Jeb Bush.contradiction_type = "Relation"
+Mike Pence___Jeb Bush.reason = "public perception"
+Mike Pence___Jeb Bush.relationship = "Pence and Bush are considered toxic now."
+Mike Pence___Jeb Bush.source_id = "3489738271_2"
+Mike Pence___Ted Cruz.contradiction_type = "Relation"
+Mike Pence___Ted Cruz.relationship != Mike Pence___Jeb Bush.relationship
+Mike Pence___Ted Cruz.relationship = "Pence's policy rhetoric has echoed that of Cruz."
+Mike Pence___Ted Cruz.source_id = "3489738271_2"
+Mike Pence___Ted Cruz.year != 2016
+Mike Pence___Ted Cruz.year = 2016
+None_ML(Jeb Bush.attrs, Ted Cruz.attrs)
+None_ML(Mike Pence___Jeb Bush.attrs, Mike Pence___Ted Cruz.attrs)
+Ted Cruz.label != "Person"
+Ted Cruz.label = "Person"
+Ted Cruz.location != "Texas"
+Ted Cruz.location = "Texas"
+Ted Cruz.name != "Ted Cruz"
+Ted Cruz.name != Jeb Bush.name
+Ted Cruz.name = "Ted Cruz"
+Ted Cruz.nationality != "American"
+Ted Cruz.nationality = "American"
+Ted Cruz.occupation != "Senator"
+Ted Cruz.occupation != Jeb Bush.occupation
+Ted Cruz.occupation = "Senator"
+
+Rules:
+Q[Mike Pence,Mike Pence] (Mike Pence.name != Ted Cruz.name ∧ Mike Pence.name != Jeb Bush.name ∧ Ted Cruz.name != Jeb Bush.name ∧ Mike Pence___Ted Cruz.relationship = "Pence's policy rhetoric has echoed that of Cruz." → Mike Pence___Jeb Bush.relationship = "Pence and Bush are considered toxic now.")
+Q[Mike Pence,Mike Pence] (Ted Cruz.occupation != Jeb Bush.occupation ∧ None_ML(Mike Pence___Jeb Bush.attrs, Mike Pence___Ted Cruz.attrs) ∧ Mike Pence.label != "Person" → Jeb Bush.name = "Jeb Bush")
+Q[Mike Pence,Mike Pence] (Jeb Bush.status = "likely GOP presidential candidate" ∧ Mike Pence___Jeb Bush.reason = "public perception" ∧ Mike Pence___Ted Cruz.year = 2016 ∧ Mike Pence.name != "Mike Pence" ∧ Ted Cruz.label != "Person" ∧ Ted Cruz.location != "Texas" → Mike Pence___Jeb Bush.contradiction_type = "Relation")
+Q[Mike Pence,Mike Pence] (Ted Cruz.nationality != "American" ∧ Mike Pence___Ted Cruz.relationship != Mike Pence___Jeb Bush.relationship → Mike Pence___Jeb Bush.reason = "public perception")
+Q[Mike Pence,Mike Pence] (Ted Cruz.name != "Ted Cruz" ∧ Mike Pence.name != "Mike Pence" ∧ Mike Pence___Ted Cruz.source_id = "3489738271_2" ∧ Mike Pence.label = "Person" ∧ Mike Pence.status != "toxic" → Ted Cruz.occupation != "Senator")
+Q[Mike Pence,Mike Pence] (None_ML(Mike Pence___Jeb Bush.attrs, Mike Pence___Ted Cruz.attrs) ∧ Mike Pence___Jeb Bush.reason = "public perception" ∧ Ted Cruz.name != Jeb Bush.name ∧ Ted Cruz.name = "Ted Cruz" ∧ Jeb Bush.occupation = "politician" → Mike Pence.status != "toxic")
+Q[Mike Pence,Mike Pence] (Mike Pence___Ted Cruz.relationship != Mike Pence___Jeb Bush.relationship ∧ Jeb Bush.status = "likely GOP presidential candidate" ∧ Mike Pence.name = "Mike Pence" ∧ Mike Pence.status = "toxic" → Jeb Bush.label != "Person")
+Q[Mike Pence,Mike Pence] (Ted Cruz.name != Jeb Bush.name ∧ Ted Cruz.occupation != Jeb Bush.occupation ∧ Mike Pence.name != Jeb Bush.name → Ted Cruz.location != "Texas")
+Q[Mike Pence,Mike Pence] (Mike Pence___Jeb Bush.reason = "public perception" ∧ Mike Pence.label != "Person" ∧ Ted Cruz.name = "Ted Cruz" ∧ Ted Cruz.occupation != "Senator" ∧ Ted Cruz.occupation = "Senator" ∧ Ted Cruz.label != "Person" → Jeb Bush.name != "Jeb Bush")
+Q[Mike Pence,Mike Pence] (Jeb Bush.name != "Jeb Bush" ∧ Mike Pence___Jeb Bush.contradiction_type = "Relation" → Mike Pence___Ted Cruz.source_id = "3489738271_2")

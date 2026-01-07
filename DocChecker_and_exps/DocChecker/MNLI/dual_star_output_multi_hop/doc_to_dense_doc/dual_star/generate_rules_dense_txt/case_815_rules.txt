@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 815)
+S1: I'm finished at work.
+S2: Uhm I'm done where I work.
+
+Predicates:
+1. WorkStatus.finished
+2. WorkStatus.done
+3. Completion.finality
+4. Completion.casual
+5. WorkLocation.occupation
+6. WorkLocation.environment
+7. WorkCompletion.implies_finality
+8. WorkCompletion.implies_ongoing
+9. Sentence1.implies_completion
+10. Sentence2.implies_completion
+11. Sentence1.suggests_finality
+12. Sentence2.suggests_casualness
+13. Reason.compares_sentences
+14. Reason.analyzes_completion
+15. Reason.differentiates_finality
+16. Reason.assesses_casualness
+17. Entity1.work_status
+18. Entity2.work_status
+19. Relationship.completion_status
+20. Relationship.finality_vs_casualness
+21. Meta.NLI(S1, S2)
+22. Meta.Negation(S1, S2)
+23. Meta.violate(S1, S2)
+24. WorkStatus.ongoing
+25. WorkStatus.completed
+26. Sentence1.context
+27. Sentence2.context
+28. WorkCompletion.contextual_difference
+29. WorkStatus.variation
+30. Reason.evaluates_sentences
+
+Rules:
+1. Q[finished, WorkStatus.finished, WorkStatus.done](WorkStatus.finished == true → Negation(WorkStatus.finished, WorkStatus.done))
+2. Q[finished, Completion.finality, Completion.casual](Completion.finality == true → Negation(Completion.finality, Completion.casual))
+3. Q[finished, Sentence1.implies_completion, Sentence2.implies_completion](Sentence1.implies_completion == true → Negation(Sentence1.implies_completion, Sentence2.implies_completion))
+4. Q[finished, Sentence1.suggests_finality, Sentence2.suggests_casualness](Sentence1.suggests_finality == true → Negation(Sentence1.suggests_finality, Sentence2.suggests_casualness))
+5. Q[finished, Reason.differentiates_finality, Reason.assesses_casualness](Reason.differentiates_finality == true → Negation(Reason.differentiates_finality, Reason.assesses_casualness))
+6. Q[finished, WorkCompletion.implies_finality, WorkCompletion.implies_ongoing](WorkCompletion.implies_finality == true → Negation(WorkCompletion.implies_finality, WorkCompletion.implies_ongoing))
+7. Q[finished, Meta.Negation(S1, S2), Meta.violate(S1, S2)](Meta.Negation(S1, S2) == true → Negation(Meta.Negation(S1, S2), Meta.violate(S1, S2)))
+8. Q[finished, Entity1.work_status, Entity2.work_status](Entity1.work_status == "finished" → Negation(Entity1.work_status, Entity2.work_status))
+9. Q[finished, WorkStatus.completed, WorkStatus.ongoing](WorkStatus.completed == true → Negation(WorkStatus.completed, WorkStatus.ongoing))
+10. Q[finished, Relationship.finality_vs_casualness, WorkCompletion.contextual_difference](Relationship.finality_vs_casualness == true → Negation(Relationship.finality_vs_casualness, WorkCompletion.contextual_difference))
+11. Q[finished, Sentence1.context, Sentence2.context](Sentence1.context == "work completion" → Negation(Sentence1.context, Sentence2.context))
+12. Q[finished, Reason.compares_sentences, Reason.evaluates_sentences](Reason.compares_sentences == true → Negation(Reason.compares_sentences, Reason.evaluates_sentences))
+13. Q[finished, WorkLocation.occupation, WorkLocation.environment](WorkLocation.occupation == "finished work" → Negation(WorkLocation.occupation, WorkLocation.environment))
+14. Q[finished, WorkCompletion.implies_finality, WorkStatus.ongoing](WorkCompletion.implies_finality == true → Negation(WorkCompletion.implies_finality, WorkStatus.ongoing))
+15. Q[finished, WorkStatus.finished, WorkStatus.ongoing](WorkStatus.finished == true → Negation(WorkStatus.finished, WorkStatus.ongoing))
+16. Q[finished, Sentence1.implies_completion, WorkStatus.completed](Sentence1.implies_completion == true → Negation(Sentence1.implies_completion, WorkStatus.completed))
+17. Q[finished, WorkCompletion.contextual_difference, WorkStatus.variation](WorkCompletion.contextual_difference == true → Negation(WorkCompletion.contextual_difference, WorkStatus.variation))
+18. Q[finished, Reason.analyzes_completion, Reason.differentiates_finality](Reason.analyzes_completion == true → Negation(Reason.analyzes_completion, Reason.differentiates_finality))
+19. Q[finished, WorkStatus.finished, WorkCompletion.implies_ongoing](WorkStatus.finished == true → Negation(WorkStatus.finished, WorkCompletion.implies_ongoing))
+20. Q[finished, Sentence1.suggests_finality, Sentence2.implies_completion](Sentence1.suggests_finality == true → Negation(Sentence1.suggests_finality, Sentence2.implies_completion))
+21. Q[finished, WorkStatus.completed, Completion.finality](WorkStatus.completed == true → Negation(WorkStatus.completed, Completion.finality))
+22. Q[finished, WorkLocation.occupation, WorkStatus.done](WorkLocation.occupation == "finished" → Negation(WorkLocation.occupation, WorkStatus.done))
+23. Q[finished, Reason.assesses_casualness, WorkCompletion.implies_finality](Reason.assesses_casualness == true → Negation(Reason.assesses_casualness, WorkCompletion.implies_finality))
+24. Q[finished, Sentence1.context, Sentence1.suggests_finality](Sentence1.context == "work" → Negation(Sentence1.context, Sentence1.suggests_finality))
+25. Q[finished, WorkStatus.finished, WorkStatus.completed](WorkStatus.finished == true → Negation(WorkStatus.finished, WorkStatus.completed))
+26. Q[finished, WorkCompletion.implies_ongoing, Sentence2.implies_completion](WorkCompletion.implies_ongoing == true → Negation(WorkCompletion.implies_ongoing, Sentence2.implies_completion))
+27. Q[finished, Reason.differentiates_finality, Sentence2.suggests_casualness](Reason.differentiates_finality == true → Negation(Reason.differentiates_finality, Sentence2.suggests_casualness))
+28. Q[finished, WorkStatus.done, WorkStatus.ongoing](WorkStatus.done == true → Negation(WorkStatus.done, WorkStatus.ongoing))
+29. Q[finished, WorkCompletion.contextual_difference, Sentence1.suggests_finality](WorkCompletion.contextual_difference == true → Negation(WorkCompletion.contextual_difference, Sentence1.suggests_finality))
+30. Q[finished, Meta.NLI(S1, S2), Meta.Negation(S1, S2)](Meta.NLI(S1, S2) == true → Negation(Meta.NLI(S1, S2), Meta.Negation(S1, S2)))

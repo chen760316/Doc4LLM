@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 491)
+S1: A man is working on his wooden boat.
+S2: The man is near the boat.
+
+Predicates:
+1. Man.working
+2. Man.near
+3. Boat.wooden
+4. Man.active_work
+5. Man.location
+6. Boat.status
+7. Work.on_boat
+8. Near.boat
+9. Man.activity
+10. Boat.type
+11. Relation(active_work, near)
+12. M_NLI(S1, S2)
+13. Relation(man, boat)
+14. violate(active_work, near)
+15. Man.engaged
+16. Boat.ownership
+17. Work.type
+18. Man.proximity
+19. Boat.condition
+20. Relation(working, not_working)
+21. Man.focus
+22. Boat.material
+23. Relation(near, far)
+24. Man.intent
+25. Boat.function
+26. Relation(engaged, disengaged)
+27. Man.skill
+28. Boat.size
+29. Relation(wooden, non_wooden)
+30. Man.position
+
+Rules:
+1. Q[Anchor, Man.working, Man.near](Man.working == true ∧ Man.near == true → Relation(working, not_working))
+2. Q[Anchor, Man.active_work, Man.near](Man.active_work == true ∧ Man.near == true → Relation(active_work, near))
+3. Q[Anchor, Man.engaged, Man.near](Man.engaged == true ∧ Man.near == true → Relation(engaged, disengaged))
+4. Q[Anchor, Man.activity, Man.near](Man.activity == "working" ∧ Man.near == true → Relation(working, not_working))
+5. Q[Anchor, Man.focus, Man.near](Man.focus == "working" ∧ Man.near == true → Relation(active_work, near))
+6. Q[Anchor, Man.location, Man.near](Man.location == "near boat" ∧ Man.working == false → Relation(working, not_working))
+7. Q[Anchor, Man.proximity, Man.near](Man.proximity == "close" ∧ Man.working == false → Relation(working, not_working))
+8. Q[Anchor, Man.position, Man.near](Man.position == "near boat" ∧ Man.working == false → Relation(working, not_working))
+9. Q[Anchor, Boat.status, Man.near](Boat.status == "not being worked on" ∧ Man.near == true → Relation(working, not_working))
+10. Q[Anchor, Boat.type, Man.near](Boat.type == "wooden" ∧ Man.near == true → Relation(active_work, near))
+11. Q[Anchor, Boat.condition, Man.near](Boat.condition == "not under repair" ∧ Man.near == true → Relation(working, not_working))
+12. Q[Anchor, Work.on_boat, Man.near](Work.on_boat == false ∧ Man.near == true → Relation(working, not_working))
+13. Q[Anchor, Man.working, Boat.wooden](Man.working == true ∧ Boat.wooden == true → Relation(working, not_working))
+14. Q[Anchor, Man.active_work, Boat.wooden](Man.active_work == true ∧ Boat.wooden == true → Relation(active_work, near))
+15. Q[Anchor, Man.intent, Man.near](Man.intent == "work" ∧ Man.near == true → Relation(active_work, near))
+16. Q[Anchor, Man.skill, Man.near](Man.skill == "boat building" ∧ Man.near == true → Relation(active_work, near))
+17. Q[Anchor, Boat.function, Man.near](Boat.function == "sailing" ∧ Man.near == true → Relation(active_work, near))
+18. Q[Anchor, Man.working, Boat.material](Man.working == true ∧ Boat.material == "wood" → Relation(working, not_working))
+19. Q[Anchor, Man.working, Boat.size](Man.working == true ∧ Boat.size == "medium" → Relation(working, not_working))
+20. Q[Anchor, Man.near, Boat.ownership](Man.near == true ∧ Boat.ownership == "private" → Relation(active_work, near))
+21. Q[Anchor, Man.near, Boat.condition](Man.near == true ∧ Boat.condition == "good" → Relation(active_work, near))
+22. Q[Anchor, Man.near, Work.type](Man.near == true ∧ Work.type == "repair" → Relation(active_work, near))
+23. Q[Anchor, Man.near, Man.working](Man.near == true ∧ Man.working == false → Relation(working, not_working))
+24. Q[Anchor, Man.near, Man.engaged](Man.near == true ∧ Man.engaged == false → Relation(engaged, disengaged))
+25. Q[Anchor, Man.near, Man.activity](Man.near == true ∧ Man.activity == "idle" → Relation(working, not_working))
+26. Q[Anchor, Man.near, Man.focus](Man.near == true ∧ Man.focus == "distracted" → Relation(working, not_working))
+27. Q[Anchor, Man.near, Man.intent](Man.near == true ∧ Man.intent == "not working" → Relation(working, not_working))
+28. Q[Anchor, Man.near, Boat.type](Man.near == true ∧ Boat.type == "non-wooden" → Relation(working, not_working))
+29. Q[Anchor, Man.near, Boat.function](Man.near == true ∧ Boat.function == "not functional" → Relation(working, not_working))
+30. Q[Anchor, Man.near, Boat.status](Man.near == true ∧ Boat.status == "not in use" → Relation(working, not_working))

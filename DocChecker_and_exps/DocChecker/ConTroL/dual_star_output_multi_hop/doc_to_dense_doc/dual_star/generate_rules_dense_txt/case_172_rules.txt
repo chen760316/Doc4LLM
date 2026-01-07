@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 172)
+S1: We expect that the work will be completed at this time without further disruption to traffic.
+S2: However, alternative services will operate on bus routes 566 and 45 between Gatton Road, the town centre and the university.
+
+Predicates:
+1. Work.completion_time
+2. Work.disruption_status
+3. Traffic.disruption_status
+4. Alternative_services.route_566
+5. Alternative_services.route_45
+6. Bus_routes.Gatton_Road
+7. Bus_routes.town_centre
+8. Bus_routes.university
+9. Expectation.work_completion
+10. Expectation.traffic_disruption
+11. Services.operation_status
+12. Services.route_566_operation
+13. Services.route_45_operation
+14. Causal.work_completion, alternative_services_operation
+15. M_NLI(S1, S2)
+16. Violate(work_completion, alternative_services_operation)
+17. Work.expected_completion_time
+18. Traffic.expected_disruption
+19. Alternative_services.location
+20. Alternative_services.service_type
+21. Route_566.start_location
+22. Route_566.end_location
+23. Route_45.start_location
+24. Route_45.end_location
+25. University.location
+26. Town_centre.location
+27. Gatton_Road.location
+28. Work.status
+29. Disruption.traffic_status
+30. Expectation.alternative_services_needed
+
+Rules:
+1. Q[expect, Work.disruption_status == "none", Alternative_services.route_566](Expectation.work_completion → Causal(work_completion, alternative_services_operation))
+2. Q[expect, Work.completion_time == "on_time", Alternative_services.route_45](Expectation.work_completion → Causal(work_completion, alternative_services_operation))
+3. Q[expect, Traffic.disruption_status == "none", Alternative_services.route_566](Expectation.traffic_disruption → Causal(work_completion, alternative_services_operation))
+4. Q[expect, Traffic.disruption_status == "none", Alternative_services.route_45](Expectation.traffic_disruption → Causal(work_completion, alternative_services_operation))
+5. Q[expect, Work.status == "completed", Alternative_services.route_566](Expectation.work_completion → Causal(work_completion, alternative_services_operation))
+6. Q[expect, Work.status == "completed", Alternative_services.route_45](Expectation.work_completion → Causal(work_completion, alternative_services_operation))
+7. Q[expect, Work.expected_completion_time == "now", Alternative_services.route_566](Expectation.work_completion → Causal(work_completion, alternative_services_operation))
+8. Q[expect, Work.expected_completion_time == "now", Alternative_services.route_45](Expectation.work_completion → Causal(work_completion, alternative_services_operation))
+9. Q[expect, Traffic.expected_disruption == "none", Alternative_services.route_566](Expectation.traffic_disruption → Causal(work_completion, alternative_services_operation))
+10. Q[expect, Traffic.expected_disruption == "none", Alternative_services.route_45](Expectation.traffic_disruption → Causal(work_completion, alternative_services_operation))
+11. Q[expect, Work.completion_time == "scheduled", Alternative_services.route_566](Expectation.work_completion → Causal(work_completion, alternative_services_operation))
+12. Q[expect, Work.completion_time == "scheduled", Alternative_services.route_45](Expectation.work_completion → Causal(work_completion, alternative_services_operation))
+13. Q[expect, Work.disruption_status == "resolved", Alternative_services.route_566](Expectation.work_completion → Causal(work_completion, alternative_services_operation))
+14. Q[expect, Work.disruption_status == "resolved", Alternative_services.route_45](Expectation.work_completion → Causal(work_completion, alternative_services_operation))
+15. Q[expect, Services.operation_status == "active", Alternative_services.route_566](Expectation.alternative_services_needed → Causal(work_completion, alternative_services_operation))
+16. Q[expect, Services.operation_status == "active", Alternative_services.route_45](Expectation.alternative_services_needed → Causal(work_completion, alternative_services_operation))
+17. Q[expect, Alternative_services.route_566 == "operating", Work.disruption_status](Expectation.alternative_services_needed → Causal(work_completion, alternative_services_operation))
+18. Q[expect, Alternative_services.route_45 == "operating", Work.disruption_status](Expectation.alternative_services_needed → Causal(work_completion, alternative_services_operation))
+19. Q[expect, Bus_routes.Gatton_Road == "active", Alternative_services.route_566](Expectation.alternative_services_needed → Causal(work_completion, alternative_services_operation))
+20. Q[expect, Bus_routes.town_centre == "active", Alternative_services.route_45](Expectation.alternative_services_needed → Causal(work_completion, alternative_services_operation))
+21. Q[expect, Bus_routes.university == "active", Alternative_services.route_566](Expectation.alternative_services_needed → Causal(work_completion, alternative_services_operation))
+22. Q[expect, Bus_routes.university == "active", Alternative_services.route_45](Expectation.alternative_services_needed → Causal(work_completion, alternative_services_operation))
+23. Q[expect, Work.status == "ongoing", Alternative_services.route_566](Expectation.work_completion → Causal(work_completion, alternative_services_operation))
+24. Q[expect, Work.status == "ongoing", Alternative_services.route_45](Expectation.work_completion → Causal(work_completion, alternative_services_operation))
+25. Q[expect, Work.completion_time == "delayed", Alternative_services.route_566](Expectation.work_completion → Causal(work_completion, alternative_services_operation))
+26. Q[expect, Work.completion_time == "delayed", Alternative_services.route_45](Expectation.work_completion → Causal(work_completion, alternative_services_operation))
+27. Q[expect, Traffic.disruption_status == "active", Alternative_services.route_566](Expectation.traffic_disruption → Causal(work_completion, alternative_services_operation))
+28. Q[expect, Traffic.disruption_status == "active", Alternative_services.route_45](Expectation.traffic_disruption → Causal(work_completion, alternative_services_operation))
+29. Q[expect, Work.expected_completion_time == "later", Alternative_services.route_566](Expectation.work_completion → Causal(work_completion, alternative_services_operation))
+30. Q[expect, Work.expected_completion_time == "later", Alternative_services.route_45](Expectation.work_completion → Causal(work_completion, alternative_services_operation))

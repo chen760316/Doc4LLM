@@ -1,0 +1,78 @@
+Predicates:
+Chris Baldry.label != "Person"
+Chris Baldry.label = "Person"
+Chris Baldry.location != "France"
+Chris Baldry.location = "France"
+Chris Baldry.name != "Chris Baldry"
+Chris Baldry.name = "Chris Baldry"
+Chris Baldry.nationality != "British"
+Chris Baldry.nationality = "British"
+Chris Baldry.occupation != "soldier"
+Chris Baldry.occupation = "soldier"
+Chris.label != "Person"
+Chris.label = "Person"
+Chris.name != "Chris"
+Chris.name != Chris Baldry.name
+Chris.name != Margaret.name
+Chris.name = "Chris"
+Jenny.label != "Person"
+Jenny.label = "Person"
+Jenny.name != "Jenny"
+Jenny.name != Chris Baldry.name
+Jenny.name != Chris.name
+Jenny.name != Margaret.name
+Jenny.name = "Jenny"
+Kitty.label != "Person"
+Kitty.label = "Person"
+Kitty.name != "Kitty"
+Kitty.name != Chris Baldry.name
+Kitty.name != Chris.name
+Kitty.name != Jenny.name
+Kitty.name != Margaret.name
+Kitty.name = "Kitty"
+Kitty___Chris Baldry.contradiction_type = "Factual"
+Kitty___Chris Baldry.relationship = "Kitty is married to Chris Baldry."
+Kitty___Chris Baldry.source_id = "3488771834_6"
+Kitty___Chris.contradiction_type != Kitty___Chris Baldry.contradiction_type
+Kitty___Chris.contradiction_type != Kitty___Margaret.contradiction_type
+Kitty___Chris.contradiction_type = "Causal"
+Kitty___Chris.relationship != Kitty___Chris Baldry.relationship
+Kitty___Chris.relationship != Kitty___Margaret.relationship
+Kitty___Chris.relationship = "Kitty rejoices in Chris's return to a state fit to be a soldier."
+Kitty___Chris.source_id != Kitty___Chris Baldry.source_id
+Kitty___Chris.source_id = "3488771834_5"
+Kitty___Jenny.contradiction_type != Kitty___Chris Baldry.contradiction_type
+Kitty___Jenny.contradiction_type != Kitty___Chris.contradiction_type
+Kitty___Jenny.contradiction_type = "Relation"
+Kitty___Jenny.relationship != Kitty___Chris Baldry.relationship
+Kitty___Jenny.relationship != Kitty___Chris.relationship
+Kitty___Jenny.relationship != Kitty___Margaret.relationship
+Kitty___Jenny.relationship = "Kitty and Jenny feel relieved about Chris's loss of memory."
+Kitty___Jenny.source_id != Kitty___Chris Baldry.source_id
+Kitty___Jenny.source_id = "3488771834_5"
+Kitty___Margaret.contradiction_type != Kitty___Chris Baldry.contradiction_type
+Kitty___Margaret.contradiction_type = "Relation"
+Kitty___Margaret.reason = "trying to deny that she could have been the recipient of such information"
+Kitty___Margaret.relationship != Kitty___Chris Baldry.relationship
+Kitty___Margaret.relationship = "Kitty dismisses Margaret from the estate"
+Kitty___Margaret.source_id != Kitty___Chris Baldry.source_id
+Kitty___Margaret.source_id = "3488771834_5"
+Margaret.label != "Person"
+Margaret.label = "Person"
+Margaret.name != "Margaret"
+Margaret.name != Chris Baldry.name
+Margaret.name = "Margaret"
+None_ML(Chris.attrs, Margaret.attrs)
+None_ML(Kitty___Chris Baldry.attrs, Kitty___Margaret.attrs)
+
+Rules:
+Q[Kitty,Kitty] (Kitty.name != Chris.name ∧ Kitty___Chris.contradiction_type != Kitty___Chris Baldry.contradiction_type ∧ Margaret.name != Chris Baldry.name → Kitty___Jenny.relationship != Kitty___Chris.relationship)
+Q[Kitty,Kitty] (Chris Baldry.nationality = "British" ∧ Margaret.label != "Person" ∧ Kitty___Chris.source_id = "3488771834_5" ∧ Jenny.name != Chris.name ∧ Kitty.name = "Kitty" → Kitty___Jenny.contradiction_type != Kitty___Chris Baldry.contradiction_type)
+Q[Kitty,Kitty] (Kitty___Chris.relationship != Kitty___Chris Baldry.relationship ∧ Kitty___Jenny.relationship != Kitty___Chris.relationship → Chris Baldry.label = "Person")
+Q[Kitty,Kitty] (Kitty___Chris.relationship != Kitty___Chris Baldry.relationship ∧ Chris Baldry.occupation != "soldier" ∧ Jenny.name != Chris.name ∧ Kitty___Chris.contradiction_type = "Causal" → Kitty___Chris Baldry.contradiction_type = "Factual")
+Q[Kitty,Kitty] (Kitty___Margaret.source_id = "3488771834_5" ∧ Kitty___Jenny.relationship != Kitty___Chris Baldry.relationship ∧ Margaret.label = "Person" ∧ Kitty___Chris.relationship = "Kitty rejoices in Chris's return to a state fit to be a soldier." ∧ Kitty.label != "Person" ∧ Kitty___Chris.source_id != Kitty___Chris Baldry.source_id → Chris.name != Margaret.name)
+Q[Kitty,Kitty] (None_ML(Kitty___Chris Baldry.attrs, Kitty___Margaret.attrs) ∧ Kitty___Chris.relationship = "Kitty rejoices in Chris's return to a state fit to be a soldier." → Kitty___Chris.contradiction_type = "Causal")
+Q[Kitty,Kitty] (Chris Baldry.location = "France" ∧ Chris Baldry.occupation = "soldier" ∧ Kitty___Chris Baldry.relationship = "Kitty is married to Chris Baldry." ∧ Kitty___Jenny.source_id != Kitty___Chris Baldry.source_id ∧ Kitty___Chris.contradiction_type != Kitty___Margaret.contradiction_type → Kitty___Chris.relationship = "Kitty rejoices in Chris's return to a state fit to be a soldier.")
+Q[Kitty,Kitty] (Kitty___Jenny.contradiction_type != Kitty___Chris Baldry.contradiction_type ∧ Jenny.label = "Person" ∧ Kitty.name != "Kitty" ∧ Chris.name != "Chris" ∧ Chris Baldry.occupation = "soldier" ∧ Kitty___Margaret.relationship != Kitty___Chris Baldry.relationship → Kitty___Chris.relationship != Kitty___Chris Baldry.relationship)
+Q[Kitty,Kitty] (Kitty___Jenny.relationship != Kitty___Chris.relationship ∧ Jenny.label != "Person" ∧ Kitty.label != "Person" ∧ Kitty___Chris.contradiction_type != Kitty___Chris Baldry.contradiction_type → Kitty___Margaret.reason = "trying to deny that she could have been the recipient of such information")
+Q[Kitty,Kitty] (Chris.label != "Person" ∧ Kitty.name != Jenny.name ∧ Chris.name = "Chris" → Kitty___Margaret.relationship != Kitty___Chris Baldry.relationship)

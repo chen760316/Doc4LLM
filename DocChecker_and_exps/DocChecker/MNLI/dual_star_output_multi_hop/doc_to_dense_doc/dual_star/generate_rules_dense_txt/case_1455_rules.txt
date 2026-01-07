@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 1455)
+S1: A critic may be censured for slamming a worthy movie.
+S2: A critic may be censured for giving a bad review to a great movie because his standards are not in common with other critics.
+
+Predicates:
+1. Critic.censured
+2. Movie.worthy
+3. Critic.slams(Movie)
+4. Critic.givesBadReview(Movie)
+5. Movie.great
+6. Critic.standards
+7. Critics.commonStandards
+8. Censure.criteria
+9. Censure.negativeReview
+10. Censure.worthyMovie
+11. Censure.greatMovie
+12. Critic.negativeReview
+13. Censure.critic
+14. Review.bad
+15. Review.positive
+16. Critic.opinion
+17. Opinion.negative
+18. Opinion.positive
+19. Violate.censureCriteria
+20. Censure.implies
+21. Critic.differentStandards
+22. Review.criteria
+23. Movie.criticallyAcclaimed
+24. Censure.forSlamming
+25. Censure.forBadReview
+26. Critic.evaluates(Movie)
+27. Movie.criticalReception
+28. Censure.isContradictory
+29. Critic.evaluatesStandards
+30. Censure.negativeEvaluation
+
+Rules:
+1. Q[critic, x0, y0](Critic.censured → Content (Opinion/Emotion)(x0, y0))
+2. Q[critic, x0, y0](Critic.slams(Movie) ∧ Movie.worthy → Content (Opinion/Emotion)(x0, y0))
+3. Q[critic, x0, y0](Critic.givesBadReview(Movie) ∧ Movie.great → Content (Opinion/Emotion)(x0, y0))
+4. Q[critic, x0, y0](Critic.differentStandards → Censure.forBadReview)
+5. Q[critic, x0, y0](Censure.forSlamming ∧ Movie.worthy → Censure.negativeReview)
+6. Q[critic, x0, y0](Censure.forBadReview ∧ Movie.great → Censure.negativeEvaluation)
+7. Q[critic, x0, y0](Critic.censured ∧ Censure.criteria → Censure.isContradictory)
+8. Q[critic, x0, y0](Critic.slams(Movie) ∧ Censure.worthyMovie → Censure.implies)
+9. Q[critic, x0, y0](Critic.givesBadReview(Movie) ∧ Censure.greatMovie → Censure.implies)
+10. Q[critic, x0, y0](Critic.evaluates(Movie) ∧ Movie.criticallyAcclaimed → Censure.negativeReview)
+11. Q[critic, x0, y0](Critic.standards ≠ Critics.commonStandards → Censure.forBadReview)
+12. Q[critic, x0, y0](Censure.negativeReview ∧ Censure.worthyMovie → Content (Opinion/Emotion)(x0, y0))
+13. Q[critic, x0, y0](Censure.negativeEvaluation ∧ Censure.greatMovie → Content (Opinion/Emotion)(x0, y0))
+14. Q[critic, x0, y0](Critic.evaluatesStandards → Censure.isContradictory)
+15. Q[critic, x0, y0](Critic.opinion == Opinion.negative ∧ Movie.worthy → Censure.forSlamming)
+16. Q[critic, x0, y0](Critic.opinion == Opinion.negative ∧ Movie.great → Censure.forBadReview)
+17. Q[critic, x0, y0](Censure.criteria ∧ Critic.slams(Movie) → Violate.censureCriteria)
+18. Q[critic, x0, y0](Censure.criteria ∧ Critic.givesBadReview(Movie) → Violate.censureCriteria)
+19. Q[critic, x0, y0](Critic.censured ∧ Critic.differentStandards → Content (Opinion/Emotion)(x0, y0))
+20. Q[critic, x0, y0](Censure.forSlamming ∧ Censure.forBadReview → Censure.isContradictory)
+21. Q[critic, x0, y0](Critic.slams(Movie) ∧ Critic.differentStandards → Censure.forSlamming)
+22. Q[critic, x0, y0](Critic.givesBadReview(Movie) ∧ Critic.differentStandards → Censure.forBadReview)
+23. Q[critic, x0, y0](Censure.negativeReview ∧ Critic.slams(Movie) → Content (Opinion/Emotion)(x0, y0))
+24. Q[critic, x0, y0](Censure.negativeEvaluation ∧ Critic.givesBadReview(Movie) → Content (Opinion/Emotion)(x0, y0))
+25. Q[critic, x0, y0](Censure.worthyMovie ∧ Critic.slams(Movie) → Censure.isContradictory)
+26. Q[critic, x0, y0](Censure.greatMovie ∧ Critic.givesBadReview(Movie) → Censure.isContradictory)
+27. Q[critic, x0, y0](Critic.evaluates(Movie) ∧ Movie.worthy → Censure.forSlamming)
+28. Q[critic, x0, y0](Critic.evaluates(Movie) ∧ Movie.great → Censure.forBadReview)
+29. Q[critic, x0, y0](Censure.negativeReview ∧ Critic.differentStandards → Content (Opinion/Emotion)(x0, y0))
+30. Q[critic, x0, y0](Censure.isContradictory → Content (Opinion/Emotion)(x0, y0))

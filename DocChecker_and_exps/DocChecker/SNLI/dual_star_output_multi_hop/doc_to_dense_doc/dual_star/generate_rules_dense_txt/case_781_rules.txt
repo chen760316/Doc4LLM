@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 781)
+S1: The two people are wearing the same outfit.
+S2: Two people that are wearing oriental clothing are walking down the street.
+
+Predicates:
+1. S1.same_outfit
+2. S2.oriental_clothing
+3. S1.person1.wearing
+4. S1.person2.wearing
+5. S2.person1.walking
+6. S2.person2.walking
+7. S1.person1.style
+8. S1.person2.style
+9. S2.person1.clothing_style
+10. S2.person2.clothing_style
+11. "same_outfit".is_different_style
+12. "oriental_clothing".is_different_style
+13. M_NLI(S1, S2)
+14. Factual(S1, S2)
+15. violate(S1, S2)
+16. S1.person1.outfit
+17. S1.person2.outfit
+18. S2.person1.attribute
+19. S2.person2.attribute
+20. S1.same_style
+21. S2.different_style
+22. S1.person1.identity
+23. S1.person2.identity
+24. S2.person1.location
+25. S2.person2.location
+26. "wearing".same_as
+27. "walking".same_as
+28. S1.outfit_type
+29. S2.clothing_type
+30. S1.style_conflict
+
+Rules:
+1. Q[The, x0, y0](S1.same_outfit == true → Factual(x0, y0))
+2. Q[The, x0, y0](S1.person1.wearing == S1.person2.wearing → Factual(x0, y0))
+3. Q[The, x0, y0](S1.person1.style == S1.person2.style → Factual(x0, y0))
+4. Q[The, x0, y0](S1.same_outfit == true ∧ S2.oriental_clothing == true → Factual(x0, y0))
+5. Q[The, x0, y0](S1.same_outfit == true → S1.person1.style.is_different_style == false)
+6. Q[The, x0, y0](S1.same_outfit == true → S1.person2.style.is_different_style == false)
+7. Q[The, x0, y0](S1.same_outfit == true → S2.person1.clothing_style.is_different_style == true)
+8. Q[The, x0, y0](S1.same_outfit == true → S2.person2.clothing_style.is_different_style == true)
+9. Q[The, x0, y0](S1.same_outfit == true → S2.different_style == true)
+10. Q[The, x0, y0](S1.same_style == true → S2.oriental_clothing.is_different_style == true)
+11. Q[The, x0, y0](S1.person1.outfit == S1.person2.outfit → Factual(x0, y0))
+12. Q[The, x0, y0](S1.same_outfit == true → S1.style_conflict == true)
+13. Q[The, x0, y0](S1.same_outfit == true → S2.person1.attribute.is_different_style == true)
+14. Q[The, x0, y0](S1.same_outfit == true → S2.person2.attribute.is_different_style == true)
+15. Q[The, x0, y0](S1.same_outfit == true → violate(S1, S2))
+16. Q[The, x0, y0](S1.person1.identity == S1.person2.identity → Factual(x0, y0))
+17. Q[The, x0, y0](S1.person1.wearing == S2.person1.clothing_style → Factual(x0, y0))
+18. Q[The, x0, y0](S1.person2.wearing == S2.person2.clothing_style → Factual(x0, y0))
+19. Q[The, x0, y0](S1.same_outfit == true → S2.person1.location == S2.person2.location)
+20. Q[The, x0, y0](S1.same_outfit == true → S2.person1.walking == S2.person2.walking)
+21. Q[The, x0, y0](S1.same_outfit == true → S1.person1.style == S1.person2.style)
+22. Q[The, x0, y0](S1.same_outfit == true → S2.person1.walking.is_different_style == true)
+23. Q[The, x0, y0](S1.same_outfit == true → S2.person2.walking.is_different_style == true)
+24. Q[The, x0, y0](S1.same_outfit == true → S1.outfit_type == S2.clothing_type)
+25. Q[The, x0, y0](S1.same_outfit == true → S1.person1.style.is_different_style == false)
+26. Q[The, x0, y0](S1.same_outfit == true → S1.person2.style.is_different_style == false)
+27. Q[The, x0, y0](S1.same_outfit == true → S2.oriental_clothing.is_different_style == true)
+28. Q[The, x0, y0](S1.same_outfit == true → S2.person1.clothing_style.is_different_style == true)
+29. Q[The, x0, y0](S1.same_outfit == true → S2.person2.clothing_style.is_different_style == true)
+30. Q[The, x0, y0](S1.same_outfit == true → Factual(S1, S2))

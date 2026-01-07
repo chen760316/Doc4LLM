@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 422)
+S1: They let the train pass in peace.
+S2: They began dive-bombing the training groups of three or four; smashing into windows, cracking through the glass.
+
+Predicates:
+1. Action.pass.peaceful
+2. Action.begins.aggressive
+3. Action.dive_bombing.aggressive
+4. Action.smashing.aggressive
+5. Action.cracking.aggressive
+6. Entity.train.passed
+7. Entity.training_groups.dive_bombed
+8. Entity.windows.smashing
+9. Entity.glass.cracked
+10. Relationship.indicates.peaceful_action
+11. Relationship.describes.aggressive_action
+12. Meta.M_NLI(S1, S2)
+13. Meta.Causal(S1, S2)
+14. Meta.violate(S1, S2)
+15. Entity.peaceful_action.indicated
+16. Entity.aggressive_action.described
+17. Action.pass.indicates_peace
+18. Action.bombing.indicates_aggression
+19. Entity.train.peaceful
+20. Entity.groups.aggressive
+21. Relationship.pass_in_peace
+22. Relationship.bombing_groups
+23. Action.smashing_windows
+24. Action.cracking_glass
+25. Entity.passive_action.indicated
+26. Entity.active_action.described
+27. Relationship.peaceful_vs_aggressive
+28. Meta.M_NLI(S1, S2)
+29. Meta.Causal(S1, S2)
+30. Meta.violate(S1, S2)
+
+Rules:
+1. Q[They, Action.pass.peaceful == true, Action.begins.aggressive == true](Relationship.pass_in_peace → Causal(They, Action.begins.aggressive))
+2. Q[They, Entity.train.passed == true, Entity.training_groups.dive_bombed == true](Entity.train.passed → Causal(They, Entity.training_groups.dive_bombed))
+3. Q[They, Action.pass.peaceful == true, Action.dive_bombing.aggressive == true](Relationship.pass_in_peace → Causal(They, Action.dive_bombing.aggressive))
+4. Q[They, Action.pass.peaceful == true, Action.smashing.aggressive == true](Relationship.pass_in_peace → Causal(They, Action.smashing.aggressive))
+5. Q[They, Action.pass.peaceful == true, Action.cracking.aggressive == true](Relationship.pass_in_peace → Causal(They, Action.cracking.aggressive))
+6. Q[They, Entity.train.peaceful == true, Entity.groups.aggressive == true](Entity.train.peaceful → Causal(They, Entity.groups.aggressive))
+7. Q[They, Entity.training_groups.dive_bombed == true, Entity.windows.smashing == true](Entity.training_groups.dive_bombed → Causal(They, Entity.windows.smashing))
+8. Q[They, Entity.training_groups.dive_bombed == true, Entity.glass.cracked == true](Entity.training_groups.dive_bombed → Causal(They, Entity.glass.cracked))
+9. Q[They, Action.pass.indicates_peace == true, Action.bombing.indicates_aggression == true](Action.pass.indicates_peace → Causal(They, Action.bombing.indicates_aggression))
+10. Q[They, Relationship.indicates.peaceful_action == true, Relationship.describes.aggressive_action == true](Relationship.indicates.peaceful_action → Causal(They, Relationship.describes.aggressive_action))
+11. Q[They, Entity.peaceful_action.indicated == true, Entity.aggressive_action.described == true](Entity.peaceful_action.indicated → Causal(They, Entity.aggressive_action.described))
+12. Q[They, Action.pass.peaceful == true, Action.smashing_windows == true](Relationship.pass_in_peace → Causal(They, Action.smashing_windows))
+13. Q[They, Action.pass.peaceful == true, Action.cracking_glass == true](Relationship.pass_in_peace → Causal(They, Action.cracking_glass))
+14. Q[They, Relationship.pass_in_peace == true, Relationship.bombing_groups == true](Relationship.pass_in_peace → Causal(They, Relationship.bombing_groups))
+15. Q[They, Action.pass.peaceful == true, Entity.active_action.described == true](Relationship.pass_in_peace → Causal(They, Entity.active_action.described))
+16. Q[They, Action.begins.aggressive == true, Entity.passive_action.indicated == true](Action.begins.aggressive → Causal(They, Entity.passive_action.indicated))
+17. Q[They, Action.dive_bombing.aggressive == true, Entity.passive_action.indicated == true](Action.dive_bombing.aggressive → Causal(They, Entity.passive_action.indicated))
+18. Q[They, Action.smashing.aggressive == true, Entity.passive_action.indicated == true](Action.smashing.aggressive → Causal(They, Entity.passive_action.indicated))
+19. Q[They, Action.cracking.aggressive == true, Entity.passive_action.indicated == true](Action.cracking.aggressive → Causal(They, Entity.passive_action.indicated))
+20. Q[They, Relationship.peaceful_vs_aggressive == true, Meta.violate(S1, S2) == true](Relationship.peaceful_vs_aggressive → Causal(They, Meta.violate(S1, S2)))
+21. Q[They, Meta.M_NLI(S1, S2) == true, Meta.Causal(S1, S2) == true](Meta.M_NLI(S1, S2) → Causal(They, Meta.Causal(S1, S2)))
+22. Q[They, Action.pass.peaceful == true, Entity.groups.aggressive == true](Relationship.pass_in_peace → Causal(They, Entity.groups.aggressive))
+23. Q[They, Entity.train.passed == true, Action.begins.aggressive == true](Entity.train.passed → Causal(They, Action.begins.aggressive))
+24. Q[They, Entity.training_groups.dive_bombed == true, Action.pass.peaceful == true](Entity.training_groups.dive_bombed → Causal(They, Action.pass.peaceful))
+25. Q[They, Action.pass.peaceful == true, Entity.windows.smashing == true](Relationship.pass_in_peace → Causal(They, Entity.windows.smashing))
+26. Q[They, Action.pass.peaceful == true, Entity.glass.cracked == true](Relationship.pass_in_peace → Causal(They, Entity.glass.cracked))
+27. Q[They, Action.begins.aggressive == true, Relationship.indicates.peaceful_action == true](Action.begins.aggressive → Causal(They, Relationship.indicates.peaceful_action))
+28. Q[They, Action.dive_bombing.aggressive == true, Relationship.indicates.peaceful_action == true](Action.dive_bombing.aggressive → Causal(They, Relationship.indicates.peaceful_action))
+29. Q[They, Action.smashing.aggressive == true, Relationship.indicates.peaceful_action == true](Action.smashing.aggressive → Causal(They, Relationship.indicates.peaceful_action))
+30. Q[They, Action.cracking.aggressive == true, Relationship.indicates.peaceful_action == true](Action.cracking.aggressive → Causal(They, Relationship.indicates.peaceful_action))

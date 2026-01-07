@@ -1,0 +1,134 @@
+Predicates:
+1. entity1.name = "Alice"
+2. entity1.age = 30
+3. entity1.city = "New York"
+4. entity2.name = "Bob"
+5. entity2.age = 25
+6. entity2.city = "Los Angeles"
+7. dislikes.doc_index = "32"
+8. dislikes.label_text = "contradiction"
+9. likes.doc_index = "32"
+10. likes.label_text = "contradiction"
+11. M_NLI(entity1.name, entity2.name)
+12. M_NLI(entity1.age, entity2.age)
+13. T("Alice is 30 years old", "Alice is not 30 years old", Negation)
+14. T("Bob lives in Los Angeles", "Bob does not live in Los Angeles", Negation)
+15. tau(entity1.city, entity2.city)
+16. violate(entity1, entity2)
+17. Factual(entity1.age, entity2.age)
+18. Causal(entity1.city, entity2.city)
+19. Numeric(entity1.age, entity2.age)
+20. Temporal(entity1.city, entity2.city)
+21. entity1.hobby = "painting"
+22. entity2.hobby = "sports"
+23. M_NLI(entity1.hobby, entity2.hobby)
+24. T("Alice enjoys painting", "Alice dislikes painting", Content)
+25. tau(entity1.hobby, entity2.hobby)
+26. violate(entity1.hobby, entity2.hobby)
+27. Factual(entity1.hobby, entity2.hobby)
+28. Causal(entity1.hobby, entity2.hobby)
+29. Numeric(entity1.age, 30)
+30. Temporal(entity1.city, "New York")
+31. entity1.occupation = "engineer"
+32. entity2.occupation = "doctor"
+33. M_NLI(entity1.occupation, entity2.occupation)
+34. T("Alice is an engineer", "Alice is not an engineer", Negation)
+35. tau(entity1.occupation, entity2.occupation)
+36. violate(entity1.occupation, entity2.occupation)
+37. Factual(entity1.occupation, entity2.occupation)
+38. Causal(entity1.occupation, entity2.occupation)
+39. Numeric(entity1.age, 25)
+40. Temporal(entity1.occupation, "engineer")
+41. entity1.favorite_food = "pizza"
+42. entity2.favorite_food = "sushi"
+43. M_NLI(entity1.favorite_food, entity2.favorite_food)
+44. T("Alice loves pizza", "Alice hates pizza", Content)
+45. tau(entity1.favorite_food, entity2.favorite_food)
+46. violate(entity1.favorite_food, entity2.favorite_food)
+47. Factual(entity1.favorite_food, entity2.favorite_food)
+48. Causal(entity1.favorite_food, entity2.favorite_food)
+49. Numeric(entity1.age, 40)
+50. Temporal(entity1.favorite_food, "pizza")
+51. entity1.pet = "dog"
+52. entity2.pet = "cat"
+53. M_NLI(entity1.pet, entity2.pet)
+54. T("Alice has a dog", "Alice does not have a dog", Negation)
+55. tau(entity1.pet, entity2.pet)
+56. violate(entity1.pet, entity2.pet)
+57. Factual(entity1.pet, entity2.pet)
+58. Causal(entity1.pet, entity2.pet)
+59. Numeric(entity1.age, 35)
+60. Temporal(entity1.pet, "dog")
+61. entity1.education = "Masters"
+62. entity2.education = "Bachelors"
+63. M_NLI(entity1.education, entity2.education)
+64. T("Alice has a Masters degree", "Alice does not have a Masters degree", Negation)
+65. tau(entity1.education, entity2.education)
+66. violate(entity1.education, entity2.education)
+67. Factual(entity1.education, entity2.education)
+68. Causal(entity1.education, entity2.education)
+69. Numeric(entity1.age, 28)
+70. Temporal(entity1.education, "Masters")
+71. entity1.travel_destination = "France"
+72. entity2.travel_destination = "Germany"
+73. M_NLI(entity1.travel_destination, entity2.travel_destination)
+74. T("Alice is traveling to France", "Alice is not traveling to France", Negation)
+75. tau(entity1.travel_destination, entity2.travel_destination)
+76. violate(entity1.travel_destination, entity2.travel_destination)
+77. Factual(entity1.travel_destination, entity2.travel_destination)
+78. Causal(entity1.travel_destination, entity2.travel_destination)
+79. Numeric(entity1.age, 22)
+80. Temporal(entity1.travel_destination, "France")
+81. entity1.favorite_color = "blue"
+82. entity2.favorite_color = "red"
+83. M_NLI(entity1.favorite_color, entity2.favorite_color)
+84. T("Alice's favorite color is blue", "Alice's favorite color is not blue", Negation)
+85. tau(entity1.favorite_color, entity2.favorite_color)
+86. violate(entity1.favorite_color, entity2.favorite_color)
+87. Factual(entity1.favorite_color, entity2.favorite_color)
+88. Causal(entity1.favorite_color, entity2.favorite_color)
+89. Numeric(entity1.age, 33)
+90. Temporal(entity1.favorite_color, "blue")
+91. entity1.music_genre = "rock"
+92. entity2.music_genre = "classical"
+93. M_NLI(entity1.music_genre, entity2.music_genre)
+94. T("Alice enjoys rock music", "Alice does not enjoy rock music", Negation)
+95. tau(entity1.music_genre, entity2.music_genre)
+96. violate(entity1.music_genre, entity2.music_genre)
+97. Factual(entity1.music_genre, entity2.music_genre)
+98. Causal(entity1.music_genre, entity2.music_genre)
+99. Numeric(entity1.age, 29)
+100. Temporal(entity1.music_genre, "rock")
+violate(x0, y0)
+
+Rules:
+1. Q[x0, y0](entity1.name = "Alice" ∧ entity2.name = "Bob" → violate(x0, y0))
+2. Q[x0, y0](entity1.age = 30 ∧ entity2.age = 25 → violate(x0, y0))
+3. Q[x0, y0](entity1.city = "New York" ∧ entity2.city = "Los Angeles" → violate(x0, y0))
+4. Q[x0, y0](dislikes.label_text = "contradiction" ∧ likes.label_text = "contradiction" → violate(x0, y0))
+5. Q[x0, y0](M_NLI(entity1.name, entity2.name) ∧ M_NLI(entity1.age, entity2.age) → violate(x0, y0))
+6. Q[x0, y0](T("Alice is 30 years old", "Alice is not 30 years old", Negation) ∧ T("Bob lives in Los Angeles", "Bob does not live in Los Angeles", Negation) → violate(x0, y0))
+7. Q[x0, y0](entity1.hobby = "painting" ∧ entity2.hobby = "sports" ∧ M_NLI(entity1.hobby, entity2.hobby) → violate(x0, y0))
+8. Q[x0, y0](entity1.occupation = "engineer" ∧ entity2.occupation = "doctor" ∧ M_NLI(entity1.occupation, entity2.occupation) → violate(x0, y0))
+9. Q[x0, y0](entity1.favorite_food = "pizza" ∧ entity2.favorite_food = "sushi" ∧ M_NLI(entity1.favorite_food, entity2.favorite_food) → violate(x0, y0))
+10. Q[x0, y0](entity1.pet = "dog" ∧ entity2.pet = "cat" ∧ M_NLI(entity1.pet, entity2.pet) → violate(x0, y0))
+11. Q[x0, y0](entity1.education = "Masters" ∧ entity2.education = "Bachelors" ∧ M_NLI(entity1.education, entity2.education) → violate(x0, y0))
+12. Q[x0, y0](entity1.travel_destination = "France" ∧ entity2.travel_destination = "Germany" ∧ M_NLI(entity1.travel_destination, entity2.travel_destination) → violate(x0, y0))
+13. Q[x0, y0](entity1.favorite_color = "blue" ∧ entity2.favorite_color = "red" ∧ M_NLI(entity1.favorite_color, entity2.favorite_color) → violate(x0, y0))
+14. Q[x0, y0](entity1.music_genre = "rock" ∧ entity2.music_genre = "classical" ∧ M_NLI(entity1.music_genre, entity2.music_genre) → violate(x0, y0))
+15. Q[x0, y0](entity1.age = 30 ∧ Numeric(entity1.age, 25) → violate(x0, y0))
+16. Q[x0, y0](entity1.city = "New York" ∧ Temporal(entity1.city, "New York") → violate(x0, y0))
+17. Q[x0, y0](entity1.hobby = "painting" ∧ Factual(entity1.hobby, entity2.hobby) → violate(x0, y0))
+18. Q[x0, y0](entity1.occupation = "engineer" ∧ Temporal(entity1.occupation, "engineer") → violate(x0, y0))
+19. Q[x0, y0](entity1.favorite_food = "pizza" ∧ Numeric(entity1.age, 40) → violate(x0, y0))
+20. Q[x0, y0](entity1.pet = "dog" ∧ Numeric(entity1.age, 35) → violate(x0, y0))
+21. Q[x0, y0](entity1.education = "Masters" ∧ Numeric(entity1.age, 28) ∧ Factual(entity1.education, entity2.education) → violate(x0, y0))
+22. Q[x0, y0](entity1.travel_destination = "France" ∧ Temporal(entity1.travel_destination, "France") ∧ Factual(entity1.travel_destination, entity2.travel_destination) → violate(x0, y0))
+23. Q[x0, y0](entity1.favorite_color = "blue" ∧ Numeric(entity1.age, 33) ∧ Factual(entity1.favorite_color, entity2.favorite_color) → violate(x0, y0))
+24. Q[x0, y0](entity1.music_genre = "rock" ∧ Numeric(entity1.age, 29) ∧ Factual(entity1.music_genre, entity2.music_genre) → violate(x0, y0))
+25. Q[x0, y0](entity1.name = "Alice" ∧ entity1.age = 30 ∧ entity1.city = "New York" → violate(x0, y0))
+26. Q[x0, y0](entity2.name = "Bob" ∧ entity2.age = 25 ∧ entity2.city = "Los Angeles" → violate(x0, y0))
+27. Q[x0, y0](dislikes.doc_index = "32" ∧ likes.doc_index = "32" ∧ dislikes.label_text = "contradiction" ∧ likes.label_text = "contradiction" → violate(x0, y0))
+28. Q[x0, y0](M_NLI(entity1.hobby, entity2.hobby) ∧ T("Alice enjoys painting", "Alice dislikes painting", Content) → violate(x0, y0))
+29. Q[x0, y0](tau(entity1.city, entity2.city) ∧ Causal(entity1.city, entity2.city) → violate(x0, y0))
+30. Q[x0, y0](tau(entity1.hobby, entity2.hobby) ∧ Causal(entity1.hobby, entity2.hobby) → violate(x0, y0))

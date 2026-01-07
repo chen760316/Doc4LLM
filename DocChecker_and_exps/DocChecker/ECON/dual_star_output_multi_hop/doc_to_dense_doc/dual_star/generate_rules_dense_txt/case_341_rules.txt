@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 341)
+S1: Paul the Apostle was violently beheaded.
+S2: Paul the Apostle died of natural causes at a ripe old age.
+
+Predicates:
+1. Paul_the_Apostle.method_of_death: violently_beheaded
+2. Paul_the_Apostle.method_of_death: natural_causes
+3. M_NLI(S1, S2)
+4. Factual(Paul_the_Apostle, violently_beheaded)
+5. Factual(Paul_the_Apostle, natural_causes)
+6. violate(violently_beheaded, natural_causes)
+7. Paul_the_Apostle.death_cause: violent
+8. Paul_the_Apostle.death_cause: natural
+9. "states".S1: Paul_the_Apostle_violently_beheaded
+10. "states".S2: Paul_the_Apostle_died_naturally
+11. "conflict".S1_S2: true
+12. "truth_value".S1: true
+13. "truth_value".S2: false
+14. "assertion".S1: Paul_the_Apostle_was_killed
+15. "assertion".S2: Paul_the_Apostle_lived_long
+16. "event".S1: beheading
+17. "event".S2: natural_death
+18. "time_period".S1: historical
+19. "time_period".S2: historical
+20. "outcome".S1: death
+21. "outcome".S2: death
+22. "cause".S1: external
+23. "cause".S2: internal
+24. "discrepancy".S1_S2: present
+25. "narrative".S1: violent_narrative
+26. "narrative".S2: peaceful_narrative
+27. "context".S1: martyrdom
+28. "context".S2: longevity
+29. "character".Paul_the_Apostle: martyr
+30. "character".Paul_the_Apostle: elder
+
+Rules:
+1. Q[Paul, x0, y0](Paul_the_Apostle.method_of_death == violently_beheaded → Factual(Paul_the_Apostle, violently_beheaded))
+2. Q[Paul, x0, y0](Paul_the_Apostle.method_of_death == natural_causes → Factual(Paul_the_Apostle, natural_causes))
+3. Q[Paul, x0, y0](violate(violently_beheaded, natural_causes) → Factual(Paul_the_Apostle, violently_beheaded))
+4. Q[Paul, x0, y0](Paul_the_Apostle.death_cause == violent → Factual(Paul_the_Apostle, violently_beheaded))
+5. Q[Paul, x0, y0](Paul_the_Apostle.death_cause == natural → Factual(Paul_the_Apostle, natural_causes))
+6. Q[Paul, x0, y0](conflict.S1_S2 == true → Factual(Paul_the_Apostle, violently_beheaded))
+7. Q[Paul, x0, y0](truth_value.S1 == true → Factual(Paul_the_Apostle, violently_beheaded))
+8. Q[Paul, x0, y0](truth_value.S2 == false → Factual(Paul_the_Apostle, natural_causes))
+9. Q[Paul, x0, y0](assertion.S1 == Paul_the_Apostle_was_killed → Factual(Paul_the_Apostle, violently_beheaded))
+10. Q[Paul, x0, y0](assertion.S2 == Paul_the_Apostle_lived_long → Factual(Paul_the_Apostle, natural_causes))
+11. Q[Paul, x0, y0](event.S1 == beheading → Factual(Paul_the_Apostle, violently_beheaded))
+12. Q[Paul, x0, y0](event.S2 == natural_death → Factual(Paul_the_Apostle, natural_causes))
+13. Q[Paul, x0, y0](discrepancy.S1_S2 == present → Factual(Paul_the_Apostle, violently_beheaded))
+14. Q[Paul, x0, y0](narrative.S1 == violent_narrative → Factual(Paul_the_Apostle, violently_beheaded))
+15. Q[Paul, x0, y0](narrative.S2 == peaceful_narrative → Factual(Paul_the_Apostle, natural_causes))
+16. Q[Paul, x0, y0](cause.S1 == external → Factual(Paul_the_Apostle, violently_beheaded))
+17. Q[Paul, x0, y0](cause.S2 == internal → Factual(Paul_the_Apostle, natural_causes))
+18. Q[Paul, x0, y0](time_period.S1 == historical → Factual(Paul_the_Apostle, violently_beheaded))
+19. Q[Paul, x0, y0](time_period.S2 == historical → Factual(Paul_the_Apostle, natural_causes))
+20. Q[Paul, x0, y0](outcome.S1 == death → Factual(Paul_the_Apostle, violently_beheaded))
+21. Q[Paul, x0, y0](outcome.S2 == death → Factual(Paul_the_Apostle, natural_causes))
+22. Q[Paul, x0, y0](Paul_the_Apostle.method_of_death == violently_beheaded ∧ Paul_the_Apostle.method_of_death == natural_causes → Factual(Paul_the_Apostle, violently_beheaded))
+23. Q[Paul, x0, y0](Paul_the_Apostle.death_cause == violent ∧ Paul_the_Apostle.death_cause == natural → Factual(Paul_the_Apostle, violently_beheaded))
+24. Q[Paul, x0, y0](context.S1 == martyrdom → Factual(Paul_the_Apostle, violently_beheaded))
+25. Q[Paul, x0, y0](context.S2 == longevity → Factual(Paul_the_Apostle, natural_causes))
+26. Q[Paul, x0, y0](character.Paul_the_Apostle == martyr → Factual(Paul_the_Apostle, violently_beheaded))
+27. Q[Paul, x0, y0](character.Paul_the_Apostle == elder → Factual(Paul_the_Apostle, natural_causes))
+28. Q[Paul, x0, y0](M_NLI(S1, S2) → Factual(Paul_the_Apostle, violently_beheaded))
+29. Q[Paul, x0, y0](discrepancy.S1_S2 == present ∧ truth_value.S1 == true → Factual(Paul_the_Apostle, violently_beheaded))
+30. Q[Paul, x0, y0](discrepancy.S1_S2 == present ∧ truth_value.S2 == false → Factual(Paul_the_Apostle, natural_causes))

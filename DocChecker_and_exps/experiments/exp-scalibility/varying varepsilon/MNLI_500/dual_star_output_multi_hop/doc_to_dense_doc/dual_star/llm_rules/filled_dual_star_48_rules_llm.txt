@@ -1,0 +1,133 @@
+Predicates:
+1. entity1.name = "William"
+2. entity1.emotion = "engaged"
+3. entity1.activity = "reading"
+4. entity1.topic = "computer architecture"
+5. entity2.name = "William"
+6. entity2.emotion = "bored"
+7. entity2.activity = "reading"
+8. entity2.topic = "computer architecture"
+9. "contrasts with".context = "emotional response"
+10. "contrasts with".entity1 = "William"
+11. "contrasts with".entity2 = "William"
+12. "describes the quality of".entity = "computer architecture"
+13. "describes the quality of".quality = "engaging"
+14. "describes the quality of".entity = "computer architecture"
+15. "describes the quality of".quality = "boring"
+16. M_NLI(entity1.emotion, entity2.emotion)
+17. T("William was engaged", "William found it boring", tau)
+18. tau(entity1.emotion, entity2.emotion)
+19. violate(entity1, entity2)
+20. Factual(entity1, entity2)
+21. Content(entity1, entity2)
+22. Causal(entity1, entity2)
+23. Negation(entity1, entity2)
+24. Relation(entity1, entity2)
+25. Numeric(entity1, entity2)
+26. Temporal(entity1, entity2)
+27. entity3.name = "David"
+28. entity3.platform = "YouTube"
+29. entity3.video_status = "removed"
+30. entity3.year = "2024"
+31. entity4.name = "Taylor"
+32. entity4.platform = "YouTube"
+33. entity4.video_status = "available"
+34. entity4.year = "2025"
+35. "contrasts with".context = "video availability"
+36. "contrasts with".entity1 = "David's video"
+37. "contrasts with".entity2 = "Taylor's experience"
+38. M_NLI(entity3.video_status, entity4.video_status)
+39. T("David's video was removed", "Taylor found the video", tau)
+40. tau(entity3.video_status, entity4.video_status)
+41. violate(entity3, entity4)
+42. Factual(entity3, entity4)
+43. Causal(entity3, entity4)
+44. Negation(entity3, entity4)
+45. Relation(entity3, entity4)
+46. Numeric(entity3, entity4)
+47. Temporal(entity3, entity4)
+48. entity5.name = "Howard"
+49. entity5.relationship = "married"
+50. entity5.spouse = "Sheila"
+51. entity6.name = "Howard"
+52. entity6.relationship = "married"
+53. entity6.spouse = "Emma"
+54. "contrasts with".context = "marital status"
+55. "contrasts with".entity1 = "Howard and Sheila"
+56. "contrasts with".entity2 = "Howard and Emma"
+57. M_NLI(entity5.spouse, entity6.spouse)
+58. T("Howard is married to Sheila", "Howard is married to Emma", tau)
+59. tau(entity5.spouse, entity6.spouse)
+60. violate(entity5, entity6)
+61. Factual(entity5, entity6)
+62. Relation(entity5, entity6)
+63. Content(entity5, entity6)
+64. Numeric(entity5, entity6)
+65. Temporal(entity5, entity6)
+66. entity7.store_name = "Howard's brand store"
+67. entity7.sales = 29
+68. entity7.date = "June 15, 2025"
+69. entity8.store_name = "Howard's brand store"
+70. entity8.sales = 0
+71. entity8.date = "June 15, 2025"
+72. "contrasts with".context = "sales figures"
+73. "contrasts with".entity1 = "Howard's sales"
+74. "contrasts with".entity2 = "Howard's sales"
+75. M_NLI(entity7.sales, entity8.sales)
+76. T("Howard sold 29 pairs", "Howard had no sales", tau)
+77. tau(entity7.sales, entity8.sales)
+78. violate(entity7, entity8)
+79. Factual(entity7, entity8)
+80. Numeric(entity7, entity8)
+81. Causal(entity7, entity8)
+82. Relation(entity7, entity8)
+83. Temporal(entity7, entity8)
+84. entity9.year = 1860
+85. entity9.belief = "nitroglycerin ineffective"
+86. entity10.year = 2025
+87. entity10.belief = "nitroglycerin effective"
+88. "contrasts with".context = "belief over time"
+89. "contrasts with".entity1 = "belief in 1860"
+90. "contrasts with".entity2 = "belief in 2025"
+91. M_NLI(entity9.belief, entity10.belief)
+92. T("In 1860, nitroglycerin was ineffective", "In 2025, nitroglycerin is effective", tau)
+93. tau(entity9.belief, entity10.belief)
+94. violate(entity9, entity10)
+95. Factual(entity9, entity10)
+96. Temporal(entity9, entity10)
+97. Causal(entity9, entity10)
+98. Relation(entity9, entity10)
+99. Numeric(entity9, entity10)
+100. Content(entity9, entity10)
+violate(x0, y0)
+
+Rules:
+1. Q[x1, y1](entity1.name = "William" ∧ entity1.emotion = "engaged" → violate(x1, y1))
+2. Q[x2, y2](entity2.name = "William" ∧ entity2.emotion = "bored" → violate(x2, y2))
+3. Q[x3, y3](entity1.activity = "reading" ∧ entity2.activity = "reading" → violate(x3, y3))
+4. Q[x4, y4](entity1.topic = "computer architecture" ∧ entity2.topic = "computer architecture" → violate(x4, y4))
+5. Q[x5, y5](entity1.emotion = "engaged" ∧ entity2.emotion = "bored" → violate(x5, y5))
+6. Q[x6, y6](entity1.name = "William" ∧ entity2.name = "William" ∧ entity1.emotion = "engaged" ∧ entity2.emotion = "bored" → violate(x6, y6))
+7. Q[x7, y7](entity3.video_status = "removed" ∧ entity4.video_status = "available" → violate(x7, y7))
+8. Q[x8, y8](entity3.year = "2024" ∧ entity4.year = "2025" → violate(x8, y8))
+9. Q[x9, y9](entity3.platform = "YouTube" ∧ entity4.platform = "YouTube" ∧ entity3.video_status = "removed" ∧ entity4.video_status = "available" → violate(x9, y9))
+10. Q[x10, y10](entity3.video_status = "removed" ∧ entity4.video_status = "available" ∧ "contrasts with".context = "video availability" → violate(x10, y10))
+11. Q[x11, y11](entity5.spouse = "Sheila" ∧ entity6.spouse = "Emma" → violate(x11, y11))
+12. Q[x12, y12](entity5.relationship = "married" ∧ entity6.relationship = "married" → violate(x12, y12))
+13. Q[x13, y13](entity5.name = "Howard" ∧ entity6.name = "Howard" ∧ entity5.spouse = "Sheila" ∧ entity6.spouse = "Emma" → violate(x13, y13))
+14. Q[x14, y14](entity5.name = "Howard" ∧ entity5.relationship = "married" ∧ entity6.name = "Howard" ∧ entity6.relationship = "married" → violate(x14, y14))
+15. Q[x15, y15](entity7.sales = 29 ∧ entity8.sales = 0 → violate(x15, y15))
+16. Q[x16, y16](entity7.date = "June 15, 2025" ∧ entity8.date = "June 15, 2025" → violate(x16, y16))
+17. Q[x17, y17](entity7.store_name = "Howard's brand store" ∧ entity8.store_name = "Howard's brand store" ∧ entity7.sales = 29 ∧ entity8.sales = 0 → violate(x17, y17))
+18. Q[x18, y18](entity7.sales = 29 ∧ entity8.sales = 0 ∧ "contrasts with".context = "sales figures" → violate(x18, y18))
+19. Q[x19, y19](entity9.belief = "nitroglycerin ineffective" ∧ entity10.belief = "nitroglycerin effective" → violate(x19, y19))
+20. Q[x20, y20](entity9.year = 1860 ∧ entity10.year = 2025 → violate(x20, y20))
+21. Q[x21, y21](entity9.belief = "nitroglycerin ineffective" ∧ entity9.year = 1860 ∧ entity10.belief = "nitroglycerin effective" ∧ entity10.year = 2025 → violate(x21, y21))
+22. Q[x22, y22](entity9.belief = "nitroglycerin ineffective" ∧ entity10.belief = "nitroglycerin effective" ∧ "contrasts with".context = "belief over time" → violate(x22, y22))
+23. Q[x23, y23](entity1.name = "William" ∧ entity1.emotion = "engaged" ∧ entity1.activity = "reading" ∧ entity1.topic = "computer architecture" ∧ entity2.name = "William" ∧ entity2.emotion = "bored" → violate(x23, y23))
+24. Q[x24, y24](entity3.video_status = "removed" ∧ entity4.video_status = "available" ∧ entity3.year = "2024" ∧ entity4.year = "2025" ∧ entity3.platform = "YouTube" ∧ entity4.platform = "YouTube" → violate(x24, y24))
+25. Q[x25, y25](entity5.spouse = "Sheila" ∧ entity6.spouse = "Emma" ∧ entity5.relationship = "married" ∧ entity6.relationship = "married" ∧ entity5.name = "Howard" ∧ entity6.name = "Howard" → violate(x25, y25))
+26. Q[x26, y26](entity7.sales = 29 ∧ entity8.sales = 0 ∧ entity7.date = "June 15, 2025" ∧ entity8.date = "June 15, 2025" ∧ entity7.store_name = "Howard's brand store" ∧ entity8.store_name = "Howard's brand store" → violate(x26, y26))
+27. Q[x27, y27](entity9.belief = "nitroglycerin ineffective" ∧ entity10.belief = "nitroglycerin effective" ∧ entity9.year = 1860 ∧ entity10.year = 2025 ∧ "contrasts with".context = "belief over time" → violate(x27, y27))
+28. Q[x28, y28](entity1.name = "William" ∧ entity1.emotion = "engaged" ∧ entity2.name = "William" ∧ entity2.emotion = "bored" ∧ entity1.activity = "reading" ∧ entity2.activity = "reading" → violate(x28, y28))
+29. Q[x29, y29](entity3.video_status = "removed" ∧ entity4.video_status = "available" ∧ entity3.year = "2024" ∧ entity4.year = "2025" ∧ "contrasts with".context = "video availability" ∧ "contrasts with".entity1 = "David's video" ∧ "contrasts with".

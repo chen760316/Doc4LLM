@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 122)
+S1: The more enthusiastic the doctor, the better the drug performed.
+S2: Physicians who adopt a warm, friendly and reassuring manner, he reported, are more effective than those whose consultations are formal and do not offer reassurance.
+
+Predicates:
+1. Doctor.enthusiasm
+2. Drug.performance
+3. Physician.manner
+4. Consultation.formality
+5. Physician.effectiveness
+6. Doctor.enthusiasm -> Drug.performance
+7. Physician.warm_manner -> Physician.effectiveness
+8. Physician.formal_manner -> Physician.effectiveness
+9. Consultation.reassurance
+10. Physician.reassurance -> Physician.effectiveness
+11. Drug.performance -> Doctor.enthusiasm
+12. Physician.warm_manner -> Consultation.reassurance
+13. Physician.formal_manner -> Consultation.reassurance
+14. Doctor.enthusiasm -> Physician.effectiveness
+15. Drug.performance -> Physician.effectiveness
+16. Consultation.effectiveness
+17. Physician.warm_manner -> Consultation.effectiveness
+18. Physician.formal_manner -> Consultation.effectiveness
+19. Doctor.enthusiasm -> Consultation.effectiveness
+20. Drug.performance -> Consultation.effectiveness
+21. M_NLI(S1, S2)
+22. Content(S1, S2)
+23. violate(S1, S2)
+24. Drug.performance <-> Physician.effectiveness
+25. Doctor.enthusiasm <-> Physician.effectiveness
+26. Physician.warm_manner <-> Physician.effectiveness
+27. Physician.formal_manner <-> Physician.effectiveness
+28. Consultation.reassurance <-> Physician.effectiveness
+29. Drug.performance <-> Doctor.enthusiasm
+30. Physician.effectiveness <-> Consultation.effectiveness
+
+Rules:
+1. Q[The, Doctor.enthusiasm == "high"](Doctor.enthusiasm -> Drug.performance → Content(x0, y0))
+2. Q[The, Doctor.enthusiasm == "low"](Doctor.enthusiasm -> Drug.performance → Content(x0, y0))
+3. Q[The, Physician.warm_manner == "true"](Physician.warm_manner -> Physician.effectiveness → Content(x0, y0))
+4. Q[The, Physician.formal_manner == "true"](Physician.formal_manner -> Physician.effectiveness → Content(x0, y0))
+5. Q[The, Consultation.reassurance == "true"](Consultation.reassurance -> Physician.effectiveness → Content(x0, y0))
+6. Q[The, Doctor.enthusiasm == "high"](Doctor.enthusiasm -> Physician.effectiveness → Content(x0, y0))
+7. Q[The, Drug.performance == "high"](Drug.performance -> Physician.effectiveness → Content(x0, y0))
+8. Q[The, Physician.warm_manner == "false"](Physician.warm_manner -> Physician.effectiveness → Content(x0, y0))
+9. Q[The, Physician.formal_manner == "false"](Physician.formal_manner -> Physician.effectiveness → Content(x0, y0))
+10. Q[The, Doctor.enthusiasm == "medium"](Doctor.enthusiasm -> Drug.performance → Content(x0, y0))
+11. Q[The, Drug.performance == "low"](Drug.performance -> Doctor.enthusiasm → Content(x0, y0))
+12. Q[The, Physician.effectiveness == "high"](Physician.effectiveness <-> Consultation.effectiveness → Content(x0, y0))
+13. Q[The, Physician.effectiveness == "low"](Physician.effectiveness <-> Consultation.effectiveness → Content(x0, y0))
+14. Q[The, Physician.warm_manner == "true"](Physician.warm_manner -> Consultation.reassurance → Content(x0, y0))
+15. Q[The, Physician.formal_manner == "true"](Physician.formal_manner -> Consultation.reassurance → Content(x0, y0))
+16. Q[The, Doctor.enthusiasm == "high"](Doctor.enthusiasm <-> Physician.effectiveness → Content(x0, y0))
+17. Q[The, Drug.performance == "high"](Drug.performance <-> Doctor.enthusiasm → Content(x0, y0))
+18. Q[The, Consultation.reassurance == "false"](Consultation.reassurance <-> Physician.effectiveness → Content(x0, y0))
+19. Q[The, Physician.warm_manner == "false"](Physician.warm_manner <-> Physician.effectiveness → Content(x0, y0))
+20. Q[The, Physician.formal_manner == "false"](Physician.formal_manner <-> Physician.effectiveness → Content(x0, y0))
+21. Q[The, Doctor.enthusiasm == "low"](Doctor.enthusiasm <-> Physician.effectiveness → Content(x0, y0))
+22. Q[The, Drug.performance == "low"](Drug.performance <-> Physician.effectiveness → Content(x0, y0))
+23. Q[The, Physician.effectiveness == "medium"](Physician.effectiveness <-> Consultation.effectiveness → Content(x0, y0))
+24. Q[The, Consultation.effectiveness == "high"](Consultation.effectiveness <-> Physician.effectiveness → Content(x0, y0))
+25. Q[The, Consultation.effectiveness == "low"](Consultation.effectiveness <-> Physician.effectiveness → Content(x0, y0))
+26. Q[The, Doctor.enthusiasm == "high"](Doctor.enthusiasm -> Consultation.effectiveness → Content(x0, y0))
+27. Q[The, Drug.performance == "medium"](Drug.performance -> Physician.effectiveness → Content(x0, y0))
+28. Q[The, Physician.warm_manner == "true"](Physician.warm_manner <-> Physician.effectiveness → Content(x0, y0))
+29. Q[The, Physician.formal_manner == "true"](Physician.formal_manner <-> Physician.effectiveness → Content(x0, y0))
+30. Q[The, Consultation.reassurance == "true"](Consultation.reassurance <-> Physician.effectiveness → Content(x0, y0))

@@ -1,0 +1,131 @@
+Predicates:
+1. drought.status = "ongoing"
+2. drought.time = "next winter"
+3. catastrophic consequences.status = "potential"
+4. conservation efforts.status = "not increased"
+5. "Relationship".source_id = "3489738298_10"
+6. "Relationship".source_id = "3489738298_4"
+7. "Relationship".reason = "lack of conservation"
+8. M_NLI(drought.status, catastrophic consequences.status)
+9. T("If the drought continues through next winter and conservation efforts are not increased, the consequences could worsen.", "The ongoing drought could lead to catastrophic consequences if not conserved.", Content)
+10. T("If the drought continues through next winter and conservation efforts are not increased, the consequences could worsen.", "The ongoing drought could lead to catastrophic consequences if not conserved.", Causal)
+11. tau(drought.time, conservation efforts.status)
+12. violate(drought, catastrophic consequences)
+13. Factual(drought, conservation efforts)
+14. Causal(drought, catastrophic consequences)
+15. Content(drought, conservation efforts)
+16. Negation(drought, conservation efforts)
+17. Relation(drought, catastrophic consequences)
+18. Numeric(drought.time, conservation efforts.status)
+19. Temporal(drought.time, catastrophic consequences.status)
+20. conservation efforts.increase = "false"
+21. drought.intensity = "high"
+22. catastrophic consequences.type = "catastrophic"
+23. drought.impact = "severe"
+24. conservation efforts.effectiveness = "low"
+25. "Relationship".type = "causal"
+26. "Relationship".type = "content"
+27. M_NLI(conservation efforts.effectiveness, catastrophic consequences.type)
+28. T("The drought will worsen if conservation efforts are not increased.", "The drought will improve with increased conservation efforts.", Negation)
+29. tau(conservation efforts.status, catastrophic consequences.status)
+30. violate(conservation efforts, drought)
+31. Factual(conservation efforts, drought)
+32. Causal(conservation efforts, catastrophic consequences)
+33. Content(conservation efforts, drought)
+34. Negation(conservation efforts, drought)
+35. Relation(conservation efforts, catastrophic consequences)
+36. Numeric(conservation efforts.status, drought.intensity)
+37. Temporal(conservation efforts.status, drought.time)
+38. drought.severity = "extreme"
+39. conservation efforts.required = "high"
+40. catastrophic consequences.probability = "high"
+41. "Relationship".effect = "negative"
+42. "Relationship".effect = "positive"
+43. M_NLI(drought.severity, conservation efforts.required)
+44. T("The drought is manageable with current conservation efforts.", "The drought is unmanageable without increased conservation efforts.", Causal)
+45. tau(drought.severity, catastrophic consequences.probability)
+46. violate(catastrophic consequences, conservation efforts)
+47. Factual(catastrophic consequences, drought)
+48. Causal(catastrophic consequences, conservation efforts)
+49. Content(catastrophic consequences, drought)
+50. Negation(catastrophic consequences, drought)
+51. Relation(catastrophic consequences, conservation efforts)
+52. Numeric(catastrophic consequences.probability, drought.severity)
+53. Temporal(catastrophic consequences.status, drought.time)
+54. drought.duration = "long-term"
+55. conservation efforts.urgency = "high"
+56. catastrophic consequences.magnitude = "large"
+57. "Relationship".urgency = "critical"
+58. "Relationship".urgency = "low"
+59. M_NLI(conservation efforts.urgency, catastrophic consequences.magnitude)
+60. T("If conservation efforts are increased, the drought's impact will lessen.", "If conservation efforts are not increased, the drought's impact will worsen.", Causal)
+61. tau(conservation efforts.urgency, drought.duration)
+62. violate(drought, conservation efforts)
+63. Factual(drought, catastrophic consequences)
+64. Causal(drought, conservation efforts)
+65. Content(drought, catastrophic consequences)
+66. Negation(drought, conservation efforts)
+67. Relation(drought, conservation efforts)
+68. Numeric(drought.duration, conservation efforts.urgency)
+69. Temporal(drought.time, catastrophic consequences.magnitude)
+70. drought.region = "affected"
+71. conservation efforts.scope = "local"
+72. catastrophic consequences.scope = "national"
+73. "Relationship".scope = "global"
+74. "Relationship".scope = "regional"
+75. M_NLI(drought.region, conservation efforts.scope)
+76. T("The drought affects local farmers.", "The drought does not affect local farmers.", Negation)
+77. tau(conservation efforts.scope, catastrophic consequences.scope)
+78. violate(conservation efforts, drought)
+79. Factual(conservation efforts, catastrophic consequences)
+80. Causal(conservation efforts, drought)
+81. Content(conservation efforts, catastrophic consequences)
+82. Negation(conservation efforts, drought)
+83. Relation(conservation efforts, catastrophic consequences)
+84. Numeric(conservation efforts.scope, drought.region)
+85. Temporal(conservation efforts.time, catastrophic consequences.scope)
+86. drought.response = "urgent"
+87. conservation efforts.response = "delayed"
+88. catastrophic consequences.response = "immediate"
+89. "Relationship".response = "proactive"
+90. "Relationship".response = "reactive"
+91. M_NLI(drought.response, conservation efforts.response)
+92. T("The response to the drought is timely.", "The response to the drought is untimely.", Negation)
+93. tau(conservation efforts.response, catastrophic consequences.response)
+94. violate(catastrophic consequences, drought)
+95. Factual(catastrophic consequences, conservation efforts)
+96. Causal(catastrophic consequences, drought)
+97. Content(catastrophic consequences, conservation efforts)
+98. Negation(catastrophic consequences, drought)
+99. Relation(catastrophic consequences, conservation efforts)
+100. Numeric(catastrophic consequences.response, drought.response)
+violate(x0, y0)
+
+Rules:
+1. Q[x0, y0](drought.status = "ongoing" ∧ conservation efforts.status = "not increased" → violate(drought, catastrophic consequences))
+2. Q[x0, y0](drought.time = "next winter" ∧ drought.intensity = "high" → violate(drought, conservation efforts))
+3. Q[x0, y0](catastrophic consequences.status = "potential" ∧ conservation efforts.effectiveness = "low" → violate(conservation efforts, drought))
+4. Q[x0, y0](drought.status = "ongoing" ∧ drought.intensity = "high" ∧ conservation efforts.status = "not increased" → violate(drought, catastrophic consequences))
+5. Q[x0, y0](drought.time = "next winter" ∧ conservation efforts.urgency = "high" ∧ catastrophic consequences.type = "catastrophic" → violate(conservation efforts, drought))
+6. Q[x0, y0](drought.severity = "extreme" ∧ conservation efforts.required = "high" ∧ catastrophic consequences.probability = "high" → violate(catastrophic consequences, conservation efforts))
+7. Q[x0, y0](drought.status = "ongoing" ∧ drought.intensity = "high" ∧ conservation efforts.status = "not increased" ∧ catastrophic consequences.type = "catastrophic" → violate(drought, conservation efforts))
+8. Q[x0, y0](drought.time = "next winter" ∧ conservation efforts.scope = "local" ∧ catastrophic consequences.scope = "national" → violate(conservation efforts, catastrophic consequences))
+9. Q[x0, y0](drought.duration = "long-term" ∧ conservation efforts.response = "delayed" ∧ catastrophic consequences.response = "immediate" → violate(drought, conservation efforts))
+10. Q[x0, y0](drought.region = "affected" ∧ conservation efforts.urgency = "critical" ∧ catastrophic consequences.magnitude = "large" → violate(conservation efforts, drought))
+11. Q[x0, y0](drought.status = "ongoing" ∧ drought.intensity = "high" ∧ conservation efforts.effectiveness = "low" ∧ catastrophic consequences.status = "potential" → violate(drought, catastrophic consequences))
+12. Q[x0, y0](drought.time = "next winter" ∧ conservation efforts.urgency = "high" ∧ catastrophic consequences.type = "catastrophic" ∧ drought.severity = "extreme" → violate(conservation efforts, drought))
+13. Q[x0, y0](drought.intensity = "high" ∧ conservation efforts.status = "not increased" ∧ catastrophic consequences.probability = "high" ∧ drought.duration = "long-term" → violate(drought, conservation efforts))
+14. Q[x0, y0](drought.response = "urgent" ∧ conservation efforts.response = "delayed" ∧ catastrophic consequences.response = "immediate" ∧ drought.intensity = "high" → violate(catastrophic consequences, conservation efforts))
+15. Q[x0, y0](drought.severity = "extreme" ∧ conservation efforts.scope = "local" ∧ catastrophic consequences.scope = "national" ∧ drought.time = "next winter" → violate(conservation efforts, drought))
+16. Q[x0, y0](drought.status = "ongoing" ∧ conservation efforts.status = "not increased" ∧ drought.intensity = "high" ∧ conservation efforts.effectiveness = "low" ∧ catastrophic consequences.type = "catastrophic" → violate(drought, catastrophic consequences))
+17. Q[x0, y0](drought.time = "next winter" ∧ conservation efforts.urgency = "critical" ∧ catastrophic consequences.magnitude = "large" ∧ drought.region = "affected" → violate(conservation efforts, drought))
+18. Q[x0, y0](drought.duration = "long-term" ∧ conservation efforts.response = "delayed" ∧ catastrophic consequences.response = "immediate" ∧ drought.intensity = "high" ∧ conservation efforts.scope = "local" → violate(drought, conservation efforts))
+19. Q[x0, y0](drought.status = "ongoing" ∧ conservation efforts.effectiveness = "low" ∧ catastrophic consequences.status = "potential" ∧ drought.severity = "extreme" ∧ conservation efforts.urgency = "high" → violate(conservation efforts, drought))
+20. Q[x0, y0](drought.intensity = "high" ∧ conservation efforts.status = "not increased" ∧ catastrophic consequences.probability = "high" ∧ drought.time = "next winter" ∧ conservation efforts.scope = "local" → violate(drought, catastrophic consequences))
+21. Q[x0, y0](drought.response = "urgent" ∧ conservation efforts.response = "delayed" ∧ catastrophic consequences.response = "immediate" ∧ drought.severity = "extreme" ∧ conservation efforts.urgency = "critical" ∧ catastrophic consequences.magnitude = "large" → violate(conservation efforts, drought))
+22. Q[x0, y0](drought.status = "ongoing" ∧ drought.intensity = "high" ∧ conservation efforts.status = "not increased" ∧ catastrophic consequences.type = "catastrophic" ∧ drought.region = "affected" ∧ conservation efforts.urgency = "high" → violate(drought, catastrophic consequences))
+23. Q[x0, y0](drought.time = "next winter" ∧ conservation efforts.urgency = "critical" ∧ catastrophic consequences.magnitude = "large" ∧ drought.severity = "extreme" ∧ conservation efforts.scope = "local" ∧ catastrophic consequences.scope = "national" → violate(conservation efforts, drought))
+24. Q[x0, y0](drought.duration = "long-term" ∧ conservation efforts.response = "delayed" ∧ catastrophic consequences.response = "immediate" ∧ drought.intensity = "high" ∧ conservation efforts.effectiveness = "low" ∧ catastrophic consequences.type = "catastrophic" → violate(drought, conservation efforts))
+25. Q[x0, y0](drought.status = "ongoing" ∧ conservation efforts.status = "not increased" ∧ drought.intensity = "high" ∧ conservation efforts.urgency = "high" ∧ catastrophic consequences.type = "catastrophic" ∧ drought.severity = "extreme" → violate(conservation efforts, drought))
+26. Q[x0, y0](drought.intensity = "high" ∧ conservation efforts.status = "not increased" ∧ catastrophic consequences.probability = "high" ∧ drought.time = "next winter" ∧ conservation efforts.scope = "local" ∧ catastrophic consequences.scope = "national" → violate(drought, catastrophic consequences))
+27. Q[x0, y0](drought.response = "urgent" ∧ conservation efforts.response = "delayed" ∧ catastrophic consequences.response = "immediate"

@@ -1,0 +1,131 @@
+Predicates:
+1. entity1.name = "Building A"
+2. entity1.location = "City X"
+3. entity1.condition = "damaged"
+4. entity1.year = 2023
+5. entity2.name = "Building B"
+6. entity2.location = "City Y"
+7. entity2.condition = "intact"
+8. entity2.year = 2023
+9. "was badly damaged by bombing in".source = "Document 1"
+10. "was not damaged in".source = "Document 1"
+11. "was the site of a major battle in".source = "Document 1"
+12. "was badly damaged by bombing in".context = "historical event"
+13. "was not damaged in".context = "historical event"
+14. "was the site of a major battle in".context = "historical event"
+15. M_NLI(entity1.condition, entity2.condition)
+16. M_NLI(entity1.year, entity2.year)
+17. T("Building A was badly damaged by bombing in 2023", "Building A was not damaged in 2023", tau)
+18. T("Building A was the site of a major battle in 2023", "Building A was not damaged in 2023", tau)
+19. tau(entity1.condition, entity2.condition)
+20. tau(entity1.year, entity2.year)
+21. violate(entity1, entity2)
+22. Factual(entity1, entity2)
+23. Content(entity1, entity2)
+24. Causal(entity1, entity2)
+25. Negation(entity1, entity2)
+26. Relation(entity1, entity2)
+27. Numeric(entity1, entity2)
+28. Temporal(entity1, entity2)
+29. "was badly damaged by bombing in".date = "2023-05-01"
+30. "was not damaged in".date = "2023-05-01"
+31. "was the site of a major battle in".date = "2023-05-01"
+32. entity1.damage_level = "high"
+33. entity2.damage_level = "none"
+34. "was badly damaged by bombing in".impact = "significant"
+35. "was not damaged in".impact = "none"
+36. "was the site of a major battle in".impact = "historical significance"
+37. M_NLI(entity1.damage_level, entity2.damage_level)
+38. T("Building A was badly damaged", "Building A was not damaged", tau)
+39. tau(entity1.damage_level, entity2.damage_level)
+40. violate(entity1.condition, entity2.condition)
+41. Factual(entity1.damage_level, entity2.damage_level)
+42. Causal(entity1.impact, entity2.impact)
+43. Negation(entity1.year, entity2.year)
+44. Relation(entity1.location, entity2.location)
+45. Numeric(entity1.year, entity2.year)
+46. Temporal(entity1.date, entity2.date)
+47. "was badly damaged by bombing in".casualty_count = 100
+48. "was not damaged in".casualty_count = 0
+49. "was the site of a major battle in".casualty_count = 50
+50. M_NLI(entity1.casualty_count, entity2.casualty_count)
+51. T("Building A had 100 casualties", "Building A had 0 casualties", tau)
+52. tau(entity1.casualty_count, entity2.casualty_count)
+53. violate(entity1.casualty_count, entity2.casualty_count)
+54. Factual(entity1.casualty_count, entity2.casualty_count)
+55. Causal(entity1.impact, entity2.impact)
+56. Negation(entity1.casualty_count, entity2.casualty_count)
+57. Relation(entity1.location, entity2.location)
+58. Numeric(entity1.casualty_count, entity2.casualty_count)
+59. Temporal(entity1.date, entity2.date)
+60. "was badly damaged by bombing in".recovery_status = "ongoing"
+61. "was not damaged in".recovery_status = "complete"
+62. "was the site of a major battle in".recovery_status = "ongoing"
+63. M_NLI(entity1.recovery_status, entity2.recovery_status)
+64. T("Building A's recovery is ongoing", "Building A's recovery is complete", tau)
+65. tau(entity1.recovery_status, entity2.recovery_status)
+66. violate(entity1.recovery_status, entity2.recovery_status)
+67. Factual(entity1.recovery_status, entity2.recovery_status)
+68. Causal(entity1.impact, entity2.impact)
+69. Negation(entity1.recovery_status, entity2.recovery_status)
+70. Relation(entity1.location, entity2.location)
+71. Numeric(entity1.year, entity2.year)
+72. Temporal(entity1.date, entity2.date)
+73. "was badly damaged by bombing in".historical_context = "World War II"
+74. "was not damaged in".historical_context = "World War II"
+75. "was the site of a major battle in".historical_context = "World War II"
+76. M_NLI(entity1.historical_context, entity2.historical_context)
+77. T("Building A was damaged during World War II", "Building A was not damaged during World War II", tau)
+78. tau(entity1.historical_context, entity2.historical_context)
+79. violate(entity1.historical_context, entity2.historical_context)
+80. Factual(entity1.historical_context, entity2.historical_context)
+81. Causal(entity1.impact, entity2.impact)
+82. Negation(entity1.historical_context, entity2.historical_context)
+83. Relation(entity1.location, entity2.location)
+84. Numeric(entity1.year, entity2.year)
+85. Temporal(entity1.date, entity2.date)
+86. "was badly damaged by bombing in".witness_count = 10
+87. "was not damaged in".witness_count = 0
+88. "was the site of a major battle in".witness_count = 5
+89. M_NLI(entity1.witness_count, entity2.witness_count)
+90. T("Building A had 10 witnesses", "Building A had 0 witnesses", tau)
+91. tau(entity1.witness_count, entity2.witness_count)
+92. violate(entity1.witness_count, entity2.witness_count)
+93. Factual(entity1.witness_count, entity2.witness_count)
+94. Causal(entity1.impact, entity2.impact)
+95. Negation(entity1.witness_count, entity2.witness_count)
+96. Relation(entity1.location, entity2.location)
+97. Numeric(entity1.year, entity2.year)
+98. Temporal(entity1.date, entity2.date)
+99. "was badly damaged by bombing in".reconstruction_status = "in progress"
+100. "was not damaged in".reconstruction_status = "completed"
+violate(x0, y0)
+
+Rules:
+1. Q[x0, y0](entity1.condition = "damaged" ∧ entity2.condition = "intact" → violate(x0, y0))
+2. Q[x0, y0](entity1.year = 2023 ∧ entity2.year = 2023 → violate(x0, y0))
+3. Q[x0, y0](entity1.name = "Building A" ∧ entity2.name = "Building B" → violate(x0, y0))
+4. Q[x0, y0](entity1.location = "City X" ∧ entity2.location = "City Y" → violate(x0, y0))
+5. Q[x0, y0](entity1.condition = "damaged" ∧ entity1.year = 2023 ∧ entity2.condition = "intact" → violate(x0, y0))
+6. Q[x0, y0](entity1.name = "Building A" ∧ entity1.location = "City X" ∧ entity2.name = "Building B" ∧ entity2.location = "City Y" → violate(x0, y0))
+7. Q[x0, y0](entity1.condition = "damaged" ∧ entity1.year = 2023 ∧ "was badly damaged by bombing in".source = "Document 1" → violate(x0, y0))
+8. Q[x0, y0](entity1.condition = "damaged" ∧ entity2.condition = "intact" ∧ "was not damaged in".source = "Document 1" → violate(x0, y0))
+9. Q[x0, y0](entity1.year = 2023 ∧ entity2.year = 2023 ∧ "was the site of a major battle in".source = "Document 1" → violate(x0, y0))
+10. Q[x0, y0](entity1.condition = "damaged" ∧ entity1.year = 2023 ∧ "was badly damaged by bombing in".context = "historical event" ∧ "was not damaged in".context = "historical event" → violate(x0, y0))
+11. Q[x0, y0](entity1.condition = "damaged" ∧ entity2.condition = "intact" ∧ "was badly damaged by bombing in".date = "2023-05-01" ∧ "was not damaged in".date = "2023-05-01" → violate(x0, y0))
+12. Q[x0, y0](entity1.year = 2023 ∧ entity2.year = 2023 ∧ "was the site of a major battle in".date = "2023-05-01" ∧ "was not damaged in".date = "2023-05-01" → violate(x0, y0))
+13. Q[x0, y0](entity1.damage_level = "high" ∧ entity2.damage_level = "none" ∧ "was badly damaged by bombing in".impact = "significant" → violate(x0, y0))
+14. Q[x0, y0](entity1.damage_level = "high" ∧ entity2.damage_level = "none" ∧ "was not damaged in".impact = "none" ∧ "was the site of a major battle in".impact = "historical significance" → violate(x0, y0))
+15. Q[x0, y0](entity1.recovery_status = "ongoing" ∧ entity2.recovery_status = "complete" ∧ "was badly damaged by bombing in".recovery_status = "ongoing" → violate(x0, y0))
+16. Q[x0, y0](entity1.recovery_status = "ongoing" ∧ entity2.recovery_status = "complete" ∧ "was not damaged in".recovery_status = "complete" ∧ "was the site of a major battle in".recovery_status = "ongoing" → violate(x0, y0))
+17. Q[x0, y0](entity1.historical_context = "World War II" ∧ entity2.historical_context = "World War II" ∧ "was badly damaged by bombing in".historical_context = "World War II" → violate(x0, y0))
+18. Q[x0, y0](entity1.historical_context = "World War II" ∧ entity2.historical_context = "World War II" ∧ "was not damaged in".historical_context = "World War II" ∧ "was the site of a major battle in".historical_context = "World War II" → violate(x0, y0))
+19. Q[x0, y0](entity1.witness_count = 10 ∧ entity2.witness_count = 0 ∧ "was badly damaged by bombing in".witness_count = 10 → violate(x0, y0))
+20. Q[x0, y0](entity1.witness_count = 10 ∧ entity2.witness_count = 0 ∧ "was not damaged in".witness_count = 0 ∧ "was the site of a major battle in".witness_count = 5 → violate(x0, y0))
+21. Q[x0, y0](entity1.casualty_count = 100 ∧ entity2.casualty_count = 0 ∧ "was badly damaged by bombing in".casualty_count = 100 → violate(x0, y0))
+22. Q[x0, y0](entity1.casualty_count = 100 ∧ entity2.casualty_count = 0 ∧ "was not damaged in".casualty_count = 0 ∧ "was the site of a major battle in".casualty_count = 50 → violate(x0, y0))
+23. Q[x0, y0](entity1.condition = "damaged" ∧ entity1.year = 2023 ∧ entity2.condition = "intact" ∧ entity2.year = 2023 ∧ "was badly damaged by bombing in".source = "Document 1" → violate(x0, y0))
+24. Q[x0, y0](entity1.condition = "damaged" ∧ entity1.year = 2023 ∧ entity2.condition = "intact" ∧ entity2.year = 2023 ∧ "was not damaged in".source = "Document 1" → violate(x0, y0))
+25. Q[x0, y0](entity1.condition = "damaged" ∧ entity1.year = 2023 ∧ entity2.condition = "intact" ∧ "was the site of a major battle in".source = "Document 1" → violate(x0, y0))
+26. Q[x0, y0](entity1.condition = "damaged" ∧ entity1.year = 2023 ∧ entity2.condition = "intact" ∧ "was badly damaged by bombing in".context = "historical event" → violate(x0, y0))
+27. Q[x0, y

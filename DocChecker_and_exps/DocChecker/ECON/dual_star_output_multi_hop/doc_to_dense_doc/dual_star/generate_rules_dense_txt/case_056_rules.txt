@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 56)
+S1: Parents care for their children.
+S2: Parents are indifferent to their children's well-being.
+
+Predicates:
+1. Parents.care_for.children
+2. Parents.indifferent_to.children_well_being
+3. M_NLI(Parents.care_for.children, Parents.indifferent_to.children_well_being)
+4. Content(Opinion, Parents.care_for.children)
+5. Content(Opinion, Parents.indifferent_to.children_well_being)
+6. violate(Parents.care_for.children, Parents.indifferent_to.children_well_being)
+7. Children.receive.care.from.Parents
+8. Children.lack.care.from.Parents
+9. M_NLI(Children.receive.care.from.Parents, Children.lack.care.from.Parents)
+10. Content(Emotion, Children.receive.care.from.Parents)
+11. Content(Emotion, Children.lack.care.from.Parents)
+12. violate(Children.receive.care.from.Parents, Children.lack.care.from.Parents)
+13. Parents.provide.support.to.children
+14. Parents.ignore.needs.of.children
+15. M_NLI(Parents.provide.support.to.children, Parents.ignore.needs.of.children)
+16. Content(Opinion, Parents.provide.support.to.children)
+17. Content(Opinion, Parents.ignore.needs.of.children)
+18. violate(Parents.provide.support.to.children, Parents.ignore.needs.of.children)
+19. Parents.nurture.children
+20. Parents.neglect.children
+21. M_NLI(Parents.nurture.children, Parents.neglect.children)
+22. Content(Emotion, Parents.nurture.children)
+23. Content(Emotion, Parents.neglect.children)
+24. violate(Parents.nurture.children, Parents.neglect.children)
+25. Parents.value.children's.happiness
+26. Parents.disregard.children's.happiness
+27. M_NLI(Parents.value.children's.happiness, Parents.disregard.children's.happiness)
+28. Content(Opinion, Parents.value.children's.happiness)
+29. Content(Opinion, Parents.disregard.children's.happiness)
+30. violate(Parents.value.children's.happiness, Parents.disregard.children's.happiness)
+
+Rules:
+1. Q[Parents, Parents.care_for.children == true](Parents.care_for.children → Content(Opinion, Parents.care_for.children))
+2. Q[Parents, Parents.indifferent_to.children_well_being == true](Parents.indifferent_to.children_well_being → Content(Opinion, Parents.indifferent_to.children_well_being))
+3. Q[Parents, violate(Parents.care_for.children, Parents.indifferent_to.children_well_being) == true](Parents.care_for.children → Content(Opinion, Parents.indifferent_to.children_well_being))
+4. Q[Parents, violate(Parents.indifferent_to.children_well_being, Parents.care_for.children) == true](Parents.indifferent_to.children_well_being → Content(Opinion, Parents.care_for.children))
+5. Q[Parents, M_NLI(Parents.care_for.children, Parents.indifferent_to.children_well_being) == true](Parents.care_for.children → Content(Opinion, Parents.indifferent_to.children_well_being))
+6. Q[Parents, M_NLI(Parents.indifferent_to.children_well_being, Parents.care_for.children) == true](Parents.indifferent_to.children_well_being → Content(Opinion, Parents.care_for.children))
+7. Q[Parents, Parents.provide.support.to.children == true](Parents.provide.support.to.children → Content(Opinion, Parents.provide.support.to.children))
+8. Q[Parents, Parents.ignore.needs.of.children == true](Parents.ignore.needs.of.children → Content(Opinion, Parents.ignore.needs.of.children))
+9. Q[Parents, violate(Parents.provide.support.to.children, Parents.ignore.needs.of.children) == true](Parents.provide.support.to.children → Content(Opinion, Parents.ignore.needs.of.children))
+10. Q[Parents, violate(Parents.ignore.needs.of.children, Parents.provide.support.to.children) == true](Parents.ignore.needs.of.children → Content(Opinion, Parents.provide.support.to.children))
+11. Q[Parents, Parents.nurture.children == true](Parents.nurture.children → Content(Opinion, Parents.nurture.children))
+12. Q[Parents, Parents.neglect.children == true](Parents.neglect.children → Content(Opinion, Parents.neglect.children))
+13. Q[Parents, violate(Parents.nurture.children, Parents.neglect.children) == true](Parents.nurture.children → Content(Opinion, Parents.neglect.children))
+14. Q[Parents, violate(Parents.neglect.children, Parents.nurture.children) == true](Parents.neglect.children → Content(Opinion, Parents.nurture.children))
+15. Q[Parents, Parents.value.children's.happiness == true](Parents.value.children's.happiness → Content(Opinion, Parents.value.children's.happiness))
+16. Q[Parents, Parents.disregard.children's.happiness == true](Parents.disregard.children's.happiness → Content(Opinion, Parents.disregard.children's.happiness))
+17. Q[Parents, violate(Parents.value.children's.happiness, Parents.disregard.children's.happiness) == true](Parents.value.children's.happiness → Content(Opinion, Parents.disregard.children's.happiness))
+18. Q[Parents, violate(Parents.disregard.children's.happiness, Parents.value.children's.happiness) == true](Parents.disregard.children's.happiness → Content(Opinion, Parents.value.children's.happiness))
+19. Q[Parents, Children.receive.care.from.Parents == true](Children.receive.care.from.Parents → Content(Emotion, Children.receive.care.from.Parents))
+20. Q[Parents, Children.lack.care.from.Parents == true](Children.lack.care.from.Parents → Content(Emotion, Children.lack.care.from.Parents))
+21. Q[Parents, violate(Children.receive.care.from.Parents, Children.lack.care.from.Parents) == true](Children.receive.care.from.Parents → Content(Emotion, Children.lack.care.from.Parents))
+22. Q[Parents, violate(Children.lack.care.from.Parents, Children.receive.care.from.Parents) == true](Children.lack.care.from.Parents → Content(Emotion, Children.receive.care.from.Parents))
+23. Q[Parents, M_NLI(Children.receive.care.from.Parents, Children.lack.care.from.Parents) == true](Children.receive.care.from.Parents → Content(Emotion, Children.lack.care.from.Parents))
+24. Q[Parents, M_NLI(Parents.provide.support.to.children, Parents.ignore.needs.of.children) == true](Parents.provide.support.to.children → Content(Opinion, Parents.ignore.needs.of.children))
+25. Q[Parents, M_NLI(Parents.nurture.children, Parents.neglect.children) == true](Parents.nurture.children → Content(Opinion, Parents.neglect.children))
+26. Q[Parents, M_NLI(Parents.value.children's.happiness, Parents.disregard.children's.happiness) == true](Parents.value.children's.happiness → Content(Opinion, Parents.disregard.children's.happiness))
+27. Q[Parents, violate(Parents.care_for.children, Parents.indifferent_to.children_well_being) == true](Parents.care_for.children → Content(Opinion, Parents.indifferent_to.children_well_being))
+28. Q[Parents, violate(Parents.indifferent_to.children_well_being, Parents.care_for.children) == true](Parents.indifferent_to.children_well_being → Content(Opinion, Parents.care_for.children))
+29. Q[Parents, violate(Parents.provide.support.to.children, Parents.ignore.needs.of.children) == true](Parents.provide.support.to.children → Content(Opinion, Parents.ignore.needs.of.children))
+30. Q[Parents, violate(Parents.nurture.children, Parents.neglect.children) == true](Parents.nurture.children → Content(Opinion, Parents.neglect.children))

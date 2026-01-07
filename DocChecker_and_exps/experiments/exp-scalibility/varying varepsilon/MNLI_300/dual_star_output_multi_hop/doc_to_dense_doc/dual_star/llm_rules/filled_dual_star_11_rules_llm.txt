@@ -1,0 +1,128 @@
+Predicates:
+1. entity.name = "Project A"
+2. entity.start_date = "2025-01-01"
+3. entity.end_date = "2025-06-30"
+4. entity.budget = "$100,000"
+5. entity.status = "completed"
+6. entity.delays = "none"
+7. entity.team_size = "10"
+8. entity.location = "New York"
+9. entity.client = "Company X"
+10. entity.scope = "full"
+11. edge.relationship = "caused delays to"
+12. edge.relationship = "contributed to significant delays in"
+13. edge.relationship = "were done on schedule and within budget for"
+14. edge.start_date = "2025-01-01"
+15. edge.end_date = "2025-06-30"
+16. edge.budget = "$100,000"
+17. edge.status = "on schedule"
+18. edge.delays = "significant"
+19. edge.team_size = "10"
+20. edge.location = "New York"
+21. edge.client = "Company Y"
+22. edge.scope = "partial"
+23. M_NLI(entity1.status, entity2.status)
+24. M_NLI(entity1.delays, entity2.delays)
+25. T(entity1.budget, entity2.budget, tau)
+26. T(entity1.start_date, entity2.start_date, tau)
+27. tau(entity1.team_size, entity2.team_size)
+28. violate(x0, y0)
+29. Factual(x0, y0)
+30. Causal(x0, y0)
+31. Numeric(x0, y0)
+32. Temporal(x0, y0)
+33. Content(x0, y0)
+34. Relation(x0, y0)
+35. Negation(x0, y0)
+36. tau(entity1.client, entity2.client)
+37. tau(entity1.scope, entity2.scope)
+38. Factual(entity1.delays, entity2.delays)
+39. Causal(entity1.status, entity2.status)
+40. Numeric(entity1.budget, entity2.budget)
+41. Temporal(entity1.start_date, entity2.end_date)
+42. Content(entity1.team_size, entity2.team_size)
+43. Relation(entity1.location, entity2.location)
+44. Negation(entity1.status, entity2.status)
+45. M_NLI(entity1.budget, entity2.budget)
+46. T(entity1.delays, entity2.delays, tau)
+47. tau(entity1.location, entity2.location)
+48. violate(entity1, entity2)
+49. Factual(entity1.client, entity2.client)
+50. Causal(entity1.scope, entity2.scope)
+51. Numeric(entity1.team_size, entity2.team_size)
+52. Temporal(entity1.end_date, entity2.start_date)
+53. Content(entity1.status, entity2.status)
+54. Relation(entity1.delays, entity2.delays)
+55. Negation(entity1.budget, entity2.budget)
+56. M_NLI(entity1.start_date, entity2.start_date)
+57. T(entity1.client, entity2.client, tau)
+58. tau(entity1.scope, entity2.scope)
+59. violate(entity1, entity2)
+60. Factual(entity1.team_size, entity2.team_size)
+61. Causal(entity1.delays, entity2.delays)
+62. Numeric(entity1.budget, entity2.budget)
+63. Temporal(entity1.start_date, entity2.end_date)
+64. Content(entity1.location, entity2.location)
+65. Relation(entity1.status, entity2.status)
+66. Negation(entity1.client, entity2.client)
+67. M_NLI(entity1.scope, entity2.scope)
+68. T(entity1.delays, entity2.delays, tau)
+69. tau(entity1.budget, entity2.budget)
+70. violate(entity1, entity2)
+71. Factual(entity1.start_date, entity2.start_date)
+72. Causal(entity1.end_date, entity2.end_date)
+73. Numeric(entity1.team_size, entity2.team_size)
+74. Temporal(entity1.client, entity2.client)
+75. Content(entity1.status, entity2.status)
+76. Relation(entity1.location, entity2.location)
+77. Negation(entity1.scope, entity2.scope)
+78. M_NLI(entity1.delays, entity2.delays)
+79. T(entity1.budget, entity2.budget, tau)
+80. tau(entity1.team_size, entity2.team_size)
+81. violate(entity1, entity2)
+82. Factual(entity1.client, entity2.client)
+83. Causal(entity1.status, entity2.status)
+84. Numeric(entity1.start_date, entity2.start_date)
+85. Temporal(entity1.end_date, entity2.start_date)
+86. Content(entity1.delays, entity2.delays)
+87. Relation(entity1.scope, entity2.scope)
+88. Negation(entity1.budget, entity2.budget)
+89. M_NLI(entity1.team_size, entity2.team_size)
+90. T(entity1.location, entity2.location, tau)
+91. tau(entity1.status, entity2.status)
+92. violate(entity1, entity2)
+93. Factual(entity1.delays, entity2.delays)
+94. Causal(entity1.client, entity2.client)
+95. Numeric(entity1.budget, entity2.budget)
+96. Temporal(entity1.start_date, entity2.end_date)
+97. Content(entity1.scope, entity2.scope)
+98. Relation(entity1.team_size, entity2.team_size)
+99. Negation(entity1.location, entity2.location)
+100. M_NLI(entity1.status, entity2.status)
+violate(x0, y0)
+
+Rules:
+1. Q[x0, y0](entity.status = "completed" ∧ entity.delays = "none" → violate(x0, y0))
+2. Q[x0, y0](entity.start_date = "2025-01-01" ∧ entity.end_date = "2025-06-30" → violate(x0, y0))
+3. Q[x0, y0](entity.budget = "$100,000" ∧ edge.status = "on schedule" ∧ edge.delays = "significant" → violate(x0, y0))
+4. Q[x0, y0](entity.team_size = "10" ∧ entity.location = "New York" ∧ edge.client = "Company Y" → violate(x0, y0))
+5. Q[x0, y0](entity.client = "Company X" ∧ edge.scope = "partial" ∧ edge.budget = "$100,000" → violate(x0, y0))
+6. Q[x0, y0](entity.status = "completed" ∧ entity.delays = "none" ∧ edge.relationship = "caused delays to" ∧ edge.start_date = "2025-01-01" → violate(x0, y0))
+7. Q[x0, y0](entity.budget = "$100,000" ∧ entity.team_size = "10" ∧ edge.location = "New York" ∧ edge.client = "Company Y" → violate(x0, y0))
+8. Q[x0, y0](entity.start_date = "2025-01-01" ∧ entity.end_date = "2025-06-30" ∧ edge.status = "on schedule" ∧ edge.delays = "significant" → violate(x0, y0))
+9. Q[x0, y0](entity.status = "completed" ∧ entity.delays = "none" ∧ edge.relationship = "contributed to significant delays in" ∧ edge.budget = "$100,000" ∧ edge.team_size = "10" → violate(x0, y0))
+10. Q[x0, y0](entity.client = "Company X" ∧ entity.scope = "full" ∧ edge.status = "on schedule" ∧ edge.delays = "significant" ∧ edge.location = "New York" → violate(x0, y0))
+11. Q[x0, y0](entity.start_date = "2025-01-01" ∧ entity.end_date = "2025-06-30" ∧ entity.budget = "$100,000" ∧ entity.status = "completed" ∧ entity.delays = "none" ∧ entity.team_size = "10" → violate(x0, y0))
+12. Q[x0, y0](entity.client = "Company X" ∧ entity.scope = "full" ∧ edge.status = "on schedule" ∧ edge.delays = "significant" ∧ edge.team_size = "10" ∧ edge.location = "New York" → violate(x0, y0))
+13. Q[x0, y0](entity.budget = "$100,000" ∧ edge.client = "Company Y" ∧ edge.scope = "partial" ∧ edge.start_date = "2025-01-01" ∧ edge.end_date = "2025-06-30" ∧ edge.delays = "significant" → violate(x0, y0))
+14. Q[x0, y0](entity.status = "completed" ∧ entity.delays = "none" ∧ edge.relationship = "were done on schedule and within budget for" ∧ edge.budget = "$100,000" ∧ edge.team_size = "10" ∧ edge.location = "New York" → violate(x0, y0))
+15. Q[x0, y0](entity.start_date = "2025-01-01" ∧ entity.end_date = "2025-06-30" ∧ entity.budget = "$100,000" ∧ entity.client = "Company X" ∧ entity.scope = "full" ∧ entity.team_size = "10" → violate(x0, y0))
+16. Q[x0, y0](entity.status = "completed" ∧ entity.delays = "none" ∧ edge.relationship = "caused delays to" ∧ edge.status = "on schedule" ∧ edge.delays = "significant" ∧ edge.client = "Company Y" → violate(x0, y0))
+17. Q[x0, y0](entity.budget = "$100,000" ∧ entity.team_size = "10" ∧ edge.location = "New York" ∧ edge.client = "Company Y" ∧ edge.scope = "partial" ∧ edge.delays = "significant" → violate(x0, y0))
+18. Q[x0, y0](entity.start_date = "2025-01-01" ∧ entity.end_date = "2025-06-30" ∧ entity.budget = "$100,000" ∧ entity.status = "completed" ∧ entity.delays = "none" ∧ edge.relationship = "contributed to significant delays in" → violate(x0, y0))
+19. Q[x0, y0](entity.client = "Company X" ∧ entity.scope = "full" ∧ edge.status = "on schedule" ∧ edge.delays = "significant" ∧ edge.team_size = "10" ∧ edge.location = "New York" → violate(x0, y0))
+20. Q[x0, y0](entity.status = "completed" ∧ entity.delays = "none" ∧ edge.relationship = "were done on schedule and within budget for" ∧ edge.budget = "$100,000" ∧ edge.client = "Company Y" ∧ edge.scope = "partial" → violate(x0, y0))
+21. Q[x0, y0](entity.start_date = "2025-01-01" ∧ entity.end_date = "2025-06-30" ∧ entity.budget = "$100,000" ∧ entity.client = "Company X" ∧ entity.scope = "full" ∧ edge.delays = "significant" → violate(x0, y0))
+22. Q[x0, y0](entity.status = "completed" ∧ entity.delays = "none" ∧ edge.relationship = "caused delays to" ∧ edge.status = "on schedule" ∧ edge.delays = "significant" ∧ edge.team_size = "10" → violate(x0, y0))
+23. Q[x0, y0](entity.budget = "$100,000" ∧ entity.team_size = "10" ∧ edge.location = "New York" ∧ edge.client = "Company Y" ∧ edge.scope = "partial" ∧ edge.delays = "significant" → violate(x0, y0))
+24. Q[x0, y0](entity.start_date = "2025-01-

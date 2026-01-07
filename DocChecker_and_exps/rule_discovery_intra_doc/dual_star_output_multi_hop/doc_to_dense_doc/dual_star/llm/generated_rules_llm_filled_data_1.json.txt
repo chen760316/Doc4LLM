@@ -1,0 +1,88 @@
+Predicates:
+Jane.label = "Person"
+Jane.label != "Person"
+Jane.name = "Jane"
+Jane.name != "Jane"
+Tom.label = "Person"
+Tom.label != "Person"
+Tom.name = "Tom"
+Tom.name != "Tom"
+Tom.relationship = "stepbrother"
+Tom.relationship != "stepbrother"
+Jane.label = "Person"
+Jane.label != "Person"
+Jane.name = "Jane"
+Jane.name != "Jane"
+Tom.label = "Person"
+Tom.label != "Person"
+Tom.name = "Tom"
+Tom.name != "Tom"
+Tom.relationship = "stepbrother"
+Tom.relationship != "stepbrother"
+Jane and Tom are a married couple and Tom is Jane's stepbrother..relationship_status = "recently started to get along"
+Jane and Tom are a married couple and Tom is Jane's stepbrother..relationship_status != "recently started to get along"
+M_NLI(Jane(label=Person, name=Jane), Tom(label=Person, name=Tom, relationship=stepbrother))
+M_NLU(Jane(label=Person, name=Jane), Tom(label=Person, name=Tom, relationship=stepbrother))
+M_TEM(Jane(label=Person, name=Jane), Tom(label=Person, name=Tom, relationship=stepbrother))
+M_NLI(Tom(label=Person, name=Tom, relationship=stepbrother), Jane(label=Person, name=Jane))
+M_NLU(Tom(label=Person, name=Tom, relationship=stepbrother), Jane(label=Person, name=Jane))
+M_TEM(Tom(label=Person, name=Tom, relationship=stepbrother), Jane(label=Person, name=Jane))
+M_NLI(Jane(label=Person, name=Jane), Tom(label=Person, name=Tom, relationship=stepbrother))
+M_NLU(Jane(label=Person, name=Jane), Tom(label=Person, name=Tom, relationship=stepbrother))
+M_TEM(Jane(label=Person, name=Jane), Tom(label=Person, name=Tom, relationship=stepbrother))
+M_NLI(Tom(label=Person, name=Tom, relationship=stepbrother), Jane(label=Person, name=Jane))
+M_NLU(Tom(label=Person, name=Tom, relationship=stepbrother), Jane(label=Person, name=Jane))
+M_TEM(Tom(label=Person, name=Tom, relationship=stepbrother), Jane(label=Person, name=Jane))
+S(Jane, "nshi (label=Person name=Jane)")
+S(Tom, "ne  (label=Person name=Tom relationship=stepbrother)")
+S(Jane and Tom are siblings who share a close relationship., "pcoming presentation.
+Jane and Tom are siblings who share a close relationship.
+Jane and Tom are sib")
+S(Jane, "Jane (label=Person name=Jane)")
+S(Tom, "Tom (label=Person name=Tom relationship=stepbrother)")
+S(Jane and Tom are a married couple and Tom is Jane's stepbrother., "e presentation tomorrow.
+Jane and Tom are a married couple.
+Tom is Jane's stepbrother, and they have")
+T(Jane (label=Person name=Jane), Tom (label=Person name=Tom relationship=stepbrother), No Contradiction)
+No Contradiction(Jane., Tom.)
+T(Tom (label=Person name=Tom relationship=stepbrother), Jane (label=Person name=Jane), No Contradiction)
+No Contradiction(Tom., Jane.)
+T(Jane (label=Person name=Jane), pcoming presentation.
+Jane and Tom are siblings who share a close relationship.
+Jane and Tom are sib, No Contradiction)
+No Contradiction(Jane., Jane and Tom are siblings who share a close relationship..)
+T(Tom (label=Person name=Tom relationship=stepbrother), pcoming presentation.
+Jane and Tom are siblings who share a close relationship.
+Jane and Tom are sib, Contradiction type)
+Contradiction type(Tom., Jane and Tom are siblings who share a close relationship..)
+T(Tom (label=Person name=Tom relationship=stepbrother), Jane (label=Person name=Jane), No Contradiction)
+No Contradiction(Tom., Jane.)
+T(Jane (label=Person name=Jane), e presentation tomorrow.
+Jane and Tom are a married couple.
+Tom is Jane's stepbrother, and they have, No Contradiction)
+No Contradiction(Jane., Jane and Tom are a married couple and Tom is Jane's stepbrother..)
+T(Tom (label=Person name=Tom relationship=stepbrother), e presentation tomorrow.
+Jane and Tom are a married couple.
+Tom is Jane's stepbrother, and they have, Contradiction type)
+Contradiction type(Tom., Jane and Tom are a married couple and Tom is Jane's stepbrother..)
+
+Rules:
+Q[x0, y0](Jane.label = "Person" ∧ Jane.name = "Jane" → No Contradiction(Jane., Jane and Tom are siblings who share a close relationship..))
+Q[x0, y0](Tom.label = "Person" ∧ Tom.relationship = "stepbrother" → No Contradiction(Tom., Jane and Tom are siblings who share a close relationship..))
+Q[x0, y0](Jane.label = "Person" ∧ Tom.label = "Person" ∧ Tom.relationship = "stepbrother" → No Contradiction(Jane., Jane and Tom are a married couple and Tom is Jane's stepbrother..))
+Q[x0, y0](Jane.name = "Jane" ∧ Tom.name = "Tom" ∧ Tom.relationship != "stepbrother" → Contradiction type(Tom., Jane and Tom are a married couple and Tom is Jane's stepbrother..))
+Q[x0, y0](Jane.label = "Person" ∧ Jane.name = "Jane" ∧ Tom.label = "Person" ∧ Tom.name = "Tom" → No Contradiction(Jane., Tom.))
+Q[x0, y0](Jane.label != "Person" ∧ Tom.label = "Person" ∧ Tom.relationship = "stepbrother" → Contradiction type(Jane., Jane and Tom are siblings who share a close relationship..))
+Q[x0, y0](Jane.label = "Person" ∧ Tom.label = "Person" ∧ Tom.relationship = "stepbrother" ∧ M_NLI(Jane(label=Person, name=Jane), Tom(label=Person, name=Tom, relationship=stepbrother)) → No Contradiction(Jane., Tom.))
+Q[x0, y0](Jane.label = "Person" ∧ Tom.label = "Person" ∧ Tom.relationship = "stepbrother" ∧ M_NLU(Tom(label=Person, name=Tom, relationship=stepbrother), Jane(label=Person, name=Jane)) → No Contradiction(Tom., Jane.))
+Q[x0, y0](Jane.label = "Person" ∧ Tom.label = "Person" ∧ Tom.relationship = "stepbrother" ∧ M_TEM(Jane(label=Person, name=Jane), Tom(label=Person, name=Tom, relationship=stepbrother)) → No Contradiction(Jane., Tom.))
+Q[x0, y0](Jane.label = "Person" ∧ Tom.label = "Person" ∧ Tom.relationship = "stepbrother" ∧ M_NLI(Tom(label=Person, name=Tom, relationship=stepbrother), Jane(label=Person, name=Jane)) ∧ M_NLU(Jane(label=Person, name=Jane), Tom(label=Person, name=Tom, relationship=stepbrother)) → No Contradiction(Jane., Tom.))
+Q[x0, y0](Jane.label = "Person" ∧ Tom.label = "Person" ∧ Tom.relationship = "stepbrother" ∧ M_NLI(Jane(label=Person, name=Jane), Tom(label=Person, name=Tom, relationship=stepbrother)) ∧ M_TEM(Tom(label=Person, name=Tom, relationship=stepbrother), Jane(label=Person, name=Jane)) → No Contradiction(Jane., Tom.))
+Q[x0, y0](Jane.label = "Person" ∧ Tom.label = "Person" ∧ Tom.relationship = "stepbrother" ∧ M_NLU(Tom(label=Person, name=Tom, relationship=stepbrother), Jane(label=Person, name=Jane)) ∧ M_TEM(Jane(label=Person, name=Jane), Tom(label=Person, name=Tom, relationship=stepbrother)) → No Contradiction(Tom., Jane.))
+Q[x0, y0](Jane.label = "Person" ∧ Tom.label = "Person" ∧ Tom.relationship = "stepbrother" ∧ S(Jane, "Jane (label=Person name=Jane)") ∧ S(Tom, "Tom (label=Person name=Tom relationship=stepbrother)") → No Contradiction(Jane., Tom.))
+Q[x0, y0](Jane.label = "Person" ∧ Tom.label = "Person" ∧ Tom.relationship = "stepbrother" ∧ S(Jane and Tom are a married couple and Tom is Jane's stepbrother., "e presentation tomorrow.") → No Contradiction(Jane., Tom.))
+Q[x0, y0](Jane.label = "Person" ∧ Tom.label = "Person" ∧ Tom.relationship = "stepbrother" ∧ S(Jane and Tom are siblings who share a close relationship., "pcoming presentation.") ∧ M_NLI(Jane(label=Person, name=Jane), Tom(label=Person, name=Tom, relationship=stepbrother)) → No Contradiction(Jane., Tom.))
+Q[x0, y0](Jane.label = "Person" ∧ Tom.label = "Person" ∧ Tom.relationship = "stepbrother" ∧ T(Jane(label=Person, name=Jane), Tom(label=Person, name=Tom, relationship=stepbrother), No Contradiction) → No Contradiction(Jane., Tom.))
+Q[x0, y0](Jane.label = "Person" ∧ Tom.label = "Person" ∧ Tom.relationship = "stepbrother" ∧ T(Tom(label=Person, name=Tom, relationship=stepbrother), Jane(label=Person, name=Jane), No Contradiction) → No Contradiction(Tom., Jane.))
+Q[x0, y0](Jane.label = "Person" ∧ Tom.label = "Person" ∧ Tom.relationship = "stepbrother" ∧ T(Tom(label=Person, name=Tom, relationship=stepbrother), Jane(label=Person, name=Jane), Contradiction type) → Contradiction type(Tom., Jane and Tom are a married couple and Tom is Jane's stepbrother..))
+Q[x0, y0](Jane.label = "Person" ∧ Tom.label = "Person" ∧ Tom.relationship != "stepbrother" ∧ Jane.name = "Jane" ∧ Tom.name = "Tom" ∧ M_NLI(Jane(label=Person, name=Jane), Tom(label=Person, name=Tom, relationship=stepbrother)) → Contradiction type(Jane., Tom.))

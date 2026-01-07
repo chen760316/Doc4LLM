@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 103)
+S1: Eddy was a gray cat.
+S2: Black color was Eddy.
+
+Predicates:
+1. Eddy.color.gray
+2. Eddy.color.black
+3. M_NLI(S1, S2)
+4. Factual(Eddy.color.gray, Eddy.color.black)
+5. violate(Eddy.color.gray, Eddy.color.black)
+6. Cat(Eddy.type)
+7. Gray.color(Eddy)
+8. Black.color(Eddy)
+9. Factual(Eddy.type, Cat)
+10. M_NLI(Eddy.color.gray, Eddy.color.black)
+11. Factual(Eddy.color, gray)
+12. Factual(Eddy.color, black)
+13. violate(Eddy.color, gray)
+14. violate(Eddy.color, black)
+15. Cat(Eddy.species)
+16. Eddy.hasColor(gray)
+17. Eddy.hasColor(black)
+18. "is_a".Eddy.Cat
+19. "is_a".Eddy.GrayCat
+20. "is_a".Eddy.BlackCat
+21. Factual(Eddy.hasColor, gray)
+22. Factual(Eddy.hasColor, black)
+23. "contradicts".Eddy.color.gray
+24. "contradicts".Eddy.color.black
+25. Eddy.isGrayCat(true)
+26. Eddy.isBlackCat(false)
+27. "is_not".Eddy.color.gray
+28. "is_not".Eddy.color.black
+29. "conflict".Eddy.color.gray
+30. "conflict".Eddy.color.black
+
+Rules:
+1. Q[Eddy, Eddy.color.gray, Eddy.color.black](Eddy.color.gray == true → Factual(Eddy.color.gray, Eddy.color.black))
+2. Q[Eddy, Eddy.color.black, Eddy.color.gray](Eddy.color.black == true → Factual(Eddy.color.black, Eddy.color.gray))
+3. Q[Eddy, Eddy.hasColor(gray), Eddy.hasColor(black)](Eddy.hasColor(gray) == true → Factual(Eddy.hasColor(gray), Eddy.hasColor(black)))
+4. Q[Eddy, Eddy.color.gray, Eddy.color.black](violate(Eddy.color.gray, Eddy.color.black) == true → Factual(Eddy.color.gray, Eddy.color.black))
+5. Q[Eddy, Eddy.color.gray, Eddy.color.black](M_NLI(Eddy.color.gray, Eddy.color.black) == true → Factual(Eddy.color.gray, Eddy.color.black))
+6. Q[Eddy, Eddy.color.gray, Eddy.color.black](Factual(Eddy.color, gray) == true → Factual(Eddy.color, black))
+7. Q[Eddy, Eddy.color.gray, Eddy.color.black](Factual(Eddy.color, black) == true → Factual(Eddy.color, gray))
+8. Q[Eddy, Eddy.isGrayCat(true), Eddy.isBlackCat(false)](Eddy.isGrayCat(true) == true → Factual(Eddy.isGrayCat(true), Eddy.isBlackCat(false)))
+9. Q[Eddy, Eddy.color.gray, Eddy.color.black](Eddy.hasColor(gray) == true → violate(Eddy.color.gray, Eddy.color.black))
+10. Q[Eddy, Eddy.color.gray, Eddy.color.black](Eddy.hasColor(black) == true → violate(Eddy.color.gray, Eddy.color.black))
+11. Q[Eddy, Eddy.color.gray, Eddy.color.black](Factual(Eddy.hasColor, gray) == true → violate(Eddy.color.gray, Eddy.color.black))
+12. Q[Eddy, Eddy.color.gray, Eddy.color.black](Factual(Eddy.hasColor, black) == true → violate(Eddy.color.gray, Eddy.color.black))
+13. Q[Eddy, Eddy.color.gray, Eddy.color.black](Eddy.isBlackCat(false) == true → Factual(Eddy.isBlackCat(false), Eddy.color.gray))
+14. Q[Eddy, Eddy.color.gray, Eddy.color.black](Eddy.isGrayCat(true) == true → Factual(Eddy.isGrayCat(true), Eddy.color.black))
+15. Q[Eddy, Eddy.color.gray, Eddy.color.black](M_NLI(S1, S2) == true → Factual(Eddy.color.gray, Eddy.color.black))
+16. Q[Eddy, Eddy.color.gray, Eddy.color.black](conflict(Eddy.color.gray, Eddy.color.black) == true → Factual(Eddy.color.gray, Eddy.color.black))
+17. Q[Eddy, Eddy.color.gray, Eddy.color.black](contradicts(Eddy.color.gray) == true → Factual(Eddy.color.gray, Eddy.color.black))
+18. Q[Eddy, Eddy.color.gray, Eddy.color.black](contradicts(Eddy.color.black) == true → Factual(Eddy.color.black, Eddy.color.gray))
+19. Q[Eddy, Eddy.color.gray, Eddy.color.black](Eddy.color.gray == true ∧ Eddy.color.black == true → Factual(Eddy.color.gray, Eddy.color.black))
+20. Q[Eddy, Eddy.color.gray, Eddy.color.black](Eddy.color.gray == false ∧ Eddy.color.black == true → Factual(Eddy.color.gray, Eddy.color.black))
+21. Q[Eddy, Eddy.color.gray, Eddy.color.black](Eddy.color.black == false ∧ Eddy.color.gray == true → Factual(Eddy.color.black, Eddy.color.gray))
+22. Q[Eddy, Eddy.color.gray, Eddy.color.black](Eddy.isGrayCat(false) == true → Factual(Eddy.isGrayCat(false), Eddy.color.black))
+23. Q[Eddy, Eddy.color.gray, Eddy.color.black](Eddy.isBlackCat(true) == true → Factual(Eddy.isBlackCat(true), Eddy.color.gray))
+24. Q[Eddy, Eddy.color.gray, Eddy.color.black](Eddy.color.gray == true ∧ Eddy.color.black == false → Factual(Eddy.color.gray, Eddy.color.black))
+25. Q[Eddy, Eddy.color.gray, Eddy.color.black](Eddy.color.black == true ∧ Eddy.color.gray == false → Factual(Eddy.color.black, Eddy.color.gray))
+26. Q[Eddy, Eddy.color.gray, Eddy.color.black](Eddy.hasColor(gray) == false ∧ Eddy.hasColor(black) == true → Factual(Eddy.hasColor(gray), Eddy.hasColor(black)))
+27. Q[Eddy, Eddy.color.gray, Eddy.color.black](Eddy.hasColor(black) == false ∧ Eddy.hasColor(gray) == true → Factual(Eddy.hasColor(black), Eddy.hasColor(gray)))
+28. Q[Eddy, Eddy.color.gray, Eddy.color.black](Eddy.color.gray == false ∧ Eddy.color.black == true → Factual(Eddy.color.gray, Eddy.color.black))
+29. Q[Eddy, Eddy.color.gray, Eddy.color.black](Eddy.color.black == false ∧ Eddy.color.gray == true → Factual(Eddy.color.black, Eddy.color.gray))
+30. Q[Eddy, Eddy.color.gray, Eddy.color.black](Eddy.isGrayCat(true) ∧ Eddy.isBlackCat(true) → Factual(Eddy.isGrayCat(true), Eddy.isBlackCat(true)))

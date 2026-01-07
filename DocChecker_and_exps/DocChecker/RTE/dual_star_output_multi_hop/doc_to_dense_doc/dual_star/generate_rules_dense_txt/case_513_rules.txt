@@ -1,0 +1,65 @@
+Source: dense_text.txt (Index 513)
+S1: A n i m a l s a r e p e r m i t t e d t o e n t e r t h e U K 6 m o n t h s l a t e r w i t h o u t q u a r a n t i n e a s l o n g a s t h e y h a v e b e e n t r e a t e d f o r t i c k s , f l e a s a n d t a p e w o r m s b e t w e e n 2 4 a n d 4 8 h o u r s b e f o r e b o a r d i n g t h e t r a n s p o r t t h a t w i l l r e t u r n t h e p e t s t o t h e U K .
+S2: Q u a r a n t i n e i s c o m p u l s o r y f o r a n i m a l s t o e n t e r t h e U K .
+
+Predicates:
+1. Animals.permitted_to_enter_UK
+2. Animals.treated_for_ticks
+3. Animals.treated_for_fleas
+4. Animals.treated_for_tapeworms
+5. Animals.treated_within_48_hours
+6. Animals.treated_within_24_hours
+7. Animals.enter_UK_without_quarantine
+8. Quarantine.compulsory_for_animals
+9. Quarantine.required_for_animals_entering_UK
+10. Animals.enter_UK_with_quarantine
+11. Transport.returning_pets_to_UK
+12. Pets.returned_to_UK
+13. Animals.enter_UK_after_treatment
+14. Treatment.applied_before_boarding
+15. Animals.meeting_conditions_for_entry
+16. Quarantine.waived_if_conditions_met
+17. Animals.allowed_entry_if_treated
+18. Quarantine.policy_for_animals
+19. Animals.enter_UK_if_treated
+20. Treatment.applied_between_24_and_48_hours
+21. Animals.enter_UK_without_conditions
+22. Quarantine.not_required_if_treated
+23. Animals.allowed_entry_without_quarantine
+24. Quarantine.necessary_if_not_treated
+25. Animals.enter_UK_with_conditions
+26. Treatment.required_before_entry
+27. Animals.enter_UK_after_quarantine
+28. Quarantine.policy_violated_if_conditions_not_met
+29. Animals.enter_UK_if_quarantine_not_required
+30. Quarantine.enforced_for_non-compliance
+
+Rules:
+1. Q[Anchor, Animals.permitted_to_enter_UK, Quarantine.compulsory_for_animals](Animals.permitted_to_enter_UK == true → Negation(Animals.permitted_to_enter_UK, Quarantine.compulsory_for_animals))
+2. Q[Anchor, Animals.enter_UK_without_quarantine, Quarantine.required_for_animals_entering_UK](Animals.enter_UK_without_quarantine == true → Negation(Animals.enter_UK_without_quarantine, Quarantine.required_for_animals_entering_UK))
+3. Q[Anchor, Quarantine.waived_if_conditions_met, Quarantine.policy_for_animals](Quarantine.waived_if_conditions_met == true → Negation(Quarantine.waived_if_conditions_met, Quarantine.policy_for_animals))
+4. Q[Anchor, Animals.allowed_entry_if_treated, Quarantine.necessary_if_not_treated](Animals.allowed_entry_if_treated == true → Negation(Animals.allowed_entry_if_treated, Quarantine.necessary_if_not_treated))
+5. Q[Anchor, Animals.enter_UK_if_treated, Quarantine.enforced_for_non-compliance](Animals.enter_UK_if_treated == true → Negation(Animals.enter_UK_if_treated, Quarantine.enforced_for_non-compliance))
+6. Q[Anchor, Animals.enter_UK_without_conditions, Quarantine.policy_violated_if_conditions_not_met](Animals.enter_UK_without_conditions == true → Negation(Animals.enter_UK_without_conditions, Quarantine.policy_violated_if_conditions_not_met))
+7. Q[Anchor, Animals.enter_UK_with_quarantine, Animals.enter_UK_without_quarantine](Animals.enter_UK_with_quarantine == true → Negation(Animals.enter_UK_with_quarantine, Animals.enter_UK_without_quarantine))
+8. Q[Anchor, Quarantine.not_required_if_treated, Quarantine.required_for_animals_entering_UK](Quarantine.not_required_if_treated == true → Negation(Quarantine.not_required_if_treated, Quarantine.required_for_animals_entering_UK))
+9. Q[Anchor, Animals.enter_UK_if_quarantine_not_required, Quarantine.compulsory_for_animals](Animals.enter_UK_if_quarantine_not_required == true → Negation(Animals.enter_UK_if_quarantine_not_required, Quarantine.compulsory_for_animals))
+10. Q[Anchor, Animals.enter_UK_after_treatment, Quarantine.required_for_animals_entering_UK](Animals.enter_UK_after_treatment == true → Negation(Animals.enter_UK_after_treatment, Quarantine.required_for_animals_entering_UK))
+11. Q[Anchor, Animals.allowed_entry_without_quarantine, Quarantine.policy_for_animals](Animals.allowed_entry_without_quarantine == true → Negation(Animals.allowed_entry_without_quarantine, Quarantine.policy_for_animals))
+12. Q[Anchor, Treatment.applied_before_boarding, Quarantine.necessary_if_not_treated](Treatment.applied_before_boarding == true → Negation(Treatment.applied_before_boarding, Quarantine.necessary_if_not_treated))
+13. Q[Anchor, Animals.enter_UK_if_treated, Quarantine.policy_violated_if_conditions_not_met](Animals.enter_UK_if_treated == true → Negation(Animals.enter_UK_if_treated, Quarantine.policy_violated_if_conditions_not_met))
+14. Q[Anchor, Animals.enter_UK_without_quarantine, Animals.enter_UK_with_conditions](Animals.enter_UK_without_quarantine == true → Negation(Animals.enter_UK_without_quarantine, Animals.enter_UK_with_conditions))
+15. Q[Anchor, Quarantine.not_required_if_treated, Animals.enter_UK_without_quarantine](Quarantine.not_required_if_treated == true → Negation(Quarantine.not_required_if_treated, Animals.enter_UK_without_quarantine))
+16. Q[Anchor, Animals.enter_UK_if_quarantine_not_required, Quarantine.required_for_animals_entering_UK](Animals.enter_UK_if_quarantine_not_required == true → Negation(Animals.enter_UK_if_quarantine_not_required, Quarantine.required_for_animals_entering_UK))
+17. Q[Anchor, Animals.allowed_entry_if_treated, Quarantine.compulsory_for_animals](Animals.allowed_entry_if_treated == true → Negation(Animals.allowed_entry_if_treated, Quarantine.compulsory_for_animals))
+18. Q[Anchor, Animals.enter_UK_without_conditions, Quarantine.necessary_if_not_treated](Animals.enter_UK_without_conditions == true → Negation(Animals.enter_UK_without_conditions, Quarantine.necessary_if_not_treated))
+19. Q[Anchor, Quarantine.policy_violated_if_conditions_not_met, Animals.enter_UK_without_quarantine](Quarantine.policy_violated_if_conditions_not_met == true → Negation(Quarantine.policy_violated_if_conditions_not_met, Animals.enter_UK_without_quarantine))
+20. Q[Anchor, Animals.enter_UK_if_treated, Quarantine.required_for_animals_entering_UK](Animals.enter_UK_if_treated == true → Negation(Animals.enter_UK_if_treated, Quarantine.required_for_animals_entering_UK))
+21. Q[Anchor, Animals.enter_UK_without_quarantine, Quarantine.enforced_for_non-compliance](Animals.enter_UK_without_quarantine == true → Negation(Animals.enter_UK_without_quarantine, Quarantine.enforced_for_non-compliance))
+22. Q[Anchor, Animals.enter_UK_with_conditions, Quarantine.not_required_if_treated](Animals.enter_UK_with_conditions == true → Negation(Animals.enter_UK_with_conditions, Quarantine.not_required_if_treated))
+23. Q[Anchor, Quarantine.policy_for_animals, Animals.allowed_entry_without_quarantine](Quarantine.policy_for_animals == true → Negation(Quarantine.policy_for_animals, Animals.allowed_entry_without_quarantine))
+24. Q[Anchor, Animals.enter_UK_if_quarantine_not_required, Quarantine.policy_violated_if_conditions_not_met](Animals.enter_UK_if_quarantine_not_required == true → Negation(Animals.enter_UK_if_quarantine_not_required, Quarantine.policy_violated_if_conditions_not_met))
+25. Q[Anchor, Animals.enter_UK_without_quarantine, Quarantine.required_for_animals_entering_UK](Animals.enter_UK_without_quarantine == true → Negation(Animals.enter_UK_without_quarantine, Quarantine.required_for_animals_entering_UK))
+26. Q[Anchor, Animals.enter_UK_if_treated, Quarantine.necessary_if_not_treated](Animals.enter_UK_if_treated == true → Negation(Animals.enter_UK_if_treated, Quarantine.necessary_if_not_treated))
+27. Q[Anchor, Quarantine.enforced_for_non-compliance, Animals.enter_UK_without_quarantine](Quarantine.enforced_for_non-compliance == true → Negation(Quarantine.enforced_for_non-compliance, Animals.enter_UK_without_quarantine))
+28. Q[Anchor, Animals.allowed_entry_if_treated, Quarantine.policy_violated_if_conditions_not_met](Animals.allowed_entry_if_treated == true → Negation(Animals

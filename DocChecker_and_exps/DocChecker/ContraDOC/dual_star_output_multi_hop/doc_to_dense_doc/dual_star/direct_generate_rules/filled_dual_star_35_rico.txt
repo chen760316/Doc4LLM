@@ -1,0 +1,55 @@
+Predicates:
+Clinton.label != "Person"
+Clinton.label != campaign.label
+Clinton.label != final election.label
+Clinton.label = "Person"
+Clinton.name != "Clinton"
+Clinton.name != Gore.name
+Clinton.name != campaign.name
+Clinton.name != final election.name
+Clinton.name = "Clinton"
+Clinton___Gore.contradiction_type = "Factual"
+Clinton___Gore.relationship = "Clinton must avoid following Gore's path"
+Clinton___Gore.source_id = "3489825770_10"
+Clinton___campaign.contradiction_type = "Factual"
+Clinton___campaign.relationship != Clinton___Gore.relationship
+Clinton___campaign.relationship = "Clinton didn't generate much energy once the campaign started"
+Clinton___campaign.source_id = "3489825770_10"
+Clinton___final election.contradiction_type = "Factual"
+Clinton___final election.public_opinion = "many Americans believed he did actually defeat George W. Bush"
+Clinton___final election.relationship != Clinton___Gore.relationship
+Clinton___final election.relationship != Clinton___campaign.relationship
+Clinton___final election.relationship = "Clinton did relatively well in the final election"
+Clinton___final election.source_id = "3489825770_10"
+Gore.label != "Person"
+Gore.label = "Person"
+Gore.name != "Gore"
+Gore.name = "Gore"
+None_ML(Clinton___campaign.attrs, Clinton___final election.attrs)
+None_ML(Gore.attrs, Clinton.attrs)
+campaign.label != "Campaign"
+campaign.label != Gore.label
+campaign.label = "Campaign"
+campaign.name != "campaign"
+campaign.name != Gore.name
+campaign.name = "campaign"
+final election.label != "Election"
+final election.label != Gore.label
+final election.label != campaign.label
+final election.label = "Election"
+final election.name != "final election"
+final election.name != Gore.name
+final election.name != campaign.name
+final election.name = "final election"
+
+Rules:
+Q[Clinton,Clinton] (Clinton.label != "Person" ∧ Clinton___campaign.relationship = "Clinton didn't generate much energy once the campaign started" ∧ campaign.name != Gore.name ∧ campaign.label != Gore.label ∧ final election.name = "final election" ∧ final election.label != Gore.label → final election.name != "final election")
+Q[Clinton,Clinton] (Clinton___final election.relationship = "Clinton did relatively well in the final election" ∧ campaign.label = "Campaign" ∧ final election.label != Gore.label → Clinton___campaign.source_id = "3489825770_10")
+Q[Clinton,Clinton] (campaign.name != Gore.name ∧ Clinton.name != "Clinton" → Clinton___final election.contradiction_type = "Factual")
+Q[Clinton,Clinton] (Clinton.label != final election.label ∧ final election.label != "Election" ∧ final election.label != Gore.label ∧ Gore.name = "Gore" → Gore.name != "Gore")
+Q[Clinton,Clinton] (Clinton.name = "Clinton" ∧ campaign.name != Gore.name ∧ final election.label != "Election" ∧ final election.label != Gore.label ∧ Clinton.name != "Clinton" → Clinton.label != "Person")
+Q[Clinton,Clinton] (Clinton___Gore.relationship = "Clinton must avoid following Gore's path" ∧ final election.label != campaign.label → campaign.label != "Campaign")
+Q[Clinton,Clinton] (campaign.name = "campaign" ∧ Clinton.name != "Clinton" ∧ campaign.name != Gore.name ∧ Gore.label != "Person" ∧ Clinton___campaign.relationship = "Clinton didn't generate much energy once the campaign started" → campaign.label != Gore.label)
+Q[Clinton,Clinton] (Clinton___final election.public_opinion = "many Americans believed he did actually defeat George W. Bush" ∧ Clinton.label != campaign.label ∧ Clinton.label = "Person" ∧ Clinton.name != final election.name ∧ campaign.name != "campaign" ∧ Clinton___campaign.source_id = "3489825770_10" → Clinton___campaign.relationship = "Clinton didn't generate much energy once the campaign started")
+Q[Clinton,Clinton] (final election.label != campaign.label ∧ Clinton___Gore.relationship = "Clinton must avoid following Gore's path" ∧ Clinton.name != Gore.name → Clinton___final election.public_opinion = "many Americans believed he did actually defeat George W. Bush")
+Q[Clinton,Clinton] (final election.label != "Election" ∧ Clinton.label != campaign.label ∧ Clinton.name != Gore.name ∧ campaign.label != Gore.label → campaign.label = "Campaign")

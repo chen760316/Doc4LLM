@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 25)
+S1: It is injustice and fairness that Andy should not be given a chance to return.
+S2: Everyone, including Andy and Nellie, is in a better place now.
+
+Predicates:
+1. S1.injustice
+2. S1.fairness
+3. S1.should_not_return
+4. S2.everyone
+5. S2.Andy
+6. S2.Nellie
+7. S2.better_place
+8. S2.current_situation
+9. S2.implies_better
+10. S2.includes_Andy
+11. S2.includes_Nellie
+12. M_NLI(S1, S2)
+13. Content(Opinion, S1)
+14. Content(Opinion, S2)
+15. Content(Emotion, S1)
+16. Content(Emotion, S2)
+17. violate(S1, S2)
+18. relationship_implies.better
+19. relationship_includes.andy
+20. relationship_includes.nellie
+21. relationship_suggests.unfairness
+22. relationship_contradicts.injustice
+23. S1.contradicts.S2
+24. S1.suggests.unfair
+25. S2.implies.better_for_all
+26. S2.better_for_Andy
+27. S2.better_for_Nellie
+28. S1.returns_justly
+29. S2.situation_improved
+30. S1.fairness_violated
+
+Rules:
+1. Q[injustice, S1.injustice, S2.better_place](S1.injustice == true → Content(Opinion, S1))
+2. Q[fairness, S1.fairness, S2.better_place](S1.fairness == false → Content(Opinion, S1))
+3. Q[should_not_return, S1.should_not_return, S2.better_place](S1.should_not_return == true → Content(Opinion, S1))
+4. Q[everyone, S2.everyone, S2.better_place](S2.everyone == true → Content(Opinion, S2))
+5. Q[Andy, S2.Andy, S2.better_place](S2.Andy == true → Content(Opinion, S2))
+6. Q[Nellie, S2.Nellie, S2.better_place](S2.Nellie == true → Content(Opinion, S2))
+7. Q[better_place, S2.better_place, S2.current_situation](S2.better_place == true → Content(Opinion, S2))
+8. Q[current_situation, S2.current_situation, S2.better_place](S2.current_situation == true → Content(Opinion, S2))
+9. Q[implies_better, S2.implies_better, S2.better_place](S2.implies_better == true → Content(Opinion, S2))
+10. Q[includes_Andy, S2.includes_Andy, S2.better_place](S2.includes_Andy == true → Content(Opinion, S2))
+11. Q[includes_Nellie, S2.includes_Nellie, S2.better_place](S2.includes_Nellie == true → Content(Opinion, S2))
+12. Q[relationship_implies, relationship_implies.better, S2.better_place](relationship_implies.better == true → Content(Opinion, S2))
+13. Q[relationship_includes, relationship_includes.andy, S2.better_place](relationship_includes.andy == true → Content(Opinion, S2))
+14. Q[relationship_includes, relationship_includes.nellie, S2.better_place](relationship_includes.nellie == true → Content(Opinion, S2))
+15. Q[relationship_suggests, relationship_suggests.unfairness, S1.injustice](relationship_suggests.unfairness == true → Content(Opinion, S1))
+16. Q[relationship_contradicts, relationship_contradicts.injustice, S1.injustice](relationship_contradicts.injustice == true → Content(Opinion, S1))
+17. Q[contradicts, S1.contradicts.S2, S1.injustice](S1.contradicts.S2 == true → Content(Opinion, S1))
+18. Q[suggests_unfair, S1.suggests.unfair, S1.injustice](S1.suggests.unfair == true → Content(Opinion, S1))
+19. Q[implies_better_for_all, S2.implies_better_for_all, S2.better_place](S2.implies_better_for_all == true → Content(Opinion, S2))
+20. Q[better_for_Andy, S2.better_for_Andy, S2.better_place](S2.better_for_Andy == true → Content(Opinion, S2))
+21. Q[better_for_Nellie, S2.better_for_Nellie, S2.better_place](S2.better_for_Nellie == true → Content(Opinion, S2))
+22. Q[returns_justly, S1.returns_justly, S1.injustice](S1.returns_justly == true → Content(Opinion, S1))
+23. Q[situation_improved, S2.situation_improved, S2.better_place](S2.situation_improved == true → Content(Opinion, S2))
+24. Q[fairness_violated, S1.fairness_violated, S1.injustice](S1.fairness_violated == true → Content(Opinion, S1))
+25. Q[better, S2.better_place, S2.current_situation](S2.better_place == true → Content(Emotion, S2))
+26. Q[unfairness, S1.fairness, S1.injustice](S1.fairness == false → Content(Emotion, S1))
+27. Q[implies_better, S2.implies_better, S2.better_place](S2.implies_better == true → Content(Emotion, S2))
+28. Q[includes_Andy, S2.includes_Andy, S2.better_place](S2.includes_Andy == true → Content(Emotion, S2))
+29. Q[includes_Nellie, S2.includes_Nellie, S2.better_place](S2.includes_Nellie == true → Content(Emotion, S2))
+30. Q[contradicts, S1.contradicts.S2, S1.injustice](S1.contradicts.S2 == true → Content(Emotion, S1))

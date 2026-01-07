@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 1029)
+S1: Excited horse shakes man off its back.
+S2: The horse threw the man off his back after getting spooked.
+
+Predicates:
+1. Horse.excited
+2. Horse.shakes_man_off
+3. Horse.spooked
+4. Horse.throws_man_off
+5. Man.on_horse
+6. Man.falls_off
+7. Outcome.shaking
+8. Outcome.throwing
+9. Cause.excited
+10. Cause.spooked
+11. Relationship.cause_effect
+12. Relationship.excited_shaking
+13. Relationship.spooked_throwing
+14. M_NLI(S1, S2)
+15. Causal(Horse.excited, Man.falls_off)
+16. Causal(Horse.spooked, Man.falls_off)
+17. violate(Horse.excited, Horse.spooked)
+18. Horse.movement
+19. Man.position
+20. Horse.action
+21. Man.reaction
+22. Outcome.different_causes
+23. Cause.different_outcomes
+24. Horse.state
+25. Man.state
+26. Horse.behavior
+27. Man.experience
+28. Relationship.different_causes
+29. Relationship.same_outcome
+30. Causal(Horse.shakes_man_off, Man.falls_off)
+
+Rules:
+1. Q[Excited, Horse.excited == true, Horse.shakes_man_off == true](M_NLI(S1, S2) → Causal(Horse.excited, Man.falls_off))
+2. Q[Excited, Horse.excited == true, Man.on_horse == true](M_NLI(S1, S2) → Causal(Horse.excited, Man.falls_off))
+3. Q[Excited, Horse.shakes_man_off == true, Man.falls_off == true](M_NLI(S1, S2) → Causal(Horse.excited, Man.falls_off))
+4. Q[Spooked, Horse.spooked == true, Horse.throws_man_off == true](M_NLI(S1, S2) → Causal(Horse.spooked, Man.falls_off))
+5. Q[Spooked, Horse.spooked == true, Man.on_horse == true](M_NLI(S1, S2) → Causal(Horse.spooked, Man.falls_off))
+6. Q[Spooked, Horse.throws_man_off == true, Man.falls_off == true](M_NLI(S1, S2) → Causal(Horse.spooked, Man.falls_off))
+7. Q[Excited, Horse.excited == true, Outcome.shaking == true](M_NLI(S1, S2) → Causal(Horse.excited, Man.falls_off))
+8. Q[Spooked, Horse.spooked == true, Outcome.throwing == true](M_NLI(S1, S2) → Causal(Horse.spooked, Man.falls_off))
+9. Q[Excited, Relationship.excited_shaking == true, Outcome.different_causes == true](M_NLI(S1, S2) → Causal(Horse.excited, Man.falls_off))
+10. Q[Spooked, Relationship.spooked_throwing == true, Outcome.different_causes == true](M_NLI(S1, S2) → Causal(Horse.spooked, Man.falls_off))
+11. Q[Excited, Cause.excited == true, Horse.shakes_man_off == true](M_NLI(S1, S2) → Causal(Horse.excited, Man.falls_off))
+12. Q[Spooked, Cause.spooked == true, Horse.throws_man_off == true](M_NLI(S1, S2) → Causal(Horse.spooked, Man.falls_off))
+13. Q[Excited, Horse.state == "excited", Horse.action == "shakes_man_off"](M_NLI(S1, S2) → Causal(Horse.excited, Man.falls_off))
+14. Q[Spooked, Horse.state == "spooked", Horse.action == "throws_man_off"](M_NLI(S1, S2) → Causal(Horse.spooked, Man.falls_off))
+15. Q[Excited, Relationship.different_causes == true, Horse.shakes_man_off == true](M_NLI(S1, S2) → Causal(Horse.excited, Man.falls_off))
+16. Q[Spooked, Relationship.different_causes == true, Horse.throws_man_off == true](M_NLI(S1, S2) → Causal(Horse.spooked, Man.falls_off))
+17. Q[Excited, Horse.behavior == "shaking", Man.position == "on_horse"](M_NLI(S1, S2) → Causal(Horse.excited, Man.falls_off))
+18. Q[Spooked, Horse.behavior == "throwing", Man.position == "on_horse"](M_NLI(S1, S2) → Causal(Horse.spooked, Man.falls_off))
+19. Q[Excited, Man.state == "on_horse", Outcome.shaking == true](M_NLI(S1, S2) → Causal(Horse.excited, Man.falls_off))
+20. Q[Spooked, Man.state == "on_horse", Outcome.throwing == true](M_NLI(S1, S2) → Causal(Horse.spooked, Man.falls_off))
+21. Q[Excited, Horse.movement == "shaking", Man.reaction == "falls_off"](M_NLI(S1, S2) → Causal(Horse.excited, Man.falls_off))
+22. Q[Spooked, Horse.movement == "throwing", Man.reaction == "falls_off"](M_NLI(S1, S2) → Causal(Horse.spooked, Man.falls_off))
+23. Q[Excited, Outcome.different_causes == true, Horse.shakes_man_off == true](M_NLI(S1, S2) → Causal(Horse.excited, Man.falls_off))
+24. Q[Spooked, Outcome.different_causes == true, Horse.throws_man_off == true](M_NLI(S1, S2) → Causal(Horse.spooked, Man.falls_off))
+25. Q[Excited, Horse.action == "shakes_man_off", Man.state == "on_horse"](M_NLI(S1, S2) → Causal(Horse.excited, Man.falls_off))
+26. Q[Spooked, Horse.action == "throws_man_off", Man.state == "on_horse"](M_NLI(S1, S2) → Causal(Horse.spooked, Man.falls_off))
+27. Q[Excited, Relationship.same_outcome == true, Horse.shakes_man_off == true](M_NLI(S1, S2) → Causal(Horse.excited, Man.falls_off))
+28. Q[Spooked, Relationship.same_outcome == true, Horse.throws_man_off == true](M_NLI(S1, S2) → Causal(Horse.spooked, Man.falls_off))
+29. Q[Excited, Cause.different_outcomes == true, Horse.shakes_man_off == true](M_NLI(S1, S2) → Causal(Horse.excited, Man.falls_off))
+30. Q[Spooked, Cause.different_outcomes == true, Horse.throws_man_off == true](M_NLI(S1, S2) → Causal(Horse.spooked, Man.falls_off))

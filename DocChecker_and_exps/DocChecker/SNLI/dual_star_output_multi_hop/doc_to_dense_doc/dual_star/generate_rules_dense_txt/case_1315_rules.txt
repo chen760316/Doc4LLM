@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 1315)
+S1: Three people are using a net on a beach.
+S2: Three people are sitting in chairs.
+
+Predicates:
+1. Person_1.activity
+2. Person_2.activity
+3. Person_3.activity
+4. Beach.location
+5. Chair_1.usage
+6. Chair_2.usage
+7. Chair_3.usage
+8. Net.usage
+9. Activity.outdoor
+10. Activity.indoor
+11. Context.simultaneity
+12. Person_1.location
+13. Person_2.location
+14. Person_3.location
+15. Activity.passive
+16. Activity.active
+17. Net.type
+18. Chair.type
+19. Beach.environment
+20. Person_1.position
+21. Person_2.position
+22. Person_3.position
+23. Relation.active_passive
+24. Relation.outdoor_indoor
+25. M_NLI(S1, S2)
+26. Relation(Beach, Chairs)
+27. violate(Activity.active, Activity.passive)
+28. violate(Person_1.activity, Person_2.activity)
+29. violate(Person_3.activity, Chair_1.usage)
+30. violate(Net.usage, Chair_2.usage)
+
+Rules:
+1. Q[Three, Person_1.activity == "using a net" → Relation(active, passive)]
+2. Q[Three, Person_2.activity == "sitting in a chair" → Relation(active, passive)]
+3. Q[Three, Person_3.activity == "using a net" → Relation(active, passive)]
+4. Q[Three, Person_1.activity == "using a net" → violate(Person_1.activity, Person_2.activity)]
+5. Q[Three, Person_2.activity == "sitting in a chair" → violate(Person_2.activity, Person_3.activity)]
+6. Q[Three, Person_3.activity == "sitting in a chair" → violate(Person_3.activity, Person_1.activity)]
+7. Q[Three, Beach.location == "beach" → Relation(outdoor, indoor)]
+8. Q[Three, Chair_1.usage == "sitting" → violate(Chair_1.usage, Net.usage)]
+9. Q[Three, Chair_2.usage == "sitting" → violate(Chair_2.usage, Net.usage)]
+10. Q[Three, Chair_3.usage == "sitting" → violate(Chair_3.usage, Net.usage)]
+11. Q[Three, Net.usage == "using" → violate(Net.usage, Chair_1.usage)]
+12. Q[Three, Activity.outdoor == "active" → violate(Activity.active, Activity.passive)]
+13. Q[Three, Activity.indoor == "passive" → violate(Activity.passive, Activity.active)]
+14. Q[Three, Person_1.location == "beach" → Context.simultaneity]
+15. Q[Three, Person_2.location == "beach" → Context.simultaneity]
+16. Q[Three, Person_3.location == "beach" → Context.simultaneity]
+17. Q[Three, Person_1.position == "active" → violate(Person_1.activity, Chair_1.usage)]
+18. Q[Three, Person_2.position == "passive" → violate(Person_2.activity, Net.usage)]
+19. Q[Three, Person_3.position == "active" → violate(Person_3.activity, Chair_2.usage)]
+20. Q[Three, Net.type == "fishing" → violate(Net.usage, Chair_1.usage)]
+21. Q[Three, Chair.type == "recliner" → violate(Chair_1.usage, Net.usage)]
+22. Q[Three, Beach.environment == "sandy" → Relation(outdoor, indoor)]
+23. Q[Three, Activity.active == "using a net" → violate(Activity.active, Activity.passive)]
+24. Q[Three, Activity.passive == "sitting" → violate(Activity.passive, Activity.active)]
+25. Q[Three, Relation.active_passive == "contradictory" → Relation(active, passive)]
+26. Q[Three, Relation.outdoor_indoor == "contradictory" → Relation(outdoor, indoor)]
+27. Q[Three, violate(Activity.active, Activity.passive) → Relation(active, passive)]
+28. Q[Three, violate(Person_1.activity, Person_2.activity) → Relation(active, passive)]
+29. Q[Three, violate(Person_3.activity, Chair_1.usage) → Relation(active, passive)]
+30. Q[Three, violate(Net.usage, Chair_2.usage) → Relation(active, passive]

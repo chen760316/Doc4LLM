@@ -1,0 +1,65 @@
+Source: dense_text.txt (Index 840)
+S1: I is 2,236 miles (3,598 kilometers) in diameter, slightly larger than the Moon of the Earth.
+S2: The terrestrial moon has a diameter of 3746 kilometers.
+
+Predicates:
+1. I.diameter = 2236 miles
+2. I.diameter = 3598 kilometers
+3. Moon_Earth.diameter = 3746 kilometers
+4. I.is_larger_than(Moon_Earth)
+5. Moon_Earth.is_smaller_than(I)
+6. I.is_a(planet)
+7. Moon_Earth.is_a(moon)
+8. I.diameter > Moon_Earth.diameter
+9. Moon_Earth.diameter < I.diameter
+10. I.is_not_equal_to(Moon_Earth)
+11. I.is_in_system(Earth)
+12. Moon_Earth.is_in_system(Earth)
+13. I.is_slightly_larger_than(Moon_Earth)
+14. Moon_Earth.is_not_equal_to(I)
+15. I.is_a_solid_body
+16. Moon_Earth.is_a_solid_body
+17. I.has_diameter(2236 miles)
+18. Moon_Earth.has_diameter(3746 kilometers)
+19. I.is_not_a_moon
+20. Moon_Earth.is_not_a_planet
+21. I.is_in_space
+22. Moon_Earth.is_in_space
+23. I.has_relationship_with(Moon_Earth)
+24. I.is_part_of(Earth_system)
+25. Moon_Earth.is_part_of(Earth_system)
+26. I.is_larger_than(3746 kilometers)
+27. Moon_Earth.is_smaller_than(2236 miles)
+28. I.has_composition(rocky)
+29. Moon_Earth.has_composition(rocky)
+30. M_NLI(S1, S2)
+
+Rules:
+1. Q[2236, I.diameter, Moon_Earth.diameter](I.diameter = 2236 miles ∧ Moon_Earth.diameter = 3746 kilometers → Factual(2236, Moon_Earth.diameter))
+2. Q[3598, I.diameter, Moon_Earth.diameter](I.diameter = 3598 kilometers ∧ Moon_Earth.diameter = 3746 kilometers → Factual(3598, Moon_Earth.diameter))
+3. Q[larger, I.is_larger_than(Moon_Earth), Moon_Earth.is_smaller_than(I)](I.is_larger_than(Moon_Earth) → Factual(larger, Moon_Earth.is_smaller_than(I)))
+4. Q[larger, I.is_larger_than(Moon_Earth), I.diameter > Moon_Earth.diameter](I.is_larger_than(Moon_Earth) ∧ I.diameter > Moon_Earth.diameter → Factual(larger, I.diameter > Moon_Earth.diameter))
+5. Q[not_equal, I.is_not_equal_to(Moon_Earth), Moon_Earth.is_not_equal_to(I)](I.is_not_equal_to(Moon_Earth) → Factual(not_equal, Moon_Earth.is_not_equal_to(I)))
+6. Q[solid_body, I.is_a_solid_body, Moon_Earth.is_a_solid_body](I.is_a_solid_body ∧ Moon_Earth.is_a_solid_body → Factual(solid_body, Moon_Earth.is_a_solid_body))
+7. Q[not_a_moon, I.is_not_a_moon, Moon_Earth.is_a_moon](I.is_not_a_moon ∧ Moon_Earth.is_a_moon → Factual(not_a_moon, Moon_Earth.is_a_moon))
+8. Q[part_of_system, I.is_part_of(Earth_system), Moon_Earth.is_part_of(Earth_system)](I.is_part_of(Earth_system) ∧ Moon_Earth.is_part_of(Earth_system) → Factual(part_of_system, Moon_Earth.is_part_of(Earth_system)))
+9. Q[diameter_comparison, I.diameter > Moon_Earth.diameter, I.is_larger_than(Moon_Earth)](I.diameter > Moon_Earth.diameter → Factual(diameter_comparison, I.is_larger_than(Moon_Earth)))
+10. Q[relationship, I.has_relationship_with(Moon_Earth), Moon_Earth.has_relationship_with(I)](I.has_relationship_with(Moon_Earth) → Factual(relationship, Moon_Earth.has_relationship_with(I)))
+11. Q[not_equal_diameter, I.diameter = 2236 miles, Moon_Earth.diameter = 3746 kilometers](I.diameter = 2236 miles ∧ Moon_Earth.diameter = 3746 kilometers → Factual(not_equal_diameter, Moon_Earth.diameter = 3746 kilometers))
+12. Q[larger_than_value, I.is_larger_than(3746 kilometers), I.diameter > Moon_Earth.diameter](I.is_larger_than(3746 kilometers) → Factual(larger_than_value, I.diameter > Moon_Earth.diameter))
+13. Q[smaller_than_value, Moon_Earth.is_smaller_than(2236 miles), I.diameter > Moon_Earth.diameter](Moon_Earth.is_smaller_than(2236 miles) → Factual(smaller_than_value, I.diameter > Moon_Earth.diameter))
+14. Q[system_in_space, I.is_in_space, Moon_Earth.is_in_space](I.is_in_space ∧ Moon_Earth.is_in_space → Factual(system_in_space, Moon_Earth.is_in_space))
+15. Q[composition, I.has_composition(rocky), Moon_Earth.has_composition(rocky)](I.has_composition(rocky) ∧ Moon_Earth.has_composition(rocky) → Factual(composition, Moon_Earth.has_composition(rocky)))
+16. Q[not_a_planet, Moon_Earth.is_not_a_planet, I.is_a(planet)](Moon_Earth.is_not_a_planet ∧ I.is_a(planet) → Factual(not_a_planet, I.is_a(planet)))
+17. Q[diameter_check, I.diameter = 2236 miles, I.is_larger_than(Moon_Earth)](I.diameter = 2236 miles → Factual(diameter_check, I.is_larger_than(Moon_Earth)))
+18. Q[diameter_check_2, I.diameter = 3598 kilometers, I.is_larger_than(Moon_Earth)](I.diameter = 3598 kilometers → Factual(diameter_check_2, I.is_larger_than(Moon_Earth)))
+19. Q[larger_than_moon, I.is_larger_than(Moon_Earth), Moon_Earth.diameter < I.diameter](I.is_larger_than(Moon_Earth) → Factual(larger_than_moon, Moon_Earth.diameter < I.diameter))
+20. Q[smaller_than_moon, Moon_Earth.is_smaller_than(I), I.diameter > Moon_Earth.diameter](Moon_Earth.is_smaller_than(I) → Factual(smaller_than_moon, I.diameter > Moon_Earth.diameter))
+21. Q[not_equal_check, I.is_not_equal_to(Moon_Earth), Moon_Earth.is_not_equal_to(I)](I.is_not_equal_to(Moon_Earth) → Factual(not_equal_check, Moon_Earth.is_not_equal_to(I)))
+22. Q[relationship_check, I.has_relationship_with(Moon_Earth), I.is_not_equal_to(Moon_Earth)](I.has_relationship_with(Moon_Earth) → Factual(relationship_check, I.is_not_equal_to(Moon_Earth)))
+23. Q[larger_than_moon_check, I.is_larger_than(Moon_Earth), I.diameter > Moon_Earth.diameter](I.is_larger_than(Moon_Earth) → Factual(larger_than_moon_check, I.diameter > Moon_Earth.diameter))
+24. Q[not_a_moon_check, I.is_not_a_moon, Moon_Earth.is_a_moon](I.is_not_a_moon → Factual(not_a_moon_check, Moon_Earth.is_a_moon))
+25. Q[part_of_system_check, I.is_part_of(Earth_system), Moon_Earth.is_part_of(Earth_system)](I.is_part_of(Earth_system) → Factual(part_of_system_check, Moon_Earth.is_part_of(Earth_system)))
+26. Q[space_check, I.is_in_space, Moon_Earth.is_in_space](I.is_in_space → Factual(space_check, Moon_Earth.is_in_space))
+27. Q[composition_check, I.has_composition(rocky), Moon_Earth.has_composition(rocky)](I.has_composition(rocky) → Factual(composition_check, Moon_Earth.has_composition(rocky)))
+28. Q[diameter_check_3,

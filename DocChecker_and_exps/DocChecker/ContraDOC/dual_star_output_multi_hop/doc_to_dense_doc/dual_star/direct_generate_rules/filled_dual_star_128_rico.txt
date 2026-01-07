@@ -1,0 +1,49 @@
+Predicates:
+Individual Members.association != "Phi Kappa Psi"
+Individual Members.association = "Phi Kappa Psi"
+Individual Members.label != "Individual"
+Individual Members.label != fraternity.label
+Individual Members.label = "Individual"
+Individual Members.name != "Individual Members"
+Individual Members.name != fraternity.name
+Individual Members.name = "Individual Members"
+Individual Members.status != "suffered"
+Individual Members.status = "suffered"
+None_ML(Phi Kappa Psi___fraternity.attrs, Phi Kappa Psi___Individual Members.attrs)
+None_ML(fraternity.attrs, Individual Members.attrs)
+Phi Kappa Psi.label != "Organization"
+Phi Kappa Psi.label != Individual Members.label
+Phi Kappa Psi.label != fraternity.label
+Phi Kappa Psi.label = "Organization"
+Phi Kappa Psi.name != "Phi Kappa Psi"
+Phi Kappa Psi.name != Individual Members.name
+Phi Kappa Psi.name != fraternity.name
+Phi Kappa Psi.name = "Phi Kappa Psi"
+Phi Kappa Psi___Individual Members.context = "defamatory story"
+Phi Kappa Psi___Individual Members.contradiction_type = "Relation"
+Phi Kappa Psi___Individual Members.exception = "small group"
+Phi Kappa Psi___Individual Members.relationship != Phi Kappa Psi___fraternity.relationship
+Phi Kappa Psi___Individual Members.relationship = "The fraternity Phi Kappa Psi is a group that has individual members who have suffered due to their association with the group."
+Phi Kappa Psi___Individual Members.source_id != Phi Kappa Psi___fraternity.source_id
+Phi Kappa Psi___Individual Members.source_id = "3489825771_8"
+Phi Kappa Psi___fraternity.contradiction_type = "Relation"
+Phi Kappa Psi___fraternity.relationship = "Phi Kappa Psi is a fraternity, which is a group."
+Phi Kappa Psi___fraternity.source_id = "3489825751_5"
+fraternity.label != "Group"
+fraternity.label = "Group"
+fraternity.name != "fraternity"
+fraternity.name = "fraternity"
+fraternity.type != "organization"
+fraternity.type = "organization"
+
+Rules:
+Q[Phi Kappa Psi,Phi Kappa Psi] (Individual Members.name = "Individual Members" ∧ None_ML(Phi Kappa Psi___fraternity.attrs, Phi Kappa Psi___Individual Members.attrs) ∧ Individual Members.status = "suffered" ∧ Phi Kappa Psi___Individual Members.relationship = "The fraternity Phi Kappa Psi is a group that has individual members who have suffered due to their association with the group." ∧ Phi Kappa Psi___Individual Members.contradiction_type = "Relation" ∧ None_ML(fraternity.attrs, Individual Members.attrs) → Phi Kappa Psi___Individual Members.relationship != Phi Kappa Psi___fraternity.relationship)
+Q[Phi Kappa Psi,Phi Kappa Psi] (Individual Members.status = "suffered" ∧ None_ML(Phi Kappa Psi___fraternity.attrs, Phi Kappa Psi___Individual Members.attrs) → None_ML(fraternity.attrs, Individual Members.attrs))
+Q[Phi Kappa Psi,Phi Kappa Psi] (Phi Kappa Psi___fraternity.relationship = "Phi Kappa Psi is a fraternity, which is a group." ∧ fraternity.name != "fraternity" ∧ Individual Members.name != fraternity.name ∧ Phi Kappa Psi___Individual Members.relationship != Phi Kappa Psi___fraternity.relationship ∧ Phi Kappa Psi___Individual Members.context = "defamatory story" → fraternity.label != "Group")
+Q[Phi Kappa Psi,Phi Kappa Psi] (Individual Members.name != "Individual Members" ∧ Phi Kappa Psi.label != Individual Members.label ∧ Phi Kappa Psi.name != "Phi Kappa Psi" ∧ Phi Kappa Psi___Individual Members.relationship != Phi Kappa Psi___fraternity.relationship → Phi Kappa Psi___Individual Members.contradiction_type = "Relation")
+Q[Phi Kappa Psi,Phi Kappa Psi] (fraternity.name != "fraternity" ∧ Phi Kappa Psi.name != "Phi Kappa Psi" ∧ Individual Members.name != "Individual Members" → Phi Kappa Psi.label != "Organization")
+Q[Phi Kappa Psi,Phi Kappa Psi] (Phi Kappa Psi___Individual Members.source_id = "3489825771_8" ∧ Phi Kappa Psi___Individual Members.contradiction_type = "Relation" → Phi Kappa Psi.label != Individual Members.label)
+Q[Phi Kappa Psi,Phi Kappa Psi] (Individual Members.status = "suffered" ∧ fraternity.label = "Group" ∧ Individual Members.association = "Phi Kappa Psi" → Phi Kappa Psi.label = "Organization")
+Q[Phi Kappa Psi,Phi Kappa Psi] (Individual Members.name = "Individual Members" ∧ fraternity.label != "Group" ∧ Phi Kappa Psi.label = "Organization" ∧ Phi Kappa Psi___Individual Members.relationship != Phi Kappa Psi___fraternity.relationship ∧ Phi Kappa Psi___Individual Members.context = "defamatory story" → Phi Kappa Psi.name != Individual Members.name)
+Q[Phi Kappa Psi,Phi Kappa Psi] (Individual Members.name = "Individual Members" ∧ Phi Kappa Psi___Individual Members.relationship = "The fraternity Phi Kappa Psi is a group that has individual members who have suffered due to their association with the group." ∧ Phi Kappa Psi.label != fraternity.label ∧ fraternity.type != "organization" ∧ Phi Kappa Psi.label != Individual Members.label ∧ Individual Members.status != "suffered" → Phi Kappa Psi___Individual Members.source_id = "3489825771_8")
+Q[Phi Kappa Psi,Phi Kappa Psi] (Phi Kappa Psi___fraternity.source_id = "3489825751_5" ∧ Individual Members.label = "Individual" ∧ fraternity.label = "Group" ∧ Phi Kappa Psi.name != fraternity.name → fraternity.type = "organization")

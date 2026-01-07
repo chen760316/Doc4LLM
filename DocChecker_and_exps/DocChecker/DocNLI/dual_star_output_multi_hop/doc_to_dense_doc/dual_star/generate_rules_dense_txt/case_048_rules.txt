@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 48)
+S1: Jackson was freezing cold at a rehearsal two days before his death, the suit said.
+S2: He was cold and shivering during the summer rehearsals for this show.
+
+Predicates:
+1. Jackson.temperature = freezing_cold
+2. Jackson.event = rehearsal
+3. Jackson.time = two_days_before_death
+4. Jackson.condition = cold
+5. Jackson.condition = shivering
+6. Jackson.season = summer
+7. Jackson.event = summer_rehearsals
+8. rehearsal.date = two_days_before_death
+9. rehearsal.temperature = freezing_cold
+10. rehearsal.condition = cold
+11. rehearsal.condition = shivering
+12. summer_rehearsals.time = summer
+13. summer_rehearsals.condition = cold
+14. summer_rehearsals.condition = shivering
+15. Jackson.death = specific_incident
+16. specific_incident.time = two_days_before_death
+17. specific_incident.condition = freezing_cold
+18. summer_rehearsals.event = show
+19. show.time = summer
+20. show.condition = cold
+21. M_NLI(S1, S2) = true
+22. Temporal(rehearsal, summer_rehearsals) = different_times
+23. violate(rehearsal, summer_rehearsals) = true
+24. Jackson.rehearsal = two_days_before_death
+25. Jackson.rehearsal = summer_rehearsals
+26. rehearsal.difference = summer_rehearsals
+27. freezing_cold.condition = shivering
+28. cold.condition = shivering
+29. rehearsal.time = two_days_before_death
+30. summer_rehearsals.time = summer
+
+Rules:
+1. Q[Jackson, Jackson.time, rehearsal.date](Jackson.time == two_days_before_death → Temporal(Jackson.time, rehearsal.date))
+2. Q[Jackson, Jackson.temperature, rehearsal.temperature](Jackson.temperature == freezing_cold → Temporal(Jackson.temperature, rehearsal.temperature))
+3. Q[Jackson, Jackson.condition, rehearsal.condition](Jackson.condition == cold → Temporal(Jackson.condition, rehearsal.condition))
+4. Q[Jackson, Jackson.condition, summer_rehearsals.condition](Jackson.condition == shivering → Temporal(Jackson.condition, summer_rehearsals.condition))
+5. Q[Jackson, rehearsal.date, summer_rehearsals.time](rehearsal.date == two_days_before_death → Temporal(rehearsal.date, summer_rehearsals.time))
+6. Q[Jackson, rehearsal.temperature, summer_rehearsals.condition](rehearsal.temperature == freezing_cold → Temporal(rehearsal.temperature, summer_rehearsals.condition))
+7. Q[Jackson, rehearsal.condition, summer_rehearsals.condition](rehearsal.condition == cold → Temporal(rehearsal.condition, summer_rehearsals.condition))
+8. Q[Jackson, rehearsal.condition, summer_rehearsals.condition](rehearsal.condition == shivering → Temporal(rehearsal.condition, summer_rehearsals.condition))
+9. Q[Jackson, Jackson.event, summer_rehearsals.event](Jackson.event == rehearsal → Temporal(Jackson.event, summer_rehearsals.event))
+10. Q[Jackson, Jackson.time, summer_rehearsals.time](Jackson.time == two_days_before_death → Temporal(Jackson.time, summer_rehearsals.time))
+11. Q[Jackson, rehearsal.date, summer_rehearsals.time](rehearsal.date == two_days_before_death → Temporal(rehearsal.date, summer_rehearsals.time))
+12. Q[Jackson, Jackson.death, specific_incident.time](Jackson.death == specific_incident → Temporal(Jackson.death, specific_incident.time))
+13. Q[Jackson, specific_incident.time, summer_rehearsals.time](specific_incident.time == two_days_before_death → Temporal(specific_incident.time, summer_rehearsals.time))
+14. Q[Jackson, rehearsal.date, specific_incident.time](rehearsal.date == two_days_before_death → Temporal(rehearsal.date, specific_incident.time))
+15. Q[Jackson, rehearsal.temperature, specific_incident.condition](rehearsal.temperature == freezing_cold → Temporal(rehearsal.temperature, specific_incident.condition))
+16. Q[Jackson, rehearsal.condition, specific_incident.condition](rehearsal.condition == cold → Temporal(rehearsal.condition, specific_incident.condition))
+17. Q[Jackson, rehearsal.condition, specific_incident.condition](rehearsal.condition == shivering → Temporal(rehearsal.condition, specific_incident.condition))
+18. Q[Jackson, summer_rehearsals.time, specific_incident.time](summer_rehearsals.time == summer → Temporal(summer_rehearsals.time, specific_incident.time))
+19. Q[Jackson, summer_rehearsals.condition, specific_incident.condition](summer_rehearsals.condition == cold → Temporal(summer_rehearsals.condition, specific_incident.condition))
+20. Q[Jackson, summer_rehearsals.condition, specific_incident.condition](summer_rehearsals.condition == shivering → Temporal(summer_rehearsals.condition, specific_incident.condition))
+21. Q[Jackson, rehearsal.date, Jackson.time](rehearsal.date == two_days_before_death → Temporal(rehearsal.date, Jackson.time))
+22. Q[Jackson, rehearsal.temperature, Jackson.temperature](rehearsal.temperature == freezing_cold → Temporal(rehearsal.temperature, Jackson.temperature))
+23. Q[Jackson, rehearsal.condition, Jackson.condition](rehearsal.condition == cold → Temporal(rehearsal.condition, Jackson.condition))
+24. Q[Jackson, rehearsal.condition, Jackson.condition](rehearsal.condition == shivering → Temporal(rehearsal.condition, Jackson.condition))
+25. Q[Jackson, summer_rehearsals.time, Jackson.time](summer_rehearsals.time == summer → Temporal(summer_rehearsals.time, Jackson.time))
+26. Q[Jackson, summer_rehearsals.condition, Jackson.condition](summer_rehearsals.condition == cold → Temporal(summer_rehearsals.condition, Jackson.condition))
+27. Q[Jackson, summer_rehearsals.condition, Jackson.condition](summer_rehearsals.condition == shivering → Temporal(summer_rehearsals.condition, Jackson.condition))
+28. Q[Jackson, rehearsal.date, summer_rehearsals.time](rehearsal.date == two_days_before_death → Temporal(rehearsal.date, summer_rehearsals.time))
+29. Q[Jackson, rehearsal.temperature, summer_rehearsals.condition](rehearsal.temperature == freezing_cold → Temporal(rehearsal.temperature, summer_rehearsals.condition))
+30. Q[Jackson, rehearsal.condition, summer_rehearsals.condition](rehearsal.condition == cold → Temporal(rehearsal.condition, summer_rehearsals.condition))

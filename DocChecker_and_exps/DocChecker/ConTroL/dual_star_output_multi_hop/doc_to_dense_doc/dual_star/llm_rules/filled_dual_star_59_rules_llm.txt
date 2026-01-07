@@ -1,0 +1,133 @@
+Predicates:
+1. "All stereos are CDs.".doc_index = "195"
+2. "All stereos are CDs.".source_domain = "N/A"
+3. "All stereos are CDs.".source_id = "Index_195"
+4. "Some stereos are cassettes.".doc_index = "195"
+5. "Some stereos are cassettes.".source_domain = "N/A"
+6. "Some stereos are cassettes.".source_id = "Index_195"
+7. stereo.type = "CD"
+8. stereo.type = "cassette"
+9. stereo.count = 10
+10. stereo.brand = "Sony"
+11. stereo.model = "X123"
+12. stereo.year = 2023
+13. stereo.color = "black"
+14. stereo.price = 150
+15. stereo.weight = 2.5
+16. stereo.dimensions = "10x10x5"
+17. stereo.features = "Bluetooth"
+18. stereo.features = "USB"
+19. stereo.compatibility = "MP3"
+20. stereo.compatibility = "WAV"
+21. "Relationship".type = "contains"
+22. "Relationship".source = "stereo"
+23. "Relationship".target = "CD"
+24. "Relationship".source = "stereo"
+25. "Relationship".target = "cassette"
+26. "Relationship".strength = "strong"
+27. "Relationship".duration = "permanent"
+28. "Relationship".context = "music"
+29. "Relationship".context = "audio"
+30. M_NLI("All stereos are CDs.", "Some stereos are cassettes.")
+31. T("All stereos are CDs.", "Some stereos are cassettes.", tau)
+32. tau("stereo.type", "stereo.type")
+33. violate(x0, y0)
+34. Factual(x0, y0)
+35. Content(x0, y0)
+36. Causal(x0, y0)
+37. Negation(x0, y0)
+38. Relation(x0, y0)
+39. Numeric(x0, y0)
+40. Temporal(x0, y0)
+41. stereo.count > 5
+42. stereo.count < 15
+43. stereo.brand != "Pioneer"
+44. stereo.year < 2024
+45. stereo.price >= 100
+46. stereo.weight <= 3
+47. stereo.dimensions != "12x12x6"
+48. stereo.features.contains("Bluetooth")
+49. stereo.features.contains("WiFi")
+50. "Relationship".frequency = "daily"
+51. "Relationship".intensity = "high"
+52. "Relationship".duration = "temporary"
+53. "Relationship".context = "home"
+54. "Relationship".context = "car"
+55. M_NLI("All stereos are CDs.", "All stereos are cassettes.")
+56. T("All stereos are CDs.", "All stereos are cassettes.", tau)
+57. tau("stereo.brand", "stereo.model")
+58. violate(x1, y1)
+59. Factual(x1, y1)
+60. Content(x1, y1)
+61. Causal(x1, y1)
+62. Negation(x1, y1)
+63. Relation(x1, y1)
+64. Numeric(x1, y1)
+65. Temporal(x1, y1)
+66. stereo.count = 0
+67. stereo.brand = "JBL"
+68. stereo.year = 2025
+69. stereo.price < 50
+70. stereo.weight > 5
+71. stereo.dimensions = "8x8x4"
+72. stereo.features = "FM Radio"
+73. stereo.compatibility = "AAC"
+74. "Relationship".type = "excludes"
+75. "Relationship".source = "cassette"
+76. "Relationship".target = "CD"
+77. "Relationship".strength = "weak"
+78. "Relationship".duration = "short-term"
+79. "Relationship".context = "vintage"
+80. M_NLI("Some stereos are cassettes.", "All stereos are CDs.")
+81. T("Some stereos are cassettes.", "All stereos are CDs.", tau)
+82. tau("stereo.price", "stereo.count")
+83. violate(x2, y2)
+84. Factual(x2, y2)
+85. Content(x2, y2)
+86. Causal(x2, y2)
+87. Negation(x2, y2)
+88. Relation(x2, y2)
+89. Numeric(x2, y2)
+90. Temporal(x2, y2)
+91. stereo.count = 20
+92. stereo.brand = "Bose"
+93. stereo.year = 2022
+94. stereo.price > 200
+95. stereo.weight < 1
+96. stereo.dimensions = "15x15x10"
+97. stereo.features = "Voice Control"
+98. stereo.compatibility = "FLAC"
+99. "Relationship".type = "supports"
+100. "Relationship".context = "modern"
+violate(x0, y0)
+
+Rules:
+1. Q[x0, y0](stereo.type = "CD" ∧ stereo.count > 5 → violate(x0, y0))
+2. Q[x0, y0](stereo.type = "cassette" ∧ stereo.count < 15 → violate(x0, y0))
+3. Q[x0, y0](stereo.brand = "Sony" ∧ stereo.year = 2023 ∧ stereo.price < 100 → violate(x0, y0))
+4. Q[x0, y0](stereo.brand != "Pioneer" ∧ stereo.weight <= 3 ∧ stereo.dimensions != "12x12x6" → violate(x0, y0))
+5. Q[x0, y0](stereo.count = 10 ∧ stereo.features.contains("Bluetooth") ∧ stereo.features.contains("USB") → violate(x0, y0))
+6. Q[x0, y0](stereo.year < 2024 ∧ stereo.price >= 100 ∧ stereo.weight > 5 ∧ stereo.dimensions = "8x8x4" → violate(x0, y0))
+7. Q[x0, y0](stereo.count = 0 ∧ stereo.brand = "JBL" ∧ stereo.year = 2025 ∧ stereo.price < 50 ∧ stereo.weight > 5 → violate(x0, y0))
+8. Q[x0, y0](stereo.count = 20 ∧ stereo.brand = "Bose" ∧ stereo.year = 2022 ∧ stereo.price > 200 ∧ stereo.dimensions = "15x15x10" → violate(x0, y0))
+9. Q[x0, y0](stereo.type = "CD" ∧ "Relationship".type = "contains" ∧ "Relationship".target = "cassette" → violate(x0, y0))
+10. Q[x0, y0](stereo.type = "cassette" ∧ "Relationship".type = "excludes" ∧ "Relationship".target = "CD" → violate(x0, y0))
+11. Q[x0, y0](stereo.features = "Bluetooth" ∧ stereo.features = "USB" ∧ stereo.compatibility = "MP3" ∧ stereo.compatibility = "WAV" → violate(x0, y0))
+12. Q[x0, y0](stereo.count < 15 ∧ stereo.brand != "Pioneer" ∧ stereo.year < 2024 ∧ stereo.price >= 100 ∧ stereo.weight <= 3 → violate(x0, y0))
+13. Q[x0, y0](stereo.count = 10 ∧ stereo.brand = "Sony" ∧ stereo.model = "X123" ∧ stereo.color = "black" ∧ stereo.price < 150 ∧ stereo.weight > 2.5 → violate(x0, y0))
+14. Q[x0, y0](stereo.count = 0 ∧ stereo.brand = "JBL" ∧ stereo.year = 2025 ∧ stereo.price < 50 ∧ stereo.weight > 5 ∧ stereo.dimensions = "8x8x4" → violate(x0, y0))
+15. Q[x0, y0](stereo.type = "CD" ∧ stereo.type = "cassette" ∧ stereo.count > 5 ∧ stereo.count < 15 → violate(x0, y0))
+16. Q[x0, y0](stereo.brand != "Pioneer" ∧ stereo.year < 2024 ∧ stereo.price >= 100 ∧ stereo.weight <= 3 ∧ stereo.dimensions != "12x12x6" → violate(x0, y0))
+17. Q[x0, y0](stereo.features.contains("Bluetooth") ∧ stereo.features.contains("WiFi") ∧ stereo.compatibility = "AAC" ∧ stereo.compatibility = "FLAC" → violate(x0, y0))
+18. Q[x0, y0](stereo.count = 20 ∧ stereo.brand = "Bose" ∧ stereo.year = 2022 ∧ stereo.price > 200 ∧ stereo.dimensions = "15x15x10" → violate(x0, y0))
+19. Q[x0, y0](stereo.type = "CD" ∧ "Relationship".type = "supports" ∧ "Relationship".context = "modern" ∧ "Relationship".strength = "strong" → violate(x0, y0))
+20. Q[x0, y0](stereo.type = "cassette" ∧ "Relationship".type = "excludes" ∧ "Relationship".context = "vintage" ∧ "Relationship".strength = "weak" → violate(x0, y0))
+21. Q[x0, y0](stereo.count = 10 ∧ stereo.features = "Voice Control" ∧ stereo.compatibility = "FLAC" ∧ stereo.price < 150 ∧ stereo.weight > 2.5 → violate(x0, y0))
+22. Q[x0, y0](stereo.count = 0 ∧ stereo.brand = "JBL" ∧ stereo.year = 2025 ∧ stereo.price < 50 ∧ stereo.weight > 5 ∧ stereo.dimensions = "8x8x4" → violate(x0, y0))
+23. Q[x0, y0](stereo.type = "CD" ∧ stereo.type = "cassette" ∧ stereo.count > 5 ∧ stereo.count < 15 → violate(x0, y0))
+24. Q[x0, y0](stereo.brand != "Pioneer" ∧ stereo.year < 2024 ∧ stereo.price >= 100 ∧ stereo.weight <= 3 ∧ stereo.dimensions != "12x12x6" → violate(x0, y0))
+25. Q[x0, y0](stereo.features.contains("Bluetooth") ∧ stereo.features.contains("WiFi") ∧ stereo.compatibility = "AAC" ∧ stereo.compatibility = "FLAC" → violate(x0, y0))
+26. Q[x0, y0](stereo.count = 20 ∧ stereo.brand = "Bose" ∧ stereo.year = 2022 ∧ stereo.price > 200 ∧ stereo.dimensions = "15x15x10" → violate(x0, y0))
+27. Q[x0, y0](stereo.type = "CD" ∧ "Relationship".type = "supports" ∧ "Relationship".context = "modern" ∧ "Relationship".strength = "strong" → violate(x0, y0))
+28. Q[x0, y0](stereo.type = "cassette" ∧ "Relationship".type = "excludes" ∧ "Relationship".context = "vintage" ∧ "Relationship".strength = "weak" → violate(x0, y0))
+29. Q[x0, y0](stereo.count = 10 ∧ stereo.features = "Voice Control" ∧ stereo.compatibility = "FLAC" ∧

@@ -1,0 +1,36 @@
+Predicates:
+Lucy Snowe.age != 23
+Lucy Snowe.age < 28
+Lucy Snowe.age = 23
+Lucy Snowe.age > 18
+Lucy Snowe.label != "Character"
+Lucy Snowe.label = "Character"
+Lucy Snowe.location != "Villette"
+Lucy Snowe.location = "Villette"
+Lucy Snowe.name != "Lucy Snowe"
+Lucy Snowe.name = "Lucy Snowe"
+M. Paul Emanuel.label != "Character"
+M. Paul Emanuel.label = "Character"
+M. Paul Emanuel.name != "M. Paul Emanuel"
+M. Paul Emanuel.name != Lucy Snowe.name
+M. Paul Emanuel.name = "M. Paul Emanuel"
+M. Paul Emanuel.status != "professor"
+M. Paul Emanuel.status = "professor"
+M. Paul Emanuel___Lucy Snowe.destination = "West Indies"
+M. Paul Emanuel___Lucy Snowe.doc_id = "3488771889_8"
+M. Paul Emanuel___Lucy Snowe.location = "West Indies"
+M. Paul Emanuel___Lucy Snowe.reason = "to oversee a plantation"
+M. Paul Emanuel___Lucy Snowe.relationship = "M. Paul declares his love for Lucy before his departure."
+None_ML(Lucy Snowe.attrs, M. Paul Emanuel.attrs)
+
+Rules:
+Q[M. Paul Emanuel,M. Paul Emanuel] (Lucy Snowe.name != "Lucy Snowe" ∧ M. Paul Emanuel___Lucy Snowe.destination = "West Indies" → M. Paul Emanuel.name != "M. Paul Emanuel")
+Q[M. Paul Emanuel,M. Paul Emanuel] (M. Paul Emanuel___Lucy Snowe.destination = "West Indies" ∧ Lucy Snowe.location = "Villette" ∧ M. Paul Emanuel.status = "professor" → M. Paul Emanuel___Lucy Snowe.location = "West Indies")
+Q[M. Paul Emanuel,M. Paul Emanuel] (Lucy Snowe.location != "Villette" ∧ M. Paul Emanuel.name = "M. Paul Emanuel" ∧ Lucy Snowe.label != "Character" ∧ Lucy Snowe.age = 23 ∧ Lucy Snowe.age < 28 → M. Paul Emanuel___Lucy Snowe.reason = "to oversee a plantation")
+Q[M. Paul Emanuel,M. Paul Emanuel] (Lucy Snowe.age = 23 ∧ M. Paul Emanuel___Lucy Snowe.destination = "West Indies" ∧ M. Paul Emanuel.label != "Character" ∧ Lucy Snowe.label = "Character" → Lucy Snowe.location = "Villette")
+Q[M. Paul Emanuel,M. Paul Emanuel] (M. Paul Emanuel___Lucy Snowe.location = "West Indies" ∧ Lucy Snowe.label = "Character" ∧ Lucy Snowe.age != 23 ∧ M. Paul Emanuel.label != "Character" ∧ Lucy Snowe.age = 23 ∧ Lucy Snowe.age > 18 → None_ML(Lucy Snowe.attrs, M. Paul Emanuel.attrs))
+Q[M. Paul Emanuel,M. Paul Emanuel] (None_ML(Lucy Snowe.attrs, M. Paul Emanuel.attrs) ∧ Lucy Snowe.location = "Villette" ∧ Lucy Snowe.location != "Villette" ∧ M. Paul Emanuel.label = "Character" ∧ Lucy Snowe.age = 23 ∧ M. Paul Emanuel.name = "M. Paul Emanuel" → M. Paul Emanuel.status = "professor")
+Q[M. Paul Emanuel,M. Paul Emanuel] (M. Paul Emanuel___Lucy Snowe.destination = "West Indies" ∧ M. Paul Emanuel.status != "professor" ∧ M. Paul Emanuel___Lucy Snowe.reason = "to oversee a plantation" → M. Paul Emanuel___Lucy Snowe.doc_id = "3488771889_8")
+Q[M. Paul Emanuel,M. Paul Emanuel] (M. Paul Emanuel___Lucy Snowe.reason = "to oversee a plantation" ∧ M. Paul Emanuel___Lucy Snowe.relationship = "M. Paul declares his love for Lucy before his departure." ∧ M. Paul Emanuel___Lucy Snowe.doc_id = "3488771889_8" ∧ M. Paul Emanuel.label = "Character" ∧ Lucy Snowe.location = "Villette" → Lucy Snowe.age != 23)
+Q[M. Paul Emanuel,M. Paul Emanuel] (M. Paul Emanuel___Lucy Snowe.destination = "West Indies" ∧ Lucy Snowe.age < 28 ∧ Lucy Snowe.age > 18 ∧ Lucy Snowe.age = 23 → M. Paul Emanuel.name != Lucy Snowe.name)
+Q[M. Paul Emanuel,M. Paul Emanuel] (Lucy Snowe.age = 23 ∧ M. Paul Emanuel___Lucy Snowe.relationship = "M. Paul declares his love for Lucy before his departure." → Lucy Snowe.name = "Lucy Snowe")

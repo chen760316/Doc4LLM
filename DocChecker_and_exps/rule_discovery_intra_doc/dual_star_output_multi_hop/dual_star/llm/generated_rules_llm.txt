@@ -1,0 +1,165 @@
+Predicates:
+person1.age > "30"
+person1.name = "Alice"
+person2.status != "inactive"
+company1.revenue >= "1000000"
+transaction1.amount < "5000"
+product1.category = "electronics"
+order1.date <= "2023-12-31"
+employee1.position != "intern"
+location1.country = "USA"
+device1.battery_life > "8"
+person3.height < "180"
+vehicle1.speed >= "60"
+account1.balance <= "10000"
+project1.deadline > "2024-06-01"
+event1.type != "conference"
+user1.login_count >= "50"
+file1.size < "1048576"
+message1.priority = "high"
+sensor1.temperature > "75"
+book1.genre != "fiction"
+person4.marital_status = "single"
+order2.status = "shipped"
+product2.price <= "199.99"
+employee2.years_experience > "5"
+company2.founded_year < "2000"
+transaction2.currency != "USD"
+device2.os_version >= "10.0"
+location2.timezone = "GMT"
+vehicle2.fuel_type = "diesel"
+account2.type != "savings"
+project2.budget > "50000"
+event2.attendees < "100"
+user2.subscription = "premium"
+file2.extension != ".exe"
+message2.read_status = "unread"
+sensor2.humidity <= "60"
+book2.pages > "300"
+person5.employment_status = "employed"
+order3.payment_method != "credit_card"
+product3.stock_quantity >= "20"
+employee3.department = "marketing"
+company3.headquarters = "New York"
+transaction3.fee < "15"
+device3.screen_size > "6"
+location3.latitude <= "40.7128"
+vehicle3.registration_year >= "2018"
+account3.last_login != "2024-01-01"
+project3.phase = "planning"
+event3.location != "online"
+user3.language = "English"
+file3.created_date > "2023-01-01"
+message3.sender != "admin"
+sensor3.pressure >= "1013"
+book3.author = "John Doe"
+person6.nationality != "Canadian"
+order4.delivery_time < "48"
+product4.weight <= "2.5"
+employee4.salary > "60000"
+company4.industry = "technology"
+transaction4.status != "failed"
+device4.connectivity = "WiFi"
+location4.city = "San Francisco"
+vehicle4.mileage < "50000"
+account4.email_verified = "true"
+project4.team_size >= "10"
+event4.start_time > "09:00"
+user4.account_status != "suspended"
+file4.owner = "user123"
+message4.attachment_count = "0"
+sensor4.vibration_level < "5"
+book4.publisher != "Penguin"
+person7.education_level = "bachelor"
+order5.discount_applied = "true"
+product5.rating >= "4.5"
+employee5.remote_work = "yes"
+company5.stock_symbol = "ABC"
+transaction5.exchange_rate < "1.2"
+device5.serial_number != "SN12345"
+location5.postal_code = "94105"
+vehicle5.insurance_status = "active"
+account5.creation_date <= "2020-01-01"
+project5.completed = "false"
+event5.cancellation_policy != "none"
+user5.two_factor_enabled = "true"
+file5.last_modified < "2024-05-01"
+message5.content_type = "text"
+sensor5.battery_voltage >= "3.7"
+book5.language = "Spanish"
+person8.gender != "female"
+order6.returned = "false"
+product6.expiration_date > "2024-12-31"
+employee6.certifications = "PMP"
+company6.ceo_name = "Robert Smith"
+transaction6.payment_status != "pending"
+device6.firmware_version = "1.4.2"
+location6.region = "Europe"
+vehicle6.color = "red"
+account6.account_type != "business"
+project6.priority = "high"
+event6.ticket_price <= "100"
+user6.last_active > "2024-04-01"
+file6.encrypted = "true"
+message6.reply_to != "null"
+sensor6.signal_strength < "50"
+book6.edition = "second"
+M_NLI(person1.attributes, person2.attributes)
+M_NLU(company1.attributes, project1.attributes)
+M_TEM(event1.attributes, event2.attributes)
+contra("The product is out of stock", "The product is available")
+S(person3, "John Doe is 175 cm tall")
+S(order1, "Order placed on 2023-11-15")
+T("The meeting is scheduled for June", "The meeting was canceled", "Negation")
+tau(person4.marital_status, person5.employment_status)
+tau(transaction1.amount, transaction2.amount)
+M_NLI(employee3.attributes, employee4.attributes)
+M_NLU(device1.attributes, device2.attributes)
+M_TEM(location1.attributes, location2.attributes)
+contra("User subscription expired", "User subscription is active")
+S(product3, "Price is $150")
+S(event3, "Event starts at 10 AM")
+T("The device runs on battery", "The device is plugged in", "Factual")
+tau(order2.status, order3.status)
+tau(sensor1.temperature, sensor2.temperature)
+M_NLI(company2.attributes, company3.attributes)
+M_NLU(user1.attributes, user2.attributes)
+M_TEM(project2.attributes, project3.attributes)
+contra("File size exceeds limit", "File size is within limit")
+S(vehicle1, "Speed recorded at 70 mph")
+S(account1, "Balance is $9500")
+T("The book is fiction", "The book is non-fiction", "Content")
+tau(product1.category, product2.category)
+tau(employee1.position, employee2.position)
+
+Rules:
+Q[x0, y0](person1.age > "30" ∧ person1.name = "Alice" → person5.employment_status = "employed")
+Q[x0, y0](company1.revenue >= "1000000" ∧ project1.deadline > "2024-06-01" → project6.priority = "high")
+Q[x0, y0](transaction1.amount < "5000" ∧ transaction2.currency != "USD" → transaction6.payment_status != "pending")
+Q[x0, y0](product1.category = "electronics" ∧ product3.stock_quantity >= "20" → product6.expiration_date > "2024-12-31")
+Q[x0, y0](order1.date <= "2023-12-31" ∧ order2.status = "shipped" → order6.returned = "false")
+Q[x0, y0](employee1.position != "intern" ∧ employee2.years_experience > "5" → employee4.salary > "60000")
+Q[x0, y0](location1.country = "USA" ∧ location2.timezone = "GMT" → location6.region = "Europe")
+Q[x0, y0](device1.battery_life > "8" ∧ device2.os_version >= "10.0" → device6.firmware_version = "1.4.2")
+Q[x0, y0](person3.height < "180" ∧ person4.marital_status = "single" ∧ person5.employment_status = "employed" → person7.education_level = "bachelor")
+Q[x0, y0](vehicle1.speed >= "60" ∧ vehicle2.fuel_type = "diesel" ∧ vehicle3.registration_year >= "2018" → vehicle5.insurance_status = "active")
+Q[x0, y0](account1.balance <= "10000" ∧ account2.type != "savings" ∧ account4.email_verified = "true" → account5.creation_date <= "2020-01-01")
+Q[x0, y0](project1.deadline > "2024-06-01" ∧ project2.budget > "50000" ∧ project3.phase = "planning" → project5.completed = "false")
+Q[x0, y0](event1.type != "conference" ∧ event2.attendees < "100" ∧ event3.location != "online" → event5.cancellation_policy != "none")
+Q[x0, y0](user1.login_count >= "50" ∧ user2.subscription = "premium" ∧ user4.account_status != "suspended" → user5.two_factor_enabled = "true")
+Q[x0, y0](file1.size < "1048576" ∧ file2.extension != ".exe" ∧ file3.created_date > "2023-01-01" ∧ file4.owner = "user123" → file6.encrypted = "true")
+Q[x0, y0](message1.priority = "high" ∧ message2.read_status = "unread" ∧ message3.sender != "admin" ∧ message4.attachment_count = "0" → message5.content_type = "text")
+Q[x0, y0](sensor1.temperature > "75" ∧ sensor2.humidity <= "60" ∧ sensor3.pressure >= "1013" ∧ sensor4.vibration_level < "5" → sensor5.battery_voltage >= "3.7")
+Q[x0, y0](book1.genre != "fiction" ∧ book2.pages > "300" ∧ book3.author = "John Doe" ∧ book4.publisher != "Penguin" ∧ book5.language = "Spanish" → book6.edition = "second")
+Q[x0, y0](person4.marital_status = "single" ∧ person5.employment_status = "employed" ∧ person6.nationality != "Canadian" ∧ person7.education_level = "bachelor" ∧ person8.gender != "female" → person3.height < "180")
+Q[x0, y0](order2.status = "shipped" ∧ order3.payment_method != "credit_card" ∧ order4.delivery_time < "48" ∧ order5.discount_applied = "true" ∧ order6.returned = "false" → order1.date <= "2023-12-31")
+Q[x0, y0](product3.stock_quantity >= "20" ∧ product4.weight <= "2.5" ∧ product5.rating >= "4.5" ∧ product6.expiration_date > "2024-12-31" → product1.category = "electronics")
+Q[x0, y0](employee3.department = "marketing" ∧ employee4.salary > "60000" ∧ employee5.remote_work = "yes" ∧ employee6.certifications = "PMP" → employee1.position != "intern")
+Q[x0, y0](company3.headquarters = "New York" ∧ company4.industry = "technology" ∧ company5.stock_symbol = "ABC" ∧ company6.ceo_name = "Robert Smith" → company1.revenue >= "1000000")
+Q[x0, y0](transaction3.fee < "15" ∧ transaction4.status != "failed" ∧ transaction5.exchange_rate < "1.2" ∧ transaction6.payment_status != "pending" → transaction1.amount < "5000")
+Q[x0, y0](device3.screen_size > "6" ∧ device4.connectivity = "WiFi" ∧ device5.serial_number != "SN12345" ∧ device6.firmware_version = "1.4.2" → device1.battery_life > "8")
+Q[x0, y0](location3.latitude <= "40.7128" ∧ location4.city = "San Francisco" ∧ location5.postal_code = "94105" ∧ location6.region = "Europe" → location1.country = "USA")
+Q[x0, y0](vehicle4.mileage < "50000" ∧ vehicle5.insurance_status = "active" ∧ vehicle6.color = "red" ∧ vehicle3.registration_year >= "2018" → vehicle1.speed >= "60")
+Q[x0, y0](account3.last_login != "2024-01-01" ∧ account4.email_verified = "true" ∧ account5.creation_date <= "2020-01-01" ∧ account6.account_type != "business" → account1.balance <= "10000")
+Q[x0, y0](project4.team_size >= "10" ∧ project5.completed = "false" ∧ project6.priority = "high" ∧ project2.budget > "50000" → project1.deadline > "2024-06-01")
+Q[x0, y0](event4.start_time > "09:00" ∧ event5.cancellation_policy != "none" ∧ event

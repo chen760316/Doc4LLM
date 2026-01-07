@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 440)
+S1: We know how much we will charge.
+S2: How much will we charge?
+
+Predicates:
+1. Knowledge.charge_amount
+2. Charge.amount
+3. Question.charge_amount
+4. M_NLI(S1, S2)
+5. Negation(Knowledge.charge_amount, Question.charge_amount)
+6. violate(Knowledge.charge_amount, Question.charge_amount)
+7. Entity.charge
+8. Charge.knowledge
+9. Inquiry.charge_amount
+10. M_NLI(Charge.amount, Question.charge_amount)
+11. Negation(Charge.amount, Inquiry.charge_amount)
+12. violate(Charge.amount, Inquiry.charge_amount)
+13. Entity.knowledge
+14. Knowledge.inquiry
+15. Charge.inquiry
+16. M_NLI(Entity.charge, Inquiry.charge_amount)
+17. Negation(Entity.charge, Charge.amount)
+18. violate(Entity.charge, Charge.amount)
+19. Knowledge.assertion
+20. Assertion.charge_amount
+21. M_NLI(Knowledge.assertion, Question.charge_amount)
+22. Negation(Knowledge.assertion, Question.charge_amount)
+23. violate(Knowledge.assertion, Question.charge_amount)
+24. Entity.understanding
+25. Understanding.charge
+26. M_NLI(Entity.understanding, Charge.amount)
+27. Negation(Entity.understanding, Charge.amount)
+28. violate(Entity.understanding, Charge.amount)
+29. Inquiry.knowledge
+30. Knowledge.inquiry_amount
+
+Rules:
+1. Q[know, Knowledge.charge_amount == "value" → Negation(Knowledge.charge_amount, Question.charge_amount)]
+2. Q[charge, Charge.amount == "value" → Negation(Charge.amount, Inquiry.charge_amount)]
+3. Q[know, Knowledge.charge_amount == "value" → Negation(Knowledge.charge_amount, Inquiry.charge_amount)]
+4. Q[charge, Charge.amount == "value" → Negation(Charge.amount, Question.charge_amount)]
+5. Q[know, Knowledge.charge_amount == "value" → Negation(Knowledge.charge_amount, Charge.amount)]
+6. Q[charge, Charge.amount == "value" → Negation(Charge.amount, Knowledge.inquiry)]
+7. Q[know, Knowledge.charge_amount == "value" → Negation(Knowledge.charge_amount, Charge.knowledge)]
+8. Q[charge, Charge.amount == "value" → Negation(Charge.amount, Knowledge.assertion)]
+9. Q[know, Knowledge.charge_amount == "value" → Negation(Knowledge.charge_amount, Entity.charge)]
+10. Q[charge, Charge.amount == "value" → Negation(Charge.amount, Entity.knowledge)]
+11. Q[know, Knowledge.charge_amount == "value" → Negation(Knowledge.charge_amount, Entity.understanding)]
+12. Q[charge, Charge.amount == "value" → Negation(Charge.amount, Understanding.charge)]
+13. Q[know, Knowledge.charge_amount == "value" → Negation(Knowledge.charge_amount, Inquiry.knowledge)]
+14. Q[charge, Charge.amount == "value" → Negation(Charge.amount, Knowledge.inquiry_amount)]
+15. Q[know, Knowledge.charge_amount == "value" → Negation(Knowledge.charge_amount, Assertion.charge_amount)]
+16. Q[charge, Charge.amount == "value" → Negation(Charge.amount, M_NLI(S1, S2))]
+17. Q[know, Knowledge.charge_amount == "value" → Negation(Knowledge.charge_amount, violate(Knowledge.charge_amount, Question.charge_amount))]
+18. Q[charge, Charge.amount == "value" → Negation(Charge.amount, violate(Charge.amount, Inquiry.charge_amount))]
+19. Q[know, Knowledge.charge_amount == "value" → Negation(Knowledge.charge_amount, violate(Knowledge.assertion, Question.charge_amount))]
+20. Q[charge, Charge.amount == "value" → Negation(Charge.amount, violate(Entity.charge, Charge.amount))]
+21. Q[know, Knowledge.charge_amount == "value" → Negation(Knowledge.charge_amount, M_NLI(Entity.charge, Inquiry.charge_amount))]
+22. Q[charge, Charge.amount == "value" → Negation(Charge.amount, M_NLI(Entity.understanding, Charge.amount))]
+23. Q[know, Knowledge.charge_amount == "value" → Negation(Knowledge.charge_amount, M_NLI(Knowledge.assertion, Question.charge_amount))]
+24. Q[charge, Charge.amount == "value" → Negation(Charge.amount, M_NLI(Knowledge.inquiry, Charge.amount))]
+25. Q[know, Knowledge.charge_amount == "value" → Negation(Knowledge.charge_amount, Negation(Entity.charge, Charge.amount))]
+26. Q[charge, Charge.amount == "value" → Negation(Charge.amount, Negation(Entity.understanding, Charge.amount))]
+27. Q[know, Knowledge.charge_amount == "value" → Negation(Knowledge.charge_amount, Negation(Charge.amount, Inquiry.charge_amount))]
+28. Q[charge, Charge.amount == "value" → Negation(Charge.amount, Negation(Knowledge.assertion, Question.charge_amount))]
+29. Q[know, Knowledge.charge_amount == "value" → Negation(Knowledge.charge_amount, Negation(Knowledge.inquiry_amount, Charge.amount))]
+30. Q[charge, Charge.amount == "value" → Negation(Charge.amount, Negation(Knowledge.charge_amount, Inquiry.charge_amount))]

@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 419)
+S1: Madrasa based officials spent time in Bangalore mostly in the winter.
+S2: Bangalore, at an altitude of 930 m (3,000 feet), was the summer refuge for its Madrasa-based officials.
+
+Predicates:
+1. MadrasaOfficials.season = winter
+2. Bangalore.altitude = 930m
+3. Bangalore.season = summer
+4. MadrasaOfficials.location = Bangalore
+5. MadrasaOfficials.timeSpent = winter
+6. Bangalore.refugeFor = MadrasaOfficials
+7. MadrasaOfficials.refugeSeason = summer
+8. Bangalore.elevation = 3000feet
+9. MadrasaOfficials.activityPeriod = winter
+10. Bangalore.isRefugeFor = MadrasaOfficials
+11. MadrasaOfficials.summerLocation = Bangalore
+12. Bangalore.isAtAltitude = 930m
+13. MadrasaOfficials.summerTimeSpent = false
+14. Bangalore.winterActivity = MadrasaOfficials
+15. MadrasaOfficials.winterLocation = Bangalore
+16. Bangalore.summerActivity = MadrasaOfficials
+17. MadrasaOfficials.spentTimeIn = Bangalore
+18. Bangalore.isWinterRefugeFor = MadrasaOfficials
+19. MadrasaOfficials.summerRefuge = Bangalore
+20. Bangalore.isWinterLocationFor = MadrasaOfficials
+21. MadrasaOfficials.summerSeason = false
+22. Bangalore.isAltitude = 930m
+23. MadrasaOfficials.winterRefuge = Bangalore
+24. Bangalore.summerRefugeFor = MadrasaOfficials
+25. MadrasaOfficials.summerTimeSpent = false
+26. Bangalore.winterRefugeFor = MadrasaOfficials
+27. MadrasaOfficials.summerActivity = false
+28. Bangalore.isRefugeInWinter = MadrasaOfficials
+29. MadrasaOfficials.summerSeasonActivity = false
+30. Bangalore.winterSeasonActivity = MadrasaOfficials
+
+Rules:
+1. Q[Madrasa, MadrasaOfficials.season == "winter" → Causal(MadrasaOfficials, Bangalore.season == "summer")]
+2. Q[Madrasa, MadrasaOfficials.timeSpent == "winter" → Causal(MadrasaOfficials, Bangalore.refugeFor == MadrasaOfficials)]
+3. Q[Madrasa, MadrasaOfficials.activityPeriod == "winter" → Causal(MadrasaOfficials, Bangalore.summerActivity == MadrasaOfficials)]
+4. Q[Madrasa, MadrasaOfficials.location == Bangalore → Causal(MadrasaOfficials, Bangalore.winterActivity == MadrasaOfficials)]
+5. Q[Madrasa, MadrasaOfficials.winterLocation == Bangalore → Causal(MadrasaOfficials, Bangalore.summerRefugeFor == MadrasaOfficials)]
+6. Q[Madrasa, MadrasaOfficials.winterRefuge == Bangalore → Causal(MadrasaOfficials, Bangalore.isWinterLocationFor == MadrasaOfficials)]
+7. Q[Madrasa, MadrasaOfficials.summerLocation == Bangalore → Causal(MadrasaOfficials, Bangalore.isRefugeFor == MadrasaOfficials)]
+8. Q[Madrasa, MadrasaOfficials.summerTimeSpent == false → Causal(MadrasaOfficials, Bangalore.summerRefugeFor == MadrasaOfficials)]
+9. Q[Madrasa, Bangalore.altitude == 930m → Causal(MadrasaOfficials, Bangalore.season == "summer")]
+10. Q[Madrasa, Bangalore.elevation == 3000feet → Causal(MadrasaOfficials, Bangalore.isWinterRefugeFor == MadrasaOfficials)]
+11. Q[Madrasa, Bangalore.isAtAltitude == 930m → Causal(MadrasaOfficials, Bangalore.winterSeasonActivity == MadrasaOfficials)]
+12. Q[Madrasa, Bangalore.isAltitude == 930m → Causal(MadrasaOfficials, Bangalore.summerActivity == MadrasaOfficials)]
+13. Q[Madrasa, Bangalore.isWinterLocationFor == MadrasaOfficials → Causal(MadrasaOfficials, Bangalore.summerRefugeFor == MadrasaOfficials)]
+14. Q[Madrasa, Bangalore.isWinterRefugeFor == MadrasaOfficials → Causal(MadrasaOfficials, Bangalore.summerSeasonActivity == false)]
+15. Q[Madrasa, Bangalore.winterActivity == MadrasaOfficials → Causal(MadrasaOfficials, Bangalore.summerTimeSpent == false)]
+16. Q[Madrasa, Bangalore.winterRefugeFor == MadrasaOfficials → Causal(MadrasaOfficials, Bangalore.summerLocation == false)]
+17. Q[Madrasa, MadrasaOfficials.summerActivity == false → Causal(MadrasaOfficials, Bangalore.isRefugeInWinter == MadrasaOfficials)]
+18. Q[Madrasa, MadrasaOfficials.summerSeason == false → Causal(MadrasaOfficials, Bangalore.winterActivity == MadrasaOfficials)]
+19. Q[Madrasa, MadrasaOfficials.spentTimeIn == Bangalore → Causal(MadrasaOfficials, Bangalore.summerRefugeFor == MadrasaOfficials)]
+20. Q[Madrasa, MadrasaOfficials.refugeSeason == summer → Causal(MadrasaOfficials, Bangalore.winterRefugeFor == MadrasaOfficials)]
+21. Q[Madrasa, Bangalore.isRefugeInWinter == MadrasaOfficials → Causal(MadrasaOfficials, Bangalore.summerActivity == false)]
+22. Q[Madrasa, Bangalore.winterSeasonActivity == MadrasaOfficials → Causal(MadrasaOfficials, Bangalore.summerRefugeFor == MadrasaOfficials)]
+23. Q[Madrasa, Bangalore.summerActivity == MadrasaOfficials → Causal(MadrasaOfficials, Bangalore.isWinterRefugeFor == MadrasaOfficials)]
+24. Q[Madrasa, Bangalore.summerRefugeFor == MadrasaOfficials → Causal(MadrasaOfficials, Bangalore.winterLocation == false)]
+25. Q[Madrasa, Bangalore.isWinterLocationFor == MadrasaOfficials → Causal(MadrasaOfficials, Bangalore.summerSeasonActivity == false)]
+26. Q[Madrasa, Bangalore.winterRefugeFor == MadrasaOfficials → Causal(MadrasaOfficials, Bangalore.summerTimeSpent == false)]
+27. Q[Madrasa, Bangalore.isRefugeFor == MadrasaOfficials → Causal(MadrasaOfficials, Bangalore.winterActivity == MadrasaOfficials)]
+28. Q[Madrasa, Bangalore.summerRefugeFor == MadrasaOfficials → Causal(MadrasaOfficials, Bangalore.winterRefuge == false)]
+29. Q[Madrasa, Bangalore.winterActivity == MadrasaOfficials → Causal(MadrasaOfficials, Bangalore.summerLocation == false)]
+30. Q[Madrasa, Bangalore.isWinterRefugeFor == MadrasaOfficials → Causal(MadrasaOfficials, Bangalore.summerSeason == false)]

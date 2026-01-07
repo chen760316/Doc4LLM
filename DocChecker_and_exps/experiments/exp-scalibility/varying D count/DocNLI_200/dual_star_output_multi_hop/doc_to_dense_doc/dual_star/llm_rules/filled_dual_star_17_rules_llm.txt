@@ -1,0 +1,125 @@
+Predicates:
+1. Vinson.location = "Dallas"
+2. Vinson.status = "diagnosed with Ebola"
+3. "visited family in".time = "during a trip"
+4. "visited family in".source_id = "Index_48"
+5. "visited family in".source_domain = "N/A"
+6. "visited family in".doc_index = "48"
+7. "was diagnosed with Ebola after returning to".time = "after a trip"
+8. "was diagnosed with Ebola after returning to".source_id = "Index_48"
+9. "was diagnosed with Ebola after returning to".source_domain = "N/A"
+10. "was diagnosed with Ebola after returning to".doc_index = "48"
+11. "was diagnosed with Ebola after returning to".reason = "after a trip to visit family in Ohio"
+12. M_NLI(Vinson.status, "not diagnosed with Ebola")
+13. T("Vinson was diagnosed with Ebola", "Vinson is healthy", Negation)
+14. tau(Vinson.status, "not diagnosed with Ebola")
+15. violate(Vinson.status, "not diagnosed with Ebola")
+16. Factual(Vinson.status, "not diagnosed with Ebola")
+17. Causal("visited family in Ohio", "diagnosed with Ebola")
+18. Numeric("visited family in".time, "not during a trip")
+19. Temporal("diagnosed with Ebola", "not after returning from a trip")
+20. Content("Vinson is feeling well", "Vinson is diagnosed with Ebola")
+21. "visited family in".location = "Ohio"
+22. "visited family in".reason = "to see relatives"
+23. "was diagnosed with Ebola after returning to".location = "Dallas"
+24. "was diagnosed with Ebola after returning to".reason = "after a trip to Ohio"
+25. M_NLI("Vinson visited family", "Vinson did not visit family")
+26. T("Vinson visited family in Ohio", "Vinson did not visit family in Ohio", Relation)
+27. tau("visited family in".location, "not in Ohio")
+28. violate("visited family in".location, "not in Ohio")
+29. Factual("visited family in".location, "not in Ohio")
+30. Causal("trip to Ohio", "diagnosed with Ebola")
+31. Numeric("Vinson's trip duration", "zero days")
+32. Temporal("diagnosed with Ebola", "before visiting family")
+33. Content("Vinson enjoyed the trip", "Vinson was stressed during the trip")
+34. "visited family in".duration = "one week"
+35. "was diagnosed with Ebola after returning to".duration = "one day"
+36. M_NLI("Vinson's trip was enjoyable", "Vinson's trip was terrible")
+37. T("Vinson was diagnosed with Ebola", "Vinson is completely healthy", Factual)
+38. tau("Vinson's health status", "not diagnosed with Ebola")
+39. violate("Vinson's health status", "not diagnosed with Ebola")
+40. Factual("Vinson's health status", "not diagnosed with Ebola")
+41. Causal("trip to Ohio", "no Ebola diagnosis")
+42. Numeric("number of family members visited", "none")
+43. Temporal("diagnosed with Ebola", "before the trip")
+44. Content("Vinson felt safe during the trip", "Vinson felt unsafe during the trip")
+45. "visited family in".family_members = "three"
+46. "was diagnosed with Ebola after returning to".family_members = "none"
+47. M_NLI("Vinson's family visit", "Vinson did not visit family")
+48. T("Vinson visited family", "Vinson did not visit family", Relation)
+49. tau("visited family in".family_members, "none")
+50. violate("visited family in".family_members, "none")
+51. Factual("visited family in".family_members, "none")
+52. Causal("trip to Ohio", "no health issues")
+53. Numeric("Ebola cases in Dallas", "zero")
+54. Temporal("Vinson's diagnosis", "before the trip")
+55. Content("Vinson had a great time", "Vinson was sick")
+56. "visited family in".trip_type = "family reunion"
+57. "was diagnosed with Ebola after returning to".trip_type = "business trip"
+58. M_NLI("Vinson's trip was a reunion", "Vinson's trip was not a reunion")
+59. T("Vinson's trip was a reunion", "Vinson's trip was a business trip", Relation)
+60. tau("visited family in".trip_type, "not a reunion")
+61. violate("visited family in".trip_type, "not a reunion")
+62. Factual("visited family in".trip_type, "not a reunion")
+63. Causal("family visit", "no Ebola diagnosis")
+64. Numeric("Ebola cases in Ohio", "none")
+65. Temporal("Vinson's health status", "before the trip")
+66. Content("Vinson was excited", "Vinson was anxious")
+67. "visited family in".trip_reason = "family gathering"
+68. "was diagnosed with Ebola after returning to".trip_reason = "business meeting"
+69. M_NLI("Vinson's trip was for family", "Vinson's trip was not for family")
+70. T("Vinson's trip was for family", "Vinson's trip was for business", Relation)
+71. tau("visited family in".trip_reason, "not for family")
+72. violate("visited family in".trip_reason, "not for family")
+73. Factual("visited family in".trip_reason, "not for family")
+74. Causal("family gathering", "no health issues")
+75. Numeric("family members visited", "zero")
+76. Temporal("Vinson's diagnosis", "after the trip")
+77. Content("Vinson was happy", "Vinson was sick")
+78. "visited family in".trip_duration = "two weeks"
+79. "was diagnosed with Ebola after returning to".trip_duration = "one week"
+80. M_NLI("Vinson's trip lasted two weeks", "Vinson's trip did not last two weeks")
+81. T("Vinson's trip lasted two weeks", "Vinson's trip lasted one week", Numeric)
+82. tau("visited family in".trip_duration, "one week")
+83. violate("visited family in".trip_duration, "one week")
+84. Factual("visited family in".trip_duration, "one week")
+85. Causal("trip duration", "no health issues")
+86. Numeric("Ebola cases in the family", "none")
+87. Temporal("Vinson's health status", "before the trip")
+88. Content("Vinson was thrilled", "Vinson was unwell")
+89. "visited family in".trip_location = "Ohio"
+90. "was diagnosed with Ebola after returning to".trip_location = "Dallas"
+91. M_NLI("Vinson's trip was to Ohio", "Vinson's trip was not to Ohio")
+92. T("Vinson's trip was to Ohio", "Vinson's trip
+violate(x0, y0)
+
+Rules:
+1. Q[Vinson, "Ebola diagnosis"](Vinson.location = "Dallas" ∧ Vinson.status = "diagnosed with Ebola" → violate(Vinson.status, "not diagnosed with Ebola"))
+2. Q[Vinson, "family visit"](M_NLI("Vinson visited family", "Vinson did not visit family") ∧ "visited family in".location = "Ohio" → violate("visited family in".location, "not in Ohio"))
+3. Q[Vinson, "health status"](Factual(Vinson.status, "not diagnosed with Ebola") ∧ "was diagnosed with Ebola after returning to".location = "Dallas" → violate(Vinson.status, "not diagnosed with Ebola"))
+4. Q[Vinson, "trip reason"](Causal("visited family in Ohio", "diagnosed with Ebola") ∧ "visited family in".reason = "to see relatives" → violate("visited family in".reason, "not for family"))
+5. Q[Vinson, "trip duration"](Numeric("visited family in".duration, "one week") ∧ "was diagnosed with Ebola after returning to".duration = "one day" → violate("visited family in".duration, "not one week"))
+6. Q[Vinson, "Ebola diagnosis"](Temporal("diagnosed with Ebola", "before the trip") ∧ "was diagnosed with Ebola after returning to".time = "after a trip" → violate(Vinson.status, "not diagnosed with Ebola"))
+7. Q[Vinson, "family members"](Factual("visited family in".family_members, "none") ∧ "visited family in".family_members = "three" → violate("visited family in".family_members, "none"))
+8. Q[Vinson, "health status"](tau(Vinson.status, "not diagnosed with Ebola") ∧ "was diagnosed with Ebola after returning to".reason = "after a trip to visit family in Ohio" → violate(Vinson.status, "not diagnosed with Ebola"))
+9. Q[Vinson, "trip type"](M_NLI("Vinson's trip was a reunion", "Vinson's trip was not a reunion") ∧ "visited family in".trip_type = "family reunion" → violate("visited family in".trip_type, "not a reunion"))
+10. Q[Vinson, "Ebola diagnosis"](Causal("trip to Ohio", "diagnosed with Ebola") ∧ "was diagnosed with Ebola after returning to".location = "Dallas" → violate(Vinson.status, "not diagnosed with Ebola"))
+11. Q[Vinson, "trip location"](T("Vinson visited family in Ohio", "Vinson did not visit family in Ohio", Relation) ∧ "visited family in".location = "Ohio" → violate("visited family in".location, "not in Ohio"))
+12. Q[Vinson, "trip duration"](Numeric("Vinson's trip duration", "zero days") ∧ "visited family in".trip_duration = "two weeks" → violate("visited family in".trip_duration, "not two weeks"))
+13. Q[Vinson, "Ebola diagnosis"](Content("Vinson is feeling well", "Vinson is diagnosed with Ebola") ∧ "was diagnosed with Ebola after returning to".time = "after a trip" → violate(Vinson.status, "not diagnosed with Ebola"))
+14. Q[Vinson, "family visit"](Factual("visited family in".trip_reason, "not for family") ∧ "visited family in".trip_reason = "family gathering" → violate("visited family in".trip_reason, "not for family"))
+15. Q[Vinson, "health status"](M_NLI("Vinson's health status", "not diagnosed with Ebola") ∧ "was diagnosed with Ebola after returning to".location = "Dallas" → violate(Vinson.status, "not diagnosed with Ebola"))
+16. Q[Vinson, "Ebola diagnosis"](Temporal("Vinson's diagnosis", "before the trip") ∧ "was diagnosed with Ebola after returning to".reason = "after a trip to Ohio" → violate(Vinson.status, "not diagnosed with Ebola"))
+17. Q[Vinson, "trip type"](tau("visited family in".trip_type, "not a reunion") ∧ "visited family in".trip_type = "family reunion" → violate("visited family in".trip_type, "not a reunion"))
+18. Q[Vinson, "family members"](Numeric("number of family members visited", "none") ∧ "visited family in".family_members = "three" → violate("visited family in".family_members, "none"))
+19. Q[Vinson, "Ebola diagnosis"](Causal("trip to Ohio", "no Ebola diagnosis") ∧ "was diagnosed with Ebola after returning to".location = "Dallas" → violate(Vinson.status, "not diagnosed with Ebola"))
+20. Q[Vinson, "trip duration"](Factual("visited family in".trip_duration, "one week") ∧ "was diagnosed with Ebola after returning to".duration = "one day" → violate("visited family in".trip_duration, "not one week"))
+21. Q[Vinson, "health status"](Content("Vinson was happy", "Vinson was sick") ∧ "was diagnosed with Ebola after returning to".reason = "after a trip to visit family in Ohio" → violate(Vinson.status, "not diagnosed with Ebola"))
+22. Q[Vinson, "trip reason"](M_NLI("Vinson's trip was for family", "Vinson's trip was not for family") ∧ "visited family in".trip_reason = "family gathering" → violate("visited family in".trip_reason, "not for family"))
+23. Q[Vinson, "Ebola diagnosis"](T("Vinson was diagnosed with Ebola", "Vinson is completely healthy", Factual) ∧ "was diagnosed with Ebola after returning to".location = "Dallas" → violate(Vinson.status, "not diagnosed with Ebola"))
+24. Q[Vinson, "family visit"](tau("visited family in".family_members, "none") ∧ "visited family in".family_members = "three" → violate("visited family in".family_members, "none"))
+25. Q[Vinson, "trip location"](Factual("visited family in".location, "not in Ohio") ∧ "visited family in".location = "Ohio" → violate("visited family in".location, "not in Ohio"))
+26. Q[Vinson, "Ebola diagnosis"](Causal("family gathering", "no health issues") ∧ "was diagnosed with Ebola after returning to".location = "Dallas" → violate(Vinson.status, "not diagnosed with Ebola"))
+27. Q[Vinson, "trip duration"](Numeric("Ebola cases in Dallas", "zero") ∧ "visited family in".trip_duration = "two weeks" → violate("visited family in".trip_duration, "not two weeks"))
+28. Q[Vinson, "health status"](Temporal("Vinson's health status", "before the trip") ∧ "was diagnosed with Ebola after returning to".reason = "after a trip to visit family in Ohio" → violate(Vinson.status, "not diagnosed with Ebola"))
+29. Q[Vinson, "trip type"](M

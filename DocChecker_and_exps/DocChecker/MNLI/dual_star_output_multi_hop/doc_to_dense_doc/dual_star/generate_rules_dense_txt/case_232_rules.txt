@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 232)
+S1: I'm kind of uhh actually uhh I think they've got the draft choices to make to make a good run at it but I'm not sure how well they'll draft.
+S2: I'm certain they're going to draft well, although the choices are not the best.
+
+Predicates:
+1. Speaker1.uncertainty
+2. Speaker1.draft_quality
+3. Speaker1.draft_choices
+4. Speaker2.certainty
+5. Speaker2.draft_quality
+6. Speaker2.draft_choices
+7. "expresses".confidence
+8. "contradicts".confidence
+9. "creates".contradiction
+10. M_NLI(S1, S2)
+11. Causal(S1, S2)
+12. violate(S1, S2)
+13. Speaker1.opinion
+14. Speaker2.opinion
+15. "has".draft_choices
+16. "is".uncertain
+17. "is".certain
+18. "suggests".drafting_quality
+19. "indicates".drafting_quality
+20. "implies".drafting_quality
+21. Speaker1.confidence_level
+22. Speaker2.confidence_level
+23. "affects".drafting_outcome
+24. "is".not_best_choices
+25. "is".best_choices
+26. "leads_to".drafting_success
+27. "leads_to".drafting_failure
+28. "contradicts".certainty
+29. "shows".uncertainty
+30. "shows".certainty
+
+Rules:
+1. Q[kind, Speaker1.uncertainty, Speaker2.certainty](Speaker1.uncertainty == true → Causal(Speaker1.uncertainty, Speaker2.certainty))
+2. Q[kind, Speaker1.draft_quality, Speaker2.draft_quality](Speaker1.draft_quality == "uncertain" → Causal(Speaker1.draft_quality, Speaker2.draft_quality))
+3. Q[kind, Speaker1.draft_choices, Speaker2.draft_choices](Speaker1.draft_choices == "has" → Causal(Speaker1.draft_choices, Speaker2.draft_choices))
+4. Q[kind, Speaker1.confidence_level, Speaker2.confidence_level](Speaker1.confidence_level == "low" → Causal(Speaker1.confidence_level, Speaker2.confidence_level))
+5. Q[kind, "expresses".confidence, "contradicts".confidence](Speaker1.uncertainty == true → Causal("expresses".confidence, "contradicts".confidence))
+6. Q[kind, "creates".contradiction, "shows".certainty](Speaker1.draft_quality == "uncertain" → Causal("creates".contradiction, "shows".certainty))
+7. Q[kind, Speaker1.opinion, Speaker2.opinion](Speaker1.opinion == "uncertain" → Causal(Speaker1.opinion, Speaker2.opinion))
+8. Q[kind, Speaker1.draft_quality, Speaker2.draft_quality](Speaker2.draft_quality == "certain" → Causal(Speaker1.draft_quality, Speaker2.draft_quality))
+9. Q[kind, Speaker1.confidence_level, Speaker2.confidence_level](Speaker2.confidence_level == "high" → Causal(Speaker1.confidence_level, Speaker2.confidence_level))
+10. Q[kind, "indicates".drafting_quality, "implies".drafting_quality](Speaker1.draft_quality == "uncertain" → Causal("indicates".drafting_quality, "implies".drafting_quality))
+11. Q[kind, Speaker1.draft_choices, "is".not_best_choices](Speaker1.draft_choices == "has" → Causal(Speaker1.draft_choices, "is".not_best_choices))
+12. Q[kind, Speaker1.uncertainty, "shows".uncertainty](Speaker1.uncertainty == true → Causal(Speaker1.uncertainty, "shows".uncertainty))
+13. Q[kind, Speaker2.certainty, "shows".certainty](Speaker2.certainty == true → Causal(Speaker2.certainty, "shows".certainty))
+14. Q[kind, Speaker1.draft_quality, "leads_to".drafting_failure](Speaker1.draft_quality == "uncertain" → Causal(Speaker1.draft_quality, "leads_to".drafting_failure))
+15. Q[kind, Speaker2.draft_quality, "leads_to".drafting_success](Speaker2.draft_quality == "certain" → Causal(Speaker2.draft_quality, "leads_to".drafting_success))
+16. Q[kind, "contradicts".certainty, "creates".contradiction](Speaker1.uncertainty == true → Causal("contradicts".certainty, "creates".contradiction))
+17. Q[kind, Speaker1.draft_choices, Speaker2.draft_choices](Speaker2.draft_choices == "is" → Causal(Speaker1.draft_choices, Speaker2.draft_choices))
+18. Q[kind, Speaker1.confidence_level, "is".uncertain](Speaker1.confidence_level == "low" → Causal(Speaker1.confidence_level, "is".uncertain))
+19. Q[kind, Speaker2.confidence_level, "is".certain](Speaker2.confidence_level == "high" → Causal(Speaker2.confidence_level, "is".certain))
+20. Q[kind, Speaker1.draft_quality, "affects".drafting_outcome](Speaker1.draft_quality == "uncertain" → Causal(Speaker1.draft_quality, "affects".drafting_outcome))
+21. Q[kind, Speaker2.draft_quality, "affects".drafting_outcome](Speaker2.draft_quality == "certain" → Causal(Speaker2.draft_quality, "affects".drafting_outcome))
+22. Q[kind, Speaker1.draft_choices, "is".best_choices](Speaker1.draft_choices == "has" → Causal(Speaker1.draft_choices, "is".best_choices))
+23. Q[kind, Speaker1.uncertainty, "contradicts".confidence](Speaker1.uncertainty == true → Causal(Speaker1.uncertainty, "contradicts".confidence))
+24. Q[kind, Speaker2.certainty, "contradicts".confidence](Speaker2.certainty == true → Causal(Speaker2.certainty, "contradicts".confidence))
+25. Q[kind, Speaker1.draft_quality, "suggests".drafting_quality](Speaker1.draft_quality == "uncertain" → Causal(Speaker1.draft_quality, "suggests".drafting_quality))
+26. Q[kind, Speaker2.draft_quality, "suggests".drafting_quality](Speaker2.draft_quality == "certain" → Causal(Speaker2.draft_quality, "suggests".drafting_quality))
+27. Q[kind, Speaker1.draft_choices, "is".not_best_choices](Speaker1.draft_choices == "has" → Causal(Speaker1.draft_choices, "is".not_best_choices))
+28. Q[kind, Speaker1.uncertainty, "shows".uncertainty](Speaker1.uncertainty == true → Causal(Speaker1.uncertainty, "shows".uncertainty))
+29. Q[kind, Speaker2.certainty, "shows".certainty](Speaker2.certainty == true → Causal(Speaker2.certainty, "shows".certainty))
+30. Q[kind, Speaker1.draft_quality, Speaker2.draft_quality](Speaker1.draft_quality == "uncertain" → Causal(Speaker1.draft_quality, Speaker2.draft_quality))

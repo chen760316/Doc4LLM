@@ -1,0 +1,66 @@
+Source: dense_text.txt (Index 929)
+S1: Children cross the street on their bikes.
+S2: People riding their bikes on a crosswalk to cross the street.
+
+Predicates:
+1. Children.crossing_street.on_bikes
+2. People.riding_bikes.on_crosswalk
+3. M_NLI(Children.crossing_street.on_bikes, People.riding_bikes.on_crosswalk)
+4. Relation(Children, People)
+5. violate(Children.crossing_street.on_bikes, People.riding_bikes.on_crosswalk)
+6. Bikes.used_by.Children
+7. Crosswalks.used_by.People
+8. Children.crossing_street.in_traffic
+9. People.crossing_street.in_crosswalk
+10. M_NLI(Children.crossing_street.in_traffic, People.crossing_street.in_crosswalk)
+11. Relation(Children.crossing_street, People.crossing_street)
+12. violate(Children.crossing_street.in_traffic, People.crossing_street.in_crosswalk)
+13. Bikes.crossing_street.by.Children
+14. Crosswalks.crossing_street.by.People
+15. M_NLI(Bikes.crossing_street.by.Children, Crosswalks.crossing_street.by.People)
+16. Relation(Bikes, Crosswalks)
+17. violate(Bikes.crossing_street.by.Children, Crosswalks.crossing_street.by.People)
+18. Children.bike_safety.measures
+19. People.bike_safety.guidelines
+20. M_NLI(Children.bike_safety.measures, People.bike_safety.guidelines)
+21. Relation(Children.bike_safety, People.bike_safety)
+22. violate(Children.bike_safety.measures, People.bike_safety.guidelines)
+23. Traffic.rules.for.Children
+24. Traffic.rules.for.People
+25. M_NLI(Traffic.rules.for.Children, Traffic.rules.for.People)
+26. Relation(Traffic.rules, Traffic.rules)
+27. violate(Traffic.rules.for.Children, Traffic.rules.for.People)
+28. Children.bike_helmets.required
+29. People.bike_helmets.optional
+30. M_NLI(Children.bike_helmets.required, People.bike_helmets.optional)
+
+Rules:
+1. Q[Children, Children.crossing_street.on_bikes, People.riding_bikes.on_crosswalk](Children.crossing_street.on_bikes == true → Relation(Children, People))
+2. Q[Children, Children.crossing_street.on_bikes, People.riding_bikes.on_crosswalk](People.riding_bikes.on_crosswalk == true → violate(Children.crossing_street.on_bikes, People.riding_bikes.on_crosswalk))
+3. Q[Children, Children.crossing_street.on_bikes, People.riding_bikes.on_crosswalk](M_NLI(Children.crossing_street.on_bikes, People.riding_bikes.on_crosswalk) == false → Relation(Children, People))
+4. Q[Children, Children.crossing_street.on_bikes, People.riding_bikes.on_crosswalk](Children.crossing_street.in_traffic == true → violate(Children.crossing_street.in_traffic, People.crossing_street.in_crosswalk))
+5. Q[Children, Children.crossing_street.on_bikes, People.riding_bikes.on_crosswalk](Bikes.used_by.Children == true → Relation(Bikes, Crosswalks))
+6. Q[Children, Children.crossing_street.on_bikes, People.riding_bikes.on_crosswalk](Crosswalks.used_by.People == true → violate(Children.crossing_street.on_bikes, People.riding_bikes.on_crosswalk))
+7. Q[Children, Children.crossing_street.on_bikes, People.riding_bikes.on_crosswalk](M_NLI(Children.crossing_street.in_traffic, People.crossing_street.in_crosswalk) == false → Relation(Children.crossing_street, People.crossing_street))
+8. Q[Children, Children.crossing_street.on_bikes, People.riding_bikes.on_crosswalk](Bikes.crossing_street.by.Children == true → violate(Bikes.crossing_street.by.Children, Crosswalks.crossing_street.by.People))
+9. Q[Children, Children.crossing_street.on_bikes, People.riding_bikes.on_crosswalk](Traffic.rules.for.Children == true → violate(Traffic.rules.for.Children, Traffic.rules.for.People))
+10. Q[Children, Children.crossing_street.on_bikes, People.riding_bikes.on_crosswalk](Children.bike_safety.measures == true → violate(Children.bike_safety.measures, People.bike_safety.guidelines))
+11. Q[Children, Children.crossing_street.on_bikes, People.riding_bikes.on_crosswalk](M_NLI(Children.bike_safety.measures, People.bike_safety.guidelines) == false → Relation(Children.bike_safety, People.bike_safety))
+12. Q[Children, Children.crossing_street.on_bikes, People.riding_bikes.on_crosswalk](Traffic.rules.for.Children == true → Relation(Traffic.rules, Traffic.rules))
+13. Q[Children, Children.crossing_street.on_bikes, People.riding_bikes.on_crosswalk](Children.bike_helmets.required == true → violate(Children.bike_helmets.required, People.bike_helmets.optional))
+14. Q[Children, Children.crossing_street.on_bikes, People.riding_bikes.on_crosswalk](M_NLI(Children.bike_helmets.required, People.bike_helmets.optional) == false → Relation(Children.bike_helmets, People.bike_helmets))
+15. Q[Children, Children.crossing_street.on_bikes, People.riding_bikes.on_crosswalk](Children.crossing_street.in_traffic == true → Relation(Children.crossing_street, People.crossing_street))
+16. Q[Children, Children.crossing_street.on_bikes, People.riding_bikes.on_crosswalk](Bikes.used_by.Children == true → violate(Bikes.used_by.Children, Crosswalks.used_by.People))
+17. Q[Children, Children.crossing_street.on_bikes, People.riding_bikes.on_crosswalk](Crosswalks.crossing_street.by.People == true → violate(Children.crossing_street.on_bikes, People.riding_bikes.on_crosswalk))
+18. Q[Children, Children.crossing_street.on_bikes, People.riding_bikes.on_crosswalk](M_NLI(Bikes.crossing_street.by.Children, Crosswalks.crossing_street.by.People) == false → Relation(Bikes, Crosswalks))
+19. Q[Children, Children.crossing_street.on_bikes, People.riding_bikes.on_crosswalk](Children.bike_safety.measures == true → Relation(Children.bike_safety, People.bike_safety))
+20. Q[Children, Children.crossing_street.on_bikes, People.riding_bikes.on_crosswalk](Traffic.rules.for.Children == true → Relation(Traffic.rules, Traffic.rules))
+21. Q[Children, Children.crossing_street.on_bikes, People.riding_bikes.on_crosswalk](Children.bike_helmets.required == true → Relation(Children.bike_helmets, People.bike_helmets))
+22. Q[Children, Children.crossing_street.on_bikes, People.riding_bikes.on_crosswalk](Children.crossing_street.on_bikes == true → violate(Children.crossing_street.on_bikes, People.riding_bikes.on_crosswalk))
+23. Q[Children, Children.crossing_street.on_bikes, People.riding_bikes.on_crosswalk](People.riding_bikes.on_crosswalk == true → Relation(Children, People))
+24. Q[Children, Children.crossing_street.on_bikes, People.riding_bikes.on_crosswalk](M_NLI(Children.crossing_street.on_bikes, People.riding_bikes.on_crosswalk) == false → violate(Children.crossing_street.on_bikes, People.riding_bikes.on_crosswalk))
+25. Q[Children, Children.crossing_street.on_bikes, People.riding_bikes.on_crosswalk](Children.crossing_street.in_traffic == true → Relation(Children.crossing_street, People.crossing_street))
+26. Q[Children, Children.crossing_street.on_bikes, People.riding_bikes.on_crosswalk](Bikes.crossing_street.by.Children == true → Relation(Bikes, Crosswalks))
+27. Q[Children, Children.crossing_street.on_bikes, People.riding_bikes.on_crosswalk](Crosswalks.crossing_street.by.People == true → violate(Bikes.crossing_street.by.Children, Crosswalks.crossing_street.by.People))
+28. Q[Children, Children.crossing_street.on_bikes, People.riding_bikes.on_crosswalk](Traffic.rules.for.Children == true → violate(Traffic.rules.for.Children, Traffic.rules.for.People))
+29. Q[Children, Children.crossing_street.on_bikes, People.riding_bikes.on_crosswalk](Children.bike_safety.measures == true → violate(Children.bike_safety.measures,

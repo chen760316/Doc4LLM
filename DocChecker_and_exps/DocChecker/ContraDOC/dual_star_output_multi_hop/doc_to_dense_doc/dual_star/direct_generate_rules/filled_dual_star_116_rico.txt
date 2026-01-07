@@ -1,0 +1,49 @@
+Predicates:
+Belleville.label != "Location"
+Belleville.label != Hurricane.label
+Belleville.label = "Location"
+Belleville.name != "Belleville"
+Belleville.name != Hurricane.name
+Belleville.name = "Belleville"
+Belleville.state != "New Jersey"
+Belleville.state = "New Jersey"
+Hurricane.impact != "severe damage"
+Hurricane.impact = "severe damage"
+Hurricane.label != "Natural Disaster"
+Hurricane.label = "Natural Disaster"
+Hurricane.name != "Hurricane"
+Hurricane.name = "Hurricane"
+New York City.label != "Location"
+New York City.label != Hurricane.label
+New York City.label = "Location"
+New York City.name != "New York City"
+New York City.name != Belleville.name
+New York City.name != Hurricane.name
+New York City.name = "New York City"
+New York City___Belleville.contradiction_type != New York City___Hurricane.contradiction_type
+New York City___Belleville.contradiction_type = "Factual"
+New York City___Belleville.effect = "strong gusts"
+New York City___Belleville.event = "hurricane"
+New York City___Belleville.impact = "defoliated and uprooted peach trees"
+New York City___Belleville.relationship != New York City___Hurricane.relationship
+New York City___Belleville.relationship = "The hurricane produced strong gusts within the vicinity of New York City and affected Belleville, New Jersey."
+New York City___Belleville.source_id != New York City___Hurricane.source_id
+New York City___Belleville.source_id = "3503017442_4"
+New York City___Hurricane.contradiction_type = "Content (Misinformation)"
+New York City___Hurricane.location = "New York City"
+New York City___Hurricane.relationship = "The hurricane produced strong gusts within the vicinity of New York City."
+New York City___Hurricane.source_id = "3503017442_8"
+None_ML(Hurricane.attrs, New York City.attrs)
+None_ML(New York City___Hurricane.attrs, New York City___Belleville.attrs)
+
+Rules:
+Q[New York City,New York City] (New York City___Belleville.relationship = "The hurricane produced strong gusts within the vicinity of New York City and affected Belleville, New Jersey." ∧ Belleville.name != Hurricane.name ∧ New York City___Hurricane.contradiction_type = "Content (Misinformation)" ∧ New York City___Belleville.contradiction_type != New York City___Hurricane.contradiction_type ∧ None_ML(Hurricane.attrs, New York City.attrs) ∧ New York City___Belleville.contradiction_type = "Factual" → Hurricane.label != "Natural Disaster")
+Q[New York City,New York City] (New York City___Belleville.relationship != New York City___Hurricane.relationship ∧ New York City.name != Belleville.name ∧ New York City___Belleville.relationship = "The hurricane produced strong gusts within the vicinity of New York City and affected Belleville, New Jersey." → New York City.name != Hurricane.name)
+Q[New York City,New York City] (Belleville.state != "New Jersey" ∧ New York City.name = "New York City" → Hurricane.name = "Hurricane")
+Q[New York City,New York City] (New York City___Belleville.event = "hurricane" ∧ New York City___Belleville.impact = "defoliated and uprooted peach trees" ∧ Hurricane.name != "Hurricane" ∧ Hurricane.name = "Hurricane" ∧ New York City___Belleville.effect = "strong gusts" → Belleville.name = "Belleville")
+Q[New York City,New York City] (New York City___Belleville.relationship != New York City___Hurricane.relationship ∧ New York City___Belleville.impact = "defoliated and uprooted peach trees" ∧ Hurricane.impact != "severe damage" ∧ Belleville.state = "New Jersey" → New York City___Hurricane.relationship = "The hurricane produced strong gusts within the vicinity of New York City.")
+Q[New York City,New York City] (Hurricane.label != "Natural Disaster" ∧ Belleville.state = "New Jersey" ∧ New York City.name != "New York City" ∧ New York City___Belleville.contradiction_type = "Factual" ∧ Hurricane.impact = "severe damage" → New York City___Belleville.relationship != New York City___Hurricane.relationship)
+Q[New York City,New York City] (Hurricane.name != "Hurricane" ∧ New York City___Belleville.contradiction_type != New York City___Hurricane.contradiction_type → Belleville.label != Hurricane.label)
+Q[New York City,New York City] (Belleville.state = "New Jersey" ∧ Belleville.state != "New Jersey" ∧ Belleville.name != Hurricane.name → Hurricane.label = "Natural Disaster")
+Q[New York City,New York City] (Belleville.name != Hurricane.name ∧ New York City.label = "Location" ∧ Hurricane.label = "Natural Disaster" ∧ New York City___Belleville.effect = "strong gusts" ∧ New York City.name != "New York City" ∧ Belleville.name != "Belleville" → Belleville.label = "Location")
+Q[New York City,New York City] (New York City___Belleville.contradiction_type = "Factual" ∧ New York City.label = "Location" ∧ New York City___Belleville.relationship != New York City___Hurricane.relationship ∧ New York City.name != Hurricane.name → New York City___Belleville.source_id = "3503017442_4")

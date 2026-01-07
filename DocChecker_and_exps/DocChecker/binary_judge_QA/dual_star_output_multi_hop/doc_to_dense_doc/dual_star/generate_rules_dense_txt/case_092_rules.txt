@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 92)
+S1: No two books, even if they are identical, can share an ISBN.
+S2: The same book cannot have different ISBN numbers.
+
+Predicates:
+1. Book.ISBN
+2. Book.title
+3. Book.author
+4. Book.year
+5. Book.publisher
+6. Book.edition
+7. Book.genre
+8. Book.language
+9. Book.page_count
+10. Book.format
+11. ISBN.unique
+12. ISBN.assigned_to
+13. ISBN.book_id
+14. ISBN.valid
+15. ISBN.duplicate
+16. ISBN.relation
+17. ISBN.identifier
+18. ISBN.book
+19. ISBN.shared
+20. ISBN.different
+21. Relation(ISBN1, ISBN2)
+22. Relation(book1, book2)
+23. violate(ISBN1, ISBN2)
+24. violate(book1, book2)
+25. M_NLI(S1, S2)
+26. M_NLI(ISBN_conflict, book_identity)
+27. Book.identity
+28. Book.duplicate
+29. Book.same
+30. Book.different_ISBN
+
+Rules:
+1. Q[two, Book.ISBN, ISBN.duplicate](Book.ISBN == "ISBN1" ∧ Book.ISBN == "ISBN2" → Relation(ISBN1, ISBN2))
+2. Q[two, Book.ISBN, ISBN.shared](Book.ISBN == "ISBN1" ∧ ISBN.shared == true → Relation(ISBN1, ISBN2))
+3. Q[two, Book.ISBN, ISBN.different](Book.ISBN == "ISBN1" ∧ Book.ISBN == "ISBN2" ∧ ISBN.different == true → Relation(ISBN1, ISBN2))
+4. Q[two, Book.title, Book.duplicate](Book.title == "Title1" ∧ Book.title == "Title2" → Relation(book1, book2))
+5. Q[two, Book.author, Book.same](Book.author == "Author1" ∧ Book.author == "Author2" → Relation(book1, book2))
+6. Q[two, Book.year, Book.different_ISBN](Book.year == 2021 ∧ Book.year == 2021 ∧ ISBN.different == true → Relation(ISBN1, ISBN2))
+7. Q[two, Book.publisher, ISBN.duplicate](Book.publisher == "Publisher1" ∧ Book.publisher == "Publisher2" → Relation(book1, book2))
+8. Q[two, Book.edition, ISBN.shared](Book.edition == "Edition1" ∧ Book.edition == "Edition2" → Relation(ISBN1, ISBN2))
+9. Q[two, Book.genre, ISBN.different](Book.genre == "Genre1" ∧ Book.genre == "Genre2" ∧ ISBN.different == true → Relation(ISBN1, ISBN2))
+10. Q[two, Book.language, Book.identity](Book.language == "English" ∧ Book.language == "Spanish" → Relation(book1, book2))
+11. Q[two, Book.page_count, ISBN.valid](Book.page_count == 300 ∧ Book.page_count == 300 ∧ ISBN.valid == false → Relation(ISBN1, ISBN2))
+12. Q[two, Book.format, ISBN.duplicate](Book.format == "Hardcover" ∧ Book.format == "Paperback" → Relation(book1, book2))
+13. Q[two, Book.ISBN, ISBN.identifier](Book.ISBN == "ISBN1" ∧ ISBN.identifier == "ISBN2" → Relation(ISBN1, ISBN2))
+14. Q[two, Book.ISBN, ISBN.assigned_to](Book.ISBN == "ISBN1" ∧ ISBN.assigned_to == "Book1" ∧ ISBN.assigned_to == "Book2" → Relation(ISBN1, ISBN2))
+15. Q[two, Book.ISBN, ISBN.relation](Book.ISBN == "ISBN1" ∧ ISBN.relation == "ISBN2" → Relation(ISBN1, ISBN2))
+16. Q[two, Book.ISBN, ISBN.duplicate](Book.ISBN == "ISBN1" ∧ ISBN.duplicate == true → Relation(ISBN1, ISBN2))
+17. Q[two, Book.ISBN, ISBN.valid](Book.ISBN == "ISBN1" ∧ ISBN.valid == false → Relation(ISBN1, ISBN2))
+18. Q[two, Book.ISBN, ISBN.shared](Book.ISBN == "ISBN1" ∧ ISBN.shared == true → Relation(ISBN1, ISBN2))
+19. Q[two, Book.ISBN, ISBN.different](Book.ISBN == "ISBN1" ∧ ISBN.different == true → Relation(ISBN1, ISBN2))
+20. Q[two, Book.ISBN, Book.same](Book.ISBN == "ISBN1" ∧ Book.same == true → Relation(book1, book2))
+21. Q[two, Book.ISBN, Book.different_ISBN](Book.ISBN == "ISBN1" ∧ Book.different_ISBN == true → Relation(ISBN1, ISBN2))
+22. Q[two, Book.ISBN, ISBN.identifier](Book.ISBN == "ISBN1" ∧ ISBN.identifier == "ISBN2" → Relation(ISBN1, ISBN2))
+23. Q[two, Book.ISBN, ISBN.assigned_to](Book.ISBN == "ISBN1" ∧ ISBN.assigned_to == "ISBN2" → Relation(ISBN1, ISBN2))
+24. Q[two, Book.ISBN, ISBN.valid](Book.ISBN == "ISBN1" ∧ ISBN.valid == false → Relation(ISBN1, ISBN2))
+25. Q[two, Book.ISBN, ISBN.relation](Book.ISBN == "ISBN1" ∧ ISBN.relation == "ISBN2" → Relation(ISBN1, ISBN2))
+26. Q[two, Book.ISBN, ISBN.duplicate](Book.ISBN == "ISBN1" ∧ ISBN.duplicate == true → Relation(ISBN1, ISBN2))
+27. Q[two, Book.ISBN, ISBN.shared](Book.ISBN == "ISBN1" ∧ ISBN.shared == true → Relation(ISBN1, ISBN2))
+28. Q[two, Book.ISBN, ISBN.different](Book.ISBN == "ISBN1" ∧ ISBN.different == true → Relation(ISBN1, ISBN2))
+29. Q[two, Book.ISBN, Book.same](Book.ISBN == "ISBN1" ∧ Book.same == true → Relation(book1, book2))
+30. Q[two, Book.ISBN, Book.different_ISBN](Book.ISBN == "ISBN1" ∧ Book.different_ISBN == true → Relation(ISBN1, ISBN2))

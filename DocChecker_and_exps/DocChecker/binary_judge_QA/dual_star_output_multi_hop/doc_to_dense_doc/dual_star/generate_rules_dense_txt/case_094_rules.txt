@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 94)
+S1: It’s simply not true.
+S2: The thought that it could have a different ISBN number?
+
+Predicates:
+1. Publication_1928.year
+2. ISBN.number
+3. Thought.possibility
+4. Negation(ISBN.different, Thought.possibility)
+5. M_NLI(It_is_not_true, Thought_different_ISBN)
+6. Violate(Truth, Thought.possibility)
+7. ISBN.variation
+8. Publication_1928.title
+9. Thought.uncertainty
+10. Negation(Truth, ISBN.variation)
+11. M_NLI(ISBN_is_fixed, ISBN_different)
+12. Violate(ISBN.fixed, Thought.uncertainty)
+13. Publication_1928.author
+14. ISBN.association
+15. Thought.conflict
+16. Negation(ISBN.association, Thought.conflict)
+17. M_NLI(ISBN_fixed, ISBN_variable)
+18. Violate(ISBN.variable, Thought.conflict)
+19. Publication_1928.edition
+20. ISBN.revision
+21. Thought.possibility_of_change
+22. Negation(ISBN.revision, Thought.possibility_of_change)
+23. M_NLI(ISBN_stability, ISBN_change)
+24. Violate(ISBN.change, Thought.possibility_of_change)
+25. Publication_1928.publisher
+26. ISBN.unique_identifier
+27. Thought.doubt
+28. Negation(ISBN.unique_identifier, Thought.doubt)
+29. M_NLI(ISBN_consistency, ISBN_variability)
+30. Violate(ISBN.variability, Thought.doubt)
+
+Rules:
+1. Q[simply, ISBN.different, Thought.possibility](ISBN.number == "fixed" → Negation(ISBN.different, Thought.possibility))
+2. Q[simply, Thought.possibility, ISBN.variation](It_is_not_true == "ISBN has a variation" → Negation(Thought.possibility, ISBN.variation))
+3. Q[simply, Thought.uncertainty, ISBN.fixed](It_is_not_true == "ISBN is uncertain" → Negation(Thought.uncertainty, ISBN.fixed))
+4. Q[simply, ISBN.variable, Thought.conflict](ISBN.number == "fixed" → Negation(ISBN.variable, Thought.conflict))
+5. Q[simply, ISBN.different, Thought.conflict](It_is_not_true == "ISBN can be different" → Negation(ISBN.different, Thought.conflict))
+6. Q[simply, Thought.possibility_of_change, ISBN.revision](It_is_not_true == "ISBN can change" → Negation(Thought.possibility_of_change, ISBN.revision))
+7. Q[simply, ISBN.change, Thought.doubt](It_is_not_true == "ISBN can change" → Negation(ISBN.change, Thought.doubt))
+8. Q[simply, ISBN.variation, Thought.possibility](It_is_not_true == "ISBN has a variation" → Negation(ISBN.variation, Thought.possibility))
+9. Q[simply, Thought.doubt, ISBN.unique_identifier](It_is_not_true == "ISBN is unique" → Negation(Thought.doubt, ISBN.unique_identifier))
+10. Q[simply, ISBN.fixed, Thought.possibility](It_is_not_true == "ISBN is not fixed" → Negation(ISBN.fixed, Thought.possibility))
+11. Q[simply, Thought.possibility, ISBN.association](It_is_not_true == "ISBN can have different associations" → Negation(Thought.possibility, ISBN.association))
+12. Q[simply, ISBN.different, Thought.possibility_of_change](It_is_not_true == "ISBN can be different" → Negation(ISBN.different, Thought.possibility_of_change))
+13. Q[simply, Thought.uncertainty, ISBN.variable](It_is_not_true == "ISBN is variable" → Negation(Thought.uncertainty, ISBN.variable))
+14. Q[simply, ISBN.revision, Thought.conflict](It_is_not_true == "ISBN can be revised" → Negation(ISBN.revision, Thought.conflict))
+15. Q[simply, Thought.possibility, ISBN.fixed](It_is_not_true == "ISBN can be fixed" → Negation(Thought.possibility, ISBN.fixed))
+16. Q[simply, ISBN.association, Thought.doubt](It_is_not_true == "ISBN has associations" → Negation(ISBN.association, Thought.doubt))
+17. Q[simply, Thought.conflict, ISBN.variation](It_is_not_true == "ISBN can vary" → Negation(Thought.conflict, ISBN.variation))
+18. Q[simply, ISBN.unique_identifier, Thought.possibility](It_is_not_true == "ISBN is not unique" → Negation(ISBN.unique_identifier, Thought.possibility))
+19. Q[simply, Thought.possibility_of_change, ISBN.fixed](It_is_not_true == "ISBN can be fixed" → Negation(Thought.possibility_of_change, ISBN.fixed))
+20. Q[simply, ISBN.variable, Thought.possibility](It_is_not_true == "ISBN can be variable" → Negation(ISBN.variable, Thought.possibility))
+21. Q[simply, Thought.doubt, ISBN.revision](It_is_not_true == "ISBN can be revised" → Negation(Thought.doubt, ISBN.revision))
+22. Q[simply, ISBN.change, Thought.possibility_of_change](It_is_not_true == "ISBN can change" → Negation(ISBN.change, Thought.possibility_of_change))
+23. Q[simply, Thought.conflict, ISBN.fixed](It_is_not_true == "ISBN can be fixed" → Negation(Thought.conflict, ISBN.fixed))
+24. Q[simply, ISBN.association, Thought.possibility_of_change](It_is_not_true == "ISBN can change associations" → Negation(ISBN.association, Thought.possibility_of_change))
+25. Q[simply, Thought.possibility, ISBN.revision](It_is_not_true == "ISBN can be revised" → Negation(Thought.possibility, ISBN.revision))
+26. Q[simply, ISBN.fixed, Thought.doubt](It_is_not_true == "ISBN is not fixed" → Negation(ISBN.fixed, Thought.doubt))
+27. Q[simply, Thought.uncertainty, ISBN.association](It_is_not_true == "ISBN has uncertain associations" → Negation(Thought.uncertainty, ISBN.association))
+28. Q[simply, ISBN.variation, Thought.doubt](It_is_not_true == "ISBN can vary" → Negation(ISBN.variation, Thought.doubt))
+29. Q[simply, Thought.possibility, ISBN.change](It_is_not_true == "ISBN can change" → Negation(Thought.possibility, ISBN.change))
+30. Q[simply, ISBN.different, Thought.doubt](It_is_not_true == "ISBN can be different" → Negation(ISBN.different, Thought.doubt))

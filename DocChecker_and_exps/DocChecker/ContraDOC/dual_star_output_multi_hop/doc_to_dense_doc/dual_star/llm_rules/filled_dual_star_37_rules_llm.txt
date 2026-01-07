@@ -1,0 +1,130 @@
+Predicates:
+1. core.method = "removal"
+2. core.status = "cut apart"
+3. legs.method = "removal"
+4. legs.status = "cut apart"
+5. spikes.count = 180
+6. spikes.status = "in storage"
+7. sculpture.material = "metal"
+8. sculpture.size = "large"
+9. removal.date = "2023-10-01"
+10. removal.location = "art gallery"
+11. core.value = "scrap"
+12. legs.value = "intact"
+13. core.condition = "damaged"
+14. legs.condition = "undamaged"
+15. core.weight = "50kg"
+16. legs.weight = "30kg"
+17. sculpture.artist = "John Doe"
+18. sculpture.year_created = "2020"
+19. sculpture.title = "Abstract Form"
+20. removal.method = "cutting"
+21. removal.tool = "saw"
+22. core.owner = "Art Collector"
+23. legs.owner = "Art Collector"
+24. spikes.location = "warehouse"
+25. spikes.condition = "stored"
+26. "Relationship".type = "removal"
+27. "Relationship".status = "completed"
+28. "Relationship".date = "2023-10-01"
+29. "Relationship".location = "art gallery"
+30. "Relationship".involved_entities = "core, legs"
+31. M_NLI(core.status, legs.status)
+32. T("The core was sold for scrap.", "The core was cut apart.", Factual)
+33. T("The legs remain intact.", "The legs were cut apart.", Factual)
+34. tau(core.value, legs.value)
+35. violate(core.status, legs.status)
+36. Factual(core.status, legs.status)
+37. Causal(core.method, removal.tool)
+38. Numeric(spikes.count, 180)
+39. Temporal(removal.date, "2023-10-01")
+40. Content(core.condition, legs.condition)
+41. Relation(core.owner, legs.owner)
+42. core.material = "bronze"
+43. legs.material = "bronze"
+44. core.age = "3 years"
+45. legs.age = "3 years"
+46. spikes.age = "1 year"
+47. sculpture.value = "10000"
+48. removal.duration = "2 hours"
+49. "Relationship".participants = "crew members"
+50. "Relationship".outcome = "successful"
+51. M_NLI(spikes.status, core.status)
+52. T("The spikes are in storage.", "The spikes were sold.", Negation)
+53. tau(core.method, removal.method)
+54. violate(spikes.status, core.status)
+55. Factual(spikes.status, core.status)
+56. Causal(spikes.location, removal.location)
+57. Numeric(core.weight, 50)
+58. Temporal(removal.date, "2023-10-01")
+59. Content(spikes.condition, "stored")
+60. Relation(core.value, "scrap")
+61. core.owner = "Museum"
+62. legs.owner = "Museum"
+63. spikes.owner = "Museum"
+64. sculpture.condition = "well-preserved"
+65. removal.reason = "renovation"
+66. "Relationship".reason = "artistic decision"
+67. M_NLI(removal.reason, "artistic decision")
+68. T("The removal was due to renovation.", "The removal was for display.", Causal)
+69. tau(spikes.count, 180)
+70. violate(core.value, "intact")
+71. Factual(core.value, "intact")
+72. Causal(core.condition, core.method)
+73. Numeric(legs.weight, 30)
+74. Temporal(spikes.age, "1 year")
+75. Content(core.material, "metal")
+76. Relation(spikes.location, "warehouse")
+77. core.status = "cut apart"
+78. legs.status = "intact"
+79. spikes.status = "in storage"
+80. sculpture.size = "large"
+81. removal.tool = "saw"
+82. core.method = "cutting"
+83. legs.method = "cutting"
+84. spikes.count = 180
+85. "Relationship".participants = "art crew"
+86. "Relationship".status = "completed"
+87. M_NLI(core.value, legs.value)
+88. T("The core was sold for scrap.", "The core remains intact.", Negation)
+89. tau(legs.status, "intact")
+90. violate(spikes.count, 0)
+91. Factual(spikes.count, 0)
+92. Causal(spikes.status, "in storage")
+93. Numeric(core.weight, 50)
+94. Temporal(removal.date, "2023-10-01")
+95. Content(legs.condition, "damaged")
+96. Relation(core.owner, "Art Collector")
+97. core.age = "3 years"
+98. legs.age = "3 years"
+99. spikes.age = "1 year"
+100. sculpture.artist = "John Doe"
+violate(x0, y0)
+
+Rules:
+1. Q[x0, y0](core.method = "removal" ∧ legs.method = "removal" → violate(core.status, legs.status))
+2. Q[x0, y0](core.status = "cut apart" ∧ legs.status = "intact" → violate(core.value, legs.value))
+3. Q[x0, y0](removal.date = "2023-10-01" ∧ removal.location = "art gallery" ∧ core.status = "cut apart" → violate(core.condition, legs.condition))
+4. Q[x0, y0](core.value = "scrap" ∧ legs.value = "intact" ∧ core.condition = "damaged" → violate(core.owner, legs.owner))
+5. Q[x0, y0](spikes.count = 180 ∧ spikes.status = "in storage" ∧ core.status = "cut apart" ∧ legs.status = "cut apart" → violate(spikes.location, core.location))
+6. Q[x0, y0](removal.method = "cutting" ∧ removal.tool = "saw" ∧ core.method = "removal" ∧ legs.method = "cutting" ∧ core.status = "cut apart" → violate(legs.condition, core.condition))
+7. Q[x0, y0](core.status = "cut apart" ∧ legs.status = "cut apart" ∧ spikes.status = "in storage" → violate(spikes.count, 0))
+8. Q[x0, y0](core.value = "scrap" ∧ legs.value = "intact" ∧ core.condition = "damaged" ∧ legs.condition = "undamaged" → violate(core.weight, legs.weight))
+9. Q[x0, y0](removal.date = "2023-10-01" ∧ removal.location = "art gallery" ∧ core.owner = "Art Collector" ∧ legs.owner = "Art Collector" → violate(core.material, legs.material))
+10. Q[x0, y0](spikes.count = 180 ∧ spikes.status = "in storage" ∧ core.status = "cut apart" ∧ legs.status = "intact" ∧ core.value = "scrap" → violate(spikes.age, core.age))
+11. Q[x0, y0](removal.method = "cutting" ∧ removal.tool = "saw" ∧ core.method = "removal" ∧ legs.method = "cutting" ∧ core.condition = "damaged" ∧ legs.condition = "undamaged" → violate(core.owner, legs.owner))
+12. Q[x0, y0](core.status = "cut apart" ∧ legs.status = "intact" ∧ spikes.status = "in storage" ∧ sculpture.size = "large" ∧ sculpture.material = "metal" → violate(core.value, "intact"))
+13. Q[x0, y0](core.method = "removal" ∧ legs.method = "cutting" ∧ core.status = "cut apart" ∧ legs.status = "intact" ∧ removal.reason = "renovation" → violate(legs.value, core.value))
+14. Q[x0, y0](removal.date = "2023-10-01" ∧ removal.location = "art gallery" ∧ core.owner = "Museum" ∧ legs.owner = "Museum" ∧ spikes.status = "in storage" → violate(core.condition, "undamaged"))
+15. Q[x0, y0](core.value = "scrap" ∧ legs.value = "intact" ∧ core.condition = "damaged" ∧ legs.condition = "undamaged" ∧ sculpture.year_created = "2020" → violate(spikes.count, 0))
+16. Q[x0, y0](spikes.count = 180 ∧ spikes.status = "in storage" ∧ core.status = "cut apart" ∧ legs.status = "cut apart" ∧ sculpture.artist = "John Doe" → violate(core.weight, legs.weight))
+17. Q[x0, y0](removal.method = "cutting" ∧ removal.tool = "saw" ∧ core.method = "removal" ∧ legs.method = "cutting" ∧ core.value = "scrap" ∧ legs.value = "intact" → violate(core.material, legs.material))
+18. Q[x0, y0](core.status = "cut apart" ∧ legs.status = "intact" ∧ spikes.status = "in storage" ∧ sculpture.size = "large" ∧ sculpture.title = "Abstract Form" → violate(spikes.age, core.age))
+19. Q[x0, y0](core.method = "removal" ∧ legs.method = "removal" ∧ core.status = "cut apart" ∧ legs.status = "cut apart" ∧ removal.reason = "artistic decision" ∧ "Relationship".status = "completed" → violate(core.owner, legs.owner))
+20. Q[x0, y0](removal.date = "2023-10-01" ∧ removal.location = "art gallery" ∧ core.owner = "Art Collector" ∧ legs.owner = "Art Collector" ∧ spikes.status = "in storage" ∧ sculpture.condition = "well-preserved" → violate(core.value, "intact"))
+21. Q[x0, y0](spikes.count = 180 ∧ spikes.status = "in storage" ∧ core.status = "cut apart" ∧ legs.status = "intact" ∧ sculpture.artist = "John Doe" ∧ sculpture.year_created = "2020" → violate(core.condition, "undamaged"))
+22. Q[x0, y0](removal.method = "cutting" ∧ removal.tool = "saw" ∧ core.method = "removal" ∧ legs.method = "cutting" ∧ core.value = "scrap" ∧ legs.value = "intact" → violate(spikes.count, 0))
+23. Q[x0, y0](core.status = "cut apart" ∧ legs.status = "intact" ∧ spikes.status = "in storage" ∧ sculpture.size = "large" ∧ sculpture.title = "Abstract Form" ∧ removal.reason = "renovation" → violate(core.weight, legs.weight))
+24. Q[x0, y0](core.method = "removal" ∧ legs.method = "cutting" ∧ core.status = "cut apart" ∧ legs.status = "intact" ∧ "Relationship".participants = "crew members" ∧ "Relationship".outcome = "successful" → violate(core.material, legs.material))
+25. Q[x0, y0](core.value = "scrap" ∧ legs.value = "intact" ∧ core.condition = "damaged" ∧ legs.condition = "undamaged" ∧ spikes.count = 180 ∧ spikes.status = "in storage" → violate(core.owner, legs.owner))
+26. Q[x0, y0](removal.date = "2023-10-

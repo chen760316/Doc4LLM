@@ -1,0 +1,130 @@
+Predicates:
+1. material.composition = "wood"
+2. material.composition = "metal"
+3. structure.type = "bridge"
+4. structure.type = "building"
+5. construction.method = "prefabrication"
+6. construction.method = "traditional"
+7. component.material = "plastic"
+8. component.material = "glass"
+9. product.category = "furniture"
+10. product.category = "electronics"
+11. design.style = "modern"
+12. design.style = "vintage"
+13. feature.color = "red"
+14. feature.color = "blue"
+15. item.weight = "10kg"
+16. item.weight = "5kg"
+17. item.dimensions = "2x2x2m"
+18. item.dimensions = "3x3x3m"
+19. edge.relationship = "are constructed from"
+20. edge.relationship = "are made of"
+21. edge.source = "material"
+22. edge.target = "structure"
+23. edge.source = "component"
+24. edge.target = "product"
+25. edge.source = "design"
+26. edge.target = "feature"
+27. M_NLI(material.composition, structure.type)
+28. M_NLI(component.material, product.category)
+29. M_NLI(construction.method, design.style)
+30. T("The bridge is made of wood.", "The bridge is made of metal.", tau)
+31. T("The furniture is constructed from plastic.", "The furniture is constructed from glass.", tau)
+32. tau(item.weight, item.dimensions)
+33. violate(x0, y0)
+34. Factual(x0, y0)
+35. Causal(x0, y0)
+36. Numeric(x0, y0)
+37. Temporal(x0, y0)
+38. Content(x0, y0)
+39. Relation(x0, y0)
+40. Negation(x0, y0)
+41. Factual(material.composition, structure.type)
+42. Causal(construction.method, design.style)
+43. Numeric(item.weight, item.dimensions)
+44. Temporal(feature.color, item.weight)
+45. Content(product.category, design.style)
+46. Relation(edge.source, edge.target)
+47. Negation(item.weight, item.dimensions)
+48. violate(material.composition, structure.type)
+49. violate(component.material, product.category)
+50. violate(construction.method, design.style)
+51. Factual(item.dimensions, item.weight)
+52. Causal(feature.color, item.dimensions)
+53. Numeric(item.weight, item.dimensions)
+54. Temporal(product.category, feature.color)
+55. Content(material.composition, construction.method)
+56. Relation(edge.source, edge.target)
+57. Negation(item.weight, item.dimensions)
+58. M_NLI(item.weight, item.dimensions)
+59. T("The building is constructed from wood.", "The building is constructed from metal.", tau)
+60. T("The electronics are made of plastic.", "The electronics are made of glass.", tau)
+61. tau(construction.method, design.style)
+62. violate(item.dimensions, item.weight)
+63. Factual(product.category, design.style)
+64. Causal(material.composition, item.weight)
+65. Numeric(item.weight, item.dimensions)
+66. Temporal(feature.color, product.category)
+67. Content(component.material, construction.method)
+68. Relation(edge.source, edge.target)
+69. Negation(item.weight, item.dimensions)
+70. violate(material.composition, item.weight)
+71. violate(component.material, design.style)
+72. Factual(item.dimensions, feature.color)
+73. Causal(product.category, item.weight)
+74. Numeric(item.weight, item.dimensions)
+75. Temporal(construction.method, design.style)
+76. Content(material.composition, product.category)
+77. Relation(edge.source, edge.target)
+78. Negation(item.weight, item.dimensions)
+79. M_NLI(feature.color, item.weight)
+80. T("The furniture is made of wood.", "The furniture is made of metal.", tau)
+81. T("The electronics are constructed from plastic.", "The electronics are constructed from glass.", tau)
+82. tau(construction.method, item.dimensions)
+83. violate(material.composition, product.category)
+84. Factual(item.dimensions, construction.method)
+85. Causal(feature.color, item.weight)
+86. Numeric(item.weight, item.dimensions)
+87. Temporal(product.category, design.style)
+88. Content(component.material, feature.color)
+89. Relation(edge.source, edge.target)
+90. Negation(item.weight, item.dimensions)
+91. violate(component.material, structure.type)
+92. violate(material.composition, design.style)
+93. Factual(item.dimensions, feature.color)
+94. Causal(product.category, item.weight)
+95. Numeric(item.weight, item.dimensions)
+96. Temporal(construction.method, feature.color)
+97. Content(material.composition, item.weight)
+98. Relation(edge.source, edge.target)
+99. Negation(item.weight, item.dimensions)
+100. M_NLI(item.weight, feature.color)
+violate(x0, y0)
+
+Rules:
+1. Q[x0, y0](material.composition = "wood" ∧ structure.type = "bridge" → violate(x0, y0))
+2. Q[x0, y0](material.composition = "metal" ∧ structure.type = "building" → violate(x0, y0))
+3. Q[x0, y0](construction.method = "prefabrication" ∧ design.style = "vintage" ∧ component.material = "glass" → violate(x0, y0))
+4. Q[x0, y0](construction.method = "traditional" ∧ design.style = "modern" ∧ product.category = "electronics" → violate(x0, y0))
+5. Q[x0, y0](feature.color = "red" ∧ item.weight = "10kg" ∧ item.dimensions = "3x3x3m" → violate(x0, y0))
+6. Q[x0, y0](material.composition = "wood" ∧ structure.type = "bridge" ∧ construction.method = "traditional" ∧ component.material = "plastic" → violate(x0, y0))
+7. Q[x0, y0](material.composition = "metal" ∧ structure.type = "building" ∧ construction.method = "prefabrication" ∧ product.category = "furniture" → violate(x0, y0))
+8. Q[x0, y0](feature.color = "blue" ∧ item.weight = "5kg" ∧ item.dimensions = "2x2x2m" ∧ design.style = "modern" → violate(x0, y0))
+9. Q[x0, y0](material.composition = "wood" ∧ structure.type = "bridge" ∧ construction.method = "traditional" ∧ component.material = "glass" ∧ product.category = "electronics" → violate(x0, y0))
+10. Q[x0, y0](material.composition = "metal" ∧ structure.type = "building" ∧ construction.method = "prefabrication" ∧ component.material = "plastic" ∧ feature.color = "red" → violate(x0, y0))
+11. Q[x0, y0](feature.color = "blue" ∧ item.weight = "10kg" ∧ item.dimensions = "3x3x3m" ∧ design.style = "vintage" ∧ product.category = "furniture" → violate(x0, y0))
+12. Q[x0, y0](material.composition = "wood" ∧ structure.type = "bridge" ∧ construction.method = "traditional" ∧ component.material = "glass" ∧ item.weight = "5kg" ∧ item.dimensions = "2x2x2m" → violate(x0, y0))
+13. Q[x0, y0](material.composition = "metal" ∧ structure.type = "building" ∧ construction.method = "prefabrication" ∧ component.material = "plastic" ∧ feature.color = "red" ∧ product.category = "electronics" → violate(x0, y0))
+14. Q[x0, y0](feature.color = "blue" ∧ item.weight = "10kg" ∧ item.dimensions = "3x3x3m" ∧ design.style = "modern" ∧ construction.method = "traditional" ∧ product.category = "furniture" → violate(x0, y0))
+15. Q[x0, y0](material.composition = "wood" ∧ structure.type = "bridge" ∧ construction.method = "traditional" ∧ component.material = "glass" ∧ item.weight = "5kg" ∧ item.dimensions = "2x2x2m" → violate(x0, y0))
+16. Q[x0, y0](material.composition = "metal" ∧ structure.type = "building" ∧ construction.method = "prefabrication" ∧ component.material = "plastic" ∧ feature.color = "red" ∧ item.weight = "10kg" → violate(x0, y0))
+17. Q[x0, y0](feature.color = "blue" ∧ item.weight = "10kg" ∧ item.dimensions = "3x3x3m" ∧ design.style = "vintage" ∧ construction.method = "traditional" ∧ product.category = "electronics" → violate(x0, y0))
+18. Q[x0, y0](material.composition = "wood" ∧ structure.type = "bridge" ∧ construction.method = "traditional" ∧ component.material = "glass" ∧ item.weight = "5kg" ∧ item.dimensions = "2x2x2m" → violate(x0, y0))
+19. Q[x0, y0](material.composition = "metal" ∧ structure.type = "building" ∧ construction.method = "prefabrication" ∧ component.material = "plastic" ∧ feature.color = "red" ∧ item.weight = "10kg" → violate(x0, y0))
+20. Q[x0, y0](feature.color = "blue" ∧ item.weight = "10kg" ∧ item.dimensions = "3x3x3m" ∧ design.style = "modern" ∧ construction.method = "traditional" ∧ product.category = "furniture" → violate(x0, y0))
+21. Q[x0, y0](material.composition = "wood" ∧ structure.type = "bridge" ∧ construction.method = "traditional" ∧ component.material = "glass" ∧ item.weight = "5kg" ∧ item.dimensions = "2x2x2m" → violate(x0, y0))
+22. Q[x0, y0](material.composition = "metal" ∧ structure.type = "building" ∧ construction.method = "prefabrication" ∧ component.material = "plastic" ∧ feature.color = "red" ∧ item.weight = "10kg" → violate(x0, y0))
+23. Q[x0, y0](feature.color = "blue" ∧ item.weight = "10kg" ∧ item.dimensions = "3x3x3m" ∧ design.style = "vintage" ∧ construction.method = "traditional" ∧ product.category = "electronics" → violate(x0, y0))
+24. Q[x0, y0](material.composition = "wood" ∧ structure.type = "bridge" ∧ construction.method = "traditional" ∧ component.material = "glass" ∧ item.weight = "5kg" ∧ item.dimensions = "2x2x2m" → violate(x0, y0))
+25. Q[x0, y0](material.composition = "metal" ∧ structure.type = "building" ∧ construction.method = "prefabrication" ∧ component.material = "plastic" ∧ feature.color = "red" ∧ item.weight = "10kg" → violate(x0, y0))
+26. Q[x0

@@ -1,0 +1,123 @@
+Predicates:
+1. "John".action = "naughty"
+2. "John".feelings = "bad"
+3. "Jack".favorite_team_color = "blue and white"
+4. "Jack".doc_index = "121"
+5. "Timmy".source_id = "Index_68"
+6. "Timmy".intention = "return for more"
+7. "Timmy".feedback = "positive"
+8. "John".source_id = "Index_102"
+9. "John".meal_type = "breakfast"
+10. "John".doc_index = "69"
+11. "John".cooked = "ground beef"
+12. "John".gave = "Emily her pacifier"
+13. "John".painted = "Jack's bedroom purple"
+14. "Jack".doc_index = "111"
+15. "Timmy".bought = "ground beef"
+16. "Timmy".thought = "buying chicken"
+17. "Timmy".thought = "buying sausage"
+18. "Timmy".thought = "buying turkey"
+19. "Timmy".wanted = "friends to try his grandfather's meat soup"
+20. "John".hated = "the bus"
+21. "John".reason = "the bus was always loud"
+22. "John".source_domain = "N/A"
+23. "Jack".source_domain = "N/A"
+24. "Timmy".source_domain = "N/A"
+25. "John".soup_color = "blue"
+26. "meat soup".origin = "John's recipe"
+27. "bedroom".color = "purple"
+28. "wings".status = "absent"
+29. "John".action = "painted"
+30. "John".action = "cooked"
+31. "John".action = "gave"
+32. "John".action = "hated"
+33. "John".action = "naughty"
+34. "John".action = "washed hands"
+35. "John".meal_type = "breakfast"
+36. "Jack".did_not_want = "bedroom to be purple"
+37. "Jack".liked = "his bedroom colors"
+38. "Timmy".cooked = "meat soup"
+39. "Timmy".cooked = "ground beef"
+40. "John".sat_down = "to a hot plate of bacon"
+41. "John".sat_down = "to a hot plate of eggs"
+42. "John".sat_down = "to a hot plate of pancakes"
+43. "John".added = "ground beef to the soup"
+44. "John".cooked = "ground beef"
+45. "John".gave = "Emily her pacifier"
+46. "John".hated = "the bus"
+47. "John".reason = "he was quiet"
+48. "Timmy".loved = "John's cooking"
+49. "Timmy".feedback = "positive"
+50. "Timmy".intention = "return for more"
+51. M_NLI("John sat down to a hot plate of bacon", "John sat down to a hot plate of eggs")
+52. M_NLI("Jack did not want his bedroom to be purple", "Jack liked his bedroom colors")
+53. T("John hated the bus", "John loved the bus", tau)
+54. tau("John's naughty actions hurt Jack's feelings", "John's actions made Jack happy")
+55. violate("John's actions", "Jack's feelings")
+56. Factual("John sat down to a hot plate of bacon", "John sat down to a hot plate of pancakes")
+57. Causal("John cooked the ground beef", "John added the ground beef to the soup")
+58. Numeric("Timmy bought ground beef", "Timmy thought of buying chicken")
+59. Temporal("Jack did not want his bedroom to be purple", "Jack painted his bedroom purple")
+60. Relation("John painted Jack's bedroom purple", "Jack liked his bedroom colors")
+61. Negation("John hated the bus", "John did not hate the bus")
+62. Factual("John's actions hurt Jack's feelings", "John's actions made Jack happy")
+63. Causal("John washed his hands", "John sat down to eat")
+64. Numeric("John sat down to a hot plate of bacon", "John sat down to a hot plate of eggs")
+65. Temporal("Timmy wanted his friends to try his grandfather's meat soup", "Timmy's friends did not try the soup")
+66. Relation("Jack is an evil dragon", "Jack is a friendly dragon")
+67. violate("Jack's feelings", "John's actions")
+68. Factual("John's cooking was loved", "John's cooking was disliked")
+69. Causal("John painted Jack's bedroom purple", "Jack liked the color purple")
+70. Numeric("John sat down to a hot plate of pancakes", "John sat down to a hot plate of 5 pancakes")
+71. Temporal("Timmy bought ground beef", "Timmy bought chicken later")
+72. Relation("Jack is an evil dragon", "Jack is a kind dragon")
+73. Negation("John's actions hurt Jack's feelings", "John's actions did not hurt Jack's feelings")
+74. Factual("John's cooking was loved", "John's cooking was ignored")
+75. Causal("John cooked the ground beef", "John did not cook the ground beef")
+76. Numeric("John sat down to a hot plate of bacon", "John sat down to a hot plate of 2 eggs")
+77. Temporal("Jack did not want his bedroom to be purple", "Jack painted his bedroom purple last week")
+78. Relation("John's actions hurt Jack's feelings", "John's actions helped Jack feel better")
+79. violate("John's cooking", "Timmy's feedback")
+80. Factual("Jack liked his bedroom colors", "Jack hated his bedroom colors")
+81. Causal("John washed his hands", "John got sick")
+82. Numeric("Timmy bought ground beef", "Timmy bought 10 pounds of ground beef")
+83. Temporal("John sat down to a hot plate of bacon", "John sat down to a hot plate of eggs next week")
+84. Relation("Jack is an evil dragon", "Jack is a heroic dragon")
+85. Negation("John's actions made Jack happy", "John's actions did not make Jack happy")
+86. Factual("Timmy loved John's cooking", "Timmy disliked John's cooking")
+87. Causal("John painted Jack's bedroom purple", "Jack loved the color purple")
+88. Numeric("John sat down to a hot plate of pancakes", "John sat down to a hot plate of 3 pancakes")
+89. Temporal("Timmy wanted his friends to try his grandfather's meat soup", "Timmy's friends tried the soup yesterday")
+90. Relation("John's actions hurt Jack's feelings", "John's actions made Jack feel good")
+91. violate("John's cooking", "Timmy's intention")
+92. Factual("Jack did not want his bedroom to be purple", "Jack painted his bedroom purple")
+93. Causal("John
+violate(x0, y0)
+
+Rules:
+1. Q["John", "Jack"](John.action = "naughty" ∧ John.feelings = "bad" → violate("John's actions", "Jack's feelings"))
+2. Q["Timmy", "John"](Timmy.source_id = "Index_68" ∧ Timmy.intention = "return for more" → violate("Timmy's intention", "John's cooking"))
+3. Q["Jack", "John"](Jack.favorite_team_color = "blue and white" ∧ Jack.doc_index = "111" ∧ John.hated = "the bus" → violate("Jack's feelings", "John's actions"))
+4. Q["Timmy", "Jack"](Timmy.feedback = "positive" ∧ Timmy.cooked = "meat soup" ∧ Jack.did_not_want = "bedroom to be purple" → violate("Timmy's feedback", "Jack's preferences"))
+5. Q["John", "Timmy"](John.source_id = "Index_102" ∧ John.cooked = "ground beef" ∧ John.gave = "Emily her pacifier" ∧ Timmy.loved = "John's cooking" → violate("John's cooking", "Timmy's feedback"))
+6. Q["Jack", "Timmy"](Jack.doc_index = "111" ∧ Jack.liked = "his bedroom colors" ∧ Timmy.thought = "buying chicken" ∧ Timmy.bought = "ground beef" → violate("Jack's preferences", "Timmy's actions"))
+7. Q["John", "Jack"](John.action = "painted" ∧ John.soup_color = "blue" → violate("John's actions", "Jack's feelings"))
+8. Q["Timmy", "John"](Timmy.intention = "return for more" ∧ Timmy.feedback = "positive" ∧ John.hated = "the bus" → violate("Timmy's intention", "John's feelings"))
+9. Q["Jack", "Timmy"](Jack.favorite_team_color = "blue and white" ∧ Jack.did_not_want = "bedroom to be purple" ∧ Timmy.cooked = "ground beef" → violate("Jack's preferences", "Timmy's actions"))
+10. Q["John", "Timmy"](John.action = "naughty" ∧ John.reason = "the bus was always loud" ∧ Timmy.loved = "John's cooking" → violate("John's actions", "Timmy's feelings"))
+11. Q["Timmy", "Jack"](Timmy.source_id = "Index_68" ∧ Timmy.feedback = "positive" ∧ Jack.liked = "his bedroom colors" ∧ Jack.did_not_want = "bedroom to be purple" → violate("Timmy's feedback", "Jack's preferences"))
+12. Q["John", "Jack"](John.action = "gave" ∧ John.hated = "the bus" ∧ Jack.favorite_team_color = "blue and white" ∧ Jack.doc_index = "111" → violate("John's actions", "Jack's feelings"))
+13. Q["Timmy", "John"](Timmy.intention = "return for more" ∧ Timmy.cooked = "meat soup" ∧ John.action = "cooked" ∧ John.hated = "the bus" → violate("Timmy's intention", "John's feelings"))
+14. Q["Jack", "Timmy"](Jack.favorite_team_color = "blue and white" ∧ Jack.doc_index = "111" ∧ Timmy.bought = "ground beef" ∧ Timmy.thought = "buying sausage" → violate("Jack's preferences", "Timmy's actions"))
+15. Q["John", "Timmy"](John.action = "painted" ∧ John.soup_color = "blue" ∧ Timmy.feedback = "positive" ∧ Timmy.intention = "return for more" → violate("John's actions", "Timmy's feelings"))
+16. Q["Timmy", "Jack"](Timmy.source_id = "Index_68" ∧ Timmy.feedback = "positive" ∧ Jack.did_not_want = "bedroom to be purple" ∧ Jack.liked = "his bedroom colors" → violate("Timmy's feedback", "Jack's preferences"))
+17. Q["John", "Jack"](John.action = "naughty" ∧ John.reason = "the bus was always loud" ∧ Jack.favorite_team_color = "blue and white" ∧ Jack.doc_index = "111" → violate("John's actions", "Jack's feelings"))
+18. Q["Timmy", "John"](Timmy.intention = "return for more" ∧ Timmy.cooked = "meat soup" ∧ John.hated = "the bus" ∧ John.action = "gave" → violate("Timmy's intention", "John's feelings"))
+19. Q["Jack", "Timmy"](Jack.favorite_team_color = "blue and white" ∧ Jack.did_not_want = "bedroom to be purple" ∧ Timmy.bought = "ground beef" ∧ Timmy.thought = "buying turkey" → violate("Jack's preferences", "Timmy's actions"))
+20. Q["John", "Timmy"](John.action = "painted" ∧ John.soup_color = "blue" ∧ Timmy.feedback = "positive" ∧ Timmy.intention = "return for more" → violate("John's actions", "Timmy's feelings"))
+21. Q["Timmy", "Jack"](Timmy.source_id = "Index_68" ∧ Timmy.feedback = "positive" ∧ Jack.liked = "his bedroom colors" ∧ Jack.favorite_team_color = "blue and white" → violate("Timmy's feedback", "Jack's preferences"))
+22. Q["John", "Jack"](John.action = "gave" ∧ John.hated = "the bus" ∧ Jack.favorite_team_color = "blue and white" ∧ Jack.doc_index = "111" → violate("John's actions", "Jack's feelings"))
+23. Q["Timmy", "John"](Timmy.intention = "return for more" ∧ Timmy.cooked = "meat soup" ∧ John.action = "cooked" ∧ John.hated = "the bus" → violate("Timmy's intention", "John's feelings"))
+24. Q["Jack", "Timmy"](Jack.favorite_team_color = "blue and white" ∧ Jack.did_not_want = "bedroom to be purple" ∧ Timmy.bought = "ground beef" ∧ Timmy.thought = "buying sausage" → violate("Jack's preferences", "Timmy's actions"))
+25. Q["John", "Timmy"](John.action = "naughty" ∧ John.reason = "the bus was always loud" ∧ Timmy.feedback = "positive" ∧ Timmy.intention = "return for more" → violate("John's actions", "Timmy's feelings"))
+26. Q["Timmy", "Jack"](Timmy.source_id = "Index

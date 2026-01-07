@@ -1,0 +1,62 @@
+Source: dense_text.txt (Index 79)
+S1: T h e D e p a r t m e n t o f h e a l t h h a s m a d e a w a r e o f t h e p r o p e r t y l o c a t e d a t B e a r C r e e k i s u n d e r i n v e s t i g a t i o n b y t h e N C D i v i s i o n o f p a r a w a s t e m a n a g e m e n t i l l e g a l d o w n l o a d i n g d a n g e r o u s c h e m i c a l m a t e r i a l s .
+S2: H a z a r d o u s c h e m i c a l m a t e r i a l s h a v e b e e n d i s c o v e r e d a t B e a r C r e e k .
+
+Predicates:
+1. Department_of_health.investigation_status
+2. Bear_Creek.property_location
+3. NCDivision_of_parawaste_management.illegal_downloading
+4. hazardous_chemical_materials.discovered_at_Bear_Creek
+5. investigation.ongoing
+6. hazardous_chemical_materials.completed_action
+7. Department_of_health.awareness_made
+8. NCDivision_of_parawaste_management.investigating
+9. Bear_Creek.under_investigation
+10. hazardous_chemical_materials.dangerous
+11. illegal_downloading.hazardous_materials
+12. investigation.involves_hazardous_materials
+13. Department_of_health.property_investigation
+14. NCDivision_of_parawaste_management.property_location
+15. hazardous_chemical_materials.identified
+16. Bear_Creek.investigation_status
+17. Department_of_health.property_status
+18. NCDivision_of_parawaste_management.hazardous_materials
+19. investigation.reveals_hazardous_materials
+20. hazardous_chemical_materials.risk_assessment
+21. illegal_downloading.chemical_materials
+22. Bear_Creek.hazardous_materials_found
+23. investigation.findings.hazardous_materials
+24. Department_of_health.investigation_outcome
+25. NCDivision_of_parawaste_management.findings
+26. hazardous_chemical_materials.environmental_risk
+27. investigation.conclusion.hazardous_materials
+28. illegal_downloading.impact_on_environment
+29. Bear_Creek.investigation_findings
+30. Department_of_health.hazardous_materials_report
+
+Rules:
+1. Q[Department_of_health, investigation.ongoing, hazardous_chemical_materials.completed_action](Department_of_health.investigation_status == "ongoing" → Causal(investigation.ongoing, hazardous_chemical_materials.completed_action))
+2. Q[NCDivision_of_parawaste_management, investigation.ongoing, hazardous_chemical_materials.completed_action](NCDivision_of_parawaste_management.investigating == true → Causal(investigation.ongoing, hazardous_chemical_materials.completed_action))
+3. Q[Bear_Creek, Bear_Creek.under_investigation, hazardous_chemical_materials.discovered_at_Bear_Creek](Bear_Creek.under_investigation == true → Causal(Bear_Creek.under_investigation, hazardous_chemical_materials.discovered_at_Bear_Creek))
+4. Q[Department_of_health, Department_of_health.awareness_made, hazardous_chemical_materials.identified](Department_of_health.awareness_made == true → Causal(Department_of_health.awareness_made, hazardous_chemical_materials.identified))
+5. Q[NCDivision_of_parawaste_management, illegal_downloading.hazardous_materials, hazardous_chemical_materials.dangerous](NCDivision_of_parawaste_management.illegal_downloading == true → Causal(illegal_downloading.hazardous_materials, hazardous_chemical_materials.dangerous))
+6. Q[Bear_Creek, hazardous_chemical_materials.risk_assessment, hazardous_chemical_materials.dangerous](Bear_Creek.hazardous_materials_found == true → Causal(hazardous_chemical_materials.risk_assessment, hazardous_chemical_materials.dangerous))
+7. Q[Department_of_health, Department_of_health.property_investigation, hazardous_chemical_materials.identified](Department_of_health.property_investigation == true → Causal(Department_of_health.property_investigation, hazardous_chemical_materials.identified))
+8. Q[NCDivision_of_parawaste_management, investigation.reveals_hazardous_materials, hazardous_chemical_materials.discovered_at_Bear_Creek](NCDivision_of_parawaste_management.hazardous_materials == true → Causal(investigation.reveals_hazardous_materials, hazardous_chemical_materials.discovered_at_Bear_Creek))
+9. Q[Bear_Creek, investigation.findings.hazardous_materials, hazardous_chemical_materials.completed_action](Bear_Creek.investigation_findings == true → Causal(investigation.findings.hazardous_materials, hazardous_chemical_materials.completed_action))
+10. Q[Department_of_health, Department_of_health.hazardous_materials_report, hazardous_chemical_materials.identified](Department_of_health.hazardous_materials_report == true → Causal(Department_of_health.hazardous_materials_report, hazardous_chemical_materials.identified))
+11. Q[NCDivision_of_parawaste_management, investigation.conclusion.hazardous_materials, hazardous_chemical_materials.dangerous](NCDivision_of_parawaste_management.findings == true → Causal(investigation.conclusion.hazardous_materials, hazardous_chemical_materials.dangerous))
+12. Q[Bear_Creek, hazardous_chemical_materials.environmental_risk, hazardous_chemical_materials.dangerous](Bear_Creek.hazardous_materials_found == true → Causal(hazardous_chemical_materials.environmental_risk, hazardous_chemical_materials.dangerous))
+13. Q[Department_of_health, Department_of_health.property_status, hazardous_chemical_materials.identified](Department_of_health.property_status == "under investigation" → Causal(Department_of_health.property_status, hazardous_chemical_materials.identified))
+14. Q[NCDivision_of_parawaste_management, illegal_downloading.impact_on_environment, hazardous_chemical_materials.dangerous](NCDivision_of_parawaste_management.illegal_downloading == true → Causal(illegal_downloading.impact_on_environment, hazardous_chemical_materials.dangerous))
+15. Q[Bear_Creek, investigation.ongoing, hazardous_chemical_materials.identified](Bear_Creek.under_investigation == true → Causal(investigation.ongoing, hazardous_chemical_materials.identified))
+16. Q[Department_of_health, Department_of_health.awareness_made, investigation.ongoing](Department_of_health.awareness_made == true → Causal(Department_of_health.awareness_made, investigation.ongoing))
+17. Q[NCDivision_of_parawaste_management, investigation.involves_hazardous_materials, hazardous_chemical_materials.discovered_at_Bear_Creek](NCDivision_of_parawaste_management.hazardous_materials == true → Causal(investigation.involves_hazardous_materials, hazardous_chemical_materials.discovered_at_Bear_Creek))
+18. Q[Bear_Creek, hazardous_chemical_materials.risk_assessment, investigation.ongoing](Bear_Creek.hazardous_materials_found == true → Causal(hazardous_chemical_materials.risk_assessment, investigation.ongoing))
+19. Q[Department_of_health, Department_of_health.property_investigation, investigation.reveals_hazardous_materials](Department_of_health.property_investigation == true → Causal(Department_of_health.property_investigation, investigation.reveals_hazardous_materials))
+20. Q[NCDivision_of_parawaste_management, investigation.findings.hazardous_materials, hazardous_chemical_materials.completed_action](NCDivision_of_parawaste_management.findings == true → Causal(investigation.findings.hazardous_materials, hazardous_chemical_materials.completed_action))
+21. Q[Bear_Creek, hazardous_chemical_materials.identified, investigation.conclusion.hazardous_materials](Bear_Creek.hazardous_materials_found == true → Causal(hazardous_chemical_materials.identified, investigation.conclusion.hazardous_materials))
+22. Q[Department_of_health, Department_of_health.hazardous_materials_report, investigation.ongoing](Department_of_health.hazardous_materials_report == true → Causal(Department_of_health.hazardous_materials_report, investigation.ongoing))
+23. Q[NCDivision_of_parawaste_management, illegal_downloading.hazardous_materials, investigation.involves_hazardous_materials](NCDivision_of_parawaste_management.illegal_downloading == true → Causal(illegal_downloading.hazardous_materials, investigation.involves_hazardous_materials))
+24. Q[Bear_Creek, investigation.findings.hazardous_materials, hazardous_chemical_materials.dangerous](Bear_Creek.investigation_findings == true → Causal(investigation.findings.hazardous_materials, hazardous_chemical_materials.dangerous))
+25. Q[Department_of_health, Department_of_health.property_status, hazardous_chemical_materials.dangerous](Department_of_health.property_status == "under investigation" → Causal(Department_of_health.property_status

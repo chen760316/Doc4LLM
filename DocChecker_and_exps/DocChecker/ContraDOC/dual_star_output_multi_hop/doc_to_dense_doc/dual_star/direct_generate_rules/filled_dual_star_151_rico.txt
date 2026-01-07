@@ -1,0 +1,42 @@
+Predicates:
+None_ML(UVA situation.attrs, the government.attrs)
+None_ML(the government___the fraternity.attrs, the government___UVA situation.attrs)
+UVA situation.label != "Defamation Case"
+UVA situation.label = "Defamation Case"
+UVA situation.name != "UVA situation"
+UVA situation.name = "UVA situation"
+the fraternity.label != "Fraternity"
+the fraternity.label != UVA situation.label
+the fraternity.label = "Fraternity"
+the fraternity.name != "the fraternity"
+the fraternity.name != UVA situation.name
+the fraternity.name = "the fraternity"
+the government.label != "Government"
+the government.label != UVA situation.label
+the government.label != the fraternity.label
+the government.label = "Government"
+the government.name != "the government"
+the government.name != UVA situation.name
+the government.name != the fraternity.name
+the government.name = "the government"
+the government___UVA situation.contradiction_type = "Causal"
+the government___UVA situation.relationship = "The government cannot sue for defamation in the context of the UVA situation."
+the government___UVA situation.source_id = "3489825751_3"
+the government___the fraternity.contradiction_type != the government___UVA situation.contradiction_type
+the government___the fraternity.contradiction_type = "Relation"
+the government___the fraternity.relationship != the government___UVA situation.relationship
+the government___the fraternity.relationship = "The government cannot sue for defamation against the fraternity."
+the government___the fraternity.source_id != the government___UVA situation.source_id
+the government___the fraternity.source_id = "3489825751_5"
+
+Rules:
+Q[the government,the government] (the government.name != "the government" ∧ the fraternity.label = "Fraternity" ∧ the government___the fraternity.relationship = "The government cannot sue for defamation against the fraternity." ∧ the government___the fraternity.contradiction_type = "Relation" ∧ None_ML(UVA situation.attrs, the government.attrs) → UVA situation.label = "Defamation Case")
+Q[the government,the government] (None_ML(the government___the fraternity.attrs, the government___UVA situation.attrs) ∧ the government.name != UVA situation.name → the fraternity.name = "the fraternity")
+Q[the government,the government] (the government___the fraternity.source_id = "3489825751_5" ∧ the government___the fraternity.relationship = "The government cannot sue for defamation against the fraternity." ∧ the government.name = "the government" ∧ the government___UVA situation.contradiction_type = "Causal" ∧ the government___the fraternity.source_id != the government___UVA situation.source_id ∧ None_ML(the government___the fraternity.attrs, the government___UVA situation.attrs) → None_ML(UVA situation.attrs, the government.attrs))
+Q[the government,the government] (the fraternity.name != "the fraternity" ∧ the government.label != UVA situation.label ∧ the fraternity.label = "Fraternity" → the government___the fraternity.relationship != the government___UVA situation.relationship)
+Q[the government,the government] (the government___the fraternity.source_id != the government___UVA situation.source_id ∧ the government___UVA situation.relationship = "The government cannot sue for defamation in the context of the UVA situation." ∧ the fraternity.name != "the fraternity" ∧ the government___the fraternity.relationship != the government___UVA situation.relationship → the government.label != the fraternity.label)
+Q[the government,the government] (UVA situation.name != "UVA situation" ∧ the fraternity.name = "the fraternity" ∧ the government___UVA situation.contradiction_type = "Causal" → UVA situation.label != "Defamation Case")
+Q[the government,the government] (the fraternity.label != UVA situation.label ∧ UVA situation.name != "UVA situation" ∧ the fraternity.name != "the fraternity" ∧ the fraternity.label != "Fraternity" ∧ the fraternity.name = "the fraternity" → None_ML(the government___the fraternity.attrs, the government___UVA situation.attrs))
+Q[the government,the government] (the government.name != the fraternity.name ∧ the government___the fraternity.contradiction_type = "Relation" → the fraternity.label != "Fraternity")
+Q[the government,the government] (UVA situation.name != "UVA situation" ∧ the government.label = "Government" ∧ the government___the fraternity.source_id != the government___UVA situation.source_id ∧ the government.label != "Government" → the government___UVA situation.source_id = "3489825751_3")
+Q[the government,the government] (None_ML(UVA situation.attrs, the government.attrs) ∧ the government.name != "the government" ∧ the government.name != the fraternity.name ∧ the government___the fraternity.contradiction_type = "Relation" ∧ the fraternity.name != "the fraternity" ∧ the fraternity.name != UVA situation.name → the government___UVA situation.contradiction_type = "Causal")

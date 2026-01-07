@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 1057)
+S1: People are holding umbrellas.
+S2: People are holding umbrellas in the pouring rain.
+
+Predicates:
+1. People.holding_umbrellas
+2. People.holding_umbrellas.in_pouring_rain
+3. M_NLI(People.holding_umbrellas, People.holding_umbrellas.in_pouring_rain)
+4. Negation(People.holding_umbrellas, People.not_holding_umbrellas)
+5. violate(People.holding_umbrellas, People.not_holding_umbrellas)
+6. Rain.is_pouring
+7. Rain.is_not_pouring
+8. M_NLI(Rain.is_pouring, Rain.is_not_pouring)
+9. People.need_umbrellas
+10. People.do_not_need_umbrellas
+11. M_NLI(People.need_umbrellas, People.do_not_need_umbrellas)
+12. Umbrellas.protect_from_rain
+13. Umbrellas.do_not_protect_from_rain
+14. M_NLI(Umbrellas.protect_from_rain, Umbrellas.do_not_protect_from_rain)
+15. Weather.is_bad
+16. Weather.is_good
+17. M_NLI(Weather.is_bad, Weather.is_good)
+18. People.are_wet
+19. People.are_dry
+20. M_NLI(People.are_wet, People.are_dry)
+21. Umbrellas.are_open
+22. Umbrellas.are_closed
+23. M_NLI(Umbrellas.are_open, Umbrellas.are_closed)
+24. Rain.is_falling
+25. Rain.is_not_falling
+26. M_NLI(Rain.is_falling, Rain.is_not_falling)
+27. People.seek_shelter
+28. People.do_not_seek_shelter
+29. M_NLI(People.seek_shelter, People.do_not_seek_shelter)
+30. Umbrellas.provide_cover
+
+Rules:
+1. Q[People, People.holding_umbrellas == true](People.holding_umbrellas → Negation(People.holding_umbrellas, People.holding_umbrellas.in_pouring_rain))
+2. Q[People, People.holding_umbrellas.in_pouring_rain == true](People.holding_umbrellas.in_pouring_rain → Negation(People.holding_umbrellas, People.do_not_need_umbrellas))
+3. Q[People, People.holding_umbrellas == true](People.holding_umbrellas → Negation(People.holding_umbrellas.in_pouring_rain, People.do_not_need_umbrellas))
+4. Q[People, People.need_umbrellas == true](People.need_umbrellas → Negation(People.holding_umbrellas, People.do_not_need_umbrellas))
+5. Q[People, Rain.is_pouring == true](Rain.is_pouring → Negation(People.holding_umbrellas, People.do_not_need_umbrellas))
+6. Q[People, Rain.is_not_pouring == true](Rain.is_not_pouring → Negation(People.holding_umbrellas.in_pouring_rain, People.holding_umbrellas))
+7. Q[People, People.are_wet == true](People.are_wet → Negation(People.holding_umbrellas, People.do_not_need_umbrellas))
+8. Q[People, People.do_not_seek_shelter == true](People.do_not_seek_shelter → Negation(People.holding_umbrellas.in_pouring_rain, People.holding_umbrellas))
+9. Q[People, Umbrellas.protect_from_rain == true](Umbrellas.protect_from_rain → Negation(People.holding_umbrellas, People.do_not_need_umbrellas))
+10. Q[People, Weather.is_bad == true](Weather.is_bad → Negation(People.holding_umbrellas, People.do_not_need_umbrellas))
+11. Q[People, People.are_dry == true](People.are_dry → Negation(People.holding_umbrellas.in_pouring_rain, People.holding_umbrellas))
+12. Q[People, Umbrellas.are_open == true](Umbrellas.are_open → Negation(People.holding_umbrellas, People.do_not_need_umbrellas))
+13. Q[People, People.seek_shelter == true](People.seek_shelter → Negation(People.holding_umbrellas.in_pouring_rain, People.holding_umbrellas))
+14. Q[People, Rain.is_falling == true](Rain.is_falling → Negation(People.holding_umbrellas, People.do_not_need_umbrellas))
+15. Q[People, People.holding_umbrellas == true](People.holding_umbrellas → Negation(People.holding_umbrellas.in_pouring_rain, People.do_not_need_umbrellas))
+16. Q[People, People.are_wet == true](People.are_wet → Negation(People.holding_umbrellas.in_pouring_rain, People.holding_umbrellas))
+17. Q[People, Rain.is_not_falling == true](Rain.is_not_falling → Negation(People.holding_umbrellas.in_pouring_rain, People.holding_umbrellas))
+18. Q[People, Weather.is_good == true](Weather.is_good → Negation(People.holding_umbrellas.in_pouring_rain, People.holding_umbrellas))
+19. Q[People, People.do_not_need_umbrellas == true](People.do_not_need_umbrellas → Negation(People.holding_umbrellas.in_pouring_rain, People.holding_umbrellas))
+20. Q[People, Umbrellas.do_not_protect_from_rain == true](Umbrellas.do_not_protect_from_rain → Negation(People.holding_umbrellas, People.holding_umbrellas.in_pouring_rain))
+21. Q[People, People.holding_umbrellas.in_pouring_rain == true](People.holding_umbrellas.in_pouring_rain → Negation(People.holding_umbrellas, People.do_not_need_umbrellas))
+22. Q[People, People.holding_umbrellas == true](People.holding_umbrellas → Negation(People.holding_umbrellas.in_pouring_rain, People.do_not_need_umbrellas))
+23. Q[People, People.need_umbrellas == true](People.need_umbrellas → Negation(People.holding_umbrellas, People.do_not_need_umbrellas))
+24. Q[People, People.holding_umbrellas == true](People.holding_umbrellas → Negation(People.holding_umbrellas.in_pouring_rain, People.do_not_need_umbrellas))
+25. Q[People, Rain.is_pouring == true](Rain.is_pouring → Negation(People.holding_umbrellas, People.do_not_need_umbrellas))
+26. Q[People, People.holding_umbrellas.in_pouring_rain == true](People.holding_umbrellas.in_pouring_rain → Negation(People.holding_umbrellas, People.do_not_need_umbrellas))
+27. Q[People, People.are_dry == true](People.are_dry → Negation(People.holding_umbrellas.in_pouring_rain, People.holding_umbrellas))
+28. Q[People, People.seek_shelter == true](People.seek_shelter → Negation(People.holding_umbrellas.in_pouring_rain, People.holding_umbrellas))
+29. Q[People, Umbrellas.protect_from_rain == true](Umbrellas.protect_from_rain → Negation(People.holding_umbrellas, People.do_not_need_umbrellas))
+30. Q[People, Weather.is_bad == true](Weather.is_bad → Negation(People.holding_umbrellas, People.do_not_need_umbrellas))

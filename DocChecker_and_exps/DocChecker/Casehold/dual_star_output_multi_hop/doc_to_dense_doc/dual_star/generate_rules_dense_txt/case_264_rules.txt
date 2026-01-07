@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 264)
+S1: We need go no further.
+S2: In accordance with the foregoing, we vacate the dismissal of the action on the merits and remand for the entry of an order dismissing the action, without prejudice, for want of subject-matter jurisdiction.
+
+Predicates:
+1. Action.need_no_further_action
+2. Action.vacate_dismissal
+3. Action.remand_entry_order
+4. Action.dismiss_action
+5. Action.dismiss_without_prejudice
+6. Action.want_subject_matter_jurisdiction
+7. Sentence.suggests_no_further_action
+8. Sentence.indicates_further_action
+9. Jurisdiction.subject_matter_jurisdiction
+10. Dismissal.dismissal_on_merits
+11. Dismissal.vacate_dismissal
+12. Order.entry_order
+13. Action.vacate_for_want_of_jurisdiction
+14. Action.remand_for_entry_order
+15. Action.dismiss_for_want_of_jurisdiction
+16. Sentence.foregoing_indicates_action
+17. Sentence.first_sentence_suggests
+18. Sentence.second_sentence_indicates
+19. Action.vacate_and_remand
+20. Action.dismissal_without_prejudice
+21. Action.no_further_action_necessary
+22. Action.vacate_dismissal_on_merits
+23. Action.remand_for_dismissal
+24. Action.dismissal_for_subject_matter_jurisdiction
+25. Sentence.first_sentence_affirms
+26. Sentence.second_sentence_confirms
+27. Action.vacate_and_dismiss
+28. Action.remand_for_subject_matter_jurisdiction
+29. Action.indicates_further_proceedings
+30. Action.vacate_and_remand_action
+
+Rules:
+1. Q[need, Action.need_no_further_action == true → Causal(Action.need_no_further_action, Action.vacate_dismissal)]
+2. Q[need, Sentence.suggests_no_further_action == true → Causal(Sentence.suggests_no_further_action, Action.vacate_dismissal)]
+3. Q[need, Sentence.first_sentence_suggests == true → Causal(Sentence.first_sentence_suggests, Action.vacate_dismissal)]
+4. Q[need, Action.vacate_dismissal == true → Causal(Action.vacate_dismissal, Action.remand_entry_order)]
+5. Q[need, Action.remand_entry_order == true → Causal(Action.remand_entry_order, Action.dismiss_action)]
+6. Q[need, Action.dismiss_action == true → Causal(Action.dismiss_action, Action.dismiss_without_prejudice)]
+7. Q[need, Action.dismiss_without_prejudice == true → Causal(Action.dismiss_without_prejudice, Action.want_subject_matter_jurisdiction)]
+8. Q[need, Jurisdiction.subject_matter_jurisdiction == false → Causal(Jurisdiction.subject_matter_jurisdiction, Action.dismiss_for_want_of_jurisdiction)]
+9. Q[need, Dismissal.dismissal_on_merits == true → Causal(Dismissal.dismissal_on_merits, Action.vacate_dismissal)]
+10. Q[need, Action.vacate_for_want_of_jurisdiction == true → Causal(Action.vacate_for_want_of_jurisdiction, Action.remand_for_entry_order)]
+11. Q[need, Action.remand_for_entry_order == true → Causal(Action.remand_for_entry_order, Action.dismissal_without_prejudice)]
+12. Q[need, Sentence.second_sentence_indicates == true → Causal(Sentence.second_sentence_indicates, Action.vacate_and_remand)]
+13. Q[need, Action.vacate_and_remand == true → Causal(Action.vacate_and_remand, Action.dismissal_for_subject_matter_jurisdiction)]
+14. Q[need, Action.dismissal_for_subject_matter_jurisdiction == true → Causal(Action.dismissal_for_subject_matter_jurisdiction, Action.vacate_dismissal_on_merits)]
+15. Q[need, Action.vacate_dismissal_on_merits == true → Causal(Action.vacate_dismissal_on_merits, Action.remand_for_dismissal)]
+16. Q[need, Action.remand_for_dismissal == true → Causal(Action.remand_for_dismissal, Action.dismiss_for_want_of_jurisdiction)]
+17. Q[need, Sentence.first_sentence_affirms == true → Causal(Sentence.first_sentence_affirms, Action.no_further_action_necessary)]
+18. Q[need, Action.no_further_action_necessary == true → Causal(Action.no_further_action_necessary, Action.vacate_and_remand)]
+19. Q[need, Action.vacate_and_remand_action == true → Causal(Action.vacate_and_remand_action, Action.dismissal_without_prejudice)]
+20. Q[need, Action.indicates_further_proceedings == true → Causal(Action.indicates_further_proceedings, Action.vacate_dismissal)]
+21. Q[need, Sentence.foregoing_indicates_action == true → Causal(Sentence.foregoing_indicates_action, Action.remand_for_subject_matter_jurisdiction)]
+22. Q[need, Action.remand_for_subject_matter_jurisdiction == true → Causal(Action.remand_for_subject_matter_jurisdiction, Action.dismiss_action)]
+23. Q[need, Action.dismiss_action == true → Causal(Action.dismiss_action, Action.vacate_and_dismiss)]
+24. Q[need, Action.vacate_and_dismiss == true → Causal(Action.vacate_and_dismiss, Action.dismiss_without_prejudice)]
+25. Q[need, Action.dismiss_without_prejudice == true → Causal(Action.dismiss_without_prejudice, Action.want_subject_matter_jurisdiction)]
+26. Q[need, Action.want_subject_matter_jurisdiction == false → Causal(Action.want_subject_matter_jurisdiction, Action.dismissal_for_subject_matter_jurisdiction)]
+27. Q[need, Dismissal.vacate_dismissal == true → Causal(Dismissal.vacate_dismissal, Action.remand_for_entry_order)]
+28. Q[need, Action.remand_for_entry_order == true → Causal(Action.remand_for_entry_order, Action.dismissal_without_prejudice)]
+29. Q[need, Action.vacate_and_remand == true → Causal(Action.vacate_and_remand, Action.dismissal_for_subject_matter_jurisdiction)]
+30. Q[need, Action.dismissal_for_subject_matter_jurisdiction == true → Causal(Action.dismissal_for_subject_matter_jurisdiction, Action.vacate_dismissal)]

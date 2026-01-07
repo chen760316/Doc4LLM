@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 937)
+S1: A bike is parked in front of the metro.
+S2: A bike by train tracks.
+
+Predicates:
+1. Bike.location.metro
+2. Bike.location.train_tracks
+3. M_NLI(S1, S2)
+4. Relation(Bike, Metro)
+5. Relation(Bike, Train_Tracks)
+6. violate(Bike, Train_Tracks)
+7. Bike.status.parked
+8. Metro.location.front
+9. Train_Tracks.location.by
+10. Bike.type.bicycle
+11. Metro.type.transportation
+12. Train_Tracks.type.infrastructure
+13. Bike.owner.user
+14. User.location.city
+15. User.activity.transportation
+16. Metro.service.available
+17. Train_Tracks.service.available
+18. Bike.condition.good
+19. Metro.accessibility.public
+20. Train_Tracks.accessibility.public
+21. Bike.usage.frequency
+22. Metro.route.number
+23. Train_Tracks.route.number
+24. Bike.color.red
+25. Metro.capacity.large
+26. Train_Tracks.capacity.medium
+27. Bike.locked.status
+28. Metro.schedule.timetable
+29. Train_Tracks.schedule.timetable
+30. Bike.maintenance.last_checked
+
+Rules:
+1. Q[bike, Bike.location.metro, Bike.location.train_tracks](Bike.location.metro == "true" → Relation(Bike, Train_Tracks))
+2. Q[bike, Bike.location.train_tracks, Bike.location.metro](Bike.location.train_tracks == "true" → Relation(Bike, Metro))
+3. Q[bike, Bike.status.parked, Bike.location.train_tracks](Bike.status.parked == "true" → violate(Bike, Train_Tracks))
+4. Q[bike, Bike.status.parked, Bike.location.metro](Bike.status.parked == "true" → Relation(Bike, Metro))
+5. Q[bike, Metro.location.front, Train_Tracks.location.by](Metro.location.front == "true" → Relation(Bike, Train_Tracks))
+6. Q[bike, Train_Tracks.location.by, Metro.location.front](Train_Tracks.location.by == "true" → Relation(Bike, Metro))
+7. Q[bike, Bike.type.bicycle, Metro.type.transportation](Bike.type.bicycle == "true" → Relation(Bike, Metro))
+8. Q[bike, Bike.type.bicycle, Train_Tracks.type.infrastructure](Bike.type.bicycle == "true" → Relation(Bike, Train_Tracks))
+9. Q[bike, Metro.accessibility.public, Train_Tracks.accessibility.public](Metro.accessibility.public == "true" → Relation(Bike, Train_Tracks))
+10. Q[bike, Train_Tracks.accessibility.public, Metro.accessibility.public](Train_Tracks.accessibility.public == "true" → Relation(Bike, Metro))
+11. Q[bike, Bike.condition.good, Metro.service.available](Bike.condition.good == "true" → Relation(Bike, Metro))
+12. Q[bike, Bike.condition.good, Train_Tracks.service.available](Bike.condition.good == "true" → Relation(Bike, Train_Tracks))
+13. Q[bike, Bike.locked.status, Metro.schedule.timetable](Bike.locked.status == "true" → Relation(Bike, Metro))
+14. Q[bike, Bike.locked.status, Train_Tracks.schedule.timetable](Bike.locked.status == "true" → Relation(Bike, Train_Tracks))
+15. Q[bike, Bike.usage.frequency, Metro.route.number](Bike.usage.frequency == "high" → Relation(Bike, Metro))
+16. Q[bike, Bike.usage.frequency, Train_Tracks.route.number](Bike.usage.frequency == "high" → Relation(Bike, Train_Tracks))
+17. Q[bike, Metro.capacity.large, Train_Tracks.capacity.medium](Metro.capacity.large == "true" → Relation(Bike, Train_Tracks))
+18. Q[bike, Train_Tracks.capacity.medium, Metro.capacity.large](Train_Tracks.capacity.medium == "true" → Relation(Bike, Metro))
+19. Q[bike, User.activity.transportation, Metro.service.available](User.activity.transportation == "true" → Relation(Bike, Metro))
+20. Q[bike, User.activity.transportation, Train_Tracks.service.available](User.activity.transportation == "true" → Relation(Bike, Train_Tracks))
+21. Q[bike, Bike.owner.user, Metro.schedule.timetable](Bike.owner.user == "true" → Relation(Bike, Metro))
+22. Q[bike, Bike.owner.user, Train_Tracks.schedule.timetable](Bike.owner.user == "true" → Relation(Bike, Train_Tracks))
+23. Q[bike, Metro.route.number, Train_Tracks.route.number](Metro.route.number == "1" → Relation(Bike, Train_Tracks))
+24. Q[bike, Train_Tracks.route.number, Metro.route.number](Train_Tracks.route.number == "1" → Relation(Bike, Metro))
+25. Q[bike, Bike.maintenance.last_checked, Metro.service.available](Bike.maintenance.last_checked == "recent" → Relation(Bike, Metro))
+26. Q[bike, Bike.maintenance.last_checked, Train_Tracks.service.available](Bike.maintenance.last_checked == "recent" → Relation(Bike, Train_Tracks))
+27. Q[bike, Metro.type.transportation, Train_Tracks.type.infrastructure](Metro.type.transportation == "true" → Relation(Bike, Train_Tracks))
+28. Q[bike, Train_Tracks.type.infrastructure, Metro.type.transportation](Train_Tracks.type.infrastructure == "true" → Relation(Bike, Metro))
+29. Q[bike, Bike.color.red, Metro.location.front](Bike.color.red == "true" → Relation(Bike, Metro))
+30. Q[bike, Bike.color.red, Train_Tracks.location.by](Bike.color.red == "true" → Relation(Bike, Train_Tracks))

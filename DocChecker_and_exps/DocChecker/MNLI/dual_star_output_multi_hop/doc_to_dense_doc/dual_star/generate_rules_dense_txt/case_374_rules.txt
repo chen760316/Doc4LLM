@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 374)
+S1: The small cities were much more corrupt than the large ones.
+S2: Sometimes the smaller ones are just as bad.
+
+Predicates:
+1. SmallCities.corruptionLevel > LargeCities.corruptionLevel
+2. SmallCities.corruptionLevel = LargeCities.corruptionLevel
+3. SmallCities.corruptionLevel < LargeCities.corruptionLevel
+4. SmallCities.corruptionLevel > Threshold
+5. LargeCities.corruptionLevel > Threshold
+6. SmallCities.corruptionLevel = Threshold
+7. LargeCities.corruptionLevel = Threshold
+8. SmallCities.corruptionLevel < Threshold
+9. SmallCities.corruptionLevel != LargeCities.corruptionLevel
+10. SmallCities.corruptionLevel.isCorrupt
+11. LargeCities.corruptionLevel.isCorrupt
+12. SmallCities.isCorrupt
+13. LargeCities.isCorrupt
+14. SmallCities.canBeCorrupt
+15. LargeCities.canBeCorrupt
+16. SmallCities.areJustAsBadAsLargeCities
+17. SmallCities.areMoreCorruptThanLargeCities
+18. SmallCities.areNotMoreCorruptThanLargeCities
+19. SmallCities.corruptionRate > LargeCities.corruptionRate
+20. SmallCities.corruptionRate = LargeCities.corruptionRate
+21. SmallCities.corruptionRate < LargeCities.corruptionRate
+22. SmallCities.corruptionRate.isHigh
+23. LargeCities.corruptionRate.isHigh
+24. SmallCities.corruptionRate.isLow
+25. LargeCities.corruptionRate.isLow
+26. SmallCities.canBeEquallyCorrupt
+27. LargeCities.canBeEquallyCorrupt
+28. SmallCities.corruptionImpactsCommunity
+29. LargeCities.corruptionImpactsCommunity
+30. SmallCities.corruptionTrendsOverTime
+
+Rules:
+1. Q[The, SmallCities.corruptionLevel > LargeCities.corruptionLevel](SmallCities.areMoreCorruptThanLargeCities → Causal(SmallCities, LargeCities))
+2. Q[The, SmallCities.corruptionLevel = LargeCities.corruptionLevel](SmallCities.areNotMoreCorruptThanLargeCities → Causal(SmallCities, LargeCities))
+3. Q[The, SmallCities.corruptionLevel < LargeCities.corruptionLevel](SmallCities.areNotMoreCorruptThanLargeCities → Causal(SmallCities, LargeCities))
+4. Q[The, SmallCities.corruptionLevel > Threshold](SmallCities.isCorrupt → Causal(SmallCities, LargeCities))
+5. Q[The, LargeCities.corruptionLevel > Threshold](LargeCities.isCorrupt → Causal(SmallCities, LargeCities))
+6. Q[The, SmallCities.corruptionLevel = Threshold](SmallCities.isCorrupt → Causal(SmallCities, LargeCities))
+7. Q[The, SmallCities.corruptionLevel < Threshold](SmallCities.canBeCorrupt → Causal(SmallCities, LargeCities))
+8. Q[The, SmallCities.corruptionLevel != LargeCities.corruptionLevel](SmallCities.canBeEquallyCorrupt → Causal(SmallCities, LargeCities))
+9. Q[The, SmallCities.corruptionRate > LargeCities.corruptionRate](SmallCities.areMoreCorruptThanLargeCities → Causal(SmallCities, LargeCities))
+10. Q[The, SmallCities.corruptionRate = LargeCities.corruptionRate](SmallCities.canBeEquallyCorrupt → Causal(SmallCities, LargeCities))
+11. Q[The, SmallCities.corruptionRate < LargeCities.corruptionRate](SmallCities.areNotMoreCorruptThanLargeCities → Causal(SmallCities, LargeCities))
+12. Q[The, SmallCities.corruptionRate.isHigh](SmallCities.isCorrupt → Causal(SmallCities, LargeCities))
+13. Q[The, LargeCities.corruptionRate.isHigh](LargeCities.isCorrupt → Causal(SmallCities, LargeCities))
+14. Q[The, SmallCities.corruptionRate.isLow](SmallCities.canBeCorrupt → Causal(SmallCities, LargeCities))
+15. Q[The, LargeCities.corruptionRate.isLow](LargeCities.canBeCorrupt → Causal(SmallCities, LargeCities))
+16. Q[The, SmallCities.canBeCorrupt](SmallCities.corruptionLevel > LargeCities.corruptionLevel → Causal(SmallCities, LargeCities))
+17. Q[The, SmallCities.areJustAsBadAsLargeCities](SmallCities.corruptionLevel = LargeCities.corruptionLevel → Causal(SmallCities, LargeCities))
+18. Q[The, SmallCities.areMoreCorruptThanLargeCities](SmallCities.corruptionLevel > LargeCities.corruptionLevel → Causal(SmallCities, LargeCities))
+19. Q[The, SmallCities.areNotMoreCorruptThanLargeCities](SmallCities.corruptionLevel < LargeCities.corruptionLevel → Causal(SmallCities, LargeCities))
+20. Q[The, SmallCities.corruptionImpactsCommunity](SmallCities.isCorrupt → Causal(SmallCities, LargeCities))
+21. Q[The, LargeCities.corruptionImpactsCommunity](LargeCities.isCorrupt → Causal(SmallCities, LargeCities))
+22. Q[The, SmallCities.corruptionTrendsOverTime](SmallCities.canBeCorrupt → Causal(SmallCities, LargeCities))
+23. Q[The, SmallCities.corruptionRate.isHigh](SmallCities.isCorrupt → Causal(SmallCities, LargeCities))
+24. Q[The, SmallCities.corruptionRate.isLow](SmallCities.canBeEquallyCorrupt → Causal(SmallCities, LargeCities))
+25. Q[The, SmallCities.corruptionRate < LargeCities.corruptionRate](SmallCities.canBeEquallyCorrupt → Causal(SmallCities, LargeCities))
+26. Q[The, SmallCities.corruptionRate = LargeCities.corruptionRate](SmallCities.areJustAsBadAsLargeCities → Causal(SmallCities, LargeCities))
+27. Q[The, SmallCities.corruptionLevel > LargeCities.corruptionLevel](SmallCities.canBeCorrupt → Causal(SmallCities, LargeCities))
+28. Q[The, SmallCities.corruptionLevel < LargeCities.corruptionLevel](SmallCities.canBeEquallyCorrupt → Causal(SmallCities, LargeCities))
+29. Q[The, SmallCities.corruptionLevel.isCorrupt](SmallCities.corruptionLevel > Threshold → Causal(SmallCities, LargeCities))
+30. Q[The, LargeCities.corruptionLevel.isCorrupt](LargeCities.corruptionLevel > Threshold → Causal(SmallCities, LargeCities))

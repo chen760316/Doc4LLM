@@ -1,0 +1,73 @@
+Predicates:
+Bobolink.label != "Purple Enchanter"
+Bobolink.label != country of conversation.label
+Bobolink.label != unknown.label
+Bobolink.label = "Purple Enchanter"
+Bobolink.name != "Bobolink"
+Bobolink.name != country of conversation.name
+Bobolink.name != unknown.name
+Bobolink.name = "Bobolink"
+Martin.label != "Person"
+Martin.label != Bobolink.label
+Martin.label != Petulant.label
+Martin.label != country of conversation.label
+Martin.label = "Person"
+Martin.name != "Martin"
+Martin.name != Bobolink.name
+Martin.name != Petulant.name
+Martin.name != country of conversation.name
+Martin.name != unknown.name
+Martin.name = "Martin"
+Martin.occupation != "toy finder"
+Martin.occupation = "toy finder"
+Martin___Bobolink.doc_id = "3488771887_2"
+Martin___Bobolink.relationship != Martin___country of conversation.relationship
+Martin___Bobolink.relationship != Martin___unknown.relationship
+Martin___Bobolink.relationship = "Martin encounters Bobolink, the Purple Enchanter, who knows everything."
+Martin___Petulant.doc_id = "3488771887_2"
+Martin___Petulant.relationship != Martin___Bobolink.relationship
+Martin___Petulant.relationship != Martin___country of conversation.relationship
+Martin___Petulant.relationship != Martin___unknown.relationship
+Martin___Petulant.relationship = "Martin talks with Princess Petulant and promises to return in four weeks with an amazing toy."
+Martin___Petulant.time = "four weeks"
+Martin___country of conversation.doc_id = "3488771887_2"
+Martin___country of conversation.relationship != Martin___unknown.relationship
+Martin___country of conversation.relationship = "Martin becomes distracted and engages in conversation with a fish, which traps him in the country of conversation."
+Martin___unknown.doc_id = "3488771887_2"
+Martin___unknown.relationship = "The Toymaker is pleased to see Martin and Princess Petulant and wishes they stay and play with him forever."
+None_ML(Bobolink.attrs, unknown.attrs)
+None_ML(Martin___Bobolink.attrs, Martin___unknown.attrs)
+Petulant.label != "Princess"
+Petulant.label != Bobolink.label
+Petulant.label != country of conversation.label
+Petulant.label != unknown.label
+Petulant.label = "Princess"
+Petulant.name != "Petulant"
+Petulant.name != Bobolink.name
+Petulant.name != country of conversation.name
+Petulant.name != unknown.name
+Petulant.name = "Petulant"
+country of conversation.label != "Location"
+country of conversation.label != unknown.label
+country of conversation.label = "Location"
+country of conversation.name != "country of conversation"
+country of conversation.name != unknown.name
+country of conversation.name = "country of conversation"
+unknown.label != "Person"
+unknown.label = "Person"
+unknown.name != "unknown"
+unknown.name = "unknown"
+unknown.status != "fatality"
+unknown.status = "fatality"
+
+Rules:
+Q[Martin,Martin] (Petulant.name != "Petulant" ∧ Bobolink.label != "Purple Enchanter" ∧ Martin___Petulant.relationship != Martin___unknown.relationship ∧ Martin.name != country of conversation.name ∧ Martin___country of conversation.relationship != Martin___unknown.relationship → Martin.label != "Person")
+Q[Martin,Martin] (Martin.occupation != "toy finder" ∧ Martin___country of conversation.doc_id = "3488771887_2" ∧ Martin.label != country of conversation.label ∧ Martin___Petulant.relationship != Martin___unknown.relationship ∧ Martin.name != country of conversation.name ∧ Bobolink.label != unknown.label → Petulant.name != Bobolink.name)
+Q[Martin,Martin] (unknown.label != "Person" ∧ country of conversation.name = "country of conversation" ∧ Bobolink.label != "Purple Enchanter" ∧ Martin___Petulant.time = "four weeks" → country of conversation.label != unknown.label)
+Q[Martin,Martin] (Martin.name = "Martin" ∧ Bobolink.label != country of conversation.label → unknown.label = "Person")
+Q[Martin,Martin] (Petulant.name != Bobolink.name ∧ Martin.label != Petulant.label ∧ unknown.name = "unknown" → Martin.name != Bobolink.name)
+Q[Martin,Martin] (Petulant.label != country of conversation.label ∧ Martin___country of conversation.relationship = "Martin becomes distracted and engages in conversation with a fish, which traps him in the country of conversation." ∧ Martin___unknown.relationship = "The Toymaker is pleased to see Martin and Princess Petulant and wishes they stay and play with him forever." ∧ country of conversation.label != unknown.label ∧ country of conversation.name != unknown.name → Martin___Bobolink.relationship != Martin___country of conversation.relationship)
+Q[Martin,Martin] (Martin.label != country of conversation.label ∧ Martin___Petulant.doc_id = "3488771887_2" → country of conversation.name = "country of conversation")
+Q[Martin,Martin] (Petulant.label != "Princess" ∧ Bobolink.name != unknown.name ∧ None_ML(Bobolink.attrs, unknown.attrs) ∧ unknown.name = "unknown" ∧ Martin___country of conversation.doc_id = "3488771887_2" ∧ Bobolink.label != country of conversation.label → Martin___Bobolink.relationship != Martin___unknown.relationship)
+Q[Martin,Martin] (Martin.name != Petulant.name ∧ Petulant.name != country of conversation.name ∧ Martin___Bobolink.relationship != Martin___unknown.relationship → Martin___Bobolink.doc_id = "3488771887_2")
+Q[Martin,Martin] (Martin___unknown.relationship = "The Toymaker is pleased to see Martin and Princess Petulant and wishes they stay and play with him forever." ∧ country of conversation.label != "Location" ∧ Bobolink.label != unknown.label ∧ unknown.name != "unknown" → None_ML(Martin___Bobolink.attrs, Martin___unknown.attrs))

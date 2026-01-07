@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 260)
+S1: I have had to ask my daughters not to visit because I cannot bear them seeing me like this, a shadow of my former self, surrounded by men with machine guns,
+S2: I have lost almost everything in the last four years, most of all time with my family -- my wife, Judy, and my daughters, Shira and Nina.
+
+Predicates:
+1. Person.daughters
+2. Person.wife
+3. Person.name(Judy)
+4. Person.name(Shira)
+5. Person.name(Nina)
+6. Person.loss(time_with_family)
+7. Person.decision(avoid_family_visits)
+8. Situation.shadow_of_former_self
+9. Situation.surrounded_by(men_with_machine_guns)
+10. Time.duration(last_four_years)
+11. Emotion.cannot_bear
+12. Emotion.proactive_decision
+13. Emotion.passive_loss
+14. Relationship.family
+15. Relationship.visits
+16. Causal(loss_of_time_with_family, decision_to_avoid_visits)
+17. Violate(agency, contradiction)
+18. Entity.time
+19. Entity.men_with_machine_guns
+20. Entity.family
+21. Entity.daughters_count(2)
+22. Entity.loss_count(almost_everything)
+23. Meta.M_NLI(S1, S2)
+24. Meta.Causal(S1, S2)
+25. Meta.violate(S1, S2)
+26. Person.emotional_state(cannot_bear_seeing)
+27. Person.situation(being_seen_as_shadow)
+28. Person.relationship_with_family(strained)
+29. Situation.context(family_visit_restriction)
+30. Situation.context(loss_of_time)
+
+Rules:
+1. Q[have, Person.decision(avoid_family_visits), Person.loss(time_with_family)](Person.emotional_state(cannot_bear_seeing) → Causal(loss_of_time_with_family, decision_to_avoid_visits))
+2. Q[have, Person.loss(time_with_family), Person.decision(avoid_family_visits)](Person.daughters == 2 → Causal(loss_of_time_with_family, decision_to_avoid_visits))
+3. Q[have, Person.decision(avoid_family_visits), Person.loss(time_with_family)](Situation.shadow_of_former_self → Causal(loss_of_time_with_family, decision_to_avoid_visits))
+4. Q[have, Person.loss(time_with_family), Person.decision(avoid_family_visits)](Situation.surrounded_by(men_with_machine_guns) → Causal(loss_of_time_with_family, decision_to_avoid_visits))
+5. Q[have, Person.decision(avoid_family_visits), Person.loss(time_with_family)](Emotion.proactive_decision → Causal(loss_of_time_with_family, decision_to_avoid_visits))
+6. Q[have, Person.loss(time_with_family), Person.decision(avoid_family_visits)](Emotion.passive_loss → Causal(loss_of_time_with_family, decision_to_avoid_visits))
+7. Q[have, Person.decision(avoid_family_visits), Person.loss(time_with_family)](Relationship.visits → Causal(loss_of_time_with_family, decision_to_avoid_visits))
+8. Q[have, Person.loss(time_with_family), Person.decision(avoid_family_visits)](Entity.daughters_count(2) → Causal(loss_of_time_with_family, decision_to_avoid_visits))
+9. Q[have, Person.decision(avoid_family_visits), Person.loss(time_with_family)](Entity.loss_count(almost_everything) → Causal(loss_of_time_with_family, decision_to_avoid_visits))
+10. Q[have, Person.loss(time_with_family), Person.decision(avoid_family_visits)](Time.duration(last_four_years) → Causal(loss_of_time_with_family, decision_to_avoid_visits))
+11. Q[have, Person.decision(avoid_family_visits), Person.loss(time_with_family)](Person.relationship_with_family(strained) → Causal(loss_of_time_with_family, decision_to_avoid_visits))
+12. Q[have, Person.loss(time_with_family), Person.decision(avoid_family_visits)](Situation.context(family_visit_restriction) → Causal(loss_of_time_with_family, decision_to_avoid_visits))
+13. Q[have, Person.decision(avoid_family_visits), Person.loss(time_with_family)](Situation.context(loss_of_time) → Causal(loss_of_time_with_family, decision_to_avoid_visits))
+14. Q[have, Person.loss(time_with_family), Person.decision(avoid_family_visits)](Person.situation(being_seen_as_shadow) → Causal(loss_of_time_with_family, decision_to_avoid_visits))
+15. Q[have, Person.decision(avoid_family_visits), Person.loss(time_with_family)](Emotion.cannot_bear → Causal(loss_of_time_with_family, decision_to_avoid_visits))
+16. Q[have, Person.loss(time_with_family), Person.decision(avoid_family_visits)](Meta.M_NLI(S1, S2) → Causal(loss_of_time_with_family, decision_to_avoid_visits))
+17. Q[have, Person.decision(avoid_family_visits), Person.loss(time_with_family)](Meta.Causal(S1, S2) → Causal(loss_of_time_with_family, decision_to_avoid_visits))
+18. Q[have, Person.loss(time_with_family), Person.decision(avoid_family_visits)](Meta.violate(S1, S2) → Causal(loss_of_time_with_family, decision_to_avoid_visits))
+19. Q[have, Person.decision(avoid_family_visits), Person.loss(time_with_family)](Relationship.family → Causal(loss_of_time_with_family, decision_to_avoid_visits))
+20. Q[have, Person.loss(time_with_family), Person.decision(avoid_family_visits)](Person.name(Judy) → Causal(loss_of_time_with_family, decision_to_avoid_visits))
+21. Q[have, Person.decision(avoid_family_visits), Person.loss(time_with_family)](Person.name(Shira) → Causal(loss_of_time_with_family, decision_to_avoid_visits))
+22. Q[have, Person.loss(time_with_family), Person.decision(avoid_family_visits)](Person.name(Nina) → Causal(loss_of_time_with_family, decision_to_avoid_visits))
+23. Q[have, Person.decision(avoid_family_visits), Person.loss(time_with_family)](Entity.family → Causal(loss_of_time_with_family, decision_to_avoid_visits))
+24. Q[have, Person.loss(time_with_family), Person.decision(avoid_family_visits)](Entity.men_with_machine_guns → Causal(loss_of_time_with_family, decision_to_avoid_visits))
+25. Q[have, Person.decision(avoid_family_visits), Person.loss(time_with_family)](Person.emotional_state(cannot_bear_seeing) → Causal(loss_of_time_with_family, decision_to_avoid_visits))
+26. Q[have, Person.loss(time_with_family), Person.decision(avoid_family_visits)](Person.relationship_with_family(strained) → Causal(loss_of_time_with_family, decision_to_avoid_visits))
+27. Q[have, Person.decision(avoid_family_visits), Person.loss(time_with_family)](Situation.context(family_visit_restriction) → Causal(loss_of_time_with_family, decision_to_avoid_visits))
+28. Q[have, Person.loss(time_with_family), Person.decision(avoid_family_visits)](Situation.context(loss_of_time) → Causal(loss_of_time_with_family, decision_to_avoid_visits))
+29. Q[have, Person.decision(avoid_family_visits), Person.loss(time_with_family)](Emotion.proactive_decision → Causal(loss_of_time_with_family, decision_to_avoid_visits))
+30. Q[have, Person.loss(time_with_family), Person.decision(avoid_family_visits)](Emotion.passive_loss → Causal(loss_of_time_with_family, decision_to_avoid_visits))

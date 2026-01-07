@@ -1,0 +1,52 @@
+Predicates:
+Cherry Malotte.label != "Woman"
+Cherry Malotte.label = "Woman"
+Cherry Malotte.name != "Cherry Malotte"
+Cherry Malotte.name = "Cherry Malotte"
+Cherry Malotte.status != "unrequited love"
+Cherry Malotte.status = "unrequited love"
+Dextry.label != "Prospector"
+Dextry.label != Cherry Malotte.label
+Dextry.label != Helen Chester.label
+Dextry.label = "Prospector"
+Dextry.name != "Dextry"
+Dextry.name != Cherry Malotte.name
+Dextry.name != Helen Chester.name
+Dextry.name = "Dextry"
+Helen Chester.label != "Woman"
+Helen Chester.label = "Woman"
+Helen Chester.name != "Helen Chester"
+Helen Chester.name != Cherry Malotte.name
+Helen Chester.name = "Helen Chester"
+None_ML(Cherry Malotte.attrs, Roy Glenister.attrs)
+None_ML(Roy Glenister___Dextry.attrs, Roy Glenister___Cherry Malotte.attrs)
+Roy Glenister.label != "Prospector"
+Roy Glenister.label != Cherry Malotte.label
+Roy Glenister.label != Helen Chester.label
+Roy Glenister.label = "Prospector"
+Roy Glenister.name != "Roy Glenister"
+Roy Glenister.name != Cherry Malotte.name
+Roy Glenister.name != Dextry.name
+Roy Glenister.name != Helen Chester.name
+Roy Glenister.name = "Roy Glenister"
+Roy Glenister___Cherry Malotte.doc_id = "3488771843_7"
+Roy Glenister___Cherry Malotte.relationship = "Cherry Malotte saves Roy Glenister from losing his stake in the Midas."
+Roy Glenister___Dextry.doc_id = "3488771843_7"
+Roy Glenister___Dextry.relationship != Roy Glenister___Cherry Malotte.relationship
+Roy Glenister___Dextry.relationship != Roy Glenister___Helen Chester.relationship
+Roy Glenister___Dextry.relationship = "Roy Glenister and Dextry, along with naive Swedes, are dispossessed of their lands by Alexander McNamara."
+Roy Glenister___Helen Chester.doc_id = "3488771843_7"
+Roy Glenister___Helen Chester.relationship != Roy Glenister___Cherry Malotte.relationship
+Roy Glenister___Helen Chester.relationship = "Roy Glenister remains hopeful that Helen is not involved in the conspiracy against the miners."
+
+Rules:
+Q[Roy Glenister,Roy Glenister] (Helen Chester.label != "Woman" ∧ Roy Glenister___Dextry.doc_id = "3488771843_7" ∧ Dextry.label = "Prospector" ∧ Cherry Malotte.label != "Woman" ∧ Roy Glenister___Helen Chester.doc_id = "3488771843_7" ∧ Roy Glenister.label != Cherry Malotte.label → Roy Glenister.name != Cherry Malotte.name)
+Q[Roy Glenister,Roy Glenister] (Roy Glenister___Dextry.doc_id = "3488771843_7" ∧ Cherry Malotte.name != "Cherry Malotte" ∧ None_ML(Roy Glenister___Dextry.attrs, Roy Glenister___Cherry Malotte.attrs) ∧ Roy Glenister.name != "Roy Glenister" ∧ Roy Glenister.label != Cherry Malotte.label → Roy Glenister___Cherry Malotte.doc_id = "3488771843_7")
+Q[Roy Glenister,Roy Glenister] (Helen Chester.name != "Helen Chester" ∧ Cherry Malotte.name != "Cherry Malotte" ∧ Roy Glenister.name != Cherry Malotte.name ∧ Roy Glenister___Cherry Malotte.doc_id = "3488771843_7" → Dextry.name = "Dextry")
+Q[Roy Glenister,Roy Glenister] (Helen Chester.name = "Helen Chester" ∧ Cherry Malotte.name = "Cherry Malotte" ∧ Dextry.name = "Dextry" → Dextry.name != Helen Chester.name)
+Q[Roy Glenister,Roy Glenister] (Roy Glenister___Cherry Malotte.doc_id = "3488771843_7" ∧ None_ML(Roy Glenister___Dextry.attrs, Roy Glenister___Cherry Malotte.attrs) → Roy Glenister.label = "Prospector")
+Q[Roy Glenister,Roy Glenister] (Roy Glenister.name != "Roy Glenister" ∧ Roy Glenister___Helen Chester.relationship != Roy Glenister___Cherry Malotte.relationship → Helen Chester.name != Cherry Malotte.name)
+Q[Roy Glenister,Roy Glenister] (Roy Glenister___Dextry.relationship != Roy Glenister___Helen Chester.relationship ∧ Dextry.label != "Prospector" ∧ Roy Glenister.label = "Prospector" ∧ Roy Glenister.label != Helen Chester.label ∧ Cherry Malotte.label != "Woman" → Dextry.label != Helen Chester.label)
+Q[Roy Glenister,Roy Glenister] (Cherry Malotte.status != "unrequited love" ∧ Roy Glenister___Helen Chester.doc_id = "3488771843_7" ∧ Dextry.label = "Prospector" → Helen Chester.name = "Helen Chester")
+Q[Roy Glenister,Roy Glenister] (Cherry Malotte.label != "Woman" ∧ Roy Glenister.label = "Prospector" ∧ Dextry.name != "Dextry" ∧ None_ML(Roy Glenister___Dextry.attrs, Roy Glenister___Cherry Malotte.attrs) → Cherry Malotte.label = "Woman")
+Q[Roy Glenister,Roy Glenister] (Cherry Malotte.status != "unrequited love" ∧ Dextry.label != Helen Chester.label ∧ Dextry.label = "Prospector" ∧ Dextry.label != "Prospector" ∧ Dextry.name = "Dextry" ∧ Roy Glenister___Cherry Malotte.relationship = "Cherry Malotte saves Roy Glenister from losing his stake in the Midas." → Roy Glenister___Helen Chester.relationship != Roy Glenister___Cherry Malotte.relationship)

@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 175)
+S1: T w o p e o p l e a r e l a n d i n g f r o m t h e i r s k y d i v i n g e x e r c i s e s.
+S2: T w o p e o p l e a r e o u t s i d e.
+
+Predicates:
+1. Person1.activity
+2. Person2.activity
+3. Person1.location
+4. Person2.location
+5. Skydiving.event
+6. Landing.event
+7. Outside.location
+8. Skydiving.participant
+9. Landing.participant
+10. Outside.participant
+11. Person1.status
+12. Person2.status
+13. Skydiving.time
+14. Landing.time
+15. Outside.time
+16. Person1.action
+17. Person2.action
+18. Skydiving.condition
+19. Landing.condition
+20. Outside.condition
+21. Person1.position
+22. Person2.position
+23. Skydiving.equipment
+24. Landing.equipment
+25. Outside.environment
+26. Person1.visibility
+27. Person2.visibility
+28. Skydiving.altitude
+29. Landing.altitude
+30. Outside.activity
+
+Rules:
+1. Q[Landing, Person1.activity, Person2.activity](Person1.activity == "landing" → Relation(Person1, Person2))
+2. Q[Landing, Person2.activity, Person1.activity](Person2.activity == "landing" → Relation(Person2, Person1))
+3. Q[Outside, Person1.location, Person2.location](Person1.location == "outside" → Relation(Person1, Person2))
+4. Q[Outside, Person2.location, Person1.location](Person2.location == "outside" → Relation(Person2, Person1))
+5. Q[Skydiving.event, Person1.status, Person2.status](Skydiving.event == "in progress" → Relation(Person1, Person2))
+6. Q[Skydiving.event, Person2.status, Person1.status](Skydiving.event == "in progress" → Relation(Person2, Person1))
+7. Q[Landing.event, Person1.status, Person2.status](Landing.event == "completed" → Relation(Person1, Person2))
+8. Q[Landing.event, Person2.status, Person1.status](Landing.event == "completed" → Relation(Person2, Person1))
+9. Q[Outside, Person1.status, Person2.status](Outside.status == "present" → Relation(Person1, Person2))
+10. Q[Outside, Person2.status, Person1.status](Outside.status == "present" → Relation(Person2, Person1))
+11. Q[Skydiving.participant, Person1.activity, Person2.activity](Skydiving.participant == "Person1" → Relation(Person1, Person2))
+12. Q[Skydiving.participant, Person2.activity, Person1.activity](Skydiving.participant == "Person2" → Relation(Person2, Person1))
+13. Q[Landing.participant, Person1.activity, Person2.activity](Landing.participant == "Person1" → Relation(Person1, Person2))
+14. Q[Landing.participant, Person2.activity, Person1.activity](Landing.participant == "Person2" → Relation(Person2, Person1))
+15. Q[Outside.participant, Person1.activity, Person2.activity](Outside.participant == "Person1" → Relation(Person1, Person2))
+16. Q[Outside.participant, Person2.activity, Person1.activity](Outside.participant == "Person2" → Relation(Person2, Person1))
+17. Q[Skydiving.condition, Person1.status, Person2.status](Skydiving.condition == "active" → Relation(Person1, Person2))
+18. Q[Skydiving.condition, Person2.status, Person1.status](Skydiving.condition == "active" → Relation(Person2, Person1))
+19. Q[Landing.condition, Person1.status, Person2.status](Landing.condition == "successful" → Relation(Person1, Person2))
+20. Q[Landing.condition, Person2.status, Person1.status](Landing.condition == "successful" → Relation(Person2, Person1))
+21. Q[Outside.environment, Person1.visibility, Person2.visibility](Outside.environment == "clear" → Relation(Person1, Person2))
+22. Q[Outside.environment, Person2.visibility, Person1.visibility](Outside.environment == "clear" → Relation(Person2, Person1))
+23. Q[Skydiving.time, Person1.activity, Person2.activity](Skydiving.time == "current" → Relation(Person1, Person2))
+24. Q[Skydiving.time, Person2.activity, Person1.activity](Skydiving.time == "current" → Relation(Person2, Person1))
+25. Q[Landing.time, Person1.activity, Person2.activity](Landing.time == "recent" → Relation(Person1, Person2))
+26. Q[Landing.time, Person2.activity, Person1.activity](Landing.time == "recent" → Relation(Person2, Person1))
+27. Q[Outside.time, Person1.activity, Person2.activity](Outside.time == "now" → Relation(Person1, Person2))
+28. Q[Outside.time, Person2.activity, Person1.activity](Outside.time == "now" → Relation(Person2, Person1))
+29. Q[Person1.position, Person1.activity, Person2.activity](Person1.position == "ground" → Relation(Person1, Person2))
+30. Q[Person2.position, Person1.activity, Person2.activity](Person2.position == "ground" → Relation(Person2, Person1))

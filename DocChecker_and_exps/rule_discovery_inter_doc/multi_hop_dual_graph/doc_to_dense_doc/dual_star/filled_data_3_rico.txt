@@ -1,0 +1,76 @@
+Predicates:
+Global Summit on AI and Society.label != "Event"
+Global Summit on AI and Society.label != Presentation.label
+Global Summit on AI and Society.label = "Event"
+Global Summit on AI and Society.name != "Global Summit on AI and Society"
+Global Summit on AI and Society.name != Presentation.name
+Global Summit on AI and Society.name = "Global Summit on AI and Society"
+John.label != "Person"
+John.label != Global Summit on AI and Society.label
+John.label != Presentation.label
+John.label = "Person"
+John.name != "John"
+John.name != Global Summit on AI and Society.name
+John.name != Presentation.name
+John.name = "John"
+John___Global Summit on AI and Society.relationship != "John is dreading the presentation tomorrow."
+John___Global Summit on AI and Society.relationship != John_Presentation.relationship
+John___Global Summit on AI and Society.relationship = "John is dreading the presentation tomorrow."
+John___International AI Conference.relationship != "John delivered a keynote speech at the International AI Conference."
+John___International AI Conference.relationship != John_Global Summit on AI and Society.relationship
+John___International AI Conference.relationship != John_Presentation.relationship
+John___International AI Conference.relationship != John_upcoming presentation.relationship
+John___International AI Conference.relationship = "John delivered a keynote speech at the International AI Conference."
+John___Presentation.relationship != "John presented his findings at the Global Summit on AI and Society."
+John___Presentation.relationship = "John presented his findings at the Global Summit on AI and Society."
+John___upcoming presentation.relationship != "John feels very excited about the upcoming presentation."
+John___upcoming presentation.relationship != John_Global Summit on AI and Society.relationship
+John___upcoming presentation.relationship != John_Presentation.relationship
+John___upcoming presentation.relationship = "John feels very excited about the upcoming presentation."
+M_NLI(('John', 'Global Summit on AI and Society').attrs, ('John', 'Presentation').attrs)
+M_NLI(('John', 'Global Summit on AI and Society').attrs, John presented his findings at the Global Summit on AI and Society..attrs)
+M_NLI(('John', 'International AI Conference').attrs, ('John', 'Global Summit on AI and Society').attrs)
+M_NLI(('John', 'International AI Conference').attrs, ('John', 'Presentation').attrs)
+M_NLI(('John', 'International AI Conference').attrs, ('John', 'upcoming presentation').attrs)
+M_NLI(('John', 'International AI Conference').attrs, John presented his findings at the Global Summit on AI and Society..attrs)
+M_NLI(('John', 'Presentation').attrs, John presented his findings at the Global Summit on AI and Society..attrs)
+M_NLI(('John', 'upcoming presentation').attrs, ('John', 'Global Summit on AI and Society').attrs)
+M_NLI(('John', 'upcoming presentation').attrs, ('John', 'Presentation').attrs)
+M_NLI(('John', 'upcoming presentation').attrs, John presented his findings at the Global Summit on AI and Society..attrs)
+M_NLI(Global Summit on AI and Society.attrs, Presentation.attrs)
+M_NLU(John delivered a keynote speech at the International AI Conference..attrs, ('John', 'Global Summit on AI and Society').attrs)
+M_NLU(John delivered a keynote speech at the International AI Conference..attrs, John presented his findings at the Global Summit on AI and Society..attrs)
+M_NLU(John feels very excited about the upcoming presentation..attrs, ('John', 'Global Summit on AI and Society').attrs)
+M_NLU(John feels very excited about the upcoming presentation..attrs, ('John', 'Presentation').attrs)
+M_NLU(John feels very excited about the upcoming presentation..attrs, John presented his findings at the Global Summit on AI and Society..attrs)
+M_NLU(John is dreading the presentation tomorrow..attrs, John presented his findings at the Global Summit on AI and Society..attrs)
+M_NLU(John.attrs, Global Summit on AI and Society.attrs)
+M_NLU(John.attrs, Presentation.attrs)
+None_ML(('John', 'Global Summit on AI and Society').attrs, John is dreading the presentation tomorrow..attrs)
+None_ML(('John', 'International AI Conference').attrs, John delivered a keynote speech at the International AI Conference..attrs)
+None_ML(('John', 'International AI Conference').attrs, John feels very excited about the upcoming presentation..attrs)
+None_ML(('John', 'International AI Conference').attrs, John is dreading the presentation tomorrow..attrs)
+None_ML(('John', 'Presentation').attrs, John is dreading the presentation tomorrow..attrs)
+None_ML(('John', 'upcoming presentation').attrs, John delivered a keynote speech at the International AI Conference..attrs)
+None_ML(('John', 'upcoming presentation').attrs, John feels very excited about the upcoming presentation..attrs)
+None_ML(('John', 'upcoming presentation').attrs, John is dreading the presentation tomorrow..attrs)
+None_ML(John delivered a keynote speech at the International AI Conference..attrs, ('John', 'Presentation').attrs)
+None_ML(John delivered a keynote speech at the International AI Conference..attrs, John feels very excited about the upcoming presentation..attrs)
+None_ML(John delivered a keynote speech at the International AI Conference..attrs, John is dreading the presentation tomorrow..attrs)
+None_ML(John feels very excited about the upcoming presentation..attrs, John is dreading the presentation tomorrow..attrs)
+Presentation.label != "Event"
+Presentation.label = "Event"
+Presentation.name != "Presentation"
+Presentation.name = "Presentation"
+
+Rules:
+Q[John,John] (John___upcoming presentation.relationship != "John feels very excited about the upcoming presentation." ∧ John___Global Summit on AI and Society.relationship != "John is dreading the presentation tomorrow." → John___Global Summit on AI and Society.relationship != "John is dreading the presentation tomorrow.")
+Q[John,John] (John___Presentation.relationship != "John presented his findings at the Global Summit on AI and Society." ∧ None_ML(('John', 'upcoming presentation').attrs, John is dreading the presentation tomorrow..attrs) → None_ML(('John', 'upcoming presentation').attrs, John is dreading the presentation tomorrow..attrs))
+Q[John,John] (None_ML(John delivered a keynote speech at the International AI Conference..attrs, ('John', 'Presentation').attrs) ∧ M_NLU(John delivered a keynote speech at the International AI Conference..attrs, John presented his findings at the Global Summit on AI and Society..attrs) → M_NLU(John delivered a keynote speech at the International AI Conference..attrs, John presented his findings at the Global Summit on AI and Society..attrs))
+Q[John,John] (John___upcoming presentation.relationship = "John feels very excited about the upcoming presentation." ∧ M_NLU(John is dreading the presentation tomorrow..attrs, John presented his findings at the Global Summit on AI and Society..attrs) → M_NLU(John is dreading the presentation tomorrow..attrs, John presented his findings at the Global Summit on AI and Society..attrs))
+Q[John,John] (John___International AI Conference.relationship != John_Global Summit on AI and Society.relationship ∧ M_NLU(John.attrs, Global Summit on AI and Society.attrs) → John___International AI Conference.relationship != John_Global Summit on AI and Society.relationship)
+Q[John,John] (None_ML(('John', 'Presentation').attrs, John is dreading the presentation tomorrow..attrs) ∧ John___International AI Conference.relationship != John_Presentation.relationship → None_ML(('John', 'Presentation').attrs, John is dreading the presentation tomorrow..attrs))
+Q[John,John] (John.name != Presentation.name ∧ None_ML(('John', 'International AI Conference').attrs, John feels very excited about the upcoming presentation..attrs) → None_ML(('John', 'International AI Conference').attrs, John feels very excited about the upcoming presentation..attrs))
+Q[John,John] (John.name != Global Summit on AI and Society.name ∧ John___Presentation.relationship != "John presented his findings at the Global Summit on AI and Society." → John___Presentation.relationship != "John presented his findings at the Global Summit on AI and Society.")
+Q[John,John] (M_NLI(('John', 'International AI Conference').attrs, John presented his findings at the Global Summit on AI and Society..attrs) ∧ John___Presentation.relationship = "John presented his findings at the Global Summit on AI and Society." → John___Presentation.relationship = "John presented his findings at the Global Summit on AI and Society.")
+Q[John,John] (M_NLI(('John', 'International AI Conference').attrs, John presented his findings at the Global Summit on AI and Society..attrs) ∧ M_NLI(('John', 'International AI Conference').attrs, ('John', 'Global Summit on AI and Society').attrs) → M_NLI(('John', 'International AI Conference').attrs, ('John', 'Global Summit on AI and Society').attrs))

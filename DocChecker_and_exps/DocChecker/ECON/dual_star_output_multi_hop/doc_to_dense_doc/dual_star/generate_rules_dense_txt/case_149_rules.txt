@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 149)
+S1: In alternative medicine practices, Quartz is believed to have powers.
+S2: In alternative medicine practices, Quartz is considered to have no special powers or properties.
+
+Predicates:
+1. Quartz.hasPowers
+2. Quartz.noSpecialPowers
+3. AlternativeMedicinePractices.believesInQuartzPowers
+4. AlternativeMedicinePractices.considersQuartzNoPowers
+5. M_NLI(S1, S2)
+6. Factual(Quartz, Powers)
+7. Factual(Quartz, NoSpecialPowers)
+8. violate(Quartz, Powers)
+9. violate(Quartz, NoSpecialPowers)
+10. AlternativeMedicinePractices.beliefAboutQuartz
+11. AlternativeMedicinePractices.consensusOnQuartz
+12. Quartz.isBelievedToHavePowers
+13. Quartz.isConsideredToHaveNoPowers
+14. Powers.associatedWith(Quartz)
+15. NoSpecialPowers.associatedWith(Quartz)
+16. AlternativeMedicinePractices.includesQuartzBeliefs
+17. AlternativeMedicinePractices.includesQuartzNoBeliefs
+18. Quartz.isSubjectOfBelief
+19. Quartz.isSubjectOfConsideration
+20. BeliefInQuartzPowers.existsIn(AlternativeMedicinePractices)
+21. BeliefInNoPowers.existsIn(AlternativeMedicinePractices)
+22. Quartz.beliefConflict
+23. Powers.versus(NoSpecialPowers)
+24. AlternativeMedicinePractices.dividedOnQuartz
+25. Quartz.beliefDichotomy
+26. Powers.beliefStatus
+27. NoSpecialPowers.beliefStatus
+28. AlternativeMedicinePractices.evaluatesQuartz
+29. Quartz.beliefEvaluation
+30. Quartz.powersDebateIn(AlternativeMedicinePractices)
+
+Rules:
+1. Q[alternative, Quartz.hasPowers, Quartz.noSpecialPowers](AlternativeMedicinePractices.believesInQuartzPowers → Factual(Quartz, Powers))
+2. Q[alternative, Quartz.noSpecialPowers, Quartz.hasPowers](AlternativeMedicinePractices.considersQuartzNoPowers → Factual(Quartz, NoSpecialPowers))
+3. Q[alternative, Quartz.isBelievedToHavePowers, Quartz.isConsideredToHaveNoPowers](M_NLI(S1, S2) → Factual(Quartz, Powers))
+4. Q[alternative, Powers.associatedWith(Quartz), NoSpecialPowers.associatedWith(Quartz)](AlternativeMedicinePractices.believesInQuartzPowers → Factual(Quartz, Powers))
+5. Q[alternative, Quartz.beliefConflict, Quartz.beliefDichotomy](AlternativeMedicinePractices.includesQuartzBeliefs → Factual(Quartz, Powers))
+6. Q[alternative, Quartz.beliefConflict, Quartz.beliefDichotomy](AlternativeMedicinePractices.includesQuartzNoBeliefs → Factual(Quartz, NoSpecialPowers))
+7. Q[alternative, BeliefInQuartzPowers.existsIn(AlternativeMedicinePractices), BeliefInNoPowers.existsIn(AlternativeMedicinePractices)](AlternativeMedicinePractices.evaluatesQuartz → Factual(Quartz, Powers))
+8. Q[alternative, Quartz.isSubjectOfBelief, Quartz.isSubjectOfConsideration](AlternativeMedicinePractices.beliefAboutQuartz → Factual(Quartz, Powers))
+9. Q[alternative, Powers.versus(NoSpecialPowers), Quartz.beliefDichotomy](AlternativeMedicinePractices.dividedOnQuartz → Factual(Quartz, Powers))
+10. Q[alternative, Quartz.hasPowers, Quartz.noSpecialPowers](Quartz.beliefEvaluation → Factual(Quartz, NoSpecialPowers))
+11. Q[alternative, Quartz.isBelievedToHavePowers, Quartz.noSpecialPowers](M_NLI(S1, S2) → Factual(Quartz, NoSpecialPowers))
+12. Q[alternative, AlternativeMedicinePractices.believesInQuartzPowers, AlternativeMedicinePractices.considersQuartzNoPowers](Quartz.beliefConflict → Factual(Quartz, Powers))
+13. Q[alternative, Quartz.hasPowers, Quartz.isConsideredToHaveNoPowers](Powers.beliefStatus → Factual(Quartz, Powers))
+14. Q[alternative, Quartz.noSpecialPowers, Quartz.hasPowers](NoSpecialPowers.beliefStatus → Factual(Quartz, NoSpecialPowers))
+15. Q[alternative, AlternativeMedicinePractices.includesQuartzBeliefs, AlternativeMedicinePractices.includesQuartzNoBeliefs](Quartz.powersDebateIn(AlternativeMedicinePractices) → Factual(Quartz, Powers))
+16. Q[alternative, Quartz.isBelievedToHavePowers, Quartz.beliefConflict](AlternativeMedicinePractices.evaluatesQuartz → Factual(Quartz, NoSpecialPowers))
+17. Q[alternative, Quartz.beliefDichotomy, Powers.associatedWith(Quartz)](AlternativeMedicinePractices.dividedOnQuartz → Factual(Quartz, Powers))
+18. Q[alternative, NoSpecialPowers.associatedWith(Quartz), Quartz.hasPowers](AlternativeMedicinePractices.beliefAboutQuartz → Factual(Quartz, NoSpecialPowers))
+19. Q[alternative, Quartz.isSubjectOfBelief, Quartz.hasPowers](BeliefInQuartzPowers.existsIn(AlternativeMedicinePractices) → Factual(Quartz, Powers))
+20. Q[alternative, Quartz.isSubjectOfConsideration, Quartz.noSpecialPowers](BeliefInNoPowers.existsIn(AlternativeMedicinePractices) → Factual(Quartz, NoSpecialPowers))
+21. Q[alternative, Quartz.beliefConflict, Powers.versus(NoSpecialPowers)](M_NLI(S1, S2) → Factual(Quartz, Powers))
+22. Q[alternative, AlternativeMedicinePractices.believesInQuartzPowers, AlternativeMedicinePractices.considersQuartzNoPowers](Quartz.beliefEvaluation → Factual(Quartz, NoSpecialPowers))
+23. Q[alternative, Quartz.hasPowers, Quartz.isConsideredToHaveNoPowers](Powers.beliefStatus → Factual(Quartz, NoSpecialPowers))
+24. Q[alternative, Quartz.noSpecialPowers, Quartz.isBelievedToHavePowers](NoSpecialPowers.beliefStatus → Factual(Quartz, Powers))
+25. Q[alternative, AlternativeMedicinePractices.includesQuartzBeliefs, AlternativeMedicinePractices.dividedOnQuartz](Quartz.powersDebateIn(AlternativeMedicinePractices) → Factual(Quartz, NoSpecialPowers))
+26. Q[alternative, Quartz.isBelievedToHavePowers, Quartz.beliefDichotomy](AlternativeMedicinePractices.evaluatesQuartz → Factual(Quartz, Powers))
+27. Q[alternative, Quartz.hasPowers, Quartz.beliefConflict](AlternativeMedicinePractices.beliefAboutQuartz → Factual(Quartz, NoSpecialPowers))
+28. Q[alternative, Quartz.noSpecialPowers, Quartz.isSubjectOfBelief](BeliefInNoPowers.existsIn(AlternativeMedicinePractices) → Factual(Quartz, NoSpecialPowers))
+29. Q[alternative, Powers.associatedWith(Quartz), NoSpecialPowers.associatedWith(Quartz)](Quartz.beliefDichotomy → Factual(Quartz, Powers))
+30. Q[alternative, Quartz.isConsideredToHaveNoPowers, Quartz.hasPowers](M_NLI(S1, S2) → Factual(Quartz, NoSpecialPowers))

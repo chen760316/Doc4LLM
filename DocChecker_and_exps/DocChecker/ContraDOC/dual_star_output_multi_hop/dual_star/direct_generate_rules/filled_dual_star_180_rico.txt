@@ -1,0 +1,52 @@
+Predicates:
+Abu Sayyaf.label != "Organization"
+Abu Sayyaf.label = "Organization"
+Abu Sayyaf.location != "Philippines"
+Abu Sayyaf.location = "Philippines"
+Abu Sayyaf.name != "Abu Sayyaf"
+Abu Sayyaf.name = "Abu Sayyaf"
+FBI.label != "Organization"
+FBI.label = "Organization"
+FBI.location != "United States"
+FBI.location != Abu Sayyaf.location
+FBI.location = "United States"
+FBI.name != "FBI"
+FBI.name != Abu Sayyaf.name
+FBI.name = "FBI"
+Marwan.label != "Person"
+Marwan.label != Abu Sayyaf.label
+Marwan.label != FBI.label
+Marwan.label = "Person"
+Marwan.name != "Marwan"
+Marwan.name != Abu Sayyaf.name
+Marwan.name != FBI.name
+Marwan.name = "Marwan"
+Marwan.nationality != "Malaysian"
+Marwan.nationality = "Malaysian"
+Marwan.real_name != "Zulkifli bin Hir"
+Marwan.real_name = "Zulkifli bin Hir"
+Marwan.status != "deceased"
+Marwan.status = "deceased"
+Marwan___Abu Sayyaf.doc_id = "3489738282_7"
+Marwan___Abu Sayyaf.reason = "terrorism"
+Marwan___Abu Sayyaf.relationship = "Marwan conducted bomb making training for Abu Sayyaf."
+Marwan___FBI.date = "January"
+Marwan___FBI.doc_id = "3489738282_7"
+Marwan___FBI.location = "Philippines"
+Marwan___FBI.method = "raid"
+Marwan___FBI.relationship != Marwan___Abu Sayyaf.relationship
+Marwan___FBI.relationship = "Marwan was confirmed deceased by the FBI."
+None_ML(Marwan.attrs, Abu Sayyaf.attrs)
+None_ML(Marwan___FBI.attrs, Marwan___Abu Sayyaf.attrs)
+
+Rules:
+Q[Marwan,Marwan] (FBI.name != Abu Sayyaf.name ∧ Abu Sayyaf.label != "Organization" ∧ Marwan.status = "deceased" ∧ FBI.location != Abu Sayyaf.location ∧ FBI.name = "FBI" ∧ FBI.name != "FBI" → Marwan.label != Abu Sayyaf.label)
+Q[Marwan,Marwan] (Marwan.nationality != "Malaysian" ∧ Marwan.label != FBI.label → Marwan___FBI.relationship != Marwan___Abu Sayyaf.relationship)
+Q[Marwan,Marwan] (Marwan___FBI.relationship != Marwan___Abu Sayyaf.relationship ∧ Marwan.name != FBI.name ∧ Marwan___FBI.relationship = "Marwan was confirmed deceased by the FBI." ∧ Marwan.label != FBI.label ∧ Marwan___FBI.date = "January" → FBI.label != "Organization")
+Q[Marwan,Marwan] (None_ML(Marwan.attrs, Abu Sayyaf.attrs) ∧ Marwan.real_name != "Zulkifli bin Hir" ∧ Marwan.nationality = "Malaysian" → Abu Sayyaf.location = "Philippines")
+Q[Marwan,Marwan] (Marwan___FBI.relationship = "Marwan was confirmed deceased by the FBI." ∧ Abu Sayyaf.location = "Philippines" ∧ FBI.location = "United States" ∧ Marwan___FBI.location = "Philippines" → None_ML(Marwan___FBI.attrs, Marwan___Abu Sayyaf.attrs))
+Q[Marwan,Marwan] (Marwan___FBI.relationship = "Marwan was confirmed deceased by the FBI." ∧ Marwan___Abu Sayyaf.doc_id = "3489738282_7" ∧ FBI.name != "FBI" ∧ Marwan.nationality = "Malaysian" → Marwan.real_name != "Zulkifli bin Hir")
+Q[Marwan,Marwan] (FBI.label != "Organization" ∧ FBI.name = "FBI" → Marwan.name != "Marwan")
+Q[Marwan,Marwan] (FBI.name != Abu Sayyaf.name ∧ FBI.location = "United States" ∧ Marwan.label != "Person" → Marwan.nationality != "Malaysian")
+Q[Marwan,Marwan] (FBI.label = "Organization" ∧ Marwan.label != "Person" ∧ FBI.location = "United States" ∧ Marwan___FBI.relationship = "Marwan was confirmed deceased by the FBI." ∧ Marwan.name != FBI.name ∧ FBI.location != Abu Sayyaf.location → Marwan___Abu Sayyaf.doc_id = "3489738282_7")
+Q[Marwan,Marwan] (Abu Sayyaf.label != "Organization" ∧ Marwan___Abu Sayyaf.relationship = "Marwan conducted bomb making training for Abu Sayyaf." ∧ FBI.label = "Organization" ∧ None_ML(Marwan___FBI.attrs, Marwan___Abu Sayyaf.attrs) ∧ Marwan___FBI.doc_id = "3489738282_7" → Marwan___FBI.date = "January")

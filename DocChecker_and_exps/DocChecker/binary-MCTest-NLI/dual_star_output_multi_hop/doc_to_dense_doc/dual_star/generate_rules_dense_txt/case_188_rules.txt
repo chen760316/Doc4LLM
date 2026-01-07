@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 188)
+S1: The humans were very nice to me but the dog was not.
+S2: This dog, who they called Sophie, was very nice to me.
+
+Predicates:
+1. Human.kindness(S1.humans, true)
+2. Dog.kindness(S1.dog, false)
+3. Dog.name(S2.dog, "Sophie")
+4. Dog.kindness(S2.dog, true)
+5. M_NLI(S1, S2)
+6. Content(Opinion, S1)
+7. Content(Opinion, S2)
+8. violate(S1, S2)
+9. Human.treatment(S1.humans, S1.me, "nice")
+10. Dog.treatment(S1.dog, S1.me, "not nice")
+11. Dog.treatment(S2.dog, S2.me, "nice")
+12. Dog.name(S1.dog, "unknown")
+13. Human.emotion(S1.humans, "positive")
+14. Dog.emotion(S1.dog, "negative")
+15. Dog.emotion(S2.dog, "positive")
+16. Human.relationship(S1.humans, S1.me, "friendly")
+17. Dog.relationship(S1.dog, S1.me, "unfriendly")
+18. Dog.relationship(S2.dog, S2.me, "friendly")
+19. Human.kindness(S2.humans, true)
+20. Human.treatment(S2.humans, S2.me, "nice")
+21. Dog.kindness(S1.dog, "not nice")
+22. Dog.kindness(S2.dog, "very nice")
+23. Human.emotion(S2.humans, "positive")
+24. violate(Dog.kindness(S1.dog), Dog.kindness(S2.dog))
+25. Dog.name(S1.dog, "S1.dog")
+26. Dog.name(S2.dog, "S2.dog")
+27. Human.treatment(S1.humans, S1.me, "very nice")
+28. Human.treatment(S2.humans, S2.me, "very nice")
+29. Dog.relationship(S1.dog, S1.me, "not nice")
+30. Dog.relationship(S2.dog, S2.me, "very nice")
+
+Rules:
+1. Q[The, Dog.kindness(S1.dog, false) → Content(Opinion, S1)]
+2. Q[The, Dog.kindness(S2.dog, true) → Content(Opinion, S2)]
+3. Q[The, Dog.treatment(S1.dog, "not nice") → Content(Opinion, S1)]
+4. Q[The, Dog.treatment(S2.dog, "nice") → Content(Opinion, S2)]
+5. Q[The, Dog.relationship(S1.dog, S1.me, "unfriendly") → Content(Opinion, S1)]
+6. Q[The, Dog.relationship(S2.dog, S2.me, "friendly") → Content(Opinion, S2)]
+7. Q[The, Human.kindness(S1.humans, true) → Content(Opinion, S1)]
+8. Q[The, Human.kindness(S2.humans, true) → Content(Opinion, S2)]
+9. Q[The, Human.treatment(S1.humans, S1.me, "nice") → Content(Opinion, S1)]
+10. Q[The, Human.treatment(S2.humans, S2.me, "nice") → Content(Opinion, S2)]
+11. Q[The, Dog.emotion(S1.dog, "negative") → Content(Opinion, S1)]
+12. Q[The, Dog.emotion(S2.dog, "positive") → Content(Opinion, S2)]
+13. Q[The, violate(Dog.kindness(S1.dog), Dog.kindness(S2.dog)) → Content(Opinion, S1)]
+14. Q[The, violate(Dog.treatment(S1.dog, "not nice"), Dog.treatment(S2.dog, "nice")) → Content(Opinion, S1)]
+15. Q[The, violate(Dog.relationship(S1.dog, S1.me, "unfriendly"), Dog.relationship(S2.dog, S2.me, "friendly")) → Content(Opinion, S1)]
+16. Q[The, Dog.kindness(S1.dog, false) ∧ Dog.kindness(S2.dog, true) → Content(Opinion, S1)]
+17. Q[The, Dog.treatment(S1.dog, "not nice") ∧ Dog.treatment(S2.dog, "nice") → Content(Opinion, S1)]
+18. Q[The, Dog.relationship(S1.dog, S1.me, "unfriendly") ∧ Dog.relationship(S2.dog, S2.me, "friendly") → Content(Opinion, S1)]
+19. Q[The, Human.emotion(S1.humans, "positive") → Content(Opinion, S1)]
+20. Q[The, Human.emotion(S2.humans, "positive") → Content(Opinion, S2)]
+21. Q[The, Dog.kindness(S1.dog, "not nice") ∧ Dog.kindness(S2.dog, "very nice") → Content(Opinion, S1)]
+22. Q[The, Dog.treatment(S1.dog, "not nice") ∧ Dog.treatment(S2.dog, "nice") → Content(Opinion, S1)]
+23. Q[The, Dog.relationship(S1.dog, S1.me, "not nice") ∧ Dog.relationship(S2.dog, S2.me, "very nice") → Content(Opinion, S1)]
+24. Q[The, violate(Human.treatment(S1.humans, S1.me, "nice"), Human.treatment(S2.humans, S2.me, "nice")) → Content(Opinion, S1)]
+25. Q[The, Dog.name(S1.dog, "unknown") → Content(Opinion, S1)]
+26. Q[The, Dog.name(S2.dog, "Sophie") → Content(Opinion, S2)]
+27. Q[The, Dog.kindness(S1.dog, false) ∧ Dog.kindness(S2.dog, true) → Content(Opinion, S1)]
+28. Q[The, Dog.treatment(S1.dog, "not nice") ∧ Dog.treatment(S2.dog, "nice") → Content(Opinion, S1)]
+29. Q[The, Dog.relationship(S1.dog, S1.me, "unfriendly") ∧ Dog.relationship(S2.dog, S2.me, "friendly") → Content(Opinion, S1)]
+30. Q[The, violate(Dog.kindness(S1.dog), Dog.kindness(S2.dog)) → Content(Opinion, S1)]

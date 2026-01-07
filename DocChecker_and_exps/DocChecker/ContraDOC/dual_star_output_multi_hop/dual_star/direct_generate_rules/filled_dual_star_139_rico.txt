@@ -1,0 +1,71 @@
+Predicates:
+Barcelona.country != "Spain"
+Barcelona.country = "Spain"
+Barcelona.label != "Location"
+Barcelona.label != ISIS.label
+Barcelona.label = "Location"
+Barcelona.name != "Barcelona"
+Barcelona.name != ISIS.name
+Barcelona.name = "Barcelona"
+ISIS.label != "Organization"
+ISIS.label = "Organization"
+ISIS.name != "ISIS"
+ISIS.name = "ISIS"
+ISIS.type != "terrorist organization"
+ISIS.type = "terrorist organization"
+Keonna Thomas.age != 30
+Keonna Thomas.age < 35
+Keonna Thomas.age = 30
+Keonna Thomas.age > 25
+Keonna Thomas.label != "Person"
+Keonna Thomas.label != Barcelona.label
+Keonna Thomas.label != ISIS.label
+Keonna Thomas.label != Turkey.label
+Keonna Thomas.label = "Person"
+Keonna Thomas.location != "Philadelphia"
+Keonna Thomas.location = "Philadelphia"
+Keonna Thomas.name != "Keonna Thomas"
+Keonna Thomas.name != Barcelona.name
+Keonna Thomas.name != ISIS.name
+Keonna Thomas.name != Turkey.name
+Keonna Thomas.name = "Keonna Thomas"
+Keonna Thomas.status != "charged"
+Keonna Thomas.status = "charged"
+Keonna Thomas___Barcelona.departure_date = "March 29"
+Keonna Thomas___Barcelona.doc_id = "3489738230_1"
+Keonna Thomas___Barcelona.purchase_date = "March 26"
+Keonna Thomas___Barcelona.relationship != Keonna Thomas___ISIS.relationship
+Keonna Thomas___Barcelona.relationship = "Keonna Thomas purchased a ticket to Barcelona."
+Keonna Thomas___Barcelona.return_date = "April 15"
+Keonna Thomas___ISIS.date = "March 23"
+Keonna Thomas___ISIS.doc_id = "3489738230_1"
+Keonna Thomas___ISIS.method = "purchased electronic visa to Turkey"
+Keonna Thomas___ISIS.relationship = "Keonna Thomas attempted to travel overseas to fight for ISIS."
+Keonna Thomas___Turkey.date = "March 23"
+Keonna Thomas___Turkey.doc_id = "3489738230_1"
+Keonna Thomas___Turkey.relationship != Keonna Thomas___Barcelona.relationship
+Keonna Thomas___Turkey.relationship != Keonna Thomas___ISIS.relationship
+Keonna Thomas___Turkey.relationship = "Keonna Thomas purchased a ticket to travel to Turkey."
+None_ML(Keonna Thomas___Barcelona.attrs, Keonna Thomas___Turkey.attrs)
+None_ML(Turkey.attrs, ISIS.attrs)
+Turkey.known_for != "easiest place to enter Syria and join ISIS"
+Turkey.known_for = "easiest place to enter Syria and join ISIS"
+Turkey.label != "Location"
+Turkey.label != ISIS.label
+Turkey.label = "Location"
+Turkey.name != "Turkey"
+Turkey.name != Barcelona.name
+Turkey.name != ISIS.name
+Turkey.name = "Turkey"
+
+Rules:
+Q[Keonna Thomas,Keonna Thomas] (Turkey.label != "Location" ∧ Keonna Thomas.location != "Philadelphia" ∧ Keonna Thomas.name != Turkey.name ∧ None_ML(Keonna Thomas___Barcelona.attrs, Keonna Thomas___Turkey.attrs) ∧ Keonna Thomas___Barcelona.relationship = "Keonna Thomas purchased a ticket to Barcelona." → ISIS.name != "ISIS")
+Q[Keonna Thomas,Keonna Thomas] (Turkey.known_for != "easiest place to enter Syria and join ISIS" ∧ Keonna Thomas.name != ISIS.name ∧ Keonna Thomas.location != "Philadelphia" → Keonna Thomas.label != ISIS.label)
+Q[Keonna Thomas,Keonna Thomas] (Turkey.name != Barcelona.name ∧ ISIS.label != "Organization" ∧ Keonna Thomas___Turkey.relationship != Keonna Thomas___ISIS.relationship ∧ Keonna Thomas.name = "Keonna Thomas" → Keonna Thomas.label != Turkey.label)
+Q[Keonna Thomas,Keonna Thomas] (Barcelona.name = "Barcelona" ∧ Turkey.known_for = "easiest place to enter Syria and join ISIS" ∧ Barcelona.country = "Spain" ∧ ISIS.type != "terrorist organization" ∧ Keonna Thomas___Barcelona.relationship != Keonna Thomas___ISIS.relationship ∧ Keonna Thomas.name != ISIS.name → Keonna Thomas___Barcelona.purchase_date = "March 26")
+Q[Keonna Thomas,Keonna Thomas] (Barcelona.country != "Spain" ∧ Barcelona.name = "Barcelona" → Turkey.label != "Location")
+Q[Keonna Thomas,Keonna Thomas] (Barcelona.name != ISIS.name ∧ Keonna Thomas___Barcelona.purchase_date = "March 26" ∧ Keonna Thomas.name != "Keonna Thomas" ∧ Keonna Thomas.label != Turkey.label ∧ Turkey.label = "Location" ∧ Keonna Thomas.label != ISIS.label → Barcelona.label = "Location")
+Q[Keonna Thomas,Keonna Thomas] (Keonna Thomas.name != "Keonna Thomas" ∧ ISIS.name != "ISIS" ∧ Keonna Thomas___Barcelona.return_date = "April 15" → Keonna Thomas.age != 30)
+Q[Keonna Thomas,Keonna Thomas] (ISIS.name != "ISIS" ∧ Keonna Thomas.name != ISIS.name ∧ ISIS.name = "ISIS" ∧ Keonna Thomas.location = "Philadelphia" ∧ Keonna Thomas.age < 35 → Turkey.name != Barcelona.name)
+Q[Keonna Thomas,Keonna Thomas] (Turkey.label != "Location" ∧ Keonna Thomas.label != Barcelona.label ∧ Turkey.name = "Turkey" ∧ Keonna Thomas___Turkey.doc_id = "3489738230_1" → Turkey.label = "Location")
+Q[Keonna Thomas,Keonna Thomas] (Keonna Thomas.label != Barcelona.label ∧ Keonna Thomas___Barcelona.purchase_date = "March 26" → Keonna Thomas.status = "charged")

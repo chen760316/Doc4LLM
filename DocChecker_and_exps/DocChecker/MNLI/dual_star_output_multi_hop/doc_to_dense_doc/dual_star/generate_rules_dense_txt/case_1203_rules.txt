@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 1203)
+S1: An account is removed from receivables when active collection ceases.
+S2: Active collection on an account ceases, and the account is removed from an entity's receivables.
+
+Predicates:
+1. Account.removed_from_receivables
+2. Active_collection.ceases
+3. Entity.receivables
+4. Account.active_collection
+5. Account.removal_sequence
+6. Receivables.entity
+7. Collection_status.active
+8. Collection_status.inactive
+9. Account.entity_relationship
+10. Receivables.account_relationship
+11. M_NLI(S1, S2)
+12. Content(Misinformation)(S1, S2)
+13. violate(S1, S2)
+14. Account.status.active
+15. Account.status.inactive
+16. Collection_process.active
+17. Collection_process.completed
+18. Receivables.status
+19. Entity.account_management
+20. Account.removal_condition
+21. Collection_activity.status
+22. Receivables.removal_event
+23. Active_collection.account_status
+24. Entity.collection_policy
+25. Account.removal_timing
+26. Receivables.collection_status
+27. Collection_activity.ceases
+28. Entity.receivables_management
+29. Account.removal_criteria
+30. Collection_process.initiation
+
+Rules:
+1. Q[account, x0, y0](Account.removed_from_receivables == true → Content(Misinformation)(x0, y0))
+2. Q[account, x0, y0](Active_collection.ceases == true → Content(Misinformation)(x0, y0))
+3. Q[account, x0, y0](Account.active_collection == false → Content(Misinformation)(x0, y0))
+4. Q[account, x0, y0](Account.removal_sequence == "after" → Content(Misinformation)(x0, y0))
+5. Q[account, x0, y0](Entity.receivables == false → Content(Misinformation)(x0, y0))
+6. Q[account, x0, y0](Collection_status.active == false → Content(Misinformation)(x0, y0))
+7. Q[account, x0, y0](Collection_status.inactive == true → Content(Misinformation)(x0, y0))
+8. Q[account, x0, y0](Account.entity_relationship == "removed" → Content(Misinformation)(x0, y0))
+9. Q[account, x0, y0](Receivables.account_relationship == "inactive" → Content(Misinformation)(x0, y0))
+10. Q[account, x0, y0](M_NLI(S1, S2) == true → Content(Misinformation)(x0, y0))
+11. Q[account, x0, y0](violate(S1, S2) == true → Content(Misinformation)(x0, y0))
+12. Q[account, x0, y0](Account.status.active == false → Content(Misinformation)(x0, y0))
+13. Q[account, x0, y0](Account.status.inactive == true → Content(Misinformation)(x0, y0))
+14. Q[account, x0, y0](Collection_process.active == false → Content(Misinformation)(x0, y0))
+15. Q[account, x0, y0](Collection_process.completed == true → Content(Misinformation)(x0, y0))
+16. Q[account, x0, y0](Receivables.status == "removed" → Content(Misinformation)(x0, y0))
+17. Q[account, x0, y0](Entity.account_management == "inactive" → Content(Misinformation)(x0, y0))
+18. Q[account, x0, y0](Account.removal_condition == "ceases" → Content(Misinformation)(x0, y0))
+19. Q[account, x0, y0](Collection_activity.status == "inactive" → Content(Misinformation)(x0, y0))
+20. Q[account, x0, y0](Receivables.removal_event == true → Content(Misinformation)(x0, y0))
+21. Q[account, x0, y0](Active_collection.account_status == "inactive" → Content(Misinformation)(x0, y0))
+22. Q[account, x0, y0](Entity.collection_policy == "ceases" → Content(Misinformation)(x0, y0))
+23. Q[account, x0, y0](Account.removal_timing == "after" → Content(Misinformation)(x0, y0))
+24. Q[account, x0, y0](Receivables.collection_status == "inactive" → Content(Misinformation)(x0, y0))
+25. Q[account, x0, y0](Collection_activity.ceases == true → Content(Misinformation)(x0, y0))
+26. Q[account, x0, y0](Entity.receivables_management == "inactive" → Content(Misinformation)(x0, y0))
+27. Q[account, x0, y0](Account.removal_criteria == "ceases" → Content(Misinformation)(x0, y0))
+28. Q[account, x0, y0](Collection_process.initiation == false → Content(Misinformation)(x0, y0))
+29. Q[account, x0, y0](Account.removal_sequence == "before" → Content(Misinformation)(x0, y0))
+30. Q[account, x0, y0](Active_collection.account_status == "removed" → Content(Misinformation)(x0, y0))

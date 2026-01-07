@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 826)
+S1: Most stopped trying for similar reasons that disheartened HQ.
+S2: The economy relied on farming and was hurting more from plague and famine.
+
+Predicates:
+1. Most.stopped_trying.reason
+2. HQ.disheartened.reason
+3. Economy.reliance.farming
+4. Economy.hurting.plague
+5. Economy.hurting.famine
+6. Stopped_trying.similar_reasons
+7. Farming.economy.dependence
+8. Plague.impact.economy
+9. Famine.impact.economy
+10. Efforts.stopped.due_to_discouragement
+11. Reasons.disheartened.HQ
+12. Similar_reasons.discouragement
+13. Economy.still.reliant
+14. Farming.economy.status
+15. Plague.economy.condition
+16. Famine.economy.condition
+17. Most.stopped_trying.due_to
+18. HQ.discouragement.cause
+19. Economy.dependence.on.farming
+20. Farming.economy.vulnerability
+21. Plague.farming.impact
+22. Famine.farming.impact
+23. Stopped_trying.efforts
+24. Disheartened.HQ.efforts
+25. Economy.plague.famine.issues
+26. Reasons.impact.on.efforts
+27. Most.efforts.stopped
+28. Economy.hurting.from.issues
+29. Farming.economy.reliance
+30. Discouragement.causes.stopped_efforts
+
+Rules:
+1. Q[Most, Most.stopped_trying.reason == "discouragement"](Most.stopped_trying.reason → Causal(Most, Economy.hurting.plague))
+2. Q[Most, HQ.disheartened.reason == "discouragement"](HQ.disheartened.reason → Causal(Most, Economy.hurting.famine))
+3. Q[Most, Economy.reliance.farming == true](Economy.reliance.farming → Causal(Most, Stopped_trying.similar_reasons))
+4. Q[Most, Economy.hurting.plague == true](Economy.hurting.plague → Causal(Most, Efforts.stopped.due_to_discouragement))
+5. Q[Most, Economy.hurting.famine == true](Economy.hurting.famine → Causal(Most, Reasons.disheartened.HQ))
+6. Q[Most, Stopped_trying.similar_reasons == "discouragement"](Stopped_trying.similar_reasons → Causal(Most, Economy.still.reliant))
+7. Q[Most, Farming.economy.dependence == true](Farming.economy.dependence → Causal(Most, Farming.economy.vulnerability))
+8. Q[Most, Plague.impact.economy == true](Plague.impact.economy → Causal(Most, Economy.hurting.from.issues))
+9. Q[Most, Famine.impact.economy == true](Famine.impact.economy → Causal(Most, Economy.hurting.plague))
+10. Q[Most, Efforts.stopped.due_to_discouragement == true](Efforts.stopped.due_to_discouragement → Causal(Most, HQ.discouragement.cause))
+11. Q[Most, Reasons.impact.on.efforts == true](Reasons.impact.on.efforts → Causal(Most, Economy.dependence.on.farming))
+12. Q[Most, Economy.plague.famine.issues == true](Economy.plague.famine.issues → Causal(Most, Farming.economy.status))
+13. Q[Most, Economy.still.reliant == true](Economy.still.reliant → Causal(Most, Farming.economy.dependence))
+14. Q[Most, Farming.economy.status == "dependent"](Farming.economy.status → Causal(Most, Plague.farming.impact))
+15. Q[Most, Plague.economy.condition == "poor"](Plague.economy.condition → Causal(Most, Famine.farming.impact))
+16. Q[Most, Famine.economy.condition == "poor"](Famine.economy.condition → Causal(Most, Economy.hurting.famine))
+17. Q[Most, Most.efforts.stopped == true](Most.efforts.stopped → Causal(Most, Economy.hurting.plague))
+18. Q[Most, Economy.hurting.from.issues == true](Economy.hurting.from.issues → Causal(Most, Stopped_trying.efforts))
+19. Q[Most, Farming.economy.reliance == true](Farming.economy.reliance → Causal(Most, Economy.hurting.famine))
+20. Q[Most, Discouragement.causes.stopped_efforts == true](Discouragement.causes.stopped_efforts → Causal(Most, HQ.disheartened.reason))
+21. Q[Most, Economy.hurting.plague == true](Economy.hurting.plague → Causal(Most, Similar_reasons.discouragement))
+22. Q[Most, Economy.hurting.famine == true](Economy.hurting.famine → Causal(Most, Economy.dependence.on.farming))
+23. Q[Most, HQ.discouragement.cause == "efforts stopped"](HQ.discouragement.cause → Causal(Most, Economy.hurting.from.issues))
+24. Q[Most, Economy.dependence.on.farming == true](Economy.dependence.on.farming → Causal(Most, Farming.economy.vulnerability))
+25. Q[Most, Farming.economy.vulnerability == true](Farming.economy.vulnerability → Causal(Most, Plague.impact.economy))
+26. Q[Most, Plague.farming.impact == true](Plague.farming.impact → Causal(Most, Famine.impact.economy))
+27. Q[Most, Famine.farming.impact == true](Famine.farming.impact → Causal(Most, Economy.hurting.plague))
+28. Q[Most, Economy.hurting.plague == true](Economy.hurting.plague → Causal(Most, Economy.hurting.famine))
+29. Q[Most, Economy.hurting.famine == true](Economy.hurting.famine → Causal(Most, Stopped_trying.similar_reasons))
+30. Q[Most, Similar_reasons.discouragement == true](Similar_reasons.discouragement → Causal(Most, Economy.still.reliant))

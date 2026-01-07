@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 662)
+S1: Just that there had been an emergency.
+S2: There was no emergency.
+
+Predicates:
+1. Emergency.event
+2. Emergency.status
+3. Emergency.occurred
+4. Emergency.declared
+5. Emergency.response
+6. Emergency.impact
+7. Emergency.time
+8. Emergency.location
+9. Emergency.reported
+10. Emergency.witnessed
+11. No_Emergency.status
+12. No_Emergency.declared
+13. No_Emergency.impact
+14. No_Emergency.time
+15. No_Emergency.location
+16. M_NLI(S1, S2)
+17. Negation(Emergency.occurred, No_Emergency.status)
+18. violate(Emergency.occurred, No_Emergency.status)
+19. Emergency.type
+20. Emergency.severity
+21. Emergency.response_time
+22. Emergency.evidence
+23. Emergency.consequences
+24. No_Emergency.evidence
+25. No_Emergency.consequences
+26. Emergency.notification
+27. Emergency.assessment
+28. Emergency.management
+29. Emergency.follow_up
+30. No_Emergency.notification
+
+Rules:
+1. Q[Just, Emergency.occurred, No_Emergency.status](Emergency.event == "emergency" → Negation(Emergency.occurred, No_Emergency.status))
+2. Q[Just, Emergency.status, No_Emergency.status](Emergency.status == "active" → Negation(Emergency.status, No_Emergency.status))
+3. Q[Just, Emergency.declared, No_Emergency.declared](Emergency.declared == true → Negation(Emergency.declared, No_Emergency.declared))
+4. Q[Just, Emergency.response, No_Emergency.status](Emergency.response == "required" → Negation(Emergency.response, No_Emergency.status))
+5. Q[Just, Emergency.impact, No_Emergency.impact](Emergency.impact == "significant" → Negation(Emergency.impact, No_Emergency.impact))
+6. Q[Just, Emergency.time, No_Emergency.time](Emergency.time == "recent" → Negation(Emergency.time, No_Emergency.time))
+7. Q[Just, Emergency.location, No_Emergency.location](Emergency.location == "site of emergency" → Negation(Emergency.location, No_Emergency.location))
+8. Q[Just, Emergency.reported, No_Emergency.status](Emergency.reported == true → Negation(Emergency.reported, No_Emergency.status))
+9. Q[Just, Emergency.witnessed, No_Emergency.status](Emergency.witnessed == true → Negation(Emergency.witnessed, No_Emergency.status))
+10. Q[Just, Emergency.type, No_Emergency.status](Emergency.type == "fire" → Negation(Emergency.type, No_Emergency.status))
+11. Q[Just, Emergency.severity, No_Emergency.status](Emergency.severity == "high" → Negation(Emergency.severity, No_Emergency.status))
+12. Q[Just, Emergency.response_time, No_Emergency.status](Emergency.response_time < 5 → Negation(Emergency.response_time, No_Emergency.status))
+13. Q[Just, Emergency.evidence, No_Emergency.evidence](Emergency.evidence == "present" → Negation(Emergency.evidence, No_Emergency.evidence))
+14. Q[Just, Emergency.consequences, No_Emergency.consequences](Emergency.consequences == "damaging" → Negation(Emergency.consequences, No_Emergency.consequences))
+15. Q[Just, Emergency.notification, No_Emergency.notification](Emergency.notification == "issued" → Negation(Emergency.notification, No_Emergency.notification))
+16. Q[Just, Emergency.assessment, No_Emergency.status](Emergency.assessment == "ongoing" → Negation(Emergency.assessment, No_Emergency.status))
+17. Q[Just, Emergency.management, No_Emergency.status](Emergency.management == "active" → Negation(Emergency.management, No_Emergency.status))
+18. Q[Just, Emergency.follow_up, No_Emergency.status](Emergency.follow_up == "required" → Negation(Emergency.follow_up, No_Emergency.status))
+19. Q[Just, Emergency.event, No_Emergency.status](Emergency.event == "incident" → Negation(Emergency.event, No_Emergency.status))
+20. Q[Just, Emergency.occurred, No_Emergency.status](Emergency.occurred == true → Negation(Emergency.occurred, No_Emergency.status))
+21. Q[Just, Emergency.declared, No_Emergency.impact](Emergency.declared == true → Negation(Emergency.declared, No_Emergency.impact))
+22. Q[Just, Emergency.response, No_Emergency.impact](Emergency.response == "critical" → Negation(Emergency.response, No_Emergency.impact))
+23. Q[Just, Emergency.impact, No_Emergency.time](Emergency.impact == "immediate" → Negation(Emergency.impact, No_Emergency.time))
+24. Q[Just, Emergency.time, No_Emergency.location](Emergency.time == "now" → Negation(Emergency.time, No_Emergency.location))
+25. Q[Just, Emergency.location, No_Emergency.notification](Emergency.location == "public area" → Negation(Emergency.location, No_Emergency.notification))
+26. Q[Just, Emergency.reported, No_Emergency.evidence](Emergency.reported == true → Negation(Emergency.reported, No_Emergency.evidence))
+27. Q[Just, Emergency.witnessed, No_Emergency.consequences](Emergency.witnessed == true → Negation(Emergency.witnessed, No_Emergency.consequences))
+28. Q[Just, Emergency.type, No_Emergency.evidence](Emergency.type == "explosion" → Negation(Emergency.type, No_Emergency.evidence))
+29. Q[Just, Emergency.severity, No_Emergency.consequences](Emergency.severity == "critical" → Negation(Emergency.severity, No_Emergency.consequences))
+30. Q[Just, Emergency.notification, No_Emergency.status](Emergency.notification == "urgent" → Negation(Emergency.notification, No_Emergency.status))

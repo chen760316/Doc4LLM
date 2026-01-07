@@ -1,0 +1,61 @@
+Predicates:
+Albatross explosion.label != "Event"
+Albatross explosion.label = "Event"
+Albatross explosion.location != "Chatham Islands"
+Albatross explosion.location != Albatross reappearance.location
+Albatross explosion.location = "Chatham Islands"
+Albatross explosion.name != "Albatross explosion"
+Albatross explosion.name != Albatross reappearance.name
+Albatross explosion.name = "Albatross explosion"
+Albatross reappearance.label != "Event"
+Albatross reappearance.label = "Event"
+Albatross reappearance.location != "sky"
+Albatross reappearance.location = "sky"
+Albatross reappearance.name != "Albatross reappearance"
+Albatross reappearance.name = "Albatross reappearance"
+Albatross.label != "Vehicle"
+Albatross.label != Albatross explosion.label
+Albatross.label != Albatross reappearance.label
+Albatross.label != Weldon Institute Members.label
+Albatross.label = "Vehicle"
+Albatross.name != "Albatross"
+Albatross.name != Albatross explosion.name
+Albatross.name != Albatross reappearance.name
+Albatross.name != Weldon Institute Members.name
+Albatross.name = "Albatross"
+Albatross.type != "multirotor gyrodyne"
+Albatross.type = "multirotor gyrodyne"
+Albatross___Albatross explosion.doc_id = "story_train_7683"
+Albatross___Albatross explosion.relationship != Albatross___Albatross reappearance.relationship
+Albatross___Albatross explosion.relationship = "The Albatross is damaged in a storm and later explodes."
+Albatross___Albatross reappearance.doc_id = "story_train_7683"
+Albatross___Albatross reappearance.relationship = "The Albatross reappears during the Go-ahead's maiden voyage."
+Albatross___Weldon Institute Members.doc_id = "story_train_7683"
+Albatross___Weldon Institute Members.duration = "three weeks"
+Albatross___Weldon Institute Members.relationship != Albatross___Albatross explosion.relationship
+Albatross___Weldon Institute Members.relationship != Albatross___Albatross reappearance.relationship
+Albatross___Weldon Institute Members.relationship = "Robur takes the Weldon Institute members on a journey around the world."
+None_ML(Albatross.attrs, Albatross reappearance.attrs)
+None_ML(Albatross___Weldon Institute Members.attrs, Albatross___Albatross reappearance.attrs)
+Weldon Institute Members.label != "Person"
+Weldon Institute Members.label != Albatross explosion.label
+Weldon Institute Members.label != Albatross reappearance.label
+Weldon Institute Members.label = "Person"
+Weldon Institute Members.name != "Weldon Institute Members"
+Weldon Institute Members.name != Albatross explosion.name
+Weldon Institute Members.name != Albatross reappearance.name
+Weldon Institute Members.name = "Weldon Institute Members"
+Weldon Institute Members.status != "defeated"
+Weldon Institute Members.status = "defeated"
+
+Rules:
+Q[Albatross,Albatross] (Albatross explosion.name != "Albatross explosion" ∧ Weldon Institute Members.label != Albatross explosion.label ∧ Albatross explosion.label = "Event" → Albatross___Weldon Institute Members.relationship != Albatross___Albatross explosion.relationship)
+Q[Albatross,Albatross] (Albatross reappearance.label = "Event" ∧ Albatross reappearance.label != "Event" ∧ Weldon Institute Members.label != Albatross reappearance.label ∧ Albatross.type != "multirotor gyrodyne" ∧ Albatross___Weldon Institute Members.relationship != Albatross___Albatross reappearance.relationship ∧ Albatross reappearance.location = "sky" → Albatross.name != "Albatross")
+Q[Albatross,Albatross] (Albatross___Weldon Institute Members.relationship != Albatross___Albatross explosion.relationship ∧ None_ML(Albatross.attrs, Albatross reappearance.attrs) → Albatross.type = "multirotor gyrodyne")
+Q[Albatross,Albatross] (Albatross.type = "multirotor gyrodyne" ∧ Albatross.type != "multirotor gyrodyne" ∧ Albatross___Albatross reappearance.doc_id = "story_train_7683" ∧ Albatross reappearance.location = "sky" ∧ Albatross explosion.label != "Event" → Albatross reappearance.name = "Albatross reappearance")
+Q[Albatross,Albatross] (Weldon Institute Members.name != Albatross reappearance.name ∧ Weldon Institute Members.label != Albatross reappearance.label ∧ Albatross___Albatross reappearance.doc_id = "story_train_7683" ∧ Weldon Institute Members.label != Albatross explosion.label → Albatross reappearance.location = "sky")
+Q[Albatross,Albatross] (Albatross explosion.name != Albatross reappearance.name ∧ Albatross___Weldon Institute Members.relationship != Albatross___Albatross explosion.relationship ∧ Albatross.label != Albatross explosion.label ∧ Albatross___Albatross reappearance.relationship = "The Albatross reappears during the Go-ahead's maiden voyage." ∧ Albatross explosion.label = "Event" ∧ Weldon Institute Members.label != "Person" → Albatross.label = "Vehicle")
+Q[Albatross,Albatross] (Weldon Institute Members.name != "Weldon Institute Members" ∧ Albatross reappearance.name != "Albatross reappearance" → Albatross.label != Weldon Institute Members.label)
+Q[Albatross,Albatross] (Weldon Institute Members.status != "defeated" ∧ Albatross___Albatross explosion.relationship = "The Albatross is damaged in a storm and later explodes." ∧ Albatross explosion.location != "Chatham Islands" ∧ Albatross___Albatross explosion.relationship != Albatross___Albatross reappearance.relationship → Weldon Institute Members.label != Albatross reappearance.label)
+Q[Albatross,Albatross] (Albatross.label = "Vehicle" ∧ Albatross.name = "Albatross" ∧ Albatross___Albatross explosion.doc_id = "story_train_7683" ∧ Albatross___Weldon Institute Members.duration = "three weeks" ∧ Albatross.name != Weldon Institute Members.name → Albatross explosion.label = "Event")
+Q[Albatross,Albatross] (Albatross___Weldon Institute Members.doc_id = "story_train_7683" ∧ Albatross.name = "Albatross" ∧ Albatross explosion.name != "Albatross explosion" → Albatross.label != "Vehicle")

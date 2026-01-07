@@ -1,0 +1,134 @@
+Predicates:
+1. person.name = "John Doe"
+2. person.age = 30
+3. person.occupation = "teacher"
+4. person.moral_standing = "moral"
+5. person.accusation = "molesting"
+6. person.reputation = "good"
+7. person.location = "New York"
+8. person.education_level = "PhD"
+9. person.hobbies = "reading"
+10. person.marital_status = "married"
+11. organization.name = "XYZ Corp"
+12. organization.industry = "technology"
+13. organization.revenue = 5000000
+14. organization.founded_year = 2010
+15. organization.ceo = "Jane Smith"
+16. organization.location = "San Francisco"
+17. event.date = "2025-04-20"
+18. event.type = "conference"
+19. event.attendance = 200
+20. event.topic = "AI Ethics"
+21. event.location = "Los Angeles"
+22. relationship.type = "marriage"
+23. relationship.status = "happy"
+24. relationship.participant1 = "John Doe"
+25. relationship.participant2 = "Jane Doe"
+26. relationship.start_date = "2015-06-01"
+27. relationship.children_count = 2
+28. accusation.type = "sexual misconduct"
+29. accusation.evidence = "video footage"
+30. accusation.date = "2025-04-15"
+31. accusation.source = "anonymous tip"
+32. accusation.status = "under investigation"
+33. "is accused of molesting".severity = "high"
+34. "is accused of molesting".evidence_required = "substantial"
+35. "is considered to be a moral man in regards to".context = "community service"
+36. "is considered to be a moral man in regards to".public_opinion = "positive"
+37. "is considered to be a moral man in regards to".criticism = "none"
+38. "is considered to be a moral man in regards to".support = "strong"
+39. "is considered to be a moral man in regards to".duration = "5 years"
+40. M_NLI(person.accusation, person.reputation)
+41. T("John is a moral man", "John is accused of molesting", tau)
+42. tau(person.moral_standing, accusation.type)
+43. violate(person.name, accusation.type)
+44. Factual(person.reputation, accusation.type)
+45. Content(person.hobbies, accusation.type)
+46. Causal(organization.revenue, accusation.type)
+47. Negation(person.marital_status, accusation.type)
+48. Relation(relationship.participant1, relationship.participant2)
+49. Numeric(event.attendance, accusation.severity)
+50. Temporal(event.date, accusation.date)
+51. M_NLI(organization.ceo, accusation.source)
+52. T("John is a teacher", "John is a criminal", tau)
+53. tau(person.occupation, accusation.type)
+54. violate(organization.name, accusation.type)
+55. Factual(organization.industry, accusation.type)
+56. Content(relationship.status, accusation.type)
+57. Causal(event.attendance, organization.revenue)
+58. Negation(person.education_level, accusation.type)
+59. Relation(relationship.start_date, event.date)
+60. Numeric(relationship.children_count, accusation.severity)
+61. Temporal(organization.founded_year, event.date)
+62. M_NLI(person.location, organization.location)
+63. T("John is a good teacher", "John is a bad person", tau)
+64. tau(person.hobbies, organization.industry)
+65. violate(event.topic, accusation.type)
+66. Factual(event.location, accusation.source)
+67. Content(relationship.type, accusation.type)
+68. Causal(person.age, accusation.type)
+69. Negation(person.reputation, accusation.type)
+70. Relation(organization.ceo, person.name)
+71. Numeric(organization.revenue, event.attendance)
+72. Temporal(relationship.start_date, event.date)
+73. M_NLI(person.age, accusation.evidence)
+74. T("Jane is supportive", "Jane is critical", tau)
+75. tau(organization.location, accusation.type)
+76. violate(person.name, organization.name)
+77. Factual(relationship.participant1, accusation.type)
+78. Content(event.topic, accusation.type)
+79. Causal(organization.industry, accusation.evidence)
+80. Negation(person.marital_status, accusation.type)
+81. Relation(relationship.children_count, event.attendance)
+82. Numeric(organization.revenue, accusation.severity)
+83. Temporal(event.date, relationship.start_date)
+84. M_NLI(organization.name, person.reputation)
+85. T("John is innocent", "John is guilty", tau)
+86. tau(person.hobbies, relationship.status)
+87. violate(organization.industry, accusation.type)
+88. Factual(event.attendance, accusation.source)
+89. Content(relationship.type, accusation.evidence)
+90. Causal(person.education_level, accusation.type)
+91. Negation(person.age, accusation.type)
+92. Relation(organization.ceo, relationship.participant1)
+93. Numeric(relationship.children_count, organization.revenue)
+94. Temporal(organization.founded_year, event.date)
+95. M_NLI(person.reputation, relationship.status)
+96. T("Jane supports John", "Jane opposes John", tau)
+97. tau(organization.location, accusation.evidence)
+98. violate(event.date, accusation.type)
+99. Factual(relationship.start_date, accusation.type)
+100. Content(event.topic, accusation.source)
+violate(x0, y0)
+
+Rules:
+1. Q[x0, y0](person.name = "John Doe" ∧ person.reputation = "good" → violate(x0, y0))
+2. Q[x0, y0](person.age = 30 ∧ person.accusation = "molesting" → violate(x0, y0))
+3. Q[x0, y0](person.occupation = "teacher" ∧ person.moral_standing = "moral" → violate(x0, y0))
+4. Q[x0, y0](organization.name = "XYZ Corp" ∧ organization.industry = "technology" → violate(x0, y0))
+5. Q[x0, y0](event.date = "2025-04-20" ∧ event.type = "conference" → violate(x0, y0))
+6. Q[x0, y0](relationship.type = "marriage" ∧ relationship.status = "happy" → violate(x0, y0))
+7. Q[x0, y0](person.name = "John Doe" ∧ person.age = 30 ∧ person.occupation = "teacher" → violate(x0, y0))
+8. Q[x0, y0](person.reputation = "good" ∧ person.accusation = "molesting" ∧ person.moral_standing = "moral" → violate(x0, y0))
+9. Q[x0, y0](organization.name = "XYZ Corp" ∧ organization.revenue = 5000000 ∧ organization.ceo = "Jane Smith" → violate(x0, y0))
+10. Q[x0, y0](event.date = "2025-04-20" ∧ event.attendance = 200 ∧ event.topic = "AI Ethics" → violate(x0, y0))
+11. Q[x0, y0](relationship.participant1 = "John Doe" ∧ relationship.participant2 = "Jane Doe" ∧ relationship.children_count = 2 → violate(x0, y0))
+12. Q[x0, y0](person.name = "John Doe" ∧ person.reputation = "good" ∧ person.accusation = "molesting" ∧ person.moral_standing = "moral" → violate(x0, y0))
+13. Q[x0, y0](organization.name = "XYZ Corp" ∧ organization.industry = "technology" ∧ organization.location = "San Francisco" → violate(x0, y0))
+14. Q[x0, y0](event.date = "2025-04-20" ∧ event.type = "conference" ∧ event.location = "Los Angeles" → violate(x0, y0))
+15. Q[x0, y0](relationship.type = "marriage" ∧ relationship.status = "happy" ∧ relationship.start_date = "2015-06-01" → violate(x0, y0))
+16. Q[x0, y0](person.name = "John Doe" ∧ person.age = 30 ∧ person.occupation = "teacher" ∧ person.moral_standing = "moral" → violate(x0, y0))
+17. Q[x0, y0](person.reputation = "good" ∧ person.accusation = "molesting" ∧ person.education_level = "PhD" ∧ person.hobbies = "reading" → violate(x0, y0))
+18. Q[x0, y0](organization.name = "XYZ Corp" ∧ organization.revenue = 5000000 ∧ organization.founded_year = 2010 ∧ organization.ceo = "Jane Smith" → violate(x0, y0))
+19. Q[x0, y0](event.date = "2025-04-20" ∧ event.attendance = 200 ∧ event.topic = "AI Ethics" ∧ event.location = "Los Angeles" → violate(x0, y0))
+20. Q[x0, y0](relationship.participant1 = "John Doe" ∧ relationship.participant2 = "Jane Doe" ∧ relationship.start_date = "2015-06-01" ∧ relationship.children_count = 2 → violate(x0, y0))
+21. Q[x0, y0](person.name = "John Doe" ∧ person.age = 30 ∧ person.occupation = "teacher" ∧ person.reputation = "good" ∧ person.accusation = "molesting" → violate(x0, y0))
+22. Q[x0, y0](organization.name = "XYZ Corp" ∧ organization.industry = "technology" ∧ organization.revenue = 5000000 ∧ organization.ceo = "Jane Smith" ∧ organization.location = "San Francisco" → violate(x0, y0))
+23. Q[x0, y0](event.date = "2025-04-20" ∧ event.type = "conference" ∧ event.attendance = 200 ∧ event.topic = "AI Ethics" ∧ event.location = "Los Angeles" → violate(x0, y0))
+24. Q[x0, y0](relationship.type = "marriage" ∧ relationship.status = "happy" ∧ relationship.start_date = "2015-06-01" ∧ relationship.children_count = 2 → violate(x0, y0))
+25. Q[x0, y0](person.name = "John Doe" ∧ person.age = 30 ∧ person.occupation = "teacher" ∧ person.moral_standing = "moral" ∧ person.reputation = "good" → violate(x0, y0))
+26. Q[x0, y0](organization.name = "XYZ Corp" ∧ organization.industry = "technology" ∧ organization.revenue = 5000000 ∧ organization.founded_year = 2010 ∧ organization.ceo = "Jane Smith" → violate(x0, y0))
+27. Q[x0, y0](event.date = "2025-04-20" ∧ event.type = "conference" ∧ event.attendance = 200 ∧ event.topic = "AI Ethics" ∧ event.location = "Los Angeles" → violate(x0, y0))
+28. Q[x0, y0](relationship.participant1 = "John Doe" ∧ relationship.participant2 = "Jane Doe" ∧ relationship.start_date = "2015-06-01" ∧ relationship.children_count = 2 ∧ relationship.status = "happy" → violate(x0, y0))
+29. Q[x0, y0](person.name = "John Doe" ∧ person.age = 30 ∧ person.occupation = "teacher" ∧ person.moral_standing = "moral" ∧ person.accusation = "molesting" ∧ person.reputation = "good" → violate(x0, y0))
+30. Q[x0, y0](organization.name = "XYZ Corp" ∧ organization.industry = "technology" ∧ organization.revenue = 5000000 ∧ organization.founded_year = 2010 ∧ organization.ceo

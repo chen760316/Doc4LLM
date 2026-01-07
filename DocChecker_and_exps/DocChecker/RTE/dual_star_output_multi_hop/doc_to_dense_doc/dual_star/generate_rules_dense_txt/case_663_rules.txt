@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 663)
+S1: Neglect by contractors is a common cause of fire, including many of the fires result in serious financial losses.
+S2: Carelessness by contractors is a common cause of fire, including many fires that result in serious financial losses.
+
+Predicates:
+1. Neglect.contractors
+2. Carelessness.contractors
+3. Cause.fire
+4. Result.fire
+5. Serious_losses.fire
+6. Common.cause
+7. Financial_losses.fire
+8. Neglect.common
+9. Carelessness.common
+10. Neglect.serious_losses
+11. Carelessness.serious_losses
+12. Neglect.implies_responsibility
+13. Carelessness.implies_responsibility
+14. Neglect.implies_intent
+15. Carelessness.implies_intent
+16. Neglect.violates_safety
+17. Carelessness.violates_safety
+18. Neglect.results_in_losses
+19. Carelessness.results_in_losses
+20. M_NLI(S1, S2)
+21. Negation(S1, S2)
+22. Violate(S1, S2)
+23. Fire.caused_by_neglect
+24. Fire.caused_by_carelessness
+25. Serious_losses.caused_by_neglect
+26. Serious_losses.caused_by_carelessness
+27. Contractors.neglects_safety
+28. Contractors.carelessness
+29. Financial_losses.caused_by_fire
+30. Common_causes.include_neglect_and_carelessness
+
+Rules:
+1. Q[Neglect, Neglect.contractors, Carelessness.contractors](Neglect.contractors == true → Negation(Neglect.contractors, Carelessness.contractors))
+2. Q[Neglect, Neglect.common, Carelessness.common](Neglect.common == true → Negation(Neglect.common, Carelessness.common))
+3. Q[Neglect, Neglect.implies_responsibility, Carelessness.implies_responsibility](Neglect.implies_responsibility == true → Negation(Neglect.implies_responsibility, Carelessness.implies_responsibility))
+4. Q[Neglect, Neglect.implies_intent, Carelessness.implies_intent](Neglect.implies_intent == true → Negation(Neglect.implies_intent, Carelessness.implies_intent))
+5. Q[Neglect, Neglect.violates_safety, Carelessness.violates_safety](Neglect.violates_safety == true → Negation(Neglect.violates_safety, Carelessness.violates_safety))
+6. Q[Neglect, Neglect.results_in_losses, Carelessness.results_in_losses](Neglect.results_in_losses == true → Negation(Neglect.results_in_losses, Carelessness.results_in_losses))
+7. Q[Neglect, Cause.fire, Cause.fire](Cause.fire == true → Negation(Neglect.contractors, Carelessness.contractors))
+8. Q[Neglect, Serious_losses.caused_by_neglect, Serious_losses.caused_by_carelessness](Serious_losses.caused_by_neglect == true → Negation(Serious_losses.caused_by_neglect, Serious_losses.caused_by_carelessness))
+9. Q[Neglect, Financial_losses.caused_by_fire, Financial_losses.caused_by_fire](Financial_losses.caused_by_fire == true → Negation(Neglect.contractors, Carelessness.contractors))
+10. Q[Neglect, Common.cause, Common.cause](Common.cause == true → Negation(Neglect.common, Carelessness.common))
+11. Q[Neglect, Contractors.neglects_safety, Contractors.carelessness](Contractors.neglects_safety == true → Negation(Neglect.contractors, Carelessness.contractors))
+12. Q[Neglect, Fire.caused_by_neglect, Fire.caused_by_carelessness](Fire.caused_by_neglect == true → Negation(Fire.caused_by_neglect, Fire.caused_by_carelessness))
+13. Q[Neglect, Serious_losses.fire, Serious_losses.fire](Serious_losses.fire == true → Negation(Neglect.serious_losses, Carelessness.serious_losses))
+14. Q[Neglect, Common_causes.include_neglect_and_carelessness, Common_causes.include_neglect_and_carelessness](Common_causes.include_neglect_and_carelessness == true → Negation(Neglect.common, Carelessness.common))
+15. Q[Neglect, Carelessness.common, Neglect.common](Carelessness.common == true → Negation(Carelessness.common, Neglect.common))
+16. Q[Neglect, Carelessness.implies_responsibility, Neglect.implies_responsibility](Carelessness.implies_responsibility == true → Negation(Carelessness.implies_responsibility, Neglect.implies_responsibility))
+17. Q[Neglect, Carelessness.implies_intent, Neglect.implies_intent](Carelessness.implies_intent == true → Negation(Carelessness.implies_intent, Neglect.implies_intent))
+18. Q[Neglect, Carelessness.violates_safety, Neglect.violates_safety](Carelessness.violates_safety == true → Negation(Carelessness.violates_safety, Neglect.violates_safety))
+19. Q[Neglect, Carelessness.results_in_losses, Neglect.results_in_losses](Carelessness.results_in_losses == true → Negation(Carelessness.results_in_losses, Neglect.results_in_losses))
+20. Q[Neglect, Financial_losses.fire, Financial_losses.fire](Financial_losses.fire == true → Negation(Neglect.contractors, Carelessness.contractors))
+21. Q[Neglect, Cause.fire, Cause.fire](Cause.fire == true → Negation(Neglect.contractors, Carelessness.contractors))
+22. Q[Neglect, Serious_losses.caused_by_neglect, Serious_losses.caused_by_carelessness](Serious_losses.caused_by_neglect == true → Negation(Serious_losses.caused_by_neglect, Serious_losses.caused_by_carelessness))
+23. Q[Neglect, Contractors.carelessness, Contractors.neglects_safety](Contractors.carelessness == true → Negation(Contractors.carelessness, Contractors.neglects_safety))
+24. Q[Neglect, Fire.caused_by_neglect, Fire.caused_by_carelessness](Fire.caused_by_neglect == true → Negation(Fire.caused_by_neglect, Fire.caused_by_carelessness))
+25. Q[Neglect, Serious_losses.fire, Serious_losses.fire](Serious_losses.fire == true → Negation(Neglect.serious_losses, Carelessness.serious_losses))
+26. Q[Neglect, Common.cause, Common.cause](Common.cause == true → Negation(Neglect.common, Carelessness.common))
+27. Q[Neglect, Financial_losses.caused_by_fire, Financial_losses.caused_by_fire](Financial_losses.caused_by_fire == true → Negation(Neglect.contractors, Carelessness.contractors))
+28. Q[Neglect, Common_causes.include_neglect_and_carelessness, Common_causes.include_neglect_and_carelessness](Common_causes.include_neglect_and_carelessness == true → Negation(Neglect.common, Carelessness.common))
+29. Q[Neglect, Carelessness.common, Neglect.common](Carelessness.common == true → Negation(Carelessness.common, Neglect.common))
+30. Q[Neglect, Carelessness.implies_responsibility, Neglect.implies_responsibility](Carelessness.implies_responsibility == true → Negation(Carelessness.implies_responsibility, Neglect.implies_responsibility))

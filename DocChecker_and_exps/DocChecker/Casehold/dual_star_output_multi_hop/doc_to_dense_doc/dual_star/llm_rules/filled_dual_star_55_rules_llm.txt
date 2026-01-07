@@ -1,0 +1,128 @@
+Predicates:
+1. defense_counsel.role = "lawyer"
+2. defense_counsel.action = "closing argument"
+3. non_testifying_witnesses.role = "witnesses"
+4. prosecutor.role = "lawyer"
+5. prosecutor.action = "rebuttal closing argument"
+6. defense_counsel.method = "revelation of names"
+7. defense_counsel.source_id = "30407"
+8. prosecutor.source_id = "25894"
+9. defense_counsel.context = "cross-examination"
+10. prosecutor.justification = "defense counsel's closing argument was not improper"
+11. "cross-examination".context = "legal procedure"
+12. "closing argument".context = "legal procedure"
+13. "rebuttal closing argument".context = "legal procedure"
+14. defense_counsel.violated_procedure = "none"
+15. prosecutor.violated_procedure = "improper remarks"
+16. defense_counsel.revealed_information = "names of non-testifying witnesses"
+17. prosecutor.improper_remarks = "yes"
+18. defense_counsel.closing_argument_quality = "insufficient"
+19. prosecutor.rebuttal_quality = "improper"
+20. defense_counsel.cross_examination_quality = "adequate"
+21. non_testifying_witnesses.count = 5
+22. defense_counsel.closing_argument_effectiveness = "low"
+23. prosecutor.rebuttal_effectiveness = "questionable"
+24. defense_counsel.action_outcome = "revealed names"
+25. prosecutor.action_outcome = "improper remarks"
+26. "cross-examination".duration = "30 minutes"
+27. "closing argument".duration = "15 minutes"
+28. "rebuttal closing argument".duration = "10 minutes"
+29. defense_counsel.impact_on_case = "minimal"
+30. prosecutor.impact_on_case = "negative"
+31. defense_counsel.revelation_context = "during trial"
+32. prosecutor.rebuttal_context = "during trial"
+33. defense_counsel.closing_argument_time = "2025"
+34. prosecutor.rebuttal_time = "2025"
+35. defense_counsel.cross_examination_time = "2025"
+36. defense_counsel.closing_argument_success = "no"
+37. prosecutor.rebuttal_success = "no"
+38. defense_counsel.witnesses_called = 3
+39. prosecutor.witnesses_called = 0
+40. defense_counsel.evidence_presented = "yes"
+41. prosecutor.evidence_presented = "no"
+42. defense_counsel.legal_strategy = "defensive"
+43. prosecutor.legal_strategy = "aggressive"
+44. defense_counsel.credibility = "high"
+45. prosecutor.credibility = "low"
+46. defense_counsel.preparedness = "well-prepared"
+47. prosecutor.preparedness = "poorly prepared"
+48. defense_counsel.legal_precedent_used = "yes"
+49. prosecutor.legal_precedent_used = "no"
+50. defense_counsel.legal_arguments_strength = "weak"
+51. prosecutor.legal_arguments_strength = "strong"
+52. defense_counsel.legal_outcome = "unfavorable"
+53. prosecutor.legal_outcome = "favorable"
+54. defense_counsel.client_satisfaction = "low"
+55. prosecutor.client_satisfaction = "high"
+56. defense_counsel.legal_fees = "$5000"
+57. prosecutor.legal_fees = "$3000"
+58. defense_counsel.case_type = "criminal"
+59. prosecutor.case_type = "criminal"
+60. defense_counsel.legal_team_size = 2
+61. prosecutor.legal_team_size = 1
+62. defense_counsel.legal_experience = "5 years"
+63. prosecutor.legal_experience = "3 years"
+64. defense_counsel.legal_reputation = "good"
+65. prosecutor.legal_reputation = "poor"
+66. defense_counsel.legal_resources = "adequate"
+67. prosecutor.legal_resources = "limited"
+68. defense_counsel.legal_tactics = "traditional"
+69. prosecutor.legal_tactics = "innovative"
+70. defense_counsel.legal_outcome_prediction = "loss"
+71. prosecutor.legal_outcome_prediction = "win"
+72. defense_counsel.legal_documentation = "complete"
+73. prosecutor.legal_documentation = "incomplete"
+74. defense_counsel.legal_arguments = "presented"
+75. prosecutor.legal_arguments = "not presented"
+76. defense_counsel.legal_case_strength = "weak"
+77. prosecutor.legal_case_strength = "strong"
+78. defense_counsel.legal_case_outcome = "dismissed"
+79. prosecutor.legal_case_outcome = "upheld"
+80. defense_counsel.legal_case_duration = "6 months"
+81. prosecutor.legal_case_duration = "4 months"
+82. defense_counsel.legal_case_status = "ongoing"
+83. prosecutor.legal_case_status = "resolved"
+84. defense_counsel.legal_case_type = "felony"
+85. prosecutor.legal_case_type = "misdemeanor"
+86. defense_counsel.legal_case_evidence = "substantial"
+87. prosecutor.legal_case_evidence = "minimal"
+88. defense_counsel.legal_case_witnesses = "reliable"
+89. prosecutor.legal_case_witnesses = "unreliable"
+90. defense_counsel.legal_case_arguments = "convincing"
+91. prosecutor.legal_case_arguments = "unconvincing"
+92. M_NLI(defense_counsel, prosecutor)
+93. T("Defense counsel revealed the names of the non-testifying witnesses.", "Defense counsel did not reveal any names.", tau)
+94. tau(defense_counsel.method, prosecutor.improper_remarks)
+95. violate(defense_counsel, prosecutor)
+96. Factual(defense_counsel, prosecutor)
+97. Causal(defense_counsel, prosecutor)
+98. Numeric(defense_counsel, prosecutor)
+99. Temporal(defense_counsel, prosecutor)
+100. Relation(defense_counsel, prosecutor)
+violate(x0, y0)
+
+Rules:
+1. Q[x0, y0](defense_counsel.role = "lawyer" ∧ prosecutor.role = "lawyer" → violate(x0, y0))
+2. Q[x0, y0](defense_counsel.action = "closing argument" ∧ prosecutor.action = "rebuttal closing argument" → violate(x0, y0))
+3. Q[x0, y0](defense_counsel.method = "revelation of names" ∧ prosecutor.violated_procedure = "improper remarks" → violate(x0, y0))
+4. Q[x0, y0](defense_counsel.impact_on_case = "minimal" ∧ prosecutor.impact_on_case = "negative" → violate(x0, y0))
+5. Q[x0, y0](defense_counsel.closing_argument_quality = "insufficient" ∧ prosecutor.rebuttal_quality = "improper" → violate(x0, y0))
+6. Q[x0, y0](defense_counsel.cross_examination_quality = "adequate" ∧ prosecutor.legal_arguments_strength = "strong" ∧ defense_counsel.legal_case_strength = "weak" → violate(x0, y0))
+7. Q[x0, y0](defense_counsel.closing_argument_effectiveness = "low" ∧ prosecutor.rebuttal_effectiveness = "questionable" ∧ defense_counsel.legal_outcome = "unfavorable" → violate(x0, y0))
+8. Q[x0, y0](defense_counsel.witnesses_called = 3 ∧ prosecutor.witnesses_called = 0 ∧ defense_counsel.legal_case_witnesses = "reliable" → violate(x0, y0))
+9. Q[x0, y0](defense_counsel.legal_strategy = "defensive" ∧ prosecutor.legal_strategy = "aggressive" ∧ defense_counsel.legal_case_arguments = "convincing" ∧ prosecutor.legal_case_arguments = "unconvincing" → violate(x0, y0))
+10. Q[x0, y0](defense_counsel.legal_experience = "5 years" ∧ prosecutor.legal_experience = "3 years" ∧ defense_counsel.credibility = "high" ∧ prosecutor.credibility = "low" → violate(x0, y0))
+11. Q[x0, y0](defense_counsel.legal_case_duration = "6 months" ∧ prosecutor.legal_case_duration = "4 months" ∧ defense_counsel.legal_case_status = "ongoing" ∧ prosecutor.legal_case_status = "resolved" → violate(x0, y0))
+12. Q[x0, y0](defense_counsel.legal_case_type = "felony" ∧ prosecutor.legal_case_type = "misdemeanor" ∧ defense_counsel.legal_case_evidence = "substantial" ∧ prosecutor.legal_case_evidence = "minimal" → violate(x0, y0))
+13. Q[x0, y0](defense_counsel.legal_documentation = "complete" ∧ prosecutor.legal_documentation = "incomplete" ∧ defense_counsel.legal_outcome_prediction = "loss" ∧ prosecutor.legal_outcome_prediction = "win" → violate(x0, y0))
+14. Q[x0, y0](defense_counsel.preparedness = "well-prepared" ∧ prosecutor.preparedness = "poorly prepared" ∧ defense_counsel.legal_arguments = "presented" ∧ prosecutor.legal_arguments = "not presented" → violate(x0, y0))
+15. Q[x0, y0](defense_counsel.legal_team_size = 2 ∧ prosecutor.legal_team_size = 1 ∧ defense_counsel.legal_reputation = "good" ∧ prosecutor.legal_reputation = "poor" → violate(x0, y0))
+16. Q[x0, y0](defense_counsel.closing_argument_time = "2025" ∧ prosecutor.rebuttal_time = "2025" ∧ defense_counsel.legal_case_outcome = "dismissed" ∧ prosecutor.legal_case_outcome = "upheld" → violate(x0, y0))
+17. Q[x0, y0](defense_counsel.legal_case_strength = "weak" ∧ prosecutor.legal_case_strength = "strong" ∧ defense_counsel.legal_case_arguments = "convincing" ∧ prosecutor.legal_case_arguments = "unconvincing" ∧ defense_counsel.legal_case_witnesses = "reliable" → violate(x0, y0))
+18. Q[x0, y0](defense_counsel.legal_fees = "$5000" ∧ prosecutor.legal_fees = "$3000" ∧ defense_counsel.client_satisfaction = "low" ∧ prosecutor.client_satisfaction = "high" → violate(x0, y0))
+19. Q[x0, y0](defense_counsel.action_outcome = "revealed names" ∧ prosecutor.action_outcome = "improper remarks" ∧ defense_counsel.violated_procedure = "none" → violate(x0, y0))
+20. Q[x0, y0](defense_counsel.revealed_information = "names of non-testifying witnesses" ∧ prosecutor.improper_remarks = "yes" ∧ defense_counsel.legal_case_status = "ongoing" ∧ prosecutor.legal_case_status = "resolved" → violate(x0, y0))
+21. Q[x0, y0](defense_counsel.legal_case_arguments = "convincing" ∧ prosecutor.legal_case_arguments = "unconvincing" ∧ defense_counsel.legal_case_strength = "weak" ∧ prosecutor.legal_case_strength = "strong" ∧ defense_counsel.legal_outcome = "unfavorable" → violate(x0, y0))
+22. Q[x0, y0](defense_counsel.cross_examination_time = "2025" ∧ prosecutor.rebuttal_time = "2025" ∧ defense_counsel.legal_case_duration = "6 months" ∧ prosecutor.legal_case_duration = "4 months" ∧ defense_counsel.legal_case_type = "felony" → violate(x0, y0))
+23. Q[x0, y0](defense_counsel.legal_resources = "adequate" ∧ prosecutor.legal_resources = "limited" ∧ defense_counsel.legal_case_witnesses = "reliable" ∧ prosecutor.legal_case_witnesses = "unreliable" → violate(x0, y0))
+24. Q[x0, y0](defense_counsel.legal_arguments_strength = "weak" ∧ prosecutor.legal_arguments_strength = "strong" ∧ defense_counsel.legal_case_e

@@ -1,0 +1,69 @@
+Predicates:
+Brice Robin.label != "Person"
+Brice Robin.label != CNN.label
+Brice Robin.label != DNA profiles.label
+Brice Robin.label != cell phone video.label
+Brice Robin.label = "Person"
+Brice Robin.location != "Marseille, France"
+Brice Robin.location = "Marseille, France"
+Brice Robin.name != "Brice Robin"
+Brice Robin.name != CNN.name
+Brice Robin.name != DNA profiles.name
+Brice Robin.name != cell phone video.name
+Brice Robin.name = "Brice Robin"
+Brice Robin.occupation != "prosecutor"
+Brice Robin.occupation = "prosecutor"
+Brice Robin___CNN.date = "Wednesday"
+Brice Robin___CNN.doc_id != Brice Robin___DNA profiles.doc_id
+Brice Robin___CNN.doc_id = "3489825776_7"
+Brice Robin___CNN.relationship != Brice Robin___DNA profiles.relationship
+Brice Robin___CNN.relationship = "Brice Robin communicated with CNN regarding the investigation into the crash."
+Brice Robin___DNA profiles.doc_id = "3489738242_5"
+Brice Robin___DNA profiles.relationship = "Brice Robin reported that 150 DNA profiles were isolated from over 2,000 DNA samples collected from the crash site."
+Brice Robin___DNA profiles.total_samples_collected != 2000
+Brice Robin___DNA profiles.total_samples_collected = 2000
+Brice Robin___cell phone video.date = "Wednesday"
+Brice Robin___cell phone video.doc_id != Brice Robin___CNN.doc_id
+Brice Robin___cell phone video.doc_id != Brice Robin___DNA profiles.doc_id
+Brice Robin___cell phone video.doc_id = "3489825756_6"
+Brice Robin___cell phone video.relationship != Brice Robin___CNN.relationship
+Brice Robin___cell phone video.relationship != Brice Robin___DNA profiles.relationship
+Brice Robin___cell phone video.relationship = "Brice Robin stated that he was not aware of any video footage from on board the plane."
+CNN.label != "Media"
+CNN.label != DNA profiles.label
+CNN.label = "Media"
+CNN.name != "CNN"
+CNN.name != DNA profiles.name
+CNN.name = "CNN"
+DNA profiles.count != 150
+DNA profiles.count < 155
+DNA profiles.count = 150
+DNA profiles.count > 145
+DNA profiles.label != "DNA Sample"
+DNA profiles.label = "DNA Sample"
+DNA profiles.name != "DNA profiles"
+DNA profiles.name = "DNA profiles"
+None_ML(Brice Robin___cell phone video.attrs, Brice Robin___CNN.attrs)
+None_ML(DNA profiles.attrs, cell phone video.attrs)
+cell phone video.label != "Video"
+cell phone video.label != CNN.label
+cell phone video.label != DNA profiles.label
+cell phone video.label = "Video"
+cell phone video.name != "cell phone video"
+cell phone video.name != CNN.name
+cell phone video.name != DNA profiles.name
+cell phone video.name = "cell phone video"
+cell phone video.status != "claimed to be real"
+cell phone video.status = "claimed to be real"
+
+Rules:
+Q[Brice Robin,Brice Robin] (DNA profiles.label = "DNA Sample" ∧ CNN.name != "CNN" ∧ None_ML(Brice Robin___cell phone video.attrs, Brice Robin___CNN.attrs) ∧ Brice Robin.name != cell phone video.name ∧ Brice Robin___cell phone video.doc_id != Brice Robin___CNN.doc_id → Brice Robin___cell phone video.doc_id != Brice Robin___DNA profiles.doc_id)
+Q[Brice Robin,Brice Robin] (Brice Robin.label = "Person" ∧ DNA profiles.count != 150 → cell phone video.status != "claimed to be real")
+Q[Brice Robin,Brice Robin] (Brice Robin.name != "Brice Robin" ∧ Brice Robin___CNN.doc_id != Brice Robin___DNA profiles.doc_id ∧ Brice Robin___DNA profiles.relationship = "Brice Robin reported that 150 DNA profiles were isolated from over 2,000 DNA samples collected from the crash site." ∧ CNN.label != "Media" ∧ cell phone video.label != DNA profiles.label ∧ None_ML(Brice Robin___cell phone video.attrs, Brice Robin___CNN.attrs) → Brice Robin.occupation = "prosecutor")
+Q[Brice Robin,Brice Robin] (Brice Robin.occupation != "prosecutor" ∧ cell phone video.status != "claimed to be real" ∧ Brice Robin___CNN.doc_id != Brice Robin___DNA profiles.doc_id → CNN.name != DNA profiles.name)
+Q[Brice Robin,Brice Robin] (cell phone video.name != DNA profiles.name ∧ CNN.name != "CNN" ∧ cell phone video.label != DNA profiles.label ∧ cell phone video.label = "Video" → Brice Robin.label != "Person")
+Q[Brice Robin,Brice Robin] (Brice Robin.name != DNA profiles.name ∧ CNN.name != DNA profiles.name ∧ Brice Robin.occupation != "prosecutor" ∧ DNA profiles.count < 155 → cell phone video.label != "Video")
+Q[Brice Robin,Brice Robin] (Brice Robin___cell phone video.doc_id != Brice Robin___CNN.doc_id ∧ cell phone video.label != CNN.label ∧ DNA profiles.label = "DNA Sample" → Brice Robin___DNA profiles.relationship = "Brice Robin reported that 150 DNA profiles were isolated from over 2,000 DNA samples collected from the crash site.")
+Q[Brice Robin,Brice Robin] (DNA profiles.count != 150 ∧ cell phone video.status = "claimed to be real" → Brice Robin.label != cell phone video.label)
+Q[Brice Robin,Brice Robin] (DNA profiles.name = "DNA profiles" ∧ Brice Robin.label != DNA profiles.label ∧ Brice Robin___cell phone video.doc_id != Brice Robin___CNN.doc_id ∧ Brice Robin.label != "Person" ∧ Brice Robin___cell phone video.doc_id = "3489825756_6" → Brice Robin.location = "Marseille, France")
+Q[Brice Robin,Brice Robin] (Brice Robin.label != cell phone video.label ∧ None_ML(DNA profiles.attrs, cell phone video.attrs) ∧ Brice Robin.label != "Person" ∧ Brice Robin.name != cell phone video.name ∧ Brice Robin.name != CNN.name ∧ Brice Robin___cell phone video.relationship = "Brice Robin stated that he was not aware of any video footage from on board the plane." → DNA profiles.label = "DNA Sample")

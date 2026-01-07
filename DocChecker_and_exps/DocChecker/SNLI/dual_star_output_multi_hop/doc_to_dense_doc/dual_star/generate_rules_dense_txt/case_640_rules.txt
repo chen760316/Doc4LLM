@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 640)
+S1: S i x b i c y c l i s t s a r e c o m p e t i n g i n a r a c e , a n d s e v e r a l o f t h e m s e e m t o b e a b o u t t o f a l l o v e r .
+S2: S i x b i c y c l i s t c o m p e t i n g i n a r a c e a r e f a l l n g o v e r n e a r o n e a n o t h e r o u t s i d e .
+
+Predicates:
+1. Cyclist1.status
+2. Cyclist2.status
+3. Cyclist3.status
+4. Cyclist4.status
+5. Cyclist5.status
+6. Cyclist6.status
+7. Race.location
+8. Race.time
+9. Race.condition
+10. Cyclist1.position
+11. Cyclist2.position
+12. Cyclist3.position
+13. Cyclist4.position
+14. Cyclist5.position
+15. Cyclist6.position
+16. "about_to_fall".event
+17. "falling_over".event
+18. "competing_in".event
+19. "near_each_other".relationship
+20. "outside".location
+21. M_NLI(S1, S2)
+22. Causal(Cyclist1, "about_to_fall")
+23. Causal(Cyclist2, "falling_over")
+24. violate("about_to_fall", "falling_over")
+25. "several_cyclists".group
+26. "race".event
+27. "timing_of_events".attribute
+28. "contradiction".status
+29. "situation".context
+30. "cyclists_falling".event
+
+Rules:
+1. Q[about_to_fall, Cyclist1.status, Cyclist2.status](Cyclist1.status == "about_to_fall" → Causal(Cyclist1, Cyclist2))
+2. Q[falling_over, Cyclist2.status, Cyclist3.status](Cyclist2.status == "falling_over" → Causal(Cyclist2, Cyclist3))
+3. Q[about_to_fall, Cyclist3.status, Cyclist4.status](Cyclist3.status == "about_to_fall" → Causal(Cyclist3, Cyclist4))
+4. Q[falling_over, Cyclist4.status, Cyclist5.status](Cyclist4.status == "falling_over" → Causal(Cyclist4, Cyclist5))
+5. Q[about_to_fall, Cyclist5.status, Cyclist6.status](Cyclist5.status == "about_to_fall" → Causal(Cyclist5, Cyclist6))
+6. Q[falling_over, Cyclist6.status, Cyclist1.status](Cyclist6.status == "falling_over" → Causal(Cyclist6, Cyclist1))
+7. Q[near_each_other, Cyclist1.position, Cyclist2.position](Cyclist1.position == "near_each_other" → Causal(Cyclist1, Cyclist2))
+8. Q[near_each_other, Cyclist2.position, Cyclist3.position](Cyclist2.position == "near_each_other" → Causal(Cyclist2, Cyclist3))
+9. Q[near_each_other, Cyclist3.position, Cyclist4.position](Cyclist3.position == "near_each_other" → Causal(Cyclist3, Cyclist4))
+10. Q[near_each_other, Cyclist4.position, Cyclist5.position](Cyclist4.position == "near_each_other" → Causal(Cyclist4, Cyclist5))
+11. Q[near_each_other, Cyclist5.position, Cyclist6.position](Cyclist5.position == "near_each_other" → Causal(Cyclist5, Cyclist6))
+12. Q[near_each_other, Cyclist6.position, Cyclist1.position](Cyclist6.position == "near_each_other" → Causal(Cyclist6, Cyclist1))
+13. Q[race, Race.location, Race.condition](Race.location == "outside" → Causal(Race, "falling_over"))
+14. Q[race, Race.time, Race.condition](Race.time == "ongoing" → Causal(Race, "about_to_fall"))
+15. Q[several_cyclists, Cyclist1.status, Cyclist2.status](several_cyclists.group == "Cyclist1, Cyclist2" → Causal(Cyclist1, Cyclist2))
+16. Q[several_cyclists, Cyclist3.status, Cyclist4.status](several_cyclists.group == "Cyclist3, Cyclist4" → Causal(Cyclist3, Cyclist4))
+17. Q[several_cyclists, Cyclist5.status, Cyclist6.status](several_cyclists.group == "Cyclist5, Cyclist6" → Causal(Cyclist5, Cyclist6))
+18. Q[timing_of_events, "about_to_fall", "falling_over"](timing_of_events.attribute == "contradiction" → Causal("about_to_fall", "falling_over"))
+19. Q[contradiction, Cyclist1.status, Cyclist2.status](contradiction.status == "true" → Causal(Cyclist1, Cyclist2))
+20. Q[situation, Cyclist3.status, Cyclist4.status](situation.context == "falling_over" → Causal(Cyclist3, Cyclist4))
+21. Q[context, Cyclist5.status, Cyclist6.status](context.status == "about_to_fall" → Causal(Cyclist5, Cyclist6))
+22. Q[race, Race.condition, "falling_over"](Race.condition == "unsafe" → Causal(Race, "falling_over"))
+23. Q[race, Race.condition, "about_to_fall"](Race.condition == "risky" → Causal(Race, "about_to_fall"))
+24. Q[competing_in, Cyclist1.status, Cyclist2.status](competing_in.event == "true" → Causal(Cyclist1, Cyclist2))
+25. Q[competing_in, Cyclist3.status, Cyclist4.status](competing_in.event == "true" → Causal(Cyclist3, Cyclist4))
+26. Q[competing_in, Cyclist5.status, Cyclist6.status](competing_in.event == "true" → Causal(Cyclist5, Cyclist6))
+27. Q[falling_over, "several_cyclists", "about_to_fall"](falling_over.event == "true" → Causal("several_cyclists", "about_to_fall"))
+28. Q[about_to_fall, "several_cyclists", "falling_over"](about_to_fall.event == "true" → Causal("several_cyclists", "falling_over"))
+29. Q[contradiction, "timing_of_events", "situation"](contradiction.status == "true" → Causal("timing_of_events", "situation"))
+30. Q[context, "cyclists_falling", "about_to_fall"](context.status == "true" → Causal("cyclists_falling", "about_to_fall"))

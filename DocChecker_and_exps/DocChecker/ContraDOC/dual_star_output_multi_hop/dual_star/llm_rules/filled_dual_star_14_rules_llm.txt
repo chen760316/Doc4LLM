@@ -1,0 +1,92 @@
+Predicates:
+1. Bob Dylan.status = "alive"
+2. Buddy Holly.status != "alive"
+3. Bob Dylan.status > Buddy Holly.status
+4. Bob Dylan.status >= "alive"
+5. Buddy Holly.status <= "deceased"
+6. "Bob Dylan's song 'Like a Rolling Stone' holds the record for a popular music manuscript.".record_date = "June"
+7. "Bob Dylan's song 'Like a Rolling Stone' holds the record for a popular music manuscript.".record_date != "July"
+8. "Bob Dylan's song 'Like a Rolling Stone' holds the record for a popular music manuscript.".record_date < "July"
+9. "Bob Dylan's song 'Like a Rolling Stone' holds the record for a popular music manuscript.".record_price = "$1 million"
+10. "Bob Dylan's song 'Like a Rolling Stone' holds the record for a popular music manuscript.".record_price != "$500,000"
+11. "Bob Dylan's song 'Like a Rolling Stone' holds the record for a popular music manuscript.".record_price > "$500,000"
+12. "Don McLean sold the manuscript of 'American Pie' at an auction.".auction_rank = "3rd highest for American literary manuscript"
+13. "Don McLean sold the manuscript of 'American Pie' at an auction.".auction_rank != "1st highest for American literary manuscript"
+14. "Don McLean sold the manuscript of 'American Pie' at an auction.".auction_rank < "2nd highest for American literary manuscript"
+15. "Don McLean sold the manuscript of 'American Pie' at an auction.".auction_rank > "4th highest for American literary manuscript"
+16. "Don McLean sold the manuscript of 'American Pie' at an auction.".auction_rank >= "3rd highest for American literary manuscript"
+17. "Don McLean sold the manuscript of 'American Pie' at an auction.".auction_rank <= "3rd highest for American literary manuscript"
+18. M_NLI(Bob Dylan.status, Buddy Holly.status)
+19. M_NLU("Like a Rolling Stone", "American Pie")
+20. M_TEM(Bob Dylan.record_price, Don McLean.auction_rank)
+21. contra("Bob Dylan is alive", "Buddy Holly is alive")
+22. S(Bob Dylan, "Bob Dylan's song 'Like a Rolling Stone'")
+23. S(Buddy Holly, "Buddy Holly")
+24. S(ex, "Don McLean sold the manuscript of 'American Pie' at an auction.")
+25. T("Bob Dylan's song 'Like a Rolling Stone' holds the record for a popular music manuscript.", "Don McLean sold the manuscript of 'American Pie' at an auction.", Factual)
+26. tau(Bob Dylan.status, Buddy Holly.status)
+27. tau("Bob Dylan's song 'Like a Rolling Stone' holds the record for a popular music manuscript.".record_price, "Don McLean sold the manuscript of 'American Pie' at an auction.".auction_rank)
+28. Bob Dylan.status != Buddy Holly.status
+29. Bob Dylan.status < Buddy Holly.status
+30. "Bob Dylan's song 'Like a Rolling Stone' holds the record for a popular music manuscript.".record_price < "$2 million"
+31. "Bob Dylan's song 'Like a Rolling Stone' holds the record for a popular music manuscript.".record_price > "$500,000"
+32. "Don McLean sold the manuscript of 'American Pie' at an auction.".auction_rank >= "3rd highest for American literary manuscript"
+33. "Don McLean sold the manuscript of 'American Pie' at an auction.".auction_rank < "2nd highest for American literary manuscript"
+34. "Don McLean sold the manuscript of 'American Pie' at an auction.".auction_rank > "4th highest for American literary manuscript"
+35. M_NLI(Bob Dylan.record_price, Don McLean.auction_rank)
+36. M_NLU(Bob Dylan.status, Buddy Holly.status)
+37. M_TEM(Bob Dylan.record_date, Don McLean.auction_rank)
+38. contra("Bob Dylan's song is a record holder", "Don McLean's song is a record holder")
+39. S(Bob Dylan, "Bob Dylan")
+40. S(Buddy Holly, "Buddy Holly")
+41. S(ex, "Bob Dylan's song 'Like a Rolling Stone'")
+42. T("Bob Dylan's song 'Like a Rolling Stone' holds the record for a popular music manuscript.", "Bob Dylan's song is not a record holder.", Negation)
+43. tau("Bob Dylan's song 'Like a Rolling Stone' holds the record for a popular music manuscript.".record_date, "Don McLean sold the manuscript of 'American Pie' at an auction.".auction_rank)
+44. Bob Dylan.status >= "alive"
+45. Buddy Holly.status < "alive"
+46. "Bob Dylan's song 'Like a Rolling Stone' holds the record for a popular music manuscript.".record_date != "May"
+47. "Bob Dylan's song 'Like a Rolling Stone' holds the record for a popular music manuscript.".record_price < "$2 million"
+48. "Don McLean sold the manuscript of 'American Pie' at an auction.".auction_rank != "1st highest for American literary manuscript"
+49. "Don McLean sold the manuscript of 'American Pie' at an auction.".auction_rank > "4th highest for American literary manuscript"
+50. M_NLI(Bob Dylan.record_date, Don McLean.auction_rank)
+51. M_NLU("Like a Rolling Stone", "American Pie")
+52. M_TEM(Bob Dylan.status, Buddy Holly.status)
+53. contra("Bob Dylan is alive", "Buddy Holly is deceased")
+54. S(Bob Dylan, "Bob Dylan")
+55. S(Buddy Holly, "Buddy Holly")
+56. S(ex, "Don McLean sold the manuscript of 'American Pie'")
+57. T("Bob Dylan's song 'Like a Rolling Stone' holds the record for a popular music manuscript.", "Bob Dylan's song is not a record holder.", Content)
+58. tau(Bob Dylan.record_price, Don McLean.auction_rank)
+59. Bob Dylan.status != "deceased"
+60. Buddy Holly.status != "alive"
+61. "Bob Dylan's song 'Like a Rolling Stone' holds the record for a popular music manuscript.".record_price >= "$1 million"
+62. "Bob Dylan's song 'Like a Rolling Stone' holds the record for a popular music manuscript.".record_price < "$2 million"
+63. "Don McLean sold the manuscript of 'American Pie' at an auction.".auction_rank <= "3rd highest for American literary manuscript"
+64. "Don McLean sold the manuscript of 'American Pie' at an auction.".auction_rank >= "3rd highest for American literary manuscript"
+65. M_NLI(Bob Dylan.record_price, "1 million")
+66. M_NLU(Buddy Holly.status, "deceased")
+67. M_TEM(Bob Dylan.status, "alive")
+68. contra("Bob Dylan is a record holder", "Don McLean is not a record holder")
+69. S(Bob Dylan, "Bob Dylan")
+70. S(Buddy Holly, "Buddy Holly")
+71. S(ex, "Bob Dylan's song 'Like a Rolling Stone'")
+
+Rules:
+1. Q[1, 1](Bob Dylan.status = "alive" ∧ Buddy Holly.status != "alive" → Bob Dylan.status > Buddy Holly.status)
+2. Q[1, 2](Bob Dylan.status >= "alive" ∧ Buddy Holly.status < "alive" → Bob Dylan.status != "deceased")
+3. Q[1, 3](Bob Dylan.status != "deceased" ∧ Buddy Holly.status != "alive" ∧ Bob Dylan.status > Buddy Holly.status → Bob Dylan.status >= "alive")
+4. Q[1, 4](Bob Dylan.status < Buddy Holly.status ∧ Buddy Holly.status <= "deceased" → Bob Dylan.status != "alive")
+5. Q[1, 5](Bob Dylan.status != "deceased" ∧ Buddy Holly.status < "alive" ∧ Bob Dylan.status >= "alive" ∧ "Bob Dylan's song 'Like a Rolling Stone' holds the record for a popular music manuscript.".record_price > "$500,000" → "Bob Dylan's song 'Like a Rolling Stone' holds the record for a popular music manuscript.".record_price < "$2 million")
+6. Q[2, 1](Bob Dylan.status = "alive" ∧ "Bob Dylan's song 'Like a Rolling Stone' holds the record for a popular music manuscript.".record_date = "June" → "Bob Dylan's song 'Like a Rolling Stone' holds the record for a popular music manuscript.".record_date != "July")
+7. Q[2, 2](Buddy Holly.status != "alive" ∧ "Don McLean sold the manuscript of 'American Pie' at an auction.".auction_rank < "2nd highest for American literary manuscript" → "Don McLean sold the manuscript of 'American Pie' at an auction.".auction_rank != "1st highest for American literary manuscript")
+8. Q[2, 3](Bob Dylan.status < Buddy Holly.status ∧ "Bob Dylan's song 'Like a Rolling Stone' holds the record for a popular music manuscript.".record_price < "$2 million" → "Bob Dylan's song 'Like a Rolling Stone' holds the record for a popular music manuscript.".record_price != "$500,000")
+9. Q[2, 4](Bob Dylan.status != "deceased" ∧ Buddy Holly.status < "alive" ∧ "Don McLean sold the manuscript of 'American Pie' at an auction.".auction_rank >= "3rd highest for American literary manuscript" → "Don McLean sold the manuscript of 'American Pie' at an auction.".auction_rank != "4th highest for American literary manuscript")
+10. Q[3, 1](Bob Dylan.status >= "alive" ∧ Buddy Holly.status < "alive" ∧ "Bob Dylan's song 'Like a Rolling Stone' holds the record for a popular music manuscript.".record_price > "$500,000" → "Bob Dylan's song 'Like a Rolling Stone' holds the record for a popular music manuscript.".record_price != "$1 million")
+11. Q[3, 2](Bob Dylan.status != "deceased" ∧ Buddy Holly.status != "alive" ∧ "Don McLean sold the manuscript of 'American Pie' at an auction.".auction_rank > "4th highest for American literary manuscript" → "Don McLean sold the manuscript of 'American Pie' at an auction.".auction_rank != "3rd highest for American literary manuscript")
+12. Q[3, 3](Bob Dylan.status < Buddy Holly.status ∧ "Bob Dylan's song 'Like a Rolling Stone' holds the record for a popular music manuscript.".record_date != "May" ∧ "Bob Dylan's song 'Like a Rolling Stone' holds the record for a popular music manuscript.".record_price < "$2 million" → "Bob Dylan's song 'Like a Rolling Stone' holds the record for a popular music manuscript.".record_price > "$500,000")
+13. Q[4, 1](Bob Dylan.status = "alive" ∧ Buddy Holly.status != "alive" ∧ "Bob Dylan's song 'Like a Rolling Stone' holds the record for a popular music manuscript.".record_date < "July" ∧ "Don McLean sold the manuscript of 'American Pie' at an auction.".auction_rank < "2nd highest for American literary manuscript" → "Don McLean sold the manuscript of 'American Pie' at an auction.".auction_rank != "1st highest for American literary manuscript")
+14. Q[4, 2](Bob Dylan.status >= "alive" ∧ Buddy Holly.status < "alive" ∧ "Bob Dylan's song 'Like a Rolling Stone' holds the record for a popular music manuscript.".record_price < "$2 million" ∧ "Bob Dylan's song 'Like a Rolling Stone' holds the record for a popular music manuscript.".record_price > "$500,000" → "Bob Dylan's song 'Like a Rolling Stone' holds the record for a popular music manuscript.".record_price != "$1 million")
+15. Q[4, 3](Bob Dylan.status != "deceased" ∧ Buddy Holly.status != "alive" ∧ "Don McLean sold the manuscript of 'American Pie' at an auction.".auction_rank >= "3rd highest for American literary manuscript" ∧ "Don McLean sold the manuscript of 'American Pie' at an auction.".auction_rank < "2nd highest for American literary manuscript" → "Don McLean sold the manuscript of 'American Pie' at an auction.".auction_rank != "4th highest for American literary manuscript")
+16. Q[5, 1](Bob Dylan.status < Buddy Holly.status ∧ Buddy Holly.status <= "deceased" ∧ "Bob Dylan's song 'Like a Rolling Stone' holds the record for a popular music manuscript.".record_date != "May" ∧ "Bob Dylan's song 'Like a Rolling Stone' holds the record for a popular music manuscript.".record_price < "$2 million" ∧ "Don McLean sold the manuscript of 'American Pie' at an auction.".auction_rank > "4th highest for American literary manuscript" → "Don McLean sold the manuscript of 'American Pie' at an auction.".auction_rank != "3rd highest for American literary manuscript")
+17. Q[5, 2](Bob Dylan.status != "deceased" ∧ Buddy Holly.status < "alive" ∧ "Bob Dylan's song 'Like a Rolling Stone' holds the record for a popular music manuscript.".record_price > "$500,000" ∧ "Bob Dylan's song 'Like a Rolling Stone' holds the record for a popular music manuscript.".record_price < "$2 million" → "Bob Dylan's song 'Like a Rolling Stone' holds the record for a popular music manuscript.".record_price != "$1 million")
+18. Q[5, 3](Bob Dylan.status >= "alive" ∧ Buddy Holly.status < "alive" ∧ "Don McLean sold the manuscript of 'American Pie' at an auction.".auction_rank < "2nd highest for American literary manuscript" ∧ "Don McLean sold the manuscript of 'American Pie' at an auction.".auction_rank > "4th highest for American literary manuscript" → "Don McLean sold the manuscript

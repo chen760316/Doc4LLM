@@ -1,0 +1,123 @@
+Predicates:
+1. Clara.location = "Europe"
+2. Clara.status = "marries"
+3. Europe.attributes = "{'status': 'absent'}"
+4. Pleyel.status = "husband"
+5. her house.status = "burns down"
+6. house burns down.time = "one day"
+7. tragic events.description = "events that caused Clara's distress"
+8. Clara experiences a change in her health status from recovery to illness.source_id = "3488771875_3"
+9. Clara falls ill but later is able to read the murderer's testimony.source_id = "3488771875_7"
+10. Clara feels she has recovered from the tragic events enough to write them down.source_id = "3488771875_7"
+11. Clara goes to Europe with her uncle.source_id = "3488771875_7"
+12. Clara marries Pleyel after going to Europe with her uncle.source_id = "3488771875_3"
+13. Clara marries Pleyel.source_id = "3488771875_7"
+14. Clara reads the murderer's testimony while she is ill.source_id = "3488771875_3"
+15. Clara refuses to leave her house until it burns down.source_id = "3488771875_3"
+16. "Clara experiences a change in her health status from recovery to illness".contradiction_type = "Causal"
+17. "Clara falls ill but later is able to read the murderer's testimony".contradiction_type = "Factual"
+18. "Clara feels she has recovered from the tragic events enough to write them down".contradiction_type = "Factual"
+19. "Clara goes to Europe with her uncle".contradiction_type = "Causal"
+20. "Clara marries Pleyel after going to Europe with her uncle".contradiction_type = "Temporal"
+21. "Clara marries Pleyel".contradiction_type = "Causal"
+22. "Clara reads the murderer's testimony while she is ill".contradiction_type = "Causal"
+23. "Clara refuses to leave her house until it burns down".contradiction_type = "Temporal"
+24. M_NLI(Clara.status, Pleyel.status)
+25. T("Clara experiences a change in her health status from recovery to illness", "Clara falls ill but later is able to read the murderer's testimony", Causal)
+26. T("Clara feels she has recovered from the tragic events enough to write them down", "Clara falls ill but later is able to read the murderer's testimony", Factual)
+27. tau(Clara.location, Europe.attributes)
+28. tau(Clara.status, her house.status)
+29. violate(Clara.status, her house.status)
+30. Factual(Clara.status, Pleyel.status)
+31. Causal(Clara.status, her house.status)
+32. Temporal(Clara.location, Europe.attributes)
+33. Numeric(Clara.status, Pleyel.status)
+34. Relation(Clara.status, her house.status)
+35. violate(Clara.location, Europe.attributes)
+36. Factual(Clara.status, "marries")
+37. Causal(Clara.status, "burns down")
+38. Temporal(Clara.status, "one day")
+39. Numeric(Clara.status, "absent")
+40. Relation(Clara.status, "husband")
+41. M_NLI(Clara.status, "marries")
+42. T("Clara goes to Europe with her uncle", "Clara marries Pleyel after going to Europe with her uncle", Temporal)
+43. tau(Clara.status, "marries")
+44. violate(Clara.status, "absent")
+45. Factual(Clara.status, "burns down")
+46. Causal(Clara.status, "marries")
+47. Temporal(Clara.status, "one day")
+48. Numeric(Clara.status, "husband")
+49. Relation(Clara.status, "absent")
+50. M_NLI(Clara.status, "burns down")
+51. T("Clara reads the murderer's testimony while she is ill", "Clara experiences a change in her health status from recovery to illness", Causal)
+52. tau(Clara.status, "husband")
+53. violate(Clara.status, "marries")
+54. Factual(Clara.status, "absent")
+55. Causal(Clara.status, "one day")
+56. Temporal(Clara.status, "burns down")
+57. Numeric(Clara.status, "marries")
+58. Relation(Clara.status, "husband")
+59. M_NLI(Clara.status, "husband")
+60. T("Clara refuses to leave her house until it burns down", "Clara goes to Europe with her uncle", Temporal)
+61. tau(Clara.status, "marries")
+62. violate(Clara.status, "burns down")
+63. Factual(Clara.status, "one day")
+64. Causal(Clara.status, "absent")
+65. Temporal(Clara.status, "husband")
+66. Numeric(Clara.status, "marries")
+67. Relation(Clara.status, "burns down")
+68. M_NLI(Clara.status, "one day")
+69. T("Clara marries Pleyel", "Clara goes to Europe with her uncle", Causal)
+70. tau(Clara.status, "absent")
+71. violate(Clara.status, "husband")
+72. Factual(Clara.status, "marries")
+73. Causal(Clara.status, "burns down")
+74. Temporal(Clara.status, "one day")
+75. Numeric(Clara.status, "husband")
+76. Relation(Clara.status, "marries")
+77. M_NLI(Clara.status, "burns down")
+78. T("Clara experiences a change in her health status from recovery to illness", "Clara reads the murderer's testimony while she is ill", Causal)
+79. tau(Clara.status, "marries")
+80. violate(Clara.status, "absent")
+81. Factual(Clara.status, "one day")
+82. Causal(Clara.status, "husband")
+83. Temporal(Clara.status, "burns down")
+84. Numeric(Clara.status, "marries")
+85. Relation(Clara.status, "one day")
+86. M_NLI(Clara.status, "husband")
+87. T("Clara feels she has recovered from the tragic events enough to write them down", "Clara marries Pleyel", Factual)
+88. tau(Clara.status, "burns down")
+89. violate(Clara.status, "marries")
+90. Factual(Clara.status, "absent")
+91. Causal(Clara.status, "one day")
+92. Temporal(Clara.status, "husband")
+93. Numeric(Clara
+violate(x0, y0)
+
+Rules:
+1. Q[Clara, her house](Clara.location = "Europe" ∧ Clara.status = "marries" → violate(Clara.status, her house.status))
+2. Q[Clara, her house](Clara.status = "marries" ∧ Europe.attributes = "{'status': 'absent'}" → violate(Clara.status, her house.status))
+3. Q[Clara, her house](Clara.status = "marries" ∧ her house.status = "burns down" → violate(Clara.status, her house.status))
+4. Q[Clara, her house](Clara.location = "Europe" ∧ her house.status = "burns down" → violate(Clara.status, her house.status))
+5. Q[Clara, her house](Clara.status = "marries" ∧ house burns down.time = "one day" → violate(Clara.status, her house.status))
+6. Q[Clara, her house](Clara.status = "marries" ∧ tragic events.description = "events that caused Clara's distress" → violate(Clara.status, her house.status))
+7. Q[Clara, her house](Clara.location = "Europe" ∧ Clara.status = "marries" ∧ her house.status = "burns down" → violate(Clara.status, her house.status))
+8. Q[Clara, her house](Clara.status = "marries" ∧ Clara experiences a change in her health status from recovery to illness.source_id = "3488771875_3" → violate(Clara.status, her house.status))
+9. Q[Clara, her house](Clara.feels she has recovered from the tragic events enough to write them down.source_id = "3488771875_7" ∧ Clara.status = "marries" → violate(Clara.status, her house.status))
+10. Q[Clara, her house](Clara.go to Europe with her uncle.source_id = "3488771875_7" ∧ Clara.status = "marries" ∧ her house.status = "burns down" → violate(Clara.status, her house.status))
+11. Q[Clara, her house](Clara.marries Pleyel after going to Europe with her uncle.source_id = "3488771875_3" ∧ her house.status = "burns down" → violate(Clara.status, her house.status))
+12. Q[Clara, her house](Clara.marries Pleyel ∧ Clara.reads the murderer's testimony while she is ill.source_id = "3488771875_3" → violate(Clara.status, her house.status))
+13. Q[Clara, her house](Clara.refuses to leave her house until it burns down.source_id = "3488771875_3" ∧ Clara.status = "marries" ∧ her house.status = "burns down" → violate(Clara.status, her house.status))
+14. Q[Clara, her house](Clara.status = "marries" ∧ Clara.location = "Europe" ∧ Europe.attributes = "{'status': 'absent'}" ∧ her house.status = "burns down" → violate(Clara.status, her house.status))
+15. Q[Clara, her house](Clara.status = "marries" ∧ Clara.falls ill but later is able to read the murderer's testimony.source_id = "3488771875_7" ∧ her house.status = "burns down" → violate(Clara.status, her house.status))
+16. Q[Clara, her house](Clara.status = "marries" ∧ Clara.experiences a change in her health status from recovery to illness.source_id = "3488771875_3" ∧ her house.status = "burns down" → violate(Clara.status, her house.status))
+17. Q[Clara, her house](Clara.status = "marries" ∧ Clara.feels she has recovered from the tragic events enough to write them down.source_id = "3488771875_7" ∧ her house.status = "burns down" → violate(Clara.status, her house.status))
+18. Q[Clara, her house](Clara.marries Pleyel after going to Europe with her uncle.source_id = "3488771875_3" ∧ Clara.refuses to leave her house until it burns down.source_id = "3488771875_3" → violate(Clara.status, her house.status))
+19. Q[Clara, her house](Clara.location = "Europe" ∧ Clara.status = "marries" ∧ tragic events.description = "events that caused Clara's distress" ∧ her house.status = "burns down" → violate(Clara.status, her house.status))
+20. Q[Clara, her house](Clara.status = "marries" ∧ Clara.falls ill but later is able to read the murderer's testimony.source_id = "3488771875_7" ∧ her house.status = "burns down" → violate(Clara.status, her house.status))
+21. Q[Clara, her house](Clara.status = "marries" ∧ Clara.experiences a change in her health status from recovery to illness.source_id = "3488771875_3" ∧ her house.status = "burns down" ∧ house burns down.time = "one day" → violate(Clara.status, her house.status))
+22. Q[Clara, her house](Clara.status = "marries" ∧ Clara.feels she has recovered from the tragic events enough to write them down.source_id = "3488771875_7" ∧ her house.status = "burns down" ∧ tragic events.description = "events that caused Clara's distress" → violate(Clara.status, her house.status))
+23. Q[Clara, her house](Clara.status = "marries" ∧ Clara.go to Europe with her uncle.source_id = "3488771875_7" ∧ her house.status = "burns down" ∧ Europe.attributes = "{'status': 'absent'}" → violate(Clara.status, her house.status))
+24. Q[Clara, her house](Clara.status = "marries" ∧ Clara.marries Pleyel after going to Europe with her uncle.source_id = "3488771875_3" ∧ her house.status = "burns down" ∧ tragic events.description = "events that caused Clara's distress" → violate(Clara.status, her house.status))
+25. Q[Clara, her house](Clara.status = "marries" ∧ Clara.reads the murderer's testimony while she is ill.source_id = "3488771875_3" ∧ her house.status = "burns down" ∧ house burns down.time = "one day" → violate(Clara.status, her house.status))
+26. Q[Clara, her house](Clara.status =

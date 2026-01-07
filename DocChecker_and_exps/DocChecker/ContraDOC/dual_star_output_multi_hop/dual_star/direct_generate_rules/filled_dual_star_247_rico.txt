@@ -1,0 +1,49 @@
+Predicates:
+Columbia Journalism School.label != "Institution"
+Columbia Journalism School.label != Will Dana.label
+Columbia Journalism School.label = "Institution"
+Columbia Journalism School.name != "Columbia Journalism School"
+Columbia Journalism School.name != Will Dana.name
+Columbia Journalism School.name = "Columbia Journalism School"
+Columbia Journalism School.type != "educational institution"
+Columbia Journalism School.type = "educational institution"
+None_ML(Rolling Stone.attrs, Will Dana.attrs)
+None_ML(Rolling Stone___Will Dana.attrs, Rolling Stone___Columbia Journalism School.attrs)
+Rolling Stone.label != "Organization"
+Rolling Stone.label != Columbia Journalism School.label
+Rolling Stone.label != Will Dana.label
+Rolling Stone.label = "Organization"
+Rolling Stone.name != "Rolling Stone"
+Rolling Stone.name != Columbia Journalism School.name
+Rolling Stone.name != Will Dana.name
+Rolling Stone.name = "Rolling Stone"
+Rolling Stone.status != "retracted article"
+Rolling Stone.status != Will Dana.status
+Rolling Stone.status = "retracted article"
+Rolling Stone___Columbia Journalism School.doc_id != Rolling Stone___Will Dana.doc_id
+Rolling Stone___Columbia Journalism School.doc_id = "3489825751_3"
+Rolling Stone___Columbia Journalism School.relationship != Rolling Stone___Will Dana.relationship
+Rolling Stone___Columbia Journalism School.relationship = "Rolling Stone was reviewed by Columbia Journalism School professors."
+Rolling Stone___Will Dana.context = "Apology for the flawed article about a purported gang rape"
+Rolling Stone___Will Dana.doc_id = "3489825771_8"
+Rolling Stone___Will Dana.relationship = "Will Dana, the managing editor of Rolling Stone, issued an apology to readers and those affected by the flawed article."
+Will Dana.label != "Person"
+Will Dana.label = "Person"
+Will Dana.name != "Will Dana"
+Will Dana.name = "Will Dana"
+Will Dana.occupation != "managing editor"
+Will Dana.occupation = "managing editor"
+Will Dana.status != "apologetic"
+Will Dana.status = "apologetic"
+
+Rules:
+Q[Rolling Stone,Rolling Stone] (None_ML(Rolling Stone.attrs, Will Dana.attrs) ∧ Rolling Stone.label != Will Dana.label ∧ Rolling Stone___Will Dana.relationship = "Will Dana, the managing editor of Rolling Stone, issued an apology to readers and those affected by the flawed article." ∧ Rolling Stone.name != Will Dana.name ∧ Rolling Stone.status != Will Dana.status ∧ None_ML(Rolling Stone___Will Dana.attrs, Rolling Stone___Columbia Journalism School.attrs) → Rolling Stone.name != Columbia Journalism School.name)
+Q[Rolling Stone,Rolling Stone] (Columbia Journalism School.name != Will Dana.name ∧ Will Dana.name != "Will Dana" ∧ Will Dana.status != "apologetic" → Will Dana.label != "Person")
+Q[Rolling Stone,Rolling Stone] (Rolling Stone.label != Will Dana.label ∧ Rolling Stone.name != Will Dana.name ∧ Will Dana.label != "Person" ∧ Columbia Journalism School.name != "Columbia Journalism School" → Rolling Stone.label = "Organization")
+Q[Rolling Stone,Rolling Stone] (Columbia Journalism School.type = "educational institution" ∧ Columbia Journalism School.name != "Columbia Journalism School" ∧ Rolling Stone___Will Dana.context = "Apology for the flawed article about a purported gang rape" ∧ Rolling Stone.status != Will Dana.status ∧ Columbia Journalism School.name != Will Dana.name → Rolling Stone___Columbia Journalism School.doc_id = "3489825751_3")
+Q[Rolling Stone,Rolling Stone] (Rolling Stone.label != Columbia Journalism School.label ∧ Will Dana.name != "Will Dana" → Rolling Stone.status != Will Dana.status)
+Q[Rolling Stone,Rolling Stone] (Will Dana.name != "Will Dana" ∧ Columbia Journalism School.name = "Columbia Journalism School" ∧ Will Dana.name = "Will Dana" → Will Dana.occupation != "managing editor")
+Q[Rolling Stone,Rolling Stone] (Will Dana.occupation = "managing editor" ∧ Columbia Journalism School.name != Will Dana.name ∧ Rolling Stone___Will Dana.doc_id = "3489825771_8" ∧ Rolling Stone.name != Will Dana.name → Rolling Stone___Columbia Journalism School.relationship = "Rolling Stone was reviewed by Columbia Journalism School professors.")
+Q[Rolling Stone,Rolling Stone] (Will Dana.label = "Person" ∧ Rolling Stone___Columbia Journalism School.doc_id = "3489825751_3" → Rolling Stone.label != Will Dana.label)
+Q[Rolling Stone,Rolling Stone] (Columbia Journalism School.label != Will Dana.label ∧ Will Dana.status != "apologetic" ∧ Will Dana.occupation = "managing editor" ∧ Rolling Stone___Will Dana.doc_id = "3489825771_8" ∧ Rolling Stone.label != "Organization" ∧ Rolling Stone___Will Dana.relationship = "Will Dana, the managing editor of Rolling Stone, issued an apology to readers and those affected by the flawed article." → Will Dana.name != "Will Dana")
+Q[Rolling Stone,Rolling Stone] (Rolling Stone___Columbia Journalism School.doc_id = "3489825751_3" ∧ Rolling Stone___Columbia Journalism School.relationship = "Rolling Stone was reviewed by Columbia Journalism School professors." ∧ Will Dana.occupation = "managing editor" ∧ Rolling Stone.name = "Rolling Stone" ∧ Rolling Stone.name != Columbia Journalism School.name → Rolling Stone.name != "Rolling Stone")

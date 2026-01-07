@@ -1,0 +1,35 @@
+Predicates:
+CNN.label != "Organization"
+CNN.label = "Organization"
+CNN.name != "CNN"
+CNN.name = "CNN"
+CNN.type != "news outlet"
+CNN.type = "news outlet"
+Menichini.label != "Person"
+Menichini.label != CNN.label
+Menichini.label = "Person"
+Menichini.name != "Menichini"
+Menichini.name != CNN.name
+Menichini.name = "Menichini"
+Menichini.occupation != "unknown"
+Menichini.occupation = "unknown"
+Menichini.status != "alive"
+Menichini.status = "alive"
+Menichini___CNN.contradiction_type = "Factual"
+Menichini___CNN.location = "site of the incident"
+Menichini___CNN.relationship = "Menichini informed CNN about the status of human remains at the site."
+Menichini___CNN.source_id = "3489825776_7"
+Menichini___CNN.time = "late Tuesday"
+None_ML(Menichini.attrs, CNN.attrs)
+
+Rules:
+Q[Menichini,Menichini] (Menichini.name != "Menichini" ∧ CNN.type = "news outlet" ∧ Menichini___CNN.time = "late Tuesday" ∧ Menichini.occupation != "unknown" → Menichini.label != CNN.label)
+Q[Menichini,Menichini] (Menichini.label != CNN.label ∧ Menichini.status = "alive" ∧ Menichini.label = "Person" ∧ CNN.type = "news outlet" ∧ Menichini___CNN.relationship = "Menichini informed CNN about the status of human remains at the site." → Menichini.label != "Person")
+Q[Menichini,Menichini] (CNN.name != "CNN" ∧ None_ML(Menichini.attrs, CNN.attrs) ∧ Menichini___CNN.time = "late Tuesday" ∧ Menichini.occupation != "unknown" ∧ Menichini.label = "Person" ∧ CNN.label != "Organization" → Menichini.name != "Menichini")
+Q[Menichini,Menichini] (Menichini.label != CNN.label ∧ Menichini.name = "Menichini" → CNN.label != "Organization")
+Q[Menichini,Menichini] (CNN.name != "CNN" ∧ Menichini___CNN.location = "site of the incident" ∧ None_ML(Menichini.attrs, CNN.attrs) → CNN.type != "news outlet")
+Q[Menichini,Menichini] (Menichini___CNN.location = "site of the incident" ∧ CNN.label != "Organization" ∧ CNN.name != "CNN" ∧ Menichini.label != CNN.label → Menichini.label = "Person")
+Q[Menichini,Menichini] (Menichini.status = "alive" ∧ Menichini.label != CNN.label ∧ Menichini___CNN.time = "late Tuesday" → Menichini.occupation = "unknown")
+Q[Menichini,Menichini] (Menichini.name = "Menichini" ∧ CNN.label = "Organization" ∧ CNN.name = "CNN" ∧ Menichini___CNN.source_id = "3489825776_7" ∧ CNN.label != "Organization" → None_ML(Menichini.attrs, CNN.attrs))
+Q[Menichini,Menichini] (CNN.type = "news outlet" ∧ Menichini.occupation != "unknown" → Menichini___CNN.location = "site of the incident")
+Q[Menichini,Menichini] (CNN.label != "Organization" ∧ Menichini.label = "Person" ∧ Menichini.name = "Menichini" ∧ Menichini___CNN.contradiction_type = "Factual" ∧ Menichini___CNN.time = "late Tuesday" ∧ Menichini.label != CNN.label → CNN.label = "Organization")

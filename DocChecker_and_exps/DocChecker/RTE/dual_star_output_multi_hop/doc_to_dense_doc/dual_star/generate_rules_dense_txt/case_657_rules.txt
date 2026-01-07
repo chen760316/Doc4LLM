@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 657)
+S1: A suicide attack is an attack on the attacker or attackers seek to kill another and intended to die in the process.
+S2: In a suicide attack in the strict sense, the attacker dies from the attack itself.
+
+Predicates:
+1. SuicideAttack.hasIntentToKill
+2. SuicideAttack.hasIntentToDie
+3. Attacker.diesFromAttack
+4. Attacker.seeksToKillOthers
+5. Attack.isOnAttacker
+6. Attack.isOnOthers
+7. Attack.hasMotivation
+8. Attack.isSuicidal
+9. Attack.type.isSuicide
+10. Attack.type.isNonSuicide
+11. Motivation.isDifferent
+12. Motivation.isKilling
+13. Motivation.isSelfSacrifice
+14. AttackOutcome.resultsInDeath
+15. AttackOutcome.resultsInInjury
+16. AttackOutcome.isIntentional
+17. AttackOutcome.isUnintentional
+18. Attacker.hasSuicidalIntent
+19. Attacker.hasKillingIntent
+20. AttackContext.isStrict
+21. AttackContext.isLoose
+22. AttackNature.isViolent
+23. AttackNature.isNonViolent
+24. CausalRelation.existsBetween(s1, s2)
+25. CausalRelation.isDirect
+26. CausalRelation.isIndirect
+27. Violation.isPresent
+28. Violation.isAbsenceOfIntent
+29. Violation.isContradiction
+30. M_NLI(s1, s2).isTrue
+
+Rules:
+1. Q[suicide, SuicideAttack.hasIntentToKill == true, SuicideAttack.hasIntentToDie == true](Premise → Conclusion)
+2. Q[suicide, Attacker.seeksToKillOthers == true, Attacker.diesFromAttack == true](Premise → Conclusion)
+3. Q[suicide, Attack.isOnOthers == true, Attack.isOnAttacker == true](Premise → Conclusion)
+4. Q[suicide, Attack.hasMotivation == Motivation.isKilling, Attack.hasMotivation == Motivation.isSelfSacrifice](Premise → Conclusion)
+5. Q[suicide, Attack.type.isSuicide == true, Attack.type.isNonSuicide == true](Premise → Conclusion)
+6. Q[suicide, Attacker.hasSuicidalIntent == true, Attacker.hasKillingIntent == true](Premise → Conclusion)
+7. Q[suicide, AttackOutcome.resultsInDeath == true, AttackOutcome.resultsInInjury == true](Premise → Conclusion)
+8. Q[suicide, AttackOutcome.isIntentional == true, AttackOutcome.isUnintentional == true](Premise → Conclusion)
+9. Q[suicide, AttackContext.isStrict == true, AttackContext.isLoose == true](Premise → Conclusion)
+10. Q[suicide, Motivation.isDifferent == true, Motivation.isKilling == true](Premise → Conclusion)
+11. Q[suicide, Attacker.diesFromAttack == true, Attack.isSuicidal == true](Premise → Conclusion)
+12. Q[suicide, Violation.isPresent == true, Violation.isAbsenceOfIntent == true](Premise → Conclusion)
+13. Q[suicide, CausalRelation.existsBetween(S1, S2) == true, CausalRelation.isDirect == true](Premise → Conclusion)
+14. Q[suicide, M_NLI(S1, S2).isTrue == true, Motivation.isDifferent == true](Premise → Conclusion)
+15. Q[suicide, AttackNature.isViolent == true, AttackNature.isNonViolent == true](Premise → Conclusion)
+16. Q[suicide, Attacker.hasSuicidalIntent == true, AttackOutcome.resultsInDeath == true](Premise → Conclusion)
+17. Q[suicide, AttackOutcome.resultsInDeath == true, AttackOutcome.isIntentional == true](Premise → Conclusion)
+18. Q[suicide, Attack.isOnOthers == true, AttackOutcome.resultsInDeath == true](Premise → Conclusion)
+19. Q[suicide, Attacker.seeksToKillOthers == true, AttackOutcome.isIntentional == true](Premise → Conclusion)
+20. Q[suicide, Attack.type.isSuicide == true, Attacker.hasSuicidalIntent == true](Premise → Conclusion)
+21. Q[suicide, AttackContext.isStrict == true, Motivation.isDifferent == true](Premise → Conclusion)
+22. Q[suicide, Attacker.diesFromAttack == true, AttackOutcome.resultsInDeath == true](Premise → Conclusion)
+23. Q[suicide, Attack.hasMotivation == Motivation.isSelfSacrifice, Motivation.isDifferent == true](Premise → Conclusion)
+24. Q[suicide, AttackNature.isViolent == true, Attack.hasMotivation == Motivation.isKilling](Premise → Conclusion)
+25. Q[suicide, Violation.isContradiction == true, M_NLI(S1, S2).isTrue == true](Premise → Conclusion)
+26. Q[suicide, AttackOutcome.resultsInInjury == true, AttackOutcome.isUnintentional == true](Premise → Conclusion)
+27. Q[suicide, Attack.isOnAttacker == true, AttackOutcome.resultsInDeath == true](Premise → Conclusion)
+28. Q[suicide, Attacker.hasKillingIntent == true, AttackOutcome.isIntentional == true](Premise → Conclusion)
+29. Q[suicide, Attack.type.isNonSuicide == true, Motivation.isDifferent == true](Premise → Conclusion)
+30. Q[suicide, CausalRelation.isIndirect == true, CausalRelation.existsBetween(S1, S2) == true](Premise → Conclusion)

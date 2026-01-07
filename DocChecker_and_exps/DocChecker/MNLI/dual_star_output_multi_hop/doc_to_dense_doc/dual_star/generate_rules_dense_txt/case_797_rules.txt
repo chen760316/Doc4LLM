@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 797)
+S1: Kali is horrible to look at, with a long tongue and staring eyes, and is kept satisfied by the blood of sacrificed animals.
+S2: Kali is beautiful to look at, with a slender body and voluptuous shapes.
+
+Predicates:
+1. Kali.appearance = "horrible"
+2. Kali.tongue = "long"
+3. Kali.eyes = "staring"
+4. Kali.satisfaction_source = "blood of sacrificed animals"
+5. Kali.appearance = "beautiful"
+6. Kali.body_type = "slender"
+7. Kali.body_shape = "voluptuous"
+8. Opinion.negative(Kali.appearance, "horrible")
+9. Opinion.positive(Kali.appearance, "beautiful")
+10. Emotion.negative(Kali.appearance, "horrible")
+11. Emotion.positive(Kali.appearance, "beautiful")
+12. relationship.expresses(Kali.appearance, "negative opinion")
+13. relationship.expresses(Kali.appearance, "positive opinion")
+14. violate(Opinion.negative, Opinion.positive)
+15. M_NLI(S1, S2) = True
+16. Content(Opinion, "negative", S1)
+17. Content(Opinion, "positive", S2)
+18. Kali.sacrificed_animals.blood = "source of satisfaction"
+19. Kali.appearance.negative = "horrible"
+20. Kali.appearance.positive = "beautiful"
+21. relationship.Kali.appearance.negative = "horrible"
+22. relationship.Kali.appearance.positive = "beautiful"
+23. Kali.satisfaction.negative = "blood of sacrificed animals"
+24. Kali.satisfaction.positive = "none"
+25. Opinion.Kali.appearance.negative = "horrible"
+26. Opinion.Kali.appearance.positive = "beautiful"
+27. Emotion.Kali.appearance.negative = "disgust"
+28. Emotion.Kali.appearance.positive = "admiration"
+29. relationship.Kali.satisfaction = "blood of sacrificed animals"
+30. relationship.Kali.appearance = "contradictory opinions"
+
+Rules:
+1. Q[Kali, Kali.appearance, Kali.appearance](Kali.appearance == "horrible" → Content(Opinion, "negative", S1))
+2. Q[Kali, Kali.appearance, Kali.appearance](Kali.appearance == "beautiful" → Content(Opinion, "positive", S2))
+3. Q[Kali, Opinion.negative, Opinion.positive](Opinion.negative(Kali.appearance, "horrible") → violate(Opinion.negative, Opinion.positive))
+4. Q[Kali, Emotion.negative, Emotion.positive](Emotion.negative(Kali.appearance, "horrible") → violate(Emotion.negative, Emotion.positive))
+5. Q[Kali, relationship.expresses, relationship.expresses](relationship.expresses(Kali.appearance, "negative opinion") → violate(Opinion.negative, Opinion.positive))
+6. Q[Kali, relationship.expresses, relationship.expresses](relationship.expresses(Kali.appearance, "positive opinion") → violate(Opinion.negative, Opinion.positive))
+7. Q[Kali, Kali.appearance.negative, Kali.appearance.positive](Kali.appearance.negative == "horrible" → Content(Opinion, "negative", S1))
+8. Q[Kali, Kali.appearance.negative, Kali.appearance.positive](Kali.appearance.positive == "beautiful" → Content(Opinion, "positive", S2))
+9. Q[Kali, Kali.satisfaction_source, Kali.satisfaction_source](Kali.satisfaction_source == "blood of sacrificed animals" → Content(Opinion, "negative", S1))
+10. Q[Kali, Kali.satisfaction_source, Kali.satisfaction_source](Kali.satisfaction_source == "none" → Content(Opinion, "positive", S2))
+11. Q[Kali, Opinion.Kali.appearance.negative, Opinion.Kali.appearance.positive](Opinion.Kali.appearance.negative == "horrible" → violate(Opinion.Kali.appearance.negative, Opinion.Kali.appearance.positive))
+12. Q[Kali, Emotion.Kali.appearance.negative, Emotion.Kali.appearance.positive](Emotion.Kali.appearance.negative == "disgust" → violate(Emotion.Kali.appearance.negative, Emotion.Kali.appearance.positive))
+13. Q[Kali, relationship.Kali.appearance.negative, relationship.Kali.appearance.positive](relationship.Kali.appearance.negative == "horrible" → Content(Opinion, "negative", S1))
+14. Q[Kali, relationship.Kali.appearance.negative, relationship.Kali.appearance.positive](relationship.Kali.appearance.positive == "beautiful" → Content(Opinion, "positive", S2))
+15. Q[Kali, M_NLI, M_NLI](M_NLI(S1, S2) = True → relationship.Kali.appearance = "contradictory opinions")
+16. Q[Kali, Kali.appearance, Kali.appearance](Kali.appearance == "horrible" → Emotion.negative(Kali.appearance, "horrible"))
+17. Q[Kali, Kali.appearance, Kali.appearance](Kali.appearance == "beautiful" → Emotion.positive(Kali.appearance, "beautiful"))
+18. Q[Kali, Kali.appearance, Kali.appearance](Kali.appearance == "horrible" → Opinion.negative(Kali.appearance, "horrible"))
+19. Q[Kali, Kali.appearance, Kali.appearance](Kali.appearance == "beautiful" → Opinion.positive(Kali.appearance, "beautiful"))
+20. Q[Kali, relationship.Kali.appearance, relationship.Kali.appearance](relationship.Kali.appearance = "contradictory opinions" → violate(Opinion.negative, Opinion.positive))
+21. Q[Kali, Kali.appearance, Kali.appearance](Kali.appearance == "horrible" → Content(Opinion, "negative", S1))
+22. Q[Kali, Kali.appearance, Kali.appearance](Kali.appearance == "beautiful" → Content(Opinion, "positive", S2))
+23. Q[Kali, Kali.appearance, Kali.appearance](Kali.appearance == "horrible" → Emotion.negative(Kali.appearance, "disgust"))
+24. Q[Kali, Kali.appearance, Kali.appearance](Kali.appearance == "beautiful" → Emotion.positive(Kali.appearance, "admiration"))
+25. Q[Kali, Kali.appearance, Kali.appearance](Kali.appearance == "horrible" → relationship.Kali.appearance.negative = "horrible")
+26. Q[Kali, Kali.appearance, Kali.appearance](Kali.appearance == "beautiful" → relationship.Kali.appearance.positive = "beautiful")
+27. Q[Kali, Kali.appearance, Kali.appearance](Kali.appearance == "horrible" → Content(Opinion, "negative", S1))
+28. Q[Kali, Kali.appearance, Kali.appearance](Kali.appearance == "beautiful" → Content(Opinion, "positive", S2))
+29. Q[Kali, Kali.appearance, Kali.appearance](Kali.appearance == "horrible" → relationship.Kali.appearance = "contradictory opinions")
+30. Q[Kali, Kali.appearance, Kali.appearance](Kali.appearance == "beautiful" → relationship.Kali.appearance = "contradictory opinions")

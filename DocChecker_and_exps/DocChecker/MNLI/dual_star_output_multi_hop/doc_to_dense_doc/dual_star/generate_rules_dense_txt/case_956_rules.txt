@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 956)
+S1: They were locked in a trunk in a sealed room in Edinburgh Castle for 111 years before Sir Walter Scott received permission to open the room in 1818.
+S2: They were in a trunk for over a hundred years.
+
+Predicates:
+1. Trunk.location = "Edinburgh Castle"
+2. Trunk.locked_duration = 111 years
+3. Room.sealed = true
+4. Sir_Walter_Scott.permission_received = 1818
+5. Duration.over_a_hundred_years = true
+6. Trunk.locked = true
+7. Room.opened = true
+8. Sir_Walter_Scott.entity_type = "historical figure"
+9. Edinburgh_Castle.entity_type = "location"
+10. Trunk.entity_type = "container"
+11. Duration.locked = 111 years
+12. Sir_Walter_Scott.action = "opened room"
+13. Room.entity_type = "space"
+14. Duration.implies = "over a hundred years"
+15. Trunk.contains = "unknown entities"
+16. Sealed_Room.status = "sealed"
+17. Duration.exceeds = 100 years
+18. Sir_Walter_Scott.year_of_action = 1818
+19. Trunk.condition = "locked"
+20. Room.condition = "sealed"
+21. Duration.locked_in_trunk = 111 years
+22. Edinburgh_Castle.history = "significant"
+23. Trunk.history = "unknown"
+24. Sir_Walter_Scott.role = "opener"
+25. Room.accessibility = "restricted"
+26. Duration.locked_in_room = 111 years
+27. Trunk.location_type = "historical"
+28. Room.locked = true
+29. Duration.locked_duration = Numeric(111, 111)
+30. M_NLI(S1, S2) = true
+
+Rules:
+1. Q[They, Trunk.locked_duration, Duration.locked_duration](Trunk.locked_duration == 111 years → Numeric(111, 111))
+2. Q[They, Duration.over_a_hundred_years, Duration.locked_duration](Duration.over_a_hundred_years == true → Numeric(100, 111))
+3. Q[They, Trunk.locked_duration, Duration.exceeds](Trunk.locked_duration == 111 years → Numeric(111, 100))
+4. Q[They, Room.sealed, Trunk.locked_duration](Room.sealed == true → Numeric(111, 111))
+5. Q[They, Trunk.locked, Trunk.locked_duration](Trunk.locked == true → Numeric(111, 111))
+6. Q[They, Room.condition, Trunk.locked_duration](Room.condition == "sealed" → Numeric(111, 111))
+7. Q[They, Duration.locked_in_trunk, Trunk.locked_duration](Duration.locked_in_trunk == 111 years → Numeric(111, 111))
+8. Q[They, Duration.locked_in_room, Trunk.locked_duration](Duration.locked_in_room == 111 years → Numeric(111, 111))
+9. Q[They, Sir_Walter_Scott.permission_received, Trunk.locked_duration](Sir_Walter_Scott.permission_received == 1818 → Numeric(111, 111))
+10. Q[They, Trunk.contains, Trunk.locked_duration](Trunk.contains == "unknown entities" → Numeric(111, 111))
+11. Q[They, Room.accessibility, Trunk.locked_duration](Room.accessibility == "restricted" → Numeric(111, 111))
+12. Q[They, Sir_Walter_Scott.action, Trunk.locked_duration](Sir_Walter_Scott.action == "opened room" → Numeric(111, 111))
+13. Q[They, Edinburgh_Castle.history, Trunk.locked_duration](Edinburgh_Castle.history == "significant" → Numeric(111, 111))
+14. Q[They, Trunk.history, Trunk.locked_duration](Trunk.history == "unknown" → Numeric(111, 111))
+15. Q[They, Sir_Walter_Scott.role, Trunk.locked_duration](Sir_Walter_Scott.role == "opener" → Numeric(111, 111))
+16. Q[They, Room.entity_type, Trunk.locked_duration](Room.entity_type == "space" → Numeric(111, 111))
+17. Q[They, Trunk.entity_type, Trunk.locked_duration](Trunk.entity_type == "container" → Numeric(111, 111))
+18. Q[They, Edinburgh_Castle.entity_type, Trunk.locked_duration](Edinburgh_Castle.entity_type == "location" → Numeric(111, 111))
+19. Q[They, Duration.implies, Duration.locked_duration](Duration.implies == "over a hundred years" → Numeric(100, 111))
+20. Q[They, Duration.locked_duration, Duration.locked_in_trunk](Duration.locked_duration == 111 years → Numeric(111, 111))
+21. Q[They, Duration.locked_duration, Duration.locked_in_room](Duration.locked_duration == 111 years → Numeric(111, 111))
+22. Q[They, Room.locked, Trunk.locked_duration](Room.locked == true → Numeric(111, 111))
+23. Q[They, Trunk.location, Trunk.locked_duration](Trunk.location == "Edinburgh Castle" → Numeric(111, 111))
+24. Q[They, Sir_Walter_Scott.year_of_action, Trunk.locked_duration](Sir_Walter_Scott.year_of_action == 1818 → Numeric(111, 111))
+25. Q[They, Trunk.location_type, Trunk.locked_duration](Trunk.location_type == "historical" → Numeric(111, 111))
+26. Q[They, Sealed_Room.status, Trunk.locked_duration](Sealed_Room.status == "sealed" → Numeric(111, 111))
+27. Q[They, Duration.locked_duration, Duration.over_a_hundred_years](Duration.locked_duration == 111 years → Numeric(111, 100))
+28. Q[They, Duration.locked_duration, Duration.implies](Duration.locked_duration == 111 years → Numeric(111, 111))
+29. Q[They, Trunk.condition, Duration.locked_duration](Trunk.condition == "locked" → Numeric(111, 111))
+30. Q[They, M_NLI(S1, S2), Trunk.locked_duration](M_NLI(S1, S2) == true → Numeric(111, 111))

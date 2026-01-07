@@ -1,0 +1,74 @@
+Predicates:
+New South Wales Patriots.label != "Team"
+New South Wales Patriots.label = "Team"
+New South Wales Patriots.location != "Norwood Oval, Adelaide"
+New South Wales Patriots.location = "Norwood Oval, Adelaide"
+New South Wales Patriots.name != "New South Wales Patriots"
+New South Wales Patriots.name != New South Wales.name
+New South Wales Patriots.name = "New South Wales Patriots"
+New South Wales Patriots.status != "host team"
+New South Wales Patriots.status != New South Wales.status
+New South Wales Patriots.status = "host team"
+New South Wales.label != "Team"
+New South Wales.label = "Team"
+New South Wales.name != "New South Wales"
+New South Wales.name = "New South Wales"
+New South Wales.status != "home team"
+New South Wales.status = "home team"
+None_ML(New South Wales.attrs, New South Wales Patriots.attrs)
+None_ML(South Australia___Victoria Aces.attrs, South Australia___New South Wales.attrs)
+South Australia.label != "Team"
+South Australia.label = "Team"
+South Australia.name != "South Australia"
+South Australia.name != New South Wales Patriots.name
+South Australia.name != New South Wales.name
+South Australia.name != Victoria Aces.name
+South Australia.name = "South Australia"
+South Australia.status != "away team"
+South Australia.status != New South Wales Patriots.status
+South Australia.status != New South Wales.status
+South Australia.status != Victoria Aces.status
+South Australia.status = "away team"
+South Australia___New South Wales Patriots.contradiction_type = "Relation"
+South Australia___New South Wales Patriots.event = "game"
+South Australia___New South Wales Patriots.relationship != South Australia___New South Wales.relationship
+South Australia___New South Wales Patriots.relationship = "South Australia hosted New South Wales Patriots at Norwood Oval"
+South Australia___New South Wales Patriots.series = "championship series"
+South Australia___New South Wales Patriots.source_id = "3499318677_2"
+South Australia___New South Wales.contradiction_type = "Relation"
+South Australia___New South Wales.game_number != 2
+South Australia___New South Wales.game_number = 2
+South Australia___New South Wales.relationship = "South Australia was officially the away team for game two of its series against New South Wales"
+South Australia___New South Wales.source_id = "3499318677_2"
+South Australia___Victoria Aces.contradiction_type = "Relation"
+South Australia___Victoria Aces.event != South Australia___New South Wales Patriots.event
+South Australia___Victoria Aces.event = "championship series"
+South Australia___Victoria Aces.relationship != South Australia___New South Wales Patriots.relationship
+South Australia___Victoria Aces.relationship != South Australia___New South Wales.relationship
+South Australia___Victoria Aces.relationship = "South Australia defeated Victoria Aces in the championship series"
+South Australia___Victoria Aces.score = "two games to nil"
+South Australia___Victoria Aces.source_id = "3499318677_2"
+Victoria Aces.label != "Team"
+Victoria Aces.label = "Team"
+Victoria Aces.location != "La Trobe University, Melbourne"
+Victoria Aces.location != New South Wales Patriots.location
+Victoria Aces.location = "La Trobe University, Melbourne"
+Victoria Aces.name != "Victoria Aces"
+Victoria Aces.name != New South Wales Patriots.name
+Victoria Aces.name != New South Wales.name
+Victoria Aces.name = "Victoria Aces"
+Victoria Aces.status != "host team"
+Victoria Aces.status != New South Wales.status
+Victoria Aces.status = "host team"
+
+Rules:
+Q[South Australia,South Australia] (South Australia___Victoria Aces.contradiction_type = "Relation" ∧ South Australia.label != "Team" → New South Wales Patriots.name = "New South Wales Patriots")
+Q[South Australia,South Australia] (South Australia___New South Wales.source_id = "3499318677_2" ∧ South Australia___New South Wales Patriots.series = "championship series" ∧ South Australia___New South Wales.game_number != 2 ∧ South Australia___New South Wales Patriots.event = "game" ∧ South Australia.name = "South Australia" → South Australia___Victoria Aces.contradiction_type = "Relation")
+Q[South Australia,South Australia] (South Australia___Victoria Aces.event != South Australia___New South Wales Patriots.event ∧ South Australia___Victoria Aces.relationship != South Australia___New South Wales Patriots.relationship ∧ New South Wales.name != "New South Wales" → Victoria Aces.name = "Victoria Aces")
+Q[South Australia,South Australia] (South Australia___Victoria Aces.relationship = "South Australia defeated Victoria Aces in the championship series" ∧ South Australia___Victoria Aces.score = "two games to nil" ∧ New South Wales.status = "home team" ∧ New South Wales Patriots.status != "host team" ∧ South Australia___Victoria Aces.event = "championship series" ∧ South Australia.status != New South Wales.status → New South Wales Patriots.label != "Team")
+Q[South Australia,South Australia] (None_ML(New South Wales.attrs, New South Wales Patriots.attrs) ∧ South Australia___New South Wales.contradiction_type = "Relation" ∧ Victoria Aces.location != "La Trobe University, Melbourne" ∧ South Australia.name != Victoria Aces.name → South Australia___New South Wales Patriots.event = "game")
+Q[South Australia,South Australia] (New South Wales Patriots.location != "Norwood Oval, Adelaide" ∧ Victoria Aces.name = "Victoria Aces" → South Australia___New South Wales Patriots.source_id = "3499318677_2")
+Q[South Australia,South Australia] (South Australia.status != Victoria Aces.status ∧ South Australia.status != "away team" ∧ South Australia.status != New South Wales.status ∧ Victoria Aces.location != "La Trobe University, Melbourne" → South Australia___Victoria Aces.event != South Australia___New South Wales Patriots.event)
+Q[South Australia,South Australia] (New South Wales Patriots.status != New South Wales.status ∧ South Australia___Victoria Aces.score = "two games to nil" ∧ South Australia___Victoria Aces.relationship = "South Australia defeated Victoria Aces in the championship series" ∧ South Australia.status != New South Wales.status ∧ Victoria Aces.location = "La Trobe University, Melbourne" → New South Wales Patriots.name != New South Wales.name)
+Q[South Australia,South Australia] (Victoria Aces.name = "Victoria Aces" ∧ South Australia___New South Wales Patriots.relationship = "South Australia hosted New South Wales Patriots at Norwood Oval" ∧ South Australia___Victoria Aces.relationship != South Australia___New South Wales.relationship ∧ South Australia.status != "away team" ∧ South Australia.name != New South Wales Patriots.name ∧ South Australia.status != New South Wales.status → None_ML(South Australia___Victoria Aces.attrs, South Australia___New South Wales.attrs))
+Q[South Australia,South Australia] (South Australia.name != "South Australia" ∧ South Australia___Victoria Aces.score = "two games to nil" ∧ New South Wales Patriots.location = "Norwood Oval, Adelaide" → Victoria Aces.label != "Team")

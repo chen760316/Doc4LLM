@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 13)
+S1: A red race car is driving on asphalt.
+S2: Race car driving on pavement.
+
+Predicates:
+1. RaceCar.color
+2. RaceCar.surface
+3. RaceCar.speed
+4. RaceCar.type
+5. Asphalt.condition
+6. Asphalt.texture
+7. Pavement.condition
+8. Pavement.texture
+9. Vehicle.type
+10. Vehicle.speed
+11. Vehicle.color
+12. Driving.action
+13. Driving.surface
+14. Driving.speed
+15. Surface.type
+16. Surface.material
+17. Surface.condition
+18. Surface.texture
+19. RaceCar.brand
+20. RaceCar.model
+21. RaceCar.driver
+22. RaceCar.year
+23. RaceCar.location
+24. Asphalt.type
+25. Pavement.type
+26. RaceCar.performance
+27. RaceCar.features
+28. RaceCar.category
+29. Driving.environment
+30. Driving.condition
+
+Rules:
+1. Q[asphalt, x0, y0](RaceCar.surface == "asphalt" → Factual(x0, y0))
+2. Q[pavement, x0, y0](RaceCar.surface == "pavement" → Factual(x0, y0))
+3. Q[red, x0, y0](RaceCar.color == "red" → Factual(x0, y0))
+4. Q[driving, x0, y0](Driving.action == "driving" → Factual(x0, y0))
+5. Q[asphalt, x0, y0](Asphalt.type == "asphalt" → Factual(x0, y0))
+6. Q[pavement, x0, y0](Pavement.type == "pavement" → Factual(x0, y0))
+7. Q[RaceCar, x0, y0](RaceCar.surface == "asphalt" ∧ RaceCar.surface == "pavement" → Factual(x0, y0))
+8. Q[asphalt, x0, y0](Asphalt.condition == "good" → Factual(x0, y0))
+9. Q[pavement, x0, y0](Pavement.condition == "good" → Factual(x0, y0))
+10. Q[RaceCar, x0, y0](RaceCar.type == "race car" → Factual(x0, y0))
+11. Q[driving, x0, y0](Driving.surface == "asphalt" → Factual(x0, y0))
+12. Q[driving, x0, y0](Driving.surface == "pavement" → Factual(x0, y0))
+13. Q[asphalt, x0, y0](Asphalt.texture == "smooth" → Factual(x0, y0))
+14. Q[pavement, x0, y0](Pavement.texture == "rough" → Factual(x0, y0))
+15. Q[RaceCar, x0, y0](RaceCar.speed > 0 → Factual(x0, y0))
+16. Q[RaceCar, x0, y0](RaceCar.color == "red" ∧ RaceCar.surface == "asphalt" → Factual(x0, y0))
+17. Q[RaceCar, x0, y0](RaceCar.color == "red" ∧ RaceCar.surface == "pavement" → Factual(x0, y0))
+18. Q[asphalt, x0, y0](Asphalt.texture == "smooth" ∧ Pavement.texture == "rough" → Factual(x0, y0))
+19. Q[RaceCar, x0, y0](RaceCar.surface == "asphalt" ∧ Driving.surface == "pavement" → Factual(x0, y0))
+20. Q[RaceCar, x0, y0](RaceCar.surface == "pavement" ∧ Driving.surface == "asphalt" → Factual(x0, y0))
+21. Q[RaceCar, x0, y0](RaceCar.surface == "asphalt" ∧ RaceCar.surface != "pavement" → Factual(x0, y0))
+22. Q[RaceCar, x0, y0](RaceCar.surface == "pavement" ∧ RaceCar.surface != "asphalt" → Factual(x0, y0))
+23. Q[asphalt, x0, y0](Asphalt.condition == "dry" → Factual(x0, y0))
+24. Q[pavement, x0, y0](Pavement.condition == "wet" → Factual(x0, y0))
+25. Q[RaceCar, x0, y0](RaceCar.surface == "asphalt" ∧ Asphalt.type == "asphalt" → Factual(x0, y0))
+26. Q[RaceCar, x0, y0](RaceCar.surface == "pavement" ∧ Pavement.type == "pavement" → Factual(x0, y0))
+27. Q[driving, x0, y0](Driving.surface == "asphalt" ∧ Driving.surface != "pavement" → Factual(x0, y0))
+28. Q[driving, x0, y0](Driving.surface == "pavement" ∧ Driving.surface != "asphalt" → Factual(x0, y0))
+29. Q[RaceCar, x0, y0](RaceCar.surface == "asphalt" ∧ RaceCar.surface == "pavement" → Factual(x0, y0))
+30. Q[RaceCar, x0, y0](RaceCar.surface != "asphalt" ∧ RaceCar.surface != "pavement" → Factual(x0, y0))

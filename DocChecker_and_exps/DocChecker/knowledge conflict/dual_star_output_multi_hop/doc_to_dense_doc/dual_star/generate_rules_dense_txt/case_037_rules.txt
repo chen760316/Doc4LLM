@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 37)
+S1: A query is a request made to a database or search engine for retrieving specific information.
+S2: A Database snapshot isolation is a request made to a database or search engine for retrieving specific information.
+
+Predicates:
+1. Query.definition
+2. Database.snapshot_isolation
+3. Query.request_type
+4. Database.request_type
+5. Query.information_retrieval
+6. Database.information_retrieval
+7. Query.entity
+8. Database.entity
+9. Query.is_a
+10. Database.is_a
+11. Query.equivalence
+12. Database.equivalence
+13. Query.validity
+14. Database.validity
+15. Query.context
+16. Database.context
+17. Query.scope
+18. Database.scope
+19. Query.purpose
+20. Database.purpose
+21. M_NLI(S1, S2)
+22. Content(S1, S2)
+23. violate(S1, S2)
+24. Query.usage
+25. Database.usage
+26. Query.function
+27. Database.function
+28. Query.output
+29. Database.output
+30. Query.comparison(Database)
+
+Rules:
+1. Q[query, x0, y0](Query.definition == "A request made to a database or search engine for retrieving specific information" → Content(x0, y0))
+2. Q[query, x0, y0](Query.request_type == "information retrieval" → Content(x0, y0))
+3. Q[query, x0, y0](Query.information_retrieval == true → Content(x0, y0))
+4. Q[query, x0, y0](Query.is_a == "request" → Content(x0, y0))
+5. Q[query, x0, y0](Query.validity == true → Content(x0, y0))
+6. Q[query, x0, y0](Query.purpose == "retrieve information" → Content(x0, y0))
+7. Q[query, x0, y0](Query.scope == "specific information" → Content(x0, y0))
+8. Q[query, x0, y0](Query.function == "retrieve data" → Content(x0, y0))
+9. Q[query, x0, y0](Query.output == "specific information" → Content(x0, y0))
+10. Q[query, x0, y0](Query.usage == "database interaction" → Content(x0, y0))
+11. Q[database, x0, y0](Database.snapshot_isolation == "not a query" → Content(x0, y0))
+12. Q[database, x0, y0](Database.request_type == "not a query" → Content(x0, y0))
+13. Q[database, x0, y0](Database.information_retrieval == false → Content(x0, y0))
+14. Q[database, x0, y0](Database.is_a == "not a request" → Content(x0, y0))
+15. Q[database, x0, y0](Database.validity == false → Content(x0, y0))
+16. Q[database, x0, y0](Database.purpose == "not for retrieving information" → Content(x0, y0))
+17. Q[database, x0, y0](Database.scope == "not specific information" → Content(x0, y0))
+18. Q[database, x0, y0](Database.function == "not retrieve data" → Content(x0, y0))
+19. Q[database, x0, y0](Database.output == "not specific information" → Content(x0, y0))
+20. Q[database, x0, y0](Database.usage == "not database interaction" → Content(x0, y0))
+21. Q[query, x0, y0](Query.equivalence == "not equal to Database.snapshot_isolation" → Content(x0, y0))
+22. Q[query, x0, y0](M_NLI(S1, S2) == true → Content(x0, y0))
+23. Q[query, x0, y0](violate(S1, S2) == true → Content(x0, y0))
+24. Q[database, x0, y0](Database.equivalence == "not equal to Query" → Content(x0, y0))
+25. Q[database, x0, y0](Database.function == "not a query function" → Content(x0, y0))
+26. Q[database, x0, y0](Database.context == "not related to queries" → Content(x0, y0))
+27. Q[database, x0, y0](Database.entity == "not a query entity" → Content(x0, y0))
+28. Q[database, x0, y0](Database.snapshot_isolation == "not a request for information" → Content(x0, y0))
+29. Q[query, x0, y0](Query.comparison(Database) == "not equivalent" → Content(x0, y0))
+30. Q[query, x0, y0](Query.definition != Database.snapshot_isolation → Content(x0, y0))

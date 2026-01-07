@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 896)
+S1: A group of people sitting in lawn chairs having conversation.
+S2: A group of friends are socializing in lawn chairs.
+
+Predicates:
+1. Group.people
+2. Group.location
+3. Group.activity
+4. Group.type
+5. Person.relationship
+6. Person.emotion
+7. Chair.type
+8. Chair.material
+9. Conversation.topic
+10. Conversation.formality
+11. Socializing.activity
+12. Socializing.group_size
+13. Socializing.location
+14. Socializing.duration
+15. Emphasis.conversation
+16. Emphasis.socializing
+17. Implication.lack_of_serious_conversation
+18. Group.friendship_level
+19. Group.interaction_style
+20. Person.age
+21. Person.gender
+22. Person.number
+23. Lawn.type
+24. Lawn.condition
+25. Event.time
+26. Event.context
+27. Event.participants
+28. Event.nature
+29. Relationship.type
+30. Relationship.intensity
+
+Rules:
+1. Q[group, Emphasis.conversation, Emphasis.socializing](Group.activity == "conversation" → Negation(Emphasis.conversation, Emphasis.socializing))
+2. Q[group, Group.activity, Socializing.activity](Group.activity == "conversation" → Negation(Group.activity, Socializing.activity))
+3. Q[group, Group.type, Group.friendship_level](Group.type == "friends" → Negation(Group.type, Group.friendship_level))
+4. Q[group, Group.location, Socializing.location](Group.location == "lawn" → Negation(Group.location, Socializing.location))
+5. Q[group, Group.people, Person.number](Group.people == "multiple" → Negation(Group.people, Person.number))
+6. Q[group, Group.activity, Conversation.topic](Group.activity == "conversation" → Negation(Group.activity, Conversation.topic))
+7. Q[group, Group.interaction_style, Socializing.duration](Group.interaction_style == "casual" → Negation(Group.interaction_style, Socializing.duration))
+8. Q[group, Emphasis.socializing, Implication.lack_of_serious_conversation](Emphasis.socializing == "true" → Negation(Emphasis.socializing, Implication.lack_of_serious_conversation))
+9. Q[group, Group.activity, Group.type](Group.activity == "socializing" → Negation(Group.activity, Group.type))
+10. Q[group, Group.friendship_level, Person.relationship](Group.friendship_level == "close" → Negation(Group.friendship_level, Person.relationship))
+11. Q[group, Group.location, Lawn.type](Group.location == "lawn" → Negation(Group.location, Lawn.type))
+12. Q[group, Group.activity, Emphasis.conversation](Group.activity == "conversation" → Negation(Group.activity, Emphasis.conversation))
+13. Q[group, Group.people, Person.age](Group.people == "adults" → Negation(Group.people, Person.age))
+14. Q[group, Group.type, Group.interaction_style](Group.type == "friends" → Negation(Group.type, Group.interaction_style))
+15. Q[group, Group.activity, Socializing.group_size](Group.activity == "socializing" → Negation(Group.activity, Socializing.group_size))
+16. Q[group, Group.location, Lawn.condition](Group.location == "lawn" → Negation(Group.location, Lawn.condition))
+17. Q[group, Emphasis.conversation, Group.activity](Emphasis.conversation == "true" → Negation(Emphasis.conversation, Group.activity))
+18. Q[group, Group.people, Person.gender](Group.people == "mixed" → Negation(Group.people, Person.gender))
+19. Q[group, Group.activity, Socializing.activity](Group.activity == "conversation" → Negation(Group.activity, Socializing.activity))
+20. Q[group, Group.type, Emphasis.socializing](Group.type == "friends" → Negation(Group.type, Emphasis.socializing))
+21. Q[group, Group.location, Socializing.location](Group.location == "lawn" → Negation(Group.location, Socializing.location))
+22. Q[group, Group.activity, Conversation.formality](Group.activity == "conversation" → Negation(Group.activity, Conversation.formality))
+23. Q[group, Group.interaction_style, Emphasis.socializing](Group.interaction_style == "informal" → Negation(Group.interaction_style, Emphasis.socializing))
+24. Q[group, Group.activity, Group.friendship_level](Group.activity == "socializing" → Negation(Group.activity, Group.friendship_level))
+25. Q[group, Group.location, Event.context](Group.location == "lawn" → Negation(Group.location, Event.context))
+26. Q[group, Group.people, Person.number](Group.people == "few" → Negation(Group.people, Person.number))
+27. Q[group, Group.activity, Emphasis.conversation](Group.activity == "socializing" → Negation(Group.activity, Emphasis.conversation))
+28. Q[group, Group.type, Group.activity](Group.type == "friends" → Negation(Group.type, Group.activity))
+29. Q[group, Group.location, Event.nature](Group.location == "lawn" → Negation(Group.location, Event.nature))
+30. Q[group, Emphasis.socializing, Group.activity](Emphasis.socializing == "true" → Negation(Emphasis.socializing, Group.activity))

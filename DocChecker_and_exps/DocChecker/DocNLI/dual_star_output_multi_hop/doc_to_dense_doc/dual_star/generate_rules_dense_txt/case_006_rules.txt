@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 6)
+S1: Lawley, who is a size 12, is the first plus-size model and one of seven ``rookies'' featured in the 2015 swimsuit issue, on newsstands Tuesday.
+S2: A size 12? That's still smaller than the average American woman, who wears a size 14.
+
+Predicates:
+1. Lawley.size = 12
+2. Lawley.role = "plus-size model"
+3. Lawley.issue = "2015 swimsuit issue"
+4. Lawley.featured_in = "rookies"
+5. Lawley.release_day = "Tuesday"
+6. average_American_woman.size = 14
+7. size_12.is_smaller_than(size_14)
+8. size_12.is_not_plus_size
+9. plus_size_model.first = Lawley
+10. plus_size_model.count = 7
+11. swimsuit_issue.year = 2015
+12. swimsuit_issue.on_newsstands = "Tuesday"
+13. size_12.is_less_than(average_American_woman.size)
+14. Lawley.is_first(plus_size_model)
+15. plus_size_model.is_defined_by(size)
+16. size_14.is_average_for(American_woman)
+17. Lawley.is_featured_in(swimsuit_issue)
+18. swimsuit_issue.includes(rookies)
+19. rookies.count = 7
+20. size_12.is_not_equal_to(size_14)
+21. Lawley.is_a(plus_size_model)
+22. average_American_woman.is_defined_by(size)
+23. size_12.is_a(size_category)
+24. size_14.is_a(size_category)
+25. plus_size_model.is_a(subcategory_of(model)
+26. Lawley.is_part_of(2015_swimsuit_issue)
+27. swimsuit_issue.is_published_in(year)
+28. Lawley.is_featured_in(rookies)
+29. rookies.is_a(category_of(models)
+30. size_12.is_not_considered(plus_size)
+
+Rules:
+1. Q[Lawley, Lawley.size, average_American_woman.size](Lawley.size == 12 → Factual(Lawley.size, average_American_woman.size))
+2. Q[Lawley, Lawley.size, size_14](Lawley.size == 12 → Factual(Lawley.size, size_14))
+3. Q[Lawley, Lawley.role, size_12.is_not_plus_size](Lawley.role == "plus-size model" → Factual(Lawley.role, size_12.is_not_plus_size))
+4. Q[Lawley, Lawley.size, size_12.is_smaller_than(size_14)](Lawley.size == 12 → Factual(Lawley.size, size_12.is_smaller_than(size_14)))
+5. Q[Lawley, Lawley.size, size_12.is_not_equal_to(size_14)](Lawley.size == 12 → Factual(Lawley.size, size_12.is_not_equal_to(size_14)))
+6. Q[Lawley, average_American_woman.size, size_12.is_less_than(average_American_woman.size)](average_American_woman.size == 14 → Factual(average_American_woman.size, size_12.is_less_than(average_American_woman.size)))
+7. Q[Lawley, Lawley.role, size_12.is_not_considered(plus_size)](Lawley.role == "plus-size model" → Factual(Lawley.role, size_12.is_not_considered(plus_size)))
+8. Q[Lawley, Lawley.size, plus_size_model.is_defined_by(size)](Lawley.size == 12 → Factual(Lawley.size, plus_size_model.is_defined_by(size)))
+9. Q[Lawley, Lawley.size, size_12.is_not_plus_size](Lawley.size == 12 → Factual(Lawley.size, size_12.is_not_plus_size))
+10. Q[Lawley, Lawley.role, size_12.is_a(size_category)](Lawley.role == "plus-size model" → Factual(Lawley.role, size_12.is_a(size_category)))
+11. Q[Lawley, average_American_woman.size, size_14.is_average_for(American_woman)](average_American_woman.size == 14 → Factual(average_American_woman.size, size_14.is_average_for(American_woman)))
+12. Q[Lawley, Lawley.featured_in, rookies.count](Lawley.featured_in == "rookies" → Factual(Lawley.featured_in, rookies.count))
+13. Q[Lawley, Lawley.issue, swimsuit_issue.year](Lawley.issue == "2015 swimsuit issue" → Factual(Lawley.issue, swimsuit_issue.year))
+14. Q[Lawley, Lawley.release_day, swimsuit_issue.on_newsstands](Lawley.release_day == "Tuesday" → Factual(Lawley.release_day, swimsuit_issue.on_newsstands))
+15. Q[Lawley, plus_size_model.first, Lawley](plus_size_model.first == Lawley → Factual(plus_size_model.first, Lawley))
+16. Q[Lawley, plus_size_model.count, 7](plus_size_model.count == 7 → Factual(plus_size_model.count, 7))
+17. Q[Lawley, Lawley.is_featured_in, swimsuit_issue](Lawley.is_featured_in(swimsuit_issue) → Factual(Lawley.is_featured_in, swimsuit_issue))
+18. Q[Lawley, rookies.count, 7](rookies.count == 7 → Factual(rookies.count, 7))
+19. Q[Lawley, Lawley.is_part_of, 2015_swimsuit_issue](Lawley.is_part_of(2015_swimsuit_issue) → Factual(Lawley.is_part_of, 2015_swimsuit_issue))
+20. Q[Lawley, size_12.is_not_plus_size, plus_size_model.is_a(subcategory_of(model))](size_12.is_not_plus_size → Factual(size_12.is_not_plus_size, plus_size_model.is_a(subcategory_of(model))))
+21. Q[Lawley, size_12.is_less_than, average_American_woman.size](size_12.is_less_than(average_American_woman.size) → Factual(size_12.is_less_than, average_American_woman.size))
+22. Q[Lawley, size_12.is_not_equal_to, size_14](size_12.is_not_equal_to(size_14) → Factual(size_12.is_not_equal_to, size_14))
+23. Q[Lawley, size_12.is_smaller_than, size_14](size_12.is_smaller_than(size_14) → Factual(size_12.is_smaller_than, size_14))
+24. Q[Lawley, Lawley.size, size_12.is_not_plus_size](Lawley.size == 12 → Factual(Lawley.size, size_12.is_not_plus_size))
+25. Q[Lawley, Lawley.role, plus_size_model.is_defined_by(size)](Lawley.role == "plus-size model" → Factual(Lawley.role, plus_size_model.is_defined_by(size)))
+26. Q[Lawley, average_American_woman.size, size_12.is_not_plus_size](average_American_woman.size == 14 → Factual(average_American_woman.size, size_12.is_not_plus_size))
+27. Q[Lawley, size_12.is_not_plus_size, Lawley.is_a(plus_size_model)](size_12.is_not_plus_size → Factual(size_12.is_not_plus_size, Lawley.is_a(plus_size_model)))
+28. Q[Lawley, Lawley.size, size_12.is_not_considered(plus_size)](Lawley.size == 12 → Factual(Lawley.size, size_12.is_not_considered(plus_size)))
+29. Q[Lawley, size_12.is_smaller_than, average_American_woman.size](size_12.is_smaller_than(average_American_woman.size) → Factual(size_12.is_smaller_than, average_American_woman.size))
+30. Q[Lawley, Lawley.role, size_12.is_not_plus_size](Lawley.role == "plus-size model" → Factual(Lawley.role, size_12.is_not_plus_size))

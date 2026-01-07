@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 116)
+S1: A man is delivering a passionate speech.
+S2: A black man in a suit is speaking into a microphone attached to a stand, his arms raised.
+
+Predicates:
+1. Man.speech
+2. Man.passionate
+3. Man.delivering
+4. Man.black
+5. Man.suit
+6. Man.speaking
+7. Man.microphone
+8. Man.arms_raised
+9. Speech.passionate
+10. Speech.delivery
+11. Speech.microphone
+12. Speech.speaking
+13. Speech.stand
+14. Microphone.attached
+15. Microphone.stand
+16. Arms.raised
+17. Delivery.passionate
+18. Delivery.speech
+19. Delivery.microphone
+20. Delivery.man
+21. Causal(speech, delivery)
+22. M_NLI(S1, S2)
+23. Violate(S1, S2)
+24. Man.relationship(speech)
+25. Speech.relationship(microphone)
+26. Man.relationship(arms_raised)
+27. Speech.relationship(stand)
+28. Man.in_relationship(suit)
+29. Speech.in_relationship(passionate)
+30. Microphone.in_relationship(stand)
+
+Rules:
+1. Q[man, Man.passionate, Speech.passionate](Man.passionate == true → Causal(man, speech))
+2. Q[man, Man.delivering, Speech.delivery](Man.delivering == true → Causal(man, delivery))
+3. Q[man, Man.black, Man.suit](Man.black == true ∧ Man.suit == true → Causal(man, suit))
+4. Q[man, Man.speaking, Speech.speaking](Man.speaking == true → Causal(man, speaking))
+5. Q[man, Man.microphone, Speech.microphone](Man.microphone == true → Causal(man, microphone))
+6. Q[man, Man.arms_raised, Arms.raised](Man.arms_raised == true → Causal(man, arms_raised))
+7. Q[man, Man.delivering, Delivery.passionate](Man.delivering == true ∧ Delivery.passionate == true → Causal(man, delivery))
+8. Q[man, Man.speaking, Delivery.speech](Man.speaking == true → Causal(man, speech))
+9. Q[man, Man.microphone, Delivery.microphone](Man.microphone == true → Causal(man, microphone))
+10. Q[man, Man.black, Delivery.man](Man.black == true → Causal(man, man))
+11. Q[man, Man.suit, Delivery.man](Man.suit == true → Causal(man, man))
+12. Q[man, Man.speaking, Speech.relationship(microphone)](Man.speaking == true → Causal(man, microphone))
+13. Q[man, Man.arms_raised, Speech.relationship(stand)](Man.arms_raised == true → Causal(man, stand))
+14. Q[man, Man.black, Speech.relationship(passionate)](Man.black == true → Causal(man, passionate))
+15. Q[man, Man.delivering, Speech.relationship(stand)](Man.delivering == true → Causal(man, stand))
+16. Q[man, Man.microphone, Microphone.attached](Man.microphone == true → Causal(man, attached))
+17. Q[man, Man.suit, Man.in_relationship(suit)](Man.suit == true → Causal(man, suit))
+18. Q[man, Man.black, Man.relationship(speech)](Man.black == true → Causal(man, speech))
+19. Q[man, Man.delivering, Delivery.speech](Man.delivering == true → Causal(man, speech))
+20. Q[man, Man.speaking, Delivery.passionate](Man.speaking == true ∧ Delivery.passionate == true → Causal(man, passionate))
+21. Q[man, Man.microphone, Microphone.in_relationship(stand)](Man.microphone == true → Causal(man, stand))
+22. Q[man, Man.arms_raised, Delivery.man](Man.arms_raised == true → Causal(man, man))
+23. Q[man, Man.black, Delivery.passionate](Man.black == true → Causal(man, passionate))
+24. Q[man, Man.suit, Delivery.passionate](Man.suit == true → Causal(man, passionate))
+25. Q[man, Man.delivering, Speech.in_relationship(passionate)](Man.delivering == true → Causal(man, passionate))
+26. Q[man, Man.speaking, Speech.in_relationship(passionate)](Man.speaking == true → Causal(man, passionate))
+27. Q[man, Man.microphone, Speech.in_relationship(passionate)](Man.microphone == true → Causal(man, passionate))
+28. Q[man, Man.arms_raised, Speech.in_relationship(passionate)](Man.arms_raised == true → Causal(man, passionate))
+29. Q[man, Man.black, Speech.in_relationship(stand)](Man.black == true → Causal(man, stand))
+30. Q[man, Man.suit, Speech.in_relationship(stand)](Man.suit == true → Causal(man, stand))

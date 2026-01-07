@@ -1,0 +1,134 @@
+Predicates:
+1. "Hospital".location = "Isle of Wight"
+2. "Hospital".availability = "none"
+3. "Google Maps".coverage = "global"
+4. "OpenStreetMap".coverage = "global"
+5. "Isle of Wight".geographical_boundaries = "defined"
+6. "Google Maps".type = "mapping service"
+7. "OpenStreetMap".type = "mapping service"
+8. "Hospital".type = "healthcare facility"
+9. "Scan".method = "thorough"
+10. "Scan".result = "no hospitals found"
+11. "Google Maps".data_source = "user-generated"
+12. "OpenStreetMap".data_source = "community-driven"
+13. "Isle of Wight".population = "unknown"
+14. "Hospital".status = "inactive"
+15. "Scan".platforms = "multiple"
+16. "Scan".date = "2023"
+17. "Google Maps".accuracy = "high"
+18. "OpenStreetMap".accuracy = "variable"
+19. "Hospital".existence = "false"
+20. "Scan".scope = "geographical"
+21. "Google Maps".features = "directions, reviews"
+22. "OpenStreetMap".features = "routing, mapping"
+23. "Isle of Wight".area = "unknown"
+24. "Scan".conclusion = "no hospitals"
+25. "Google Maps".user_feedback = "positive"
+26. "OpenStreetMap".user_feedback = "mixed"
+27. "Hospital".capacity = "none"
+28. "Scan".duration = "short"
+29. "Google Maps".update_frequency = "regular"
+30. "OpenStreetMap".update_frequency = "community-driven"
+31. "Isle of Wight".healthcare_access = "limited"
+32. "Scan".result_time = "immediate"
+33. "Google Maps".search_functionality = "advanced"
+34. "OpenStreetMap".search_functionality = "basic"
+35. "Hospital".services = "none"
+36. "Scan".platforms_used = "Google Maps, OpenStreetMap"
+37. "Google Maps".user_base = "large"
+38. "OpenStreetMap".user_base = "growing"
+39. "Isle of Wight".healthcare_facilities = "none"
+40. "Scan".report = "negative"
+41. "Google Maps".hospital_list = "empty"
+42. "OpenStreetMap".hospital_list = "empty"
+43. "Hospital".location_accuracy = "low"
+44. "Scan".methodology = "systematic"
+45. "Google Maps".data_quality = "high"
+46. "OpenStreetMap".data_quality = "variable"
+47. "Isle of Wight".healthcare_needs = "unmet"
+48. "Scan".findings = "consistent"
+49. "Google Maps".hospital_data = "outdated"
+50. "OpenStreetMap".hospital_data = "outdated"
+51. M_NLI("A thorough scan of these platforms reveals no hospitals within the geographical boundaries of the Isle of Wight.", "Google Maps and OpenStreetMap provide comprehensive global coverage of hospitals.")
+52. T("A thorough scan of these platforms reveals no hospitals within the geographical boundaries of the Isle of Wight.", "Google Maps and OpenStreetMap provide comprehensive global coverage of hospitals.", tau)
+53. tau("Scan.result", "Google Maps.hospital_list")
+54. violate("Scan.result", "Google Maps.hospital_list")
+55. Factual("Scan.result", "Google Maps.hospital_list")
+56. Causal("Scan.result", "Google Maps.hospital_list")
+57. Numeric("Scan.result", "Google Maps.hospital_list")
+58. Temporal("Scan.date", "Google Maps.update_frequency")
+59. Content("Scan.conclusion", "Google Maps.user_feedback")
+60. Relation("Scan.platforms", "Google Maps.data_source")
+61. Negation("Scan.result", "Google Maps.hospital_list")
+62. Factual("Scan.result", "OpenStreetMap.hospital_list")
+63. Causal("Scan.result", "OpenStreetMap.hospital_list")
+64. Numeric("Scan.result", "OpenStreetMap.hospital_list")
+65. Temporal("Scan.date", "OpenStreetMap.update_frequency")
+66. Content("Scan.conclusion", "OpenStreetMap.user_feedback")
+67. Relation("Scan.platforms", "OpenStreetMap.data_source")
+68. Negation("Scan.result", "OpenStreetMap.hospital_list")
+69. Factual("Isle of Wight.healthcare_access", "Scan.result")
+70. Causal("Isle of Wight.healthcare_needs", "Scan.result")
+71. Numeric("Isle of Wight.population", "Scan.result")
+72. Temporal("Scan.date", "Isle of Wight.healthcare_access")
+73. Content("Scan.conclusion", "Isle of Wight.healthcare_needs")
+74. Relation("Scan.platforms", "Isle of Wight.healthcare_facilities")
+75. Negation("Scan.result", "Isle of Wight.healthcare_facilities")
+76. Factual("Google Maps.hospital_data", "OpenStreetMap.hospital_data")
+77. Causal("Google Maps.update_frequency", "OpenStreetMap.update_frequency")
+78. Numeric("Google Maps.user_base", "OpenStreetMap.user_base")
+79. Temporal("Scan.date", "Google Maps.update_frequency")
+80. Content("Scan.conclusion", "Google Maps.user_feedback")
+81. Relation("Scan.platforms", "Google Maps.data_source")
+82. Negation("Scan.result", "Google Maps.hospital_data")
+83. Factual("Scan.result", "Isle of Wight.healthcare_facilities")
+84. Causal("Scan.method", "Scan.result")
+85. Numeric("Scan.duration", "Scan.result")
+86. Temporal("Scan.date", "Scan.result_time")
+87. Content("Scan.conclusion", "Scan.findings")
+88. Relation("Scan.platforms", "Scan.methodology")
+89. Negation("Scan.result", "Scan.conclusion")
+90. Factual("Google Maps.accuracy", "OpenStreetMap.accuracy")
+91. Causal("Google Maps.features", "OpenStreetMap.features")
+92. Numeric("Google Maps.user_feedback", "OpenStreetMap.user_feedback")
+93. Temporal("Scan.date", "Google Maps.update_frequency")
+94. Content("Scan.conclusion", "Google Maps.data_quality")
+95. Relation("Scan.platforms", "Google Maps.hospital_list")
+96. Negation("Scan.result", "Google Maps.hospital_data")
+97. Factual("Scan.result", "Google Maps.hospital_list")
+98. Causal("Scan.method", "Google Maps.hospital_list")
+99. Numeric("Scan.duration", "Google Maps.hospital_list")
+100. Temporal("Scan.date", "Google Maps.hospital_list")
+violate(x0, y0)
+
+Rules:
+1. Q[x0, y0](Hospital.location = "Isle of Wight" ∧ Hospital.availability = "none" → violate(x0, y0))
+2. Q[x0, y0](Google Maps.coverage = "global" ∧ OpenStreetMap.coverage = "global" → violate(x0, y0))
+3. Q[x0, y0](Hospital.status = "inactive" ∧ Hospital.existence = "false" → violate(x0, y0))
+4. Q[x0, y0](Scan.result = "no hospitals found" ∧ Hospital.healthcare_facilities = "none" → violate(x0, y0))
+5. Q[x0, y0](Scan.method = "thorough" ∧ Scan.result_time = "immediate" → violate(x0, y0))
+6. Q[x0, y0](Google Maps.hospital_list = "empty" ∧ OpenStreetMap.hospital_list = "empty" → violate(x0, y0))
+7. Q[x0, y0](Hospital.type = "healthcare facility" ∧ Hospital.capacity = "none" ∧ Hospital.availability = "none" → violate(x0, y0))
+8. Q[x0, y0](Scan.scope = "geographical" ∧ Scan.result = "no hospitals found" ∧ Isle of Wight.healthcare_access = "limited" → violate(x0, y0))
+9. Q[x0, y0](Google Maps.data_quality = "high" ∧ OpenStreetMap.data_quality = "variable" ∧ Scan.result = "no hospitals found" → violate(x0, y0))
+10. Q[x0, y0](Scan.methodology = "systematic" ∧ Scan.platforms_used = "Google Maps, OpenStreetMap" ∧ Scan.result = "no hospitals" → violate(x0, y0))
+11. Q[x0, y0](Isle of Wight.healthcare_needs = "unmet" ∧ Hospital.status = "inactive" ∧ Hospital.existence = "false" ∧ Scan.result = "no hospitals found" → violate(x0, y0))
+12. Q[x0, y0](Scan.date = "2023" ∧ Google Maps.update_frequency = "regular" ∧ OpenStreetMap.update_frequency = "community-driven" ∧ Scan.result = "no hospitals" → violate(x0, y0))
+13. Q[x0, y0](Scan.conclusion = "no hospitals" ∧ Google Maps.user_feedback = "positive" ∧ OpenStreetMap.user_feedback = "mixed" → violate(x0, y0))
+14. Q[x0, y0](Hospital.location_accuracy = "low" ∧ Scan.method = "thorough" ∧ Scan.result = "no hospitals found" ∧ Google Maps.hospital_data = "outdated" → violate(x0, y0))
+15. Q[x0, y0](Scan.platforms = "multiple" ∧ Scan.result = "no hospitals" ∧ Isle of Wight.healthcare_facilities = "none" ∧ Hospital.availability = "none" → violate(x0, y0))
+16. Q[x0, y0](Google Maps.features = "directions, reviews" ∧ OpenStreetMap.features = "routing, mapping" ∧ Scan.result = "no hospitals found" ∧ Hospital.status = "inactive" → violate(x0, y0))
+17. Q[x0, y0](Scan.findings = "consistent" ∧ Scan.report = "negative" ∧ Hospital.capacity = "none" ∧ Isle of Wight.healthcare_access = "limited" → violate(x0, y0))
+18. Q[x0, y0](Scan.duration = "short" ∧ Scan.result_time = "immediate" ∧ Hospital.availability = "none" ∧ Hospital.existence = "false" → violate(x0, y0))
+19. Q[x0, y0](Google Maps.user_base = "large" ∧ OpenStreetMap.user_base = "growing" ∧ Scan.result = "no hospitals found" ∧ Hospital.healthcare_facilities = "none" → violate(x0, y0))
+20. Q[x0, y0](Isle of Wight.geographical_boundaries = "defined" ∧ Scan.scope = "geographical" ∧ Scan.result = "no hospitals" ∧ Hospital.status = "inactive" → violate(x0, y0))
+21. Q[x0, y0](Scan.method = "thorough" ∧ Scan.platforms_used = "Google Maps, OpenStreetMap" ∧ Scan.result = "no hospitals found" ∧ Hospital.capacity = "none" ∧ Hospital.availability = "none" → violate(x0, y0))
+22. Q[x0, y0](Google Maps.accuracy = "high" ∧ OpenStreetMap.accuracy = "variable" ∧ Scan.result = "no hospitals" ∧ Hospital.existence = "false" → violate(x0, y0))
+23. Q[x0, y0](Scan.conclusion = "no hospitals" ∧ Hospital.location = "Isle of Wight" ∧ Hospital.status = "inactive" ∧ Hospital.capacity = "none" ∧ Hospital.availability = "none" → violate(x0, y0))
+24. Q[x0, y0](Scan.result_time = "immediate" ∧ Scan.methodology = "systematic" ∧ Google Maps.hospital_list = "empty" ∧ OpenStreetMap.hospital_list = "empty" → violate(x0, y0))
+25. Q[x0, y0](Isle of Wight.healthcare_needs = "unmet" ∧ Hospital.availability = "none" ∧ Scan.result = "no hospitals found" ∧ Scan.conclusion = "no hospitals" → violate(x0, y0))
+26. Q[x0, y0](Scan.date = "2023" ∧ Google Maps.update_frequency = "regular" ∧ OpenStreetMap.update_frequency = "community-driven" ∧ Hospital.status = "inactive" ∧ Hospital.existence = "false" → violate(x0, y0))
+27. Q[x0, y0](Scan.scope = "geographical" ∧ Scan.result = "no hospitals" ∧ Isle of Wight.healthcare_access = "limited" ∧ Hospital.capacity = "none" ∧ Hospital.availability = "none" → violate(x0, y0))
+28. Q[x0, y0](Google Maps.data_source = "user-generated" ∧ OpenStreetMap.data_source = "community-driven" ∧ Scan.result = "no hospitals found" ∧ Hospital.status = "inactive" → violate(x0, y0))
+29. Q[x0, y0](Scan.method = "thorough" ∧ Scan.result = "no hospitals" ∧ Google Maps.hospital_data = "outdated" ∧ OpenStreetMap.hospital_data = "outdated" ∧ Hospital.existence = "false" → violate(x0, y0))
+30. Q[x0, y0

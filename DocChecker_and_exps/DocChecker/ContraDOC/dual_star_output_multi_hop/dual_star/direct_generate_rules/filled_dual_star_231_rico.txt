@@ -1,0 +1,63 @@
+Predicates:
+Defamation.label != "Legal Concept"
+Defamation.label != individual members.label
+Defamation.label = "Legal Concept"
+Defamation.name != "Defamation"
+Defamation.name != individual members.name
+Defamation.name = "Defamation"
+Defamation.type != "law"
+Defamation.type != individual members.type
+Defamation.type = "law"
+None_ML(Phi Kappa Psi fraternity.attrs, individual members.attrs)
+None_ML(Phi Kappa Psi fraternity___UVA administrators and students.attrs, Phi Kappa Psi fraternity___Defamation.attrs)
+Phi Kappa Psi fraternity.label != "Group"
+Phi Kappa Psi fraternity.label != Defamation.label
+Phi Kappa Psi fraternity.label = "Group"
+Phi Kappa Psi fraternity.name != "Phi Kappa Psi fraternity"
+Phi Kappa Psi fraternity.name != Defamation.name
+Phi Kappa Psi fraternity.name != UVA administrators and students.name
+Phi Kappa Psi fraternity.name != individual members.name
+Phi Kappa Psi fraternity.name = "Phi Kappa Psi fraternity"
+Phi Kappa Psi fraternity.type != "fraternity"
+Phi Kappa Psi fraternity.type != Defamation.type
+Phi Kappa Psi fraternity.type != UVA administrators and students.type
+Phi Kappa Psi fraternity.type != individual members.type
+Phi Kappa Psi fraternity.type = "fraternity"
+Phi Kappa Psi fraternity___Defamation.doc_id = "3489825751_3"
+Phi Kappa Psi fraternity___Defamation.relationship != Phi Kappa Psi fraternity___individual members.relationship
+Phi Kappa Psi fraternity___Defamation.relationship = "The fraternity may pursue legal action for defamation."
+Phi Kappa Psi fraternity___UVA administrators and students.doc_id = "3489825751_3"
+Phi Kappa Psi fraternity___UVA administrators and students.relationship != Phi Kappa Psi fraternity___Defamation.relationship
+Phi Kappa Psi fraternity___UVA administrators and students.relationship != Phi Kappa Psi fraternity___individual members.relationship
+Phi Kappa Psi fraternity___UVA administrators and students.relationship = "The fraternity and UVA administrators and students were damaged by the story and its fallout."
+Phi Kappa Psi fraternity___individual members.condition = "small group exception"
+Phi Kappa Psi fraternity___individual members.doc_id = "3489825751_3"
+Phi Kappa Psi fraternity___individual members.relationship = "Individual members of the fraternity may have a case for defamation if the statements are about a small group."
+UVA administrators and students.label != "Group"
+UVA administrators and students.label != Defamation.label
+UVA administrators and students.label = "Group"
+UVA administrators and students.name != "UVA administrators and students"
+UVA administrators and students.name != Defamation.name
+UVA administrators and students.name != individual members.name
+UVA administrators and students.name = "UVA administrators and students"
+UVA administrators and students.type != "group"
+UVA administrators and students.type != Defamation.type
+UVA administrators and students.type = "group"
+individual members.label != "Group"
+individual members.label = "Group"
+individual members.name != "individual members"
+individual members.name = "individual members"
+individual members.type != "group"
+individual members.type = "group"
+
+Rules:
+Q[Phi Kappa Psi fraternity,Phi Kappa Psi fraternity] (Phi Kappa Psi fraternity___individual members.condition = "small group exception" ∧ Defamation.label != individual members.label ∧ Phi Kappa Psi fraternity___UVA administrators and students.relationship = "The fraternity and UVA administrators and students were damaged by the story and its fallout." ∧ UVA administrators and students.type = "group" → Phi Kappa Psi fraternity.label != "Group")
+Q[Phi Kappa Psi fraternity,Phi Kappa Psi fraternity] (Phi Kappa Psi fraternity___UVA administrators and students.relationship != Phi Kappa Psi fraternity___Defamation.relationship ∧ None_ML(Phi Kappa Psi fraternity.attrs, individual members.attrs) → Phi Kappa Psi fraternity___UVA administrators and students.relationship != Phi Kappa Psi fraternity___individual members.relationship)
+Q[Phi Kappa Psi fraternity,Phi Kappa Psi fraternity] (UVA administrators and students.name != "UVA administrators and students" ∧ Phi Kappa Psi fraternity___Defamation.doc_id = "3489825751_3" ∧ individual members.type = "group" → Phi Kappa Psi fraternity.name != UVA administrators and students.name)
+Q[Phi Kappa Psi fraternity,Phi Kappa Psi fraternity] (Phi Kappa Psi fraternity.label != "Group" ∧ UVA administrators and students.name = "UVA administrators and students" ∧ Phi Kappa Psi fraternity.name != individual members.name ∧ Phi Kappa Psi fraternity.type != Defamation.type ∧ Defamation.name != individual members.name → individual members.name = "individual members")
+Q[Phi Kappa Psi fraternity,Phi Kappa Psi fraternity] (Phi Kappa Psi fraternity.type != individual members.type ∧ UVA administrators and students.type != "group" ∧ Defamation.label != individual members.label ∧ Defamation.label != "Legal Concept" ∧ individual members.type = "group" ∧ Phi Kappa Psi fraternity.type != "fraternity" → UVA administrators and students.type = "group")
+Q[Phi Kappa Psi fraternity,Phi Kappa Psi fraternity] (Phi Kappa Psi fraternity.label != "Group" ∧ UVA administrators and students.name != individual members.name ∧ Defamation.type != "law" → Defamation.name != "Defamation")
+Q[Phi Kappa Psi fraternity,Phi Kappa Psi fraternity] (individual members.type != "group" ∧ Defamation.label = "Legal Concept" ∧ Phi Kappa Psi fraternity___Defamation.doc_id = "3489825751_3" ∧ Phi Kappa Psi fraternity.type = "fraternity" ∧ UVA administrators and students.type != "group" → Phi Kappa Psi fraternity.name != individual members.name)
+Q[Phi Kappa Psi fraternity,Phi Kappa Psi fraternity] (individual members.name = "individual members" ∧ Phi Kappa Psi fraternity___individual members.doc_id = "3489825751_3" → UVA administrators and students.name != individual members.name)
+Q[Phi Kappa Psi fraternity,Phi Kappa Psi fraternity] (Defamation.name != individual members.name ∧ Defamation.label != "Legal Concept" ∧ Defamation.type != "law" ∧ UVA administrators and students.label != "Group" → Phi Kappa Psi fraternity.label = "Group")
+Q[Phi Kappa Psi fraternity,Phi Kappa Psi fraternity] (UVA administrators and students.name != "UVA administrators and students" ∧ Phi Kappa Psi fraternity.name = "Phi Kappa Psi fraternity" ∧ UVA administrators and students.type != "group" ∧ UVA administrators and students.name != individual members.name ∧ Phi Kappa Psi fraternity___Defamation.doc_id = "3489825751_3" ∧ individual members.type != "group" → Phi Kappa Psi fraternity___individual members.relationship = "Individual members of the fraternity may have a case for defamation if the statements are about a small group.")

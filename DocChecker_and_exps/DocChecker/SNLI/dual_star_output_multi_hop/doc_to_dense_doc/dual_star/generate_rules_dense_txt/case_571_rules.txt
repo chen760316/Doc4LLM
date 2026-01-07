@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 571)
+S1: A man is lying against a wall.
+S2: A man is outside.
+
+Predicates:
+1. Man.location
+2. Man.position
+3. Wall.location
+4. Man.outside
+5. Wall.outside
+6. Man.lying
+7. Man.against
+8. Outside.location
+9. Man.specific_location
+10. Wall.specific_location
+11. Man.status
+12. Man.environment
+13. Lying.position
+14. Against.relationship
+15. Outside.relationship
+16. Location.type
+17. Position.type
+18. Environment.type
+19. M_NLI(S1, S2)
+20. Relation(Man, Wall)
+21. Relation(Man, Outside)
+22. violate(Man, Wall)
+23. violate(Man, Outside)
+24. Lying.status
+25. Against.status
+26. Outside.status
+27. Wall.type
+28. Man.activity
+29. Wall.support
+30. Outside.condition
+
+Rules:
+1. Q[man, Man.location, Wall.location](Man.position == "lying" ∧ Wall.location == "specific" → Relation(Man, Wall))
+2. Q[man, Man.position, Wall.position](Man.lying == true ∧ Man.against == true → Relation(Man, Wall))
+3. Q[man, Man.outside, Wall.outside](Man.outside == true ∧ Wall.outside == true → Relation(Man, Outside))
+4. Q[man, Man.specific_location, Wall.specific_location](Man.specific_location == "against wall" ∧ Wall.specific_location == "specific" → Relation(Man, Wall))
+5. Q[man, Man.status, Wall.status](Man.status == "lying" ∧ Wall.status == "standing" → Relation(Man, Wall))
+6. Q[man, Man.environment, Outside.environment](Man.environment == "outside" ∧ Outside.environment == "open air" → Relation(Man, Outside))
+7. Q[man, Lying.position, Against.relationship](Man.lying == true ∧ Man.against == true → Relation(Man, Wall))
+8. Q[man, Outside.location, Wall.location](Man.outside == true ∧ Wall.location == "specific" → Relation(Man, Outside))
+9. Q[man, Man.activity, Outside.condition](Man.activity == "resting" ∧ Outside.condition == "open" → Relation(Man, Outside))
+10. Q[man, Man.position, Outside.relationship](Man.position == "lying" ∧ Outside.relationship == "not against" → Relation(Man, Outside))
+11. Q[man, Man.lying, Wall.support](Man.lying == true ∧ Wall.support == true → Relation(Man, Wall))
+12. Q[man, Man.against, Wall.type](Man.against == true ∧ Wall.type == "vertical" → Relation(Man, Wall))
+13. Q[man, Man.outside, Outside.location](Man.outside == true ∧ Outside.location == "open" → Relation(Man, Outside))
+14. Q[man, Man.status, Outside.status](Man.status == "lying" ∧ Outside.status == "not obstructed" → Relation(Man, Outside))
+15. Q[man, Man.environment, Wall.environment](Man.environment == "outside" ∧ Wall.environment == "urban" → Relation(Man, Wall))
+16. Q[man, Man.position, Outside.condition](Man.position == "lying" ∧ Outside.condition == "clear" → Relation(Man, Outside))
+17. Q[man, Man.lying, Outside.relationship](Man.lying == true ∧ Outside.relationship == "not obstructed" → Relation(Man, Outside))
+18. Q[man, Man.against, Wall.support](Man.against == true ∧ Wall.support == true → Relation(Man, Wall))
+19. Q[man, Man.location, Outside.location](Man.location == "against wall" ∧ Outside.location == "open" → Relation(Man, Outside))
+20. Q[man, Man.specific_location, Outside.location](Man.specific_location == "against wall" ∧ Outside.location == "not specific" → Relation(Man, Outside))
+21. Q[man, Man.status, Wall.status](Man.status == "lying" ∧ Wall.status == "not lying" → Relation(Man, Wall))
+22. Q[man, Man.environment, Wall.location](Man.environment == "outside" ∧ Wall.location == "specific" → Relation(Man, Wall))
+23. Q[man, Man.position, Wall.type](Man.position == "lying" ∧ Wall.type == "vertical" → Relation(Man, Wall))
+24. Q[man, Man.outside, Wall.type](Man.outside == true ∧ Wall.type == "not outside" → Relation(Man, Wall))
+25. Q[man, Man.activity, Wall.support](Man.activity == "resting" ∧ Wall.support == true → Relation(Man, Wall))
+26. Q[man, Man.lying, Outside.status](Man.lying == true ∧ Outside.status == "not obstructed" → Relation(Man, Outside))
+27. Q[man, Man.against, Outside.relationship](Man.against == true ∧ Outside.relationship == "not obstructed" → Relation(Man, Outside))
+28. Q[man, Man.position, Wall.support](Man.position == "lying" ∧ Wall.support == true → Relation(Man, Wall))
+29. Q[man, Man.location, Outside.condition](Man.location == "against wall" ∧ Outside.condition == "clear" → Relation(Man, Outside))
+30. Q[man, Man.status, Outside.condition](Man.status == "lying" ∧ Outside.condition == "open" → Relation(Man, Outside))

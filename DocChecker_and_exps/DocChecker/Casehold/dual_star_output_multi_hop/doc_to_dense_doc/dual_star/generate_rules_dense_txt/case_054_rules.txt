@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 54)
+S1: defendant does not contend that the vehicle was immobile when the stop occurred.
+S2: defendant contends that any exigency justifying the automobile exception was extinguished when defendant and Johnson were arrested and the narcotics team secured the car and its contents.
+
+Predicates:
+1. defendant.contends_vehicle_immobile = false
+2. defendant.contends_exigency_extinguished = true
+3. vehicle.immobile_at_stop = false
+4. exigency.justifying_automobile_exception = false
+5. defendant.arrested = true
+6. Johnson.arrested = true
+7. narcotics_team.secured_car = true
+8. narcotics_team.secured_contents = true
+9. situation.warranted_exigency = false
+10. stop.occurred = true
+11. vehicle.stop_occurred = true
+12. defendant.contends_exigency = true
+13. vehicle.may_not_have_warranted_exigency = true
+14. defendant.does_not_contend_vehicle_immobile = true
+15. arrest.extinguished_exigency = true
+16. car.secured_by_narcotics_team = true
+17. contents.secured_by_narcotics_team = true
+18. exigency.claimed_by_defendant = true
+19. vehicle.status_at_stop = mobile
+20. defendant.contends_narcotics_team_action = true
+21. Johnson.contends_exigency = false
+22. vehicle.condition_at_stop = mobile
+23. stop.justified_by_exigency = false
+24. defendant.asserts_exigency = false
+25. arrest.occurred_before_exigency = true
+26. narcotics_team.action.secured = true
+27. defendant.and_Johnson.arrested = true
+28. vehicle.condition = mobile
+29. exigency.extinguished_by_arrest = true
+30. stop.may_not_have_warranted_exigency = true
+
+Rules:
+1. Q[defendant, defendant.contends_vehicle_immobile == false → Causal(defendant, vehicle.may_not_have_warranted_exigency)]
+2. Q[defendant, vehicle.immobile_at_stop == false → Causal(defendant, situation.warranted_exigency)]
+3. Q[defendant, defendant.contends_exigency_extinguished == true → Causal(defendant, exigency.justifying_automobile_exception)]
+4. Q[defendant, vehicle.status_at_stop == mobile → Causal(defendant, situation.warranted_exigency)]
+5. Q[defendant, defendant.does_not_contend_vehicle_immobile == true → Causal(defendant, vehicle.may_not_have_warranted_exigency)]
+6. Q[defendant, arrest.occurred_before_exigency == true → Causal(defendant, exigency.extinguished_by_arrest)]
+7. Q[defendant, defendant.arrested == true → Causal(defendant, exigency.justifying_automobile_exception)]
+8. Q[defendant, Johnson.arrested == true → Causal(defendant, exigency.extinguished_by_arrest)]
+9. Q[defendant, narcotics_team.secured_car == true → Causal(defendant, exigency.extinguished_by_arrest)]
+10. Q[defendant, narcotics_team.secured_contents == true → Causal(defendant, exigency.extinguished_by_arrest)]
+11. Q[defendant, stop.occurred == true → Causal(defendant, situation.warranted_exigency)]
+12. Q[defendant, vehicle.condition_at_stop == mobile → Causal(defendant, situation.warranted_exigency)]
+13. Q[defendant, vehicle.condition == mobile → Causal(defendant, situation.warranted_exigency)]
+14. Q[defendant, defendant.contends_exigency == true → Causal(defendant, exigency.claimed_by_defendant)]
+15. Q[defendant, stop.justified_by_exigency == false → Causal(defendant, situation.warranted_exigency)]
+16. Q[defendant, defendant.and_Johnson.arrested == true → Causal(defendant, exigency.extinguished_by_arrest)]
+17. Q[defendant, vehicle.may_not_have_warranted_exigency == true → Causal(defendant, exigency.justifying_automobile_exception)]
+18. Q[defendant, vehicle.stop_occurred == true → Causal(defendant, situation.warranted_exigency)]
+19. Q[defendant, defendant.contends_narcotics_team_action == true → Causal(defendant, exigency.extinguished_by_arrest)]
+20. Q[defendant, exigency.claimed_by_defendant == true → Causal(defendant, exigency.justifying_automobile_exception)]
+21. Q[defendant, vehicle.immobile_at_stop == false → Causal(defendant, exigency.justifying_automobile_exception)]
+22. Q[defendant, vehicle.condition == mobile → Causal(defendant, exigency.justifying_automobile_exception)]
+23. Q[defendant, arrest.extinguished_exigency == true → Causal(defendant, exigency.extinguished_by_arrest)]
+24. Q[defendant, stop.may_not_have_warranted_exigency == true → Causal(defendant, situation.warranted_exigency)]
+25. Q[defendant, exigency.extinguished_by_arrest == true → Causal(defendant, exigency.justifying_automobile_exception)]
+26. Q[defendant, vehicle.may_not_have_warranted_exigency == true → Causal(defendant, exigency.justifying_automobile_exception)]
+27. Q[defendant, defendant.contends_exigency == true → Causal(defendant, exigency.claimed_by_defendant)]
+28. Q[defendant, vehicle.status_at_stop == mobile → Causal(defendant, exigency.justifying_automobile_exception)]
+29. Q[defendant, narcotics_team.action.secured == true → Causal(defendant, exigency.extinguished_by_arrest)]
+30. Q[defendant, situation.warranted_exigency == false → Causal(defendant, exigency.justifying_automobile_exception)]

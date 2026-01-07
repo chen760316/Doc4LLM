@@ -1,0 +1,132 @@
+Predicates:
+1. entity.mortality_rate = "increased"
+2. entity.mortality_rate = "decreased"
+3. entity.disease = "heart disease"
+4. entity.disease = "lung cancer"
+5. entity.treatment = "nitroglycerin"
+6. entity.treatment = "aspirin"
+7. entity.researcher = "Nobel"
+8. entity.researcher = "Shannon"
+9. entity.year = "2024"
+10. entity.year = "1860"
+11. "is associated with increased mortality in individuals with".doc_index = "41"
+12. "is correlated with".doc_index = "41"
+13. "is less associated with".doc_index = "64"
+14. "is linked to".doc_index = "41"
+15. "is the most dangerous part of".doc_index = "64"
+16. "is associated with increased mortality in individuals with".label_text = "contradiction"
+17. "is correlated with".label_text = "contradiction"
+18. "is less associated with".label_text = "contradiction"
+19. "is linked to".label_text = "contradiction"
+20. "is the most dangerous part of".label_text = "contradiction"
+21. M_NLI(entity1.mortality_rate, entity2.mortality_rate)
+22. M_NLI(entity1.disease, entity2.disease)
+23. M_NLI(entity1.treatment, entity2.treatment)
+24. T("The treatment is effective", "The treatment is ineffective", tau)
+25. T("The disease is common", "The disease is rare", tau)
+26. tau(entity1.mortality_rate, entity2.mortality_rate)
+27. tau(entity1.disease, entity2.disease)
+28. violate(x0, y0)
+29. Factual(x0, y0)
+30. Causal(x0, y0)
+31. Numeric(x0, y0)
+32. Temporal(x0, y0)
+33. Content(x0, y0)
+34. Relation(x0, y0)
+35. Negation(x0, y0)
+36. entity.symptom = "chest pain"
+37. entity.symptom = "shortness of breath"
+38. "is linked to".attribute = "causal relationship"
+39. "is associated with increased mortality in individuals with".attribute = "risk factor"
+40. "is less associated with".attribute = "protective factor"
+41. "is the most dangerous part of".attribute = "risk assessment"
+42. M_NLI(entity1.treatment, entity2.treatment)
+43. T("The treatment reduces symptoms", "The treatment worsens symptoms", tau)
+44. tau(entity1.treatment, entity2.treatment)
+45. violate(x1, y1)
+46. Factual(x1, y1)
+47. Causal(x1, y1)
+48. Numeric(x1, y1)
+49. Temporal(x1, y1)
+50. Content(x1, y1)
+51. Relation(x1, y1)
+52. Negation(x1, y1)
+53. entity.age_group = "adults"
+54. entity.age_group = "children"
+55. "is correlated with".attribute = "statistical significance"
+56. "is linked to".attribute = "association"
+57. "is associated with increased mortality in individuals with".attribute = "epidemiological study"
+58. "is less associated with".attribute = "clinical trial"
+59. M_NLI(entity1.age_group, entity2.age_group)
+60. T("Adults are at higher risk", "Children are at higher risk", tau)
+61. tau(entity1.age_group, entity2.age_group)
+62. violate(x2, y2)
+63. Factual(x2, y2)
+64. Causal(x2, y2)
+65. Numeric(x2, y2)
+66. Temporal(x2, y2)
+67. Content(x2, y2)
+68. Relation(x2, y2)
+69. Negation(x2, y2)
+70. entity.outcome = "recovery"
+71. entity.outcome = "complications"
+72. "is the most dangerous part of".attribute = "medical evaluation"
+73. "is associated with increased mortality in individuals with".attribute = "clinical observation"
+74. "is less associated with".attribute = "preventive measures"
+75. M_NLI(entity1.outcome, entity2.outcome)
+76. T("Recovery is likely", "Complications are likely", tau)
+77. tau(entity1.outcome, entity2.outcome)
+78. violate(x3, y3)
+79. Factual(x3, y3)
+80. Causal(x3, y3)
+81. Numeric(x3, y3)
+82. Temporal(x3, y3)
+83. Content(x3, y3)
+84. Relation(x3, y3)
+85. Negation(x3, y3)
+86. entity.study_type = "observational"
+87. entity.study_type = "experimental"
+88. "is correlated with".attribute = "risk assessment"
+89. "is linked to".attribute = "causal inference"
+90. "is associated with increased mortality in individuals with".attribute = "longitudinal study"
+91. "is less associated with".attribute = "cross-sectional study"
+92. M_NLI(entity1.study_type, entity2.study_type)
+93. T("Observational studies provide strong evidence", "Experimental studies provide weak evidence", tau)
+94. tau(entity1.study_type, entity2.study_type)
+95. violate(x4, y4)
+96. Factual(x4, y4)
+97. Causal(x4, y4)
+98. Numeric(x4, y4)
+99. Temporal(x4, y4)
+100. Content(x4, y4)
+violate(x0, y0)
+
+Rules:
+1. Q[x0, y0](entity.mortality_rate = "increased" ∧ entity.disease = "heart disease" → violate(x0, y0))
+2. Q[x0, y0](entity.mortality_rate = "decreased" ∧ entity.disease = "lung cancer" → violate(x0, y0))
+3. Q[x0, y0](entity.treatment = "nitroglycerin" ∧ entity.treatment = "aspirin" → violate(x0, y0))
+4. Q[x0, y0](entity.year = "2024" ∧ entity.year = "1860" → violate(x0, y0))
+5. Q[x0, y0](entity.researcher = "Nobel" ∧ entity.researcher = "Shannon" → violate(x0, y0))
+6. Q[x0, y0](entity.disease = "heart disease" ∧ "is associated with increased mortality in individuals with".doc_index = "41" → violate(x0, y0))
+7. Q[x0, y0](entity.mortality_rate = "increased" ∧ entity.disease = "lung cancer" ∧ entity.treatment = "aspirin" → violate(x0, y0))
+8. Q[x0, y0](entity.year = "2024" ∧ entity.year = "1860" ∧ entity.researcher = "Nobel" → violate(x0, y0))
+9. Q[x0, y0](entity.disease = "heart disease" ∧ "is linked to".doc_index = "41" ∧ "is correlated with".doc_index = "41" → violate(x0, y0))
+10. Q[x0, y0](entity.treatment = "nitroglycerin" ∧ entity.treatment = "aspirin" ∧ entity.year = "2024" → violate(x0, y0))
+11. Q[x0, y0](entity.age_group = "adults" ∧ entity.age_group = "children" ∧ entity.disease = "lung cancer" → violate(x0, y0))
+12. Q[x0, y0](entity.outcome = "recovery" ∧ entity.outcome = "complications" ∧ entity.treatment = "nitroglycerin" → violate(x0, y0))
+13. Q[x0, y0](entity.mortality_rate = "increased" ∧ entity.disease = "heart disease" ∧ entity.treatment = "aspirin" ∧ entity.year = "2024" → violate(x0, y0))
+14. Q[x0, y0](entity.disease = "lung cancer" ∧ entity.treatment = "nitroglycerin" ∧ "is linked to".doc_index = "41" ∧ "is less associated with".doc_index = "64" → violate(x0, y0))
+15. Q[x0, y0](entity.age_group = "adults" ∧ entity.age_group = "children" ∧ entity.year = "1860" ∧ entity.researcher = "Shannon" → violate(x0, y0))
+16. Q[x0, y0](entity.study_type = "observational" ∧ entity.study_type = "experimental" ∧ entity.disease = "heart disease" ∧ entity.treatment = "aspirin" → violate(x0, y0))
+17. Q[x0, y0](entity.mortality_rate = "increased" ∧ entity.disease = "lung cancer" ∧ entity.treatment = "nitroglycerin" ∧ entity.year = "2024" ∧ entity.researcher = "Nobel" → violate(x0, y0))
+18. Q[x0, y0](entity.age_group = "adults" ∧ entity.age_group = "children" ∧ entity.outcome = "recovery" ∧ entity.outcome = "complications" → violate(x0, y0))
+19. Q[x0, y0](entity.study_type = "observational" ∧ entity.study_type = "experimental" ∧ entity.year = "2024" ∧ entity.disease = "lung cancer" ∧ entity.treatment = "aspirin" → violate(x0, y0))
+20. Q[x0, y0](entity.mortality_rate = "decreased" ∧ entity.disease = "heart disease" ∧ entity.treatment = "nitroglycerin" ∧ "is linked to".doc_index = "41" ∧ "is less associated with".doc_index = "64" → violate(x0, y0))
+21. Q[x0, y0](entity.outcome = "recovery" ∧ entity.outcome = "complications" ∧ entity.age_group = "adults" ∧ entity.year = "1860" ∧ entity.researcher = "Shannon" → violate(x0, y0))
+22. Q[x0, y0](entity.study_type = "observational" ∧ entity.study_type = "experimental" ∧ entity.disease = "heart disease" ∧ entity.treatment = "aspirin" ∧ "is associated with increased mortality in individuals with".label_text = "contradiction" → violate(x0, y0))
+23. Q[x0, y0](entity.mortality_rate = "increased" ∧ entity.disease = "lung cancer" ∧ entity.treatment = "nitroglycerin" ∧ "is linked to".attribute = "causal relationship" ∧ "is less associated with".attribute = "clinical trial" → violate(x0, y0))
+24. Q[x0, y0](entity.age_group = "adults" ∧ entity.age_group = "children" ∧ entity.year = "2024" ∧ entity.outcome = "recovery" ∧ entity.outcome = "complications" → violate(x0, y0))
+25. Q[x0, y0](entity.study_type = "observational" ∧ entity.study_type = "experimental" ∧ entity.year = "1860" ∧ entity.disease = "lung cancer" ∧ entity.treatment = "nitroglycerin" → violate(x0, y0))
+26. Q[x0, y0](entity.mortality_rate = "decreased" ∧ entity.disease = "heart disease" ∧ entity.treatment = "aspirin" ∧ "is associated with increased mortality in individuals with".attribute = "risk factor" ∧ "is less associated with".attribute = "protective factor" → violate(x0, y0))
+27. Q[x0, y0](entity.outcome = "recovery" ∧ entity.outcome = "complications" ∧ entity.age_group = "adults" ∧ entity.year = "2024" ∧ entity.researcher = "Nobel" → violate(x0, y0))
+28. Q[x0, y0](entity.study_type = "observational"

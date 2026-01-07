@@ -1,0 +1,66 @@
+Source: dense_text.txt (Index 1043)
+S1: Many times, the juice from other steaks will give it a good flavor.
+S2: Not so much for the noise but if it were to jump a tooth or something of that nature I would be in serious problems on the freeway.
+
+Predicates:
+1. Juice.flavor
+2. Steaks.juice
+3. Noise.impact
+4. Tooth.jump
+5. Freeway.problems
+6. Flavor.positive_effect
+7. Serious_problems.freeway
+8. Causal(juice.flavor, steak)
+9. Causal(noise.impact, freeway)
+10. Violate(positive_effect, serious_problems)
+11. Steak.juice_flavor
+12. Freeway.serious_consequence
+13. Jump.tooth_issue
+14. Flavor.enhancement
+15. Problems.unrelated_to_flavor
+16. Causal(steak.juice, flavor)
+17. Causal(tooth.jump, problems)
+18. Violate(flavor, noise)
+19. Juice.enhances_flavor
+20. Noise.not_related_to_flavor
+21. Serious_problems.jump
+22. Flavor.derived_from_juice
+23. Freeway.issues
+24. Causal(steak, juice)
+25. Causal(noise, freeway)
+26. Violate(juice.flavor, tooth.jump)
+27. Flavor.affected_by_juice
+28. Problems.caused_by_jump
+29. Freeway.affected_by_noise
+30. Causal(serious_problems, freeway)
+
+Rules:
+1. Q[Many, Juice.flavor, Steak.juice](Juice.flavor == "positive" → Causal(Juice.flavor, Steak.juice))
+2. Q[Many, Flavor.positive_effect, Serious_problems.freeway](Flavor.positive_effect == "true" → Causal(Flavor.positive_effect, Serious_problems.freeway))
+3. Q[Many, Juice.enhances_flavor, Flavor.positive_effect](Juice.enhances_flavor == "true" → Causal(Juice.enhances_flavor, Flavor.positive_effect))
+4. Q[Many, Flavor.derived_from_juice, Steak.juice](Flavor.derived_from_juice == "true" → Causal(Flavor.derived_from_juice, Steak.juice))
+5. Q[Many, Flavor.enhancement, Juice.flavor](Flavor.enhancement == "true" → Causal(Flavor.enhancement, Juice.flavor))
+6. Q[Many, Problems.unrelated_to_flavor, Serious_problems.freeway](Problems.unrelated_to_flavor == "true" → Causal(Problems.unrelated_to_flavor, Serious_problems.freeway))
+7. Q[Many, Noise.not_related_to_flavor, Freeway.issues](Noise.not_related_to_flavor == "true" → Causal(Noise.not_related_to_flavor, Freeway.issues))
+8. Q[Many, Tooth.jump, Serious_problems.freeway](Tooth.jump == "true" → Causal(Tooth.jump, Serious_problems.freeway))
+9. Q[Many, Freeway.problems, Serious_problems.freeway](Freeway.problems == "true" → Causal(Freeway.problems, Serious_problems.freeway))
+10. Q[Many, Causal(juice.flavor, steak), Causal(steak.juice, flavor)](Causal(juice.flavor, steak) == "true" → Causal(Causal(juice.flavor, steak), Causal(steak.juice, flavor)))
+11. Q[Many, Causal(noise.impact, freeway), Causal(noise, freeway)](Causal(noise.impact, freeway) == "true" → Causal(Causal(noise.impact, freeway), Causal(noise, freeway)))
+12. Q[Many, Causal(tooth.jump, problems), Causal(serious_problems, freeway)](Causal(tooth.jump, problems) == "true" → Causal(Causal(tooth.jump, problems), Causal(serious_problems, freeway)))
+13. Q[Many, Violate(positive_effect, serious_problems), Causal(serious_problems, freeway)](Violate(positive_effect, serious_problems) == "true" → Causal(Violate(positive_effect, serious_problems), Causal(serious_problems, freeway)))
+14. Q[Many, Causal(steak.juice, flavor), Causal(juice.flavor, steak)](Causal(steak.juice, flavor) == "true" → Causal(Causal(steak.juice, flavor), Causal(juice.flavor, steak)))
+15. Q[Many, Causal(noise, freeway), Causal(noise.impact, freeway)](Causal(noise, freeway) == "true" → Causal(Causal(noise, freeway), Causal(noise.impact, freeway)))
+16. Q[Many, Problems.caused_by_jump, Serious_problems.freeway](Problems.caused_by_jump == "true" → Causal(Problems.caused_by_jump, Serious_problems.freeway))
+17. Q[Many, Freeway.affected_by_noise, Noise.impact](Freeway.affected_by_noise == "true" → Causal(Freeway.affected_by_noise, Noise.impact))
+18. Q[Many, Flavor.affected_by_juice, Juice.flavor](Flavor.affected_by_juice == "true" → Causal(Flavor.affected_by_juice, Juice.flavor))
+19. Q[Many, Causal(juice.flavor, flavor), Causal(flavor, steak)](Causal(juice.flavor, flavor) == "true" → Causal(Causal(juice.flavor, flavor), Causal(flavor, steak)))
+20. Q[Many, Causal(serious_problems, freeway), Causal(tooth.jump, problems)](Causal(serious_problems, freeway) == "true" → Causal(Causal(serious_problems, freeway), Causal(tooth.jump, problems)))
+21. Q[Many, Causal(steak, juice), Causal(juice.flavor, steak)](Causal(steak, juice) == "true" → Causal(Causal(steak, juice), Causal(juice.flavor, steak)))
+22. Q[Many, Causal(noise, freeway), Causal(serious_problems, freeway)](Causal(noise, freeway) == "true" → Causal(Causal(noise, freeway), Causal(serious_problems, freeway)))
+23. Q[Many, Causal(juice.flavor, steak), Causal(flavor.positive_effect, serious_problems)](Causal(juice.flavor, steak) == "true" → Causal(Causal(juice.flavor, steak), Causal(flavor.positive_effect, serious_problems)))
+24. Q[Many, Causal(serious_problems, freeway), Causal(noise.not_related_to_flavor, serious_problems)](Causal(serious_problems, freeway) == "true" → Causal(Causal(serious_problems, freeway), Causal(noise.not_related_to_flavor, serious_problems)))
+25. Q[Many, Causal(tooth.jump, problems), Causal(serious_problems.freeway, freeway)](Causal(tooth.jump, problems) == "true" → Causal(Causal(tooth.jump, problems), Causal(serious_problems.freeway, freeway)))
+26. Q[Many, Causal(juice.flavor, steak), Causal(flavor.enhancement, juice)](Causal(juice.flavor, steak) == "true" → Causal(Causal(juice.flavor, steak), Causal(flavor.enhancement, juice)))
+27. Q[Many, Causal(noise.impact, freeway), Causal(serious_problems, freeway)](Causal(noise.impact, freeway) == "true" → Causal(Causal(noise.impact, freeway), Causal(serious_problems, freeway)))
+28. Q[Many, Causal(serious_problems, freeway), Causal(flavor.positive_effect, juice.flavor)](Causal(serious_problems, freeway) == "true" → Causal(Causal(serious_problems, freeway), Causal(flavor.positive_effect, juice.flavor)))
+29. Q[Many, Causal(juice.flavor, steak), Causal(fl

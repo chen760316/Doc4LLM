@@ -1,0 +1,122 @@
+Predicates:
+1. accused.attributes.status = "looking for help"
+2. accused.attributes.status != "innocent"
+3. accused.attributes.status < "royalty"
+4. accused.attributes.status > "prisoner"
+5. accused.attributes.status <= "prisoner"
+6. accused.attributes.status >= "commoner"
+7. "The accused looks to the princess for help in choosing a door.".indication = "discreetly indicates the door on his right"
+8. "The accused looks to the princess for help in choosing a door.".indication != "loudly points to the door"
+9. "The accused looks to the princess for help in choosing a door.".indication < "shouts"
+10. "The accused looks to the princess for help in choosing a door.".indication > "whispers"
+11. "The accused looks to the princess for help in choosing a door.".indication <= "gestures"
+12. "The accused looks to the princess for help in choosing a door.".indication >= "signals"
+13. princess.emotions = "loss of the accused to either death or marriage"
+14. princess.emotions != "joy"
+15. princess.emotions < "happiness"
+16. princess.emotions > "indifference"
+17. princess.emotions <= "sadness"
+18. princess.emotions >= "despair"
+19. door on the right.attributes.outcome = "unknown"
+20. door on the right.attributes.outcome != "certain"
+21. door on the right.attributes.outcome < "revealed"
+22. door on the right.attributes.outcome > "known"
+23. door on the right.attributes.outcome <= "uncertain"
+24. door on the right.attributes.outcome >= "ambiguous"
+25. handsome and brave youth.attributes.status = "lower than princess"
+26. handsome and brave youth.attributes.status != "equal to princess"
+27. handsome and brave youth.attributes.status < "royalty"
+28. handsome and brave youth.attributes.status > "commoner"
+29. handsome and brave youth.attributes.status <= "noble"
+30. handsome and brave youth.attributes.status >= "peasant"
+31. king's daughter.attributes.status = "royalty"
+32. king's daughter.attributes.status != "commoner"
+33. king's daughter.attributes.status < "queen"
+34. king's daughter.attributes.status > "noble"
+35. king's daughter.attributes.status <= "princess"
+36. king's daughter.attributes.status >= "duchess"
+37. lady behind the door.attributes.status = "rival for affections"
+38. lady behind the door.attributes.status != "friend"
+39. lady behind the door.attributes.status < "ally"
+40. lady behind the door.attributes.status > "neutral"
+41. lady behind the door.attributes.status <= "adversary"
+42. lady behind the door.attributes.status >= "competitor"
+43. narrator.attributes.action = "summarizes the princess's state of mind"
+44. narrator.attributes.action != "describes the setting"
+45. narrator.attributes.action < "analyzes"
+46. narrator.attributes.action > "ignores"
+47. narrator.attributes.action <= "interprets"
+48. narrator.attributes.action >= "reports"
+49. outcome of the choice.attributes.revealed = "not revealed"
+50. outcome of the choice.attributes.revealed != "disclosed"
+51. outcome of the choice.attributes.revealed < "known"
+52. outcome of the choice.attributes.revealed > "certain"
+53. outcome of the choice.attributes.revealed <= "unclear"
+54. outcome of the choice.attributes.revealed >= "hidden"
+55. two doors.attributes.options = ['lady', 'tiger']
+56. two doors.attributes.options != ['lady', 'bear']
+57. two doors.attributes.options < ['lady', 'dragon']
+58. two doors.attributes.options > ['lady', 'rabbit']
+59. two doors.attributes.options <= ['lady', 'tiger']
+60. two doors.attributes.options >= ['lady', 'tiger']
+61. M_NLI(accused.attributes, princess.emotions)
+62. M_NLU(handsome and brave youth.attributes, king's daughter.attributes)
+63. M_TEM(door on the right.attributes, outcome of the choice.attributes)
+64. contra("The accused looks to the princess for help in choosing a door.", "The accused ignores the princess.")
+65. S(accused, "The accused")
+66. S(door on the right, "the door on his right")
+67. S(handsome and brave youth, "handsome and brave youth")
+68. S(king's daughter, "the princess")
+69. S(lady behind the door, "the lady behind the door")
+70. S(narrator, "the narrator")
+71. S(outcome of the choice, "the outcome of the choice")
+72. S(two doors, "two doors")
+73. T("The accused looks to the princess for help in choosing a door.", "The accused does not seek help.", Factual)
+74. tau(accused.attributes.status, handsome and brave youth.attributes.status)
+75. tau("The princess contemplates the outcome of the accused's choice.", "The princess is indifferent to the outcome.")
+76. tau("The accused looks to the princess for help in choosing a door.", "The accused is confident in his choice.")
+77. tau("The princess contemplates the outcome of the accused's choice.", "The princess is certain about the outcome.")
+78. tau("The outcome of the choice is not revealed.", "The outcome of the choice is known.")
+79. tau("The lady behind the door is a rival for affections.", "The lady behind the door is a friend.")
+80. tau("The handsome and brave youth is lower than the princess.", "The handsome and brave youth is equal to the princess.")
+81. tau("The two doors offer options of lady and tiger.", "The two doors offer options of lady and bear.")
+82. tau("The narrator summarizes the princess's state of mind.", "The narrator ignores the princess's feelings.")
+83. tau("The accused looks to the princess for help.", "The accused acts independently.")
+84. tau("The princess feels loss over the accused.", "The princess feels joy over the accused.")
+85. tau("The door on the right has an unknown outcome.", "The door on the right has a certain outcome.")
+86. tau("The outcome of the choice is not revealed.", "The outcome of the choice is disclosed.")
+87. tau("The lady behind the door is a rival.", "The lady behind the door is an ally.")
+88. tau("The handsome and brave youth is imprisoned.", "The handsome and brave youth is free.")
+89. tau("The king's daughter is royalty.", "The king's daughter is a commoner.")
+90. tau("The accused is looking for help.", "The accused is confident.")
+91. tau("The princess contemplates the outcome.", "The princess ignores the outcome.")
+92. tau("The two doors are soundproofed.", "The two doors are not soundproofed.")
+93. tau("The narrator summarizes the princess's state of mind.", "The narrator describes the princess's actions.")
+94. tau("The accused's choice leads to unknown outcomes.", "The accused
+
+Rules:
+1. Q[x0, y0](accused.attributes.status = "looking for help" ∧ princess.emotions != "joy" → outcome of the choice.attributes.revealed != "disclosed")
+2. Q[x0, y0](accused.attributes.status != "innocent" ∧ lady behind the door.attributes.status = "rival for affections" → princess.emotions < "happiness")
+3. Q[x0, y0](accused.attributes.status < "royalty" ∧ handsome and brave youth.attributes.status > "commoner" ∧ king's daughter.attributes.status <= "princess" → lady behind the door.attributes.status != "friend")
+4. Q[x0, y0](door on the right.attributes.outcome = "unknown" ∧ outcome of the choice.attributes.revealed < "known" ∧ princess.emotions >= "despair" → accused.attributes.status > "prisoner")
+5. Q[x0, y0](accused.attributes.status > "prisoner" ∧ handsome and brave youth.attributes.status < "royalty" ∧ king's daughter.attributes.status != "commoner" ∧ lady behind the door.attributes.status >= "competitor" → narrator.attributes.action != "describes the setting")
+6. Q[x0, y0](accused.attributes.status <= "prisoner" ∧ door on the right.attributes.outcome != "certain" ∧ princess.emotions < "happiness" ∧ lady behind the door.attributes.status < "ally" ∧ handsome and brave youth.attributes.status >= "peasant" → outcome of the choice.attributes.revealed >= "hidden")
+7. Q[x0, y0](accused.attributes.status = "looking for help" ∧ "The accused looks to the princess for help in choosing a door.".indication != "loudly points to the door" → door on the right.attributes.outcome < "revealed")
+8. Q[x0, y0](princess.emotions > "indifference" ∧ "The accused looks to the princess for help in choosing a door.".indication >= "signals" → handsome and brave youth.attributes.status <= "noble")
+9. Q[x0, y0](lady behind the door.attributes.status = "rival for affections" ∧ king's daughter.attributes.status < "queen" → accused.attributes.status != "innocent")
+10. Q[x0, y0](narrator.attributes.action = "summarizes the princess's state of mind" ∧ outcome of the choice.attributes.revealed != "disclosed" ∧ "The accused looks to the princess for help in choosing a door.".indication < "shouts" → princess.emotions <= "sadness")
+11. Q[x0, y0](accused.attributes.status < "royalty" ∧ handsome and brave youth.attributes.status != "equal to princess" ∧ lady behind the door.attributes.status > "neutral" → outcome of the choice.attributes.revealed < "known")
+12. Q[x0, y0](door on the right.attributes.outcome >= "ambiguous" ∧ "The accused looks to the princess for help in choosing a door.".indication > "whispers" ∧ princess.emotions >= "despair" → accused.attributes.status <= "prisoner")
+13. Q[x0, y0](handsome and brave youth.attributes.status < "royalty" ∧ king's daughter.attributes.status > "noble" ∧ lady behind the door.attributes.status <= "adversary" → "The accused looks to the princess for help in choosing a door.".indication != "loudly points to the door")
+14. Q[x0, y0](accused.attributes.status >= "commoner" ∧ princess.emotions < "happiness" ∧ outcome of the choice.attributes.revealed > "certain" → door on the right.attributes.outcome != "certain")
+15. Q[x0, y0](handsome and brave youth.attributes.status >= "peasant" ∧ "The accused looks to the princess for help in choosing a door.".indication <= "gestures" ∧ lady behind the door.attributes.status != "friend" → accused.attributes.status < "royalty")
+16. Q[x0, y0](king's daughter.attributes.status = "royalty" ∧ princess.emotions != "joy" ∧ "The accused looks to the princess for help in choosing a door.".indication < "shouts" → outcome of the choice.attributes.revealed <= "unclear")
+17. Q[x0, y0](accused.attributes.status != "innocent" ∧ lady behind the door.attributes.status < "ally" ∧ handsome and brave youth.attributes.status > "commoner" → princess.emotions >= "despair")
+18. Q[x0, y0](door on the right.attributes.outcome < "revealed" ∧ "The accused looks to the princess for help in choosing a door.".indication >= "signals" ∧ outcome of the choice.attributes.revealed != "disclosed" → accused.attributes.status > "prisoner")
+19. Q[x0, y0](handsome and brave youth.attributes.status < "royalty" ∧ king's daughter.attributes.status <= "princess" ∧ lady behind the door.attributes.status >= "competitor" → narrator.attributes.action != "describes the setting")
+20. Q[x0, y0](accused.attributes.status = "looking for help" ∧ princess.emotions < "happiness" ∧ door on the right.attributes.outcome != "certain" ∧ lady behind the door.attributes.status < "ally" → outcome of the choice.attributes.revealed >= "hidden")
+21. Q[x0, y0](accused.attributes.status < "royalty" ∧ "The accused looks to the princess for help in choosing a door.".indication > "whispers" ∧ princess.emotions >= "despair" → handsome and brave youth.attributes.status != "equal to princess")
+22. Q[x0, y0](narrator.attributes.action = "summarizes the princess's state of mind" ∧ outcome of the choice.attributes.revealed < "known" ∧ "The accused looks to the princess for help in choosing a door.".indication < "shouts" → lady behind the door.attributes.status != "friend")
+23. Q[x0, y0](accused.attributes.status > "prisoner" ∧ handsome and brave youth.attributes.status < "royalty" ∧ king's daughter.attributes.status != "commoner" ∧ lady behind the door.attributes.status >= "competitor" → princess.emotions < "happiness")
+24. Q[x0, y0](door on the right.attributes.outcome = "unknown" ∧ outcome of the choice.attributes.revealed != "disclosed" ∧ princess.emotions < "happiness" → accused.attributes.status != "innocent")
+25. Q[x0, y0](accused.attributes.status <= "prisoner" ∧ door on the right.attributes.outcome != "certain" ∧ princess.emotions < "happiness" ∧ lady behind

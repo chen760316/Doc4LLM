@@ -1,0 +1,64 @@
+Source: dense_text.txt (Index 256)
+S1: Callers to the network are being advised to pray for him.
+S2: Callers to the network are being told that prayer is foolish.
+
+Predicates:
+1. Callers_to_the_network.advised_to_pray
+2. Callers_to_the_network.told_prayer_is_foolish
+3. Prayer.encouraged_by.Callers_to_the_network
+4. Prayer.dismissed_as_foolish.by.Callers_to_the_network
+5. S1.relationship.M_NLI(S1, S2)
+6. S2.relationship.M_NLI(S1, S2)
+7. S1.Content(Callers_to_the_network, pray_for_him)
+8. S2.Content(Callers_to_the_network, prayer_is_foolish)
+9. S1.violate(S1, S2)
+10. S2.violate(S1, S2)
+11. Callers_to_the_network.relationship.advice
+12. Callers_to_the_network.relationship.dismissal
+13. Prayer.status.encouraged
+14. Prayer.status.dismissed
+15. S1.meta.M_NLI
+16. S2.meta.M_NLI
+17. Callers_to_the_network.action.advising
+18. Callers_to_the_network.action.telling
+19. Prayer.action.praying
+20. Prayer.action.dismissing
+21. S1.Content(advice, pray_for_him)
+22. S2.Content(dismissal, prayer_is_foolish)
+23. Callers_to_the_network.emotion.encouraged
+24. Callers_to_the_network.emotion.dismissed
+25. S1.relationship.encouragement
+26. S2.relationship.dismissal
+27. Prayer.effect.positive
+28. Prayer.effect.negative
+29. S1.meta.Content
+30. S2.meta.Content
+
+Rules:
+1. Q[Callers, Callers_to_the_network.advised_to_pray == true, Callers_to_the_network.told_prayer_is_foolish == true](S1.relationship.M_NLI(S1, S2) → Content(Callers_to_the_network, pray_for_him))
+2. Q[Callers, Callers_to_the_network.action.advising == true, Callers_to_the_network.action.telling == true](S1.violate(S1, S2) → Content(Callers_to_the_network, pray_for_him))
+3. Q[Callers, Prayer.status.encouraged == true, Prayer.status.dismissed == true](S1.relationship.encouragement → Content(Callers_to_the_network, pray_for_him))
+4. Q[Callers, S1.Content(advice, pray_for_him) == true, S2.Content(dismissal, prayer_is_foolish) == true](S1.violate(S1, S2) → Content(Callers_to_the_network, pray_for_him))
+5. Q[Callers, Callers_to_the_network.emotion.encouraged == true, Callers_to_the_network.emotion.dismissed == true](S1.relationship.M_NLI(S1, S2) → Content(Callers_to_the_network, pray_for_him))
+6. Q[Callers, Prayer.encouraged_by.Callers_to_the_network == true, Prayer.dismissed_as_foolish.by.Callers_to_the_network == true](S1.violate(S1, S2) → Content(Callers_to_the_network, pray_for_him))
+7. Q[Callers, Callers_to_the_network.advised_to_pray == true, Prayer.action.dismissing == true](S1.relationship.encouragement → Content(Callers_to_the_network, pray_for_him))
+8. Q[Callers, S1.Content(Callers_to_the_network, pray_for_him) == true, S2.Content(Callers_to_the_network, prayer_is_foolish) == true](S1.violate(S1, S2) → Content(Callers_to_the_network, pray_for_him))
+9. Q[Callers, Callers_to_the_network.relationship.advice == true, Callers_to_the_network.relationship.dismissal == true](S1.relationship.M_NLI(S1, S2) → Content(Callers_to_the_network, pray_for_him))
+10. Q[Callers, Prayer.effect.positive == true, Prayer.effect.negative == true](S1.violate(S1, S2) → Content(Callers_to_the_network, pray_for_him))
+11. Q[Callers, Callers_to_the_network.action.advising == true, Callers_to_the_network.told_prayer_is_foolish == true](S1.relationship.encouragement → Content(Callers_to_the_network, pray_for_him))
+12. Q[Callers, Prayer.status.encouraged == true, Callers_to_the_network.told_prayer_is_foolish == true](S1.violate(S1, S2) → Content(Callers_to_the_network, pray_for_him))
+13. Q[Callers, Callers_to_the_network.emotion.encouraged == true, Callers_to_the_network.told_prayer_is_foolish == true](S1.relationship.M_NLI(S1, S2) → Content(Callers_to_the_network, pray_for_him))
+14. Q[Callers, Callers_to_the_network.advised_to_pray == true, Prayer.action.dismissing == true](S1.violate(S1, S2) → Content(Callers_to_the_network, pray_for_him))
+15. Q[Callers, S1.Content(advice, pray_for_him) == true, S2.Content(dismissal, prayer_is_foolish) == true](S1.relationship.encouragement → Content(Callers_to_the_network, pray_for_him))
+16. Q[Callers, Callers_to_the_network.relationship.advice == true, Prayer.dismissed_as_foolish.by.Callers_to_the_network == true](S1.violate(S1, S2) → Content(Callers_to_the_network, pray_for_him))
+17. Q[Callers, Prayer.encouraged_by.Callers_to_the_network == true, Callers_to_the_network.told_prayer_is_foolish == true](S1.relationship.M_NLI(S1, S2) → Content(Callers_to_the_network, pray_for_him))
+18. Q[Callers, Callers_to_the_network.action.advising == true, Prayer.dismissed_as_foolish.by.Callers_to_the_network == true](S1.violate(S1, S2) → Content(Callers_to_the_network, pray_for_him))
+19. Q[Callers, S1.Content(Callers_to_the_network, pray_for_him) == true, Callers_to_the_network.told_prayer_is_foolish == true](S1.relationship.encouragement → Content(Callers_to_the_network, pray_for_him))
+20. Q[Callers, Callers_to_the_network.emotion.encouraged == true, Prayer.dismissed_as_foolish.by.Callers_to_the_network == true](S1.violate(S1, S2) → Content(Callers_to_the_network, pray_for_him))
+21. Q[Callers, Prayer.status.encouraged == true, Callers_to_the_network.told_prayer_is_foolish == true](S1.relationship.M_NLI(S1, S2) → Content(Callers_to_the_network, pray_for_him))
+22. Q[Callers, Callers_to_the_network.advised_to_pray == true, Callers_to_the_network.relationship.dismissal == true](S1.violate(S1, S2) → Content(Callers_to_the_network, pray_for_him))
+23. Q[Callers, Prayer.effect.positive == true, Callers_to_the_network.told_prayer_is_foolish == true](S1.relationship.encouragement → Content(Callers_to_the_network, pray_for_him))
+24. Q[Callers, Callers_to_the_network.action.advising == true, Prayer.status.dismissed == true](S1.violate(S1, S2) → Content(Callers_to_the_network, pray_for_him))
+25. Q[Callers, S1.Content(advice, pray_for_him) == true, Callers_to_the_network.relationship.dismissal == true](S1.relationship.M_NLI(S1, S2) → Content(Callers_to_the_network, pray_for_him))
+26. Q[Callers, Callers_to_the_network.emotion.encouraged == true, Callers_to_the_network.relationship.dismissal == true](S1.violate(S1, S2) → Content(Callers_to_the_network, pray_for_him))
+27. Q[Callers, Prayer.encouraged_by.Callers_to_the_network == true, Callers_to_the_network.relationship.dismissal == true](S1.relationship.M_NLI(S1, S2) → Content(Callers_to_the_network, pray_for_him))

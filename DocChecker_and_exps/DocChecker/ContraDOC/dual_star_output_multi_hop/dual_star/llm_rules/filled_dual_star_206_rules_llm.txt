@@ -1,0 +1,96 @@
+Predicates:
+1. Sherlock Holmes.location = "Baker Street"
+2. Dr Watson.occupation = "doctor"
+3. Mr Culverton Smith.location = "Baker Street"
+4. Sherlock Holmes.status != "dying"
+5. Dr Watson.location != "London"
+6. Mr Culverton Smith.location >= "Baker Street"
+7. "Holmes instructs Watson to bring Mr Culverton Smith to see him.".time <= "30 minutes"
+8. "Mr Culverton Smith agrees to come to Baker Street after Watson explains his errand.".time < "1 hour"
+9. "Mr Culverton Smith pockets the little ivory box.".action != "hiding evidence"
+10. "Holmes calls for Watson to present himself as a witness to the conversation.".reason = "to support his accusation against Smith"
+11. "Holmes instructs Watson to bring Mr Culverton Smith to see him.".location = "Baker Street"
+12. "Mr Culverton Smith reveals that Holmes has been sickened by the same illness that killed his nephew Victor.".reason != "a coincidence"
+13. "Mr Culverton Smith pockets the little ivory box.".action > "removing evidence"
+14. "Holmes instructs Watson to bring Mr Culverton Smith to see him.".time >= "15 minutes"
+15. "Holmes calls for Watson to present himself as a witness to the conversation.".reason != "to support Smith"
+16. M_NLI(Sherlock Holmes.status, Mr Culverton Smith.location)
+17. M_NLU(Dr Watson.occupation, Mr Culverton Smith.location)
+18. M_TEM(Sherlock Holmes.location, Dr Watson.location)
+19. contra("Holmes is dying", "Holmes is not dying")
+20. S("Holmes instructs Watson to bring Mr Culverton Smith to see him.", "Holmes instructs Watson")
+21. S("Mr Culverton Smith agrees to come to Baker Street after Watson explains his errand.", "Mr Culverton Smith agrees")
+22. T("Holmes has been sickened by the same illness", "Holmes is healthy", Factual)
+23. tau("Holmes instructs Watson to bring Mr Culverton Smith to see him.".time, "within an hour")
+24. tau("Mr Culverton Smith pockets the little ivory box", "Mr Culverton Smith discards the little ivory box")
+25. Sherlock Holmes.status >= "stable"
+26. Dr Watson.occupation != "nurse"
+27. Mr Culverton Smith.contents = "sharp spring infected with the illness"
+28. "Mr Culverton Smith reveals that Holmes has been sickened by the same illness that killed his nephew Victor.".reason < "Holmes's health"
+29. "Holmes instructs Watson to bring Mr Culverton Smith to see him.".location != "the hospital"
+30. "Mr Culverton Smith pockets the little ivory box.".action < "destroying evidence"
+31. "Holmes calls for Watson to present himself as a witness to the conversation.".reason >= "to clarify the situation"
+32. M_NLI(Dr Watson.location, Sherlock Holmes.location)
+33. M_NLU(Mr Culverton Smith.location, Dr Watson.occupation)
+34. M_TEM(Sherlock Holmes.status, Mr Culverton Smith.contents)
+35. contra("Watson is a lawyer", "Watson is a doctor")
+36. S("Mr Culverton Smith pockets the little ivory box", "Mr Culverton Smith pockets")
+37. S("Holmes instructs Watson to bring Mr Culverton Smith", "Holmes instructs Watson")
+38. T("Holmes is not dying", "Holmes is sick", Content)
+39. tau("Mr Culverton Smith reveals that Holmes has been sickened", "Holmes is healthy")
+40. Sherlock Holmes.location < "the countryside"
+41. Dr Watson.occupation >= "medical professional"
+42. Mr Culverton Smith.location != "the pub"
+43. "Holmes instructs Watson to bring Mr Culverton Smith to see him.".time > "10 minutes"
+44. "Mr Culverton Smith agrees to come to Baker Street after Watson explains his errand.".time >= "20 minutes"
+45. "Mr Culverton Smith pockets the little ivory box.".action != "returning evidence"
+46. "Holmes calls for Watson to present himself as a witness to the conversation.".reason < "to accuse Smith"
+47. "Holmes instructs Watson to bring Mr Culverton Smith to see him.".location >= "Baker Street"
+48. "Mr Culverton Smith reveals that Holmes has been sickened by the same illness that killed his nephew Victor.".reason > "a mere observation"
+49. "Mr Culverton Smith pockets the little ivory box.".action <= "concealing evidence"
+50. "Holmes instructs Watson to bring Mr Culverton Smith to see him.".time != "immediate"
+51. M_NLI(Sherlock Holmes.location, Mr Culverton Smith.location)
+52. M_NLU(Dr Watson.occupation, Sherlock Holmes.status)
+53. M_TEM(Mr Culverton Smith.contents, Dr Watson.location)
+54. contra("Holmes is healthy", "Holmes is sick")
+55. S("Mr Culverton Smith reveals that Holmes has been sickened", "Mr Culverton Smith reveals")
+56. S("Holmes calls for Watson", "Holmes calls")
+57. T("Watson is a doctor", "Watson is not a doctor", Negation)
+58. tau("Mr Culverton Smith pockets the little ivory box", "Mr Culverton Smith discards the little ivory box")
+59. Sherlock Holmes.status < "critical"
+60. Dr Watson.location < "the clinic"
+61. Mr Culverton Smith.location >= "Baker Street"
+62. "Holmes instructs Watson to bring Mr Culverton Smith to see him.".time < "45 minutes"
+63. "Mr Culverton Smith agrees to come to Baker Street after Watson explains his errand.".time > "5 minutes"
+64. "Mr Culverton Smith pockets the little ivory box.".action != "destroying evidence"
+65. "Holmes calls for Watson to present himself as a witness to the conversation.".reason >= "to clarify the facts"
+66. "Holmes instructs Watson to bring Mr Culverton Smith to see him.".location != "the office"
+67. "Mr Culverton Smith reveals that Holmes has been sickened by the same illness that killed his nephew Victor.".reason < "a simple fact"
+68. "Mr Culverton Smith pockets the little ivory box.".action > "hiding evidence"
+69. "Holmes instructs Watson to bring Mr Culverton Smith to see him.".time <= "1 hour"
+70. M_NLI(Sherlock Holmes.status, Dr Watson.occupation)
+71. M_NLU(Mr Culverton Smith.contents, Sherlock Holmes.location)
+72. M_TEM(Dr Watson.location, Mr Culverton Smith.location)
+73. contra("Watson is not a doctor", "Watson is a doctor")
+74. S("Holmes instructs Watson",
+
+Rules:
+1. Q[1, 1](Sherlock Holmes.location = "Baker Street" ∧ Dr Watson.occupation = "doctor" → Mr Culverton Smith.location != "the pub")
+2. Q[2, 2](Mr Culverton Smith.location = "Baker Street" ∧ Sherlock Holmes.status != "dying" → Dr Watson.location != "London")
+3. Q[3, 3](Dr Watson.occupation = "doctor" ∧ "Holmes instructs Watson to bring Mr Culverton Smith to see him.".time <= "30 minutes" ∧ "Mr Culverton Smith agrees to come to Baker Street after Watson explains his errand.".time < "1 hour" → "Mr Culverton Smith pockets the little ivory box.".action != "hiding evidence")
+4. Q[4, 4](Sherlock Holmes.status >= "stable" ∧ "Holmes instructs Watson to bring Mr Culverton Smith to see him.".location != "the hospital" ∧ "Mr Culverton Smith pockets the little ivory box.".action < "destroying evidence" → "Holmes calls for Watson to present himself as a witness to the conversation.".reason < "to accuse Smith")
+5. Q[5, 5](Mr Culverton Smith.location >= "Baker Street" ∧ "Holmes instructs Watson to bring Mr Culverton Smith to see him.".time > "10 minutes" ∧ "Mr Culverton Smith agrees to come to Baker Street after Watson explains his errand.".time >= "20 minutes" ∧ "Mr Culverton Smith pockets the little ivory box.".action != "returning evidence" → "Holmes instructs Watson to bring Mr Culverton Smith to see him.".location != "the office")
+6. Q[6, 6](Dr Watson.occupation != "nurse" ∧ "Mr Culverton Smith reveals that Holmes has been sickened by the same illness that killed his nephew Victor.".reason < "Holmes's health" ∧ "Holmes instructs Watson to bring Mr Culverton Smith to see him.".time < "45 minutes" ∧ "Mr Culverton Smith pockets the little ivory box.".action > "hiding evidence" ∧ "Holmes calls for Watson to present himself as a witness to the conversation.".reason >= "to clarify the facts" → Sherlock Holmes.status < "critical")
+7. Q[1, 2](Mr Culverton Smith.location != "the pub" ∧ "Holmes instructs Watson to bring Mr Culverton Smith to see him.".location = "Baker Street" → Dr Watson.occupation = "doctor")
+8. Q[2, 3](Sherlock Holmes.status != "dying" ∧ "Mr Culverton Smith pockets the little ivory box.".action < "destroying evidence" → "Mr Culverton Smith reveals that Holmes has been sickened by the same illness that killed his nephew Victor.".reason != "a coincidence")
+9. Q[3, 4](Dr Watson.location < "the clinic" ∧ "Holmes instructs Watson to bring Mr Culverton Smith to see him.".time >= "15 minutes" ∧ "Mr Culverton Smith agrees to come to Baker Street after Watson explains his errand.".time < "1 hour" → Sherlock Holmes.location < "the countryside")
+10. Q[4, 5](Mr Culverton Smith.contents = "sharp spring infected with the illness" ∧ "Holmes calls for Watson to present himself as a witness to the conversation.".reason >= "to clarify the situation" ∧ "Mr Culverton Smith pockets the little ivory box.".action <= "concealing evidence" → "Holmes is not dying")
+11. Q[5, 6](Sherlock Holmes.location < "the countryside" ∧ "Mr Culverton Smith reveals that Holmes has been sickened by the same illness that killed his nephew Victor.".reason > "a mere observation" ∧ "Holmes instructs Watson to bring Mr Culverton Smith to see him.".time != "immediate" ∧ "Mr Culverton Smith agrees to come to Baker Street after Watson explains his errand.".time > "5 minutes" → "Mr Culverton Smith pockets the little ivory box.".action != "returning evidence")
+12. Q[1, 3](Sherlock Holmes.status < "critical" ∧ "Mr Culverton Smith reveals that Holmes has been sickened by the same illness that killed his nephew Victor.".reason < "a simple fact" → "Holmes is healthy")
+13. Q[2, 4](Dr Watson.occupation >= "medical professional" ∧ "Mr Culverton Smith pockets the little ivory box.".action > "removing evidence" → "Holmes instructs Watson to bring Mr Culverton Smith to see him.".location != "the office")
+14. Q[3, 5](Mr Culverton Smith.location >= "Baker Street" ∧ "Holmes instructs Watson to bring Mr Culverton Smith to see him.".time < "45 minutes" ∧ "Mr Culverton Smith agrees to come to Baker Street after Watson explains his errand.".time >= "20 minutes" → "Holmes calls for Watson to present himself as a witness to the conversation.".reason < "to accuse Smith")
+15. Q[4, 6](Sherlock Holmes.status != "dying" ∧ "Mr Culverton Smith pockets the little ivory box.".action < "destroying evidence" ∧ "Holmes instructs Watson to bring Mr Culverton Smith to see him.".location != "the hospital" → "Mr Culverton Smith reveals that Holmes has been sickened by the same illness that killed his nephew Victor.".reason != "a coincidence")
+16. Q[1, 1](Dr Watson.location < "the clinic" ∧ "Holmes instructs Watson to bring Mr Culverton Smith to see him.".time >= "15 minutes" → "Mr Culverton Smith agrees to come to Baker Street after Watson explains his errand.".time < "1 hour")
+17. Q[2, 2](Sherlock Holmes.status >= "stable" ∧ "Mr Culverton Smith.location != "the pub" → "Holmes is not dying")
+18. Q[3, 3](Mr Culverton Smith.contents = "sharp spring infected with the illness" ∧ "Holmes instructs Watson to bring Mr Culverton Smith to see him.".time < "45 minutes" ∧ "Mr Culverton Smith pockets the little ivory box.".action != "hiding evidence" → "Holmes calls for Watson to present himself as a witness to the conversation.".reason >= "to clarify the facts")
+19. Q[4, 4](Dr Watson.occupation != "nurse" ∧ "Mr Culverton Smith reveals that Holmes has been sickened by the same illness that killed his nephew Victor.".reason < "Holmes's health" ∧ "Holmes instructs Watson to bring Mr Culverton Smith to see him.".location != "the hospital" → "Mr Cul

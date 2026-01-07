@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 569)
+S1: A man is crossing the stop the violence painting.
+S2: A person is walking past the artwork.
+
+Predicates:
+1. Man.crossing
+2. Painting.stop_the_violence
+3. Person.walking
+4. Artwork.past
+5. Interaction.crossing
+6. Engagement.walking_past
+7. M_NLI(S1, S2)
+8. Causal(crossing, walking_past)
+9. violate(crossing, walking_past)
+10. Man.interacts_with(Painting)
+11. Person.engages_with(Artwork)
+12. Painting.is_crossed_by(Man)
+13. Artwork.is_walked_past_by(Person)
+14. Interaction.is_direct(crossing)
+15. Engagement.is_passive(walking_past)
+16. Man.has_action(crossing)
+17. Person.has_action(walking)
+18. Painting.has_attribute(stop_the_violence)
+19. Artwork.has_attribute(past)
+20. Relationship.crossing_implies(Interaction)
+21. Relationship.walking_past_suggests(Engagement)
+22. Man.is_entity
+23. Person.is_entity
+24. Painting.is_entity
+25. Artwork.is_entity
+26. Interaction.is_type(direct)
+27. Engagement.is_type(passive)
+28. Causal(crossing, interaction)
+29. Causal(walking_past, engagement)
+30. violate(interaction, engagement)
+
+Rules:
+1. Q[man, Man.crossing == true](Man.crossing → Causal(crossing, walking_past))
+2. Q[painting, Painting.has_attribute(stop_the_violence) == true](Painting.has_attribute(stop_the_violence) → Causal(crossing, walking_past))
+3. Q[person, Person.walking == true](Person.walking → Causal(crossing, walking_past))
+4. Q[artwork, Artwork.has_attribute(past) == true](Artwork.has_attribute(past) → Causal(crossing, walking_past))
+5. Q[man, Man.interacts_with(Painting) == true](Man.interacts_with(Painting) → Causal(crossing, walking_past))
+6. Q[person, Person.engages_with(Artwork) == true](Person.engages_with(Artwork) → Causal(crossing, walking_past))
+7. Q[painting, Painting.is_crossed_by(Man) == true](Painting.is_crossed_by(Man) → Causal(crossing, walking_past))
+8. Q[artwork, Artwork.is_walked_past_by(Person) == true](Artwork.is_walked_past_by(Person) → Causal(crossing, walking_past))
+9. Q[interaction, Interaction.is_direct(crossing) == true](Interaction.is_direct(crossing) → Causal(crossing, walking_past))
+10. Q[engagement, Engagement.is_passive(walking_past) == true](Engagement.is_passive(walking_past) → Causal(crossing, walking_past))
+11. Q[man, Man.has_action(crossing) == true](Man.has_action(crossing) → Causal(crossing, walking_past))
+12. Q[person, Person.has_action(walking) == true](Person.has_action(walking) → Causal(crossing, walking_past))
+13. Q[interaction, Relationship.crossing_implies(Interaction) == true](Relationship.crossing_implies(Interaction) → Causal(crossing, walking_past))
+14. Q[engagement, Relationship.walking_past_suggests(Engagement) == true](Relationship.walking_past_suggests(Engagement) → Causal(crossing, walking_past))
+15. Q[man, Man.is_entity == true](Man.is_entity → Causal(crossing, walking_past))
+16. Q[person, Person.is_entity == true](Person.is_entity → Causal(crossing, walking_past))
+17. Q[painting, Painting.is_entity == true](Painting.is_entity → Causal(crossing, walking_past))
+18. Q[artwork, Artwork.is_entity == true](Artwork.is_entity → Causal(crossing, walking_past))
+19. Q[interaction, Interaction.is_type(direct) == true](Interaction.is_type(direct) → Causal(crossing, walking_past))
+20. Q[engagement, Engagement.is_type(passive) == true](Engagement.is_type(passive) → Causal(crossing, walking_past))
+21. Q[violation, violate(crossing, walking_past) == true](violate(crossing, walking_past) → Causal(crossing, walking_past))
+22. Q[causal, Causal(crossing, interaction) == true](Causal(crossing, interaction) → Causal(crossing, walking_past))
+23. Q[causal, Causal(walking_past, engagement) == true](Causal(walking_past, engagement) → Causal(crossing, walking_past))
+24. Q[interaction, violate(interaction, engagement) == true](violate(interaction, engagement) → Causal(crossing, walking_past))
+25. Q[man, Man.crossing == false](Man.crossing == false → Causal(crossing, walking_past))
+26. Q[person, Person.walking == false](Person.walking == false → Causal(crossing, walking_past))
+27. Q[painting, Painting.is_crossed_by(Man) == false](Painting.is_crossed_by(Man) == false → Causal(crossing, walking_past))
+28. Q[artwork, Artwork.is_walked_past_by(Person) == false](Artwork.is_walked_past_by(Person) == false → Causal(crossing, walking_past))
+29. Q[interaction, Interaction.is_direct(crossing) == false](Interaction.is_direct(crossing) == false → Causal(crossing, walking_past))
+30. Q[engagement, Engagement.is_passive(walking_past) == false](Engagement.is_passive(walking_past) == false → Causal(crossing, walking_past))

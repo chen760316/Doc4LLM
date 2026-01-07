@@ -1,0 +1,57 @@
+Source: dense_text.txt (Index 152)
+S1: Amazon Prime Video is not included as part of the Amazon Prime subscription.
+S2: In the UK, US, Germany, and Austria, access to Prime Video is also available through a video-only membership, which does not require a full Prime subscription.
+
+Predicates:
+1. Amazon_Prime_Video.included_as_part_of.Amazon_Prime_subscription = false
+2. Prime_Video.accessible_through.video_only_membership = true
+3. video_only_membership.requires_full_Prime_subscription = false
+4. UK.access_to.Prime_Video = true
+5. US.access_to.Prime_Video = true
+6. Germany.access_to.Prime_Video = true
+7. Austria.access_to.Prime_Video = true
+8. Amazon_Prime.subscription.includes.Prime_Video = false
+9. Prime_Video.membership_type = video_only
+10. video_only_membership.is_available_in = [UK, US, Germany, Austria]
+11. Prime_Video.accessibility = [video_only_membership, full_Prime_subscription]
+12. Negation(Amazon_Prime_Video.included_as_part_of.Amazon_Prime_subscription, Prime_Video.accessible_through.video_only_membership)
+13. M_NLI(S1, S2)
+14. violate(Amazon_Prime_Video.included_as_part_of.Amazon_Prime_subscription, Prime_Video.accessible_through.video_only_membership)
+15. Amazon_Prime.subscription.is_full = true
+16. Prime_Video.membership_does_not_require.full_Prime_subscription = true
+17. video_only_membership.is_not.full_Prime_subscription = true
+18. Prime_Video.accessibility_options = [full_Prime_subscription, video_only_membership]
+19. UK.Prime_Video.accessibility = video_only_membership
+20. US.Prime_Video.accessibility = video_only_membership
+21. Germany.Prime_Video.accessibility = video_only_membership
+22. Austria.Prime_Video.accessibility = video_only_membership
+23. Amazon_Prime.subscription.excludes.Prime_Video = true
+24. Prime_Video.membership.is_not.full = true
+25. video_only_membership.is_available_in_countries = [UK, US, Germany, Austria]
+26. Prime_Video.accessible_without.full_Prime_subscription = true
+27. Amazon_Prime_Video.accessibility = [not_included_in_Prime_subscription, accessible_through_video_only_membership]
+28. Prime_Video.accessibility_in_UK = video_only_membership
+29. Prime_Video.accessibility_in_US = video_only_membership
+30. Prime_Video.accessibility_in_Germany = video_only_membership
+
+Rules:
+1. Q[Amazon, Amazon_Prime_Video.included_as_part_of.Amazon_Prime_subscription == false, Prime_Video.accessible_through.video_only_membership == true](Amazon_Prime_Video.included_as_part_of.Amazon_Prime_subscription == false → Negation(Amazon_Prime_Video.included_as_part_of.Amazon_Prime_subscription, Prime_Video.accessible_through.video_only_membership))
+2. Q[Amazon, Prime_Video.accessible_through.video_only_membership == true, video_only_membership.requires_full_Prime_subscription == false](Prime_Video.accessible_through.video_only_membership == true → Negation(Amazon_Prime_Video.included_as_part_of.Amazon_Prime_subscription, video_only_membership.requires_full_Prime_subscription))
+3. Q[Amazon, Amazon_Prime.subscription.includes.Prime_Video == false, Prime_Video.membership_type == video_only](Amazon_Prime.subscription.includes.Prime_Video == false → Negation(Amazon_Prime_Video.included_as_part_of.Amazon_Prime_subscription, Prime_Video.membership_type))
+4. Q[Amazon, video_only_membership.is_available_in == [UK, US, Germany, Austria], UK.access_to.Prime_Video == true](video_only_membership.is_available_in == [UK, US, Germany, Austria] → Negation(Amazon_Prime_Video.included_as_part_of.Amazon_Prime_subscription, UK.access_to.Prime_Video))
+5. Q[Amazon, Prime_Video.accessibility == [video_only_membership, full_Prime_subscription], video_only_membership.is_not.full_Prime_subscription == true](Prime_Video.accessibility == [video_only_membership, full_Prime_subscription] → Negation(Amazon_Prime_Video.included_as_part_of.Amazon_Prime_subscription, video_only_membership.is_not.full_Prime_subscription))
+6. Q[Amazon, Prime_Video.membership_does_not_require.full_Prime_subscription == true, Amazon_Prime.subscription.is_full == true](Prime_Video.membership_does_not_require.full_Prime_subscription == true → Negation(Amazon_Prime_Video.included_as_part_of.Amazon_Prime_subscription, Amazon_Prime.subscription.is_full))
+7. Q[Amazon, Prime_Video.accessibility_options == [full_Prime_subscription, video_only_membership], video_only_membership.is_available_in_countries == [UK, US, Germany, Austria]](Prime_Video.accessibility_options == [full_Prime_subscription, video_only_membership] → Negation(Amazon_Prime_Video.included_as_part_of.Amazon_Prime_subscription, video_only_membership.is_available_in_countries))
+8. Q[Amazon, UK.Prime_Video.accessibility == video_only_membership, US.Prime_Video.accessibility == video_only_membership](UK.Prime_Video.accessibility == video_only_membership → Negation(Amazon_Prime_Video.included_as_part_of.Amazon_Prime_subscription, US.Prime_Video.accessibility))
+9. Q[Amazon, Germany.Prime_Video.accessibility == video_only_membership, Austria.Prime_Video.accessibility == video_only_membership](Germany.Prime_Video.accessibility == video_only_membership → Negation(Amazon_Prime_Video.included_as_part_of.Amazon_Prime_subscription, Austria.Prime_Video.accessibility))
+10. Q[Amazon, Amazon_Prime.subscription.excludes.Prime_Video == true, Prime_Video.accessible_without.full_Prime_subscription == true](Amazon_Prime.subscription.excludes.Prime_Video == true → Negation(Amazon_Prime_Video.included_as_part_of.Amazon_Prime_subscription, Prime_Video.accessible_without.full_Prime_subscription))
+11. Q[Amazon, Prime_Video.accessibility_in_UK == video_only_membership, Prime_Video.accessibility_in_US == video_only_membership](Prime_Video.accessibility_in_UK == video_only_membership → Negation(Amazon_Prime_Video.included_as_part_of.Amazon_Prime_subscription, Prime_Video.accessibility_in_US))
+12. Q[Amazon, Prime_Video.accessibility_in_Germany == video_only_membership, Prime_Video.accessibility_in_Austria == video_only_membership](Prime_Video.accessibility_in_Germany == video_only_membership → Negation(Amazon_Prime_Video.included_as_part_of.Amazon_Prime_subscription, Prime_Video.accessibility_in_Austria))
+13. Q[Amazon, video_only_membership.is_not.full == true, Prime_Video.membership.is_not.full == true](video_only_membership.is_not.full == true → Negation(Amazon_Prime_Video.included_as_part_of.Amazon_Prime_subscription, Prime_Video.membership.is_not.full))
+14. Q[Amazon, Prime_Video.accessibility == [not_included_in_Prime_subscription, accessible_through_video_only_membership], Amazon_Prime.subscription.includes.Prime_Video == false](Prime_Video.accessibility == [not_included_in_Prime_subscription, accessible_through_video_only_membership] → Negation(Amazon_Prime_Video.included_as_part_of.Amazon_Prime_subscription, Amazon_Prime.subscription.includes.Prime_Video))
+15. Q[Amazon, video_only_membership.requires_full_Prime_subscription == false, Prime_Video.accessibility == [video_only_membership, full_Prime_subscription]](video_only_membership.requires_full_Prime_subscription == false → Negation(Amazon_Prime_Video.included_as_part_of.Amazon_Prime_subscription, Prime_Video.accessibility))
+16. Q[Amazon, Prime_Video.membership_type == video_only, Amazon_Prime.subscription.excludes.Prime_Video == true](Prime_Video.membership_type == video_only → Negation(Amazon_Prime_Video.included_as_part_of.Amazon_Prime_subscription, Amazon_Prime.subscription.excludes.Prime_Video))
+17. Q[Amazon, Prime_Video.accessibility_in_UK == video_only_membership, Prime_Video.accessibility_in_Germany == video_only_membership](Prime_Video.accessibility_in_UK == video_only_membership → Negation(Amazon_Prime_Video.included_as_part_of.Amazon_Prime_subscription, Prime_Video.accessibility_in_Germany))
+18. Q[Amazon, Prime_Video.accessibility_in_Austria == video_only_membership, Prime_Video.accessibility_in_US == video_only_membership](Prime_Video.accessibility_in_Austria == video_only_membership → Negation(Amazon_Prime_Video.included_as_part_of.Amazon_Prime_subscription, Prime_Video.accessibility_in_US))
+19. Q[Amazon, video_only_membership.is_available_in == [UK, US, Germany, Austria], Prime_Video.accessibility == [video_only_membership, full_Prime_subscription]](video_only_membership.is_available_in == [UK, US, Germany, Austria] → Negation(Amazon_Prime_Video.included_as_part_of.Amazon_Prime_subscription, Prime_Video.accessibility))
+20. Q[Amazon, Prime_Video.accessible_without.full_Prime_subscription == true, Amazon_Prime.subscription.includes

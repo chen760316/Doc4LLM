@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 64)
+S1: We still have the Firebird, and we make do, even with kids.
+S2: there's no way we can haul kids and junk and stuff with that.
+
+Predicates:
+1. Firebird.usable
+2. Firebird.has_kids
+3. Firebird.make_do
+4. Firebird.suitable_for_hauling
+5. Firebird.haul_kids
+6. Firebird.haul_junk
+7. Firebird.haul_stuff
+8. kids.present
+9. kids.haulable
+10. junk.haulable
+11. stuff.haulable
+12. Firebird.capacity
+13. Firebird.usage
+14. Firebird.condition
+15. hauling.kids_and_junk
+16. hauling.kids_and_stuff
+17. hauling.junk_and_stuff
+18. Firebird.suitable_for_families
+19. Firebird.compatibility_with_kids
+20. Firebird.compatibility_with_junk
+21. Firebird.compatibility_with_stuff
+22. Firebird.limited_capacity
+23. Firebird.inadequate_for_hauling
+24. Firebird.versatile
+25. Firebird.reliable
+26. Firebird.efficient
+27. Firebird.inefficient_for_families
+28. hauling.kids_and_junk.not_possible
+29. hauling.kids_and_stuff.not_possible
+30. hauling.junk_and_stuff.not_possible
+
+Rules:
+1. Q[still, Firebird.usable, Firebird.suitable_for_hauling](Firebird.usable == true → Factual(Firebird.usable, Firebird.suitable_for_hauling))
+2. Q[still, Firebird.make_do, Firebird.inefficient_for_families](Firebird.make_do == true → Factual(Firebird.make_do, Firebird.inefficient_for_families))
+3. Q[still, Firebird.has_kids, Firebird.compatibility_with_kids](Firebird.has_kids == true → Factual(Firebird.has_kids, Firebird.compatibility_with_kids))
+4. Q[still, Firebird.versatile, Firebird.limited_capacity](Firebird.versatile == true → Factual(Firebird.versatile, Firebird.limited_capacity))
+5. Q[still, kids.present, Firebird.compatibility_with_kids](kids.present == true → Factual(kids.present, Firebird.compatibility_with_kids))
+6. Q[still, Firebird.haul_kids, hauling.kids_and_junk.not_possible](Firebird.haul_kids == true → Factual(Firebird.haul_kids, hauling.kids_and_junk.not_possible))
+7. Q[still, Firebird.haul_junk, hauling.kids_and_junk.not_possible](Firebird.haul_junk == true → Factual(Firebird.haul_junk, hauling.kids_and_junk.not_possible))
+8. Q[still, Firebird.haul_stuff, hauling.kids_and_stuff.not_possible](Firebird.haul_stuff == true → Factual(Firebird.haul_stuff, hauling.kids_and_stuff.not_possible))
+9. Q[still, Firebird.suitable_for_families, Firebird.inefficient_for_families](Firebird.suitable_for_families == true → Factual(Firebird.suitable_for_families, Firebird.inefficient_for_families))
+10. Q[still, Firebird.condition, Firebird.usable](Firebird.condition == "good" → Factual(Firebird.condition, Firebird.usable))
+11. Q[still, Firebird.capacity, Firebird.limited_capacity](Firebird.capacity < 5 → Factual(Firebird.capacity, Firebird.limited_capacity))
+12. Q[still, Firebird.usage, Firebird.make_do](Firebird.usage == "frequent" → Factual(Firebird.usage, Firebird.make_do))
+13. Q[still, Firebird.compatibility_with_junk, Firebird.inadequate_for_hauling](Firebird.compatibility_with_junk == false → Factual(Firebird.compatibility_with_junk, Firebird.inadequate_for_hauling))
+14. Q[still, hauling.kids_and_junk, Firebird.suitable_for_hauling](hauling.kids_and_junk == false → Factual(hauling.kids_and_junk, Firebird.suitable_for_hauling))
+15. Q[still, Firebird.haul_kids, Firebird.suitable_for_hauling](Firebird.haul_kids == false → Factual(Firebird.haul_kids, Firebird.suitable_for_hauling))
+16. Q[still, Firebird.haul_junk, Firebird.suitable_for_hauling](Firebird.haul_junk == false → Factual(Firebird.haul_junk, Firebird.suitable_for_hauling))
+17. Q[still, Firebird.haul_stuff, Firebird.suitable_for_hauling](Firebird.haul_stuff == false → Factual(Firebird.haul_stuff, Firebird.suitable_for_hauling))
+18. Q[still, Firebird.compatibility_with_stuff, Firebird.inadequate_for_hauling](Firebird.compatibility_with_stuff == false → Factual(Firebird.compatibility_with_stuff, Firebird.inadequate_for_hauling))
+19. Q[still, Firebird.reliable, Firebird.usable](Firebird.reliable == true → Factual(Firebird.reliable, Firebird.usable))
+20. Q[still, Firebird.efficient, Firebird.usable](Firebird.efficient == true → Factual(Firebird.efficient, Firebird.usable))
+21. Q[still, Firebird.inefficient_for_families, Firebird.suitable_for_families](Firebird.inefficient_for_families == true → Factual(Firebird.inefficient_for_families, Firebird.suitable_for_families))
+22. Q[still, hauling.kids_and_junk.not_possible, Firebird.suitable_for_hauling](hauling.kids_and_junk.not_possible == true → Factual(hauling.kids_and_junk.not_possible, Firebird.suitable_for_hauling))
+23. Q[still, hauling.kids_and_stuff.not_possible, Firebird.suitable_for_hauling](hauling.kids_and_stuff.not_possible == true → Factual(hauling.kids_and_stuff.not_possible, Firebird.suitable_for_hauling))
+24. Q[still, hauling.junk_and_stuff.not_possible, Firebird.suitable_for_hauling](hauling.junk_and_stuff.not_possible == true → Factual(hauling.junk_and_stuff.not_possible, Firebird.suitable_for_hauling))
+25. Q[still, Firebird.compatibility_with_kids, Firebird.inefficient_for_families](Firebird.compatibility_with_kids == false → Factual(Firebird.compatibility_with_kids, Firebird.inefficient_for_families))
+26. Q[still, Firebird.usable, Firebird.inefficient_for_families](Firebird.usable == true → Factual(Firebird.usable, Firebird.inefficient_for_families))
+27. Q[still, Firebird.suitable_for_families, Firebird.haul_kids](Firebird.suitable_for_families == false → Factual(Firebird.suitable_for_families, Firebird.haul_kids))
+28. Q[still, Firebird.suitable_for_families, Firebird.haul_junk](Firebird.suitable_for_families == false → Factual(Firebird.suitable_for_families, Firebird.haul_junk))
+29. Q[still, Firebird.suitable_for_families, Firebird.haul_stuff](Firebird.suitable_for_families == false → Factual(Firebird.suitable_for_families, Firebird.haul_stuff))
+30. Q[still, Firebird.compatibility_with_kids, Firebird.haul_kids](Firebird.compatibility_with_kids == false → Factual(Firebird.compatibility_with_kids, Firebird.haul_kids))

@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 944)
+S1: No, I don't think I did.
+S2: I do not think I did that, no.
+
+Predicates:
+1. S1.sentence
+2. S2.sentence
+3. M_NLI(S1, S2)
+4. Negation(S1, action)
+5. Negation(S2, action)
+6. violate(S1, S2)
+7. S1.context
+8. S2.context
+9. S1.negation
+10. S2.negation
+11. S1.phrase_structure
+12. S2.phrase_structure
+13. S1.intent
+14. S2.intent
+15. S1.action
+16. S2.action
+17. S1.emotion
+18. S2.emotion
+19. S1.clarity
+20. S2.clarity
+21. S1.tone
+22. S2.tone
+23. S1.affirmation
+24. S2.affirmation
+25. S1.doubt
+26. S2.doubt
+27. S1.response_type
+28. S2.response_type
+29. S1.language
+30. S2.language
+
+Rules:
+1. Q[don, S1.sentence, S2.sentence](S1.negation == "true" → Negation(S1, action))
+2. Q[don, S1.sentence, S2.sentence](S2.negation == "true" → Negation(S2, action))
+3. Q[don, S1.sentence, S2.sentence](M_NLI(S1, S2) == "contradict" → Negation(S1, action))
+4. Q[don, S1.sentence, S2.sentence](M_NLI(S1, S2) == "contradict" → Negation(S2, action))
+5. Q[don, S1.sentence, S2.sentence](S1.context != S2.context → Negation(S1, action))
+6. Q[don, S1.sentence, S2.sentence](S1.context != S2.context → Negation(S2, action))
+7. Q[don, S1.sentence, S2.sentence](S1.intent != S2.intent → Negation(S1, action))
+8. Q[don, S1.sentence, S2.sentence](S1.intent != S2.intent → Negation(S2, action))
+9. Q[don, S1.sentence, S2.sentence](S1.action != S2.action → Negation(S1, action))
+10. Q[don, S1.sentence, S2.sentence](S1.action != S2.action → Negation(S2, action))
+11. Q[don, S1.sentence, S2.sentence](S1.phrase_structure != S2.phrase_structure → Negation(S1, action))
+12. Q[don, S1.sentence, S2.sentence](S1.phrase_structure != S2.phrase_structure → Negation(S2, action))
+13. Q[don, S1.sentence, S2.sentence](S1.emotion != S2.emotion → Negation(S1, action))
+14. Q[don, S1.sentence, S2.sentence](S1.emotion != S2.emotion → Negation(S2, action))
+15. Q[don, S1.sentence, S2.sentence](S1.tone != S2.tone → Negation(S1, action))
+16. Q[don, S1.sentence, S2.sentence](S1.tone != S2.tone → Negation(S2, action))
+17. Q[don, S1.sentence, S2.sentence](S1.doubt != S2.doubt → Negation(S1, action))
+18. Q[don, S1.sentence, S2.sentence](S1.doubt != S2.doubt → Negation(S2, action))
+19. Q[don, S1.sentence, S2.sentence](S1.clarity != S2.clarity → Negation(S1, action))
+20. Q[don, S1.sentence, S2.sentence](S1.clarity != S2.clarity → Negation(S2, action))
+21. Q[don, S1.sentence, S2.sentence](S1.response_type != S2.response_type → Negation(S1, action))
+22. Q[don, S1.sentence, S2.sentence](S1.response_type != S2.response_type → Negation(S2, action))
+23. Q[don, S1.sentence, S2.sentence](S1.language != S2.language → Negation(S1, action))
+24. Q[don, S1.sentence, S2.sentence](S1.language != S2.language → Negation(S2, action))
+25. Q[don, S1.sentence, S2.sentence](S1.affirmation != S2.affirmation → Negation(S1, action))
+26. Q[don, S1.sentence, S2.sentence](S1.affirmation != S2.affirmation → Negation(S2, action))
+27. Q[don, S1.sentence, S2.sentence](S1.action == "not done" → Negation(S1, action))
+28. Q[don, S1.sentence, S2.sentence](S2.action == "not done" → Negation(S2, action))
+29. Q[don, S1.sentence, S2.sentence](S1.negation == "true" ∧ S2.negation == "true" → Negation(S1, action))
+30. Q[don, S1.sentence, S2.sentence](S1.negation == "true" ∧ S2.negation == "true" → Negation(S2, action))

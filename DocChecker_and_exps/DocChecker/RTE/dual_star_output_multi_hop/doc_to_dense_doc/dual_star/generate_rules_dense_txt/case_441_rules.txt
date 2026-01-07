@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 441)
+S1: Consumers take any contaminated pills could suffer minor stomach discomfort or possible cuts to the mouth and throat, said the FDA, adding the risk of serious injury was remote.
+S2: Contaminated pills could cause stomach discomfort of minor or possible cuts to the mouth and throat.
+
+Predicates:
+1. Consumers.suffer_discomfort
+2. Consumers.suffer_cuts
+3. Contaminated_pills.cause_discomfort
+4. Contaminated_pills.cause_cuts
+5. FDA.risk_of_injury
+6. Risk.remote
+7. Stomach_discomfort.is_minor
+8. Cuts.to_mouth_and_throat
+9. Contaminated_pills.have_risk
+10. Serious_injury.is_remote
+11. Minor_discomfort.is_possible
+12. Cuts.to_throat.is_possible
+13. FDA.indicates_risk
+14. Consumers.take_pills
+15. Pills.are_contaminated
+16. Risk.is_remote
+17. Injury.is_serious
+18. Discomfort.is_stomach
+19. Cuts.are_minor
+20. FDA.adds_risk
+21. Consumers.may_suffer
+22. Contaminated_pills.may_cause
+23. Risk_of_injury.is_low
+24. Stomach_discomfort.is_a_consequence
+25. Cuts.to_mouth.is_a_consequence
+26. FDA.warns_consumers
+27. Consumers.should_avoid
+28. Contaminated_pills.should_be_avoided
+29. Risk.is_assessed
+30. Consequences.of_pills.include_discomfort
+
+Rules:
+1. Q[Consumers, Consumers.suffer_discomfort == true](FDA.indicates_risk → Causal(Consumers, Stomach_discomfort.is_minor))
+2. Q[Consumers, Consumers.suffer_cuts == true](FDA.adds_risk → Causal(Consumers, Cuts.to_mouth_and_throat))
+3. Q[Contaminated_pills, Contaminated_pills.cause_discomfort == true](Consumers.take_pills → Causal(Contaminated_pills, Stomach_discomfort.is_minor))
+4. Q[Contaminated_pills, Contaminated_pills.cause_cuts == true](Consumers.take_pills → Causal(Contaminated_pills, Cuts.to_mouth_and_throat))
+5. Q[FDA, FDA.risk_of_injury == true](Risk.remote → Causal(FDA, Serious_injury.is_remote))
+6. Q[Risk, Risk.remote == true](FDA.indicates_risk → Causal(Risk, Risk.is_remote))
+7. Q[Contaminated_pills, Contaminated_pills.have_risk == true](FDA.warns_consumers → Causal(Contaminated_pills, Risk.is_assessed))
+8. Q[Consumers, Consumers.may_suffer == true](Contaminated_pills.should_be_avoided → Causal(Consumers, Cuts.to_mouth.is_a_consequence))
+9. Q[Contaminated_pills, Contaminated_pills.may_cause == true](FDA.adds_risk → Causal(Contaminated_pills, Cuts.to_throat.is_possible))
+10. Q[Risk, Risk.is_low == true](FDA.adds_risk → Causal(Risk, Serious_injury.is_remote))
+11. Q[Consumers, Consumers.take_pills == true](Contaminated_pills.should_be_avoided → Causal(Consumers, Stomach_discomfort.is_a_consequence))
+12. Q[Contaminated_pills, Contaminated_pills.should_be_avoided == true](FDA.warns_consumers → Causal(Contaminated_pills, Cuts.to_mouth.is_a_consequence))
+13. Q[Consumers, Consumers.suffer_discomfort == true](Contaminated_pills.cause_discomfort → Causal(Consumers, Stomach_discomfort.is_minor))
+14. Q[Consumers, Consumers.suffer_cuts == true](Contaminated_pills.cause_cuts → Causal(Consumers, Cuts.to_mouth_and_throat))
+15. Q[FDA, FDA.adds_risk == true](Risk.is_assessed → Causal(FDA, Risk.remote))
+16. Q[Contaminated_pills, Contaminated_pills.cause_discomfort == true](Risk.is_remote → Causal(Contaminated_pills, Stomach_discomfort.is_minor))
+17. Q[Contaminated_pills, Contaminated_pills.cause_cuts == true](Risk.is_remote → Causal(Contaminated_pills, Cuts.to_mouth_and_throat))
+18. Q[Consumers, Consumers.should_avoid == true](Contaminated_pills.have_risk → Causal(Consumers, Cuts.to_mouth.is_a_consequence))
+19. Q[Consumers, Consumers.may_suffer == true](Contaminated_pills.cause_discomfort → Causal(Consumers, Stomach_discomfort.is_a_consequence))
+20. Q[Risk, Risk.is_remote == true](FDA.indicates_risk → Causal(Risk, Serious_injury.is_remote))
+21. Q[Contaminated_pills, Contaminated_pills.may_cause == true](FDA.warns_consumers → Causal(Contaminated_pills, Cuts.to_throat.is_possible))
+22. Q[Consumers, Consumers.take_pills == true](Contaminated_pills.cause_discomfort → Causal(Consumers, Stomach_discomfort.is_minor))
+23. Q[Consumers, Consumers.take_pills == true](Contaminated_pills.cause_cuts → Causal(Consumers, Cuts.to_mouth_and_throat))
+24. Q[FDA, FDA.indicates_risk == true](Risk.is_low → Causal(FDA, Serious_injury.is_remote))
+25. Q[Contaminated_pills, Contaminated_pills.cause_discomfort == true](Risk.is_assessed → Causal(Contaminated_pills, Stomach_discomfort.is_a_consequence))
+26. Q[Contaminated_pills, Contaminated_pills.cause_cuts == true](Risk.is_assessed → Causal(Contaminated_pills, Cuts.to_mouth.is_a_consequence))
+27. Q[Consumers, Consumers.should_avoid == true](FDA.warns_consumers → Causal(Consumers, Cuts.to_mouth.is_a_consequence))
+28. Q[Consumers, Consumers.may_suffer == true](FDA.adds_risk → Causal(Consumers, Stomach_discomfort.is_a_consequence))
+29. Q[Contaminated_pills, Contaminated_pills.have_risk == true](FDA.indicates_risk → Causal(Contaminated_pills, Risk.is_assessed))
+30. Q[Risk, Risk.is_remote == true](FDA.adds_risk → Causal(Risk, Serious_injury.is_remote))

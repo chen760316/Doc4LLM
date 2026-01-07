@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 1576)
+S1: A man is sleeping in a bed.
+S2: A man is being video taped at the statue.
+
+Predicates:
+1. Man.sleeping
+2. Man.video_taped
+3. Bed.location
+4. Statue.location
+5. Man.is_in(Bed)
+6. Man.is_at(Statue)
+7. Sleeping.state
+8. Video_taped.state
+9. Relationship.is_sleeping
+10. Relationship.is_video_taped
+11. M_NLI(S1, S2)
+12. Factual(S1, Man)
+13. Factual(S2, Man)
+14. violate(S1, S2)
+15. Bed.contains(Man)
+16. Statue.contains(Man)
+17. Sleeping.time
+18. Video_taped.time
+19. Man.action(Sleeping)
+20. Man.action(Video_taped)
+21. Bed.is_occupied
+22. Statue.is_occupied
+23. Sleeping.is_active
+24. Video_taped.is_active
+25. Man.state(Sleeping)
+26. Man.state(Video_taped)
+27. Relationship.conflict(Sleeping, Video_taped)
+28. Man.location(Bed)
+29. Man.location(Statue)
+30. Sleeping.and.Video_taped.incompatible
+
+Rules:
+1. Q[man, Man.sleeping, Man.video_taped](Man.sleeping == true → Factual(x0, y0))
+2. Q[man, Man.is_in(Bed), Man.is_at(Statue)](Man.is_in(Bed) == true → Factual(x0, y0))
+3. Q[man, Sleeping.state, Video_taped.state](Sleeping.state == "active" → Factual(x0, y0))
+4. Q[man, Man.action(Sleeping), Man.action(Video_taped)](Man.action(Sleeping) == true → Factual(x0, y0))
+5. Q[man, Bed.is_occupied, Statue.is_occupied](Bed.is_occupied == true → Factual(x0, y0))
+6. Q[man, Sleeping.is_active, Video_taped.is_active](Sleeping.is_active == true → Factual(x0, y0))
+7. Q[man, Relationship.is_sleeping, Relationship.is_video_taped](Relationship.is_sleeping == true → Factual(x0, y0))
+8. Q[man, Man.state(Sleeping), Man.state(Video_taped)](Man.state(Sleeping) == true → Factual(x0, y0))
+9. Q[man, Sleeping.time, Video_taped.time](Sleeping.time == "now" → Factual(x0, y0))
+10. Q[man, Bed.location, Statue.location](Bed.location == "room" → Factual(x0, y0))
+11. Q[man, Man.location(Bed), Man.location(Statue)](Man.location(Bed) == true → Factual(x0, y0))
+12. Q[man, Sleeping.and.Video_taped.incompatible, Relationship.conflict(Sleeping, Video_taped)](Sleeping.and.Video_taped.incompatible == true → Factual(x0, y0))
+13. Q[man, Man.video_taped, Man.is_at(Statue)](Man.video_taped == true → Factual(x0, y0))
+14. Q[man, Video_taped.state, Sleeping.state](Video_taped.state == "active" → Factual(x0, y0))
+15. Q[man, Man.is_at(Statue), Man.is_in(Bed)](Man.is_at(Statue) == true → Factual(x0, y0))
+16. Q[man, Statue.contains(Man), Bed.contains(Man)](Statue.contains(Man) == true → Factual(x0, y0))
+17. Q[man, Man.state(Video_taped), Man.state(Sleeping)](Man.state(Video_taped) == true → Factual(x0, y0))
+18. Q[man, Video_taped.is_active, Sleeping.is_active](Video_taped.is_active == true → Factual(x0, y0))
+19. Q[man, Man.action(Video_taped), Man.action(Sleeping)](Man.action(Video_taped) == true → Factual(x0, y0))
+20. Q[man, Bed.contains(Man), Statue.contains(Man)](Bed.contains(Man) == true → Factual(x0, y0))
+21. Q[man, Sleeping.state, Man.video_taped](Sleeping.state == "true" → Factual(x0, y0))
+22. Q[man, Man.is_in(Bed), Man.video_taped](Man.is_in(Bed) == true → Factual(x0, y0))
+23. Q[man, Sleeping.time, Man.video_taped](Sleeping.time == "now" → Factual(x0, y0))
+24. Q[man, Man.state(Sleeping), Man.video_taped](Man.state(Sleeping) == true → Factual(x0, y0))
+25. Q[man, Relationship.is_sleeping, Man.video_taped](Relationship.is_sleeping == true → Factual(x0, y0))
+26. Q[man, Sleeping.and.Video_taped.incompatible, Man.video_taped](Sleeping.and.Video_taped.incompatible == true → Factual(x0, y0))
+27. Q[man, Man.location(Bed), Sleeping.state](Man.location(Bed) == true → Factual(x0, y0))
+28. Q[man, Man.is_at(Statue), Sleeping.state](Man.is_at(Statue) == true → Factual(x0, y0))
+29. Q[man, Video_taped.is_active, Sleeping.state](Video_taped.is_active == true → Factual(x0, y0))
+30. Q[man, Man.action(Sleeping), Video_taped.state](Man.action(Sleeping) == true → Factual(x0, y0))

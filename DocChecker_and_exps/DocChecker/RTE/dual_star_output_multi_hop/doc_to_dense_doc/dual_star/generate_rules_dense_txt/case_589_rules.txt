@@ -1,0 +1,63 @@
+Source: dense_text.txt (Index 589)
+S1: Bush will meet al-Maliki in Hadley.
+S2: Bush meet al-Maliki in Hadley.
+
+Predicates:
+1. Bush.future_meeting.al-Maliki
+2. Bush.present_meeting.al-Maliki
+3. al-Maliki.future_meeting.Bush
+4. al-Maliki.present_meeting.Bush
+5. Hadley.location.Bush_al-Maliki_meeting
+6. meeting.time.future
+7. meeting.time.present
+8. Bush.meeting_location.Hadley
+9. al-Maliki.meeting_location.Hadley
+10. future_event.Bush_al-Maliki_meeting
+11. present_event.Bush_al-Maliki_meeting
+12. Bush.relationship.al-Maliki
+13. al-Maliki.relationship.Bush
+14. meeting_type.formal.Bush_al-Maliki
+15. meeting_type.informal.Bush_al-Maliki
+16. Bush.intent_to_meet.al-Maliki
+17. al-Maliki.intent_to_meet.Bush
+18. meeting_status.scheduled.Bush_al-Maliki
+19. meeting_status.completed.Bush_al-Maliki
+20. Bush.timeframe.future_meeting
+21. al-Maliki.timeframe.future_meeting
+22. Bush.timeframe.present_meeting
+23. al-Maliki.timeframe.present_meeting
+24. meeting_context.political.Bush_al-Maliki
+25. meeting_context.diplomatic.Bush_al-Maliki
+26. Bush.location.Hadley
+27. al-Maliki.location.Hadley
+28. M_NLI(Bush_meeting_al-Maliki, Bush_present_meeting_al-Maliki)
+29. Temporal(future_meeting, present_meeting)
+30. violate(future_meeting, present_meeting)
+
+Rules:
+1. Q[Bush, Bush.future_meeting.al-Maliki, Bush.present_meeting.al-Maliki](Bush.future_meeting.al-Maliki == true → Temporal(Bush.future_meeting.al-Maliki, Bush.present_meeting.al-Maliki))
+2. Q[al-Maliki, al-Maliki.future_meeting.Bush, al-Maliki.present_meeting.Bush](al-Maliki.future_meeting.Bush == true → Temporal(al-Maliki.future_meeting.Bush, al-Maliki.present_meeting.Bush))
+3. Q[Hadley, Hadley.location.Bush_al-Maliki_meeting, Hadley.location.Bush_al-Maliki_meeting](Hadley.location.Bush_al-Maliki_meeting == true → Temporal(Hadley.location.Bush_al-Maliki_meeting, Hadley.location.Bush_al-Maliki_meeting))
+4. Q[Bush, meeting.time.future, meeting.time.present](meeting.time.future == true → Temporal(meeting.time.future, meeting.time.present))
+5. Q[al-Maliki, meeting.time.future, meeting.time.present](meeting.time.future == true → Temporal(meeting.time.future, meeting.time.present))
+6. Q[Bush, Bush.intent_to_meet.al-Maliki, Bush.present_meeting.al-Maliki](Bush.intent_to_meet.al-Maliki == true → Temporal(Bush.intent_to_meet.al-Maliki, Bush.present_meeting.al-Maliki))
+7. Q[al-Maliki, al-Maliki.intent_to_meet.Bush, al-Maliki.present_meeting.Bush](al-Maliki.intent_to_meet.Bush == true → Temporal(al-Maliki.intent_to_meet.Bush, al-Maliki.present_meeting.Bush))
+8. Q[Bush, meeting_status.scheduled.Bush_al-Maliki, meeting_status.completed.Bush_al-Maliki](meeting_status.scheduled.Bush_al-Maliki == true → Temporal(meeting_status.scheduled.Bush_al-Maliki, meeting_status.completed.Bush_al-Maliki))
+9. Q[al-Maliki, meeting_status.scheduled.Bush_al-Maliki, meeting_status.completed.Bush_al-Maliki](meeting_status.scheduled.Bush_al-Maliki == true → Temporal(meeting_status.scheduled.Bush_al-Maliki, meeting_status.completed.Bush_al-Maliki))
+10. Q[Bush, Bush.timeframe.future_meeting, Bush.timeframe.present_meeting](Bush.timeframe.future_meeting == true → Temporal(Bush.timeframe.future_meeting, Bush.timeframe.present_meeting))
+11. Q[al-Maliki, al-Maliki.timeframe.future_meeting, al-Maliki.timeframe.present_meeting](al-Maliki.timeframe.future_meeting == true → Temporal(al-Maliki.timeframe.future_meeting, al-Maliki.timeframe.present_meeting))
+12. Q[Bush, meeting_type.formal.Bush_al-Maliki, meeting_type.informal.Bush_al-Maliki](meeting_type.formal.Bush_al-Maliki == true → Temporal(meeting_type.formal.Bush_al-Maliki, meeting_type.informal.Bush_al-Maliki))
+13. Q[al-Maliki, meeting_type.formal.Bush_al-Maliki, meeting_type.informal.Bush_al-Maliki](meeting_type.formal.Bush_al-Maliki == true → Temporal(meeting_type.formal.Bush_al-Maliki, meeting_type.informal.Bush_al-Maliki))
+14. Q[Bush, Bush.location.Hadley, al-Maliki.location.Hadley](Bush.location.Hadley == true → Temporal(Bush.location.Hadley, al-Maliki.location.Hadley))
+15. Q[al-Maliki, al-Maliki.location.Hadley, Bush.location.Hadley](al-Maliki.location.Hadley == true → Temporal(al-Maliki.location.Hadley, Bush.location.Hadley))
+16. Q[Bush, future_event.Bush_al-Maliki_meeting, present_event.Bush_al-Maliki_meeting](future_event.Bush_al-Maliki_meeting == true → Temporal(future_event.Bush_al-Maliki_meeting, present_event.Bush_al-Maliki_meeting))
+17. Q[al-Maliki, future_event.Bush_al-Maliki_meeting, present_event.Bush_al-Maliki_meeting](future_event.Bush_al-Maliki_meeting == true → Temporal(future_event.Bush_al-Maliki_meeting, present_event.Bush_al-Maliki_meeting))
+18. Q[Bush, violate(future_meeting, present_meeting), meeting.time.future](violate(future_meeting, present_meeting) == true → Temporal(violate(future_meeting, present_meeting), meeting.time.future))
+19. Q[al-Maliki, violate(future_meeting, present_meeting), meeting.time.future](violate(future_meeting, present_meeting) == true → Temporal(violate(future_meeting, present_meeting), meeting.time.future))
+20. Q[Bush, M_NLI(Bush_meeting_al-Maliki, Bush_present_meeting_al-Maliki), meeting.time.future](M_NLI(Bush_meeting_al-Maliki, Bush_present_meeting_al-Maliki) == true → Temporal(M_NLI(Bush_meeting_al-Maliki, Bush_present_meeting_al-Maliki), meeting.time.future))
+21. Q[al-Maliki, M_NLI(Bush_meeting_al-Maliki, Bush_present_meeting_al-Maliki), meeting.time.future](M_NLI(Bush_meeting_al-Maliki, Bush_present_meeting_al-Maliki) == true → Temporal(M_NLI(Bush_meeting_al-Maliki, Bush_present_meeting_al-Maliki), meeting.time.future))
+22. Q[Bush, Bush.relationship.al-Maliki, al-Maliki.relationship.Bush](Bush.relationship.al-Maliki == true → Temporal(Bush.relationship.al-Maliki, al-Maliki.relationship.Bush))
+23. Q[al-Maliki, al-Maliki.relationship.Bush, Bush.relationship.al-Maliki](al-Maliki.relationship.Bush == true → Temporal(al-Maliki.relationship.Bush, Bush.relationship.al-Maliki))
+24. Q[Bush, meeting_context.political.Bush_al-Maliki, meeting_context.diplomatic.Bush_al-Maliki](meeting_context.political.Bush_al-Maliki == true → Temporal(meeting_context.political.Bush_al-Maliki, meeting_context.diplomatic.Bush_al-Maliki))
+25. Q[al-Maliki, meeting_context.political.Bush_al-Maliki, meeting_context.diplomatic.Bush_al-Maliki](meeting_context.political.Bush_al-Maliki == true → Temporal(meeting_context.political.Bush_al-Maliki, meeting_context.diplomatic.Bush_al-Maliki))
+26. Q[Bush, Bush.time

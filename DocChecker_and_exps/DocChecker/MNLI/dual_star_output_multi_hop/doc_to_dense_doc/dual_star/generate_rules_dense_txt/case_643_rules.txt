@@ -1,0 +1,65 @@
+Source: dense_text.txt (Index 643)
+S1: The ship Hikawama-maru is currently in military service.
+S2: The ship Hikawama-maru, now retired from service.
+
+Predicates:
+1. Hikawama-maru.is_in_service
+2. Hikawama-maru.is_retired
+3. M_NLI(S1, S2)
+4. Factual(Hikawama-maru, is_in_service)
+5. Factual(Hikawama-maru, is_retired)
+6. violate(Hikawama-maru, is_in_service)
+7. violate(Hikawama-maru, is_retired)
+8. military_service.status(Hikawama-maru)
+9. retirement.status(Hikawama-maru)
+10. military_service.current(Hikawama-maru)
+11. retirement.current(Hikawama-maru)
+12. "is_in_service".Hikawama-maru
+13. "is_retired".Hikawama-maru
+14. "status".Hikawama-maru
+15. "current_status".Hikawama-maru
+16. Factual(military_service, Hikawama-maru)
+17. Factual(retirement, Hikawama-maru)
+18. violate(military_service, Hikawama-maru)
+19. violate(retirement, Hikawama-maru)
+20. "military_service".Hikawama-maru
+21. "retirement".Hikawama-maru
+22. military_service.Hikawama-maru.status
+23. retirement.Hikawama-maru.status
+24. M_NLI(military_service, retirement)
+25. Factual(military_service, current)
+26. Factual(retirement, current)
+27. violate(military_service, current)
+28. violate(retirement, current)
+29. "current".Hikawama-maru
+30. "status_change".Hikawama-maru
+
+Rules:
+1. Q[The, Hikawama-maru.is_in_service, Hikawama-maru.is_retired](Hikawama-maru.is_in_service == true → Factual(Hikawama-maru, is_retired))
+2. Q[The, Hikawama-maru.is_retired, Hikawama-maru.is_in_service](Hikawama-maru.is_retired == true → Factual(Hikawama-maru, is_in_service))
+3. Q[The, military_service.current(Hikawama-maru), retirement.current(Hikawama-maru)](military_service.current(Hikawama-maru) == true → Factual(Hikawama-maru, is_retired))
+4. Q[The, retirement.current(Hikawama-maru), military_service.current(Hikawama-maru)](retirement.current(Hikawama-maru) == true → Factual(Hikawama-maru, is_in_service))
+5. Q[The, Factual(Hikawama-maru, is_in_service), Factual(Hikawama-maru, is_retired)](Factual(Hikawama-maru, is_in_service) == true → Factual(Hikawama-maru, is_retired))
+6. Q[The, Factual(Hikawama-maru, is_retired), Factual(Hikawama-maru, is_in_service)](Factual(Hikawama-maru, is_retired) == true → Factual(Hikawama-maru, is_in_service))
+7. Q[The, violate(Hikawama-maru, is_in_service), violate(Hikawama-maru, is_retired)](violate(Hikawama-maru, is_in_service) == true → Factual(Hikawama-maru, is_retired))
+8. Q[The, violate(Hikawama-maru, is_retired), violate(Hikawama-maru, is_in_service)](violate(Hikawama-maru, is_retired) == true → Factual(Hikawama-maru, is_in_service))
+9. Q[The, military_service.status(Hikawama-maru), retirement.status(Hikawama-maru)](military_service.status(Hikawama-maru) == "in_service" → Factual(Hikawama-maru, is_retired))
+10. Q[The, retirement.status(Hikawama-maru), military_service.status(Hikawama-maru)](retirement.status(Hikawama-maru) == "retired" → Factual(Hikawama-maru, is_in_service))
+11. Q[The, "is_in_service".Hikawama-maru, "is_retired".Hikawama-maru](Hikawama-maru.is_in_service == true → Factual(Hikawama-maru, is_retired))
+12. Q[The, "is_retired".Hikawama-maru, "is_in_service".Hikawama-maru](Hikawama-maru.is_retired == true → Factual(Hikawama-maru, is_in_service))
+13. Q[The, Factual(military_service, Hikawama-maru), Factual(retirement, Hikawama-maru)](Factual(military_service, Hikawama-maru) == true → Factual(Hikawama-maru, is_retired))
+14. Q[The, Factual(retirement, Hikawama-maru), Factual(military_service, Hikawama-maru)](Factual(retirement, Hikawama-maru) == true → Factual(Hikawama-maru, is_in_service))
+15. Q[The, violate(military_service, Hikawama-maru), violate(retirement, Hikawama-maru)](violate(military_service, Hikawama-maru) == true → Factual(Hikawama-maru, is_retired))
+16. Q[The, violate(retirement, Hikawama-maru), violate(military_service, Hikawama-maru)](violate(retirement, Hikawama-maru) == true → Factual(Hikawama-maru, is_in_service))
+17. Q[The, military_service.Hikawama-maru.status, retirement.Hikawama-maru.status](military_service.Hikawama-maru.status == "in_service" → Factual(Hikawama-maru, is_retired))
+18. Q[The, retirement.Hikawama-maru.status, military_service.Hikawama-maru.status](retirement.Hikawama-maru.status == "retired" → Factual(Hikawama-maru, is_in_service))
+19. Q[The, "current_status".Hikawama-maru, "status_change".Hikawama-maru](Hikawama-maru.current_status == "in_service" → Factual(Hikawama-maru, is_retired))
+20. Q[The, "status_change".Hikawama-maru, "current_status".Hikawama-maru](Hikawama-maru.status_change == "retired" → Factual(Hikawama-maru, is_in_service))
+21. Q[The, Factual(military_service, current), Factual(retirement, current)](Factual(military_service, current) == true → Factual(Hikawama-maru, is_retired))
+22. Q[The, Factual(retirement, current), Factual(military_service, current)](Factual(retirement, current) == true → Factual(Hikawama-maru, is_in_service))
+23. Q[The, violate(military_service, current), violate(retirement, current)](violate(military_service, current) == true → Factual(Hikawama-maru, is_retired))
+24. Q[The, violate(retirement, current), violate(military_service, current)](violate(retirement, current) == true → Factual(Hikawama-maru, is_in_service))
+25. Q[The, military_service.current(Hikawama-maru), "current".Hikawama-maru](military_service.current(Hikawama-maru) == true → Factual(Hikawama-maru, is_retired))
+26. Q[The, retirement.current(Hikawama-maru), "current".Hikawama-maru](retirement.current(Hikawama-maru) == true → Factual(Hikawama-maru, is_in_service))
+27. Q[The, "current".Hikawama-maru, military_service.current(Hikawama-maru)](Hikawama-maru.current == "in_service" → Factual(Hikawama-maru, is_retired))
+28. Q[The, "current".Hikawama-maru, retirement.current(Hikawama-maru)](Hikawama-maru.current == "retired" → Factual

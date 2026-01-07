@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 1262)
+S1: The boys are at the racetrack and placing bets.
+S2: A group of black boys in a classroom setting wearing white shirts, listening to a speech about UNICEF.
+
+Predicates:
+1. Boys.location
+2. Boys.activity
+3. Boys.group
+4. Boys.clothing
+5. Boys.event
+6. Classroom.location
+7. Classroom.activity
+8. Classroom.group
+9. Classroom.clothing
+10. Classroom.event
+11. Racetrack.location
+12. Racetrack.activity
+13. Racetrack.group
+14. Racetrack.event
+15. UNICEF.topic
+16. Speech.setting
+17. Speech.audience
+18. Speech.subject
+19. Boys.at_racetrack
+20. Boys.at_classroom
+21. Boys.placing_bets
+22. Boys.listening
+23. Group.black_boys
+24. Group.white_shirts
+25. Group.unicef_speech
+26. Relation(boys, racetrack)
+27. Relation(boys, classroom)
+28. M_NLI(S1, S2)
+29. violate(boys.at_racetrack, boys.at_classroom)
+30. Relation(boys.activity, classroom.activity)
+
+Rules:
+1. Q[The, boys.location, racetrack](Boys.at_racetrack == true → Relation(boys, racetrack))
+2. Q[The, boys.location, classroom](Boys.at_classroom == true → Relation(boys, classroom))
+3. Q[The, boys.activity, placing_bets](Boys.placing_bets == true → Relation(boys.activity, racetrack.activity))
+4. Q[The, boys.activity, listening](Boys.listening == true → Relation(boys.activity, classroom.activity))
+5. Q[The, boys.group, black_boys](Group.black_boys == true → Relation(boys, classroom))
+6. Q[The, boys.clothing, white_shirts](Boys.clothing == "white shirts" → Relation(boys, classroom))
+7. Q[The, boys.event, racetrack](Boys.event == "racetrack" → Relation(boys, racetrack))
+8. Q[The, boys.event, unicef_speech](Boys.event == "UNICEF speech" → Relation(boys, classroom))
+9. Q[The, classroom.location, classroom](Classroom.location == "classroom" → Relation(boys, classroom))
+10. Q[The, classroom.activity, listening](Classroom.activity == "listening" → Relation(boys.activity, classroom.activity))
+11. Q[The, classroom.group, black_boys](Classroom.group == "black boys" → Relation(boys, classroom))
+12. Q[The, classroom.clothing, white_shirts](Classroom.clothing == "white shirts" → Relation(boys, classroom))
+13. Q[The, racetrack.location, racetrack](Racetrack.location == "racetrack" → Relation(boys, racetrack))
+14. Q[The, racetrack.activity, placing_bets](Racetrack.activity == "placing bets" → Relation(boys.activity, racetrack.activity))
+15. Q[The, racetrack.group, boys](Racetrack.group == "boys" → Relation(boys, racetrack))
+16. Q[The, speech.setting, classroom](Speech.setting == "classroom" → Relation(boys, classroom))
+17. Q[The, speech.audience, boys](Speech.audience == "boys" → Relation(boys, classroom))
+18. Q[The, speech.subject, UNICEF](Speech.subject == "UNICEF" → Relation(boys, classroom))
+19. Q[The, boys.at_racetrack, true](Boys.at_racetrack == true → violate(boys.at_racetrack, boys.at_classroom))
+20. Q[The, boys.at_classroom, true](Boys.at_classroom == true → violate(boys.at_racetrack, boys.at_classroom))
+21. Q[The, boys.placing_bets, true](Boys.placing_bets == true → Relation(boys.activity, racetrack.activity))
+22. Q[The, boys.listening, true](Boys.listening == true → Relation(boys.activity, classroom.activity))
+23. Q[The, group.black_boys, true](Group.black_boys == true → Relation(boys, classroom))
+24. Q[The, group.white_shirts, true](Group.white_shirts == true → Relation(boys, classroom))
+25. Q[The, group.unicef_speech, true](Group.unicef_speech == true → Relation(boys, classroom))
+26. Q[The, violate, boys](violate(boys.at_racetrack, boys.at_classroom) → Relation(boys, classroom))
+27. Q[The, relation, boys](Relation(boys, racetrack) → violate(boys.at_racetrack, boys.at_classroom))
+28. Q[The, relation, boys](Relation(boys, classroom) → violate(boys.at_racetrack, boys.at_classroom))
+29. Q[The, boys.activity, classroom.activity](Relation(boys.activity, classroom.activity) → violate(boys.at_racetrack, boys.at_classroom))
+30. Q[The, boys.activity, racetrack.activity](Relation(boys.activity, racetrack.activity) → violate(boys.at_racetrack, boys.at_classroom))

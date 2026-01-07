@@ -1,0 +1,108 @@
+Predicates:
+1. Jackson.physical_state = "shivering"
+2. Jackson.temperature = "cold"
+3. Jackson.status = "deceased"
+4. Murray.occupation = "administrator"
+5. Randy Phillips.company = "AEG"
+6. Randy Phillips.occupation = "CEO"
+7. rehearsal.season = "summer"
+8. rehearsal.time = "two days before death"
+9. "Jackson was freezing cold during the rehearsal two days before his death.".doc_index = "22"
+10. "Jackson's death was noted in the autopsy report to have occurred in his home in Los Angeles.".doc_index = "23"
+11. "Murray administered a powerful anesthetic to help Jackson sleep during several nights before his death.".doc_index = "23"
+12. "Murray was selected, hired, and controlled by AEG.".doc_index = "18"
+13. "Randy Phillips visited Jackson's home".date = "June 18, 2009"
+14. "The company failed to provide Murray with promised equipment and a nurse.".doc_index = "20"
+15. "The company jeopardized Jackson's health and safety by assuming control over the doctor-patient relationship.".doc_index = "20"
+16. "Murray administered a powerful anesthetic to help Jackson sleep during several nights before his death.".method = "administration of anesthetic"
+17. "The company failed to provide Murray with promised equipment and a nurse.".equipment = "cardio-pulmonary resuscitation equipment"
+18. "The company failed to provide Murray with promised equipment and a nurse.".status = "failed to provide"
+19. "The company jeopardized Jackson's health and safety by assuming control over the doctor-patient relationship.".status = "jeopardized health and safety"
+20. Jackson's death.location = "home in Los Angeles"
+21. Jackson.rehearsal_time = "two days before death"
+22. Murray.controlled_by = "AEG"
+23. Randy Phillips.visited = "Jackson's home"
+24. Jackson.rehearsal_date = "two days before his death"
+25. "Randy Phillips visited Jackson's home".reason = "to meet with Jackson and Murray after the singer failed to show up for a rehearsal"
+26. "Murray was selected, hired, and controlled by AEG.".source_domain = "N/A"
+27. "The company failed to provide Murray with promised equipment and a nurse.".source_domain = "N/A"
+28. "The company jeopardized Jackson's health and safety by assuming control over the doctor-patient relationship.".source_domain = "N/A"
+29. T("Jackson was freezing cold during the rehearsal two days before his death.", "Jackson was warm during the rehearsal two days before his death.", tau)
+30. T("Murray administered a powerful anesthetic to help Jackson sleep during several nights before his death.", "Murray did not administer any anesthetic to Jackson.", tau)
+31. T("Jackson's death was noted in the autopsy report to have occurred in his home in Los Angeles.", "Jackson's death occurred in a hospital.", tau)
+32. tau(Jackson.physical_state, Jackson.temperature)
+33. tau(Murray.occupation, Randy Phillips.occupation)
+34. violate(Jackson.status, "alive")
+35. Factual(Jackson.rehearsal_time, "not two days before death")
+36. Causal("Murray administered a powerful anesthetic", "Jackson died from lack of sleep")
+37. Numeric("Jackson was freezing cold", "Jackson was not cold at all")
+38. Temporal("Jackson was freezing cold during the rehearsal", "Jackson was warm during the rehearsal")
+39. Content("Murray was hired by AEG", "Murray was not hired by AEG")
+40. Relation("Jackson's death was in Los Angeles", "Jackson's death was in New York")
+41. violate(Murray.controlled_by, "independent")
+42. Factual(Murray.occupation, "not an administrator")
+43. Causal("The company failed to provide equipment", "Jackson received all necessary equipment")
+44. Numeric("Randy Phillips visited Jackson's home", "Randy Phillips never visited Jackson's home")
+45. Temporal("Jackson's death was in 2009", "Jackson's death was in 2010")
+46. Content("Murray was a doctor", "Murray was not a doctor")
+47. Relation("Jackson was alive during the rehearsal", "Jackson was dead during the rehearsal")
+48. violate("The company provided equipment", "The company did not provide equipment")
+49. Factual("Jackson was shivering", "Jackson was not shivering")
+50. Causal("Murray's actions helped Jackson", "Murray's actions harmed Jackson")
+51. Numeric("Jackson's rehearsal was two days before death", "Jackson's rehearsal was a week before death")
+52. Temporal("Murray administered anesthetic before death", "Murray administered anesthetic after death")
+53. Content("Randy Phillips was concerned", "Randy Phillips was indifferent")
+54. Relation("Murray was hired by AEG", "Murray was fired by AEG")
+55. violate("Jackson was healthy", "Jackson was unhealthy")
+56. Factual("Jackson's death was sudden", "Jackson's death was expected")
+57. Causal("The company provided care", "The company neglected care")
+58. Numeric("Murray administered anesthetic several nights", "Murray did not administer anesthetic at all")
+59. Temporal("Randy Phillips visited on June 18, 2009", "Randy Phillips visited on June 19, 2009")
+60. Content("Jackson was excited for the rehearsal", "Jackson was anxious about the rehearsal")
+61. Relation("Murray was Jackson's doctor", "Murray was not Jackson's doctor")
+62. violate("The rehearsal was successful", "The rehearsal was unsuccessful")
+63. Factual("Jackson was in Los Angeles", "Jackson was in New York")
+64. Causal("Murray's care improved Jackson", "Murray's care worsened Jackson")
+65. Numeric("Jackson had 29 rehearsals", "Jackson had no rehearsals")
+66. Temporal("Jackson's health declined before death", "Jackson's health improved before death")
+67. Content("Randy Phillips was supportive", "Randy Phillips was critical")
+68. Relation("Murray was responsible for Jackson", "Murray was not responsible for Jackson")
+69. violate("The company acted in Jackson's best interest", "The company acted against Jackson's best interest")
+70. Factual("Jackson was alive during the rehearsal", "Jackson was dead during the rehearsal")
+71. Causal("The anesthetic helped Jackson sleep", "The anesthetic caused Jackson distress")
+72. Numeric("Jackson's rehearsal was two days before death", "Jackson's rehearsal was three days before death")
+73. Temporal("Murray administered anesthetic before the rehearsal", "Murray administered anesthetic after the rehearsal")
+74. Content("Jackson was prepared for the rehearsal", "Jackson was unprepared for the rehearsal")
+75. Relation("Randy Phillips was Jackson's manager", "Randy Phillips was not Jackson's manager")
+76. violate("Murray provided adequate care", "Murray provided inadequate care")
+77. Factual("Jackson
+violate(x0, y0)
+
+Rules:
+1. Q[Jackson, Murray](Jackson.physical_state = "shivering" ∧ Jackson.temperature = "cold" → violate(Jackson.status, "alive"))
+2. Q[Jackson, AEG](Jackson.status = "deceased" ∧ "The company jeopardized Jackson's health and safety by assuming control over the doctor-patient relationship.".status = "jeopardized health and safety" → violate(Jackson.status, "alive"))
+3. Q[Murray, AEG](Murray.occupation = "administrator" ∧ "Murray was selected, hired, and controlled by AEG." → violate(Murray.controlled_by, "independent"))
+4. Q[Randy Phillips, Jackson](Randy Phillips.company = "AEG" ∧ "Randy Phillips visited Jackson's home".date = "June 18, 2009" → violate(Randy Phillips.visited, "not visited"))
+5. Q[Jackson, Murray](Jackson.rehearsal_time = "two days before death" ∧ "Murray administered a powerful anesthetic to help Jackson sleep during several nights before his death.".method = "administration of anesthetic" → violate(Jackson.status, "alive"))
+6. Q[Murray, AEG](Murray.controlled_by = "AEG" ∧ "The company failed to provide Murray with promised equipment and a nurse.".status = "failed to provide" → violate(Murray.occupation, "not administrator"))
+7. Q[Jackson, AEG](Jackson.temperature = "cold" ∧ "Jackson was freezing cold during the rehearsal two days before his death.".doc_index = "22" ∧ "The company jeopardized Jackson's health and safety by assuming control over the doctor-patient relationship." → violate(Jackson.status, "alive"))
+8. Q[Murray, Jackson](Murray.occupation = "administrator" ∧ "Murray administered a powerful anesthetic to help Jackson sleep during several nights before his death.".doc_index = "23" ∧ Jackson.status = "deceased" → violate(Murray.controlled_by, "independent"))
+9. Q[Randy Phillips, Jackson](Randy Phillips.occupation = "CEO" ∧ "The company failed to provide Murray with promised equipment and a nurse.".equipment = "cardio-pulmonary resuscitation equipment" ∧ Jackson.status = "deceased" → violate(Randy Phillips.visited, "not visited"))
+10. Q[Jackson, Murray](Jackson.rehearsal_time = "two days before death" ∧ "Murray was selected, hired, and controlled by AEG." ∧ "The company jeopardized Jackson's health and safety by assuming control over the doctor-patient relationship." → violate(Jackson.status, "alive"))
+11. Q[Jackson, AEG](Jackson.physical_state = "shivering" ∧ "The company failed to provide Murray with promised equipment and a nurse.".status = "failed to provide" ∧ "Murray administered a powerful anesthetic to help Jackson sleep during several nights before his death." → violate(Jackson.status, "alive"))
+12. Q[Murray, AEG](Murray.controlled_by = "AEG" ∧ "The company jeopardized Jackson's health and safety by assuming control over the doctor-patient relationship." ∧ "Murray was selected, hired, and controlled by AEG." → violate(Murray.occupation, "not administrator"))
+13. Q[Jackson, Murray](Jackson.status = "deceased" ∧ "Murray administered a powerful anesthetic to help Jackson sleep during several nights before his death." → violate(Jackson.physical_state, "healthy"))
+14. Q[Randy Phillips, Jackson](Randy Phillips.visited = "Jackson's home" ∧ "The company failed to provide Murray with promised equipment and a nurse." → violate(Randy Phillips.occupation, "not CEO"))
+15. Q[Jackson, AEG](Jackson.temperature = "cold" ∧ "Jackson's death was noted in the autopsy report to have occurred in his home in Los Angeles." → violate(Jackson.status, "alive"))
+16. Q[Murray, AEG](Murray.occupation = "administrator" ∧ "The company jeopardized Jackson's health and safety by assuming control over the doctor-patient relationship." → violate(Murray.controlled_by, "independent"))
+17. Q[Jackson, Murray](Jackson.rehearsal_time = "two days before death" ∧ "Murray administered a powerful anesthetic to help Jackson sleep during several nights before his death.".method = "administration of anesthetic" → violate(Jackson.status, "alive"))
+18. Q[Randy Phillips, Jackson](Randy Phillips.company = "AEG" ∧ "Randy Phillips visited Jackson's home".date = "June 18, 2009" → violate(Randy Phillips.visited, "not visited"))
+19. Q[Jackson, AEG](Jackson.physical_state = "shivering" ∧ "The company failed to provide Murray with promised equipment and a nurse.".status = "failed to provide" ∧ Jackson.status = "deceased" → violate(Jackson.temperature, "warm"))
+20. Q[Murray, AEG](Murray.controlled_by = "AEG" ∧ "The company jeopardized Jackson's health and safety by assuming control over the doctor-patient relationship." ∧ "Murray was selected, hired, and controlled by AEG." → violate(Murray.occupation, "not administrator"))
+21. Q[Jackson, Murray](Jackson.status = "deceased" ∧ "Murray administered a powerful anesthetic to help Jackson sleep during several nights before his death." → violate(Jackson.physical_state, "healthy"))
+22. Q[Randy Phillips, Jackson](Randy Phillips.visited = "Jackson's home" ∧ "The company failed to provide Murray with promised equipment and a nurse." → violate(Randy Phillips.occupation, "not CEO"))
+23. Q[Jackson, AEG](Jackson.temperature = "cold" ∧ "Jackson's death was noted in the autopsy report to have occurred in his home in Los Angeles." → violate(Jackson.status, "alive"))
+24. Q[Murray, AEG](Murray.occupation = "administrator" ∧ "The company jeopardized Jackson's health and safety by assuming control over the doctor-patient relationship." → violate(Murray.controlled_by, "independent"))
+25. Q[Jackson, Murray](Jackson.rehearsal_time = "two days before death" ∧ "Murray administered a powerful anesthetic to help Jackson sleep during several nights before his death.".method = "administration of anesthetic" → violate(Jackson.status, "alive"))
+26. Q[Randy Phillips, Jackson](Randy Phillips.company = "AEG" ∧ "Randy Phillips visited Jackson's home".date = "June 18, 2009" → violate(Randy Phillips.visited, "not visited"))
+27. Q[Jackson, AEG](Jackson.physical_state = "shivering" ∧ "The company failed to provide Murray with promised equipment and a nurse.".status = "failed to provide" ∧ Jackson.status = "deceased" → violate(Jackson.temperature

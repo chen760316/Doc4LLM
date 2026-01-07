@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 37)
+S1: Receiving Party shall not disclose the fact that Agreement was agreed or negotiated.
+S2: the term 'Confidential information' for the purpose of this Agreement shall mean the said Submissions and each concept, idea, game-play mechanic, set design, business model, and/or other element contained therein.
+
+Predicates:
+1. ReceivingParty.disclosure_prohibition
+2. Agreement.negotiation_status
+3. ConfidentialInformation.definition
+4. Submissions.included_elements
+5. ConfidentialInformation.includes(Submission)
+6. ConfidentialInformation.includes(concept)
+7. ConfidentialInformation.includes(idea)
+8. ConfidentialInformation.includes(game_play_mechanic)
+9. ConfidentialInformation.includes(set_design)
+10. ConfidentialInformation.includes(business_model)
+11. ReceivingParty.violates(disclosure_prohibition, Agreement)
+12. Agreement.contains(ConfidentialInformation)
+13. ReceivingParty.not_disclose(Agreement)
+14. Agreement.terms_confidentiality
+15. ConfidentialInformation.relation_to(Agreement)
+16. ReceivingParty.knowledge_of(ConfidentialInformation)
+17. Agreement.negotiated_terms
+18. Submissions.include(idea)
+19. Submissions.include(game_play_mechanic)
+20. Submissions.include(set_design)
+21. Submissions.include(business_model)
+22. ReceivingParty.acknowledges(ConfidentialInformation)
+23. ConfidentialInformation.restricted_access
+24. Agreement.terms_of_use
+25. ReceivingParty.bound_by(confidentiality_clause)
+26. ConfidentialInformation.pertains_to(Agreement)
+27. Agreement.prohibits(disclosure_of_facts)
+28. ReceivingParty.may_not(disclose(Agreement))
+29. ConfidentialInformation.is_sensitive
+30. Agreement.requires(ConfidentialInformation_protection)
+
+Rules:
+1. Q[Receiving, ReceivingParty.disclosure_prohibition == true, Agreement.negotiation_status == true](ReceivingParty.not_disclose(Agreement) → Negation(ReceivingParty, Agreement))
+2. Q[Receiving, ReceivingParty.disclosure_prohibition == true, ConfidentialInformation.definition == true](ReceivingParty.not_disclose(Agreement) → Negation(ReceivingParty, Agreement))
+3. Q[Receiving, Agreement.negotiation_status == true, ConfidentialInformation.includes(Submission) == true](Agreement.contains(ConfidentialInformation) → Negation(ReceivingParty, Agreement))
+4. Q[Receiving, Agreement.terms_confidentiality == true, ConfidentialInformation.includes(concept) == true](Agreement.prohibits(disclosure_of_facts) → Negation(ReceivingParty, Agreement))
+5. Q[Receiving, Agreement.terms_confidentiality == true, ConfidentialInformation.includes(idea) == true](Agreement.prohibits(disclosure_of_facts) → Negation(ReceivingParty, Agreement))
+6. Q[Receiving, Agreement.terms_confidentiality == true, ConfidentialInformation.includes(game_play_mechanic) == true](Agreement.prohibits(disclosure_of_facts) → Negation(ReceivingParty, Agreement))
+7. Q[Receiving, Agreement.terms_confidentiality == true, ConfidentialInformation.includes(set_design) == true](Agreement.prohibits(disclosure_of_facts) → Negation(ReceivingParty, Agreement))
+8. Q[Receiving, Agreement.terms_confidentiality == true, ConfidentialInformation.includes(business_model) == true](Agreement.prohibits(disclosure_of_facts) → Negation(ReceivingParty, Agreement))
+9. Q[Receiving, ReceivingParty.violates(disclosure_prohibition, Agreement) == true, ConfidentialInformation.relation_to(Agreement) == true](ReceivingParty.violates(disclosure_prohibition, Agreement) → Negation(ReceivingParty, Agreement))
+10. Q[Receiving, ReceivingParty.knowledge_of(ConfidentialInformation) == true, Agreement.negotiated_terms == true](ReceivingParty.acknowledges(ConfidentialInformation) → Negation(ReceivingParty, Agreement))
+11. Q[Receiving, Agreement.requires(ConfidentialInformation_protection) == true, ConfidentialInformation.is_sensitive == true](Agreement.requires(ConfidentialInformation_protection) → Negation(ReceivingParty, Agreement))
+12. Q[Receiving, Agreement.contains(ConfidentialInformation) == true, Submissions.include(idea) == true](Agreement.contains(ConfidentialInformation) → Negation(ReceivingParty, Agreement))
+13. Q[Receiving, Agreement.contains(ConfidentialInformation) == true, Submissions.include(game_play_mechanic) == true](Agreement.contains(ConfidentialInformation) → Negation(ReceivingParty, Agreement))
+14. Q[Receiving, Agreement.contains(ConfidentialInformation) == true, Submissions.include(set_design) == true](Agreement.contains(ConfidentialInformation) → Negation(ReceivingParty, Agreement))
+15. Q[Receiving, Agreement.contains(ConfidentialInformation) == true, Submissions.include(business_model) == true](Agreement.contains(ConfidentialInformation) → Negation(ReceivingParty, Agreement))
+16. Q[Receiving, ReceivingParty.bound_by(confidentiality_clause) == true, ConfidentialInformation.pertains_to(Agreement) == true](ReceivingParty.bound_by(confidentiality_clause) → Negation(ReceivingParty, Agreement))
+17. Q[Receiving, ConfidentialInformation.restricted_access == true, Agreement.terms_of_use == true](ConfidentialInformation.restricted_access → Negation(ReceivingParty, Agreement))
+18. Q[Receiving, ReceivingParty.may_not(disclose(Agreement)) == true, Agreement.terms_confidentiality == true](ReceivingParty.may_not(disclose(Agreement)) → Negation(ReceivingParty, Agreement))
+19. Q[Receiving, ConfidentialInformation.definition == true, Agreement.terms_confidentiality == true](ConfidentialInformation.definition → Negation(ReceivingParty, Agreement))
+20. Q[Receiving, Agreement.negotiated_terms == true, ConfidentialInformation.includes(Submission) == true](Agreement.negotiated_terms → Negation(ReceivingParty, Agreement))
+21. Q[Receiving, Agreement.terms_confidentiality == true, ConfidentialInformation.includes(concept) == true](Agreement.terms_confidentiality → Negation(ReceivingParty, Agreement))
+22. Q[Receiving, Agreement.terms_confidentiality == true, ConfidentialInformation.includes(idea) == true](Agreement.terms_confidentiality → Negation(ReceivingParty, Agreement))
+23. Q[Receiving, Agreement.terms_confidentiality == true, ConfidentialInformation.includes(game_play_mechanic) == true](Agreement.terms_confidentiality → Negation(ReceivingParty, Agreement))
+24. Q[Receiving, Agreement.terms_confidentiality == true, ConfidentialInformation.includes(set_design) == true](Agreement.terms_confidentiality → Negation(ReceivingParty, Agreement))
+25. Q[Receiving, Agreement.terms_confidentiality == true, ConfidentialInformation.includes(business_model) == true](Agreement.terms_confidentiality → Negation(ReceivingParty, Agreement))
+26. Q[Receiving, ReceivingParty.violates(disclosure_prohibition, Agreement) == true, ConfidentialInformation.is_sensitive == true](ReceivingParty.violates(disclosure_prohibition, Agreement) → Negation(ReceivingParty, Agreement))
+27. Q[Receiving, ReceivingParty.knowledge_of(ConfidentialInformation) == true, Agreement.requires(ConfidentialInformation_protection) == true](ReceivingParty.knowledge_of(ConfidentialInformation) → Negation(ReceivingParty, Agreement))
+28. Q[Receiving, Agreement.negotiated_terms == true, ConfidentialInformation.relation_to(Agreement) == true](Agreement.negotiated_terms → Negation(ReceivingParty, Agreement))
+29. Q[Receiving, Agreement.prohibits(disclosure_of_facts) == true, ConfidentialInformation.definition == true](Agreement.prohibits(disclosure_of_facts) → Negation(ReceivingParty, Agreement))
+30. Q[Receiving, ReceivingParty.bound_by(confidentiality_clause) == true, ConfidentialInformation.includes(Submission) == true](ReceivingParty.bound_by(confidentiality_clause) → Negation(ReceivingParty, Agreement))

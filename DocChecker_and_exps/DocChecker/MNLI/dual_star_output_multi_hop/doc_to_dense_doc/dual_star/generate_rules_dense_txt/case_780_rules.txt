@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 780)
+S1: I don't really like Terminator movies.
+S2: And not really interested in some of the like the Terminator or some of the Schwarzenegger stuff.
+
+Predicates:
+1. Movie.Terminator.dislike
+2. Movie.Terminator.interest
+3. Person.speaker.dislike
+4. Person.speaker.interest
+5. Sentiment.dislike.Terminator
+6. Sentiment.lack_of_interest.Terminator
+7. Sentiment.dislike.Schwarzenegger
+8. Sentiment.lack_of_interest.Schwarzenegger
+9. Reason.dislike.Terminator
+10. Reason.lack_of_interest.Terminator
+11. Reason.dislike.Schwarzenegger
+12. Reason.lack_of_interest.Schwarzenegger
+13. M_NLI(S1, S2)
+14. Negation(dislike, interest)
+15. violate(dislike, interest)
+16. Movie.genre.Terminator
+17. Movie.actor.Schwarzenegger
+18. Person.preference.Terminator
+19. Person.preference.Schwarzenegger
+20. Sentiment.preference.Terminator
+21. Sentiment.preference.Schwarzenegger
+22. Movie.series.Terminator
+23. Movie.series.Schwarzenegger
+24. Person.opinion.Terminator
+25. Person.opinion.Schwarzenegger
+26. Sentiment.negative.Terminator
+27. Sentiment.negative.Schwarzenegger
+28. Movie.relation.Terminator
+29. Movie.relation.Schwarzenegger
+30. Person.attitude.Terminator
+
+Rules:
+1. Q[don, Movie.Terminator.dislike, Movie.Terminator.interest](Person.speaker.dislike == true → Negation(don, interest))
+2. Q[don, Sentiment.dislike.Terminator, Sentiment.lack_of_interest.Terminator](Reason.dislike.Terminator == true → Negation(don, interest))
+3. Q[don, Person.preference.Terminator, Person.opinion.Terminator](Person.speaker.dislike == true → Negation(don, interest))
+4. Q[don, Sentiment.negative.Terminator, Sentiment.lack_of_interest.Terminator](Sentiment.dislike.Terminator == true → Negation(don, interest))
+5. Q[don, Movie.Terminator.interest, Sentiment.lack_of_interest.Terminator](Movie.Terminator.interest == false → Negation(don, interest))
+6. Q[don, Person.attitude.Terminator, Sentiment.lack_of_interest.Terminator](Person.speaker.dislike == true → Negation(don, interest))
+7. Q[don, Movie.actor.Schwarzenegger, Sentiment.lack_of_interest.Schwarzenegger](Sentiment.dislike.Schwarzenegger == true → Negation(don, interest))
+8. Q[don, Movie.series.Terminator, Movie.series.Schwarzenegger](Person.speaker.dislike == true → Negation(don, interest))
+9. Q[don, Reason.dislike.Terminator, Reason.lack_of_interest.Terminator](Reason.dislike.Terminator == true → Negation(don, interest))
+10. Q[don, Sentiment.preference.Terminator, Sentiment.lack_of_interest.Terminator](Sentiment.dislike.Terminator == true → Negation(don, interest))
+11. Q[don, Movie.Terminator.dislike, Sentiment.lack_of_interest.Terminator](Movie.Terminator.dislike == true → Negation(don, interest))
+12. Q[don, Person.preference.Schwarzenegger, Sentiment.lack_of_interest.Schwarzenegger](Sentiment.dislike.Schwarzenegger == true → Negation(don, interest))
+13. Q[don, Movie.genre.Terminator, Sentiment.lack_of_interest.Terminator](Person.speaker.dislike == true → Negation(don, interest))
+14. Q[don, Sentiment.negative.Schwarzenegger, Sentiment.lack_of_interest.Schwarzenegger](Sentiment.dislike.Schwarzenegger == true → Negation(don, interest))
+15. Q[don, Movie.relation.Terminator, Sentiment.lack_of_interest.Terminator](Person.speaker.dislike == true → Negation(don, interest))
+16. Q[don, Person.opinion.Schwarzenegger, Sentiment.lack_of_interest.Schwarzenegger](Sentiment.dislike.Schwarzenegger == true → Negation(don, interest))
+17. Q[don, Movie.Terminator.interest, Sentiment.dislike.Terminator](Sentiment.lack_of_interest.Terminator == true → Negation(don, interest))
+18. Q[don, Person.attitude.Schwarzenegger, Sentiment.lack_of_interest.Schwarzenegger](Sentiment.dislike.Schwarzenegger == true → Negation(don, interest))
+19. Q[don, Movie.series.Schwarzenegger, Sentiment.lack_of_interest.Schwarzenegger](Person.speaker.dislike == true → Negation(don, interest))
+20. Q[don, Movie.Terminator.dislike, Sentiment.negative.Terminator](Sentiment.lack_of_interest.Terminator == true → Negation(don, interest))
+21. Q[don, Person.preference.Terminator, Sentiment.lack_of_interest.Terminator](Person.speaker.dislike == true → Negation(don, interest))
+22. Q[don, Movie.actor.Terminator, Sentiment.lack_of_interest.Terminator](Person.speaker.dislike == true → Negation(don, interest))
+23. Q[don, Movie.relation.Schwarzenegger, Sentiment.lack_of_interest.Schwarzenegger](Sentiment.dislike.Schwarzenegger == true → Negation(don, interest))
+24. Q[don, Sentiment.negative.Terminator, Sentiment.preference.Terminator](Sentiment.lack_of_interest.Terminator == true → Negation(don, interest))
+25. Q[don, Person.opinion.Terminator, Sentiment.lack_of_interest.Terminator](Person.speaker.dislike == true → Negation(don, interest))
+26. Q[don, Movie.genre.Schwarzenegger, Sentiment.lack_of_interest.Schwarzenegger](Sentiment.dislike.Schwarzenegger == true → Negation(don, interest))
+27. Q[don, Movie.Terminator.interest, Sentiment.negative.Terminator](Sentiment.lack_of_interest.Terminator == true → Negation(don, interest))
+28. Q[don, Person.attitude.Terminator, Sentiment.negative.Terminator](Person.speaker.dislike == true → Negation(don, interest))
+29. Q[don, Movie.series.Terminator, Sentiment.negative.Terminator](Person.speaker.dislike == true → Negation(don, interest))
+30. Q[don, Sentiment.preference.Schwarzenegger, Sentiment.negative.Schwarzenegger](Sentiment.dislike.Schwarzenegger == true → Negation(don, interest))

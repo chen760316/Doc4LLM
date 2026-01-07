@@ -1,0 +1,58 @@
+Source: dense_text.txt (Index 379)
+S1: Flaxseed oil is cold-pressed to retain nutritional value, while linseed oil often undergoes a heat treatment process, which can alter its nutritional profile.
+S2: Linseed oil is often subjected to a refining process that strips it of these beneficial compounds.
+
+Predicates:
+1. Flaxseed_oil.is_cold_pressed
+2. Flaxseed_oil.retains_nutritional_value
+3. Linseed_oil.undergoes_heat_treatment
+4. Linseed_oil.alters_nutritional_profile
+5. Linseed_oil.is_subject_to_refining_process
+6. Linseed_oil.strips_beneficial_compounds
+7. Heat_treatment.alters_nutritional_profile_of(linseed_oil)
+8. Refining_process.strips_beneficial_compounds_from(linseed_oil)
+9. Cold_pressed_process.retains_nutritional_value_of(flaxseed_oil)
+10. Nutritional_profile.is_different_between(flaxseed_oil, linseed_oil)
+11. Beneficial_compounds.are_present_in(flaxseed_oil)
+12. Beneficial_compounds.are_absent_in(linseed_oil)
+13. Nutritional_value.is_higher_in(flaxseed_oil)
+14. Nutritional_value.is_lower_in(linseed_oil)
+15. Heat_treatment.is_a_cause_of(altered_nutritional_profile)
+16. Refining_process.is_a_cause_of(stripped_beneficial_compounds)
+17. Flaxseed_oil.has_higher_nutritional_value_than(linseed_oil)
+18. Linseed_oil.has_lower_nutritional_value_than(flaxseed_oil)
+19. Cold_pressed_oils.retains_more_nutrients
+20. Heat_treated_oils.lose_nutrients
+21. Nutritional_profile.is_affected_by(heat_treatment)
+22. Nutritional_profile.is_affected_by(refining_process)
+23. Flaxseed_oil.is_preferred_for(nutritional_value)
+24. Linseed_oil.is_less_preferred_for(nutritional_value)
+25. Nutritional_value.is_important_for(health)
+26. Heat_treatment.can_damage(nutritional_value)
+27. Refining_process.can_damage(nutritional_value)
+28. Flaxseed_oil.is_a_source_of(beneficial_compounds)
+29. Linseed_oil.is_a_source_of(fewer_beneficial_compounds)
+30. Nutritional_value.is_critical_for(diet)
+
+Rules:
+1. Q[Flaxseed, Linseed_oil.undergoes_heat_treatment, Linseed_oil.alters_nutritional_profile](Flaxseed_oil.is_cold_pressed → Causal(Linseed_oil.undergoes_heat_treatment, Linseed_oil.alters_nutritional_profile))
+2. Q[Linseed, Linseed_oil.is_subject_to_refining_process, Linseed_oil.strips_beneficial_compounds](Linseed_oil.undergoes_heat_treatment → Causal(Linseed_oil.is_subject_to_refining_process, Linseed_oil.strips_beneficial_compounds))
+3. Q[Linseed, Linseed_oil.undergoes_heat_treatment, Nutritional_profile.is_affected_by(heat_treatment)](Linseed_oil.is_subject_to_refining_process → Causal(Linseed_oil.undergoes_heat_treatment, Nutritional_profile.is_affected_by(heat_treatment)))
+4. Q[Linseed, Linseed_oil.strips_beneficial_compounds, Nutritional_profile.is_affected_by(refining_process)](Linseed_oil.undergoes_heat_treatment → Causal(Linseed_oil.strips_beneficial_compounds, Nutritional_profile.is_affected_by(refining_process)))
+5. Q[Flaxseed, Flaxseed_oil.retains_nutritional_value, Nutritional_value.is_higher_in(flaxseed_oil)](Flaxseed_oil.is_cold_pressed → Causal(Flaxseed_oil.retains_nutritional_value, Nutritional_value.is_higher_in(flaxseed_oil)))
+6. Q[Linseed, Linseed_oil.alters_nutritional_profile, Nutritional_value.is_lower_in(linseed_oil)](Linseed_oil.undergoes_heat_treatment → Causal(Linseed_oil.alters_nutritional_profile, Nutritional_value.is_lower_in(linseed_oil)))
+7. Q[Linseed, Linseed_oil.is_subject_to_refining_process, Beneficial_compounds.are_absent_in(linseed_oil)](Linseed_oil.strips_beneficial_compounds → Causal(Linseed_oil.is_subject_to_refining_process, Beneficial_compounds.are_absent_in(linseed_oil)))
+8. Q[Flaxseed, Flaxseed_oil.retains_nutritional_value, Nutritional_profile.is_different_between(flaxseed_oil, linseed_oil)](Flaxseed_oil.is_cold_pressed → Causal(Flaxseed_oil.retains_nutritional_value, Nutritional_profile.is_different_between(flaxseed_oil, linseed_oil)))
+9. Q[Linseed, Linseed_oil.strips_beneficial_compounds, Linseed_oil.has_lower_nutritional_value_than(flaxseed_oil)](Linseed_oil.is_subject_to_refining_process → Causal(Linseed_oil.strips_beneficial_compounds, Linseed_oil.has_lower_nutritional_value_than(flaxseed_oil)))
+10. Q[Flaxseed, Flaxseed_oil.is_a_source_of(beneficial_compounds), Nutritional_value.is_important_for(health)](Flaxseed_oil.retains_nutritional_value → Causal(Flaxseed_oil.is_a_source_of(beneficial_compounds), Nutritional_value.is_important_for(health)))
+11. Q[Linseed, Linseed_oil.undergoes_heat_treatment, Heat_treatment.can_damage(nutritional_value)](Linseed_oil.alters_nutritional_profile → Causal(Linseed_oil.undergoes_heat_treatment, Heat_treatment.can_damage(nutritional_value)))
+12. Q[Linseed, Linseed_oil.is_subject_to_refining_process, Refining_process.can_damage(nutritional_value)](Linseed_oil.strips_beneficial_compounds → Causal(Linseed_oil.is_subject_to_refining_process, Refining_process.can_damage(nutritional_value)))
+13. Q[Flaxseed, Flaxseed_oil.has_higher_nutritional_value_than(linseed_oil), Nutritional_value.is_critical_for(diet)](Flaxseed_oil.retains_nutritional_value → Causal(Flaxseed_oil.has_higher_nutritional_value_than(linseed_oil), Nutritional_value.is_critical_for(diet)))
+14. Q[Linseed, Linseed_oil.alters_nutritional_profile, Nutritional_profile.is_affected_by(heat_treatment)](Linseed_oil.undergoes_heat_treatment → Causal(Linseed_oil.alters_nutritional_profile, Nutritional_profile.is_affected_by(heat_treatment)))
+15. Q[Flaxseed, Flaxseed_oil.retains_nutritional_value, Nutritional_value.is_higher_in(flaxseed_oil)](Flaxseed_oil.is_cold_pressed → Causal(Flaxseed_oil.retains_nutritional_value, Nutritional_value.is_higher_in(flaxseed_oil)))
+16. Q[Linseed, Linseed_oil.strips_beneficial_compounds, Nutritional_value.is_lower_in(linseed_oil)](Linseed_oil.is_subject_to_refining_process → Causal(Linseed_oil.strips_beneficial_compounds, Nutritional_value.is_lower_in(linseed_oil)))
+17. Q[Flaxseed, Flaxseed_oil.is_a_source_of(beneficial_compounds), Beneficial_compounds.are_present_in(flaxseed_oil)](Flaxseed_oil.retains_nutritional_value → Causal(Flaxseed_oil.is_a_source_of(beneficial_compounds), Beneficial_compounds.are_present_in(flaxseed_oil)))
+18. Q[Linseed, Linseed_oil.undergoes_heat_treatment, Heat_treatment.alters_nutritional_profile_of(linseed_oil)](Linseed_oil.alters_nutritional_profile → Causal(Linseed_oil.undergoes_heat_treatment, Heat_treatment.alters_nutritional_profile_of(linseed_oil)))
+19. Q[Flaxseed, Flaxseed_oil.retains_nutritional_value, Nutritional_profile.is_different_between(flaxseed_oil, linseed_oil)](Flaxseed_oil.is_cold_pressed → Causal(Flaxseed_oil.retains_nutritional_value, Nutritional_profile.is_different_between(flaxseed_oil, linseed_oil)))
+20. Q[Linseed, Linseed_oil.is_subject_to_refining_process, Linseed_oil.has_lower_nutritional_value_than(flaxseed_oil)](Linseed_oil.strips_beneficial_compounds → Causal(Linseed_oil.is_subject_to_refining_process, Linseed_oil.has_lower_nutritional_value_than(flaxseed_oil)))
+21. Q[Flaxseed, Flaxseed_oil.is_a_source_of(beneficial

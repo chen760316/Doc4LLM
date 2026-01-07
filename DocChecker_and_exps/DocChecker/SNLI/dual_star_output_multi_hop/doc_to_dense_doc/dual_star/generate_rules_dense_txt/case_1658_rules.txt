@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 1658)
+S1: A dog is chasing his tail.
+S2: A dog runs through the grass.
+
+Predicates:
+1. Dog.chasing_tail
+2. Dog.running
+3. Chasing.tail
+4. Running.through_grass
+5. Dog.position.stationary
+6. Dog.position.moving
+7. Chasing.implies.stationary
+8. Running.implies.movement
+9. Tail.is_chased_by
+10. Grass.is_run_through_by
+11. Dog.action.chasing
+12. Dog.action.running
+13. Chasing.relationship_with.tail
+14. Running.relationship_with.grass
+15. Dog.state.stationary
+16. Dog.state.moving
+17. Chasing.action.dog
+18. Running.action.dog
+19. Tail.is_moved_by
+20. Grass.is_affected_by
+21. Chasing.implies.movement
+22. Running.implies.position_change
+23. Dog.activity.chasing
+24. Dog.activity.running
+25. Chasing.dog_behavior
+26. Running.dog_behavior
+27. Chasing.tail_relationship
+28. Running.grass_relationship
+29. Dog.chasing_relationship
+30. Dog.running_relationship
+
+Rules:
+1. Q[dog, Dog.chasing_tail == true, Dog.position.stationary == true](Dog.chasing_tail → Causal(Dog, Dog.position.stationary))
+2. Q[dog, Dog.running == true, Dog.position.moving == true](Dog.running → Causal(Dog, Dog.position.moving))
+3. Q[dog, Chasing.implies.stationary == true, Running.implies.movement == true](Chasing.implies.stationary → Causal(Chasing, Running))
+4. Q[dog, Dog.action.chasing == true, Dog.state.stationary == true](Dog.action.chasing → Causal(Dog, Dog.state.stationary))
+5. Q[dog, Dog.action.running == true, Dog.state.moving == true](Dog.action.running → Causal(Dog, Dog.state.moving))
+6. Q[dog, Chasing.relationship_with.tail == true, Running.relationship_with.grass == true](Chasing.relationship_with.tail → Causal(Chasing, Running))
+7. Q[dog, Chasing.implies.movement == false, Running.implies.position_change == true](Chasing.implies.movement → Causal(Chasing, Running))
+8. Q[dog, Dog.activity.chasing == true, Dog.position.stationary == true](Dog.activity.chasing → Causal(Dog, Dog.position.stationary))
+9. Q[dog, Dog.activity.running == true, Dog.position.moving == true](Dog.activity.running → Causal(Dog, Dog.position.moving))
+10. Q[dog, Chasing.tail_relationship == true, Running.grass_relationship == true](Chasing.tail_relationship → Causal(Chasing, Running))
+11. Q[dog, Dog.chasing_relationship == true, Dog.running_relationship == true](Dog.chasing_relationship → Causal(Dog, Dog.running_relationship))
+12. Q[dog, Tail.is_chased_by == true, Grass.is_run_through_by == true](Tail.is_chased_by → Causal(Tail, Grass.is_run_through_by))
+13. Q[dog, Dog.position.stationary == true, Dog.position.moving == false](Dog.position.stationary → Causal(Dog, Dog.position.moving))
+14. Q[dog, Chasing.implies.stationary == true, Running.implies.movement == true](Chasing.implies.stationary → Causal(Chasing, Running))
+15. Q[dog, Dog.state.stationary == true, Dog.state.moving == false](Dog.state.stationary → Causal(Dog, Dog.state.moving))
+16. Q[dog, Chasing.action.dog == true, Running.action.dog == true](Chasing.action.dog → Causal(Chasing, Running))
+17. Q[dog, Dog.chasing_tail == true, Dog.running == false](Dog.chasing_tail → Causal(Dog, Dog.running))
+18. Q[dog, Dog.running == true, Dog.chasing_tail == false](Dog.running → Causal(Dog, Dog.chasing_tail))
+19. Q[dog, Chasing.implies.movement == false, Running.implies.movement == true](Chasing.implies.movement → Causal(Chasing, Running))
+20. Q[dog, Dog.activity.chasing == true, Dog.activity.running == false](Dog.activity.chasing → Causal(Dog, Dog.activity.running))
+21. Q[dog, Dog.action.chasing == true, Dog.action.running == false](Dog.action.chasing → Causal(Dog, Dog.action.running))
+22. Q[dog, Chasing.tail_relationship == true, Running.grass_relationship == false](Chasing.tail_relationship → Causal(Chasing, Running))
+23. Q[dog, Dog.state.stationary == true, Dog.activity.running == false](Dog.state.stationary → Causal(Dog, Dog.activity.running))
+24. Q[dog, Dog.position.moving == true, Dog.position.stationary == false](Dog.position.moving → Causal(Dog, Dog.position.stationary))
+25. Q[dog, Chasing.implies.stationary == true, Running.implies.position_change == true](Chasing.implies.stationary → Causal(Chasing, Running))
+26. Q[dog, Dog.chasing_relationship == true, Dog.running_relationship == false](Dog.chasing_relationship → Causal(Dog, Dog.running_relationship))
+27. Q[dog, Dog.action.running == true, Dog.action.chasing == false](Dog.action.running → Causal(Dog, Dog.action.chasing))
+28. Q[dog, Chasing.implies.movement == false, Running.implies.movement == true](Chasing.implies.movement → Causal(Chasing, Running))
+29. Q[dog, Dog.activity.running == true, Dog.activity.chasing == false](Dog.activity.running → Causal(Dog, Dog.activity.chasing))
+30. Q[dog, Dog.position.stationary == true, Dog.position.moving == false](Dog.position.stationary → Causal(Dog, Dog.position.moving))

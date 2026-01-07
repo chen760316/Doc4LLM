@@ -1,0 +1,104 @@
+Predicates:
+Emily Clark.age != 42
+Emily Clark.age < 47
+Emily Clark.age <= 42
+Emily Clark.age = 42
+Emily Clark.age > 37
+Emily Clark.age >= 42
+Emily Clark.country_of_citizenship != "United Kingdom"
+Emily Clark.country_of_citizenship = "United Kingdom"
+Emily Clark.occupation != "writer"
+Emily Clark.occupation = "writer"
+John Smith__S0.age != 45
+John Smith__S0.age != Emily Clark.age
+John Smith__S0.age != John Smith__S5.age
+John Smith__S0.age < 50
+John Smith__S0.age <= 45
+John Smith__S0.age = 45
+John Smith__S0.age > 40
+John Smith__S0.age >= 45
+John Smith__S0.educated_at != "University of Glasgow"
+John Smith__S0.educated_at != John Smith__S5.educated_at
+John Smith__S0.educated_at = "University of Glasgow"
+John Smith__S0.location != "San Francisco"
+John Smith__S0.location = "San Francisco"
+John Smith__S0.nationality != "American"
+John Smith__S0.nationality = "American"
+John Smith__S0.occupation != "lawyer"
+John Smith__S0.occupation != Emily Clark.occupation
+John Smith__S0.occupation != John Smith__S5.occupation
+John Smith__S0.occupation = "lawyer"
+John Smith__S0.status != "married"
+John Smith__S0.status = "married"
+John Smith__S0_John Smith__S5.relationship != "same_entity"
+John Smith__S0_John Smith__S5.relationship = "same_entity"
+John Smith__S0_TechNova Inc..relationship != "John Smith works at TechNova Inc."
+John Smith__S0_TechNova Inc..relationship != John Smith__S0_John Smith__S5.relationship
+John Smith__S0_TechNova Inc..relationship != John Smith__S5_Emily Clark.relationship
+John Smith__S0_TechNova Inc..relationship = "John Smith works at TechNova Inc."
+John Smith__S0_TechNova Inc..since != 2018
+John Smith__S0_TechNova Inc..since < 2019
+John Smith__S0_TechNova Inc..since <= 2018
+John Smith__S0_TechNova Inc..since = 2018
+John Smith__S0_TechNova Inc..since > 2017
+John Smith__S0_TechNova Inc..since >= 2018
+John Smith__S5.age != 45
+John Smith__S5.age != Emily Clark.age
+John Smith__S5.age < 50
+John Smith__S5.age <= 45
+John Smith__S5.age = 45
+John Smith__S5.age > 40
+John Smith__S5.age >= 45
+John Smith__S5.educated_at != "University of Glasgow"
+John Smith__S5.educated_at = "University of Glasgow"
+John Smith__S5.occupation != "lawyer"
+John Smith__S5.occupation != Emily Clark.occupation
+John Smith__S5.occupation = "lawyer"
+John Smith__S5_Emily Clark.location != "townhouse near Golden Gate Park"
+John Smith__S5_Emily Clark.location = "townhouse near Golden Gate Park"
+John Smith__S5_Emily Clark.relationship != "John Smith and Emily Clark live together"
+John Smith__S5_Emily Clark.relationship != John Smith__S0_John Smith__S5.relationship
+John Smith__S5_Emily Clark.relationship = "John Smith and Emily Clark live together"
+M_NLI(John Smith__S0.attrs, Emily Clark.attrs)
+M_NLI(John Smith__S0.attrs, TechNova Inc..attrs)
+M_NLI(John Smith__S5.attrs, Emily Clark.attrs)
+M_NLI(TechNova Inc..attrs, Emily Clark.attrs)
+M_NLI(TechNova Inc..attrs, John Smith__S5.attrs)
+M_NLU(John Smith__S0.attrs, Emily Clark.attrs)
+M_NLU(John Smith__S0.attrs, TechNova Inc..attrs)
+M_NLU(John Smith__S5.attrs, Emily Clark.attrs)
+M_NLU(TechNova Inc..attrs, Emily Clark.attrs)
+M_NLU(TechNova Inc..attrs, John Smith__S5.attrs)
+M_TEM(John Smith__S0.attrs, Emily Clark.attrs)
+M_TEM(John Smith__S0.attrs, TechNova Inc..attrs)
+M_TEM(John Smith__S5.attrs, Emily Clark.attrs)
+M_TEM(TechNova Inc..attrs, Emily Clark.attrs)
+M_TEM(TechNova Inc..attrs, John Smith__S5.attrs)
+TechNova Inc..founded != 2012
+TechNova Inc..founded < 2017
+TechNova Inc..founded <= 2012
+TechNova Inc..founded = 2012
+TechNova Inc..founded > 2007
+TechNova Inc..founded >= 2012
+TechNova Inc..industry != "AI research"
+TechNova Inc..industry = "AI research"
+contra("John Smith", "In 2024, J")
+contra("John Smith", "abs, a startu")
+contra("John Smith", "n collabora")
+contra("TechNova Inc.", "In 2024, J")
+contra("TechNova Inc.", "n collabora")
+linkage(John Smith__S0, John Smith__S5)
+linkage(John Smith__S0, TechNova Inc.)
+linkage(John Smith__S5, Emily Clark)
+
+Rules:
+Q[John Smith__S0,John Smith__S5] (John Smith__S0.occupation != "lawyer" ∧ TechNova Inc..founded < 2017 → TechNova Inc..founded < 2017)
+Q[John Smith__S0,John Smith__S5] (M_NLI(John Smith__S5.attrs, Emily Clark.attrs) ∧ contra("John Smith", "n collabora") → contra("John Smith", "n collabora"))
+Q[John Smith__S0,John Smith__S5] (John Smith__S5_Emily Clark.location != "townhouse near Golden Gate Park" ∧ linkage(John Smith__S0, TechNova Inc.) → linkage(John Smith__S0, TechNova Inc.))
+Q[John Smith__S0,John Smith__S5] (John Smith__S0.location = "San Francisco" ∧ M_TEM(TechNova Inc..attrs, John Smith__S5.attrs) → M_TEM(TechNova Inc..attrs, John Smith__S5.attrs))
+Q[John Smith__S0,John Smith__S5] (Emily Clark.occupation != "writer" ∧ John Smith__S5.educated_at = "University of Glasgow" → Emily Clark.occupation != "writer")
+Q[John Smith__S0,John Smith__S5] (M_NLU(TechNova Inc..attrs, John Smith__S5.attrs) ∧ John Smith__S0_TechNova Inc..since < 2019 → John Smith__S0_TechNova Inc..since < 2019)
+Q[John Smith__S0,John Smith__S5] (John Smith__S0.age != John Smith__S5.age ∧ John Smith__S0.occupation != Emily Clark.occupation → John Smith__S0.occupation != Emily Clark.occupation)
+Q[John Smith__S0,John Smith__S5] (John Smith__S5.educated_at = "University of Glasgow" ∧ Emily Clark.age > 37 → John Smith__S5.educated_at = "University of Glasgow")
+Q[John Smith__S0,John Smith__S5] (John Smith__S0.occupation != Emily Clark.occupation ∧ John Smith__S0.age < 50 → John Smith__S0.age < 50)
+Q[John Smith__S0,John Smith__S5] (TechNova Inc..founded < 2017 ∧ John Smith__S0.age >= 45 → John Smith__S0.age >= 45)

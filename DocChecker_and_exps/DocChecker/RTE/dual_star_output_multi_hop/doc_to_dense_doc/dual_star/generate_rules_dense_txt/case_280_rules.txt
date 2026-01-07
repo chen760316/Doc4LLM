@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 280)
+S1: Tony Blair belongs to the Labour Party.
+S2: Tony Blair belongs to the working group.
+
+Predicates:
+1. Tony_Blair.belongs_to(Labour_Party)
+2. Tony_Blair.belongs_to(working_group)
+3. Labour_Party.is_a(political_party)
+4. working_group.is_a(context)
+5. M_NLI(Tony_Blair.belongs_to(Labour_Party), Tony_Blair.belongs_to(working_group))
+6. Relation(Tony_Blair, Labour_Party)
+7. Relation(Tony_Blair, working_group)
+8. violate(Tony_Blair.belongs_to(Labour_Party), Tony_Blair.belongs_to(working_group))
+9. Labour_Party.has_members(Tony_Blair)
+10. working_group.has_members(Tony_Blair)
+11. Labour_Party.is_active(true)
+12. working_group.is_active(false)
+13. Tony_Blair.is_a(politician)
+14. Labour_Party.has_leader(Tony_Blair)
+15. working_group.has_leader(unknown)
+16. M_NLI(Labour_Party.is_a(political_party), working_group.is_a(context))
+17. Relation(Labour_Party, Tony_Blair)
+18. Relation(working_group, Tony_Blair)
+19. violate(Labour_Party.is_a(political_party), working_group.is_a(context))
+20. Tony_Blair.participates_in(Labour_Party)
+21. Tony_Blair.participates_in(working_group)
+22. Labour_Party.has_goals(political_reform)
+23. working_group.has_goals(unknown)
+24. M_NLI(Tony_Blair.participates_in(Labour_Party), Tony_Blair.participates_in(working_group))
+25. Relation(Tony_Blair, political_reform)
+26. Relation(Tony_Blair, unknown)
+27. violate(Tony_Blair.participates_in(Labour_Party), Tony_Blair.participates_in(working_group))
+28. Labour_Party.is_recognized(true)
+29. working_group.is_recognized(false)
+30. Tony_Blair.supports(Labour_Party)
+
+Rules:
+1. Q[Tony, Tony_Blair.belongs_to(Labour_Party) → violate(Tony_Blair.belongs_to(Labour_Party), Tony_Blair.belongs_to(working_group))]
+2. Q[Tony, Labour_Party.is_a(political_party) → violate(Labour_Party.is_a(political_party), working_group.is_a(context))]
+3. Q[Tony, Tony_Blair.belongs_to(working_group) → violate(Tony_Blair.belongs_to(Labour_Party), Tony_Blair.belongs_to(working_group))]
+4. Q[Tony, Labour_Party.has_members(Tony_Blair) → violate(Labour_Party.has_members(Tony_Blair), working_group.has_members(Tony_Blair))]
+5. Q[Tony, Labour_Party.is_active(true) → violate(Labour_Party.is_active(true), working_group.is_active(false))]
+6. Q[Tony, Labour_Party.has_leader(Tony_Blair) → violate(Labour_Party.has_leader(Tony_Blair), working_group.has_leader(unknown))]
+7. Q[Tony, Labour_Party.has_goals(political_reform) → violate(Labour_Party.has_goals(political_reform), working_group.has_goals(unknown))]
+8. Q[Tony, Labour_Party.is_recognized(true) → violate(Labour_Party.is_recognized(true), working_group.is_recognized(false))]
+9. Q[Tony, M_NLI(Tony_Blair.belongs_to(Labour_Party), Tony_Blair.belongs_to(working_group)) → violate(Tony_Blair.belongs_to(Labour_Party), Tony_Blair.belongs_to(working_group))]
+10. Q[Tony, M_NLI(Labour_Party.is_a(political_party), working_group.is_a(context)) → violate(Labour_Party.is_a(political_party), working_group.is_a(context))]
+11. Q[Tony, Relation(Tony_Blair, Labour_Party) → violate(Relation(Tony_Blair, Labour_Party), Relation(Tony_Blair, working_group))]
+12. Q[Tony, Relation(Labour_Party, Tony_Blair) → violate(Relation(Labour_Party, Tony_Blair), Relation(working_group, Tony_Blair))]
+13. Q[Tony, Tony_Blair.participates_in(Labour_Party) → violate(Tony_Blair.participates_in(Labour_Party), Tony_Blair.participates_in(working_group))]
+14. Q[Tony, Relation(Tony_Blair, political_reform) → violate(Relation(Tony_Blair, political_reform), Relation(Tony_Blair, unknown))]
+15. Q[Tony, Labour_Party.has_members(Tony_Blair) → violate(Labour_Party.has_members(Tony_Blair), working_group.has_members(Tony_Blair))]
+16. Q[Tony, working_group.is_active(false) → violate(Labour_Party.is_active(true), working_group.is_active(false))]
+17. Q[Tony, working_group.has_leader(unknown) → violate(Labour_Party.has_leader(Tony_Blair), working_group.has_leader(unknown))]
+18. Q[Tony, working_group.has_goals(unknown) → violate(Labour_Party.has_goals(political_reform), working_group.has_goals(unknown))]
+19. Q[Tony, working_group.is_recognized(false) → violate(Labour_Party.is_recognized(true), working_group.is_recognized(false))]
+20. Q[Tony, M_NLI(Tony_Blair.participates_in(Labour_Party), Tony_Blair.participates_in(working_group)) → violate(Tony_Blair.participates_in(Labour_Party), Tony_Blair.participates_in(working_group))]
+21. Q[Tony, violate(Tony_Blair.belongs_to(Labour_Party), Tony_Blair.belongs_to(working_group)) → Relation(Tony_Blair, Labour_Party)]
+22. Q[Tony, violate(Labour_Party.is_a(political_party), working_group.is_a(context)) → Relation(Labour_Party, Tony_Blair)]
+23. Q[Tony, violate(Tony_Blair.participates_in(Labour_Party), Tony_Blair.participates_in(working_group)) → Relation(Tony_Blair, unknown)]
+24. Q[Tony, violate(Labour_Party.has_goals(political_reform), working_group.has_goals(unknown)) → Relation(Tony_Blair, political_reform)]
+25. Q[Tony, violate(Labour_Party.is_active(true), working_group.is_active(false)) → Relation(Tony_Blair, Labour_Party)]
+26. Q[Tony, violate(Labour_Party.has_leader(Tony_Blair), working_group.has_leader(unknown)) → Relation(Tony_Blair, Labour_Party)]
+27. Q[Tony, violate(Labour_Party.has_members(Tony_Blair), working_group.has_members(Tony_Blair)) → Relation(Tony_Blair, Labour_Party)]
+28. Q[Tony, violate(Labour_Party.is_recognized(true), working_group.is_recognized(false)) → Relation(Tony_Blair, Labour_Party)]
+29. Q[Tony, violate(M_NLI(Tony_Blair.belongs_to(Labour_Party), Tony_Blair.belongs_to(working_group))) → Relation(Tony_Blair, Labour_Party)]
+30. Q[Tony, violate(M_NLI(Labour_Party.is_a(political_party), working_group.is_a(context))) → Relation(Tony_Blair, Labour_Party)]

@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 97)
+S1: when prison officials fail to timely respond to a grievance, the prisoner has exhausted 'available' administrative remedies under the PLRA.
+S2: administrative resolution of the complaint is still pending, see Jernigan v. Stuchell, 304 F.3d 1030, 1032 (10th Cir.2002)
+
+Predicates:
+1. Prisoner.has_exhausted_remedies
+2. PrisonOfficial.fail_to_respond_timely
+3. Grievance.is_pending_resolution
+4. AdministrativeResolution.is_pending
+5. PLRA.applies_to_prisoners
+6. Prisoner.has_available_remedies
+7. PrisonOfficial.response_time.is_timely
+8. Grievance.is_not_exhausted
+9. AdministrativeRemedy.is_available
+10. Prisoner.is_subject_to_PLRA
+11. PrisonOfficial.has_obligation_to_respond
+12. Grievance.is_filed_by_prisoner
+13. AdministrativeResolution.is_still_pending
+14. Prisoner.has_right_to_grievance
+15. PrisonOfficial.response.is_required
+16. Grievance.is_not_resolved
+17. Prisoner.is_awaiting_response
+18. AdministrativeRemedy.is_not_exhausted
+19. PrisonOfficial.has_failed_to_respond
+20. Grievance.is_under_review
+21. Prisoner.is_denied_remedy
+22. AdministrativeResolution.has_not_occurred
+23. Prisoner.is_affected_by_delay
+24. PLRA.requires_exhaustion
+25. PrisonOfficial.has_failed_in_duty
+26. Grievance.is_not_finalized
+27. Prisoner.is_in_legal_process
+28. AdministrativeRemedy.is_unavailable
+29. PrisonOfficial.is_accountable_for_response
+30. Grievance.is_subject_to_timeliness
+
+Rules:
+1. Q[when, PrisonOfficial.fail_to_respond_timely == true, Grievance.is_pending_resolution == true](PrisonOfficial.fail_to_respond_timely == true → Factual(x0, y0))
+2. Q[when, Prisoner.has_exhausted_remedies == true, AdministrativeResolution.is_pending == true](Prisoner.has_exhausted_remedies == true → Factual(x0, y0))
+3. Q[when, PrisonOfficial.fail_to_respond_timely == true, AdministrativeResolution.is_still_pending == true](PrisonOfficial.fail_to_respond_timely == true → Factual(x0, y0))
+4. Q[when, Grievance.is_not_exhausted == true, PrisonOfficial.fail_to_respond_timely == true](Grievance.is_not_exhausted == true → Factual(x0, y0))
+5. Q[when, PrisonOfficial.has_failed_to_respond == true, Grievance.is_pending_resolution == true](PrisonOfficial.has_failed_to_respond == true → Factual(x0, y0))
+6. Q[when, Grievance.is_under_review == true, PrisonOfficial.fail_to_respond_timely == true](Grievance.is_under_review == true → Factual(x0, y0))
+7. Q[when, PrisonOfficial.response_time.is_timely == false, AdministrativeResolution.is_pending == true](PrisonOfficial.response_time.is_timely == false → Factual(x0, y0))
+8. Q[when, Prisoner.is_awaiting_response == true, Grievance.is_not_finalized == true](Prisoner.is_awaiting_response == true → Factual(x0, y0))
+9. Q[when, PrisonOfficial.has_failed_in_duty == true, Grievance.is_not_resolved == true](PrisonOfficial.has_failed_in_duty == true → Factual(x0, y0))
+10. Q[when, Prisoner.has_available_remedies == true, AdministrativeResolution.has_not_occurred == true](Prisoner.has_available_remedies == true → Factual(x0, y0))
+11. Q[when, Prisoner.is_denied_remedy == true, Grievance.is_pending_resolution == true](Prisoner.is_denied_remedy == true → Factual(x0, y0))
+12. Q[when, PLRA.requires_exhaustion == true, AdministrativeResolution.is_still_pending == true](PLRA.requires_exhaustion == true → Factual(x0, y0))
+13. Q[when, PrisonOfficial.has_obligation_to_respond == true, Grievance.is_not_exhausted == true](PrisonOfficial.has_obligation_to_respond == true → Factual(x0, y0))
+14. Q[when, Prisoner.is_in_legal_process == true, AdministrativeRemedy.is_not_exhausted == true](Prisoner.is_in_legal_process == true → Factual(x0, y0))
+15. Q[when, PrisonOfficial.response.is_required == true, Grievance.is_pending_resolution == true](PrisonOfficial.response.is_required == true → Factual(x0, y0))
+16. Q[when, Prisoner.is_affected_by_delay == true, Grievance.is_not_finalized == true](Prisoner.is_affected_by_delay == true → Factual(x0, y0))
+17. Q[when, Grievance.is_filed_by_prisoner == true, AdministrativeResolution.is_pending == true](Grievance.is_filed_by_prisoner == true → Factual(x0, y0))
+18. Q[when, PrisonOfficial.is_accountable_for_response == true, Grievance.is_not_resolved == true](PrisonOfficial.is_accountable_for_response == true → Factual(x0, y0))
+19. Q[when, Prisoner.is_subject_to_PLRA == true, AdministrativeRemedy.is_unavailable == true](Prisoner.is_subject_to_PLRA == true → Factual(x0, y0))
+20. Q[when, Grievance.is_subject_to_timeliness == true, PrisonOfficial.fail_to_respond_timely == true](Grievance.is_subject_to_timeliness == true → Factual(x0, y0))
+21. Q[when, PrisonOfficial.fail_to_respond_timely == true, Prisoner.has_exhausted_remedies == false](PrisonOfficial.fail_to_respond_timely == true → Factual(x0, y0))
+22. Q[when, AdministrativeResolution.is_pending == true, Prisoner.has_exhausted_remedies == false](AdministrativeResolution.is_pending == true → Factual(x0, y0))
+23. Q[when, PrisonOfficial.response_time.is_timely == false, Prisoner.has_exhausted_remedies == false](PrisonOfficial.response_time.is_timely == false → Factual(x0, y0))
+24. Q[when, Grievance.is_not_exhausted == true, PrisonOfficial.has_failed_to_respond == true](Grievance.is_not_exhausted == true → Factual(x0, y0))
+25. Q[when, PrisonOfficial.has_failed_to_respond == true, AdministrativeResolution.is_pending == true](PrisonOfficial.has_failed_to_respond == true → Factual(x0, y0))
+26. Q[when, Grievance.is_under_review == true, PrisonOfficial.fail_to_respond_timely == true](Grievance.is_under_review == true → Factual(x0, y0))
+27. Q[when, PrisonOfficial.response_time.is_timely == false, Grievance.is_pending_resolution == true](PrisonOfficial.response_time.is_timely == false → Factual(x0, y0))
+28. Q[when, Prisoner.is_awaiting_response == true, Grievance.is_not_finalized == true](Prisoner.is_awaiting_response == true → Factual(x0, y0))
+29. Q[when, PrisonOfficial.has_failed_in_duty == true, Grievance.is_not_resolved == true](PrisonOfficial.has_failed_in_duty == true → Factual(x0, y0))
+30. Q[when, Prisoner.has_available_remedies == true, AdministrativeResolution.has_not_occurred == true](Prisoner.has_available_remedies == true → Factual(x0, y0))

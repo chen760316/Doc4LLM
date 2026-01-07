@@ -1,0 +1,64 @@
+Source: dense_text.txt (Index 1345)
+S1: my wife's mom is not doing well in the nursing home.
+S2: my wife's mother is in a retirement home she's not in a nursing home.
+
+Predicates:
+1. Wife.mother.is_in(nursing_home)
+2. Wife.mother.is_not_doing_well
+3. Wife.mother.is_in(retirement_home)
+4. Wife.mother.is_not_in(nursing_home)
+5. Nursing_home.is_not_well
+6. Retirement_home.is_not_nursing_home
+7. Nursing_home.is_in(wife.mother)
+8. Retirement_home.is_in(wife.mother)
+9. Wife.mother.is_in(nursing_home) -> Wife.mother.is_not_doing_well
+10. Wife.mother.is_in(retirement_home) -> Wife.mother.is_not_in(nursing_home)
+11. M_NLI(S1, S2)
+12. Factual(S1, S2)
+13. violate(S1, S2)
+14. Nursing_home.has_condition(not_well)
+15. Retirement_home.has_condition(not_nursing_home)
+16. Wife.mother.has_condition(not_well)
+17. Nursing_home.is_a_type_of(care_facility)
+18. Retirement_home.is_a_type_of(care_facility)
+19. Wife.mother.is_a_type_of(parent)
+20. Nursing_home.is_not_equal_to(retirement_home)
+21. Care_facility.has_resident(wife.mother)
+22. Care_facility.has_condition(not_well)
+23. Care_facility.is_in(wife)
+24. Wife.has_parent(mother)
+25. Mother.is_not_in(nursing_home)
+26. Mother.is_in(care_facility)
+27. Care_facility.is_not_equal_to(nursing_home)
+28. Care_facility.is_not_equal_to(retirement_home)
+29. Mother.is_in(nursing_home) -> Mother.is_not_doing_well
+30. Mother.is_in(retirement_home) -> Mother.is_not_in(nursing_home)
+
+Rules:
+1. Q[wife, Wife.mother.is_in(nursing_home), Wife.mother.is_in(retirement_home)](Wife.mother.is_in(nursing_home) → Factual(Wife.mother.is_in(nursing_home), Wife.mother.is_in(retirement_home)))
+2. Q[wife, Wife.mother.is_not_doing_well, Wife.mother.is_in(retirement_home)](Wife.mother.is_not_doing_well → Factual(Wife.mother.is_not_doing_well, Wife.mother.is_in(retirement_home)))
+3. Q[wife, Wife.mother.is_in(nursing_home), Wife.mother.is_not_in(nursing_home)](Wife.mother.is_in(nursing_home) → Factual(Wife.mother.is_in(nursing_home), Wife.mother.is_not_in(nursing_home)))
+4. Q[wife, Wife.mother.is_in(retirement_home), Wife.mother.is_not_doing_well](Wife.mother.is_in(retirement_home) → Factual(Wife.mother.is_in(retirement_home), Wife.mother.is_not_doing_well))
+5. Q[wife, Nursing_home.is_not_well, Retirement_home.is_not_nursing_home](Nursing_home.is_not_well → Factual(Nursing_home.is_not_well, Retirement_home.is_not_nursing_home))
+6. Q[wife, Nursing_home.is_in(wife.mother), Retirement_home.is_in(wife.mother)](Nursing_home.is_in(wife.mother) → Factual(Nursing_home.is_in(wife.mother), Retirement_home.is_in(wife.mother)))
+7. Q[wife, Wife.mother.is_not_in(nursing_home), Wife.mother.is_in(nursing_home)](Wife.mother.is_not_in(nursing_home) → Factual(Wife.mother.is_not_in(nursing_home), Wife.mother.is_in(nursing_home)))
+8. Q[wife, Nursing_home.has_condition(not_well), Retirement_home.has_condition(not_nursing_home)](Nursing_home.has_condition(not_well) → Factual(Nursing_home.has_condition(not_well), Retirement_home.has_condition(not_nursing_home)))
+9. Q[wife, Wife.mother.has_condition(not_well), Wife.mother.is_in(retirement_home)](Wife.mother.has_condition(not_well) → Factual(Wife.mother.has_condition(not_well), Wife.mother.is_in(retirement_home)))
+10. Q[wife, Nursing_home.is_not_equal_to(retirement_home), Wife.mother.is_in(nursing_home)](Nursing_home.is_not_equal_to(retirement_home) → Factual(Nursing_home.is_not_equal_to(retirement_home), Wife.mother.is_in(nursing_home)))
+11. Q[wife, Care_facility.has_resident(wife.mother), Care_facility.is_in(wife)](Care_facility.has_resident(wife.mother) → Factual(Care_facility.has_resident(wife.mother), Care_facility.is_in(wife)))
+12. Q[wife, Mother.is_in(nursing_home), Mother.is_not_in(nursing_home)](Mother.is_in(nursing_home) → Factual(Mother.is_in(nursing_home), Mother.is_not_in(nursing_home)))
+13. Q[wife, Mother.is_in(retirement_home), Mother.is_not_doing_well](Mother.is_in(retirement_home) → Factual(Mother.is_in(retirement_home), Mother.is_not_doing_well))
+14. Q[wife, Nursing_home.is_a_type_of(care_facility), Retirement_home.is_a_type_of(care_facility)](Nursing_home.is_a_type_of(care_facility) → Factual(Nursing_home.is_a_type_of(care_facility), Retirement_home.is_a_type_of(care_facility)))
+15. Q[wife, Care_facility.is_not_equal_to(nursing_home), Care_facility.is_not_equal_to(retirement_home)](Care_facility.is_not_equal_to(nursing_home) → Factual(Care_facility.is_not_equal_to(nursing_home), Care_facility.is_not_equal_to(retirement_home)))
+16. Q[wife, Wife.mother.is_in(nursing_home), Wife.mother.is_not_doing_well](Wife.mother.is_in(nursing_home) → Factual(Wife.mother.is_in(nursing_home), Wife.mother.is_not_doing_well))
+17. Q[wife, Wife.mother.is_in(retirement_home), Wife.mother.is_not_in(nursing_home)](Wife.mother.is_in(retirement_home) → Factual(Wife.mother.is_in(retirement_home), Wife.mother.is_not_in(nursing_home)))
+18. Q[wife, Nursing_home.has_condition(not_well), Wife.mother.is_not_in(nursing_home)](Nursing_home.has_condition(not_well) → Factual(Nursing_home.has_condition(not_well), Wife.mother.is_not_in(nursing_home)))
+19. Q[wife, Retirement_home.has_condition(not_nursing_home), Wife.mother.is_in(nursing_home)](Retirement_home.has_condition(not_nursing_home) → Factual(Retirement_home.has_condition(not_nursing_home), Wife.mother.is_in(nursing_home)))
+20. Q[wife, Care_facility.has_condition(not_well), Wife.mother.is_in(nursing_home)](Care_facility.has_condition(not_well) → Factual(Care_facility.has_condition(not_well), Wife.mother.is_in(nursing_home)))
+21. Q[wife, Wife.mother.is_a_type_of(parent), Wife.mother.is_in(retirement_home)](Wife.mother.is_a_type_of(parent) → Factual(Wife.mother.is_a_type_of(parent), Wife.mother.is_in(retirement_home)))
+22. Q[wife, Mother.is_in(care_facility), Mother.is_not_in(nursing_home)](Mother.is_in(care_facility) → Factual(Mother.is_in(care_facility), Mother.is_not_in(nursing_home)))
+23. Q[wife, Care_facility.is_in(wife), Care_facility.has_condition(not_well)](Care_facility.is_in(wife) → Factual(Care_facility.is_in(wife), Care_facility.has_condition(not_well)))
+24. Q[wife, Wife.mother.is_in(nursing_home), Nursing_home.is_not_well](Wife.mother.is_in(nursing_home) → Factual(Wife.mother.is_in(nursing_home), Nursing_home.is_not_well))
+25. Q[wife, Wife.mother.is_not_in(nursing_home), Nursing_home.is_in(wife.mother)](Wife.mother.is_not_in(nursing_home) → Factual(Wife.mother.is_not_in(nursing_home), Nursing_home.is_in(wife.mother)))
+26. Q[wife, Mother.is_in(nursing_home), Mother.is_in(retirement_home)](Mother.is_in(nursing_home) → Factual(Mother.is_in(nursing_home), Mother.is_in(retirement_home)))
+27. Q[wife, Nursing_home.is_not_equal_to(retirement_home), Wife.mother.is_not_doing_well](Nursing_home.is_not_equal_to(retirement_home) →

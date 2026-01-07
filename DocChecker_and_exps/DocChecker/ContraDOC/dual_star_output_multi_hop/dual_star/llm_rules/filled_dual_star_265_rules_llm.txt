@@ -1,0 +1,110 @@
+Predicates:
+1. Dr Watson.occupation = "doctor"
+2. Dr Watson.location = "Baker Street"
+3. Mr Culverton Smith.location = "Baker Street"
+4. Sherlock Holmes.location = "Baker Street"
+5. Sherlock Holmes.status != "dying"
+6. little ivory box.contents = "sharp spring infected with the illness"
+7. "Dr Watson is called to tend to Sherlock Holmes, who is apparently dying.".reason = "Holmes's illness"
+8. "Dr Watson is called to tend to Sherlock Holmes, who is apparently dying.".time != "specified"
+9. "Holmes calls for Watson to present himself as a witness to the conversation.".reason = "to support his accusation against Smith"
+10. "Holmes instructs Watson not to come near him due to the infectious nature of his illness.".reason = "highly infectious"
+11. "Holmes tells Inspector Morton to arrest Culverton Smith for the murder of his nephew.".reason != "innocence"
+12. "Mr Culverton Smith pockets the little ivory box, removing the evidence of his crime.".action = "removing evidence"
+13. "Watson forces his way into Mr Culverton Smith's residence.".reason = "to explain his errand on behalf of Sherlock Holmes"
+14. Dr Watson.location != "London"
+15. Mr Culverton Smith.location != "Baker Street"
+16. Sherlock Holmes.status >= "not dying"
+17. "Holmes's illness" != "mild"
+18. "Holmes's illness" < "critical"
+19. "Holmes's illness" > "serious"
+20. "Dr Watson is called to tend to Sherlock Holmes, who is apparently dying.".time >= "unspecified"
+21. "Holmes calls for Watson to present himself as a witness to the conversation.".reason != "to support his friend"
+22. "Holmes instructs Watson not to come near him due to the infectious nature of his illness.".reason >= "highly infectious"
+23. "Holmes tells Inspector Morton to arrest Culverton Smith for the murder of his nephew.".reason < "just suspicion"
+24. "Mr Culverton Smith pockets the little ivory box, removing the evidence of his crime.".action != "hiding evidence"
+25. "Watson forces his way into Mr Culverton Smith's residence.".reason < "to deliver a message"
+26. M_NLI(Dr Watson.occupation, Mr Culverton Smith.location)
+27. M_NLU(Sherlock Holmes.status, "not dying")
+28. M_TEM(Dr Watson.location, Sherlock Holmes.location)
+29. contra("Holmes is dying", "Holmes is not dying")
+30. S("Dr Watson is called to tend to Sherlock Holmes, who is apparently dying.", "called to tend")
+31. S("Holmes instructs Watson not to come near him due to the infectious nature of his illness.", "infectious nature")
+32. T("Holmes is dying", "Holmes is not dying", "Factual")
+33. tau(Dr Watson.occupation, Mr Culverton Smith.location)
+34. tau("Holmes's illness", "Holmes is healthy")
+35. Dr Watson.occupation != "nurse"
+36. Mr Culverton Smith.location >= "Baker Street"
+37. Sherlock Holmes.status <= "critical"
+38. "Holmes's illness" >= "serious"
+39. "Dr Watson is called to tend to Sherlock Holmes, who is apparently dying.".time < "specific time"
+40. "Holmes calls for Watson to present himself as a witness to the conversation.".reason >= "to support his claim"
+41. "Holmes instructs Watson not to come near him due to the infectious nature of his illness.".reason != "to protect Watson"
+42. "Holmes tells Inspector Morton to arrest Culverton Smith for the murder of his nephew.".reason > "mere suspicion"
+43. "Mr Culverton Smith pockets the little ivory box, removing the evidence of his crime.".action <= "destroying evidence"
+44. "Watson forces his way into Mr Culverton Smith's residence.".reason > "to inquire"
+45. M_NLI(Sherlock Holmes.location, Dr Watson.location)
+46. M_NLU(Mr Culverton Smith.location, "Baker Street")
+47. M_TEM(Dr Watson.occupation, Sherlock Holmes.status)
+48. contra("Watson is a doctor", "Watson is not a doctor")
+49. S("Mr Culverton Smith pockets the little ivory box, removing the evidence of his crime.", "pockets the little ivory box")
+50. S("Watson forces his way into Mr Culverton Smith's residence.", "forces his way")
+51. T("Holmes is dying", "Holmes is recovering", "Content")
+52. tau("Holmes's illness", "Holmes is well")
+53. Dr Watson.occupation > "apprentice"
+54. Mr Culverton Smith.location < "London"
+55. Sherlock Holmes.status != "healthy"
+56. "Holmes's illness" <= "critical"
+57. "Dr Watson is called to tend to Sherlock Holmes, who is apparently dying.".time > "past"
+58. "Holmes calls for Watson to present himself as a witness to the conversation.".reason < "to clarify"
+59. "Holmes instructs Watson not to come near him due to the infectious nature of his illness.".reason >= "to ensure safety"
+60. "Holmes tells Inspector Morton to arrest Culverton Smith for the murder of his nephew.".reason != "to clear Smith's name"
+61. "Mr Culverton Smith pockets the little ivory box, removing the evidence of his crime.".action > "hiding"
+62. "Watson forces his way into Mr Culverton Smith's residence.".reason != "to confront Smith"
+63. M_NLI(Dr Watson.location, Sherlock Holmes.location)
+64. M_NLU(Mr Culverton Smith.occupation, "criminal")
+65. M_TEM(Sherlock Holmes.status, "not dying")
+66. contra("Watson is not a doctor", "Watson is a doctor")
+67. S("Holmes tells Inspector Morton to arrest Culverton Smith for the murder of his nephew.", "arrest Culverton Smith")
+68. S("Mr Culverton Smith pockets the little ivory box, removing the evidence of his crime.", "removing the evidence")
+69. T("Holmes is dying", "Holmes is alive", "Negation")
+70. tau("Holmes's illness", "Holmes is cured")
+71. Dr Watson.occupation < "surgeon"
+72. Mr Culverton Smith.location >= "Baker Street"
+73. Sherlock Holmes.status > "unwell"
+74. "Holmes's illness" != "non-infectious"
+75. "Dr Watson is called to tend to Sherlock Holmes, who is apparently dying.".time <= "future"
+76. "Holmes calls for Watson to present himself as a witness to the conversation.".reason > "to validate"
+77. "Holmes instructs Watson not to come near him due to the infectious nature of his illness.".reason < "to avoid panic
+
+Rules:
+1. Q[1, 2](Dr Watson.occupation = "doctor" ∧ Dr Watson.location = "Baker Street" → Sherlock Holmes.status != "healthy")
+2. Q[3, 4](Mr Culverton Smith.location = "Baker Street" ∧ Sherlock Holmes.location = "Baker Street" → Dr Watson.occupation != "nurse")
+3. Q[5, 6](Sherlock Holmes.status != "dying" ∧ "Holmes's illness" > "serious" → "Holmes's illness" < "critical")
+4. Q[7, 8](Dr Watson.occupation = "doctor" ∧ "Dr Watson is called to tend to Sherlock Holmes, who is apparently dying.".time != "specified" → "Holmes's illness" != "mild")
+5. Q[9, 10](Holmes calls for Watson to present himself as a witness to the conversation. ∧ "Holmes instructs Watson not to come near him due to the infectious nature of his illness.".reason = "highly infectious" → "Holmes's illness" != "non-infectious")
+6. Q[11, 12](Holmes tells Inspector Morton to arrest Culverton Smith for the murder of his nephew. ∧ Mr Culverton Smith.pockets the little ivory box, removing the evidence of his crime. → "Mr Culverton Smith.location" != "Baker Street")
+7. Q[13, 14](Watson forces his way into Mr Culverton Smith's residence. ∧ Dr Watson.location != "London" → "Holmes's illness" >= "serious")
+8. Q[15, 16](Mr Culverton Smith.location != "Baker Street" ∧ Sherlock Holmes.status <= "critical" → "Holmes's illness" != "mild")
+9. Q[17, 18](Holmes's illness < "critical" ∧ "Holmes's illness" > "serious" → Sherlock Holmes.status != "healthy")
+10. Q[19, 20](Dr Watson.occupation != "nurse" ∧ "Dr Watson is called to tend to Sherlock Holmes, who is apparently dying.".time >= "unspecified" → "Holmes's illness" != "non-infectious")
+11. Q[21, 22](Holmes calls for Watson to present himself as a witness to the conversation. ∧ Holmes instructs Watson not to come near him due to the infectious nature of his illness. → "Holmes's illness" < "critical")
+12. Q[23, 24](Holmes tells Inspector Morton to arrest Culverton Smith for the murder of his nephew. ∧ Mr Culverton Smith pockets the little ivory box, removing the evidence of his crime. → "Watson is not a doctor")
+13. Q[25, 26](Watson forces his way into Mr Culverton Smith's residence. ∧ Dr Watson.location != "London" → "Holmes's illness" != "mild")
+14. Q[27, 28](Sherlock Holmes.status >= "not dying" ∧ "Holmes's illness" != "non-infectious" → "Holmes's illness" > "serious")
+15. Q[29, 30](Holmes is dying ∧ "Dr Watson is called to tend to Sherlock Holmes, who is apparently dying.".reason = "Holmes's illness" → Sherlock Holmes.status != "healthy")
+16. Q[31, 32](Holmes instructs Watson not to come near him due to the infectious nature of his illness. ∧ "Holmes's illness" >= "serious" → "Holmes's illness" != "mild")
+17. Q[33, 34](Mr Culverton Smith.location >= "Baker Street" ∧ "Holmes's illness" < "critical" → "Holmes's illness" != "non-infectious")
+18. Q[35, 36](Dr Watson.occupation != "nurse" ∧ "Holmes's illness" > "serious" → Sherlock Holmes.status != "dying")
+19. Q[37, 38](Sherlock Holmes.status <= "critical" ∧ "Holmes's illness" >= "serious" → "Holmes's illness" != "mild")
+20. Q[39, 40](Dr Watson.occupation = "doctor" ∧ "Dr Watson is called to tend to Sherlock Holmes, who is apparently dying.".time < "specific time" → "Holmes's illness" != "non-infectious")
+21. Q[41, 42](Holmes tells Inspector Morton to arrest Culverton Smith for the murder of his nephew. ∧ "Mr Culverton Smith pockets the little ivory box, removing the evidence of his crime.".action != "hiding evidence" → "Holmes's illness" != "mild")
+22. Q[43, 44](Watson forces his way into Mr Culverton Smith's residence. ∧ "Holmes's illness" < "critical" → Sherlock Holmes.status != "healthy")
+23. Q[45, 46](Dr Watson.location != "London" ∧ "Holmes's illness" > "serious" → "Holmes's illness" != "non-infectious")
+24. Q[47, 48](M_NLI(Dr Watson.occupation, Mr Culverton Smith.location) ∧ "Holmes's illness" < "critical" → "Holmes's illness" != "mild")
+25. Q[49, 50](S("Mr Culverton Smith pockets the little ivory box, removing the evidence of his crime.", "pockets the little ivory box") ∧ "Holmes's illness" >= "serious" → "Holmes's illness" != "non-infectious")
+26. Q[51, 52](T("Holmes is dying", "Holmes is recovering", "Content") ∧ "Holmes's illness" < "critical" → Sherlock Holmes.status != "healthy")
+27. Q[53, 54](Dr Watson.occupation < "surgeon" ∧ "Holmes's illness" > "serious" → "Holmes's illness" != "mild")
+28. Q[55, 56](Sherlock Holmes.status != "healthy" ∧ "Holmes's illness" <= "critical" → "Holmes's illness" != "non-infectious")
+29. Q[57, 58](Dr Watson.occupation = "doctor" ∧ "Dr Watson is called to tend to Sherlock Holmes, who is apparently dying.".time > "past" → "Holmes's illness" != "mild")
+30. Q[59, 60](Holmes instructs Watson not to come near him due to the infectious nature of his illness. ∧ "Holmes tells Inspector Morton to arrest Culverton Smith for the murder of his nephew.".reason != "to clear Smith's name" → "Holmes's illness" != "non-infectious")

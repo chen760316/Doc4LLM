@@ -1,0 +1,56 @@
+Predicates:
+Chokalingam.label != "Person"
+Chokalingam.label != blacks and Hispanics.label
+Chokalingam.label = "Person"
+Chokalingam.location != "University of Chicago"
+Chokalingam.location = "University of Chicago"
+Chokalingam.name != "Chokalingam"
+Chokalingam.name != blacks and Hispanics.name
+Chokalingam.name = "Chokalingam"
+Chokalingam.occupation != "undergraduate"
+Chokalingam.occupation = "undergraduate"
+Chris Rock.label != "Person"
+Chris Rock.label != blacks and Hispanics.label
+Chris Rock.label = "Person"
+Chris Rock.name != "Chris Rock"
+Chris Rock.name != Chokalingam.name
+Chris Rock.name != blacks and Hispanics.name
+Chris Rock.name = "Chris Rock"
+Chris Rock.occupation != "comedian"
+Chris Rock.occupation != Chokalingam.occupation
+Chris Rock.occupation = "comedian"
+Chris Rock.status != "multimillionaire"
+Chris Rock.status != blacks and Hispanics.status
+Chris Rock.status = "multimillionaire"
+Chris Rock___Chokalingam.context != Chris Rock___blacks and Hispanics.context
+Chris Rock___Chokalingam.context = "pulled over for no reason"
+Chris Rock___Chokalingam.contradiction_type = "Causal"
+Chris Rock___Chokalingam.method = "tweeting pictures"
+Chris Rock___Chokalingam.relationship != Chris Rock___blacks and Hispanics.relationship
+Chris Rock___Chokalingam.relationship = "Chris Rock experiences prejudice from police"
+Chris Rock___Chokalingam.source_id != Chris Rock___blacks and Hispanics.source_id
+Chris Rock___Chokalingam.source_id = "3489825784_9"
+Chris Rock___blacks and Hispanics.context = "very real prejudice experienced regularly"
+Chris Rock___blacks and Hispanics.contradiction_type = "Causal"
+Chris Rock___blacks and Hispanics.relationship = "Chris Rock tweets about being pulled over by police for no reason."
+Chris Rock___blacks and Hispanics.source_id = "3489825764_5"
+None_ML(Chris Rock.attrs, blacks and Hispanics.attrs)
+None_ML(Chris Rock___blacks and Hispanics.attrs, Chris Rock___Chokalingam.attrs)
+blacks and Hispanics.label != "Group"
+blacks and Hispanics.label = "Group"
+blacks and Hispanics.name != "blacks and Hispanics"
+blacks and Hispanics.name = "blacks and Hispanics"
+blacks and Hispanics.status != "experienced prejudice"
+blacks and Hispanics.status = "experienced prejudice"
+
+Rules:
+Q[Chris Rock,Chris Rock] (Chris Rock.occupation != "comedian" ∧ Chris Rock.label != blacks and Hispanics.label ∧ Chris Rock___blacks and Hispanics.contradiction_type = "Causal" ∧ Chris Rock.label = "Person" ∧ Chris Rock___Chokalingam.source_id != Chris Rock___blacks and Hispanics.source_id ∧ Chokalingam.label != blacks and Hispanics.label → blacks and Hispanics.status = "experienced prejudice")
+Q[Chris Rock,Chris Rock] (Chris Rock.name != blacks and Hispanics.name ∧ Chris Rock.name != Chokalingam.name ∧ Chris Rock.label = "Person" ∧ Chris Rock___blacks and Hispanics.context = "very real prejudice experienced regularly" ∧ Chris Rock___blacks and Hispanics.source_id = "3489825764_5" → Chokalingam.occupation != "undergraduate")
+Q[Chris Rock,Chris Rock] (Chris Rock___Chokalingam.relationship = "Chris Rock experiences prejudice from police" ∧ None_ML(Chris Rock.attrs, blacks and Hispanics.attrs) → Chokalingam.label = "Person")
+Q[Chris Rock,Chris Rock] (Chris Rock.occupation = "comedian" ∧ Chris Rock___Chokalingam.context != Chris Rock___blacks and Hispanics.context ∧ Chokalingam.occupation = "undergraduate" ∧ blacks and Hispanics.label != "Group" → Chris Rock.status = "multimillionaire")
+Q[Chris Rock,Chris Rock] (Chris Rock___Chokalingam.context != Chris Rock___blacks and Hispanics.context ∧ None_ML(Chris Rock.attrs, blacks and Hispanics.attrs) ∧ Chokalingam.label != blacks and Hispanics.label → Chris Rock.occupation != Chokalingam.occupation)
+Q[Chris Rock,Chris Rock] (Chris Rock.status != blacks and Hispanics.status ∧ Chokalingam.name != blacks and Hispanics.name ∧ Chokalingam.occupation != "undergraduate" ∧ blacks and Hispanics.label != "Group" ∧ Chris Rock.label = "Person" ∧ Chokalingam.occupation = "undergraduate" → Chris Rock___Chokalingam.context = "pulled over for no reason")
+Q[Chris Rock,Chris Rock] (Chris Rock___Chokalingam.relationship != Chris Rock___blacks and Hispanics.relationship ∧ Chris Rock.name != "Chris Rock" ∧ Chris Rock.occupation != "comedian" ∧ Chris Rock___blacks and Hispanics.contradiction_type = "Causal" → Chokalingam.occupation = "undergraduate")
+Q[Chris Rock,Chris Rock] (Chris Rock.label != blacks and Hispanics.label ∧ Chris Rock___Chokalingam.source_id = "3489825784_9" ∧ Chris Rock___Chokalingam.context = "pulled over for no reason" → blacks and Hispanics.label != "Group")
+Q[Chris Rock,Chris Rock] (Chris Rock.label != "Person" ∧ Chris Rock___Chokalingam.context = "pulled over for no reason" → None_ML(Chris Rock.attrs, blacks and Hispanics.attrs))
+Q[Chris Rock,Chris Rock] (Chris Rock.status != "multimillionaire" ∧ Chris Rock___Chokalingam.relationship != Chris Rock___blacks and Hispanics.relationship ∧ Chris Rock___Chokalingam.relationship = "Chris Rock experiences prejudice from police" ∧ Chris Rock.name = "Chris Rock" ∧ Chokalingam.occupation != "undergraduate" → Chris Rock___Chokalingam.source_id = "3489825784_9")

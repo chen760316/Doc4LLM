@@ -1,0 +1,35 @@
+Predicates:
+California.label != "State"
+California.label = "State"
+California.name != "California"
+California.name = "California"
+M_NLI(('Road T51', 'location').attrs, ('Road T51', 'California').attrs)
+M_NLU(('Road T51', 'California').attrs, Road T51 was located in California..attrs)
+M_NLU(Road T51 was located in New York..attrs, ('Road T51', 'California').attrs)
+M_NLU(Road T51.attrs, California.attrs)
+None_ML(('Road T51', 'location').attrs, Road T51 was located in California..attrs)
+None_ML(('Road T51', 'location').attrs, Road T51 was located in New York..attrs)
+None_ML(Road T51 was located in New York..attrs, Road T51 was located in California..attrs)
+Road T51.label != "Road"
+Road T51.label != California.label
+Road T51.label = "Road"
+Road T51.name != "Road T51"
+Road T51.name != California.name
+Road T51.name = "Road T51"
+Road T51___California.relationship != "Road T51 was located in California."
+Road T51___California.relationship = "Road T51 was located in California."
+Road T51___location.relationship != "Road T51 was located in New York."
+Road T51___location.relationship != Road T51_California.relationship
+Road T51___location.relationship = "Road T51 was located in New York."
+
+Rules:
+Q[Road T51,Road T51] (M_NLI(('Road T51', 'location').attrs, ('Road T51', 'California').attrs) ∧ M_NLU(Road T51.attrs, California.attrs) → M_NLU(Road T51.attrs, California.attrs))
+Q[Road T51,Road T51] (M_NLU(Road T51 was located in New York..attrs, ('Road T51', 'California').attrs) ∧ Road T51.label != "Road" → Road T51.label != "Road")
+Q[Road T51,Road T51] (Road T51___location.relationship != "Road T51 was located in New York." ∧ None_ML(('Road T51', 'location').attrs, Road T51 was located in New York..attrs) → Road T51___location.relationship != "Road T51 was located in New York.")
+Q[Road T51,Road T51] (None_ML(('Road T51', 'location').attrs, Road T51 was located in California..attrs) ∧ M_NLU(Road T51 was located in New York..attrs, ('Road T51', 'California').attrs) → None_ML(('Road T51', 'location').attrs, Road T51 was located in California..attrs))
+Q[Road T51,Road T51] (Road T51___location.relationship != Road T51_California.relationship ∧ Road T51.label != California.label → Road T51___location.relationship != Road T51_California.relationship)
+Q[Road T51,Road T51] (Road T51.name = "Road T51" ∧ Road T51.name != California.name → Road T51.name != California.name)
+Q[Road T51,Road T51] (California.label = "State" ∧ Road T51.label != California.label → Road T51.label != California.label)
+Q[Road T51,Road T51] (None_ML(Road T51 was located in New York..attrs, Road T51 was located in California..attrs) ∧ M_NLU(('Road T51', 'California').attrs, Road T51 was located in California..attrs) → None_ML(Road T51 was located in New York..attrs, Road T51 was located in California..attrs))
+Q[Road T51,Road T51] (None_ML(('Road T51', 'location').attrs, Road T51 was located in New York..attrs) ∧ Road T51.label != California.label → None_ML(('Road T51', 'location').attrs, Road T51 was located in New York..attrs))
+Q[Road T51,Road T51] (California.name = "California" ∧ M_NLI(('Road T51', 'location').attrs, ('Road T51', 'California').attrs) → M_NLI(('Road T51', 'location').attrs, ('Road T51', 'California').attrs))

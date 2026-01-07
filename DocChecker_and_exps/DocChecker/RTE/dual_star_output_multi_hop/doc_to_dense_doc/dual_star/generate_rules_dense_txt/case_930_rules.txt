@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 930)
+S1: A brain dead teenager was removed from life support team having a light a premature daughter.
+S2: A brain-dead teenager was removed from life support equipment after giving birth to a premature daughter.
+
+Predicates:
+1. BrainDeadTeenager.status
+2. BrainDeadTeenager.removalContext
+3. BrainDeadTeenager.birthOutcome
+4. LifeSupportTeam.type
+5. LifeSupportEquipment.type
+6. PrematureDaughter.healthStatus
+7. PrematureDaughter.birthTime
+8. RemovalEvent.method
+9. RemovalEvent.reason
+10. Teenager.age
+11. Teenager.gender
+12. Teenager.parentStatus
+13. LifeSupportTeam.memberCount
+14. LifeSupportEquipment.functionality
+15. BirthEvent.location
+16. BirthEvent.time
+17. BirthEvent.type
+18. MedicalCondition.type
+19. MedicalCondition.severity
+20. MedicalCondition.diagnosisDate
+21. FamilyRelationship.type
+22. FamilyRelationship.role
+23. Hospital.name
+24. Hospital.location
+25. MedicalProcedure.type
+26. MedicalProcedure.date
+27. MedicalProcedure.outcome
+28. Caregiver.role
+29. Caregiver.experience
+30. Caregiver.relationshipToTeenager
+
+Rules:
+1. Q[brain, BrainDeadTeenager.status, LifeSupportTeam.type](BrainDeadTeenager.status == "brain dead" → Relation(BrainDeadTeenager.status, LifeSupportTeam.type))
+2. Q[brain, BrainDeadTeenager.removalContext, LifeSupportTeam.type](BrainDeadTeenager.removalContext == "team" → Relation(BrainDeadTeenager.removalContext, LifeSupportTeam.type))
+3. Q[brain, BrainDeadTeenager.removalContext, LifeSupportEquipment.type](BrainDeadTeenager.removalContext == "equipment" → Relation(BrainDeadTeenager.removalContext, LifeSupportEquipment.type))
+4. Q[brain, LifeSupportTeam.type, LifeSupportEquipment.type](LifeSupportTeam.type == "team" → Relation(LifeSupportTeam.type, LifeSupportEquipment.type))
+5. Q[brain, LifeSupportEquipment.type, BrainDeadTeenager.removalContext](LifeSupportEquipment.type == "equipment" → Relation(LifeSupportEquipment.type, BrainDeadTeenager.removalContext))
+6. Q[brain, BrainDeadTeenager.birthOutcome, PrematureDaughter.healthStatus](BrainDeadTeenager.birthOutcome == "premature" → Relation(BrainDeadTeenager.birthOutcome, PrematureDaughter.healthStatus))
+7. Q[brain, BrainDeadTeenager.birthOutcome, PrematureDaughter.birthTime](BrainDeadTeenager.birthOutcome == "premature" → Relation(BrainDeadTeenager.birthOutcome, PrematureDaughter.birthTime))
+8. Q[brain, LifeSupportTeam.memberCount, LifeSupportEquipment.functionality](LifeSupportTeam.memberCount > 0 → Relation(LifeSupportTeam.memberCount, LifeSupportEquipment.functionality))
+9. Q[brain, LifeSupportEquipment.functionality, RemovalEvent.method](LifeSupportEquipment.functionality == "support" → Relation(LifeSupportEquipment.functionality, RemovalEvent.method))
+10. Q[brain, RemovalEvent.method, RemovalEvent.reason](RemovalEvent.method == "removal" → Relation(RemovalEvent.method, RemovalEvent.reason))
+11. Q[brain, Teenager.age, BrainDeadTeenager.status](Teenager.age < 18 → Relation(Teenager.age, BrainDeadTeenager.status))
+12. Q[brain, Teenager.gender, BrainDeadTeenager.status](Teenager.gender == "female" → Relation(Teenager.gender, BrainDeadTeenager.status))
+13. Q[brain, Teenager.parentStatus, BrainDeadTeenager.birthOutcome](Teenager.parentStatus == "parent" → Relation(Teenager.parentStatus, BrainDeadTeenager.birthOutcome))
+14. Q[brain, Hospital.name, LifeSupportTeam.type](Hospital.name == "local hospital" → Relation(Hospital.name, LifeSupportTeam.type))
+15. Q[brain, Hospital.location, LifeSupportEquipment.type](Hospital.location == "city center" → Relation(Hospital.location, LifeSupportEquipment.type))
+16. Q[brain, MedicalCondition.type, BrainDeadTeenager.status](MedicalCondition.type == "neurological" → Relation(MedicalCondition.type, BrainDeadTeenager.status))
+17. Q[brain, MedicalCondition.severity, BrainDeadTeenager.status](MedicalCondition.severity == "severe" → Relation(MedicalCondition.severity, BrainDeadTeenager.status))
+18. Q[brain, MedicalCondition.diagnosisDate, BrainDeadTeenager.status](MedicalCondition.diagnosisDate < "2023-01-01" → Relation(MedicalCondition.diagnosisDate, BrainDeadTeenager.status))
+19. Q[brain, FamilyRelationship.type, Teenager.parentStatus](FamilyRelationship.type == "child" → Relation(FamilyRelationship.type, Teenager.parentStatus))
+20. Q[brain, FamilyRelationship.role, Teenager.parentStatus](FamilyRelationship.role == "daughter" → Relation(FamilyRelationship.role, Teenager.parentStatus))
+21. Q[brain, Caregiver.role, Teenager.parentStatus](Caregiver.role == "guardian" → Relation(Caregiver.role, Teenager.parentStatus))
+22. Q[brain, Caregiver.experience, Teenager.parentStatus](Caregiver.experience > 5 → Relation(Caregiver.experience, Teenager.parentStatus))
+23. Q[brain, Caregiver.relationshipToTeenager, Teenager.parentStatus](Caregiver.relationshipToTeenager == "relative" → Relation(Caregiver.relationshipToTeenager, Teenager.parentStatus))
+24. Q[brain, MedicalProcedure.type, BrainDeadTeenager.status](MedicalProcedure.type == "life support removal" → Relation(MedicalProcedure.type, BrainDeadTeenager.status))
+25. Q[brain, MedicalProcedure.date, BrainDeadTeenager.status](MedicalProcedure.date == "2023-10-01" → Relation(MedicalProcedure.date, BrainDeadTeenager.status))
+26. Q[brain, MedicalProcedure.outcome, BrainDeadTeenager.birthOutcome](MedicalProcedure.outcome == "successful" → Relation(MedicalProcedure.outcome, BrainDeadTeenager.birthOutcome))
+27. Q[brain, BirthEvent.location, BrainDeadTeenager.birthOutcome](BirthEvent.location == "hospital" → Relation(BirthEvent.location, BrainDeadTeenager.birthOutcome))
+28. Q[brain, BirthEvent.time, BrainDeadTeenager.birthOutcome](BirthEvent.time == "2023-10-01" → Relation(BirthEvent.time, BrainDeadTeenager.birthOutcome))
+29. Q[brain, BirthEvent.type, BrainDeadTeenager.birthOutcome](BirthEvent.type == "premature" → Relation(BirthEvent.type, BrainDeadTeenager.birthOutcome))
+30. Q[brain, PrematureDaughter.healthStatus, BrainDeadTeenager.birthOutcome](PrematureDaughter.healthStatus == "critical" → Relation(PrematureDaughter.healthStatus, BrainDeadTeenager.birthOutcome))

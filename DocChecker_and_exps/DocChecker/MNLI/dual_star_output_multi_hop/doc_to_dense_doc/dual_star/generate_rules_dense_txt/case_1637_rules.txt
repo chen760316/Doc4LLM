@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 1637)
+S1: Immigrants get everything handed to them.
+S2: It's harder for somebody from America to get a loan from their own country when a foreigner can get more.
+
+Predicates:
+1. Immigrants.benefits
+2. Americans.loan_difficulty
+3. Foreigners.loan_access
+4. Immigrants.receive_easy_benefits
+5. Americans.face_hardship
+6. Foreigners.get_more_loans
+7. M_NLI(S1, S2)
+8. Causal(Immigrants.benefits, Americans.loan_difficulty)
+9. violate(Immigrants.benefits, Americans.loan_difficulty)
+10. Americans.loan_access
+11. Foreigners.receive_easy_loans
+12. Immigrants.get_loans
+13. Americans.get_loans
+14. Foreigners.benefits
+15. Americans.benefits
+16. Immigrants.loan_access
+17. Causal(Americans.loan_difficulty, Foreigners.loan_access)
+18. violate(Americans.loan_difficulty, Foreigners.loan_access)
+19. Immigrants.get_more_benefits
+20. Americans.face_loan_challenges
+21. Foreigners.enjoy_benefits
+22. M_NLI(Immigrants.benefits, Foreigners.loan_access)
+23. Causal(Immigrants.get_loans, Americans.loan_difficulty)
+24. violate(Immigrants.get_loans, Americans.loan_difficulty)
+25. Americans.experience_loan_issues
+26. Foreigners.enjoy_loan_favorability
+27. Immigrants.receive_loans
+28. Americans.struggle_with_loans
+29. Foreigners.access_loans_easily
+30. M_NLI(Americans.loan_difficulty, Foreigners.loan_access)
+
+Rules:
+1. Q[Immigrants, Immigrants.receive_easy_benefits == true → Causal(Immigrants.receive_easy_benefits, Americans.loan_difficulty)]
+2. Q[Immigrants, Immigrants.benefits == true → Causal(Immigrants.benefits, Americans.loan_difficulty)]
+3. Q[Immigrants, Immigrants.get_more_benefits == true → Causal(Immigrants.get_more_benefits, Americans.loan_difficulty)]
+4. Q[Immigrants, Immigrants.loan_access == true → Causal(Immigrants.loan_access, Americans.loan_difficulty)]
+5. Q[Immigrants, Immigrants.get_loans == true → Causal(Immigrants.get_loans, Americans.loan_difficulty)]
+6. Q[Americans, Americans.loan_difficulty == true → Causal(Americans.loan_difficulty, Foreigners.loan_access)]
+7. Q[Americans, Americans.face_hardship == true → Causal(Americans.face_hardship, Foreigners.loan_access)]
+8. Q[Americans, Americans.struggle_with_loans == true → Causal(Americans.struggle_with_loans, Foreigners.loan_access)]
+9. Q[Americans, Americans.experience_loan_issues == true → Causal(Americans.experience_loan_issues, Foreigners.loan_access)]
+10. Q[Americans, Americans.face_loan_challenges == true → Causal(Americans.face_loan_challenges, Foreigners.loan_access)]
+11. Q[Foreigners, Foreigners.loan_access == true → Causal(Foreigners.loan_access, Americans.loan_difficulty)]
+12. Q[Foreigners, Foreigners.get_more_loans == true → Causal(Foreigners.get_more_loans, Americans.loan_difficulty)]
+13. Q[Foreigners, Foreigners.receive_easy_loans == true → Causal(Foreigners.receive_easy_loans, Americans.loan_difficulty)]
+14. Q[Foreigners, Foreigners.enjoy_loan_favorability == true → Causal(Foreigners.enjoy_loan_favorability, Americans.loan_difficulty)]
+15. Q[Foreigners, Foreigners.access_loans_easily == true → Causal(Foreigners.access_loans_easily, Americans.loan_difficulty)]
+16. Q[Immigrants, M_NLI(S1, S2) == true → Causal(Immigrants.benefits, Americans.loan_difficulty)]
+17. Q[Americans, M_NLI(S1, S2) == true → Causal(Americans.loan_difficulty, Foreigners.loan_access)]
+18. Q[Foreigners, M_NLI(S1, S2) == true → Causal(Foreigners.loan_access, Americans.loan_difficulty)]
+19. Q[Immigrants, violate(Immigrants.benefits, Americans.loan_difficulty) == true → Causal(Immigrants.benefits, Americans.loan_difficulty)]
+20. Q[Americans, violate(Americans.loan_difficulty, Foreigners.loan_access) == true → Causal(Americans.loan_difficulty, Foreigners.loan_access)]
+21. Q[Foreigners, violate(Foreigners.loan_access, Americans.loan_difficulty) == true → Causal(Foreigners.loan_access, Americans.loan_difficulty)]
+22. Q[Immigrants, Immigrants.get_loans == true → Causal(Immigrants.get_loans, Americans.loan_difficulty)]
+23. Q[Americans, Americans.loan_access == false → Causal(Americans.loan_access, Foreigners.loan_access)]
+24. Q[Foreigners, Foreigners.enjoy_benefits == true → Causal(Foreigners.enjoy_benefits, Americans.loan_difficulty)]
+25. Q[Americans, Americans.loan_difficulty == true → Causal(Americans.loan_difficulty, Foreigners.receive_easy_loans)]
+26. Q[Immigrants, Immigrants.receive_loans == true → Causal(Immigrants.receive_loans, Americans.loan_difficulty)]
+27. Q[Foreigners, Foreigners.benefits == true → Causal(Foreigners.benefits, Americans.loan_difficulty)]
+28. Q[Americans, Americans.loan_difficulty == true → Causal(Americans.loan_difficulty, Foreigners.get_more_loans)]
+29. Q[Immigrants, M_NLI(Immigrants.benefits, Foreigners.loan_access) == true → Causal(Immigrants.benefits, Americans.loan_difficulty)]
+30. Q[Americans, M_NLI(Americans.loan_difficulty, Foreigners.loan_access) == true → Causal(Americans.loan_difficulty, Foreigners.loan_access)]

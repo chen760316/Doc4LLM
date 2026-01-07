@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 391)
+S1: Y o u r g a r d e n d i d n ' t n e e d t e n d i n g y e s t e r d a y .
+S2: b e c a u s e y o u k n o w i m e a n l a s t s u m m e r t h e o n l y w a y y o u c o u l d k e e p s o m e t h i n g k e e p a k e e p a g a r d e n g r o w i n g l a s t s u m m e r w a s t o w a t e r i t a l l d a y l o n g e v e r y d a y .
+
+Predicates:
+1. Garden.care_needed = false
+2. Garden.watering_required = true
+3. Last_summer.garden_growth = true
+4. Last_summer.watering_frequency = daily
+5. Yesterday.garden_tending = false
+6. You.know = true
+7. You.keep.garden = false
+8. You.could.keep.garden = true
+9. Watering.garden = true
+10. Garden.growth_condition = watering
+11. Garden.care = tending
+12. Tending.garden = false
+13. Watering.frequency = all_day_long
+14. Last_summer.garden_condition = healthy
+15. You.maintain.garden = false
+16. Garden.needs_care = false
+17. Watering.garden_growth = necessary
+18. You.understand.garden_needs = true
+19. Garden.growth = dependent_on_watering
+20. Last_summer.garden_care = insufficient
+21. Yesterday.garden_care = not_required
+22. You.acknowledge.garden_needs = true
+23. Garden.survival = dependent_on_watering
+24. Tending.garden = not_needed
+25. Watering.garden = essential
+26. Garden.growth = reliant_on_water
+27. You.realize.garden_needs = true
+28. Garden.maintenance = absent
+29. Watering.garden = critical
+30. Last_summer.garden = thriving
+
+Rules:
+1. Q[Y o u r g a r d e n d i d n ' t n e e d t e n d i n g y e s t e r d a y, Garden.care_needed == false → Causal(Garden.care_needed, Garden.watering_required)]
+2. Q[b e c a u s e y o u k n o w i m e a n l a s t s u m m e r, You.know == true → Causal(You.know, Last_summer.watering_frequency)]
+3. Q[l a s t s u m m e r t h e o n l y w a y y o u c o u l d k e e p s o m e t h i n g, You.keep.garden == false → Causal(You.keep.garden, Garden.growth_condition)]
+4. Q[w a s t o w a t e r i t a l l d a y l o n g, Watering.garden == true → Causal(Watering.garden, Garden.growth)]
+5. Q[y e s t e r d a y, Yesterday.garden_tending == false → Causal(Yesterday.garden_tending, Garden.care_needed)]
+6. Q[y o u k n o w i m e a n l a s t s u m m e r, You.know == true → Causal(You.know, Last_summer.garden_growth)]
+7. Q[y o u c o u l d k e e p s o m e t h i n g, You.could.keep.garden == true → Causal(You.could.keep.garden, Garden.growth_condition)]
+8. Q[w a t e r i n g i t a l l d a y l o n g, Watering.frequency == all_day_long → Causal(Watering.frequency, Garden.growth)]
+9. Q[l a s t s u m m e r, Last_summer.garden_growth == true → Causal(Last_summer.garden_growth, Garden.growth_condition)]
+10. Q[y o u k n o w i m e a n l a s t s u m m e r, You.know == true → Causal(You.know, Garden.watering_required)]
+11. Q[y o u r g a r d e n d i d n ' t n e e d t e n d i n g, Garden.care_needed == false → Causal(Garden.care_needed, Garden.growth)]
+12. Q[b e c a u s e y o u k n o w i m e a n l a s t s u m m e r, You.know == true → Causal(You.know, Garden.needs_care)]
+13. Q[y e s t e r d a y, Yesterday.garden_care == not_required → Causal(Yesterday.garden_care, Garden.growth_condition)]
+14. Q[l a s t s u m m e r, Last_summer.garden_condition == healthy → Causal(Last_summer.garden_condition, Garden.growth)]
+15. Q[y o u c o u l d k e e p s o m e t h i n g, You.could.keep.garden == true → Causal(You.could.keep.garden, Garden.survival)]
+16. Q[w a t e r i n g g a r d e n, Watering.garden == essential → Causal(Watering.garden, Garden.growth)]
+17. Q[g a r d e n g r o w t h, Garden.growth == dependent_on_watering → Causal(Garden.growth, Watering.garden)]
+18. Q[l a s t s u m m e r, Last_summer.garden_care == insufficient → Causal(Last_summer.garden_care, Garden.growth)]
+19. Q[y o u r g a r d e n d i d n ' t n e e d t e n d i n g, Garden.care == tending → Causal(Garden.care, Garden.growth)]
+20. Q[y e s t e r d a y, Yesterday.garden_tending == false → Causal(Yesterday.garden_tending, Garden.growth)]
+21. Q[y o u k n o w i m e a n l a s t s u m m e r, You.know == true → Causal(You.know, Garden.growth)]
+22. Q[w a t e r i n g g a r d e n, Watering.garden == critical → Causal(Watering.garden, Garden.growth)]
+23. Q[g a r d e n g r o w t h, Garden.growth == reliant_on_water → Causal(Garden.growth, Watering.garden)]
+24. Q[y o u r g a r d e n d i d n ' t n e e d t e n d i n g, Garden.care_needed == false → Causal(Garden.care_needed, Garden.watering_required)]
+25. Q[l a s t s u m m e r, Last_summer.garden = thriving → Causal(Last_summer.garden, Garden.growth)]
+26. Q[y o u k n o w i m e a n l a s t s u m m e r, You.know == true → Causal(You.know, Garden.care)]
+27. Q[y e s t e r d a y, Yesterday.garden_care == not_required → Causal(Yesterday.garden_care, Garden.watering_required)]
+28. Q[l a s t s u m m e r, Last_summer.garden_growth == true → Causal(Last_summer.garden_growth, Garden.growth)]
+29. Q[y o u c o u l d k e e p s o m e t h i n g, You.could.keep.garden == true → Causal(You.could.keep.garden, Garden.care_needed)]
+30. Q[w a t e r i n g g a r d e n, Watering.garden == necessary → Causal(Watering.garden, Garden.growth)]

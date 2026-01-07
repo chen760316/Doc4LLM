@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 236)
+S1: Glass kilns heat from the bottom.
+S2: Glass kilns heat from the top.
+
+Predicates:
+1. Glass_kilns.heat_source_bottom
+2. Glass_kilns.heat_source_top
+3. M_NLI(S1, S2)
+4. Factual(Glass_kilns.heat_source_bottom, true)
+5. Factual(Glass_kilns.heat_source_top, true)
+6. violate(Glass_kilns.heat_source_bottom, Glass_kilns.heat_source_top)
+7. Kiln.type_glass
+8. Kiln.heat_method_bottom
+9. Kiln.heat_method_top
+10. M_NLI(Kiln.heat_method_bottom, Kiln.heat_method_top)
+11. Factual(Kiln.heat_method_bottom, true)
+12. Factual(Kiln.heat_method_top, true)
+13. violate(Kiln.heat_method_bottom, Kiln.heat_method_top)
+14. Glass.material_properties
+15. Glass.thermal_conductivity
+16. Glass.kiln_temperature
+17. M_NLI(Glass.kiln_temperature, Glass.thermal_conductivity)
+18. Factual(Glass.kiln_temperature, high)
+19. Factual(Glass.thermal_conductivity, variable)
+20. violate(Glass.kiln_temperature, Glass.thermal_conductivity)
+21. Heat.source_bottom
+22. Heat.source_top
+23. M_NLI(Heat.source_bottom, Heat.source_top)
+24. Factual(Heat.source_bottom, true)
+25. Factual(Heat.source_top, true)
+26. violate(Heat.source_bottom, Heat.source_top)
+27. Kiln.efficiency_bottom
+28. Kiln.efficiency_top
+29. M_NLI(Kiln.efficiency_bottom, Kiln.efficiency_top)
+30. Factual(Kiln.efficiency_bottom, optimal)
+
+Rules:
+1. Q[Glass, Glass_kilns.heat_source_bottom, Glass_kilns.heat_source_top](Glass_kilns.heat_source_bottom == true → Factual(Glass_kilns.heat_source_bottom, true))
+2. Q[Glass, Glass_kilns.heat_source_top, Glass_kilns.heat_source_bottom](Glass_kilns.heat_source_top == true → Factual(Glass_kilns.heat_source_top, true))
+3. Q[Glass, Glass_kilns.heat_source_bottom, Glass_kilns.heat_source_top](violate(Glass_kilns.heat_source_bottom, Glass_kilns.heat_source_top) → Factual(Glass_kilns.heat_source_bottom, false))
+4. Q[Glass, Glass_kilns.heat_source_top, Glass_kilns.heat_source_bottom](violate(Glass_kilns.heat_source_top, Glass_kilns.heat_source_bottom) → Factual(Glass_kilns.heat_source_top, false))
+5. Q[Glass, Kiln.heat_method_bottom, Kiln.heat_method_top](Kiln.heat_method_bottom == true → Factual(Kiln.heat_method_bottom, true))
+6. Q[Glass, Kiln.heat_method_top, Kiln.heat_method_bottom](Kiln.heat_method_top == true → Factual(Kiln.heat_method_top, true))
+7. Q[Glass, Kiln.heat_method_bottom, Kiln.heat_method_top](violate(Kiln.heat_method_bottom, Kiln.heat_method_top) → Factual(Kiln.heat_method_bottom, false))
+8. Q[Glass, Kiln.heat_method_top, Kiln.heat_method_bottom](violate(Kiln.heat_method_top, Kiln.heat_method_bottom) → Factual(Kiln.heat_method_top, false))
+9. Q[Glass, Glass.kiln_temperature, Glass.thermal_conductivity](Factual(Glass.kiln_temperature, high) → Factual(Glass.kiln_temperature, true))
+10. Q[Glass, Glass.kiln_temperature, Glass.thermal_conductivity](Factual(Glass.thermal_conductivity, variable) → Factual(Glass.thermal_conductivity, true))
+11. Q[Glass, Glass.kiln_temperature, Glass.thermal_conductivity](violate(Glass.kiln_temperature, Glass.thermal_conductivity) → Factual(Glass.kiln_temperature, false))
+12. Q[Glass, Glass.kiln_temperature, Glass.thermal_conductivity](violate(Glass.thermal_conductivity, Glass.kiln_temperature) → Factual(Glass.thermal_conductivity, false))
+13. Q[Glass, Heat.source_bottom, Heat.source_top](Factual(Heat.source_bottom, true) → Factual(Heat.source_bottom, true))
+14. Q[Glass, Heat.source_top, Heat.source_bottom](Factual(Heat.source_top, true) → Factual(Heat.source_top, true))
+15. Q[Glass, Heat.source_bottom, Heat.source_top](violate(Heat.source_bottom, Heat.source_top) → Factual(Heat.source_bottom, false))
+16. Q[Glass, Heat.source_top, Heat.source_bottom](violate(Heat.source_top, Heat.source_bottom) → Factual(Heat.source_top, false))
+17. Q[Glass, Kiln.efficiency_bottom, Kiln.efficiency_top](Factual(Kiln.efficiency_bottom, optimal) → Factual(Kiln.efficiency_bottom, true))
+18. Q[Glass, Kiln.efficiency_top, Kiln.efficiency_bottom](Factual(Kiln.efficiency_top, optimal) → Factual(Kiln.efficiency_top, true))
+19. Q[Glass, Kiln.efficiency_bottom, Kiln.efficiency_top](violate(Kiln.efficiency_bottom, Kiln.efficiency_top) → Factual(Kiln.efficiency_bottom, false))
+20. Q[Glass, Kiln.efficiency_top, Kiln.efficiency_bottom](violate(Kiln.efficiency_top, Kiln.efficiency_bottom) → Factual(Kiln.efficiency_top, false))
+21. Q[Glass, Glass_kilns.heat_source_bottom, Kiln.heat_method_bottom](Glass_kilns.heat_source_bottom == true → Factual(Glass_kilns.heat_source_bottom, true))
+22. Q[Glass, Glass_kilns.heat_source_top, Kiln.heat_method_top](Glass_kilns.heat_source_top == true → Factual(Glass_kilns.heat_source_top, true))
+23. Q[Glass, Kiln.heat_method_bottom, Glass_kilns.heat_source_bottom](Factual(Kiln.heat_method_bottom, true) → Factual(Kiln.heat_method_bottom, true))
+24. Q[Glass, Kiln.heat_method_top, Glass_kilns.heat_source_top](Factual(Kiln.heat_method_top, true) → Factual(Kiln.heat_method_top, true))
+25. Q[Glass, Glass_kilns.heat_source_bottom, Glass.kiln_temperature](Factual(Glass.kiln_temperature, high) → Factual(Glass.kiln_temperature, true))
+26. Q[Glass, Glass_kilns.heat_source_top, Glass.thermal_conductivity](Factual(Glass.thermal_conductivity, variable) → Factual(Glass.thermal_conductivity, true))
+27. Q[Glass, Heat.source_bottom, Kiln.heat_method_bottom](Factual(Kiln.heat_method_bottom, true) → Factual(Kiln.heat_method_bottom, true))
+28. Q[Glass, Heat.source_top, Kiln.heat_method_top](Factual(Kiln.heat_method_top, true) → Factual(Kiln.heat_method_top, true))
+29. Q[Glass, Kiln.efficiency_bottom, Glass.kiln_temperature](Factual(Glass.kiln_temperature, high) → Factual(Glass.kiln_temperature, true))
+30. Q[Glass, Kiln.efficiency_top, Glass.thermal_conductivity](Factual(Glass.thermal_conductivity, variable) → Factual(Glass.thermal_conductivity, true))

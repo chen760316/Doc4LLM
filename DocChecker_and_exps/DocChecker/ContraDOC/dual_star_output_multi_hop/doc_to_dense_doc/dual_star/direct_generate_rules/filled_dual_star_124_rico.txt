@@ -1,0 +1,32 @@
+Predicates:
+Christy.label != "Person"
+Christy.label = "Person"
+Christy.location != "tavern"
+Christy.location = "tavern"
+Christy.name != "Christy"
+Christy.name = "Christy"
+None_ML(Christy.attrs, Pegeen.attrs)
+Pegeen.label != "Person"
+Pegeen.label = "Person"
+Pegeen.name != "Pegeen"
+Pegeen.name != Christy.name
+Pegeen.name = "Pegeen"
+Pegeen.relationship != "betrayed and lost Christy"
+Pegeen.relationship = "betrayed and lost Christy"
+Pegeen.status != "lamenting"
+Pegeen.status = "lamenting"
+Pegeen___Christy.contradiction_type = "Factual"
+Pegeen___Christy.relationship = "Pegeen laments losing Christy, who she refers to as the only playboy of the western world."
+Pegeen___Christy.source_id = "3488771865_3"
+
+Rules:
+Q[Pegeen,Pegeen] (Pegeen.label = "Person" ∧ None_ML(Christy.attrs, Pegeen.attrs) ∧ Christy.label != "Person" ∧ Pegeen.status != "lamenting" ∧ Christy.name = "Christy" → Christy.label = "Person")
+Q[Pegeen,Pegeen] (Christy.location != "tavern" ∧ Pegeen.relationship = "betrayed and lost Christy" ∧ Christy.name = "Christy" → Pegeen.label != "Person")
+Q[Pegeen,Pegeen] (Pegeen___Christy.relationship = "Pegeen laments losing Christy, who she refers to as the only playboy of the western world." ∧ Pegeen.label = "Person" → Pegeen.relationship != "betrayed and lost Christy")
+Q[Pegeen,Pegeen] (Pegeen___Christy.relationship = "Pegeen laments losing Christy, who she refers to as the only playboy of the western world." ∧ Pegeen.relationship != "betrayed and lost Christy" ∧ Christy.label != "Person" ∧ Christy.location != "tavern" ∧ Christy.name = "Christy" ∧ Christy.location = "tavern" → Pegeen___Christy.contradiction_type = "Factual")
+Q[Pegeen,Pegeen] (Pegeen.name != "Pegeen" ∧ Pegeen.name = "Pegeen" ∧ None_ML(Christy.attrs, Pegeen.attrs) ∧ Christy.location != "tavern" → Pegeen.label = "Person")
+Q[Pegeen,Pegeen] (Christy.location != "tavern" ∧ Pegeen___Christy.contradiction_type = "Factual" ∧ Pegeen___Christy.relationship = "Pegeen laments losing Christy, who she refers to as the only playboy of the western world." → Christy.name != "Christy")
+Q[Pegeen,Pegeen] (Christy.label != "Person" ∧ Pegeen___Christy.contradiction_type = "Factual" ∧ Pegeen.status = "lamenting" ∧ Christy.label = "Person" ∧ Pegeen___Christy.source_id = "3488771865_3" ∧ Christy.name = "Christy" → None_ML(Christy.attrs, Pegeen.attrs))
+Q[Pegeen,Pegeen] (Pegeen___Christy.relationship = "Pegeen laments losing Christy, who she refers to as the only playboy of the western world." ∧ Christy.location != "tavern" → Pegeen.status = "lamenting")
+Q[Pegeen,Pegeen] (Christy.label = "Person" ∧ Pegeen.label != "Person" ∧ None_ML(Christy.attrs, Pegeen.attrs) ∧ Pegeen.relationship != "betrayed and lost Christy" ∧ Pegeen___Christy.source_id = "3488771865_3" → Pegeen.relationship = "betrayed and lost Christy")
+Q[Pegeen,Pegeen] (Christy.label = "Person" ∧ Pegeen.status != "lamenting" ∧ Pegeen.label != "Person" ∧ Pegeen.status = "lamenting" → Pegeen.name != "Pegeen")

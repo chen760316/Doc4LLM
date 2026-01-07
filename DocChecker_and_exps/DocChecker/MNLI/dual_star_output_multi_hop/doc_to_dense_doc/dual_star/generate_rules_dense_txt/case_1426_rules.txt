@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 1426)
+S1: By 1938, they held Nanking, Hankow, and Canton.
+S2: They only held Nanking, Hankow, and Canton.
+
+Predicates:
+1. Territory.holdings
+2. Year.1938
+3. City.Nanking
+4. City.Hankow
+5. City.Canton
+6. Relationship.implies
+7. Relationship.only
+8. Entity.they
+9. Entity.additional_territories
+10. Meta.M_NLI(S1, S2)
+11. Meta.Factual(Territory.holdings, Year.1938)
+12. Meta.violate(Territory.holdings, Entity.additional_territories)
+13. Entity.territory_count
+14. Relationship.hold
+15. Year.1938.territories
+16. City.held_by.they
+17. Entity.they.hold
+18. Relationship.territory
+19. City.Nanking.hold
+20. City.Hankow.hold
+21. City.Canton.hold
+22. Entity.they.additional_territories
+23. Relationship.territory_count
+24. Year.1938.additional_territories
+25. Entity.territory_status
+26. Relationship.territory_status
+27. Entity.territory_list
+28. Meta.M_NLI(Entity.they, Entity.additional_territories)
+29. Meta.Factual(City.Nanking, City.Hankow)
+30. Meta.violate(City.Canton, Entity.they)
+
+Rules:
+1. Q[1938, Territory.holdings, Entity.additional_territories](Year.1938 == true → Factual(Territory.holdings, Entity.additional_territories))
+2. Q[Nanking, City.Nanking, Entity.additional_territories](City.Nanking.hold == true → Factual(City.Nanking, Entity.additional_territories))
+3. Q[Hankow, City.Hankow, Entity.additional_territories](City.Hankow.hold == true → Factual(City.Hankow, Entity.additional_territories))
+4. Q[Canton, City.Canton, Entity.additional_territories](City.Canton.hold == true → Factual(City.Canton, Entity.additional_territories))
+5. Q[1938, Year.1938, Entity.they](Year.1938 == true → Factual(Entity.they, Year.1938))
+6. Q[they, Entity.they, Entity.additional_territories](Entity.they.hold == true → Factual(Entity.they, Entity.additional_territories))
+7. Q[1938, Year.1938, Territory.holdings](Year.1938 == true → Factual(Territory.holdings, Year.1938))
+8. Q[Nanking, City.Nanking, Territory.holdings](City.Nanking.hold == true → Factual(Territory.holdings, City.Nanking))
+9. Q[Hankow, City.Hankow, Territory.holdings](City.Hankow.hold == true → Factual(Territory.holdings, City.Hankow))
+10. Q[Canton, City.Canton, Territory.holdings](City.Canton.hold == true → Factual(Territory.holdings, City.Canton))
+11. Q[they, Entity.they, Territory.holdings](Entity.they.hold == true → Factual(Territory.holdings, Entity.they))
+12. Q[1938, Year.1938, Relationship.implies](Year.1938 == true → Factual(Relationship.implies, Year.1938))
+13. Q[they, Entity.they, Relationship.only](Entity.they.hold == true → Factual(Relationship.only, Entity.they))
+14. Q[1938, Year.1938, Relationship.hold](Year.1938 == true → Factual(Relationship.hold, Year.1938))
+15. Q[Nanking, City.Nanking, Relationship.hold](City.Nanking.hold == true → Factual(Relationship.hold, City.Nanking))
+16. Q[Hankow, City.Hankow, Relationship.hold](City.Hankow.hold == true → Factual(Relationship.hold, City.Hankow))
+17. Q[Canton, City.Canton, Relationship.hold](City.Canton.hold == true → Factual(Relationship.hold, City.Canton))
+18. Q[they, Entity.they, Relationship.territory](Entity.they.hold == true → Factual(Relationship.territory, Entity.they))
+19. Q[1938, Year.1938, Entity.territory_count](Year.1938 == true → Factual(Entity.territory_count, Year.1938))
+20. Q[they, Entity.they, Entity.territory_count](Entity.they.hold == true → Factual(Entity.territory_count, Entity.they))
+21. Q[1938, Year.1938, Meta.M_NLI(S1, S2)](Year.1938 == true → Factual(Meta.M_NLI(S1, S2), Year.1938))
+22. Q[they, Entity.they, Meta.Factual(Territory.holdings, Year.1938)](Entity.they.hold == true → Factual(Meta.Factual(Territory.holdings, Year.1938), Entity.they))
+23. Q[1938, Year.1938, Meta.violate(Territory.holdings, Entity.additional_territories)](Year.1938 == true → Factual(Meta.violate(Territory.holdings, Entity.additional_territories), Year.1938))
+24. Q[Nanking, City.Nanking, Meta.Factual(City.Nanking, City.Hankow)](City.Nanking.hold == true → Factual(Meta.Factual(City.Nanking, City.Hankow), City.Nanking))
+25. Q[Hankow, City.Hankow, Meta.Factual(City.Nanking, City.Hankow)](City.Hankow.hold == true → Factual(Meta.Factual(City.Nanking, City.Hankow), City.Hankow))
+26. Q[Canton, City.Canton, Meta.Factual(City.Nanking, City.Hankow)](City.Canton.hold == true → Factual(Meta.Factual(City.Nanking, City.Hankow), City.Canton))
+27. Q[they, Entity.they, Meta.violate(City.Canton, Entity.they)](Entity.they.hold == true → Factual(Meta.violate(City.Canton, Entity.they), Entity.they))
+28. Q[1938, Year.1938, Entity.territory_status](Year.1938 == true → Factual(Entity.territory_status, Year.1938))
+29. Q[they, Entity.they, Entity.territory_status](Entity.they.hold == true → Factual(Entity.territory_status, Entity.they))
+30. Q[1938, Year.1938, Relationship.territory_count](Year.1938 == true → Factual(Relationship.territory_count, Year.1938))

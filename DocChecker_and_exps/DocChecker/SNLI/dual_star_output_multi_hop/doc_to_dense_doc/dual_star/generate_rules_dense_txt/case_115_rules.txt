@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 115)
+S1: A black kid eating.
+S2: A person is outside.
+
+Predicates:
+1. BlackKid.eating
+2. Person.isOutside
+3. M_NLI(S1, S2)
+4. Relation(A_black_kid, eating)
+5. Relation(A_person, isOutside)
+6. violate(A_black_kid, isOutside)
+7. BlackKid.age
+8. Person.location
+9. M_NLI(S2, S1)
+10. Relation(A_black_kid, isOutside)
+11. Relation(A_person, eating)
+12. violate(A_person, eating)
+13. BlackKid.happiness
+14. Person.activity
+15. M_NLI(S1, S1)
+16. Relation(A_black_kid, happiness)
+17. Relation(A_person, activity)
+18. violate(A_black_kid, activity)
+19. BlackKid.friend
+20. Person.environment
+21. M_NLI(S2, S2)
+22. Relation(A_black_kid, friend)
+23. Relation(A_person, environment)
+24. violate(A_person, friend)
+25. BlackKid.education
+26. Person.emotion
+27. M_NLI(S1, S2)
+28. Relation(A_black_kid, education)
+29. Relation(A_person, emotion)
+30. violate(A_black_kid, emotion)
+
+Rules:
+1. Q[black, BlackKid.eating == true](M_NLI(S1, S2) → Relation(A_black_kid, isOutside))
+2. Q[black, BlackKid.eating == true](BlackKid.eating == true → violate(A_black_kid, isOutside))
+3. Q[black, BlackKid.eating == true](BlackKid.eating == true → Relation(A_black_kid, eating))
+4. Q[black, BlackKid.age == "child"](M_NLI(S1, S2) → Relation(A_black_kid, isOutside))
+5. Q[black, BlackKid.age == "child"](BlackKid.eating == true → violate(A_black_kid, isOutside))
+6. Q[black, BlackKid.happiness == "high"](M_NLI(S1, S2) → Relation(A_black_kid, isOutside))
+7. Q[black, BlackKid.happiness == "high"](BlackKid.eating == true → violate(A_black_kid, isOutside))
+8. Q[black, BlackKid.friend == "none"](M_NLI(S1, S2) → Relation(A_black_kid, isOutside))
+9. Q[black, BlackKid.friend == "none"](BlackKid.eating == true → violate(A_black_kid, isOutside))
+10. Q[black, BlackKid.education == "none"](M_NLI(S1, S2) → Relation(A_black_kid, isOutside))
+11. Q[black, BlackKid.education == "none"](BlackKid.eating == true → violate(A_black_kid, isOutside))
+12. Q[black, BlackKid.happiness == "low"](M_NLI(S1, S2) → Relation(A_black_kid, isOutside))
+13. Q[black, BlackKid.happiness == "low"](BlackKid.eating == true → violate(A_black_kid, isOutside))
+14. Q[black, BlackKid.eating == true](M_NLI(S1, S2) → violate(A_black_kid, eating))
+15. Q[black, BlackKid.eating == true](BlackKid.eating == true → Relation(A_black_kid, eating))
+16. Q[person, Person.isOutside == true](M_NLI(S1, S2) → Relation(A_person, eating))
+17. Q[person, Person.isOutside == true](Person.isOutside == true → violate(A_person, eating))
+18. Q[person, Person.activity == "none"](M_NLI(S1, S2) → Relation(A_person, eating))
+19. Q[person, Person.activity == "none"](Person.isOutside == true → violate(A_person, eating))
+20. Q[person, Person.location == "outside"](M_NLI(S1, S2) → Relation(A_person, eating))
+21. Q[person, Person.location == "outside"](Person.isOutside == true → violate(A_person, eating))
+22. Q[person, Person.emotion == "neutral"](M_NLI(S1, S2) → Relation(A_person, eating))
+23. Q[person, Person.emotion == "neutral"](Person.isOutside == true → violate(A_person, eating))
+24. Q[person, Person.friend == "none"](M_NLI(S1, S2) → Relation(A_person, eating))
+25. Q[person, Person.friend == "none"](Person.isOutside == true → violate(A_person, eating))
+26. Q[person, Person.education == "none"](M_NLI(S1, S2) → Relation(A_person, eating))
+27. Q[person, Person.education == "none"](Person.isOutside == true → violate(A_person, eating))
+28. Q[person, Person.activity == "eating"](M_NLI(S1, S2) → violate(A_person, eating))
+29. Q[person, Person.activity == "eating"](Person.isOutside == true → violate(A_person, eating))
+30. Q[person, Person.isOutside == true](M_NLI(S1, S2) → violate(A_person, eating))

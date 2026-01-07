@@ -1,0 +1,56 @@
+Predicates:
+7-year-old girl.label != "Person"
+7-year-old girl.label = "Person"
+7-year-old girl.location != "Las Vegas, Nevada"
+7-year-old girl.location != Deborah Lippis.location
+7-year-old girl.location = "Las Vegas, Nevada"
+7-year-old girl.name != "7-year-old girl"
+7-year-old girl.name != Deborah Lippis.name
+7-year-old girl.name = "7-year-old girl"
+7-year-old girl.relationship != "daughter of the girl's mother"
+7-year-old girl.relationship = "daughter of the girl's mother"
+7-year-old girl.status != "victim"
+7-year-old girl.status = "victim"
+Chester Arthur Stiles.age != 37
+Chester Arthur Stiles.age < 42
+Chester Arthur Stiles.age = 37
+Chester Arthur Stiles.age > 32
+Chester Arthur Stiles.label != "Person"
+Chester Arthur Stiles.label = "Person"
+Chester Arthur Stiles.name != "Chester Arthur Stiles"
+Chester Arthur Stiles.name != 7-year-old girl.name
+Chester Arthur Stiles.name != Deborah Lippis.name
+Chester Arthur Stiles.name = "Chester Arthur Stiles"
+Chester Arthur Stiles.status != "in custody"
+Chester Arthur Stiles.status != 7-year-old girl.status
+Chester Arthur Stiles.status = "in custody"
+Chester Arthur Stiles___7-year-old girl.doc_id = "news_train_48"
+Chester Arthur Stiles___7-year-old girl.incident_date = "2004"
+Chester Arthur Stiles___7-year-old girl.relationship != Chester Arthur Stiles___Deborah Lippis.relationship
+Chester Arthur Stiles___7-year-old girl.relationship = "Chester Stiles is accused of raping the 2-year-old girl."
+Chester Arthur Stiles___7-year-old girl.videotape = "evidence of assault"
+Chester Arthur Stiles___Deborah Lippis.doc_id = "news_train_48"
+Chester Arthur Stiles___Deborah Lippis.hearing_date = "November 19"
+Chester Arthur Stiles___Deborah Lippis.relationship = "Judge Deborah Lippis set a preliminary hearing date for Chester Stiles."
+Deborah Lippis.label != "Person"
+Deborah Lippis.label = "Person"
+Deborah Lippis.location != "Clark County, Nevada"
+Deborah Lippis.location = "Clark County, Nevada"
+Deborah Lippis.name != "Deborah Lippis"
+Deborah Lippis.name = "Deborah Lippis"
+Deborah Lippis.occupation != "Judge"
+Deborah Lippis.occupation = "Judge"
+None_ML(Chester Arthur Stiles.attrs, 7-year-old girl.attrs)
+None_ML(Chester Arthur Stiles___Deborah Lippis.attrs, Chester Arthur Stiles___7-year-old girl.attrs)
+
+Rules:
+Q[Chester Arthur Stiles,Chester Arthur Stiles] (7-year-old girl.name != "7-year-old girl" ∧ 7-year-old girl.label != "Person" ∧ Chester Arthur Stiles.age = 37 ∧ Chester Arthur Stiles___7-year-old girl.doc_id = "news_train_48" → Chester Arthur Stiles.status = "in custody")
+Q[Chester Arthur Stiles,Chester Arthur Stiles] (Chester Arthur Stiles.age < 42 ∧ Chester Arthur Stiles.status != "in custody" → 7-year-old girl.name = "7-year-old girl")
+Q[Chester Arthur Stiles,Chester Arthur Stiles] (Chester Arthur Stiles.label != "Person" ∧ 7-year-old girl.status != "victim" ∧ Deborah Lippis.label = "Person" ∧ Deborah Lippis.name = "Deborah Lippis" ∧ 7-year-old girl.status = "victim" → Chester Arthur Stiles.name = "Chester Arthur Stiles")
+Q[Chester Arthur Stiles,Chester Arthur Stiles] (7-year-old girl.label != "Person" ∧ 7-year-old girl.location != "Las Vegas, Nevada" ∧ Chester Arthur Stiles___7-year-old girl.incident_date = "2004" → Chester Arthur Stiles.age < 42)
+Q[Chester Arthur Stiles,Chester Arthur Stiles] (Chester Arthur Stiles.status != "in custody" ∧ 7-year-old girl.location != Deborah Lippis.location ∧ Deborah Lippis.name != "Deborah Lippis" ∧ Chester Arthur Stiles___7-year-old girl.relationship = "Chester Stiles is accused of raping the 2-year-old girl." ∧ Chester Arthur Stiles.status = "in custody" ∧ Chester Arthur Stiles___7-year-old girl.doc_id = "news_train_48" → 7-year-old girl.label = "Person")
+Q[Chester Arthur Stiles,Chester Arthur Stiles] (Chester Arthur Stiles___Deborah Lippis.hearing_date = "November 19" ∧ Chester Arthur Stiles___Deborah Lippis.doc_id = "news_train_48" ∧ Chester Arthur Stiles___7-year-old girl.incident_date = "2004" → Deborah Lippis.name != "Deborah Lippis")
+Q[Chester Arthur Stiles,Chester Arthur Stiles] (7-year-old girl.name != "7-year-old girl" ∧ Chester Arthur Stiles.name != 7-year-old girl.name ∧ Chester Arthur Stiles.name != Deborah Lippis.name ∧ 7-year-old girl.location = "Las Vegas, Nevada" ∧ Chester Arthur Stiles___7-year-old girl.doc_id = "news_train_48" ∧ Chester Arthur Stiles___7-year-old girl.incident_date = "2004" → Chester Arthur Stiles.label != "Person")
+Q[Chester Arthur Stiles,Chester Arthur Stiles] (Chester Arthur Stiles.name = "Chester Arthur Stiles" ∧ Chester Arthur Stiles___Deborah Lippis.relationship = "Judge Deborah Lippis set a preliminary hearing date for Chester Stiles." ∧ Chester Arthur Stiles___7-year-old girl.relationship != Chester Arthur Stiles___Deborah Lippis.relationship ∧ 7-year-old girl.name != Deborah Lippis.name ∧ 7-year-old girl.label != "Person" → 7-year-old girl.relationship = "daughter of the girl's mother")
+Q[Chester Arthur Stiles,Chester Arthur Stiles] (Deborah Lippis.label != "Person" ∧ Chester Arthur Stiles.name != "Chester Arthur Stiles" → Chester Arthur Stiles.age > 32)
+Q[Chester Arthur Stiles,Chester Arthur Stiles] (None_ML(Chester Arthur Stiles.attrs, 7-year-old girl.attrs) ∧ Chester Arthur Stiles.age > 32 ∧ Chester Arthur Stiles.name = "Chester Arthur Stiles" ∧ 7-year-old girl.status = "victim" → Chester Arthur Stiles.age = 37)

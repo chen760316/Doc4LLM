@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 83)
+S1: Quentin Jerome Tarantino (born March 27, 1963) is an American director, writer, and actor.
+S2: Quentin Tarantino was born five years before March 27, 1963.
+
+Predicates:
+1. Quentin_Tarantino.birth_date = March_27_1963
+2. Quentin_Tarantino.profession = director
+3. Quentin_Tarantino.profession = writer
+4. Quentin_Tarantino.profession = actor
+5. Quentin_Tarantino.birth_year = 1963
+6. Quentin_Tarantino.birth_year = 1963
+7. March_27_1963.is_before = March_27_1968
+8. March_27_1963.is_after = March_27_1958
+9. Quentin_Tarantino.birth_date.is_equal = March_27_1963
+10. Quentin_Tarantino.birth_date.is_not_equal = March_27_1958
+11. Quentin_Tarantino.birth_date.is_not_equal = March_27_1968
+12. Quentin_Tarantino.birth_date.is_valid = true
+13. Quentin_Tarantino.birth_date.is_invalid = false
+14. Quentin_Tarantino.birth_date.is_contradictory = true
+15. Quentin_Tarantino.birth_date.is_factual = true
+16. Quentin_Tarantino.birth_date.is_factual = false
+17. March_27_1963.is_factual = true
+18. March_27_1963.is_factual = false
+19. Quentin_Tarantino.age_in_2023 = 60
+20. Quentin_Tarantino.age_in_2023.is_equal = 60
+21. Quentin_Tarantino.age_in_2023.is_not_equal = 55
+22. Quentin_Tarantino.birth_date.is_derived_from = S1
+23. Quentin_Tarantino.birth_date.is_derived_from = S2
+24. S1.contains_fact = Quentin_Tarantino.birth_date
+25. S2.contains_fact = Quentin_Tarantino.birth_year
+26. S1.is_factual = true
+27. S2.is_factual = false
+28. S1.is_contradictory_to = S2
+29. S2.violates_fact = Quentin_Tarantino.birth_date
+30. M_NLI(S1, S2) = true
+
+Rules:
+1. Q[Quentin, Quentin_Tarantino.birth_date.is_equal, March_27_1963](S1.is_factual == true → Factual(Quentin, March_27_1963))
+2. Q[Quentin, Quentin_Tarantino.birth_year, 1963](S1.is_factual == true → Factual(Quentin, 1963))
+3. Q[Quentin, Quentin_Tarantino.birth_date.is_not_equal, March_27_1968](S2.violates_fact == Quentin_Tarantino.birth_date → Factual(Quentin, March_27_1968))
+4. Q[Quentin, Quentin_Tarantino.birth_date.is_not_equal, March_27_1958](S2.violates_fact == Quentin_Tarantino.birth_date → Factual(Quentin, March_27_1958))
+5. Q[Quentin, Quentin_Tarantino.birth_date.is_factual, true](S1.is_factual == true → Factual(Quentin, true))
+6. Q[Quentin, Quentin_Tarantino.birth_date.is_contradictory, true](S1.is_contradictory_to == S2 → Factual(Quentin, true))
+7. Q[Quentin, March_27_1963.is_factual, true](S1.is_factual == true → Factual(Quentin, true))
+8. Q[Quentin, Quentin_Tarantino.birth_date.is_valid, true](S1.is_factual == true → Factual(Quentin, true))
+9. Q[Quentin, Quentin_Tarantino.birth_year.is_equal, 1963](S1.is_factual == true → Factual(Quentin, 1963))
+10. Q[Quentin, Quentin_Tarantino.age_in_2023.is_equal, 60](S1.is_factual == true → Factual(Quentin, 60))
+11. Q[Quentin, March_27_1963.is_before, March_27_1968](S2.violates_fact == Quentin_Tarantino.birth_date → Factual(Quentin, March_27_1968))
+12. Q[Quentin, March_27_1963.is_after, March_27_1958](S2.violates_fact == Quentin_Tarantino.birth_date → Factual(Quentin, March_27_1958))
+13. Q[Quentin, Quentin_Tarantino.birth_date.is_derived_from, S1](S1.contains_fact == Quentin_Tarantino.birth_date → Factual(Quentin, S1))
+14. Q[Quentin, Quentin_Tarantino.birth_date.is_derived_from, S2](S2.contains_fact == Quentin_Tarantino.birth_year → Factual(Quentin, S2))
+15. Q[Quentin, S1.is_factual, true](S1.is_factual == true → Factual(Quentin, true))
+16. Q[Quentin, S2.is_factual, false](S2.is_factual == false → Factual(Quentin, false))
+17. Q[Quentin, Quentin_Tarantino.birth_date.is_invalid, false](S1.is_factual == true → Factual(Quentin, false))
+18. Q[Quentin, Quentin_Tarantino.birth_date.is_factual, false](S2.is_factual == false → Factual(Quentin, false))
+19. Q[Quentin, Quentin_Tarantino.birth_date.is_contradictory, true](S1.is_contradictory_to == S2 → Factual(Quentin, true))
+20. Q[Quentin, Quentin_Tarantino.age_in_2023.is_not_equal, 55](S1.is_factual == true → Factual(Quentin, 55))
+21. Q[Quentin, March_27_1963.is_factual, true](S1.is_factual == true → Factual(Quentin, true))
+22. Q[Quentin, Quentin_Tarantino.birth_date.is_factual, true](S1.is_factual == true → Factual(Quentin, true))
+23. Q[Quentin, Quentin_Tarantino.birth_date.is_derived_from, S1](S1.contains_fact == Quentin_Tarantino.birth_date → Factual(Quentin, S1))
+24. Q[Quentin, Quentin_Tarantino.birth_date.is_derived_from, S2](S2.contains_fact == Quentin_Tarantino.birth_year → Factual(Quentin, S2))
+25. Q[Quentin, S1.is_contradictory_to, S2](S1.is_contradictory_to == S2 → Factual(Quentin, true))
+26. Q[Quentin, S2.violates_fact, Quentin_Tarantino.birth_date](S2.violates_fact == Quentin_Tarantino.birth_date → Factual(Quentin, Quentin_Tarantino.birth_date))
+27. Q[Quentin, Quentin_Tarantino.birth_date.is_valid, true](S1.is_factual == true → Factual(Quentin, true))
+28. Q[Quentin, Quentin_Tarantino.birth_date.is_factual, true](S1.is_factual == true → Factual(Quentin, true))
+29. Q[Quentin, Quentin_Tarantino.birth_year.is_equal, 1963](S1.is_factual == true → Factual(Quentin, 1963))
+30. Q[Quentin, Quentin_Tarantino.age_in_2023.is_equal, 60](S1.is_factual == true → Factual(Quentin, 60))

@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 40)
+S1: The guideline for computer security was published in 2010.
+S2: Accreditation is detailed in NIST's Federal Information Processing Standards Publication 102, which was published in 1983.
+
+Predicates:
+1. Guideline_2010.year = 2010
+2. Guideline_2010.type = "computer security"
+3. Publication_1983.year = 1983
+4. Publication_1983.type = "Federal Information Processing Standards Publication"
+5. NIST.accreditation = "detailed"
+6. Publication_1983.relationship = "published by"
+7. Guideline_2010.relationship = "published in"
+8. Publication_1983.document = "Publication 102"
+9. Guideline_2010.document = "computer security guideline"
+10. NIST.year = 1983
+11. NIST.guideline = "Federal Information Processing Standards"
+12. Temporal(Publication_1983.year, Guideline_2010.year)
+13. violate(Guideline_2010.year, Publication_1983.year)
+14. Publication_1983.publisher = "NIST"
+15. Publication_1983.accreditation = "detailed"
+16. Guideline_2010.publisher = "unknown"
+17. M_NLI(S1, S2)
+18. Publication_1983.relationship_type = "publication"
+19. Guideline_2010.relationship_type = "publication"
+20. NIST.publication_count = 1
+21. Guideline_2010.conflict = "true"
+22. Publication_1983.conflict = "false"
+23. Temporal(Guideline_2010.year, Publication_1983.year)
+24. Guideline_2010.status = "published"
+25. Publication_1983.status = "published"
+26. NIST.publication_years = [1983, 2010]
+27. Guideline_2010.accreditation = "not detailed"
+28. Publication_1983.accreditation_status = "detailed"
+29. Guideline_2010.document_type = "guideline"
+30. Publication_1983.document_type = "standards publication"
+
+Rules:
+1. Q[The, Guideline_2010.year, Publication_1983.year](Guideline_2010.year == 2010 → Temporal(Guideline_2010.year, Publication_1983.year))
+2. Q[The, Guideline_2010.type, Publication_1983.type](Guideline_2010.type == "computer security" → Temporal(Guideline_2010.year, Publication_1983.year))
+3. Q[The, Guideline_2010.relationship, Publication_1983.relationship](Guideline_2010.relationship == "published in" → Temporal(Guideline_2010.year, Publication_1983.year))
+4. Q[The, Guideline_2010.document, Publication_1983.document](Guideline_2010.document == "computer security guideline" → Temporal(Guideline_2010.year, Publication_1983.year))
+5. Q[The, NIST.accreditation, Publication_1983.accreditation](NIST.accreditation == "detailed" → Temporal(Guideline_2010.year, Publication_1983.year))
+6. Q[The, Publication_1983.year, Guideline_2010.year](Publication_1983.year == 1983 → Temporal(Guideline_2010.year, Publication_1983.year))
+7. Q[The, Publication_1983.relationship, Guideline_2010.relationship](Publication_1983.relationship == "published by" → Temporal(Guideline_2010.year, Publication_1983.year))
+8. Q[The, Publication_1983.document, Guideline_2010.document](Publication_1983.document == "Publication 102" → Temporal(Guideline_2010.year, Publication_1983.year))
+9. Q[The, NIST.year, Guideline_2010.year](NIST.year == 1983 → Temporal(Guideline_2010.year, Publication_1983.year))
+10. Q[The, NIST.guideline, Guideline_2010.type](NIST.guideline == "Federal Information Processing Standards" → Temporal(Guideline_2010.year, Publication_1983.year))
+11. Q[The, Guideline_2010.conflict, Publication_1983.conflict](Guideline_2010.conflict == "true" → Temporal(Guideline_2010.year, Publication_1983.year))
+12. Q[The, Guideline_2010.status, Publication_1983.status](Guideline_2010.status == "published" → Temporal(Guideline_2010.year, Publication_1983.year))
+13. Q[The, Guideline_2010.relationship_type, Publication_1983.relationship_type](Guideline_2010.relationship_type == "publication" → Temporal(Guideline_2010.year, Publication_1983.year))
+14. Q[The, NIST.publication_count, Guideline_2010.year](NIST.publication_count == 1 → Temporal(Guideline_2010.year, Publication_1983.year))
+15. Q[The, Guideline_2010.accreditation, Publication_1983.accreditation](Guideline_2010.accreditation == "not detailed" → Temporal(Guideline_2010.year, Publication_1983.year))
+16. Q[The, Publication_1983.accreditation_status, Guideline_2010.accreditation](Publication_1983.accreditation_status == "detailed" → Temporal(Guideline_2010.year, Publication_1983.year))
+17. Q[The, Guideline_2010.document_type, Publication_1983.document_type](Guideline_2010.document_type == "guideline" → Temporal(Guideline_2010.year, Publication_1983.year))
+18. Q[The, Publication_1983.document_type, Guideline_2010.document_type](Publication_1983.document_type == "standards publication" → Temporal(Guideline_2010.year, Publication_1983.year))
+19. Q[The, Guideline_2010.publisher, Publication_1983.publisher](Guideline_2010.publisher == "unknown" → Temporal(Guideline_2010.year, Publication_1983.year))
+20. Q[The, Publication_1983.publisher, Guideline_2010.publisher](Publication_1983.publisher == "NIST" → Temporal(Guideline_2010.year, Publication_1983.year))
+21. Q[The, Temporal(Publication_1983.year, Guideline_2010.year), Guideline_2010.year](Temporal(Publication_1983.year, Guideline_2010.year) → Temporal(Guideline_2010.year, Publication_1983.year))
+22. Q[The, Guideline_2010.year, Publication_1983.year](Guideline_2010.year == 2010 and Publication_1983.year == 1983 → Temporal(Guideline_2010.year, Publication_1983.year))
+23. Q[The, Guideline_2010.conflict, Guideline_2010.year](Guideline_2010.conflict == "true" → Temporal(Guideline_2010.year, Publication_1983.year))
+24. Q[The, Publication_1983.conflict, Publication_1983.year](Publication_1983.conflict == "false" → Temporal(Guideline_2010.year, Publication_1983.year))
+25. Q[The, NIST.publication_years, Guideline_2010.year](NIST.publication_years == [1983, 2010] → Temporal(Guideline_2010.year, Publication_1983.year))
+26. Q[The, Guideline_2010.relationship, NIST.accreditation](Guideline_2010.relationship == "published in" and NIST.accreditation == "detailed" → Temporal(Guideline_2010.year, Publication_1983.year))
+27. Q[The, Guideline_2010.status, NIST.year](Guideline_2010.status == "published" and NIST.year == 1983 → Temporal(Guideline_2010.year, Publication_1983.year))
+28. Q[The, Publication_1983.relationship_type, NIST.guideline](Publication_1983.relationship_type == "publication" and NIST.guideline == "Federal Information Processing Standards" → Temporal(Guideline_2010.year, Publication_1983.year))
+29. Q[The, Guideline_2010.type, NIST.publication_count](Guideline_2010.type == "computer security" and NIST.publication_count == 1 → Temporal(Guideline_2010.year, Publication_1983.year))
+30. Q[The, Guideline_2010.year, NIST.guideline](Guideline_2010.year == 2010 and NIST.guideline == "Federal Information Processing Standards" → Temporal(Guideline_2010.year, Publication_1983.year))

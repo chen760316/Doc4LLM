@@ -1,0 +1,134 @@
+Predicates:
+1. Bart.status = "older"
+2. Georgia.status = "younger"
+3. Marsha.status = "younger"
+4. "Bart is older than Georgia.".doc_index = "180"
+5. "Georgia is older than her cousin Marsha.".doc_index = "180"
+6. "Georgia is the oldest.".doc_index = "181"
+7. "Marsha wins more often than Georgia.".doc_index = "181"
+8. "Marsha's brother Bart is older than Georgia.".doc_index = "180"
+9. Bart.age > Georgia.age
+10. Georgia.age < Marsha.age
+11. Marsha.wins > Georgia.wins
+12. Bart > Georgia
+13. Georgia > Marsha
+14. Marsha.wins > Georgia.wins
+15. Bart.isOlderThan(Georgia)
+16. Georgia.isOlderThan(Marsha)
+17. Marsha.winsMoreThan(Georgia)
+18. Bart.isOlderThan(Marsha)
+19. Georgia.isOldest()
+20. Marsha.isYoungerThan(Georgia)
+21. Bart.isYoungerThan(Marsha)
+22. "Bart is older than Georgia.".source_domain = "N/A"
+23. "Georgia is older than her cousin Marsha.".source_domain = "N/A"
+24. "Georgia is the oldest.".source_domain = "N/A"
+25. "Marsha wins more often than Georgia.".source_domain = "N/A"
+26. "Marsha's brother Bart is older than Georgia.".source_domain = "N/A"
+27. M_NLI(Bart.status, Georgia.status)
+28. M_NLI(Georgia.status, Marsha.status)
+29. T("Bart is older than Georgia.", "Georgia is older than Bart.", tau)
+30. T("Georgia is the oldest.", "Georgia is younger than Bart.", tau)
+31. tau(Bart.age, Georgia.age)
+32. tau(Georgia.age, Marsha.age)
+33. violate(Bart, Georgia)
+34. Factual(Bart, Georgia)
+35. Content(Bart, Georgia)
+36. Causal(Bart, Georgia)
+37. Negation(Bart, Georgia)
+38. Relation(Bart, Georgia)
+39. Numeric(Bart, Georgia)
+40. Temporal(Bart, Georgia)
+41. Factual(Georgia, Marsha)
+42. Content(Georgia, Marsha)
+43. Causal(Georgia, Marsha)
+44. Negation(Georgia, Marsha)
+45. Relation(Georgia, Marsha)
+46. Numeric(Georgia, Marsha)
+47. Temporal(Georgia, Marsha)
+48. Factual(Marsha, Georgia)
+49. Content(Marsha, Georgia)
+50. Causal(Marsha, Georgia)
+51. Negation(Marsha, Georgia)
+52. Relation(Marsha, Georgia)
+53. Numeric(Marsha, Georgia)
+54. Temporal(Marsha, Georgia)
+55. Bart > Marsha
+56. Georgia < Bart
+57. Marsha < Georgia
+58. Bart.isOlderThan(Georgia) = true
+59. Georgia.isOldest() = false
+60. Marsha.winsMoreThan(Georgia) = true
+61. Bart.age = 30
+62. Georgia.age = 25
+63. Marsha.age = 20
+64. Bart.wins = 10
+65. Georgia.wins = 5
+66. Marsha.wins = 15
+67. Bart > Georgia > Marsha
+68. Georgia < Bart < Marsha
+69. Marsha > Georgia > Bart
+70. Bart.isOlderThan(Marsha) = true
+71. Georgia.isOlderThan(Marsha) = false
+72. Marsha.winsMoreThan(Bart) = false
+73. Bart.age - Georgia.age = 5
+74. Georgia.age - Marsha.age = 5
+75. Marsha.age - Bart.age = -10
+76. Bart.wins + Georgia.wins = 15
+77. Georgia.wins + Marsha.wins = 20
+78. Marsha.wins - Bart.wins = 5
+79. Bart.isOlderThan(Georgia) and Georgia.isOlderThan(Marsha)
+80. Georgia.isOldest() and Marsha.isYoungerThan(Bart)
+81. violate(Georgia, Marsha)
+82. Factual(Marsha, Bart)
+83. Content(Marsha, Bart)
+84. Causal(Marsha, Bart)
+85. Negation(Marsha, Bart)
+86. Relation(Marsha, Bart)
+87. Numeric(Marsha, Bart)
+88. Temporal(Marsha, Bart)
+89. Bart's age is greater than Georgia's age.
+90. Georgia's age is less than Marsha's age.
+91. Marsha's wins are more than Georgia's wins.
+92. Bart's wins are less than Marsha's wins.
+93. Georgia is not the oldest.
+94. Marsha is not older than Bart.
+95. Bart's age is not equal to Georgia's age.
+96. Georgia's wins do not exceed Marsha's wins.
+97. Marsha's age is not greater than Bart's age.
+98. Bart's wins are not equal to Georgia's wins.
+99. Georgia's age is not greater than Marsha's age.
+100. Marsha's wins are not less than Georgia's wins.
+violate(x0, y0)
+
+Rules:
+1. Q[Bart, Georgia](Bart.status = "older" ∧ Georgia.status = "younger" → violate(Bart, Georgia))
+2. Q[Georgia, Marsha](Georgia.status = "younger" ∧ Marsha.status = "younger" → violate(Georgia, Marsha))
+3. Q[Bart, Marsha](Bart.age > Georgia.age ∧ Georgia.age < Marsha.age → violate(Bart, Marsha))
+4. Q[Bart, Georgia](Bart.isOlderThan(Georgia) ∧ Georgia.isOlderThan(Marsha) → violate(Bart, Georgia))
+5. Q[Georgia, Marsha](Georgia.isOldest() ∧ Marsha.isYoungerThan(Georgia) → violate(Georgia, Marsha))
+6. Q[Bart, Marsha](Bart > Georgia ∧ Georgia > Marsha → violate(Bart, Marsha))
+7. Q[Bart, Georgia](Bart.age = 30 ∧ Georgia.age = 25 ∧ Bart > Georgia → violate(Bart, Georgia))
+8. Q[Georgia, Marsha](Georgia.age < Marsha.age ∧ Georgia.isOlderThan(Marsha) ∧ Georgia.isOldest() → violate(Georgia, Marsha))
+9. Q[Bart, Marsha](Marsha.wins > Georgia.wins ∧ Bart.isOlderThan(Marsha) ∧ Georgia.wins < Marsha.wins → violate(Bart, Marsha))
+10. Q[Bart, Georgia](Bart.isOlderThan(Georgia) ∧ Georgia.isOldest() ∧ Bart.status = "older" → violate(Bart, Georgia))
+11. Q[Georgia, Marsha](Georgia.isOlderThan(Marsha) ∧ Marsha.winsMoreThan(Georgia) ∧ Georgia.status = "younger" → violate(Georgia, Marsha))
+12. Q[Bart, Marsha](Bart.wins < Marsha.wins ∧ Marsha.age < Bart.age ∧ Georgia.age < Marsha.age → violate(Bart, Marsha))
+13. Q[Bart, Georgia](Georgia.isOldest() ∧ Bart.isYoungerThan(Marsha) ∧ Bart > Georgia → violate(Bart, Georgia))
+14. Q[Georgia, Marsha](Georgia.age < Marsha.age ∧ Marsha.wins > Georgia.wins ∧ Georgia.status = "younger" → violate(Georgia, Marsha))
+15. Q[Bart, Marsha](Bart.isOlderThan(Georgia) ∧ Georgia.isOlderThan(Marsha) ∧ Marsha.wins < Georgia.wins → violate(Bart, Marsha))
+16. Q[Bart, Georgia](Bart.age - Georgia.age = 5 ∧ Georgia.age < Marsha.age ∧ Bart.isOlderThan(Marsha) → violate(Bart, Georgia))
+17. Q[Georgia, Marsha](Georgia.wins < Marsha.wins ∧ Marsha.age < Bart.age ∧ Georgia.isOldest() → violate(Georgia, Marsha))
+18. Q[Bart, Marsha](Bart.wins < Georgia.wins ∧ Georgia.age < Marsha.age ∧ Bart.isOlderThan(Marsha) → violate(Bart, Marsha))
+19. Q[Bart, Georgia](Georgia.isOlderThan(Marsha) ∧ Bart.isOlderThan(Georgia) ∧ Georgia.age < Bart.age → violate(Bart, Georgia))
+20. Q[Georgia, Marsha](Georgia.age < Marsha.age ∧ Marsha.wins < Georgia.wins ∧ Georgia.isOldest() → violate(Georgia, Marsha))
+21. Q[Bart, Marsha](Bart.wins < Marsha.wins ∧ Georgia.isOlderThan(Marsha) ∧ Bart.isOlderThan(Georgia) → violate(Bart, Marsha))
+22. Q[Bart, Georgia](Georgia.age < Bart.age ∧ Bart.isOlderThan(Georgia) ∧ Georgia.isOldest() → violate(Bart, Georgia))
+23. Q[Georgia, Marsha](Georgia.wins < Marsha.wins ∧ Marsha.age < Bart.age ∧ Georgia.isOlderThan(Marsha) → violate(Georgia, Marsha))
+24. Q[Bart, Marsha](Bart.wins < Georgia.wins ∧ Georgia.age < Marsha.age ∧ Bart.isOlderThan(Marsha) → violate(Bart, Marsha))
+25. Q[Bart, Georgia](Georgia.isOldest() ∧ Bart.isYoungerThan(Marsha) ∧ Bart.age > Georgia.age → violate(Bart, Georgia))
+26. Q[Georgia, Marsha](Georgia.age < Marsha.age ∧ Marsha.wins > Georgia.wins ∧ Georgia.isOlderThan(Marsha) → violate(Georgia, Marsha))
+27. Q[Bart, Marsha](Bart.wins < Georgia.wins ∧ Georgia.age < Marsha.age ∧ Bart.isOlderThan(Marsha) → violate(Bart, Marsha))
+28. Q[Bart, Georgia](Georgia.isOldest() ∧ Bart.isYoungerThan(Marsha) ∧ Bart.age > Georgia.age → violate(Bart, Georgia))
+29. Q[Georgia, Marsha](Georgia.age < Marsha.age ∧ Marsha.wins > Georgia.wins ∧ Georgia.isOlderThan(Marsha) → violate(Georgia, Marsha))
+30. Q[Bart, Marsha](Bart.wins < Georgia.wins ∧ Georgia.age < Marsha.age ∧ Bart.isOlderThan(Marsha) → violate(Bart, Marsha))

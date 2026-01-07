@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 1707)
+S1: A man holding a drink is coming down an escalator.
+S2: A man is coming down the stairs.
+
+Predicates:
+1. Man.holding_drink
+2. Man.coming_down_escalator
+3. Man.coming_down_stairs
+4. Escalator.is_present
+5. Stairs.is_present
+6. Descent.mode.escalator
+7. Descent.mode.stairs
+8. Relation(escalator, stairs)
+9. M_NLI(S1, S2)
+10. violate(S1, S2)
+11. Man.is_moving
+12. Drink.is_in_hand
+13. Escalator.is_moving
+14. Stairs.is_static
+15. Man.is_male
+16. Descent.is_different
+17. Man.is_descending
+18. Escalator.is_a_mode_of_transport
+19. Stairs.is_a_mode_of_transport
+20. Relation(holding_drink, coming_down)
+21. Relation(coming_down, escalator)
+22. Relation(coming_down, stairs)
+23. Man.is_in_motion
+24. Drink.is_beverage
+25. Escalator.is_mechanical
+26. Stairs.is_constructed
+27. Man.is_on_escalator
+28. Man.is_on_stairs
+29. Descent.is_vertical
+30. Relation(Man, Drink)
+
+Rules:
+1. Q[man, Man.coming_down_escalator == true, Man.coming_down_stairs == false](Man.coming_down_escalator == true → Relation(man, coming_down))
+2. Q[man, Man.coming_down_stairs == true, Man.coming_down_escalator == false](Man.coming_down_stairs == true → Relation(man, coming_down))
+3. Q[man, Man.holding_drink == true, Drink.is_in_hand == true](Man.holding_drink == true → Relation(man, holding_drink))
+4. Q[man, Escalator.is_present == true, Stairs.is_present == true](Escalator.is_present == true ∧ Stairs.is_present == true → Relation(escalator, stairs))
+5. Q[man, Descent.mode.escalator == true, Descent.mode.stairs == false](Descent.mode.escalator == true → Relation(escalator, coming_down))
+6. Q[man, Descent.mode.stairs == true, Descent.mode.escalator == false](Descent.mode.stairs == true → Relation(stairs, coming_down))
+7. Q[man, Man.is_descending == true, Man.is_on_escalator == true](Man.is_descending == true ∧ Man.is_on_escalator == true → Relation(man, escalator))
+8. Q[man, Man.is_descending == true, Man.is_on_stairs == true](Man.is_descending == true ∧ Man.is_on_stairs == true → Relation(man, stairs))
+9. Q[man, Escalator.is_moving == true, Stairs.is_static == true](Escalator.is_moving == true ∧ Stairs.is_static == true → Relation(escalator, stairs))
+10. Q[man, Descent.is_different == true, Man.coming_down_escalator == true](Descent.is_different == true → Relation(coming_down, escalator))
+11. Q[man, Descent.is_different == true, Man.coming_down_stairs == true](Descent.is_different == true → Relation(coming_down, stairs))
+12. Q[man, Man.is_moving == true, Man.is_on_escalator == true](Man.is_moving == true ∧ Man.is_on_escalator == true → Relation(man, escalator))
+13. Q[man, Man.is_moving == true, Man.is_on_stairs == true](Man.is_moving == true ∧ Man.is_on_stairs == true → Relation(man, stairs))
+14. Q[man, Escalator.is_a_mode_of_transport == true, Stairs.is_a_mode_of_transport == true](Escalator.is_a_mode_of_transport == true ∧ Stairs.is_a_mode_of_transport == true → Relation(escalator, stairs))
+15. Q[man, Man.is_male == true, Man.holding_drink == true](Man.is_male == true ∧ Man.holding_drink == true → Relation(man, holding_drink))
+16. Q[man, Drink.is_beverage == true, Man.holding_drink == true](Drink.is_beverage == true ∧ Man.holding_drink == true → Relation(holding_drink, beverage))
+17. Q[man, Man.is_on_escalator == true, Man.is_descending == true](Man.is_on_escalator == true ∧ Man.is_descending == true → Relation(man, escalator))
+18. Q[man, Man.is_on_stairs == true, Man.is_descending == true](Man.is_on_stairs == true ∧ Man.is_descending == true → Relation(man, stairs))
+19. Q[man, Escalator.is_mechanical == true, Man.coming_down_escalator == true](Escalator.is_mechanical == true ∧ Man.coming_down_escalator == true → Relation(escalator, coming_down))
+20. Q[man, Stairs.is_constructed == true, Man.coming_down_stairs == true](Stairs.is_constructed == true ∧ Man.coming_down_stairs == true → Relation(stairs, coming_down))
+21. Q[man, Man.is_on_escalator == true, Escalator.is_present == true](Man.is_on_escalator == true ∧ Escalator.is_present == true → Relation(man, escalator))
+22. Q[man, Man.is_on_stairs == true, Stairs.is_present == true](Man.is_on_stairs == true ∧ Stairs.is_present == true → Relation(man, stairs))
+23. Q[man, Man.is_in_motion == true, Man.coming_down_escalator == true](Man.is_in_motion == true ∧ Man.coming_down_escalator == true → Relation(man, escalator))
+24. Q[man, Man.is_in_motion == true, Man.coming_down_stairs == true](Man.is_in_motion == true ∧ Man.coming_down_stairs == true → Relation(man, stairs))
+25. Q[man, Relation(holding_drink, coming_down) == true, Man.holding_drink == true](Relation(holding_drink, coming_down) == true → Relation(man, holding_drink))
+26. Q[man, Relation(coming_down, escalator) == true, Man.coming_down_escalator == true](Relation(coming_down, escalator) == true → Relation(man, escalator))
+27. Q[man, Relation(coming_down, stairs) == true, Man.coming_down_stairs == true](Relation(coming_down, stairs) == true → Relation(man, stairs))
+28. Q[man, Man.is_on_escalator == true, Descent.mode.escalator == true](Man.is_on_escalator == true ∧ Descent.mode.escalator == true → Relation(man, escalator))
+29. Q[man, Man.is_on_stairs == true, Descent.mode.stairs == true](Man.is_on_stairs == true ∧ Descent.mode.stairs == true → Relation(man, stairs))
+30. Q[man, violate(S1, S2) == true, M_NLI(S1, S2) == false](violate(S1, S2) == true → Relation(S1, S2))

@@ -1,0 +1,127 @@
+Predicates:
+1. patient.disease = "diabetes"
+2. patient.age = "65"
+3. treatment.efficacy = "high"
+4. treatment.side_effects = "none"
+5. medication.dosage = "500mg"
+6. medication.frequency = "twice daily"
+7. study.sample_size = "1000"
+8. study.duration = "6 months"
+9. researcher.name = "Dr. Smith"
+10. researcher.institution = "Health University"
+11. disease.symptom = "fatigue"
+12. disease.risk_factor = "obesity"
+13. outcome.measure = "mortality rate"
+14. outcome.measure = "hospitalization rate"
+15. intervention.type = "lifestyle change"
+16. intervention.success_rate = "75%"
+17. population.group = "elderly"
+18. population.group = "young adults"
+19. variable.name = "cholesterol level"
+20. variable.unit = "mg/dL"
+21. "is associated with increased mortality in individuals with".evidence = "strong"
+22. "is associated with increased mortality in individuals with".context = "chronic diseases"
+23. "is correlated with".evidence = "moderate"
+24. "is correlated with".context = "lifestyle factors"
+25. "is linked to".evidence = "weak"
+26. "is linked to".context = "genetic predisposition"
+27. M_NLI(patient.age, treatment.efficacy)
+28. T("Diabetes increases mortality", "Diabetes decreases mortality", tau)
+29. tau(disease.risk_factor, outcome.measure)
+30. violate(x0, y0)
+31. Factual(x0, y0)
+32. Causal(x0, y0)
+33. Numeric(x0, y0)
+34. Temporal(x0, y0)
+35. Content(x0, y0)
+36. Relation(x0, y0)
+37. patient.smoking_status = "non-smoker"
+38. patient.smoking_status = "smoker"
+39. treatment.adherence = "high"
+40. treatment.adherence = "low"
+41. study.finding = "significant"
+42. study.finding = "insignificant"
+43. researcher.publication_year = "2023"
+44. researcher.publication_year = "2024"
+45. disease.prevalence = "10%"
+46. disease.prevalence = "20%"
+47. intervention.cost = "$200"
+48. intervention.cost = "$500"
+49. variable.type = "continuous"
+50. variable.type = "categorical"
+51. "is associated with increased mortality in individuals with".causal_link = "direct"
+52. "is associated with increased mortality in individuals with".causal_link = "indirect"
+53. "is correlated with".causal_link = "positive"
+54. "is correlated with".causal_link = "negative"
+55. "is linked to".causal_link = "strong"
+56. "is linked to".causal_link = "weak"
+57. M_NLI(treatment.success_rate, outcome.measure)
+58. T("High cholesterol leads to heart disease", "High cholesterol prevents heart disease", tau)
+59. tau(intervention.type, population.group)
+60. violate(x1, y1)
+61. Factual(x1, y1)
+62. Causal(x1, y1)
+63. Numeric(x1, y1)
+64. Temporal(x1, y1)
+65. Content(x1, y1)
+66. Relation(x1, y1)
+67. patient.gender = "male"
+68. patient.gender = "female"
+69. treatment.duration = "1 month"
+70. treatment.duration = "1 year"
+71. study.location = "urban"
+72. study.location = "rural"
+73. researcher.funding_source = "government"
+74. researcher.funding_source = "private"
+75. disease.severity = "mild"
+76. disease.severity = "severe"
+77. intervention.effectiveness = "high"
+78. intervention.effectiveness = "low"
+79. variable.measurement = "baseline"
+80. variable.measurement = "follow-up"
+81. "is associated with increased mortality in individuals with".statistical_significance = "p < 0.05"
+82. "is associated with increased mortality in individuals with".statistical_significance = "p > 0.05"
+83. "is correlated with".statistical_significance = "p < 0.01"
+84. "is correlated with".statistical_significance = "p > 0.01"
+85. "is linked to".statistical_significance = "p < 0.001"
+86. "is linked to".statistical_significance = "p > 0.001"
+87. M_NLI(disease.severity, treatment.efficacy)
+88. T("Obesity causes diabetes", "Obesity cures diabetes", tau)
+89. tau(intervention.success_rate, treatment.adherence)
+90. violate(x2, y2)
+91. Factual(x2, y2)
+92. Causal(x2, y2)
+93. Numeric(x2, y2)
+94. Temporal(x2, y2)
+95. Content(x2, y2)
+96. Relation(x2, y2)
+97. patient.ethnicity = "Caucasian"
+98. patient.ethnicity = "African American"
+99. treatment.method = "medication"
+100. treatment.method = "surgery"
+violate(x0, y0)
+
+Rules:
+1. Q[x0, y0](patient.age = "65" ∧ patient.disease = "diabetes" → violate(x0, y0))
+2. Q[x0, y0](treatment.efficacy = "high" ∧ treatment.side_effects = "none" → violate(x0, y0))
+3. Q[x0, y0](study.sample_size = "1000" ∧ study.duration = "6 months" ∧ researcher.name = "Dr. Smith" → violate(x0, y0))
+4. Q[x0, y0](disease.symptom = "fatigue" ∧ disease.risk_factor = "obesity" ∧ outcome.measure = "mortality rate" → violate(x0, y0))
+5. Q[x0, y0](intervention.type = "lifestyle change" ∧ intervention.success_rate = "75%" ∧ population.group = "elderly" → violate(x0, y0))
+6. Q[x0, y0](patient.smoking_status = "non-smoker" ∧ treatment.adherence = "high" ∧ study.finding = "significant" ∧ researcher.publication_year = "2023" → violate(x0, y0))
+7. Q[x0, y0](disease.prevalence = "10%" ∧ intervention.cost = "$200" ∧ variable.type = "continuous" ∧ "is associated with increased mortality in individuals with".evidence = "strong" → violate(x0, y0))
+8. Q[x0, y0](patient.gender = "male" ∧ treatment.duration = "1 month" ∧ study.location = "urban" ∧ researcher.funding_source = "government" ∧ disease.severity = "mild" → violate(x0, y0))
+9. Q[x0, y0](intervention.effectiveness = "high" ∧ variable.measurement = "baseline" ∧ "is correlated with".statistical_significance = "p < 0.01" ∧ M_NLI(patient.age, treatment.efficacy) ∧ T("Obesity causes diabetes", "Obesity cures diabetes", tau) → violate(x0, y0))
+10. Q[x0, y0](patient.age = "65" ∧ treatment.method = "medication" ∧ treatment.adherence = "low" ∧ "is linked to".evidence = "weak" ∧ "is correlated with".context = "lifestyle factors" ∧ "is associated with increased mortality in individuals with".statistical_significance = "p > 0.05" → violate(x0, y0))
+11. Q[x0, y0](patient.disease = "diabetes" ∧ treatment.efficacy = "high" ∧ treatment.side_effects = "none" ∧ medication.dosage = "500mg" ∧ medication.frequency = "twice daily" ∧ study.finding = "insignificant" → violate(x0, y0))
+12. Q[x0, y0](disease.risk_factor = "obesity" ∧ outcome.measure = "hospitalization rate" ∧ intervention.type = "lifestyle change" ∧ intervention.success_rate = "75%" ∧ population.group = "young adults" ∧ "is linked to".causal_link = "strong" → violate(x0, y0))
+13. Q[x0, y0](study.sample_size = "1000" ∧ study.duration = "6 months" ∧ researcher.name = "Dr. Smith" ∧ researcher.institution = "Health University" ∧ disease.severity = "severe" ∧ treatment.method = "surgery" → violate(x0, y0))
+14. Q[x0, y0](patient.smoking_status = "smoker" ∧ treatment.adherence = "low" ∧ study.finding = "significant" ∧ researcher.publication_year = "2024" ∧ disease.prevalence = "20%" ∧ intervention.cost = "$500" → violate(x0, y0))
+15. Q[x0, y0](patient.gender = "female" ∧ treatment.duration = "1 year" ∧ study.location = "rural" ∧ researcher.funding_source = "private" ∧ disease.severity = "mild" ∧ intervention.effectiveness = "low" → violate(x0, y0))
+16. Q[x0, y0](variable.type = "categorical" ∧ variable.measurement = "follow-up" ∧ "is associated with increased mortality in individuals with".causal_link = "indirect" ∧ "is correlated with".evidence = "moderate" ∧ tau(intervention.success_rate, treatment.adherence) ∧ M_NLI(disease.severity, treatment.efficacy) → violate(x0, y0))
+17. Q[x0, y0](patient.ethnicity = "Caucasian" ∧ patient.age = "65" ∧ treatment.efficacy = "high" ∧ treatment.side_effects = "none" ∧ medication.dosage = "500mg" ∧ medication.frequency = "twice daily" → violate(x0, y0))
+18. Q[x0, y0](disease.symptom = "fatigue" ∧ disease.risk_factor = "obesity" ∧ outcome.measure = "mortality rate" ∧ intervention.type = "lifestyle change" ∧ intervention.success_rate = "75%" ∧ population.group = "elderly" → violate(x0, y0))
+19. Q[x0, y0](study.sample_size = "1000" ∧ study.duration = "6 months" ∧ researcher.name = "Dr. Smith" ∧ researcher.institution = "Health University" ∧ treatment.method = "medication" ∧ treatment.duration = "1 month" → violate(x0, y0))
+20. Q[x0, y0](patient.smoking_status = "non-smoker" ∧ treatment.adherence = "high" ∧ study.finding = "significant" ∧ researcher.publication_year = "2023" ∧ disease.severity = "severe" ∧ intervention.effectiveness = "high" → violate(x0, y0))
+21. Q[x0, y0](patient.gender = "male" ∧ treatment.duration = "1 month" ∧ study.location = "urban" ∧ researcher.funding_source = "government" ∧ disease.prevalence = "10%" ∧ intervention.cost = "$200" → violate(x0, y0))
+22. Q[x0, y0](intervention.effectiveness = "high" ∧ variable.measurement = "baseline" ∧ "is correlated with".statistical_significance = "p < 0.01" ∧ M_NLI(patient.age, treatment.efficacy) ∧ T("High cholesterol leads to heart disease", "High cholesterol prevents heart disease", tau) ∧ tau(intervention.success_rate, treatment.adherence) → violate(x0, y0))
+23. Q[x0, y0](

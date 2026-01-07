@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 337)
+S1: The child is sleep.
+S2: Young asian child taking a nap.
+
+Predicates:
+1. Child.state
+2. Child.activity
+3. Child.age
+4. Child.ethnicity
+5. Child.sleeping
+6. Child.napping
+7. Child.is_asian
+8. Child.is_young
+9. Child.is_awake
+10. Child.is_sleeping
+11. Sleep.state
+12. Nap.duration
+13. Nap.location
+14. Nap.time
+15. Nap.is_active
+16. Sleep.is_correct
+17. Sleep.is_incorrect
+18. Activity.type
+19. Activity.state
+20. Activity.is_napping
+21. Relationship.is_active
+22. Relationship.is_correct
+23. Factual.child_state
+24. Factual.child_activity
+25. Violate.child_state
+26. Violate.child_activity
+27. M_NLI.sentence1
+28. M_NLI.sentence2
+29. Edge.relationship_name
+30. Edge.attribute
+
+Rules:
+1. Q[The, Child.state, Child.activity](Child.is_sleeping == true → Factual(Child.state, Child.activity))
+2. Q[The, Child.state, Child.activity](Child.is_awake == true → Factual(Child.state, Child.activity))
+3. Q[The, Child.activity, Child.state](Child.activity == "napping" → Factual(Child.activity, Child.state))
+4. Q[The, Child.is_young, Child.is_asian](Child.is_young == true → Factual(Child.is_young, Child.is_asian))
+5. Q[The, Child.is_asian, Child.is_young](Child.is_asian == true → Factual(Child.is_asian, Child.is_young))
+6. Q[The, Child.sleeping, Child.napping](Child.sleeping == true → Factual(Child.sleeping, Child.napping))
+7. Q[The, Child.napping, Child.sleeping](Child.napping == true → Factual(Child.napping, Child.sleeping))
+8. Q[The, Child.state, Child.is_sleeping](Child.state == "sleep" → Factual(Child.state, Child.is_sleeping))
+9. Q[The, Child.activity, Child.is_awake](Child.activity == "napping" → Factual(Child.activity, Child.is_awake))
+10. Q[The, Child.is_young, Child.sleeping](Child.is_young == true → Factual(Child.is_young, Child.sleeping))
+11. Q[The, Child.is_asian, Child.napping](Child.is_asian == true → Factual(Child.is_asian, Child.napping))
+12. Q[The, Child.sleeping, Child.is_awake](Child.sleeping == false → Factual(Child.sleeping, Child.is_awake))
+13. Q[The, Child.napping, Child.is_sleeping](Child.napping == true → Factual(Child.napping, Child.is_sleeping))
+14. Q[The, Child.activity, Child.is_sleeping](Child.activity == "sleep" → Factual(Child.activity, Child.is_sleeping))
+15. Q[The, Child.state, Child.is_sleeping](Child.state == "napping" → Factual(Child.state, Child.is_sleeping))
+16. Q[The, Child.is_young, Child.is_sleeping](Child.is_young == true → Factual(Child.is_young, Child.is_sleeping))
+17. Q[The, Child.is_asian, Child.is_sleeping](Child.is_asian == true → Factual(Child.is_asian, Child.is_sleeping))
+18. Q[The, Child.activity, Child.is_sleeping](Child.activity == "napping" → Factual(Child.activity, Child.is_sleeping))
+19. Q[The, Child.state, Child.is_awake](Child.state == "sleep" → Factual(Child.state, Child.is_awake))
+20. Q[The, Child.napping, Child.is_awake](Child.napping == false → Factual(Child.napping, Child.is_awake))
+21. Q[The, Child.is_young, Child.activity](Child.is_young == true → Factual(Child.is_young, Child.activity))
+22. Q[The, Child.is_asian, Child.activity](Child.is_asian == true → Factual(Child.is_asian, Child.activity))
+23. Q[The, Child.state, Child.is_sleeping](Child.state == "napping" → Factual(Child.state, Child.is_sleeping))
+24. Q[The, Child.activity, Child.is_sleeping](Child.activity == "sleep" → Factual(Child.activity, Child.is_sleeping))
+25. Q[The, Child.napping, Child.is_sleeping](Child.napping == true → Factual(Child.napping, Child.is_sleeping))
+26. Q[The, Child.is_young, Child.napping](Child.is_young == true → Factual(Child.is_young, Child.napping))
+27. Q[The, Child.is_asian, Child.napping](Child.is_asian == true → Factual(Child.is_asian, Child.napping))
+28. Q[The, Child.state, Child.is_awake](Child.state == "napping" → Factual(Child.state, Child.is_awake))
+29. Q[The, Child.activity, Child.is_awake](Child.activity == "sleep" → Factual(Child.activity, Child.is_awake))
+30. Q[The, Child.napping, Child.is_awake](Child.napping == false → Factual(Child.napping, Child.is_awake))

@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 35)
+S1: FMLN caused a blackout in the capital.
+S2: FMLN caused a power outage in the capital.
+
+Predicates:
+1. FMLN.cause_event
+2. blackout.location
+3. power_outage.location
+4. capital.has_blackout
+5. capital.has_power_outage
+6. FMLN.action_type
+7. FMLN.event_outcome
+8. blackout.duration
+9. power_outage.duration
+10. blackout.severity
+11. power_outage.severity
+12. FMLN.influence_area
+13. FMLN.responsibility
+14. capital.population_affected
+15. blackout.time
+16. power_outage.time
+17. FMLN.motive
+18. blackout.cause
+19. power_outage.cause
+20. FMLN.response
+21. capital.infrastructure
+22. blackout.recovery_time
+23. power_outage.recovery_time
+24. FMLN.public_perception
+25. blackout.impact
+26. power_outage.impact
+27. FMLN.policy_change
+28. capital.electricity_supply
+29. blackout.reported_incidents
+30. power_outage.reported_incidents
+
+Rules:
+1. Q[blackout, FMLN, power_outage](FMLN.cause_event == true → Content(FMLN, power_outage))
+2. Q[power_outage, FMLN, blackout](FMLN.cause_event == true → Content(FMLN, blackout))
+3. Q[capital, FMLN, blackout](capital.has_blackout == true → Content(FMLN, blackout))
+4. Q[capital, FMLN, power_outage](capital.has_power_outage == true → Content(FMLN, power_outage))
+5. Q[blackout, FMLN, capital](blackout.location == capital → Content(FMLN, capital))
+6. Q[power_outage, FMLN, capital](power_outage.location == capital → Content(FMLN, capital))
+7. Q[blackout, FMLN, FMLN](blackout.severity == "high" → Content(FMLN, FMLN))
+8. Q[power_outage, FMLN, FMLN](power_outage.severity == "high" → Content(FMLN, FMLN))
+9. Q[capital, FMLN, blackout](capital.population_affected > 1000 → Content(FMLN, blackout))
+10. Q[capital, FMLN, power_outage](capital.population_affected > 1000 → Content(FMLN, power_outage))
+11. Q[blackout, FMLN, power_outage](blackout.duration > power_outage.duration → Content(FMLN, power_outage))
+12. Q[power_outage, FMLN, blackout](power_outage.duration > blackout.duration → Content(FMLN, blackout))
+13. Q[blackout, FMLN, capital](blackout.impact == "severe" → Content(FMLN, capital))
+14. Q[power_outage, FMLN, capital](power_outage.impact == "severe" → Content(FMLN, capital))
+15. Q[blackout, FMLN, FMLN](FMLN.influence_area == "capital" → Content(FMLN, FMLN))
+16. Q[power_outage, FMLN, FMLN](FMLN.influence_area == "capital" → Content(FMLN, FMLN))
+17. Q[blackout, FMLN, capital](blackout.cause == "FMLN" → Content(FMLN, capital))
+18. Q[power_outage, FMLN, capital](power_outage.cause == "FMLN" → Content(FMLN, capital))
+19. Q[blackout, FMLN, power_outage](FMLN.action_type == "disruption" → Content(FMLN, power_outage))
+20. Q[power_outage, FMLN, blackout](FMLN.action_type == "disruption" → Content(FMLN, blackout))
+21. Q[blackout, FMLN, capital](blackout.time == "peak" → Content(FMLN, capital))
+22. Q[power_outage, FMLN, capital](power_outage.time == "peak" → Content(FMLN, capital))
+23. Q[blackout, FMLN, FMLN](FMLN.motive == "political" → Content(FMLN, FMLN))
+24. Q[power_outage, FMLN, FMLN](FMLN.motive == "political" → Content(FMLN, FMLN))
+25. Q[blackout, FMLN, capital](blackout.recovery_time < power_outage.recovery_time → Content(FMLN, capital))
+26. Q[power_outage, FMLN, capital](power_outage.recovery_time < blackout.recovery_time → Content(FMLN, capital))
+27. Q[blackout, FMLN, capital](FMLN.public_perception == "negative" → Content(FMLN, capital))
+28. Q[power_outage, FMLN, capital](FMLN.public_perception == "negative" → Content(FMLN, capital))
+29. Q[blackout, FMLN, power_outage](blackout.reported_incidents > power_outage.reported_incidents → Content(FMLN, power_outage))
+30. Q[power_outage, FMLN, blackout](power_outage.reported_incidents > blackout.reported_incidents → Content(FMLN, blackout))

@@ -1,0 +1,33 @@
+Predicates:
+Erin Burnett.label != "Person"
+Erin Burnett.label = "Person"
+Erin Burnett.name != "Erin Burnett"
+Erin Burnett.name = "Erin Burnett"
+None_ML(Erin Burnett.attrs, Reichelt.attrs)
+Reichelt.label != "Person"
+Reichelt.label = "Person"
+Reichelt.name != "Reichelt"
+Reichelt.name != Erin Burnett.name
+Reichelt.name = "Reichelt"
+Reichelt.occupation != "journalist"
+Reichelt.occupation = "journalist"
+Reichelt___Erin Burnett.confidence = "very confident"
+Reichelt___Erin Burnett.contradiction_type = "Factual"
+Reichelt___Erin Burnett.media_sources.length = 2
+Reichelt___Erin Burnett.relationship = "Reichelt expressed his opinion to Erin Burnett about the video related to the report."
+Reichelt___Erin Burnett.source.length = 2
+Reichelt___Erin Burnett.source_id = "3489825776_7"
+Reichelt___Erin Burnett.status = "stands by the report"
+Reichelt___Erin Burnett.video_status = "clip is real"
+
+Rules:
+Q[Reichelt,Reichelt] (Reichelt.occupation != "journalist" ∧ Erin Burnett.name = "Erin Burnett" → Reichelt___Erin Burnett.source.length = 2)
+Q[Reichelt,Reichelt] (Reichelt.name = "Reichelt" ∧ Reichelt.occupation = "journalist" ∧ Erin Burnett.label != "Person" ∧ Erin Burnett.name != "Erin Burnett" ∧ Reichelt___Erin Burnett.source_id = "3489825776_7" → Reichelt___Erin Burnett.confidence = "very confident")
+Q[Reichelt,Reichelt] (Reichelt.name != Erin Burnett.name ∧ Reichelt.occupation != "journalist" ∧ Reichelt___Erin Burnett.video_status = "clip is real" ∧ Erin Burnett.name != "Erin Burnett" → None_ML(Erin Burnett.attrs, Reichelt.attrs))
+Q[Reichelt,Reichelt] (Reichelt.name = "Reichelt" ∧ Reichelt___Erin Burnett.source.length = 2 ∧ None_ML(Erin Burnett.attrs, Reichelt.attrs) → Reichelt___Erin Burnett.relationship = "Reichelt expressed his opinion to Erin Burnett about the video related to the report.")
+Q[Reichelt,Reichelt] (Reichelt___Erin Burnett.status = "stands by the report" ∧ Erin Burnett.label = "Person" ∧ Reichelt.occupation != "journalist" ∧ Reichelt___Erin Burnett.media_sources.length = 2 ∧ Erin Burnett.label != "Person" ∧ Reichelt___Erin Burnett.source.length = 2 → Reichelt.name = "Reichelt")
+Q[Reichelt,Reichelt] (Reichelt___Erin Burnett.video_status = "clip is real" ∧ Reichelt.name != Erin Burnett.name ∧ Reichelt.occupation = "journalist" → Reichelt.label = "Person")
+Q[Reichelt,Reichelt] (Erin Burnett.label = "Person" ∧ Reichelt___Erin Burnett.video_status = "clip is real" ∧ Reichelt.occupation != "journalist" ∧ Erin Burnett.name != "Erin Burnett" → Reichelt___Erin Burnett.source_id = "3489825776_7")
+Q[Reichelt,Reichelt] (Reichelt.name = "Reichelt" ∧ Reichelt.label = "Person" ∧ Erin Burnett.label != "Person" ∧ Erin Burnett.name != "Erin Burnett" ∧ Erin Burnett.name = "Erin Burnett" → Reichelt.name != Erin Burnett.name)
+Q[Reichelt,Reichelt] (Reichelt.occupation != "journalist" ∧ Reichelt.label != "Person" ∧ Erin Burnett.name = "Erin Burnett" ∧ Reichelt___Erin Burnett.confidence = "very confident" ∧ Reichelt___Erin Burnett.media_sources.length = 2 ∧ Reichelt.name = "Reichelt" → Erin Burnett.label != "Person")
+Q[Reichelt,Reichelt] (Reichelt.label = "Person" ∧ Erin Burnett.label = "Person" → Reichelt___Erin Burnett.video_status = "clip is real")

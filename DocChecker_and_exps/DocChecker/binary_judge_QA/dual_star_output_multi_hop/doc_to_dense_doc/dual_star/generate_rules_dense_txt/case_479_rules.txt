@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 479)
+S1: a player is in an offside position if any of their body parts except the hands and arms is in the opponents' half of the pitch and closer to the opponents' goal line than both the ball and the second-last opponent (the last opponent is usually but not necessarily the goalkeeper).
+S2: your entire body has to be in an offside position.
+
+Predicates:
+1. Player.position.offside
+2. Player.body_part.hands
+3. Player.body_part.arms
+4. Player.body_part.legs
+5. Player.body_part.head
+6. Player.position.opponents_half
+7. Player.position.closer_to_goal
+8. Ball.position.opponents_half
+9. Opponent.position.second_last
+10. Opponent.position.last
+11. Goal.line.position.opponents
+12. Player.body_part.in_offside_position
+13. Player.body_part.except_hands_arms
+14. Player.position.relative_to_ball
+15. Player.position.relative_to_opponent
+16. Player.body_part.entire_body
+17. Offside.condition.sufficient
+18. Offside.condition.entire_body
+19. Offside.position.criteria
+20. Offside.position.exception
+21. Offside.position.body_parts
+22. Offside.position.goal_line
+23. Offside.position.pitch
+24. Offside.position.rules
+25. Offside.position.violates
+26. Offside.position.definition
+27. Offside.position.player
+28. Offside.position.ball
+29. Offside.position.opponent
+30. Offside.position.referee
+
+Rules:
+1. Q[player, Player.position.offside, Offside.position.definition](Player.body_part.except_hands_arms == true → Factual(x0, y0))
+2. Q[player, Player.position.offside, Offside.position.rules](Player.position.opponents_half == true → Factual(x0, y0))
+3. Q[player, Player.position.offside, Offside.position.criteria](Player.body_part.in_offside_position == true → Factual(x0, y0))
+4. Q[player, Player.position.offside, Offside.position.violates](Player.body_part.legs == true → Factual(x0, y0))
+5. Q[player, Player.position.offside, Offside.position.exception](Player.body_part.head == true → Factual(x0, y0))
+6. Q[player, Player.position.offside, Offside.position.body_parts](Player.position.closer_to_goal == true → Factual(x0, y0))
+7. Q[player, Player.position.offside, Offside.position.pitch](Player.position.relative_to_ball == "offside" → Factual(x0, y0))
+8. Q[player, Player.position.offside, Offside.position.goal_line](Player.position.relative_to_opponent == "offside" → Factual(x0, y0))
+9. Q[player, Player.position.offside, Offside.condition.sufficient](Player.body_part.entire_body == false → Factual(x0, y0))
+10. Q[player, Player.position.offside, Offside.condition.entire_body](Player.body_part.hands == false → Factual(x0, y0))
+11. Q[player, Player.position.offside, Offside.position.last](Opponent.position.last == true → Factual(x0, y0))
+12. Q[player, Player.position.offside, Offside.position.second_last](Opponent.position.second_last == true → Factual(x0, y0))
+13. Q[player, Player.position.offside, Offside.position.rules](Ball.position.opponents_half == true → Factual(x0, y0))
+14. Q[player, Player.position.offside, Offside.position.definition](Player.body_part.arms == false → Factual(x0, y0))
+15. Q[player, Player.position.offside, Offside.position.violates](Player.body_part.legs == true ∧ Player.body_part.head == true → Factual(x0, y0))
+16. Q[player, Player.position.offside, Offside.position.exception](Player.body_part.hands == false ∧ Player.body_part.arms == false → Factual(x0, y0))
+17. Q[player, Player.position.offside, Offside.position.pitch](Player.position.relative_to_ball == "offside" ∧ Player.position.relative_to_opponent == "offside" → Factual(x0, y0))
+18. Q[player, Player.position.offside, Offside.position.body_parts](Player.body_part.entire_body == false ∧ Player.body_part.in_offside_position == true → Factual(x0, y0))
+19. Q[player, Player.position.offside, Offside.position.goal_line](Player.position.closer_to_goal == true ∧ Player.position.opponents_half == true → Factual(x0, y0))
+20. Q[player, Player.position.offside, Offside.position.rules](Player.body_part.in_offside_position == true ∧ Player.body_part.entire_body == false → Factual(x0, y0))
+21. Q[player, Player.position.offside, Offside.position.definition](Player.body_part.hands == false ∧ Player.body_part.arms == false ∧ Player.body_part.legs == true → Factual(x0, y0))
+22. Q[player, Player.position.offside, Offside.position.violates](Player.position.relative_to_ball == "offside" ∧ Player.position.relative_to_opponent == "offside" → Factual(x0, y0))
+23. Q[player, Player.position.offside, Offside.position.exception](Player.body_part.hands == false ∧ Player.body_part.arms == false ∧ Player.body_part.head == true → Factual(x0, y0))
+24. Q[player, Player.position.offside, Offside.position.pitch](Player.position.opponents_half == true ∧ Player.body_part.in_offside_position == true → Factual(x0, y0))
+25. Q[player, Player.position.offside, Offside.position.body_parts](Player.body_part.entire_body == false ∧ Player.body_part.legs == true → Factual(x0, y0))
+26. Q[player, Player.position.offside, Offside.position.goal_line](Player.position.closer_to_goal == true ∧ Ball.position.opponents_half == true → Factual(x0, y0))
+27. Q[player, Player.position.offside, Offside.position.rules](Player.body_part.in_offside_position == true ∧ Player.body_part.entire_body == false → Factual(x0, y0))
+28. Q[player, Player.position.offside, Offside.position.definition](Player.body_part.hands == false ∧ Player.body_part.arms == false ∧ Player.body_part.head == false → Factual(x0, y0))
+29. Q[player, Player.position.offside, Offside.position.violates](Player.position.relative_to_ball == "offside" ∧ Player.body_part.entire_body == false → Factual(x0, y0))
+30. Q[player, Player.position.offside, Offside.position.exception](Player.body_part.hands == false ∧ Player.body_part.arms == false ∧ Player.body_part.legs == false → Factual(x0, y0))

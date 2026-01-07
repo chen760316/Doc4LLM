@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 1597)
+S1: That slowed him a lot more than the broken nose.
+S2: The broken nose was less painful to him.
+
+Predicates:
+1. S1.pain_level > S2.pain_level
+2. S1.impact > S2.impact
+3. S1.cause = broken_nose
+4. S2.cause = broken_nose
+5. S1.subject = him
+6. S2.subject = him
+7. S1.pain = significant
+8. S2.pain = less_significant
+9. S1.effect = slowed_down
+10. S2.effect = not_slowed_down
+11. S1.comparison = broken_nose
+12. S2.comparison = broken_nose
+13. M_NLI(S1, S2)
+14. Factual(S1, S2)
+15. violate(S1, S2)
+16. S1.pain_comparison < S2.pain_comparison
+17. S1.nose_condition = broken
+18. S2.nose_condition = broken
+19. S1.subject_experience = pain
+20. S2.subject_experience = less_pain
+21. S1.emotional_impact = high
+22. S2.emotional_impact = low
+23. S1.physical_condition = affected
+24. S2.physical_condition = less_affected
+25. S1.pain_source = broken_nose
+26. S2.pain_source = broken_nose
+27. S1.situation = painful
+28. S2.situation = less_painful
+29. S1.subject_reaction = significant
+30. S2.subject_reaction = minimal
+
+Rules:
+1. Q[That, S1.pain_level > S2.pain_level](S1.pain = significant → Factual(x0, y0))
+2. Q[That, S1.impact > S2.impact](S1.effect = slowed_down → Factual(x0, y0))
+3. Q[That, S1.cause = broken_nose](S1.pain = significant → Factual(x0, y0))
+4. Q[That, S2.cause = broken_nose](S2.pain = less_significant → Factual(x0, y0))
+5. Q[That, S1.subject = him](S1.subject_experience = pain → Factual(x0, y0))
+6. Q[That, S2.subject = him](S2.subject_experience = less_pain → Factual(x0, y0))
+7. Q[That, S1.pain = significant](S1.pain_comparison < S2.pain_comparison → Factual(x0, y0))
+8. Q[That, S1.effect = slowed_down](S1.emotional_impact = high → Factual(x0, y0))
+9. Q[That, S2.effect = not_slowed_down](S2.emotional_impact = low → Factual(x0, y0))
+10. Q[That, S1.comparison = broken_nose](S1.nose_condition = broken → Factual(x0, y0))
+11. Q[That, S2.comparison = broken_nose](S2.nose_condition = broken → Factual(x0, y0))
+12. Q[That, M_NLI(S1, S2)](S1.situation = painful → Factual(x0, y0))
+13. Q[That, Factual(S1, S2)](S2.situation = less_painful → Factual(x0, y0))
+14. Q[That, violate(S1, S2)](S1.subject_reaction = significant → Factual(x0, y0))
+15. Q[That, S1.pain_source = broken_nose](S1.physical_condition = affected → Factual(x0, y0))
+16. Q[That, S2.pain_source = broken_nose](S2.physical_condition = less_affected → Factual(x0, y0))
+17. Q[That, S1.situation = painful](S1.pain_level > S2.pain_level → Factual(x0, y0))
+18. Q[That, S2.situation = less_painful](S1.pain = significant → Factual(x0, y0))
+19. Q[That, S1.subject_reaction = significant](S1.impact > S2.impact → Factual(x0, y0))
+20. Q[That, S2.subject_reaction = minimal](S2.impact < S1.impact → Factual(x0, y0))
+21. Q[That, S1.pain_comparison < S2.pain_comparison](S1.pain = significant → Factual(x0, y0))
+22. Q[That, S1.emotional_impact = high](S1.effect = slowed_down → Factual(x0, y0))
+23. Q[That, S2.emotional_impact = low](S2.effect = not_slowed_down → Factual(x0, y0))
+24. Q[That, S1.physical_condition = affected](S1.pain_source = broken_nose → Factual(x0, y0))
+25. Q[That, S2.physical_condition = less_affected](S2.pain_source = broken_nose → Factual(x0, y0))
+26. Q[That, S1.nose_condition = broken](S1.subject_experience = pain → Factual(x0, y0))
+27. Q[That, S2.nose_condition = broken](S2.subject_experience = less_pain → Factual(x0, y0))
+28. Q[That, S1.subject_experience = pain](S1.impact > S2.impact → Factual(x0, y0))
+29. Q[That, S2.subject_experience = less_pain](S2.impact < S1.impact → Factual(x0, y0))
+30. Q[That, S1.pain = significant](S1.subject_reaction = significant → Factual(x0, y0))

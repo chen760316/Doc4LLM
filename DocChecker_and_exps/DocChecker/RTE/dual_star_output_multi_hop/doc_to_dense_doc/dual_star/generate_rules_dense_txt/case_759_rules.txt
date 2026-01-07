@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 759)
+S1: There are four identified Ebola virus subtypes.
+S2: Three of the four have caused disease in humans: Ebola Zaire, Ebola-Sudan and Côte d'Ivoire Ebola.
+
+Predicates:
+1. EbolaVirusSubtype.count
+2. EbolaVirusSubtype.hasAffectedHumans
+3. EbolaZaire.hasAffectedHumans
+4. EbolaSudan.hasAffectedHumans
+5. CoteDIvoireEbola.hasAffectedHumans
+6. EbolaVirusSubtype.isIdentified
+7. EbolaVirusSubtype.isNotIdentified
+8. EbolaZaire.isSubtypeOf(EbolaVirusSubtype)
+9. EbolaSudan.isSubtypeOf(EbolaVirusSubtype)
+10. CoteDIvoireEbola.isSubtypeOf(EbolaVirusSubtype)
+11. EbolaVirusSubtype.isFourInTotal
+12. EbolaVirusSubtype.isThreeAffected
+13. EbolaVirusSubtype.isFourthNotAffected
+14. EbolaZaire.isSubtypeOf(EbolaVirusSubtype)
+15. EbolaSudan.isSubtypeOf(EbolaVirusSubtype)
+16. CoteDIvoireEbola.isSubtypeOf(EbolaVirusSubtype)
+17. Disease.hasEbolaVirusSubtype
+18. Disease.isCausedBy(EbolaZaire)
+19. Disease.isCausedBy(EbolaSudan)
+20. Disease.isCausedBy(CoteDIvoireEbola)
+21. EbolaVirusSubtype.isHumanPathogenic
+22. EbolaVirusSubtype.isNotHumanPathogenic
+23. EbolaVirusSubtype.hasFourSubtypes
+24. EbolaVirusSubtype.hasThreeHumanPathogenic
+25. EbolaVirusSubtype.includes(EbolaZaire)
+26. EbolaVirusSubtype.includes(EbolaSudan)
+27. EbolaVirusSubtype.includes(CoteDIvoireEbola)
+28. EbolaVirusSubtype.includes(FourthSubtype)
+29. FourthSubtype.isNotHumanPathogenic
+30. M_NLI(S1, S2)
+
+Rules:
+1. Q[There, EbolaVirusSubtype.count, 4](EbolaVirusSubtype.isFourInTotal → Factual(EbolaVirusSubtype.count, 4))
+2. Q[There, EbolaVirusSubtype.hasAffectedHumans, 3](EbolaVirusSubtype.isThreeAffected → Factual(EbolaVirusSubtype.hasAffectedHumans, 3))
+3. Q[There, FourthSubtype.isNotHumanPathogenic, true](EbolaVirusSubtype.isFourthNotAffected → Factual(FourthSubtype.isNotHumanPathogenic, true))
+4. Q[There, EbolaZaire.hasAffectedHumans, true](EbolaVirusSubtype.includes(EbolaZaire) ∧ EbolaZaire.isSubtypeOf(EbolaVirusSubtype) → Factual(EbolaZaire.hasAffectedHumans, true))
+5. Q[There, EbolaSudan.hasAffectedHumans, true](EbolaVirusSubtype.includes(EbolaSudan) ∧ EbolaSudan.isSubtypeOf(EbolaVirusSubtype) → Factual(EbolaSudan.hasAffectedHumans, true))
+6. Q[There, CoteDIvoireEbola.hasAffectedHumans, true](EbolaVirusSubtype.includes(CoteDIvoireEbola) ∧ CoteDIvoireEbola.isSubtypeOf(EbolaVirusSubtype) → Factual(CoteDIvoireEbola.hasAffectedHumans, true))
+7. Q[There, EbolaVirusSubtype.isIdentified, true](EbolaVirusSubtype.count == 4 → Factual(EbolaVirusSubtype.isIdentified, true))
+8. Q[There, EbolaVirusSubtype.isNotIdentified, false](EbolaVirusSubtype.count == 4 → Factual(EbolaVirusSubtype.isNotIdentified, false))
+9. Q[There, EbolaVirusSubtype.hasFourSubtypes, true](EbolaVirusSubtype.isFourInTotal → Factual(EbolaVirusSubtype.hasFourSubtypes, true))
+10. Q[There, EbolaVirusSubtype.hasThreeHumanPathogenic, true](EbolaVirusSubtype.isThreeAffected → Factual(EbolaVirusSubtype.hasThreeHumanPathogenic, true))
+11. Q[There, EbolaVirusSubtype.includes(FourthSubtype), true](EbolaVirusSubtype.count == 4 → Factual(EbolaVirusSubtype.includes(FourthSubtype), true))
+12. Q[There, FourthSubtype.isNotHumanPathogenic, true](EbolaVirusSubtype.isFourthNotAffected → Factual(FourthSubtype.isNotHumanPathogenic, true))
+13. Q[There, Disease.isCausedBy(EbolaZaire), true](EbolaZaire.hasAffectedHumans → Factual(Disease.isCausedBy(EbolaZaire), true))
+14. Q[There, Disease.isCausedBy(EbolaSudan), true](EbolaSudan.hasAffectedHumans → Factual(Disease.isCausedBy(EbolaSudan), true))
+15. Q[There, Disease.isCausedBy(CoteDIvoireEbola), true](CoteDIvoireEbola.hasAffectedHumans → Factual(Disease.isCausedBy(CoteDIvoireEbola), true))
+16. Q[There, EbolaVirusSubtype.isHumanPathogenic, true](EbolaVirusSubtype.hasThreeHumanPathogenic → Factual(EbolaVirusSubtype.isHumanPathogenic, true))
+17. Q[There, EbolaVirusSubtype.isNotHumanPathogenic, true](EbolaVirusSubtype.isFourthNotAffected → Factual(EbolaVirusSubtype.isNotHumanPathogenic, true))
+18. Q[There, EbolaVirusSubtype.includes(EbolaZaire), true](EbolaVirusSubtype.hasAffectedHumans == 3 → Factual(EbolaVirusSubtype.includes(EbolaZaire), true))
+19. Q[There, EbolaVirusSubtype.includes(EbolaSudan), true](EbolaVirusSubtype.hasAffectedHumans == 3 → Factual(EbolaVirusSubtype.includes(EbolaSudan), true))
+20. Q[There, EbolaVirusSubtype.includes(CoteDIvoireEbola), true](EbolaVirusSubtype.hasAffectedHumans == 3 → Factual(EbolaVirusSubtype.includes(CoteDIvoireEbola), true))
+21. Q[There, EbolaVirusSubtype.isHumanPathogenic, false](EbolaVirusSubtype.isFourthNotAffected → Factual(EbolaVirusSubtype.isHumanPathogenic, false))
+22. Q[There, EbolaVirusSubtype.isNotHumanPathogenic, false](EbolaVirusSubtype.hasThreeHumanPathogenic → Factual(EbolaVirusSubtype.isNotHumanPathogenic, false))
+23. Q[There, EbolaVirusSubtype.hasAffectedHumans, false](EbolaVirusSubtype.isFourthNotAffected → Factual(EbolaVirusSubtype.hasAffectedHumans, false))
+24. Q[There, EbolaVirusSubtype.isIdentified, false](EbolaVirusSubtype.isFourthNotAffected → Factual(EbolaVirusSubtype.isIdentified, false))
+25. Q[There, EbolaVirusSubtype.isFourInTotal, true](EbolaVirusSubtype.count == 4 → Factual(EbolaVirusSubtype.isFourInTotal, true))
+26. Q[There, EbolaVirusSubtype.isThreeAffected, true](EbolaVirusSubtype.hasThreeHumanPathogenic → Factual(EbolaVirusSubtype.isThreeAffected, true))
+27. Q[There, FourthSubtype.isNotHumanPathogenic, false](EbolaVirusSubtype.hasThreeHumanPathogenic → Factual(FourthSubtype.isNotHumanPathogenic, false))
+28. Q[There, Disease.hasEbolaVirusSubtype, true](EbolaVirusSubtype.hasAffectedHumans == 3 → Factual(Disease.hasEbolaVirusSubtype, true))
+29. Q[There, Disease.isCausedBy(FourthSubtype), false](EbolaVirusSubtype.isFourthNotAffected → Factual(Disease.isCausedBy(FourthSubtype), false))
+30. Q[There, M_NLI(S1, S2), true](EbolaVirusSubtype.isFourInTotal ∧ EbolaVirusSubtype.isThreeAffected → Factual(M_NLI(S1, S2), true))

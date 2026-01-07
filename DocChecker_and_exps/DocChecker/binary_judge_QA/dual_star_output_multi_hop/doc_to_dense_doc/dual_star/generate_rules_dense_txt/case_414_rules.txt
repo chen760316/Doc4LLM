@@ -1,0 +1,65 @@
+Source: dense_text.txt (Index 414)
+S1: In 1989, the sales thresholds for singles were reduced to 500,000 for Gold and 1,000,000 for Platinum, reflecting a decrease in sales of singles.
+S2: Reflecting growth in record sales, the Platinum award was added in 1976 for albums selling one million units, and singles selling two million units.
+
+Predicates:
+1. SalesThresholds_1989.Gold = 500000
+2. SalesThresholds_1989.Platinum = 1000000
+3. SalesTrend_1989.decrease = true
+4. PlatinumAward_1976.AlbumSalesThreshold = 1000000
+5. PlatinumAward_1976.SingleSalesThreshold = 2000000
+6. SalesTrend_1976.growth = true
+7. M_NLI(S1, S2) = true
+8. Causal(SalesTrend_1989, SalesTrend_1976)
+9. violate(SalesTrend_1989, SalesTrend_1976)
+10. SinglesSales_1989.decrease = true
+11. AlbumsSales_1976.growth = true
+12. SinglesSales_1976.growth = true
+13. AwardType.Platinum = true
+14. AwardType.Gold = true
+15. SalesThresholds_1989.decrease = true
+16. SalesThresholds_1976.growth = true
+17. Year_1989.sales = "decrease"
+18. Year_1976.sales = "growth"
+19. SalesThresholds_1976.Album = 1000000
+20. SalesThresholds_1976.Single = 2000000
+21. SalesTrend_1989.reflection = "decrease"
+22. SalesTrend_1976.reflection = "growth"
+23. AwardCriteria_1976.Platinum = "1 million albums, 2 million singles"
+24. AwardCriteria_1989.Gold = "500,000 singles"
+25. AwardCriteria_1989.Platinum = "1 million albums"
+26. SalesData_1989.singles = "500,000"
+27. SalesData_1976.albums = "1 million"
+28. SalesData_1976.singles = "2 million"
+29. SalesTrend_1989.contradiction = true
+30. SalesTrend_1976.contradiction = false
+
+Rules:
+1. Q[1989, SalesTrend_1989.decrease, SalesTrend_1976.growth](SalesThresholds_1989.Gold == 500000 → Causal(SalesTrend_1989, SalesTrend_1976))
+2. Q[1989, SalesTrend_1989.decrease, SalesTrend_1976.growth](SalesThresholds_1989.Platinum == 1000000 → Causal(SalesTrend_1989, SalesTrend_1976))
+3. Q[1989, SinglesSales_1989.decrease, SinglesSales_1976.growth](SalesTrend_1989.decrease == true → Causal(SinglesSales_1989, SinglesSales_1976))
+4. Q[1989, SalesThresholds_1989.decrease, SalesThresholds_1976.growth](SalesThresholds_1989.decrease == true → Causal(SalesThresholds_1989, SalesThresholds_1976))
+5. Q[1989, Year_1989.sales, Year_1976.sales](Year_1989.sales == "decrease" → Causal(Year_1989.sales, Year_1976.sales))
+6. Q[1989, SalesTrend_1989.reflection, SalesTrend_1976.reflection](SalesTrend_1989.reflection == "decrease" → Causal(SalesTrend_1989.reflection, SalesTrend_1976.reflection))
+7. Q[1989, AwardCriteria_1989.Gold, AwardCriteria_1976.Platinum](AwardCriteria_1989.Gold == "500,000 singles" → Causal(AwardCriteria_1989.Gold, AwardCriteria_1976.Platinum))
+8. Q[1989, AwardCriteria_1989.Platinum, AwardCriteria_1976.Platinum](AwardCriteria_1989.Platinum == "1 million albums" → Causal(AwardCriteria_1989.Platinum, AwardCriteria_1976.Platinum))
+9. Q[1989, SalesData_1989.singles, SalesData_1976.singles](SalesData_1989.singles == "500,000" → Causal(SalesData_1989.singles, SalesData_1976.singles))
+10. Q[1989, SalesTrend_1989.contradiction, SalesTrend_1976.contradiction](SalesTrend_1989.contradiction == true → Causal(SalesTrend_1989.contradiction, SalesTrend_1976.contradiction))
+11. Q[1989, SalesThresholds_1989.Platinum, SalesThresholds_1976.Single](SalesThresholds_1989.Platinum == 1000000 → Causal(SalesThresholds_1989.Platinum, SalesThresholds_1976.Single))
+12. Q[1989, SalesTrend_1989.decrease, SalesTrend_1976.growth](SalesTrend_1989.decrease == true → Causal(SalesTrend_1989.decrease, SalesTrend_1976.growth))
+13. Q[1989, SinglesSales_1989.decrease, AlbumsSales_1976.growth](SinglesSales_1989.decrease == true → Causal(SinglesSales_1989.decrease, AlbumsSales_1976.growth))
+14. Q[1989, SalesThresholds_1989.decrease, SalesThresholds_1976.Single](SalesThresholds_1989.decrease == true → Causal(SalesThresholds_1989.decrease, SalesThresholds_1976.Single))
+15. Q[1989, SalesTrend_1989.reflection, SalesTrend_1976.reflection](SalesTrend_1989.reflection == "decrease" → Causal(SalesTrend_1989.reflection, SalesTrend_1976.reflection))
+16. Q[1989, AwardType.Gold, AwardType.Platinum](AwardType.Gold == true → Causal(AwardType.Gold, AwardType.Platinum))
+17. Q[1989, SalesData_1989.singles, SalesData_1976.singles](SalesData_1989.singles == "500,000" → Causal(SalesData_1989.singles, SalesData_1976.singles))
+18. Q[1989, SalesTrend_1989.decrease, SalesTrend_1976.growth](SalesTrend_1989.decrease == true → Causal(SalesTrend_1989.decrease, SalesTrend_1976.growth))
+19. Q[1989, SalesThresholds_1989.Gold, SalesThresholds_1976.Single](SalesThresholds_1989.Gold == 500000 → Causal(SalesThresholds_1989.Gold, SalesThresholds_1976.Single))
+20. Q[1989, SalesTrend_1989.reflection, SalesTrend_1976.reflection](SalesTrend_1989.reflection == "decrease" → Causal(SalesTrend_1989.reflection, SalesTrend_1976.reflection))
+21. Q[1989, SalesThresholds_1989.decrease, SalesThresholds_1976.growth](SalesThresholds_1989.decrease == true → Causal(SalesThresholds_1989.decrease, SalesThresholds_1976.growth))
+22. Q[1989, SinglesSales_1989.decrease, SinglesSales_1976.growth](SinglesSales_1989.decrease == true → Causal(SinglesSales_1989.decrease, SinglesSales_1976.growth))
+23. Q[1989, SalesTrend_1989.contradiction, SalesTrend_1976.contradiction](SalesTrend_1989.contradiction == true → Causal(SalesTrend_1989.contradiction, SalesTrend_1976.contradiction))
+24. Q[1989, SalesThresholds_1989.Platinum, SalesThresholds_1976.Album](SalesThresholds_1989.Platinum == 1000000 → Causal(SalesThresholds_1989.Platinum, SalesThresholds_1976.Album))
+25. Q[1989, SalesData_1989.singles, SalesData_1976.singles](SalesData_1989.singles == "500,000" → Causal(SalesData_1989.singles, SalesData_1976.singles))
+26. Q[1989, SalesTrend_1989.decrease, SalesTrend_1976.growth](SalesTrend_1989.decrease == true → Causal(SalesTrend_1989.decrease, SalesTrend_1976.growth))
+27. Q[1989, Year_1989.sales, Year_1976.sales](Year_1989.sales == "decrease" → Causal(Year_1989.sales, Year_1976.sales))
+28. Q[1989, SalesThresholds_1989.decrease, SalesThresholds_1976.growth](SalesThresholds_1989.decrease

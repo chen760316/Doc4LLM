@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 859)
+S1: It did not reflect the sentiment of the area.
+S2: This is because there is tremendous variation in the quality of the materials used and the skills of the workmen involved.
+
+Predicates:
+1. Area.sentiment
+2. Symbol.sentiment
+3. Quality.materials
+4. Quality.skills
+5. Workmen.skills
+6. Variation.quality
+7. Disconnect.symbol_area
+8. Reflect.sentiment
+9. Causal(Disconnect.symbol_area, Variation.quality)
+10. M_NLI(S1, S2)
+11. Violate(Reflect.sentiment, Area.sentiment)
+12. Quality.reflects_sentiment
+13. Materials.quality
+14. Skills.quality
+15. Workmen.involvement
+16. Area.quality_variation
+17. Sentiment.variation
+18. Materials.skills
+19. Skills.reflect_sentiment
+20. Causal(Variation.quality, Reflect.sentiment)
+21. Disconnect.quality_sentiment
+22. Quality.influence_sentiment
+23. Area.quality
+24. Symbol.quality
+25. Workmen.quality
+26. Variation.influence_sentiment
+27. Reflect.quality
+28. Sentiment.influence_quality
+29. Causal(Variation.quality, Disconnect.symbol_area)
+30. Quality.variation
+
+Rules:
+1. Q[did, Area.sentiment, Symbol.sentiment](Area.sentiment == "negative" → Causal(Disconnect.symbol_area, Variation.quality))
+2. Q[did, Symbol.sentiment, Area.sentiment](Symbol.sentiment == "positive" → Causal(Disconnect.symbol_area, Variation.quality))
+3. Q[did, Variation.quality, Quality.materials](Variation.quality == "high" → Causal(Disconnect.symbol_area, Quality.materials))
+4. Q[did, Quality.skills, Workmen.skills](Quality.skills == "low" → Causal(Disconnect.symbol_area, Workmen.skills))
+5. Q[did, Quality.materials, Area.quality](Quality.materials == "poor" → Causal(Disconnect.symbol_area, Area.quality))
+6. Q[did, Workmen.involvement, Quality.skills](Workmen.involvement == "low" → Causal(Disconnect.symbol_area, Quality.skills))
+7. Q[did, Area.quality_variation, Variation.quality](Area.quality_variation == "high" → Causal(Disconnect.symbol_area, Variation.quality))
+8. Q[did, Reflect.sentiment, Area.sentiment](Reflect.sentiment == "false" → Causal(Disconnect.symbol_area, Area.sentiment))
+9. Q[did, Quality.reflects_sentiment, Symbol.sentiment](Quality.reflects_sentiment == "true" → Causal(Disconnect.symbol_area, Symbol.sentiment))
+10. Q[did, Materials.quality, Quality.materials](Materials.quality == "low" → Causal(Disconnect.symbol_area, Quality.materials))
+11. Q[did, Skills.quality, Quality.skills](Skills.quality == "poor" → Causal(Disconnect.symbol_area, Quality.skills))
+12. Q[did, Workmen.quality, Workmen.skills](Workmen.quality == "subpar" → Causal(Disconnect.symbol_area, Workmen.skills))
+13. Q[did, Variation.influence_sentiment, Area.sentiment](Variation.influence_sentiment == "high" → Causal(Disconnect.symbol_area, Area.sentiment))
+14. Q[did, Quality.influence_sentiment, Symbol.sentiment](Quality.influence_sentiment == "low" → Causal(Disconnect.symbol_area, Symbol.sentiment))
+15. Q[did, Sentiment.variation, Area.sentiment](Sentiment.variation == "significant" → Causal(Disconnect.symbol_area, Area.sentiment))
+16. Q[did, Disconnect.quality_sentiment, Quality.materials](Disconnect.quality_sentiment == "true" → Causal(Disconnect.symbol_area, Quality.materials))
+17. Q[did, Quality.variation, Variation.quality](Quality.variation == "extreme" → Causal(Disconnect.symbol_area, Variation.quality))
+18. Q[did, Skills.reflect_sentiment, Symbol.sentiment](Skills.reflect_sentiment == "false" → Causal(Disconnect.symbol_area, Symbol.sentiment))
+19. Q[did, Materials.skills, Quality.materials](Materials.skills == "inadequate" → Causal(Disconnect.symbol_area, Quality.materials))
+20. Q[did, Area.quality, Area.sentiment](Area.quality == "low" → Causal(Disconnect.symbol_area, Area.sentiment))
+21. Q[did, Symbol.quality, Symbol.sentiment](Symbol.quality == "poor" → Causal(Disconnect.symbol_area, Symbol.sentiment))
+22. Q[did, Variation.quality, Quality.skills](Variation.quality == "low" → Causal(Disconnect.symbol_area, Quality.skills))
+23. Q[did, Quality.materials, Reflect.sentiment](Quality.materials == "high" → Causal(Disconnect.symbol_area, Reflect.sentiment))
+24. Q[did, Workmen.skills, Quality.skills](Workmen.skills == "low" → Causal(Disconnect.symbol_area, Quality.skills))
+25. Q[did, Area.sentiment, Quality.influence_sentiment](Area.sentiment == "negative" → Causal(Disconnect.symbol_area, Quality.influence_sentiment))
+26. Q[did, Reflect.quality, Quality.materials](Reflect.quality == "false" → Causal(Disconnect.symbol_area, Quality.materials))
+27. Q[did, Quality.skills, Workmen.quality](Quality.skills == "high" → Causal(Disconnect.symbol_area, Workmen.quality))
+28. Q[did, Variation.influence_sentiment, Quality.skills](Variation.influence_sentiment == "low" → Causal(Disconnect.symbol_area, Quality.skills))
+29. Q[did, Causal(Variation.quality, Reflect.sentiment), Area.sentiment](Causal(Variation.quality, Reflect.sentiment) == "true" → Causal(Disconnect.symbol_area, Area.sentiment))
+30. Q[did, Causal(Variation.quality, Disconnect.symbol_area), Symbol.sentiment](Causal(Variation.quality, Disconnect.symbol_area) == "true" → Causal(Disconnect.symbol_area, Symbol.sentiment))

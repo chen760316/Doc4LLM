@@ -1,0 +1,13 @@
+### Entity Mapping ###
+x0: "Texas"
+y0: "Texas"
+
+### Rules with Substituted Entities ###
+Rule: Q[Texas, USA](Texas.country = "USA" ∧ Texas.size = "second largest" → violate(Texas.size, Texas.rank_by_area))
+
+Rule: Q[Texas, USA](Texas.size = "second largest" ∧ "Texas is the largest state in the USA.".by = "area" → violate(Texas.size, Texas.rank_by_population))
+
+Rule: Q[Texas, USA](Texas.rank_by_population = "2" ∧ "Texas is the largest state in the USA.".size = "largest" ∧ "Texas is the second largest state in the USA by both area and population.".size = "second largest" → violate(Texas.size, Texas.rank_by_population))
+
+Rule: Q[Texas, USA](Temporal("Texas is the largest state in the USA.", "Texas is the second largest state in the USA by both area and population.") ∧ "Texas is the largest state in the USA.".size = "largest" ∧ "Texas is the second largest state in the USA by both area and population.".size = "second largest" → violate(Texas.size, Texas.rank_by_area))
+

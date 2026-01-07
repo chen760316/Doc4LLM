@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 903)
+S1: The dog is outside playing.
+S2: The brown dog is rolling around in the dirt.
+
+Predicates:
+1. Dog.isOutside
+2. Dog.isPlaying
+3. Dog.isRolling
+4. Dog.isInDirt
+5. BrownDog.isRolling
+6. BrownDog.isInDirt
+7. Dog.isSameAs(BrownDog)
+8. Dog.cannotSimultaneouslyBeRolling
+9. Dog.cannotSimultaneouslyBeInDirt
+10. Dog.isOutside.violates(Dog.isRolling)
+11. Dog.isOutside.violates(Dog.isInDirt)
+12. BrownDog.isOutside
+13. BrownDog.isPlaying
+14. Dog.isNotSameAs(BrownDog)
+15. Dog.isOutside.M_NLI(S1, S2)
+16. BrownDog.isOutside.M_NLI(S1, S2)
+17. Dog.isRolling.M_NLI(S1, S2)
+18. Dog.isInDirt.M_NLI(S1, S2)
+19. Dog.isOutside.Relation(Dog, BrownDog)
+20. Dog.isPlaying.Relation(Dog, BrownDog)
+21. BrownDog.isRolling.Relation(BrownDog, Dog)
+22. BrownDog.isInDirt.Relation(BrownDog, Dog)
+23. Dog.violates(BrownDog.isRolling)
+24. Dog.violates(BrownDog.isInDirt)
+25. Dog.isOutside.cannotSimultaneouslyBe(BrownDog.isRolling)
+26. Dog.isPlaying.cannotSimultaneouslyBe(BrownDog.isInDirt)
+27. Dog.isRolling.cannotSimultaneouslyBe(BrownDog.isOutside)
+28. Dog.isInDirt.cannotSimultaneouslyBe(BrownDog.isOutside)
+29. Dog.isOutside.M_NLI(S1, S2).violates(Dog.isRolling)
+30. BrownDog.isRolling.M_NLI(S1, S2).violates(Dog.isOutside)
+
+Rules:
+1. Q[The, Dog.isOutside, Dog.isRolling](Dog.isOutside == true → Relation(Dog, BrownDog))
+2. Q[The, Dog.isOutside, Dog.isInDirt](Dog.isOutside == true → Relation(Dog, BrownDog))
+3. Q[The, Dog.isPlaying, Dog.isRolling](Dog.isPlaying == true → Relation(Dog, BrownDog))
+4. Q[The, Dog.isPlaying, Dog.isInDirt](Dog.isPlaying == true → Relation(Dog, BrownDog))
+5. Q[The, Dog.isOutside, BrownDog.isRolling](Dog.isOutside == true → Relation(Dog, BrownDog))
+6. Q[The, Dog.isOutside, BrownDog.isInDirt](Dog.isOutside == true → Relation(Dog, BrownDog))
+7. Q[The, Dog.cannotSimultaneouslyBeRolling, BrownDog.isRolling](Dog.cannotSimultaneouslyBeRolling == true → Relation(Dog, BrownDog))
+8. Q[The, Dog.cannotSimultaneouslyBeInDirt, BrownDog.isInDirt](Dog.cannotSimultaneouslyBeInDirt == true → Relation(Dog, BrownDog))
+9. Q[The, Dog.isOutside.violates, Dog.isRolling](Dog.isOutside.violates(Dog.isRolling) == true → Relation(Dog, BrownDog))
+10. Q[The, Dog.isOutside.violates, Dog.isInDirt](Dog.isOutside.violates(Dog.isInDirt) == true → Relation(Dog, BrownDog))
+11. Q[The, Dog.isNotSameAs, BrownDog](Dog.isNotSameAs(BrownDog) == true → Relation(Dog, BrownDog))
+12. Q[The, Dog.isOutside.M_NLI, BrownDog.isRolling](Dog.isOutside.M_NLI(S1, S2) == true → Relation(Dog, BrownDog))
+13. Q[The, Dog.isOutside.M_NLI, BrownDog.isInDirt](Dog.isOutside.M_NLI(S1, S2) == true → Relation(Dog, BrownDog))
+14. Q[The, Dog.isRolling.M_NLI, BrownDog.isOutside](Dog.isRolling.M_NLI(S1, S2) == true → Relation(Dog, BrownDog))
+15. Q[The, Dog.isInDirt.M_NLI, BrownDog.isOutside](Dog.isInDirt.M_NLI(S1, S2) == true → Relation(Dog, BrownDog))
+16. Q[The, Dog.violates, BrownDog.isRolling](Dog.violates(BrownDog.isRolling) == true → Relation(Dog, BrownDog))
+17. Q[The, Dog.violates, BrownDog.isInDirt](Dog.violates(BrownDog.isInDirt) == true → Relation(Dog, BrownDog))
+18. Q[The, Dog.isOutside.cannotSimultaneouslyBe, BrownDog.isRolling](Dog.isOutside.cannotSimultaneouslyBe(BrownDog.isRolling) == true → Relation(Dog, BrownDog))
+19. Q[The, Dog.isPlaying.cannotSimultaneouslyBe, BrownDog.isInDirt](Dog.isPlaying.cannotSimultaneouslyBe(BrownDog.isInDirt) == true → Relation(Dog, BrownDog))
+20. Q[The, Dog.isRolling.cannotSimultaneouslyBe, BrownDog.isOutside](Dog.isRolling.cannotSimultaneouslyBe(BrownDog.isOutside) == true → Relation(Dog, BrownDog))
+21. Q[The, Dog.isInDirt.cannotSimultaneouslyBe, BrownDog.isOutside](Dog.isInDirt.cannotSimultaneouslyBe(BrownDog.isOutside) == true → Relation(Dog, BrownDog))
+22. Q[The, Dog.isOutside.M_NLI, Dog.isRolling](Dog.isOutside.M_NLI(S1, S2) == true → Relation(Dog, BrownDog))
+23. Q[The, BrownDog.isRolling.M_NLI, Dog.isOutside](BrownDog.isRolling.M_NLI(S1, S2) == true → Relation(Dog, BrownDog))
+24. Q[The, BrownDog.isOutside, Dog.isRolling](BrownDog.isOutside == true → Relation(Dog, BrownDog))
+25. Q[The, BrownDog.isOutside, Dog.isInDirt](BrownDog.isOutside == true → Relation(Dog, BrownDog))
+26. Q[The, BrownDog.isPlaying, Dog.isRolling](BrownDog.isPlaying == true → Relation(Dog, BrownDog))
+27. Q[The, BrownDog.isPlaying, Dog.isInDirt](BrownDog.isPlaying == true → Relation(Dog, BrownDog))
+28. Q[The, Dog.isOutside.violates, BrownDog.isRolling](Dog.isOutside.violates(BrownDog.isRolling) == true → Relation(Dog, BrownDog))
+29. Q[The, Dog.isOutside.violates, BrownDog.isInDirt](Dog.isOutside.violates(BrownDog.isInDirt) == true → Relation(Dog, BrownDog))
+30. Q[The, Dog.isNotSameAs, BrownDog](Dog.isNotSameAs(BrownDog) == true → Relation(Dog, BrownDog))

@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 674)
+S1: It would also be nice if every female over the age of 16 had a $5,000 gift certificate at Tiffany's.
+S2: No female over the age of 16 would want a $5,000 gift certificate at Tiffany's.
+
+Predicates:
+1. Female.age > 16
+2. GiftCertificate.value = 5000
+3. GiftCertificate.store = "Tiffany's"
+4. Desire.has(GiftCertificate)
+5. Female.has(GiftCertificate)
+6. Female.wants(GiftCertificate) = false
+7. Female.over_age(16)
+8. GiftCertificate.is_for(Female)
+9. GiftCertificate.is_value(5000)
+10. GiftCertificate.is_from("Tiffany's")
+11. Every(Female).has(GiftCertificate)
+12. No(Female).wants(GiftCertificate)
+13. Age(16).is_less_than(Female.age)
+14. GiftCertificate.is_desired_by(Female) = false
+15. Female.is_over_age(16)
+16. GiftCertificate.is_given_to(Female)
+17. Female.receives(GiftCertificate)
+18. GiftCertificate.is_not_wanted_by(Female)
+19. All(Female).over_age(16).has(GiftCertificate)
+20. None(Female).over_age(16).wants(GiftCertificate)
+21. Female.age >= 16
+22. GiftCertificate.value > 0
+23. GiftCertificate.is_issued_by("Tiffany's")
+24. Female.is_desired(GiftCertificate) = false
+25. Female.has_age(16)
+26. GiftCertificate.is_valued_at(5000)
+27. Female.is_not_interested_in(GiftCertificate)
+28. GiftCertificate.is_available_to(Female)
+29. Female.over_age(16).is_gifted(GiftCertificate)
+30. Female.age(16).is_not_equal(Female.age)
+
+Rules:
+1. Q[would, Female.age > 16, GiftCertificate.value = 5000](Every(Female).over_age(16).has(GiftCertificate) → Content(Female, GiftCertificate))
+2. Q[would, Female.age > 16, GiftCertificate.store = "Tiffany's"](Every(Female).over_age(16).has(GiftCertificate) → Content(Female, GiftCertificate))
+3. Q[would, GiftCertificate.value = 5000, GiftCertificate.store = "Tiffany's"](Every(Female).has(GiftCertificate) → Content(Female, GiftCertificate))
+4. Q[would, Female.over_age(16), GiftCertificate.value = 5000](Every(Female).over_age(16).has(GiftCertificate) → Content(Female, GiftCertificate))
+5. Q[would, GiftCertificate.is_for(Female), GiftCertificate.value = 5000](Every(Female).has(GiftCertificate) → Content(Female, GiftCertificate))
+6. Q[would, Female.has(GiftCertificate), GiftCertificate.store = "Tiffany's"](Every(Female).has(GiftCertificate) → Content(Female, GiftCertificate))
+7. Q[would, Female.wants(GiftCertificate) = false, GiftCertificate.value = 5000](No(Female).wants(GiftCertificate) → Content(Female, GiftCertificate))
+8. Q[would, Female.is_over_age(16), GiftCertificate.is_desired_by(Female) = false](No(Female).wants(GiftCertificate) → Content(Female, GiftCertificate))
+9. Q[would, GiftCertificate.is_not_wanted_by(Female), Female.age > 16](No(Female).wants(GiftCertificate) → Content(Female, GiftCertificate))
+10. Q[would, Female.age >= 16, GiftCertificate.is_for(Female)](Every(Female).over_age(16).has(GiftCertificate) → Content(Female, GiftCertificate))
+11. Q[would, GiftCertificate.is_given_to(Female), Female.age > 16](Every(Female).over_age(16).has(GiftCertificate) → Content(Female, GiftCertificate))
+12. Q[would, Female.receives(GiftCertificate), GiftCertificate.value = 5000](Every(Female).has(GiftCertificate) → Content(Female, GiftCertificate))
+13. Q[would, GiftCertificate.is_valued_at(5000), Female.over_age(16)](Every(Female).over_age(16).has(GiftCertificate) → Content(Female, GiftCertificate))
+14. Q[would, GiftCertificate.is_available_to(Female), Female.age > 16](Every(Female).over_age(16).has(GiftCertificate) → Content(Female, GiftCertificate))
+15. Q[would, Female.is_not_interested_in(GiftCertificate), GiftCertificate.store = "Tiffany's"](No(Female).wants(GiftCertificate) → Content(Female, GiftCertificate))
+16. Q[would, GiftCertificate.is_issued_by("Tiffany's"), Female.age > 16](Every(Female).over_age(16).has(GiftCertificate) → Content(Female, GiftCertificate))
+17. Q[would, GiftCertificate.is_value(5000), Female.over_age(16)](Every(Female).over_age(16).has(GiftCertificate) → Content(Female, GiftCertificate))
+18. Q[would, Female.has_age(16), GiftCertificate.value = 5000](Every(Female).has(GiftCertificate) → Content(Female, GiftCertificate))
+19. Q[would, GiftCertificate.is_desired_by(Female) = false, Female.age > 16](No(Female).wants(GiftCertificate) → Content(Female, GiftCertificate))
+20. Q[would, Female.is_desired(GiftCertificate) = false, GiftCertificate.store = "Tiffany's"](No(Female).wants(GiftCertificate) → Content(Female, GiftCertificate))
+21. Q[would, Female.over_age(16), GiftCertificate.is_not_wanted_by(Female)](No(Female).wants(GiftCertificate) → Content(Female, GiftCertificate))
+22. Q[would, GiftCertificate.is_for(Female), Female.age >= 16](Every(Female).over_age(16).has(GiftCertificate) → Content(Female, GiftCertificate))
+23. Q[would, GiftCertificate.is_given_to(Female), Female.age >= 16](Every(Female).over_age(16).has(GiftCertificate) → Content(Female, GiftCertificate))
+24. Q[would, Female.age(16).is_not_equal(Female.age), GiftCertificate.value = 5000](Every(Female).has(GiftCertificate) → Content(Female, GiftCertificate))
+25. Q[would, Female.is_over_age(16), GiftCertificate.is_valued_at(5000)](Every(Female).over_age(16).has(GiftCertificate) → Content(Female, GiftCertificate))
+26. Q[would, GiftCertificate.is_available_to(Female), Female.age >= 16](Every(Female).over_age(16).has(GiftCertificate) → Content(Female, GiftCertificate))
+27. Q[would, GiftCertificate.is_not_wanted_by(Female), Female.age > 16](No(Female).wants(GiftCertificate) → Content(Female, GiftCertificate))
+28. Q[would, Female.is_desired(GiftCertificate) = false, GiftCertificate.value = 5000](No(Female).wants(GiftCertificate) → Content(Female, GiftCertificate))
+29. Q[would, GiftCertificate.is_issued_by("Tiffany's"), Female.is_over_age(16)](Every(Female).over_age(16).has(GiftCertificate) → Content(Female, GiftCertificate))
+30. Q[would, GiftCertificate.is_for(Female), Female.is_not_interested_in(GiftCertificate)](No(Female).wants(GiftCertificate) → Content(Female, GiftCertificate))

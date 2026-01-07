@@ -1,0 +1,15 @@
+### Entity Mapping ###
+x0: "Maria"
+y0: "Maria"
+
+### Rules with Substituted Entities ###
+Rule: Q["Maria", "Maria"](Maria.location = "Arizona" ∧ Maria.occupation = "teacher" → violate(Maria.location, "California"))
+
+Rule: Q["Maria", "Maria"](school in Arizona.status = "current" ∧ schools in California.status = "previously worked" → violate(Maria.occupation, "nurse"))
+
+Rule: Q["Maria", "Maria"](Maria.location = "Arizona" ∧ Maria.occupation = "teacher" ∧ school in Arizona.status = "current" ∧ schools in California.status = "previously worked" → violate(Maria.occupation, "assistant"))
+
+Rule: Q["Maria", "Maria"](Maria.location = "Arizona" ∧ "Maria loved the house".doc_index = "232" ∧ "Maria worked at schools in Texas in the past.".doc_index = "231" ∧ Factual(Maria.location, "Texas") → violate(Maria.location, "California"))
+
+Rule: Q["Maria", "Maria"](Maria.location = "Arizona" ∧ Maria.occupation = "teacher" ∧ schools in California.status = "previously worked" ∧ Factual(Maria.loved, "the house") ∧ Causal(Maria.occupation, "teacher") → violate(Maria.location, "Texas"))
+

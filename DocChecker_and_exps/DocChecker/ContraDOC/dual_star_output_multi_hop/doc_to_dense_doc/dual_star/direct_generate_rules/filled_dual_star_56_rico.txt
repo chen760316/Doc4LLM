@@ -1,0 +1,50 @@
+Predicates:
+Ferguson.label != "Location"
+Ferguson.label != fundamental change.label
+Ferguson.label != town's government.label
+Ferguson.label = "Location"
+Ferguson.name != "Ferguson"
+Ferguson.name != fundamental change.name
+Ferguson.name != town's government.name
+Ferguson.name = "Ferguson"
+Ferguson.type != "town"
+Ferguson.type = "town"
+Ferguson___fundamental change.certainty = "not necessarily"
+Ferguson___fundamental change.contradiction_type = "Causal"
+Ferguson___fundamental change.relationship = "It is uncertain whether fundamental change will occur in Ferguson."
+Ferguson___fundamental change.source_id = "3489825758_1"
+Ferguson___town's government.certainty != Ferguson___fundamental change.certainty
+Ferguson___town's government.certainty = "without question"
+Ferguson___town's government.contradiction_type = "Causal"
+Ferguson___town's government.relationship != Ferguson___fundamental change.relationship
+Ferguson___town's government.relationship = "The town's government is undergoing change."
+Ferguson___town's government.source_id = "3489825758_1"
+None_ML(Ferguson___fundamental change.attrs, Ferguson___town's government.attrs)
+None_ML(town's government.attrs, Ferguson.attrs)
+fundamental change.label != "Change"
+fundamental change.label = "Change"
+fundamental change.name != "fundamental change"
+fundamental change.name = "fundamental change"
+fundamental change.status != "not necessarily coming"
+fundamental change.status = "not necessarily coming"
+town's government.label != "Government"
+town's government.label != fundamental change.label
+town's government.label = "Government"
+town's government.name != "town's government"
+town's government.name != fundamental change.name
+town's government.name = "town's government"
+town's government.status != "changing"
+town's government.status != fundamental change.status
+town's government.status = "changing"
+
+Rules:
+Q[Ferguson,Ferguson] (town's government.label != "Government" ∧ Ferguson___fundamental change.relationship = "It is uncertain whether fundamental change will occur in Ferguson." → Ferguson___town's government.contradiction_type = "Causal")
+Q[Ferguson,Ferguson] (fundamental change.name = "fundamental change" ∧ None_ML(town's government.attrs, Ferguson.attrs) ∧ town's government.name = "town's government" → town's government.name != "town's government")
+Q[Ferguson,Ferguson] (Ferguson.name != town's government.name ∧ town's government.status != fundamental change.status ∧ Ferguson___town's government.certainty != Ferguson___fundamental change.certainty ∧ town's government.status != "changing" ∧ Ferguson___fundamental change.relationship = "It is uncertain whether fundamental change will occur in Ferguson." ∧ fundamental change.status = "not necessarily coming" → Ferguson.label = "Location")
+Q[Ferguson,Ferguson] (fundamental change.status = "not necessarily coming" ∧ Ferguson.label != town's government.label ∧ None_ML(town's government.attrs, Ferguson.attrs) ∧ town's government.status != fundamental change.status ∧ fundamental change.label != "Change" → None_ML(Ferguson___fundamental change.attrs, Ferguson___town's government.attrs))
+Q[Ferguson,Ferguson] (Ferguson___fundamental change.relationship = "It is uncertain whether fundamental change will occur in Ferguson." ∧ Ferguson___town's government.contradiction_type = "Causal" ∧ fundamental change.name != "fundamental change" ∧ town's government.name = "town's government" → Ferguson.label != "Location")
+Q[Ferguson,Ferguson] (Ferguson.name != "Ferguson" ∧ None_ML(Ferguson___fundamental change.attrs, Ferguson___town's government.attrs) ∧ Ferguson.label != town's government.label ∧ Ferguson.name != town's government.name → Ferguson___fundamental change.certainty = "not necessarily")
+Q[Ferguson,Ferguson] (Ferguson___town's government.source_id = "3489825758_1" ∧ Ferguson.label != "Location" ∧ town's government.status = "changing" ∧ town's government.status != "changing" ∧ fundamental change.name = "fundamental change" → fundamental change.status = "not necessarily coming")
+Q[Ferguson,Ferguson] (fundamental change.name = "fundamental change" ∧ Ferguson.label != town's government.label → Ferguson___town's government.certainty = "without question")
+Q[Ferguson,Ferguson] (town's government.label != "Government" ∧ Ferguson___town's government.relationship != Ferguson___fundamental change.relationship ∧ fundamental change.label = "Change" ∧ None_ML(Ferguson___fundamental change.attrs, Ferguson___town's government.attrs) ∧ Ferguson.name != "Ferguson" ∧ town's government.status != fundamental change.status → Ferguson___fundamental change.contradiction_type = "Causal")
+Q[Ferguson,Ferguson] (town's government.status != "changing" ∧ Ferguson___fundamental change.contradiction_type = "Causal" ∧ Ferguson.label = "Location" → town's government.name != fundamental change.name)

@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 332)
+S1: A dog is emerging from water.
+S2: A dog leaps out of the water.
+
+Predicates:
+1. Dog.emerging_from_water
+2. Dog.leaps_out_of_water
+3. Water.contains_dog
+4. Dog.is_animal
+5. Action.emerging
+6. Action.leaping
+7. Process.gradual
+8. Process.sudden
+9. Water.is_a_liquid
+10. Dog.is_in_water
+11. Dog.is_exiting_water
+12. Action.is_gradual
+13. Action.is_sudden
+14. Entity.dog
+15. Entity.water
+16. Relationship.implies_gradual
+17. Relationship.implies_sudden
+18. Causal.emerging_leaping
+19. Causal.dog_exiting_water
+20. Violate.gradual_sudden
+21. Dog.movement_type
+22. Water.state
+23. Dog.position
+24. Action.type
+25. Dog.behavior
+26. Water.state_change
+27. Dog.emerging_action
+28. Dog.leaping_action
+29. Relationship.dog_water
+30. Relationship.action_type
+
+Rules:
+1. Q[dog, Dog.emerging_from_water, Dog.leaps_out_of_water](Dog.emerging_from_water → Causal.emerging_leaping)
+2. Q[dog, Dog.emerging_from_water, Dog.leaps_out_of_water](Dog.is_in_water && Action.is_gradual → Causal.emerging_leaping)
+3. Q[dog, Dog.leaps_out_of_water, Dog.emerging_from_water](Dog.leaps_out_of_water → Causal.dog_exiting_water)
+4. Q[dog, Dog.leaps_out_of_water, Dog.emerging_from_water](Dog.leaps_out_of_water && Action.is_sudden → Causal.dog_exiting_water)
+5. Q[dog, Dog.emerging_from_water, Dog.leaps_out_of_water](Process.gradual → Relationship.implies_gradual)
+6. Q[dog, Dog.leaps_out_of_water, Dog.emerging_from_water](Process.sudden → Relationship.implies_sudden)
+7. Q[dog, Dog.emerging_from_water, Dog.leaps_out_of_water](Dog.is_animal && Action.emerging → Causal.emerging_leaping)
+8. Q[dog, Dog.leaps_out_of_water, Dog.emerging_from_water](Dog.is_animal && Action.leaping → Causal.dog_exiting_water)
+9. Q[dog, Dog.emerging_from_water, Dog.leaps_out_of_water](Dog.is_in_water && Action.emerging && Process.gradual → Causal.emerging_leaping)
+10. Q[dog, Dog.leaps_out_of_water, Dog.emerging_from_water](Dog.is_in_water && Action.leaping && Process.sudden → Causal.dog_exiting_water)
+11. Q[dog, Dog.emerging_from_water, Dog.leaps_out_of_water](Dog.position == "in_water" && Action.type == "emerging" → Causal.emerging_leaping)
+12. Q[dog, Dog.leaps_out_of_water, Dog.emerging_from_water](Dog.position == "in_water" && Action.type == "leaping" → Causal.dog_exiting_water)
+13. Q[dog, Dog.emerging_from_water, Dog.leaps_out_of_water](Water.contains_dog && Action.is_gradual → Causal.emerging_leaping)
+14. Q[dog, Dog.leaps_out_of_water, Dog.emerging_from_water](Water.contains_dog && Action.is_sudden → Causal.dog_exiting_water)
+15. Q[dog, Dog.emerging_from_water, Dog.leaps_out_of_water](Dog.emerging_action && Process.gradual → Causal.emerging_leaping)
+16. Q[dog, Dog.leaps_out_of_water, Dog.emerging_from_water](Dog.leaping_action && Process.sudden → Causal.dog_exiting_water)
+17. Q[dog, Dog.emerging_from_water, Dog.leaps_out_of_water](Relationship.dog_water && Action.emerging → Causal.emerging_leaping)
+18. Q[dog, Dog.leaps_out_of_water, Dog.emerging_from_water](Relationship.dog_water && Action.leaping → Causal.dog_exiting_water)
+19. Q[dog, Dog.emerging_from_water, Dog.leaps_out_of_water](Dog.is_exiting_water && Action.is_gradual → Causal.emerging_leaping)
+20. Q[dog, Dog.leaps_out_of_water, Dog.emerging_from_water](Dog.is_exiting_water && Action.is_sudden → Causal.dog_exiting_water)
+21. Q[dog, Dog.emerging_from_water, Dog.leaps_out_of_water](Water.state == "liquid" && Dog.is_in_water → Causal.emerging_leaping)
+22. Q[dog, Dog.leaps_out_of_water, Dog.emerging_from_water](Water.state == "liquid" && Dog.is_in_water → Causal.dog_exiting_water)
+23. Q[dog, Dog.emerging_from_water, Dog.leaps_out_of_water](Action.emerging && Process.gradual → Causal.emerging_leaping)
+24. Q[dog, Dog.leaps_out_of_water, Dog.emerging_from_water](Action.leaping && Process.sudden → Causal.dog_exiting_water)
+25. Q[dog, Dog.emerging_from_water, Dog.leaps_out_of_water](Dog.behavior == "emerging" && Process.gradual → Causal.emerging_leaping)
+26. Q[dog, Dog.leaps_out_of_water, Dog.emerging_from_water](Dog.behavior == "leaping" && Process.sudden → Causal.dog_exiting_water)
+27. Q[dog, Dog.emerging_from_water, Dog.leaps_out_of_water](Dog.movement_type == "emerging" && Action.is_gradual → Causal.emerging_leaping)
+28. Q[dog, Dog.leaps_out_of_water, Dog.emerging_from_water](Dog.movement_type == "leaping" && Action.is_sudden → Causal.dog_exiting_water)
+29. Q[dog, Dog.emerging_from_water, Dog.leaps_out_of_water](Water.state_change == "gradual" → Causal.emerging_leaping)
+30. Q[dog, Dog.leaps_out_of_water, Dog.emerging_from_water](Water.state_change == "sudden" → Causal.dog_exiting_water)

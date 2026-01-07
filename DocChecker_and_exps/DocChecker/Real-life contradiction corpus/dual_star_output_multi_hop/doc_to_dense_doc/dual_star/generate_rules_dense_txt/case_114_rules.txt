@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 114)
+S1: U.N. Secretary General Kofi Annan has expressed deep concern over Saturday's Israeli commando raid deep inside Lebanon, calling it a true violation.
+S2: We had specific information of arms transfers taking place and we acted to prevent that violation, so that violation is not from the Israeli side - we were responding to a violation of the resolution by Hezbollah.
+
+Predicates:
+1. U.N.SecretaryGeneral.hasConcern
+2. KofiAnnan.expressedConcern
+3. IsraeliCommandoRaid.isViolation
+4. IsraeliCommandoRaid.tookPlaceIn
+5. IsraeliCommandoRaid.location
+6. Lebanon.hasIsraeliCommandoRaid
+7. violation.isTrue
+8. armsTransfers.tookPlace
+9. action.wasPreventive
+10. violation.isNotFromIsraeliSide
+11. response.isJustified
+12. Hezbollah.violatedResolution
+13. U.N.Resolution.hasViolation
+14. KofiAnnan.callsViolationTrue
+15. IsraeliAction.isResponse
+16. specificInformation.exists
+17. violation.byHezbollah
+18. IsraeliAction.isPreventive
+19. violation.isClaimed
+20. U.N.SecretaryGeneral.hasDeepConcern
+21. IsraeliCommandoRaid.isDeepInside
+22. LebaneseTerritory.hasIsraeliRaid
+23. KofiAnnan.isU.N.SecretaryGeneral
+24. violation.isClaimedByKofiAnnan
+25. Hezbollah.isResponsibleForViolation
+26. IsraeliAction.isResponseToViolation
+27. U.N.Resolution.isViolated
+28. KofiAnnan.hasPosition
+29. IsraeliCommandoRaid.isCondemned
+30. response.isToPreventViolation
+
+Rules:
+1. Q[Secretary, U.N.SecretaryGeneral.hasConcern == true](IsraeliCommandoRaid.isViolation == true → Causal(x0, y0))
+2. Q[Annan, KofiAnnan.expressedConcern == true](IsraeliCommandoRaid.isViolation == true → Causal(x0, y0))
+3. Q[raid, IsraeliCommandoRaid.isViolation == true](KofiAnnan.callsViolationTrue == true → Causal(x0, y0))
+4. Q[violation, violation.isTrue == true](IsraeliCommandoRaid.isViolation == true → Causal(x0, y0))
+5. Q[response, IsraeliAction.isResponseToViolation == true](violation.isNotFromIsraeliSide == true → Causal(x0, y0))
+6. Q[Hezbollah, Hezbollah.violatedResolution == true](IsraeliAction.isResponse == true → Causal(x0, y0))
+7. Q[armsTransfers, armsTransfers.tookPlace == true](IsraeliAction.isPreventive == true → Causal(x0, y0))
+8. Q[U.N., U.N.Resolution.hasViolation == true](IsraeliCommandoRaid.isViolation == true → Causal(x0, y0))
+9. Q[concern, KofiAnnan.hasDeepConcern == true](IsraeliCommandoRaid.isViolation == true → Causal(x0, y0))
+10. Q[location, IsraeliCommandoRaid.location == "Lebanon"](IsraeliCommandoRaid.isDeepInside == true → Causal(x0, y0))
+11. Q[violation, violation.byHezbollah == true](IsraeliAction.isResponseToViolation == true → Causal(x0, y0))
+12. Q[preventive, action.wasPreventive == true](IsraeliAction.isResponse == true → Causal(x0, y0))
+13. Q[Israeli, violation.isClaimed == true](IsraeliCommandoRaid.isViolation == true → Causal(x0, y0))
+14. Q[U.N., KofiAnnan.isU.N.SecretaryGeneral == true](IsraeliCommandoRaid.isViolation == true → Causal(x0, y0))
+15. Q[violation, violation.isClaimedByKofiAnnan == true](IsraeliCommandoRaid.isViolation == true → Causal(x0, y0))
+16. Q[response, response.isJustified == true](IsraeliAction.isResponseToViolation == true → Causal(x0, y0))
+17. Q[Israeli, IsraeliCommandoRaid.tookPlaceIn == "Lebanon"](IsraeliCommandoRaid.isViolation == true → Causal(x0, y0))
+18. Q[U.N., U.N.Resolution.isViolated == true](Hezbollah.violatedResolution == true → Causal(x0, y0))
+19. Q[concern, KofiAnnan.hasPosition == true](IsraeliCommandoRaid.isViolation == true → Causal(x0, y0))
+20. Q[Israeli, IsraeliCommandoRaid.isCondemned == true](KofiAnnan.callsViolationTrue == true → Causal(x0, y0))
+21. Q[response, response.isToPreventViolation == true](IsraeliAction.isPreventive == true → Causal(x0, y0))
+22. Q[violation, violation.isNotFromIsraeliSide == true](IsraeliAction.isResponseToViolation == true → Causal(x0, y0))
+23. Q[Hezbollah, Hezbollah.isResponsibleForViolation == true](IsraeliAction.isResponse == true → Causal(x0, y0))
+24. Q[Israeli, IsraeliCommandoRaid.isDeepInside == true](Lebanon.hasIsraeliCommandoRaid == true → Causal(x0, y0))
+25. Q[U.N., U.N.SecretaryGeneral.hasConcern == true](IsraeliCommandoRaid.isViolation == true → Causal(x0, y0))
+26. Q[violation, violation.isClaimed == true](IsraeliAction.isResponseToViolation == true → Causal(x0, y0))
+27. Q[Israeli, IsraeliAction.isResponse == true](violation.byHezbollah == true → Causal(x0, y0))
+28. Q[armsTransfers, specificInformation.exists == true](IsraeliAction.isPreventive == true → Causal(x0, y0))
+29. Q[U.N., KofiAnnan.callsViolationTrue == true](IsraeliCommandoRaid.isViolation == true → Causal(x0, y0))
+30. Q[response, response.isJustified == true](violation.byHezbollah == true → Causal(x0, y0))

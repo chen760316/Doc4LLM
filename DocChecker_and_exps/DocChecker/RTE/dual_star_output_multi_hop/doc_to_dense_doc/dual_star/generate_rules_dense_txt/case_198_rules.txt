@@ -1,0 +1,64 @@
+Source: dense_text.txt (Index 198)
+S1: On July 12 Portuguese President Jorge Sampaio called a Pedro Santana Lopes to form a Government.
+S2: On July 12 Portuguese President Jorge Sampaio asks Pedro Santana Lopes to form a government.
+
+Predicates:
+1. President_Jorge_Sampaio.call_date
+2. President_Jorge_Sampaio.action_type
+3. Pedro_Santana_Lopes.request_type
+4. Government.formation_date
+5. President_Jorge_Sampaio.past_action
+6. President_Jorge_Sampaio.present_action
+7. Pedro_Santana_Lopes.past_request
+8. Pedro_Santana_Lopes.present_request
+9. July_12.date
+10. July_12.event_type
+11. Government.formation_status
+12. President_Jorge_Sampaio.communication_method
+13. Pedro_Santana_Lopes.role
+14. Government.formation_outcome
+15. President_Jorge_Sampaio.political_context
+16. Pedro_Santana_Lopes.political_context
+17. President_Jorge_Sampaio.official_capacity
+18. Pedro_Santana_Lopes.official_capacity
+19. President_Jorge_Sampaio.intent
+20. Pedro_Santana_Lopes.response_time
+21. President_Jorge_Sampaio.legal_authority
+22. Pedro_Santana_Lopes.acceptance_status
+23. Government.political_stability
+24. President_Jorge_Sampaio.communication_tone
+25. Pedro_Santana_Lopes.formation_attempt
+26. President_Jorge_Sampaio.legislative_power
+27. Pedro_Santana_Lopes.government_support
+28. July_12.event_significance
+29. President_Jorge_Sampaio.political_decision
+30. Pedro_Santana_Lopes.government_formation_date
+
+Rules:
+1. Q[July, President_Jorge_Sampaio.call_date, President_Jorge_Sampaio.present_action](President_Jorge_Sampaio.call_date == "July 12" → Causal(President_Jorge_Sampaio.call_date, President_Jorge_Sampaio.present_action))
+2. Q[July, President_Jorge_Sampaio.action_type, Pedro_Santana_Lopes.present_request](President_Jorge_Sampaio.action_type == "call" → Causal(President_Jorge_Sampaio.action_type, Pedro_Santana_Lopes.present_request))
+3. Q[July, President_Jorge_Sampaio.past_action, President_Jorge_Sampaio.present_action](President_Jorge_Sampaio.past_action == true → Causal(President_Jorge_Sampaio.past_action, President_Jorge_Sampaio.present_action))
+4. Q[July, Pedro_Santana_Lopes.past_request, Pedro_Santana_Lopes.present_request](Pedro_Santana_Lopes.past_request == true → Causal(Pedro_Santana_Lopes.past_request, Pedro_Santana_Lopes.present_request))
+5. Q[July, Government.formation_date, Government.formation_status](Government.formation_date == "July 12" → Causal(Government.formation_date, Government.formation_status))
+6. Q[July, President_Jorge_Sampaio.official_capacity, Pedro_Santana_Lopes.official_capacity](President_Jorge_Sampaio.official_capacity == "President" → Causal(President_Jorge_Sampaio.official_capacity, Pedro_Santana_Lopes.official_capacity))
+7. Q[July, President_Jorge_Sampaio.intent, Pedro_Santana_Lopes.response_time](President_Jorge_Sampaio.intent == "form government" → Causal(President_Jorge_Sampaio.intent, Pedro_Santana_Lopes.response_time))
+8. Q[July, President_Jorge_Sampaio.communication_method, Pedro_Santana_Lopes.acceptance_status](President_Jorge_Sampaio.communication_method == "call" → Causal(President_Jorge_Sampaio.communication_method, Pedro_Santana_Lopes.acceptance_status))
+9. Q[July, Pedro_Santana_Lopes.role, Government.formation_outcome](Pedro_Santana_Lopes.role == "candidate" → Causal(Pedro_Santana_Lopes.role, Government.formation_outcome))
+10. Q[July, President_Jorge_Sampaio.political_context, Pedro_Santana_Lopes.government_support](President_Jorge_Sampaio.political_context == "government formation" → Causal(President_Jorge_Sampaio.political_context, Pedro_Santana_Lopes.government_support))
+11. Q[July, President_Jorge_Sampaio.legal_authority, Government.formation_status](President_Jorge_Sampaio.legal_authority == "constitutional" → Causal(President_Jorge_Sampaio.legal_authority, Government.formation_status))
+12. Q[July, Pedro_Santana_Lopes.formation_attempt, Government.formation_status](Pedro_Santana_Lopes.formation_attempt == true → Causal(Pedro_Santana_Lopes.formation_attempt, Government.formation_status))
+13. Q[July, President_Jorge_Sampaio.political_decision, Government.formation_outcome](President_Jorge_Sampaio.political_decision == "ask to form" → Causal(President_Jorge_Sampaio.political_decision, Government.formation_outcome))
+14. Q[July, July_12.event_type, Government.formation_status](July_12.event_type == "political" → Causal(July_12.event_type, Government.formation_status))
+15. Q[July, July_12.date, President_Jorge_Sampaio.past_action](July_12.date == "July 12" → Causal(July_12.date, President_Jorge_Sampaio.past_action))
+16. Q[July, President_Jorge_Sampaio.communication_tone, Pedro_Santana_Lopes.present_request](President_Jorge_Sampaio.communication_tone == "formal" → Causal(President_Jorge_Sampaio.communication_tone, Pedro_Santana_Lopes.present_request))
+17. Q[July, Pedro_Santana_Lopes.government_formation_date, Government.formation_date](Pedro_Santana_Lopes.government_formation_date == "July 12" → Causal(Pedro_Santana_Lopes.government_formation_date, Government.formation_date))
+18. Q[July, President_Jorge_Sampaio.action_type, President_Jorge_Sampaio.past_action](President_Jorge_Sampaio.action_type == "call" → Causal(President_Jorge_Sampaio.action_type, President_Jorge_Sampaio.past_action))
+19. Q[July, Pedro_Santana_Lopes.request_type, Pedro_Santana_Lopes.present_request](Pedro_Santana_Lopes.request_type == "form government" → Causal(Pedro_Santana_Lopes.request_type, Pedro_Santana_Lopes.present_request))
+20. Q[July, Government.formation_status, Government.political_stability](Government.formation_status == "pending" → Causal(Government.formation_status, Government.political_stability))
+21. Q[July, President_Jorge_Sampaio.intent, President_Jorge_Sampaio.present_action](President_Jorge_Sampaio.intent == "form government" → Causal(President_Jorge_Sampaio.intent, President_Jorge_Sampaio.present_action))
+22. Q[July, Pedro_Santana_Lopes.response_time, Government.formation_status](Pedro_Santana_Lopes.response_time == "immediate" → Causal(Pedro_Santana_Lopes.response_time, Government.formation_status))
+23. Q[July, President_Jorge_Sampaio.legislative_power, Government.formation_status](President_Jorge_Sampaio.legislative_power == "active" → Causal(President_Jorge_Sampaio.legislative_power, Government.formation_status))
+24. Q[July, Pedro_Santana_Lopes.government_support, Government.formation_outcome](Pedro_Santana_Lopes.government_support == "required" → Causal(Pedro_Santana_Lopes.government_support, Government.formation_outcome))
+25. Q[July, President_Jorge_Sampaio.political_context, Government.formation_status](President_Jorge_Sampaio.political_context == "crucial" → Causal(President_Jorge_Sampaio.political_context, Government.formation_status))
+26. Q[July, Pedro_Santana_Lopes.present_request, Government.formation_status](Pedro_Santana_Lopes.present_request == "submitted" → Causal(Pedro_Santana_Lopes.present_request, Government.formation_status))
+27. Q[July, President_Jorge_Sampaio.communication_method, Pedro_Santana_Lopes.acceptance_status](President_Jorge_Sampaio.communication_method

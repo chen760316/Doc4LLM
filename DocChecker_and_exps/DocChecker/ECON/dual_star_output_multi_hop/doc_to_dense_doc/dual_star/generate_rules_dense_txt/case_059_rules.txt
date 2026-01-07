@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 59)
+S1: Ivan the Terrible was the Tsar of Russia from 1530 to 1585.
+S2: Ivan the Terrible was a French pastry chef who lived in the 19th century.
+
+Predicates:
+1. Ivan_the_Terrible.title
+2. Ivan_the_Terrible.reign_start
+3. Ivan_the_Terrible.reign_end
+4. Ivan_the_Terrible.nationality
+5. Ivan_the_Terrible.occupation
+6. Ivan_the_Terrible.birth_year
+7. Ivan_the_Terrible.death_year
+8. Ivan_the_Terrible.historical_period
+9. French_pastry_chef.name
+10. French_pastry_chef.occupation
+11. French_pastry_chef.lifetime_start
+12. French_pastry_chef.lifetime_end
+13. French_pastry_chef.nationality
+14. pastry_chef.historical_period
+15. "historical_inaccuracy".claim
+16. "historical_inaccuracy".entity1
+17. "historical_inaccuracy".entity2
+18. "historical_inaccuracy".reason
+19. M_NLI(Ivan_the_Terrible, French_pastry_chef)
+20. Factual(Ivan_the_Terrible, Tsar_of_Russia)
+21. Factual(French_pastry_chef, pastry_chef)
+22. violate(Ivan_the_Terrible, French_pastry_chef)
+23. "reign".start_year
+24. "reign".end_year
+25. "occupation".type
+26. "occupation".time_period
+27. "nationality".country
+28. "historical_period".century
+29. "historical_period".significance
+30. "relationship".type
+
+Rules:
+1. Q[Ivan, x0, y0](Ivan_the_Terrible.title == "Tsar of Russia" → Factual(x0, y0))
+2. Q[Ivan, x0, y0](Ivan_the_Terrible.reign_start == 1530 → Factual(x0, y0))
+3. Q[Ivan, x0, y0](Ivan_the_Terrible.reign_end == 1585 → Factual(x0, y0))
+4. Q[Ivan, x0, y0](Ivan_the_Terrible.nationality == "Russian" → Factual(x0, y0))
+5. Q[Ivan, x0, y0](Ivan_the_Terrible.occupation == "Tsar" → Factual(x0, y0))
+6. Q[Ivan, x0, y0](Ivan_the_Terrible.birth_year == 1530 → Factual(x0, y0))
+7. Q[Ivan, x0, y0](Ivan_the_Terrible.death_year == 1584 → Factual(x0, y0))
+8. Q[Ivan, x0, y0](Ivan_the_Terrible.historical_period == "16th century" → Factual(x0, y0))
+9. Q[French_pastry_chef, x0, y0](French_pastry_chef.occupation == "pastry chef" → Factual(x0, y0))
+10. Q[French_pastry_chef, x0, y0](French_pastry_chef.lifetime_start == 1800 → Factual(x0, y0))
+11. Q[French_pastry_chef, x0, y0](French_pastry_chef.lifetime_end == 1899 → Factual(x0, y0))
+12. Q[French_pastry_chef, x0, y0](French_pastry_chef.nationality == "French" → Factual(x0, y0))
+13. Q[French_pastry_chef, x0, y0](pastry_chef.historical_period == "19th century" → Factual(x0, y0))
+14. Q[Ivan, x0, y0]("historical_inaccuracy".entity1 == "Ivan the Terrible" → Factual(x0, y0))
+15. Q[Ivan, x0, y0]("historical_inaccuracy".entity2 == "French pastry chef" → Factual(x0, y0))
+16. Q[Ivan, x0, y0]("historical_inaccuracy".reason == "conflicting historical timelines" → Factual(x0, y0))
+17. Q[Ivan, x0, y0](M_NLI(Ivan_the_Terrible, French_pastry_chef) → Factual(x0, y0))
+18. Q[Ivan, x0, y0](violate(Ivan_the_Terrible, French_pastry_chef) → Factual(x0, y0))
+19. Q[Ivan, x0, y0]("reign".start_year == 1530 → Factual(x0, y0))
+20. Q[Ivan, x0, y0]("reign".end_year == 1585 → Factual(x0, y0))
+21. Q[Ivan, x0, y0]("occupation".type == "Tsar" → Factual(x0, y0))
+22. Q[Ivan, x0, y0]("occupation".time_period == "16th century" → Factual(x0, y0))
+23. Q[Ivan, x0, y0]("nationality".country == "Russia" → Factual(x0, y0))
+24. Q[Ivan, x0, y0]("historical_period".century == "16th" → Factual(x0, y0))
+25. Q[Ivan, x0, y0]("historical_period".significance == "important ruler" → Factual(x0, y0))
+26. Q[Ivan, x0, y0]("historical_inaccuracy".claim == "Ivan the Terrible was a pastry chef" → Factual(x0, y0))
+27. Q[Ivan, x0, y0]("relationship".type == "historical contradiction" → Factual(x0, y0))
+28. Q[Ivan, x0, y0](Ivan_the_Terrible.reign_start < French_pastry_chef.lifetime_start → Factual(x0, y0))
+29. Q[Ivan, x0, y0](Ivan_the_Terrible.reign_end < French_pastry_chef.lifetime_start → Factual(x0, y0))
+30. Q[Ivan, x0, y0](Ivan_the_Terrible.historical_period != French_pastry_chef.historical_period → Factual(x0, y0))

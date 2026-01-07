@@ -1,0 +1,64 @@
+Source: dense_text.txt (Index 227)
+S1: In custody disputes, judicial determinations will rest upon an amalgam of considerations all considered 'in the best interest of the child.'
+S2: the natural parent presumption must be seriously considered and heavily weighted in favor of the parent but that the presumption is rebutted if the clear and convincing evidence establishes that the best interest of the child is served by awarding custody to the third party.
+
+Predicates:
+1. CustodyDispute.consideration = 'best interest of the child'
+2. JudicialDetermination.restsUpon = CustodyDispute.consideration
+3. NaturalParentPresumption.seriouslyConsidered = true
+4. NaturalParentPresumption.heavilyWeighted = true
+5. ClearAndConvincingEvidence.establishes = 'best interest of the child'
+6. CustodyAward.toThirdParty = ClearAndConvincingEvidence
+7. NaturalParentPresumption.rebutted = ClearAndConvincingEvidence
+8. CustodyDecision.conflict = true
+9. BestInterestOfChild.amalgamOfConsiderations = true
+10. JudicialDetermination.considers = BestInterestOfChild.amalgamOfConsiderations
+11. ThirdParty.custodyAward = true
+12. NaturalParentPresumption.favors = NaturalParent
+13. CustodyDispute.considers = NaturalParentPresumption
+14. BestInterestOfChild.servedBy = CustodyAward.toThirdParty
+15. JudicialDetermination.evaluates = NaturalParentPresumption
+16. CustodyDecision.restsUpon = JudicialDetermination
+17. BestInterestOfChild.isDeterminedBy = CustodyDecision
+18. NaturalParentPresumption.isWeighted = true
+19. ClearAndConvincingEvidence.isRequired = true
+20. CustodyAward.isBasedOn = BestInterestOfChild
+21. ThirdParty.custodyAward.isPossible = true
+22. NaturalParentPresumption.isNotAbsolute = true
+23. JudicialDetermination.isComplex = true
+24. BestInterestOfChild.isSubjective = true
+25. CustodyDispute.involves = JudicialDetermination
+26. NaturalParentPresumption.isChallenged = true
+27. ClearAndConvincingEvidence.isEvaluated = true
+28. CustodyDecision.isFinalized = true
+29. BestInterestOfChild.isPrioritized = true
+30. JudicialDetermination.isInfluencedBy = NaturalParentPresumption
+
+Rules:
+1. Q[custody, NaturalParentPresumption.seriouslyConsidered == true, CustodyDecision.conflict == true](CustodyDispute.consideration == 'best interest of the child' → Causal(NaturalParentPresumption.seriouslyConsidered, CustodyDecision.conflict))
+2. Q[custody, NaturalParentPresumption.heavilyWeighted == true, CustodyDecision.conflict == true](JudicialDetermination.restsUpon == CustodyDispute.consideration → Causal(NaturalParentPresumption.heavilyWeighted, CustodyDecision.conflict))
+3. Q[custody, ClearAndConvincingEvidence.establishes == 'best interest of the child', CustodyDecision.conflict == true](NaturalParentPresumption.seriouslyConsidered == true → Causal(ClearAndConvincingEvidence.establishes, CustodyDecision.conflict))
+4. Q[custody, CustodyAward.toThirdParty == ClearAndConvincingEvidence, CustodyDecision.conflict == true](NaturalParentPresumption.heavilyWeighted == true → Causal(CustodyAward.toThirdParty, CustodyDecision.conflict))
+5. Q[custody, NaturalParentPresumption.rebutted == ClearAndConvincingEvidence, CustodyDecision.conflict == true](BestInterestOfChild.amalgamOfConsiderations == true → Causal(NaturalParentPresumption.rebutted, CustodyDecision.conflict))
+6. Q[custody, BestInterestOfChild.servedBy == CustodyAward.toThirdParty, CustodyDecision.conflict == true](NaturalParentPresumption.favors == NaturalParent → Causal(BestInterestOfChild.servedBy, CustodyDecision.conflict))
+7. Q[custody, JudicialDetermination.evaluates == NaturalParentPresumption, CustodyDecision.conflict == true](JudicialDetermination.restsUpon == CustodyDispute.consideration → Causal(JudicialDetermination.evaluates, CustodyDecision.conflict))
+8. Q[custody, NaturalParentPresumption.isNotAbsolute == true, CustodyDecision.conflict == true](BestInterestOfChild.isDeterminedBy == CustodyDecision → Causal(NaturalParentPresumption.isNotAbsolute, CustodyDecision.conflict))
+9. Q[custody, CustodyDispute.considers == NaturalParentPresumption, CustodyDecision.conflict == true](BestInterestOfChild.isSubjective == true → Causal(CustodyDispute.considers, CustodyDecision.conflict))
+10. Q[custody, JudicialDetermination.isComplex == true, CustodyDecision.conflict == true](NaturalParentPresumption.isChallenged == true → Causal(JudicialDetermination.isComplex, CustodyDecision.conflict))
+11. Q[custody, ClearAndConvincingEvidence.isRequired == true, CustodyDecision.conflict == true](NaturalParentPresumption.isWeighted == true → Causal(ClearAndConvincingEvidence.isRequired, CustodyDecision.conflict))
+12. Q[custody, CustodyAward.isBasedOn == BestInterestOfChild, CustodyDecision.conflict == true](JudicialDetermination.isInfluencedBy == NaturalParentPresumption → Causal(CustodyAward.isBasedOn, CustodyDecision.conflict))
+13. Q[custody, ThirdParty.custodyAward == true, CustodyDecision.conflict == true](NaturalParentPresumption.isChallenged == true → Causal(ThirdParty.custodyAward, CustodyDecision.conflict))
+14. Q[custody, JudicialDetermination.considers == BestInterestOfChild.amalgamOfConsiderations, CustodyDecision.conflict == true](NaturalParentPresumption.isNotAbsolute == true → Causal(JudicialDetermination.considers, CustodyDecision.conflict))
+15. Q[custody, BestInterestOfChild.isPrioritized == true, CustodyDecision.conflict == true](NaturalParentPresumption.favors == NaturalParent → Causal(BestInterestOfChild.isPrioritized, CustodyDecision.conflict))
+16. Q[custody, CustodyDispute.involves == JudicialDetermination, CustodyDecision.conflict == true](BestInterestOfChild.isDeterminedBy == CustodyDecision → Causal(CustodyDispute.involves, CustodyDecision.conflict))
+17. Q[custody, JudicialDetermination.isInfluencedBy == NaturalParentPresumption, CustodyDecision.conflict == true](ClearAndConvincingEvidence.isEvaluated == true → Causal(JudicialDetermination.isInfluencedBy, CustodyDecision.conflict))
+18. Q[custody, CustodyDecision.isFinalized == true, CustodyDecision.conflict == true](BestInterestOfChild.amalgamOfConsiderations == true → Causal(CustodyDecision.isFinalized, CustodyDecision.conflict))
+19. Q[custody, NaturalParentPresumption.isChallenged == true, CustodyDecision.conflict == true](JudicialDetermination.isComplex == true → Causal(NaturalParentPresumption.isChallenged, CustodyDecision.conflict))
+20. Q[custody, BestInterestOfChild.isSubjective == true, CustodyDecision.conflict == true](NaturalParentPresumption.seriouslyConsidered == true → Causal(BestInterestOfChild.isSubjective, CustodyDecision.conflict))
+21. Q[custody, CustodyAward.toThirdParty == ClearAndConvincingEvidence, CustodyDecision.conflict == true](NaturalParentPresumption.heavilyWeighted == true → Causal(CustodyAward.toThirdParty, CustodyDecision.conflict))
+22. Q[custody, NaturalParentPresumption.isWeighted == true, CustodyDecision.conflict == true](BestInterestOfChild.servedBy == CustodyAward.toThirdParty → Causal(NaturalParentPresumption.isWeighted, CustodyDecision.conflict))
+23. Q[custody, ClearAndConvincingEvidence.isEvaluated == true, CustodyDecision.conflict == true](NaturalParentPresumption.isNotAbsolute == true → Causal(ClearAndConvincingEvidence.isEvaluated, CustodyDecision.conflict))
+24. Q[custody, CustodyDecision.restsUpon == JudicialDetermination, CustodyDecision.conflict == true](BestInterestOfChild.isPrioritized == true → Causal(CustodyDecision.restsUpon, CustodyDecision.conflict))
+25. Q[custody, JudicialDetermination.restsUpon == CustodyDispute.consideration, CustodyDecision.conflict == true](NaturalParentPresumption.isChallenged == true → Causal(JudicialDetermination.restsUpon, CustodyDecision.conflict))
+26. Q[custody, BestInterestOfChild.isDeterminedBy == CustodyDecision, CustodyDecision.conflict == true](NaturalParentPresumption.favors == NaturalParent → Causal(BestInterestOfChild.isDeterminedBy, CustodyDecision.conflict))
+27. Q[custody, CustodyDispute.considers == NaturalParentPresumption, CustodyDecision.conflict == true](ClearAndConvincingEvidence.isRequired ==

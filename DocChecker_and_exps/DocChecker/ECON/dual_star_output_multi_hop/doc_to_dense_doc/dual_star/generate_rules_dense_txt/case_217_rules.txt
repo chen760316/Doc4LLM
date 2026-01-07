@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 217)
+S1: A laurel crown involves leaves arranged in a circle that cover only the edges of the head.
+S2: A laurel crown involves leaves arranged in a full helmet that covers the entire head.
+
+Predicates:
+1. LaurelCrown.shape = circular
+2. LaurelCrown.coverage = edges_only
+3. LaurelCrown.shape = full_helmet
+4. LaurelCrown.coverage = entire_head
+5. M_NLI(S1, S2)
+6. Factual(S1, description)
+7. Factual(S2, description)
+8. violate(S1, S2)
+9. Leaves.arrangement = circular
+10. Leaves.arrangement = full_helmet
+11. Head.coverage = edges_only
+12. Head.coverage = entire_head
+13. LaurelCrown.material = leaves
+14. LaurelCrown.type = crown
+15. Crown.shape = circular
+16. Crown.shape = full_helmet
+17. Crown.coverage = edges_only
+18. Crown.coverage = entire_head
+19. M_NLI(LaurelCrown, description)
+20. Factual(LaurelCrown, shape)
+21. Factual(LaurelCrown, coverage)
+22. violate(LaurelCrown, description)
+23. Leaves.type = laurel
+24. Leaves.position = arranged
+25. Head.type = human
+26. Head.position = covered
+27. Crown.type = laurel
+28. Crown.position = worn
+29. M_NLI(coverage, shape)
+30. Factual(coverage, contradiction)
+
+Rules:
+1. Q[laurel, x0, y0](LaurelCrown.shape = circular ∧ LaurelCrown.coverage = edges_only → Factual(x0, y0))
+2. Q[laurel, x0, y0](LaurelCrown.shape = full_helmet ∧ LaurelCrown.coverage = entire_head → Factual(x0, y0))
+3. Q[laurel, x0, y0](LaurelCrown.shape = circular ∧ LaurelCrown.coverage = entire_head → violate(S1, S2))
+4. Q[laurel, x0, y0](LaurelCrown.shape = full_helmet ∧ LaurelCrown.coverage = edges_only → violate(S1, S2))
+5. Q[laurel, x0, y0](LaurelCrown.shape = circular → Factual(LaurelCrown, shape))
+6. Q[laurel, x0, y0](LaurelCrown.coverage = edges_only → Factual(LaurelCrown, coverage))
+7. Q[laurel, x0, y0](LaurelCrown.shape = full_helmet → Factual(LaurelCrown, shape))
+8. Q[laurel, x0, y0](LaurelCrown.coverage = entire_head → Factual(LaurelCrown, coverage))
+9. Q[laurel, x0, y0](LaurelCrown.shape = circular ∧ M_NLI(S1, S2) → violate(S1, S2))
+10. Q[laurel, x0, y0](LaurelCrown.coverage = edges_only ∧ M_NLI(S1, S2) → violate(S1, S2))
+11. Q[laurel, x0, y0](LaurelCrown.shape = full_helmet ∧ M_NLI(S1, S2) → violate(S1, S2))
+12. Q[laurel, x0, y0](LaurelCrown.coverage = entire_head ∧ M_NLI(S1, S2) → violate(S1, S2))
+13. Q[laurel, x0, y0](Leaves.arrangement = circular ∧ LaurelCrown.shape = circular → Factual(x0, y0))
+14. Q[laurel, x0, y0](Leaves.arrangement = full_helmet ∧ LaurelCrown.shape = full_helmet → Factual(x0, y0))
+15. Q[laurel, x0, y0](Head.coverage = edges_only ∧ LaurelCrown.coverage = edges_only → Factual(x0, y0))
+16. Q[laurel, x0, y0](Head.coverage = entire_head ∧ LaurelCrown.coverage = entire_head → Factual(x0, y0))
+17. Q[laurel, x0, y0](Crown.shape = circular ∧ LaurelCrown.shape = circular → Factual(x0, y0))
+18. Q[laurel, x0, y0](Crown.shape = full_helmet ∧ LaurelCrown.shape = full_helmet → Factual(x0, y0))
+19. Q[laurel, x0, y0](Crown.coverage = edges_only ∧ LaurelCrown.coverage = edges_only → Factual(x0, y0))
+20. Q[laurel, x0, y0](Crown.coverage = entire_head ∧ LaurelCrown.coverage = entire_head → Factual(x0, y0))
+21. Q[laurel, x0, y0](Leaves.type = laurel ∧ LaurelCrown.material = leaves → Factual(x0, y0))
+22. Q[laurel, x0, y0](Leaves.position = arranged ∧ LaurelCrown.type = crown → Factual(x0, y0))
+23. Q[laurel, x0, y0](Head.type = human ∧ Head.coverage = edges_only → violate(S1, S2))
+24. Q[laurel, x0, y0](Head.type = human ∧ Head.coverage = entire_head → violate(S1, S2))
+25. Q[laurel, x0, y0](Crown.type = laurel ∧ Crown.position = worn → Factual(x0, y0))
+26. Q[laurel, x0, y0](M_NLI(LaurelCrown, description) → violate(S1, S2))
+27. Q[laurel, x0, y0](Factual(LaurelCrown, shape) ∧ Factual(LaurelCrown, coverage) → violate(S1, S2))
+28. Q[laurel, x0, y0](violate(LaurelCrown, description) → Factual(x0, y0))
+29. Q[laurel, x0, y0](M_NLI(coverage, shape) → violate(S1, S2))
+30. Q[laurel, x0, y0](Factual(coverage, contradiction) → Factual(x0, y0))

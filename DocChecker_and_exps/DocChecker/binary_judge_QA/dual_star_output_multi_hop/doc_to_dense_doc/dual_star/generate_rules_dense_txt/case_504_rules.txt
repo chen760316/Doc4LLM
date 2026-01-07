@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 504)
+S1: the average ratings on key review platforms indicating the series' high point being the end of Season 7.
+S2: there's a marked drop in audience engagement beyond Season 7.
+
+Predicates:
+1. Series.average_rating
+2. Series.season_count
+3. Season_7.engagement_level
+4. Season_7.is_peak
+5. Season_8.engagement_level
+6. Season_9.engagement_level
+7. Audience.engagement_trend
+8. Audience.engagement_drop
+9. Review_Platforms.rating_average
+10. Review_Platforms.key_reviews
+11. Series.high_point
+12. Season_7.end.is_high_point
+13. Season_8.start.engagement_level
+14. Season_7.end.audience_engagement
+15. Season_7.end.critical_acclaim
+16. Season_8.engagement_decline
+17. Season_9.engagement_decline
+18. Audience.engagement_after_season_7
+19. Series.peak_season
+20. Season_7.critical_response
+21. Season_8.critical_response
+22. Season_9.critical_response
+23. Review_Platforms.peak_rating
+24. Review_Platforms.post_season_7_rating
+25. Series.engagement_trend
+26. Season_7.audience_engagement
+27. Season_8.audience_engagement
+28. Season_9.audience_engagement
+29. Audience.engagement_before_season_7
+30. Series.decline_after_season_7
+
+Rules:
+1. Q[the, Series.average_rating, Series.high_point](Series.average_rating == "high" → Relation(Series.average_rating, Series.high_point))
+2. Q[the, Season_7.is_peak, Season_8.engagement_decline](Season_7.is_peak == true → Relation(Season_7.is_peak, Season_8.engagement_decline))
+3. Q[the, Season_7.end.audience_engagement, Season_8.start.engagement_level](Season_7.end.audience_engagement == "high" → Relation(Season_7.end.audience_engagement, Season_8.start.engagement_level))
+4. Q[the, Season_8.engagement_level, Season_9.engagement_decline](Season_8.engagement_level == "low" → Relation(Season_8.engagement_level, Season_9.engagement_decline))
+5. Q[the, Audience.engagement_trend, Series.decline_after_season_7](Audience.engagement_trend == "declining" → Relation(Audience.engagement_trend, Series.decline_after_season_7))
+6. Q[the, Season_7.critical_response, Season_8.critical_response](Season_7.critical_response == "positive" → Relation(Season_7.critical_response, Season_8.critical_response))
+7. Q[the, Review_Platforms.key_reviews, Review_Platforms.peak_rating](Review_Platforms.key_reviews == "high" → Relation(Review_Platforms.key_reviews, Review_Platforms.peak_rating))
+8. Q[the, Season_7.end.is_high_point, Season_8.engagement_level](Season_7.end.is_high_point == true → Relation(Season_7.end.is_high_point, Season_8.engagement_level))
+9. Q[the, Season_7.audience_engagement, Audience.engagement_after_season_7](Season_7.audience_engagement == "high" → Relation(Season_7.audience_engagement, Audience.engagement_after_season_7))
+10. Q[the, Season_8.audience_engagement, Season_9.audience_engagement](Season_8.audience_engagement == "low" → Relation(Season_8.audience_engagement, Season_9.audience_engagement))
+11. Q[the, Audience.engagement_drop, Season_8.engagement_decline](Audience.engagement_drop == true → Relation(Audience.engagement_drop, Season_8.engagement_decline))
+12. Q[the, Series.peak_season, Season_7.is_peak](Series.peak_season == "Season 7" → Relation(Series.peak_season, Season_7.is_peak))
+13. Q[the, Season_7.end.critical_acclaim, Season_8.critical_response](Season_7.end.critical_acclaim == "high" → Relation(Season_7.end.critical_acclaim, Season_8.critical_response))
+14. Q[the, Review_Platforms.rating_average, Season_7.end.audience_engagement](Review_Platforms.rating_average == "high" → Relation(Review_Platforms.rating_average, Season_7.end.audience_engagement))
+15. Q[the, Season_9.engagement_decline, Audience.engagement_trend](Season_9.engagement_decline == true → Relation(Season_9.engagement_decline, Audience.engagement_trend))
+16. Q[the, Season_7.engagement_level, Season_8.start.engagement_level](Season_7.engagement_level == "high" → Relation(Season_7.engagement_level, Season_8.start.engagement_level))
+17. Q[the, Series.engagement_trend, Season_7.end.audience_engagement](Series.engagement_trend == "positive" → Relation(Series.engagement_trend, Season_7.end.audience_engagement))
+18. Q[the, Season_8.engagement_level, Season_9.audience_engagement](Season_8.engagement_level == "low" → Relation(Season_8.engagement_level, Season_9.audience_engagement))
+19. Q[the, Season_7.end.is_high_point, Series.high_point](Season_7.end.is_high_point == true → Relation(Season_7.end.is_high_point, Series.high_point))
+20. Q[the, Audience.engagement_before_season_7, Season_7.audience_engagement](Audience.engagement_before_season_7 == "high" → Relation(Audience.engagement_before_season_7, Season_7.audience_engagement))
+21. Q[the, Season_8.engagement_decline, Season_9.engagement_decline](Season_8.engagement_decline == true → Relation(Season_8.engagement_decline, Season_9.engagement_decline))
+22. Q[the, Review_Platforms.post_season_7_rating, Season_8.engagement_level](Review_Platforms.post_season_7_rating == "low" → Relation(Review_Platforms.post_season_7_rating, Season_8.engagement_level))
+23. Q[the, Season_7.end.audience_engagement, Audience.engagement_trend](Season_7.end.audience_engagement == "high" → Relation(Season_7.end.audience_engagement, Audience.engagement_trend))
+24. Q[the, Season_8.audience_engagement, Season_9.engagement_level](Season_8.audience_engagement == "low" → Relation(Season_8.audience_engagement, Season_9.engagement_level))
+25. Q[the, Series.average_rating, Season_7.end.critical_acclaim](Series.average_rating == "high" → Relation(Series.average_rating, Season_7.end.critical_acclaim))
+26. Q[the, Season_7.critical_response, Season_8.engagement_level](Season_7.critical_response == "positive" → Relation(Season_7.critical_response, Season_8.engagement_level))
+27. Q[the, Season_9.audience_engagement, Audience.engagement_after_season_7](Season_9.audience_engagement == "low" → Relation(Season_9.audience_engagement, Audience.engagement_after_season_7))
+28. Q[the, Season_8.start.engagement_level, Season_9.engagement_decline](Season_8.start.engagement_level == "low" → Relation(Season_8.start.engagement_level, Season_9.engagement_decline))
+29. Q[the, Series.decline_after_season_7, Audience.engagement_trend](Series.decline_after_season_7 == true → Relation(Series.decline_after_season_7, Audience.engagement_trend))
+30. Q[the, Season_7.end.is_high_point, Series.peak_season](Season_7.end.is_high_point == true → Relation(Season_7.end.is_high_point, Series.peak_season))

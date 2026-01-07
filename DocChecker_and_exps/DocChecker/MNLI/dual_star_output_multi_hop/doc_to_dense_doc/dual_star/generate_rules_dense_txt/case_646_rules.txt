@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 646)
+S1: The return crossing, however, is never as bad.
+S2: The return crossing, however, is usually worse.
+
+Predicates:
+1. ReturnCrossing.assessment1
+2. ReturnCrossing.assessment2
+3. ReturnCrossing.isNeverAsBad
+4. ReturnCrossing.isUsuallyWorse
+5. AssessmentConflict.returnCrossing
+6. AssessmentConflict.isNeverAsBad
+7. AssessmentConflict.isUsuallyWorse
+8. M_NLI(S1, S2)
+9. Causal(S1, S2)
+10. violate(S1, S2)
+11. ReturnCrossing.comparison
+12. ReturnCrossing.negativeAssessment
+13. ReturnCrossing.positiveAssessment
+14. AssessmentComparison.returnCrossing
+15. AssessmentComparison.neverAsBad
+16. AssessmentComparison.usuallyWorse
+17. ReturnCrossing.quality
+18. ReturnCrossing.variation
+19. AssessmentConflict.quality
+20. AssessmentConflict.variation
+21. ReturnCrossing.context
+22. ReturnCrossing.evaluation
+23. Evaluation.neverAsBad
+24. Evaluation.usuallyWorse
+25. ReturnCrossing.perception
+26. ReturnCrossing.experience
+27. Experience.positive
+28. Experience.negative
+29. ReturnCrossing.judgment
+30. Judgment.conflict
+
+Rules:
+1. Q[The, ReturnCrossing.isNeverAsBad, ReturnCrossing.isUsuallyWorse](ReturnCrossing.assessment1 == "never as bad" → Causal(ReturnCrossing.isNeverAsBad, ReturnCrossing.isUsuallyWorse))
+2. Q[The, ReturnCrossing.assessment1, ReturnCrossing.assessment2](ReturnCrossing.assessment1 == "never as bad" → Causal(ReturnCrossing.assessment1, ReturnCrossing.assessment2))
+3. Q[The, ReturnCrossing.isNeverAsBad, AssessmentConflict.isUsuallyWorse](ReturnCrossing.isNeverAsBad == true → Causal(ReturnCrossing.isNeverAsBad, AssessmentConflict.isUsuallyWorse))
+4. Q[The, ReturnCrossing.negativeAssessment, ReturnCrossing.positiveAssessment](ReturnCrossing.isUsuallyWorse == true → Causal(ReturnCrossing.negativeAssessment, ReturnCrossing.positiveAssessment))
+5. Q[The, AssessmentConflict.returnCrossing, ReturnCrossing.isUsuallyWorse](AssessmentConflict.returnCrossing == true → Causal(AssessmentConflict.returnCrossing, ReturnCrossing.isUsuallyWorse))
+6. Q[The, ReturnCrossing.quality, AssessmentConflict.isNeverAsBad](ReturnCrossing.quality == "never as bad" → Causal(ReturnCrossing.quality, AssessmentConflict.isNeverAsBad))
+7. Q[The, ReturnCrossing.evaluation, ReturnCrossing.variation](ReturnCrossing.evaluation == "usually worse" → Causal(ReturnCrossing.evaluation, ReturnCrossing.variation))
+8. Q[The, ReturnCrossing.comparison, AssessmentComparison.usuallyWorse](ReturnCrossing.comparison == "worse" → Causal(ReturnCrossing.comparison, AssessmentComparison.usuallyWorse))
+9. Q[The, ReturnCrossing.experience, ReturnCrossing.judgment](ReturnCrossing.experience == "negative" → Causal(ReturnCrossing.experience, ReturnCrossing.judgment))
+10. Q[The, AssessmentComparison.returnCrossing, ReturnCrossing.isNeverAsBad](AssessmentComparison.returnCrossing == true → Causal(AssessmentComparison.returnCrossing, ReturnCrossing.isNeverAsBad))
+11. Q[The, ReturnCrossing.variation, AssessmentConflict.quality](ReturnCrossing.variation == "conflict" → Causal(ReturnCrossing.variation, AssessmentConflict.quality))
+12. Q[The, ReturnCrossing.assessment1, ReturnCrossing.negativeAssessment](ReturnCrossing.assessment1 == "never as bad" → Causal(ReturnCrossing.assessment1, ReturnCrossing.negativeAssessment))
+13. Q[The, ReturnCrossing.assessment2, ReturnCrossing.positiveAssessment](ReturnCrossing.assessment2 == "usually worse" → Causal(ReturnCrossing.assessment2, ReturnCrossing.positiveAssessment))
+14. Q[The, AssessmentConflict.variation, ReturnCrossing.quality](AssessmentConflict.variation == "conflict" → Causal(AssessmentConflict.variation, ReturnCrossing.quality))
+15. Q[The, ReturnCrossing.judgment, AssessmentConflict.isUsuallyWorse](ReturnCrossing.judgment == "conflict" → Causal(ReturnCrossing.judgment, AssessmentConflict.isUsuallyWorse))
+16. Q[The, ReturnCrossing.evaluation, AssessmentComparison.neverAsBad](ReturnCrossing.evaluation == "never as bad" → Causal(ReturnCrossing.evaluation, AssessmentComparison.neverAsBad))
+17. Q[The, ReturnCrossing.quality, ReturnCrossing.negativeAssessment](ReturnCrossing.quality == "usually worse" → Causal(ReturnCrossing.quality, ReturnCrossing.negativeAssessment))
+18. Q[The, ReturnCrossing.assessment1, AssessmentComparison.usuallyWorse](ReturnCrossing.assessment1 == "never as bad" → Causal(ReturnCrossing.assessment1, AssessmentComparison.usuallyWorse))
+19. Q[The, ReturnCrossing.variation, ReturnCrossing.evaluation](ReturnCrossing.variation == "worse" → Causal(ReturnCrossing.variation, ReturnCrossing.evaluation))
+20. Q[The, ReturnCrossing.judgment, ReturnCrossing.assessment2](ReturnCrossing.judgment == "conflict" → Causal(ReturnCrossing.judgment, ReturnCrossing.assessment2))
+21. Q[The, AssessmentConflict.isNeverAsBad, ReturnCrossing.isUsuallyWorse](AssessmentConflict.isNeverAsBad == false → Causal(AssessmentConflict.isNeverAsBad, ReturnCrossing.isUsuallyWorse))
+22. Q[The, ReturnCrossing.negativeAssessment, AssessmentComparison.returnCrossing](ReturnCrossing.negativeAssessment == true → Causal(ReturnCrossing.negativeAssessment, AssessmentComparison.returnCrossing))
+23. Q[The, ReturnCrossing.assessment2, ReturnCrossing.variation](ReturnCrossing.assessment2 == "usually worse" → Causal(ReturnCrossing.assessment2, ReturnCrossing.variation))
+24. Q[The, ReturnCrossing.quality, AssessmentComparison.usuallyWorse](ReturnCrossing.quality == "usually worse" → Causal(ReturnCrossing.quality, AssessmentComparison.usuallyWorse))
+25. Q[The, ReturnCrossing.evaluation, AssessmentConflict.isNeverAsBad](ReturnCrossing.evaluation == "never as bad" → Causal(ReturnCrossing.evaluation, AssessmentConflict.isNeverAsBad))
+26. Q[The, ReturnCrossing.assessment1, AssessmentConflict.isUsuallyWorse](ReturnCrossing.assessment1 == "never as bad" → Causal(ReturnCrossing.assessment1, AssessmentConflict.isUsuallyWorse))
+27. Q[The, ReturnCrossing.variation, ReturnCrossing.assessment1](ReturnCrossing.variation == "conflict" → Causal(ReturnCrossing.variation, ReturnCrossing.assessment1))
+28. Q[The, ReturnCrossing.judgment, AssessmentComparison.neverAsBad](ReturnCrossing.judgment == "conflict" → Causal(ReturnCrossing.judgment, AssessmentComparison.neverAsBad))
+29. Q[The, ReturnCrossing.assessment2, AssessmentConflict.quality](ReturnCrossing.assessment2 == "usually worse" → Causal(ReturnCrossing.assessment2, AssessmentConflict.quality))
+30. Q[The, ReturnCrossing.quality, ReturnCrossing.assessment2](ReturnCrossing.quality == "never as bad" → Causal(ReturnCrossing.quality, ReturnCrossing.assessment2))

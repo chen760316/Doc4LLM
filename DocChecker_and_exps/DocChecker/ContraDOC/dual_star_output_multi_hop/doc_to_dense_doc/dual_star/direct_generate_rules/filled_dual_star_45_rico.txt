@@ -1,0 +1,73 @@
+Predicates:
+Dorothy Vaneman.label != "Character"
+Dorothy Vaneman.label = "Character"
+Dorothy Vaneman.name != "Dorothy Vaneman"
+Dorothy Vaneman.name = "Dorothy Vaneman"
+Dorothy Vaneman.relationship != "fiancée"
+Dorothy Vaneman.relationship = "fiancée"
+DuQuesne's spaceship.label != "Spaceship"
+DuQuesne's spaceship.label != Dorothy Vaneman.label
+DuQuesne's spaceship.label = "Spaceship"
+DuQuesne's spaceship.name != "DuQuesne's spaceship"
+DuQuesne's spaceship.name != Dorothy Vaneman.name
+DuQuesne's spaceship.name = "DuQuesne's spaceship"
+DuQuesne's spaceship.status != "to be built"
+DuQuesne's spaceship.status = "to be built"
+DuQuesne.label != "Person"
+DuQuesne.label != Dorothy Vaneman.label
+DuQuesne.label != DuQuesne's spaceship.label
+DuQuesne.label != Seaton's spaceship.label
+DuQuesne.label = "Person"
+DuQuesne.name != "DuQuesne"
+DuQuesne.name != Dorothy Vaneman.name
+DuQuesne.name != DuQuesne's spaceship.name
+DuQuesne.name != Seaton's spaceship.name
+DuQuesne.name = "DuQuesne"
+DuQuesne.role != "sabotager"
+DuQuesne.role = "sabotager"
+DuQuesne___Dorothy Vaneman.contradiction_type = "Temporal"
+DuQuesne___Dorothy Vaneman.method = "using Seaton's plans"
+DuQuesne___Dorothy Vaneman.relationship = "DuQuesne uses Seaton's plans to kidnap Dorothy Vaneman."
+DuQuesne___Dorothy Vaneman.source_id = "3488771849_6"
+DuQuesne___DuQuesne's spaceship.contradiction_type != DuQuesne___Dorothy Vaneman.contradiction_type
+DuQuesne___DuQuesne's spaceship.contradiction_type = "Causal"
+DuQuesne___DuQuesne's spaceship.method = "using Seaton's plans"
+DuQuesne___DuQuesne's spaceship.relationship != DuQuesne___Dorothy Vaneman.relationship
+DuQuesne___DuQuesne's spaceship.relationship = "DuQuesne plans to build his own spaceship."
+DuQuesne___DuQuesne's spaceship.source_id != DuQuesne___Dorothy Vaneman.source_id
+DuQuesne___DuQuesne's spaceship.source_id = "3488771849_4"
+DuQuesne___Seaton's spaceship.contradiction_type != DuQuesne___Dorothy Vaneman.contradiction_type
+DuQuesne___Seaton's spaceship.contradiction_type = "Causal"
+DuQuesne___Seaton's spaceship.goal = "to build his own spaceship"
+DuQuesne___Seaton's spaceship.method = "using Seaton's plans"
+DuQuesne___Seaton's spaceship.reason = "to build his own spaceship from Seaton's plans"
+DuQuesne___Seaton's spaceship.relationship != DuQuesne___Dorothy Vaneman.relationship
+DuQuesne___Seaton's spaceship.relationship != DuQuesne___DuQuesne's spaceship.relationship
+DuQuesne___Seaton's spaceship.relationship = "DuQuesne conspires to sabotage Seaton's spaceship."
+DuQuesne___Seaton's spaceship.source_id != DuQuesne___Dorothy Vaneman.source_id
+DuQuesne___Seaton's spaceship.source_id != DuQuesne___DuQuesne's spaceship.source_id
+DuQuesne___Seaton's spaceship.source_id = "3488771849_1"
+None_ML(DuQuesne.attrs, Dorothy Vaneman.attrs)
+None_ML(DuQuesne___DuQuesne's spaceship.attrs, DuQuesne___Dorothy Vaneman.attrs)
+Seaton's spaceship.label != "Spaceship"
+Seaton's spaceship.label != Dorothy Vaneman.label
+Seaton's spaceship.label = "Spaceship"
+Seaton's spaceship.name != "Seaton's spaceship"
+Seaton's spaceship.name != Dorothy Vaneman.name
+Seaton's spaceship.name != DuQuesne's spaceship.name
+Seaton's spaceship.name = "Seaton's spaceship"
+Seaton's spaceship.status != "targeted for sabotage"
+Seaton's spaceship.status != DuQuesne's spaceship.status
+Seaton's spaceship.status = "targeted for sabotage"
+
+Rules:
+Q[DuQuesne,DuQuesne] (DuQuesne.label = "Person" ∧ DuQuesne___DuQuesne's spaceship.source_id != DuQuesne___Dorothy Vaneman.source_id → DuQuesne___DuQuesne's spaceship.relationship != DuQuesne___Dorothy Vaneman.relationship)
+Q[DuQuesne,DuQuesne] (Dorothy Vaneman.label = "Character" ∧ DuQuesne.name != "DuQuesne" ∧ DuQuesne's spaceship.status != "to be built" ∧ DuQuesne___DuQuesne's spaceship.relationship = "DuQuesne plans to build his own spaceship." ∧ DuQuesne___Dorothy Vaneman.method = "using Seaton's plans" ∧ Seaton's spaceship.label != Dorothy Vaneman.label → DuQuesne's spaceship.label != Dorothy Vaneman.label)
+Q[DuQuesne,DuQuesne] (DuQuesne___Dorothy Vaneman.contradiction_type = "Temporal" ∧ DuQuesne.label != DuQuesne's spaceship.label ∧ DuQuesne___DuQuesne's spaceship.contradiction_type != DuQuesne___Dorothy Vaneman.contradiction_type → DuQuesne___Seaton's spaceship.relationship = "DuQuesne conspires to sabotage Seaton's spaceship.")
+Q[DuQuesne,DuQuesne] (DuQuesne___DuQuesne's spaceship.source_id != DuQuesne___Dorothy Vaneman.source_id ∧ DuQuesne.role = "sabotager" ∧ DuQuesne___Dorothy Vaneman.relationship = "DuQuesne uses Seaton's plans to kidnap Dorothy Vaneman." ∧ DuQuesne.name != DuQuesne's spaceship.name → DuQuesne___Dorothy Vaneman.contradiction_type = "Temporal")
+Q[DuQuesne,DuQuesne] (DuQuesne.label != "Person" ∧ Dorothy Vaneman.relationship != "fiancée" ∧ Seaton's spaceship.status != "targeted for sabotage" ∧ DuQuesne___Dorothy Vaneman.contradiction_type = "Temporal" ∧ Dorothy Vaneman.name = "Dorothy Vaneman" → DuQuesne___DuQuesne's spaceship.contradiction_type = "Causal")
+Q[DuQuesne,DuQuesne] (DuQuesne.label = "Person" ∧ DuQuesne___Seaton's spaceship.contradiction_type = "Causal" ∧ DuQuesne___Seaton's spaceship.source_id != DuQuesne___Dorothy Vaneman.source_id ∧ DuQuesne.label != Dorothy Vaneman.label ∧ DuQuesne's spaceship.label != "Spaceship" → DuQuesne.role = "sabotager")
+Q[DuQuesne,DuQuesne] (DuQuesne___DuQuesne's spaceship.source_id != DuQuesne___Dorothy Vaneman.source_id ∧ Seaton's spaceship.status != "targeted for sabotage" ∧ DuQuesne's spaceship.name != "DuQuesne's spaceship" ∧ DuQuesne's spaceship.name != Dorothy Vaneman.name → DuQuesne.label != Seaton's spaceship.label)
+Q[DuQuesne,DuQuesne] (DuQuesne.name != DuQuesne's spaceship.name ∧ DuQuesne's spaceship.name != Dorothy Vaneman.name → Dorothy Vaneman.label != "Character")
+Q[DuQuesne,DuQuesne] (None_ML(DuQuesne.attrs, Dorothy Vaneman.attrs) ∧ DuQuesne's spaceship.label != Dorothy Vaneman.label ∧ Dorothy Vaneman.name = "Dorothy Vaneman" → Seaton's spaceship.status != "targeted for sabotage")
+Q[DuQuesne,DuQuesne] (DuQuesne's spaceship.name != "DuQuesne's spaceship" ∧ DuQuesne.label != DuQuesne's spaceship.label ∧ DuQuesne.label != "Person" ∧ DuQuesne___Seaton's spaceship.relationship != DuQuesne___DuQuesne's spaceship.relationship ∧ DuQuesne___DuQuesne's spaceship.method = "using Seaton's plans" ∧ DuQuesne's spaceship.label = "Spaceship" → DuQuesne___Seaton's spaceship.source_id = "3488771849_1")

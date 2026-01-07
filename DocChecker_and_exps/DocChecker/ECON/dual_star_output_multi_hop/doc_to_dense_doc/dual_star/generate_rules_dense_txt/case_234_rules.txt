@@ -1,0 +1,61 @@
+Source: dense_text.txt (Index 234)
+S1: Glass kilns heat from the top.
+S2: Glass kilns heat from the bottom.
+
+Predicates:
+1. Glass_kilns.heat_source_top
+2. Glass_kilns.heat_source_bottom
+3. M_NLI(S1, S2)
+4. Factual(Glass_kilns.heat_source_top, true)
+5. Factual(Glass_kilns.heat_source_bottom, true)
+6. violate(Glass_kilns.heat_source_top, Glass_kilns.heat_source_bottom)
+7. Glass_kilns.heat_method_contradiction
+8. Glass_kilns.heat_direction_top
+9. Glass_kilns.heat_direction_bottom
+10. M_NLI(Glass_kilns.heat_source_top, Glass_kilns.heat_source_bottom)
+11. Factual(Glass_kilns.heat_method_contradiction, true)
+12. violate(Glass_kilns.heat_direction_top, Glass_kilns.heat_direction_bottom)
+13. Glass_kilns.heat_source_conflict
+14. Glass_kilns.heat_source_assertion_top
+15. Glass_kilns.heat_source_assertion_bottom
+16. M_NLI(Glass_kilns.heat_source_assertion_top, Glass_kilns.heat_source_assertion_bottom)
+17. Factual(Glass_kilns.heat_source_conflict, true)
+18. violate(Glass_kilns.heat_source_assertion_top, Glass_kilns.heat_source_assertion_bottom)
+19. Glass_kilns.heat_source_claim_top
+20. Glass_kilns.heat_source_claim_bottom
+21. M_NLI(Glass_kilns.heat_source_claim_top, Glass_kilns.heat_source_claim_bottom)
+22. Factual(Glass_kilns.heat_source_claim_top, true)
+23. Factual(Glass_kilns.heat_source_claim_bottom, true)
+24. violate(Glass_kilns.heat_source_claim_top, Glass_kilns.heat_source_claim_bottom)
+25. Glass_kilns.heat_source_discrepancy
+26. Glass_kilns.heat_source_testimony_top
+27. Glass_kilns.heat_source_testimony_bottom
+28. M_NLI(Glass_kilns.heat_source_testimony_top, Glass_kilns.heat_source_testimony_bottom)
+29. Factual(Glass_kilns.heat_source_discrepancy, true)
+30. violate(Glass_kilns.heat_source_testimony_top, Glass_kilns.heat_source_testimony_bottom)
+
+Rules:
+1. Q[Glass, Glass_kilns.heat_source_top, Glass_kilns.heat_source_bottom](Glass_kilns.heat_source_top == true → Factual(Glass_kilns.heat_source_top, true))
+2. Q[Glass, Glass_kilns.heat_source_bottom, Glass_kilns.heat_source_top](Glass_kilns.heat_source_bottom == true → Factual(Glass_kilns.heat_source_bottom, true))
+3. Q[Glass, Glass_kilns.heat_method_contradiction, Glass_kilns.heat_source_bottom](Glass_kilns.heat_source_top == true ∧ Glass_kilns.heat_source_bottom == true → Factual(Glass_kilns.heat_method_contradiction, true))
+4. Q[Glass, Glass_kilns.heat_direction_top, Glass_kilns.heat_direction_bottom](Glass_kilns.heat_direction_top == true ∧ Glass_kilns.heat_direction_bottom == true → Factual(Glass_kilns.heat_method_contradiction, true))
+5. Q[Glass, Glass_kilns.heat_source_conflict, Glass_kilns.heat_source_bottom](violate(Glass_kilns.heat_source_top, Glass_kilns.heat_source_bottom) → Factual(Glass_kilns.heat_source_conflict, true))
+6. Q[Glass, Glass_kilns.heat_source_assertion_top, Glass_kilns.heat_source_assertion_bottom](Glass_kilns.heat_source_assertion_top == true ∧ Glass_kilns.heat_source_assertion_bottom == true → Factual(Glass_kilns.heat_source_conflict, true))
+7. Q[Glass, Glass_kilns.heat_source_claim_top, Glass_kilns.heat_source_claim_bottom](Glass_kilns.heat_source_claim_top == true ∧ Glass_kilns.heat_source_claim_bottom == true → Factual(Glass_kilns.heat_source_conflict, true))
+8. Q[Glass, Glass_kilns.heat_source_discrepancy, Glass_kilns.heat_source_bottom](violate(Glass_kilns.heat_source_claim_top, Glass_kilns.heat_source_claim_bottom) → Factual(Glass_kilns.heat_source_discrepancy, true))
+9. Q[Glass, Glass_kilns.heat_source_testimony_top, Glass_kilns.heat_source_testimony_bottom](M_NLI(Glass_kilns.heat_source_testimony_top, Glass_kilns.heat_source_testimony_bottom) → Factual(Glass_kilns.heat_source_discrepancy, true))
+10. Q[Glass, Glass_kilns.heat_source_assertion_top, Glass_kilns.heat_source_bottom](Glass_kilns.heat_source_assertion_top == true → Factual(Glass_kilns.heat_source_assertion_top, true))
+11. Q[Glass, Glass_kilns.heat_source_assertion_bottom, Glass_kilns.heat_source_top](Glass_kilns.heat_source_assertion_bottom == true → Factual(Glass_kilns.heat_source_assertion_bottom, true))
+12. Q[Glass, Glass_kilns.heat_source_claim_top, Glass_kilns.heat_source_bottom](Glass_kilns.heat_source_claim_top == true → Factual(Glass_kilns.heat_source_claim_top, true))
+13. Q[Glass, Glass_kilns.heat_source_claim_bottom, Glass_kilns.heat_source_top](Glass_kilns.heat_source_claim_bottom == true → Factual(Glass_kilns.heat_source_claim_bottom, true))
+14. Q[Glass, Glass_kilns.heat_source_testimony_top, Glass_kilns.heat_source_bottom](Glass_kilns.heat_source_testimony_top == true → Factual(Glass_kilns.heat_source_testimony_top, true))
+15. Q[Glass, Glass_kilns.heat_source_testimony_bottom, Glass_kilns.heat_source_top](Glass_kilns.heat_source_testimony_bottom == true → Factual(Glass_kilns.heat_source_testimony_bottom, true))
+16. Q[Glass, Glass_kilns.heat_source_conflict, Glass_kilns.heat_source_claim_bottom](violate(Glass_kilns.heat_source_claim_top, Glass_kilns.heat_source_claim_bottom) → Factual(Glass_kilns.heat_source_conflict, true))
+17. Q[Glass, Glass_kilns.heat_source_discrepancy, Glass_kilns.heat_source_claim_bottom](violate(Glass_kilns.heat_source_assertion_top, Glass_kilns.heat_source_assertion_bottom) → Factual(Glass_kilns.heat_source_discrepancy, true))
+18. Q[Glass, Glass_kilns.heat_source_conflict, Glass_kilns.heat_source_testimony_bottom](violate(Glass_kilns.heat_source_testimony_top, Glass_kilns.heat_source_testimony_bottom) → Factual(Glass_kilns.heat_source_conflict, true))
+19. Q[Glass, Glass_kilns.heat_source_discrepancy, Glass_kilns.heat_source_testimony_bottom](M_NLI(Glass_kilns.heat_source_testimony_top, Glass_kilns.heat_source_testimony_bottom) → Factual(Glass_kilns.heat_source_discrepancy, true))
+20. Q[Glass, Glass_kilns.heat_source_claim_top, Glass_kilns.heat_source_claim_bottom](M_NLI(Glass_kilns.heat_source_claim_top, Glass_kilns.heat_source_claim_bottom) → Factual(Glass_kilns.heat_source_claim_top, true))
+21. Q[Glass, Glass_kilns.heat_source_assertion_top, Glass_kilns.heat_source_assertion_bottom](M_NLI(Glass_kilns.heat_source_assertion_top, Glass_kilns.heat_source_assertion_bottom) → Factual(Glass_kilns.heat_source_assertion_top, true))
+22. Q[Glass, Glass_kilns.heat_source_testimony_top, Glass_kilns.heat_source_testimony_bottom](M_NLI(Glass_kilns.heat_source_testimony_top, Glass_kilns.heat_source_testimony_bottom) → Factual(Glass_kilns.heat_source_testimony_top, true))
+23. Q[Glass, Glass_kilns.heat_source_conflict, Glass_kilns.heat_source_top](Glass_kilns.heat_source_top == true ∧ Glass_kilns.heat_source_bottom == true → Factual(Glass_kilns.heat_source_conflict, true))
+24. Q[Glass, Glass_kilns.heat_source_discrepancy, Glass_kilns.heat_source_top](Glass_kilns.heat_source_top == true ∧ Glass_kilns.heat_source_bottom == true → F

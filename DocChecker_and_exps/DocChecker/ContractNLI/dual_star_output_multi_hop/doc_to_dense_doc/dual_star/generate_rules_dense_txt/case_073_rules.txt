@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 73)
+S1: E a c h P a r t i c i p a t i n g E n t i t y a g r e e s ( i ) t o m a i n t a i n t h e c o n f i d e n t i a l i t y o f a l l C o n f i d e n t i a l I n f o r m a t i o n o b t a i n e d.
+S2: N o t w i t h s t a n d i n g t h e f o r g o i n g , a P a r t i c i p a t i n g E n t i t y m a y u s e a n d i n t e r n a l l y s h a r e C o n f i d e n t i a l I n f o r m a t i o n a s d e e m e d n e c e s s a r y t o r e s p o n d t o a n a c t u a l o r t h r e a t e n e d c y b e r e m e r g e n c y t h a t p l a c e s , o r h a s t h e p o t e n t i a l t o p l a c e , t h e P a r t i c i p a t i n g E n t i t y ’ s c y b e r s y s t e m s a t r i s k.
+
+Predicates:
+1. ParticipatingEntity.agrees_to_maintain_confidentiality
+2. ParticipatingEntity.uses_confidential_information
+3. ParticipatingEntity.internal_shares_confidential_information
+4. ConfidentialInformation.obtained
+5. CyberEmergency.threatens_participating_entity
+6. CyberEmergency.places_systems_at_risk
+7. ParticipatingEntity.responds_to_cyber_emergency
+8. ConfidentialInformation.deemed_necessary_to_share
+9. ParticipatingEntity.may_use_confidential_information
+10. ConfidentialInformation.shared_internally
+11. ParticipatingEntity.agreement_exists
+12. ConfidentialInformation.is_confidential
+13. ParticipatingEntity.maintains_confidentiality
+14. CyberEmergency.has_potential_to_place_at_risk
+15. ParticipatingEntity.is_participating
+16. ConfidentialInformation.is_shared
+17. ParticipatingEntity.is_at_risk
+18. CyberEmergency.is_actual_or_threatened
+19. ParticipatingEntity.may_respond_to_cyber_emergency
+20. ConfidentialInformation.is_necessary_to_respond
+21. ParticipatingEntity.agrees_to_terms
+22. ConfidentialInformation.is_obtained
+23. ParticipatingEntity.is_affected_by_cyber_emergency
+24. CyberEmergency.threatens_systems
+25. ParticipatingEntity.has_confidential_information
+26. ConfidentialInformation.is_used_internally
+27. ParticipatingEntity.is_aware_of_confidentiality
+28. CyberEmergency.places_entity_at_risk
+29. ParticipatingEntity.has_agreement_to_confidentiality
+30. ConfidentialInformation.is_maintained_confidential
+
+Rules:
+1. Q[Confidentiality, ParticipatingEntity.agrees_to_maintain_confidentiality == true → Negation(ParticipatingEntity.internal_shares_confidential_information, ConfidentialInformation.is_confidential)]
+2. Q[Confidentiality, ParticipatingEntity.agreement_exists == true → Negation(ParticipatingEntity.uses_confidential_information, ConfidentialInformation.is_confidential)]
+3. Q[Confidentiality, ParticipatingEntity.maintains_confidentiality == true → Negation(ParticipatingEntity.internal_shares_confidential_information, ConfidentialInformation.is_confidential)]
+4. Q[Confidentiality, ConfidentialInformation.is_confidential == true → Negation(ParticipatingEntity.uses_confidential_information, ConfidentialInformation.is_shared)]
+5. Q[Confidentiality, ParticipatingEntity.agrees_to_terms == true → Negation(ParticipatingEntity.internal_shares_confidential_information, ConfidentialInformation.is_necessary_to_respond)]
+6. Q[Confidentiality, ConfidentialInformation.is_obtained == true → Negation(ParticipatingEntity.internal_shares_confidential_information, ConfidentialInformation.is_confidential)]
+7. Q[Confidentiality, ParticipatingEntity.has_agreement_to_confidentiality == true → Negation(ParticipatingEntity.may_use_confidential_information, ConfidentialInformation.is_shared)]
+8. Q[Confidentiality, ParticipatingEntity.is_aware_of_confidentiality == true → Negation(ParticipatingEntity.internal_shares_confidential_information, ConfidentialInformation.is_confidential)]
+9. Q[Confidentiality, ParticipatingEntity.is_participating == true → Negation(ParticipatingEntity.uses_confidential_information, ConfidentialInformation.is_shared)]
+10. Q[Confidentiality, ConfidentialInformation.is_maintained_confidential == true → Negation(ParticipatingEntity.internal_shares_confidential_information, ConfidentialInformation.is_confidential)]
+11. Q[Confidentiality, ParticipatingEntity.has_confidential_information == true → Negation(ParticipatingEntity.internal_shares_confidential_information, ConfidentialInformation.is_confidential)]
+12. Q[Confidentiality, CyberEmergency.is_actual_or_threatened == true → Negation(ParticipatingEntity.agrees_to_maintain_confidentiality, ParticipatingEntity.internal_shares_confidential_information)]
+13. Q[Confidentiality, CyberEmergency.threatens_participating_entity == true → Negation(ParticipatingEntity.agrees_to_maintain_confidentiality, ParticipatingEntity.internal_shares_confidential_information)]
+14. Q[Confidentiality, CyberEmergency.places_entity_at_risk == true → Negation(ParticipatingEntity.agrees_to_maintain_confidentiality, ParticipatingEntity.internal_shares_confidential_information)]
+15. Q[Confidentiality, ParticipatingEntity.responds_to_cyber_emergency == true → Negation(ParticipatingEntity.agrees_to_maintain_confidentiality, ParticipatingEntity.internal_shares_confidential_information)]
+16. Q[Confidentiality, ParticipatingEntity.is_affected_by_cyber_emergency == true → Negation(ParticipatingEntity.agrees_to_maintain_confidentiality, ParticipatingEntity.internal_shares_confidential_information)]
+17. Q[Confidentiality, CyberEmergency.has_potential_to_place_at_risk == true → Negation(ParticipatingEntity.agrees_to_maintain_confidentiality, ParticipatingEntity.internal_shares_confidential_information)]
+18. Q[Confidentiality, ParticipatingEntity.is_at_risk == true → Negation(ParticipatingEntity.agrees_to_maintain_confidentiality, ParticipatingEntity.internal_shares_confidential_information)]
+19. Q[Confidentiality, ConfidentialInformation.is_used_internally == true → Negation(ParticipatingEntity.agrees_to_maintain_confidentiality, ConfidentialInformation.is_confidential)]
+20. Q[Confidentiality, ConfidentialInformation.is_necessary_to_respond == true → Negation(ParticipatingEntity.agrees_to_maintain_confidentiality, ConfidentialInformation.is_confidential)]
+21. Q[Confidentiality, ParticipatingEntity.may_respond_to_cyber_emergency == true → Negation(ParticipatingEntity.agrees_to_maintain_confidentiality, ParticipatingEntity.internal_shares_confidential_information)]
+22. Q[Confidentiality, ParticipatingEntity.uses_confidential_information == true → Negation(ParticipatingEntity.agrees_to_maintain_confidentiality, ConfidentialInformation.is_confidential)]
+23. Q[Confidentiality, ConfidentialInformation.shared_internally == true → Negation(ParticipatingEntity.agrees_to_maintain_confidentiality, ConfidentialInformation.is_confidential)]
+24. Q[Confidentiality, ParticipatingEntity.may_use_confidential_information == true → Negation(ParticipatingEntity.agrees_to_maintain_confidentiality, ConfidentialInformation.is_confidential)]
+25. Q[Confidentiality, ParticipatingEntity.internal_shares_confidential_information == true → Negation(ParticipatingEntity.agrees_to_maintain_confidentiality, ConfidentialInformation.is_confidential)]
+26. Q[Confidentiality, ConfidentialInformation.is_shared == true → Negation(ParticipatingEntity.agrees_to_maintain_confidentiality, ConfidentialInformation.is_confidential)]
+27. Q[Confidentiality, ParticipatingEntity.is_participating == true → Negation(ParticipatingEntity.agrees_to_maintain_confidentiality, ConfidentialInformation.is_confidential)]
+28. Q[Confidentiality, CyberEmergency.threatens_systems == true → Negation(ParticipatingEntity.agrees_to_maintain_confidentiality, ParticipatingEntity.internal_shares_confidential_information)]
+29. Q[Confidentiality, ParticipatingEntity.is_aware_of_confidentiality == true → Negation(ParticipatingEntity.internal_shares_confidential_information, ConfidentialInformation.is_confidential)]
+30. Q[Confidentiality, ParticipatingEntity.has_confidential_information == true → Negation(ParticipatingEntity.internal_shares_confidential_information, ConfidentialInformation.is_confidential)]

@@ -1,0 +1,31 @@
+Predicates:
+Blanco.label != "Person"
+Blanco.label = "Person"
+Blanco.name != "Blanco"
+Blanco.name = "Blanco"
+Blanco.status != "released"
+Blanco.status = "released"
+Feemy.label != "Person"
+Feemy.label = "Person"
+Feemy.name != "Feemy"
+Feemy.name != Blanco.name
+Feemy.name = "Feemy"
+Feemy___Blanco.action = "saw"
+Feemy___Blanco.context = "testimony"
+Feemy___Blanco.contradiction_type = "Factual"
+Feemy___Blanco.method = "riding off on a horse"
+Feemy___Blanco.relationship = "Feemy initially claimed she had not seen Blanco."
+Feemy___Blanco.source_id = "3488771919_7"
+None_ML(Blanco.attrs, Feemy.attrs)
+
+Rules:
+Q[Feemy,Feemy] (Feemy.name = "Feemy" ∧ Blanco.status != "released" ∧ Feemy___Blanco.context = "testimony" ∧ None_ML(Blanco.attrs, Feemy.attrs) → Feemy.label = "Person")
+Q[Feemy,Feemy] (Feemy___Blanco.action = "saw" ∧ Feemy___Blanco.method = "riding off on a horse" → Feemy.name = "Feemy")
+Q[Feemy,Feemy] (Feemy.name != Blanco.name ∧ Feemy.name = "Feemy" ∧ Feemy___Blanco.contradiction_type = "Factual" → Blanco.name = "Blanco")
+Q[Feemy,Feemy] (Feemy___Blanco.source_id = "3488771919_7" ∧ Blanco.label != "Person" ∧ Blanco.name != "Blanco" ∧ Feemy.label = "Person" ∧ Feemy.name != "Feemy" → Feemy.label != "Person")
+Q[Feemy,Feemy] (Feemy.name = "Feemy" ∧ Feemy___Blanco.action = "saw" ∧ Blanco.label = "Person" ∧ None_ML(Blanco.attrs, Feemy.attrs) ∧ Feemy.name != Blanco.name ∧ Feemy___Blanco.contradiction_type = "Factual" → Blanco.label != "Person")
+Q[Feemy,Feemy] (Blanco.label != "Person" ∧ Feemy.name = "Feemy" → Feemy.name != Blanco.name)
+Q[Feemy,Feemy] (Blanco.label != "Person" ∧ Feemy___Blanco.context = "testimony" ∧ Feemy.name != "Feemy" ∧ Blanco.label = "Person" ∧ Blanco.status = "released" → Feemy___Blanco.method = "riding off on a horse")
+Q[Feemy,Feemy] (Feemy___Blanco.contradiction_type = "Factual" ∧ Feemy.name = "Feemy" ∧ Feemy___Blanco.relationship = "Feemy initially claimed she had not seen Blanco." ∧ Blanco.name = "Blanco" → Feemy___Blanco.source_id = "3488771919_7")
+Q[Feemy,Feemy] (Blanco.label != "Person" ∧ Feemy___Blanco.action = "saw" ∧ Blanco.status != "released" → Feemy___Blanco.context = "testimony")
+Q[Feemy,Feemy] (Blanco.status != "released" ∧ Feemy___Blanco.method = "riding off on a horse" ∧ Feemy.name != "Feemy" ∧ Blanco.name = "Blanco" ∧ Feemy___Blanco.context = "testimony" ∧ Feemy___Blanco.relationship = "Feemy initially claimed she had not seen Blanco." → Feemy___Blanco.contradiction_type = "Factual")

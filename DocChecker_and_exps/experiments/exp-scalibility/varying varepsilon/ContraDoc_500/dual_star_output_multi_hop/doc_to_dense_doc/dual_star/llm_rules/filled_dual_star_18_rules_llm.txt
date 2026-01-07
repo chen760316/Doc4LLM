@@ -1,0 +1,130 @@
+Predicates:
+1. Chris.status = "regained memory"
+2. Kitty.status = "rejoicing"
+3. Margaret.status = "departed"
+4. "After Chris regains his memory, Kitty rejoices in Chris's return to a state fit to be a soldier.".doc_index = "150"
+5. "Chris acknowledges the passage of time but cannot retrieve his memories while pining for Margaret.".doc_index = "150"
+6. "Margaret departs after Chris regains his memory.".doc_index = "150"
+7. M_NLI(Chris.status, Kitty.status)
+8. M_NLI(Kitty.status, Margaret.status)
+9. T("Chris regains his memory", "Kitty rejoices", tau)
+10. T("Chris cannot retrieve his memories", "Chris pines for Margaret", tau)
+11. tau(Chris.status, Margaret.status)
+12. violate(Chris.status, Margaret.status)
+13. Factual(Chris.status, Margaret.status)
+14. Causal(Kitty.status, Margaret.status)
+15. Negation(Chris.status, Kitty.status)
+16. Relation(Kitty.status, Margaret.status)
+17. Numeric(Kitty.status, Chris.status)
+18. Temporal(Chris.status, Kitty.status)
+19. "Relationship".type = "memory_regain"
+20. "Relationship".type = "rejoicing"
+21. "Relationship".type = "departure"
+22. "Relationship".time = "after"
+23. "Relationship".time = "during"
+24. "Relationship".cause = "memory_regain"
+25. "Relationship".effect = "rejoicing"
+26. "Relationship".effect = "departure"
+27. Chris.memory_state = "unretrieved"
+28. Kitty.emotion = "joy"
+29. Margaret.action = "departing"
+30. Chris.time = "after_memory_regain"
+31. Kitty.time = "during_rejoicing"
+32. Margaret.time = "after_memory_regain"
+33. M_NLI(Chris.memory_state, Kitty.emotion)
+34. T("Kitty rejoices", "Margaret departs", tau)
+35. tau(Chris.memory_state, Kitty.emotion)
+36. violate(Kitty.emotion, Margaret.action)
+37. Factual(Kitty.emotion, Margaret.action)
+38. Causal(Chris.memory_state, Kitty.emotion)
+39. Negation(Margaret.action, Kitty.emotion)
+40. Relation(Chris.memory_state, Kitty.emotion)
+41. Numeric(Chris.time, Kitty.time)
+42. Temporal(Margaret.time, Chris.time)
+43. "Relationship".status = "completed"
+44. "Relationship".status = "ongoing"
+45. "Relationship".status = "terminated"
+46. Chris.emotional_state = "pining"
+47. Kitty.reaction = "joyful"
+48. Margaret.status_change = "departed"
+49. Chris.memory_retrieval = "failed"
+50. Kitty.reaction_time = "immediate"
+51. Margaret.departure_time = "after_memory_regain"
+52. M_NLI(Chris.emotional_state, Kitty.reaction)
+53. T("Chris acknowledges time", "Chris cannot retrieve memories", tau)
+54. tau(Chris.emotional_state, Kitty.reaction)
+55. violate(Chris.emotional_state, Kitty.reaction)
+56. Factual(Chris.emotional_state, Kitty.reaction)
+57. Causal(Chris.memory_retrieval, Kitty.reaction)
+58. Negation(Margaret.status_change, Kitty.reaction)
+59. Relation(Chris.memory_retrieval, Kitty.reaction)
+60. Numeric(Chris.time, Margaret.departure_time)
+61. Temporal(Kitty.reaction_time, Chris.time)
+62. "Relationship".context = "memory"
+63. "Relationship".context = "emotion"
+64. "Relationship".context = "departure"
+65. Chris.memory_status = "lost"
+66. Kitty.emotional_response = "elation"
+67. Margaret.action_status = "completed"
+68. Chris.memory_recovery = "incomplete"
+69. Kitty.reaction_type = "positive"
+70. Margaret.departure_reason = "after_memory_regain"
+71. M_NLI(Chris.memory_status, Kitty.emotional_response)
+72. T("Chris's memory is lost", "Kitty's reaction is elation", tau)
+73. tau(Chris.memory_status, Kitty.emotional_response)
+74. violate(Chris.memory_status, Kitty.emotional_response)
+75. Factual(Chris.memory_status, Kitty.emotional_response)
+76. Causal(Chris.memory_recovery, Kitty.reaction_type)
+77. Negation(Margaret.departure_reason, Kitty.reaction_type)
+78. Relation(Chris.memory_recovery, Kitty.reaction_type)
+79. Numeric(Chris.memory_status, Kitty.reaction_time)
+80. Temporal(Margaret.departure_reason, Chris.memory_status)
+81. "Relationship".outcome = "positive"
+82. "Relationship".outcome = "negative"
+83. "Relationship".outcome = "neutral"
+84. Chris.memory_retrieval_attempt = "failed"
+85. Kitty.emotional_state = "happy"
+86. Margaret.action_type = "leaving"
+87. Chris.memory_recovery_attempt = "ongoing"
+88. Kitty.reaction_timeframe = "immediate"
+89. Margaret.departure_timeframe = "after_memory_recovery"
+90. M_NLI(Chris.memory_retrieval_attempt, Kitty.emotional_state)
+91. T("Chris's memory retrieval attempt is failed", "Kitty's emotional state is happy", tau)
+92. tau(Chris.memory_retrieval_attempt, Kitty.emotional_state)
+93. violate(Chris.memory_retrieval_attempt, Kitty.emotional_state)
+94. Factual(Chris.memory_retrieval_attempt, Kitty.emotional_state)
+95. Causal(Chris.memory_recovery_attempt, Kitty.reaction_timeframe)
+96. Negation(Margaret.departure_timeframe, Kitty.reaction_timeframe)
+97. Relation(Chris.memory_recovery_attempt, Kitty.reaction_timeframe)
+98. Numeric(Chris.memory_retrieval_attempt, Kitty.reaction_timeframe)
+99. Temporal(Margaret.departure_timeframe, Chris.memory_retrieval_attempt)
+100. violate(Chris.status, Kitty.status)
+violate(x0, y0)
+
+Rules:
+1. Q[x0, y0](Chris.status = "regained memory" ∧ Kitty.status = "rejoicing" → violate(x0, y0))
+2. Q[x0, y0](Chris.status = "regained memory" ∧ Margaret.status = "departed" → violate(x0, y0))
+3. Q[x0, y0](Kitty.status = "rejoicing" ∧ Margaret.status = "departed" → violate(x0, y0))
+4. Q[x0, y0](Chris.memory_state = "unretrieved" ∧ Kitty.emotion = "joy" → violate(x0, y0))
+5. Q[x0, y0](Chris.memory_retrieval = "failed" ∧ Kitty.emotional_state = "happy" → violate(x0, y0))
+6. Q[x0, y0](Chris.emotional_state = "pining" ∧ Kitty.reaction = "joyful" → violate(x0, y0))
+7. Q[x0, y0](Chris.status = "regained memory" ∧ Kitty.status = "rejoicing" ∧ Margaret.status = "departed" → violate(x0, y0))
+8. Q[x0, y0](Chris.memory_state = "lost" ∧ Kitty.emotional_response = "elation" ∧ Margaret.action = "departing" → violate(x0, y0))
+9. Q[x0, y0](Chris.memory_recovery = "incomplete" ∧ Kitty.reaction_type = "positive" ∧ Margaret.departure_reason = "after_memory_regain" → violate(x0, y0))
+10. Q[x0, y0](Chris.memory_retrieval_attempt = "failed" ∧ Kitty.emotional_state = "happy" ∧ Margaret.action_type = "leaving" → violate(x0, y0))
+11. Q[x0, y0](Chris.status = "regained memory" ∧ Kitty.status = "rejoicing" ∧ Chris.memory_state = "unretrieved" ∧ Margaret.status = "departed" → violate(x0, y0))
+12. Q[x0, y0](Chris.memory_recovery_attempt = "ongoing" ∧ Kitty.reaction_timeframe = "immediate" ∧ Margaret.departure_timeframe = "after_memory_recovery" ∧ Chris.emotional_state = "pining" → violate(x0, y0))
+13. Q[x0, y0](Chris.memory_status = "lost" ∧ Kitty.emotional_response = "elation" ∧ Margaret.action_status = "completed" ∧ Chris.memory_retrieval = "failed" → violate(x0, y0))
+14. Q[x0, y0](Chris.memory_retrieval_attempt = "failed" ∧ Kitty.emotional_state = "happy" ∧ Margaret.departure_time = "after_memory_regain" ∧ Chris.emotional_state = "pining" ∧ Kitty.reaction_time = "immediate" → violate(x0, y0))
+15. Q[x0, y0](Chris.status = "regained memory" ∧ Kitty.status = "rejoicing" ∧ Chris.memory_recovery = "incomplete" ∧ Margaret.action = "departing" ∧ Chris.memory_state = "unretrieved" → violate(x0, y0))
+16. Q[x0, y0](Chris.memory_state = "lost" ∧ Kitty.emotional_response = "elation" ∧ Margaret.action_status = "completed" ∧ Chris.memory_retrieval = "failed" ∧ Kitty.reaction_timeframe = "immediate" → violate(x0, y0))
+17. Q[x0, y0](Chris.memory_recovery_attempt = "ongoing" ∧ Kitty.reaction_timeframe = "immediate" ∧ Margaret.departure_timeframe = "after_memory_recovery" ∧ Chris.emotional_state = "pining" ∧ Chris.memory_retrieval_attempt = "failed" → violate(x0, y0))
+18. Q[x0, y0](Chris.status = "regained memory" ∧ Kitty.status = "rejoicing" ∧ Margaret.status = "departed" ∧ Chris.memory_state = "lost" ∧ Kitty.emotional_response = "elation" → violate(x0, y0))
+19. Q[x0, y0](Chris.memory_retrieval_attempt = "failed" ∧ Kitty.emotional_state = "happy" ∧ Margaret.action_type = "leaving" ∧ Chris.memory_recovery = "incomplete" ∧ Kitty.reaction_type = "positive" → violate(x0, y0))
+20. Q[x0, y0](Chris.memory_state = "unretrieved" ∧ Kitty.emotion = "joy" ∧ Margaret.action = "departing" ∧ Chris.emotional_state = "pining" ∧ Chris.memory_retrieval = "failed" → violate(x0, y0))
+21. Q[x0, y0](Chris.status = "regained memory" ∧ Kitty.status = "rejoicing" ∧ Chris.memory_state = "lost" ∧ Kitty.emotional_response = "elation" ∧ Margaret.action_status = "completed" ∧ Chris.memory_retrieval_attempt = "failed" → violate(x0, y0))
+22. Q[x0, y0](Chris.memory_recovery_attempt = "ongoing" ∧ Kitty.reaction_timeframe = "immediate" ∧ Margaret.departure_timeframe = "after_memory_recovery" ∧ Chris.emotional_state = "pining" ∧ Chris.memory_retrieval = "failed" ∧ Kitty.emotional_state = "happy" → violate(x0, y0))
+23. Q[x0, y0](Chris.memory_state = "lost" ∧ Kitty.emotional_response = "elation" ∧ Margaret.action_status = "completed" ∧ Chris.memory_retrieval = "failed" ∧ Kitty.reaction_timeframe = "immediate" ∧ Chris.memory_recovery = "incomplete" → violate(x0, y0))
+24. Q[x0, y0](Chris.status = "regained memory" ∧ Kitty.status = "rejoicing" ∧ Chris.memory_state = "unretrieved" ∧ Margaret.status = "departed" ∧ Chris.memory_retrieval_attempt = "failed" ∧ Kitty.emotional_state = "happy" → violate(x0, y0))
+25. Q[x0, y0](Chris.memory_retrieval_attempt = "failed" ∧ Kitty.emotional_state = "happy" ∧ Margaret.departure_time = "after_memory_regain" ∧ Chris.memory_recovery = "incomplete" ∧ Kitty.reaction_timeframe = "immediate" ∧ Chris.emotional_state = "pining" → violate(x0, y0))
+26. Q[x0, y0](Chris.status = "regained memory" ∧ Kitty.status = "rejoicing" ∧ Chris.memory_state = "lost" ∧ Kitty.emotional_response = "elation" ∧ Margaret.action_status

@@ -1,0 +1,131 @@
+Predicates:
+1. Unknown Defendant.action = "planned to commit robbery"
+2. Unknown Defendant.status = "armed"
+3. Unknown Defendant.weapon = "shotgun"
+4. Robbery Case.evidence = "sufficient evidence of premeditation and deliberation"
+5. "legal holding".context = "robbery"
+6. "legal holding".event = "robbery"
+7. "legal holding".source_id = "22309"
+8. "Relationship".attribute = "planned"
+9. "Relationship".attribute = "shot"
+10. "Relationship".attribute = "victim"
+11. "Relationship".attribute = "defendant"
+12. "Relationship".attribute = "robbery"
+13. M_NLI(Unknown Defendant.action, "committed robbery")
+14. M_NLI("sufficient evidence of premeditation", "no evidence of planning")
+15. T("The defendant planned to commit a robbery", "The defendant did not plan to commit a robbery", Negation)
+16. tau(Unknown Defendant.action, "not planned")
+17. violate(x0, y0)
+18. Factual(x0, y0)
+19. Causal(x0, y0)
+20. Numeric(x0, y0)
+21. Temporal(x0, y0)
+22. Content(x0, y0)
+23. Relation(x0, y0)
+24. "Relationship".evidence = "robbery occurred"
+25. "Relationship".status = "armed during robbery"
+26. "Relationship".action = "shot victim"
+27. "Relationship".context = "criminal case"
+28. "Relationship".event = "shooting"
+29. Unknown Defendant.weapon = "firearm"
+30. "legal holding".defendant = "Unknown Defendant"
+31. "legal holding".victim = "shot victim"
+32. "legal holding".action = "committed robbery"
+33. M_NLI("shot the victim", "did not shoot the victim")
+34. T("The defendant shot the victim", "The defendant did not shoot anyone", Negation)
+35. tau("robbery planned", "robbery not planned")
+36. violate("premeditation", "spontaneity")
+37. Factual("robbery planned", "robbery unplanned")
+38. Causal("shot victim", "victim unharmed")
+39. Numeric("29 shots fired", "0 shots fired")
+40. Temporal("robbery occurred in 2024", "robbery occurred in 2025")
+41. Content("defendant felt remorse", "defendant felt no remorse")
+42. Relation("defendant is guilty", "defendant is innocent")
+43. "Relationship".time = "2024"
+44. "Relationship".location = "crime scene"
+45. "Relationship".motive = "financial gain"
+46. "legal holding".outcome = "conviction"
+47. "legal holding".penalty = "10 years imprisonment"
+48. M_NLI("defendant was armed", "defendant was unarmed")
+49. T("the robbery was premeditated", "the robbery was impulsive", Causal)
+50. tau("shotgun used", "no weapon used")
+51. violate("premeditated action", "impulsive action")
+52. Factual("defendant shot victim", "defendant did not shoot victim")
+53. Causal("victim shot during robbery", "victim unharmed during robbery")
+54. Numeric("3 witnesses", "0 witnesses")
+55. Temporal("robbery planned for April", "robbery planned for May")
+56. Content("defendant was anxious", "defendant was calm")
+57. Relation("defendant is the shooter", "defendant is a bystander")
+58. "Relationship".witnesses = "3 witnesses present"
+59. "Relationship".motive = "desperation"
+60. "legal holding".defendant_status = "armed and dangerous"
+61. "legal holding".victim_status = "injured"
+62. M_NLI("defendant acted alone", "defendant had accomplices")
+63. T("the robbery was successful", "the robbery failed", Causal)
+64. tau("premeditated robbery", "spontaneous robbery")
+65. violate("planned action", "unplanned action")
+66. Factual("defendant was arrested", "defendant was not arrested")
+67. Causal("robbery led to injury", "robbery did not lead to injury")
+68. Numeric("5 shots fired", "1 shot fired")
+69. Temporal("robbery occurred at night", "robbery occurred during the day")
+70. Content("defendant was proud", "defendant was ashamed")
+71. Relation("defendant is the planner", "defendant is the follower")
+72. "Relationship".evidence_type = "eyewitness testimony"
+73. "Relationship".defendant_age = "25"
+74. "legal holding".case_number = "22309"
+75. M_NLI("defendant confessed", "defendant denied involvement")
+76. T("the robbery was premeditated", "the robbery was spontaneous", Causal)
+77. tau("shotgun used", "no weapon used")
+78. violate("premeditated plan", "impulsive decision")
+79. Factual("defendant fled the scene", "defendant stayed at the scene")
+80. Causal("robbery caused panic", "robbery caused calm")
+81. Numeric("10 witnesses", "2 witnesses")
+82. Temporal("robbery occurred in 2023", "robbery occurred in 2024")
+83. Content("defendant felt guilty", "defendant felt justified")
+84. Relation("defendant is the mastermind", "defendant is the pawn")
+85. "Relationship".defendant_location = "in custody"
+86. "Relationship".victim_condition = "critical"
+87. M_NLI("defendant was cooperative", "defendant was uncooperative")
+88. T("the robbery was planned", "the robbery was unplanned", Negation)
+89. tau("premeditated robbery", "impulsive robbery")
+90. violate("planned robbery", "unplanned robbery")
+91. Factual("defendant was charged", "defendant was not charged")
+92. Causal("robbery resulted in injuries", "robbery resulted in no injuries")
+93. Numeric("15 shots fired", "5 shots fired")
+94. Temporal("robbery occurred in winter", "robbery occurred in summer")
+95. Content("defendant was remorseful", "defendant was indifferent")
+96. Relation("defendant is the aggressor", "defendant is the victim")
+97. "Relationship".evidence_strength = "strong"
+98. "Relationship".defendant_motive = "greed"
+99. "legal holding".jury_decision = "guilty"
+100. "legal holding".sentence_length = "5 years"
+violate(x0, y0)
+
+Rules:
+1. Q[x0, y0](Unknown Defendant.action = "planned to commit robbery" ∧ Unknown Defendant.status = "armed" → violate(x0, y0))
+2. Q[x0, y0](Unknown Defendant.weapon = "shotgun" ∧ "legal holding".context = "robbery" → violate(x0, y0))
+3. Q[x0, y0](M_NLI(Unknown Defendant.action, "committed robbery") ∧ "Relationship".attribute = "victim" → violate(x0, y0))
+4. Q[x0, y0](M_NLI("sufficient evidence of premeditation", "no evidence of planning") ∧ "legal holding".event = "robbery" → violate(x0, y0))
+5. Q[x0, y0](T("The defendant planned to commit a robbery", "The defendant did not plan to commit a robbery", Negation) ∧ "Relationship".status = "armed during robbery" → violate(x0, y0))
+6. Q[x0, y0](Unknown Defendant.weapon = "firearm" ∧ "legal holding".defendant = "Unknown Defendant" ∧ "legal holding".victim = "shot victim" → violate(x0, y0))
+7. Q[x0, y0](Unknown Defendant.action = "planned to commit robbery" ∧ "Relationship".attribute = "robbery" ∧ "Relationship".motive = "financial gain" → violate(x0, y0))
+8. Q[x0, y0](M_NLI("shot the victim", "did not shoot the victim") ∧ "Relationship".evidence = "robbery occurred" ∧ "Relationship".status = "armed during robbery" → violate(x0, y0))
+9. Q[x0, y0](tau("robbery planned", "robbery not planned") ∧ "legal holding".outcome = "conviction" ∧ "legal holding".penalty = "10 years imprisonment" → violate(x0, y0))
+10. Q[x0, y0](Factual("robbery planned", "robbery unplanned") ∧ "Relationship".time = "2024" ∧ "Relationship".location = "crime scene" → violate(x0, y0))
+11. Q[x0, y0](Causal("shot victim", "victim unharmed") ∧ Numeric("29 shots fired", "0 shots fired") ∧ "Relationship".motive = "desperation" → violate(x0, y0))
+12. Q[x0, y0](Temporal("robbery occurred in 2024", "robbery occurred in 2025") ∧ Content("defendant felt remorse", "defendant felt no remorse") ∧ "legal holding".case_number = "22309" → violate(x0, y0))
+13. Q[x0, y0](M_NLI("defendant acted alone", "defendant had accomplices") ∧ T("the robbery was successful", "the robbery failed", Causal) ∧ tau("premeditated robbery", "spontaneous robbery") → violate(x0, y0))
+14. Q[x0, y0](violate("premeditated action", "impulsive action") ∧ Factual("defendant shot victim", "defendant did not shoot victim") ∧ Causal("victim shot during robbery", "victim unharmed during robbery") → violate(x0, y0))
+15. Q[x0, y0](Numeric("3 witnesses", "0 witnesses") ∧ Temporal("robbery planned for April", "robbery planned for May") ∧ Content("defendant was anxious", "defendant was calm") → violate(x0, y0))
+16. Q[x0, y0](Relation("defendant is guilty", "defendant is innocent") ∧ "Relationship".witnesses = "3 witnesses present" ∧ "Relationship".defendant_age = "25" → violate(x0, y0))
+17. Q[x0, y0](M_NLI("defendant confessed", "defendant denied involvement") ∧ T("the robbery was premeditated", "the robbery was spontaneous", Causal) ∧ tau("shotgun used", "no weapon used") → violate(x0, y0))
+18. Q[x0, y0](violate("planned action", "unplanned action") ∧ Factual("defendant was arrested", "defendant was not arrested") ∧ Causal("robbery resulted in injuries", "robbery resulted in no injuries") → violate(x0, y0))
+19. Q[x0, y0](Numeric("10 witnesses", "2 witnesses") ∧ Temporal("robbery occurred in 2023", "robbery occurred in 2024") ∧ Content("defendant was remorseful", "defendant was indifferent") → violate(x0, y0))
+20. Q[x0, y0](Relation("defendant is the aggressor", "defendant is the victim") ∧ "Relationship".evidence_strength = "strong" ∧ "Relationship".defendant_motive = "greed" → violate(x0, y0))
+21. Q[x0, y0](M_NLI("defendant was cooperative", "defendant was uncooperative") ∧ T("the robbery was planned", "the robbery was unplanned", Negation) ∧ tau("premeditated robbery", "impulsive robbery") → violate(x0, y0))
+22. Q[x0, y0](violate("planned robbery", "unplanned robbery") ∧ Factual("defendant was charged", "defendant was not charged") ∧ Causal("robbery caused panic", "robbery caused calm") → violate(x0, y0))
+23. Q[x0, y0](Numeric("15 shots fired", "5 shots fired") ∧ Temporal("robbery occurred in winter", "robbery occurred in summer") ∧ Content("defendant felt guilty", "defendant felt justified") → violate(x0, y0))
+24. Q[x0, y0](Relation("defendant is the mastermind", "defendant is the pawn") ∧ "Relationship".defendant_location = "in custody" ∧ "Relationship".victim_condition = "critical" → violate(x0, y0))
+25. Q[x0, y0](M_NLI("defendant was armed", "defendant was unarmed") ∧ T("the robbery was premeditated", "the robbery was spontaneous", Causal) ∧ tau("shotgun used", "no weapon used") → violate(x0, y0))
+26. Q[x0, y0](violate("premeditated plan", "impulsive decision") ∧ Factual("defendant fled the scene", "defendant stayed at the scene") ∧ Causal("robbery resulted in injuries", "robbery resulted in no injuries") → violate(x0, y0))
+27. Q[x0, y0](Numeric("5 shots fired", "1 shot fired") ∧ Temporal("rob

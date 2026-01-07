@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 46)
+S1: The lawsuit outlines the last weeks of Jackson's life, which it said included a visit to his home by AEG CEO Randy Phillips on June 18, 2009.
+S2: Phillips went there to meet with Jackson and Murray after the singer failed to show up for a rehearsal, it said.
+
+Predicates:
+1. Lawsuit.outlines(Jackson's_life)
+2. Jackson's_life.includes(visit)
+3. Visit.date(June_18_2009)
+4. Visit.attended_by(Randy_Phillips)
+5. Randy_Phillips.role(CEO)
+6. AEG.relationship(Phillips)
+7. Phillips.meets(Jackson)
+8. Phillips.meets(Murray)
+9. Jackson.failed_to_show(rehearsal)
+10. Rehearsal.context(Jackson's_failure)
+11. Visit.context(Jackson's_life)
+12. Lawsuit.context(Jackson's_life)
+13. Jackson's_life.ends(June_25_2009)
+14. Visit.purpose(meeting)
+15. Meeting.participants(Jackson, Murray)
+16. Jackson's_life.timeline(last_weeks)
+17. AEG.context(Phillips_visit)
+18. Phillips.visit(Jackson_home)
+19. Jackson_home.location(Jackson)
+20. Murray.role(doctor)
+21. Jackson.failed_to_attend(rehearsal)
+22. Rehearsal.date(unknown)
+23. Lawsuit.claims(visit_importance)
+24. Visit.occurs_after(Jackson's_failure)
+25. Phillips.visit_reason(Jackson's_rehearsal)
+26. Lawsuit.includes(Phillips_visit)
+27. Jackson's_life.affected_by(Phillips_visit)
+28. Phillips.visit_significance(Jackson's_life)
+29. Jackson's_life.contextualizes(visit)
+30. Visit.occurs_within(Jackson's_last_weeks)
+
+Rules:
+1. Q[The, Lawsuit.outlines(Jackson's_life) → Causal(Jackson's_life, visit)]
+2. Q[The, Jackson's_life.includes(visit) → Causal(visit, June_18_2009)]
+3. Q[The, Visit.date(June_18_2009) → Causal(June_18_2009, Randy_Phillips)]
+4. Q[The, Visit.attended_by(Randy_Phillips) → Causal(Randy_Phillips, CEO)]
+5. Q[The, Randy_Phillips.role(CEO) → Causal(CEO, AEG.relationship(Phillips))]
+6. Q[The, AEG.relationship(Phillips) → Causal(Phillips, meets(Jackson))]
+7. Q[The, Phillips.meets(Jackson) → Causal(Jackson, meets(Murray))]
+8. Q[The, Phillips.meets(Murray) → Causal(Murray, Jackson.failed_to_show(rehearsal))]
+9. Q[The, Jackson.failed_to_show(rehearsal) → Causal(rehearsal, Rehearsal.context(Jackson's_failure))]
+10. Q[The, Rehearsal.context(Jackson's_failure) → Causal(Jackson's_failure, Visit.context(Jackson's_life))]
+11. Q[The, Visit.context(Jackson's_life) → Causal(Jackson's_life, Lawsuit.context(Jackson's_life))]
+12. Q[The, Lawsuit.context(Jackson's_life) → Causal(Jackson's_life, Jackson's_life.ends(June_25_2009))]
+13. Q[The, Jackson's_life.ends(June_25_2009) → Causal(June_25_2009, Visit.purpose(meeting))]
+14. Q[The, Visit.purpose(meeting) → Causal(meeting, Meeting.participants(Jackson, Murray))]
+15. Q[The, Meeting.participants(Jackson, Murray) → Causal(Jackson, Jackson's_life.timeline(last_weeks))]
+16. Q[The, Jackson's_life.timeline(last_weeks) → Causal(last_weeks, AEG.context(Phillips_visit))]
+17. Q[The, AEG.context(Phillips_visit) → Causal(Phillips_visit, Phillips.visit(Jackson_home))]
+18. Q[The, Phillips.visit(Jackson_home) → Causal(Jackson_home, location(Jackson))]
+19. Q[The, Jackson_home.location(Jackson) → Causal(Jackson, Murray.role(doctor))]
+20. Q[The, Murray.role(doctor) → Causal(doctor, Jackson.failed_to_attend(rehearsal))]
+21. Q[The, Jackson.failed_to_attend(rehearsal) → Causal(rehearsal, Rehearsal.date(unknown))]
+22. Q[The, Lawsuit.claims(visit_importance) → Causal(visit_importance, Visit.occurs_after(Jackson's_failure))]
+23. Q[The, Visit.occurs_after(Jackson's_failure) → Causal(Jackson's_failure, Phillips.visit_reason(Jackson's_rehearsal))]
+24. Q[The, Phillips.visit_reason(Jackson's_rehearsal) → Causal(Jackson's_rehearsal, Lawsuit.includes(Phillips_visit))]
+25. Q[The, Lawsuit.includes(Phillips_visit) → Causal(Phillips_visit, Jackson's_life.affected_by(Phillips_visit))]
+26. Q[The, Jackson's_life.affected_by(Phillips_visit) → Causal(Phillips_visit, Phillips.visit_significance(Jackson's_life))]
+27. Q[The, Phillips.visit_significance(Jackson's_life) → Causal(Jackson's_life, Jackson's_life.contextualizes(visit))]
+28. Q[The, Jackson's_life.contextualizes(visit) → Causal(visit, Visit.occurs_within(Jackson's_last_weeks))]
+29. Q[The, Visit.occurs_within(Jackson's_last_weeks) → Causal(Jackson's_last_weeks, Jackson's_life.includes(visit))]
+30. Q[The, Jackson's_life.includes(visit) → Causal(visit, Jackson.failed_to_show(rehearsal))]

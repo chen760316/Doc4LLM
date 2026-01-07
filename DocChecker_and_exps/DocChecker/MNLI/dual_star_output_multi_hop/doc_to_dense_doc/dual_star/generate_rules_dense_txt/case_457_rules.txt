@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 457)
+S1: I ' m g o i n g r i g h t b a c k t o L o n d o n t o p u t t h e c a s e i n t h e h a n d s o f y o u r B r i t i s h p o l i c e.
+S2: I w i l l t r a v e l t o P a r i s a n d l e t t h e F r e n c h d e a l w i t h t h i s.
+
+Predicates:
+1. Person.plan_to_return_to.London
+2. Person.plan_to_travel_to.Paris
+3. Person.intent_to.put_case_in_hands_of.British_police
+4. Person.intent_to.let_French_deal_with_case
+5. Person.location.London
+6. Person.location.Paris
+7. Person.action.return
+8. Person.action.travel
+9. Person.action.put_case
+10. Person.action.let
+11. British_police.responsibility.case_handling
+12. French_authorities.responsibility.case_handling
+13. Case.status.pending
+14. Case.location.London
+15. Case.location.Paris
+16. Plan.destination.London
+17. Plan.destination.Paris
+18. Plan.intent.return
+19. Plan.intent.travel
+20. Causal.return_to.London
+21. Causal.travel_to.Paris
+22. Causal.put_case_in_hands_of.British_police
+23. Causal.let_French_deal_with_case
+24. M_NLI(s1, s2).relationship
+25. M_NLI(s1, s2).contrast
+26. Violate.intent_to.return_and.travel
+27. Violate.location.London_and_Paris
+28. Edge.relationship.return_to.London
+29. Edge.relationship.travel_to.Paris
+30. Edge.relationship.case_handling.British_and_French
+
+Rules:
+1. Q[Anchor, Person.plan_to_return_to.London, Person.plan_to_travel_to.Paris](Person.plan_to_return_to.London == true → Causal.return_to.London)
+2. Q[Anchor, Person.intent_to.put_case_in_hands_of.British_police, Person.intent_to.let_French_deal_with_case](Person.intent_to.put_case_in_hands_of.British_police == true → Causal.put_case_in_hands_of.British_police)
+3. Q[Anchor, Person.location.London, Person.location.Paris](Person.location.London == true → Causal.return_to.London)
+4. Q[Anchor, Person.action.return, Person.action.travel](Person.action.return == true → Causal.return_to.London)
+5. Q[Anchor, Plan.destination.London, Plan.destination.Paris](Plan.destination.London == true → Causal.return_to.London)
+6. Q[Anchor, Case.location.London, Case.location.Paris](Case.location.London == true → Causal.return_to.London)
+7. Q[Anchor, Person.action.put_case, Person.action.let](Person.action.put_case == true → Causal.put_case_in_hands_of.British_police)
+8. Q[Anchor, Person.intent_to.return_to.London, Person.intent_to.travel_to.Paris](Person.intent_to.return_to.London == true → Causal.return_to.London)
+9. Q[Anchor, British_police.responsibility.case_handling, French_authorities.responsibility.case_handling](British_police.responsibility.case_handling == true → Causal.put_case_in_hands_of.British_police)
+10. Q[Anchor, Case.status.pending, Person.intent_to.let_French_deal_with_case](Case.status.pending == true → Causal.let_French_deal_with_case)
+11. Q[Anchor, Person.plan_to_return_to.London, Person.intent_to.let_French_deal_with_case](Person.plan_to_return_to.London == true → Causal.return_to.London)
+12. Q[Anchor, Person.plan_to_travel_to.Paris, Person.intent_to.put_case_in_hands_of.British_police](Person.plan_to_travel_to.Paris == true → Causal.travel_to.Paris)
+13. Q[Anchor, Person.action.travel, Person.action.return](Person.action.travel == true → Causal.travel_to.Paris)
+14. Q[Anchor, Plan.intent.return, Plan.intent.travel](Plan.intent.return == true → Causal.return_to.London)
+15. Q[Anchor, Person.location.London, Person.action.travel](Person.location.London == true → Causal.return_to.London)
+16. Q[Anchor, Person.intent_to.return_to.London, Case.status.pending](Person.intent_to.return_to.London == true → Causal.return_to.London)
+17. Q[Anchor, Person.plan_to_return_to.London, Case.location.Paris](Person.plan_to_return_to.London == true → Causal.return_to.London)
+18. Q[Anchor, Person.intent_to.let_French_deal_with_case, Case.location.Paris](Person.intent_to.let_French_deal_with_case == true → Causal.let_French_deal_with_case)
+19. Q[Anchor, Person.action.put_case, Case.status.pending](Person.action.put_case == true → Causal.put_case_in_hands_of.British_police)
+20. Q[Anchor, Person.action.return, Case.location.London](Person.action.return == true → Causal.return_to.London)
+21. Q[Anchor, Plan.destination.London, Person.intent_to.let_French_deal_with_case](Plan.destination.London == true → Causal.return_to.London)
+22. Q[Anchor, Person.plan_to_travel_to.Paris, Person.action.return](Person.plan_to_travel_to.Paris == true → Causal.travel_to.Paris)
+23. Q[Anchor, Person.intent_to.put_case_in_hands_of.British_police, Case.location.London](Person.intent_to.put_case_in_hands_of.British_police == true → Causal.put_case_in_hands_of.British_police)
+24. Q[Anchor, Person.location.Paris, Person.intent_to.return_to.London](Person.location.Paris == true → Causal.travel_to.Paris)
+25. Q[Anchor, Case.location.Paris, Person.action.let](Case.location.Paris == true → Causal.let_French_deal_with_case)
+26. Q[Anchor, Person.plan_to_return_to.London, Person.action.travel](Person.plan_to_return_to.London == true → Causal.return_to.London)
+27. Q[Anchor, Person.intent_to.let_French_deal_with_case, Case.status.pending](Person.intent_to.let_French_deal_with_case == true → Causal.let_French_deal_with_case)
+28. Q[Anchor, Person.action.travel, Case.location.Paris](Person.action.travel == true → Causal.travel_to.Paris)
+29. Q[Anchor, Person.plan_to_return_to.London, Person.plan_to_travel_to.Paris](Person.plan_to_return_to.London == true → Causal.return_to.London)
+30. Q[Anchor, Person.intent_to.return_to.London, Person.plan_to_travel_to.Paris](Person.intent_to.return_to.London == true → Causal.return_to.London)

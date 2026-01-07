@@ -1,0 +1,61 @@
+Predicates:
+Defamation Lawsuit.label != "Legal Concept"
+Defamation Lawsuit.label != University of Virginia.label
+Defamation Lawsuit.label = "Legal Concept"
+Defamation Lawsuit.name != "Defamation Lawsuit"
+Defamation Lawsuit.name != University of Virginia.name
+Defamation Lawsuit.name != defamation.name
+Defamation Lawsuit.name = "Defamation Lawsuit"
+None_ML(Phi Kappa Psi___Defamation Lawsuit.attrs, Phi Kappa Psi___University of Virginia.attrs)
+None_ML(University of Virginia.attrs, Phi Kappa Psi.attrs)
+Phi Kappa Psi.label != "Fraternity"
+Phi Kappa Psi.label != Defamation Lawsuit.label
+Phi Kappa Psi.label != University of Virginia.label
+Phi Kappa Psi.label != defamation.label
+Phi Kappa Psi.label = "Fraternity"
+Phi Kappa Psi.name != "Phi Kappa Psi"
+Phi Kappa Psi.name != Defamation Lawsuit.name
+Phi Kappa Psi.name != University of Virginia.name
+Phi Kappa Psi.name != defamation.name
+Phi Kappa Psi.name = "Phi Kappa Psi"
+Phi Kappa Psi.type != "fraternity"
+Phi Kappa Psi.type != defamation.type
+Phi Kappa Psi.type = "fraternity"
+Phi Kappa Psi___Defamation Lawsuit.context = "Potential legal action due to reputational harm"
+Phi Kappa Psi___Defamation Lawsuit.doc_id != Phi Kappa Psi___University of Virginia.doc_id
+Phi Kappa Psi___Defamation Lawsuit.doc_id != Phi Kappa Psi___defamation.doc_id
+Phi Kappa Psi___Defamation Lawsuit.doc_id = "3489825771_8"
+Phi Kappa Psi___Defamation Lawsuit.relationship != Phi Kappa Psi___University of Virginia.relationship
+Phi Kappa Psi___Defamation Lawsuit.relationship != Phi Kappa Psi___defamation.relationship
+Phi Kappa Psi___Defamation Lawsuit.relationship = "Phi Kappa Psi may consider suing for defamation based on the flawed article."
+Phi Kappa Psi___University of Virginia.doc_id = "3489825751_5"
+Phi Kappa Psi___University of Virginia.relationship != Phi Kappa Psi___defamation.relationship
+Phi Kappa Psi___University of Virginia.relationship = "Phi Kappa Psi fraternity members were mentioned in the context of the flawed article."
+Phi Kappa Psi___defamation.doc_id = "3489825751_5"
+Phi Kappa Psi___defamation.relationship = "Phi Kappa Psi may argue that the defamatory statements are actionable under the small group exception."
+University of Virginia.label != "Organization"
+University of Virginia.label != defamation.label
+University of Virginia.label = "Organization"
+University of Virginia.name != "University of Virginia"
+University of Virginia.name != defamation.name
+University of Virginia.name = "University of Virginia"
+University of Virginia.status != "under investigation"
+University of Virginia.status = "under investigation"
+defamation.label != "Legal Concept"
+defamation.label = "Legal Concept"
+defamation.name != "defamation"
+defamation.name = "defamation"
+defamation.type != "legal term"
+defamation.type = "legal term"
+
+Rules:
+Q[Phi Kappa Psi,Phi Kappa Psi] (Defamation Lawsuit.name = "Defamation Lawsuit" ∧ Phi Kappa Psi.label != University of Virginia.label ∧ Phi Kappa Psi___Defamation Lawsuit.context = "Potential legal action due to reputational harm" ∧ Phi Kappa Psi___Defamation Lawsuit.relationship != Phi Kappa Psi___defamation.relationship → University of Virginia.label != "Organization")
+Q[Phi Kappa Psi,Phi Kappa Psi] (defamation.type != "legal term" ∧ Defamation Lawsuit.name != defamation.name ∧ Defamation Lawsuit.name != "Defamation Lawsuit" ∧ Phi Kappa Psi___Defamation Lawsuit.relationship = "Phi Kappa Psi may consider suing for defamation based on the flawed article." ∧ Defamation Lawsuit.label = "Legal Concept" ∧ Phi Kappa Psi___Defamation Lawsuit.relationship != Phi Kappa Psi___defamation.relationship → Phi Kappa Psi.label != "Fraternity")
+Q[Phi Kappa Psi,Phi Kappa Psi] (Phi Kappa Psi.type != defamation.type ∧ University of Virginia.name != defamation.name ∧ Phi Kappa Psi___Defamation Lawsuit.relationship != Phi Kappa Psi___defamation.relationship ∧ Phi Kappa Psi.name = "Phi Kappa Psi" ∧ Defamation Lawsuit.name != defamation.name → University of Virginia.label != defamation.label)
+Q[Phi Kappa Psi,Phi Kappa Psi] (Phi Kappa Psi.name != "Phi Kappa Psi" ∧ Phi Kappa Psi___Defamation Lawsuit.relationship = "Phi Kappa Psi may consider suing for defamation based on the flawed article." ∧ Phi Kappa Psi___defamation.relationship = "Phi Kappa Psi may argue that the defamatory statements are actionable under the small group exception." → University of Virginia.status = "under investigation")
+Q[Phi Kappa Psi,Phi Kappa Psi] (University of Virginia.name != defamation.name ∧ Phi Kappa Psi.name != Defamation Lawsuit.name → None_ML(University of Virginia.attrs, Phi Kappa Psi.attrs))
+Q[Phi Kappa Psi,Phi Kappa Psi] (Defamation Lawsuit.name != defamation.name ∧ Phi Kappa Psi___Defamation Lawsuit.context = "Potential legal action due to reputational harm" ∧ Defamation Lawsuit.label != "Legal Concept" ∧ Phi Kappa Psi.label != University of Virginia.label → defamation.type = "legal term")
+Q[Phi Kappa Psi,Phi Kappa Psi] (Phi Kappa Psi___Defamation Lawsuit.relationship != Phi Kappa Psi___defamation.relationship ∧ defamation.name != "defamation" → University of Virginia.status != "under investigation")
+Q[Phi Kappa Psi,Phi Kappa Psi] (Phi Kappa Psi___University of Virginia.relationship = "Phi Kappa Psi fraternity members were mentioned in the context of the flawed article." ∧ Phi Kappa Psi___Defamation Lawsuit.context = "Potential legal action due to reputational harm" ∧ Phi Kappa Psi___Defamation Lawsuit.relationship != Phi Kappa Psi___University of Virginia.relationship ∧ defamation.type != "legal term" ∧ defamation.label = "Legal Concept" ∧ defamation.name != "defamation" → Defamation Lawsuit.name = "Defamation Lawsuit")
+Q[Phi Kappa Psi,Phi Kappa Psi] (defamation.label = "Legal Concept" ∧ defamation.name = "defamation" ∧ defamation.label != "Legal Concept" ∧ University of Virginia.label = "Organization" ∧ Phi Kappa Psi.name != Defamation Lawsuit.name → Phi Kappa Psi.type != "fraternity")
+Q[Phi Kappa Psi,Phi Kappa Psi] (University of Virginia.name = "University of Virginia" ∧ Phi Kappa Psi___Defamation Lawsuit.relationship != Phi Kappa Psi___University of Virginia.relationship ∧ Phi Kappa Psi.type != "fraternity" → defamation.type != "legal term")

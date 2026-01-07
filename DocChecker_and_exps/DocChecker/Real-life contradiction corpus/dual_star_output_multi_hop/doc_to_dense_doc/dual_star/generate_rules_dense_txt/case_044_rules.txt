@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 44)
+S1: Local officials and Iraqi police had said on Friday that they believed 32 civilians had been killed in the attack.
+S2: The US military had issued a statement on Friday saying that two women were among 20 suspected 'al Qaeda terrorists' killed in the operation.
+
+Predicates:
+1. LocalOfficials.belief
+2. IraqiPolice.belief
+3. Attack.date
+4. Civilians.killed
+5. Civilians.count
+6. USMilitary.statement
+7. Operation.date
+8. Women.killed
+9. SuspectedTerrorists.count
+10. AlQaedaTerrorists.killed
+11. Civilians.killed_in_attack
+12. Terrorists.killed_in_operation
+13. Majority.killed
+14. Civilians.not_terrorists
+15. Women.among_terrorists
+16. Attack.type
+17. Statement.date
+18. LocalOfficials.report
+19. IraqiPolice.report
+20. CivilianCasualties.count
+21. TerroristCasualties.count
+22. Civilians.victims
+23. Terrorists.victims
+24. Attack.location
+25. Operation.location
+26. Civilians.killed_in_operation
+27. Women.victims
+28. SuspectedTerrorists.victims
+29. LocalOfficials.source
+30. IraqiPolice.source
+
+Rules:
+1. Q[Local, Civilians.killed, 32](LocalOfficials.belief == "32 civilians killed" → Factual(Civilians.killed, 32))
+2. Q[Local, SuspectedTerrorists.count, 20](USMilitary.statement == "20 suspected terrorists killed" → Factual(SuspectedTerrorists.count, 20))
+3. Q[Local, Women.killed, 2](USMilitary.statement == "2 women among terrorists killed" → Factual(Women.killed, 2))
+4. Q[Local, Majority.killed, 30](Civilians.killed == 32 and SuspectedTerrorists.count == 20 → Factual(Majority.killed, 30))
+5. Q[Local, Civilians.not_terrorists, true](Civilians.killed == 32 and Women.among_terrorists == 2 → Factual(Civilians.not_terrorists, true))
+6. Q[Local, Civilians.killed_in_attack, 32](LocalOfficials.belief == "32 civilians killed in attack" → Factual(Civilians.killed_in_attack, 32))
+7. Q[Local, Terrorists.killed_in_operation, 20](USMilitary.statement == "20 terrorists killed in operation" → Factual(Terrorists.killed_in_operation, 20))
+8. Q[Local, Attack.date, "Friday"](Attack.date == "Friday" → Factual(Attack.date, "Friday"))
+9. Q[Local, Operation.date, "Friday"](Operation.date == "Friday" → Factual(Operation.date, "Friday"))
+10. Q[Local, CivilianCasualties.count, 32](LocalOfficials.report == "32 civilian casualties" → Factual(CivilianCasualties.count, 32))
+11. Q[Local, TerroristCasualties.count, 20](USMilitary.statement == "20 terrorist casualties" → Factual(TerroristCasualties.count, 20))
+12. Q[Local, Civilians.victims, 32](LocalOfficials.report == "32 civilian victims" → Factual(Civilians.victims, 32))
+13. Q[Local, Terrorists.victims, 20](USMilitary.statement == "20 terrorist victims" → Factual(Terrorists.victims, 20))
+14. Q[Local, Attack.type, "military operation"](Attack.type == "military operation" → Factual(Attack.type, "military operation"))
+15. Q[Local, Operation.location, "Iraq"](Operation.location == "Iraq" → Factual(Operation.location, "Iraq"))
+16. Q[Local, Attack.location, "Iraq"](Attack.location == "Iraq" → Factual(Attack.location, "Iraq"))
+17. Q[Local, IraqiPolice.belief, 32](IraqiPolice.belief == "32 civilians killed" → Factual(IraqiPolice.belief, 32))
+18. Q[Local, LocalOfficials.source, "report"](LocalOfficials.source == "report" → Factual(LocalOfficials.source, "report"))
+19. Q[Local, IraqiPolice.source, "report"](IraqiPolice.source == "report" → Factual(IraqiPolice.source, "report"))
+20. Q[Local, Civilians.count, 32](Civilians.count == 32 → Factual(Civilians.count, 32))
+21. Q[Local, Women.victims, 2](USMilitary.statement == "2 women victims" → Factual(Women.victims, 2))
+22. Q[Local, Civilians.killed_in_operation, 32](Civilians.killed_in_operation == 32 → Factual(Civilians.killed_in_operation, 32))
+23. Q[Local, AlQaedaTerrorists.killed, 20](USMilitary.statement == "20 al Qaeda terrorists killed" → Factual(AlQaedaTerrorists.killed, 20))
+24. Q[Local, Civilians.killed, 32](Civilians.killed == 32 and Women.killed == 2 → Factual(Civilians.killed, 32))
+25. Q[Local, Majority.killed, 30](Civilians.killed == 32 and SuspectedTerrorists.count == 20 → Factual(Majority.killed, 30))
+26. Q[Local, Civilians.killed, 32](LocalOfficials.belief == "32 civilians killed" and USMilitary.statement == "20 terrorists killed" → Factual(Civilians.killed, 32))
+27. Q[Local, Civilians.killed, 32](Civilians.killed == 32 and Civilians.not_terrorists == true → Factual(Civilians.killed, 32))
+28. Q[Local, Women.among_terrorists, 2](USMilitary.statement == "2 women among terrorists" → Factual(Women.among_terrorists, 2))
+29. Q[Local, Attack.type, "military operation"](Attack.type == "military operation" and Civilians.killed == 32 → Factual(Attack.type, "military operation"))
+30. Q[Local, Attack.date, "Friday"](Attack.date == "Friday" and Operation.date == "Friday" → Factual(Attack.date, "Friday"))

@@ -1,0 +1,112 @@
+Predicates:
+1. Cape Cod.damage = "minor damage to its port"
+2. Cape Cod.damage != "severe damage"
+3. Cape Cod.damage < "severe damage"
+4. Cape Cod.damage >= "minor damage"
+5. "Cape Cod was struck by the hurricane.".damage = "minor damage to its port"
+6. "Cape Cod was struck by the hurricane.".damage != "major damage"
+7. "Cape Cod was struck by the hurricane.".damage < "moderate damage"
+8. "Cape Cod was struck by the hurricane.".damage > "none"
+9. "The 1806 Great Coastal hurricane impacted the East Coast of the United States.".deaths > "20"
+10. "The 1806 Great Coastal hurricane impacted the East Coast of the United States.".deaths <= "30"
+11. "The 1806 Great Coastal hurricane impacted the East Coast of the United States.".rainfall >= "30 in"
+12. "The 1806 Great Coastal hurricane impacted the East Coast of the United States.".rainfall < "40 in"
+13. Brewster.damage = "severe damage to crops and salterns"
+14. Brewster.damage != "minor damage"
+15. Brewster.damage > "moderate damage"
+16. Brewster.damage <= "severe damage"
+17. "The hurricane inflicted widespread damage in Wilmington, North Carolina.".damage = "many wharves severely damaged"
+18. "The hurricane inflicted widespread damage in Wilmington, North Carolina.".damage != "no damage"
+19. "The hurricane inflicted widespread damage in Wilmington, North Carolina.".damage < "total destruction"
+20. "The hurricane inflicted widespread damage in Wilmington, North Carolina.".damage >= "significant damage"
+21. "The hurricane produced strong gusts in the vicinity of New York City.".effects = "defoliated and uprooted peach trees"
+22. "The hurricane produced strong gusts in the vicinity of New York City.".effects != "no effects"
+23. "The hurricane produced strong gusts in the vicinity of New York City.".effects < "total destruction of trees"
+24. "The hurricane produced strong gusts in the vicinity of New York City.".effects >= "some damage"
+25. Bahamas.date_arrived = "19 August 1806"
+26. Bahamas.date_arrived != "20 August 1806"
+27. Bahamas.date_arrived < "20 August 1806"
+28. Bahamas.date_arrived > "18 August 1806"
+29. Cape Fear River, North Carolina.date_landfall = "22 August 1806"
+30. Cape Fear River, North Carolina.date_landfall != "21 August 1806"
+31. Cape Fear River, North Carolina.date_landfall < "23 August 1806"
+32. Cape Fear River, North Carolina.date_landfall >= "22 August 1806"
+33. East Coast of the United States.impacted_states = "['Massachusetts', 'North Carolina', 'South Carolina', 'Virginia', 'New Jersey']"
+34. East Coast of the United States.impacted_states != "['Florida']"
+35. East Coast of the United States.impacted_states < "['New York', 'Florida']"
+36. East Coast of the United States.impacted_states >= "['Massachusetts']"
+37. Edgartown.event = "devastated local crops"
+38. Edgartown.event != "no event"
+39. Edgartown.event < "total destruction"
+40. Edgartown.event > "minor impact"
+41. Massachusetts.damage = "minor damage to port"
+42. Massachusetts.damage != "major damage"
+43. Massachusetts.damage < "severe damage"
+44. Massachusetts.damage >= "minor damage"
+45. New Jersey.cargo_damage = "$171,000"
+46. New Jersey.cargo_damage != "$0"
+47. New Jersey.cargo_damage < "$200,000"
+48. New Jersey.cargo_damage > "$100,000"
+49. New Jersey.deaths = "21"
+50. New Jersey.deaths != "0"
+51. New Jersey.deaths < "30"
+52. New Jersey.deaths >= "20"
+53. New Jersey.total_passengers = "48"
+54. New Jersey.total_passengers != "50"
+55. New Jersey.total_passengers < "60"
+56. New Jersey.total_passengers > "40"
+57. New York City.damage = "defoliated and uprooted peach trees"
+58. New York City.damage != "no damage"
+59. New York City.damage < "total destruction"
+60. New York City.damage >= "some damage"
+61. M_NLI(Cape Cod.damage, Brewster.damage)
+62. M_NLU(New Jersey.cargo_damage, New Jersey.deaths)
+63. M_TEM(Bahamas.date_arrived, Cape Fear River, North Carolina.date_landfall)
+64. contra("Cape Cod was struck by the hurricane.", "Cape Cod was unaffected by the hurricane.")
+65. S(Cape Cod, "Cape Cod")
+66. S(Brewster, "Brewster")
+67. S("The hurricane inflicted widespread damage in Wilmington, North Carolina.", "Wilmington")
+68. S(ex, "The hurricane produced strong gusts in the vicinity of New York City.")
+69. T("Cape Cod was struck by the hurricane.", "Cape Cod was unaffected by the hurricane.", Factual)
+70. tau(Cape Cod.damage, Massachusetts.damage)
+71. tau("The hurricane inflicted widespread damage in Wilmington, North Carolina.".damage, "The hurricane caused no damage in Wilmington.")
+72. tau("The 1806 Great Coastal hurricane impacted the East Coast of the United States.".deaths, "The 1806 Great Coastal hurricane caused no deaths.")
+73. tau("The hurricane produced strong gusts in the vicinity of New York City.".effects, "The hurricane had no effects in New York City.")
+74. tau(Brewster.damage, "no damage")
+75. tau(New Jersey.cargo_damage, "no cargo damage")
+76. tau(New Jersey.deaths, "no deaths")
+77. tau(New Jersey.total_passengers, "no passengers")
+78. tau(Edgartown.event, "no event")
+79. tau(Massachusetts.damage, "no damage")
+80. tau(New York City.damage, "no damage")
+81. tau(Cape Fear River, North Carolina.date_landfall, "no landfall date")
+82. tau(East Coast of the United States.impacted_states, "no impacted states")
+83. tau(Bahamas.date_arrived, "no arrival date")
+84. tau("The hurricane inflicted widespread damage in Wilmington, North Carolina.".damage, "no damage in Wilmington")
+85. tau("The hurricane produced strong gusts in the vicinity of New York City.".effects, "no effects in New York City")
+86. tau("The 1806 Great Coastal hurricane impacted the East Coast of the United States.".rainfall, "no rainfall")
+87. tau("The 1806 Great Coastal hurricane impacted the East Coast of the United States.".deaths, "no deaths")
+88. tau("The hurricane caused severe damage to crops and salterns in Brewster.".rainfall, "no rainfall in Brewster")
+89. tau("Cape Cod was struck by the hurricane.", "Cape Cod was not struck
+
+Rules:
+1. Q[1, 1](Cape Cod.damage = "minor damage to its port" ∧ Cape Cod.damage != "severe damage" → Cape Cod.damage < "moderate damage")
+2. Q[2, 2](Cape Cod.damage >= "minor damage" ∧ "Cape Cod was struck by the hurricane.".damage = "minor damage to its port" → Cape Cod.damage < "severe damage")
+3. Q[3, 3](Brewster.damage = "severe damage to crops and salterns" ∧ Brewster.damage != "minor damage" ∧ Brewster.damage > "moderate damage" → Brewster.damage > "severe damage")
+4. Q[4, 4](New Jersey.cargo_damage = "$171,000" ∧ New Jersey.cargo_damage != "$0" ∧ New Jersey.cargo_damage < "$200,000" ∧ New Jersey.cargo_damage > "$100,000" → New Jersey.cargo_damage >= "$150,000")
+5. Q[5, 5](New Jersey.deaths = "21" ∧ New Jersey.deaths != "0" ∧ New Jersey.deaths < "30" ∧ New Jersey.total_passengers = "48" ∧ New Jersey.total_passengers != "50" → New Jersey.total_passengers < "60")
+6. Q[6, 6](Cape Fear River, North Carolina.date_landfall = "22 August 1806" ∧ Cape Fear River, North Carolina.date_landfall != "21 August 1806" ∧ Cape Fear River, North Carolina.date_landfall < "23 August 1806" ∧ Cape Fear River, North Carolina.date_landfall >= "22 August 1806" → Cape Fear River, North Carolina.date_landfall != "20 August 1806")
+7. Q[1, 7](East Coast of the United States.impacted_states != "['Florida']" ∧ East Coast of the United States.impacted_states < "['New York', 'Florida']" → East Coast of the United States.impacted_states >= "['Virginia']")
+8. Q[2, 8](Edgartown.event != "no event" ∧ Edgartown.event < "total destruction" → Edgartown.event > "no impact")
+9. Q[3, 9](New York City.damage = "defoliated and uprooted peach trees" ∧ New York City.damage != "no damage" ∧ New York City.damage < "total destruction" → New York City.damage >= "some damage")
+10. Q[4, 10](Bahamas.date_arrived = "19 August 1806" ∧ Bahamas.date_arrived != "20 August 1806" ∧ Bahamas.date_arrived < "20 August 1806" ∧ Bahamas.date_arrived > "18 August 1806" → Bahamas.date_arrived != "18 August 1806")
+11. Q[5, 11](Cape Cod.damage < "severe damage" ∧ Cape Cod.damage >= "minor damage" ∧ "Cape Cod was struck by the hurricane.".damage < "moderate damage" ∧ "Cape Cod was struck by the hurricane.".damage > "none" → Cape Cod.damage != "major damage")
+12. Q[6, 12](Massachusetts.damage = "minor damage to port" ∧ Massachusetts.damage != "major damage" ∧ Massachusetts.damage < "severe damage" ∧ Massachusetts.damage >= "minor damage" → Massachusetts.damage != "no damage")
+13. Q[1, 13](Brewster.damage <= "severe damage" ∧ Brewster.damage > "moderate damage" → Brewster.damage != "minor damage")
+14. Q[2, 14](New Jersey.deaths < "30" ∧ New Jersey.deaths >= "20" → New Jersey.deaths != "10")
+15. Q[3, 15](Cape Cod.damage < "severe damage" ∧ Cape Cod.damage >= "minor damage" ∧ "Cape Cod was struck by the hurricane.".damage < "moderate damage" → Cape Cod.damage != "major damage")
+16. Q[4, 16](East Coast of the United States.impacted_states >= "['Massachusetts']" ∧ East Coast of the United States.impacted_states != "['Florida']" ∧ East Coast of the United States.impacted_states < "['New York', 'Florida']" → East Coast of the United States.impacted_states != "['California']")
+17. Q[5, 17](Cape Fear River, North Carolina.date_landfall != "21 August 1806" ∧ Cape Fear River, North Carolina.date_landfall < "23 August 1806" ∧ Cape Fear River, North Carolina.date_landfall >= "22 August 1806" → Cape Fear River, North Carolina.date_landfall != "24 August 1806")
+18. Q[6, 18](New Jersey.total_passengers != "50" ∧ New Jersey.total_passengers < "60" ∧ New Jersey.total_passengers > "40" → New Jersey.total_passengers != "70")
+19. Q[1, 19](Edgartown.event > "minor impact" ∧ Edgartown.event != "no event" → Edgartown.event < "total destruction")
+20. Q[2, 20](New York City.damage >= "some damage" ∧ New York City.damage != "no damage" → New York City.damage < "total destruction")

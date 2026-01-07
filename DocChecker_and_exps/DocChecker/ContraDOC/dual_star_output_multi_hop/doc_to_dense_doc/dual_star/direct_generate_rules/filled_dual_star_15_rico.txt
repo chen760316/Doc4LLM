@@ -1,0 +1,34 @@
+Predicates:
+Brice Robin.label != "Person"
+Brice Robin.label != CNN.label
+Brice Robin.label = "Person"
+Brice Robin.location != "Marseille"
+Brice Robin.location = "Marseille"
+Brice Robin.name != "Brice Robin"
+Brice Robin.name != CNN.name
+Brice Robin.name = "Brice Robin"
+Brice Robin.occupation != "prosecutor"
+Brice Robin.occupation = "prosecutor"
+Brice Robin___CNN.contradiction_type = "Factual"
+Brice Robin___CNN.relationship = "Brice Robin communicated information to CNN regarding the crash investigation."
+Brice Robin___CNN.source_id = "3489825776_7"
+Brice Robin___CNN.status = "no videos used in the investigation"
+CNN.label != "Organization"
+CNN.label = "Organization"
+CNN.name != "CNN"
+CNN.name = "CNN"
+CNN.type != "news outlet"
+CNN.type = "news outlet"
+None_ML(CNN.attrs, Brice Robin.attrs)
+
+Rules:
+Q[Brice Robin,Brice Robin] (Brice Robin.occupation = "prosecutor" ∧ Brice Robin___CNN.relationship = "Brice Robin communicated information to CNN regarding the crash investigation." ∧ Brice Robin.label != "Person" ∧ CNN.name = "CNN" ∧ None_ML(CNN.attrs, Brice Robin.attrs) ∧ Brice Robin___CNN.source_id = "3489825776_7" → CNN.name != "CNN")
+Q[Brice Robin,Brice Robin] (None_ML(CNN.attrs, Brice Robin.attrs) ∧ CNN.name = "CNN" ∧ Brice Robin.occupation != "prosecutor" → Brice Robin.name = "Brice Robin")
+Q[Brice Robin,Brice Robin] (Brice Robin.occupation = "prosecutor" ∧ None_ML(CNN.attrs, Brice Robin.attrs) ∧ Brice Robin.occupation != "prosecutor" ∧ Brice Robin___CNN.status = "no videos used in the investigation" ∧ CNN.name = "CNN" → CNN.type != "news outlet")
+Q[Brice Robin,Brice Robin] (CNN.type != "news outlet" ∧ Brice Robin___CNN.contradiction_type = "Factual" → CNN.label != "Organization")
+Q[Brice Robin,Brice Robin] (Brice Robin.location != "Marseille" ∧ Brice Robin.occupation = "prosecutor" ∧ Brice Robin.name = "Brice Robin" ∧ Brice Robin___CNN.source_id = "3489825776_7" → Brice Robin.name != "Brice Robin")
+Q[Brice Robin,Brice Robin] (CNN.name = "CNN" ∧ CNN.type != "news outlet" ∧ Brice Robin.label != "Person" ∧ CNN.type = "news outlet" ∧ Brice Robin.name != "Brice Robin" ∧ Brice Robin___CNN.source_id = "3489825776_7" → Brice Robin.location != "Marseille")
+Q[Brice Robin,Brice Robin] (Brice Robin.name != "Brice Robin" ∧ Brice Robin___CNN.status = "no videos used in the investigation" ∧ Brice Robin.location != "Marseille" ∧ None_ML(CNN.attrs, Brice Robin.attrs) → Brice Robin.label = "Person")
+Q[Brice Robin,Brice Robin] (Brice Robin.name != "Brice Robin" ∧ Brice Robin.location != "Marseille" ∧ Brice Robin___CNN.source_id = "3489825776_7" → Brice Robin.occupation = "prosecutor")
+Q[Brice Robin,Brice Robin] (Brice Robin.label != "Person" ∧ Brice Robin.label = "Person" ∧ CNN.type = "news outlet" ∧ Brice Robin.occupation = "prosecutor" ∧ Brice Robin___CNN.contradiction_type = "Factual" → CNN.name = "CNN")
+Q[Brice Robin,Brice Robin] (Brice Robin.label = "Person" ∧ Brice Robin.label != CNN.label → CNN.type = "news outlet")

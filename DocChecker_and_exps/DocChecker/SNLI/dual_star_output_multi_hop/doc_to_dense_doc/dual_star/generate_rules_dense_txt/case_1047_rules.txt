@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 1047)
+S1: A band is playing a guitar and singing in a recording studio.
+S2: A band is making a recording.
+
+Predicates:
+1. Band.performance.is_active
+2. Band.recording.is_general
+3. Band.singing.is_present
+4. Band.guitar.is_played
+5. Recording.studio.is_location
+6. Band.activity.is_performance
+7. Band.recording.is_activity
+8. Performance.involves.singing
+9. Performance.involves.playing
+10. Recording.may_include.singing
+11. Recording.may_include.playing
+12. Studio.is.environment
+13. Band.is.performing.in.studio
+14. Band.is.recording.in.studio
+15. Performance.is.distinct.from.recording
+16. Activity.is.specified.by.performance
+17. Activity.is.implied.by.recording
+18. Guitar.is.instrument
+19. Singing.is.vocal.performance
+20. Recording.is.audio.production
+21. Band.is.group
+22. Performance.requires.participation
+23. Recording.requires.equipment
+24. Studio.provides.acoustic.environment
+25. Band.members.are.participants
+26. Performance.is.a.type.of.activity
+27. Recording.is.a.type.of.activity
+28. Guitar.is.used.by.band
+29. Singing.is.done.by.band
+30. Recording.is.done.by.band
+
+Rules:
+1. Q[band, Band.performance.is_active, Band.recording.is_general](Band.performance.is_active == true → Negation(Band.performance.is_active, Band.recording.is_general))
+2. Q[band, Band.singing.is_present, Band.recording.is_general](Band.singing.is_present == true → Negation(Band.singing.is_present, Band.recording.is_general))
+3. Q[band, Band.guitar.is_played, Band.recording.is_general](Band.guitar.is_played == true → Negation(Band.guitar.is_played, Band.recording.is_general))
+4. Q[band, Band.activity.is_performance, Band.recording.is_activity](Band.activity.is_performance == true → Negation(Band.activity.is_performance, Band.recording.is_activity))
+5. Q[band, Performance.involves.singing, Recording.may_include.singing](Performance.involves.singing == true → Negation(Performance.involves.singing, Recording.may_include.singing))
+6. Q[band, Performance.involves.playing, Recording.may_include.playing](Performance.involves.playing == true → Negation(Performance.involves.playing, Recording.may_include.playing))
+7. Q[band, Band.is.performing.in.studio, Band.is.recording.in.studio](Band.is.performing.in.studio == true → Negation(Band.is.performing.in.studio, Band.is.recording.in.studio))
+8. Q[band, Performance.is.distinct.from.recording, Recording.is.a.type.of.activity](Performance.is.distinct.from.recording == true → Negation(Performance.is.distinct.from.recording, Recording.is.a.type.of.activity))
+9. Q[band, Activity.is.specified.by.performance, Activity.is.implied.by.recording](Activity.is.specified.by.performance == true → Negation(Activity.is.specified.by.performance, Activity.is.implied.by.recording))
+10. Q[band, Band.recording.is_activity, Band.performance.is_active](Band.recording.is_activity == true → Negation(Band.recording.is_activity, Band.performance.is_active))
+11. Q[band, Band.is.group, Band.is.performing.in.studio](Band.is.group == true → Negation(Band.is.group, Band.is.performing.in.studio))
+12. Q[band, Performance.requires.participation, Recording.requires.equipment](Performance.requires.participation == true → Negation(Performance.requires.participation, Recording.requires.equipment))
+13. Q[band, Studio.provides.acoustic.environment, Band.is.recording.in.studio](Studio.provides.acoustic.environment == true → Negation(Studio.provides.acoustic.environment, Band.is.recording.in.studio))
+14. Q[band, Band.members.are.participants, Band.activity.is_performance](Band.members.are.participants == true → Negation(Band.members.are.participants, Band.activity.is_performance))
+15. Q[band, Performance.is.a.type.of.activity, Recording.is.a.type.of.activity](Performance.is.a.type.of.activity == true → Negation(Performance.is.a.type.of.activity, Recording.is.a.type.of.activity))
+16. Q[band, Band.is.performing.in.studio, Band.recording.is_general](Band.is.performing.in.studio == true → Negation(Band.is.performing.in.studio, Band.recording.is_general))
+17. Q[band, Band.guitar.is_played, Band.activity.is_performance](Band.guitar.is_played == true → Negation(Band.guitar.is_played, Band.activity.is_performance))
+18. Q[band, Band.singing.is_present, Band.activity.is_performance](Band.singing.is_present == true → Negation(Band.singing.is_present, Band.activity.is_performance))
+19. Q[band, Band.recording.is_activity, Band.performance.requires.participation](Band.recording.is_activity == true → Negation(Band.recording.is_activity, Band.performance.requires.participation))
+20. Q[band, Recording.is.audio.production, Band.is.recording.in.studio](Recording.is.audio.production == true → Negation(Recording.is.audio.production, Band.is.recording.in.studio))
+21. Q[band, Band.is.recording.in.studio, Band.activity.is_performance](Band.is.recording.in.studio == true → Negation(Band.is.recording.in.studio, Band.activity.is_performance))
+22. Q[band, Band.performance.is_active, Band.recording.is.a.type.of.activity](Band.performance.is_active == true → Negation(Band.performance.is_active, Band.recording.is.a.type.of.activity))
+23. Q[band, Band.singing.is.present, Band.recording.is.a.type.of.activity](Band.singing.is.present == true → Negation(Band.singing.is.present, Band.recording.is.a.type.of.activity))
+24. Q[band, Band.guitar.is_played, Band.recording.is.a.type.of.activity](Band.guitar.is_played == true → Negation(Band.guitar.is_played, Band.recording.is.a.type.of.activity))
+25. Q[band, Band.activity.is_performance, Band.recording.is_general](Band.activity.is_performance == true → Negation(Band.activity.is_performance, Band.recording.is_general))
+26. Q[band, Performance.involves.singing, Band.recording.is_activity](Performance.involves.singing == true → Negation(Performance.involves.singing, Band.recording.is_activity))
+27. Q[band, Performance.involves.playing, Band.recording.is_activity](Performance.involves.playing == true → Negation(Performance.involves.playing, Band.recording.is_activity))
+28. Q[band, Band.is.performing.in.studio, Band.recording.is_activity](Band.is.performing.in.studio == true → Negation(Band.is.performing.in.studio, Band.recording.is_activity))
+29. Q[band, Band.recording.is_activity, Band.performance.is.distinct.from.recording](Band.recording.is_activity == true → Negation(Band.recording.is_activity, Band.performance.is.distinct.from.recording))
+30. Q[band, Band.is.group, Band.recording.is_general](Band.is.group == true → Negation(Band.is.group, Band.recording.is_general))

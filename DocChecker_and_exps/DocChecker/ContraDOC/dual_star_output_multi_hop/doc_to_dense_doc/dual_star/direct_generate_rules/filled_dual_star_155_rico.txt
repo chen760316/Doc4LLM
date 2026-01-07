@@ -1,0 +1,82 @@
+Predicates:
+Dragon.label != "Location"
+Dragon.label != The Plan.label
+Dragon.label = "Location"
+Dragon.name != "Dragon"
+Dragon.name != The Plan.name
+Dragon.name = "Dragon"
+Dragon.status != "dangerous"
+Dragon.status = "dangerous"
+None_ML(the rats___underground rooms.attrs, the rats___Dragon.attrs)
+None_ML(underground rooms.attrs, regular rats.attrs)
+The Plan.label != "Plan"
+The Plan.label = "Plan"
+The Plan.name != "The Plan"
+The Plan.name = "The Plan"
+regular rats.label != "Illusion"
+regular rats.label != Dragon.label
+regular rats.label != The Plan.label
+regular rats.label = "Illusion"
+regular rats.name != "regular rats"
+regular rats.name != Dragon.name
+regular rats.name != The Plan.name
+regular rats.name = "regular rats"
+the rats.label != "Group"
+the rats.label != Dragon.label
+the rats.label != The Plan.label
+the rats.label != regular rats.label
+the rats.label != underground rooms.label
+the rats.label = "Group"
+the rats.name != "the rats"
+the rats.name != Dragon.name
+the rats.name != The Plan.name
+the rats.name != regular rats.name
+the rats.name != underground rooms.name
+the rats.name = "the rats"
+the rats___Dragon.contradiction_type != the rats___The Plan.contradiction_type
+the rats___Dragon.contradiction_type = "Causal"
+the rats___Dragon.reason = "too dangerous to work in the open without any place to hide"
+the rats___Dragon.relationship != the rats___The Plan.relationship
+the rats___Dragon.relationship = "The rats need to drug Dragon to move the Frisby home."
+the rats___Dragon.source_id = "3488771835_6"
+the rats___The Plan.contradiction_type = "Relation"
+the rats___The Plan.relationship = "The rats have not yet had time to move everything needed for The Plan."
+the rats___The Plan.source_id = "3488771835_6"
+the rats___The Plan.status = "incomplete"
+the rats___regular rats.contradiction_type != the rats___Dragon.contradiction_type
+the rats___regular rats.contradiction_type = "Relation"
+the rats___regular rats.method = "placing rubbish in remaining rooms"
+the rats___regular rats.relationship != the rats___Dragon.relationship
+the rats___regular rats.relationship != the rats___The Plan.relationship
+the rats___regular rats.relationship = "The rats create the illusion that they are just regular rats."
+the rats___regular rats.source_id = "3488771835_6"
+the rats___underground rooms.contradiction_type != the rats___Dragon.contradiction_type
+the rats___underground rooms.contradiction_type = "Relation"
+the rats___underground rooms.method != the rats___regular rats.method
+the rats___underground rooms.method = "destruction"
+the rats___underground rooms.relationship != the rats___Dragon.relationship
+the rats___underground rooms.relationship != the rats___The Plan.relationship
+the rats___underground rooms.relationship != the rats___regular rats.relationship
+the rats___underground rooms.relationship = "The rats manage to destroy their underground rooms."
+the rats___underground rooms.source_id = "3488771835_6"
+underground rooms.label != "Location"
+underground rooms.label != The Plan.label
+underground rooms.label != regular rats.label
+underground rooms.label = "Location"
+underground rooms.name != "underground rooms"
+underground rooms.name != Dragon.name
+underground rooms.name != The Plan.name
+underground rooms.name != regular rats.name
+underground rooms.name = "underground rooms"
+
+Rules:
+Q[the rats,the rats] (regular rats.name != "regular rats" ∧ underground rooms.name != The Plan.name ∧ None_ML(underground rooms.attrs, regular rats.attrs) ∧ the rats___underground rooms.contradiction_type = "Relation" ∧ regular rats.label != Dragon.label → underground rooms.name != regular rats.name)
+Q[the rats,the rats] (regular rats.name != Dragon.name ∧ the rats___underground rooms.relationship != the rats___Dragon.relationship ∧ the rats___Dragon.contradiction_type = "Causal" ∧ None_ML(the rats___underground rooms.attrs, the rats___Dragon.attrs) → Dragon.name = "Dragon")
+Q[the rats,the rats] (the rats___underground rooms.method != the rats___regular rats.method ∧ underground rooms.label != The Plan.label → regular rats.label != "Illusion")
+Q[the rats,the rats] (the rats___The Plan.status = "incomplete" ∧ regular rats.name != "regular rats" ∧ regular rats.label = "Illusion" ∧ Dragon.label != The Plan.label ∧ the rats___underground rooms.contradiction_type != the rats___Dragon.contradiction_type ∧ regular rats.label != The Plan.label → the rats___Dragon.contradiction_type != the rats___The Plan.contradiction_type)
+Q[the rats,the rats] (the rats.name != The Plan.name ∧ underground rooms.name = "underground rooms" ∧ None_ML(the rats___underground rooms.attrs, the rats___Dragon.attrs) → regular rats.name != The Plan.name)
+Q[the rats,the rats] (Dragon.label = "Location" ∧ the rats.label != The Plan.label ∧ underground rooms.label = "Location" ∧ the rats.label = "Group" ∧ The Plan.label != "Plan" ∧ the rats___underground rooms.contradiction_type = "Relation" → the rats.name != The Plan.name)
+Q[the rats,the rats] (the rats___regular rats.relationship != the rats___Dragon.relationship ∧ regular rats.label != "Illusion" ∧ the rats___The Plan.source_id = "3488771835_6" → the rats___underground rooms.method = "destruction")
+Q[the rats,the rats] (underground rooms.name = "underground rooms" ∧ the rats___regular rats.relationship != the rats___Dragon.relationship ∧ the rats___Dragon.source_id = "3488771835_6" ∧ the rats___underground rooms.contradiction_type = "Relation" → the rats___The Plan.source_id = "3488771835_6")
+Q[the rats,the rats] (the rats___underground rooms.method != the rats___regular rats.method ∧ the rats___underground rooms.method = "destruction" → The Plan.label = "Plan")
+Q[the rats,the rats] (the rats___underground rooms.method = "destruction" ∧ the rats___underground rooms.relationship != the rats___Dragon.relationship ∧ the rats___regular rats.relationship = "The rats create the illusion that they are just regular rats." ∧ the rats___regular rats.contradiction_type = "Relation" ∧ the rats___The Plan.source_id = "3488771835_6" → the rats.label != Dragon.label)

@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 688)
+S1: Some one is drinking too much and is drunk.
+S2: One group of women and a group of men drinking and having a good time.
+
+Predicates:
+1. Person.drinking
+2. Person.drunk
+3. GroupWomen.drinking
+4. GroupWomen.havingGoodTime
+5. GroupMen.drinking
+6. GroupMen.havingGoodTime
+7. Activity.social
+8. Activity.drinking
+9. Consequence.negative
+10. Consequence.positive
+11. Event.drinkingTooMuch
+12. Event.drunk
+13. SocialActivity.enjoyment
+14. SocialActivity.group
+15. Person.negativeConsequence
+16. Person.positiveExperience
+17. GroupWomen.enjoyment
+18. GroupMen.enjoyment
+19. Relationship.drinking
+20. Relationship.socializing
+21. Meta.M_NLI(S1, S2)
+22. Meta.Causal(S1, S2)
+23. Meta.violate(S1, S2)
+24. Person.groupInteraction
+25. GroupWomen.positiveSocialActivity
+26. GroupMen.positiveSocialActivity
+27. Person.excessiveDrinking
+28. Event.socialGathering
+29. Activity.enjoyment
+30. Consequence.socialInteraction
+
+Rules:
+1. Q[Some, Person.drinking == true](Event.drinkingTooMuch → Causal(Some, Consequence.negative))
+2. Q[Some, Person.drunk == true](Event.drunk → Causal(Some, Consequence.negative))
+3. Q[Some, Person.negativeConsequence == true](Person.drunk → Causal(Some, Consequence.negative))
+4. Q[Some, Person.excessiveDrinking == true](Event.drinkingTooMuch → Causal(Some, Consequence.negative))
+5. Q[Some, GroupWomen.drinking == true](GroupWomen.havingGoodTime → Causal(Some, Consequence.positive))
+6. Q[Some, GroupMen.drinking == true](GroupMen.havingGoodTime → Causal(Some, Consequence.positive))
+7. Q[Some, Activity.social == true](GroupWomen.havingGoodTime → Causal(Some, Consequence.positive))
+8. Q[Some, Activity.drinking == true](GroupMen.havingGoodTime → Causal(Some, Consequence.positive))
+9. Q[Some, GroupWomen.enjoyment == true](GroupWomen.havingGoodTime → Causal(Some, Consequence.positive))
+10. Q[Some, GroupMen.enjoyment == true](GroupMen.havingGoodTime → Causal(Some, Consequence.positive))
+11. Q[Some, Relationship.drinking == true](Person.drunk → Causal(Some, Consequence.negative))
+12. Q[Some, Relationship.socializing == true](GroupWomen.havingGoodTime → Causal(Some, Consequence.positive))
+13. Q[Some, Event.socialGathering == true](GroupWomen.havingGoodTime → Causal(Some, Consequence.positive))
+14. Q[Some, Activity.enjoyment == true](GroupMen.havingGoodTime → Causal(Some, Consequence.positive))
+15. Q[Some, Person.groupInteraction == true](GroupWomen.havingGoodTime → Causal(Some, Consequence.positive))
+16. Q[Some, GroupWomen.positiveSocialActivity == true](GroupWomen.havingGoodTime → Causal(Some, Consequence.positive))
+17. Q[Some, GroupMen.positiveSocialActivity == true](GroupMen.havingGoodTime → Causal(Some, Consequence.positive))
+18. Q[Some, Person.positiveExperience == true](GroupWomen.havingGoodTime → Causal(Some, Consequence.positive))
+19. Q[Some, Person.positiveExperience == true](GroupMen.havingGoodTime → Causal(Some, Consequence.positive))
+20. Q[Some, Event.drinkingTooMuch == true](Person.drunk → Causal(Some, Consequence.negative))
+21. Q[Some, Person.negativeConsequence == true](Person.drinking → Causal(Some, Consequence.negative))
+22. Q[Some, GroupWomen.drinking == true](Activity.drinking → Causal(Some, Consequence.positive))
+23. Q[Some, GroupMen.drinking == true](Activity.drinking → Causal(Some, Consequence.positive))
+24. Q[Some, GroupWomen.havingGoodTime == true](Activity.social → Causal(Some, Consequence.positive))
+25. Q[Some, GroupMen.havingGoodTime == true](Activity.social → Causal(Some, Consequence.positive))
+26. Q[Some, Person.drinking == true](Activity.drinking → Causal(Some, Consequence.negative))
+27. Q[Some, Event.drunk == true](Person.drunk → Causal(Some, Consequence.negative))
+28. Q[Some, Person.excessiveDrinking == true](Event.drinkingTooMuch → Causal(Some, Consequence.negative))
+29. Q[Some, GroupWomen.havingGoodTime == true](SocialActivity.enjoyment → Causal(Some, Consequence.positive))
+30. Q[Some, GroupMen.havingGoodTime == true](SocialActivity.enjoyment → Causal(Some, Consequence.positive))

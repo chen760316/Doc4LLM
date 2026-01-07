@@ -1,0 +1,63 @@
+Source: dense_text.txt (Index 85)
+S1: Montero’s complaint raised four claims, two of which alleged Jones Act negligence, one of which alleged unseaworthiness, and one of which asserted a cause of action for maintenance and cure.
+S2: Montero maintains that this language is not broad enough to encompass his suit, which he alleges arose out 'the shoreside doctor’s negligence.'
+
+Predicates:
+1. Montero.claims
+2. Montero.JonesAct_negligence
+3. Montero.unseaworthiness
+4. Montero.maintenance_and_cure
+5. Montero.suit
+6. shoreside_doctor.negligence
+7. Montero.alleges
+8. Montero.language
+9. language.broad_enough
+10. Montero.complaint
+11. complaint.four_claims
+12. claims.two_JonesAct_negligence
+13. claims.one_unseaworthiness
+14. claims.one_maintenance_and_cure
+15. Montero.suit_based_on
+16. suit.based_on_doctor_negligence
+17. doctor.negligence.contradicts_claims
+18. claims.nature
+19. Montero.maintains
+20. language.not_broad_enough
+21. shoreside_doctor.negligence.allegation
+22. Montero.allegation
+23. allegation.arose_out_of
+24. Montero.claims_based_on
+25. claims_based_on.doctor_negligence
+26. Montero.suit_contradicts
+27. suit.contradicts.nature_of_claims
+28. claims.alleged
+29. claims.related_issues
+30. Montero.suit.implies
+
+Rules:
+1. Q[Montero, Montero.claims, Montero.suit](Montero.claims == "two_JonesAct_negligence" ∧ Montero.claims == "one_unseaworthiness" ∧ Montero.claims == "one_maintenance_and_cure" → Factual(Montero.claims, Montero.suit))
+2. Q[Montero, Montero.suit, shoreside_doctor.negligence](Montero.suit_based_on == "doctor_negligence" → Factual(Montero.suit, shoreside_doctor.negligence))
+3. Q[Montero, Montero.language, language.not_broad_enough](Montero.language == "not_broad_enough" → Factual(Montero.language, language.not_broad_enough))
+4. Q[Montero, Montero.maintains, claims.nature](Montero.maintains == "language.not_broad_enough" → Factual(Montero.maintains, claims.nature))
+5. Q[Montero, Montero.claims_based_on, claims.two_JonesAct_negligence](Montero.claims_based_on == "doctor_negligence" → Factual(Montero.claims_based_on, claims.two_JonesAct_negligence))
+6. Q[Montero, Montero.suit, claims.related_issues](Montero.suit == "based_on_doctor_negligence" → Factual(Montero.suit, claims.related_issues))
+7. Q[Montero, Montero.complaint, complaint.four_claims](Montero.complaint == "four_claims" → Factual(Montero.complaint, complaint.four_claims))
+8. Q[Montero, Montero.alleges, shoreside_doctor.negligence](Montero.alleges == "arose_out_of_doctor_negligence" → Factual(Montero.alleges, shoreside_doctor.negligence))
+9. Q[Montero, Montero.suit, Montero.claims](Montero.suit_based_on == "doctor_negligence" ∧ Montero.claims == "two_JonesAct_negligence" → Factual(Montero.suit, Montero.claims))
+10. Q[Montero, Montero.suit, Montero.language](Montero.suit == "based_on_doctor_negligence" ∧ Montero.language == "not_broad_enough" → Factual(Montero.suit, Montero.language))
+11. Q[Montero, Montero.claims, claims.alleged](Montero.claims == "two_JonesAct_negligence" ∧ Montero.claims == "one_unseaworthiness" → Factual(Montero.claims, claims.alleged))
+12. Q[Montero, Montero.suit, Montero.allegation](Montero.suit_based_on == "doctor_negligence" ∧ Montero.allegation == "arose_out_of" → Factual(Montero.suit, Montero.allegation))
+13. Q[Montero, Montero.maintains, language.broad_enough](Montero.maintains == "language.not_broad_enough" → Factual(Montero.maintains, language.broad_enough))
+14. Q[Montero, Montero.suit, claims.one_maintenance_and_cure](Montero.suit_based_on == "doctor_negligence" ∧ Montero.claims == "one_maintenance_and_cure" → Factual(Montero.suit, claims.one_maintenance_and_cure))
+15. Q[Montero, Montero.claims, claims.one_unseaworthiness](Montero.claims == "one_unseaworthiness" ∧ Montero.suit_based_on == "doctor_negligence" → Factual(Montero.claims, claims.one_unseaworthiness))
+16. Q[Montero, Montero.suit, Montero.complaint](Montero.suit_based_on == "doctor_negligence" ∧ Montero.complaint == "four_claims" → Factual(Montero.suit, Montero.complaint))
+17. Q[Montero, Montero.suit, claims.two_JonesAct_negligence](Montero.suit_based_on == "doctor_negligence" ∧ Montero.claims == "two_JonesAct_negligence" → Factual(Montero.suit, claims.two_JonesAct_negligence))
+18. Q[Montero, Montero.alleges, Montero.suit](Montero.alleges == "arose_out_of_doctor_negligence" ∧ Montero.suit == "based_on_doctor_negligence" → Factual(Montero.alleges, Montero.suit))
+19. Q[Montero, Montero.language, claims.nature](Montero.language == "not_broad_enough" ∧ Montero.claims == "two_JonesAct_negligence" → Factual(Montero.language, claims.nature))
+20. Q[Montero, Montero.suit, Montero.claims_based_on](Montero.suit_based_on == "doctor_negligence" ∧ Montero.claims_based_on == "two_JonesAct_negligence" → Factual(Montero.suit, Montero.claims_based_on))
+21. Q[Montero, Montero.suit, claims.related_issues](Montero.suit_based_on == "doctor_negligence" ∧ Montero.claims == "one_unseaworthiness" → Factual(Montero.suit, claims.related_issues))
+22. Q[Montero, Montero.maintains, Montero.suit](Montero.maintains == "language.not_broad_enough" ∧ Montero.suit == "based_on_doctor_negligence" → Factual(Montero.maintains, Montero.suit))
+23. Q[Montero, Montero.claims, Montero.suit_based_on](Montero.claims == "two_JonesAct_negligence" ∧ Montero.suit_based_on == "doctor_negligence" → Factual(Montero.claims, Montero.suit_based_on))
+24. Q[Montero, Montero.suit, Montero.allegation](Montero.suit_based_on == "doctor_negligence" ∧ Montero.allegation == "arose_out_of" → Factual(Montero.suit, Montero.allegation))
+25. Q[Montero, Montero.language, claims.two_JonesAct_negligence](Montero.language == "not_broad_enough" ∧ Montero.claims == "two_JonesAct_negligence" → Factual(Montero.language, claims.two_JonesAct_negligence))
+26. Q[Montero, Montero.suit, claims.one_unseaworthiness](Montero.suit_based_on == "doctor_negligence" ∧ Montero.claims == "one_unseaworthiness" → Factual

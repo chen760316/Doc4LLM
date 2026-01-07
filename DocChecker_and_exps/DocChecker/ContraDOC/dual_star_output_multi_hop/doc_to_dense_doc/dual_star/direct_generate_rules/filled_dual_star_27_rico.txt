@@ -1,0 +1,34 @@
+Predicates:
+Children.count != 3
+Children.count < 8
+Children.count = 3
+Children.count > -2
+Children.label != "Children"
+Children.label != Father.label
+Children.label = "Children"
+Children.name != "Children"
+Children.name != Father.name
+Children.name = "Children"
+Children___Father.contradiction_type = "Content"
+Children___Father.reason = "death of their mother"
+Children___Father.relationship = "The families in the village consider the children to be well-behaved and disciplined."
+Children___Father.source_id = "3488771876_2"
+Father.action != "encourages"
+Father.action = "encourages"
+Father.label != "Person"
+Father.label = "Person"
+Father.name != "Father"
+Father.name = "Father"
+None_ML(Children.attrs, Father.attrs)
+
+Rules:
+Q[Children,Children] (Children___Father.reason = "death of their mother" ∧ Father.label != "Person" ∧ Children.name != Father.name ∧ Children.count > -2 ∧ Children___Father.source_id = "3488771876_2" → Children.label != "Children")
+Q[Children,Children] (Children___Father.contradiction_type = "Content" ∧ Children.count > -2 ∧ Children.count = 3 ∧ Children.count != 3 ∧ Father.label = "Person" ∧ Children.name != "Children" → None_ML(Children.attrs, Father.attrs))
+Q[Children,Children] (None_ML(Children.attrs, Father.attrs) ∧ Children___Father.contradiction_type = "Content" → Father.action = "encourages")
+Q[Children,Children] (None_ML(Children.attrs, Father.attrs) ∧ Father.label = "Person" ∧ Children.label != Father.label ∧ Children.count = 3 → Children.label = "Children")
+Q[Children,Children] (Father.label != "Person" ∧ Children.label != Father.label ∧ Children___Father.relationship = "The families in the village consider the children to be well-behaved and disciplined." → Father.name != "Father")
+Q[Children,Children] (Children.name = "Children" ∧ Children___Father.reason = "death of their mother" ∧ Children.label != Father.label ∧ Children.count < 8 → Children.count > -2)
+Q[Children,Children] (Children.count != 3 ∧ Children.label = "Children" ∧ Children.label != Father.label ∧ Children.name != Father.name ∧ Children.count < 8 → Children.name = "Children")
+Q[Children,Children] (Father.name = "Father" ∧ Children.label != "Children" ∧ Father.action != "encourages" ∧ Children.label != Father.label ∧ Children___Father.contradiction_type = "Content" ∧ Father.label = "Person" → Children.name != "Children")
+Q[Children,Children] (Father.label = "Person" ∧ Children___Father.reason = "death of their mother" ∧ Father.action = "encourages" → Children___Father.contradiction_type = "Content")
+Q[Children,Children] (Children.count < 8 ∧ Father.action = "encourages" → Children___Father.reason = "death of their mother")

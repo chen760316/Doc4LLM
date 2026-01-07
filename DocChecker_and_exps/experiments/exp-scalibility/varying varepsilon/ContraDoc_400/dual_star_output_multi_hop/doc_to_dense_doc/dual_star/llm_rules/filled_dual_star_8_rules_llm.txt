@@ -1,0 +1,129 @@
+Predicates:
+1. Reports.location = "Boston"
+2. Reports.precipitation_amount = "modest"
+3. Rainfall.precipitation_rate = "0.40 in (1.0 cm) per hour"
+4. Rainfall.location = "Boston"
+5. Rainfall.date = "2023-10-01"
+6. Reports.source = "local news"
+7. Reports.timestamp = "2023-10-01T10:00:00Z"
+8. Rainfall.measurement_time = "1 hour"
+9. Reports.weather_condition = "rainy"
+10. Rainfall.total_amount = "0.40 in"
+11. Reports.forecast_accuracy = "high"
+12. Rainfall.unit = "inches"
+13. Reports.reported_by = "meteorologist"
+14. Rainfall.intensity = "moderate"
+15. Reports.region = "Northeast"
+16. Rainfall.event_type = "precipitation"
+17. Reports.severity = "low"
+18. Rainfall.timestamp = "2023-10-01T11:00:00Z"
+19. Reports.duration = "1 hour"
+20. Rainfall.source = "weather station"
+21. Reports.temperature = "60°F"
+22. Rainfall.humidity = "80%"
+23. Reports.wind_speed = "5 mph"
+24. Rainfall.forecasted_amount = "0.50 in"
+25. Reports.alert_level = "none"
+26. Rainfall.previous_amount = "0.20 in"
+27. Reports.update_frequency = "hourly"
+28. Rainfall.impact = "minimal"
+29. Reports.audience = "public"
+30. Rainfall.event_date = "2023-10-01"
+31. Reports.verified = "true"
+32. Rainfall.location_accuracy = "high"
+33. Reports.impact_assessment = "low"
+34. Rainfall.measurement_method = "gauge"
+35. Reports.uncertainty = "low"
+36. Rainfall.estimated_amount = "0.35 in"
+37. Reports.affected_areas = "urban"
+38. Rainfall.intensity_level = "moderate"
+39. Reports.recommendation = "stay indoors"
+40. Rainfall.event_duration = "1 hour"
+41. "Reports in Boston".weather_condition = "rainy"
+42. "Rainfall in Boston".precipitation_rate = "0.40 in (1.0 cm) per hour"
+43. "Reports in Boston".timestamp = "2023-10-01T10:00:00Z"
+44. "Rainfall in Boston".total_amount = "0.40 in"
+45. "Reports in Boston".source = "local news"
+46. "Rainfall in Boston".event_type = "precipitation"
+47. "Reports in Boston".forecast_accuracy = "high"
+48. "Rainfall in Boston".intensity = "moderate"
+49. "Reports in Boston".duration = "1 hour"
+50. "Rainfall in Boston".humidity = "80%"
+51. M_NLI(Reports.weather_condition, Rainfall.event_type)
+52. T(Reports.timestamp, Rainfall.timestamp, tau)
+53. tau(Reports.precipitation_amount, Rainfall.total_amount)
+54. violate(Reports, Rainfall)
+55. Factual(Reports, Rainfall)
+56. Causal(Reports, Rainfall)
+57. Numeric(Reports, Rainfall)
+58. Temporal(Reports, Rainfall)
+59. Content(Reports, Rainfall)
+60. Relation(Reports, Rainfall)
+61. M_NLI(Reports.source, Rainfall.source)
+62. T(Reports.location, Rainfall.location, tau)
+63. tau(Reports.intensity, Rainfall.intensity)
+64. violate(Reports.timestamp, Rainfall.timestamp)
+65. Factual(Reports.precipitation_amount, Rainfall.total_amount)
+66. Causal(Reports.forecast_accuracy, Rainfall.intensity)
+67. Numeric(Reports.duration, Rainfall.event_duration)
+68. Temporal(Reports.event_date, Rainfall.event_date)
+69. Content(Reports.impact_assessment, Rainfall.impact)
+70. Relation(Reports.audience, Rainfall.source)
+71. M_NLI(Reports.wind_speed, Rainfall.intensity)
+72. T(Reports.humidity, Rainfall.humidity, tau)
+73. tau(Reports.temperature, Rainfall.temperature)
+74. violate(Reports.update_frequency, Rainfall.measurement_method)
+75. Factual(Reports.alert_level, Rainfall.severity)
+76. Causal(Reports.verified, Rainfall.location_accuracy)
+77. Numeric(Reports.affected_areas, Rainfall.event_duration)
+78. Temporal(Reports.timestamp, Rainfall.measurement_time)
+79. Content(Reports.recommendation, Rainfall.impact)
+80. Relation(Reports.region, Rainfall.location)
+81. M_NLI(Reports.precipitation_rate, Rainfall.precipitation_rate)
+82. T(Reports.severity, Rainfall.intensity, tau)
+83. tau(Reports.source, Rainfall.source)
+84. violate(Reports.forecasted_amount, Rainfall.total_amount)
+85. Factual(Reports.intensity, Rainfall.intensity)
+86. Causal(Reports.impact_assessment, Rainfall.impact)
+87. Numeric(Reports.total_amount, Rainfall.previous_amount)
+88. Temporal(Reports.event_date, Rainfall.event_date)
+89. Content(Reports.update_frequency, Rainfall.measurement_method)
+90. Relation(Reports.location, Rainfall.location)
+91. M_NLI(Reports.timestamp, Rainfall.timestamp)
+92. T(Reports.precipitation_amount, Rainfall.total_amount, tau)
+93. tau(Reports.humidity, Rainfall.humidity)
+94. violate(Reports.wind_speed, Rainfall.intensity)
+95. Factual(Reports.alert_level, Rainfall.severity)
+96. Causal(Reports.verified, Rainfall.location_accuracy)
+97. Numeric(Reports.duration, Rainfall.event_duration)
+98. Temporal(Reports.timestamp, Rainfall.measurement_time)
+99. Content(Reports.recommendation, Rainfall.impact)
+100. Relation(Reports.region, Rainfall.location)
+violate(x0, y0)
+
+Rules:
+1. Q[Reports, Rainfall](Reports.location = "Boston" ∧ Reports.weather_condition = "rainy" → violate(Reports, Rainfall))
+2. Q[Reports, Rainfall](Reports.timestamp = "2023-10-01T10:00:00Z" ∧ Rainfall.timestamp = "2023-10-01T11:00:00Z" → violate(Reports, Rainfall))
+3. Q[Reports, Rainfall](Reports.precipitation_amount = "modest" ∧ Rainfall.total_amount = "0.40 in" → violate(Reports, Rainfall))
+4. Q[Reports, Rainfall](Reports.source = "local news" ∧ Rainfall.source = "weather station" → violate(Reports, Rainfall))
+5. Q[Reports, Rainfall](Reports.forecast_accuracy = "high" ∧ Rainfall.intensity = "moderate" → violate(Reports, Rainfall))
+6. Q[Reports, Rainfall](Reports.region = "Northeast" ∧ Rainfall.location = "Boston" → violate(Reports, Rainfall))
+7. Q[Reports, Rainfall](Reports.weather_condition = "rainy" ∧ Rainfall.event_type = "precipitation" ∧ Reports.timestamp = "2023-10-01T10:00:00Z" → violate(Reports, Rainfall))
+8. Q[Reports, Rainfall](Reports.precipitation_amount = "modest" ∧ Rainfall.total_amount = "0.40 in" ∧ Reports.severity = "low" → violate(Reports, Rainfall))
+9. Q[Reports, Rainfall](Reports.humidity = "80%" ∧ Rainfall.humidity = "80%" ∧ Reports.wind_speed = "5 mph" → violate(Reports, Rainfall))
+10. Q[Reports, Rainfall](Reports.alert_level = "none" ∧ Rainfall.intensity = "moderate" ∧ Reports.impact_assessment = "low" → violate(Reports, Rainfall))
+11. Q[Reports, Rainfall](Reports.timestamp = "2023-10-01T10:00:00Z" ∧ Rainfall.timestamp = "2023-10-01T11:00:00Z" ∧ Reports.duration = "1 hour" ∧ Rainfall.event_duration = "1 hour" → violate(Reports, Rainfall))
+12. Q[Reports, Rainfall](Reports.location = "Boston" ∧ Rainfall.location = "Boston" ∧ Reports.weather_condition = "rainy" ∧ Rainfall.event_type = "precipitation" → violate(Reports, Rainfall))
+13. Q[Reports, Rainfall](Reports.source = "local news" ∧ Rainfall.source = "weather station" ∧ Reports.forecast_accuracy = "high" ∧ Rainfall.intensity = "moderate" → violate(Reports, Rainfall))
+14. Q[Reports, Rainfall](Reports.precipitation_amount = "modest" ∧ Rainfall.total_amount = "0.40 in" ∧ Reports.timestamp = "2023-10-01T10:00:00Z" ∧ Rainfall.timestamp = "2023-10-01T11:00:00Z" → violate(Reports, Rainfall))
+15. Q[Reports, Rainfall](Reports.humidity = "80%" ∧ Rainfall.humidity = "80%" ∧ Reports.wind_speed = "5 mph" ∧ Rainfall.intensity = "moderate" → violate(Reports, Rainfall))
+16. Q[Reports, Rainfall](Reports.weather_condition = "rainy" ∧ Rainfall.event_type = "precipitation" ∧ Reports.severity = "low" ∧ Rainfall.intensity = "moderate" ∧ Reports.impact_assessment = "low" → violate(Reports, Rainfall))
+17. Q[Reports, Rainfall](Reports.timestamp = "2023-10-01T10:00:00Z" ∧ Rainfall.timestamp = "2023-10-01T11:00:00Z" ∧ Reports.duration = "1 hour" ∧ Rainfall.event_duration = "1 hour" ∧ Reports.location = "Boston" → violate(Reports, Rainfall))
+18. Q[Reports, Rainfall](Reports.forecast_accuracy = "high" ∧ Rainfall.intensity = "moderate" ∧ Reports.weather_condition = "rainy" ∧ Rainfall.event_type = "precipitation" ∧ Reports.source = "local news" → violate(Reports, Rainfall))
+19. Q[Reports, Rainfall](Reports.precipitation_amount = "modest" ∧ Rainfall.total_amount = "0.40 in" ∧ Reports.timestamp = "2023-10-01T10:00:00Z" ∧ Rainfall.timestamp = "2023-10-01T11:00:00Z" ∧ Reports.humidity = "80%" → violate(Reports, Rainfall))
+20. Q[Reports, Rainfall](Reports.location = "Boston" ∧ Rainfall.location = "Boston" ∧ Reports.weather_condition = "rainy" ∧ Rainfall.event_type = "precipitation" ∧ Reports.severity = "low" → violate(Reports, Rainfall))
+21. Q[Reports, Rainfall](Reports.timestamp = "2023-10-01T10:00:00Z" ∧ Rainfall.timestamp = "2023-10-01T11:00:00Z" ∧ Reports.duration = "1 hour" ∧ Rainfall.event_duration = "1 hour" ∧ Reports.source = "local news" ∧ Rainfall.source = "weather station" → violate(Reports, Rainfall))
+22. Q[Reports, Rainfall](Reports.weather_condition = "rainy" ∧ Rainfall.event_type = "precipitation" ∧ Reports.forecast_accuracy = "high" ∧ Rainfall.intensity = "moderate" ∧ Reports.humidity = "80%" → violate(Reports, Rainfall))
+23. Q[Reports, Rainfall](Reports.precipitation_amount = "modest" ∧ Rainfall.total_amount = "0.40 in" ∧ Reports.timestamp = "2023-10-01T10:00:00Z" ∧ Rainfall.timestamp = "2023-10-01T11:00:00Z" ∧ Reports.wind_speed = "5 mph" ∧ Rainfall.intensity = "moderate" → violate(Reports, Rainfall))
+24. Q[Reports, Rainfall](Reports.source = "local news" ∧ Rainfall.source = "weather station" ∧ Reports.forecast_accuracy = "high" ∧ Rainfall.intensity = "moderate" ∧ Reports.humidity = "80%" ∧ Rainfall.event_type = "precipitation" → violate(Reports, Rainfall))
+25. Q[Reports, Rainfall](Reports.weather_condition = "rainy" ∧ Rainfall.event_type = "precipitation" ∧ Reports.severity = "low"

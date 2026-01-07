@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 842)
+S1: A married couple on a bicycle date.
+S2: A person dressed in all black, with an exception of their shoes, white bandanna and white sunglasses stands by a bus stop.
+
+Predicates:
+1. Couple.on_bicycle
+2. Person.dressed_in_black
+3. Person.shoes_color.white
+4. Person.bandanna_color.white
+5. Person.sunglasses_color.white
+6. Person.at_bus_stop
+7. Married_couple.together
+8. Bicycle.date_activity
+9. Person.single
+10. Relationship.couple
+11. Relationship.indicates_lack_of_relation
+12. Entity.married_couple
+13. Entity.single_person
+14. Entity.bicycle_date
+15. Entity.bus_stop
+16. M_NLI(S1, S2)
+17. Relation(couple, single_person)
+18. violate(couple, single_person)
+19. Person.has_exception(shoes)
+20. Person.has_exception(bandanna)
+21. Person.has_exception(sunglasses)
+22. Couple.is_not_single
+23. Person.is_not_married
+24. Activity.bicycle_date
+25. Location.bus_stop
+26. Appearance.dressed_in_black
+27. Appearance.dressed_in_white
+28. Relationship.is_couple
+29. Relationship.is_single
+30. Activity.indicates_togetherness
+
+Rules:
+1. Q[married, x0, y0](Entity.married_couple == x0 ∧ Person.single == y0 → Relation(x0, y0))
+2. Q[married, x0, y0](Married_couple.together == true ∧ Person.is_not_married == y0 → Relation(x0, y0))
+3. Q[bicycle, x0, y0](Entity.bicycle_date == x0 ∧ Person.at_bus_stop == y0 → Relation(x0, y0))
+4. Q[couple, x0, y0](Couple.on_bicycle == x0 ∧ Person.single == y0 → Relation(x0, y0))
+5. Q[couple, x0, y0](Relationship.is_couple == x0 ∧ Person.is_not_married == y0 → Relation(x0, y0))
+6. Q[couple, x0, y0](Couple.is_not_single == x0 ∧ Person.single == y0 → Relation(x0, y0))
+7. Q[date, x0, y0](Activity.bicycle_date == x0 ∧ Person.at_bus_stop == y0 → Relation(x0, y0))
+8. Q[date, x0, y0](Activity.indicates_togetherness == x0 ∧ Person.is_not_married == y0 → Relation(x0, y0))
+9. Q[person, x0, y0](Entity.single_person == y0 ∧ Person.dressed_in_black == x0 → Relation(x0, y0))
+10. Q[person, x0, y0](Person.single == y0 ∧ Appearance.dressed_in_black == x0 → Relation(x0, y0))
+11. Q[person, x0, y0](Person.at_bus_stop == y0 ∧ Appearance.dressed_in_black == x0 → Relation(x0, y0))
+12. Q[person, x0, y0](Person.dressed_in_black == x0 ∧ Person.is_not_married == y0 → Relation(x0, y0))
+13. Q[couple, x0, y0](Relationship.indicates_lack_of_relation == true ∧ Person.single == y0 → Relation(x0, y0))
+14. Q[couple, x0, y0](Couple.on_bicycle == x0 ∧ Person.dressed_in_black == y0 → Relation(x0, y0))
+15. Q[couple, x0, y0](Married_couple.together == true ∧ Person.at_bus_stop == y0 → Relation(x0, y0))
+16. Q[activity, x0, y0](Activity.bicycle_date == x0 ∧ Person.is_not_married == y0 → Relation(x0, y0))
+17. Q[appearance, x0, y0](Appearance.dressed_in_black == x0 ∧ Person.single == y0 → Relation(x0, y0))
+18. Q[appearance, x0, y0](Appearance.dressed_in_black == x0 ∧ Person.at_bus_stop == y0 → Relation(x0, y0))
+19. Q[relationship, x0, y0](Relationship.is_couple == x0 ∧ Person.is_not_married == y0 → Relation(x0, y0))
+20. Q[relationship, x0, y0](Relationship.indicates_lack_of_relation == true ∧ Person.single == y0 → Relation(x0, y0))
+21. Q[shoes, x0, y0](Person.shoes_color.white == true ∧ Person.single == y0 → Relation(x0, y0))
+22. Q[bandanna, x0, y0](Person.bandanna_color.white == true ∧ Person.single == y0 → Relation(x0, y0))
+23. Q[sunglasses, x0, y0](Person.sunglasses_color.white == true ∧ Person.single == y0 → Relation(x0, y0))
+24. Q[location, x0, y0](Location.bus_stop == y0 ∧ Person.dressed_in_black == x0 → Relation(x0, y0))
+25. Q[activity, x0, y0](Activity.indicates_togetherness == x0 ∧ Person.is_not_married == y0 → Relation(x0, y0))
+26. Q[couple, x0, y0](Couple.on_bicycle == x0 ∧ Person.dressed_in_black == y0 → Relation(x0, y0))
+27. Q[entity, x0, y0](Entity.married_couple == x0 ∧ Entity.single_person == y0 → Relation(x0, y0))
+28. Q[entity, x0, y0](Entity.bicycle_date == x0 ∧ Entity.bus_stop == y0 → Relation(x0, y0))
+29. Q[relationship, x0, y0](Relationship.is_single == y0 ∧ Relationship.is_couple == x0 → Relation(x0, y0))
+30. Q[violate, x0, y0](violate(couple, single_person) == true ∧ Person.single == y0 → Relation(x0, y0))

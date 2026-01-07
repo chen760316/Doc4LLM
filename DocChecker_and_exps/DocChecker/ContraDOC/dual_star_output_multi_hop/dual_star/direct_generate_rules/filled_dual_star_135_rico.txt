@@ -1,0 +1,34 @@
+Predicates:
+Judas Iscariot.label != "Person"
+Judas Iscariot.label != Mary.label
+Judas Iscariot.label = "Person"
+Judas Iscariot.name != "Judas Iscariot"
+Judas Iscariot.name != Mary.name
+Judas Iscariot.name = "Judas Iscariot"
+Judas Iscariot.relationship != "Objector"
+Judas Iscariot.relationship = "Objector"
+Judas Iscariot.status != "Disciple"
+Judas Iscariot.status = "Disciple"
+Judas Iscariot___Mary.amount = "300 denarii"
+Judas Iscariot___Mary.context = "Concern for money"
+Judas Iscariot___Mary.doc_id = "3489738297_5"
+Judas Iscariot___Mary.reason = "Financial concern"
+Judas Iscariot___Mary.relationship = "Judas objects to Mary's act of anointing Jesus."
+Judas Iscariot___Mary.suggestion = "Sell perfume for the poor"
+Mary.label != "Child"
+Mary.label = "Child"
+Mary.name != "Mary"
+Mary.name = "Mary"
+None_ML(Mary.attrs, Judas Iscariot.attrs)
+
+Rules:
+Q[Judas Iscariot,Judas Iscariot] (None_ML(Mary.attrs, Judas Iscariot.attrs) ∧ Judas Iscariot___Mary.doc_id = "3489738297_5" ∧ Judas Iscariot.relationship != "Objector" ∧ Judas Iscariot___Mary.reason = "Financial concern" → Mary.name = "Mary")
+Q[Judas Iscariot,Judas Iscariot] (Judas Iscariot___Mary.relationship = "Judas objects to Mary's act of anointing Jesus." ∧ Judas Iscariot___Mary.doc_id = "3489738297_5" ∧ Mary.name = "Mary" → Judas Iscariot.name != Mary.name)
+Q[Judas Iscariot,Judas Iscariot] (Mary.label != "Child" ∧ Judas Iscariot.relationship = "Objector" → Judas Iscariot___Mary.context = "Concern for money")
+Q[Judas Iscariot,Judas Iscariot] (Judas Iscariot___Mary.amount = "300 denarii" ∧ Judas Iscariot.name = "Judas Iscariot" ∧ Judas Iscariot___Mary.context = "Concern for money" ∧ Judas Iscariot.label = "Person" ∧ Judas Iscariot.status = "Disciple" → Judas Iscariot___Mary.relationship = "Judas objects to Mary's act of anointing Jesus.")
+Q[Judas Iscariot,Judas Iscariot] (Mary.name = "Mary" ∧ Judas Iscariot___Mary.reason = "Financial concern" ∧ Judas Iscariot.name = "Judas Iscariot" ∧ Judas Iscariot.status = "Disciple" ∧ Judas Iscariot___Mary.amount = "300 denarii" ∧ Judas Iscariot___Mary.context = "Concern for money" → Mary.name != "Mary")
+Q[Judas Iscariot,Judas Iscariot] (Judas Iscariot.label != "Person" ∧ Judas Iscariot___Mary.relationship = "Judas objects to Mary's act of anointing Jesus." ∧ Judas Iscariot.relationship != "Objector" → Judas Iscariot.name = "Judas Iscariot")
+Q[Judas Iscariot,Judas Iscariot] (Judas Iscariot.status != "Disciple" ∧ Judas Iscariot.label != Mary.label ∧ Judas Iscariot.relationship != "Objector" ∧ Judas Iscariot___Mary.relationship = "Judas objects to Mary's act of anointing Jesus." → Judas Iscariot.label = "Person")
+Q[Judas Iscariot,Judas Iscariot] (Judas Iscariot.relationship != "Objector" ∧ Judas Iscariot.label != Mary.label ∧ Judas Iscariot___Mary.context = "Concern for money" ∧ Mary.name != "Mary" ∧ Judas Iscariot___Mary.suggestion = "Sell perfume for the poor" ∧ Judas Iscariot.name = "Judas Iscariot" → Judas Iscariot.status = "Disciple")
+Q[Judas Iscariot,Judas Iscariot] (Judas Iscariot.relationship != "Objector" ∧ Mary.name != "Mary" → Judas Iscariot___Mary.suggestion = "Sell perfume for the poor")
+Q[Judas Iscariot,Judas Iscariot] (Judas Iscariot.status = "Disciple" ∧ Judas Iscariot.name = "Judas Iscariot" ∧ Mary.label = "Child" ∧ Judas Iscariot.label = "Person" ∧ Judas Iscariot.relationship = "Objector" → Judas Iscariot.label != Mary.label)

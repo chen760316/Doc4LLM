@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 74)
+S1: Elsa Pataky is a Spanish model, actress, and film producer.
+S2: Elsa Pataky is Spanish and Asian.
+
+Predicates:
+1. Elsa_Pataky.nationality = Spanish
+2. Elsa_Pataky.profession = model
+3. Elsa_Pataky.profession = actress
+4. Elsa_Pataky.profession = film_producer
+5. Elsa_Pataky.ethnicity = Asian
+6. M_NLI(S1, S2)
+7. Factual(Elsa_Pataky, Spanish)
+8. Factual(Elsa_Pataky, Asian)
+9. violate(Elsa_Pataky, Asian)
+10. Elsa_Pataky.isSpanish = true
+11. Elsa_Pataky.isAsian = true
+12. Elsa_Pataky.hasProfession(model) = true
+13. Elsa_Pataky.hasProfession(actress) = true
+14. Elsa_Pataky.hasProfession(film_producer) = true
+15. "is_a".relationship = nationality
+16. "is_a".relationship = profession
+17. "is_a".relationship = ethnicity
+18. Spanish.model = Elsa_Pataky
+19. Asian.model = Elsa_Pataky
+20. "contradicts".relationship = nationality_and_ethnicity
+21. "contradicts".attribute = Asian
+22. "contradicts".attribute = Spanish
+23. Elsa_Pataky.hasNationality = Spanish
+24. Elsa_Pataky.hasEthnicity = Asian
+25. "has".relationship = profession
+26. "has".relationship = nationality
+27. "has".relationship = ethnicity
+28. Elsa_Pataky.isModel = true
+29. Elsa_Pataky.isActress = true
+30. Elsa_Pataky.isFilmProducer = true
+
+Rules:
+1. Q[Elsa Pataky, x0, y0](Elsa_Pataky.nationality == "Spanish" → Factual(Elsa_Pataky, Asian))
+2. Q[Elsa Pataky, x0, y0](Elsa_Pataky.isSpanish = true → Factual(Elsa_Pataky, Asian))
+3. Q[Elsa Pataky, x0, y0](Factual(Elsa_Pataky, Spanish) → Factual(Elsa_Pataky, Asian))
+4. Q[Elsa Pataky, x0, y0](Elsa_Pataky.hasNationality = Spanish → Factual(Elsa_Pataky, Asian))
+5. Q[Elsa Pataky, x0, y0](Elsa_Pataky.ethnicity = Asian → Factual(Elsa_Pataky, Spanish))
+6. Q[Elsa Pataky, x0, y0](M_NLI(S1, S2) → Factual(Elsa_Pataky, Asian))
+7. Q[Elsa Pataky, x0, y0](Elsa_Pataky.isAsian = true → Factual(Elsa_Pataky, Spanish))
+8. Q[Elsa Pataky, x0, y0](Elsa_Pataky.hasEthnicity = Asian → Factual(Elsa_Pataky, Spanish))
+9. Q[Elsa Pataky, x0, y0](Factual(Elsa_Pataky, Asian) → violate(Elsa_Pataky, Asian))
+10. Q[Elsa Pataky, x0, y0](Elsa_Pataky.nationality == "Spanish" ∧ Elsa_Pataky.ethnicity = Asian → Factual(Elsa_Pataky, Asian))
+11. Q[Elsa Pataky, x0, y0](Elsa_Pataky.isSpanish = true ∧ Elsa_Pataky.isAsian = true → Factual(Elsa_Pataky, Asian))
+12. Q[Elsa Pataky, x0, y0](Elsa_Pataky.hasNationality = Spanish ∧ Elsa_Pataky.hasEthnicity = Asian → Factual(Elsa_Pataky, Asian))
+13. Q[Elsa Pataky, x0, y0](Elsa_Pataky.nationality == "Spanish" ∧ Elsa_Pataky.nationality != "Asian" → Factual(Elsa_Pataky, Asian))
+14. Q[Elsa Pataky, x0, y0](Elsa_Pataky.isSpanish = true ∧ Elsa_Pataky.isAsian = false → Factual(Elsa_Pataky, Asian))
+15. Q[Elsa Pataky, x0, y0](Elsa_Pataky.hasNationality = Spanish ∧ Elsa_Pataky.hasEthnicity != Asian → Factual(Elsa_Pataky, Asian))
+16. Q[Elsa Pataky, x0, y0](Factual(Elsa_Pataky, Spanish) ∧ Factual(Elsa_Pataky, Asian) → violate(Elsa_Pataky, Asian))
+17. Q[Elsa Pataky, x0, y0](Elsa_Pataky.nationality == "Spanish" ∧ Elsa_Pataky.ethnicity == "Asian" → Factual(Elsa_Pataky, Asian))
+18. Q[Elsa Pataky, x0, y0](Elsa_Pataky.isSpanish = true ∧ Elsa_Pataky.hasEthnicity = Asian → Factual(Elsa_Pataky, Asian))
+19. Q[Elsa Pataky, x0, y0](Elsa_Pataky.hasNationality = Spanish ∧ Elsa_Pataky.isAsian = true → Factual(Elsa_Pataky, Asian))
+20. Q[Elsa Pataky, x0, y0](Elsa_Pataky.nationality == "Spanish" ∧ Elsa_Pataky.hasEthnicity = Asian → Factual(Elsa_Pataky, Asian))
+21. Q[Elsa Pataky, x0, y0](Elsa_Pataky.isSpanish = true ∧ Elsa_Pataky.hasNationality = Spanish → Factual(Elsa_Pataky, Asian))
+22. Q[Elsa Pataky, x0, y0](Elsa_Pataky.hasEthnicity = Asian ∧ Elsa_Pataky.isSpanish = false → Factual(Elsa_Pataky, Asian))
+23. Q[Elsa Pataky, x0, y0](Factual(Elsa_Pataky, Spanish) ∧ violate(Elsa_Pataky, Asian) → Factual(Elsa_Pataky, Asian))
+24. Q[Elsa Pataky, x0, y0](Elsa_Pataky.nationality == "Spanish" ∧ Elsa_Pataky.isAsian = true → Factual(Elsa_Pataky, Asian))
+25. Q[Elsa Pataky, x0, y0](Elsa_Pataky.hasNationality = Spanish ∧ Elsa_Pataky.isAsian = true → Factual(Elsa_Pataky, Asian))
+26. Q[Elsa Pataky, x0, y0](Elsa_Pataky.isSpanish = true ∧ Elsa_Pataky.hasEthnicity = Asian → Factual(Elsa_Pataky, Asian))
+27. Q[Elsa Pataky, x0, y0](Elsa_Pataky.nationality == "Spanish" ∧ Elsa_Pataky.isAsian = true → Factual(Elsa_Pataky, Asian))
+28. Q[Elsa Pataky, x0, y0](Elsa_Pataky.hasNationality = Spanish ∧ Elsa_Pataky.isAsian = true → Factual(Elsa_Pataky, Asian))
+29. Q[Elsa Pataky, x0, y0](Elsa_Pataky.isSpanish = true ∧ Elsa_Pataky.hasEthnicity = Asian → Factual(Elsa_Pataky, Asian))
+30. Q[Elsa Pataky, x0, y0](Elsa_Pataky.nationality == "Spanish" ∧ Elsa_Pataky.ethnicity == Asian → Factual(Elsa_Pataky, Asian))

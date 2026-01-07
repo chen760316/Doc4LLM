@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 876)
+S1: C o n c l u d e s t h e G l o b e : S h e ' s m o r e t h a n a p e r f e c t 1 0 !
+S2: T h e G l o b e f e e l s s h e i s m o r e t h a n a p e r f e c t 1 0 .
+
+Predicates:
+1. S1.statement
+2. S2.statement
+3. S1.subjective
+4. S2.subjective
+5. S1.definitive
+6. S2.definitive
+7. S1.opinion
+8. S2.opinion
+9. S1.feels
+10. S2.feels
+11. S1.contradicts(S2)
+12. S2.contradicts(S1)
+13. S1.quality
+14. S2.quality
+15. S1.perfect_score
+16. S2.perfect_score
+17. S1.subjective_opinion
+18. S2.subjective_opinion
+19. S1.assertion
+20. S2.assertion
+21. S1.positive_evaluation
+22. S2.positive_evaluation
+23. M_NLI(S1, S2)
+24. Negation(S1, S2)
+25. violate(S1, S2)
+26. S1.evaluation
+27. S2.evaluation
+28. S1.comparison
+29. S2.comparison
+30. S1.emotional_response
+
+Rules:
+1. Q[The Globe, S1.statement, S2.statement](S1.definitive == true → Negation(S1.statement, S2.statement))
+2. Q[The Globe, S1.subjective, S2.subjective](S1.subjective == false → Negation(S1.subjective, S2.subjective))
+3. Q[The Globe, S1.opinion, S2.opinion](S1.opinion == false → Negation(S1.opinion, S2.opinion))
+4. Q[The Globe, S1.feels, S2.feels](S1.feels == false → Negation(S1.feels, S2.feels))
+5. Q[The Globe, S1.definitive, S2.definitive](S1.definitive == true ∧ S2.definitive == false → Negation(S1.definitive, S2.definitive))
+6. Q[The Globe, S1.quality, S2.quality](S1.quality == "more than a perfect 10" ∧ S2.quality == "perfect 10" → Negation(S1.quality, S2.quality))
+7. Q[The Globe, S1.perfect_score, S2.perfect_score](S1.perfect_score == "more than 10" ∧ S2.perfect_score == "10" → Negation(S1.perfect_score, S2.perfect_score))
+8. Q[The Globe, S1.subjective_opinion, S2.subjective_opinion](S1.subjective_opinion == false ∧ S2.subjective_opinion == true → Negation(S1.subjective_opinion, S2.subjective_opinion))
+9. Q[The Globe, S1.assertion, S2.assertion](S1.assertion == true ∧ S2.assertion == false → Negation(S1.assertion, S2.assertion))
+10. Q[The Globe, S1.positive_evaluation, S2.positive_evaluation](S1.positive_evaluation == true ∧ S2.positive_evaluation == false → Negation(S1.positive_evaluation, S2.positive_evaluation))
+11. Q[The Globe, S1.evaluation, S2.evaluation](S1.evaluation == "more than perfect" ∧ S2.evaluation == "perfect" → Negation(S1.evaluation, S2.evaluation))
+12. Q[The Globe, S1.comparison, S2.comparison](S1.comparison == "greater than 10" ∧ S2.comparison == "equal to 10" → Negation(S1.comparison, S2.comparison))
+13. Q[The Globe, S1.emotional_response, S2.emotional_response](S1.emotional_response == "admiration" ∧ S2.emotional_response == "neutral" → Negation(S1.emotional_response, S2.emotional_response))
+14. Q[The Globe, S1.contradicts, S2.contradicts](S1.contradicts(S2) == true → Negation(S1.contradicts(S2), S2.contradicts(S1)))
+15. Q[The Globe, M_NLI(S1, S2), M_NLI(S2, S1)](M_NLI(S1, S2) == false → Negation(M_NLI(S1, S2), M_NLI(S2, S1)))
+16. Q[The Globe, S1.statement, S2.statement](S1.statement == "she's more than a perfect 10!" ∧ S2.statement == "she is a perfect 10" → Negation(S1.statement, S2.statement))
+17. Q[The Globe, S1.quality, S2.quality](S1.quality == "more than a perfect 10" ∧ S2.quality == "perfect 10" → Negation(S1.quality, S2.quality))
+18. Q[The Globe, S1.definitive, S2.subjective](S1.definitive == true ∧ S2.subjective == true → Negation(S1.definitive, S2.subjective))
+19. Q[The Globe, S1.opinion, S2.definitive](S1.opinion == true ∧ S2.definitive == true → Negation(S1.opinion, S2.definitive))
+20. Q[The Globe, S1.feels, S2.definitive](S1.feels == true ∧ S2.definitive == true → Negation(S1.feels, S2.definitive))
+21. Q[The Globe, S1.positive_evaluation, S2.quality](S1.positive_evaluation == true ∧ S2.quality == "perfect" → Negation(S1.positive_evaluation, S2.quality))
+22. Q[The Globe, S1.subjective, S2.definitive](S1.subjective == true ∧ S2.definitive == true → Negation(S1.subjective, S2.definitive))
+23. Q[The Globe, S1.evaluation, S2.evaluation](S1.evaluation == "more than perfect" ∧ S2.evaluation == "perfect" → Negation(S1.evaluation, S2.evaluation))
+24. Q[The Globe, S1.comparison, S2.comparison](S1.comparison == "greater than 10" ∧ S2.comparison == "equal to 10" → Negation(S1.comparison, S2.comparison))
+25. Q[The Globe, S1.subjective_opinion, S2.subjective_opinion](S1.subjective_opinion == true ∧ S2.subjective_opinion == false → Negation(S1.subjective_opinion, S2.subjective_opinion))
+26. Q[The Globe, S1.assertion, S2.assertion](S1.assertion == true ∧ S2.assertion == false → Negation(S1.assertion, S2.assertion))
+27. Q[The Globe, S1.quality, S2.quality](S1.quality == "more than a perfect 10" ∧ S2.quality == "perfect 10" → Negation(S1.quality, S2.quality))
+28. Q[The Globe, S1.emotional_response, S2.emotional_response](S1.emotional_response == "admiration" ∧ S2.emotional_response == "disappointment" → Negation(S1.emotional_response, S2.emotional_response))
+29. Q[The Globe, S1.statement, S2.statement](S1.statement == "she's more than a perfect 10!" ∧ S2.statement == "she is a perfect 10" → Negation(S1.statement, S2.statement))
+30. Q[The Globe, S1.definitive, S2.subjective](S1.definitive == true ∧ S2.subjective == true → Negation(S1.definitive, S2.subject

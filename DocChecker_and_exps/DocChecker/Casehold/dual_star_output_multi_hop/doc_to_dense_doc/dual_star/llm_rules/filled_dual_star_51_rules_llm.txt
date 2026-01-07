@@ -1,0 +1,134 @@
+Predicates:
+1. PNC.status = "suffered no damages"
+2. PNC.source_id = "19431"
+3. BB_T.status = "entitled to recover fees"
+4. BB_T.source_id = "19432"
+5. PNC.argues = "BB & T is not entitled to recover fees for its defenses."
+6. PNC.defenses = "did not enforce the terms of the Agreement"
+7. PNC.damages = "no damages"
+8. BB_T.fees = "recoverable"
+9. BB_T.defense_outcome = "successful"
+10. PNC.defense_outcome = "unsuccessful"
+11. PNC.recovery_status = "not entitled"
+12. BB_T.recovery_status = "entitled"
+13. PNC.agreement_terms = "not enforced"
+14. BB_T.agreement_terms = "enforced"
+15. PNC.argues_against = "BB & T's fee recovery"
+16. BB_T.argues_for = "fee recovery"
+17. PNC.damages_claimed = "none"
+18. BB_T.damages_claimed = "some"
+19. PNC.legal_outcome = "favorable"
+20. BB_T.legal_outcome = "unfavorable"
+21. PNC.defense_type = "invalid"
+22. BB_T.defense_type = "valid"
+23. PNC.legal_standing = "no standing"
+24. BB_T.legal_standing = "standing"
+25. PNC.evidence = "insufficient"
+26. BB_T.evidence = "sufficient"
+27. PNC.legal_argument = "strong"
+28. BB_T.legal_argument = "weak"
+29. PNC.case_status = "resolved"
+30. BB_T.case_status = "pending"
+31. PNC.legal_fees = "none"
+32. BB_T.legal_fees = "incurred"
+33. PNC.outcome = "dismissed"
+34. BB_T.outcome = "upheld"
+35. PNC.legal_claim = "rejected"
+36. BB_T.legal_claim = "accepted"
+37. PNC.legal_precedent = "not applicable"
+38. BB_T.legal_precedent = "applicable"
+39. PNC.legal_basis = "invalid"
+40. BB_T.legal_basis = "valid"
+41. M_NLI(PNC.argues, BB_T.argues)
+42. T(PNC.argues, BB_T.argues, Causal)
+43. tau(PNC.defenses, BB_T.defense_outcome)
+44. violate(PNC.argues, BB_T.argues)
+45. Factual(PNC.damages, BB_T.damages_claimed)
+46. Causal(PNC.defenses, BB_T.recovery_status)
+47. Numeric(PNC.damages_claimed, BB_T.damages_claimed)
+48. Temporal(PNC.case_status, BB_T.case_status)
+49. Relation(PNC.legal_outcome, BB_T.legal_outcome)
+50. Negation(PNC.status, BB_T.status)
+51. PNC.fees = "not recoverable"
+52. BB_T.fees = "recoverable"
+53. PNC.defense_validity = "invalid"
+54. BB_T.defense_validity = "valid"
+55. PNC.legal_position = "weak"
+56. BB_T.legal_position = "strong"
+57. PNC.breach_status = "no breach"
+58. BB_T.breach_status = "breach"
+59. PNC.legal_claim_status = "dismissed"
+60. BB_T.legal_claim_status = "upheld"
+61. PNC.evidence_strength = "weak"
+62. BB_T.evidence_strength = "strong"
+63. PNC.legal_argument_strength = "weak"
+64. BB_T.legal_argument_strength = "strong"
+65. PNC.case_outcome = "unfavorable"
+66. BB_T.case_outcome = "favorable"
+67. PNC.recovery_claim = "denied"
+68. BB_T.recovery_claim = "granted"
+69. PNC.legal_fees_status = "none"
+70. BB_T.legal_fees_status = "incurred"
+71. PNC.legal_outcome_status = "resolved"
+72. BB_T.legal_outcome_status = "pending"
+73. PNC.legal_precedent_status = "not applicable"
+74. BB_T.legal_precedent_status = "applicable"
+75. PNC.legal_basis_status = "invalid"
+76. BB_T.legal_basis_status = "valid"
+77. M_NLI(PNC.damages, BB_T.damages_claimed)
+78. T(PNC.defense_type, BB_T.defense_type, Relation)
+79. tau(PNC.argues_against, BB_T.argues_for)
+80. violate(PNC.damages_claimed, BB_T.damages_claimed)
+81. Factual(PNC.defense_outcome, BB_T.defense_outcome)
+82. Causal(PNC.legal_basis, BB_T.legal_basis)
+83. Numeric(PNC.legal_fees, BB_T.legal_fees)
+84. Temporal(PNC.legal_position, BB_T.legal_position)
+85. Relation(PNC.evidence, BB_T.evidence)
+86. Negation(PNC.case_status, BB_T.case_status)
+87. PNC.defense_outcome_status = "unsuccessful"
+88. BB_T.defense_outcome_status = "successful"
+89. PNC.legal_standing_status = "no standing"
+90. BB_T.legal_standing_status = "standing"
+91. PNC.evidence_status = "insufficient"
+92. BB_T.evidence_status = "sufficient"
+93. PNC.legal_argument_status = "weak"
+94. BB_T.legal_argument_status = "strong"
+95. PNC.case_resolution = "dismissed"
+96. BB_T.case_resolution = "upheld"
+97. PNC.legal_claim_outcome = "rejected"
+98. BB_T.legal_claim_outcome = "accepted"
+99. PNC.legal_precedent_outcome = "not applicable"
+100. BB_T.legal_precedent_outcome = "applicable"
+violate(x0, y0)
+
+Rules:
+1. Q[x0, y0](PNC.status = "suffered no damages" ∧ BB_T.status = "entitled to recover fees" → violate(x0, y0))
+2. Q[x0, y0](PNC.argues = "BB & T is not entitled to recover fees for its defenses." ∧ PNC.defenses = "did not enforce the terms of the Agreement" → violate(x0, y0))
+3. Q[x0, y0](PNC.damages = "no damages" ∧ BB_T.fees = "recoverable" ∧ PNC.recovery_status = "not entitled" → violate(x0, y0))
+4. Q[x0, y0](BB_T.defense_outcome = "successful" ∧ PNC.defense_outcome = "unsuccessful" ∧ BB_T.recovery_status = "entitled" → violate(x0, y0))
+5. Q[x0, y0](PNC.agreement_terms = "not enforced" ∧ BB_T.agreement_terms = "enforced" ∧ PNC.legal_outcome = "favorable" ∧ BB_T.legal_outcome = "unfavorable" → violate(x0, y0))
+6. Q[x0, y0](PNC.legal_claim = "rejected" ∧ BB_T.legal_claim = "accepted" ∧ PNC.legal_basis = "invalid" ∧ BB_T.legal_basis = "valid" ∧ PNC.legal_precedent = "not applicable" → violate(x0, y0))
+7. Q[x0, y0](PNC.defense_type = "invalid" ∧ BB_T.defense_type = "valid" → violate(x0, y0))
+8. Q[x0, y0](PNC.legal_standing = "no standing" ∧ BB_T.legal_standing = "standing" → violate(x0, y0))
+9. Q[x0, y0](PNC.evidence = "insufficient" ∧ BB_T.evidence = "sufficient" ∧ PNC.legal_argument = "strong" → violate(x0, y0))
+10. Q[x0, y0](PNC.case_status = "resolved" ∧ BB_T.case_status = "pending" → violate(x0, y0))
+11. Q[x0, y0](PNC.legal_fees = "none" ∧ BB_T.legal_fees = "incurred" ∧ PNC.legal_position = "weak" → violate(x0, y0))
+12. Q[x0, y0](PNC.outcome = "dismissed" ∧ BB_T.outcome = "upheld" ∧ PNC.legal_claim_status = "dismissed" → violate(x0, y0))
+13. Q[x0, y0](PNC.damages_claimed = "none" ∧ BB_T.damages_claimed = "some" ∧ PNC.evidence_strength = "weak" ∧ BB_T.evidence_strength = "strong" → violate(x0, y0))
+14. Q[x0, y0](PNC.legal_argument_strength = "weak" ∧ BB_T.legal_argument_strength = "strong" ∧ PNC.case_outcome = "unfavorable" → violate(x0, y0))
+15. Q[x0, y0](PNC.recovery_claim = "denied" ∧ BB_T.recovery_claim = "granted" ∧ PNC.legal_fees_status = "none" ∧ BB_T.legal_fees_status = "incurred" → violate(x0, y0))
+16. Q[x0, y0](PNC.legal_outcome_status = "resolved" ∧ BB_T.legal_outcome_status = "pending" → violate(x0, y0))
+17. Q[x0, y0](PNC.legal_precedent_status = "not applicable" ∧ BB_T.legal_precedent_status = "applicable" → violate(x0, y0))
+18. Q[x0, y0](PNC.legal_basis_status = "invalid" ∧ BB_T.legal_basis_status = "valid" ∧ PNC.legal_claim_outcome = "rejected" → violate(x0, y0))
+19. Q[x0, y0](M_NLI(PNC.argues, BB_T.argues) ∧ T(PNC.argues, BB_T.argues, Causal) → violate(x0, y0))
+20. Q[x0, y0](tau(PNC.defenses, BB_T.defense_outcome) ∧ violate(PNC.argues, BB_T.argues) → violate(x0, y0))
+21. Q[x0, y0](Factual(PNC.damages, BB_T.damages_claimed) ∧ Causal(PNC.defenses, BB_T.recovery_status) → violate(x0, y0))
+22. Q[x0, y0](Numeric(PNC.damages_claimed, BB_T.damages_claimed) ∧ Temporal(PNC.case_status, BB_T.case_status) → violate(x0, y0))
+23. Q[x0, y0](Relation(PNC.legal_outcome, BB_T.legal_outcome) ∧ Negation(PNC.status, BB_T.status) → violate(x0, y0))
+24. Q[x0, y0](PNC.defense_outcome_status = "unsuccessful" ∧ BB_T.defense_outcome_status = "successful" ∧ PNC.legal_standing_status = "no standing" → violate(x0, y0))
+25. Q[x0, y0](BB_T.legal_standing_status = "standing" ∧ PNC.evidence_status = "insufficient" ∧ BB_T.evidence_status = "sufficient" → violate(x0, y0))
+26. Q[x0, y0](PNC.legal_argument_status = "weak" ∧ BB_T.legal_argument_status = "strong" ∧ PNC.case_resolution = "dismissed" → violate(x0, y0))
+27. Q[x0, y0](BB_T.case_resolution = "upheld" ∧ PNC.legal_claim_outcome = "rejected" ∧ BB_T.legal_claim_outcome = "accepted" → violate(x0, y0))
+28. Q[x0, y0](PNC.legal_precedent_outcome = "not applicable" ∧ BB_T.legal_precedent_outcome = "applicable" ∧ PNC.legal_basis = "invalid" → violate(x0, y0))
+29. Q[x0, y0](BB_T.legal_basis = "valid" ∧ PNC.legal_position = "weak" ∧ BB_T.legal_position = "strong" → violate(x0, y0))
+30. Q[x0, y0](PNC.breach_status = "no breach" ∧ BB_T.breach_status = "breach" → violate(x0,

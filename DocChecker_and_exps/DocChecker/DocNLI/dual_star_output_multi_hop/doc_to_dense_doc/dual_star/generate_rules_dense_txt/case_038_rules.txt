@@ -1,0 +1,65 @@
+Source: dense_text.txt (Index 38)
+S1: He was arrested for possession of drug paraphernalia in 2007, but the charge was dismissed.
+S2: He tried to enlist in the U.S. Army.
+
+Predicates:
+1. Arrested.year = 2007
+2. Arrested.reason = possession of drug paraphernalia
+3. Charge.status = dismissed
+4. Enlistment.attempt = true
+5. Enlistment.entity = U.S. Army
+6. Drug_paraphernalia.possession = true
+7. Enlistment.possibility = false
+8. Dismissed_charge.entity = drug paraphernalia
+9. Arrested.entity = He
+10. Enlistment.contradiction = true
+11. Arrested.relationship = legal_issue
+12. Dismissed_charge.relationship = legal_outcome
+13. Enlistment.relationship = military_service
+14. Drug_paraphernalia.relationship = criminal_offense
+15. He.entity = individual
+16. He.legal_status = arrested
+17. He.enlistment_attempt = true
+18. He.charge_status = dismissed
+19. U.S. Army.entity = military
+20. U.S. Army.enlistment_requirement = no_arrest
+21. Possession.relationship = illegal_activity
+22. Dismissed_charge.year = 2007
+23. Enlistment.requirement = clean_record
+24. Legal_issue.relationship = criminal_record
+25. Military_service.requirement = no_criminal_record
+26. Attempted_enlistment.relationship = military_application
+27. Criminal_offense.relationship = legal_impediment
+28. Legal_outcome.relationship = resolution
+29. He.enlistment_status = denied
+30. Enlistment.contradiction_reason = prior_arrest
+
+Rules:
+1. Q[was, Arrested.year = 2007, Enlistment.contradiction = true](Arrested.year = 2007 ∧ Arrested.reason = possession of drug paraphernalia → Causal(He, Enlistment.attempt))
+2. Q[was, Arrested.reason = possession of drug paraphernalia, Enlistment.possibility = false](Arrested.reason = possession of drug paraphernalia ∧ Enlistment.entity = U.S. Army → Causal(He, Enlistment.attempt))
+3. Q[was, Charge.status = dismissed, Enlistment.contradiction = true](Charge.status = dismissed ∧ He.enlistment_attempt = true → Causal(He, Enlistment.attempt))
+4. Q[was, Enlistment.attempt = true, Enlistment.possibility = false](Enlistment.attempt = true ∧ Arrested.entity = He → Causal(He, Enlistment.attempt))
+5. Q[was, Dismissed_charge.entity = drug paraphernalia, Enlistment.requirement = clean_record](Dismissed_charge.entity = drug paraphernalia ∧ Enlistment.entity = U.S. Army → Causal(He, Enlistment.attempt))
+6. Q[was, He.legal_status = arrested, Enlistment.contradiction = true](He.legal_status = arrested ∧ Enlistment.entity = U.S. Army → Causal(He, Enlistment.attempt))
+7. Q[was, Drug_paraphernalia.possession = true, Enlistment.requirement = clean_record](Drug_paraphernalia.possession = true ∧ Enlistment.entity = U.S. Army → Causal(He, Enlistment.attempt))
+8. Q[was, Enlistment.entity = U.S. Army, Enlistment.possibility = false](Enlistment.entity = U.S. Army ∧ He.charge_status = dismissed → Causal(He, Enlistment.attempt))
+9. Q[was, Arrested.relationship = legal_issue, Enlistment.contradiction = true](Arrested.relationship = legal_issue ∧ He.enlistment_attempt = true → Causal(He, Enlistment.attempt))
+10. Q[was, Enlistment.relationship = military_service, Enlistment.possibility = false](Enlistment.relationship = military_service ∧ Arrested.reason = possession of drug paraphernalia → Causal(He, Enlistment.attempt))
+11. Q[was, He.enlistment_attempt = true, Enlistment.contradiction_reason = prior_arrest](He.enlistment_attempt = true ∧ Arrested.entity = He → Causal(He, Enlistment.attempt))
+12. Q[was, Dismissed_charge.relationship = legal_outcome, Enlistment.requirement = clean_record](Dismissed_charge.relationship = legal_outcome ∧ Drug_paraphernalia.possession = true → Causal(He, Enlistment.attempt))
+13. Q[was, Enlistment.requirement = clean_record, Enlistment.possibility = false](Enlistment.requirement = clean_record ∧ He.legal_status = arrested → Causal(He, Enlistment.attempt))
+14. Q[was, He.charge_status = dismissed, Enlistment.contradiction = true](He.charge_status = dismissed ∧ Enlistment.entity = U.S. Army → Causal(He, Enlistment.attempt))
+15. Q[was, Arrested.entity = He, Enlistment.possibility = false](Arrested.entity = He ∧ Enlistment.attempt = true → Causal(He, Enlistment.attempt))
+16. Q[was, Enlistment.attempt = true, Enlistment.requirement = clean_record](Enlistment.attempt = true ∧ Drug_paraphernalia.possession = true → Causal(He, Enlistment.attempt))
+17. Q[was, Legal_issue.relationship = criminal_record, Enlistment.possibility = false](Legal_issue.relationship = criminal_record ∧ He.enlistment_attempt = true → Causal(He, Enlistment.attempt))
+18. Q[was, Military_service.requirement = no_criminal_record, Enlistment.contradiction = true](Military_service.requirement = no_criminal_record ∧ Arrested.reason = possession of drug paraphernalia → Causal(He, Enlistment.attempt))
+19. Q[was, He.enlistment_status = denied, Enlistment.contradiction = true](He.enlistment_status = denied ∧ Enlistment.entity = U.S. Army → Causal(He, Enlistment.attempt))
+20. Q[was, Enlistment.contradiction_reason = prior_arrest, Enlistment.possibility = false](Enlistment.contradiction_reason = prior_arrest ∧ He.legal_status = arrested → Causal(He, Enlistment.attempt))
+21. Q[was, Arrested.relationship = legal_issue, Enlistment.requirement = clean_record](Arrested.relationship = legal_issue ∧ He.enlistment_attempt = true → Causal(He, Enlistment.attempt))
+22. Q[was, Dismissed_charge.year = 2007, Enlistment.possibility = false](Dismissed_charge.year = 2007 ∧ Arrested.reason = possession of drug paraphernalia → Causal(He, Enlistment.attempt))
+23. Q[was, Enlistment.entity = U.S. Army, Enlistment.requirement = clean_record](Enlistment.entity = U.S. Army ∧ He.charge_status = dismissed → Causal(He, Enlistment.attempt))
+24. Q[was, He.entity = individual, Enlistment.contradiction = true](He.entity = individual ∧ Enlistment.attempt = true → Causal(He, Enlistment.attempt))
+25. Q[was, Drug_paraphernalia.relationship = criminal_offense, Enlistment.possibility = false](Drug_paraphernalia.relationship = criminal_offense ∧ He.enlistment_attempt = true → Causal(He, Enlistment.attempt))
+26. Q[was, Enlistment.relationship = military_service, Enlistment.contradiction_reason = prior_arrest](Enlistment.relationship = military_service ∧ Arrested.reason = possession of drug paraphernalia → Causal(He, Enlistment.attempt))
+27. Q[was, He.enlistment_attempt = true, Enlistment.requirement = clean_record](He.enlistment_attempt = true ∧ Arrested.entity = He → Causal(He, Enlistment.attempt))
+28. Q[was, Enlistment.attempt = true, Enlistment.contradiction = true](Enlistment.attempt = true ∧ He.legal_status = arrested → Causal(He, Enlistment.attempt))

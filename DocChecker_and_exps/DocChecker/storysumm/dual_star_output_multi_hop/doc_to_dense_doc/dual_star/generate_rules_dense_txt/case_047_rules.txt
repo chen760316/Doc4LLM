@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 47)
+S1: Labeling this as an abduction by aliens is an interpretive jump.
+S2: The figures do not give the man a lollipop and leave him on the road.
+
+Predicates:
+1. Event.interpretation
+2. Event.abduction
+3. Event.aliens
+4. Figures.action
+5. Figures.give
+6. Man.object
+7. Man.location
+8. Event.jump
+9. Event.context
+10. Event.fact
+11. Figures.leave
+12. Figures.road
+13. Interpretation.type
+14. Interpretation.jump
+15. Interpretation.context
+16. Action.subject
+17. Action.object
+18. Action.location
+19. Relationship.interpretation
+20. Relationship.fact
+21. Violation.type
+22. Violation.context
+23. Entity.labeling
+24. Entity.event
+25. Entity.figure
+26. Entity.man
+27. Entity.road
+28. Entity.lollipop
+29. Meta.NLI
+30. Meta.relation
+
+Rules:
+1. Q[Labeling, Event.abduction, Event.fact](Event.interpretation == "abduction" → Relation(Event.abduction, Event.fact))
+2. Q[Labeling, Event.aliens, Event.fact](Event.interpretation == "aliens" → Relation(Event.aliens, Event.fact))
+3. Q[Labeling, Event.jump, Event.context](Event.jump == "interpretive" → Relation(Event.jump, Event.context))
+4. Q[Labeling, Interpretation.type, Interpretation.jump](Interpretation.type == "interpretive" → Relation(Interpretation.type, Interpretation.jump))
+5. Q[Labeling, Figures.action, Figures.leave](Figures.action == "labeling" → Relation(Figures.action, Figures.leave))
+6. Q[Labeling, Man.object, Man.location](Man.object == "lollipop" → Relation(Man.object, Man.location))
+7. Q[Labeling, Figures.give, Figures.road](Figures.give == "not lollipop" → Relation(Figures.give, Figures.road))
+8. Q[Labeling, Event.context, Event.fact](Event.context == "interpretive" → Relation(Event.context, Event.fact))
+9. Q[Labeling, Figures.leave, Figures.road](Figures.leave == "on road" → Relation(Figures.leave, Figures.road))
+10. Q[Labeling, Event.interpretation, Event.jump](Event.interpretation == "abduction" → Relation(Event.interpretation, Event.jump))
+11. Q[Labeling, Man.location, Figures.road](Man.location == "road" → Relation(Man.location, Figures.road))
+12. Q[Labeling, Figures.give, Man.object](Figures.give == "not lollipop" → Relation(Figures.give, Man.object))
+13. Q[Labeling, Event.fact, Event.context](Event.fact == "not interpretive" → Relation(Event.fact, Event.context))
+14. Q[Labeling, Figures.action, Event.fact](Figures.action == "not give" → Relation(Figures.action, Event.fact))
+15. Q[Labeling, Figures.leave, Event.fact](Figures.leave == "not give" → Relation(Figures.leave, Event.fact))
+16. Q[Labeling, Man.object, Entity.lollipop](Man.object == "not lollipop" → Relation(Man.object, Entity.lollipop))
+17. Q[Labeling, Figures.action, Figures.give](Figures.action == "not give" → Relation(Figures.action, Figures.give))
+18. Q[Labeling, Event.jump, Interpretation.context](Event.jump == "interpretive" → Relation(Event.jump, Interpretation.context))
+19. Q[Labeling, Event.abduction, Event.context](Event.abduction == "interpretive" → Relation(Event.abduction, Event.context))
+20. Q[Labeling, Figures.leave, Man.location](Figures.leave == "on road" → Relation(Figures.leave, Man.location))
+21. Q[Labeling, Event.fact, Figures.action](Event.fact == "not interpretive" → Relation(Event.fact, Figures.action))
+22. Q[Labeling, Figures.give, Entity.lollipop](Figures.give == "not lollipop" → Relation(Figures.give, Entity.lollipop))
+23. Q[Labeling, Man.location, Figures.leave](Man.location == "road" → Relation(Man.location, Figures.leave))
+24. Q[Labeling, Event.context, Figures.action](Event.context == "interpretive" → Relation(Event.context, Figures.action))
+25. Q[Labeling, Figures.action, Figures.leave](Figures.action == "not give" → Relation(Figures.action, Figures.leave))
+26. Q[Labeling, Event.interpretation, Figures.action](Event.interpretation == "abduction" → Relation(Event.interpretation, Figures.action))
+27. Q[Labeling, Figures.give, Figures.leave](Figures.give == "not lollipop" → Relation(Figures.give, Figures.leave))
+28. Q[Labeling, Man.object, Figures.give](Man.object == "not lollipop" → Relation(Man.object, Figures.give))
+29. Q[Labeling, Event.fact, Man.location](Event.fact == "not interpretive" → Relation(Event.fact, Man.location))
+30. Q[Labeling, Figures.leave, Event.fact](Figures.leave == "on road" → Relation(Figures.leave, Event.fact))

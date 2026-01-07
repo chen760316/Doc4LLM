@@ -1,0 +1,45 @@
+Predicates:
+Block Ball.description != "best version of Breakout released"
+Block Ball.description = "best version of Breakout released"
+Block Ball.label != "Game"
+Block Ball.label = "Game"
+Block Ball.name != "Block Ball"
+Block Ball.name = "Block Ball"
+Block Ball.recommendation != "recommended to players who like score attack games"
+Block Ball.recommendation = "recommended to players who like score attack games"
+IGN.label != "Publication"
+IGN.label != Block Ball.label
+IGN.label != Kirby franchise.label
+IGN.label = "Publication"
+IGN.name != "IGN"
+IGN.name != Block Ball.name
+IGN.name != Kirby franchise.name
+IGN.name = "IGN"
+IGN___Block Ball.contradiction_type = "Content (Opinion/Emotion)"
+IGN___Block Ball.relationship = "IGN wrote about Block Ball"
+IGN___Block Ball.source_id = "3499318689_10"
+IGN___Kirby franchise.contradiction_type = "Content (Opinion/Emotion)"
+IGN___Kirby franchise.relationship != IGN___Block Ball.relationship
+IGN___Kirby franchise.relationship = "IGN described the game as a clone of Arkanoid or Breakout with a Kirby theme."
+IGN___Kirby franchise.source_id = "3499318689_10"
+Kirby franchise.label != "Game"
+Kirby franchise.label = "Game"
+Kirby franchise.name != "Kirby franchise"
+Kirby franchise.name != Block Ball.name
+Kirby franchise.name = "Kirby franchise"
+Kirby franchise.type != "video game"
+Kirby franchise.type = "video game"
+None_ML(IGN.attrs, Kirby franchise.attrs)
+None_ML(IGN___Block Ball.attrs, IGN___Kirby franchise.attrs)
+
+Rules:
+Q[IGN,IGN] (Kirby franchise.name != "Kirby franchise" ∧ Block Ball.name = "Block Ball" → Block Ball.label != "Game")
+Q[IGN,IGN] (IGN.label != Kirby franchise.label ∧ Kirby franchise.name = "Kirby franchise" ∧ IGN.name != "IGN" ∧ Block Ball.label = "Game" ∧ Block Ball.label != "Game" → IGN___Block Ball.relationship = "IGN wrote about Block Ball")
+Q[IGN,IGN] (IGN.name != Kirby franchise.name ∧ IGN.label != Block Ball.label ∧ IGN.name != "IGN" → IGN___Block Ball.source_id = "3499318689_10")
+Q[IGN,IGN] (IGN.label != "Publication" ∧ None_ML(IGN___Block Ball.attrs, IGN___Kirby franchise.attrs) ∧ IGN.label != Kirby franchise.label ∧ IGN.label != Block Ball.label ∧ Kirby franchise.label != "Game" ∧ Block Ball.recommendation = "recommended to players who like score attack games" → IGN.label = "Publication")
+Q[IGN,IGN] (IGN___Block Ball.source_id = "3499318689_10" ∧ None_ML(IGN.attrs, Kirby franchise.attrs) ∧ IGN.name != "IGN" ∧ IGN___Block Ball.contradiction_type = "Content (Opinion/Emotion)" → IGN.name != Block Ball.name)
+Q[IGN,IGN] (Kirby franchise.name = "Kirby franchise" ∧ IGN___Kirby franchise.relationship = "IGN described the game as a clone of Arkanoid or Breakout with a Kirby theme." ∧ Kirby franchise.label = "Game" ∧ None_ML(IGN___Block Ball.attrs, IGN___Kirby franchise.attrs) ∧ Kirby franchise.name != "Kirby franchise" ∧ Block Ball.label != "Game" → Block Ball.recommendation != "recommended to players who like score attack games")
+Q[IGN,IGN] (IGN.name = "IGN" ∧ IGN___Kirby franchise.source_id = "3499318689_10" → Kirby franchise.label = "Game")
+Q[IGN,IGN] (IGN.name != "IGN" ∧ Kirby franchise.label = "Game" ∧ IGN___Kirby franchise.relationship = "IGN described the game as a clone of Arkanoid or Breakout with a Kirby theme." ∧ IGN.label != Kirby franchise.label → Block Ball.name = "Block Ball")
+Q[IGN,IGN] (IGN___Kirby franchise.relationship != IGN___Block Ball.relationship ∧ Kirby franchise.name = "Kirby franchise" ∧ IGN.label != Block Ball.label ∧ IGN.name = "IGN" ∧ IGN.label != "Publication" → Block Ball.name != "Block Ball")
+Q[IGN,IGN] (None_ML(IGN.attrs, Kirby franchise.attrs) ∧ IGN___Block Ball.source_id = "3499318689_10" ∧ Kirby franchise.type != "video game" → IGN___Kirby franchise.contradiction_type = "Content (Opinion/Emotion)")

@@ -1,0 +1,35 @@
+Predicates:
+Kidney Donation.label != "Donation"
+Kidney Donation.label = "Donation"
+Kidney Donation.name != "Kidney Donation"
+Kidney Donation.name = "Kidney Donation"
+M_NLI(('Zully Broussard', 'kidney donation').attrs, There are conflicting reports about whether Zully Broussard donated her kidney..attrs)
+M_NLI(There are conflicting reports about whether Zully Broussard donated her kidney..attrs, ('Zully Broussard', 'Kidney Donation').attrs)
+M_NLU(('Zully Broussard', 'Kidney Donation').attrs, Reports differ on Zully Broussard's kidney donation..attrs)
+M_NLU(('Zully Broussard', 'kidney donation').attrs, ('Zully Broussard', 'Kidney Donation').attrs)
+M_NLU(('Zully Broussard', 'kidney donation').attrs, Reports differ on Zully Broussard's kidney donation..attrs)
+M_NLU(There are conflicting reports about whether Zully Broussard donated her kidney..attrs, Reports differ on Zully Broussard's kidney donation..attrs)
+None_ML(Zully Broussard.attrs, Kidney Donation.attrs)
+Zully Broussard.label != "Person"
+Zully Broussard.label != Kidney Donation.label
+Zully Broussard.label = "Person"
+Zully Broussard.name != "Zully Broussard"
+Zully Broussard.name != Kidney Donation.name
+Zully Broussard.name = "Zully Broussard"
+Zully Broussard___Kidney Donation.relationship != "Reports differ on Zully Broussard's kidney donation."
+Zully Broussard___Kidney Donation.relationship = "Reports differ on Zully Broussard's kidney donation."
+Zully Broussard___kidney donation.relationship != "There are conflicting reports about whether Zully Broussard donated her kidney."
+Zully Broussard___kidney donation.relationship != Zully Broussard_Kidney Donation.relationship
+Zully Broussard___kidney donation.relationship = "There are conflicting reports about whether Zully Broussard donated her kidney."
+
+Rules:
+Q[Zully Broussard,Zully Broussard] (Kidney Donation.label != "Donation" ∧ M_NLU(There are conflicting reports about whether Zully Broussard donated her kidney..attrs, Reports differ on Zully Broussard's kidney donation..attrs) → M_NLU(There are conflicting reports about whether Zully Broussard donated her kidney..attrs, Reports differ on Zully Broussard's kidney donation..attrs))
+Q[Zully Broussard,Zully Broussard] (Zully Broussard___kidney donation.relationship != Zully Broussard_Kidney Donation.relationship ∧ Zully Broussard___Kidney Donation.relationship != "Reports differ on Zully Broussard's kidney donation." → Zully Broussard___Kidney Donation.relationship != "Reports differ on Zully Broussard's kidney donation.")
+Q[Zully Broussard,Zully Broussard] (Kidney Donation.name = "Kidney Donation" ∧ Zully Broussard.name != Kidney Donation.name → Kidney Donation.name = "Kidney Donation")
+Q[Zully Broussard,Zully Broussard] (Kidney Donation.label = "Donation" ∧ Zully Broussard___Kidney Donation.relationship = "Reports differ on Zully Broussard's kidney donation." → Zully Broussard___Kidney Donation.relationship = "Reports differ on Zully Broussard's kidney donation.")
+Q[Zully Broussard,Zully Broussard] (Kidney Donation.name != "Kidney Donation" ∧ M_NLI(There are conflicting reports about whether Zully Broussard donated her kidney..attrs, ('Zully Broussard', 'Kidney Donation').attrs) → Kidney Donation.name != "Kidney Donation")
+Q[Zully Broussard,Zully Broussard] (M_NLU(('Zully Broussard', 'Kidney Donation').attrs, Reports differ on Zully Broussard's kidney donation..attrs) ∧ Zully Broussard.name = "Zully Broussard" → M_NLU(('Zully Broussard', 'Kidney Donation').attrs, Reports differ on Zully Broussard's kidney donation..attrs))
+Q[Zully Broussard,Zully Broussard] (Zully Broussard.label != Kidney Donation.label ∧ M_NLI(There are conflicting reports about whether Zully Broussard donated her kidney..attrs, ('Zully Broussard', 'Kidney Donation').attrs) → Zully Broussard.label != Kidney Donation.label)
+Q[Zully Broussard,Zully Broussard] (Zully Broussard.label != "Person" ∧ Zully Broussard.label != Kidney Donation.label → Zully Broussard.label != "Person")
+Q[Zully Broussard,Zully Broussard] (None_ML(Zully Broussard.attrs, Kidney Donation.attrs) ∧ M_NLI(('Zully Broussard', 'kidney donation').attrs, There are conflicting reports about whether Zully Broussard donated her kidney..attrs) → M_NLI(('Zully Broussard', 'kidney donation').attrs, There are conflicting reports about whether Zully Broussard donated her kidney..attrs))
+Q[Zully Broussard,Zully Broussard] (Zully Broussard___kidney donation.relationship != Zully Broussard_Kidney Donation.relationship ∧ Kidney Donation.name = "Kidney Donation" → Zully Broussard___kidney donation.relationship != Zully Broussard_Kidney Donation.relationship)

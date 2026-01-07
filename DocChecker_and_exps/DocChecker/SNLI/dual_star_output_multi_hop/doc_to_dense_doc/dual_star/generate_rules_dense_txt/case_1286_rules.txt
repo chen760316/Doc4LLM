@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 1286)
+S1: The woman and the man are frowning.
+S2: A woman and a man standing on a busy city street smiling.
+
+Predicates:
+1. Woman.emotion = frowning
+2. Man.emotion = frowning
+3. Woman.emotion ≠ smiling
+4. Man.emotion ≠ smiling
+5. Woman.location = busy city street
+6. Man.location = busy city street
+7. Woman.state = standing
+8. Man.state = standing
+9. Woman.emotion ≠ Man.emotion
+10. Woman.emotion = frowning
+11. Man.emotion = frowning
+12. Woman.emotion = smiling
+13. Man.emotion = smiling
+14. Busy_city_street.activity = smiling
+15. Busy_city_street.activity ≠ frowning
+16. M_NLI(S1, S2)
+17. Causal(S1, S2)
+18. violate(S1, S2)
+19. Woman.state ≠ frowning
+20. Man.state ≠ frowning
+21. Woman.state = smiling
+22. Man.state = smiling
+23. Woman.emotion = opposite(Man.emotion)
+24. Man.emotion = opposite(Woman.emotion)
+25. Woman.emotion = emotional_state(frowning)
+26. Man.emotion = emotional_state(frowning)
+27. Woman.emotion = emotional_state(smiling)
+28. Man.emotion = emotional_state(smiling)
+29. Busy_city_street.emotion = mixed
+30. Busy_city_street.emotion ≠ uniform
+
+Rules:
+1. Q[The, Woman.emotion = frowning, Man.emotion = smiling](Woman.emotion = frowning ∧ Man.emotion ≠ smiling → Causal(Woman.emotion, Man.emotion))
+2. Q[The, Man.emotion = frowning, Woman.emotion = smiling](Man.emotion = frowning ∧ Woman.emotion ≠ smiling → Causal(Man.emotion, Woman.emotion))
+3. Q[The, Woman.emotion = frowning, Woman.emotion = smiling](Woman.emotion = frowning ∧ Woman.emotion = smiling → Causal(Woman.emotion, Woman.emotion))
+4. Q[The, Man.emotion = frowning, Man.emotion = smiling](Man.emotion = frowning ∧ Man.emotion = smiling → Causal(Man.emotion, Man.emotion))
+5. Q[The, Woman.emotion ≠ smiling, Man.emotion = smiling](Woman.emotion ≠ smiling ∧ Man.emotion = smiling → Causal(Woman.emotion, Man.emotion))
+6. Q[The, Man.emotion ≠ smiling, Woman.emotion = smiling](Man.emotion ≠ smiling ∧ Woman.emotion = smiling → Causal(Man.emotion, Woman.emotion))
+7. Q[The, Woman.location = busy city street, Man.location = busy city street](Woman.location = busy city street ∧ Man.location = busy city street → Causal(Woman.location, Man.location))
+8. Q[The, Woman.state = standing, Man.state = standing](Woman.state = standing ∧ Man.state = standing → Causal(Woman.state, Man.state))
+9. Q[The, Woman.emotion ≠ Man.emotion, Woman.emotion = frowning](Woman.emotion ≠ Man.emotion ∧ Woman.emotion = frowning → Causal(Woman.emotion, Man.emotion))
+10. Q[The, Woman.emotion ≠ Man.emotion, Man.emotion = frowning](Woman.emotion ≠ Man.emotion ∧ Man.emotion = frowning → Causal(Woman.emotion, Man.emotion))
+11. Q[The, Woman.emotion = frowning, Woman.emotion = emotional_state(frowning)](Woman.emotion = frowning ∧ Woman.emotion = emotional_state(frowning) → Causal(Woman.emotion, Woman.emotion))
+12. Q[The, Man.emotion = frowning, Man.emotion = emotional_state(frowning)](Man.emotion = frowning ∧ Man.emotion = emotional_state(frowning) → Causal(Man.emotion, Man.emotion))
+13. Q[The, Woman.emotion = smiling, Woman.emotion = emotional_state(smiling)](Woman.emotion = smiling ∧ Woman.emotion = emotional_state(smiling) → Causal(Woman.emotion, Woman.emotion))
+14. Q[The, Man.emotion = smiling, Man.emotion = emotional_state(smiling)](Man.emotion = smiling ∧ Man.emotion = emotional_state(smiling) → Causal(Man.emotion, Man.emotion))
+15. Q[The, Busy_city_street.activity = smiling, Woman.emotion = frowning](Busy_city_street.activity = smiling ∧ Woman.emotion = frowning → Causal(Busy_city_street.activity, Woman.emotion))
+16. Q[The, Busy_city_street.activity ≠ frowning, Man.emotion = frowning](Busy_city_street.activity ≠ frowning ∧ Man.emotion = frowning → Causal(Busy_city_street.activity, Man.emotion))
+17. Q[The, Woman.emotion = opposite(Man.emotion), Man.emotion = frowning](Woman.emotion = opposite(Man.emotion) ∧ Man.emotion = frowning → Causal(Woman.emotion, Man.emotion))
+18. Q[The, Man.emotion = opposite(Woman.emotion), Woman.emotion = frowning](Man.emotion = opposite(Woman.emotion) ∧ Woman.emotion = frowning → Causal(Man.emotion, Woman.emotion))
+19. Q[The, Woman.emotion = frowning, Woman.state ≠ frowning](Woman.emotion = frowning ∧ Woman.state ≠ frowning → Causal(Woman.emotion, Woman.state))
+20. Q[The, Man.emotion = frowning, Man.state ≠ frowning](Man.emotion = frowning ∧ Man.state ≠ frowning → Causal(Man.emotion, Man.state))
+21. Q[The, Woman.state = standing, Woman.emotion = frowning](Woman.state = standing ∧ Woman.emotion = frowning → Causal(Woman.state, Woman.emotion))
+22. Q[The, Man.state = standing, Man.emotion = frowning](Man.state = standing ∧ Man.emotion = frowning → Causal(Man.state, Man.emotion))
+23. Q[The, Busy_city_street.emotion = mixed, Woman.emotion = frowning](Busy_city_street.emotion = mixed ∧ Woman.emotion = frowning → Causal(Busy_city_street.emotion, Woman.emotion))
+24. Q[The, Busy_city_street.emotion ≠ uniform, Man.emotion = frowning](Busy_city_street.emotion ≠ uniform ∧ Man.emotion = frowning → Causal(Busy_city_street.emotion, Man.emotion))
+25. Q[The, Woman.emotion = frowning, Woman.emotion ≠ smiling](Woman.emotion = frowning ∧ Woman.emotion ≠ smiling → Causal(Woman.emotion, Woman.emotion))
+26. Q[The, Man.emotion = frowning, Man.emotion ≠ smiling](Man.emotion = frowning ∧ Man.emotion ≠ smiling → Causal(Man.emotion, Man.emotion))
+27. Q[The, Woman.emotion = smiling, Woman.emotion ≠ frowning](Woman.emotion = smiling ∧ Woman.emotion ≠ frowning → Causal(Woman.emotion, Woman.emotion))
+28. Q[The, Man.emotion = smiling, Man.emotion ≠ frowning](Man.emotion = smiling ∧ Man.emotion ≠ frowning → Causal(Man.emotion, Man.emotion))
+29. Q[The, Woman.emotion = frowning, Busy_city_street.activity = smiling](Woman.emotion = frowning ∧ Busy_city_street.activity = smiling → Causal(Woman.emotion, Busy_city_street.activity))
+30. Q[The, Man.emotion = frowning, Busy_city_street.activity = smiling](Man.emotion = frowning ∧ Busy_city_street.activity = smiling → Causal(Man.emotion, Busy_city_street.activity))

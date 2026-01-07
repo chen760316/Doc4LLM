@@ -1,0 +1,64 @@
+Source: dense_text.txt (Index 74)
+S1: The position of the right hand on the strings changes the tones, making the left hand unnecessary.
+S2: The position of the left hand on the fretboard changes the tones of the strings played by the right hand, so both hands are necessary.
+
+Predicates:
+1. S1.right_hand.position
+2. S1.strings.tone_change
+3. S1.left_hand.unnecessary
+4. S2.left_hand.position
+5. S2.fretboard.tone_change
+6. S2.right_hand.necessary
+7. S1.right_hand.tone_change
+8. S2.both_hands.necessary
+9. S1.tone_change.left_hand
+10. S2.tone_change.right_hand
+11. S1.position.right_hand
+12. S2.position.left_hand
+13. S1.tone_change.right_hand
+14. S2.tone_change.both_hands
+15. S1.left_hand.necessary
+16. S2.left_hand.tone_change
+17. S1.right_hand.necessary
+18. S2.right_hand.tone_change
+19. M_NLI(S1, S2)
+20. Causal(S1.left_hand, S2.right_hand)
+21. violate(S1.left_hand, S2.both_hands)
+22. S1.tone_change.both_hands
+23. S2.tone_change.left_hand
+24. S1.right_hand.tone_change
+25. S2.left_hand.necessary
+26. S1.position.tone_change
+27. S2.position.tone_change
+28. S1.tone_change.position
+29. S2.tone_change.position
+30. Causal(S1.right_hand, S2.left_hand)
+
+Rules:
+1. Q[S1.right_hand.position, S1.left_hand.unnecessary, S2.both_hands.necessary](S1.right_hand.position == "change" → Causal(S1.left_hand.unnecessary, S2.both_hands.necessary))
+2. Q[S1.strings.tone_change, S1.left_hand.unnecessary, S2.both_hands.necessary](S1.strings.tone_change == "true" → Causal(S1.left_hand.unnecessary, S2.both_hands.necessary))
+3. Q[S1.right_hand.tone_change, S2.left_hand.necessary, S2.both_hands.necessary](S1.right_hand.tone_change == "true" → Causal(S2.left_hand.necessary, S2.both_hands.necessary))
+4. Q[S1.position.right_hand, S1.left_hand.unnecessary, S2.both_hands.necessary](S1.position.right_hand == "change" → Causal(S1.left_hand.unnecessary, S2.both_hands.necessary))
+5. Q[S1.tone_change.right_hand, S2.left_hand.necessary, S2.both_hands.necessary](S1.tone_change.right_hand == "true" → Causal(S2.left_hand.necessary, S2.both_hands.necessary))
+6. Q[S2.left_hand.position, S1.left_hand.unnecessary, S2.both_hands.necessary](S2.left_hand.position == "change" → Causal(S1.left_hand.unnecessary, S2.both_hands.necessary))
+7. Q[S2.fretboard.tone_change, S1.left_hand.unnecessary, S2.both_hands.necessary](S2.fretboard.tone_change == "true" → Causal(S1.left_hand.unnecessary, S2.both_hands.necessary))
+8. Q[S2.right_hand.necessary, S1.left_hand.unnecessary, S2.both_hands.necessary](S2.right_hand.necessary == "true" → Causal(S1.left_hand.unnecessary, S2.both_hands.necessary))
+9. Q[S2.tone_change.right_hand, S1.left_hand.unnecessary, S2.both_hands.necessary](S2.tone_change.right_hand == "true" → Causal(S1.left_hand.unnecessary, S2.both_hands.necessary))
+10. Q[S1.tone_change.left_hand, S1.left_hand.unnecessary, S2.both_hands.necessary](S1.tone_change.left_hand == "true" → Causal(S1.left_hand.unnecessary, S2.both_hands.necessary))
+11. Q[S2.tone_change.both_hands, S1.left_hand.unnecessary, S2.both_hands.necessary](S2.tone_change.both_hands == "true" → Causal(S1.left_hand.unnecessary, S2.both_hands.necessary))
+12. Q[S1.right_hand.tone_change, S2.left_hand.tone_change, S2.both_hands.necessary](S1.right_hand.tone_change == "true" → Causal(S2.left_hand.tone_change, S2.both_hands.necessary))
+13. Q[S1.position.tone_change, S1.left_hand.unnecessary, S2.both_hands.necessary](S1.position.tone_change == "true" → Causal(S1.left_hand.unnecessary, S2.both_hands.necessary))
+14. Q[S2.position.left_hand, S1.left_hand.unnecessary, S2.both_hands.necessary](S2.position.left_hand == "change" → Causal(S1.left_hand.unnecessary, S2.both_hands.necessary))
+15. Q[S2.tone_change.left_hand, S1.left_hand.unnecessary, S2.both_hands.necessary](S2.tone_change.left_hand == "true" → Causal(S1.left_hand.unnecessary, S2.both_hands.necessary))
+16. Q[S1.right_hand.necessary, S1.left_hand.unnecessary, S2.both_hands.necessary](S1.right_hand.necessary == "true" → Causal(S1.left_hand.unnecessary, S2.both_hands.necessary))
+17. Q[S2.left_hand.necessary, S1.left_hand.unnecessary, S2.both_hands.necessary](S2.left_hand.necessary == "true" → Causal(S1.left_hand.unnecessary, S2.both_hands.necessary))
+18. Q[S1.tone_change.position, S1.left_hand.unnecessary, S2.both_hands.necessary](S1.tone_change.position == "true" → Causal(S1.left_hand.unnecessary, S2.both_hands.necessary))
+19. Q[S2.tone_change.position, S1.left_hand.unnecessary, S2.both_hands.necessary](S2.tone_change.position == "true" → Causal(S1.left_hand.unnecessary, S2.both_hands.necessary))
+20. Q[S1.right_hand.tone_change, S2.right_hand.tone_change, S2.both_hands.necessary](S1.right_hand.tone_change == "true" → Causal(S2.right_hand.tone_change, S2.both_hands.necessary))
+21. Q[S1.strings.tone_change, S2.left_hand.tone_change, S2.both_hands.necessary](S1.strings.tone_change == "true" → Causal(S2.left_hand.tone_change, S2.both_hands.necessary))
+22. Q[S1.tone_change.both_hands, S1.left_hand.unnecessary, S2.both_hands.necessary](S1.tone_change.both_hands == "true" → Causal(S1.left_hand.unnecessary, S2.both_hands.necessary))
+23. Q[S2.fretboard.tone_change, S2.left_hand.necessary, S2.both_hands.necessary](S2.fretboard.tone_change == "true" → Causal(S2.left_hand.necessary, S2.both_hands.necessary))
+24. Q[S1.right_hand.tone_change, S1.left_hand.unnecessary, S2.both_hands.necessary](S1.right_hand.tone_change == "true" → Causal(S1.left_hand.unnecessary, S2.both_hands.necessary))
+25. Q[S2.right_hand.tone_change, S1.left_hand.unnecessary, S2.both_hands.necessary](S2.right_hand.tone_change == "true" → Causal(S1.left_hand.unnecessary, S2.both_hands.necessary))
+26. Q[S1.position.right_hand, S2.left_hand.necessary, S2.both_hands.necessary](S1.position.right_hand == "change" → Causal(S2.left_hand.necessary, S2.both_hands.necessary))
+27. Q[S2.position.tone_change, S1.left_hand.unnecessary, S2

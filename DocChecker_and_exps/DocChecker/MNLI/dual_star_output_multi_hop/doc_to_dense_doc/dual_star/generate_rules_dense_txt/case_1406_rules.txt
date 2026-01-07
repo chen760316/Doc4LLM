@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 1406)
+S1: The differences among All, Wisk, and Tide were not great, but they were noticeable and surprising.
+S2: The differences between All, Wisk, and Tide did not cause any problems.
+
+Predicates:
+1. All.differences
+2. Wisk.differences
+3. Tide.differences
+4. differences.not_great
+5. differences.noticeable
+6. differences.surprising
+7. differences.did_not_cause_problems
+8. differences.significant_enough
+9. differences.not_significant
+10. All.relationship
+11. Wisk.relationship
+12. Tide.relationship
+13. noticeable.differences
+14. surprising.differences
+15. problems.caused
+16. problems.not_caused
+17. significant.differences
+18. All.comparison
+19. Wisk.comparison
+20. Tide.comparison
+21. M_NLI(S1, S2)
+22. Factual(differences, noticeable)
+23. Factual(differences, surprising)
+24. Factual(differences, problems)
+25. violate(differences, significant)
+26. violate(differences, not_significant)
+27. relationship.differences
+28. comparison.differences
+29. All.Wisk.differences
+30. Wisk.Tide.differences
+
+Rules:
+1. Q[The, differences.noticeable, differences.not_significant](All.differences == "not great" → Factual(differences, noticeable))
+2. Q[The, differences.surprising, differences.not_significant](All.differences == "not great" → Factual(differences, surprising))
+3. Q[The, differences.not_great, differences.significant_enough](differences.noticeable == true → Factual(differences, not_significant))
+4. Q[The, differences.not_great, differences.significant_enough](differences.surprising == true → Factual(differences, not_significant))
+5. Q[The, differences.did_not_cause_problems, differences.significant_enough](differences.not_significant == true → Factual(differences, problems))
+6. Q[The, differences.did_not_cause_problems, differences.significant_enough](differences.noticeable == true → Factual(differences, not_significant))
+7. Q[The, differences.did_not_cause_problems, differences.significant_enough](differences.surprising == true → Factual(differences, not_significant))
+8. Q[The, differences.significant_enough, differences.not_significant](differences.noticeable == true → Factual(differences, surprising))
+9. Q[The, differences.significant_enough, differences.not_significant](differences.surprising == true → Factual(differences, noticeable))
+10. Q[The, differences.not_significant, differences.did_not_cause_problems](differences.significant_enough == false → Factual(differences, problems))
+11. Q[The, differences.not_significant, differences.did_not_cause_problems](differences.noticeable == false → Factual(differences, problems))
+12. Q[The, differences.not_significant, differences.did_not_cause_problems](differences.surprising == false → Factual(differences, problems))
+13. Q[The, differences.noticeable, differences.did_not_cause_problems](differences.not_significant == true → Factual(differences, problems))
+14. Q[The, differences.surprising, differences.did_not_cause_problems](differences.not_significant == true → Factual(differences, problems))
+15. Q[The, differences.noticeable, differences.significant_enough](differences.did_not_cause_problems == true → Factual(differences, not_significant))
+16. Q[The, differences.surprising, differences.significant_enough](differences.did_not_cause_problems == true → Factual(differences, not_significant))
+17. Q[The, differences.noticeable, differences.not_great](differences.significant_enough == false → Factual(differences, surprising))
+18. Q[The, differences.surprising, differences.not_great](differences.significant_enough == false → Factual(differences, noticeable))
+19. Q[The, differences.not_significant, differences.noticeable](differences.did_not_cause_problems == true → Factual(differences, surprising))
+20. Q[The, differences.not_significant, differences.surprising](differences.did_not_cause_problems == true → Factual(differences, noticeable))
+21. Q[The, differences.noticeable, differences.significant](differences.did_not_cause_problems == false → Factual(differences, not_significant))
+22. Q[The, differences.surprising, differences.significant](differences.did_not_cause_problems == false → Factual(differences, not_significant))
+23. Q[The, differences.significant_enough, differences.did_not_cause_problems](differences.not_significant == true → Factual(differences, problems))
+24. Q[The, differences.not_significant, differences.significant](differences.did_not_cause_problems == false → Factual(differences, noticeable))
+25. Q[The, differences.not_significant, differences.significant](differences.did_not_cause_problems == false → Factual(differences, surprising))
+26. Q[The, differences.noticeable, differences.significant](differences.did_not_cause_problems == false → Factual(differences, not_significant))
+27. Q[The, differences.surprising, differences.significant](differences.did_not_cause_problems == false → Factual(differences, not_significant))
+28. Q[The, differences.not_great, differences.significant](differences.did_not_cause_problems == false → Factual(differences, noticeable))
+29. Q[The, differences.not_great, differences.significant](differences.did_not_cause_problems == false → Factual(differences, surprising))
+30. Q[The, differences.did_not_cause_problems, differences.significant](differences.not_significant == true → Factual(differences, problems))

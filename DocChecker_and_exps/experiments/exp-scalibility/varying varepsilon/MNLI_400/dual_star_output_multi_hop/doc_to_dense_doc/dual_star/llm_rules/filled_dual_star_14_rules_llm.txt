@@ -1,0 +1,134 @@
+Predicates:
+1. entity.attribute = "value"
+2. entity.name = "Congress"
+3. entity.type = "Legislative Body"
+4. entity.attribute = "amend"
+5. entity.attribute = "statute"
+6. entity.attribute = "administrative practice"
+7. edge.relationship = "created"
+8. edge.relationship = "encouraged the establishment of"
+9. edge.relationship = "restricted the practice of"
+10. edge.relationship = "is designed for"
+11. edge.relationship = "was aware of the vulnerability of"
+12. M_NLI(Congress.amend, administrative practice.approval)
+13. T("Congress can amend a statute", "Congress cannot amend a statute", tau)
+14. tau(Congress.amend, administrative practice.approval)
+15. violate(x0, y0)
+16. Factual(Congress.amend, administrative practice.approval)
+17. Content(Congress.amend, administrative practice.approval)
+18. Causal(Congress.amend, administrative practice.approval)
+19. Negation(Congress.amend, administrative practice.approval)
+20. Relation(Congress.amend, administrative practice.approval)
+21. Numeric(Congress.amend, administrative practice.approval)
+22. Temporal(Congress.amend, administrative practice.approval)
+23. entity.attribute = "disapprove"
+24. entity.attribute = "vulnerability"
+25. edge.relationship = "influenced"
+26. edge.relationship = "overseen"
+27. M_NLI(Congress.disapprove, administrative practice.approval)
+28. T("Congress disapproves of the administrative practice", "Congress approves of the administrative practice", tau)
+29. tau(Congress.disapprove, administrative practice.approval)
+30. violate(x1, y1)
+31. Factual(Congress.disapprove, administrative practice.approval)
+32. Content(Congress.disapprove, administrative practice.approval)
+33. Causal(Congress.disapprove, administrative practice.approval)
+34. Negation(Congress.disapprove, administrative practice.approval)
+35. Relation(Congress.disapprove, administrative practice.approval)
+36. Numeric(Congress.disapprove, administrative practice.approval)
+37. Temporal(Congress.disapprove, administrative practice.approval)
+38. entity.attribute = "legislation"
+39. entity.attribute = "policy"
+40. edge.relationship = "implemented"
+41. edge.relationship = "modified"
+42. M_NLI(Congress.legislation, policy.implementation)
+43. T("Congress implemented new legislation", "Congress did not implement new legislation", tau)
+44. tau(Congress.legislation, policy.implementation)
+45. violate(x2, y2)
+46. Factual(Congress.legislation, policy.implementation)
+47. Content(Congress.legislation, policy.implementation)
+48. Causal(Congress.legislation, policy.implementation)
+49. Negation(Congress.legislation, policy.implementation)
+50. Relation(Congress.legislation, policy.implementation)
+51. Numeric(Congress.legislation, policy.implementation)
+52. Temporal(Congress.legislation, policy.implementation)
+53. entity.attribute = "approval"
+54. entity.attribute = "rejection"
+55. edge.relationship = "endorsed"
+56. edge.relationship = "disapproved"
+57. M_NLI(Congress.approval, administrative practice.rejection)
+58. T("Congress approved the administrative practice", "Congress rejected the administrative practice", tau)
+59. tau(Congress.approval, administrative practice.rejection)
+60. violate(x3, y3)
+61. Factual(Congress.approval, administrative practice.rejection)
+62. Content(Congress.approval, administrative practice.rejection)
+63. Causal(Congress.approval, administrative practice.rejection)
+64. Negation(Congress.approval, administrative practice.rejection)
+65. Relation(Congress.approval, administrative practice.rejection)
+66. Numeric(Congress.approval, administrative practice.rejection)
+67. Temporal(Congress.approval, administrative practice.rejection)
+68. entity.attribute = "authority"
+69. entity.attribute = "jurisdiction"
+70. edge.relationship = "granted"
+71. edge.relationship = "limited"
+72. M_NLI(Congress.authority, jurisdiction.limitation)
+73. T("Congress has authority over the jurisdiction", "Congress has no authority over the jurisdiction", tau)
+74. tau(Congress.authority, jurisdiction.limitation)
+75. violate(x4, y4)
+76. Factual(Congress.authority, jurisdiction.limitation)
+77. Content(Congress.authority, jurisdiction.limitation)
+78. Causal(Congress.authority, jurisdiction.limitation)
+79. Negation(Congress.authority, jurisdiction.limitation)
+80. Relation(Congress.authority, jurisdiction.limitation)
+81. Numeric(Congress.authority, jurisdiction.limitation)
+82. Temporal(Congress.authority, jurisdiction.limitation)
+83. entity.attribute = "decision"
+84. entity.attribute = "outcome"
+85. edge.relationship = "determined"
+86. edge.relationship = "overturned"
+87. M_NLI(Congress.decision, outcome.result)
+88. T("Congress made a decision", "Congress did not make a decision", tau)
+89. tau(Congress.decision, outcome.result)
+90. violate(x5, y5)
+91. Factual(Congress.decision, outcome.result)
+92. Content(Congress.decision, outcome.result)
+93. Causal(Congress.decision, outcome.result)
+94. Negation(Congress.decision, outcome.result)
+95. Relation(Congress.decision, outcome.result)
+96. Numeric(Congress.decision, outcome.result)
+97. Temporal(Congress.decision, outcome.result)
+98. entity.attribute = "legislative process"
+99. entity.attribute = "administrative procedure"
+100. edge.relationship = "intersected"
+violate(x0, y0)
+
+Rules:
+1. Q[x0, y0](entity.attribute = "value" ∧ entity.name = "Congress" → violate(x0, y0))
+2. Q[x0, y0](entity.type = "Legislative Body" ∧ edge.relationship = "created" → violate(x0, y0))
+3. Q[x0, y0](entity.attribute = "amend" ∧ edge.relationship = "restricted the practice of" → violate(x0, y0))
+4. Q[x0, y0](M_NLI(Congress.amend, administrative practice.approval) ∧ T("Congress can amend a statute", "Congress cannot amend a statute", tau) → violate(x0, y0))
+5. Q[x0, y0](entity.attribute = "disapprove" ∧ edge.relationship = "influenced" → violate(x0, y0))
+6. Q[x0, y0](entity.attribute = "vulnerability" ∧ edge.relationship = "overseen" → violate(x0, y0))
+7. Q[x0, y0](entity.attribute = "legislation" ∧ entity.attribute = "policy" ∧ edge.relationship = "implemented" → violate(x0, y0))
+8. Q[x0, y0](M_NLI(Congress.legislation, policy.implementation) ∧ tau(Congress.legislation, policy.implementation) → violate(x0, y0))
+9. Q[x0, y0](entity.attribute = "approval" ∧ edge.relationship = "endorsed" ∧ edge.relationship = "disapproved" → violate(x0, y0))
+10. Q[x0, y0](M_NLI(Congress.approval, administrative practice.rejection) ∧ T("Congress approved the administrative practice", "Congress rejected the administrative practice", tau) → violate(x0, y0))
+11. Q[x0, y0](entity.attribute = "authority" ∧ edge.relationship = "granted" ∧ edge.relationship = "limited" → violate(x0, y0))
+12. Q[x0, y0](M_NLI(Congress.authority, jurisdiction.limitation) ∧ tau(Congress.authority, jurisdiction.limitation) → violate(x0, y0))
+13. Q[x0, y0](entity.attribute = "decision" ∧ edge.relationship = "determined" ∧ edge.relationship = "overturned" → violate(x0, y0))
+14. Q[x0, y0](M_NLI(Congress.decision, outcome.result) ∧ T("Congress made a decision", "Congress did not make a decision", tau) → violate(x0, y0))
+15. Q[x0, y0](entity.attribute = "administrative practice" ∧ edge.relationship = "intersected" ∧ entity.attribute = "statute" → violate(x0, y0))
+16. Q[x0, y0](entity.name = "Congress" ∧ entity.attribute = "rejection" ∧ edge.relationship = "modified" → violate(x0, y0))
+17. Q[x0, y0](entity.attribute = "value" ∧ entity.attribute = "jurisdiction" ∧ edge.relationship = "restricted the practice of" → violate(x0, y0))
+18. Q[x0, y0](entity.type = "Legislative Body" ∧ edge.relationship = "was aware of the vulnerability of" ∧ entity.attribute = "disapprove" → violate(x0, y0))
+19. Q[x0, y0](entity.attribute = "policy" ∧ edge.relationship = "encouraged the establishment of" ∧ entity.attribute = "approval" → violate(x0, y0))
+20. Q[x0, y0](entity.attribute = "outcome" ∧ edge.relationship = "implemented" ∧ edge.relationship = "disapproved" → violate(x0, y0))
+21. Q[x0, y0](entity.attribute = "legislative process" ∧ edge.relationship = "created" ∧ entity.attribute = "administrative procedure" ∧ edge.relationship = "restricted the practice of" → violate(x0, y0))
+22. Q[x0, y0](entity.attribute = "value" ∧ entity.attribute = "decision" ∧ edge.relationship = "determined" ∧ edge.relationship = "overturned" → violate(x0, y0))
+23. Q[x0, y0](entity.name = "Congress" ∧ entity.attribute = "jurisdiction" ∧ edge.relationship = "granted" ∧ edge.relationship = "limited" → violate(x0, y0))
+24. Q[x0, y0](entity.attribute = "amend" ∧ edge.relationship = "influenced" ∧ entity.attribute = "statute" ∧ edge.relationship = "implemented" → violate(x0, y0))
+25. Q[x0, y0](M_NLI(Congress.approval, administrative practice.rejection) ∧ Factual(Congress.approval, administrative practice.rejection) ∧ edge.relationship = "endorsed" → violate(x0, y0))
+26. Q[x0, y0](entity.attribute = "vulnerability" ∧ edge.relationship = "overseen" ∧ entity.attribute = "policy" ∧ edge.relationship = "modified" → violate(x0, y0))
+27. Q[x0, y0](entity.attribute = "legislation" ∧ edge.relationship = "created" ∧ entity.attribute = "outcome" ∧ edge.relationship = "disapproved" → violate(x0, y0))
+28. Q[x0, y0](entity.attribute = "disapprove" ∧ edge.relationship = "restricted the practice of" ∧ entity.attribute = "authority" ∧ edge.relationship = "granted" → violate(x0, y0))
+29. Q[x0, y0](entity.attribute = "approval" ∧ edge.relationship = "influenced" ∧ entity.attribute = "decision" ∧ edge.relationship = "overturned" → violate(x0, y0))
+30. Q[x0, y0](entity.attribute = "policy" ∧ edge.relationship = "implemented" ∧ entity.attribute = "jurisdiction" ∧ edge.relationship = "limited" → violate(x0, y0))

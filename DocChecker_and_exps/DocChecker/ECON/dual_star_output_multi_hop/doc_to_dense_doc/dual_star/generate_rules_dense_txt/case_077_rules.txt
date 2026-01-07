@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 77)
+S1: Poodles are a breed of dog.
+S2: Poodles are a type of exotic bird.
+
+Predicates:
+1. Poodles.breed = dog
+2. Poodles.type = exotic_bird
+3. M_NLI(S1, S2)
+4. Factual(Poodles.breed, dog)
+5. Factual(Poodles.type, exotic_bird)
+6. violate(Poodles.breed, Poodles.type)
+7. dog.breed = Poodles
+8. exotic_bird.type = Poodles
+9. M_NLI(Poodles.breed, Poodles.type)
+10. Factual(dog, Poodles.breed)
+11. Factual(exotic_bird, Poodles.type)
+12. violate(dog, exotic_bird)
+13. Poodles.classification = canine
+14. Poodles.classification = avian
+15. M_NLI(Poodles.classification, Poodles.classification)
+16. Factual(Poodles.classification, canine)
+17. Factual(Poodles.classification, avian)
+18. violate(canine, avian)
+19. Poodles.temperament = friendly
+20. Poodles.temperament = flighty
+21. M_NLI(Poodles.temperament, Poodles.temperament)
+22. Factual(Poodles.temperament, friendly)
+23. Factual(Poodles.temperament, flighty)
+24. violate(friendly, flighty)
+25. Poodles.size = medium
+26. Poodles.size = small
+27. M_NLI(Poodles.size, Poodles.size)
+28. Factual(Poodles.size, medium)
+29. Factual(Poodles.size, small)
+30. violate(medium, small)
+
+Rules:
+1. Q[Poodles, Poodles.breed, Poodles.type](Poodles.breed == "dog" → Factual(Poodles.breed, Poodles.type))
+2. Q[Poodles, Poodles.type, Poodles.breed](Poodles.type == "exotic_bird" → Factual(Poodles.type, Poodles.breed))
+3. Q[Poodles, Poodles.breed, Poodles.type](Poodles.breed == "dog" ∧ Poodles.type == "exotic_bird" → Factual(Poodles.breed, Poodles.type))
+4. Q[Poodles, Poodles.breed, Poodles.type](Poodles.breed == "dog" ∧ violate(Poodles.breed, Poodles.type) → Factual(Poodles.breed, Poodles.type))
+5. Q[Poodles, Poodles.type, Poodles.breed](Poodles.type == "exotic_bird" ∧ violate(Poodles.type, Poodles.breed) → Factual(Poodles.type, Poodles.breed))
+6. Q[Poodles, Poodles.classification, Poodles.classification](Poodles.classification == "canine" → Factual(Poodles.classification, Poodles.classification))
+7. Q[Poodles, Poodles.classification, Poodles.classification](Poodles.classification == "avian" → Factual(Poodles.classification, Poodles.classification))
+8. Q[Poodles, Poodles.classification, Poodles.classification](Poodles.classification == "canine" ∧ Poodles.classification == "avian" → Factual(Poodles.classification, Poodles.classification))
+9. Q[Poodles, Poodles.classification, Poodles.classification](Poodles.classification == "canine" ∧ violate(canine, avian) → Factual(Poodles.classification, Poodles.classification))
+10. Q[Poodles, Poodles.classification, Poodles.classification](Poodles.classification == "avian" ∧ violate(avian, canine) → Factual(Poodles.classification, Poodles.classification))
+11. Q[Poodles, Poodles.temperament, Poodles.temperament](Poodles.temperament == "friendly" → Factual(Poodles.temperament, Poodles.temperament))
+12. Q[Poodles, Poodles.temperament, Poodles.temperament](Poodles.temperament == "flighty" → Factual(Poodles.temperament, Poodles.temperament))
+13. Q[Poodles, Poodles.temperament, Poodles.temperament](Poodles.temperament == "friendly" ∧ Poodles.temperament == "flighty" → Factual(Poodles.temperament, Poodles.temperament))
+14. Q[Poodles, Poodles.temperament, Poodles.temperament](Poodles.temperament == "friendly" ∧ violate(friendly, flighty) → Factual(Poodles.temperament, Poodles.temperament))
+15. Q[Poodles, Poodles.temperament, Poodles.temperament](Poodles.temperament == "flighty" ∧ violate(flighty, friendly) → Factual(Poodles.temperament, Poodles.temperament))
+16. Q[Poodles, Poodles.size, Poodles.size](Poodles.size == "medium" → Factual(Poodles.size, Poodles.size))
+17. Q[Poodles, Poodles.size, Poodles.size](Poodles.size == "small" → Factual(Poodles.size, Poodles.size))
+18. Q[Poodles, Poodles.size, Poodles.size](Poodles.size == "medium" ∧ Poodles.size == "small" → Factual(Poodles.size, Poodles.size))
+19. Q[Poodles, Poodles.size, Poodles.size](Poodles.size == "medium" ∧ violate(medium, small) → Factual(Poodles.size, Poodles.size))
+20. Q[Poodles, Poodles.size, Poodles.size](Poodles.size == "small" ∧ violate(small, medium) → Factual(Poodles.size, Poodles.size))
+21. Q[Poodles, Poodles.breed, Poodles.classification](Poodles.breed == "dog" → Factual(Poodles.breed, Poodles.classification))
+22. Q[Poodles, Poodles.type, Poodles.classification](Poodles.type == "exotic_bird" → Factual(Poodles.type, Poodles.classification))
+23. Q[Poodles, Poodles.breed, Poodles.temperament](Poodles.breed == "dog" → Factual(Poodles.breed, Poodles.temperament))
+24. Q[Poodles, Poodles.type, Poodles.temperament](Poodles.type == "exotic_bird" → Factual(Poodles.type, Poodles.temperament))
+25. Q[Poodles, Poodles.breed, Poodles.size](Poodles.breed == "dog" → Factual(Poodles.breed, Poodles.size))
+26. Q[Poodles, Poodles.type, Poodles.size](Poodles.type == "exotic_bird" → Factual(Poodles.type, Poodles.size))
+27. Q[Poodles, Poodles.classification, Poodles.breed](Poodles.classification == "canine" → Factual(Poodles.classification, Poodles.breed))
+28. Q[Poodles, Poodles.classification, Poodles.type](Poodles.classification == "avian" → Factual(Poodles.classification, Poodles.type))
+29. Q[Poodles, Poodles.temperament, Poodles.breed](Poodles.temperament == "friendly" → Factual(Poodles.temperament, Poodles.breed))
+30. Q[Poodles, Poodles.temperament, Poodles.type](Poodles.temperament == "flighty" → Factual(Poodles.temperament, Poodles.type))

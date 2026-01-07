@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 302)
+S1: High school students are between 14-19 years old.
+S2: High school students are typically between 10-12 years old.
+
+Predicates:
+1. HighSchoolStudent.age_range
+2. HighSchoolStudent.typical_age
+3. HighSchoolStudent.age_limit
+4. HighSchoolStudent.is_between_14_and_19
+5. HighSchoolStudent.is_between_10_and_12
+6. AgeRange.14_to_19
+7. AgeRange.10_to_12
+8. AgeRange.is_valid
+9. AgeRange.is_conflicting
+10. HighSchoolStudent.has_age_range
+11. HighSchoolStudent.is_typically_aged
+12. AgeRange.conflict_exists
+13. HighSchoolStudent.age_min
+14. HighSchoolStudent.age_max
+15. AgeRange.is_inclusive
+16. AgeRange.is_exclusive
+17. HighSchoolStudent.is_teenager
+18. HighSchoolStudent.is_child
+19. AgeRange.is_accepted
+20. AgeRange.is_rejected
+21. HighSchoolStudent.age_category
+22. HighSchoolStudent.is_enrolled
+23. HighSchoolStudent.is_not_enrolled
+24. HighSchoolStudent.age_verification
+25. AgeRange.is_disputed
+26. HighSchoolStudent.is_eligible
+27. HighSchoolStudent.is_not_eligible
+28. AgeRange.is_stated
+29. AgeRange.is_ambiguous
+30. HighSchoolStudent.age_conflict
+
+Rules:
+1. Q[High, HighSchoolStudent.age_range, AgeRange.14_to_19](HighSchoolStudent.is_between_14_and_19 == true → Factual(x0, y0))
+2. Q[High, HighSchoolStudent.age_range, AgeRange.10_to_12](HighSchoolStudent.is_between_10_and_12 == true → Factual(x0, y0))
+3. Q[High, HighSchoolStudent.age_limit, AgeRange.is_conflicting](HighSchoolStudent.age_min == 14 ∧ HighSchoolStudent.age_max == 19 → Factual(x0, y0))
+4. Q[High, HighSchoolStudent.age_limit, AgeRange.is_conflicting](HighSchoolStudent.age_min == 10 ∧ HighSchoolStudent.age_max == 12 → Factual(x0, y0))
+5. Q[High, HighSchoolStudent.has_age_range, AgeRange.is_disputed](HighSchoolStudent.age_range == "14-19" ∧ HighSchoolStudent.age_range == "10-12" → Factual(x0, y0))
+6. Q[High, HighSchoolStudent.is_typically_aged, AgeRange.is_ambiguous](HighSchoolStudent.typical_age == 10-12 → Factual(x0, y0))
+7. Q[High, HighSchoolStudent.is_typically_aged, AgeRange.is_ambiguous](HighSchoolStudent.typical_age == 14-19 → Factual(x0, y0))
+8. Q[High, HighSchoolStudent.age_conflict, AgeRange.is_rejected](HighSchoolStudent.is_between_14_and_19 == true ∧ HighSchoolStudent.is_between_10_and_12 == true → Factual(x0, y0))
+9. Q[High, HighSchoolStudent.age_category, AgeRange.is_valid](HighSchoolStudent.age_category == "teenager" → Factual(x0, y0))
+10. Q[High, HighSchoolStudent.age_category, AgeRange.is_valid](HighSchoolStudent.age_category == "child" → Factual(x0, y0))
+11. Q[High, HighSchoolStudent.is_enrolled, AgeRange.is_accepted](HighSchoolStudent.is_enrolled == true ∧ HighSchoolStudent.age_range == "14-19" → Factual(x0, y0))
+12. Q[High, HighSchoolStudent.is_enrolled, AgeRange.is_accepted](HighSchoolStudent.is_enrolled == true ∧ HighSchoolStudent.age_range == "10-12" → Factual(x0, y0))
+13. Q[High, HighSchoolStudent.age_verification, AgeRange.is_disputed](HighSchoolStudent.age_verification == "14-19" ∧ HighSchoolStudent.age_verification == "10-12" → Factual(x0, y0))
+14. Q[High, HighSchoolStudent.is_eligible, AgeRange.is_rejected](HighSchoolStudent.is_eligible == true ∧ HighSchoolStudent.age_range == "14-19" → Factual(x0, y0))
+15. Q[High, HighSchoolStudent.is_eligible, AgeRange.is_rejected](HighSchoolStudent.is_eligible == true ∧ HighSchoolStudent.age_range == "10-12" → Factual(x0, y0))
+16. Q[High, HighSchoolStudent.age_min, AgeRange.is_inclusive](HighSchoolStudent.age_min == 14 → Factual(x0, y0))
+17. Q[High, HighSchoolStudent.age_max, AgeRange.is_inclusive](HighSchoolStudent.age_max == 19 → Factual(x0, y0))
+18. Q[High, HighSchoolStudent.age_min, AgeRange.is_inclusive](HighSchoolStudent.age_min == 10 → Factual(x0, y0))
+19. Q[High, HighSchoolStudent.age_max, AgeRange.is_inclusive](HighSchoolStudent.age_max == 12 → Factual(x0, y0))
+20. Q[High, HighSchoolStudent.is_teenager, AgeRange.is_valid](HighSchoolStudent.is_teenager == true → Factual(x0, y0))
+21. Q[High, HighSchoolStudent.is_child, AgeRange.is_valid](HighSchoolStudent.is_child == true → Factual(x0, y0))
+22. Q[High, HighSchoolStudent.age_range, AgeRange.is_stated](HighSchoolStudent.age_range == "14-19" → Factual(x0, y0))
+23. Q[High, HighSchoolStudent.age_range, AgeRange.is_stated](HighSchoolStudent.age_range == "10-12" → Factual(x0, y0))
+24. Q[High, HighSchoolStudent.age_conflict, AgeRange.is_conflicting](HighSchoolStudent.age_range == "14-19" ∧ HighSchoolStudent.age_range == "10-12" → Factual(x0, y0))
+25. Q[High, HighSchoolStudent.is_not_enrolled, AgeRange.is_rejected](HighSchoolStudent.is_not_enrolled == true ∧ HighSchoolStudent.age_range == "14-19" → Factual(x0, y0))
+26. Q[High, HighSchoolStudent.is_not_enrolled, AgeRange.is_rejected](HighSchoolStudent.is_not_enrolled == true ∧ HighSchoolStudent.age_range == "10-12" → Factual(x0, y0))
+27. Q[High, HighSchoolStudent.age_range, AgeRange.is_accepted](HighSchoolStudent.age_range == "14-19" → Factual(x0, y0))
+28. Q[High, HighSchoolStudent.age_range, AgeRange.is_accepted](HighSchoolStudent.age_range == "10-12" → Factual(x0, y0))
+29. Q[High, HighSchoolStudent.age_limit, AgeRange.is_exclusive](HighSchoolStudent.age_limit == "14-19" ∧ HighSchoolStudent.age_limit == "10-12" → Factual(x0, y0))
+30. Q[High, HighSchoolStudent.age_conflict, AgeRange.is_disputed](HighSchoolStudent.age_conflict == true → Factual(x0, y0))

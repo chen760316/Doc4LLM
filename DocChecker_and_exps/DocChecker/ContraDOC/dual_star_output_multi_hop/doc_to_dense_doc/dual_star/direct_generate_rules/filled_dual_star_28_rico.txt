@@ -1,0 +1,50 @@
+Predicates:
+Chimène.label != "Person"
+Chimène.label != wedding.label
+Chimène.label = "Person"
+Chimène.name != "Chimène"
+Chimène.name != Rodrigue.name
+Chimène.name != wedding.name
+Chimène.name = "Chimène"
+Chimène.status != "will set the date for the wedding"
+Chimène.status != Rodrigue.status
+Chimène.status = "will set the date for the wedding"
+Chimène___Rodrigue.belief = "Rodrigue is alive"
+Chimène___Rodrigue.context = "believes Rodrigue to be dead"
+Chimène___Rodrigue.contradiction_type = "Causal"
+Chimène___Rodrigue.reason = "their history"
+Chimène___Rodrigue.relationship = "Chimène asks the King for Rodrigue's head."
+Chimène___Rodrigue.source_id = "3488771841_6"
+Chimène___wedding.contradiction_type = "Causal"
+Chimène___wedding.relationship != Chimène___Rodrigue.relationship
+Chimène___wedding.relationship = "Chimène will set the date for the wedding."
+Chimène___wedding.source_id = "3488771841_6"
+Chimène___wedding.time_frame = "up to a year in advance"
+None_ML(Chimène___wedding.attrs, Chimène___Rodrigue.attrs)
+None_ML(Rodrigue.attrs, Chimène.attrs)
+Rodrigue.label != "Person"
+Rodrigue.label = "Person"
+Rodrigue.name != "Rodrigue"
+Rodrigue.name = "Rodrigue"
+Rodrigue.status != "reluctant to marry"
+Rodrigue.status = "reluctant to marry"
+wedding.label != "Event"
+wedding.label != Rodrigue.label
+wedding.label = "Event"
+wedding.name != "wedding"
+wedding.name != Rodrigue.name
+wedding.name = "wedding"
+wedding.time_frame != "up to a year in advance"
+wedding.time_frame = "up to a year in advance"
+
+Rules:
+Q[Chimène,Chimène] (wedding.name != "wedding" ∧ Rodrigue.label = "Person" ∧ wedding.name = "wedding" ∧ wedding.label != Rodrigue.label → Chimène.status != "will set the date for the wedding")
+Q[Chimène,Chimène] (wedding.label != "Event" ∧ Chimène___Rodrigue.context = "believes Rodrigue to be dead" → Chimène___wedding.relationship = "Chimène will set the date for the wedding.")
+Q[Chimène,Chimène] (Chimène.label = "Person" ∧ wedding.name = "wedding" ∧ Chimène.status != "will set the date for the wedding" ∧ Chimène___wedding.relationship = "Chimène will set the date for the wedding." ∧ Rodrigue.label != "Person" → Chimène___wedding.contradiction_type = "Causal")
+Q[Chimène,Chimène] (Chimène.name != wedding.name ∧ wedding.name = "wedding" ∧ Chimène.status != Rodrigue.status → wedding.time_frame != "up to a year in advance")
+Q[Chimène,Chimène] (wedding.name = "wedding" ∧ wedding.label = "Event" ∧ Chimène.status != "will set the date for the wedding" ∧ Rodrigue.name = "Rodrigue" ∧ Chimène.status = "will set the date for the wedding" ∧ Chimène.label != wedding.label → Chimène.label != "Person")
+Q[Chimène,Chimène] (Chimène___Rodrigue.context = "believes Rodrigue to be dead" ∧ Chimène.name != "Chimène" ∧ Chimène___wedding.relationship = "Chimène will set the date for the wedding." → Chimène.name != wedding.name)
+Q[Chimène,Chimène] (Chimène___Rodrigue.reason = "their history" ∧ None_ML(Chimène___wedding.attrs, Chimène___Rodrigue.attrs) ∧ Chimène.name != wedding.name ∧ Chimène.status != Rodrigue.status ∧ wedding.label = "Event" ∧ Chimène___Rodrigue.context = "believes Rodrigue to be dead" → wedding.label != "Event")
+Q[Chimène,Chimène] (None_ML(Chimène___wedding.attrs, Chimène___Rodrigue.attrs) ∧ Chimène.name = "Chimène" ∧ Chimène.status != "will set the date for the wedding" ∧ Rodrigue.label = "Person" → wedding.name = "wedding")
+Q[Chimène,Chimène] (Rodrigue.status = "reluctant to marry" ∧ Chimène.name != "Chimène" ∧ Chimène.name = "Chimène" ∧ Chimène.status = "will set the date for the wedding" ∧ Chimène___Rodrigue.context = "believes Rodrigue to be dead" → wedding.name != "wedding")
+Q[Chimène,Chimène] (Chimène.name != Rodrigue.name ∧ wedding.label != Rodrigue.label → Chimène___Rodrigue.contradiction_type = "Causal")

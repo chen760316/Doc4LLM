@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 115)
+S1: J o e ' s f a t h e r b o u g h t i t f o r h i m , a n d J o e w a s v e r y h a p p y .
+S2: J o e i s s o m e t i m e s s a d w h e n h e l e a v e s H a z e l ' s h o u s e .
+
+Predicates:
+1. Joe.emotion.happy
+2. Joe.emotion.sad
+3. Joe.father.bought_item
+4. Joe.father.relationship.parent
+5. Joe.house.location.Hazel
+6. Hazel.house.relationship.grandmother
+7. Joe.emotion.conflict.happy_sad
+8. Joe.happiness.level.very_high
+9. Joe.sadness.level.sometimes
+10. Joe.experience.happiness
+11. Joe.experience.sadness
+12. Joe.father.action.buy
+13. Joe.emotion.change.happy_to_sad
+14. Joe.location.leave.Hazel
+15. Hazel.relationship.grandson.Joe
+16. Joe.emotion.state.happy
+17. Joe.emotion.state.sad
+18. Joe.action.leave.Hazel
+19. Joe.experience.leave.Hazel
+20. Joe.father.action.gift
+21. Joe.emotion.reaction.happy
+22. Joe.emotion.reaction.sad
+23. Joe.father.emotion.proud
+24. Joe.happiness.cause.father_buy
+25. Joe.sadness.cause.leave_Hazel
+26. Joe.emotion.variation.happy_sad
+27. Joe.father.role.provider
+28. Joe.emotion.context.Hazel
+29. Joe.happiness.context.father_buy
+30. Joe.sadness.context.leave_Hazel
+
+Rules:
+1. Q[happy, Joe.emotion.happy, Joe.emotion.sad](Joe.happiness.level.very_high → Causal(Joe.emotion.happy, Joe.emotion.sad))
+2. Q[happy, Joe.emotion.happy, Joe.emotion.sad](Joe.father.bought_item == true → Causal(Joe.emotion.happy, Joe.emotion.sad))
+3. Q[happy, Joe.emotion.happy, Joe.emotion.sad](Joe.experience.happiness == true → Causal(Joe.emotion.happy, Joe.emotion.sad))
+4. Q[happy, Joe.emotion.happy, Joe.emotion.sad](Joe.father.action.buy == true → Causal(Joe.emotion.happy, Joe.emotion.sad))
+5. Q[happy, Joe.emotion.happy, Joe.emotion.sad](Joe.happiness.cause.father_buy == true → Causal(Joe.emotion.happy, Joe.emotion.sad))
+6. Q[sad, Joe.emotion.sad, Joe.emotion.happy](Joe.sadness.level.sometimes == true → Causal(Joe.emotion.sad, Joe.emotion.happy))
+7. Q[sad, Joe.emotion.sad, Joe.emotion.happy](Joe.emotion.change.happy_to_sad == true → Causal(Joe.emotion.sad, Joe.emotion.happy))
+8. Q[sad, Joe.emotion.sad, Joe.emotion.happy](Joe.sadness.cause.leave_Hazel == true → Causal(Joe.emotion.sad, Joe.emotion.happy))
+9. Q[sad, Joe.emotion.sad, Joe.emotion.happy](Joe.action.leave.Hazel == true → Causal(Joe.emotion.sad, Joe.emotion.happy))
+10. Q[sad, Joe.emotion.sad, Joe.emotion.happy](Joe.experience.sadness == true → Causal(Joe.emotion.sad, Joe.emotion.happy))
+11. Q[house, Joe.house.location.Hazel, Joe.emotion.happy](Joe.location.leave.Hazel == true → Causal(Joe.house.location.Hazel, Joe.emotion.happy))
+12. Q[house, Joe.house.location.Hazel, Joe.emotion.sad](Joe.location.leave.Hazel == true → Causal(Joe.house.location.Hazel, Joe.emotion.sad))
+13. Q[house, Joe.house.location.Hazel, Joe.emotion.happy](Joe.emotion.context.Hazel == true → Causal(Joe.house.location.Hazel, Joe.emotion.happy))
+14. Q[house, Joe.house.location.Hazel, Joe.emotion.sad](Joe.emotion.context.Hazel == true → Causal(Joe.house.location.Hazel, Joe.emotion.sad))
+15. Q[father, Joe.father.bought_item, Joe.emotion.happy](Joe.father.relationship.parent == true → Causal(Joe.father.bought_item, Joe.emotion.happy))
+16. Q[father, Joe.father.bought_item, Joe.emotion.sad](Joe.father.relationship.parent == true → Causal(Joe.father.bought_item, Joe.emotion.sad))
+17. Q[father, Joe.father.action.buy, Joe.emotion.happy](Joe.father.role.provider == true → Causal(Joe.father.action.buy, Joe.emotion.happy))
+18. Q[father, Joe.father.action.buy, Joe.emotion.sad](Joe.father.role.provider == true → Causal(Joe.father.action.buy, Joe.emotion.sad))
+19. Q[conflict, Joe.emotion.conflict.happy_sad, Joe.emotion.happy](Joe.emotion.variation.happy_sad == true → Causal(Joe.emotion.conflict.happy_sad, Joe.emotion.happy))
+20. Q[conflict, Joe.emotion.conflict.happy_sad, Joe.emotion.sad](Joe.emotion.variation.happy_sad == true → Causal(Joe.emotion.conflict.happy_sad, Joe.emotion.sad))
+21. Q[reaction, Joe.emotion.reaction.happy, Joe.emotion.sad](Joe.emotion.reaction.happy == true → Causal(Joe.emotion.reaction.happy, Joe.emotion.sad))
+22. Q[reaction, Joe.emotion.reaction.sad, Joe.emotion.happy](Joe.emotion.reaction.sad == true → Causal(Joe.emotion.reaction.sad, Joe.emotion.happy))
+23. Q[experience, Joe.experience.happiness, Joe.emotion.sad](Joe.experience.happiness == true → Causal(Joe.experience.happiness, Joe.emotion.sad))
+24. Q[experience, Joe.experience.sadness, Joe.emotion.happy](Joe.experience.sadness == true → Causal(Joe.experience.sadness, Joe.emotion.happy))
+25. Q[grandmother, Hazel.house.relationship.grandmother, Joe.emotion.happy](Joe.emotion.state.happy == true → Causal(Hazel.house.relationship.grandmother, Joe.emotion.happy))
+26. Q[grandmother, Hazel.house.relationship.grandmother, Joe.emotion.sad](Joe.emotion.state.sad == true → Causal(Hazel.house.relationship.grandmother, Joe.emotion.sad))
+27. Q[provider, Joe.father.role.provider, Joe.emotion.happy](Joe.father.role.provider == true → Causal(Joe.father.role.provider, Joe.emotion.happy))
+28. Q[provider, Joe.father.role.provider, Joe.emotion.sad](Joe.father.role.provider == true → Causal(Joe.father.role.provider, Joe.emotion.sad))
+29. Q[reaction, Joe.emotion.reaction.happy, Joe.emotion.sad](Joe.emotion.reaction.happy == true → Causal(Joe.emotion.reaction.happy, Joe.emotion.sad))
+30. Q[reaction, Joe.emotion.reaction.sad, Joe.emotion.happy](Joe.emotion.reaction.sad == true → Causal(Joe.emotion.reaction.sad, Joe.emotion.happy))

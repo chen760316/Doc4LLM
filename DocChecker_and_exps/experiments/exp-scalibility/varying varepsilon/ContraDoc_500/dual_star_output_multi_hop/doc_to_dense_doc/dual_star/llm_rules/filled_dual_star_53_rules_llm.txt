@@ -1,0 +1,102 @@
+Predicates:
+1. Ginevra.amour = "Alfred de Hamal"
+2. Ginevra.amour.real_name = "Alfred de Hamal"
+3. Lucy.status = "unspecified"
+4. M. Emanuel.absence_duration = "three years"
+5. M. Paul.location = "West Indies"
+6. M. Paul.occupation = "ship captain"
+7. M. Paul.status = "deceased"
+8. Nun.location = "school's grounds"
+9. Nun.status = "ghost"
+10. Lucy.expresses_desire = "happy ending"
+11. Lucy.encounters_nun_count = 3
+12. Lucy.encounters_nun.reason = "may be the ghost of a nun"
+13. Lucy.encounters_nun.reason = "buried alive as punishment for breaking vow of chastity"
+14. Lucy.happiness_duration = "three years"
+15. Lucy.hints_ship_destruction.cause = "storm"
+16. Lucy.hints_ship_destruction.event = "ship destruction"
+17. Lucy.hints_ship_destruction.journey = "return from West Indies"
+18. M. Paul's ship.destruction_event = "storm"
+19. M. Paul's ship.destruction_time = "during return journey"
+20. M. Paul's ship.destruction_location = "West Indies"
+21. "Ginevra's amour".method = "disguise"
+22. "Lucy and Paul".relationship = "do not fall in love"
+23. "Lucy and M. Paul".relationship = "becomes progressively closer"
+24. "Nun figure".relation = "disguise worn by Alfred de Hamal"
+25. "Nun figure".relation = "related to Ginevra"
+26. T("Ginevra's amour is Alfred de Hamal.", "The nun figure is a disguise worn by Alfred de Hamal.", tau)
+27. T("Lucy hints that M. Paul's ship was destroyed by a storm during his return journey.", "M. Paul's ship was not destroyed during his return journey.", tau)
+28. T("Lucy reflects that the three years M. Emanuel was away were the happiest years of her life.", "Lucy was unhappy during M. Emanuel's absence.", tau)
+29. tau(Lucy.hints_ship_destruction.cause, M. Paul's ship.destruction_event)
+30. tau(Lucy.encounters_nun_count, Lucy.hints_ship_destruction.event)
+31. violate(Lucy.status, M. Paul.status)
+32. Factual(Lucy.hints_ship_destruction.cause, M. Paul's ship.destruction_event)
+33. Causal(Lucy.hints_ship_destruction.event, M. Paul's ship.destruction_time)
+34. Numeric(Lucy.encounters_nun_count, 0)
+35. Temporal(Lucy.happiness_duration, M. Emanuel.absence_duration)
+36. Relation("Ginevra's amour", "Nun figure")
+37. Content("Lucy expresses a desire for the reader to imagine a happy ending.", "Lucy does not want a happy ending.")
+38. Factual("M. Paul's ship was destroyed by a storm.", "M. Paul's ship was not destroyed.")
+39. Causal("Lucy hints that M. Paul's ship was destroyed by a storm.", "M. Paul's ship was safe during the journey.")
+40. Negation("Lucy hints that M. Paul's ship was destroyed by a storm.", "Lucy does not hint about the ship's destruction.")
+41. Relation("Lucy and Paul", "Lucy and M. Paul")
+42. Numeric("Lucy has three encounters with the figure of a nun.", "Lucy has no encounters with the figure of a nun.")
+43. Temporal("M. Paul's ship was destroyed during its return journey.", "M. Paul's ship was destroyed before the return journey.")
+44. violate(Lucy.hints_ship_destruction.event, M. Paul's ship.destruction_event)
+45. Factual("Ginevra's amour is Alfred de Hamal.", "Ginevra's amour is someone else.")
+46. Causal("Lucy reflects that the three years M. Emanuel was away were the happiest years of her life.", "Lucy was unhappy during M. Emanuel's absence.")
+47. Numeric("Lucy has three encounters with the figure of a nun.", "Lucy has four encounters with the figure of a nun.")
+48. Temporal("M. Paul's ship was destroyed during its return journey.", "M. Paul's ship was destroyed after the return journey.")
+49. Relation("Ginevra's amour", "Alfred de Hamal")
+50. Content("Lucy hints that M. Paul's ship was destroyed by a storm.", "Lucy believes M. Paul's ship was safe.")
+51. Factual("M. Paul's ship was destroyed by a storm during his return journey.", "M. Paul's ship was not destroyed.")
+52. Causal("Lucy hints that M. Paul's ship was destroyed by a storm.", "The storm did not affect M. Paul's ship.")
+53. Negation("Lucy reflects that the three years M. Emanuel was away were the happiest years of her life.", "Lucy does not reflect on her happiness during M. Emanuel's absence.")
+54. Relation("Lucy and Paul", "Lucy and M. Paul")
+55. Numeric("Lucy has three encounters with the figure of a nun.", "Lucy has two encounters with the figure of a nun.")
+56. Temporal("M. Paul's ship was destroyed during its return journey.", "M. Paul's ship was destroyed before the return journey.")
+57. violate(Lucy.hints_ship_destruction.cause, M. Paul's ship.destruction_event)
+58. Factual("Ginevra's amour is Alfred de Hamal.", "Ginevra's amour is not Alfred de Hamal.")
+59. Causal("Lucy hints that M. Paul's ship was destroyed by a storm.", "The storm did not cause the ship's destruction.")
+60. Negation("Lucy reflects that the three years M. Emanuel was away were the happiest years of her life.", "Lucy does not reflect on her happiness.")
+61. Relation("Ginevra's amour", "Nun figure")
+62. Numeric("Lucy has three encounters with the figure of a nun.", "Lucy has five encounters with the figure of a nun.")
+63. Temporal("M. Paul's ship was destroyed during its return journey.", "M. Paul's ship was destroyed after the return journey.")
+64. violate(Lucy.status, M. Emanuel.status)
+65. Factual("M. Paul's ship was destroyed by a storm during his return journey.", "M. Paul's ship was safe.")
+66. Causal("Lucy hints that M. Paul's ship was destroyed by a storm.", "The storm did not affect the ship.")
+67. Negation("Lucy reflects that the three years M. Emanuel was away were the happiest years of her life.", "Lucy does not reflect on her happiness.")
+68. Relation("Lucy and Paul", "Lucy and M. Paul")
+69. Numeric("Lucy has three encounters with the figure of a nun.", "Lucy has one encounter with the figure of a nun.")
+70. Temporal("M. Paul's ship was destroyed during its return journey.", "M. Paul's ship was destroyed before the return journey.")
+violate(x0, y0)
+
+Rules:
+1. Q[x0, y0](Ginevra.amour = "Alfred de Hamal" ∧ M. Paul.status = "deceased" → violate(x0, y0))
+2. Q[x0, y0](Lucy.status = "unspecified" ∧ Lucy.hints_ship_destruction.event = "ship destruction" → violate(x0, y0))
+3. Q[x0, y0](M. Emanuel.absence_duration = "three years" ∧ Lucy.happiness_duration = "three years" → violate(x0, y0))
+4. Q[x0, y0](M. Paul.location = "West Indies" ∧ M. Paul's ship.destruction_event = "storm" → violate(x0, y0))
+5. Q[x0, y0](Nun.status = "ghost" ∧ Lucy.encounters_nun_count = 3 → violate(x0, y0))
+6. Q[x0, y0](Lucy.expresses_desire = "happy ending" ∧ Lucy.hints_ship_destruction.cause = "storm" → violate(x0, y0))
+7. Q[x0, y0](M. Paul.occupation = "ship captain" ∧ M. Paul's ship.destruction_time = "during return journey" ∧ Lucy.hints_ship_destruction.event = "ship destruction" → violate(x0, y0))
+8. Q[x0, y0](Lucy.encounters_nun.reason = "may be the ghost of a nun" ∧ Lucy.encounters_nun.reason = "buried alive as punishment for breaking vow of chastity" → violate(x0, y0))
+9. Q[x0, y0](Ginevra.amour.real_name = "Alfred de Hamal" ∧ "Ginevra's amour".method = "disguise" ∧ "Nun figure".relation = "disguise worn by Alfred de Hamal" → violate(x0, y0))
+10. Q[x0, y0](Lucy.hints_ship_destruction.cause = "storm" ∧ M. Paul's ship.destruction_location = "West Indies" ∧ Lucy.hints_ship_destruction.event = "ship destruction" → violate(x0, y0))
+11. Q[x0, y0](Lucy.hints_ship_destruction.event = "ship destruction" ∧ Factual("M. Paul's ship was destroyed by a storm.", "M. Paul's ship was not destroyed.") → violate(x0, y0))
+12. Q[x0, y0](Lucy.hints_ship_destruction.cause = "storm" ∧ Causal(Lucy.hints_ship_destruction.event, M. Paul's ship.destruction_time) → violate(x0, y0))
+13. Q[x0, y0](Lucy.happiness_duration = "three years" ∧ M. Emanuel.absence_duration = "three years" ∧ Lucy.status = "unspecified" → violate(x0, y0))
+14. Q[x0, y0](M. Paul's ship.destruction_event = "storm" ∧ Temporal("M. Paul's ship was destroyed during its return journey.", "M. Paul's ship was destroyed before the return journey.") → violate(x0, y0))
+15. Q[x0, y0](Lucy.encounters_nun_count = 3 ∧ Numeric("Lucy has three encounters with the figure of a nun.", "Lucy has four encounters with the figure of a nun.") → violate(x0, y0))
+16. Q[x0, y0](M. Paul's ship.destruction_time = "during return journey" ∧ Factual("M. Paul's ship was destroyed by a storm.", "M. Paul's ship was not destroyed.") → violate(x0, y0))
+17. Q[x0, y0](Lucy.hints_ship_destruction.event = "ship destruction" ∧ violate(Lucy.hints_ship_destruction.event, M. Paul's ship.destruction_event) → violate(x0, y0))
+18. Q[x0, y0](Lucy.expresses_desire = "happy ending" ∧ Content("Lucy expresses a desire for the reader to imagine a happy ending.", "Lucy does not want a happy ending.") → violate(x0, y0))
+19. Q[x0, y0](M. Paul.status = "deceased" ∧ Lucy.status = "unspecified" ∧ violate(Lucy.status, M. Paul.status) → violate(x0, y0))
+20. Q[x0, y0](Lucy.hints_ship_destruction.cause = "storm" ∧ Causal("Lucy hints that M. Paul's ship was destroyed by a storm.", "The storm did not affect M. Paul's ship.") → violate(x0, y0))
+21. Q[x0, y0](Lucy.encounters_nun.reason = "buried alive as punishment for breaking vow of chastity" ∧ Lucy.encounters_nun_count = 3 ∧ Numeric("Lucy has three encounters with the figure of a nun.", "Lucy has two encounters with the figure of a nun.") → violate(x0, y0))
+22. Q[x0, y0](M. Paul's ship.destruction_event = "storm" ∧ Factual("M. Paul's ship was destroyed by a storm during his return journey.", "M. Paul's ship was safe.") → violate(x0, y0))
+23. Q[x0, y0](Ginevra.amour = "Alfred de Hamal" ∧ Relation("Ginevra's amour", "Nun figure") ∧ violate(Lucy.hints_ship_destruction.event, M. Paul's ship.destruction_event) → violate(x0, y0))
+24. Q[x0, y0](Lucy.hints_ship_destruction.event = "ship destruction" ∧ Lucy.hints_ship_destruction.cause = "storm" ∧ violate(Lucy.hints_ship_destruction.cause, M. Paul's ship.destruction_event) → violate(x0, y0))
+25. Q[x0, y0](M. Paul.occupation = "ship captain" ∧ Lucy.hints_ship_destruction.event = "ship destruction" ∧ violate(Lucy.hints_ship_destruction.event, M. Paul's ship.destruction_event) → violate(x0, y0))
+26. Q[x0, y0](Lucy.hints_ship_destruction.cause = "storm" ∧ Lucy.hints_ship_destruction.event = "ship destruction" ∧ violate(Lucy.hints_ship_destruction.event, M. Paul's ship.destruction_event) → violate(x0, y0))
+27. Q[x0, y0](M. Paul's ship.destruction_time = "during return journey" ∧ Lucy.hints_ship_destruction.event = "ship destruction" ∧ violate(Lucy.hints_ship_destruction.event, M. Paul's ship.destruction_event) → violate(x0, y0))
+28. Q[x0, y0](M. Paul.location = "West Indies"

@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 1189)
+S1: N a t a l i a d i d n ' t s e e m t o e x p e c t m e t o b e a n y t h i n g.
+S2: S h e d i d n ' t e x p e c t m e t o b e a n y t h i n g.
+
+Predicates:
+1. S1.speaker.expectation
+2. S2.speaker.expectation
+3. S1.speaker.sentiment
+4. S2.speaker.sentiment
+5. S1.expectation.lack
+6. S2.expectation.direct
+7. S1.sentiment.imply
+8. S2.sentiment.state
+9. M_NLI(S1, S2)
+10. Negation(S1.expectation, S2.expectation)
+11. violate(S1.sentiment, S2.sentiment)
+12. S1.speaker.name
+13. S2.speaker.name
+14. S1.expectation.contradiction
+15. S2.expectation.contradiction
+16. S1.speaker.emotion
+17. S2.speaker.emotion
+18. S1.context.situation
+19. S2.context.situation
+20. S1.speaker.perception
+21. S2.speaker.perception
+22. S1.expectation.uncertainty
+23. S2.expectation.certainty
+24. S1.sentiment.negative
+25. S2.sentiment.positive
+26. S1.speaker.response
+27. S2.speaker.response
+28. S1.expectation.assumption
+29. S2.expectation.assertion
+30. S1.speaker.intention
+
+Rules:
+1. Q[didn't](S1.speaker.expectation == "lack" → Negation(S1.expectation.lack, S2.expectation.direct))
+2. Q[didn't](S2.speaker.expectation == "direct" → Negation(S1.expectation.lack, S2.expectation.direct))
+3. Q[didn't](S1.speaker.sentiment == "imply" → Negation(S1.sentiment.imply, S2.sentiment.state))
+4. Q[didn't](S2.speaker.sentiment == "state" → Negation(S1.sentiment.imply, S2.sentiment.state))
+5. Q[expect](S1.expectation.lack == true → Negation(S1.expectation.lack, S2.expectation.direct))
+6. Q[expect](S2.expectation.direct == true → Negation(S1.expectation.lack, S2.expectation.direct))
+7. Q[expect](S1.expectation.uncertainty == true → Negation(S1.expectation.uncertainty, S2.expectation.certainty))
+8. Q[expect](S2.expectation.certainty == true → Negation(S1.expectation.uncertainty, S2.expectation.certainty))
+9. Q[expect](S1.sentiment.negative == true → Negation(S1.sentiment.negative, S2.sentiment.positive))
+10. Q[expect](S2.sentiment.positive == true → Negation(S1.sentiment.negative, S2.sentiment.positive))
+11. Q[expect](S1.expectation.assumption == true → Negation(S1.expectation.assumption, S2.expectation.assertion))
+12. Q[expect](S2.expectation.assertion == true → Negation(S1.expectation.assumption, S2.expectation.assertion))
+13. Q[expect](S1.speaker.perception == "lack" → Negation(S1.expectation.lack, S2.expectation.direct))
+14. Q[expect](S2.speaker.perception == "direct" → Negation(S1.expectation.lack, S2.expectation.direct))
+15. Q[expect](S1.speaker.response == "imply" → Negation(S1.sentiment.imply, S2.sentiment.state))
+16. Q[expect](S2.speaker.response == "state" → Negation(S1.sentiment.imply, S2.sentiment.state))
+17. Q[expect](S1.speaker.name == "Natalia" → Negation(S1.expectation.lack, S2.expectation.direct))
+18. Q[expect](S2.speaker.name == "Natalia" → Negation(S1.expectation.lack, S2.expectation.direct))
+19. Q[expect](S1.context.situation == "uncertain" → Negation(S1.expectation.lack, S2.expectation.direct))
+20. Q[expect](S2.context.situation == "certain" → Negation(S1.expectation.lack, S2.expectation.direct))
+21. Q[expect](S1.speaker.emotion == "confused" → Negation(S1.expectation.lack, S2.expectation.direct))
+22. Q[expect](S2.speaker.emotion == "certain" → Negation(S1.expectation.lack, S2.expectation.direct))
+23. Q[expect](S1.expectation.contradiction == true → Negation(S1.expectation.lack, S2.expectation.direct))
+24. Q[expect](S2.expectation.contradiction == true → Negation(S1.expectation.lack, S2.expectation.direct))
+25. Q[expect](M_NLI(S1, S2) == true → Negation(S1.expectation.lack, S2.expectation.direct))
+26. Q[expect](violate(S1.sentiment, S2.sentiment) == true → Negation(S1.expectation.lack, S2.expectation.direct))
+27. Q[expect](S1.speaker.intention == "imply" → Negation(S1.sentiment.imply, S2.sentiment.state))
+28. Q[expect](S2.speaker.intention == "state" → Negation(S1.sentiment.imply, S2.sentiment.state))
+29. Q[expect](S1.speaker.expectation == "lack" → Negation(S1.expectation.lack, S2.expectation.direct))
+30. Q[expect](S2.speaker.expectation == "direct" → Negation(S1.expectation.lack, S2.expectation.direct))

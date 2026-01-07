@@ -1,0 +1,66 @@
+Source: dense_text.txt (Index 155)
+S1: The likes of Daewoo, Ford, Renault and cannot produce fast enough.
+S2: The likes of Daewoo, Ford, Renault, and more can't produce fast enough.
+
+Predicates:
+1. Entity_Daewoo.production_capacity
+2. Entity_Ford.production_capacity
+3. Entity_Renault.production_capacity
+4. Edge_production_capacity.cannot
+5. Edge_production_capacity.cannot_produce_fast_enough
+6. Edge_production_capacity.cannot_produce
+7. Entity_Daewoo.formality
+8. Entity_Ford.formality
+9. Entity_Renault.formality
+10. Edge_formality.cannot
+11. Edge_formality.cannot_use
+12. Edge_formality.cannot_produce_fast_enough
+13. Meta_M_NLI(S1, S2)
+14. Meta_Negation(S1, S2)
+15. Meta_violate(S1, S2)
+16. Entity_Daewoo.automobile_industry
+17. Entity_Ford.automobile_industry
+18. Entity_Renault.automobile_industry
+19. Edge_automobile_industry.cannot_compete
+20. Edge_automobile_industry.cannot_meet_demand
+21. Entity_Daewoo.production_rate
+22. Entity_Ford.production_rate
+23. Entity_Renault.production_rate
+24. Edge_production_rate.cannot_keep_up
+25. Edge_production_rate.cannot_satisfy_demand
+26. Entity_Daewoo.market_share
+27. Entity_Ford.market_share
+28. Entity_Renault.market_share
+29. Edge_market_share.cannot_expand
+30. Edge_market_share.cannot_increase
+
+Rules:
+1. Q[The, Edge_production_capacity.cannot_produce_fast_enough, Edge_formality.cannot](Edge_production_capacity.cannot_produce_fast_enough → Negation(Edge_production_capacity.cannot_produce_fast_enough, Edge_formality.cannot))
+2. Q[The, Entity_Daewoo.formality, Edge_formality.cannot](Entity_Daewoo.formality == "formal" → Negation(Entity_Daewoo.formality, Edge_formality.cannot))
+3. Q[The, Entity_Ford.formality, Edge_formality.cannot](Entity_Ford.formality == "formal" → Negation(Entity_Ford.formality, Edge_formality.cannot))
+4. Q[The, Entity_Renault.formality, Edge_formality.cannot](Entity_Renault.formality == "formal" → Negation(Entity_Renault.formality, Edge_formality.cannot))
+5. Q[The, Edge_production_capacity.cannot, Edge_formality.cannot_use](Edge_production_capacity.cannot == true → Negation(Edge_production_capacity.cannot, Edge_formality.cannot_use))
+6. Q[The, Entity_Daewoo.production_capacity, Edge_production_capacity.cannot](Entity_Daewoo.production_capacity < required_capacity → Negation(Entity_Daewoo.production_capacity, Edge_production_capacity.cannot))
+7. Q[The, Entity_Ford.production_capacity, Edge_production_capacity.cannot](Entity_Ford.production_capacity < required_capacity → Negation(Entity_Ford.production_capacity, Edge_production_capacity.cannot))
+8. Q[The, Entity_Renault.production_capacity, Edge_production_capacity.cannot](Entity_Renault.production_capacity < required_capacity → Negation(Entity_Renault.production_capacity, Edge_production_capacity.cannot))
+9. Q[The, Edge_production_rate.cannot_keep_up, Edge_production_capacity.cannot](Edge_production_rate.cannot_keep_up == true → Negation(Edge_production_rate.cannot_keep_up, Edge_production_capacity.cannot))
+10. Q[The, Edge_production_rate.cannot_satisfy_demand, Edge_production_capacity.cannot](Edge_production_rate.cannot_satisfy_demand == true → Negation(Edge_production_rate.cannot_satisfy_demand, Edge_production_capacity.cannot))
+11. Q[The, Entity_Daewoo.production_rate, Edge_production_rate.cannot_keep_up](Entity_Daewoo.production_rate < market_demand → Negation(Entity_Daewoo.production_rate, Edge_production_rate.cannot_keep_up))
+12. Q[The, Entity_Ford.production_rate, Edge_production_rate.cannot_keep_up](Entity_Ford.production_rate < market_demand → Negation(Entity_Ford.production_rate, Edge_production_rate.cannot_keep_up))
+13. Q[The, Entity_Renault.production_rate, Edge_production_rate.cannot_keep_up](Entity_Renault.production_rate < market_demand → Negation(Entity_Renault.production_rate, Edge_production_rate.cannot_keep_up))
+14. Q[The, Edge_market_share.cannot_expand, Edge_production_capacity.cannot](Edge_market_share.cannot_expand == true → Negation(Edge_market_share.cannot_expand, Edge_production_capacity.cannot))
+15. Q[The, Edge_market_share.cannot_increase, Edge_production_capacity.cannot](Edge_market_share.cannot_increase == true → Negation(Edge_market_share.cannot_increase, Edge_production_capacity.cannot))
+16. Q[The, Entity_Daewoo.market_share, Edge_market_share.cannot_expand](Entity_Daewoo.market_share < industry_average → Negation(Entity_Daewoo.market_share, Edge_market_share.cannot_expand))
+17. Q[The, Entity_Ford.market_share, Edge_market_share.cannot_expand](Entity_Ford.market_share < industry_average → Negation(Entity_Ford.market_share, Edge_market_share.cannot_expand))
+18. Q[The, Entity_Renault.market_share, Edge_market_share.cannot_expand](Entity_Renault.market_share < industry_average → Negation(Entity_Renault.market_share, Edge_market_share.cannot_expand))
+19. Q[The, Edge_automobile_industry.cannot_compete, Edge_production_capacity.cannot](Edge_automobile_industry.cannot_compete == true → Negation(Edge_automobile_industry.cannot_compete, Edge_production_capacity.cannot))
+20. Q[The, Edge_automobile_industry.cannot_meet_demand, Edge_production_capacity.cannot](Edge_automobile_industry.cannot_meet_demand == true → Negation(Edge_automobile_industry.cannot_meet_demand, Edge_production_capacity.cannot))
+21. Q[The, Entity_Daewoo.automobile_industry, Edge_automobile_industry.cannot_compete](Entity_Daewoo.automobile_industry == "struggling" → Negation(Entity_Daewoo.automobile_industry, Edge_automobile_industry.cannot_compete))
+22. Q[The, Entity_Ford.automobile_industry, Edge_automobile_industry.cannot_compete](Entity_Ford.automobile_industry == "struggling" → Negation(Entity_Ford.automobile_industry, Edge_automobile_industry.cannot_compete))
+23. Q[The, Entity_Renault.automobile_industry, Edge_automobile_industry.cannot_compete](Entity_Renault.automobile_industry == "struggling" → Negation(Entity_Renault.automobile_industry, Edge_automobile_industry.cannot_compete))
+24. Q[The, Edge_formality.cannot_use, Edge_formality.cannot](Edge_formality.cannot_use == true → Negation(Edge_formality.cannot_use, Edge_formality.cannot))
+25. Q[The, Meta_M_NLI(S1, S2), Edge_formality.cannot](Meta_M_NLI(S1, S2) == true → Negation(Meta_M_NLI(S1, S2), Edge_formality.cannot))
+26. Q[The, Meta_Negation(S1, S2), Edge_formality.cannot](Meta_Negation(S1, S2) == true → Negation(Meta_Negation(S1, S2), Edge_formality.cannot))
+27. Q[The, Meta_violate(S1, S2), Edge_formality.cannot](Meta_violate(S1, S2) == true → Negation(Meta_violate(S1, S2), Edge_formality.cannot))
+28. Q[The, Edge_production_capacity.cannot_produce, Edge_formality.cannot](Edge_production_capacity.cannot_produce == true → Negation(Edge_production_capacity.cannot_produce, Edge_formality.cannot))
+29. Q[The, Entity_Daewoo.production_capacity, Edge_production_capacity.cannot_produce](Entity_Daewoo.production_capacity < expected_capacity → Negation(Entity_Daew

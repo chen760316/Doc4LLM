@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 231)
+S1: M a r i a w a s a t e a c h e r a t a s m a l l s c h o o l i n A r i z o n a.
+S2: M a r i a h a d w o r k e d i n t h e p a s t a t s c h o o l s i n C a l i f o r n i a , T e x a s , a n d V e r m o n t , b u t h a d t o l e a v e t h e s e s c h o o l s b e c a u s e t h e s c h o o l i n A r i z o n a w a s p e r f e c t f o r h e r d r e a m j o b.
+
+Predicates:
+1. Maria.profession = teacher
+2. Maria.location = Arizona
+3. Maria.previous_work_location = California
+4. Maria.previous_work_location = Texas
+5. Maria.previous_work_location = Vermont
+6. Arizona.school.type = small
+7. Arizona.school.suitability = perfect
+8. Maria.dream_job = true
+9. Maria.leave_reason = other schools
+10. other_schools.location = California
+11. other_schools.location = Texas
+12. other_schools.location = Vermont
+13. Arizona.school.teaching_status = current
+14. California.school.teaching_status = past
+15. Texas.school.teaching_status = past
+16. Vermont.school.teaching_status = past
+17. Maria.job_satisfaction = high
+18. Arizona.school.ideal_for = Maria
+19. Maria.teaching_experience = multiple_states
+20. Maria.work_history = diverse
+21. Arizona.school.quality = high
+22. Maria.educational_background = teaching
+23. Maria.employment_status = employed
+24. Arizona.school.enrollment = small
+25. Maria.occupation = educator
+26. Maria.geographic_movement = interstate
+27. Maria.career_transition = from_other_schools
+28. Arizona.school.environment = supportive
+29. Maria.job_change = necessary
+30. Maria.occupation_change = from_other_states
+
+Rules:
+1. Q[Arizona, Maria.profession, Maria.leave_reason](Maria.profession == "teacher" → Causal(Maria.profession, Maria.leave_reason))
+2. Q[Arizona, Maria.location, Arizona.school.suitability](Maria.location == "Arizona" → Causal(Maria.location, Arizona.school.suitability))
+3. Q[Arizona, Maria.previous_work_location, Arizona.school.teaching_status](Maria.previous_work_location == "California" → Causal(Maria.previous_work_location, Arizona.school.teaching_status))
+4. Q[Arizona, Maria.previous_work_location, Arizona.school.teaching_status](Maria.previous_work_location == "Texas" → Causal(Maria.previous_work_location, Arizona.school.teaching_status))
+5. Q[Arizona, Maria.previous_work_location, Arizona.school.teaching_status](Maria.previous_work_location == "Vermont" → Causal(Maria.previous_work_location, Arizona.school.teaching_status))
+6. Q[Arizona, Arizona.school.suitability, Maria.dream_job](Arizona.school.suitability == "perfect" → Causal(Arizona.school.suitability, Maria.dream_job))
+7. Q[Arizona, Maria.dream_job, Maria.job_change](Maria.dream_job == true → Causal(Maria.dream_job, Maria.job_change))
+8. Q[Arizona, Arizona.school.ideal_for, Maria.job_satisfaction](Arizona.school.ideal_for == Maria → Causal(Arizona.school.ideal_for, Maria.job_satisfaction))
+9. Q[Arizona, Maria.teaching_experience, Maria.previous_work_location](Maria.teaching_experience == "multiple_states" → Causal(Maria.teaching_experience, Maria.previous_work_location))
+10. Q[Arizona, Arizona.school.quality, Maria.job_satisfaction](Arizona.school.quality == "high" → Causal(Arizona.school.quality, Maria.job_satisfaction))
+11. Q[Arizona, Maria.employment_status, Arizona.school.teaching_status](Maria.employment_status == "employed" → Causal(Maria.employment_status, Arizona.school.teaching_status))
+12. Q[Arizona, Arizona.school.environment, Maria.job_satisfaction](Arizona.school.environment == "supportive" → Causal(Arizona.school.environment, Maria.job_satisfaction))
+13. Q[Arizona, Maria.geographic_movement, Maria.previous_work_location](Maria.geographic_movement == "interstate" → Causal(Maria.geographic_movement, Maria.previous_work_location))
+14. Q[Arizona, Maria.career_transition, Arizona.school.teaching_status](Maria.career_transition == "from_other_schools" → Causal(Maria.career_transition, Arizona.school.teaching_status))
+15. Q[Arizona, Arizona.school.enrollment, Arizona.school.type](Arizona.school.enrollment == "small" → Causal(Arizona.school.enrollment, Arizona.school.type))
+16. Q[Arizona, Maria.occupation, Arizona.school.teaching_status](Maria.occupation == "educator" → Causal(Maria.occupation, Arizona.school.teaching_status))
+17. Q[Arizona, Maria.previous_work_location, Maria.leave_reason](Maria.previous_work_location == "California" → Causal(Maria.previous_work_location, Maria.leave_reason))
+18. Q[Arizona, Maria.previous_work_location, Maria.leave_reason](Maria.previous_work_location == "Texas" → Causal(Maria.previous_work_location, Maria.leave_reason))
+19. Q[Arizona, Maria.previous_work_location, Maria.leave_reason](Maria.previous_work_location == "Vermont" → Causal(Maria.previous_work_location, Maria.leave_reason))
+20. Q[Arizona, Arizona.school.suitability, Maria.job_change](Arizona.school.suitability == "perfect" → Causal(Arizona.school.suitability, Maria.job_change))
+21. Q[Arizona, Maria.job_change, Maria.previous_work_location](Maria.job_change == "necessary" → Causal(Maria.job_change, Maria.previous_work_location))
+22. Q[Arizona, Maria.occupation_change, Arizona.school.teaching_status](Maria.occupation_change == "from_other_states" → Causal(Maria.occupation_change, Arizona.school.teaching_status))
+23. Q[Arizona, Arizona.school.quality, Maria.previous_work_location](Arizona.school.quality == "high" → Causal(Arizona.school.quality, Maria.previous_work_location))
+24. Q[Arizona, Maria.previous_work_location, Maria.teaching_experience](Maria.previous_work_location == "California" → Causal(Maria.previous_work_location, Maria.teaching_experience))
+25. Q[Arizona, Maria.previous_work_location, Maria.teaching_experience](Maria.previous_work_location == "Texas" → Causal(Maria.previous_work_location, Maria.teaching_experience))
+26. Q[Arizona, Maria.previous_work_location, Maria.teaching_experience](Maria.previous_work_location == "Vermont" → Causal(Maria.previous_work_location, Maria.teaching_experience))
+27. Q[Arizona, Arizona.school.environment, Maria.dream_job](Arizona.school.environment == "supportive" → Causal(Arizona.school.environment, Maria.dream_job))
+28. Q[Arizona, Arizona.school.type, Maria.profession](Arizona.school.type == "small" → Causal(Arizona.school.type, Maria.profession))
+29. Q[Arizona, Maria.job_satisfaction, Arizona.school.suitability](Maria.job_satisfaction == "high" → Causal(Maria.job_satisfaction, Arizona.school.suitability))
+30. Q[Arizona, Maria.previous_work_location, Arizona.school.ideal_for](Maria.previous_work_location == "California" → Causal(Maria.previous_work_location, Arizona.school.ideal_for))

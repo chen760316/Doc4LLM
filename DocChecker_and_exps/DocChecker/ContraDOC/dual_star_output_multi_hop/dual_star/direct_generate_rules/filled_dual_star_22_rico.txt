@@ -1,0 +1,33 @@
+Predicates:
+Ava.full_name != "Ava (Maya Rudolph)"
+Ava.full_name != Kevin.full_name
+Ava.full_name = "Ava (Maya Rudolph)"
+Ava.label != "Person"
+Ava.label = "Person"
+Ava.name != "Ava"
+Ava.name != Kevin.name
+Ava.name = "Ava"
+Ava___Kevin.context = "Ava expresses concern about their relationship being remembered negatively"
+Ava___Kevin.doc_id = "3503017462_4"
+Ava___Kevin.event = "New Year's Day parade"
+Ava___Kevin.reason = "Kevin feels Ava may be ashamed of him"
+Ava___Kevin.relationship = "Ava is Kevin's girlfriend, and Kevin feels insecure about their relationship."
+Kevin.full_name != "Kevin (Jason Lee)"
+Kevin.full_name = "Kevin (Jason Lee)"
+Kevin.label != "Person"
+Kevin.label = "Person"
+Kevin.name != "Kevin"
+Kevin.name = "Kevin"
+None_ML(Kevin.attrs, Ava.attrs)
+
+Rules:
+Q[Ava,Ava] (Ava.name != Kevin.name ∧ Ava.label = "Person" ∧ Kevin.label != "Person" ∧ Ava.name != "Ava" → Ava.name = "Ava")
+Q[Ava,Ava] (Ava___Kevin.relationship = "Ava is Kevin's girlfriend, and Kevin feels insecure about their relationship." ∧ Kevin.full_name != "Kevin (Jason Lee)" ∧ Ava.name = "Ava" → Ava.name != Kevin.name)
+Q[Ava,Ava] (Kevin.label = "Person" ∧ Ava.name = "Ava" ∧ Ava___Kevin.doc_id = "3503017462_4" ∧ Ava___Kevin.reason = "Kevin feels Ava may be ashamed of him" ∧ Ava.full_name != Kevin.full_name ∧ Ava___Kevin.relationship = "Ava is Kevin's girlfriend, and Kevin feels insecure about their relationship." → Ava___Kevin.event = "New Year's Day parade")
+Q[Ava,Ava] (Ava.name != Kevin.name ∧ Ava.name != "Ava" → Ava.full_name = "Ava (Maya Rudolph)")
+Q[Ava,Ava] (Ava___Kevin.relationship = "Ava is Kevin's girlfriend, and Kevin feels insecure about their relationship." ∧ Kevin.full_name = "Kevin (Jason Lee)" ∧ Kevin.label = "Person" ∧ Ava___Kevin.reason = "Kevin feels Ava may be ashamed of him" ∧ Ava___Kevin.event = "New Year's Day parade" → Kevin.name != "Kevin")
+Q[Ava,Ava] (Ava___Kevin.reason = "Kevin feels Ava may be ashamed of him" ∧ Ava___Kevin.doc_id = "3503017462_4" ∧ Kevin.label = "Person" ∧ Kevin.label != "Person" → Ava.full_name != "Ava (Maya Rudolph)")
+Q[Ava,Ava] (Kevin.full_name = "Kevin (Jason Lee)" ∧ Ava.label != "Person" ∧ Ava.name != Kevin.name → Kevin.full_name != "Kevin (Jason Lee)")
+Q[Ava,Ava] (Ava___Kevin.reason = "Kevin feels Ava may be ashamed of him" ∧ Ava.name = "Ava" → Ava.full_name != Kevin.full_name)
+Q[Ava,Ava] (Ava.full_name != "Ava (Maya Rudolph)" ∧ Kevin.name != "Kevin" ∧ Ava___Kevin.relationship = "Ava is Kevin's girlfriend, and Kevin feels insecure about their relationship." ∧ Kevin.label != "Person" ∧ None_ML(Kevin.attrs, Ava.attrs) ∧ Kevin.full_name = "Kevin (Jason Lee)" → Ava___Kevin.context = "Ava expresses concern about their relationship being remembered negatively")
+Q[Ava,Ava] (Kevin.full_name != "Kevin (Jason Lee)" ∧ Kevin.name = "Kevin" ∧ Kevin.full_name = "Kevin (Jason Lee)" ∧ Ava___Kevin.context = "Ava expresses concern about their relationship being remembered negatively" ∧ Ava.label = "Person" → Ava.label != "Person")

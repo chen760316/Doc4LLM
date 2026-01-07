@@ -1,0 +1,44 @@
+Predicates:
+Albatross.label != "Vehicle"
+Albatross.label = "Vehicle"
+Albatross.name != "Albatross"
+Albatross.name = "Albatross"
+Albatross.type != "multirotor gyrodyne"
+Albatross.type = "multirotor gyrodyne"
+Go-ahead.label != "Vehicle"
+Go-ahead.label != Weldon Institute Members.label
+Go-ahead.label = "Vehicle"
+Go-ahead.name != "Go-ahead"
+Go-ahead.name != Albatross.name
+Go-ahead.name != Weldon Institute Members.name
+Go-ahead.name = "Go-ahead"
+Go-ahead.type != "dirigible"
+Go-ahead.type != Albatross.type
+Go-ahead.type = "dirigible"
+Go-ahead___Albatross.doc_id = "story_train_7683"
+Go-ahead___Albatross.relationship = "The Albatross demonstrates superiority over the Go-ahead."
+Go-ahead___Weldon Institute Members.doc_id = "story_train_7683"
+Go-ahead___Weldon Institute Members.relationship != Go-ahead___Albatross.relationship
+Go-ahead___Weldon Institute Members.relationship = "The Weldon Institute members return to Philadelphia aboard the Go-ahead."
+None_ML(Go-ahead___Weldon Institute Members.attrs, Go-ahead___Albatross.attrs)
+None_ML(Weldon Institute Members.attrs, Albatross.attrs)
+Weldon Institute Members.label != "Person"
+Weldon Institute Members.label != Albatross.label
+Weldon Institute Members.label = "Person"
+Weldon Institute Members.name != "Weldon Institute Members"
+Weldon Institute Members.name != Albatross.name
+Weldon Institute Members.name = "Weldon Institute Members"
+Weldon Institute Members.status != "defeated"
+Weldon Institute Members.status = "defeated"
+
+Rules:
+Q[Go-ahead,Go-ahead] (Go-ahead.name != Weldon Institute Members.name ∧ Weldon Institute Members.name != "Weldon Institute Members" ∧ None_ML(Weldon Institute Members.attrs, Albatross.attrs) ∧ Go-ahead.name = "Go-ahead" ∧ Go-ahead.type != Albatross.type ∧ Go-ahead.name != "Go-ahead" → Albatross.name != "Albatross")
+Q[Go-ahead,Go-ahead] (Go-ahead___Weldon Institute Members.relationship = "The Weldon Institute members return to Philadelphia aboard the Go-ahead." ∧ None_ML(Weldon Institute Members.attrs, Albatross.attrs) ∧ Albatross.name != "Albatross" ∧ Weldon Institute Members.status = "defeated" → Go-ahead.type != "dirigible")
+Q[Go-ahead,Go-ahead] (Go-ahead.type = "dirigible" ∧ Go-ahead.name = "Go-ahead" ∧ Go-ahead.name != Weldon Institute Members.name → Weldon Institute Members.label = "Person")
+Q[Go-ahead,Go-ahead] (Go-ahead.label = "Vehicle" ∧ Go-ahead.type != "dirigible" → Go-ahead___Weldon Institute Members.relationship = "The Weldon Institute members return to Philadelphia aboard the Go-ahead.")
+Q[Go-ahead,Go-ahead] (Go-ahead.name != Albatross.name ∧ Albatross.name != "Albatross" ∧ Go-ahead.type != Albatross.type ∧ Weldon Institute Members.status != "defeated" ∧ Go-ahead___Weldon Institute Members.relationship = "The Weldon Institute members return to Philadelphia aboard the Go-ahead." → Albatross.label = "Vehicle")
+Q[Go-ahead,Go-ahead] (Go-ahead___Albatross.relationship = "The Albatross demonstrates superiority over the Go-ahead." ∧ Weldon Institute Members.name != Albatross.name ∧ Go-ahead.name != "Go-ahead" ∧ Go-ahead.type != "dirigible" → None_ML(Go-ahead___Weldon Institute Members.attrs, Go-ahead___Albatross.attrs))
+Q[Go-ahead,Go-ahead] (Weldon Institute Members.label != Albatross.label ∧ Weldon Institute Members.label = "Person" ∧ Weldon Institute Members.name != Albatross.name → Albatross.type = "multirotor gyrodyne")
+Q[Go-ahead,Go-ahead] (Go-ahead___Weldon Institute Members.relationship != Go-ahead___Albatross.relationship ∧ Go-ahead___Weldon Institute Members.relationship = "The Weldon Institute members return to Philadelphia aboard the Go-ahead." → None_ML(Weldon Institute Members.attrs, Albatross.attrs))
+Q[Go-ahead,Go-ahead] (Go-ahead.name != Albatross.name ∧ None_ML(Weldon Institute Members.attrs, Albatross.attrs) ∧ Go-ahead.type != "dirigible" ∧ Weldon Institute Members.label != "Person" ∧ Go-ahead.label != Weldon Institute Members.label ∧ Go-ahead.type = "dirigible" → Albatross.type != "multirotor gyrodyne")
+Q[Go-ahead,Go-ahead] (Albatross.type = "multirotor gyrodyne" ∧ Go-ahead___Weldon Institute Members.relationship = "The Weldon Institute members return to Philadelphia aboard the Go-ahead." ∧ Go-ahead.type != "dirigible" ∧ Weldon Institute Members.label = "Person" ∧ Weldon Institute Members.name != Albatross.name → Weldon Institute Members.label != Albatross.label)

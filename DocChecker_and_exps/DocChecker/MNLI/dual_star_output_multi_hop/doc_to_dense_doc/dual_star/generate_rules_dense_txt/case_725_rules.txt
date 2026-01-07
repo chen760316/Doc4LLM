@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 725)
+S1: There are good tennis courts, a nine-hole golf course, tennis courts, playgrounds, and even horseback riding.
+S2: There are no recreational activities.
+
+Predicates:
+1. Tennis_Courts.is_good
+2. Golf_Course.is_nine_hole
+3. Playgrounds.exists
+4. Horseback_Riding.is_available
+5. Recreational_Activities.exist
+6. Tennis_Courts.count > 0
+7. Golf_Course.count > 0
+8. Playgrounds.count > 0
+9. Horseback_Riding.count > 0
+10. Recreational_Activities.count > 0
+11. M_NLI(S1, S2)
+12. Negation(S1, S2)
+13. violate(S1, S2)
+14. Recreational_Activities.includes(Tennis_Courts)
+15. Recreational_Activities.includes(Golf_Course)
+16. Recreational_Activities.includes(Playgrounds)
+17. Recreational_Activities.includes(Horseback_Riding)
+18. Tennis_Courts.is_recreational
+19. Golf_Course.is_recreational
+20. Playgrounds.is_recreational
+21. Horseback_Riding.is_recreational
+22. S1.includes(Tennis_Courts)
+23. S1.includes(Golf_Course)
+24. S1.includes(Playgrounds)
+25. S1.includes(Horseback_Riding)
+26. S2.claims_no_recreational_activities
+27. S1.mentions_recreational_activities
+28. S1.recreational_activities_count > 4
+29. S2.recreational_activities_count == 0
+30. S1.violates(S2)
+
+Rules:
+1. Q[Tennis_Courts, Tennis_Courts.is_good == true, Recreational_Activities.exist == true](S1 → Negation(Tennis_Courts.is_good, Recreational_Activities.exist))
+2. Q[Golf_Course, Golf_Course.is_nine_hole == true, Recreational_Activities.exist == true](S1 → Negation(Golf_Course.is_nine_hole, Recreational_Activities.exist))
+3. Q[Playgrounds, Playgrounds.exists == true, Recreational_Activities.exist == true](S1 → Negation(Playgrounds.exists, Recreational_Activities.exist))
+4. Q[Horseback_Riding, Horseback_Riding.is_available == true, Recreational_Activities.exist == true](S1 → Negation(Horseback_Riding.is_available, Recreational_Activities.exist))
+5. Q[Tennis_Courts, Tennis_Courts.count > 0, Recreational_Activities.count > 0](S1 → Negation(Tennis_Courts.count, Recreational_Activities.count))
+6. Q[Golf_Course, Golf_Course.count > 0, Recreational_Activities.count > 0](S1 → Negation(Golf_Course.count, Recreational_Activities.count))
+7. Q[Playgrounds, Playgrounds.count > 0, Recreational_Activities.count > 0](S1 → Negation(Playgrounds.count, Recreational_Activities.count))
+8. Q[Horseback_Riding, Horseback_Riding.count > 0, Recreational_Activities.count > 0](S1 → Negation(Horseback_Riding.count, Recreational_Activities.count))
+9. Q[Recreational_Activities, Recreational_Activities.includes(Tennis_Courts) == true, Recreational_Activities.exist == true](S1 → Negation(Recreational_Activities.includes(Tennis_Courts), Recreational_Activities.exist))
+10. Q[Recreational_Activities, Recreational_Activities.includes(Golf_Course) == true, Recreational_Activities.exist == true](S1 → Negation(Recreational_Activities.includes(Golf_Course), Recreational_Activities.exist))
+11. Q[Recreational_Activities, Recreational_Activities.includes(Playgrounds) == true, Recreational_Activities.exist == true](S1 → Negation(Recreational_Activities.includes(Playgrounds), Recreational_Activities.exist))
+12. Q[Recreational_Activities, Recreational_Activities.includes(Horseback_Riding) == true, Recreational_Activities.exist == true](S1 → Negation(Recreational_Activities.includes(Horseback_Riding), Recreational_Activities.exist))
+13. Q[Tennis_Courts, Tennis_Courts.is_recreational == true, Recreational_Activities.exist == true](S1 → Negation(Tennis_Courts.is_recreational, Recreational_Activities.exist))
+14. Q[Golf_Course, Golf_Course.is_recreational == true, Recreational_Activities.exist == true](S1 → Negation(Golf_Course.is_recreational, Recreational_Activities.exist))
+15. Q[Playgrounds, Playgrounds.is_recreational == true, Recreational_Activities.exist == true](S1 → Negation(Playgrounds.is_recreational, Recreational_Activities.exist))
+16. Q[Horseback_Riding, Horseback_Riding.is_recreational == true, Recreational_Activities.exist == true](S1 → Negation(Horseback_Riding.is_recreational, Recreational_Activities.exist))
+17. Q[S1, S1.includes(Tennis_Courts) == true, S2.claims_no_recreational_activities == true](S1 → Negation(S1.includes(Tennis_Courts), S2.claims_no_recreational_activities))
+18. Q[S1, S1.includes(Golf_Course) == true, S2.claims_no_recreational_activities == true](S1 → Negation(S1.includes(Golf_Course), S2.claims_no_recreational_activities))
+19. Q[S1, S1.includes(Playgrounds) == true, S2.claims_no_recreational_activities == true](S1 → Negation(S1.includes(Playgrounds), S2.claims_no_recreational_activities))
+20. Q[S1, S1.includes(Horseback_Riding) == true, S2.claims_no_recreational_activities == true](S1 → Negation(S1.includes(Horseback_Riding), S2.claims_no_recreational_activities))
+21. Q[S1, S1.recreational_activities_count > 4, S2.recreational_activities_count == 0](S1 → Negation(S1.recreational_activities_count, S2.recreational_activities_count))
+22. Q[S2, S2.recreational_activities_count == 0, S1.recreational_activities_count > 4](S2 → Negation(S2.recreational_activities_count, S1.recreational_activities_count))
+23. Q[S1, S1.violates(S2) == true, S2.claims_no_recreational_activities == true](S1 → Negation(S1.violates(S2), S2.claims_no_recreational_activities))
+24. Q[Recreational_Activities, Recreational_Activities.count > 0, S2.recreational_activities_count == 0](S1 → Negation(Recreational_Activities.count, S2.recreational_activities_count))
+25. Q[Tennis_Courts, Tennis_Courts.count > 0, S2.recreational_activities_count == 0](S1 → Negation(Tennis_Courts.count, S2.recreational_activities_count))
+26. Q[Golf_Course, Golf_Course.count > 0, S2.recreational_activities_count == 0](S1 → Negation(Golf_Course.count, S2.recreational_activities_count))
+27. Q[Playgrounds, Playgrounds.count > 0, S2.recreational_activities_count == 0](S1 → Negation(Playgrounds.count, S2.recreational_activities_count))
+28. Q[Horseback_Riding, Horseback_Riding.count > 0, S2.recreational_activities_count == 0](S1 → Negation(Horseback_Riding.count, S2.recreational_activities_count))
+29. Q[Recreational_Activities, Recreational_Activities.exist == true, S2.claims_no_recreational_activities == true](S1 → Negation(Recreational_Activities.exist, S2.claims_no_recreational_activities))
+30. Q[S1, S1.mentions_recreational_activities == true, S2.claims_no_recreational_activities == true](S1 → Negation(S1.mentions_recreational_activities, S2.claims_no_recreational_activities))

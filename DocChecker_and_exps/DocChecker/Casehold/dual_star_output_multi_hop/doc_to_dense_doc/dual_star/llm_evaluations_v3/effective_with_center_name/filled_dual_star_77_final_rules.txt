@@ -1,0 +1,15 @@
+### Entity Mapping ###
+x0: "Williams"
+y0: "Williams"
+
+### Rules with Substituted Entities ###
+Rule: Q[Williams, "mandatory minimum"](Williams.status = "sentenced" ∧ Williams.sentence = "mandatory minimum" → violate(Williams, "mandatory minimum"))
+
+Rule: Q[Williams, "mandatory minimum"](Williams.status = "sentenced" ∧ Williams.sentence = "not mandatory minimum" ∧ Williams.sentence_type = "not mandatory" → violate(Williams, "mandatory minimum"))
+
+Rule: Q[Williams, "mandatory minimum"](Williams.status = "sentenced" ∧ Williams.sentence = "mandatory minimum" ∧ Williams.sentence_type = "not mandatory" ∧ Williams.plea agreement_status = "valid" → violate(Williams, "mandatory minimum"))
+
+Rule: Q[Williams, "mandatory minimum"](Williams.status = "sentenced" ∧ Williams.sentence = "mandatory minimum" ∧ Williams.sentence_outcome = "not appeal" ∧ Williams.plea agreement_status = "invalid" → violate(Williams, "mandatory minimum"))
+
+Rule: Q[Williams, "mandatory minimum"](Williams.status = "sentenced" ∧ Williams.sentence = "mandatory minimum" ∧ Williams.sentence_type = "not mandatory" ∧ Williams.plea agreement_status = "invalid" ∧ Williams.presentence report.content = "not referenced" → violate(Williams, "mandatory minimum"))
+

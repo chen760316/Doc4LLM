@@ -1,0 +1,46 @@
+Predicates:
+Boston.label != "Location"
+Boston.label != Modest Rainfall.label
+Boston.label != Rainfall.label
+Boston.label = "Location"
+Boston.name != "Boston"
+Boston.name != Modest Rainfall.name
+Boston.name != Rainfall.name
+Boston.name = "Boston"
+Boston___Modest Rainfall.contradiction_type != Boston___Rainfall.contradiction_type
+Boston___Modest Rainfall.contradiction_type = "Numeric"
+Boston___Modest Rainfall.relationship != Boston___Rainfall.relationship
+Boston___Modest Rainfall.relationship = "Reports from Boston indicate more modest rainfall amounts compared to Edgartown."
+Boston___Modest Rainfall.source_id != Boston___Rainfall.source_id
+Boston___Modest Rainfall.source_id = "3503017442_4"
+Boston___Rainfall.contradiction_type = "Content (Misinformation)"
+Boston___Rainfall.precipitation_rate = "0.40 in (1.0 cm) per hour"
+Boston___Rainfall.relationship = "Reports in Boston indicate more modest rainfall amounts."
+Boston___Rainfall.source_id = "3503017442_8"
+Modest Rainfall.label != "WeatherEvent"
+Modest Rainfall.label = "WeatherEvent"
+Modest Rainfall.name != "Modest Rainfall"
+Modest Rainfall.name != Rainfall.name
+Modest Rainfall.name = "Modest Rainfall"
+Modest Rainfall.precipitation_rate != "0.40 in (1.0 cm) per hour"
+Modest Rainfall.precipitation_rate = "0.40 in (1.0 cm) per hour"
+None_ML(Boston.attrs, Modest Rainfall.attrs)
+None_ML(Boston___Rainfall.attrs, Boston___Modest Rainfall.attrs)
+Rainfall.amount != "0.40 in (1.0 cm) per hour"
+Rainfall.amount = "0.40 in (1.0 cm) per hour"
+Rainfall.label != "WeatherEvent"
+Rainfall.label = "WeatherEvent"
+Rainfall.name != "Rainfall"
+Rainfall.name = "Rainfall"
+
+Rules:
+Q[Boston,Boston] (Boston___Rainfall.contradiction_type = "Content (Misinformation)" ∧ Rainfall.amount != "0.40 in (1.0 cm) per hour" ∧ Modest Rainfall.label != "WeatherEvent" ∧ Boston.label != Rainfall.label ∧ Boston.name != Rainfall.name → Boston___Modest Rainfall.contradiction_type != Boston___Rainfall.contradiction_type)
+Q[Boston,Boston] (Boston___Rainfall.relationship = "Reports in Boston indicate more modest rainfall amounts." ∧ Boston.name = "Boston" ∧ Boston___Rainfall.precipitation_rate = "0.40 in (1.0 cm) per hour" → Rainfall.name = "Rainfall")
+Q[Boston,Boston] (Rainfall.label = "WeatherEvent" ∧ Boston___Rainfall.contradiction_type = "Content (Misinformation)" ∧ Rainfall.name = "Rainfall" ∧ Rainfall.name != "Rainfall" → Boston___Modest Rainfall.contradiction_type = "Numeric")
+Q[Boston,Boston] (Modest Rainfall.precipitation_rate = "0.40 in (1.0 cm) per hour" ∧ Modest Rainfall.name != Rainfall.name → None_ML(Boston.attrs, Modest Rainfall.attrs))
+Q[Boston,Boston] (Modest Rainfall.precipitation_rate = "0.40 in (1.0 cm) per hour" ∧ Boston___Modest Rainfall.contradiction_type != Boston___Rainfall.contradiction_type ∧ Modest Rainfall.name != Rainfall.name ∧ Boston___Rainfall.contradiction_type = "Content (Misinformation)" ∧ Boston.name != Rainfall.name ∧ Modest Rainfall.label = "WeatherEvent" → Modest Rainfall.name != "Modest Rainfall")
+Q[Boston,Boston] (Boston.name != Rainfall.name ∧ Rainfall.name != "Rainfall" ∧ Boston___Modest Rainfall.source_id != Boston___Rainfall.source_id ∧ Rainfall.amount = "0.40 in (1.0 cm) per hour" → Boston.label != Rainfall.label)
+Q[Boston,Boston] (Boston___Modest Rainfall.relationship != Boston___Rainfall.relationship ∧ Boston.label != Modest Rainfall.label ∧ Modest Rainfall.name != Rainfall.name → Modest Rainfall.precipitation_rate != "0.40 in (1.0 cm) per hour")
+Q[Boston,Boston] (Rainfall.label = "WeatherEvent" ∧ Modest Rainfall.label != "WeatherEvent" ∧ None_ML(Boston.attrs, Modest Rainfall.attrs) ∧ Boston___Modest Rainfall.source_id != Boston___Rainfall.source_id ∧ Modest Rainfall.name = "Modest Rainfall" ∧ Boston___Rainfall.contradiction_type = "Content (Misinformation)" → Boston.name = "Boston")
+Q[Boston,Boston] (Boston___Modest Rainfall.relationship != Boston___Rainfall.relationship ∧ Boston___Rainfall.relationship = "Reports in Boston indicate more modest rainfall amounts." ∧ Boston___Modest Rainfall.source_id != Boston___Rainfall.source_id ∧ Boston___Modest Rainfall.contradiction_type = "Numeric" ∧ Modest Rainfall.name = "Modest Rainfall" → Boston___Rainfall.source_id = "3503017442_8")
+Q[Boston,Boston] (None_ML(Boston.attrs, Modest Rainfall.attrs) ∧ Boston.label != "Location" → Boston___Rainfall.precipitation_rate = "0.40 in (1.0 cm) per hour")

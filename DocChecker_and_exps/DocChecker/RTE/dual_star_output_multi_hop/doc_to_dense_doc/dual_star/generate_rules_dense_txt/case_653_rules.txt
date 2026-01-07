@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 653)
+S1: It has been estimated that perhaps 20-25% of all non-domestic mediocre result 'work in progress', such as the renovation, repair and construction.
+S2: It is estimated that, perhaps, 20-25% of all non-domestic fires result from 'ongoing work', such as refurbishment, repair and construction.
+
+Predicates:
+1. NonDomesticMediocreResult.percentage
+2. NonDomesticMediocreResult.type
+3. NonDomesticFires.percentage
+4. NonDomesticFires.type
+5. WorkInProgress.type
+6. WorkInProgress.category
+7. Renovation.type
+8. Renovation.category
+9. Repair.type
+10. Repair.category
+11. Construction.type
+12. Construction.category
+13. OngoingWork.type
+14. OngoingWork.category
+15. NonDomesticMediocreResult.estimatedPercentage
+16. NonDomesticFires.estimatedPercentage
+17. NonDomesticMediocreResult.subject
+18. NonDomesticFires.subject
+19. WorkInProgress.estimatedImpact
+20. Renovation.estimatedImpact
+21. Repair.estimatedImpact
+22. Construction.estimatedImpact
+23. OngoingWork.estimatedImpact
+24. NonDomesticMediocreResult.context
+25. NonDomesticFires.context
+26. WorkInProgress.context
+27. Renovation.context
+28. Repair.context
+29. Construction.context
+30. OngoingWork.context
+
+Rules:
+1. Q[has, NonDomesticMediocreResult.percentage, NonDomesticFires.percentage](NonDomesticMediocreResult.percentage == "20-25%" → Content(NonDomesticMediocreResult.percentage, NonDomesticFires.percentage))
+2. Q[has, NonDomesticMediocreResult.type, NonDomesticFires.type](NonDomesticMediocreResult.type == "work in progress" → Content(NonDomesticMediocreResult.type, NonDomesticFires.type))
+3. Q[has, NonDomesticMediocreResult.estimatedPercentage, NonDomesticFires.estimatedPercentage](NonDomesticMediocreResult.estimatedPercentage == "20-25%" → Content(NonDomesticMediocreResult.estimatedPercentage, NonDomesticFires.estimatedPercentage))
+4. Q[has, WorkInProgress.type, OngoingWork.type](WorkInProgress.type == "renovation" → Content(WorkInProgress.type, OngoingWork.type))
+5. Q[has, WorkInProgress.category, OngoingWork.category](WorkInProgress.category == "construction" → Content(WorkInProgress.category, OngoingWork.category))
+6. Q[has, NonDomesticMediocreResult.subject, NonDomesticFires.subject](NonDomesticMediocreResult.subject == "mediocre result" → Content(NonDomesticMediocreResult.subject, NonDomesticFires.subject))
+7. Q[has, NonDomesticMediocreResult.context, NonDomesticFires.context](NonDomesticMediocreResult.context == "work in progress" → Content(NonDomesticMediocreResult.context, NonDomesticFires.context))
+8. Q[has, Renovation.type, Repair.type](Renovation.type == "ongoing work" → Content(Renovation.type, Repair.type))
+9. Q[has, Repair.category, Construction.category](Repair.category == "non-domestic" → Content(Repair.category, Construction.category))
+10. Q[has, OngoingWork.category, WorkInProgress.category](OngoingWork.category == "repair" → Content(OngoingWork.category, WorkInProgress.category))
+11. Q[has, NonDomesticMediocreResult.estimatedPercentage, WorkInProgress.estimatedImpact](NonDomesticMediocreResult.estimatedPercentage == "20-25%" → Content(NonDomesticMediocreResult.estimatedPercentage, WorkInProgress.estimatedImpact))
+12. Q[has, NonDomesticFires.estimatedPercentage, OngoingWork.estimatedImpact](NonDomesticFires.estimatedPercentage == "20-25%" → Content(NonDomesticFires.estimatedPercentage, OngoingWork.estimatedImpact))
+13. Q[has, Renovation.estimatedImpact, Repair.estimatedImpact](Renovation.estimatedImpact == "high" → Content(Renovation.estimatedImpact, Repair.estimatedImpact))
+14. Q[has, Construction.estimatedImpact, OngoingWork.estimatedImpact](Construction.estimatedImpact == "medium" → Content(Construction.estimatedImpact, OngoingWork.estimatedImpact))
+15. Q[has, NonDomesticMediocreResult.type, WorkInProgress.type](NonDomesticMediocreResult.type == "repair" → Content(NonDomesticMediocreResult.type, WorkInProgress.type))
+16. Q[has, NonDomesticFires.type, OngoingWork.type](NonDomesticFires.type == "fire hazard" → Content(NonDomesticFires.type, OngoingWork.type))
+17. Q[has, NonDomesticMediocreResult.context, WorkInProgress.context](NonDomesticMediocreResult.context == "construction" → Content(NonDomesticMediocreResult.context, WorkInProgress.context))
+18. Q[has, NonDomesticFires.context, OngoingWork.context](NonDomesticFires.context == "renovation" → Content(NonDomesticFires.context, OngoingWork.context))
+19. Q[has, WorkInProgress.estimatedImpact, NonDomesticMediocreResult.estimatedImpact](WorkInProgress.estimatedImpact == "low" → Content(WorkInProgress.estimatedImpact, NonDomesticMediocreResult.estimatedImpact))
+20. Q[has, OngoingWork.estimatedImpact, NonDomesticFires.estimatedImpact](OngoingWork.estimatedImpact == "high" → Content(OngoingWork.estimatedImpact, NonDomesticFires.estimatedImpact))
+21. Q[has, Renovation.category, NonDomesticMediocreResult.category](Renovation.category == "construction" → Content(Renovation.category, NonDomesticMediocreResult.category))
+22. Q[has, Repair.category, NonDomesticFires.category](Repair.category == "hazard" → Content(Repair.category, NonDomesticFires.category))
+23. Q[has, Construction.type, NonDomesticMediocreResult.type](Construction.type == "ongoing work" → Content(Construction.type, NonDomesticMediocreResult.type))
+24. Q[has, OngoingWork.type, NonDomesticFires.type](OngoingWork.type == "fire risk" → Content(OngoingWork.type, NonDomesticFires.type))
+25. Q[has, NonDomesticMediocreResult.percentage, WorkInProgress.percentage](NonDomesticMediocreResult.percentage == "25%" → Content(NonDomesticMediocreResult.percentage, WorkInProgress.percentage))
+26. Q[has, NonDomesticFires.percentage, OngoingWork.percentage](NonDomesticFires.percentage == "25%" → Content(NonDomesticFires.percentage, OngoingWork.percentage))
+27. Q[has, Renovation.estimatedImpact, NonDomesticFires.estimatedImpact](Renovation.estimatedImpact == "high" → Content(Renovation.estimatedImpact, NonDomesticFires.estimatedImpact))
+28. Q[has, Repair.estimatedImpact, NonDomesticMediocreResult.estimatedImpact](Repair.estimatedImpact == "medium" → Content(Repair.estimatedImpact, NonDomesticMediocreResult.estimatedImpact))
+29. Q[has, Construction.estimatedImpact, WorkInProgress.estimatedImpact](Construction.estimatedImpact == "low" → Content(Construction.estimatedImpact, WorkInProgress.estimatedImpact))
+30. Q[has, OngoingWork.category, NonDomesticFires.category](OngoingWork.category == "risk" → Content(OngoingWork.category, NonDomesticFires.category))

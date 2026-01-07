@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 77)
+S1: By placing discretion in the hands of an official to grant or deny a license, such a statute creates a threat of censorship that by its very existence chills free speech.
+S2: Thus, in order to qualify as narrowly holding that where applicant had satisfied all ordinance requirements commissioners could not deny permit simply in their discretion.
+
+Predicates:
+1. Statute.threat_of_censorship
+2. Statute.chills_free_speech
+3. Official.has_discretion
+4. Official.grants_license
+5. Official.denies_license
+6. Applicant.satisfies_ordinance_requirements
+7. Commissioners.cannot_deny_permit
+8. Discretion.leads_to_censorship
+9. Discretion.does_not_inherently_lead_to_censorship
+10. License.granted_by_official
+11. License.denied_by_official
+12. Free_speech.is_chilled
+13. Permit.is_denied
+14. Permit.is_granted
+15. Ordinance.requirements_met
+16. Discretion.is_placed_in_hands_of_official
+17. Censorship.is_a_threat
+18. Censorship.chills_free_speech
+19. Statute.creates_threat_of_censorship
+20. Commissioners.have_discretion
+21. Discretion.is_used_to_deny_permit
+22. Discretion.is_used_to_grant_permit
+23. Official.has_power_to_grant_license
+24. Official.has_power_to_deny_license
+25. Applicant.is_affected_by_discretion
+26. Free_speech.is_impacted_by_statute
+27. Statute.violates_free_speech
+28. Discretion.is_a_factor_in_permit_decision
+29. Commissioners.make_decision_on_permit
+30. License.is_affected_by_discretion
+
+Rules:
+1. Q[placing, Official.has_discretion == true](Statute.threat_of_censorship → Causal(placing, Official.has_discretion))
+2. Q[placing, Statute.chills_free_speech == true](Statute.threat_of_censorship → Causal(placing, Statute.chills_free_speech))
+3. Q[placing, Official.grants_license == true](Official.has_discretion → Causal(placing, Official.grants_license))
+4. Q[placing, Official.denies_license == true](Official.has_discretion → Causal(placing, Official.denies_license))
+5. Q[placing, Applicant.satisfies_ordinance_requirements == true](Official.has_discretion → Causal(placing, Applicant.satisfies_ordinance_requirements))
+6. Q[placing, Commissioners.cannot_deny_permit == true](Applicant.satisfies_ordinance_requirements → Causal(placing, Commissioners.cannot_deny_permit))
+7. Q[placing, Discretion.leads_to_censorship == true](Official.has_discretion → Causal(placing, Discretion.leads_to_censorship))
+8. Q[placing, Discretion.does_not_inherently_lead_to_censorship == true](Applicant.satisfies_ordinance_requirements → Causal(placing, Discretion.does_not_inherently_lead_to_censorship))
+9. Q[placing, License.granted_by_official == true](Commissioners.cannot_deny_permit → Causal(placing, License.granted_by_official))
+10. Q[placing, License.denied_by_official == true](Discretion.is_used_to_deny_permit → Causal(placing, License.denied_by_official))
+11. Q[placing, Free_speech.is_chilled == true](Statute.chills_free_speech → Causal(placing, Free_speech.is_chilled))
+12. Q[placing, Permit.is_denied == true](Official.denies_license → Causal(placing, Permit.is_denied))
+13. Q[placing, Permit.is_granted == true](Official.grants_license → Causal(placing, Permit.is_granted))
+14. Q[placing, Ordinance.requirements_met == true](Applicant.satisfies_ordinance_requirements → Causal(placing, Ordinance.requirements_met))
+15. Q[placing, Discretion.is_placed_in_hands_of_official == true](Statute.creates_threat_of_censorship → Causal(placing, Discretion.is_placed_in_hands_of_official))
+16. Q[placing, Censorship.is_a_threat == true](Statute.creates_threat_of_censorship → Causal(placing, Censorship.is_a_threat))
+17. Q[placing, Censorship.chills_free_speech == true](Censorship.is_a_threat → Causal(placing, Censorship.chills_free_speech))
+18. Q[placing, Statute.violates_free_speech == true](Statute.chills_free_speech → Causal(placing, Statute.violates_free_speech))
+19. Q[placing, Discretion.is_a_factor_in_permit_decision == true](Official.has_discretion → Causal(placing, Discretion.is_a_factor_in_permit_decision))
+20. Q[placing, Commissioners.make_decision_on_permit == true](Discretion.is_a_factor_in_permit_decision → Causal(placing, Commissioners.make_decision_on_permit))
+21. Q[placing, License.is_affected_by_discretion == true](Official.has_discretion → Causal(placing, License.is_affected_by_discretion))
+22. Q[placing, Free_speech.is_impacted_by_statute == true](Statute.chills_free_speech → Causal(placing, Free_speech.is_impacted_by_statute))
+23. Q[placing, Official.has_power_to_grant_license == true](Official.grants_license → Causal(placing, Official.has_power_to_grant_license))
+24. Q[placing, Official.has_power_to_deny_license == true](Official.denies_license → Causal(placing, Official.has_power_to_deny_license))
+25. Q[placing, Applicant.is_affected_by_discretion == true](Discretion.is_placed_in_hands_of_official → Causal(placing, Applicant.is_affected_by_discretion))
+26. Q[placing, Free_speech.is_chilled == true](Statute.threat_of_censorship → Causal(placing, Free_speech.is_chilled))
+27. Q[placing, Discretion.is_used_to_grant_permit == true](Official.grants_license → Causal(placing, Discretion.is_used_to_grant_permit))
+28. Q[placing, Discretion.is_used_to_deny_permit == true](Official.denies_license → Causal(placing, Discretion.is_used_to_deny_permit))
+29. Q[placing, Statute.creates_threat_of_censorship == true](Discretion.leads_to_censorship → Causal(placing, Statute.creates_threat_of_censorship))
+30. Q[placing, Statute.chills_free_speech == true](Discretion.does_not_inherently_lead_to_censorship → Causal(placing, Statute.chills_free_speech))

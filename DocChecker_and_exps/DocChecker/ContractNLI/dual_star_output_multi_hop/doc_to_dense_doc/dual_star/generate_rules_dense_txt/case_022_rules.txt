@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 22)
+S1: If Confidential Information is in written form, the Disclosing Party shall label or stamp the materials with the word 'Confidential' or some similar warning.
+S2: If Confidential Information is transmitted orally, the Disclosing Party shall promptly provide writing indicating that such oral communication constitutes Confidential Information.
+
+Predicates:
+1. ConfidentialInformation.isWritten
+2. DisclosingParty.labelsMaterials
+3. DisclosingParty.stampsMaterials
+4. ConfidentialInformation.isOral
+5. DisclosingParty.providesWriting
+6. Writing.indicatesOralCommunication
+7. Materials.hasLabel
+8. Materials.hasStamp
+9. OralCommunication.isConfidential
+10. WrittenForm.requiresLabeling
+11. OralForm.requiresAcknowledgment
+12. DisclosingParty.isResponsibleForLabeling
+13. DisclosingParty.isResponsibleForAcknowledgment
+14. ConfidentialInformation.type.isWritten
+15. ConfidentialInformation.type.isOral
+16. Label.hasWord('Confidential')
+17. Warning.isSimilarTo('Confidential')
+18. Writing.isPromptlyProvided
+19. Acknowledgment.isDifferentForOral
+20. Labeling.isRequiredForWritten
+21. Acknowledgment.isRequiredForOral
+22. DisclosingParty.actsPromptly
+23. Materials.containsConfidentialInformation
+24. ConfidentialInformation.requiresDifferentTreatment
+25. WrittenMaterials.areLabeled
+26. OralCommunications.areAcknowledged
+27. DisclosingParty.issuesWarnings
+28. ConfidentialInformation.isHandledDifferently
+29. Labeling.isDoneByDisclosingParty
+30. Acknowledgment.isDoneByDisclosingParty
+
+Rules:
+1. Q[Confidential, ConfidentialInformation.isWritten == true → Causal(DisclosingParty.labelsMaterials, ConfidentialInformation.requiresDifferentTreatment)]
+2. Q[Confidential, ConfidentialInformation.isWritten == true → Causal(DisclosingParty.stampsMaterials, ConfidentialInformation.requiresDifferentTreatment)]
+3. Q[Confidential, ConfidentialInformation.isWritten == true → Causal(Materials.hasLabel, ConfidentialInformation.requiresDifferentTreatment)]
+4. Q[Confidential, ConfidentialInformation.isWritten == true → Causal(Materials.hasStamp, ConfidentialInformation.requiresDifferentTreatment)]
+5. Q[Confidential, ConfidentialInformation.isOral == true → Causal(DisclosingParty.providesWriting, ConfidentialInformation.requiresDifferentTreatment)]
+6. Q[Confidential, ConfidentialInformation.isOral == true → Causal(Writing.indicatesOralCommunication, ConfidentialInformation.requiresDifferentTreatment)]
+7. Q[Confidential, ConfidentialInformation.isOral == true → Causal(OralCommunication.isConfidential, ConfidentialInformation.requiresDifferentTreatment)]
+8. Q[Confidential, ConfidentialInformation.isOral == true → Causal(Acknowledgment.isRequiredForOral, ConfidentialInformation.requiresDifferentTreatment)]
+9. Q[Confidential, ConfidentialInformation.type.isWritten == true → Causal(DisclosingParty.isResponsibleForLabeling, ConfidentialInformation.requiresDifferentTreatment)]
+10. Q[Confidential, ConfidentialInformation.type.isOral == true → Causal(DisclosingParty.isResponsibleForAcknowledgment, ConfidentialInformation.requiresDifferentTreatment)]
+11. Q[Confidential, WrittenForm.requiresLabeling == true → Causal(DisclosingParty.actsPromptly, ConfidentialInformation.requiresDifferentTreatment)]
+12. Q[Confidential, OralForm.requiresAcknowledgment == true → Causal(DisclosingParty.actsPromptly, ConfidentialInformation.requiresDifferentTreatment)]
+13. Q[Confidential, Materials.containsConfidentialInformation == true → Causal(Labeling.isRequiredForWritten, ConfidentialInformation.requiresDifferentTreatment)]
+14. Q[Confidential, Materials.containsConfidentialInformation == true → Causal(Acknowledgment.isDoneByDisclosingParty, ConfidentialInformation.requiresDifferentTreatment)]
+15. Q[Confidential, Materials.hasLabel == true → Causal(DisclosingParty.issuesWarnings, ConfidentialInformation.requiresDifferentTreatment)]
+16. Q[Confidential, Materials.hasStamp == true → Causal(DisclosingParty.issuesWarnings, ConfidentialInformation.requiresDifferentTreatment)]
+17. Q[Confidential, ConfidentialInformation.isHandledDifferently == true → Causal(DisclosingParty.labelsMaterials, ConfidentialInformation.requiresDifferentTreatment)]
+18. Q[Confidential, ConfidentialInformation.isHandledDifferently == true → Causal(DisclosingParty.providesWriting, ConfidentialInformation.requiresDifferentTreatment)]
+19. Q[Confidential, ConfidentialInformation.isWritten == true → Causal(WrittenMaterials.areLabeled, ConfidentialInformation.requiresDifferentTreatment)]
+20. Q[Confidential, ConfidentialInformation.isOral == true → Causal(OralCommunications.areAcknowledged, ConfidentialInformation.requiresDifferentTreatment)]
+21. Q[Confidential, DisclosingParty.labelsMaterials == true → Causal(Label.hasWord('Confidential'), ConfidentialInformation.requiresDifferentTreatment)]
+22. Q[Confidential, DisclosingParty.stampsMaterials == true → Causal(Warning.isSimilarTo('Confidential'), ConfidentialInformation.requiresDifferentTreatment)]
+23. Q[Confidential, DisclosingParty.isResponsibleForLabeling == true → Causal(Labeling.isDoneByDisclosingParty, ConfidentialInformation.requiresDifferentTreatment)]
+24. Q[Confidential, DisclosingParty.isResponsibleForAcknowledgment == true → Causal(Acknowledgment.isDoneByDisclosingParty, ConfidentialInformation.requiresDifferentTreatment)]
+25. Q[Confidential, WrittenForm.requiresLabeling == true → Causal(DisclosingParty.actsPromptly, ConfidentialInformation.requiresDifferentTreatment)]
+26. Q[Confidential, OralForm.requiresAcknowledgment == true → Causal(DisclosingParty.actsPromptly, ConfidentialInformation.requiresDifferentTreatment)]
+27. Q[Confidential, ConfidentialInformation.type.isWritten == true → Causal(DisclosingParty.labelsMaterials, ConfidentialInformation.requiresDifferentTreatment)]
+28. Q[Confidential, ConfidentialInformation.type.isOral == true → Causal(DisclosingParty.providesWriting, ConfidentialInformation.requiresDifferentTreatment)]
+29. Q[Confidential, ConfidentialInformation.isWritten == true → Causal(Materials.hasLabel, ConfidentialInformation.requiresDifferentTreatment)]
+30. Q[Confidential, ConfidentialInformation.isOral == true → Causal(Writing.indicatesOralCommunication, ConfidentialInformation.requiresDifferentTreatment)]

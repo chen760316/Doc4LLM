@@ -1,0 +1,134 @@
+Predicates:
+1. entity1.name = "David"
+2. entity1.role = "YouTuber"
+3. entity1.age = 30
+4. entity1.location = "California"
+5. entity1.subscriber_count = 100000
+6. entity2.name = "Taylor"
+7. entity2.role = "Viewer"
+8. entity2.age = 25
+9. entity2.location = "New York"
+10. entity2.view_count = 5000
+11. "collaborated with".entity1 = "David"
+12. "collaborated with".entity2 = "Taylor"
+13. "distributed".entity1 = "David"
+14. "distributed".entity2 = "Taylor"
+15. entity1.video_title = "Tech Innovations 2024"
+16. entity2.video_title = "Tech Innovations 2025"
+17. entity1.upload_date = "2024-05-01"
+18. entity2.upload_date = "2025-06-01"
+19. entity1.likes = 1500
+20. entity2.likes = 2000
+21. M_NLI(entity1.likes, entity2.likes)
+22. T("David's video was removed", "David's video is still available", "Causal")
+23. tau(entity1.age, entity2.age)
+24. violate(entity1.name, entity2.name)
+25. Factual(entity1.location, entity2.location)
+26. Causal(entity1.upload_date, entity2.upload_date)
+27. Numeric(entity1.subscriber_count, entity2.view_count)
+28. Temporal(entity1.upload_date, entity2.upload_date)
+29. Content(entity1.video_title, entity2.video_title)
+30. "distributed".timestamp = "2024-05-01"
+31. "collaborated with".timestamp = "2024-05-01"
+32. entity1.video_length = 15
+33. entity2.video_length = 20
+34. entity1.genre = "Education"
+35. entity2.genre = "Entertainment"
+36. M_NLI(entity1.genre, entity2.genre)
+37. T("David's video is educational", "David's video is not educational", "Negation")
+38. tau(entity1.likes, entity2.likes)
+39. violate(entity1.role, entity2.role)
+40. Factual(entity1.age, entity2.age)
+41. Causal(entity1.likes, entity2.likes)
+42. Numeric(entity1.view_count, entity2.view_count)
+43. Temporal(entity1.upload_date, entity2.upload_date)
+44. Content(entity1.video_length, entity2.video_length)
+45. "collaborated with".context = "YouTube"
+46. "distributed".context = "YouTube"
+47. entity1.platform = "YouTube"
+48. entity2.platform = "Vimeo"
+49. M_NLI(entity1.platform, entity2.platform)
+50. T("David's video is on YouTube", "David's video is on Vimeo", "Factual")
+51. tau(entity1.platform, entity2.platform)
+52. violate(entity1.subscriber_count, entity2.view_count)
+53. Factual(entity1.likes, entity2.likes)
+54. Causal(entity1.view_count, entity2.view_count)
+55. Numeric(entity1.video_length, entity2.video_length)
+56. Temporal(entity1.upload_date, entity2.upload_date)
+57. Content(entity1.genre, entity2.genre)
+58. "collaborated with".outcome = "successful"
+59. "distributed".outcome = "failed"
+60. entity1.success_rate = 90
+61. entity2.success_rate = 50
+62. M_NLI(entity1.success_rate, entity2.success_rate)
+63. T("David's collaboration was successful", "David's collaboration was unsuccessful", "Causal")
+64. tau(entity1.success_rate, entity2.success_rate)
+65. violate(entity1.role, entity2.role)
+66. Factual(entity1.success_rate, entity2.success_rate)
+67. Causal(entity1.likes, entity2.likes)
+68. Numeric(entity1.subscriber_count, entity2.view_count)
+69. Temporal(entity1.upload_date, entity2.upload_date)
+70. Content(entity1.video_title, entity2.video_title)
+71. "collaborated with".duration = "3 months"
+72. "distributed".duration = "1 month"
+73. entity1.collaboration_start = "2024-01-01"
+74. entity2.distribution_start = "2024-02-01"
+75. M_NLI(entity1.collaboration_start, entity2.distribution_start)
+76. T("Collaboration started in January", "Distribution started in January", "Temporal")
+77. tau(entity1.collaboration_start, entity2.distribution_start)
+78. violate(entity1.likes, entity2.likes)
+79. Factual(entity1.view_count, entity2.view_count)
+80. Causal(entity1.success_rate, entity2.success_rate)
+81. Numeric(entity1.video_length, entity2.video_length)
+82. Temporal(entity1.upload_date, entity2.upload_date)
+83. Content(entity1.genre, entity2.genre)
+84. "collaborated with".feedback = "positive"
+85. "distributed".feedback = "negative"
+86. entity1.feedback_score = 8
+87. entity2.feedback_score = 3
+88. M_NLI(entity1.feedback_score, entity2.feedback_score)
+89. T("Feedback for collaboration was positive", "Feedback for distribution was negative", "Content")
+90. tau(entity1.feedback_score, entity2.feedback_score)
+91. violate(entity1.role, entity2.role)
+92. Factual(entity1.feedback_score, entity2.feedback_score)
+93. Causal(entity1.likes, entity2.likes)
+94. Numeric(entity1.subscriber_count, entity2.view_count)
+95. Temporal(entity1.upload_date, entity2.upload_date)
+96. Content(entity1.video_title, entity2.video_title)
+97. "collaborated with".impact = "high"
+98. "distributed".impact = "low"
+99. entity1.impact_score = 95
+100. entity2.impact_score = 20
+violate(x0, y0)
+
+Rules:
+1. Q[x0, y0](entity1.name = "David" ∧ entity2.name = "Taylor" → violate(x0, y0))
+2. Q[x0, y0](entity1.role = "YouTuber" ∧ entity2.role = "Viewer" → violate(x0, y0))
+3. Q[x0, y0](entity1.age = 30 ∧ entity2.age = 25 → violate(x0, y0))
+4. Q[x0, y0](entity1.location = "California" ∧ entity2.location = "New York" → violate(x0, y0))
+5. Q[x0, y0](entity1.subscriber_count = 100000 ∧ entity2.view_count = 5000 → violate(x0, y0))
+6. Q[x0, y0](entity1.video_title = "Tech Innovations 2024" ∧ entity2.video_title = "Tech Innovations 2025" ∧ entity1.upload_date = "2024-05-01" → violate(x0, y0))
+7. Q[x0, y0](entity1.likes = 1500 ∧ entity2.likes = 2000 ∧ M_NLI(entity1.likes, entity2.likes) → violate(x0, y0))
+8. Q[x0, y0](entity1.platform = "YouTube" ∧ entity2.platform = "Vimeo" ∧ T("David's video is on YouTube", "David's video is on Vimeo", "Factual") → violate(x0, y0))
+9. Q[x0, y0](entity1.success_rate = 90 ∧ entity2.success_rate = 50 ∧ M_NLI(entity1.success_rate, entity2.success_rate) → violate(x0, y0))
+10. Q[x0, y0](entity1.feedback_score = 8 ∧ entity2.feedback_score = 3 ∧ M_NLI(entity1.feedback_score, entity2.feedback_score) → violate(x0, y0))
+11. Q[x0, y0](entity1.age = 30 ∧ entity2.age = 25 ∧ Factual(entity1.age, entity2.age) → violate(x0, y0))
+12. Q[x0, y0](entity1.video_length = 15 ∧ entity2.video_length = 20 ∧ Numeric(entity1.video_length, entity2.video_length) → violate(x0, y0))
+13. Q[x0, y0](entity1.genre = "Education" ∧ entity2.genre = "Entertainment" ∧ M_NLI(entity1.genre, entity2.genre) → violate(x0, y0))
+14. Q[x0, y0](entity1.upload_date = "2024-05-01" ∧ entity2.upload_date = "2025-06-01" ∧ Temporal(entity1.upload_date, entity2.upload_date) → violate(x0, y0))
+15. Q[x0, y0](entity1.likes = 1500 ∧ entity2.likes = 2000 ∧ Causal(entity1.likes, entity2.likes) → violate(x0, y0))
+16. Q[x0, y0](entity1.subscriber_count = 100000 ∧ entity2.view_count = 5000 ∧ Numeric(entity1.subscriber_count, entity2.view_count) → violate(x0, y0))
+17. Q[x0, y0](entity1.video_title = "Tech Innovations 2024" ∧ entity2.video_title = "Tech Innovations 2025" ∧ Content(entity1.video_title, entity2.video_title) → violate(x0, y0))
+18. Q[x0, y0](entity1.role = "YouTuber" ∧ entity2.role = "Viewer" ∧ violate(entity1.role, entity2.role) → violate(x0, y0))
+19. Q[x0, y0](entity1.location = "California" ∧ entity2.location = "New York" ∧ Factual(entity1.location, entity2.location) → violate(x0, y0))
+20. Q[x0, y0](entity1.success_rate = 90 ∧ entity2.success_rate = 50 ∧ Causal(entity1.success_rate, entity2.success_rate) → violate(x0, y0))
+21. Q[x0, y0](entity1.view_count = 5000 ∧ entity2.view_count = 5000 ∧ Numeric(entity1.view_count, entity2.view_count) → violate(x0, y0))
+22. Q[x0, y0](entity1.upload_date = "2024-05-01" ∧ entity2.upload_date = "2024-05-01" ∧ Temporal(entity1.upload_date, entity2.upload_date) → violate(x0, y0))
+23. Q[x0, y0](entity1.likes = 1500 ∧ entity2.likes = 2000 ∧ tau(entity1.likes, entity2.likes) → violate(x0, y0))
+24. Q[x0, y0](entity1.platform = "YouTube" ∧ entity2.platform = "Vimeo" ∧ violate(entity1.platform, entity2.platform) → violate(x0, y0))
+25. Q[x0, y0](entity1.video_length = 15 ∧ entity2.video_length = 20 ∧ Content(entity1.video_length, entity2.video_length) → violate(x0, y0))
+26. Q[x0, y0](entity1.feedback_score = 8 ∧ entity2.feedback_score = 3 ∧ Factual(entity1.feedback_score, entity2.feedback_score) → violate(x0, y0))
+27. Q[x0, y0](entity1.subscriber_count = 100000 ∧ entity2.view_count = 5000 ∧ Causal(entity1.subscriber_count, entity2.view_count) → violate(x0, y0))
+28. Q[x0, y0](entity1.genre = "Education" ∧ entity2.genre = "Entertainment" ∧ tau(entity1.genre, entity2.genre) → violate(x0, y0))
+29. Q[x0, y0](entity1.video_title = "Tech Innovations 2024" ∧ entity2.video_title = "Tech Innovations 2025" ∧ violate(entity1.video_title, entity2.video_title) → violate(x0, y0))
+30. Q[x0, y0](entity1.success_rate = 90 ∧ entity2.success_rate = 50 ∧ violate(entity1.success_rate, entity2.success_rate) → violate(x0, y0))

@@ -1,0 +1,48 @@
+Predicates:
+He.label != "Person"
+He.label = "Person"
+He.name != "He"
+He.name = "He"
+He.status != "thinking"
+He.status = "thinking"
+Her.label != "Person"
+Her.label != His belongings.label
+Her.label = "Person"
+Her.name != "Her"
+Her.name != He.name
+Her.name != His belongings.name
+Her.name = "Her"
+Her.status != "may be ashamed"
+Her.status != He.status
+Her.status != His belongings.status
+Her.status = "may be ashamed"
+Her___He.contradiction_type = "Relation"
+Her___He.relationship = "She leaves him forever after he rejects her."
+Her___He.source_id = "3488771846_3"
+Her___His belongings.contradiction_type = "Relation"
+Her___His belongings.relationship != Her___He.relationship
+Her___His belongings.relationship = "She destroys most of his belongings out of anger."
+Her___His belongings.source_id = "3488771846_3"
+His belongings.label != "Belongings"
+His belongings.label != He.label
+His belongings.label = "Belongings"
+His belongings.name != "His belongings"
+His belongings.name != He.name
+His belongings.name = "His belongings"
+His belongings.status != "destroyed"
+His belongings.status != He.status
+His belongings.status = "destroyed"
+None_ML(He.attrs, His belongings.attrs)
+None_ML(Her___He.attrs, Her___His belongings.attrs)
+
+Rules:
+Q[Her,Her] (Her.label = "Person" ∧ His belongings.status != "destroyed" ∧ He.name = "He" ∧ Her___His belongings.relationship = "She destroys most of his belongings out of anger." → His belongings.name = "His belongings")
+Q[Her,Her] (He.status != "thinking" ∧ Her___His belongings.relationship = "She destroys most of his belongings out of anger." ∧ He.name = "He" ∧ Her.label != His belongings.label ∧ Her___His belongings.source_id = "3488771846_3" → Her.status != He.status)
+Q[Her,Her] (Her.name != His belongings.name ∧ His belongings.label != He.label ∧ None_ML(He.attrs, His belongings.attrs) ∧ Her.name != "Her" ∧ Her___He.source_id = "3488771846_3" ∧ Her.label != "Person" → Her.status != His belongings.status)
+Q[Her,Her] (He.label = "Person" ∧ Her.status != He.status → Her.name != His belongings.name)
+Q[Her,Her] (Her.status = "may be ashamed" ∧ None_ML(Her___He.attrs, Her___His belongings.attrs) ∧ Her.name != He.name → His belongings.status != "destroyed")
+Q[Her,Her] (His belongings.name = "His belongings" ∧ His belongings.label != "Belongings" → Her.label != "Person")
+Q[Her,Her] (Her___He.relationship = "She leaves him forever after he rejects her." ∧ Her.label = "Person" ∧ Her.name != "Her" ∧ None_ML(Her___He.attrs, Her___His belongings.attrs) ∧ His belongings.label != "Belongings" ∧ His belongings.label != He.label → Her___His belongings.source_id = "3488771846_3")
+Q[Her,Her] (He.name != "He" ∧ Her.name = "Her" ∧ His belongings.label = "Belongings" ∧ His belongings.status != He.status → His belongings.status = "destroyed")
+Q[Her,Her] (His belongings.status != He.status ∧ Her.name != He.name ∧ Her.status = "may be ashamed" → Her___He.relationship = "She leaves him forever after he rejects her.")
+Q[Her,Her] (Her.label != His belongings.label ∧ His belongings.name != "His belongings" ∧ Her___His belongings.source_id = "3488771846_3" ∧ Her.status != He.status ∧ Her___He.contradiction_type = "Relation" → Her.label = "Person")

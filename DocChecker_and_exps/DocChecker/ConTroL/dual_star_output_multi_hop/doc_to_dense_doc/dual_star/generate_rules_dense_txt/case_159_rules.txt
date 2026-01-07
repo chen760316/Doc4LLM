@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 159)
+S1: Another little Harriet was actually born three years before, but died when aged only one month old;
+S2: the fourth daughter, the subject of this passage, was named in memory of this sister Harriet Elizabeth.
+
+Predicates:
+1. Harriet1.age = 1
+2. Harriet1.status = deceased
+3. Harriet1.birth_year = 3 years_before
+4. Harriet2.name = Harriet Elizabeth
+5. Harriet2.relationship = named_in_memory_of(Harriet1)
+6. Harriet2.status = subject_of_passage
+7. Harriet1.sibling_count = 4
+8. Harriet1.death_cause = unknown
+9. Harriet2.birth_year = current_year
+10. Harriet2.age = unknown
+11. Harriet1.death_age = 1 month
+12. Harriet2.relationship_to_Harriet1 = sister
+13. Harriet1.sibling_name = Harriet Elizabeth
+14. Harriet1.death_year = birth_year + 1 month
+15. Harriet2.memory = Harriet1
+16. Harriet1.birth_year < Harriet2.birth_year
+17. Harriet2.name_origin = memory_of(Harriet1)
+18. Harriet1.sibling_order = 4th
+19. Harriet2.is_named_after = Harriet1
+20. Harriet1.lifespan = 1 month
+21. Harriet2.is_not_Harriet1
+22. Harriet1.is_not_subject_of_passage
+23. Harriet2.is_daughter_of = parents
+24. Harriet1.is_daughter_of = parents
+25. Harriet2.sibling_relationship = sibling(Harriet1)
+26. Harriet1.death_event = occurred
+27. Harriet2.name_significance = memory
+28. Harriet1.birth_event = occurred
+29. Harriet2.sibling_count = 4
+30. Harriet1.is_memorialized_by = Harriet2
+
+Rules:
+1. Q[Another, Harriet1.age == 1](Harriet1.status == deceased → Causal(Harriet1, Harriet2))
+2. Q[Another, Harriet1.status == deceased](Harriet1.birth_year == 3 years_before → Causal(Harriet1, Harriet2))
+3. Q[Another, Harriet1.birth_year == 3 years_before](Harriet2.name == Harriet Elizabeth → Causal(Harriet1, Harriet2))
+4. Q[Another, Harriet2.name == Harriet Elizabeth](Harriet2.relationship == named_in_memory_of(Harriet1) → Causal(Harriet1, Harriet2))
+5. Q[Another, Harriet2.relationship == named_in_memory_of(Harriet1)](Harriet2.status == subject_of_passage → Causal(Harriet1, Harriet2))
+6. Q[Another, Harriet2.status == subject_of_passage](Harriet2.relationship_to_Harriet1 == sister → Causal(Harriet1, Harriet2))
+7. Q[Another, Harriet2.relationship_to_Harriet1 == sister](Harriet1.sibling_count == 4 → Causal(Harriet1, Harriet2))
+8. Q[Another, Harriet1.sibling_count == 4](Harriet1.death_age == 1 month → Causal(Harriet1, Harriet2))
+9. Q[Another, Harriet1.death_age == 1 month](Harriet1.death_cause == unknown → Causal(Harriet1, Harriet2))
+10. Q[Another, Harriet1.death_cause == unknown](Harriet2.birth_year == current_year → Causal(Harriet1, Harriet2))
+11. Q[Another, Harriet2.birth_year == current_year](Harriet2.age == unknown → Causal(Harriet1, Harriet2))
+12. Q[Another, Harriet2.age == unknown](Harriet1.lifespan == 1 month → Causal(Harriet1, Harriet2))
+13. Q[Another, Harriet1.lifespan == 1 month](Harriet2.is_named_after == Harriet1 → Causal(Harriet1, Harriet2))
+14. Q[Another, Harriet2.is_named_after == Harriet1](Harriet1.is_not_subject_of_passage → Causal(Harriet1, Harriet2))
+15. Q[Another, Harriet1.is_not_subject_of_passage](Harriet2.is_not_Harriet1 → Causal(Harriet1, Harriet2))
+16. Q[Another, Harriet2.is_not_Harriet1](Harriet1.death_event == occurred → Causal(Harriet1, Harriet2))
+17. Q[Another, Harriet1.death_event == occurred](Harriet2.name_significance == memory → Causal(Harriet1, Harriet2))
+18. Q[Another, Harriet2.name_significance == memory](Harriet1.birth_event == occurred → Causal(Harriet1, Harriet2))
+19. Q[Another, Harriet1.birth_event == occurred](Harriet2.sibling_count == 4 → Causal(Harriet1, Harriet2))
+20. Q[Another, Harriet2.sibling_count == 4](Harriet2.is_daughter_of == parents → Causal(Harriet1, Harriet2))
+21. Q[Another, Harriet2.is_daughter_of == parents](Harriet1.is_daughter_of == parents → Causal(Harriet1, Harriet2))
+22. Q[Another, Harriet1.is_daughter_of == parents](Harriet2.sibling_relationship == sibling(Harriet1) → Causal(Harriet1, Harriet2))
+23. Q[Another, Harriet2.sibling_relationship == sibling(Harriet1)](Harriet1.is_memorialized_by == Harriet2 → Causal(Harriet1, Harriet2))
+24. Q[Another, Harriet1.is_memorialized_by == Harriet2](Harriet2.name_origin == memory_of(Harriet1) → Causal(Harriet1, Harriet2))
+25. Q[Another, Harriet2.name_origin == memory_of(Harriet1)](Harriet1.birth_year < Harriet2.birth_year → Causal(Harriet1, Harriet2))
+26. Q[Another, Harriet1.birth_year < Harriet2.birth_year](Harriet1.sibling_name == Harriet Elizabeth → Causal(Harriet1, Harriet2))
+27. Q[Another, Harriet1.sibling_name == Harriet Elizabeth](Harriet1.sibling_order == 4th → Causal(Harriet1, Harriet2))
+28. Q[Another, Harriet1.sibling_order == 4th](Harriet1.death_year == birth_year + 1 month → Causal(Harriet1, Harriet2))
+29. Q[Another, Harriet1.death_year == birth_year + 1 month](Harriet2.memory == Harriet1 → Causal(Harriet1, Harriet2))
+30. Q[Another, Harriet2.memory == Harriet1](Harriet2.is_named_after == Harriet1 → Causal(Harriet1, Harriet2))

@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 1521)
+S1: Two couples are eating dinner on the floor behind a large plant.
+S2: One couple is standing, while the other sits in a booth.
+
+Predicates:
+1. Couple1.location
+2. Couple2.location
+3. Couple1.position
+4. Couple2.position
+5. Plant.location
+6. Booth.location
+7. Couple1.activity
+8. Couple2.activity
+9. Couple1.status
+10. Couple2.status
+11. Dinner.time
+12. Dinner.place
+13. Couple1.members
+14. Couple2.members
+15. Couple1.relationship
+16. Couple2.relationship
+17. Plant.size
+18. Booth.size
+19. Couple1.eating
+20. Couple2.eating
+21. Couple1.standing
+22. Couple2.sitting
+23. M_NLI(S1, S2)
+24. Relation(Couple1, Plant)
+25. Relation(Couple2, Booth)
+26. violate(Couple1, Couple2)
+27. Couple1.behavior
+28. Couple2.behavior
+29. Dinner.type
+30. Plant.visibility
+
+Rules:
+1. Q[Two, Couple1.location, Plant.location](Couple1.location == "floor" → Relation(Couple1, Plant))
+2. Q[Two, Couple2.location, Booth.location](Couple2.location == "booth" → Relation(Couple2, Booth))
+3. Q[Two, Couple1.position, Couple2.position](Couple1.position == "standing" → Relation(Couple1, Couple2))
+4. Q[Two, Couple2.position, Couple1.position](Couple2.position == "sitting" → Relation(Couple2, Couple1))
+5. Q[Two, Couple1.activity, Couple2.activity](Couple1.activity == "eating" → Relation(Couple1, Couple2))
+6. Q[Two, Couple2.activity, Couple1.activity](Couple2.activity == "eating" → Relation(Couple2, Couple1))
+7. Q[Two, Couple1.status, Couple2.status](Couple1.status == "present" → Relation(Couple1, Couple2))
+8. Q[Two, Couple2.status, Couple1.status](Couple2.status == "present" → Relation(Couple2, Couple1))
+9. Q[Two, Dinner.time, Dinner.place](Dinner.time == "evening" → Relation(Dinner, Plant))
+10. Q[Two, Couple1.members, Couple2.members](Couple1.members == 2 → Relation(Couple1, Couple2))
+11. Q[Two, Couple1.relationship, Couple2.relationship](Couple1.relationship == "couple" → Relation(Couple1, Couple2))
+12. Q[Two, Plant.size, Booth.size](Plant.size == "large" → Relation(Plant, Booth))
+13. Q[Two, Couple1.eating, Couple2.eating](Couple1.eating == "true" → Relation(Couple1, Couple2))
+14. Q[Two, Couple2.eating, Couple1.eating](Couple2.eating == "true" → Relation(Couple2, Couple1))
+15. Q[Two, Couple1.standing, Couple2.sitting](Couple1.standing == "true" → Relation(Couple1, Couple2))
+16. Q[Two, Couple2.sitting, Couple1.standing](Couple2.sitting == "true" → Relation(Couple2, Couple1))
+17. Q[Two, Couple1.behavior, Couple2.behavior](Couple1.behavior == "socializing" → Relation(Couple1, Couple2))
+18. Q[Two, Couple2.behavior, Couple1.behavior](Couple2.behavior == "socializing" → Relation(Couple2, Couple1))
+19. Q[Two, Dinner.type, Plant.visibility](Dinner.type == "casual" → Relation(Dinner, Plant))
+20. Q[Two, Plant.visibility, Booth.size](Plant.visibility == "obscured" → Relation(Plant, Booth))
+21. Q[Two, Couple1.location, Couple2.location](Couple1.location == "floor" → Relation(Couple1, Couple2))
+22. Q[Two, Couple2.location, Couple1.location](Couple2.location == "booth" → Relation(Couple2, Couple1))
+23. Q[Two, Couple1.position, Dinner.place](Couple1.position == "on floor" → Relation(Couple1, Dinner))
+24. Q[Two, Couple2.position, Dinner.place](Couple2.position == "in booth" → Relation(Couple2, Dinner))
+25. Q[Two, Couple1.eating, Dinner.type](Couple1.eating == "true" → Relation(Couple1, Dinner))
+26. Q[Two, Couple2.eating, Dinner.type](Couple2.eating == "true" → Relation(Couple2, Dinner))
+27. Q[Two, Couple1.status, Dinner.place](Couple1.status == "active" → Relation(Couple1, Dinner))
+28. Q[Two, Couple2.status, Dinner.place](Couple2.status == "active" → Relation(Couple2, Dinner))
+29. Q[Two, Couple1.relationship, Couple2.relationship](Couple1.relationship == "intimate" → Relation(Couple1, Couple2))
+30. Q[Two, Couple1.activity, Dinner.type](Couple1.activity == "dining" → Relation(Couple1, Dinner))

@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 42)
+S1: You’ll often see him looking in the fridge for his favorite cooking ingredient, cheese.
+S2: He is a great cook and likes to make cheese pizza.
+
+Predicates:
+1. Person.cheese_preference
+2. Person.cooking_skill
+3. Person.favorite_ingredient
+4. Person.cooking_style
+5. Person.cheese_availability
+6. Person.pizza_type
+7. Person.fridge_usage
+8. Person.cooking_frequency
+9. Ingredient.cheese_type
+10. Ingredient.cheese_quantity
+11. CookingMethod.pizza_preparation
+12. CookingMethod.cheese_usage
+13. CookingMethod.ingredient_dependency
+14. CookingSkill.expertise_level
+15. CookingSkill.ingredient_familiarity
+16. CookingSkill.recipe_variety
+17. Relationship.dependency_on_ingredient
+18. Relationship.cooking_and_ingredient
+19. Meta.NLI(s1, s2)
+20. Meta.Relation(person, cheese)
+21. Meta.violate(cooking_skill, cheese_availability)
+22. EdgeNode.cooking_ingredient
+23. EdgeNode.fridge_access
+24. EdgeNode.favorite_dish
+25. EdgeNode.cooking_preference
+26. EdgeNode.ingredient_dependency
+27. EdgeNode.pizza_ingredient
+28. EdgeNode.cooking_expertise
+29. EdgeNode.fridge_content
+30. EdgeNode.ingredient_availability
+
+Rules:
+1. Q[You, Person.cheese_availability, Person.cheese_preference](You.fridge_usage == "frequent" → Relation(You, Person.cheese_preference))
+2. Q[You, Person.cooking_skill, Person.cheese_availability](You.cooking_skill == "great" → Relation(You, Person.cheese_availability))
+3. Q[You, Person.favorite_ingredient, Person.cheese_availability](You.favorite_ingredient == "cheese" → Relation(You, Person.cheese_availability))
+4. Q[You, Person.cheese_preference, Person.cooking_skill](You.cheese_preference == "high" → Relation(You, Person.cooking_skill))
+5. Q[You, Person.cooking_style, Person.cheese_availability](You.cooking_style == "pizza" → Relation(You, Person.cheese_availability))
+6. Q[You, Person.fridge_usage, Person.cheese_availability](You.fridge_usage == "regular" → Relation(You, Person.cheese_availability))
+7. Q[You, Person.cooking_frequency, Person.cheese_availability](You.cooking_frequency == "often" → Relation(You, Person.cheese_availability))
+8. Q[You, Ingredient.cheese_quantity, Person.cheese_availability](You.cheese_quantity == "sufficient" → Relation(You, Person.cheese_availability))
+9. Q[You, CookingMethod.cheese_usage, Person.cheese_availability](You.cheese_usage == "essential" → Relation(You, Person.cheese_availability))
+10. Q[You, CookingSkill.expertise_level, Person.cooking_skill](You.expertise_level == "high" → Relation(You, Person.cooking_skill))
+11. Q[You, CookingSkill.ingredient_familiarity, Person.cheese_preference](You.ingredient_familiarity == "familiar" → Relation(You, Person.cheese_preference))
+12. Q[You, CookingSkill.recipe_variety, Person.cooking_skill](You.recipe_variety == "diverse" → Relation(You, Person.cooking_skill))
+13. Q[You, Relationship.dependency_on_ingredient, Person.cheese_availability](You.dependency_on_ingredient == "cheese" → Relation(You, Person.cheese_availability))
+14. Q[You, Relationship.cooking_and_ingredient, Person.cooking_skill](You.cooking_and_ingredient == "cheese" → Relation(You, Person.cooking_skill))
+15. Q[You, Meta.NLI(S1, S2), Person.cheese_availability](Meta.NLI(S1, S2) == "contradictory" → Relation(You, Person.cheese_availability))
+16. Q[You, Meta.Relation(person, cheese), Person.cheese_preference](Meta.Relation(You, cheese) == "strong" → Relation(You, Person.cheese_preference))
+17. Q[You, Meta.violate(cooking_skill, cheese_availability), Person.cheese_availability](Meta.violate(cooking_skill, cheese_availability) == "true" → Relation(You, Person.cheese_availability))
+18. Q[You, EdgeNode.cooking_ingredient, Person.cheese_availability](EdgeNode.cooking_ingredient == "cheese" → Relation(You, Person.cheese_availability))
+19. Q[You, EdgeNode.fridge_access, Person.cheese_availability](EdgeNode.fridge_access == "easy" → Relation(You, Person.cheese_availability))
+20. Q[You, EdgeNode.favorite_dish, Person.favorite_ingredient](EdgeNode.favorite_dish == "pizza" → Relation(You, Person.favorite_ingredient))
+21. Q[You, EdgeNode.cooking_preference, Person.cooking_skill](EdgeNode.cooking_preference == "pizza" → Relation(You, Person.cooking_skill))
+22. Q[You, EdgeNode.ingredient_dependency, Person.cheese_availability](EdgeNode.ingredient_dependency == "cheese" → Relation(You, Person.cheese_availability))
+23. Q[You, EdgeNode.pizza_ingredient, Person.cheese_availability](EdgeNode.pizza_ingredient == "cheese" → Relation(You, Person.cheese_availability))
+24. Q[You, EdgeNode.cooking_expertise, Person.cooking_skill](EdgeNode.cooking_expertise == "high" → Relation(You, Person.cooking_skill))
+25. Q[You, EdgeNode.fridge_content, Person.cheese_availability](EdgeNode.fridge_content == "contains cheese" → Relation(You, Person.cheese_availability))
+26. Q[You, EdgeNode.ingredient_availability, Person.cheese_availability](EdgeNode.ingredient_availability == "available" → Relation(You, Person.cheese_availability))
+27. Q[You, Person.favorite_ingredient, Person.cooking_skill](You.favorite_ingredient == "cheese" → Relation(You, Person.cooking_skill))
+28. Q[You, Person.cooking_style, Person.cheese_preference](You.cooking_style == "pizza" → Relation(You, Person.cheese_preference))
+29. Q[You, Person.fridge_usage, Person.cooking_skill](You.fridge_usage == "frequent" → Relation(You, Person.cooking_skill))
+30. Q[You, Person.cooking_frequency, Person.favorite_ingredient](You.cooking_frequency == "high" → Relation(You, Person.favorite_ingredient))

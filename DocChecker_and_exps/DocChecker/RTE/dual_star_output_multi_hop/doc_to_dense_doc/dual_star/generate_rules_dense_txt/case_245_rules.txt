@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 245)
+S1: Her coronation was followed on 2 June 1953.
+S2: Her Coronation followed on June 2, 1953.
+
+Predicates:
+1. Coronation.date
+2. Coronation.event
+3. Date.year
+4. Date.month
+5. Date.day
+6. Event.type
+7. Event.participant
+8. Event.location
+9. Event.outcome
+10. Event.followed_by
+11. Followed_by.date
+12. Followed_by.event
+13. Followed_by.participant
+14. Followed_by.location
+15. Followed_by.outcome
+16. Tense.past
+17. Tense.present
+18. Structure.simple
+19. Structure.complex
+20. Contradiction.tense
+21. Contradiction.structure
+22. Reasoning.type
+23. Reasoning.contradiction
+24. Reasoning.support
+25. Meta.NLI
+26. Meta.negation
+27. Meta.violation
+28. Entity.node_name
+29. Entity.attribute
+30. Relationship_name.attribute
+
+Rules:
+1. Q[Her, Coronation.date, Date.year](Coronation.date == "June 2, 1953" → Negation(Coronation.date, Date.year))
+2. Q[Her, Coronation.event, Event.type](Coronation.event == "Coronation" → Negation(Coronation.event, Event.type))
+3. Q[Her, Date.year, Date.month](Date.year == 1953 → Negation(Date.year, Date.month))
+4. Q[Her, Date.month, Date.day](Date.month == "June" → Negation(Date.month, Date.day))
+5. Q[Her, Date.day, Coronation.event](Date.day == 2 → Negation(Date.day, Coronation.event))
+6. Q[Her, Event.type, Event.participant](Event.type == "Ceremony" → Negation(Event.type, Event.participant))
+7. Q[Her, Event.participant, Event.location](Event.participant == "Queen" → Negation(Event.participant, Event.location))
+8. Q[Her, Event.location, Event.outcome](Event.location == "Westminster Abbey" → Negation(Event.location, Event.outcome))
+9. Q[Her, Event.outcome, Followed_by.event](Event.outcome == "Successful" → Negation(Event.outcome, Followed_by.event))
+10. Q[Her, Followed_by.event, Followed_by.date](Followed_by.event == "Celebration" → Negation(Followed_by.event, Followed_by.date))
+11. Q[Her, Followed_by.date, Followed_by.participant](Followed_by.date == "June 3, 1953" → Negation(Followed_by.date, Followed_by.participant))
+12. Q[Her, Followed_by.participant, Followed_by.location](Followed_by.participant == "Public" → Negation(Followed_by.participant, Followed_by.location))
+13. Q[Her, Followed_by.location, Followed_by.outcome](Followed_by.location == "London" → Negation(Followed_by.location, Followed_by.outcome))
+14. Q[Her, Tense.past, Tense.present](Tense.past == "was followed" → Negation(Tense.past, Tense.present))
+15. Q[Her, Structure.simple, Structure.complex](Structure.simple == "simple" → Negation(Structure.simple, Structure.complex))
+16. Q[Her, Contradiction.tense, Reasoning.type](Contradiction.tense == "past" → Negation(Contradiction.tense, Reasoning.type))
+17. Q[Her, Contradiction.structure, Reasoning.contradiction](Contradiction.structure == "was followed" → Negation(Contradiction.structure, Reasoning.contradiction))
+18. Q[Her, Reasoning.type, Reasoning.support](Reasoning.type == "tense contradiction" → Negation(Reasoning.type, Reasoning.support))
+19. Q[Her, Reasoning.contradiction, Meta.NLI](Reasoning.contradiction == "contradictory" → Negation(Reasoning.contradiction, Meta.NLI))
+20. Q[Her, Meta.negation, Meta.violation](Meta.negation == "true" → Negation(Meta.negation, Meta.violation))
+21. Q[Her, Coronation.date, Event.followed_by](Coronation.date == "June 2, 1953" → Negation(Coronation.date, Event.followed_by))
+22. Q[Her, Event.followed_by, Followed_by.date](Event.followed_by == "Celebration" → Negation(Event.followed_by, Followed_by.date))
+23. Q[Her, Event.participant, Event.type](Event.participant == "Queen" → Negation(Event.participant, Event.type))
+24. Q[Her, Date.year, Date.day](Date.year == 1953 → Negation(Date.year, Date.day))
+25. Q[Her, Date.month, Coronation.event](Date.month == "June" → Negation(Date.month, Coronation.event))
+26. Q[Her, Event.location, Event.outcome](Event.location == "Westminster Abbey" → Negation(Event.location, Event.outcome))
+27. Q[Her, Followed_by.participant, Followed_by.location](Followed_by.participant == "Public" → Negation(Followed_by.participant, Followed_by.location))
+28. Q[Her, Followed_by.date, Event.type](Followed_by.date == "June 3, 1953" → Negation(Followed_by.date, Event.type))
+29. Q[Her, Tense.present, Structure.simple](Tense.present == "followed" → Negation(Tense.present, Structure.simple))
+30. Q[Her, Reasoning.support, Contradiction.tense](Reasoning.support == "false" → Negation(Reasoning.support, Contradiction.tense))

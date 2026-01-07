@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 219)
+S1: W e a r e w a i t i n g t o h e l p y o u w i t h D a d ' s c a k e.
+S2: W e l l y o u r d a d i s n o t g o i n g t o b e h e r e u n t i l t h i s a f t e r n o o n.
+
+Predicates:
+1. Help.currently
+2. Dad.arrival_time
+3. Cake.status
+4. Waiting.currently
+5. Afternoon.time
+6. Help.with_cake
+7. Dad.is_not_here
+8. Cake.needs_help
+9. Waiting.for_dad
+10. Dad.arrives_after_noon
+11. Help.is_delayed
+12. Cake.preparation_status
+13. Afternoon.is_later_than_now
+14. Dad.is_away
+15. Help.is_pending
+16. Cake.requires_dad
+17. Waiting.is_active
+18. Dad.arrival.is_later
+19. Help.is_unavailable
+20. Cake.is_in_progress
+21. Afternoon.is_today
+22. Dad.is_expected
+23. Help.is_on_hold
+24. Cake.is_not_finished
+25. Waiting.is_for_dad
+26. Dad.comes_after_waiting
+27. Help.is_needed
+28. Cake.is_a_priority
+29. Afternoon.is_a_time_frame
+30. Dad's_arrival.is_necessary
+
+Rules:
+1. Q[Help, Help.currently == true, Dad.arrival_time == Afternoon](Help.with_cake → Temporal(Help.currently, Dad.arrival_time))
+2. Q[Waiting, Waiting.currently == true, Dad.is_not_here == true](Waiting.for_dad → Temporal(Waiting.currently, Dad.is_not_here))
+3. Q[Cake, Cake.status == "in progress", Dad.arrival_time == Afternoon](Cake.needs_help → Temporal(Cake.status, Dad.arrival_time))
+4. Q[Dad, Dad.is_away == true, Dad.arrival_time == Afternoon](Dad.arrives_after_noon → Temporal(Dad.is_away, Dad.arrival_time))
+5. Q[Help, Help.is_pending == true, Dad.arrival_time == Afternoon](Help.is_unavailable → Temporal(Help.is_pending, Dad.arrival_time))
+6. Q[Cake, Cake.is_not_finished == true, Dad.arrival_time == Afternoon](Cake.requires_dad → Temporal(Cake.is_not_finished, Dad.arrival_time))
+7. Q[Waiting, Waiting.is_active == true, Dad.arrival_time == Afternoon](Waiting.is_for_dad → Temporal(Waiting.is_active, Dad.arrival_time))
+8. Q[Help, Help.is_on_hold == true, Dad.arrival_time == Afternoon](Help.is_needed → Temporal(Help.is_on_hold, Dad.arrival_time))
+9. Q[Cake, Cake.preparation_status == "pending", Dad.arrival_time == Afternoon](Cake.is_a_priority → Temporal(Cake.preparation_status, Dad.arrival_time))
+10. Q[Dad, Dad.comes_after_waiting == true, Dad.arrival_time == Afternoon](Dad.is_expected → Temporal(Dad.comes_after_waiting, Dad.arrival_time))
+11. Q[Help, Help.currently == true, Cake.status == "not finished"](Help.with_cake → Temporal(Help.currently, Cake.status))
+12. Q[Waiting, Waiting.currently == true, Cake.status == "needs help"](Waiting.for_dad → Temporal(Waiting.currently, Cake.status))
+13. Q[Cake, Cake.requires_dad == true, Help.currently == false](Cake.is_not_finished → Temporal(Cake.requires_dad, Help.currently))
+14. Q[Dad, Dad.is_away == true, Help.currently == true](Dad.arrival.is_later → Temporal(Dad.is_away, Help.currently))
+15. Q[Help, Help.is_delayed == true, Dad.arrival_time == Afternoon](Help.is_needed → Temporal(Help.is_delayed, Dad.arrival_time))
+16. Q[Cake, Cake.status == "in progress", Dad.is_not_here == true](Cake.needs_help → Temporal(Cake.status, Dad.is_not_here))
+17. Q[Waiting, Waiting.is_active == true, Help.is_on_hold == true](Waiting.is_for_dad → Temporal(Waiting.is_active, Help.is_on_hold))
+18. Q[Help, Help.is_unavailable == true, Cake.status == "not finished"](Help.with_cake → Temporal(Help.is_unavailable, Cake.status))
+19. Q[Cake, Cake.is_a_priority == true, Dad.arrival_time == Afternoon](Cake.requires_dad → Temporal(Cake.is_a_priority, Dad.arrival_time))
+20. Q[Dad, Dad.is_expected == true, Help.is_pending == true](Dad.comes_after_waiting → Temporal(Dad.is_expected, Help.is_pending))
+21. Q[Help, Help.currently == true, Dad.is_away == true](Help.with_cake → Temporal(Help.currently, Dad.is_away))
+22. Q[Waiting, Waiting.currently == true, Cake.is_not_finished == true](Waiting.for_dad → Temporal(Waiting.currently, Cake.is_not_finished))
+23. Q[Cake, Cake.requires_dad == true, Help.is_needed == true](Cake.is_not_finished → Temporal(Cake.requires_dad, Help.is_needed))
+24. Q[Dad, Dad.arrival_time == Afternoon, Help.is_on_hold == true](Dad.is_expected → Temporal(Dad.arrival_time, Help.is_on_hold))
+25. Q[Help, Help.is_pending == true, Cake.status == "in progress"](Help.is_needed → Temporal(Help.is_pending, Cake.status))
+26. Q[Cake, Cake.status == "needs help", Dad.is_not_here == true](Cake.requires_dad → Temporal(Cake.status, Dad.is_not_here))
+27. Q[Waiting, Waiting.is_active == true, Dad.is_away == true](Waiting.is_for_dad → Temporal(Waiting.is_active, Dad.is_away))
+28. Q[Help, Help.is_unavailable == true, Dad.arrival_time == Afternoon](Help.with_cake → Temporal(Help.is_unavailable, Dad.arrival_time))
+29. Q[Cake, Cake.is_a_priority == true, Help.currently == false](Cake.requires_dad → Temporal(Cake.is_a_priority, Help.currently))
+30. Q[Dad, Dad.comes_after_waiting == true, Help.is_needed == true](Dad.is_expected → Temporal(Dad.comes_after_waiting, Help.is_needed))

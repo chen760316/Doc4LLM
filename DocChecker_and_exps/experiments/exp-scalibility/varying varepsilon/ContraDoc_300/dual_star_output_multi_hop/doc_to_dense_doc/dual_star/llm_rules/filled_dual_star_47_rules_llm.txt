@@ -1,0 +1,129 @@
+Predicates:
+1. person.emotion = "tears"
+2. person.action = "took a drink"
+3. person.rescue_boat_size = "smaller"
+4. person.spotted_by = "crew aboard the destroyer"
+5. "Relationship".event_type = "emotional response"
+6. "Relationship".event_type = "acceptance of drink"
+7. "Relationship".event_type = "rescue operation"
+8. "Relationship".event_type = "observation"
+9. M_NLI(person.emotion, person.action)
+10. M_NLI(person.rescue_boat_size, person.spotted_by)
+11. T("The person burst into tears.", "The person did not cry.", Negation)
+12. T("The person took a drink offered to him.", "The person refused the drink.", Negation)
+13. T("The person was picked up in a smaller rescue boat.", "The person was picked up in a larger rescue boat.", Relation)
+14. T("The person was spotted by the crew aboard the destroyer.", "The person was not seen by anyone.", Negation)
+15. tau(person.emotion, person.action)
+16. tau(person.rescue_boat_size, person.spotted_by)
+17. violate(person.emotion, person.action)
+18. Factual(person.emotion, person.action)
+19. Causal(person.action, person.emotion)
+20. Numeric(person.rescue_boat_size, person.spotted_by)
+21. Temporal(person.action, person.spotted_by)
+22. Factual(person.rescue_boat_size, person.spotted_by)
+23. Causal(person.emotion, person.rescue_boat_size)
+24. Numeric(person.action, person.emotion)
+25. Temporal(person.emotion, person.action)
+26. violate(person.action, person.rescue_boat_size)
+27. Factual(person.spotted_by, person.action)
+28. Causal(person.spotted_by, person.emotion)
+29. Numeric(person.emotion, person.spotted_by)
+30. Temporal(person.action, person.rescue_boat_size)
+31. "Relationship".emotional_state = "crying"
+32. "Relationship".acceptance = "yes"
+33. "Relationship".boat_size = "small"
+34. "Relationship".observation_status = "seen"
+35. M_NLI(person.emotion, "crying")
+36. M_NLI(person.action, "refusal")
+37. T("The person was not seen by anyone.", "The person was spotted.", Negation)
+38. T("The person was picked up in a larger rescue boat.", "The person was picked up in a smaller rescue boat.", Relation)
+39. tau(person.action, "refusal")
+40. tau(person.emotion, "not crying")
+41. violate(person.spotted_by, "not seen")
+42. Factual(person.action, "refusal")
+43. Causal(person.emotion, "not crying")
+44. Numeric(person.spotted_by, "not seen")
+45. Temporal(person.action, "not seen")
+46. Factual(person.spotted_by, "not seen")
+47. Causal(person.action, "not seen")
+48. Numeric(person.emotion, "not crying")
+49. Temporal(person.spotted_by, "not seen")
+50. "Relationship".emotional_response = "tears"
+51. "Relationship".drink_status = "accepted"
+52. "Relationship".rescue_status = "successful"
+53. "Relationship".observation_type = "visual"
+54. M_NLI("The person burst into tears.", "The person remained calm.")
+55. M_NLI("The person took a drink offered to him.", "The person did not take the drink.")
+56. T("The person was picked up in a smaller rescue boat.", "The person was picked up in a larger boat.", Relation)
+57. T("The person was spotted by the crew aboard the destroyer.", "The person was invisible to the crew.", Negation)
+58. tau("The person burst into tears.", "The person did not cry.")
+59. tau("The person took a drink offered to him.", "The person refused the drink.")
+60. violate("The person was picked up in a larger boat.", "The person was picked up in a smaller boat.")
+61. Factual("The person was not seen by anyone.", "The person was spotted.")
+62. Causal("The person was not crying.", "The person was crying.")
+63. Numeric("The person was not seen.", "The person was spotted.")
+64. Temporal("The person was not seen.", "The person was spotted.")
+65. "Relationship".emotional_outcome = "crying"
+66. "Relationship".drink_outcome = "accepted"
+67. "Relationship".rescue_outcome = "successful"
+68. "Relationship".observation_outcome = "seen"
+69. M_NLI("The person was not seen by anyone.", "The person was spotted.")
+70. M_NLI("The person was picked up in a larger boat.", "The person was picked up in a smaller boat.")
+71. T("The person was picked up in a smaller rescue boat.", "The person was not rescued.", Negation)
+72. T("The person was spotted by the crew aboard the destroyer.", "The person was not seen.", Negation)
+73. tau("The person was not seen.", "The person was spotted.")
+74. tau("The person was picked up in a larger boat.", "The person was picked up in a smaller boat.")
+75. violate("The person was not rescued.", "The person was rescued.")
+76. Factual("The person was not crying.", "The person was crying.")
+77. Causal("The person was not accepted.", "The person was accepted.")
+78. Numeric("The person was not seen.", "The person was spotted.")
+79. Temporal("The person was not seen.", "The person was spotted.")
+80. "Relationship".emotional_state = "not crying"
+81. "Relationship".drink_status = "not accepted"
+82. "Relationship".rescue_status = "failed"
+83. "Relationship".observation_status = "not seen"
+84. M_NLI("The person was not accepted.", "The person was accepted.")
+85. M_NLI("The person was not rescued.", "The person was rescued.")
+86. T("The person was not seen.", "The person was spotted.", Negation)
+87. T("The person was not rescued.", "The person was rescued.", Negation)
+88. tau("The person was not accepted.", "The person was accepted.")
+89. tau("The person was not rescued.", "The person was rescued.")
+90. violate("The person was not spotted.", "The person was spotted.")
+91. Factual("The person was not accepted.", "The person was accepted.")
+92. Causal("The person was not seen.", "The person was spotted.")
+93. Numeric("The person was not rescued.", "The person was rescued.")
+94. Temporal("The person was not seen.", "The person was spotted.")
+95. "Relationship".emotional_outcome = "not crying"
+96. "Relationship".drink_outcome = "not accepted"
+97. "Relationship".rescue_outcome = "failed"
+violate(x0, y0)
+
+Rules:
+1. Q[x0, y0](person.emotion = "tears" ∧ person.action = "took a drink" → violate(x0, y0))
+2. Q[x0, y0](person.rescue_boat_size = "smaller" ∧ person.spotted_by = "crew aboard the destroyer" → violate(x0, y0))
+3. Q[x0, y0](M_NLI(person.emotion, person.action) ∧ T("The person burst into tears.", "The person did not cry.", Negation) → violate(x0, y0))
+4. Q[x0, y0](T("The person was picked up in a larger rescue boat.", "The person was picked up in a smaller rescue boat.", Relation) ∧ Factual(person.rescue_boat_size, person.spotted_by) → violate(x0, y0))
+5. Q[x0, y0](tau(person.emotion, person.action) ∧ Causal(person.action, person.emotion) → violate(x0, y0))
+6. Q[x0, y0](Factual(person.spotted_by, person.action) ∧ "Relationship".event_type = "observation" → violate(x0, y0))
+7. Q[x0, y0](person.emotion = "tears" ∧ "Relationship".event_type = "acceptance of drink" ∧ "Relationship".drink_status = "not accepted" → violate(x0, y0))
+8. Q[x0, y0](M_NLI(person.action, "refusal") ∧ T("The person took a drink offered to him.", "The person refused the drink.", Negation) ∧ "Relationship".drink_status = "accepted" → violate(x0, y0))
+9. Q[x0, y0](tau(person.rescue_boat_size, person.spotted_by) ∧ "Relationship".rescue_status = "failed" ∧ "Relationship".event_type = "rescue operation" → violate(x0, y0))
+10. Q[x0, y0](Causal(person.emotion, "not crying") ∧ Factual(person.emotion, person.action) ∧ "Relationship".emotional_state = "crying" → violate(x0, y0))
+11. Q[x0, y0](T("The person was not seen by anyone.", "The person was spotted.", Negation) ∧ "Relationship".observation_status = "not seen" ∧ M_NLI(person.spotted_by, "not seen") → violate(x0, y0))
+12. Q[x0, y0](Factual("The person was not seen by anyone.", "The person was spotted.") ∧ "Relationship".observation_type = "visual" ∧ "Relationship".observation_status = "not seen" → violate(x0, y0))
+13. Q[x0, y0](M_NLI("The person was picked up in a larger boat.", "The person was picked up in a smaller boat.") ∧ T("The person was picked up in a smaller rescue boat.", "The person was not rescued.", Negation) ∧ "Relationship".rescue_status = "successful" → violate(x0, y0))
+14. Q[x0, y0](tau("The person was not seen.", "The person was spotted.") ∧ "Relationship".observation_status = "not seen" ∧ Factual(person.spotted_by, "not seen") → violate(x0, y0))
+15. Q[x0, y0](Causal("The person was not accepted.", "The person was accepted.") ∧ "Relationship".drink_status = "not accepted" ∧ "Relationship".drink_outcome = "accepted" → violate(x0, y0))
+16. Q[x0, y0](T("The person was not rescued.", "The person was rescued.", Negation) ∧ "Relationship".rescue_status = "failed" ∧ Factual("The person was not rescued.", "The person was rescued.") → violate(x0, y0))
+17. Q[x0, y0](M_NLI("The person was not accepted.", "The person was accepted.") ∧ "Relationship".drink_status = "not accepted" ∧ "Relationship".drink_outcome = "accepted" → violate(x0, y0))
+18. Q[x0, y0](tau("The person was not rescued.", "The person was rescued.") ∧ "Relationship".rescue_status = "failed" ∧ Factual("The person was not rescued.", "The person was rescued.") → violate(x0, y0))
+19. Q[x0, y0](Factual(person.action, "refusal") ∧ "Relationship".drink_status = "accepted" ∧ T("The person took a drink offered to him.", "The person refused the drink.", Negation) → violate(x0, y0))
+20. Q[x0, y0](Causal(person.action, "not seen") ∧ "Relationship".observation_status = "not seen" ∧ Factual(person.spotted_by, "not seen") → violate(x0, y0))
+21. Q[x0, y0](M_NLI("The person was not seen by anyone.", "The person was spotted.") ∧ "Relationship".observation_status = "not seen" ∧ "Relationship".observation_type = "visual" → violate(x0, y0))
+22. Q[x0, y0](T("The person was not seen.", "The person was spotted.", Negation) ∧ "Relationship".observation_status = "not seen" ∧ Factual(person.spotted_by, "not seen") → violate(x0, y0))
+23. Q[x0, y0](tau(person.emotion, "not crying") ∧ "Relationship".emotional_state = "crying" ∧ Factual(person.emotion, person.action) → violate(x0, y0))
+24. Q[x0, y0](Causal(person.emotion, "not crying") ∧ "Relationship".emotional_response = "tears" ∧ "Relationship".emotional_state = "crying" → violate(x0, y0))
+25. Q[x0, y0](T("The person was picked up in a larger rescue boat.", "The person was picked up in a smaller rescue boat.", Relation) ∧ "Relationship".rescue_status = "successful" ∧ Factual(person.rescue_boat_size, person.spotted_by) → violate(x0, y0))
+26. Q[x0, y0](M_NLI(person.action, "refusal") ∧ "Relationship".drink_status = "accepted" ∧ T("The person took a drink offered to him.", "The person refused the drink.", Negation) → violate(x0, y0))
+27. Q[x0, y0](tau(person.rescue_boat_size, person.spotted_by) ∧ "Relationship".rescue_status = "failed" ∧ "Relationship".event_type = "rescue operation" → violate(x0, y0))
+28. Q[x0

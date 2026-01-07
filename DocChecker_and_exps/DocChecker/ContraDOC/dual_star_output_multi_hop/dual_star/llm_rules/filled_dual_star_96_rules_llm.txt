@@ -1,0 +1,126 @@
+Predicates:
+1. General Molara.status = "deceased"
+2. General Molara.status != "alive"
+3. General Molara.age > 60
+4. General Molara.rank >= "General"
+5. General Molara.location = "Presidential Palace"
+6. General Molara.orders = "despatch loyal Republican Guard"
+7. Republican Guard.loyalty = "questionable"
+8. Republican Guard.orders != "follow General Molara"
+9. Republican Guard.location = "capital"
+10. Republican Guard.status = "active"
+11. "General Molara dies on the steps of the Presidential Palace.".event = "storming of the palace"
+12. "General Molara dies on the steps of the Presidential Palace.".event != "peaceful transition"
+13. "General Molara dies on the steps of the Presidential Palace.".location = "Presidential Palace"
+14. "General Molara dies on the steps of the Presidential Palace.".time > "2023-01-01"
+15. "General Molara's orders are refused by the Republican Guard.".action = "despatch loyal Republican Guard"
+16. "General Molara's orders are refused by the Republican Guard.".action != "execute orders"
+17. "General Molara's orders are refused by the Republican Guard.".location = "capital"
+18. "General Molara's orders are refused by the Republican Guard.".time < "2023-12-31"
+19. M_NLI(General Molara.status, Republican Guard.loyalty)
+20. M_NLU(General Molara.orders, Republican Guard.orders)
+21. M_TEM(General Molara.location, Republican Guard.location)
+22. contra("General Molara dies", "General Molara lives")
+23. S(General Molara, "General Molara")
+24. S("General Molara dies on the steps of the Presidential Palace.", "General Molara dies on the steps of the Presidential Palace.")
+25. T("General Molara dies", "General Molara lives", "Factual")
+26. tau(General Molara.status, Republican Guard.loyalty)
+27. tau("General Molara dies on the steps of the Presidential Palace.".event, "storming of the palace")
+28. General Molara.orders >= "high priority"
+29. Republican Guard.morale < 50
+30. Republican Guard.commander = "unknown"
+31. "General Molara dies on the steps of the Presidential Palace.".time >= "2023-01-01"
+32. "General Molara's orders are refused by the Republican Guard.".time <= "2023-12-31"
+33. General Molara.location != "military base"
+34. Republican Guard.size > 100
+35. Republican Guard.equipment = "standard issue"
+36. "General Molara dies on the steps of the Presidential Palace.".event < "civil unrest"
+37. "General Molara's orders are refused by the Republican Guard.".action >= "disobey"
+38. General Molara.age <= 70
+39. General Molara.rank < "Field Marshal"
+40. Republican Guard.duty = "protect the palace"
+41. "General Molara dies on the steps of the Presidential Palace.".location != "foreign embassy"
+42. "General Molara's orders are refused by the Republican Guard.".action < "engage enemy"
+43. M_NLI(Republican Guard.size, General Molara.age)
+44. M_NLU(General Molara.location, Republican Guard.location)
+45. M_TEM(General Molara.rank, Republican Guard.commander)
+46. contra("General Molara's orders", "Republican Guard's compliance")
+47. S(Republican Guard, "Republican Guard")
+48. S("General Molara's orders are refused by the Republican Guard.", "General Molara's orders are refused by the Republican Guard.")
+49. T("General Molara's orders", "Republican Guard's refusal", "Relational")
+50. tau(Republican Guard.status, General Molara.status)
+51. General Molara.orders > "standard orders"
+52. Republican Guard.commander != "loyalist"
+53. "General Molara dies on the steps of the Presidential Palace.".event >= "violent protest"
+54. "General Molara's orders are refused by the Republican Guard.".location != "rural area"
+55. General Molara.location < "urban area"
+56. Republican Guard.morale >= 50
+57. Republican Guard.equipment != "obsolete"
+58. "General Molara dies on the steps of the Presidential Palace.".time < "2023-06-01"
+59. "General Molara's orders are refused by the Republican Guard.".action > "follow orders"
+60. General Molara.age >= 50
+61. General Molara.rank != "Lieutenant"
+62. Republican Guard.size <= 200
+63. Republican Guard.duty != "attack civilians"
+64. "General Molara dies on the steps of the Presidential Palace.".event <= "government overthrow"
+65. "General Molara's orders are refused by the Republican Guard.".action >= "disobey orders"
+66. M_NLI(General Molara.age, Republican Guard.morale)
+67. M_NLU(General Molara.rank, Republican Guard.size)
+68. M_TEM(General Molara.location, Republican Guard.duty)
+69. contra("General Molara's authority", "Republican Guard's insubordination")
+70. S(General Molara.orders, "General Molara's orders")
+71. S("General Molara dies on the steps of the Presidential Palace.", "General Molara dies on the steps of the Presidential Palace.")
+72. T("Republican Guard's loyalty", "General Molara's orders", "Causal")
+73. tau(General Molara.location, Republican Guard.equipment)
+74. General Molara.orders < "low priority"
+75. Republican Guard.commander >= "Colonel"
+76. "General Molara dies on the steps of the Presidential Palace.".event != "peaceful protest"
+77. "General Molara's orders are refused by the Republican Guard.".action < "support"
+78. General Molara.age < 80
+79. General Molara.rank > "Major"
+80. Republican Guard.size >= 50
+81. Republican Guard.duty = "maintain order"
+82. "General Molara dies on the steps of the Presidential Palace.".time != "2023-01-01"
+83. "General Molara's orders are refused by the Republican Guard.".location < "metropolitan area"
+84. General Molara.location >= "capital"
+85. Republican Guard.morale < 30
+86. Republican Guard.equipment = "modern"
+87. "General Molara dies on the steps of the Presidential Palace.".event > "peaceful assembly"
+88. "General Molara's orders are refused by the Republican Guard.".action != "execute"
+89. General Molara.age <= 75
+90. General Molara.rank < "Generalissimo"
+91. Republican Guard.size != 150
+92. Republican Guard.duty != "disband"
+93. "General Molara dies on the steps of the Presidential Palace.".time >= "2023-06-01"
+94. "General Molara's orders
+
+Rules:
+1. Q[1, 1](General Molara.status = "deceased" ∧ General Molara.age > 60 → General Molara.rank < "Field Marshal")
+2. Q[2, 2](General Molara.status != "alive" ∧ Republican Guard.loyalty = "questionable" → Republican Guard.status != "active")
+3. Q[3, 3](General Molara.location = "Presidential Palace" ∧ "General Molara dies on the steps of the Presidential Palace.".event = "storming of the palace" → Republican Guard.morale < 50)
+4. Q[4, 4](General Molara.orders = "despatch loyal Republican Guard" ∧ Republican Guard.size > 100 → General Molara.status = "deceased")
+5. Q[5, 5](General Molara.age > 60 ∧ General Molara.rank >= "General" ∧ Republican Guard.status = "active" → Republican Guard.morale < 30)
+6. Q[6, 6](General Molara.location = "Presidential Palace" ∧ Republican Guard.duty = "protect the palace" ∧ "General Molara dies on the steps of the Presidential Palace.".time < "2023-06-01" → Republican Guard.equipment != "obsolete")
+7. Q[7, 1](General Molara.age <= 70 ∧ General Molara.rank < "Field Marshal" ∧ Republican Guard.size <= 200 → Republican Guard.duty != "attack civilians")
+8. Q[8, 2](Republican Guard.morale < 50 ∧ "General Molara's orders are refused by the Republican Guard.".action < "engage enemy" → General Molara.orders < "low priority")
+9. Q[9, 3](General Molara.status = "deceased" ∧ Republican Guard.loyalty = "questionable" ∧ "General Molara dies on the steps of the Presidential Palace.".event != "peaceful transition" → Republican Guard.commander != "loyalist")
+10. Q[10, 4](General Molara.age < 80 ∧ Republican Guard.size >= 50 ∧ Republican Guard.equipment = "modern" → "General Molara's orders are refused by the Republican Guard.".action != "execute orders")
+11. Q[11, 5](General Molara.location != "military base" ∧ Republican Guard.status = "active" ∧ "General Molara dies on the steps of the Presidential Palace.".time >= "2023-01-01" → Republican Guard.duty = "maintain order")
+12. Q[12, 6](General Molara.orders >= "high priority" ∧ Republican Guard.morale >= 50 ∧ "General Molara's orders are refused by the Republican Guard.".location != "rural area" → Republican Guard.size != 150)
+13. Q[13, 1](General Molara.rank != "Lieutenant" ∧ "General Molara dies on the steps of the Presidential Palace.".event < "civil unrest" → General Molara.age >= 50)
+14. Q[14, 2](Republican Guard.commander = "unknown" ∧ "General Molara's orders are refused by the Republican Guard.".action >= "disobey" → General Molara.status != "alive")
+15. Q[15, 3](General Molara.age <= 75 ∧ Republican Guard.size > 100 ∧ "General Molara dies on the steps of the Presidential Palace.".event >= "violent protest" → Republican Guard.equipment = "standard issue")
+16. Q[16, 4](General Molara.location < "urban area" ∧ Republican Guard.morale < 30 ∧ "General Molara's orders are refused by the Republican Guard.".time < "2023-12-31" → Republican Guard.duty != "disband")
+17. Q[17, 5](General Molara.orders < "low priority" ∧ Republican Guard.size <= 200 ∧ "General Molara dies on the steps of the Presidential Palace.".event <= "government overthrow" → Republican Guard.status != "active")
+18. Q[18, 6](General Molara.rank > "Major" ∧ Republican Guard.duty = "maintain order" ∧ "General Molara's orders are refused by the Republican Guard.".action < "support" → General Molara.age < 80)
+19. Q[19, 1](Republican Guard.equipment != "obsolete" ∧ "General Molara dies on the steps of the Presidential Palace.".time < "2023-06-01" → Republican Guard.morale >= 50)
+20. Q[20, 2](General Molara.status != "alive" ∧ Republican Guard.size < 150 → General Molara.rank < "Generalissimo")
+21. Q[21, 3](General Molara.age >= 50 ∧ Republican Guard.morale < 30 ∧ "General Molara's orders are refused by the Republican Guard.".action != "execute" → Republican Guard.commander != "loyalist")
+22. Q[22, 4](General Molara.location >= "capital" ∧ Republican Guard.size >= 50 ∧ "General Molara dies on the steps of the Presidential Palace.".event > "peaceful assembly" → Republican Guard.duty = "protect the palace")
+23. Q[23, 5](General Molara.rank < "Field Marshal" ∧ Republican Guard.morale >= 50 ∧ "General Molara's orders are refused by the Republican Guard.".location < "metropolitan area" → General Molara.status = "deceased")
+24. Q[24, 6](Republican Guard.loyalty = "questionable" ∧ "General Molara dies on the steps of the Presidential Palace.".event != "peaceful protest" ∧ General Molara.age < 80 → Republican Guard.size != 150)
+25. Q[25, 1](General Molara.orders > "standard orders" ∧ Republican Guard.commander >= "Colonel" → Republican Guard.morale < 30)
+26. Q[26, 2](General Molara.status = "deceased" ∧ Republican Guard.size <= 200 → Republican Guard.duty != "disband")
+27. Q[27, 3](General Molara.age < 80 ∧ Republican Guard.equipment = "modern" ∧ "General Molara's orders are refused by the Republican Guard.".action < "engage enemy" → General Molara.rank < "General")
+28. Q[28, 4](Republican Guard.morale < 50 ∧ "General Molara dies on the steps of the Presidential Palace.".time >= "2023-01-01" ∧ General Molara.location != "military base" → Republican Guard.status != "active")
+29. Q[29, 5](General Molara.rank < "Field Marshal" ∧ Republican Guard.size > 100 ∧ "General Molara's orders are refused by the Republican Guard.".action >= "disobey orders" → Republican Guard.duty =

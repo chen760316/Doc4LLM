@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 431)
+S1: You can visit the tomb completely free of charge.
+S2: Extra fee to enter the tomb.
+
+Predicates:
+1. Tomb.visit.free
+2. Tomb.enter.extra_fee
+3. M_NLI(S1, S2)
+4. Factual(Tomb.visit, free)
+5. Factual(Tomb.enter, extra_fee)
+6. violate(Tomb.visit, Tomb.enter)
+7. Visitor.access.free
+8. Visitor.access.paid
+9. M_NLI(Visitor.access.free, Visitor.access.paid)
+10. Factual(Visitor.access, free)
+11. Factual(Visitor.access, paid)
+12. violate(Visitor.access.free, Visitor.access.paid)
+13. Entry.fee.required
+14. Entry.fee.not_required
+15. M_NLI(Entry.fee.required, Entry.fee.not_required)
+16. Factual(Entry.fee, required)
+17. Factual(Entry.fee, not_required)
+18. violate(Entry.fee.required, Entry.fee.not_required)
+19. Admission.cost.zero
+20. Admission.cost.non_zero
+21. M_NLI(Admission.cost.zero, Admission.cost.non_zero)
+22. Factual(Admission.cost, zero)
+23. Factual(Admission.cost, non_zero)
+24. violate(Admission.cost.zero, Admission.cost.non_zero)
+25. Tomb.access.free
+26. Tomb.access.fee
+27. M_NLI(Tomb.access.free, Tomb.access.fee)
+28. Factual(Tomb.access, free)
+29. Factual(Tomb.access, fee)
+30. violate(Tomb.access.free, Tomb.access.fee)
+
+Rules:
+1. Q[You, Tomb.visit.free, Tomb.enter.extra_fee](Tomb.visit.free == true → Factual(Tomb.visit, free))
+2. Q[You, Tomb.visit.free, Tomb.enter.extra_fee](Tomb.enter.extra_fee == true → Factual(Tomb.enter, extra_fee))
+3. Q[You, Tomb.visit.free, Tomb.enter.extra_fee](M_NLI(Tomb.visit.free, Tomb.enter.extra_fee) → Factual(Tomb.visit, free))
+4. Q[You, Tomb.visit.free, Tomb.enter.extra_fee](Factual(Tomb.visit, free) → violate(Tomb.visit, Tomb.enter))
+5. Q[You, Tomb.visit.free, Tomb.enter.extra_fee](Factual(Tomb.enter, extra_fee) → violate(Tomb.visit, Tomb.enter))
+6. Q[You, Tomb.visit.free, Tomb.enter.extra_fee](Tomb.access.free == true → Factual(Tomb.access, free))
+7. Q[You, Tomb.visit.free, Tomb.enter.extra_fee](Tomb.access.fee == true → Factual(Tomb.access, fee))
+8. Q[You, Tomb.visit.free, Tomb.enter.extra_fee](M_NLI(Tomb.access.free, Tomb.access.fee) → Factual(Tomb.access, free))
+9. Q[You, Tomb.visit.free, Tomb.enter.extra_fee](Factual(Tomb.access, free) → violate(Tomb.access.free, Tomb.access.fee))
+10. Q[You, Tomb.visit.free, Tomb.enter.extra_fee](Factual(Tomb.access, fee) → violate(Tomb.access.free, Tomb.access.fee))
+11. Q[You, Tomb.visit.free, Tomb.enter.extra_fee](Admission.cost.zero == true → Factual(Admission.cost, zero))
+12. Q[You, Tomb.visit.free, Tomb.enter.extra_fee](Admission.cost.non_zero == true → Factual(Admission.cost, non_zero))
+13. Q[You, Tomb.visit.free, Tomb.enter.extra_fee](M_NLI(Admission.cost.zero, Admission.cost.non_zero) → Factual(Admission.cost, zero))
+14. Q[You, Tomb.visit.free, Tomb.enter.extra_fee](Factual(Admission.cost, zero) → violate(Admission.cost.zero, Admission.cost.non_zero))
+15. Q[You, Tomb.visit.free, Tomb.enter.extra_fee](Factual(Admission.cost, non_zero) → violate(Admission.cost.zero, Admission.cost.non_zero))
+16. Q[You, Tomb.visit.free, Tomb.enter.extra_fee](Visitor.access.free == true → Factual(Visitor.access, free))
+17. Q[You, Tomb.visit.free, Tomb.enter.extra_fee](Visitor.access.paid == true → Factual(Visitor.access, paid))
+18. Q[You, Tomb.visit.free, Tomb.enter.extra_fee](M_NLI(Visitor.access.free, Visitor.access.paid) → Factual(Visitor.access, free))
+19. Q[You, Tomb.visit.free, Tomb.enter.extra_fee](Factual(Visitor.access, free) → violate(Visitor.access.free, Visitor.access.paid))
+20. Q[You, Tomb.visit.free, Tomb.enter.extra_fee](Factual(Visitor.access, paid) → violate(Visitor.access.free, Visitor.access.paid))
+21. Q[You, Tomb.visit.free, Tomb.enter.extra_fee](Entry.fee.not_required == true → Factual(Entry.fee, not_required))
+22. Q[You, Tomb.visit.free, Tomb.enter.extra_fee](Entry.fee.required == true → Factual(Entry.fee, required))
+23. Q[You, Tomb.visit.free, Tomb.enter.extra_fee](M_NLI(Entry.fee.required, Entry.fee.not_required) → Factual(Entry.fee, not_required))
+24. Q[You, Tomb.visit.free, Tomb.enter.extra_fee](Factual(Entry.fee, not_required) → violate(Entry.fee.required, Entry.fee.not_required))
+25. Q[You, Tomb.visit.free, Tomb.enter.extra_fee](Factual(Entry.fee, required) → violate(Entry.fee.required, Entry.fee.not_required))
+26. Q[You, Tomb.visit.free, Tomb.enter.extra_fee](Tomb.visit.free == true → Factual(Tomb.visit, free))
+27. Q[You, Tomb.visit.free, Tomb.enter.extra_fee](Tomb.enter.extra_fee == true → Factual(Tomb.enter, extra_fee))
+28. Q[You, Tomb.visit.free, Tomb.enter.extra_fee](Factual(Tomb.visit, free) → violate(Tomb.visit.free, Tomb.enter.extra_fee))
+29. Q[You, Tomb.visit.free, Tomb.enter.extra_fee](Factual(Tomb.enter, extra_fee) → violate(Tomb.visit.free, Tomb.enter.extra_fee))
+30. Q[You, Tomb.visit.free, Tomb.enter.extra_fee](M_NLI(Tomb.visit.free, Tomb.enter.extra_fee) → Factual(Tomb.visit, free))

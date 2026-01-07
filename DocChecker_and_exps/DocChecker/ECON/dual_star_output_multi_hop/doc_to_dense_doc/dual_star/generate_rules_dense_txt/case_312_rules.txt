@@ -1,0 +1,58 @@
+Source: dense_text.txt (Index 312)
+S1: Pilots must communicate their altitude with local air traffic control
+S2: Pilots do not need to communicate their altitude with local air traffic control.
+
+Predicates:
+1. Pilots.require_communication.altitude
+2. Pilots.negate_communication.altitude
+3. M_NLI(Pilots.require_communication.altitude, Pilots.negate_communication.altitude)
+4. Negation(Pilots.require_communication.altitude, Pilots.negate_communication.altitude)
+5. violate(Pilots.require_communication.altitude, Pilots.negate_communication.altitude)
+6. AirTrafficControl.require_altitude_communication.pilots
+7. AirTrafficControl.negate_altitude_communication.pilots
+8. M_NLI(AirTrafficControl.require_altitude_communication.pilots, AirTrafficControl.negate_altitude_communication.pilots)
+9. Negation(AirTrafficControl.require_altitude_communication.pilots, AirTrafficControl.negate_altitude_communication.pilots)
+10. violate(AirTrafficControl.require_altitude_communication.pilots, AirTrafficControl.negate_altitude_communication.pilots)
+11. CommunicationProtocol.altitude_required.pilots
+12. CommunicationProtocol.altitude_not_required.pilots
+13. M_NLI(CommunicationProtocol.altitude_required.pilots, CommunicationProtocol.altitude_not_required.pilots)
+14. Negation(CommunicationProtocol.altitude_required.pilots, CommunicationProtocol.altitude_not_required.pilots)
+15. violate(CommunicationProtocol.altitude_required.pilots, CommunicationProtocol.altitude_not_required.pilots)
+16. Regulation.altitude_communication_required.pilots
+17. Regulation.altitude_communication_not_required.pilots
+18. M_NLI(Regulation.altitude_communication_required.pilots, Regulation.altitude_communication_not_required.pilots)
+19. Negation(Regulation.altitude_communication_required.pilots, Regulation.altitude_communication_not_required.pilots)
+20. violate(Regulation.altitude_communication_required.pilots, Regulation.altitude_communication_not_required.pilots)
+21. SafetyProtocol.altitude_communication_needed.pilots
+22. SafetyProtocol.altitude_communication_unneeded.pilots
+23. M_NLI(SafetyProtocol.altitude_communication_needed.pilots, SafetyProtocol.altitude_communication_unneeded.pilots)
+24. Negation(SafetyProtocol.altitude_communication_needed.pilots, SafetyProtocol.altitude_communication_unneeded.pilots)
+25. violate(SafetyProtocol.altitude_communication_needed.pilots, SafetyProtocol.altitude_communication_unneeded.pilots)
+26. FlightOperation.altitude_reporting_required.pilots
+27. FlightOperation.altitude_reporting_not_required.pilots
+28. M_NLI(FlightOperation.altitude_reporting_required.pilots, FlightOperation.altitude_reporting_not_required.pilots)
+29. Negation(FlightOperation.altitude_reporting_required.pilots, FlightOperation.altitude_reporting_not_required.pilots)
+30. violate(FlightOperation.altitude_reporting_required.pilots, FlightOperation.altitude_reporting_not_required.pilots)
+
+Rules:
+1. Q[Pilots, Pilots.require_communication.altitude, Pilots.negate_communication.altitude](Pilots.require_communication.altitude == "true" → Negation(Pilots.require_communication.altitude, Pilots.negate_communication.altitude))
+2. Q[Pilots, AirTrafficControl.require_altitude_communication.pilots, AirTrafficControl.negate_altitude_communication.pilots](AirTrafficControl.require_altitude_communication.pilots == "true" → Negation(AirTrafficControl.require_altitude_communication.pilots, AirTrafficControl.negate_altitude_communication.pilots))
+3. Q[Pilots, CommunicationProtocol.altitude_required.pilots, CommunicationProtocol.altitude_not_required.pilots](CommunicationProtocol.altitude_required.pilots == "true" → Negation(CommunicationProtocol.altitude_required.pilots, CommunicationProtocol.altitude_not_required.pilots))
+4. Q[Pilots, Regulation.altitude_communication_required.pilots, Regulation.altitude_communication_not_required.pilots](Regulation.altitude_communication_required.pilots == "true" → Negation(Regulation.altitude_communication_required.pilots, Regulation.altitude_communication_not_required.pilots))
+5. Q[Pilots, SafetyProtocol.altitude_communication_needed.pilots, SafetyProtocol.altitude_communication_unneeded.pilots](SafetyProtocol.altitude_communication_needed.pilots == "true" → Negation(SafetyProtocol.altitude_communication_needed.pilots, SafetyProtocol.altitude_communication_unneeded.pilots))
+6. Q[Pilots, FlightOperation.altitude_reporting_required.pilots, FlightOperation.altitude_reporting_not_required.pilots](FlightOperation.altitude_reporting_required.pilots == "true" → Negation(FlightOperation.altitude_reporting_required.pilots, FlightOperation.altitude_reporting_not_required.pilots))
+7. Q[Pilots, Pilots.require_communication.altitude, Pilots.negate_communication.altitude](Pilots.require_communication.altitude == "false" → Negation(Pilots.require_communication.altitude, Pilots.negate_communication.altitude))
+8. Q[Pilots, AirTrafficControl.require_altitude_communication.pilots, AirTrafficControl.negate_altitude_communication.pilots](AirTrafficControl.require_altitude_communication.pilots == "false" → Negation(AirTrafficControl.require_altitude_communication.pilots, AirTrafficControl.negate_altitude_communication.pilots))
+9. Q[Pilots, CommunicationProtocol.altitude_required.pilots, CommunicationProtocol.altitude_not_required.pilots](CommunicationProtocol.altitude_required.pilots == "false" → Negation(CommunicationProtocol.altitude_required.pilots, CommunicationProtocol.altitude_not_required.pilots))
+10. Q[Pilots, Regulation.altitude_communication_required.pilots, Regulation.altitude_communication_not_required.pilots](Regulation.altitude_communication_required.pilots == "false" → Negation(Regulation.altitude_communication_required.pilots, Regulation.altitude_communication_not_required.pilots))
+11. Q[Pilots, SafetyProtocol.altitude_communication_needed.pilots, SafetyProtocol.altitude_communication_unneeded.pilots](SafetyProtocol.altitude_communication_needed.pilots == "false" → Negation(SafetyProtocol.altitude_communication_needed.pilots, SafetyProtocol.altitude_communication_unneeded.pilots))
+12. Q[Pilots, FlightOperation.altitude_reporting_required.pilots, FlightOperation.altitude_reporting_not_required.pilots](FlightOperation.altitude_reporting_required.pilots == "false" → Negation(FlightOperation.altitude_reporting_required.pilots, FlightOperation.altitude_reporting_not_required.pilots))
+13. Q[Pilots, M_NLI(Pilots.require_communication.altitude, Pilots.negate_communication.altitude)](M_NLI(Pilots.require_communication.altitude, Pilots.negate_communication.altitude) == "true" → Negation(Pilots.require_communication.altitude, Pilots.negate_communication.altitude))
+14. Q[Pilots, Negation(Pilots.require_communication.altitude, Pilots.negate_communication.altitude)](Negation(Pilots.require_communication.altitude, Pilots.negate_communication.altitude) == "true" → Negation(Pilots.require_communication.altitude, Pilots.negate_communication.altitude))
+15. Q[Pilots, violate(Pilots.require_communication.altitude, Pilots.negate_communication.altitude)](violate(Pilots.require_communication.altitude, Pilots.negate_communication.altitude) == "true" → Negation(Pilots.require_communication.altitude, Pilots.negate_communication.altitude))
+16. Q[Pilots, M_NLI(AirTrafficControl.require_altitude_communication.pilots, AirTrafficControl.negate_altitude_communication.pilots)](M_NLI(AirTrafficControl.require_altitude_communication.pilots, AirTrafficControl.negate_altitude_communication.pilots) == "true" → Negation(AirTrafficControl.require_altitude_communication.pilots, AirTrafficControl.negate_altitude_communication.pilots))
+17. Q[Pilots, Negation(AirTrafficControl.require_altitude_communication.pilots, AirTrafficControl.negate_altitude_communication.pilots)](Negation(AirTrafficControl.require_altitude_communication.pilots, AirTrafficControl.negate_altitude_communication.pilots) == "true" → Negation(AirTrafficControl.require_altitude_communication.pilots, AirTrafficControl.negate_altitude_communication.pilots))
+18. Q[Pilots, violate(AirTrafficControl.require_altitude_communication.pilots, AirTrafficControl.negate_altitude_communication.pilots)](violate(AirTrafficControl.require_altitude_communication.pilots, AirTrafficControl.negate_altitude_communication.pilots) == "true" → Negation(AirTrafficControl.require_altitude_communication.pilots, AirTrafficControl.negate_altitude_communication.pilots))
+19. Q[Pilots, M_NLI(CommunicationProtocol.altitude_required.pilots, CommunicationProtocol.altitude_not_required.pilots)](M_NLI(CommunicationProtocol.altitude_required.pilots, CommunicationProtocol.altitude_not_required.pilots) == "true" → Negation(CommunicationProtocol.altitude_required.pilots, CommunicationProtocol.altitude_not_required.pilots))
+20. Q[Pilots, Negation(CommunicationProtocol.altitude_required.pilots, CommunicationProtocol.altitude_not_required.pilots)](Negation(CommunicationProtocol.altitude_required.pilots, CommunicationProtocol.altitude_not_required.pilots) == "true" → Negation(CommunicationProtocol.altitude_required.pilots, CommunicationProtocol.altitude_not_required.pilots))
+21. Q[Pilots, violate(CommunicationProtocol.altitude_required.pilots, CommunicationProtocol.alt

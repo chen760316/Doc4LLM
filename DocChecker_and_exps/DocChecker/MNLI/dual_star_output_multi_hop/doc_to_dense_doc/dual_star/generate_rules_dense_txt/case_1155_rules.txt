@@ -1,0 +1,61 @@
+Source: dense_text.txt (Index 1155)
+S1: E x c e p t f o r t h e t r a f f i c s p i t t i n g o u t n o i s e a n d a i r p o l l u t i o n , t h e a m p l e P l a z a d e l a C i b e l e s i s s p l e n d i d .
+S2: T h e P l a z a d e l a C i b e l e s i s s p l e n d i d , i f y o u c a n i g n o r e t h e a i r p o l l u t i o n a n d n o i s e o f t r a f f i c .
+
+Predicates:
+1. Plaza_del_a_Cibeles.is_splendid
+2. Plaza_del_a_Cibeles.has_traffic_noise
+3. Plaza_del_a_Cibeles.has_air_pollution
+4. traffic_noise.is_present
+5. air_pollution.is_present
+6. splendid_condition.is_met
+7. splendid_condition.is_ignored
+8. traffic_noise.is_ignored
+9. air_pollution.is_ignored
+10. Plaza_del_a_Cibeles.is_splendid_if_ignored
+11. Plaza_del_a_Cibeles.is_not_splendid_if_not_ignored
+12. traffic_noise.affects_splendor
+13. air_pollution.affects_splendor
+14. splendid_condition.depends_on_traffic_noise
+15. splendid_condition.depends_on_air_pollution
+16. M_NLI(S1, S2)
+17. Causal(traffic_noise, splendid_condition)
+18. Causal(air_pollution, splendid_condition)
+19. violate(splendid_condition, traffic_noise)
+20. violate(splendid_condition, air_pollution)
+21. Plaza_del_a_Cibeles.is_enjoyable_if_ignored
+22. Plaza_del_a_Cibeles.is_not_enjoyable_if_not_ignored
+23. enjoyment_condition.is_met
+24. enjoyment_condition.is_ignored
+25. enjoyment_condition.depends_on_traffic_noise
+26. enjoyment_condition.depends_on_air_pollution
+27. traffic_noise.is_a_problem
+28. air_pollution.is_a_problem
+29. Plaza_del_a_Cibeles.has_positive_aspect
+30. Plaza_del_a_Cibeles.has_negative_aspect
+
+Rules:
+1. Q[Plaza_del_a_Cibeles, Plaza_del_a_Cibeles.is_splendid, Plaza_del_a_Cibeles.has_traffic_noise](Plaza_del_a_Cibeles.is_splendid == true → Causal(Plaza_del_a_Cibeles.has_traffic_noise, splendid_condition))
+2. Q[Plaza_del_a_Cibeles, Plaza_del_a_Cibeles.is_splendid, Plaza_del_a_Cibeles.has_air_pollution](Plaza_del_a_Cibeles.is_splendid == true → Causal(Plaza_del_a_Cibeles.has_air_pollution, splendid_condition))
+3. Q[Plaza_del_a_Cibeles, Plaza_del_a_Cibeles.has_traffic_noise, Plaza_del_a_Cibeles.is_splendid_if_ignored](Plaza_del_a_Cibeles.has_traffic_noise == true → Causal(Plaza_del_a_Cibeles.is_splendid_if_ignored, splendid_condition))
+4. Q[Plaza_del_a_Cibeles, Plaza_del_a_Cibeles.has_air_pollution, Plaza_del_a_Cibeles.is_splendid_if_ignored](Plaza_del_a_Cibeles.has_air_pollution == true → Causal(Plaza_del_a_Cibeles.is_splendid_if_ignored, splendid_condition))
+5. Q[Plaza_del_a_Cibeles, splendid_condition.is_met, Plaza_del_a_Cibeles.is_not_splendid_if_not_ignored](splendid_condition.is_met == true → Causal(Plaza_del_a_Cibeles.is_not_splendid_if_not_ignored, splendid_condition))
+6. Q[Plaza_del_a_Cibeles, splendid_condition.is_ignored, Plaza_del_a_Cibeles.is_splendid_if_ignored](splendid_condition.is_ignored == true → Causal(Plaza_del_a_Cibeles.is_splendid_if_ignored, splendid_condition))
+7. Q[Plaza_del_a_Cibeles, traffic_noise.is_present, traffic_noise.affects_splendor](traffic_noise.is_present == true → Causal(traffic_noise.affects_splendor, splendid_condition))
+8. Q[Plaza_del_a_Cibeles, air_pollution.is_present, air_pollution.affects_splendor](air_pollution.is_present == true → Causal(air_pollution.affects_splendor, splendid_condition))
+9. Q[Plaza_del_a_Cibeles, splendid_condition.depends_on_traffic_noise, Plaza_del_a_Cibeles.has_traffic_noise](splendid_condition.depends_on_traffic_noise == true → Causal(Plaza_del_a_Cibeles.has_traffic_noise, splendid_condition))
+10. Q[Plaza_del_a_Cibeles, splendid_condition.depends_on_air_pollution, Plaza_del_a_Cibeles.has_air_pollution](splendid_condition.depends_on_air_pollution == true → Causal(Plaza_del_a_Cibeles.has_air_pollution, splendid_condition))
+11. Q[Plaza_del_a_Cibeles, traffic_noise.is_ignored, Plaza_del_a_Cibeles.is_enjoyable_if_ignored](traffic_noise.is_ignored == true → Causal(Plaza_del_a_Cibeles.is_enjoyable_if_ignored, splendid_condition))
+12. Q[Plaza_del_a_Cibeles, air_pollution.is_ignored, Plaza_del_a_Cibeles.is_enjoyable_if_ignored](air_pollution.is_ignored == true → Causal(Plaza_del_a_Cibeles.is_enjoyable_if_ignored, splendid_condition))
+13. Q[Plaza_del_a_Cibeles, enjoyment_condition.is_met, Plaza_del_a_Cibeles.is_not_enjoyable_if_not_ignored](enjoyment_condition.is_met == true → Causal(Plaza_del_a_Cibeles.is_not_enjoyable_if_not_ignored, splendid_condition))
+14. Q[Plaza_del_a_Cibeles, enjoyment_condition.is_ignored, Plaza_del_a_Cibeles.is_enjoyable_if_ignored](enjoyment_condition.is_ignored == true → Causal(Plaza_del_a_Cibeles.is_enjoyable_if_ignored, splendid_condition))
+15. Q[Plaza_del_a_Cibeles, enjoyment_condition.depends_on_traffic_noise, Plaza_del_a_Cibeles.has_traffic_noise](enjoyment_condition.depends_on_traffic_noise == true → Causal(Plaza_del_a_Cibeles.has_traffic_noise, splendid_condition))
+16. Q[Plaza_del_a_Cibeles, enjoyment_condition.depends_on_air_pollution, Plaza_del_a_Cibeles.has_air_pollution](enjoyment_condition.depends_on_air_pollution == true → Causal(Plaza_del_a_Cibeles.has_air_pollution, splendid_condition))
+17. Q[Plaza_del_a_Cibeles, traffic_noise.is_a_problem, Plaza_del_a_Cibeles.has_traffic_noise](traffic_noise.is_a_problem == true → Causal(Plaza_del_a_Cibeles.has_traffic_noise, splendid_condition))
+18. Q[Plaza_del_a_Cibeles, air_pollution.is_a_problem, Plaza_del_a_Cibeles.has_air_pollution](air_pollution.is_a_problem == true → Causal(Plaza_del_a_Cibeles.has_air_pollution, splendid_condition))
+19. Q[Plaza_del_a_Cibeles, Plaza_del_a_Cibeles.has_positive_aspect, Plaza_del_a_Cibeles.has_negative_aspect](Plaza_del_a_Cibeles.has_positive_aspect == true → Causal(Plaza_del_a_Cibeles.has_negative_aspect, splendid_condition))
+20. Q[Plaza_del_a_Cibeles, Plaza_del_a_Cibeles.is_splendid, splendid_condition.is_met](Plaza_del_a_Cibeles.is_splendid == true → Causal(splendid_condition.is_met, splendid_condition))
+21. Q[Plaza_del_a_Cibeles, Plaza_del_a_Cibeles.is_splendid_if_ignored, splendid_condition.is_ignored](Plaza_del_a_Cibeles.is_splendid_if_ignored == true → Causal(splendid_condition.is_ignored, splendid_condition))
+22. Q[Plaza_del_a_Cibeles, Plaza_del_a_Cibeles.is_not_splendid_if_not_ignored, splendid_condition.is_met](Plaza_del_a_Cibeles.is_not_splendid_if_not_ignored == true → Causal(splendid_condition.is_met, splendid_condition))
+23. Q[Plaza_del_a_Cibeles, traffic_noise.affects_splendor, Plaza_del_a_Cibeles.is_not_splendid_if_not_ignored](traffic_noise.affects_splendor == true → Causal(Plaza_del_a_Cibeles.is_not_splendid_if_not_ignored, splendid_condition))
+24. Q[Plaza_del_a_Cibeles, air_pollution.affects_splendor, Plaza_del_a_Cibeles.is_not_splendid_if_not_ignored](air_pollution.affects_splendor == true → Causal(Plaza_del_a_Cibeles

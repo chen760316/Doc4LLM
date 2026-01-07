@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 1127)
+S1: There are over 20 nightclubs to choose from, some of them offering Greek, Oriental, or Jamaican themes.
+S2: There is a nightclub that offers Oriental themes, and another offering Greek themes.
+
+Predicates:
+1. Nightclub.count > 20
+2. Nightclub.theme = Greek
+3. Nightclub.theme = Oriental
+4. Nightclub.theme = Jamaican
+5. Nightclub.offers(Greek)
+6. Nightclub.offers(Oriental)
+7. Nightclub.offers(Jamaican)
+8. Nightclub1.theme = Oriental
+9. Nightclub2.theme = Greek
+10. Nightclub1 != Nightclub2
+11. Nightclub1.offers(Oriental)
+12. Nightclub2.offers(Greek)
+13. Nightclub1.count > 0
+14. Nightclub2.count > 0
+15. Nightclub.theme.count >= 3
+16. Nightclub.theme.count = 2
+17. Nightclub1 != Nightclub2
+18. Nightclub1.theme != Nightclub2.theme
+19. Nightclub1.theme = Oriental
+20. Nightclub2.theme = Greek
+21. M_NLI(S1, S2)
+22. Numeric(20, >)
+23. Numeric(2, =)
+24. violate(20, 2)
+25. Nightclub.theme.count > 2
+26. Nightclub1.offers(Greek) OR Nightclub1.offers(Oriental)
+27. Nightclub2.offers(Greek) OR Nightclub2.offers(Jamaican)
+28. Nightclub1.theme IN (Greek, Oriental, Jamaican)
+29. Nightclub2.theme IN (Greek, Oriental, Jamaican)
+30. Nightclub.count >= 20
+
+Rules:
+1. Q[There, Nightclub.count, 20](Nightclub.count > 20 → Numeric(20, >))
+2. Q[There, Nightclub.theme.count, 2](Nightclub.theme.count = 2 → Numeric(2, =))
+3. Q[There, Nightclub1.theme, Oriental](Nightclub1.theme = Oriental → Numeric(20, >))
+4. Q[There, Nightclub2.theme, Greek](Nightclub2.theme = Greek → Numeric(20, >))
+5. Q[There, Nightclub1.offers, Oriental](Nightclub1.offers(Oriental) → Numeric(20, >))
+6. Q[There, Nightclub2.offers, Greek](Nightclub2.offers(Greek) → Numeric(20, >))
+7. Q[There, Nightclub1.count, 0](Nightclub1.count > 0 → Numeric(20, >))
+8. Q[There, Nightclub2.count, 0](Nightclub2.count > 0 → Numeric(20, >))
+9. Q[There, Nightclub.theme.count, 3](Nightclub.theme.count >= 3 → Numeric(20, >))
+10. Q[There, Nightclub1.theme, Greek](Nightclub1.theme = Greek → Numeric(20, >))
+11. Q[There, Nightclub1.theme, Jamaican](Nightclub1.theme = Jamaican → Numeric(20, >))
+12. Q[There, Nightclub2.theme, Jamaican](Nightclub2.theme = Jamaican → Numeric(20, >))
+13. Q[There, Nightclub1.offers, Greek](Nightclub1.offers(Greek) → Numeric(20, >))
+14. Q[There, Nightclub2.offers, Oriental](Nightclub2.offers(Oriental) → Numeric(20, >))
+15. Q[There, Nightclub1.theme, Oriental](Nightclub1.theme != Nightclub2.theme → Numeric(20, >))
+16. Q[There, Nightclub1.theme, Greek](Nightclub1.theme != Nightclub2.theme → Numeric(20, >))
+17. Q[There, Nightclub1.theme, Jamaican](Nightclub1.theme != Nightclub2.theme → Numeric(20, >))
+18. Q[There, Nightclub1, Nightclub2](Nightclub1 != Nightclub2 → Numeric(20, >))
+19. Q[There, Nightclub1.offers, Jamaican](Nightclub1.offers(Jamaican) → Numeric(20, >))
+20. Q[There, Nightclub2.offers, Oriental](Nightclub2.offers(Oriental) → Numeric(20, >))
+21. Q[There, Nightclub.theme.count, 2](Nightclub.theme.count = 2 → Numeric(2, =))
+22. Q[There, Nightclub1.offers, Greek](Nightclub1.offers(Greek) OR Nightclub1.offers(Oriental) → Numeric(20, >))
+23. Q[There, Nightclub2.offers, Jamaican](Nightclub2.offers(Greek) OR Nightclub2.offers(Jamaican) → Numeric(20, >))
+24. Q[There, Nightclub1.theme, Oriental](Nightclub1.theme IN (Greek, Oriental, Jamaican) → Numeric(20, >))
+25. Q[There, Nightclub2.theme, Greek](Nightclub2.theme IN (Greek, Oriental, Jamaican) → Numeric(20, >))
+26. Q[There, Nightclub1.theme, Greek](Nightclub1.theme IN (Greek, Oriental, Jamaican) → Numeric(20, >))
+27. Q[There, Nightclub1.theme, Jamaican](Nightclub1.theme IN (Greek, Oriental, Jamaican) → Numeric(20, >))
+28. Q[There, Nightclub2.theme, Oriental](Nightclub2.theme IN (Greek, Oriental, Jamaican) → Numeric(20, >))
+29. Q[There, Nightclub1, Nightclub2](Nightclub1 != Nightclub2 → Numeric(2, =))
+30. Q[There, Nightclub.theme.count, 2](Nightclub.theme.count = 2 → violate(20, 2))

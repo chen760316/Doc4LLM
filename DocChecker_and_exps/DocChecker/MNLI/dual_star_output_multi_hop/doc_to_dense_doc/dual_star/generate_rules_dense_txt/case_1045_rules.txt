@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 1045)
+S1: Visits are not permitted between noon and 2 pm.
+S2: Note that no visits are allowed between noon and 2 pm.
+
+Predicates:
+1. Visits.permitted_time
+2. Visits.not_permitted_time
+3. Time.noon
+4. Time.2_pm
+5. Visits.allowed_between(Time.noon, Time.2_pm)
+6. Visits.not_allowed_between(Time.noon, Time.2_pm)
+7. S1.statement
+8. S2.statement
+9. S1.time_frame
+10. S2.time_frame
+11. S1.violates(S2)
+12. S2.violates(S1)
+13. Reason.potential_misunderstanding
+14. Reason.similar_meaning
+15. Reason.different_phrasing
+16. M_NLI(S1, S2)
+17. Negation(Visits.allowed, Visits.not_allowed)
+18. violate(Visits.allowed, Visits.not_allowed)
+19. Time.frame_overlap
+20. Time.frame_difference
+21. Visits.restriction
+22. Visits.policy
+23. S1.clarity
+24. S2.clarity
+25. S1.understanding
+26. S2.understanding
+27. Visits.time_restriction
+28. Time.period
+29. Visits.policy_enforcement
+30. Reason.ambiguity
+
+Rules:
+1. Q[Visits, Visits.permitted_time, Visits.not_permitted_time](Visits.permitted_time == Time.frame_difference → Negation(Visits.allowed, Visits.not_allowed))
+2. Q[Visits, Visits.not_permitted_time, Visits.allowed_between](Visits.not_permitted_time == Time.frame_overlap → Negation(Visits.allowed, Visits.not_allowed))
+3. Q[Visits, S1.statement, S2.statement](S1.statement == "Visits are not permitted between noon and 2 pm." → Negation(Visits.allowed, Visits.not_allowed))
+4. Q[Visits, S2.statement, S1.statement](S2.statement == "Note that no visits are allowed between noon and 2 pm." → Negation(Visits.allowed, Visits.not_allowed))
+5. Q[Visits, S1.time_frame, S2.time_frame](S1.time_frame == Time.frame_overlap → Negation(Visits.allowed, Visits.not_allowed))
+6. Q[Visits, S1.violates, S2.violates](S1.violates(S2) == true → Negation(Visits.allowed, Visits.not_allowed))
+7. Q[Visits, S2.violates, S1.violates](S2.violates(S1) == true → Negation(Visits.allowed, Visits.not_allowed))
+8. Q[Visits, Reason.potential_misunderstanding, Reason.similar_meaning](Reason.potential_misunderstanding == true → Negation(Visits.allowed, Visits.not_allowed))
+9. Q[Visits, Reason.different_phrasing, S1.clarity](Reason.different_phrasing == true → Negation(Visits.allowed, Visits.not_allowed))
+10. Q[Visits, Reason.ambiguity, S2.clarity](Reason.ambiguity == true → Negation(Visits.allowed, Visits.not_allowed))
+11. Q[Visits, S1.understanding, S2.understanding](S1.understanding == "Visits not allowed" → Negation(Visits.allowed, Visits.not_allowed))
+12. Q[Visits, S2.understanding, S1.understanding](S2.understanding == "No visits allowed" → Negation(Visits.allowed, Visits.not_allowed))
+13. Q[Visits, Visits.policy, Visits.restriction](Visits.policy == "No visits between noon and 2 pm" → Negation(Visits.allowed, Visits.not_allowed))
+14. Q[Visits, Visits.policy_enforcement, Visits.time_restriction](Visits.policy_enforcement == "Strictly enforced" → Negation(Visits.allowed, Visits.not_allowed))
+15. Q[Visits, Time.noon, Time.2_pm](Time.noon == Time.frame_overlap → Negation(Visits.allowed, Visits.not_allowed))
+16. Q[Visits, Time.frame_difference, Time.period](Time.frame_difference == "No visits allowed" → Negation(Visits.allowed, Visits.not_allowed))
+17. Q[Visits, Visits.allowed_between, Visits.not_allowed](Visits.allowed_between(Time.noon, Time.2_pm) == false → Negation(Visits.allowed, Visits.not_allowed))
+18. Q[Visits, Visits.not_allowed_between, Visits.allowed](Visits.not_allowed_between(Time.noon, Time.2_pm) == true → Negation(Visits.allowed, Visits.not_allowed))
+19. Q[Visits, S1.clarity, S2.clarity](S1.clarity == "Confusing" → Negation(Visits.allowed, Visits.not_allowed))
+20. Q[Visits, S1.statement, S1.violates](S1.statement == "Visits not permitted" → Negation(Visits.allowed, Visits.not_allowed))
+21. Q[Visits, S2.statement, S2.violates](S2.statement == "No visits allowed" → Negation(Visits.allowed, Visits.not_allowed))
+22. Q[Visits, Time.frame_overlap, Time.noon](Time.frame_overlap == "No visits" → Negation(Visits.allowed, Visits.not_allowed))
+23. Q[Visits, Visits.policy, S1.statement](Visits.policy == "Visits not permitted" → Negation(Visits.allowed, Visits.not_allowed))
+24. Q[Visits, Visits.restriction, S2.statement](Visits.restriction == "No visits allowed" → Negation(Visits.allowed, Visits.not_allowed))
+25. Q[Visits, S1.time_frame, S2.time_frame](S1.time_frame == "Noon to 2 PM" → Negation(Visits.allowed, Visits.not_allowed))
+26. Q[Visits, S1.understanding, S2.understanding](S1.understanding == "Visits prohibited" → Negation(Visits.allowed, Visits.not_allowed))
+27. Q[Visits, S2.understanding, S1.understanding](S2.understanding == "No visits permitted" → Negation(Visits.allowed, Visits.not_allowed))
+28. Q[Visits, Reason.similar_meaning, Reason.different_phrasing](Reason.similar_meaning == false → Negation(Visits.allowed, Visits.not_allowed))
+29. Q[Visits, Visits.policy_enforcement, S1.statement](Visits.policy_enforcement == "Enforced" → Negation(Visits.allowed, Visits.not_allowed))
+30. Q[Visits, Visits.time_restriction, S2.statement](Visits.time_restriction == "Restricted" → Negation(Visits.allowed, Visits.not_allowed))

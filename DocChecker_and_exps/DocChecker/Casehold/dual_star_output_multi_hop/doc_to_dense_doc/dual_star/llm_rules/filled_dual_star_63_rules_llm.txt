@@ -1,0 +1,126 @@
+Predicates:
+1. pool.condition = "dangerous"
+2. pool.condition = "not dangerous"
+3. swimming_pool.status = "dangerous"
+4. swimming_pool.status = "not dangerous"
+5. plaintiff.allegation = "swimming pool is an obvious danger"
+6. plaintiff.allegation = "swimming pool is safe"
+7. pool.condition.evidence = "none"
+8. pool.condition.evidence = "some"
+9. pool.condition.status = "not less dangerous"
+10. pool.condition.status = "less dangerous"
+11. swimming_pool.safety_rating = "high"
+12. swimming_pool.safety_rating = "low"
+13. plaintiff.claim = "pool is hazardous"
+14. plaintiff.claim = "pool is harmless"
+15. pool.inspection.result = "unsafe"
+16. pool.inspection.result = "safe"
+17. pool.maintenance.record = "up to date"
+18. pool.maintenance.record = "not up to date"
+19. pool.condition.change = "improved"
+20. pool.condition.change = "worsened"
+21. pool.condition.reported = "dangerous"
+22. pool.condition.reported = "not dangerous"
+23. pool.safety.assessment = "failed"
+24. pool.safety.assessment = "passed"
+25. pool.condition.allegation = "obvious danger"
+26. pool.condition.allegation = "no danger"
+27. plaintiff.statement = "pool is a risk"
+28. plaintiff.statement = "pool is safe"
+29. pool.condition.history = "previously dangerous"
+30. pool.condition.history = "never dangerous"
+31. pool.condition.legal_status = "litigated"
+32. pool.condition.legal_status = "not litigated"
+33. pool.condition.testimony = "dangerous"
+34. pool.condition.testimony = "not dangerous"
+35. pool.condition.legal_claim = "valid"
+36. pool.condition.legal_claim = "invalid"
+37. pool.condition.safety_report = "negative"
+38. pool.condition.safety_report = "positive"
+39. pool.condition.allegation.source = "plaintiff"
+40. pool.condition.allegation.source = "defendant"
+41. pool.condition.legal_case = "ongoing"
+42. pool.condition.legal_case = "closed"
+43. pool.condition.safety_standards = "met"
+44. pool.condition.safety_standards = "not met"
+45. pool.condition.legal_outcome = "favorable"
+46. pool.condition.legal_outcome = "unfavorable"
+47. pool.condition.test_result = "dangerous"
+48. pool.condition.test_result = "safe"
+49. pool.condition.legal_testimony = "consistent"
+50. pool.condition.legal_testimony = "inconsistent"
+51. pool.condition.allegation.evidence = "present"
+52. pool.condition.allegation.evidence = "absent"
+53. pool.condition.safety_concerns = "raised"
+54. pool.condition.safety_concerns = "not raised"
+55. pool.condition.legal_argument = "strong"
+56. pool.condition.legal_argument = "weak"
+57. pool.condition.safety_issue = "documented"
+58. pool.condition.safety_issue = "undocumented"
+59. pool.condition.allegation.type = "serious"
+60. pool.condition.allegation.type = "minor"
+61. pool.condition.safety_protocol = "followed"
+62. pool.condition.safety_protocol = "not followed"
+63. pool.condition.legal_claim.status = "active"
+64. pool.condition.legal_claim.status = "inactive"
+65. pool.condition.safety_conclusion = "dangerous"
+66. pool.condition.safety_conclusion = "not dangerous"
+67. pool.condition.legal_testimony.source = "plaintiff"
+68. pool.condition.legal_testimony.source = "expert"
+69. pool.condition.safety_assessment.date = "2025-04-20"
+70. pool.condition.safety_assessment.date = "2025-04-21"
+71. pool.condition.allegation.date = "2025-04-20"
+72. pool.condition.allegation.date = "2025-04-21"
+73. pool.condition.legal_case.date = "2025-04-20"
+74. pool.condition.legal_case.date = "2025-04-21"
+75. pool.condition.safety_report.date = "2025-04-20"
+76. pool.condition.safety_report.date = "2025-04-21"
+77. pool.condition.testimony.date = "2025-04-20"
+78. pool.condition.testimony.date = "2025-04-21"
+79. pool.condition.allegation.evidence.type = "witness"
+80. pool.condition.allegation.evidence.type = "document"
+81. pool.condition.safety_rating.level = "high"
+82. pool.condition.safety_rating.level = "low"
+83. pool.condition.legal_case.outcome = "settled"
+84. pool.condition.legal_case.outcome = "not settled"
+85. pool.condition.safety_issue.level = "critical"
+86. pool.condition.safety_issue.level = "minor"
+87. pool.condition.legal_claim.evidence = "strong"
+88. pool.condition.legal_claim.evidence = "weak"
+89. pool.condition.safety_assessment.result = "failed"
+90. pool.condition.safety_assessment.result = "passed"
+91. pool.condition.allegation.source.type = "expert"
+92. pool.condition.allegation.source.type = "layperson"
+93. pool.condition.safety_conclusion.source = "report"
+94. pool.condition.safety_conclusion.source = "testimony"
+95. M_NLI(pool.condition, swimming_pool.status)
+96. T(plaintiff.allegation, pool.condition, tau)
+97. tau(pool.condition.status, swimming_pool.status)
+98. violate(x0, y0)
+99. Factual(plaintiff.allegation, pool.condition)
+100. Causal(pool.condition.change, pool.condition.status)
+violate(x0, y0)
+
+Rules:
+1. Q[x0, y0](pool.condition = "dangerous" ∧ swimming_pool.status = "not dangerous" → violate(x0, y0))
+2. Q[x0, y0](plaintiff.allegation = "swimming pool is safe" ∧ pool.inspection.result = "unsafe" → violate(x0, y0))
+3. Q[x0, y0](pool.condition.evidence = "none" ∧ plaintiff.claim = "pool is hazardous" → violate(x0, y0))
+4. Q[x0, y0](pool.condition = "not dangerous" ∧ pool.condition.reported = "dangerous" ∧ pool.condition.safety_rating = "low" → violate(x0, y0))
+5. Q[x0, y0](plaintiff.statement = "pool is a risk" ∧ pool.condition.history = "never dangerous" ∧ pool.condition.legal_status = "not litigated" → violate(x0, y0))
+6. Q[x0, y0](pool.maintenance.record = "not up to date" ∧ pool.inspection.result = "safe" ∧ pool.condition.safety_assessment = "failed" → violate(x0, y0))
+7. Q[x0, y0](pool.condition.status = "less dangerous" ∧ pool.condition.safety_report = "negative" ∧ pool.condition.allegation = "obvious danger" ∧ pool.condition.legal_claim = "valid" → violate(x0, y0))
+8. Q[x0, y0](plaintiff.allegation = "swimming pool is an obvious danger" ∧ pool.condition.testimony = "not dangerous" ∧ pool.condition.safety_conclusion = "not dangerous" ∧ pool.condition.legal_case = "ongoing" → violate(x0, y0))
+9. Q[x0, y0](pool.condition.change = "worsened" ∧ pool.condition.safety_rating = "high" ∧ pool.condition.safety_issue = "documented" ∧ pool.condition.legal_argument = "weak" → violate(x0, y0))
+10. Q[x0, y0](pool.condition.allegation.source = "defendant" ∧ pool.condition.legal_testimony = "inconsistent" ∧ pool.condition.safety_conclusion.source = "report" ∧ pool.condition.safety_assessment.result = "failed" ∧ pool.condition.legal_case.outcome = "not settled" → violate(x0, y0))
+11. Q[x0, y0](pool.condition.test_result = "dangerous" ∧ pool.condition.safety_protocol = "not followed" ∧ pool.condition.legal_claim.status = "inactive" ∧ pool.condition.safety_conclusion = "not dangerous" ∧ pool.condition.allegation.evidence = "absent" → violate(x0, y0))
+12. Q[x0, y0](pool.condition.safety_concerns = "raised" ∧ pool.condition.legal_claim.evidence = "weak" ∧ pool.condition.history = "previously dangerous" ∧ pool.condition.legal_testimony.source = "expert" ∧ pool.condition.safety_assessment.date = "2025-04-20" → violate(x0, y0))
+13. Q[x0, y0](pool.condition.legal_case.date = "2025-04-21" ∧ pool.condition.safety_issue.level = "critical" ∧ pool.condition.allegation.type = "serious" ∧ pool.condition.safety_rating.level = "low" ∧ pool.condition.legal_outcome = "unfavorable" ∧ pool.condition.testimony.date = "2025-04-20" → violate(x0, y0))
+14. Q[x0, y0](pool.condition.allegation.evidence.type = "document" ∧ pool.condition.safety_assessment.result = "passed" ∧ pool.condition.legal_case = "closed" ∧ pool.condition.safety_conclusion = "dangerous" ∧ pool.condition.legal_claim = "invalid" → violate(x0, y0))
+15. Q[x0, y0](pool.condition.safety_rating = "low" ∧ pool.condition.legal_testimony = "consistent" ∧ pool.condition.safety_protocol = "followed" ∧ pool.condition.allegation.source.type = "layperson" ∧ pool.condition.safety_issue = "undocumented" → violate(x0, y0))
+16. Q[x0, y0](pool.condition.allegation = "no danger" ∧ plaintiff.statement = "pool is safe" ∧ pool.condition.testimony = "dangerous" ∧ pool.condition.legal_case.outcome = "settled" ∧ pool.condition.safety_report.date = "2025-04-21" ∧ pool.condition.legal_claim.evidence = "strong" → violate(x0, y0))
+17. Q[x0, y0](pool.condition.safety_conclusion = "dangerous" ∧ pool.condition.legal_status = "litigated" ∧ pool.condition.test_result = "safe" ∧ pool.condition.safety_assessment.date = "2025-04-21" ∧ pool.condition.allegation.source = "plaintiff" ∧ pool.condition.safety_issue.level = "minor" → violate(x0, y0))
+18. Q[x0, y0](pool.condition.legal_argument = "strong" ∧ pool.condition.safety_conclusion.source = "testimony" ∧ pool.condition.safety_assessment.result = "failed" ∧ pool.condition.legal_case = "ongoing" ∧ pool.condition.allegation.evidence = "present" ∧ pool.condition.safety_rating = "high" → violate(x0, y0))
+19. Q[x0, y0](pool.condition.history = "previously dangerous" ∧ pool.condition.safety_issue = "documented" ∧ pool.condition.legal_claim.status = "active" ∧ pool.condition.safety_report = "positive" ∧ pool.condition.testimony.date = "2025-04-21" ∧ pool.condition.allegation.type = "minor" → violate(x0, y0))
+20. Q[x0, y0](pool.condition.safety_rating.level = "high" ∧ pool.condition.legal_case.date = "2025-04-20" ∧ pool.condition.safety_conclusion = "not dangerous" ∧ pool.condition.allegation.source.type = "expert" ∧ pool.condition.safety_assessment.date = "2025-04-20" ∧ pool.condition.legal_testimony.source = "plaintiff" → violate(x0, y0))
+21. Q[x0, y0](pool.condition.safety_conclusion = "dangerous" ∧ pool.condition.legal_case = "closed" ∧ pool.condition.safety_issue.level = "critical" ∧ pool.condition.legal_claim.evidence = "weak" ∧ pool.condition.testimony.date = "2025-04-21" ∧ pool.condition.safety_rating = "low" → violate(x0, y0))
+22.

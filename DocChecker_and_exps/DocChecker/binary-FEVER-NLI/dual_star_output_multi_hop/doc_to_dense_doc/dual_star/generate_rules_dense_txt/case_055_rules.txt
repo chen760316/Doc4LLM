@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 55)
+S1: Froome, who was brought up in Kenya and South Africa, has ridden under a British licence since 2008 on the basis that both his parents are British.
+S2: Chris Froome rides under a Chinese licence.
+
+Predicates:
+1. Froome.nationality = British
+2. Froome.licence = British
+3. Froome.licence = Chinese
+4. Froome.birthplace = Kenya
+5. Froome.birthplace = South Africa
+6. Froome.parents_nationality = British
+7. Froome.licence_since = 2008
+8. "rides_under".Froome.licence = British
+9. "rides_under".Froome.licence = Chinese
+10. "brought_up_in".Froome.location = Kenya
+11. "brought_up_in".Froome.location = South Africa
+12. "has_parents".Froome.parents = British
+13. "has_licence".Froome.licence = British
+14. "has_licence".Froome.licence = Chinese
+15. "nationality_of".Froome.parents = British
+16. "year_of_licence".Froome.licence_since = 2008
+17. "conflict".Froome.licence = British, Froome.licence = Chinese
+18. M_NLI(S1, S2)
+19. Factual(Froome.licence, British)
+20. Factual(Froome.licence, Chinese)
+21. violate(Froome.licence, British, Froome.licence, Chinese)
+22. "has_licence_type".Froome.licence_type = British
+23. "has_licence_type".Froome.licence_type = Chinese
+24. "is_brought_up_in".Froome.location = Kenya
+25. "is_brought_up_in".Froome.location = South Africa
+26. "has_parent_nationality".Froome.parent1_nationality = British
+27. "has_parent_nationality".Froome.parent2_nationality = British
+28. "has_licence_since_year".Froome.licence_since_year = 2008
+29. "is_conflicted".Froome.licence = British, Froome.licence = Chinese
+30. "is_factual".Froome.licence = British, Froome.licence = Chinese
+
+Rules:
+1. Q[Froome, Froome.licence, British](Froome.licence == British → Factual(Froome.licence, British))
+2. Q[Froome, Froome.licence, Chinese](Froome.licence == Chinese → Factual(Froome.licence, Chinese))
+3. Q[Froome, Froome.licence, Chinese](Froome.licence == Chinese, Froome.licence == British → Factual(Froome.licence, Chinese))
+4. Q[Froome, Froome.licence, British](Froome.licence == British, Froome.licence == Chinese → Factual(Froome.licence, British))
+5. Q[Froome, Froome.licence, British](Froome.licence_since == 2008, Froome.licence == British → Factual(Froome.licence, British))
+6. Q[Froome, Froome.licence, Chinese](Froome.licence_since == 2008, Froome.licence == Chinese → Factual(Froome.licence, Chinese))
+7. Q[Froome, Froome.licence, British](Froome.parents_nationality == British, Froome.licence == British → Factual(Froome.licence, British))
+8. Q[Froome, Froome.licence, Chinese](Froome.parents_nationality == British, Froome.licence == Chinese → Factual(Froome.licence, Chinese))
+9. Q[Froome, Froome.licence, British](Froome.nationality == British, Froome.licence == British → Factual(Froome.licence, British))
+10. Q[Froome, Froome.licence, Chinese](Froome.nationality == British, Froome.licence == Chinese → Factual(Froome.licence, Chinese))
+11. Q[Froome, Froome.licence, British](Froome.brought_up_in == Kenya, Froome.licence == British → Factual(Froome.licence, British))
+12. Q[Froome, Froome.licence, Chinese](Froome.brought_up_in == Kenya, Froome.licence == Chinese → Factual(Froome.licence, Chinese))
+13. Q[Froome, Froome.licence, British](Froome.brought_up_in == South Africa, Froome.licence == British → Factual(Froome.licence, British))
+14. Q[Froome, Froome.licence, Chinese](Froome.brought_up_in == South Africa, Froome.licence == Chinese → Factual(Froome.licence, Chinese))
+15. Q[Froome, Froome.licence, British](Froome.licence == British, Froome.licence == Chinese → Factual(Froome.licence, British))
+16. Q[Froome, Froome.licence, Chinese](Froome.licence == Chinese, Froome.licence == British → Factual(Froome.licence, Chinese))
+17. Q[Froome, Froome.licence, British](Froome.licence == British, Froome.licence_since == 2008 → Factual(Froome.licence, British))
+18. Q[Froome, Froome.licence, Chinese](Froome.licence == Chinese, Froome.licence_since == 2008 → Factual(Froome.licence, Chinese))
+19. Q[Froome, Froome.licence, British](Froome.licence == British, Froome.parents_nationality == British → Factual(Froome.licence, British))
+20. Q[Froome, Froome.licence, Chinese](Froome.licence == Chinese, Froome.parents_nationality == British → Factual(Froome.licence, Chinese))
+21. Q[Froome, Froome.licence, British](Froome.licence == British, Froome.nationality == British → Factual(Froome.licence, British))
+22. Q[Froome, Froome.licence, Chinese](Froome.licence == Chinese, Froome.nationality == British → Factual(Froome.licence, Chinese))
+23. Q[Froome, Froome.licence, British](Froome.licence == British, Froome.brought_up_in == Kenya → Factual(Froome.licence, British))
+24. Q[Froome, Froome.licence, Chinese](Froome.licence == Chinese, Froome.brought_up_in == Kenya → Factual(Froome.licence, Chinese))
+25. Q[Froome, Froome.licence, British](Froome.licence == British, Froome.brought_up_in == South Africa → Factual(Froome.licence, British))
+26. Q[Froome, Froome.licence, Chinese](Froome.licence == Chinese, Froome.brought_up_in == South Africa → Factual(Froome.licence, Chinese))
+27. Q[Froome, Froome.licence, British](Froome.licence_since == 2008, Froome.licence == British → Factual(Froome.licence, British))
+28. Q[Froome, Froome.licence, Chinese](Froome.licence_since == 2008, Froome.licence == Chinese → Factual(Froome.licence, Chinese))
+29. Q[Froome, Froome.licence, British](Froome.licence == British, Froome.licence == Chinese → Factual(Froome.licence, British))
+30. Q[Froome, Froome.licence, Chinese](Froome.licence == Chinese, Froome.licence == British → Factual(Froome.licence, Chinese))

@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 173)
+S1: It's much too cold for a small cow like you, we better get you back inside!
+S2: Max was surprised and confused by the ground outside, it was so white and sparkly.
+
+Predicates:
+1. Max.temperature
+2. Max.location
+3. Max.emotion
+4. Max.reaction
+5. small_cow.temperature
+6. small_cow.location
+7. small_cow.safety
+8. ground.condition
+9. ground.color
+10. ground.texture
+11. cold.weather
+12. cold.environment
+13. inside.location
+14. outside.location
+15. surprise.emotion
+16. confusion.emotion
+17. Max.surprise
+18. Max.confusion
+19. Max.needs_to_go_inside
+20. Max.is_outside
+21. small_cow.is_outside
+22. small_cow.needs_to_go_inside
+23. environment.is_cold
+24. environment.is_white
+25. environment.is_sparkly
+26. Max.is_affected_by_environment
+27. Max.is_not_safe_outside
+28. Max.is_suitable_for_inside
+29. small_cow.is_not_safe_outside
+30. small_cow.is_suitable_for_inside
+
+Rules:
+1. Q[much, small_cow.temperature == "cold" → Causal(small_cow, Max.needs_to_go_inside)]
+2. Q[much, small_cow.is_outside == true → Causal(small_cow, Max.is_not_safe_outside)]
+3. Q[much, environment.is_cold == true → Causal(small_cow, Max.needs_to_go_inside)]
+4. Q[much, Max.is_outside == true → Causal(Max, Max.is_not_safe_outside)]
+5. Q[much, small_cow.safety == "unsafe" → Causal(small_cow, Max.needs_to_go_inside)]
+6. Q[much, cold.weather == true → Causal(small_cow, Max.needs_to_go_inside)]
+7. Q[much, Max.is_affected_by_environment == true → Causal(Max, Max.needs_to_go_inside)]
+8. Q[much, Max.temperature < "cold" → Causal(Max, Max.is_not_safe_outside)]
+9. Q[much, ground.condition == "cold" → Causal(small_cow, Max.needs_to_go_inside)]
+10. Q[much, Max.is_outside == true → Causal(Max, Max.surprise)]
+11. Q[much, ground.color == "white" → Causal(Max, Max.confusion)]
+12. Q[much, ground.texture == "sparkly" → Causal(Max, Max.confusion)]
+13. Q[much, small_cow.location == "outside" → Causal(small_cow, Max.needs_to_go_inside)]
+14. Q[much, environment.is_white == true → Causal(Max, Max.confusion)]
+15. Q[much, environment.is_sparkly == true → Causal(Max, Max.surprise)]
+16. Q[much, Max.reaction == "surprised" → Causal(Max, Max.is_outside)]
+17. Q[much, Max.emotion == "confused" → Causal(Max, Max.is_outside)]
+18. Q[much, small_cow.needs_to_go_inside == true → Causal(small_cow, Max.is_not_safe_outside)]
+19. Q[much, inside.location == "safe" → Causal(small_cow, Max.needs_to_go_inside)]
+20. Q[much, outside.location == "unsafe" → Causal(Max, Max.is_not_safe_outside)]
+21. Q[much, Max.is_suitable_for_inside == true → Causal(Max, Max.needs_to_go_inside)]
+22. Q[much, small_cow.is_suitable_for_inside == true → Causal(small_cow, Max.needs_to_go_inside)]
+23. Q[much, cold.environment == true → Causal(small_cow, Max.needs_to_go_inside)]
+24. Q[much, Max.is_affected_by_environment == true → Causal(Max, Max.is_not_safe_outside)]
+25. Q[much, small_cow.is_not_safe_outside == true → Causal(small_cow, Max.needs_to_go_inside)]
+26. Q[much, Max.is_outside == true → Causal(Max, Max.is_suitable_for_inside)]
+27. Q[much, Max.temperature < "cold" → Causal(Max, Max.is_not_safe_outside)]
+28. Q[much, small_cow.temperature < "cold" → Causal(small_cow, Max.needs_to_go_inside)]
+29. Q[much, Max.reaction == "confused" → Causal(Max, Max.is_outside)]
+30. Q[much, Max.surprise == true → Causal(Max, Max.is_outside)]

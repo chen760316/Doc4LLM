@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 470)
+S1: You know did not sponsor.
+S2: You know had sponsored.
+
+Predicates:
+1. Sponsorship.did_occur
+2. Sponsorship.did_not_occur
+3. Knowledge.sponsorship_status
+4. Knowledge.sponsored
+5. Knowledge.not_sponsored
+6. Event.sponsorship
+7. Event.occurrence
+8. Entity.sponsor
+9. Entity.sponsored_entity
+10. Relationship.sponsorship
+11. Relationship.knowledge
+12. Meta.M_NLI(S1, S2)
+13. Meta.Negation(Sponsorship.did_occur, Sponsorship.did_not_occur)
+14. Meta.violate(Sponsorship.did_occur, Sponsorship.did_not_occur)
+15. Entity.sponsor_entity
+16. Entity.sponsorship_event
+17. Knowledge.sponsorship_event
+18. Knowledge.sponsorship_decision
+19. Event.sponsorship_decision
+20. Relationship.sponsorship_status
+21. Relationship.knowledge_of_sponsorship
+22. Entity.sponsorship_knowledge
+23. Entity.sponsorship_outcome
+24. Knowledge.sponsorship_outcome
+25. Event.sponsorship_outcome
+26. Relationship.sponsorship_impact
+27. Entity.sponsorship_implication
+28. Knowledge.sponsorship_implication
+29. Meta.Negation(Knowledge.sponsored, Knowledge.not_sponsored)
+30. Meta.violate(Knowledge.sponsored, Knowledge.not_sponsored)
+
+Rules:
+1. Q[You, Sponsorship.did_not_occur, Sponsorship.did_occur](Knowledge.not_sponsored == true → Negation(Sponsorship.did_not_occur, Sponsorship.did_occur))
+2. Q[You, Knowledge.not_sponsored, Knowledge.sponsored](Sponsorship.did_not_occur == true → Negation(Knowledge.not_sponsored, Knowledge.sponsored))
+3. Q[You, Sponsorship.did_occur, Sponsorship.did_not_occur](Knowledge.sponsored == true → Negation(Sponsorship.did_occur, Sponsorship.did_not_occur))
+4. Q[You, Knowledge.sponsored, Knowledge.not_sponsored](Sponsorship.did_occur == true → Negation(Knowledge.sponsored, Knowledge.not_sponsored))
+5. Q[You, Event.sponsorship, Event.occurrence](Sponsorship.did_not_occur == true → Negation(Event.sponsorship, Event.occurrence))
+6. Q[You, Entity.sponsor, Entity.sponsored_entity](Sponsorship.did_occur == true → Negation(Entity.sponsor, Entity.sponsored_entity))
+7. Q[You, Relationship.sponsorship, Relationship.knowledge](Knowledge.not_sponsored == true → Negation(Relationship.sponsorship, Relationship.knowledge))
+8. Q[You, Entity.sponsorship_event, Entity.sponsor_entity](Sponsorship.did_not_occur == true → Negation(Entity.sponsorship_event, Entity.sponsor_entity))
+9. Q[You, Knowledge.sponsorship_status, Knowledge.sponsored](Sponsorship.did_occur == true → Negation(Knowledge.sponsorship_status, Knowledge.sponsored))
+10. Q[You, Relationship.sponsorship_status, Relationship.knowledge](Knowledge.not_sponsored == true → Negation(Relationship.sponsorship_status, Relationship.knowledge))
+11. Q[You, Event.sponsorship_decision, Event.sponsorship_outcome](Sponsorship.did_not_occur == true → Negation(Event.sponsorship_decision, Event.sponsorship_outcome))
+12. Q[You, Entity.sponsorship_knowledge, Entity.sponsorship_outcome](Sponsorship.did_occur == true → Negation(Entity.sponsorship_knowledge, Entity.sponsorship_outcome))
+13. Q[You, Knowledge.sponsorship_event, Knowledge.sponsorship_decision](Sponsorship.did_not_occur == true → Negation(Knowledge.sponsorship_event, Knowledge.sponsorship_decision))
+14. Q[You, Relationship.sponsorship_impact, Relationship.knowledge_of_sponsorship](Knowledge.not_sponsored == true → Negation(Relationship.sponsorship_impact, Relationship.knowledge_of_sponsorship))
+15. Q[You, Knowledge.sponsorship_implication, Knowledge.sponsored](Sponsorship.did_occur == true → Negation(Knowledge.sponsorship_implication, Knowledge.sponsored))
+16. Q[You, Entity.sponsorship_implication, Entity.sponsored_entity](Sponsorship.did_not_occur == true → Negation(Entity.sponsorship_implication, Entity.sponsored_entity))
+17. Q[You, Meta.M_NLI(S1, S2), Meta.Negation(Sponsorship.did_occur, Sponsorship.did_not_occur)](Sponsorship.did_not_occur == true → Negation(Meta.M_NLI(S1, S2), Meta.Negation(Sponsorship.did_occur, Sponsorship.did_not_occur)))
+18. Q[You, Meta.violate(Sponsorship.did_occur, Sponsorship.did_not_occur), Meta.Negation(Knowledge.sponsored, Knowledge.not_sponsored)](Knowledge.not_sponsored == true → Negation(Meta.violate(Sponsorship.did_occur, Sponsorship.did_not_occur), Meta.Negation(Knowledge.sponsored, Knowledge.not_sponsored)))
+19. Q[You, Knowledge.sponsorship_outcome, Knowledge.not_sponsored](Sponsorship.did_occur == true → Negation(Knowledge.sponsorship_outcome, Knowledge.not_sponsored))
+20. Q[You, Event.sponsorship_outcome, Event.occurrence](Sponsorship.did_not_occur == true → Negation(Event.sponsorship_outcome, Event.occurrence))
+21. Q[You, Entity.sponsor_entity, Entity.sponsorship_event](Sponsorship.did_occur == true → Negation(Entity.sponsor_entity, Entity.sponsorship_event))
+22. Q[You, Relationship.sponsorship, Relationship.sponsorship_status](Knowledge.not_sponsored == true → Negation(Relationship.sponsorship, Relationship.sponsorship_status))
+23. Q[You, Knowledge.sponsored, Knowledge.sponsorship_status](Sponsorship.did_not_occur == true → Negation(Knowledge.sponsored, Knowledge.sponsorship_status))
+24. Q[You, Event.sponsorship_decision, Event.occurrence](Sponsorship.did_occur == true → Negation(Event.sponsorship_decision, Event.occurrence))
+25. Q[You, Entity.sponsorship_outcome, Entity.sponsor](Sponsorship.did_not_occur == true → Negation(Entity.sponsorship_outcome, Entity.sponsor))
+26. Q[You, Knowledge.sponsorship_event, Knowledge.not_sponsored](Sponsorship.did_occur == true → Negation(Knowledge.sponsorship_event, Knowledge.not_sponsored))
+27. Q[You, Relationship.knowledge_of_sponsorship, Relationship.sponsorship_impact](Knowledge.not_sponsored == true → Negation(Relationship.knowledge_of_sponsorship, Relationship.sponsorship_impact))
+28. Q[You, Meta.Negation(Knowledge.sponsored, Knowledge.not_sponsored), Meta.violate(Sponsorship.did_occur, Sponsorship.did_not_occur)](Sponsorship.did_not_occur == true → Negation(Meta.Negation(Knowledge.sponsored, Knowledge.not_sponsored), Meta.violate(Sponsorship.did_occur, Sponsorship.did_not_occur)))
+29. Q[You, Knowledge.sponsorship_implication, Knowledge.not_sponsored](Sponsorship.did_occur == true → Negation(Knowledge.sponsorship_implication, Knowledge.not_sponsored))
+30. Q[You, Entity.sponsorship_knowledge, Entity.sponsorship_event](Sponsorship.did_not_occur == true → Negation(Entity.sponsorship_knowledge, Entity.sponsorship_event))

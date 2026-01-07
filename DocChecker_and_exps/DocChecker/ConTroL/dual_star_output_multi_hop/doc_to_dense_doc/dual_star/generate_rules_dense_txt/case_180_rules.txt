@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 180)
+S1: Georgia is older than her cousin Marsha.
+S2: Marsha's brother Bart is older than Georgia.
+
+Predicates:
+1. Georgia.age
+2. Marsha.age
+3. Bart.age
+4. "older_than".Georgia.Marsha
+5. "older_than".Bart.Georgia
+6. "older_than".Bart.Marsha
+7. M_NLI(S1, S2)
+8. Factual(Georgia, Marsha)
+9. Factual(Bart, Georgia)
+10. violate(Bart, Marsha)
+11. "younger_than".Marsha.Georgia
+12. "younger_than".Georgia.Bart
+13. "younger_than".Marsha.Bart
+14. Georgia.is_cousin_of.Marsha
+15. Marsha.has_brother.Bart
+16. Bart.is_brother_of.Marsha
+17. "older_than".Marsha.Bart
+18. "younger_than".Bart.Georgia
+19. "older_than".Georgia.Bart
+20. "younger_than".Georgia.Marsha
+21. "older_than".Marsha.Georgia
+22. "younger_than".Bart.Marsha
+23. "older_than".Georgia.Bart
+24. "younger_than".Marsha.Bart
+25. "older_than".Bart.Marsha
+26. "younger_than".Georgia.Bart
+27. "older_than".Marsha.Georgia
+28. "younger_than".Georgia.Bart
+29. "older_than".Bart.Georgia
+30. "younger_than".Marsha.Georgia
+
+Rules:
+1. Q[Georgia, Georgia.age, Marsha.age](Georgia.age > Marsha.age → Factual(Georgia, Marsha))
+2. Q[Marsha, Marsha.age, Georgia.age](Marsha.age < Georgia.age → Factual(Marsha, Georgia))
+3. Q[Bart, Bart.age, Georgia.age](Bart.age > Georgia.age → Factual(Bart, Georgia))
+4. Q[Georgia, Georgia.age, Bart.age](Georgia.age < Bart.age → Factual(Georgia, Bart))
+5. Q[Bart, Bart.age, Marsha.age](Bart.age > Marsha.age → Factual(Bart, Marsha))
+6. Q[Marsha, Marsha.age, Bart.age](Marsha.age < Bart.age → Factual(Marsha, Bart))
+7. Q[Georgia, Georgia.age, Marsha.age](Georgia.age > Marsha.age ∧ Bart.age > Georgia.age → violate(Bart, Marsha))
+8. Q[Bart, Bart.age, Georgia.age](Bart.age > Georgia.age ∧ Georgia.age > Marsha.age → violate(Bart, Marsha))
+9. Q[Marsha, Marsha.age, Bart.age](Marsha.age < Bart.age ∧ Georgia.age > Marsha.age → violate(Bart, Marsha))
+10. Q[Georgia, Georgia.age, Bart.age](Georgia.age < Bart.age ∧ Bart.age > Georgia.age → violate(Bart, Marsha))
+11. Q[Bart, Bart.age, Marsha.age](Bart.age > Marsha.age ∧ Georgia.age > Marsha.age → violate(Bart, Marsha))
+12. Q[Georgia, Georgia.age, Marsha.age](Georgia.age > Marsha.age ∧ Bart.age > Georgia.age → Factual(Georgia, Marsha))
+13. Q[Marsha, Marsha.age, Georgia.age](Marsha.age < Georgia.age ∧ Bart.age > Georgia.age → Factual(Marsha, Georgia))
+14. Q[Bart, Bart.age, Georgia.age](Bart.age > Georgia.age ∧ Georgia.age > Marsha.age → Factual(Bart, Georgia))
+15. Q[Georgia, Georgia.age, Bart.age](Georgia.age < Bart.age ∧ Bart.age > Marsha.age → Factual(Georgia, Bart))
+16. Q[Bart, Bart.age, Marsha.age](Bart.age > Marsha.age ∧ Georgia.age < Bart.age → Factual(Bart, Marsha))
+17. Q[Georgia, Georgia.age, Marsha.age](Georgia.age > Marsha.age ∧ Bart.age < Georgia.age → violate(Bart, Marsha))
+18. Q[Marsha, Marsha.age, Bart.age](Marsha.age < Bart.age ∧ Georgia.age < Bart.age → violate(Bart, Marsha))
+19. Q[Bart, Bart.age, Georgia.age](Bart.age > Georgia.age ∧ Georgia.age < Marsha.age → violate(Bart, Marsha))
+20. Q[Georgia, Georgia.age, Marsha.age](Georgia.age > Marsha.age ∧ Bart.age < Marsha.age → violate(Bart, Marsha))
+21. Q[Marsha, Marsha.age, Georgia.age](Marsha.age < Georgia.age ∧ Bart.age < Georgia.age → violate(Bart, Marsha))
+22. Q[Bart, Bart.age, Marsha.age](Bart.age > Marsha.age ∧ Georgia.age < Marsha.age → violate(Bart, Marsha))
+23. Q[Georgia, Georgia.age, Bart.age](Georgia.age < Bart.age ∧ Bart.age < Marsha.age → violate(Bart, Marsha))
+24. Q[Marsha, Marsha.age, Bart.age](Marsha.age < Bart.age ∧ Georgia.age > Bart.age → violate(Bart, Marsha))
+25. Q[Bart, Bart.age, Georgia.age](Bart.age > Georgia.age ∧ Georgia.age < Marsha.age → violate(Bart, Marsha))
+26. Q[Georgia, Georgia.age, Marsha.age](Georgia.age > Marsha.age ∧ Bart.age < Marsha.age → violate(Bart, Marsha))
+27. Q[Marsha, Marsha.age, Bart.age](Marsha.age < Bart.age ∧ Georgia.age < Marsha.age → violate(Bart, Marsha))
+28. Q[Bart, Bart.age, Georgia.age](Bart.age > Georgia.age ∧ Georgia.age < Marsha.age → violate(Bart, Marsha))
+29. Q[Georgia, Georgia.age, Bart.age](Georgia.age < Bart.age ∧ Bart.age < Marsha.age → violate(Bart, Marsha))
+30. Q[Marsha, Marsha.age, Georgia.age](Marsha.age < Georgia.age ∧ Bart.age > Marsha.age → violate(Bart, Marsha))

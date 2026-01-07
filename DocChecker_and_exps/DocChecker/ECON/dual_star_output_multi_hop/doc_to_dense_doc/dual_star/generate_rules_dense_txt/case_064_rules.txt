@@ -1,0 +1,65 @@
+Source: dense_text.txt (Index 64)
+S1: In the United States, blacks are less likely than other ethnic groups to be religiously unaffiliated, let alone identifying as atheist.
+S2: In the United States, blacks are more likely than other ethnic groups to be religiously unaffiliated and identify as atheist.
+
+Predicates:
+1. United_States.blacks.religiously_unaffiliated
+2. United_States.blacks.identify_as_atheist
+3. United_States.other_ethnic_groups.religiously_unaffiliated
+4. United_States.other_ethnic_groups.identify_as_atheist
+5. blacks.less_likely.religiously_unaffiliated
+6. blacks.more_likely.religiously_unaffiliated
+7. blacks.less_likely.identify_as_atheist
+8. blacks.more_likely.identify_as_atheist
+9. religious_affiliation.blacks
+10. religious_affiliation.other_ethnic_groups
+11. atheism.blacks
+12. atheism.other_ethnic_groups
+13. blacks.religious_affiliation
+14. other_ethnic_groups.religious_affiliation
+15. blacks.atheism
+16. other_ethnic_groups.atheism
+17. M_NLI(S1, S2)
+18. Factual(S1, S2)
+19. violate(S1, S2)
+20. blacks.religiously_affiliated
+21. other_ethnic_groups.religiously_affiliated
+22. blacks.atheist_identification
+23. other_ethnic_groups.atheist_identification
+24. blacks.religious_beliefs
+25. other_ethnic_groups.religious_beliefs
+26. blacks.religious_identity
+27. other_ethnic_groups.religious_identity
+28. blacks.religious_practices
+29. other_ethnic_groups.religious_practices
+30. United_States.religious_affiliation_statistics
+
+Rules:
+1. Q[the, United_States.blacks.religiously_unaffiliated == false, United_States.blacks.religiously_unaffiliated == true](blacks.less_likely.religiously_unaffiliated → Factual(x0, y0))
+2. Q[the, United_States.blacks.identify_as_atheist == false, United_States.blacks.identify_as_atheist == true](blacks.less_likely.identify_as_atheist → Factual(x0, y0))
+3. Q[the, United_States.other_ethnic_groups.religiously_unaffiliated == true, United_States.other_ethnic_groups.religiously_unaffiliated == false](blacks.more_likely.religiously_unaffiliated → Factual(x0, y0))
+4. Q[the, United_States.other_ethnic_groups.identify_as_atheist == true, United_States.other_ethnic_groups.identify_as_atheist == false](blacks.more_likely.identify_as_atheist → Factual(x0, y0))
+5. Q[the, blacks.less_likely.religiously_unaffiliated == true, blacks.more_likely.religiously_unaffiliated == false](M_NLI(S1, S2) → Factual(x0, y0))
+6. Q[the, blacks.less_likely.identify_as_atheist == true, blacks.more_likely.identify_as_atheist == false](M_NLI(S1, S2) → Factual(x0, y0))
+7. Q[the, United_States.blacks.religiously_unaffiliated == false, United_States.other_ethnic_groups.religiously_unaffiliated == true](blacks.less_likely.religiously_unaffiliated → Factual(x0, y0))
+8. Q[the, United_States.blacks.identify_as_atheist == false, United_States.other_ethnic_groups.identify_as_atheist == true](blacks.less_likely.identify_as_atheist → Factual(x0, y0))
+9. Q[the, United_States.other_ethnic_groups.religiously_unaffiliated == false, United_States.blacks.religiously_unaffiliated == true](blacks.more_likely.religiously_unaffiliated → Factual(x0, y0))
+10. Q[the, United_States.other_ethnic_groups.identify_as_atheist == false, United_States.blacks.identify_as_atheist == true](blacks.more_likely.identify_as_atheist → Factual(x0, y0))
+11. Q[the, blacks.religiously_affiliated == true, blacks.religiously_unaffiliated == false](blacks.less_likely.religiously_unaffiliated → Factual(x0, y0))
+12. Q[the, blacks.atheist_identification == true, blacks.identify_as_atheist == false](blacks.less_likely.identify_as_atheist → Factual(x0, y0))
+13. Q[the, other_ethnic_groups.religiously_affiliated == true, other_ethnic_groups.religiously_unaffiliated == false](blacks.more_likely.religiously_unaffiliated → Factual(x0, y0))
+14. Q[the, other_ethnic_groups.atheist_identification == true, other_ethnic_groups.identify_as_atheist == false](blacks.more_likely.identify_as_atheist → Factual(x0, y0))
+15. Q[the, United_States.blacks.religiously_unaffiliated == true, United_States.other_ethnic_groups.religiously_unaffiliated == false](blacks.more_likely.religiously_unaffiliated → Factual(x0, y0))
+16. Q[the, United_States.blacks.identify_as_atheist == true, United_States.other_ethnic_groups.identify_as_atheist == false](blacks.more_likely.identify_as_atheist → Factual(x0, y0))
+17. Q[the, blacks.religious_affiliation == "affiliated", blacks.religious_affiliation == "unaffiliated"](blacks.less_likely.religiously_unaffiliated → Factual(x0, y0))
+18. Q[the, blacks.atheism == "not identified", blacks.atheism == "identified"](blacks.less_likely.identify_as_atheist → Factual(x0, y0))
+19. Q[the, other_ethnic_groups.religious_affiliation == "unaffiliated", other_ethnic_groups.religious_affiliation == "affiliated"](blacks.more_likely.religiously_unaffiliated → Factual(x0, y0))
+20. Q[the, other_ethnic_groups.atheism == "not identified", other_ethnic_groups.atheism == "identified"](blacks.more_likely.identify_as_atheist → Factual(x0, y0))
+21. Q[the, United_States.blacks.religiously_unaffiliated == false, United_States.blacks.religiously_unaffiliated == true](violate(S1, S2) → Factual(x0, y0))
+22. Q[the, United_States.blacks.identify_as_atheist == false, United_States.blacks.identify_as_atheist == true](violate(S1, S2) → Factual(x0, y0))
+23. Q[the, United_States.other_ethnic_groups.religiously_unaffiliated == true, United_States.other_ethnic_groups.religiously_unaffiliated == false](violate(S1, S2) → Factual(x0, y0))
+24. Q[the, United_States.other_ethnic_groups.identify_as_atheist == true, United_States.other_ethnic_groups.identify_as_atheist == false](violate(S1, S2) → Factual(x0, y0))
+25. Q[the, blacks.religious_identity == "affiliated", blacks.religious_identity == "unaffiliated"](blacks.less_likely.religiously_unaffiliated → Factual(x0, y0))
+26. Q[the, blacks.religious_beliefs == "theistic", blacks.religious_beliefs == "atheistic"](blacks.less_likely.identify_as_atheist → Factual(x0, y0))
+27. Q[the, other_ethnic_groups.religious_identity == "unaffiliated", other_ethnic_groups.religious_identity == "affiliated"](blacks.more_likely.religiously_unaffiliated → Factual(x0, y0))
+28. Q[the, other_ethnic_groups.religious_beliefs == "theistic", other_ethnic_groups.religious_beliefs == "atheistic"](blacks.more_likely.identify_as_atheist → Factual(x

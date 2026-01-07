@@ -1,0 +1,43 @@
+Predicates:
+CERN.label != "Organization"
+CERN.label != Large Hadron Collider.label
+CERN.label != Swiss and French laws.label
+CERN.label = "Organization"
+CERN.name != "CERN"
+CERN.name != Large Hadron Collider.name
+CERN.name != Swiss and French laws.name
+CERN.name = "CERN"
+CERN.type != "European Organization for Nuclear Research"
+CERN.type = "European Organization for Nuclear Research"
+CERN___Large Hadron Collider.doc_id = "3489738256_7"
+CERN___Large Hadron Collider.purpose = "to recreate the conditions that existed moments after the Big Bang"
+CERN___Large Hadron Collider.relationship != CERN___Swiss and French laws.relationship
+CERN___Large Hadron Collider.relationship = "CERN operates the Large Hadron Collider."
+CERN___Large Hadron Collider.status = "operational after a two-year shutdown"
+CERN___Swiss and French laws.directive = "European Council Directive"
+CERN___Swiss and French laws.doc_id = "3489738256_7"
+CERN___Swiss and French laws.relationship = "CERN complies with environmental and personnel protection standards."
+Large Hadron Collider.label != "Machine"
+Large Hadron Collider.label != Swiss and French laws.label
+Large Hadron Collider.label = "Machine"
+Large Hadron Collider.name != "Large Hadron Collider"
+Large Hadron Collider.name != Swiss and French laws.name
+Large Hadron Collider.name = "Large Hadron Collider"
+None_ML(CERN___Swiss and French laws.attrs, CERN___Large Hadron Collider.attrs)
+None_ML(Large Hadron Collider.attrs, Swiss and French laws.attrs)
+Swiss and French laws.label != "Law"
+Swiss and French laws.label = "Law"
+Swiss and French laws.name != "Swiss and French laws"
+Swiss and French laws.name = "Swiss and French laws"
+
+Rules:
+Q[CERN,CERN] (CERN.type != "European Organization for Nuclear Research" ∧ CERN.type = "European Organization for Nuclear Research" ∧ CERN___Swiss and French laws.doc_id = "3489738256_7" → Swiss and French laws.name = "Swiss and French laws")
+Q[CERN,CERN] (CERN.label != "Organization" ∧ Swiss and French laws.name = "Swiss and French laws" ∧ CERN.name != Swiss and French laws.name ∧ CERN.label != Swiss and French laws.label → CERN.name != Large Hadron Collider.name)
+Q[CERN,CERN] (None_ML(CERN___Swiss and French laws.attrs, CERN___Large Hadron Collider.attrs) ∧ CERN.name = "CERN" → CERN.label != Swiss and French laws.label)
+Q[CERN,CERN] (CERN___Large Hadron Collider.status = "operational after a two-year shutdown" ∧ Swiss and French laws.name != "Swiss and French laws" ∧ CERN___Large Hadron Collider.doc_id = "3489738256_7" ∧ Swiss and French laws.label != "Law" ∧ CERN.label != "Organization" ∧ Large Hadron Collider.label != "Machine" → Large Hadron Collider.name != "Large Hadron Collider")
+Q[CERN,CERN] (CERN.type = "European Organization for Nuclear Research" ∧ CERN.name = "CERN" ∧ CERN.name != "CERN" ∧ Large Hadron Collider.label != "Machine" ∧ Swiss and French laws.name != "Swiss and French laws" → CERN___Large Hadron Collider.purpose = "to recreate the conditions that existed moments after the Big Bang")
+Q[CERN,CERN] (Large Hadron Collider.name = "Large Hadron Collider" ∧ CERN___Swiss and French laws.relationship = "CERN complies with environmental and personnel protection standards." ∧ CERN.type != "European Organization for Nuclear Research" ∧ Swiss and French laws.label = "Law" → CERN.label != "Organization")
+Q[CERN,CERN] (CERN___Large Hadron Collider.relationship = "CERN operates the Large Hadron Collider." ∧ Large Hadron Collider.name != Swiss and French laws.name ∧ CERN.label = "Organization" ∧ CERN.name != Large Hadron Collider.name ∧ Large Hadron Collider.label != "Machine" ∧ Swiss and French laws.name != "Swiss and French laws" → Swiss and French laws.label = "Law")
+Q[CERN,CERN] (CERN___Large Hadron Collider.purpose = "to recreate the conditions that existed moments after the Big Bang" ∧ Large Hadron Collider.name = "Large Hadron Collider" ∧ Large Hadron Collider.label = "Machine" → CERN___Large Hadron Collider.relationship != CERN___Swiss and French laws.relationship)
+Q[CERN,CERN] (Large Hadron Collider.label != Swiss and French laws.label ∧ Swiss and French laws.name != "Swiss and French laws" → Large Hadron Collider.name = "Large Hadron Collider")
+Q[CERN,CERN] (CERN.label != "Organization" ∧ CERN.name != Swiss and French laws.name ∧ Swiss and French laws.name != "Swiss and French laws" ∧ Swiss and French laws.label = "Law" ∧ Swiss and French laws.label != "Law" → CERN.name = "CERN")

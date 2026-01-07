@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 96)
+S1: The Tokyo Stock Exchange was closed down by computer system failure.
+S2: A computer system failure closed down share trading at the Tokyo Stock Exchange for most of yesterday, the worst disruption to date for Asia's largest bourse.
+
+Predicates:
+1. Tokyo_Stock_Exchange.closed_down
+2. computer_system_failure.closed_down
+3. share_trading.closed_down
+4. Tokyo_Stock_Exchange.disruption
+5. computer_system_failure.part_of_larger_disruption
+6. Tokyo_Stock_Exchange.is_largest_bourse_in_Asia
+7. yesterday.time_period
+8. computer_system_failure.caused_disruption
+9. share_trading.worst_disruption
+10. computer_system_failure.affected_share_trading
+11. Tokyo_Stock_Exchange.is_closed
+12. disruption.is_due_to_failure
+13. closure.is_due_to_failure
+14. computer_system_failure.is_a_failure
+15. share_trading.is_affected_by_failure
+16. Tokyo_Stock_Exchange.is_open
+17. yesterday.is_a_day
+18. closure.is_not_only_due_to_failure
+19. disruption.is_not_solely_due_to_failure
+20. computer_system_failure.is_a_cause
+21. share_trading.is_closed
+22. Tokyo_Stock_Exchange.is_part_of_market
+23. market.is_affected_by_disruption
+24. yesterday.is_a_time_frame
+25. closure.is_a_result_of_failure
+26. disruption.is_a_consequence
+27. computer_system_failure.is_a_system_issue
+28. Tokyo_Stock_Exchange.is_a_financial_institution
+29. share_trading.is_a_market_activity
+30. computer_system_failure.is_a_technical_issue
+
+Rules:
+1. Q[The, computer_system_failure.closed_down == true, Tokyo_Stock_Exchange.closed_down == true](computer_system_failure.is_a_failure → Causal(computer_system_failure, Tokyo_Stock_Exchange))
+2. Q[The, Tokyo_Stock_Exchange.closed_down == true, share_trading.closed_down == true](Tokyo_Stock_Exchange.is_closed → Causal(Tokyo_Stock_Exchange, share_trading))
+3. Q[The, computer_system_failure.closed_down == true, Tokyo_Stock_Exchange.disruption == true](computer_system_failure.caused_disruption → Causal(computer_system_failure, Tokyo_Stock_Exchange))
+4. Q[The, share_trading.closed_down == true, Tokyo_Stock_Exchange.disruption == true](share_trading.is_affected_by_failure → Causal(share_trading, Tokyo_Stock_Exchange))
+5. Q[The, computer_system_failure.part_of_larger_disruption == true, Tokyo_Stock_Exchange.closed_down == true](disruption.is_not_solely_due_to_failure → Causal(computer_system_failure, Tokyo_Stock_Exchange))
+6. Q[The, Tokyo_Stock_Exchange.is_largest_bourse_in_Asia == true, computer_system_failure.closed_down == true](computer_system_failure.is_a_cause → Causal(computer_system_failure, Tokyo_Stock_Exchange))
+7. Q[The, yesterday.time_period == true, Tokyo_Stock_Exchange.closed_down == true](yesterday.is_a_day → Causal(yesterday, Tokyo_Stock_Exchange))
+8. Q[The, computer_system_failure.affected_share_trading == true, share_trading.closed_down == true](computer_system_failure.is_a_failure → Causal(computer_system_failure, share_trading))
+9. Q[The, Tokyo_Stock_Exchange.is_closed == true, share_trading.worst_disruption == true](closure.is_a_result_of_failure → Causal(Tokyo_Stock_Exchange, share_trading))
+10. Q[The, disruption.is_due_to_failure == true, computer_system_failure.closed_down == true](disruption.is_a_consequence → Causal(disruption, computer_system_failure))
+11. Q[The, share_trading.is_closed == true, Tokyo_Stock_Exchange.is_closed == true](share_trading.is_a_market_activity → Causal(share_trading, Tokyo_Stock_Exchange))
+12. Q[The, computer_system_failure.is_a_failure == true, Tokyo_Stock_Exchange.closed_down == true](closure.is_due_to_failure → Causal(computer_system_failure, Tokyo_Stock_Exchange))
+13. Q[The, Tokyo_Stock_Exchange.is_part_of_market == true, share_trading.closed_down == true](market.is_affected_by_disruption → Causal(market, share_trading))
+14. Q[The, yesterday.is_a_time_frame == true, computer_system_failure.closed_down == true](yesterday.is_a_day → Causal(yesterday, computer_system_failure))
+15. Q[The, computer_system_failure.is_a_technical_issue == true, Tokyo_Stock_Exchange.closed_down == true](computer_system_failure.is_a_system_issue → Causal(computer_system_failure, Tokyo_Stock_Exchange))
+16. Q[The, Tokyo_Stock_Exchange.is_a_financial_institution == true, share_trading.closed_down == true](Tokyo_Stock_Exchange.is_open → Causal(Tokyo_Stock_Exchange, share_trading))
+17. Q[The, computer_system_failure.is_a_cause == true, Tokyo_Stock_Exchange.closed_down == true](closure.is_a_result_of_failure → Causal(computer_system_failure, Tokyo_Stock_Exchange))
+18. Q[The, share_trading.is_affected_by_failure == true, Tokyo_Stock_Exchange.disruption == true](disruption.is_due_to_failure → Causal(share_trading, Tokyo_Stock_Exchange))
+19. Q[The, computer_system_failure.is_a_failure == true, share_trading.closed_down == true](computer_system_failure.caused_disruption → Causal(computer_system_failure, share_trading))
+20. Q[The, Tokyo_Stock_Exchange.is_closed == true, computer_system_failure.part_of_larger_disruption == true](closure.is_not_only_due_to_failure → Causal(Tokyo_Stock_Exchange, computer_system_failure))
+21. Q[The, share_trading.worst_disruption == true, computer_system_failure.closed_down == true](share_trading.is_a_market_activity → Causal(share_trading, computer_system_failure))
+22. Q[The, computer_system_failure.is_a_system_issue == true, Tokyo_Stock_Exchange.closed_down == true](computer_system_failure.is_a_failure → Causal(computer_system_failure, Tokyo_Stock_Exchange))
+23. Q[The, Tokyo_Stock_Exchange.is_part_of_market == true, computer_system_failure.closed_down == true](market.is_affected_by_disruption → Causal(Tokyo_Stock_Exchange, computer_system_failure))
+24. Q[The, yesterday.is_a_day == true, share_trading.closed_down == true](yesterday.is_a_time_frame → Causal(yesterday, share_trading))
+25. Q[The, computer_system_failure.is_a_failure == true, Tokyo_Stock_Exchange.disruption == true](disruption.is_due_to_failure → Causal(computer_system_failure, Tokyo_Stock_Exchange))
+26. Q[The, share_trading.is_closed == true, computer_system_failure.affected_share_trading == true](share_trading.is_a_market_activity → Causal(share_trading, computer_system_failure))
+27. Q[The, Tokyo_Stock_Exchange.is_largest_bourse_in_Asia == true, computer_system_failure.closed_down == true](computer_system_failure.is_a_cause → Causal(computer_system_failure, Tokyo_Stock_Exchange))
+28. Q[The, disruption.is_a_consequence == true, computer_system_failure.closed_down == true](disruption.is_due_to_failure → Causal(disruption, computer_system_failure))
+29. Q[The, share_trading.is_affected_by_failure == true, Tokyo_Stock_Exchange.closed_down == true](closure.is_due_to_failure → Causal(share_trading, Tokyo_Stock_Exchange))
+30. Q[The, computer_system_failure.is_a_technical_issue == true, share_trading.closed_down == true](computer_system_failure.is_a_failure → Causal(computer_system_failure, share_trading))

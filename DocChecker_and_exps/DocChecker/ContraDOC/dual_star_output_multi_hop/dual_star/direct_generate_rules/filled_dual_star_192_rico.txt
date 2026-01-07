@@ -1,0 +1,58 @@
+Predicates:
+Mildred.label != "Person"
+Mildred.label = "Person"
+Mildred.location != "England"
+Mildred.location = "England"
+Mildred.name != "Mildred"
+Mildred.name != Norah Nesbit.name
+Mildred.name != Philip Carey.name
+Mildred.name = "Mildred"
+Mildred.occupation != "waitress"
+Mildred.occupation != Norah Nesbit.occupation
+Mildred.occupation = "waitress"
+Mildred___Norah Nesbit.doc_id = "3488771846_3"
+Mildred___Norah Nesbit.relationship = "Philip Carey enters into an affair with Norah Nesbit after Mildred leaves him."
+Mildred___Philip Carey.doc_id != Mildred___Norah Nesbit.doc_id
+Mildred___Philip Carey.doc_id = "3488771846_6"
+Mildred___Philip Carey.relationship != Mildred___Norah Nesbit.relationship
+Mildred___Philip Carey.relationship = "Mildred returns to Philip Carey, pregnant."
+None_ML(Mildred___Norah Nesbit.attrs, Mildred___Philip Carey.attrs)
+None_ML(Philip Carey.attrs, Mildred.attrs)
+Norah Nesbit.label != "Person"
+Norah Nesbit.label = "Person"
+Norah Nesbit.location != "England"
+Norah Nesbit.location = "England"
+Norah Nesbit.name != "Norah Nesbit"
+Norah Nesbit.name = "Norah Nesbit"
+Norah Nesbit.occupation != "author"
+Norah Nesbit.occupation = "author"
+Norah Nesbit.status != "involved"
+Norah Nesbit.status = "involved"
+Philip Carey.age != 9
+Philip Carey.age < 14
+Philip Carey.age = 9
+Philip Carey.age > 4
+Philip Carey.disability != "club foot"
+Philip Carey.disability = "club foot"
+Philip Carey.label != "Person"
+Philip Carey.label = "Person"
+Philip Carey.location != "England"
+Philip Carey.location = "England"
+Philip Carey.name != "Philip Carey"
+Philip Carey.name != Norah Nesbit.name
+Philip Carey.name = "Philip Carey"
+Philip Carey.status != "orphaned"
+Philip Carey.status != Norah Nesbit.status
+Philip Carey.status = "orphaned"
+
+Rules:
+Q[Mildred,Mildred] (Philip Carey.age = 9 ∧ Mildred.location != "England" → Mildred___Philip Carey.doc_id = "3488771846_6")
+Q[Mildred,Mildred] (Norah Nesbit.location = "England" ∧ Mildred.name != Norah Nesbit.name ∧ Norah Nesbit.label != "Person" → Mildred.location != "England")
+Q[Mildred,Mildred] (Mildred.label = "Person" ∧ Philip Carey.disability != "club foot" ∧ Philip Carey.status != Norah Nesbit.status ∧ None_ML(Philip Carey.attrs, Mildred.attrs) ∧ Philip Carey.disability = "club foot" → Norah Nesbit.label = "Person")
+Q[Mildred,Mildred] (Mildred.occupation != "waitress" ∧ Philip Carey.age < 14 ∧ None_ML(Philip Carey.attrs, Mildred.attrs) ∧ Philip Carey.age = 9 ∧ Mildred.location != "England" ∧ Mildred.occupation != Norah Nesbit.occupation → Mildred___Norah Nesbit.relationship = "Philip Carey enters into an affair with Norah Nesbit after Mildred leaves him.")
+Q[Mildred,Mildred] (Mildred.occupation != "waitress" ∧ Mildred___Norah Nesbit.doc_id = "3488771846_3" ∧ Mildred.occupation = "waitress" ∧ Norah Nesbit.name = "Norah Nesbit" → Norah Nesbit.name != "Norah Nesbit")
+Q[Mildred,Mildred] (Philip Carey.age > 4 ∧ Philip Carey.age < 14 ∧ Philip Carey.age = 9 → Mildred.label != "Person")
+Q[Mildred,Mildred] (Philip Carey.label != "Person" ∧ Philip Carey.label = "Person" ∧ Philip Carey.status != Norah Nesbit.status ∧ Norah Nesbit.occupation != "author" ∧ Philip Carey.age > 4 ∧ Mildred.name = "Mildred" → Mildred___Norah Nesbit.doc_id = "3488771846_3")
+Q[Mildred,Mildred] (Philip Carey.name != "Philip Carey" ∧ Mildred.name = "Mildred" → None_ML(Philip Carey.attrs, Mildred.attrs))
+Q[Mildred,Mildred] (Norah Nesbit.occupation != "author" ∧ Philip Carey.status = "orphaned" ∧ Philip Carey.location != "England" ∧ Norah Nesbit.label = "Person" → Mildred___Philip Carey.relationship = "Mildred returns to Philip Carey, pregnant.")
+Q[Mildred,Mildred] (Philip Carey.status != "orphaned" ∧ None_ML(Philip Carey.attrs, Mildred.attrs) ∧ Mildred___Philip Carey.doc_id = "3488771846_6" ∧ Philip Carey.location = "England" ∧ Philip Carey.disability = "club foot" → Norah Nesbit.occupation = "author")

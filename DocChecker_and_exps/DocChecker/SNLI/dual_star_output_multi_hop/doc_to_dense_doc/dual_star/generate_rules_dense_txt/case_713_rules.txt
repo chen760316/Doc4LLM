@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 713)
+S1: Men are walking downstairs.
+S2: People are walking down the stairs through the fog.
+
+Predicates:
+1. Men.walking_downstairs
+2. People.walking_down_the_stairs
+3. Fog.present
+4. Men.subject
+5. People.subject
+6. Walking.downstairs.action
+7. Walking.down_the_stairs.action
+8. Downstairs.location
+9. Stairs.location
+10. Fog.environment
+11. Men.group
+12. People.group
+13. Walking.action
+14. Downstairs.direction
+15. Stairs.direction
+16. Men.movement
+17. People.movement
+18. Downstairs.path
+19. Stairs.path
+20. Fog.visibility
+21. Men.activity
+22. People.activity
+23. Walking.through
+24. Fog.condition
+25. Men.in_fog
+26. People.in_fog
+27. Downstairs.motion
+28. Stairs.motion
+29. Men.and_people.difference
+30. Walking.downstairs.and_stairs.contradiction
+
+Rules:
+1. Q[Men, Men.walking_downstairs, People.walking_down_the_stairs](Men.subject == "Men" → Relation(Men.walking_downstairs, People.walking_down_the_stairs))
+2. Q[People, People.walking_down_the_stairs, Men.walking_downstairs](People.subject == "People" → Relation(People.walking_down_the_stairs, Men.walking_downstairs))
+3. Q[Men, Men.group, People.group](Men.group == "Men" → Relation(Men.group, People.group))
+4. Q[People, People.group, Men.group](People.group == "People" → Relation(People.group, Men.group))
+5. Q[Men, Men.activity, People.activity](Men.activity == "walking" → Relation(Men.activity, People.activity))
+6. Q[People, People.activity, Men.activity](People.activity == "walking" → Relation(People.activity, Men.activity))
+7. Q[Men, Men.movement, People.movement](Men.movement == "downstairs" → Relation(Men.movement, People.movement))
+8. Q[People, People.movement, Men.movement](People.movement == "down the stairs" → Relation(People.movement, Men.movement))
+9. Q[Men, Men.walking_downstairs, Fog.present](Men.walking_downstairs == true → Relation(Men.walking_downstairs, Fog.present))
+10. Q[People, People.walking_down_the_stairs, Fog.present](People.walking_down_the_stairs == true → Relation(People.walking_down_the_stairs, Fog.present))
+11. Q[Men, Fog.visibility, People](Fog.visibility == "low" → Relation(Fog.visibility, People))
+12. Q[People, Fog.visibility, Men](Fog.visibility == "low" → Relation(Fog.visibility, Men))
+13. Q[Men, Downstairs.location, Stairs.location](Downstairs.location == "Men" → Relation(Downstairs.location, Stairs.location))
+14. Q[People, Stairs.location, Downstairs.location](Stairs.location == "People" → Relation(Stairs.location, Downstairs.location))
+15. Q[Men, Downstairs.direction, Stairs.direction](Downstairs.direction == "down" → Relation(Downstairs.direction, Stairs.direction))
+16. Q[People, Stairs.direction, Downstairs.direction](Stairs.direction == "down" → Relation(Stairs.direction, Downstairs.direction))
+17. Q[Men, Walking.downstairs.action, People](Walking.downstairs.action == "Men" → Relation(Walking.downstairs.action, People))
+18. Q[People, Walking.down_the_stairs.action, Men](Walking.down_the_stairs.action == "People" → Relation(Walking.down_the_stairs.action, Men))
+19. Q[Men, Downstairs.path, Stairs.path](Downstairs.path == "Men" → Relation(Downstairs.path, Stairs.path))
+20. Q[People, Stairs.path, Downstairs.path](Stairs.path == "People" → Relation(Stairs.path, Downstairs.path))
+21. Q[Men, Men.in_fog, People.in_fog](Men.in_fog == true → Relation(Men.in_fog, People.in_fog))
+22. Q[People, People.in_fog, Men.in_fog](People.in_fog == true → Relation(People.in_fog, Men.in_fog))
+23. Q[Men, Walking.through, Fog.condition](Walking.through == "Men" → Relation(Walking.through, Fog.condition))
+24. Q[People, Walking.through, Fog.condition](Walking.through == "People" → Relation(Walking.through, Fog.condition))
+25. Q[Men, Downstairs.motion, Stairs.motion](Downstairs.motion == "Men" → Relation(Downstairs.motion, Stairs.motion))
+26. Q[People, Stairs.motion, Downstairs.motion](Stairs.motion == "People" → Relation(Stairs.motion, Downstairs.motion))
+27. Q[Men, Walking.downstairs.and_stairs.contradiction, People](Walking.downstairs.and_stairs.contradiction == true → Relation(Walking.downstairs.and_stairs.contradiction, People))
+28. Q[People, Walking.downstairs.and_stairs.contradiction, Men](Walking.downstairs.and_stairs.contradiction == true → Relation(Walking.downstairs.and_stairs.contradiction, Men))
+29. Q[Men, Fog.condition, People](Fog.condition == "thick" → Relation(Fog.condition, People))
+30. Q[People, Fog.condition, Men](Fog.condition == "thick" → Relation(Fog.condition, Men))

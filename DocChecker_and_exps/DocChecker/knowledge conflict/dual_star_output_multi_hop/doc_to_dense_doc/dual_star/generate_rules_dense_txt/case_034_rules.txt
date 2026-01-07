@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 34)
+S1: Land use refers to the various ways in which land is utilized and managed by humans, including residential, commercial, industrial, agricultural, and recreational purposes.
+S2: State formation refers to the various ways in which land is utilized and managed by humans, including residential, commercial, industrial, agricultural, and recreational purposes.
+
+Predicates:
+1. Land_use.definition
+2. State_formation.definition
+3. Land_use.purpose
+4. State_formation.purpose
+5. Land_use.residential
+6. Land_use.commercial
+7. Land_use.industrial
+8. Land_use.agricultural
+9. Land_use.recreational
+10. State_formation.residential
+11. State_formation.commercial
+12. State_formation.industrial
+13. State_formation.agricultural
+14. State_formation.recreational
+15. "used_interchangeably".land_use_state_formation
+16. "creates_contradiction".land_use_state_formation
+17. M_NLI(S1, S2)
+18. Content(S1, S2)
+19. violate(S1, S2)
+20. Land_use.management
+21. State_formation.management
+22. Land_use.utilization
+23. State_formation.utilization
+24. "includes".land_use_purpose
+25. "includes".state_formation_purpose
+26. Land_use.human_activity
+27. State_formation.human_activity
+28. "contradictory_terms".land_use_state_formation
+29. "context_of_land_management".land_use_state_formation
+30. "ways_of_management".land_use_state_formation
+
+Rules:
+1. Q[Land, Land_use.definition, State_formation.definition](Land_use.definition == "various ways in which land is utilized and managed by humans" → Content(Land_use.definition, State_formation.definition))
+2. Q[Land, Land_use.purpose, State_formation.purpose](Land_use.purpose == "residential" → Content(Land_use.purpose, State_formation.purpose))
+3. Q[Land, Land_use.purpose, State_formation.purpose](Land_use.purpose == "commercial" → Content(Land_use.purpose, State_formation.purpose))
+4. Q[Land, Land_use.purpose, State_formation.purpose](Land_use.purpose == "industrial" → Content(Land_use.purpose, State_formation.purpose))
+5. Q[Land, Land_use.purpose, State_formation.purpose](Land_use.purpose == "agricultural" → Content(Land_use.purpose, State_formation.purpose))
+6. Q[Land, Land_use.purpose, State_formation.purpose](Land_use.purpose == "recreational" → Content(Land_use.purpose, State_formation.purpose))
+7. Q[Land, Land_use.management, State_formation.management](Land_use.management == "utilized and managed by humans" → Content(Land_use.management, State_formation.management))
+8. Q[Land, Land_use.utilization, State_formation.utilization](Land_use.utilization == "various ways" → Content(Land_use.utilization, State_formation.utilization))
+9. Q[Land, Land_use.human_activity, State_formation.human_activity](Land_use.human_activity == "includes residential, commercial, industrial, agricultural, and recreational purposes" → Content(Land_use.human_activity, State_formation.human_activity))
+10. Q[Land, "used_interchangeably".land_use_state_formation, "creates_contradiction".land_use_state_formation](Land_use.definition == State_formation.definition → Content("used_interchangeably".land_use_state_formation, "creates_contradiction".land_use_state_formation))
+11. Q[Land, "contradictory_terms".land_use_state_formation, "context_of_land_management".land_use_state_formation](Land_use.purpose == State_formation.purpose → Content("contradictory_terms".land_use_state_formation, "context_of_land_management".land_use_state_formation))
+12. Q[Land, Land_use.residential, State_formation.residential](Land_use.residential == "true" → Content(Land_use.residential, State_formation.residential))
+13. Q[Land, Land_use.commercial, State_formation.commercial](Land_use.commercial == "true" → Content(Land_use.commercial, State_formation.commercial))
+14. Q[Land, Land_use.industrial, State_formation.industrial](Land_use.industrial == "true" → Content(Land_use.industrial, State_formation.industrial))
+15. Q[Land, Land_use.agricultural, State_formation.agricultural](Land_use.agricultural == "true" → Content(Land_use.agricultural, State_formation.agricultural))
+16. Q[Land, Land_use.recreational, State_formation.recreational](Land_use.recreational == "true" → Content(Land_use.recreational, State_formation.recreational))
+17. Q[Land, "ways_of_management".land_use_state_formation, "context_of_land_management".land_use_state_formation](Land_use.management == State_formation.management → Content("ways_of_management".land_use_state_formation, "context_of_land_management".land_use_state_formation))
+18. Q[Land, "includes".land_use_purpose, "includes".state_formation_purpose](Land_use.purpose == State_formation.purpose → Content("includes".land_use_purpose, "includes".state_formation_purpose))
+19. Q[Land, "contradictory_terms".land_use_state_formation, "creates_contradiction".land_use_state_formation](Land_use.definition == State_formation.definition → Content("contradictory_terms".land_use_state_formation, "creates_contradiction".land_use_state_formation))
+20. Q[Land, Land_use.definition, State_formation.definition](Land_use.definition == State_formation.definition → Content(Land_use.definition, State_formation.definition))
+21. Q[Land, Land_use.management, State_formation.management](Land_use.management == State_formation.management → Content(Land_use.management, State_formation.management))
+22. Q[Land, Land_use.utilization, State_formation.utilization](Land_use.utilization == State_formation.utilization → Content(Land_use.utilization, State_formation.utilization))
+23. Q[Land, "context_of_land_management".land_use_state_formation, "contradictory_terms".land_use_state_formation](Land_use.purpose == State_formation.purpose → Content("context_of_land_management".land_use_state_formation, "contradictory_terms".land_use_state_formation))
+24. Q[Land, "used_interchangeably".land_use_state_formation, "ways_of_management".land_use_state_formation](Land_use.definition == State_formation.definition → Content("used_interchangeably".land_use_state_formation, "ways_of_management".land_use_state_formation))
+25. Q[Land, Land_use.human_activity, State_formation.human_activity](Land_use.human_activity == State_formation.human_activity → Content(Land_use.human_activity, State_formation.human_activity))
+26. Q[Land, Land_use.purpose, State_formation.purpose](Land_use.purpose == State_formation.purpose → Content(Land_use.purpose, State_formation.purpose))
+27. Q[Land, "creates_contradiction".land_use_state_formation, "context_of_land_management".land_use_state_formation](Land_use.definition == State_formation.definition → Content("creates_contradiction".land_use_state_formation, "context_of_land_management".land_use_state_formation))
+28. Q[Land, "contradictory_terms".land_use_state_formation, "used_interchangeably".land_use_state_formation](Land_use.purpose == State_formation.purpose → Content("contradictory_terms".land_use_state_formation, "used_interchangeably".land_use_state_formation))
+29. Q[Land, Land_use.management, State_formation.management](Land_use.management == "true" → Content(Land_use.management, State_formation.management))
+30. Q[Land, "ways_of_management".land_use_state_formation, "includes".land_use_purpose](Land_use.purpose == State_formation.purpose → Content("ways_of_management".land_use_state_formation, "includes".land_use_purpose))

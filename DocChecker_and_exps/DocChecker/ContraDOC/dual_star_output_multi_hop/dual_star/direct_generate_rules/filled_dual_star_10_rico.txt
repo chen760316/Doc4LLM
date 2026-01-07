@@ -1,0 +1,44 @@
+Predicates:
+Alec Baldwin.label != "Person"
+Alec Baldwin.label != Primetime Emmy Award.label
+Alec Baldwin.label != Rosemary's Baby.label
+Alec Baldwin.label = "Person"
+Alec Baldwin.name != "Alec Baldwin"
+Alec Baldwin.name != Primetime Emmy Award.name
+Alec Baldwin.name != Rosemary's Baby.name
+Alec Baldwin.name = "Alec Baldwin"
+Alec Baldwin.occupation != "Actor"
+Alec Baldwin.occupation = "Actor"
+Alec Baldwin.role != "Jack Donaghy"
+Alec Baldwin.role = "Jack Donaghy"
+Alec Baldwin___Primetime Emmy Award.doc_id = "3503017483_1"
+Alec Baldwin___Primetime Emmy Award.relationship = "Alec Baldwin won the Primetime Emmy Award for his role in the episode Rosemary's Baby."
+Alec Baldwin___Rosemary's Baby.doc_id = "3503017483_1"
+Alec Baldwin___Rosemary's Baby.relationship != Alec Baldwin___Primetime Emmy Award.relationship
+Alec Baldwin___Rosemary's Baby.relationship = "Alec Baldwin plays Jack Donaghy in the episode Rosemary's Baby."
+None_ML(Alec Baldwin.attrs, Primetime Emmy Award.attrs)
+None_ML(Alec Baldwin___Primetime Emmy Award.attrs, Alec Baldwin___Rosemary's Baby.attrs)
+Primetime Emmy Award.category != "Outstanding Lead Actor in a Comedy Series"
+Primetime Emmy Award.category = "Outstanding Lead Actor in a Comedy Series"
+Primetime Emmy Award.label != "Award"
+Primetime Emmy Award.label = "Award"
+Primetime Emmy Award.name != "Primetime Emmy Award"
+Primetime Emmy Award.name = "Primetime Emmy Award"
+Rosemary's Baby.label != "Episode"
+Rosemary's Baby.label != Primetime Emmy Award.label
+Rosemary's Baby.label = "Episode"
+Rosemary's Baby.name != "Rosemary's Baby"
+Rosemary's Baby.name != Primetime Emmy Award.name
+Rosemary's Baby.name = "Rosemary's Baby"
+
+Rules:
+Q[Alec Baldwin,Alec Baldwin] (Alec Baldwin.label = "Person" ∧ None_ML(Alec Baldwin.attrs, Primetime Emmy Award.attrs) ∧ Alec Baldwin.occupation != "Actor" ∧ Rosemary's Baby.name = "Rosemary's Baby" ∧ None_ML(Alec Baldwin___Primetime Emmy Award.attrs, Alec Baldwin___Rosemary's Baby.attrs) → Alec Baldwin.role != "Jack Donaghy")
+Q[Alec Baldwin,Alec Baldwin] (Alec Baldwin___Rosemary's Baby.relationship = "Alec Baldwin plays Jack Donaghy in the episode Rosemary's Baby." ∧ Alec Baldwin.label != Rosemary's Baby.label → Alec Baldwin.occupation != "Actor")
+Q[Alec Baldwin,Alec Baldwin] (Primetime Emmy Award.category != "Outstanding Lead Actor in a Comedy Series" ∧ None_ML(Alec Baldwin.attrs, Primetime Emmy Award.attrs) ∧ Alec Baldwin.name = "Alec Baldwin" ∧ Rosemary's Baby.label != Primetime Emmy Award.label → Alec Baldwin.name != Primetime Emmy Award.name)
+Q[Alec Baldwin,Alec Baldwin] (Primetime Emmy Award.category != "Outstanding Lead Actor in a Comedy Series" ∧ Alec Baldwin___Primetime Emmy Award.doc_id = "3503017483_1" ∧ Primetime Emmy Award.category = "Outstanding Lead Actor in a Comedy Series" → Rosemary's Baby.label = "Episode")
+Q[Alec Baldwin,Alec Baldwin] (None_ML(Alec Baldwin___Primetime Emmy Award.attrs, Alec Baldwin___Rosemary's Baby.attrs) ∧ None_ML(Alec Baldwin.attrs, Primetime Emmy Award.attrs) ∧ Alec Baldwin.occupation != "Actor" ∧ Alec Baldwin.label != "Person" ∧ Primetime Emmy Award.category != "Outstanding Lead Actor in a Comedy Series" ∧ Alec Baldwin___Rosemary's Baby.doc_id = "3503017483_1" → Alec Baldwin___Primetime Emmy Award.doc_id = "3503017483_1")
+Q[Alec Baldwin,Alec Baldwin] (Rosemary's Baby.label != Primetime Emmy Award.label ∧ None_ML(Alec Baldwin___Primetime Emmy Award.attrs, Alec Baldwin___Rosemary's Baby.attrs) ∧ Primetime Emmy Award.category = "Outstanding Lead Actor in a Comedy Series" → Rosemary's Baby.name = "Rosemary's Baby")
+Q[Alec Baldwin,Alec Baldwin] (Alec Baldwin.role = "Jack Donaghy" ∧ Primetime Emmy Award.label = "Award" ∧ Alec Baldwin.label = "Person" ∧ Rosemary's Baby.name != Primetime Emmy Award.name ∧ Primetime Emmy Award.label != "Award" → None_ML(Alec Baldwin___Primetime Emmy Award.attrs, Alec Baldwin___Rosemary's Baby.attrs))
+Q[Alec Baldwin,Alec Baldwin] (Alec Baldwin.role = "Jack Donaghy" ∧ Rosemary's Baby.label = "Episode" ∧ Primetime Emmy Award.label = "Award" ∧ Rosemary's Baby.name != Primetime Emmy Award.name → Primetime Emmy Award.category != "Outstanding Lead Actor in a Comedy Series")
+Q[Alec Baldwin,Alec Baldwin] (Rosemary's Baby.label = "Episode" ∧ Alec Baldwin.label = "Person" ∧ Alec Baldwin___Primetime Emmy Award.relationship = "Alec Baldwin won the Primetime Emmy Award for his role in the episode Rosemary's Baby." ∧ Primetime Emmy Award.category = "Outstanding Lead Actor in a Comedy Series" ∧ Alec Baldwin.name != Rosemary's Baby.name ∧ Rosemary's Baby.label != Primetime Emmy Award.label → Alec Baldwin.occupation = "Actor")
+Q[Alec Baldwin,Alec Baldwin] (Alec Baldwin.role = "Jack Donaghy" ∧ Rosemary's Baby.label = "Episode" → Alec Baldwin___Rosemary's Baby.relationship = "Alec Baldwin plays Jack Donaghy in the episode Rosemary's Baby.")

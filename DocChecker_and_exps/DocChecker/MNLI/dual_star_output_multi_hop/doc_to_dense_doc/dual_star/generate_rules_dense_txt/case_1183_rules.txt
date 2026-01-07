@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 1183)
+S1: O n e s h o u l d a l l o w a f e w e x t r a d a y s f o r c o n t i n g e n c i e s.
+S2: O n e m a y w i s h t o a l l o w e x t r a d a y s f o r u n f o r e s e e n c i r c u m s t a n c e s.
+
+Predicates:
+1. Necessity.should_allow
+2. Desire.may_wish_to_allow
+3. Contingency.extra_days
+4. Unforeseen_circumstances.extra_days
+5. Obligation.create_contradiction
+6. Preference.create_contradiction
+7. One.should_allow
+8. One.may_wish_to_allow
+9. Extra_days.for_contingencies
+10. Extra_days.for_unforeseen_circumstances
+11. Allowance.is_necessary
+12. Allowance.is_preferred
+13. Necessity.versus_preference
+14. Obligation.is_present
+15. Preference.is_present
+16. Circumstances.create_needs
+17. Circumstances.create_wants
+18. Violation.of_obligation
+19. Violation.of_preference
+20. Allowance.is_ambiguous
+21. Contingency.is_unpredictable
+22. Unforeseen.is_unexpected
+23. Obligation.requires_extra_days
+24. Preference_allows_extra_days
+25. Necessity.requires_contingency
+26. Desire.requires_unforeseen
+27. Relationship.obligation_vs_preference
+28. Meta.NLI(s1, s2)
+29. Relation(necessity, desire)
+30. Violate(obligation, preference)
+
+Rules:
+1. Q[One, Necessity.should_allow, Obligation.create_contradiction](One.should_allow == true → Relation(Necessity.should_allow, Obligation.create_contradiction))
+2. Q[One, Desire.may_wish_to_allow, Preference.create_contradiction](One.may_wish_to_allow == true → Relation(Desire.may_wish_to_allow, Preference.create_contradiction))
+3. Q[Contingency, Extra_days.for_contingencies, Obligation.create_contradiction](Extra_days.for_contingencies == true → Relation(Contingency.extra_days, Obligation.create_contradiction))
+4. Q[Unforeseen_circumstances, Extra_days.for_unforeseen_circumstances, Preference.create_contradiction](Extra_days.for_unforeseen_circumstances == true → Relation(Unforeseen_circumstances.extra_days, Preference.create_contradiction))
+5. Q[Allowance, is_necessary, Obligation.create_contradiction](Allowance.is_necessary == true → Relation(Allowance.is_necessary, Obligation.create_contradiction))
+6. Q[Allowance, is_preferred, Preference.create_contradiction](Allowance.is_preferred == true → Relation(Allowance.is_preferred, Preference.create_contradiction))
+7. Q[Necessity, requires_extra_days, Obligation.create_contradiction](Necessity.requires_extra_days == true → Relation(Necessity.requires_extra_days, Obligation.create_contradiction))
+8. Q[Desire, requires_unforeseen, Preference.create_contradiction](Desire.requires_unforeseen == true → Relation(Desire.requires_unforeseen, Preference.create_contradiction))
+9. Q[Circumstances, create_needs, Obligation.create_contradiction](Circumstances.create_needs == true → Relation(Circumstances.create_needs, Obligation.create_contradiction))
+10. Q[Circumstances, create_wants, Preference.create_contradiction](Circumstances.create_wants == true → Relation(Circumstances.create_wants, Preference.create_contradiction))
+11. Q[Necessity, versus_preference, Relation(necessity, desire)](Necessity.versus_preference == true → Relation(Necessity.versus_preference, Relation(necessity, desire)))
+12. Q[Obligation, is_present, Obligation.create_contradiction](Obligation.is_present == true → Relation(Obligation.is_present, Obligation.create_contradiction))
+13. Q[Preference, is_present, Preference.create_contradiction](Preference.is_present == true → Relation(Preference.is_present, Preference.create_contradiction))
+14. Q[Violation, of_obligation, Obligation.create_contradiction](Violation.of_obligation == true → Relation(Violation.of_obligation, Obligation.create_contradiction))
+15. Q[Violation, of_preference, Preference.create_contradiction](Violation.of_preference == true → Relation(Violation.of_preference, Preference.create_contradiction))
+16. Q[Allowance, is_ambiguous, Obligation.create_contradiction](Allowance.is_ambiguous == true → Relation(Allowance.is_ambiguous, Obligation.create_contradiction))
+17. Q[Contingency, is_unpredictable, Obligation.create_contradiction](Contingency.is_unpredictable == true → Relation(Contingency.is_unpredictable, Obligation.create_contradiction))
+18. Q[Unforeseen, is_unexpected, Preference.create_contradiction](Unforeseen.is_unexpected == true → Relation(Unforeseen.is_unexpected, Preference.create_contradiction))
+19. Q[Obligation, requires_extra_days, Relation(necessity, desire)](Obligation.requires_extra_days == true → Relation(Obligation.requires_extra_days, Relation(necessity, desire)))
+20. Q[Preference_allows, extra_days, Preference.create_contradiction](Preference_allows.extra_days == true → Relation(Preference_allows.extra_days, Preference.create_contradiction))
+21. Q[Necessity, requires_contingency, Obligation.create_contradiction](Necessity.requires_contingency == true → Relation(Necessity.requires_contingency, Obligation.create_contradiction))
+22. Q[Desire, allows_extra_days, Preference.create_contradiction](Desire.allows_extra_days == true → Relation(Desire.allows_extra_days, Preference.create_contradiction))
+23. Q[Relationship, obligation_vs_preference, Relation(necessity, desire)](Relationship.obligation_vs_preference == true → Relation(Relationship.obligation_vs_preference, Relation(necessity, desire)))
+24. Q[Meta, NLI, Relation(necessity, desire)](Meta.NLI(s1, s2) == true → Relation(Meta.NLI(s1, s2), Relation(necessity, desire)))
+25. Q[One, should_allow, Obligation.create_contradiction](One.should_allow == true → Relation(One.should_allow, Obligation.create_contradiction))
+26. Q[One, may_wish_to_allow, Preference.create_contradiction](One.may_wish_to_allow == true → Relation(One.may_wish_to_allow, Preference.create_contradiction))
+27. Q[Contingency, extra_days, Obligation.create_contradiction](Contingency.extra_days == true → Relation(Contingency.extra_days, Obligation.create_contradiction))
+28. Q[Unforeseen_circumstances, extra_days, Preference.create_contradiction](Unforeseen_circumstances.extra_days == true → Relation(Unforeseen_circumstances.extra_days, Preference.create_contradiction))
+29. Q[Necessity, should_allow, Relation(necessity, desire)](Necessity.should_allow == true → Relation(Necessity.should_allow, Relation(necessity, desire)))
+30. Q[Desire, may_wish_to_allow, Relation(necessity, desire)](Desire.may_wish_to_allow == true → Relation(Desire.may_wish_to_allow, Relation(necessity, desire)))

@@ -1,0 +1,48 @@
+Predicates:
+Australia.label != "Location"
+Australia.label = "Location"
+Australia.name != "Australia"
+Australia.name = "Australia"
+Dudley.label != "Person"
+Dudley.label != Australia.label
+Dudley.label = "Person"
+Dudley.name != "Dudley"
+Dudley.name != Australia.name
+Dudley.name != Maud Ruthyn.name
+Dudley.name = "Dudley"
+Dudley.relationship != "cousin"
+Dudley.relationship = "cousin"
+Dudley.status != "fugitive"
+Dudley.status != Maud Ruthyn.status
+Dudley.status = "fugitive"
+Dudley___Australia.doc_id = "3488771868_4"
+Dudley___Australia.relationship = "Dudley is thought to be hiding in Australia."
+Dudley___Maud Ruthyn.doc_id = "3488771868_4"
+Dudley___Maud Ruthyn.relationship != Dudley___Australia.relationship
+Dudley___Maud Ruthyn.relationship = "Dudley proposes marriage to Maud."
+Maud Ruthyn.age != "adolescent"
+Maud Ruthyn.age = "adolescent"
+Maud Ruthyn.label != "Person"
+Maud Ruthyn.label != Australia.label
+Maud Ruthyn.label = "Person"
+Maud Ruthyn.location != "Bartram-Haugh"
+Maud Ruthyn.location = "Bartram-Haugh"
+Maud Ruthyn.name != "Maud Ruthyn"
+Maud Ruthyn.name != Australia.name
+Maud Ruthyn.name = "Maud Ruthyn"
+Maud Ruthyn.status != "heiress"
+Maud Ruthyn.status = "heiress"
+None_ML(Australia.attrs, Dudley.attrs)
+None_ML(Dudley___Australia.attrs, Dudley___Maud Ruthyn.attrs)
+
+Rules:
+Q[Dudley,Dudley] (Maud Ruthyn.name != "Maud Ruthyn" ∧ Dudley.status != Maud Ruthyn.status → Maud Ruthyn.status != "heiress")
+Q[Dudley,Dudley] (Australia.label != "Location" ∧ Maud Ruthyn.label != "Person" ∧ None_ML(Dudley___Australia.attrs, Dudley___Maud Ruthyn.attrs) ∧ Dudley.relationship != "cousin" ∧ Dudley.status = "fugitive" ∧ Dudley.status != Maud Ruthyn.status → Australia.label = "Location")
+Q[Dudley,Dudley] (Australia.name = "Australia" ∧ Dudley___Maud Ruthyn.relationship != Dudley___Australia.relationship ∧ Dudley___Australia.doc_id = "3488771868_4" ∧ Australia.label = "Location" → Dudley___Maud Ruthyn.doc_id = "3488771868_4")
+Q[Dudley,Dudley] (Maud Ruthyn.location != "Bartram-Haugh" ∧ Dudley.label = "Person" ∧ Maud Ruthyn.status = "heiress" ∧ Maud Ruthyn.label != Australia.label ∧ Maud Ruthyn.label != "Person" → Dudley.label != Australia.label)
+Q[Dudley,Dudley] (Maud Ruthyn.location != "Bartram-Haugh" ∧ Dudley.status = "fugitive" ∧ Australia.label != "Location" → Dudley.label = "Person")
+Q[Dudley,Dudley] (Maud Ruthyn.name != "Maud Ruthyn" ∧ Maud Ruthyn.label != Australia.label ∧ Maud Ruthyn.name = "Maud Ruthyn" → Dudley.relationship = "cousin")
+Q[Dudley,Dudley] (Dudley.relationship = "cousin" ∧ Maud Ruthyn.location = "Bartram-Haugh" → Dudley.relationship != "cousin")
+Q[Dudley,Dudley] (Dudley___Maud Ruthyn.relationship = "Dudley proposes marriage to Maud." ∧ Maud Ruthyn.label = "Person" ∧ Australia.label != "Location" ∧ Maud Ruthyn.age = "adolescent" → Maud Ruthyn.name = "Maud Ruthyn")
+Q[Dudley,Dudley] (None_ML(Australia.attrs, Dudley.attrs) ∧ Maud Ruthyn.location = "Bartram-Haugh" ∧ Dudley___Maud Ruthyn.relationship != Dudley___Australia.relationship ∧ Dudley.name != "Dudley" ∧ Dudley.relationship = "cousin" → Maud Ruthyn.name != Australia.name)
+Q[Dudley,Dudley] (Maud Ruthyn.name != Australia.name ∧ Dudley.relationship != "cousin" ∧ Australia.label != "Location" ∧ Dudley___Maud Ruthyn.relationship = "Dudley proposes marriage to Maud." ∧ Maud Ruthyn.status = "heiress" ∧ Maud Ruthyn.label = "Person" → Maud Ruthyn.location != "Bartram-Haugh")

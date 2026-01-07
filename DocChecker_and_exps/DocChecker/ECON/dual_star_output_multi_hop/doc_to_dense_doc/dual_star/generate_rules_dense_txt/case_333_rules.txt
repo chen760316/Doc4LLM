@@ -1,0 +1,64 @@
+Source: dense_text.txt (Index 333)
+S1: Tumors on the adrenal glands can cause them to over-express.
+S2: Tumors on the adrenal glands can cause them to under-express.
+
+Predicates:
+1. Tumor.adrenal_gland.over_express
+2. Tumor.adrenal_gland.under_express
+3. M_NLI(Tumor.adrenal_gland.over_express, Tumor.adrenal_gland.under_express)
+4. Causal(Tumor.adrenal_gland, over_expression)
+5. Causal(Tumor.adrenal_gland, under_expression)
+6. violate(Tumor.adrenal_gland.over_express, Tumor.adrenal_gland.under_express)
+7. Adrenal_gland.tumor.presence
+8. Adrenal_gland.tumor.effect
+9. Tumor.cause.over_expression
+10. Tumor.cause.under_expression
+11. M_NLI(Tumor.cause.over_expression, Tumor.cause.under_expression)
+12. Causal(Tumor, adrenal_gland_over_expression)
+13. Causal(Tumor, adrenal_gland_under_expression)
+14. violate(Tumor.cause.over_expression, Tumor.cause.under_expression)
+15. Adrenal_gland.effect.over_expression
+16. Adrenal_gland.effect.under_expression
+17. M_NLI(Adrenal_gland.effect.over_expression, Adrenal_gland.effect.under_expression)
+18. Causal(adrenal_gland, tumor_over_expression)
+19. Causal(adrenal_gland, tumor_under_expression)
+20. violate(Adrenal_gland.effect.over_expression, Adrenal_gland.effect.under_expression)
+21. Tumor.adrenal_gland.cause
+22. Tumor.adrenal_gland.outcome
+23. M_NLI(Tumor.adrenal_gland.cause, Tumor.adrenal_gland.outcome)
+24. Causal(tumor, adrenal_gland_effect)
+25. Causal(adrenal_gland, tumor_effect)
+26. violate(Tumor.adrenal_gland.cause, Tumor.adrenal_gland.outcome)
+27. Adrenal_gland.tumor_type
+28. Adrenal_gland.tumor_stage
+29. M_NLI(Adrenal_gland.tumor_type, Adrenal_gland.tumor_stage)
+30. Causal(tumor_type, adrenal_gland_outcome)
+
+Rules:
+1. Q[Tumors, Tumor.adrenal_gland.over_express, Tumor.adrenal_gland.under_express](Tumor.adrenal_gland.over_express == true → Causal(Tumor.adrenal_gland, over_expression))
+2. Q[Tumors, Tumor.adrenal_gland.under_express, Tumor.adrenal_gland.over_express](Tumor.adrenal_gland.under_express == true → Causal(Tumor.adrenal_gland, under_expression))
+3. Q[Tumors, Tumor.cause.over_expression, Tumor.cause.under_expression](M_NLI(Tumor.cause.over_expression, Tumor.cause.under_expression) → Causal(Tumor, adrenal_gland_over_expression))
+4. Q[Tumors, Adrenal_gland.effect.over_expression, Adrenal_gland.effect.under_expression](M_NLI(Adrenal_gland.effect.over_expression, Adrenal_gland.effect.under_expression) → Causal(adrenal_gland, tumor_over_expression))
+5. Q[Tumors, Tumor.adrenal_gland.cause, Tumor.adrenal_gland.outcome](violate(Tumor.adrenal_gland.cause, Tumor.adrenal_gland.outcome) → Causal(Tumor.adrenal_gland, over_expression))
+6. Q[Tumors, Tumor.adrenal_gland.cause, Tumor.adrenal_gland.outcome](violate(Tumor.adrenal_gland.outcome, Tumor.adrenal_gland.cause) → Causal(Tumor.adrenal_gland, under_expression))
+7. Q[Tumors, Tumor.adrenal_gland.over_express, Tumor.cause.under_expression](Tumor.adrenal_gland.over_express == true → Causal(Tumor, adrenal_gland_under_expression))
+8. Q[Tumors, Tumor.cause.over_expression, Tumor.adrenal_gland.under_express](Tumor.cause.over_expression == true → Causal(Tumor.adrenal_gland, under_expression))
+9. Q[Tumors, Adrenal_gland.tumor.presence, Adrenal_gland.tumor.effect](Adrenal_gland.tumor.presence == true → Causal(adrenal_gland, tumor_effect))
+10. Q[Tumors, Tumor.adrenal_gland.outcome, Tumor.adrenal_gland.cause](M_NLI(Tumor.adrenal_gland.outcome, Tumor.adrenal_gland.cause) → Causal(Tumor.adrenal_gland, over_expression))
+11. Q[Tumors, Tumor.adrenal_gland.under_express, Tumor.cause.over_expression](Tumor.adrenal_gland.under_express == true → Causal(Tumor, adrenal_gland_over_expression))
+12. Q[Tumors, Tumor.adrenal_gland.effect, Tumor.adrenal_gland.cause](violate(Tumor.adrenal_gland.effect, Tumor.adrenal_gland.cause) → Causal(Tumor.adrenal_gland, under_expression))
+13. Q[Tumors, Adrenal_gland.effect.over_expression, Tumor.adrenal_gland.under_express](Adrenal_gland.effect.over_expression == true → Causal(Tumor.adrenal_gland, under_expression))
+14. Q[Tumors, Tumor.adrenal_gland.cause, Tumor.cause.under_expression](Causal(Tumor.adrenal_gland, under_expression) → violate(Tumor.adrenal_gland.cause, Tumor.cause.under_expression))
+15. Q[Tumors, Tumor.adrenal_gland.over_express, Tumor.cause.under_expression](Causal(Tumor.adrenal_gland, over_expression) → violate(Tumor.adrenal_gland.over_express, Tumor.cause.under_expression))
+16. Q[Tumors, Tumor.adrenal_gland.cause, Adrenal_gland.effect.under_expression](Causal(Tumor.adrenal_gland, under_expression) → violate(Tumor.adrenal_gland.cause, Adrenal_gland.effect.under_expression))
+17. Q[Tumors, Tumor.adrenal_gland.under_express, Adrenal_gland.effect.over_expression](Causal(Tumor.adrenal_gland, over_expression) → violate(Tumor.adrenal_gland.under_express, Adrenal_gland.effect.over_expression))
+18. Q[Tumors, Tumor.adrenal_gland.cause, Tumor.adrenal_gland.over_express](Causal(Tumor.adrenal_gland, over_expression) → violate(Tumor.adrenal_gland.cause, Tumor.adrenal_gland.over_express))
+19. Q[Tumors, Tumor.cause.over_expression, Adrenal_gland.tumor.effect](Causal(Tumor.cause.over_expression) → violate(Tumor.cause.over_expression, Adrenal_gland.tumor.effect))
+20. Q[Tumors, Tumor.adrenal_gland.under_express, Tumor.cause.over_expression](Causal(Tumor.adrenal_gland, under_expression) → violate(Tumor.adrenal_gland.under_express, Tumor.cause.over_expression))
+21. Q[Tumors, Tumor.adrenal_gland.effect, Tumor.cause.under_expression](Causal(Tumor.adrenal_gland.effect, under_expression) → violate(Tumor.adrenal_gland.effect, Tumor.cause.under_expression))
+22. Q[Tumors, Tumor.adrenal_gland.cause, Tumor.cause.over_expression](Causal(Tumor.adrenal_gland, over_expression) → violate(Tumor.adrenal_gland.cause, Tumor.cause.over_expression))
+23. Q[Tumors, Tumor.adrenal_gland.under_express, Tumor.adrenal_gland.effect](Causal(Tumor.adrenal_gland, under_expression) → violate(Tumor.adrenal_gland.under_express, Tumor.adrenal_gland.effect))
+24. Q[Tumors, Tumor.adrenal_gland.effect, Tumor.cause.over_expression](Causal(Tumor.adrenal_gland.effect, over_expression) → violate(Tumor.adrenal_gland.effect, Tumor.cause.over_expression))
+25. Q[Tumors, Tumor.adrenal_gland.cause, Adrenal_gland.effect.over_expression](Causal(Tumor.adrenal_gland, over_expression) → violate(Tumor.adrenal_gland.cause, Adrenal_gland.effect.over_expression))
+26. Q[Tumors, Tumor.adrenal_gland.under_express, Adrenal_gland.effect.under_expression](Causal(Tumor.adrenal_gland, under_expression) → violate(Tumor.adrenal_gland.under_express, Adrenal_gland.effect.under_expression))
+27. Q[Tumors, Tumor.adrenal_gland.cause, Tumor.adrenal_gland.outcome](Causal(Tumor.ad

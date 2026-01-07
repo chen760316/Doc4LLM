@@ -1,0 +1,35 @@
+Predicates:
+None_ML(catastrophic consequences.attrs, drought.attrs)
+catastrophic consequences.label != "Consequence"
+catastrophic consequences.label = "Consequence"
+catastrophic consequences.name != "catastrophic consequences"
+catastrophic consequences.name = "catastrophic consequences"
+catastrophic consequences.status != "potential"
+catastrophic consequences.status = "potential"
+drought.label != "Event"
+drought.label != catastrophic consequences.label
+drought.label = "Event"
+drought.name != "drought"
+drought.name != catastrophic consequences.name
+drought.name = "drought"
+drought.status != "ongoing"
+drought.status != catastrophic consequences.status
+drought.status = "ongoing"
+drought.time != "next winter"
+drought.time = "next winter"
+drought___catastrophic consequences.contradiction_type = "Causal"
+drought___catastrophic consequences.reason = "lack of conservation"
+drought___catastrophic consequences.relationship = "If the drought continues through next winter and conservation efforts are not increased, the consequences could worsen."
+drought___catastrophic consequences.source_id = "3489738298_4"
+
+Rules:
+Q[drought,drought] (catastrophic consequences.name = "catastrophic consequences" ∧ drought.status = "ongoing" ∧ None_ML(catastrophic consequences.attrs, drought.attrs) → drought.status != catastrophic consequences.status)
+Q[drought,drought] (drought.status = "ongoing" ∧ drought.time = "next winter" ∧ drought.label != catastrophic consequences.label ∧ catastrophic consequences.label != "Consequence" ∧ drought___catastrophic consequences.reason = "lack of conservation" → drought.name = "drought")
+Q[drought,drought] (catastrophic consequences.name != "catastrophic consequences" ∧ drought.time = "next winter" → drought.name != "drought")
+Q[drought,drought] (drought.status = "ongoing" ∧ drought.name != catastrophic consequences.name ∧ drought.status != "ongoing" ∧ catastrophic consequences.status = "potential" → drought___catastrophic consequences.source_id = "3489738298_4")
+Q[drought,drought] (drought.status = "ongoing" ∧ catastrophic consequences.status = "potential" ∧ drought.name != catastrophic consequences.name ∧ drought.label = "Event" ∧ drought.name != "drought" ∧ drought.status != catastrophic consequences.status → drought___catastrophic consequences.reason = "lack of conservation")
+Q[drought,drought] (drought.status != "ongoing" ∧ drought.status != catastrophic consequences.status ∧ catastrophic consequences.status != "potential" ∧ drought.status = "ongoing" ∧ drought___catastrophic consequences.source_id = "3489738298_4" → drought.label != "Event")
+Q[drought,drought] (drought.label = "Event" ∧ catastrophic consequences.status != "potential" ∧ drought.status != "ongoing" ∧ catastrophic consequences.status = "potential" → drought.label != catastrophic consequences.label)
+Q[drought,drought] (drought.label != catastrophic consequences.label ∧ catastrophic consequences.name != "catastrophic consequences" ∧ catastrophic consequences.label = "Consequence" → drought.time != "next winter")
+Q[drought,drought] (drought.time != "next winter" ∧ drought.status != catastrophic consequences.status → drought.label = "Event")
+Q[drought,drought] (drought.time != "next winter" ∧ drought___catastrophic consequences.relationship = "If the drought continues through next winter and conservation efforts are not increased, the consequences could worsen." ∧ drought.name != "drought" ∧ catastrophic consequences.label != "Consequence" ∧ catastrophic consequences.name != "catastrophic consequences" ∧ drought.label != catastrophic consequences.label → drought.status = "ongoing")

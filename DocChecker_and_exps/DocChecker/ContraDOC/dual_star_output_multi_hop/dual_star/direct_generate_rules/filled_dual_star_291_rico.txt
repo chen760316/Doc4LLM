@@ -1,0 +1,50 @@
+Predicates:
+Houthi rebels.label != "Group"
+Houthi rebels.label = "Group"
+Houthi rebels.location != "Yemen"
+Houthi rebels.location = "Yemen"
+Houthi rebels.name != "Houthi rebels"
+Houthi rebels.name = "Houthi rebels"
+Iranian military.label != "Military"
+Iranian military.label != Houthi rebels.label
+Iranian military.label = "Military"
+Iranian military.location != "Persian Gulf"
+Iranian military.location != Houthi rebels.location
+Iranian military.location = "Persian Gulf"
+Iranian military.name != "Iranian military"
+Iranian military.name != Houthi rebels.name
+Iranian military.name = "Iranian military"
+None_ML(Iranian military.attrs, Houthi rebels.attrs)
+None_ML(U.S. Navy___Houthi rebels.attrs, U.S. Navy___Iranian military.attrs)
+U.S. Navy.label != "Military"
+U.S. Navy.label != Houthi rebels.label
+U.S. Navy.label = "Military"
+U.S. Navy.location != "Gulf of Aden"
+U.S. Navy.location != Houthi rebels.location
+U.S. Navy.location != Iranian military.location
+U.S. Navy.location = "Gulf of Aden"
+U.S. Navy.name != "U.S. Navy"
+U.S. Navy.name != Houthi rebels.name
+U.S. Navy.name != Iranian military.name
+U.S. Navy.name = "U.S. Navy"
+U.S. Navy___Houthi rebels.action = "watch for Iranian ships"
+U.S. Navy___Houthi rebels.doc_id = "3489738268_6"
+U.S. Navy___Houthi rebels.reason = "resupply weapons"
+U.S. Navy___Houthi rebels.relationship = "The U.S. Navy is watching for Iranian ships believed to be resupplying the Houthi rebels."
+U.S. Navy___Iranian military.concern = "top Iranian commanders might not be in full control"
+U.S. Navy___Iranian military.context = "recent unsafe maneuver"
+U.S. Navy___Iranian military.doc_id = "3489738268_6"
+U.S. Navy___Iranian military.relationship != U.S. Navy___Houthi rebels.relationship
+U.S. Navy___Iranian military.relationship = "The U.S. Navy expressed concern over the Iranian military's control of local forces."
+
+Rules:
+Q[U.S. Navy,U.S. Navy] (Houthi rebels.location = "Yemen" ∧ U.S. Navy___Iranian military.context = "recent unsafe maneuver" ∧ U.S. Navy___Houthi rebels.action = "watch for Iranian ships" ∧ U.S. Navy.location != "Gulf of Aden" ∧ Houthi rebels.name = "Houthi rebels" → Iranian military.label != Houthi rebels.label)
+Q[U.S. Navy,U.S. Navy] (Iranian military.location != "Persian Gulf" ∧ Iranian military.label != Houthi rebels.label ∧ None_ML(U.S. Navy___Houthi rebels.attrs, U.S. Navy___Iranian military.attrs) ∧ Iranian military.name != "Iranian military" ∧ U.S. Navy.label != "Military" ∧ U.S. Navy.name != Iranian military.name → U.S. Navy___Iranian military.relationship = "The U.S. Navy expressed concern over the Iranian military's control of local forces.")
+Q[U.S. Navy,U.S. Navy] (U.S. Navy___Houthi rebels.relationship = "The U.S. Navy is watching for Iranian ships believed to be resupplying the Houthi rebels." ∧ Iranian military.location != Houthi rebels.location → Iranian military.label != "Military")
+Q[U.S. Navy,U.S. Navy] (U.S. Navy___Houthi rebels.action = "watch for Iranian ships" ∧ Houthi rebels.label = "Group" ∧ U.S. Navy.location != Iranian military.location ∧ Iranian military.label != Houthi rebels.label → Iranian military.name != "Iranian military")
+Q[U.S. Navy,U.S. Navy] (Houthi rebels.label = "Group" ∧ U.S. Navy___Iranian military.concern = "top Iranian commanders might not be in full control" ∧ U.S. Navy___Iranian military.doc_id = "3489738268_6" → U.S. Navy.label != Houthi rebels.label)
+Q[U.S. Navy,U.S. Navy] (U.S. Navy___Houthi rebels.doc_id = "3489738268_6" ∧ U.S. Navy___Iranian military.concern = "top Iranian commanders might not be in full control" → Houthi rebels.label = "Group")
+Q[U.S. Navy,U.S. Navy] (Iranian military.location != "Persian Gulf" ∧ Iranian military.label != Houthi rebels.label ∧ None_ML(U.S. Navy___Houthi rebels.attrs, U.S. Navy___Iranian military.attrs) ∧ U.S. Navy.location != "Gulf of Aden" → U.S. Navy___Houthi rebels.reason = "resupply weapons")
+Q[U.S. Navy,U.S. Navy] (Iranian military.name != Houthi rebels.name ∧ Iranian military.label != Houthi rebels.label ∧ Iranian military.label = "Military" ∧ U.S. Navy___Iranian military.concern = "top Iranian commanders might not be in full control" ∧ Houthi rebels.name = "Houthi rebels" ∧ U.S. Navy.label = "Military" → None_ML(U.S. Navy___Houthi rebels.attrs, U.S. Navy___Iranian military.attrs))
+Q[U.S. Navy,U.S. Navy] (Houthi rebels.location != "Yemen" ∧ U.S. Navy___Houthi rebels.action = "watch for Iranian ships" ∧ Houthi rebels.label = "Group" → U.S. Navy___Iranian military.doc_id = "3489738268_6")
+Q[U.S. Navy,U.S. Navy] (U.S. Navy.label != Houthi rebels.label ∧ Houthi rebels.name != "Houthi rebels" ∧ U.S. Navy.location != Iranian military.location ∧ Iranian military.name != Houthi rebels.name ∧ U.S. Navy.name != Houthi rebels.name → U.S. Navy.location != "Gulf of Aden")

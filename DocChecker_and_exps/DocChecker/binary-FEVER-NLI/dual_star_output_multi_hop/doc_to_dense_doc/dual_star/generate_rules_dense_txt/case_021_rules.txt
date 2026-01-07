@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 21)
+S1: Hong Kong maintains a separate political and economic system from China.
+S2: Hong Kong maintains a separate political system from Japan.
+
+Predicates:
+1. Hong_Kong.political_system
+2. Hong_Kong.economic_system
+3. China.political_system
+4. Japan.political_system
+5. Hong_Kong.separation_from(China)
+6. Hong_Kong.separation_from(Japan)
+7. China.conflict_with(Hong_Kong)
+8. Japan.conflict_with(Hong_Kong)
+9. Hong_Kong.maintains_separate_system
+10. China.maintains_integrated_system
+11. Japan.maintains_integrated_system
+12. Hong_Kong.relationship_with(China)
+13. Hong_Kong.relationship_with(Japan)
+14. M_NLI(S1, S2)
+15. Relation(Hong_Kong, China)
+16. Relation(Hong_Kong, Japan)
+17. violate(Hong_Kong, China)
+18. violate(Hong_Kong, Japan)
+19. Hong_Kong.political_system_conflict
+20. Hong_Kong.economic_system_conflict
+21. China.economic_system
+22. Japan.economic_system
+23. Hong_Kong.political_system_different_from(China)
+24. Hong_Kong.political_system_different_from(Japan)
+25. China.political_system_different_from(Hong_Kong)
+26. Japan.political_system_different_from(Hong_Kong)
+27. Hong_Kong.economic_system_different_from(China)
+28. Hong_Kong.economic_system_different_from(Japan)
+29. Hong_Kong.political_system_independence
+30. Hong_Kong.economic_system_independence
+
+Rules:
+1. Q[Hong, Hong_Kong.separation_from(China) == true](Hong_Kong.maintains_separate_system → Relation(Hong_Kong, China))
+2. Q[Hong, Hong_Kong.separation_from(Japan) == true](Hong_Kong.maintains_separate_system → Relation(Hong_Kong, Japan))
+3. Q[Hong, Hong_Kong.political_system_different_from(China) == true](Hong_Kong.maintains_separate_system → Relation(Hong_Kong, China))
+4. Q[Hong, Hong_Kong.political_system_different_from(Japan) == true](Hong_Kong.maintains_separate_system → Relation(Hong_Kong, Japan))
+5. Q[Hong, Hong_Kong.relationship_with(China) == "conflict"](Hong_Kong.maintains_separate_system → Relation(Hong_Kong, China))
+6. Q[Hong, Hong_Kong.relationship_with(Japan) == "conflict"](Hong_Kong.maintains_separate_system → Relation(Hong_Kong, Japan))
+7. Q[Hong, Hong_Kong.political_system_conflict == true](Hong_Kong.political_system_different_from(China) → Relation(Hong_Kong, China))
+8. Q[Hong, Hong_Kong.political_system_conflict == true](Hong_Kong.political_system_different_from(Japan) → Relation(Hong_Kong, Japan))
+9. Q[Hong, China.political_system_different_from(Hong_Kong) == true](Hong_Kong.maintains_separate_system → Relation(Hong_Kong, China))
+10. Q[Hong, Japan.political_system_different_from(Hong_Kong) == true](Hong_Kong.maintains_separate_system → Relation(Hong_Kong, Japan))
+11. Q[Hong, Hong_Kong.economic_system_different_from(China) == true](Hong_Kong.maintains_separate_system → Relation(Hong_Kong, China))
+12. Q[Hong, Hong_Kong.economic_system_different_from(Japan) == true](Hong_Kong.maintains_separate_system → Relation(Hong_Kong, Japan))
+13. Q[Hong, China.maintains_integrated_system == true](Hong_Kong.separation_from(China) → Relation(Hong_Kong, China))
+14. Q[Hong, Japan.maintains_integrated_system == true](Hong_Kong.separation_from(Japan) → Relation(Hong_Kong, Japan))
+15. Q[Hong, Hong_Kong.political_system_independence == true](Hong_Kong.maintains_separate_system → Relation(Hong_Kong, China))
+16. Q[Hong, Hong_Kong.political_system_independence == true](Hong_Kong.maintains_separate_system → Relation(Hong_Kong, Japan))
+17. Q[Hong, Hong_Kong.economic_system_independence == true](Hong_Kong.maintains_separate_system → Relation(Hong_Kong, China))
+18. Q[Hong, Hong_Kong.economic_system_independence == true](Hong_Kong.maintains_separate_system → Relation(Hong_Kong, Japan))
+19. Q[Hong, Hong_Kong.political_system_conflict == true](Hong_Kong.political_system_different_from(China) → Relation(Hong_Kong, China))
+20. Q[Hong, Hong_Kong.political_system_conflict == true](Hong_Kong.political_system_different_from(Japan) → Relation(Hong_Kong, Japan))
+21. Q[Hong, Hong_Kong.relationship_with(China) == "conflict"](Hong_Kong.political_system_different_from(China) → Relation(Hong_Kong, China))
+22. Q[Hong, Hong_Kong.relationship_with(Japan) == "conflict"](Hong_Kong.political_system_different_from(Japan) → Relation(Hong_Kong, Japan))
+23. Q[Hong, Hong_Kong.separation_from(China) == true](Hong_Kong.political_system_conflict → Relation(Hong_Kong, China))
+24. Q[Hong, Hong_Kong.separation_from(Japan) == true](Hong_Kong.political_system_conflict → Relation(Hong_Kong, Japan))
+25. Q[Hong, Hong_Kong.political_system_different_from(China) == true](Hong_Kong.economic_system_different_from(China) → Relation(Hong_Kong, China))
+26. Q[Hong, Hong_Kong.political_system_different_from(Japan) == true](Hong_Kong.economic_system_different_from(Japan) → Relation(Hong_Kong, Japan))
+27. Q[Hong, Hong_Kong.relationship_with(China) == "conflict"](Hong_Kong.economic_system_different_from(China) → Relation(Hong_Kong, China))
+28. Q[Hong, Hong_Kong.relationship_with(Japan) == "conflict"](Hong_Kong.economic_system_different_from(Japan) → Relation(Hong_Kong, Japan))
+29. Q[Hong, Hong_Kong.political_system_conflict == true](Hong_Kong.economic_system_conflict → Relation(Hong_Kong, China))
+30. Q[Hong, Hong_Kong.political_system_conflict == true](Hong_Kong.economic_system_conflict → Relation(Hong_Kong, Japan))

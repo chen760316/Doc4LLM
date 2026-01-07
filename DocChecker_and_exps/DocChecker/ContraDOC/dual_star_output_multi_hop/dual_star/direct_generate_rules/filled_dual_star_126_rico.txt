@@ -1,0 +1,102 @@
+Predicates:
+Crucifixion.description != "The event where Jesus was crucified."
+Crucifixion.description = "The event where Jesus was crucified."
+Crucifixion.label != "Event"
+Crucifixion.label = "Event"
+Crucifixion.name != "Crucifixion"
+Crucifixion.name = "Crucifixion"
+Jesus.label != "Person"
+Jesus.label != Crucifixion.label
+Jesus.label = "Person"
+Jesus.name != "Jesus"
+Jesus.name != Crucifixion.name
+Jesus.name != Lazarus.name
+Jesus.name != Rich Man.name
+Jesus.name != Twelve Apostles.name
+Jesus.name = "Jesus"
+Jesus.nationality != "Jewish"
+Jesus.nationality = "Jewish"
+Jesus.occupation != "religious leader"
+Jesus.occupation = "religious leader"
+Jesus___Crucifixion.doc_id = "3489738288_4"
+Jesus___Crucifixion.relationship = "Jesus was crucified during the events leading up to Easter."
+Jesus___Lazarus.context = "Miracle"
+Jesus___Lazarus.doc_id != Jesus___Crucifixion.doc_id
+Jesus___Lazarus.doc_id = "3489738297_5"
+Jesus___Lazarus.event = "Resurrection"
+Jesus___Lazarus.location = "Bethany"
+Jesus___Lazarus.relationship != Jesus___Crucifixion.relationship
+Jesus___Lazarus.relationship = "Jesus raised Lazarus from the dead."
+Jesus___Lazarus.time = "Six days before Passover"
+Jesus___Rich Man.context != Jesus___Lazarus.context
+Jesus___Rich Man.context != Jesus___Twelve Apostles.context
+Jesus___Rich Man.context = "Parable"
+Jesus___Rich Man.doc_id != Jesus___Crucifixion.doc_id
+Jesus___Rich Man.doc_id = "3489738297_5"
+Jesus___Rich Man.goal = "Treasure in heaven"
+Jesus___Rich Man.relationship != Jesus___Crucifixion.relationship
+Jesus___Rich Man.relationship != Jesus___Lazarus.relationship
+Jesus___Rich Man.relationship != Jesus___Twelve Apostles.relationship
+Jesus___Rich Man.relationship = "Jesus instructs the rich man to sell all he owns and distribute the money to the poor."
+Jesus___Twelve Apostles.context != Jesus___Lazarus.context
+Jesus___Twelve Apostles.context = "Itinerant mission"
+Jesus___Twelve Apostles.doc_id != Jesus___Crucifixion.doc_id
+Jesus___Twelve Apostles.doc_id = "3489738297_5"
+Jesus___Twelve Apostles.prospects = "Few"
+Jesus___Twelve Apostles.relationship != Jesus___Crucifixion.relationship
+Jesus___Twelve Apostles.relationship != Jesus___Lazarus.relationship
+Jesus___Twelve Apostles.relationship = "Jesus tells his Twelve Apostles to leave their day jobs and follow him."
+Jesus___Twelve Apostles.support = "None visible"
+Lazarus.label != "Person"
+Lazarus.label != Crucifixion.label
+Lazarus.label = "Person"
+Lazarus.name != "Lazarus"
+Lazarus.name != Crucifixion.name
+Lazarus.name = "Lazarus"
+Lazarus.relationship != "Raised from the dead"
+Lazarus.relationship = "Raised from the dead"
+Lazarus.status != "Friend"
+Lazarus.status = "Friend"
+None_ML(Jesus.attrs, Crucifixion.attrs)
+None_ML(Jesus___Twelve Apostles.attrs, Jesus___Rich Man.attrs)
+Rich Man.label != "Person"
+Rich Man.label != Crucifixion.label
+Rich Man.label = "Person"
+Rich Man.name != "Rich Man"
+Rich Man.name != Crucifixion.name
+Rich Man.name != Lazarus.name
+Rich Man.name != Twelve Apostles.name
+Rich Man.name = "Rich Man"
+Rich Man.relationship != "Follower"
+Rich Man.relationship != Lazarus.relationship
+Rich Man.relationship != Twelve Apostles.relationship
+Rich Man.relationship = "Follower"
+Rich Man.status != "Wealthy"
+Rich Man.status != Lazarus.status
+Rich Man.status != Twelve Apostles.status
+Rich Man.status = "Wealthy"
+Twelve Apostles.label != "Person"
+Twelve Apostles.label != Crucifixion.label
+Twelve Apostles.label = "Person"
+Twelve Apostles.name != "Twelve Apostles"
+Twelve Apostles.name != Crucifixion.name
+Twelve Apostles.name != Lazarus.name
+Twelve Apostles.name = "Twelve Apostles"
+Twelve Apostles.relationship != "Followers"
+Twelve Apostles.relationship != Lazarus.relationship
+Twelve Apostles.relationship = "Followers"
+Twelve Apostles.status != "Disciples"
+Twelve Apostles.status != Lazarus.status
+Twelve Apostles.status = "Disciples"
+
+Rules:
+Q[Jesus,Jesus] (Crucifixion.name = "Crucifixion" ∧ Jesus.nationality = "Jewish" ∧ Jesus___Lazarus.time = "Six days before Passover" ∧ Jesus.occupation != "religious leader" → Twelve Apostles.status != "Disciples")
+Q[Jesus,Jesus] (Twelve Apostles.name != "Twelve Apostles" ∧ Crucifixion.label = "Event" → Jesus___Rich Man.context = "Parable")
+Q[Jesus,Jesus] (Jesus___Lazarus.relationship = "Jesus raised Lazarus from the dead." ∧ Twelve Apostles.name != "Twelve Apostles" ∧ Twelve Apostles.relationship = "Followers" → Rich Man.label != "Person")
+Q[Jesus,Jesus] (Jesus.nationality != "Jewish" ∧ Jesus___Lazarus.doc_id != Jesus___Crucifixion.doc_id ∧ Jesus.name != Twelve Apostles.name ∧ Jesus___Rich Man.doc_id = "3489738297_5" ∧ Lazarus.label != "Person" → Twelve Apostles.label != Crucifixion.label)
+Q[Jesus,Jesus] (Jesus___Lazarus.context = "Miracle" ∧ Crucifixion.name = "Crucifixion" ∧ Lazarus.label = "Person" ∧ Twelve Apostles.status != "Disciples" ∧ Lazarus.name = "Lazarus" ∧ Jesus___Rich Man.relationship != Jesus___Twelve Apostles.relationship → Jesus.name = "Jesus")
+Q[Jesus,Jesus] (Jesus___Twelve Apostles.doc_id = "3489738297_5" ∧ Jesus.occupation = "religious leader" → Jesus.label != "Person")
+Q[Jesus,Jesus] (Jesus___Rich Man.goal = "Treasure in heaven" ∧ Twelve Apostles.label != Crucifixion.label ∧ Twelve Apostles.status != Lazarus.status ∧ Jesus.name != "Jesus" ∧ Jesus___Rich Man.relationship != Jesus___Twelve Apostles.relationship ∧ Twelve Apostles.label != "Person" → Jesus___Lazarus.context = "Miracle")
+Q[Jesus,Jesus] (Lazarus.label != "Person" ∧ Jesus___Rich Man.context = "Parable" ∧ Rich Man.status = "Wealthy" → Rich Man.name != Twelve Apostles.name)
+Q[Jesus,Jesus] (Crucifixion.name = "Crucifixion" ∧ Jesus___Rich Man.context = "Parable" ∧ Rich Man.name != Twelve Apostles.name ∧ Jesus___Lazarus.event = "Resurrection" → Jesus___Twelve Apostles.relationship = "Jesus tells his Twelve Apostles to leave their day jobs and follow him.")
+Q[Jesus,Jesus] (Jesus___Lazarus.relationship = "Jesus raised Lazarus from the dead." ∧ Jesus___Twelve Apostles.prospects = "Few" ∧ Jesus.name != Twelve Apostles.name ∧ Jesus.label != Crucifixion.label ∧ Crucifixion.name = "Crucifixion" → Twelve Apostles.name != "Twelve Apostles")

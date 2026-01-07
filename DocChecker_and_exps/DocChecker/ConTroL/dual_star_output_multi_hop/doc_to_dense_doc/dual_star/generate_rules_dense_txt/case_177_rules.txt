@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 177)
+S1: Nicotine is the primary one that acts on the brain, altering peoples moods, appetites and alertness in ways they find pleasant and beneficial.
+S2: Unfortunately, as it is widely known, nicotine has a dark side: it is highly addictive.
+
+Predicates:
+1. Nicotine.positive_effects
+2. Nicotine.addictive
+3. Nicotine.alters_moods
+4. Nicotine.alters_appetites
+5. Nicotine.alters_alertness
+6. People.find_nicotine_pleasant
+7. People.find_nicotine_beneficial
+8. Nicotine.has_dark_side
+9. Nicotine.is_highly_addictive
+10. Positive_aspect.nicotines_effects
+11. Negative_aspect.nicotines_addictiveness
+12. M_NLI(S1, S2)
+13. Content(Opinion)(S1, Positive)
+14. Content(Opinion)(S2, Negative)
+15. violate(S1, S2)
+16. M_NLI(nicotine_positive, nicotine_addictive)
+17. Nicotine.enhances_mood
+18. Nicotine.enhances_appetite
+19. Nicotine.enhances_alertness
+20. People.experience_nicotine_positively
+21. People.experience_nicotine_negatively
+22. Positive_effects.contradict_negative_aspects
+23. Nicotine.is_perceived_positively
+24. Nicotine.is_perceived_negatively
+25. M_NLI(positive_perception, negative_perception)
+26. Nicotine.contributes_to_addiction
+27. Addiction.is_a_negative_aspect
+28. M_NLI(pleasant_experience, addiction)
+29. People.value_nicotine_for_its_effects
+30. People.suffer_from_nicotine_addiction
+
+Rules:
+1. Q[Nicotine, Nicotine.positive_effects, Nicotine.addictive](Nicotine.positive_effects == true → Content(Opinion)(S1, Positive))
+2. Q[Nicotine, Nicotine.addictive, Nicotine.positive_effects](Nicotine.addictive == true → Content(Opinion)(S2, Negative))
+3. Q[Nicotine, Nicotine.alters_moods, Nicotine.has_dark_side](Nicotine.alters_moods == true → Content(Opinion)(S1, Positive))
+4. Q[Nicotine, Nicotine.is_highly_addictive, Nicotine.alters_moods](Nicotine.is_highly_addictive == true → Content(Opinion)(S2, Negative))
+5. Q[Nicotine, People.find_nicotine_pleasant, Nicotine.is_highly_addictive](People.find_nicotine_pleasant == true → Content(Opinion)(S1, Positive))
+6. Q[Nicotine, People.suffer_from_nicotine_addiction, People.find_nicotine_pleasant](People.suffer_from_nicotine_addiction == true → Content(Opinion)(S2, Negative))
+7. Q[Nicotine, Nicotine.alters_appetites, Nicotine.is_perceived_negatively](Nicotine.alters_appetites == true → Content(Opinion)(S1, Positive))
+8. Q[Nicotine, Nicotine.contributes_to_addiction, Nicotine.alters_appetites](Nicotine.contributes_to_addiction == true → Content(Opinion)(S2, Negative))
+9. Q[Nicotine, Nicotine.enhances_alertness, Nicotine.has_dark_side](Nicotine.enhances_alertness == true → Content(Opinion)(S1, Positive))
+10. Q[Nicotine, Addiction.is_a_negative_aspect, Nicotine.enhances_alertness](Addiction.is_a_negative_aspect == true → Content(Opinion)(S2, Negative))
+11. Q[Nicotine, People.experience_nicotine_positively, Nicotine.is_perceived_negatively](People.experience_nicotine_positively == true → Content(Opinion)(S1, Positive))
+12. Q[Nicotine, People.experience_nicotine_negatively, People.experience_nicotine_positively](People.experience_nicotine_negatively == true → Content(Opinion)(S2, Negative))
+13. Q[Nicotine, Positive_effects.contradict_negative_aspects, Nicotine.is_highly_addictive](Positive_effects.contradict_negative_aspects == true → Content(Opinion)(S1, Positive))
+14. Q[Nicotine, Negative_aspect.nicotines_addictiveness, Positive_effects.contradict_negative_aspects](Negative_aspect.nicotines_addictiveness == true → Content(Opinion)(S2, Negative))
+15. Q[Nicotine, Nicotine.is_perceived_positively, Nicotine.is_perceived_negatively](Nicotine.is_perceived_positively == true → Content(Opinion)(S1, Positive))
+16. Q[Nicotine, M_NLI(pleasant_experience, addiction), Nicotine.is_perceived_positively](M_NLI(pleasant_experience, addiction) == true → Content(Opinion)(S2, Negative))
+17. Q[Nicotine, People.value_nicotine_for_its_effects, Nicotine.is_highly_addictive](People.value_nicotine_for_its_effects == true → Content(Opinion)(S1, Positive))
+18. Q[Nicotine, People.suffer_from_nicotine_addiction, People.value_nicotine_for_its_effects](People.suffer_from_nicotine_addiction == true → Content(Opinion)(S2, Negative))
+19. Q[Nicotine, Nicotine.enhances_mood, Nicotine.has_dark_side](Nicotine.enhances_mood == true → Content(Opinion)(S1, Positive))
+20. Q[Nicotine, Nicotine.is_highly_addictive, Nicotine.enhances_mood](Nicotine.is_highly_addictive == true → Content(Opinion)(S2, Negative))
+21. Q[Nicotine, People.find_nicotine_beneficial, Nicotine.is_perceived_negatively](People.find_nicotine_beneficial == true → Content(Opinion)(S1, Positive))
+22. Q[Nicotine, People.experience_nicotine_negatively, People.find_nicotine_beneficial](People.experience_nicotine_negatively == true → Content(Opinion)(S2, Negative))
+23. Q[Nicotine, M_NLI(nicotine_positive, nicotine_addictive), Nicotine.is_perceived_positively](M_NLI(nicotine_positive, nicotine_addictive) == true → Content(Opinion)(S1, Positive))
+24. Q[Nicotine, M_NLI(nicotine_positive, nicotine_addictive), Nicotine.is_perceived_negatively](M_NLI(nicotine_positive, nicotine_addictive) == true → Content(Opinion)(S2, Negative))
+25. Q[Nicotine, Positive_effects.contradict_negative_aspects, Nicotine.alters_alertness](Positive_effects.contradict_negative_aspects == true → Content(Opinion)(S1, Positive))
+26. Q[Nicotine, Negative_aspect.nicotines_addictiveness, Positive_effects.contradict_negative_aspects](Negative_aspect.nicotines_addictiveness == true → Content(Opinion)(S2, Negative))
+27. Q[Nicotine, Nicotine.enhances_appetite, Nicotine.has_dark_side](Nicotine.enhances_appetite == true → Content(Opinion)(S1, Positive))
+28. Q[Nicotine, Nicotine.is_highly_addictive, Nicotine.enhances_appetite](Nicotine.is_highly_addictive == true → Content(Opinion)(S2, Negative))
+29. Q[Nicotine, People.experience_nicotine_positively, Nicotine.contributes_to_addiction](People.experience_nicotine_positively == true → Content(Opinion)(S1, Positive))
+30. Q[Nicotine, People.suffer_from_nicotine_addiction, People.experience_nicotine_positively](People.suffer_from_nicotine_addiction == true → Content(Opinion)(S2, Negative))

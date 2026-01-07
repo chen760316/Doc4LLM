@@ -1,0 +1,45 @@
+Predicates:
+Jack Donaghy.label != "Person"
+Jack Donaghy.label = "Person"
+Jack Donaghy.name != "Jack Donaghy"
+Jack Donaghy.name != Rosemary Howard.name
+Jack Donaghy.name = "Jack Donaghy"
+Jack Donaghy.occupation != "Actor"
+Jack Donaghy.occupation != Rosemary Howard.occupation
+Jack Donaghy.occupation = "Actor"
+Jack Donaghy.role != "Jack Donaghy"
+Jack Donaghy.role = "Jack Donaghy"
+Liz Lemon.label != "Person"
+Liz Lemon.label = "Person"
+Liz Lemon.name != "Liz Lemon"
+Liz Lemon.name != Jack Donaghy.name
+Liz Lemon.name != Rosemary Howard.name
+Liz Lemon.name = "Liz Lemon"
+Liz Lemon.occupation != "Character"
+Liz Lemon.occupation != Jack Donaghy.occupation
+Liz Lemon.occupation = "Character"
+Liz Lemon___Jack Donaghy.doc_id = "3503017483_1"
+Liz Lemon___Jack Donaghy.relationship != Liz Lemon___Rosemary Howard.relationship
+Liz Lemon___Jack Donaghy.relationship = "Jack Donaghy fires Liz Lemon and Rosemary Howard after a disagreement."
+Liz Lemon___Rosemary Howard.doc_id = "3503017483_1"
+Liz Lemon___Rosemary Howard.relationship = "Liz Lemon invites Rosemary Howard to be a guest writer on The Girlie Show."
+None_ML(Jack Donaghy.attrs, Liz Lemon.attrs)
+None_ML(Liz Lemon___Rosemary Howard.attrs, Liz Lemon___Jack Donaghy.attrs)
+Rosemary Howard.label != "Person"
+Rosemary Howard.label = "Person"
+Rosemary Howard.name != "Rosemary Howard"
+Rosemary Howard.name = "Rosemary Howard"
+Rosemary Howard.occupation != "Character"
+Rosemary Howard.occupation = "Character"
+
+Rules:
+Q[Liz Lemon,Liz Lemon] (Jack Donaghy.occupation != "Actor" ∧ Rosemary Howard.occupation = "Character" ∧ Jack Donaghy.role = "Jack Donaghy" ∧ None_ML(Jack Donaghy.attrs, Liz Lemon.attrs) ∧ Jack Donaghy.occupation = "Actor" → Jack Donaghy.label != "Person")
+Q[Liz Lemon,Liz Lemon] (Liz Lemon.name != Jack Donaghy.name ∧ Jack Donaghy.name = "Jack Donaghy" ∧ Jack Donaghy.label = "Person" ∧ Rosemary Howard.label = "Person" → Rosemary Howard.name = "Rosemary Howard")
+Q[Liz Lemon,Liz Lemon] (Liz Lemon___Jack Donaghy.doc_id = "3503017483_1" ∧ Liz Lemon.occupation != "Character" ∧ Liz Lemon.name != Jack Donaghy.name → Liz Lemon___Rosemary Howard.doc_id = "3503017483_1")
+Q[Liz Lemon,Liz Lemon] (Jack Donaghy.label != "Person" ∧ Rosemary Howard.occupation = "Character" → Liz Lemon.occupation != "Character")
+Q[Liz Lemon,Liz Lemon] (Liz Lemon.occupation != Jack Donaghy.occupation ∧ Liz Lemon.occupation != "Character" ∧ Jack Donaghy.role = "Jack Donaghy" ∧ Liz Lemon___Rosemary Howard.relationship = "Liz Lemon invites Rosemary Howard to be a guest writer on The Girlie Show." ∧ Jack Donaghy.name != Rosemary Howard.name ∧ Liz Lemon.name = "Liz Lemon" → Liz Lemon___Jack Donaghy.relationship = "Jack Donaghy fires Liz Lemon and Rosemary Howard after a disagreement.")
+Q[Liz Lemon,Liz Lemon] (Liz Lemon___Rosemary Howard.doc_id = "3503017483_1" ∧ Rosemary Howard.label = "Person" ∧ Jack Donaghy.occupation != Rosemary Howard.occupation ∧ None_ML(Jack Donaghy.attrs, Liz Lemon.attrs) → Rosemary Howard.name != "Rosemary Howard")
+Q[Liz Lemon,Liz Lemon] (Liz Lemon___Rosemary Howard.doc_id = "3503017483_1" ∧ None_ML(Jack Donaghy.attrs, Liz Lemon.attrs) → Liz Lemon.name != Jack Donaghy.name)
+Q[Liz Lemon,Liz Lemon] (Jack Donaghy.role != "Jack Donaghy" ∧ Rosemary Howard.name != "Rosemary Howard" ∧ Rosemary Howard.occupation != "Character" ∧ Liz Lemon___Rosemary Howard.doc_id = "3503017483_1" ∧ Jack Donaghy.occupation != Rosemary Howard.occupation ∧ Jack Donaghy.name != Rosemary Howard.name → Liz Lemon.name != Rosemary Howard.name)
+Q[Liz Lemon,Liz Lemon] (Rosemary Howard.label != "Person" ∧ None_ML(Jack Donaghy.attrs, Liz Lemon.attrs) ∧ Rosemary Howard.name != "Rosemary Howard" → Liz Lemon.label != "Person")
+Q[Liz Lemon,Liz Lemon] (Jack Donaghy.label = "Person" ∧ Liz Lemon___Jack Donaghy.doc_id = "3503017483_1" ∧ Liz Lemon___Jack Donaghy.relationship = "Jack Donaghy fires Liz Lemon and Rosemary Howard after a disagreement." ∧ Rosemary Howard.name != "Rosemary Howard" ∧ Jack Donaghy.name = "Jack Donaghy" → None_ML(Jack Donaghy.attrs, Liz Lemon.attrs))

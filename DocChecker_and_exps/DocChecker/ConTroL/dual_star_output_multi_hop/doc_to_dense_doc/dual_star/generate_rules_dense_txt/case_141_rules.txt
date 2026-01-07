@@ -1,0 +1,65 @@
+Source: dense_text.txt (Index 141)
+S1: A victim yesterday described their offender as a male aged approximately in his early forties, with dark hair and a moustache, wearing dark overalls.
+S2: Akram, aged 39, used to work for the local gas board.
+
+Predicates:
+1. Victim.offender_description
+2. Offender.age
+3. Offender.gender
+4. Offender.hair_color
+5. Offender.has_moustache
+6. Offender.clothing
+7. Akram.age
+8. Akram.occupation
+9. Akram.employer
+10. Akram.age_comparison
+11. Offender.age_range
+12. Offender.approximate_age
+13. Victim.description_time
+14. Akram.age_group
+15. Akram.employment_status
+16. "describes".victim
+17. "describes".offender
+18. "works_for".Akram
+19. "is".male
+20. "is".in_his_early_forties
+21. "is".dark_hair
+22. "is".wearing_dark_overalls
+23. "is".39_years_old
+24. "is".not_offender
+25. "is".local_gas_board
+26. "describes".age
+27. "describes".gender
+28. "describes".appearance
+29. "describes".clothing
+30. violate(Akram, Offender)
+
+Rules:
+1. Q[victim, Offender.age, Akram.age](Victim.offender_description == "male" ∧ Offender.age_range == "early forties" ∧ Akram.age == 39 → Temporal(x0, y0))
+2. Q[victim, Offender.gender, Akram.gender](Victim.offender_description == "male" ∧ "is".male ∧ Akram.age == 39 → Temporal(x0, y0))
+3. Q[victim, Offender.hair_color, Akram.hair_color](Victim.offender_description == "dark hair" ∧ "is".dark_hair ∧ Akram.age == 39 → Temporal(x0, y0))
+4. Q[victim, Offender.has_moustache, Akram.has_moustache](Victim.offender_description == "moustache" ∧ Offender.has_moustache == true ∧ Akram.age == 39 → Temporal(x0, y0))
+5. Q[victim, Offender.clothing, Akram.clothing](Victim.offender_description == "dark overalls" ∧ "is".wearing_dark_overalls ∧ Akram.age == 39 → Temporal(x0, y0))
+6. Q[victim, Offender.approximate_age, Akram.age](Victim.offender_description == "early forties" ∧ Offender.approximate_age == "early forties" ∧ Akram.age == 39 → Temporal(x0, y0))
+7. Q[victim, Offender.age_range, Akram.age_group](Victim.offender_description == "early forties" ∧ Offender.age_range == "early forties" ∧ Akram.age == 39 → Temporal(x0, y0))
+8. Q[victim, Akram.age_comparison, Offender.age](Victim.offender_description == "early forties" ∧ Akram.age == 39 ∧ Offender.age == 40 → Temporal(x0, y0))
+9. Q[victim, Akram.occupation, Offender.occupation](Victim.offender_description == "male" ∧ Akram.occupation == "local gas board" ∧ Offender.occupation == "unknown" → Temporal(x0, y0))
+10. Q[victim, Akram.employer, Offender.employer](Victim.offender_description == "male" ∧ Akram.employer == "local gas board" ∧ Offender.employer == "unknown" → Temporal(x0, y0))
+11. Q[victim, Akram.employment_status, Offender.employment_status](Victim.offender_description == "male" ∧ Akram.employment_status == "employed" ∧ Offender.employment_status == "unknown" → Temporal(x0, y0))
+12. Q[victim, "describes".victim, "describes".offender](Victim.offender_description == "male" ∧ "describes".victim == "describes" ∧ "describes".offender == "describes" → Temporal(x0, y0))
+13. Q[victim, "describes".age, "describes".gender](Victim.offender_description == "male" ∧ "describes".age == "early forties" ∧ "describes".gender == "male" → Temporal(x0, y0))
+14. Q[victim, "describes".appearance, "describes".clothing](Victim.offender_description == "dark overalls" ∧ "describes".appearance == "dark hair" ∧ "describes".clothing == "dark overalls" → Temporal(x0, y0))
+15. Q[victim, "is".not_offender, Akram](Victim.offender_description == "male" ∧ Akram.age == 39 ∧ "is".not_offender == true → Temporal(x0, y0))
+16. Q[victim, "is".local_gas_board, Akram](Victim.offender_description == "male" ∧ Akram.occupation == "local gas board" ∧ "is".local_gas_board == true → Temporal(x0, y0))
+17. Q[victim, "is".in_his_early_forties, Akram](Victim.offender_description == "early forties" ∧ Akram.age == 39 ∧ "is".in_his_early_forties == false → Temporal(x0, y0))
+18. Q[victim, "is".dark_hair, Akram](Victim.offender_description == "dark hair" ∧ Akram.age == 39 ∧ "is".dark_hair == true → Temporal(x0, y0))
+19. Q[victim, "is".wearing_dark_overalls, Akram](Victim.offender_description == "dark overalls" ∧ Akram.age == 39 ∧ "is".wearing_dark_overalls == true → Temporal(x0, y0))
+20. Q[victim, "describes".clothing, Akram.clothing](Victim.offender_description == "dark overalls" ∧ Akram.clothing == "unknown" → Temporal(x0, y0))
+21. Q[victim, "describes".gender, Akram.gender](Victim.offender_description == "male" ∧ Akram.gender == "unknown" → Temporal(x0, y0))
+22. Q[victim, "describes".age, Akram.age](Victim.offender_description == "early forties" ∧ Akram.age == 39 → Temporal(x0, y0))
+23. Q[victim, "describes".appearance, Akram](Victim.offender_description == "dark hair" ∧ Akram.age == 39 ∧ "describes".appearance == "unknown" → Temporal(x0, y0))
+24. Q[victim, "describes".offender, Akram](Victim.offender_description == "male" ∧ Akram.age == 39 ∧ "describes".offender == "unknown" → Temporal(x0, y0))
+25. Q[victim, "describes".age_group, Akram.age_group](Victim.offender_description == "early forties" ∧ Akram.age == 39 ∧ Akram.age_group == "thirties" → Temporal(x0, y0))
+26. Q[victim, "is".not_offender, Akram](Victim.offender_description == "male" ∧ Akram.age == 39 ∧ "is".not_offender == true → Temporal(x0, y0))
+27. Q[victim, "is".in_his_early_forties, Akram](Victim.offender_description == "early forties" ∧ Akram.age == 39 ∧ "is".in_his_early_forties == false → Temporal(x0, y0))
+28. Q[victim, "is".wearing_dark_overalls, Akram](Victim.offender_description ==

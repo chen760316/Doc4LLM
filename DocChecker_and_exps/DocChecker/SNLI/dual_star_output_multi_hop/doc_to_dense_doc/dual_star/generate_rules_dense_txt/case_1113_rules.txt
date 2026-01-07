@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 1113)
+S1: The hiker with a black and orange backpack walks away into the wooded area.
+S2: The hiker is heading back home from the woods.
+
+Predicates:
+1. Hiker.backpack_color = black_and_orange
+2. Hiker.location = wooded_area
+3. Hiker.direction = away
+4. Hiker.destination = home
+5. Hiker.starting_point = woods
+6. Hiker.action = walking
+7. Hiker.movement = returning
+8. Hiker.status = moving
+9. Hiker.intention = heading_back
+10. Hiker.activity = hiking
+11. Woods.status = occupied
+12. Woods.direction = inward
+13. Home.status = destination
+14. Home.direction = outward
+15. Hiker_with_black_and_orange_backpack.action = moving_away
+16. Hiker_with_black_and_orange_backpack.destination = wooded_area
+17. Hiker_with_black_and_orange_backpack.intention = exploring
+18. Hiker_with_black_and_orange_backpack.status = active
+19. Hiker_with_black_and_orange_backpack.movement = departing
+20. Hiker_with_black_and_orange_backpack.starting_point = trail
+21. Hiker_with_black_and_orange_backpack.relationship_to_woods = leaving
+22. Hiker_with_black_and_orange_backpack.relationship_to_home = returning
+23. Hiker_with_black_and_orange_backpack.direction_to_home = opposite
+24. Hiker_with_black_and_orange_backpack.direction_to_woods = inward
+25. M_NLI(S1, S2) = true
+26. Causal(S1, S2) = false
+27. violate(S1, S2) = true
+28. Hiker.movement_status = contradictory
+29. Hiker.intention_status = conflicting
+30. Hiker.action_status = inconsistent
+
+Rules:
+1. Q[The, Hiker.backpack_color == "black_and_orange", Hiker.direction == away](Hiker_with_black_and_orange_backpack.action == moving_away → Causal(x0, y0))
+2. Q[The, Hiker.location == "wooded_area", Hiker.direction == away](Hiker_with_black_and_orange_backpack.relationship_to_woods == leaving → Causal(x0, y0))
+3. Q[The, Hiker.direction == away, Hiker.destination == home](Hiker_with_black_and_orange_backpack.direction_to_home == opposite → Causal(x0, y0))
+4. Q[The, Hiker.action == walking, Hiker.movement == returning](Hiker.movement_status == contradictory → Causal(x0, y0))
+5. Q[The, Hiker.status == moving, Hiker.intention == heading_back](Hiker.intention_status == conflicting → Causal(x0, y0))
+6. Q[The, Hiker.starting_point == "woods", Hiker.direction == away](Hiker_with_black_and_orange_backpack.direction_to_woods == inward → Causal(x0, y0))
+7. Q[The, Hiker.activity == hiking, Hiker.movement == returning](Hiker.action_status == inconsistent → Causal(x0, y0))
+8. Q[The, Hiker_with_black_and_orange_backpack.action == moving_away, Hiker_with_black_and_orange_backpack.destination == wooded_area](M_NLI(S1, S2) == true → Causal(x0, y0))
+9. Q[The, Hiker_with_black_and_orange_backpack.relationship_to_home == returning, Hiker_with_black_and_orange_backpack.direction_to_home == opposite](Causal(S1, S2) == false → Causal(x0, y0))
+10. Q[The, Hiker_with_black_and_orange_backpack.status == active, Hiker_with_black_and_orange_backpack.movement == departing](violate(S1, S2) == true → Causal(x0, y0))
+11. Q[The, Woods.status == occupied, Hiker.direction == away](Hiker_with_black_and_orange_backpack.relationship_to_woods == leaving → Causal(x0, y0))
+12. Q[The, Home.status == destination, Hiker.direction == away](Hiker_with_black_and_orange_backpack.direction_to_home == opposite → Causal(x0, y0))
+13. Q[The, Hiker_with_black_and_orange_backpack.intention == exploring, Hiker.movement == returning](Hiker.movement_status == contradictory → Causal(x0, y0))
+14. Q[The, Hiker_with_black_and_orange_backpack.starting_point == trail, Hiker.direction == away](Hiker_with_black_and_orange_backpack.relationship_to_home == returning → Causal(x0, y0))
+15. Q[The, Hiker_with_black_and_orange_backpack.direction_to_woods == inward, Hiker.direction == away](Hiker_with_black_and_orange_backpack.direction_to_home == opposite → Causal(x0, y0))
+16. Q[The, Hiker.action == walking, Hiker_with_black_and_orange_backpack.status == active](Hiker.intention_status == conflicting → Causal(x0, y0))
+17. Q[The, Hiker_with_black_and_orange_backpack.movement == departing, Hiker.direction == away](Hiker.action_status == inconsistent → Causal(x0, y0))
+18. Q[The, Hiker_with_black_and_orange_backpack.relationship_to_woods == leaving, Hiker.direction == away](M_NLI(S1, S2) == true → Causal(x0, y0))
+19. Q[The, Hiker_with_black_and_orange_backpack.direction_to_home == opposite, Hiker.direction == away](Causal(S1, S2) == false → Causal(x0, y0))
+20. Q[The, Hiker_with_black_and_orange_backpack.status == active, Hiker_with_black_and_orange_backpack.action == moving_away](violate(S1, S2) == true → Causal(x0, y0))
+21. Q[The, Hiker.location == "wooded_area", Hiker_with_black_and_orange_backpack.direction_to_home == opposite](Hiker_with_black_and_orange_backpack.relationship_to_home == returning → Causal(x0, y0))
+22. Q[The, Hiker.direction == away, Hiker_with_black_and_orange_backpack.movement == returning](Hiker.movement_status == contradictory → Causal(x0, y0))
+23. Q[The, Hiker_with_black_and_orange_backpack.action == moving_away, Hiker_with_black_and_orange_backpack.intention == exploring](Hiker.intention_status == conflicting → Causal(x0, y0))
+24. Q[The, Hiker_with_black_and_orange_backpack.starting_point == trail, Hiker_with_black_and_orange_backpack.direction_to_woods == inward](Hiker.action_status == inconsistent → Causal(x0, y0))
+25. Q[The, Hiker_with_black_and_orange_backpack.relationship_to_home == returning, Hiker_with_black_and_orange_backpack.direction_to_home == opposite](M_NLI(S1, S2) == true → Causal(x0, y0))
+26. Q[The, Hiker_with_black_and_orange_backpack.status == active, Hiker_with_black_and_orange_backpack.movement == departing](Causal(S1, S2) == false → Causal(x0, y0))
+27. Q[The, Hiker_with_black_and_orange_backpack.action == moving_away, Hiker_with_black_and_orange_backpack.destination == wooded_area](violate(S1, S2) == true → Causal(x0, y0))
+28. Q[The, Hiker_with_black_and_orange_backpack.relationship_to_woods == leaving, Hiker.direction == away](Hiker_with_black_and_orange_backpack.direction_to_home == opposite → Causal(x0, y0))
+29. Q[The, Hiker_with_black_and_orange_backpack.direction_to_woods == inward, Hiker_with_black_and_orange_backpack.movement == returning](Hiker.movement_status == contradictory → Causal(x0, y0))
+30. Q[The, Hiker_with_black_and_orange_backpack.status == active, Hiker_with_black_and_orange_backpack.action == moving_away](Hiker.intention_status == conflicting → Causal(x0, y0))

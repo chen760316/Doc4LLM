@@ -1,0 +1,101 @@
+Predicates:
+1. Chad.location = "Africa"
+2. Chad.declaration_year < "1976"
+3. Chad.total_appearances >= "7"
+4. Chad.first_appearance != "2008"
+5. Chad.number_of_athletes <= "1"
+6. Chad.athlete = "Kaltouma Nadjina"
+7. "Chad did not attend the 1976 Summer Olympics due to civil war.".reason = "civil war"
+8. "Chad did not attend the 1980 Summer Olympics due to civil war.".reason != "peace"
+9. "Chad had the smallest delegation at the 2004 Summer Olympics.".number_of_athletes < "2"
+10. "Chad made its Olympic debut at the 1964 Summer Olympics.".declaration_year >= "1960"
+11. "Chad sent a delegation to compete at the 2008 Summer Olympics.".appearance_number > "9"
+12. "Chad sent a delegation to compete at the 2008 Summer Olympics.".hiatus = "1976-1980"
+13. "Chad sent its first female Olympian at the 1992 Summer Olympics.".notable_event != "first male Olympian"
+14. 2008 Summer Olympics.location = "Beijing, China"
+15. 2008 Summer Olympics.date > "July 2008"
+16. 2004 Summer Olympics.location != "Sydney, Australia"
+17. 1992 Summer Olympics.location = "Barcelona, Spain"
+18. 1976 Summer Olympics.location != "Tokyo, Japan"
+19. 1980 Summer Olympics.location < "1981"
+20. "Chad sent a delegation to compete at the 2008 Summer Olympics.".appearance = "first appearance at Summer Olympics since 1964"
+21. "Chad had the smallest delegation at the 2004 Summer Olympics.".athlete != "multiple athletes"
+22. "Chad did not attend the 1976 Summer Olympics due to civil war.".reason != "economic issues"
+23. "Chad did not attend the 1980 Summer Olympics due to civil war.".reason >= "civil unrest"
+24. "Chad sent a delegation to compete at the 2008 Summer Olympics.".total_appearances < "10"
+25. "Chad sent its first female Olympian at the 1992 Summer Olympics.".notable_event = "first female Olympian"
+26. "Chad made its Olympic debut at the 1964 Summer Olympics.".declaration_year < "1964"
+27. "Chad had the smallest delegation at the 2004 Summer Olympics.".number_of_athletes >= "1"
+28. "Chad sent a delegation to compete at the 2008 Summer Olympics.".hiatus != "1980-1984"
+29. "Chad sent a delegation to compete at the 2008 Summer Olympics.".appearance_number <= "10"
+30. "Chad did not attend the 1976 Summer Olympics due to civil war.".reason < "war"
+31. "Chad did not attend the 1980 Summer Olympics due to civil war.".reason > "conflict"
+32. "Chad sent a delegation to compete at the 2008 Summer Olympics.".first_appearance != "2000"
+33. "Chad had the smallest delegation at the 2004 Summer Olympics.".number_of_athletes < "3"
+34. "Chad made its Olympic debut at the 1964 Summer Olympics.".declaration_year >= "1960"
+35. "Chad sent its first female Olympian at the 1992 Summer Olympics.".notable_event != "first male athlete"
+36. "Chad sent a delegation to compete at the 2008 Summer Olympics.".appearance_number > "5"
+37. "Chad sent a delegation to compete at the 2008 Summer Olympics.".total_appearances >= "6"
+38. "Chad did not attend the 1976 Summer Olympics due to civil war.".reason != "political issues"
+39. "Chad did not attend the 1980 Summer Olympics due to civil war.".reason < "peace"
+40. "Chad had the smallest delegation at the 2004 Summer Olympics.".athlete != "team sport"
+41. "Chad made its Olympic debut at the 1964 Summer Olympics.".declaration_year < "1965"
+42. "Chad sent a delegation to compete at the 2008 Summer Olympics.".hiatus != "1980-1984"
+43. "Chad sent a delegation to compete at the 2008 Summer Olympics.".appearance = "first appearance since 1964"
+44. "Chad sent its first female Olympian at the 1992 Summer Olympics.".notable_event < "second female Olympian"
+45. "Chad did not attend the 1976 Summer Olympics due to civil war.".reason >= "war"
+46. "Chad did not attend the 1980 Summer Olympics due to civil war.".reason != "economic sanctions"
+47. "Chad had the smallest delegation at the 2004 Summer Olympics.".number_of_athletes > "0"
+48. "Chad made its Olympic debut at the 1964 Summer Olympics.".declaration_year <= "1964"
+49. "Chad sent a delegation to compete at the 2008 Summer Olympics.".appearance_number < "11"
+50. "Chad sent a delegation to compete at the 2008 Summer Olympics.".total_appearances != "5"
+51. M_NLI(Chad.declaration_year, "1960")
+52. M_NLU(Chad.total_appearances, "7")
+53. M_TEM(Chad.hiatus, "1976-1980")
+54. contra("Chad did not attend the 1976 Summer Olympics", "Chad attended the 1976 Summer Olympics")
+55. S(Chad, "Chad")
+56. S(ex, "Chad did not attend the 1976 Summer Olympics due to civil war.")
+57. T("Chad did not attend the 1976 Summer Olympics", "Chad attended the 1976 Summer Olympics", Factual)
+58. tau(Chad.declaration_year, "1964")
+59. tau("Chad did not attend the 1980 Summer Olympics due to civil war.", "Chad attended the 1980 Summer Olympics")
+60. tau(ex.reason, "civil war")
+61. M_NLI(Chad.location, "Africa")
+62. M_NLU(2008 Summer Olympics.location, "Beijing, China")
+63. M_TEM(2004 Summer Olympics.location, "Athens, Greece")
+64. contra("Chad sent a delegation to compete at the 2008 Summer Olympics", "Chad did not send a delegation to the 2008 Summer Olympics")
+65. S(2004 Summer Olympics, "2004 Summer Olympics")
+66. S(ex, "Chad sent a delegation to compete at the 2008 Summer Olympics.")
+67. T("Chad sent a delegation to compete at the 2008 Summer Olympics", "Chad did not send a delegation to the 2008 Summer Olympics", Negation)
+68. tau(2008 Summer Olympics.date,
+
+Rules:
+1. Q[Chad, 1976](Chad.location = "Africa" ∧ Chad.declaration_year < "1976" → Chad.did_not_attend_1976 = true)
+2. Q[Chad, 2004](Chad.total_appearances >= "7" ∧ Chad.number_of_athletes <= "1" → Chad.had_smallest_delegation_2004 = true)
+3. Q[Chad, 1992](Chad.first_appearance != "2008" ∧ Chad.athlete = "Kaltouma Nadjina" → Chad.sent_first_female_olympian = true)
+4. Q[Chad, civil_war](Chad.did_not_attend_1976 = true ∧ Chad.did_not_attend_1980 = true → Chad.reason = "civil war")
+5. Q[Chad, 2008](Chad.hiatus = "1976-1980" ∧ Chad.total_appearances < "10" ∧ Chad.appearance_number > "5" → Chad.sent_delegation_2008 = true)
+6. Q[Chad, 1964](Chad.declaration_year >= "1960" ∧ Chad.first_appearance != "2000" ∧ Chad.number_of_athletes < "3" → Chad.made_olympic_debut = true)
+7. Q[Chad, 1980](Chad.did_not_attend_1980 = true ∧ Chad.reason != "economic issues" ∧ Chad.reason >= "civil unrest" → Chad.reason = "civil war")
+8. Q[Chad, 2004](Chad.had_smallest_delegation_2004 = true ∧ Chad.number_of_athletes < "2" → Chad.athlete != "multiple athletes")
+9. Q[Chad, 2008](Chad.appearance_number <= "10" ∧ Chad.hiatus != "1980-1984" → Chad.appearance = "first appearance since 1964")
+10. Q[Chad, 1992](Chad.sent_first_female_olympian = true ∧ Chad.notable_event != "first male Olympian" → Chad.athlete = "Kaltouma Nadjina")
+11. Q[Chad, 1976](Chad.did_not_attend_1976 = true ∧ Chad.reason < "war" → Chad.reason != "political issues")
+12. Q[Chad, 2008](Chad.appearance_number < "11" ∧ Chad.total_appearances != "5" → Chad.sent_delegation = true)
+13. Q[Chad, 2004](Chad.number_of_athletes >= "1" ∧ Chad.had_smallest_delegation_2004 = true → Chad.athlete != "team sport")
+14. Q[Chad, 1964](Chad.declaration_year < "1965" ∧ Chad.made_olympic_debut = true → Chad.first_appearance = "1964")
+15. Q[Chad, 1980](Chad.did_not_attend_1980 = true ∧ Chad.reason != "economic sanctions" → Chad.reason = "civil war")
+16. Q[Chad, 2008](Chad.appearance_number > "5" ∧ Chad.total_appearances >= "6" → Chad.sent_delegation = true)
+17. Q[Chad, 2004](Chad.had_smallest_delegation_2004 = true ∧ Chad.number_of_athletes < "3" → Chad.athlete != "multiple athletes")
+18. Q[Chad, 1992](Chad.sent_first_female_olympian = true ∧ Chad.notable_event < "second female Olympian" → Chad.athlete = "Kaltouma Nadjina")
+19. Q[Chad, civil_war](Chad.did_not_attend_1976 = true ∧ Chad.reason >= "war" → Chad.reason != "economic issues")
+20. Q[Chad, 2008](Chad.appearance_number < "11" ∧ Chad.total_appearances != "5" → Chad.sent_delegation = true)
+21. Q[Chad, 2004](Chad.had_smallest_delegation_2004 = true ∧ Chad.number_of_athletes < "2" → Chad.athlete != "multiple athletes")
+22. Q[Chad, 1992](Chad.sent_first_female_olympian = true ∧ Chad.notable_event != "first male athlete" → Chad.athlete = "Kaltouma Nadjina")
+23. Q[Chad, 1976](Chad.did_not_attend_1976 = true ∧ Chad.reason < "war" → Chad.reason != "political issues")
+24. Q[Chad, 2008](Chad.appearance_number < "11" ∧ Chad.total_appearances != "5" → Chad.sent_delegation = true)
+25. Q[Chad, 2004](Chad.had_smallest_delegation_2004 = true ∧ Chad.number_of_athletes >= "1" → Chad.athlete != "team sport")
+26. Q[Chad, 1964](Chad.declaration_year < "1965" ∧ Chad.made_olympic_debut = true → Chad.first_appearance = "1964")
+27. Q[Chad, 1980](Chad.did_not_attend_1980 = true ∧ Chad.reason != "economic sanctions" → Chad.reason = "civil war")
+28. Q[Chad, 2008](Chad.appearance_number > "5" ∧ Chad.total_appearances >= "6" → Chad.sent_delegation = true)
+29. Q[Chad, 2004](Chad.had_smallest_delegation_2004 = true ∧ Chad.number_of_athletes < "3" → Chad.athlete != "multiple athletes")
+30. Q[Chad, 1992](Chad.sent_first_female_olympian = true ∧ Chad.notable_event < "second female Olympian" → Chad.athlete = "Kaltouma Nadjina")

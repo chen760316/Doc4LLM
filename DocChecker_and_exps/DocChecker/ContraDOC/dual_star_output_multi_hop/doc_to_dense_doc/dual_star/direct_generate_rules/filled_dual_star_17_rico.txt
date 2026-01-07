@@ -1,0 +1,49 @@
+Predicates:
+California drought.label != "Event"
+California drought.label != California.label
+California drought.label != food prices.label
+California drought.label = "Event"
+California drought.name != "California drought"
+California drought.name != California.name
+California drought.name != food prices.name
+California drought.name = "California drought"
+California drought.type != "current"
+California drought.type = "current"
+California drought___California.contradiction_type = "Causal"
+California drought___California.impact = "hurts the rest of the union"
+California drought___California.relationship != California drought___food prices.relationship
+California drought___California.relationship = "The historic California drought has negative effects on other regions of the United States."
+California drought___California.source_id = "3489738298_10"
+California drought___food prices.contradiction_type = "Causal"
+California drought___food prices.reason = "strong dollar"
+California drought___food prices.relationship = "The effect of the California drought on food prices is uncertain this year."
+California drought___food prices.source_id = "3489738298_10"
+California.label != "Location"
+California.label != food prices.label
+California.label = "Location"
+California.name != "California"
+California.name != food prices.name
+California.name = "California"
+California.status != "affected by drought"
+California.status != food prices.status
+California.status = "affected by drought"
+None_ML(California drought___food prices.attrs, California drought___California.attrs)
+None_ML(California.attrs, California drought.attrs)
+food prices.label != "Economic Factor"
+food prices.label = "Economic Factor"
+food prices.name != "food prices"
+food prices.name = "food prices"
+food prices.status != "unknown"
+food prices.status = "unknown"
+
+Rules:
+Q[California drought,California drought] (California.name != food prices.name ∧ None_ML(California.attrs, California drought.attrs) ∧ food prices.status != "unknown" → food prices.label != "Economic Factor")
+Q[California drought,California drought] (California drought___California.contradiction_type = "Causal" ∧ California drought.label = "Event" → California.status != "affected by drought")
+Q[California drought,California drought] (food prices.label = "Economic Factor" ∧ California drought___food prices.relationship = "The effect of the California drought on food prices is uncertain this year." ∧ California drought___California.source_id = "3489738298_10" ∧ California drought___California.relationship = "The historic California drought has negative effects on other regions of the United States." ∧ California drought___food prices.reason = "strong dollar" → California drought___California.contradiction_type = "Causal")
+Q[California drought,California drought] (California drought___food prices.source_id = "3489738298_10" ∧ food prices.status != "unknown" ∧ California drought___California.relationship = "The historic California drought has negative effects on other regions of the United States." ∧ food prices.label != "Economic Factor" ∧ California drought___food prices.contradiction_type = "Causal" ∧ California drought.name != California.name → California.name = "California")
+Q[California drought,California drought] (California.status != "affected by drought" ∧ food prices.label = "Economic Factor" ∧ None_ML(California drought___food prices.attrs, California drought___California.attrs) ∧ California.name != "California" → food prices.status = "unknown")
+Q[California drought,California drought] (California drought.type = "current" ∧ food prices.name = "food prices" ∧ None_ML(California.attrs, California drought.attrs) → California.name != food prices.name)
+Q[California drought,California drought] (None_ML(California.attrs, California drought.attrs) ∧ California drought___California.contradiction_type = "Causal" ∧ California drought.label = "Event" ∧ California drought.name != food prices.name ∧ food prices.label != "Economic Factor" → California.status = "affected by drought")
+Q[California drought,California drought] (California drought.label != California.label ∧ California drought___food prices.contradiction_type = "Causal" ∧ California drought___California.contradiction_type = "Causal" ∧ California.status != "affected by drought" → None_ML(California.attrs, California drought.attrs))
+Q[California drought,California drought] (food prices.label != "Economic Factor" ∧ California drought.type != "current" ∧ California.status != food prices.status ∧ California drought___food prices.relationship = "The effect of the California drought on food prices is uncertain this year." ∧ California drought.label = "Event" ∧ California drought.name != food prices.name → food prices.status != "unknown")
+Q[California drought,California drought] (California drought.label = "Event" ∧ California drought.type = "current" → California.label = "Location")

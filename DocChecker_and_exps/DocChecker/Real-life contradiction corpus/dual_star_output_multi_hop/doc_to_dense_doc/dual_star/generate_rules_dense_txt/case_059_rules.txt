@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 59)
+S1: I-75 is 15 lanes wide at the Windy Hill Interchange (8 northbound, 7 southbound), and as such, is the widest freeway in the world.
+S2: Highway 401 (or simply, 'the 401') acts as a bypass of the downtown core, and is both the busiest and widest highway in the world.
+
+Predicates:
+1. I-75.width
+2. I-75.northbound_lanes
+3. I-75.southbound_lanes
+4. I-75.is_widest_freeway
+5. Highway_401.width
+6. Highway_401.is_busiest_highway
+7. Highway_401.is_widest_highway
+8. Windy_Hill_Interchange.location
+9. Windy_Hill_Interchange.freeway
+10. freeway.width
+11. freeway.is_widest
+12. freeway.busiest
+13. freeway.northbound_lanes
+14. freeway.southbound_lanes
+15. I-75.northbound_lanes_count
+16. I-75.southbound_lanes_count
+17. Highway_401.bypass_downtown
+18. Highway_401.lanes_count
+19. I-75.lanes_count
+20. I-75.location
+21. Highway_401.location
+22. M_NLI(S1, S2)
+23. Factual(I-75, is_widest_freeway)
+24. Factual(Highway_401, is_widest_highway)
+25. violate(is_widest_freeway, is_widest_highway)
+26. I-75.is_highway
+27. Highway_401.is_highway
+28. I-75.has_interchange
+29. Highway_401.has_bypass
+30. Windy_Hill_Interchange.is_interchange
+
+Rules:
+1. Q[lanes, I-75, Highway_401](I-75.northbound_lanes == 8 ∧ I-75.southbound_lanes == 7 ∧ Highway_401.is_widest_highway == true → Factual(I-75, Highway_401))
+2. Q[lanes, I-75, Highway_401](I-75.is_widest_freeway == true ∧ Highway_401.is_widest_highway == true → Factual(I-75, Highway_401))
+3. Q[lanes, I-75, Highway_401](I-75.lanes_count == 15 ∧ Highway_401.lanes_count > 15 → Factual(I-75, Highway_401))
+4. Q[lanes, I-75, Highway_401](I-75.is_widest_freeway == true ∧ Highway_401.is_busiest_highway == true → Factual(I-75, Highway_401))
+5. Q[lanes, I-75, Highway_401](I-75.width == 15 ∧ Highway_401.width > 15 → Factual(I-75, Highway_401))
+6. Q[lanes, I-75, Highway_401](I-75.is_widest_freeway == true ∧ Highway_401.width == 15 → Factual(I-75, Highway_401))
+7. Q[lanes, I-75, Highway_401](I-75.northbound_lanes == 8 ∧ I-75.southbound_lanes == 7 ∧ Highway_401.lanes_count == 16 → Factual(I-75, Highway_401))
+8. Q[lanes, I-75, Highway_401](I-75.is_widest_freeway == true ∧ Highway_401.is_widest_highway == false → Factual(I-75, Highway_401))
+9. Q[lanes, I-75, Highway_401](I-75.is_widest_freeway == false ∧ Highway_401.is_widest_highway == true → Factual(I-75, Highway_401))
+10. Q[lanes, I-75, Highway_401](I-75.lanes_count == 15 ∧ Highway_401.is_widest_highway == true → Factual(I-75, Highway_401))
+11. Q[lanes, I-75, Highway_401](I-75.is_highway == true ∧ Highway_401.is_highway == true ∧ I-75.is_widest_freeway == true → Factual(I-75, Highway_401))
+12. Q[lanes, I-75, Highway_401](I-75.northbound_lanes_count == 8 ∧ I-75.southbound_lanes_count == 7 ∧ Highway_401.is_widest_highway == true → Factual(I-75, Highway_401))
+13. Q[lanes, I-75, Highway_401](I-75.is_widest_freeway == true ∧ Highway_401.is_widest_highway == true → Factual(I-75, Highway_401))
+14. Q[lanes, I-75, Highway_401](I-75.width == 15 ∧ Highway_401.is_widest_highway == false → Factual(I-75, Highway_401))
+15. Q[lanes, I-75, Highway_401](I-75.is_widest_freeway == true ∧ Highway_401.is_widest_highway == true → Factual(I-75, Highway_401))
+16. Q[lanes, I-75, Highway_401](I-75.is_highway == true ∧ Highway_401.is_highway == true ∧ Highway_401.is_widest_highway == true → Factual(I-75, Highway_401))
+17. Q[lanes, I-75, Highway_401](I-75.lanes_count == 15 ∧ Highway_401.lanes_count == 15 → Factual(I-75, Highway_401))
+18. Q[lanes, I-75, Highway_401](I-75.is_widest_freeway == true ∧ Highway_401.is_widest_highway == true → Factual(I-75, Highway_401))
+19. Q[lanes, I-75, Highway_401](I-75.northbound_lanes == 8 ∧ Highway_401.is_widest_highway == true → Factual(I-75, Highway_401))
+20. Q[lanes, I-75, Highway_401](I-75.southbound_lanes == 7 ∧ Highway_401.is_widest_highway == true → Factual(I-75, Highway_401))
+21. Q[lanes, I-75, Highway_401](I-75.is_widest_freeway == true ∧ Highway_401.is_busiest_highway == true → Factual(I-75, Highway_401))
+22. Q[lanes, I-75, Highway_401](I-75.width == 15 ∧ Highway_401.is_widest_highway == false → Factual(I-75, Highway_401))
+23. Q[lanes, I-75, Highway_401](I-75.is_highway == true ∧ Highway_401.is_highway == true ∧ Highway_401.is_widest_highway == true → Factual(I-75, Highway_401))
+24. Q[lanes, I-75, Highway_401](I-75.northbound_lanes == 8 ∧ Highway_401.is_widest_highway == true → Factual(I-75, Highway_401))
+25. Q[lanes, I-75, Highway_401](I-75.southbound_lanes == 7 ∧ Highway_401.is_widest_highway == true → Factual(I-75, Highway_401))
+26. Q[lanes, I-75, Highway_401](I-75.is_widest_freeway == true ∧ Highway_401.is_busiest_highway == true → Factual(I-75, Highway_401))
+27. Q[lanes, I-75, Highway_401](I-75.width == 15 ∧ Highway_401.is_widest_highway == false → Factual(I-75, Highway_401))
+28. Q[lanes, I-75, Highway_401](I-75.is_highway == true ∧ Highway_401.is_highway == true ∧ Highway_401.is_widest_highway == true → Factual(I-75, Highway_401))
+29. Q[lanes, I-75, Highway_401](I-75.northbound_lanes == 8 ∧ Highway_401.is_widest_highway == true → Factual(I-75, Highway_401))
+30. Q[lanes, I-75, Highway_401](I-75.southbound_lanes == 7 ∧ Highway_401.is_widest_high

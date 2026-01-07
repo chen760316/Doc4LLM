@@ -1,0 +1,15 @@
+### Entity Mapping ###
+x0: "Abdi"
+y0: "Abdi"
+
+### Rules with Substituted Entities ###
+Rule: Q[Abdi, Tom Hanks](Abdi.role = "actor" ∧ Abdi.status = "known" → violate(Abdi, Tom Hanks))
+
+Rule: Q[Abdi, Tom Hanks](Tom Hanks.role = "co-star" ∧ "Abdi was known as one of Tom Hanks' co-stars in a film.".film = "based on the Somali hijacking of the Maersk Alabama" → violate(Abdi, Tom Hanks))
+
+Rule: Q[Abdi, Captain Phillips](M_NLI("Abdi's first role was in the film Captain Phillips.", "Abdi was not in Captain Phillips.", tau) ∧ "Captain Phillips".box_office = "218 million" → violate(Abdi, Captain Phillips))
+
+Rule: Q[Abdi, Tom Hanks](Negation(Abdi, "not a co-star") ∧ Relation(Abdi, "not a co-star of Tom Hanks") ∧ "Abdi's first role".film = "Captain Phillips" → violate(Abdi, Tom Hanks))
+
+Rule: Q[Abdi, Tom Hanks](Relation("Abdi's first role", "not a co-star of Tom Hanks") ∧ "Tom Hanks' co-stars".film = "Captain Phillips" ∧ "Tom Hanks' co-stars".status = "known" → violate(Abdi, Tom Hanks))
+

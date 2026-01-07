@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 107)
+S1: The girl said quickly: 'I shan't leave the flat.'
+S2: The girl paused for several minutes before declaring that she was leaving the apartment immediately.
+
+Predicates:
+1. girl.said_quickly
+2. girl.paused
+3. girl.declared
+4. girl.leaving_apartment
+5. girl.not_leaving_flat
+6. flat.is_location
+7. apartment.is_location
+8. leaving_apartment.immediate
+9. leaving_flat.deferred
+10. contradiction.exists
+11. action.declaration
+12. action.pause
+13. action.speech
+14. speech.content
+15. speech.affirmation
+16. speech.negation
+17. time.several_minutes
+18. time.immediate
+19. girl.decision
+20. decision.leaving
+21. decision.not_leaving
+22. relationship.declaration
+23. relationship.pause
+24. relationship.speech
+25. M_NLI(S1, S2)
+26. Causal(S1, S2)
+27. violate(S1, S2)
+28. flat.is_different_from_apartment
+29. girl.expresses_conflict
+30. conflict.in_actions
+
+Rules:
+1. Q[The, girl.not_leaving_flat, girl.leaving_apartment](girl.not_leaving_flat == true → Causal(girl.not_leaving_flat, girl.leaving_apartment))
+2. Q[The, girl.said_quickly, girl.paused](girl.said_quickly == true → Causal(girl.said_quickly, girl.paused))
+3. Q[The, girl.paused, girl.declared](girl.paused == true → Causal(girl.paused, girl.declared))
+4. Q[The, girl.declared, girl.leaving_apartment](girl.declared == true → Causal(girl.declared, girl.leaving_apartment))
+5. Q[The, leaving_apartment.immediate, leaving_flat.deferred](leaving_apartment.immediate == true → Causal(leaving_apartment.immediate, leaving_flat.deferred))
+6. Q[The, contradiction.exists, girl.expresses_conflict](contradiction.exists == true → Causal(contradiction.exists, girl.expresses_conflict))
+7. Q[The, action.declaration, action.pause](action.declaration == true → Causal(action.declaration, action.pause))
+8. Q[The, speech.content, speech.negation](speech.content == "I shan't leave the flat" → Causal(speech.content, speech.negation))
+9. Q[The, speech.content, speech.affirmation](speech.content == "I am leaving the apartment immediately" → Causal(speech.content, speech.affirmation))
+10. Q[The, time.several_minutes, time.immediate](time.several_minutes == true → Causal(time.several_minutes, time.immediate))
+11. Q[The, girl.decision, decision.not_leaving](girl.decision == "not leaving" → Causal(girl.decision, decision.not_leaving))
+12. Q[The, girl.decision, decision.leaving](girl.decision == "leaving" → Causal(girl.decision, decision.leaving))
+13. Q[The, flat.is_location, apartment.is_location](flat.is_location == true → Causal(flat.is_location, apartment.is_location))
+14. Q[The, flat.is_different_from_apartment, contradiction.exists](flat.is_different_from_apartment == true → Causal(flat.is_different_from_apartment, contradiction.exists))
+15. Q[The, action.speech, relationship.speech](action.speech == true → Causal(action.speech, relationship.speech))
+16. Q[The, relationship.declaration, relationship.pause](relationship.declaration == true → Causal(relationship.declaration, relationship.pause))
+17. Q[The, girl.expresses_conflict, conflict.in_actions](girl.expresses_conflict == true → Causal(girl.expresses_conflict, conflict.in_actions))
+18. Q[The, leaving_flat.deferred, leaving_apartment.immediate](leaving_flat.deferred == true → Causal(leaving_flat.deferred, leaving_apartment.immediate))
+19. Q[The, girl.not_leaving_flat, contradiction.exists](girl.not_leaving_flat == true → Causal(girl.not_leaving_flat, contradiction.exists))
+20. Q[The, girl.leaving_apartment, contradiction.exists](girl.leaving_apartment == true → Causal(girl.leaving_apartment, contradiction.exists))
+21. Q[The, action.declaration, girl.not_leaving_flat](action.declaration == "I shan't leave the flat" → Causal(action.declaration, girl.not_leaving_flat))
+22. Q[The, action.declaration, girl.leaving_apartment](action.declaration == "I am leaving the apartment immediately" → Causal(action.declaration, girl.leaving_apartment))
+23. Q[The, speech.negation, girl.not_leaving_flat](speech.negation == true → Causal(speech.negation, girl.not_leaving_flat))
+24. Q[The, speech.affirmation, girl.leaving_apartment](speech.affirmation == true → Causal(speech.affirmation, girl.leaving_apartment))
+25. Q[The, time.immediate, girl.leaving_apartment](time.immediate == true → Causal(time.immediate, girl.leaving_apartment))
+26. Q[The, time.several_minutes, girl.paused](time.several_minutes == true → Causal(time.several_minutes, girl.paused))
+27. Q[The, girl.decision, girl.not_leaving_flat](girl.decision == "not leaving" → Causal(girl.decision, girl.not_leaving_flat))
+28. Q[The, girl.decision, girl.leaving_apartment](girl.decision == "leaving" → Causal(girl.decision, girl.leaving_apartment))
+29. Q[The, relationship.pause, girl.paused](relationship.pause == true → Causal(relationship.pause, girl.paused))
+30. Q[The, contradiction.exists, violate(S1, S2)](contradiction.exists == true → Causal(contradiction.exists, violate(S1, S2)))

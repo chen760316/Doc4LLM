@@ -1,0 +1,129 @@
+Predicates:
+1. Sam.status = "unknown"
+2. Sam.action = "buy"
+3. Sam.item = "soda"
+4. soda.quantity = "1"
+5. Sam.isExcited = true
+6. Sam.isGoingTo = "Mr. Brown's table"
+7. Sam.method = "fast"
+8. Jim.action = "stole everything"
+9. Sam.toldJim = "come with him"
+10. Sam.source_id = "Index_78"
+11. Sam.source_domain = "N/A"
+12. Sam.doc_index = "78"
+13. Sam.doc_index = "75"
+14. Sam.doc_index = "38"
+15. Sam.doc_index = "35"
+16. "buy".action = "purchase"
+17. "buy".item = "beverage"
+18. "buy".quantity = "1"
+19. "excited".emotion = "joy"
+20. "goingTo".destination = "Mr. Brown's table"
+21. "ranHome".method = "quickly"
+22. "toldJim".action = "invite"
+23. "toldJim".destination = "Mr. Brown's table"
+24. "stoleEverything".action = "theft"
+25. "soda".type = "carbonated"
+26. "soda".brand = "Cola"
+27. "soda".size = "medium"
+28. M_NLI(Sam.action, Jim.action)
+29. M_NLI(Sam.item, soda.type)
+30. T(Sam.action, Jim.action, tau)
+31. T(Sam.isExcited, Sam.status, tau)
+32. tau(Sam.item, soda.quantity)
+33. violate(Sam.action, Jim.action)
+34. Factual(Sam.item, soda.brand)
+35. Causal(Sam.action, Jim.action)
+36. Numeric(Sam.doc_index, Sam.source_id)
+37. Temporal(Sam.doc_index, Sam.doc_index)
+38. Content(Sam.isExcited, Sam.status)
+39. Negation(Sam.action, Jim.action)
+40. Relation(Sam.isGoingTo, Jim.action)
+41. Factual(Sam.method, "fast")
+42. Causal(Sam.isExcited, Sam.action)
+43. Numeric(soda.quantity, "1")
+44. Temporal(Sam.doc_index, "2025")
+45. violate(Sam.isGoingTo, Jim.action)
+46. Factual(Sam.method, "slow")
+47. Causal(Sam.action, "not buy")
+48. Numeric(Sam.doc_index, "100")
+49. Temporal(Sam.doc_index, "2024")
+50. Content(Sam.isExcited, "not excited")
+51. Negation(Sam.action, "did not buy")
+52. Relation(Sam.isGoingTo, "not going to")
+53. M_NLI(Sam.method, "slow")
+54. T(Sam.item, soda.quantity, tau)
+55. tau(Sam.action, "not buy")
+56. violate(Sam.isExcited, "not excited")
+57. Factual(Sam.item, "water")
+58. Causal(Sam.action, "did not buy")
+59. Numeric(soda.quantity, "0")
+60. Temporal(Sam.doc_index, "2023")
+61. Content(Sam.action, "not buy")
+62. Negation(Sam.isGoingTo, "not going to")
+63. Relation(Sam.method, "slow")
+64. Factual(Sam.status, "happy")
+65. Causal(Sam.isExcited, "not excited")
+66. Numeric(Sam.doc_index, "50")
+67. Temporal(Sam.doc_index, "2026")
+68. violate(Sam.item, "not soda")
+69. Factual(Sam.method, "quick")
+70. Causal(Sam.action, "did not buy soda")
+71. Numeric(soda.quantity, "2")
+72. Temporal(Sam.doc_index, "2022")
+73. Content(Sam.isExcited, "bored")
+74. Negation(Sam.action, "did not buy soda")
+75. Relation(Sam.isGoingTo, "not going to Mr. Brown's table")
+76. M_NLI(Sam.method, "slow")
+77. T(Sam.item, "not soda", tau)
+78. tau(Sam.action, "not buy soda")
+79. violate(Sam.isExcited, "not excited")
+80. Factual(Sam.item, "juice")
+81. Causal(Sam.action, "did not buy juice")
+82. Numeric(soda.quantity, "3")
+83. Temporal(Sam.doc_index, "2021")
+84. Content(Sam.action, "not buy soda")
+85. Negation(Sam.isGoingTo, "not going to Mr. Brown's table")
+86. Relation(Sam.method, "slow")
+87. Factual(Sam.status, "sad")
+88. Causal(Sam.isExcited, "not excited")
+89. Numeric(Sam.doc_index, "10")
+90. Temporal(Sam.doc_index, "2020")
+91. violate(Sam.item, "not soda")
+92. Factual(Sam.method, "slow")
+93. Causal(Sam.action, "did not buy soda")
+94. Numeric(soda.quantity, "4")
+95. Temporal(Sam.doc_index, "2019")
+96. Content(Sam.isExcited, "disinterested")
+97. Negation(Sam.action, "did not buy soda")
+98. Relation(Sam.isGoingTo, "not going to Mr. Brown's table")
+99. M_NLI(Sam.method, "quick")
+100. T(Sam.item, "not soda", tau)
+violate(x0, y0)
+
+Rules:
+1. Q[x0, y0](Sam.action = "buy" ∧ Sam.item = "soda" → violate(Sam.action, Jim.action))
+2. Q[x0, y0](Sam.isExcited = true ∧ Sam.method = "fast" → violate(Sam.isGoingTo, Jim.action))
+3. Q[x0, y0](Sam.status = "unknown" ∧ Sam.action = "buy" ∧ Sam.item = "soda" → violate(Sam.item, "not soda"))
+4. Q[x0, y0](Sam.isGoingTo = "Mr. Brown's table" ∧ Sam.method = "fast" ∧ Sam.isExcited = true → violate(Sam.action, "did not buy"))
+5. Q[x0, y0](Sam.action = "buy" ∧ Sam.item = "soda" ∧ soda.quantity = "1" ∧ Sam.isGoingTo = "Mr. Brown's table" → violate(Sam.method, "slow"))
+6. Q[x0, y0](Sam.action = "buy" ∧ Sam.item = "soda" ∧ Sam.isExcited = true ∧ Sam.method = "fast" ∧ Sam.source_id = "Index_78" → violate(Sam.status, "happy"))
+7. Q[x0, y0](Sam.action = "buy" ∧ Sam.item = "soda" ∧ Sam.isGoingTo = "Mr. Brown's table" → violate(Sam.item, "water"))
+8. Q[x0, y0](Sam.isExcited = true ∧ Sam.method = "fast" ∧ Sam.action = "buy" → violate(Sam.action, "did not buy soda"))
+9. Q[x0, y0](Sam.status = "unknown" ∧ Sam.action = "buy" ∧ Sam.item = "soda" ∧ Sam.isGoingTo = "Mr. Brown's table" → violate(Sam.isExcited, "not excited"))
+10. Q[x0, y0](Sam.action = "buy" ∧ Sam.item = "soda" ∧ Sam.method = "fast" ∧ Sam.source_id = "Index_78" → violate(Sam.method, "slow"))
+11. Q[x0, y0](Sam.isExcited = true ∧ Sam.action = "buy" ∧ Sam.item = "soda" ∧ soda.quantity = "1" ∧ Sam.isGoingTo = "Mr. Brown's table" → violate(Sam.item, "juice"))
+12. Q[x0, y0](Sam.action = "buy" ∧ Sam.item = "soda" ∧ Sam.isExcited = true ∧ Sam.method = "fast" ∧ Sam.source_id = "Index_78" ∧ Sam.toldJim = "come with him" → violate(Sam.status, "sad"))
+13. Q[x0, y0](Sam.action = "buy" ∧ Sam.item = "soda" ∧ Sam.isGoingTo = "Mr. Brown's table" ∧ Sam.method = "fast" → violate(Sam.item, "not soda"))
+14. Q[x0, y0](Sam.isExcited = true ∧ Sam.action = "buy" ∧ Sam.item = "soda" ∧ Sam.method = "fast" ∧ Sam.source_id = "Index_78" → violate(Sam.action, "did not buy soda"))
+15. Q[x0, y0](Sam.status = "unknown" ∧ Sam.action = "buy" ∧ Sam.item = "soda" ∧ Sam.isGoingTo = "Mr. Brown's table" ∧ Sam.method = "fast" → violate(Sam.isExcited, "not excited"))
+16. Q[x0, y0](Sam.action = "buy" ∧ Sam.item = "soda" ∧ Sam.isExcited = true ∧ Sam.method = "fast" ∧ Sam.source_id = "Index_78" → violate(Sam.method, "slow"))
+17. Q[x0, y0](Sam.isExcited = true ∧ Sam.action = "buy" ∧ Sam.item = "soda" ∧ Sam.method = "fast" ∧ Sam.source_id = "Index_78" ∧ Sam.toldJim = "come with him" → violate(Sam.status, "happy"))
+18. Q[x0, y0](Sam.action = "buy" ∧ Sam.item = "soda" ∧ Sam.isGoingTo = "Mr. Brown's table" ∧ Sam.method = "fast" ∧ Sam.isExcited = true → violate(Sam.item, "not soda"))
+19. Q[x0, y0](Sam.action = "buy" ∧ Sam.item = "soda" ∧ Sam.isGoingTo = "Mr. Brown's table" ∧ Sam.method = "fast" ∧ Sam.isExcited = true ∧ Sam.source_id = "Index_78" → violate(Sam.action, "did not buy soda"))
+20. Q[x0, y0](Sam.status = "unknown" ∧ Sam.action = "buy" ∧ Sam.item = "soda" ∧ Sam.isGoingTo = "Mr. Brown's table" ∧ Sam.method = "fast" ∧ Sam.isExcited = true → violate(Sam.isExcited, "not excited"))
+21. Q[x0, y0](Sam.action = "buy" ∧ Sam.item = "soda" ∧ Sam.isGoingTo = "Mr. Brown's table" ∧ Sam.method = "fast" ∧ Sam.isExcited = true ∧ Sam.source_id = "Index_78" → violate(Sam.method, "slow"))
+22. Q[x0, y0](Sam.isExcited = true ∧ Sam.action = "buy" ∧ Sam.item = "soda" ∧ Sam.method = "fast" ∧ Sam.source_id = "Index_78" ∧ Sam.toldJim = "come with him" → violate(Sam.status, "sad"))
+23. Q[x0, y0](Sam.action = "buy" ∧ Sam.item = "soda" ∧ Sam.isGoingTo = "Mr. Brown's table" ∧ Sam.method = "fast" ∧ Sam.isExcited = true ∧ Sam.source_id = "Index_78" → violate(Sam.item, "juice"))
+24. Q[x0, y0](Sam.status = "unknown" ∧ Sam.action = "buy" ∧ Sam.item = "soda" ∧ Sam.isGoingTo = "Mr. Brown's table" ∧ Sam.method = "fast" ∧ Sam.isExcited = true → violate(Sam.isExcited, "not excited"))
+25. Q[x0, y0](Sam.action = "buy" ∧ Sam.item = "soda" ∧ Sam.isGoingTo = "Mr. Brown's table" ∧ Sam.method = "fast" ∧ Sam.isExcited = true ∧ Sam.source_id = "Index_78" → violate

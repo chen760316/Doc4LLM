@@ -1,0 +1,67 @@
+Predicates:
+California Health Alliance.type != "health organization"
+California Health Alliance.type = "health organization"
+Emily Clark__S2.age != 42
+Emily Clark__S2.age < 47
+Emily Clark__S2.age <= 42
+Emily Clark__S2.age = 42
+Emily Clark__S2.age > 37
+Emily Clark__S2.age >= 42
+Emily Clark__S2.country_of_citizenship != "United Kingdom"
+Emily Clark__S2.country_of_citizenship != Emily Clark__S6.country_of_citizenship
+Emily Clark__S2.country_of_citizenship = "United Kingdom"
+Emily Clark__S2.occupation != "writer"
+Emily Clark__S2.occupation != Emily Clark__S6.occupation
+Emily Clark__S2.occupation = "writer"
+Emily Clark__S2_Emily Clark__S6.relationship != "same_entity"
+Emily Clark__S2_Emily Clark__S6.relationship = "same_entity"
+Emily Clark__S2_ICU.award != "community award for outstanding medical service"
+Emily Clark__S2_ICU.award = "community award for outstanding medical service"
+Emily Clark__S2_ICU.duration != "over six months"
+Emily Clark__S2_ICU.duration = "over six months"
+Emily Clark__S2_ICU.relationship != "Emily Clark volunteered in the ICU department"
+Emily Clark__S2_ICU.relationship != Emily Clark__S2_Emily Clark__S6.relationship
+Emily Clark__S2_ICU.relationship != Emily Clark__S6_California Health Alliance.relationship
+Emily Clark__S2_ICU.relationship = "Emily Clark volunteered in the ICU department"
+Emily Clark__S2_ICU.year != 2020
+Emily Clark__S2_ICU.year < 2021
+Emily Clark__S2_ICU.year <= 2020
+Emily Clark__S2_ICU.year = 2020
+Emily Clark__S2_ICU.year > 2019
+Emily Clark__S2_ICU.year >= 2020
+Emily Clark__S6.country_of_citizenship != "United Kingdom"
+Emily Clark__S6.country_of_citizenship = "United Kingdom"
+Emily Clark__S6.occupation != "writer"
+Emily Clark__S6.occupation = "writer"
+Emily Clark__S6.status != "joined a task force"
+Emily Clark__S6.status = "joined a task force"
+Emily Clark__S6_California Health Alliance.relationship != "Emily Clark joined a task force organized by California Health Alliance to improve mental health support for ICU staff."
+Emily Clark__S6_California Health Alliance.relationship != Emily Clark__S2_Emily Clark__S6.relationship
+Emily Clark__S6_California Health Alliance.relationship = "Emily Clark joined a task force organized by California Health Alliance to improve mental health support for ICU staff."
+M_NLI(Emily Clark__S2.attrs, California Health Alliance.attrs)
+M_NLI(Emily Clark__S6.attrs, California Health Alliance.attrs)
+M_NLU(Emily Clark__S2.attrs, California Health Alliance.attrs)
+M_NLU(Emily Clark__S6.attrs, California Health Alliance.attrs)
+M_TEM(Emily Clark__S2.attrs, California Health Alliance.attrs)
+M_TEM(Emily Clark__S6.attrs, California Health Alliance.attrs)
+contra("Emily Clark", "California Health Alliance")
+contra("Emily Clark", "Emily Clark")
+contra("Emily Clark", "on")
+contra("ICU", "California Health Alliance")
+contra("ICU", "Emily Clark")
+contra("wo children", "California Health Alliance")
+linkage(Emily Clark__S2, Emily Clark__S6)
+linkage(Emily Clark__S2, ICU)
+linkage(Emily Clark__S6, California Health Alliance)
+
+Rules:
+Q[Emily Clark__S2,Emily Clark__S6] (contra("ICU", "Emily Clark") ∧ Emily Clark__S6.occupation = "writer" → Emily Clark__S6.occupation = "writer")
+Q[Emily Clark__S2,Emily Clark__S6] (M_TEM(Emily Clark__S6.attrs, California Health Alliance.attrs) ∧ contra("ICU", "California Health Alliance") → contra("ICU", "California Health Alliance"))
+Q[Emily Clark__S2,Emily Clark__S6] (M_NLU(Emily Clark__S6.attrs, California Health Alliance.attrs) ∧ linkage(Emily Clark__S6, California Health Alliance) → linkage(Emily Clark__S6, California Health Alliance))
+Q[Emily Clark__S2,Emily Clark__S6] (contra("ICU", "Emily Clark") ∧ M_TEM(Emily Clark__S2.attrs, California Health Alliance.attrs) → M_TEM(Emily Clark__S2.attrs, California Health Alliance.attrs))
+Q[Emily Clark__S2,Emily Clark__S6] (Emily Clark__S2_ICU.award != "community award for outstanding medical service" ∧ Emily Clark__S6_California Health Alliance.relationship != Emily Clark__S2_Emily Clark__S6.relationship → Emily Clark__S2_ICU.award != "community award for outstanding medical service")
+Q[Emily Clark__S2,Emily Clark__S6] (Emily Clark__S6.country_of_citizenship = "United Kingdom" ∧ Emily Clark__S2_ICU.year = 2020 → Emily Clark__S6.country_of_citizenship = "United Kingdom")
+Q[Emily Clark__S2,Emily Clark__S6] (M_NLU(Emily Clark__S6.attrs, California Health Alliance.attrs) ∧ Emily Clark__S2.age < 47 → Emily Clark__S2.age < 47)
+Q[Emily Clark__S2,Emily Clark__S6] (M_NLU(Emily Clark__S6.attrs, California Health Alliance.attrs) ∧ Emily Clark__S2_ICU.year = 2020 → Emily Clark__S2_ICU.year = 2020)
+Q[Emily Clark__S2,Emily Clark__S6] (M_NLU(Emily Clark__S2.attrs, California Health Alliance.attrs) ∧ Emily Clark__S2_ICU.year < 2021 → M_NLU(Emily Clark__S2.attrs, California Health Alliance.attrs))
+Q[Emily Clark__S2,Emily Clark__S6] (Emily Clark__S2.age <= 42 ∧ Emily Clark__S2.age != 42 → Emily Clark__S2.age <= 42)

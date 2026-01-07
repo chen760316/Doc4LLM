@@ -1,0 +1,63 @@
+Source: dense_text.txt (Index 364)
+S1: Jeff Bezos was born on January 12, 1964 and has a net worth of 160 billion as of 2020.
+S2: Jeff Bezos was born on July 12, 1980 and has a net worth of 1 million as of 2020.
+
+Predicates:
+1. Jeff_Bezos.birth_date = January_12_1964
+2. Jeff_Bezos.net_worth = 160_billion_2020
+3. Jeff_Bezos.birth_date = July_12_1980
+4. Jeff_Bezos.net_worth = 1_million_2020
+5. M_NLI(S1, S2)
+6. Factual(Jeff_Bezos.birth_date, January_12_1964)
+7. Factual(Jeff_Bezos.net_worth, 160_billion_2020)
+8. Factual(Jeff_Bezos.birth_date, July_12_1980)
+9. Factual(Jeff_Bezos.net_worth, 1_million_2020)
+10. violate(Jeff_Bezos.birth_date, January_12_1964)
+11. violate(Jeff_Bezos.net_worth, 160_billion_2020)
+12. violate(Jeff_Bezos.birth_date, July_12_1980)
+13. violate(Jeff_Bezos.net_worth, 1_million_2020)
+14. Jeff_Bezos.has_birth_date = January_12_1964
+15. Jeff_Bezos.has_net_worth = 160_billion_2020
+16. Jeff_Bezos.has_birth_date = July_12_1980
+17. Jeff_Bezos.has_net_worth = 1_million_2020
+18. "contradiction".birth_date
+19. "contradiction".net_worth
+20. "relationship".birth_date
+21. "relationship".net_worth
+22. Jeff_Bezos.is_a = Entrepreneur
+23. Jeff_Bezos.is_a = Billionaire
+24. Jeff_Bezos.year_of_birth = 1964
+25. Jeff_Bezos.year_of_birth = 1980
+26. Jeff_Bezos.net_worth_as_of_2020 = 160_billion
+27. Jeff_Bezos.net_worth_as_of_2020 = 1_million
+28. "discrepancy".birth_date
+29. "discrepancy".net_worth
+30. Jeff_Bezos.known_for = Amazon
+
+Rules:
+1. Q[Jeff, x0, y0](Jeff_Bezos.birth_date = January_12_1964 → Factual(Jeff_Bezos.birth_date, January_12_1964))
+2. Q[Jeff, x0, y0](Jeff_Bezos.net_worth = 160_billion_2020 → Factual(Jeff_Bezos.net_worth, 160_billion_2020))
+3. Q[Jeff, x0, y0](Jeff_Bezos.birth_date = July_12_1980 → Factual(Jeff_Bezos.birth_date, July_12_1980))
+4. Q[Jeff, x0, y0](Jeff_Bezos.net_worth = 1_million_2020 → Factual(Jeff_Bezos.net_worth, 1_million_2020))
+5. Q[Jeff, x0, y0](Jeff_Bezos.birth_date = January_12_1964 ∧ Jeff_Bezos.birth_date = July_12_1980 → Factual(Jeff_Bezos.birth_date, contradiction))
+6. Q[Jeff, x0, y0](Jeff_Bezos.net_worth = 160_billion_2020 ∧ Jeff_Bezos.net_worth = 1_million_2020 → Factual(Jeff_Bezos.net_worth, contradiction))
+7. Q[Jeff, x0, y0](Jeff_Bezos.birth_date = January_12_1964 ∧ violate(Jeff_Bezos.birth_date, July_12_1980) → Factual(Jeff_Bezos.birth_date, contradiction))
+8. Q[Jeff, x0, y0](Jeff_Bezos.birth_date = July_12_1980 ∧ violate(Jeff_Bezos.birth_date, January_12_1964) → Factual(Jeff_Bezos.birth_date, contradiction))
+9. Q[Jeff, x0, y0](Jeff_Bezos.net_worth = 160_billion_2020 ∧ violate(Jeff_Bezos.net_worth, 1_million_2020) → Factual(Jeff_Bezos.net_worth, contradiction))
+10. Q[Jeff, x0, y0](Jeff_Bezos.net_worth = 1_million_2020 ∧ violate(Jeff_Bezos.net_worth, 160_billion_2020) → Factual(Jeff_Bezos.net_worth, contradiction))
+11. Q[Jeff, x0, y0](Factual(Jeff_Bezos.birth_date, January_12_1964) ∧ Factual(Jeff_Bezos.birth_date, July_12_1980) → Factual(Jeff_Bezos.birth_date, contradiction))
+12. Q[Jeff, x0, y0](Factual(Jeff_Bezos.net_worth, 160_billion_2020) ∧ Factual(Jeff_Bezos.net_worth, 1_million_2020) → Factual(Jeff_Bezos.net_worth, contradiction))
+13. Q[Jeff, x0, y0](violate(Jeff_Bezos.birth_date, January_12_1964) ∧ violate(Jeff_Bezos.birth_date, July_12_1980) → Factual(Jeff_Bezos.birth_date, contradiction))
+14. Q[Jeff, x0, y0](violate(Jeff_Bezos.net_worth, 160_billion_2020) ∧ violate(Jeff_Bezos.net_worth, 1_million_2020) → Factual(Jeff_Bezos.net_worth, contradiction))
+15. Q[Jeff, x0, y0](Jeff_Bezos.has_birth_date = January_12_1964 ∧ Jeff_Bezos.has_birth_date = July_12_1980 → Factual(Jeff_Bezos.birth_date, contradiction))
+16. Q[Jeff, x0, y0](Jeff_Bezos.has_net_worth = 160_billion_2020 ∧ Jeff_Bezos.has_net_worth = 1_million_2020 → Factual(Jeff_Bezos.net_worth, contradiction))
+17. Q[Jeff, x0, y0](Factual(Jeff_Bezos.birth_date, January_12_1964) ∧ violate(Jeff_Bezos.birth_date, July_12_1980) → Factual(Jeff_Bezos.birth_date, contradiction))
+18. Q[Jeff, x0, y0](Factual(Jeff_Bezos.birth_date, July_12_1980) ∧ violate(Jeff_Bezos.birth_date, January_12_1964) → Factual(Jeff_Bezos.birth_date, contradiction))
+19. Q[Jeff, x0, y0](Factual(Jeff_Bezos.net_worth, 160_billion_2020) ∧ violate(Jeff_Bezos.net_worth, 1_million_2020) → Factual(Jeff_Bezos.net_worth, contradiction))
+20. Q[Jeff, x0, y0](Factual(Jeff_Bezos.net_worth, 1_million_2020) ∧ violate(Jeff_Bezos.net_worth, 160_billion_2020) → Factual(Jeff_Bezos.net_worth, contradiction))
+21. Q[Jeff, x0, y0](Jeff_Bezos.year_of_birth = 1964 ∧ Jeff_Bezos.year_of_birth = 1980 → Factual(Jeff_Bezos.birth_date, contradiction))
+22. Q[Jeff, x0, y0](Jeff_Bezos.net_worth_as_of_2020 = 160_billion ∧ Jeff_Bezos.net_worth_as_of_2020 = 1_million → Factual(Jeff_Bezos.net_worth, contradiction))
+23. Q[Jeff, x0, y0](violate(Jeff_Bezos.birth_date, January_12_1964) ∧ Factual(Jeff_Bezos.birth_date, July_12_1980) → Factual(Jeff_Bezos.birth_date, contradiction))
+24. Q[Jeff, x0, y0](violate(Jeff_Bezos.birth_date, July_12_1980) ∧ Factual(Jeff_Bezos.birth_date, January_12_1964) → Factual(Jeff_Bezos.birth_date, contradiction))
+25. Q[Jeff, x0, y0](violate(Jeff_Bezos.net_worth, 160_billion_2020) ∧ Factual(Jeff_Bezos.net_worth, 1_million_2020) → Factual(Jeff_Bezos.net_worth, contradiction))
+26. Q[Jeff, x0, y0](violate(Jeff_Bezos.net_worth, 1_million_2020) ∧ Factual(Jeff_Bezos.net_worth, 160

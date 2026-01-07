@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 743)
+S1: Two women are walking past a cafe.
+S2: Two women are walking past the cafe to the salon.
+
+Predicates:
+1. Women_1.location
+2. Women_2.location
+3. Cafe.location
+4. Salon.location
+5. Women_1.action
+6. Women_2.action
+7. Women_1.destination
+8. Women_2.destination
+9. Cafe.type
+10. Salon.type
+11. Women_1.movement
+12. Women_2.movement
+13. Cafe.status
+14. Salon.status
+15. Women_1.purpose
+16. Women_2.purpose
+17. "walking_past".action
+18. "walking_towards".action
+19. M_NLI(S1, S2)
+20. Relation(Women_1, Cafe)
+21. Relation(Women_2, Cafe)
+22. Relation(Women_1, Salon)
+23. Relation(Women_2, Salon)
+24. violate(S1, S2)
+25. "passing_by".action
+26. "moving_to".action
+27. Women_1.intent
+28. Women_2.intent
+29. Cafe.visibility
+30. Salon.visibility
+
+Rules:
+1. Q[Two, Women_1.location, Cafe.location](Women_1.action == "walking_past" → Relation(Women_1, Cafe))
+2. Q[Two, Women_2.location, Cafe.location](Women_2.action == "walking_past" → Relation(Women_2, Cafe))
+3. Q[Two, Women_1.destination, Salon.location](Women_1.action == "walking_towards" → Relation(Women_1, Salon))
+4. Q[Two, Women_2.destination, Salon.location](Women_2.action == "walking_towards" → Relation(Women_2, Salon))
+5. Q[Two, Women_1.movement, "walking_past"](Women_1.action == "walking_past" → Relation(Women_1, Cafe))
+6. Q[Two, Women_2.movement, "walking_past"](Women_2.action == "walking_past" → Relation(Women_2, Cafe))
+7. Q[Two, Women_1.movement, "walking_towards"](Women_1.action == "walking_towards" → Relation(Women_1, Salon))
+8. Q[Two, Women_2.movement, "walking_towards"](Women_2.action == "walking_towards" → Relation(Women_2, Salon))
+9. Q[Two, Women_1.purpose, "passing_by"](Women_1.action == "walking_past" → Relation(Women_1, Cafe))
+10. Q[Two, Women_2.purpose, "passing_by"](Women_2.action == "walking_past" → Relation(Women_2, Cafe))
+11. Q[Two, Women_1.purpose, "moving_to"](Women_1.action == "walking_towards" → Relation(Women_1, Salon))
+12. Q[Two, Women_2.purpose, "moving_to"](Women_2.action == "walking_towards" → Relation(Women_2, Salon))
+13. Q[Two, Cafe.status, "open"](Women_1.action == "walking_past" → Relation(Women_1, Cafe))
+14. Q[Two, Cafe.status, "open"](Women_2.action == "walking_past" → Relation(Women_2, Cafe))
+15. Q[Two, Salon.status, "open"](Women_1.action == "walking_towards" → Relation(Women_1, Salon))
+16. Q[Two, Salon.status, "open"](Women_2.action == "walking_towards" → Relation(Women_2, Salon))
+17. Q[Two, Women_1.intent, "to visit"](Women_1.action == "walking_towards" → Relation(Women_1, Salon))
+18. Q[Two, Women_2.intent, "to visit"](Women_2.action == "walking_towards" → Relation(Women_2, Salon))
+19. Q[Two, Women_1.intent, "to pass"](Women_1.action == "walking_past" → Relation(Women_1, Cafe))
+20. Q[Two, Women_2.intent, "to pass"](Women_2.action == "walking_past" → Relation(Women_2, Cafe))
+21. Q[Two, Cafe.visibility, "visible"](Women_1.action == "walking_past" → Relation(Women_1, Cafe))
+22. Q[Two, Cafe.visibility, "visible"](Women_2.action == "walking_past" → Relation(Women_2, Cafe))
+23. Q[Two, Salon.visibility, "visible"](Women_1.action == "walking_towards" → Relation(Women_1, Salon))
+24. Q[Two, Salon.visibility, "visible"](Women_2.action == "walking_towards" → Relation(Women_2, Salon))
+25. Q[Two, Women_1.location, "near Cafe"](Women_1.action == "walking_past" → Relation(Women_1, Cafe))
+26. Q[Two, Women_2.location, "near Cafe"](Women_2.action == "walking_past" → Relation(Women_2, Cafe))
+27. Q[Two, Women_1.location, "near Salon"](Women_1.action == "walking_towards" → Relation(Women_1, Salon))
+28. Q[Two, Women_2.location, "near Salon"](Women_2.action == "walking_towards" → Relation(Women_2, Salon))
+29. Q[Two, Women_1.action, "walking_past"](Women_1.destination == Cafe.location → Relation(Women_1, Cafe))
+30. Q[Two, Women_2.action, "walking_past"](Women_2.destination == Cafe.location → Relation(Women_2, Cafe))

@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 32)
+S1: Everyone was happy, and Goose was not hungry anymore.
+S2: He did not like hot dogs at all.
+
+Predicates:
+1. Everyone.happy
+2. Goose.not_hungry
+3. Goose.did_not_like.hot_dogs
+4. hot_dogs.part_of.picnic
+5. M_NLI(S1, S2)
+6. Factual(Everyone, happy)
+7. Factual(Goose, not_hungry)
+8. Factual(Goose, did_not_like.hot_dogs)
+9. Factual(hot_dogs, part_of.picnic)
+10. violate(Goose.did_not_like.hot_dogs, Goose.not_hungry)
+11. Everyone.experienced.happiness
+12. Goose.satisfaction.level
+13. hot_dogs.served.at.picnic
+14. Everyone.enjoyed.picnic
+15. Goose.feeling.full
+16. M_NLI(Everyone.happy, Goose.not_hungry)
+17. Factual(Everyone, enjoyed.picnic)
+18. Factual(Goose, feeling.full)
+19. violate(Everyone.happy, Goose.did_not_like.hot_dogs)
+20. Goose.preference.hot_dogs
+21. hot_dogs.unliked.by.Goose
+22. Everyone.celebrated
+23. Goose.satisfied.after.picnic
+24. hot_dogs.included.in.menu
+25. M_NLI(Goose.not_hungry, Goose.did_not_like.hot_dogs)
+26. Factual(Everyone, celebrated)
+27. Factual(Goose, satisfied.after.picnic)
+28. violate(Everyone.celebrated, Goose.did_not_like.hot_dogs)
+29. Goose.enjoyed.other.food
+30. hot_dogs.not.enjoyed.by.Goose
+
+Rules:
+1. Q[Everyone, happy, y0](Everyone.happy == true → Factual(Everyone, happy))
+2. Q[Goose, not_hungry, y0](Goose.not_hungry == true → Factual(Goose, not_hungry))
+3. Q[Goose, did_not_like.hot_dogs, y0](Goose.did_not_like.hot_dogs == true → Factual(Goose, did_not_like.hot_dogs))
+4. Q[hot_dogs, part_of.picnic, y0](hot_dogs.part_of.picnic == true → Factual(hot_dogs, part_of.picnic))
+5. Q[Everyone, happy, y0](Everyone.happy == true ∧ Goose.not_hungry == true → violate(Goose.did_not_like.hot_dogs, Goose.not_hungry))
+6. Q[Goose, not_hungry, y0](Goose.not_hungry == true ∧ Goose.did_not_like.hot_dogs == true → violate(Everyone.happy, Goose.did_not_like.hot_dogs))
+7. Q[Everyone, happy, y0](Everyone.happy == true ∧ hot_dogs.part_of.picnic == true → violate(Goose.did_not_like.hot_dogs, Goose.not_hungry))
+8. Q[Goose, did_not_like.hot_dogs, y0](Goose.did_not_like.hot_dogs == true ∧ Everyone.happy == true → violate(Goose.not_hungry, Goose.did_not_like.hot_dogs))
+9. Q[Everyone, enjoyed.picnic, y0](Everyone.enjoyed.picnic == true → Factual(Everyone, enjoyed.picnic))
+10. Q[Goose, satisfied.after.picnic, y0](Goose.satisfied.after.picnic == true → Factual(Goose, satisfied.after.picnic))
+11. Q[Goose, feeling.full, y0](Goose.feeling.full == true → Factual(Goose, feeling.full))
+12. Q[Everyone, celebrated, y0](Everyone.celebrated == true → Factual(Everyone, celebrated))
+13. Q[hot_dogs, served.at.picnic, y0](hot_dogs.served.at.picnic == true → Factual(hot_dogs, served.at.picnic))
+14. Q[Goose, preference.hot_dogs, y0](Goose.preference.hot_dogs == false → Factual(Goose, preference.hot_dogs))
+15. Q[hot_dogs, unliked.by.Goose, y0](hot_dogs.unliked.by.Goose == true → Factual(hot_dogs, unliked.by.Goose))
+16. Q[Everyone, experienced.happiness, y0](Everyone.experienced.happiness == true → Factual(Everyone, experienced.happiness))
+17. Q[Goose, satisfaction.level, y0](Goose.satisfaction.level == high → Factual(Goose, satisfaction.level))
+18. Q[Everyone, happy, y0](Everyone.happy == true ∧ Goose.satisfied.after.picnic == true → violate(Goose.did_not_like.hot_dogs, Goose.not_hungry))
+19. Q[Goose, not_hungry, y0](Goose.not_hungry == true ∧ Everyone.celebrated == true → violate(Goose.did_not_like.hot_dogs, Goose.not_hungry))
+20. Q[Everyone, happy, y0](Everyone.happy == true ∧ hot_dogs.included.in.menu == true → violate(Goose.did_not_like.hot_dogs, Goose.not_hungry))
+21. Q[Goose, did_not_like.hot_dogs, y0](Goose.did_not_like.hot_dogs == true ∧ hot_dogs.not.enjoyed.by.Goose == true → Factual(Goose, did_not_like.hot_dogs))
+22. Q[Everyone, happy, y0](Everyone.happy == true ∧ Goose.enjoyed.other.food == true → violate(Goose.did_not_like.hot_dogs, Goose.not_hungry))
+23. Q[Goose, not_hungry, y0](Goose.not_hungry == true ∧ Everyone.enjoyed.picnic == true → violate(Goose.did_not_like.hot_dogs, Goose.not_hungry))
+24. Q[Everyone, happy, y0](Everyone.happy == true ∧ Goose.feeling.full == true → violate(Goose.did_not_like.hot_dogs, Goose.not_hungry))
+25. Q[Goose, satisfied.after.picnic, y0](Goose.satisfied.after.picnic == true ∧ hot_dogs.served.at.picnic == true → violate(Goose.did_not_like.hot_dogs, Goose.not_hungry))
+26. Q[Everyone, happy, y0](Everyone.happy == true ∧ Goose.preference.hot_dogs == false → violate(Goose.did_not_like.hot_dogs, Goose.not_hungry))
+27. Q[Goose, did_not_like.hot_dogs, y0](Goose.did_not_like.hot_dogs == true ∧ Everyone.happy == true → violate(Goose.not_hungry, Goose.did_not_like.hot_dogs))
+28. Q[Everyone, happy, y0](Everyone.happy == true ∧ Goose.satisfaction.level == low → violate(Goose.did_not_like.hot_dogs, Goose.not_hungry))
+29. Q[Goose, not_hungry, y0](Goose.not_hungry == true ∧ hot_dogs.included.in.menu == true → violate(Goose.did_not_like.hot_dogs, Goose.not_hungry))
+30. Q[Everyone, happy, y0](Everyone.happy == true ∧ Goose.did_not_like.hot_dogs == true → violate(Goose.not_hungry, Goose.did_not_like.hot_dogs))

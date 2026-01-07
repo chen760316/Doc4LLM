@@ -1,0 +1,119 @@
+Predicates:
+10.label != "Album"
+10.label != Billboard 200.label
+10.label != Billboard Christian Albums.label
+10.label != Jared Johnson.label
+10.label != MercyMe.label
+10.label = "Album"
+10.name != "10"
+10.name != Almost There.name
+10.name != Billboard 200.name
+10.name != Billboard Christian Albums.name
+10.name != Jared Johnson.name
+10.name != MercyMe.name
+10.name = "10"
+10.release_date != "April 7, 2009"
+10.release_date = "April 7, 2009"
+10.type != "greatest hits"
+10.type = "greatest hits"
+10___Almost There.doc_id = "wiki_train_29217"
+10___Almost There.original_release = "1999"
+10___Almost There.relationship = "'I Can Only Imagine' was included on the band's major-label debut album 'Almost There'."
+10___Billboard 200.doc_id = "wiki_train_29217"
+10___Billboard 200.first_week_sales != 30000
+10___Billboard 200.first_week_sales = 30000
+10___Billboard 200.relationship != 10___Almost There.relationship
+10___Billboard 200.relationship = "The album '10' debuted at number 18 on the Billboard 200."
+10___Billboard Christian Albums.doc_id = "wiki_train_29217"
+10___Billboard Christian Albums.relationship != 10___Almost There.relationship
+10___Billboard Christian Albums.relationship != 10___Billboard 200.relationship
+10___Billboard Christian Albums.relationship != 10___Jared Johnson.relationship
+10___Billboard Christian Albums.relationship != 10___MercyMe.relationship
+10___Billboard Christian Albums.relationship = "The album '10' debuted at number one on the Billboard Christian Albums chart."
+10___Billboard Christian Albums.weeks_on_chart != 73
+10___Billboard Christian Albums.weeks_on_chart = 73
+10___Jared Johnson.comment = "one of the best and most long-awaited greatest-hits albums in recent memory"
+10___Jared Johnson.doc_id = "wiki_train_29217"
+10___Jared Johnson.relationship != 10___Almost There.relationship
+10___Jared Johnson.relationship != 10___Billboard 200.relationship
+10___Jared Johnson.relationship != 10___MercyMe.relationship
+10___Jared Johnson.relationship = "The album '10' received a positive review from Jared Johnson of AllMusic."
+10___MercyMe.commemoration = "tenth anniversary of 'I Can Only Imagine'"
+10___MercyMe.doc_id = "wiki_train_29217"
+10___MercyMe.relationship != 10___Almost There.relationship
+10___MercyMe.relationship != 10___Billboard 200.relationship
+10___MercyMe.relationship = "The album '10' is a greatest hits album by the band MercyMe."
+Almost There.label != "Album"
+Almost There.label = "Album"
+Almost There.name != "Almost There"
+Almost There.name = "Almost There"
+Almost There.release_year != 2001
+Almost There.release_year < 2006
+Almost There.release_year = 2001
+Almost There.release_year > 1996
+Billboard 200.label != "Chart"
+Billboard 200.label != Almost There.label
+Billboard 200.label = "Chart"
+Billboard 200.name != "Billboard 200"
+Billboard 200.name != Almost There.name
+Billboard 200.name = "Billboard 200"
+Billboard 200.position != 18
+Billboard 200.position < 23
+Billboard 200.position = 18
+Billboard 200.position > 13
+Billboard Christian Albums.label != "Chart"
+Billboard Christian Albums.label != Almost There.label
+Billboard Christian Albums.label != Jared Johnson.label
+Billboard Christian Albums.label != MercyMe.label
+Billboard Christian Albums.label = "Chart"
+Billboard Christian Albums.name != "Billboard Christian Albums"
+Billboard Christian Albums.name != Almost There.name
+Billboard Christian Albums.name != Billboard 200.name
+Billboard Christian Albums.name != Jared Johnson.name
+Billboard Christian Albums.name != MercyMe.name
+Billboard Christian Albums.name = "Billboard Christian Albums"
+Billboard Christian Albums.position != 1
+Billboard Christian Albums.position != Billboard 200.position
+Billboard Christian Albums.position < 6
+Billboard Christian Albums.position = 1
+Billboard Christian Albums.position > -4
+Jared Johnson.label != "Review"
+Jared Johnson.label != Almost There.label
+Jared Johnson.label != Billboard 200.label
+Jared Johnson.label != MercyMe.label
+Jared Johnson.label = "Review"
+Jared Johnson.name != "Jared Johnson"
+Jared Johnson.name != Almost There.name
+Jared Johnson.name != Billboard 200.name
+Jared Johnson.name != MercyMe.name
+Jared Johnson.name = "Jared Johnson"
+Jared Johnson.publication != "AllMusic"
+Jared Johnson.publication = "AllMusic"
+Jared Johnson.rating != "4.5 out of 5"
+Jared Johnson.rating = "4.5 out of 5"
+MercyMe.genre != "Christian rock"
+MercyMe.genre = "Christian rock"
+MercyMe.label != "Band"
+MercyMe.label != Almost There.label
+MercyMe.label != Billboard 200.label
+MercyMe.label = "Band"
+MercyMe.name != "MercyMe"
+MercyMe.name != Almost There.name
+MercyMe.name != Billboard 200.name
+MercyMe.name = "MercyMe"
+MercyMe.nationality != "American"
+MercyMe.nationality = "American"
+None_ML(10___MercyMe.attrs, 10___Billboard 200.attrs)
+None_ML(MercyMe.attrs, Billboard 200.attrs)
+
+Rules:
+Q[10,10] (10___MercyMe.relationship = "The album '10' is a greatest hits album by the band MercyMe." ∧ MercyMe.name != Billboard 200.name ∧ 10.release_date != "April 7, 2009" ∧ Jared Johnson.name != Billboard 200.name → 10___Billboard Christian Albums.weeks_on_chart = 73)
+Q[10,10] (Billboard Christian Albums.position < 6 ∧ 10___MercyMe.doc_id = "wiki_train_29217" → Billboard Christian Albums.name != MercyMe.name)
+Q[10,10] (10___Billboard 200.relationship != 10___Almost There.relationship ∧ Billboard Christian Albums.name != "Billboard Christian Albums" ∧ Billboard Christian Albums.position != Billboard 200.position ∧ Billboard Christian Albums.label != Jared Johnson.label ∧ Almost There.release_year < 2006 ∧ 10.name != Jared Johnson.name → Almost There.release_year != 2001)
+Q[10,10] (10___Almost There.original_release = "1999" ∧ Billboard Christian Albums.label != Almost There.label ∧ 10.label = "Album" → 10___Billboard Christian Albums.weeks_on_chart != 73)
+Q[10,10] (Almost There.name != "Almost There" ∧ Jared Johnson.name != "Jared Johnson" ∧ Jared Johnson.label != "Review" ∧ 10.name != MercyMe.name ∧ 10.label != Billboard 200.label → None_ML(10___MercyMe.attrs, 10___Billboard 200.attrs))
+Q[10,10] (Billboard 200.name = "Billboard 200" ∧ 10.name = "10" ∧ 10___Billboard 200.relationship != 10___Almost There.relationship ∧ Billboard Christian Albums.position > -4 ∧ 10___Billboard Christian Albums.relationship != 10___Almost There.relationship → Jared Johnson.name != Billboard 200.name)
+Q[10,10] (10___Billboard Christian Albums.relationship != 10___Jared Johnson.relationship ∧ Jared Johnson.name != "Jared Johnson" ∧ Jared Johnson.label = "Review" → 10.name != Jared Johnson.name)
+Q[10,10] (Billboard Christian Albums.name != MercyMe.name ∧ Jared Johnson.label != "Review" ∧ Billboard 200.position != 18 ∧ Jared Johnson.label != MercyMe.label ∧ 10___MercyMe.relationship != 10___Billboard 200.relationship ∧ 10___Billboard Christian Albums.relationship != 10___MercyMe.relationship → 10.name != Billboard 200.name)
+Q[10,10] (Billboard Christian Albums.position < 6 ∧ Billboard Christian Albums.label != Almost There.label → Jared Johnson.publication = "AllMusic")
+Q[10,10] (Billboard 200.position = 18 ∧ 10___Billboard Christian Albums.weeks_on_chart != 73 ∧ MercyMe.name != "MercyMe" ∧ 10.name != Billboard Christian Albums.name → 10___Billboard Christian Albums.relationship = "The album '10' debuted at number one on the Billboard Christian Albums chart.")

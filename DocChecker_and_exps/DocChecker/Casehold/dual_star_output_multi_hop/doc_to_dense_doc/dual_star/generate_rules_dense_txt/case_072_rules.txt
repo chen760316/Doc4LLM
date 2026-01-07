@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 72)
+S1: Assertions of trial error are outside the scope of a coram-nobis proceeding.
+S2: Moreover, coram-nobis proceedings do not provide a petitioner with a forum to relitigate trial or appeal issues.
+
+Predicates:
+1. CoramNobisProceeding.limitations
+2. TrialErrorAssertion.excluded
+3. CoramNobisProceeding.forum
+4. Petitioner.relitiagteIssues
+5. TrialIssues.excluded
+6. AppealIssues.excluded
+7. CoramNobisProceeding.scope
+8. TrialErrorAssertion.scope
+9. RelitigateTrialIssues.excluded
+10. RelitigateAppealIssues.excluded
+11. AssertionType.trialError
+12. AssertionType.appealIssue
+13. CoramNobisProceeding.nature
+14. TrialErrorAssertion.nature
+15. Petitioner.rights
+16. TrialErrorAssertion.limits
+17. CoramNobisProceeding.purpose
+18. RelitigateTrialOrAppealIssues.excluded
+19. TrialErrorAssertion.relation
+20. CoramNobisProceeding.relation
+21. AssertionType.coramNobis
+22. TrialErrorAssertion.forum
+23. Petitioner.litigationScope
+24. CoramNobisProceeding.legalFramework
+25. TrialErrorAssertion.legalFramework
+26. RelitigateIssues.scope
+27. CoramNobisProceeding.legalLimitations
+28. TrialIssues.legalLimitations
+29. AppealIssues.legalLimitations
+30. CoramNobisProceeding.legalNature
+
+Rules:
+1. Q[Assertions, CoramNobisProceeding.limitations, TrialErrorAssertion.excluded](CoramNobisProceeding.limitations == "specific" → Relation(CoramNobisProceeding.limitations, TrialErrorAssertion.excluded))
+2. Q[Assertions, TrialErrorAssertion.scope, CoramNobisProceeding.scope](TrialErrorAssertion.scope == "excluded" → Relation(TrialErrorAssertion.scope, CoramNobisProceeding.scope))
+3. Q[Assertions, Petitioner.relitiagteIssues, RelitigateTrialOrAppealIssues.excluded](Petitioner.relitiagteIssues == "not allowed" → Relation(Petitioner.relitiagteIssues, RelitigateTrialOrAppealIssues.excluded))
+4. Q[Assertions, TrialIssues.excluded, AppealIssues.excluded](TrialIssues.excluded == "true" → Relation(TrialIssues.excluded, AppealIssues.excluded))
+5. Q[Assertions, CoramNobisProceeding.forum, TrialErrorAssertion.forum](CoramNobisProceeding.forum == "not available" → Relation(CoramNobisProceeding.forum, TrialErrorAssertion.forum))
+6. Q[Assertions, RelitigateTrialIssues.excluded, TrialErrorAssertion.limits](RelitigateTrialIssues.excluded == "true" → Relation(RelitigateTrialIssues.excluded, TrialErrorAssertion.limits))
+7. Q[Assertions, CoramNobisProceeding.nature, TrialErrorAssertion.nature](CoramNobisProceeding.nature == "limited" → Relation(CoramNobisProceeding.nature, TrialErrorAssertion.nature))
+8. Q[Assertions, CoramNobisProceeding.legalLimitations, TrialErrorAssertion.legalFramework](CoramNobisProceeding.legalLimitations == "strict" → Relation(CoramNobisProceeding.legalLimitations, TrialErrorAssertion.legalFramework))
+9. Q[Assertions, Petitioner.rights, CoramNobisProceeding.purpose](Petitioner.rights == "restricted" → Relation(Petitioner.rights, CoramNobisProceeding.purpose))
+10. Q[Assertions, TrialErrorAssertion.relation, CoramNobisProceeding.relation](TrialErrorAssertion.relation == "excluded" → Relation(TrialErrorAssertion.relation, CoramNobisProceeding.relation))
+11. Q[Assertions, AssertionType.trialError, AssertionType.appealIssue](AssertionType.trialError == "not permitted" → Relation(AssertionType.trialError, AssertionType.appealIssue))
+12. Q[Assertions, CoramNobisProceeding.scope, RelitigateIssues.scope](CoramNobisProceeding.scope == "limited" → Relation(CoramNobisProceeding.scope, RelitigateIssues.scope))
+13. Q[Assertions, TrialErrorAssertion.limits, RelitigateTrialIssues.excluded](TrialErrorAssertion.limits == "specific" → Relation(TrialErrorAssertion.limits, RelitigateTrialIssues.excluded))
+14. Q[Assertions, CoramNobisProceeding.legalFramework, TrialIssues.legalLimitations](CoramNobisProceeding.legalFramework == "restrictive" → Relation(CoramNobisProceeding.legalFramework, TrialIssues.legalLimitations))
+15. Q[Assertions, AppealIssues.legalLimitations, TrialIssues.legalLimitations](AppealIssues.legalLimitations == "strict" → Relation(AppealIssues.legalLimitations, TrialIssues.legalLimitations))
+16. Q[Assertions, CoramNobisProceeding.legalNature, TrialErrorAssertion.nature](CoramNobisProceeding.legalNature == "limited" → Relation(CoramNobisProceeding.legalNature, TrialErrorAssertion.nature))
+17. Q[Assertions, Petitioner.litigationScope, CoramNobisProceeding.limitations](Petitioner.litigationScope == "narrow" → Relation(Petitioner.litigationScope, CoramNobisProceeding.limitations))
+18. Q[Assertions, RelitigateTrialOrAppealIssues.excluded, CoramNobisProceeding.scope](RelitigateTrialOrAppealIssues.excluded == "true" → Relation(RelitigateTrialOrAppealIssues.excluded, CoramNobisProceeding.scope))
+19. Q[Assertions, TrialErrorAssertion.nature, CoramNobisProceeding.nature](TrialErrorAssertion.nature == "excluded" → Relation(TrialErrorAssertion.nature, CoramNobisProceeding.nature))
+20. Q[Assertions, CoramNobisProceeding.purpose, TrialErrorAssertion.limits](CoramNobisProceeding.purpose == "not for relitigation" → Relation(CoramNobisProceeding.purpose, TrialErrorAssertion.limits))
+21. Q[Assertions, TrialIssues.excluded, RelitigateTrialIssues.excluded](TrialIssues.excluded == "true" → Relation(TrialIssues.excluded, RelitigateTrialIssues.excluded))
+22. Q[Assertions, AppealIssues.excluded, RelitigateAppealIssues.excluded](AppealIssues.excluded == "true" → Relation(AppealIssues.excluded, RelitigateAppealIssues.excluded))
+23. Q[Assertions, CoramNobisProceeding.legalLimitations, TrialErrorAssertion.legalFramework](CoramNobisProceeding.legalLimitations == "strict" → Relation(CoramNobisProceeding.legalLimitations, TrialErrorAssertion.legalFramework))
+24. Q[Assertions, TrialErrorAssertion.scope, RelitigateTrialIssues.excluded](TrialErrorAssertion.scope == "narrow" → Relation(TrialErrorAssertion.scope, RelitigateTrialIssues.excluded))
+25. Q[Assertions, CoramNobisProceeding.forum, RelitigateTrialOrAppealIssues.excluded](CoramNobisProceeding.forum == "not available" → Relation(CoramNobisProceeding.forum, RelitigateTrialOrAppealIssues.excluded))
+26. Q[Assertions, TrialErrorAssertion.limits, CoramNobisProceeding.limitations](TrialErrorAssertion.limits == "specific" → Relation(TrialErrorAssertion.limits, CoramNobisProceeding.limitations))
+27. Q[Assertions, Petitioner.rights, TrialErrorAssertion.nature](Petitioner.rights == "limited" → Relation(Petitioner.rights, TrialErrorAssertion.nature))
+28. Q[Assertions, CoramNobisProceeding.nature, RelitigateTrialIssues.excluded](CoramNobisProceeding.nature == "limited" → Relation(CoramNobisProceeding.nature, RelitigateTrialIssues.excluded))
+29. Q[Assertions, TrialErrorAssertion.relation, RelitigateTrialOrAppealIssues.excluded](TrialErrorAssertion.relation == "not allowed" → Relation(TrialErrorAssertion.relation, RelitigateTrialOrAppealIssues.excluded))
+30. Q[Assertions, CoramNobisProceeding.scope, TrialErrorAssertion.excluded](CoramNobisProceeding.scope == "limited" → Relation(CoramNobisProceeding.scope, TrialError

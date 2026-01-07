@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 85)
+S1: Joe Smith crawled everywhere he went.
+S2: At the end of the day he left the zoo a very happy child.
+
+Predicates:
+1. Joe_Smith.crawled
+2. Joe_Smith.happy
+3. Joe_Smith.left
+4. Joe_Smith.child
+5. Joe_Smith.zoo
+6. Joe_Smith.mobility
+7. Joe_Smith.location
+8. end_of_day.happiness
+9. end_of_day.child
+10. end_of_day.zoo_visit
+11. zoo.happiness
+12. zoo.exit
+13. crawling.mobility
+14. crawling.happiness
+15. happiness.child
+16. happy_child.experience
+17. happy_child.zoo
+18. happy_child.movement
+19. movement.crawling
+20. movement.happiness
+21. experience.zoo
+22. experience.happiness
+23. contradiction.crawling_happiness
+24. contradiction.mobility_happiness
+25. relationship.crawling_happiness
+26. relationship.happiness_exit
+27. M_NLI(S1, S2)
+28. Factual(Joe_Smith, happy_child)
+29. violate(crawling, happiness)
+30. violate(mobility, happiness)
+
+Rules:
+1. Q[Joe, Joe_Smith.crawled, Joe_Smith.happy](Joe_Smith.crawled == true → Factual(Joe_Smith, happy_child))
+2. Q[Joe, Joe_Smith.crawled, Joe_Smith.mobility](Joe_Smith.crawled == true → Factual(Joe_Smith, mobility))
+3. Q[Joe, Joe_Smith.happy, end_of_day.happiness](Joe_Smith.happy == true → Factual(Joe_Smith, happy_child))
+4. Q[Joe, Joe_Smith.left, end_of_day.zoo_visit](Joe_Smith.left == true → Factual(Joe_Smith, happy_child))
+5. Q[Joe, Joe_Smith.child, happy_child.experience](Joe_Smith.child == true → Factual(Joe_Smith, happy_child))
+6. Q[Joe, Joe_Smith.zoo, experience.zoo](Joe_Smith.zoo == true → Factual(Joe_Smith, happy_child))
+7. Q[Joe, Joe_Smith.mobility, contradiction.mobility_happiness](Joe_Smith.mobility == false → Factual(Joe_Smith, happy_child))
+8. Q[Joe, crawling.mobility, violate(crawling, happiness)](crawling.mobility == false → Factual(Joe_Smith, happy_child))
+9. Q[Joe, end_of_day.happiness, contradiction.crawling_happiness](end_of_day.happiness == true → Factual(Joe_Smith, happy_child))
+10. Q[Joe, end_of_day.child, happy_child.movement](end_of_day.child == true → Factual(Joe_Smith, happy_child))
+11. Q[Joe, zoo.happiness, relationship.happiness_exit](zoo.happiness == true → Factual(Joe_Smith, happy_child))
+12. Q[Joe, zoo.exit, end_of_day.happiness](zoo.exit == true → Factual(Joe_Smith, happy_child))
+13. Q[Joe, movement.crawling, violate(mobility, happiness)](movement.crawling == true → Factual(Joe_Smith, happy_child))
+14. Q[Joe, happy_child.movement, relationship.crawling_happiness](happy_child.movement == true → Factual(Joe_Smith, happy_child))
+15. Q[Joe, happy_child.zoo, experience.happiness](happy_child.zoo == true → Factual(Joe_Smith, happy_child))
+16. Q[Joe, end_of_day.zoo_visit, contradiction.mobility_happiness](end_of_day.zoo_visit == true → Factual(Joe_Smith, happy_child))
+17. Q[Joe, Joe_Smith.crawled, relationship.crawling_happiness](Joe_Smith.crawled == true → Factual(Joe_Smith, happy_child))
+18. Q[Joe, Joe_Smith.happy, violation(crawling, happiness)](Joe_Smith.happy == true → Factual(Joe_Smith, happy_child))
+19. Q[Joe, Joe_Smith.left, contradiction.crawling_happiness](Joe_Smith.left == true → Factual(Joe_Smith, happy_child))
+20. Q[Joe, Joe_Smith.child, end_of_day.happiness](Joe_Smith.child == true → Factual(Joe_Smith, happy_child))
+21. Q[Joe, Joe_Smith.zoo, end_of_day.zoo_visit](Joe_Smith.zoo == true → Factual(Joe_Smith, happy_child))
+22. Q[Joe, Joe_Smith.mobility, relationship.happiness_exit](Joe_Smith.mobility == false → Factual(Joe_Smith, happy_child))
+23. Q[Joe, crawling.happiness, violate(crawling, happiness)](crawling.happiness == false → Factual(Joe_Smith, happy_child))
+24. Q[Joe, end_of_day.happiness, relationship.happiness_exit](end_of_day.happiness == true → Factual(Joe_Smith, happy_child))
+25. Q[Joe, end_of_day.child, contradiction.crawling_happiness](end_of_day.child == true → Factual(Joe_Smith, happy_child))
+26. Q[Joe, zoo.happiness, relationship.crawling_happiness](zoo.happiness == false → Factual(Joe_Smith, happy_child))
+27. Q[Joe, zoo.exit, violation(mobility, happiness)](zoo.exit == true → Factual(Joe_Smith, happy_child))
+28. Q[Joe, movement.happiness, violate(crawling, happiness)](movement.happiness == false → Factual(Joe_Smith, happy_child))
+29. Q[Joe, happy_child.experience, contradiction.mobility_happiness](happy_child.experience == true → Factual(Joe_Smith, happy_child))
+30. Q[Joe, happy_child.movement, relationship.happiness_exit](happy_child.movement == false → Factual(Joe_Smith, happy_child))

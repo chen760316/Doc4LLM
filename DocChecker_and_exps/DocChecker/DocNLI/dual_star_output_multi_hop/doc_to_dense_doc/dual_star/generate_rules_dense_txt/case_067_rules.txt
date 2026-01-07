@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 67)
+S1: Defending champion Tom Boonen of Belgium and the other leading contenders fatally hesitated in their efforts to chase down Cancellara and their race was over.
+S2: Cancellara told AFP at the finish of the 259km race.
+
+Predicates:
+1. Tom_Boonen.nationality = Belgium
+2. Tom_Boonen.role = Defending champion
+3. Cancellara.communication = AFP
+4. Cancellara.position = Finish
+5. Cancellara.race_distance = 259km
+6. Leading_contenders.status = Fatally hesitated
+7. Leading_contenders.race_outcome = Over
+8. Cancellara.ability_to_continue = True
+9. Leading_contenders.ability_to_continue = False
+10. Race.status = Finished
+11. Race.participants = [Tom_Boonen, Cancellara, Leading_contenders]
+12. Cancellara.race_participation = True
+13. Tom_Boonen.race_participation = False
+14. Leading_contenders.race_participation = False
+15. Cancellara.achievement = Finish
+16. Race.type = Cycling
+17. Race.location = Unknown
+18. Cancellara.achievement_status = Completed
+19. Tom_Boonen.achievement_status = Not completed
+20. Leading_contenders.achievement_status = Not completed
+21. Cancellara.communication_status = Active
+22. Tom_Boonen.communication_status = Inactive
+23. Leading_contenders.communication_status = Inactive
+24. Cancellara.race_time = Unknown
+25. Tom_Boonen.race_time = Unknown
+26. Leading_contenders.race_time = Unknown
+27. Cancellara.impact_on_race = Significant
+28. Leading_contenders.impact_on_race = Minimal
+29. Race.outcome = Cancellara wins
+30. Cancellara.race_result = Victory
+
+Rules:
+1. Q[Defending, Leading_contenders.status, Leading_contenders.ability_to_continue](Leading_contenders.status == "Fatally hesitated" → Relation(Leading_contenders.status, Leading_contenders.ability_to_continue))
+2. Q[Defending, Leading_contenders.race_outcome, Leading_contenders.race_participation](Leading_contenders.race_outcome == "Over" → Relation(Leading_contenders.race_outcome, Leading_contenders.race_participation))
+3. Q[Defending, Tom_Boonen.race_participation, Cancellara.ability_to_continue](Tom_Boonen.race_participation == False → Relation(Tom_Boonen.race_participation, Cancellara.ability_to_continue))
+4. Q[Defending, Cancellara.achievement_status, Leading_contenders.achievement_status](Cancellara.achievement_status == "Completed" → Relation(Cancellara.achievement_status, Leading_contenders.achievement_status))
+5. Q[Defending, Cancellara.communication_status, Leading_contenders.communication_status](Cancellara.communication_status == "Active" → Relation(Cancellara.communication_status, Leading_contenders.communication_status))
+6. Q[Defending, Race.status, Cancellara.race_participation](Race.status == "Finished" → Relation(Race.status, Cancellara.race_participation))
+7. Q[Defending, Cancellara.position, Leading_contenders.race_outcome](Cancellara.position == "Finish" → Relation(Cancellara.position, Leading_contenders.race_outcome))
+8. Q[Defending, Cancellara.race_distance, Leading_contenders.ability_to_continue](Cancellara.race_distance == 259km → Relation(Cancellara.race_distance, Leading_contenders.ability_to_continue))
+9. Q[Defending, Tom_Boonen.achievement_status, Cancellara.achievement](Tom_Boonen.achievement_status == "Not completed" → Relation(Tom_Boonen.achievement_status, Cancellara.achievement))
+10. Q[Defending, Leading_contenders.impact_on_race, Cancellara.impact_on_race](Leading_contenders.impact_on_race == "Minimal" → Relation(Leading_contenders.impact_on_race, Cancellara.impact_on_race))
+11. Q[Defending, Race.outcome, Cancellara.race_result](Race.outcome == "Cancellara wins" → Relation(Race.outcome, Cancellara.race_result))
+12. Q[Defending, Cancellara.communication, Leading_contenders.communication_status](Cancellara.communication == "AFP" → Relation(Cancellara.communication, Leading_contenders.communication_status))
+13. Q[Defending, Leading_contenders.race_participation, Race.participants](Leading_contenders.race_participation == False → Relation(Leading_contenders.race_participation, Race.participants))
+14. Q[Defending, Cancellara.ability_to_continue, Leading_contenders.status](Cancellara.ability_to_continue == True → Relation(Cancellara.ability_to_continue, Leading_contenders.status))
+15. Q[Defending, Tom_Boonen.role, Cancellara.achievement](Tom_Boonen.role == "Defending champion" → Relation(Tom_Boonen.role, Cancellara.achievement))
+16. Q[Defending, Cancellara.race_time, Leading_contenders.race_time](Cancellara.race_time == Unknown → Relation(Cancellara.race_time, Leading_contenders.race_time))
+17. Q[Defending, Race.type, Cancellara.race_participation](Race.type == "Cycling" → Relation(Race.type, Cancellara.race_participation))
+18. Q[Defending, Leading_contenders.achievement_status, Cancellara.achievement_status](Leading_contenders.achievement_status == "Not completed" → Relation(Leading_contenders.achievement_status, Cancellara.achievement_status))
+19. Q[Defending, Cancellara.achievement, Race.status](Cancellara.achievement == "Finish" → Relation(Cancellara.achievement, Race.status))
+20. Q[Defending, Tom_Boonen.communication_status, Cancellara.communication_status](Tom_Boonen.communication_status == "Inactive" → Relation(Tom_Boonen.communication_status, Cancellara.communication_status))
+21. Q[Defending, Leading_contenders.race_outcome, Cancellara.race_participation](Leading_contenders.race_outcome == "Over" → Relation(Leading_contenders.race_outcome, Cancellara.race_participation))
+22. Q[Defending, Cancellara.achievement_status, Race.outcome](Cancellara.achievement_status == "Completed" → Relation(Cancellara.achievement_status, Race.outcome))
+23. Q[Defending, Cancellara.position, Tom_Boonen.race_participation](Cancellara.position == "Finish" → Relation(Cancellara.position, Tom_Boonen.race_participation))
+24. Q[Defending, Leading_contenders.ability_to_continue, Cancellara.race_distance](Leading_contenders.ability_to_continue == False → Relation(Leading_contenders.ability_to_continue, Cancellara.race_distance))
+25. Q[Defending, Cancellara.communication, Tom_Boonen.communication_status](Cancellara.communication == "AFP" → Relation(Cancellara.communication, Tom_Boonen.communication_status))
+26. Q[Defending, Race.participants, Cancellara.race_participation](Race.participants == [Tom_Boonen, Cancellara, Leading_contenders] → Relation(Race.participants, Cancellara.race_participation))
+27. Q[Defending, Cancellara.impact_on_race, Race.status](Cancellara.impact_on_race == "Significant" → Relation(Cancellara.impact_on_race, Race.status))
+28. Q[Defending, Leading_contenders.race_participation, Cancellara.achievement](Leading_contenders.race_participation == False → Relation(Leading_contenders.race_participation, Cancellara.achievement))
+29. Q[Defending, Cancellara.race_result, Leading_contenders.achievement_status](Cancellara.race_result == "Victory" → Relation(Cancellara.race_result, Leading_contenders.achievement_status))
+30. Q[Defending, Race.location, Cancellara.position](Race.location == Unknown → Relation(Race.location, Cancellara.position))

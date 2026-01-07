@@ -1,0 +1,128 @@
+Predicates:
+1. entity.year = "2023"
+2. entity.sacrifices = "none"
+3. entity.sacrifices = "twenty thousand"
+4. entity.reason = "unknown"
+5. entity.event = "sacrifices"
+6. entity.count = "20000"
+7. edge.relationship = "sacrifice_event"
+8. edge.cause = "unknown_reason"
+9. edge.outcome = "no_sacrifices"
+10. edge.outcome = "sacrifices_occurred"
+11. M_NLI(entity.sacrifices, entity.reason)
+12. T("In the year, there were no sacrifices at all.", "Twenty thousand of them got sacrificed.", tau)
+13. tau(entity.sacrifices, entity.count)
+14. violate(entity.sacrifices, entity.count)
+15. Factual(entity.sacrifices, entity.count)
+16. Causal(entity.event, entity.reason)
+17. Numeric(entity.count, entity.sacrifices)
+18. Temporal(entity.year, entity.event)
+19. Content(entity.sacrifices, entity.reason)
+20. Relational(entity.event, entity.sacrifices)
+21. edge.time = "2023"
+22. edge.count = "20000"
+23. edge.type = "sacrifice"
+24. entity.sacrifice_type = "ritual"
+25. entity.sacrifice_type = "none"
+26. edge.reason = "cultural"
+27. edge.reason = "none"
+28. M_NLI(entity.sacrifice_type, entity.sacrifices)
+29. T("Twenty thousand of them got sacrificed.", "In the year, there were no sacrifices at all.", tau)
+30. tau(entity.sacrifice_type, entity.sacrifices)
+31. violate(entity.sacrifice_type, entity.sacrifices)
+32. Factual(entity.sacrifice_type, entity.sacrifices)
+33. Causal(entity.reason, entity.sacrifice_type)
+34. Numeric(entity.count, entity.sacrifice_type)
+35. Temporal(entity.year, entity.sacrifice_type)
+36. Content(entity.sacrifice_type, entity.reason)
+37. Relational(entity.reason, entity.sacrifices)
+38. edge.sacrifice_count = "0"
+39. edge.sacrifice_count = "20000"
+40. edge.sacrifice_type = "none"
+41. entity.sacrifice_event = "none"
+42. entity.sacrifice_event = "twenty thousand"
+43. edge.cause = "cultural_belief"
+44. edge.cause = "no_belief"
+45. M_NLI(entity.sacrifice_event, entity.sacrifice_count)
+46. T("The sacrifices occurred for some reason or other.", "In the year, there were no sacrifices at all.", tau)
+47. tau(entity.sacrifice_event, entity.sacrifice_count)
+48. violate(entity.sacrifice_event, entity.sacrifice_count)
+49. Factual(entity.sacrifice_event, entity.sacrifice_count)
+50. Causal(entity.cause, entity.sacrifice_event)
+51. Numeric(entity.sacrifice_count, entity.sacrifice_event)
+52. Temporal(entity.year, entity.sacrifice_event)
+53. Content(entity.sacrifice_event, entity.cause)
+54. Relational(entity.cause, entity.sacrifice_count)
+55. edge.sacrifice_reason = "historical"
+56. edge.sacrifice_reason = "none"
+57. edge.sacrifice_time = "2023"
+58. edge.sacrifice_time = "unknown"
+59. M_NLI(entity.sacrifice_reason, entity.sacrifice_event)
+60. T("Twenty thousand of them got sacrificed.", "The sacrifices occurred for some reason or other.", tau)
+61. tau(entity.sacrifice_reason, entity.sacrifice_event)
+62. violate(entity.sacrifice_reason, entity.sacrifice_event)
+63. Factual(entity.sacrifice_reason, entity.sacrifice_event)
+64. Causal(entity.sacrifice_event, entity.sacrifice_reason)
+65. Numeric(entity.sacrifice_event, entity.sacrifice_count)
+66. Temporal(entity.sacrifice_time, entity.sacrifice_event)
+67. Content(entity.sacrifice_event, entity.sacrifice_reason)
+68. Relational(entity.sacrifice_reason, entity.sacrifice_count)
+69. edge.sacrifice_type = "ritual"
+70. edge.sacrifice_type = "none"
+71. edge.sacrifice_count = "0"
+72. entity.sacrifice_count = "none"
+73. entity.sacrifice_count = "twenty thousand"
+74. edge.sacrifice_event = "none"
+75. edge.sacrifice_event = "twenty thousand"
+76. M_NLI(entity.sacrifice_count, entity.sacrifice_event)
+77. T("In the year, there were no sacrifices at all.", "The sacrifices occurred for some reason or other.", tau)
+78. tau(entity.sacrifice_count, entity.sacrifice_event)
+79. violate(entity.sacrifice_count, entity.sacrifice_event)
+80. Factual(entity.sacrifice_count, entity.sacrifice_event)
+81. Causal(entity.sacrifice_event, entity.sacrifice_count)
+82. Numeric(entity.sacrifice_event, entity.sacrifice_count)
+83. Temporal(entity.sacrifice_time, entity.sacrifice_event)
+84. Content(entity.sacrifice_event, entity.sacrifice_count)
+85. Relational(entity.sacrifice_count, entity.sacrifice_event)
+86. edge.sacrifice_reason = "cultural"
+87. edge.sacrifice_reason = "none"
+88. edge.sacrifice_time = "2023"
+89. edge.sacrifice_time = "unknown"
+90. M_NLI(entity.sacrifice_reason, entity.sacrifice_count)
+91. T("Twenty thousand of them got sacrificed.", "In the year, there were no sacrifices at all.", tau)
+92. tau(entity.sacrifice_reason, entity.sacrifice_count)
+93. violate(entity.sacrifice_reason, entity.sacrifice_count)
+94. Factual(entity.sacrifice_reason, entity.sacrifice_count)
+95. Causal(entity.sacrifice_count, entity.sacrifice_reason)
+96. Numeric(entity.sacrifice_count, entity.sacrifice_event)
+97. Temporal(entity.sacrifice_time, entity.sacrifice_count)
+98. Content(entity.sacrifice_count, entity.sacrifice_event)
+99. Relational(entity.sacrifice_reason, entity.sacrifice_event)
+100. edge.sacrifice_event = "historical"
+violate(x0, y0)
+
+Rules:
+1. Q[x0, y0](entity.year = "2023" ∧ entity.sacrifices = "none" → violate(x0, y0))
+2. Q[x0, y0](entity.year = "2023" ∧ entity.sacrifices = "twenty thousand" → violate(x0, y0))
+3. Q[x0, y0](entity.sacrifices = "none" ∧ edge.outcome = "no_sacrifices" ∧ edge.relationship = "sacrifice_event" → violate(x0, y0))
+4. Q[x0, y0](entity.sacrifices = "twenty thousand" ∧ edge.outcome = "sacrifices_occurred" ∧ edge.relationship = "sacrifice_event" → violate(x0, y0))
+5. Q[x0, y0](entity.reason = "unknown" ∧ edge.cause = "unknown_reason" ∧ edge.outcome = "no_sacrifices" → violate(x0, y0))
+6. Q[x0, y0](entity.reason = "unknown" ∧ edge.cause = "unknown_reason" ∧ edge.outcome = "sacrifices_occurred" → violate(x0, y0))
+7. Q[x0, y0](entity.sacrifices = "none" ∧ entity.count = "20000" ∧ edge.outcome = "no_sacrifices" ∧ edge.relationship = "sacrifice_event" → violate(x0, y0))
+8. Q[x0, y0](entity.sacrifices = "twenty thousand" ∧ entity.count = "0" ∧ edge.outcome = "sacrifices_occurred" ∧ edge.relationship = "sacrifice_event" → violate(x0, y0))
+9. Q[x0, y0](entity.sacrifice_type = "none" ∧ edge.sacrifice_count = "20000" ∧ edge.sacrifice_event = "none" ∧ edge.sacrifice_type = "ritual" → violate(x0, y0))
+10. Q[x0, y0](entity.sacrifice_type = "ritual" ∧ edge.sacrifice_count = "0" ∧ edge.sacrifice_event = "twenty thousand" ∧ edge.sacrifice_type = "none" → violate(x0, y0))
+11. Q[x0, y0](entity.sacrifice_event = "none" ∧ edge.sacrifice_reason = "none" ∧ edge.sacrifice_time = "2023" ∧ edge.sacrifice_count = "20000" → violate(x0, y0))
+12. Q[x0, y0](entity.sacrifice_event = "twenty thousand" ∧ edge.sacrifice_reason = "cultural" ∧ edge.sacrifice_time = "unknown" ∧ edge.sacrifice_count = "0" → violate(x0, y0))
+13. Q[x0, y0](entity.sacrifices = "none" ∧ edge.cause = "no_belief" ∧ edge.outcome = "sacrifices_occurred" ∧ edge.relationship = "sacrifice_event" ∧ entity.year = "2023" → violate(x0, y0))
+14. Q[x0, y0](entity.sacrifices = "twenty thousand" ∧ edge.cause = "cultural_belief" ∧ edge.outcome = "no_sacrifices" ∧ edge.relationship = "sacrifice_event" ∧ entity.year = "2023" → violate(x0, y0))
+15. Q[x0, y0](entity.sacrifice_count = "none" ∧ entity.sacrifice_event = "none" ∧ edge.sacrifice_reason = "historical" ∧ edge.sacrifice_time = "2023" ∧ edge.sacrifice_count = "20000" → violate(x0, y0))
+16. Q[x0, y0](entity.sacrifice_count = "twenty thousand" ∧ entity.sacrifice_event = "twenty thousand" ∧ edge.sacrifice_reason = "none" ∧ edge.sacrifice_time = "unknown" ∧ edge.sacrifice_count = "0" → violate(x0, y0))
+17. Q[x0, y0](entity.sacrifices = "none" ∧ edge.sacrifice_event = "none" ∧ edge.sacrifice_count = "20000" ∧ edge.sacrifice_reason = "cultural" ∧ edge.sacrifice_time = "2023" → violate(x0, y0))
+18. Q[x0, y0](entity.sacrifices = "twenty thousand" ∧ edge.sacrifice_event = "twenty thousand" ∧ edge.sacrifice_count = "0" ∧ edge.sacrifice_reason = "none" ∧ edge.sacrifice_time = "unknown" → violate(x0, y0))
+19. Q[x0, y0](entity.year = "2023" ∧ entity.sacrifices = "none" ∧ edge.outcome = "sacrifices_occurred" ∧ edge.relationship = "sacrifice_event" ∧ entity.reason = "unknown" → violate(x0, y0))
+20. Q[x0, y0](entity.year = "2023" ∧ entity.sacrifices = "twenty thousand" ∧ edge.outcome = "no_sacrifices" ∧ edge.relationship = "sacrifice_event" ∧ entity.reason = "unknown" → violate(x0, y0))
+21. Q[x0, y0](entity.sacrifice_type = "none" ∧ edge.sacrifice_count = "20000" ∧ edge.sacrifice_event = "none" ∧ edge.sacrifice_reason = "historical" ∧ edge.sacrifice_time = "2023" → violate(x0, y0))
+22. Q[x0, y0](entity.sacrifice_type = "ritual" ∧ edge.sacrifice_count = "0" ∧ edge.sacrifice_event = "twenty thousand" ∧ edge.sacrifice_reason = "none" ∧ edge.sacrifice_time = "unknown" → violate(x0, y0))
+23. Q[x0, y0](entity.sacrifices = "none" ∧ edge.cause = "no_belief" ∧ edge.outcome = "sacrifices_occurred" ∧ edge.relationship = "sacrifice_event" ∧ entity.year = "2023" ∧ entity.reason = "unknown" → violate(x0, y0))
+24. Q[x0, y0](entity.sacrifices = "twenty thousand" ∧ edge.cause = "cultural_belief" ∧ edge.outcome = "no_sacrifices" ∧ edge.relationship = "sacrifice_event"

@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 1240)
+S1: He told me eight to twelve weeks not anything you know is said but you're only going to put the cast on for a couple of weeks.
+S2: He said eight to twelve weeks, and I mentioned how the cast would only be on for a few weeks.
+
+Predicates:
+1. S1.duration.cast_weeks
+2. S1.duration.expected
+3. S1.duration.said
+4. S1.duration.cast_duration
+5. S2.duration.cast_weeks
+6. S2.duration.expected
+7. S2.duration.cast_duration
+8. S1.cast_duration.longer
+9. S2.cast_duration.shorter
+10. S1.statement.source
+11. S2.statement.source
+12. S1.contradiction.present
+13. S2.contradiction.present
+14. S1.time_frame
+15. S2.time_frame
+16. S1.duration.cast
+17. S2.duration.cast
+18. S1.cast_duration.uncertain
+19. S2.cast_duration.uncertain
+20. S1.information.source
+21. S2.information.source
+22. M_NLI(S1, S2)
+23. Causal(S1, S2)
+24. violate(S1, S2)
+25. S1.cast_duration.unclear
+26. S2.cast_duration.unclear
+27. S1.duration.conflict
+28. S2.duration.conflict
+29. S1.statement.contradictory
+30. S2.statement.contradictory
+
+Rules:
+1. Q[told, S1.duration.cast_weeks, S2.duration.cast_weeks](S1.duration.cast_weeks == "8 to 12 weeks" → Causal(S1, S2))
+2. Q[told, S1.duration.expected, S2.duration.expected](S1.duration.expected == "longer" → Causal(S1, S2))
+3. Q[told, S1.duration.said, S2.duration.cast_duration](S1.duration.said == "8 to 12 weeks" → Causal(S1, S2))
+4. Q[told, S1.duration.cast_duration, S2.duration.cast_duration](S1.duration.cast_duration == "longer" → Causal(S1, S2))
+5. Q[told, S1.cast_duration.longer, S2.cast_duration.shorter](S1.cast_duration.longer == true → Causal(S1, S2))
+6. Q[told, S1.duration.cast, S2.duration.cast](S1.duration.cast == "long" → Causal(S1, S2))
+7. Q[told, S1.cast_duration.uncertain, S2.cast_duration.uncertain](S1.cast_duration.uncertain == true → Causal(S1, S2))
+8. Q[told, S1.duration.conflict, S2.duration.conflict](S1.duration.conflict == true → Causal(S1, S2))
+9. Q[told, S1.statement.source, S2.statement.source](S1.statement.source == "doctor" → Causal(S1, S2))
+10. Q[told, S1.time_frame, S2.time_frame](S1.time_frame == "longer" → Causal(S1, S2))
+11. Q[told, S1.duration.cast_weeks, S2.duration.cast_duration](S1.duration.cast_weeks == "8 to 12 weeks" → Causal(S1, S2))
+12. Q[told, S1.duration.expected, S2.duration.cast_weeks](S1.duration.expected == "longer" → Causal(S1, S2))
+13. Q[told, S1.duration.cast_duration, S2.duration.expected](S1.duration.cast_duration == "long" → Causal(S1, S2))
+14. Q[told, S1.cast_duration.unclear, S2.cast_duration.shorter](S1.cast_duration.unclear == true → Causal(S1, S2))
+15. Q[told, S1.duration.cast, S2.duration.expected](S1.duration.cast == "long" → Causal(S1, S2))
+16. Q[told, S1.statement.contradictory, S2.statement.contradictory](S1.statement.contradictory == true → Causal(S1, S2))
+17. Q[told, S1.duration.cast_duration, S2.cast_duration.shorter](S1.duration.cast_duration == "long" → Causal(S1, S2))
+18. Q[told, S1.duration.cast_weeks, S2.duration.cast_weeks](S1.duration.cast_weeks == "8 to 12 weeks" → Causal(S1, S2))
+19. Q[told, S1.duration.expected, S2.cast_duration.shorter](S1.duration.expected == "longer" → Causal(S1, S2))
+20. Q[told, S1.duration.cast_duration, S2.duration.cast_duration](S1.duration.cast_duration == "long" → Causal(S1, S2))
+21. Q[told, S1.cast_duration.longer, S2.duration.cast](S1.cast_duration.longer == true → Causal(S1, S2))
+22. Q[told, S1.duration.conflict, S2.duration.cast_duration](S1.duration.conflict == true → Causal(S1, S2))
+23. Q[told, S1.information.source, S2.information.source](S1.information.source == "doctor" → Causal(S1, S2))
+24. Q[told, S1.duration.cast, S2.duration.cast_weeks](S1.duration.cast == "long" → Causal(S1, S2))
+25. Q[told, S1.cast_duration.uncertain, S2.duration.expected](S1.cast_duration.uncertain == true → Causal(S1, S2))
+26. Q[told, S1.duration.cast_duration, S2.duration.conflict](S1.duration.cast_duration == "long" → Causal(S1, S2))
+27. Q[told, S1.duration.cast_weeks, S2.duration.expected](S1.duration.cast_weeks == "8 to 12 weeks" → Causal(S1, S2))
+28. Q[told, S1.duration.expected, S2.duration.cast](S1.duration.expected == "longer" → Causal(S1, S2))
+29. Q[told, S1.duration.cast_duration, S2.cast_duration.unclear](S1.duration.cast_duration == "long" → Causal(S1, S2))
+30. Q[told, S1.duration.conflict, S2.cast_duration.shorter](S1.duration.conflict == true → Causal(S1, S2))

@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 345)
+S1: The largest Japanese spider crabs have a leg span of just over 12 feet
+S2: The largest Japanese spider crabs have a leg span of less than 1 foot
+
+Predicates:
+1. Japanese_spider_crab.leg_span
+2. Japanese_spider_crab.size
+3. Japanese_spider_crab.species
+4. Japanese_spider_crab.habitat
+5. Japanese_spider_crab.weight
+6. Japanese_spider_crab.color
+7. Japanese_spider_crab.lifespan
+8. Japanese_spider_crab.diet
+9. Japanese_spider_crab.reproduction
+10. Japanese_spider_crab.geographic_distribution
+11. leg_span.measurement
+12. leg_span.unit
+13. leg_span.comparison
+14. leg_span.maximum
+15. leg_span.minimum
+16. leg_span.conflict
+17. measurement.source
+18. measurement.accuracy
+19. measurement.date
+20. measurement.method
+21. conflict.reason
+22. conflict.type
+23. conflict.severity
+24. Factual(Japanese_spider_crab.leg_span, 12_feet)
+25. Factual(Japanese_spider_crab.leg_span, 1_foot)
+26. violate(Japanese_spider_crab.leg_span, 12_feet, 1_foot)
+27. M_NLI(S1, S2)
+28. M_NLI(Japanese_spider_crab.leg_span, leg_span.conflict)
+29. relationship_name.measurement
+30. relationship_name.species
+
+Rules:
+1. Q[The, x0, y0](Japanese_spider_crab.leg_span == 12_feet → Factual(x0, y0))
+2. Q[The, x0, y0](Japanese_spider_crab.leg_span == 1_foot → Factual(x0, y0))
+3. Q[The, x0, y0](leg_span.maximum == 12_feet → Factual(x0, y0))
+4. Q[The, x0, y0](leg_span.minimum == 1_foot → Factual(x0, y0))
+5. Q[The, x0, y0](leg_span.measurement == 12_feet → Factual(x0, y0))
+6. Q[The, x0, y0](leg_span.measurement == 1_foot → Factual(x0, y0))
+7. Q[The, x0, y0](leg_span.comparison == "greater than" → Factual(x0, y0))
+8. Q[The, x0, y0](leg_span.comparison == "less than" → Factual(x0, y0))
+9. Q[The, x0, y0](measurement.source == "S1" → Factual(x0, y0))
+10. Q[The, x0, y0](measurement.source == "S2" → Factual(x0, y0))
+11. Q[The, x0, y0](measurement.accuracy == "high" → Factual(x0, y0))
+12. Q[The, x0, y0](measurement.accuracy == "low" → Factual(x0, y0))
+13. Q[The, x0, y0](leg_span.conflict == true → Factual(x0, y0))
+14. Q[The, x0, y0](conflict.reason == "measurement discrepancy" → Factual(x0, y0))
+15. Q[The, x0, y0](conflict.type == "factual" → Factual(x0, y0))
+16. Q[The, x0, y0](conflict.severity == "high" → Factual(x0, y0))
+17. Q[The, x0, y0](M_NLI(S1, S2) == true → Factual(x0, y0))
+18. Q[The, x0, y0](M_NLI(Japanese_spider_crab.leg_span, leg_span.conflict) == true → Factual(x0, y0))
+19. Q[The, x0, y0](leg_span.maximum == 12_feet and leg_span.minimum == 1_foot → Factual(x0, y0))
+20. Q[The, x0, y0](Japanese_spider_crab.leg_span == 12_feet and Japanese_spider_crab.leg_span == 1_foot → Factual(x0, y0))
+21. Q[The, x0, y0](violate(Japanese_spider_crab.leg_span, 12_feet, 1_foot) == true → Factual(x0, y0))
+22. Q[The, x0, y0](relationship_name.measurement == "leg_span" → Factual(x0, y0))
+23. Q[The, x0, y0](relationship_name.species == "Japanese_spider_crab" → Factual(x0, y0))
+24. Q[The, x0, y0](leg_span.unit == "feet" → Factual(x0, y0))
+25. Q[The, x0, y0](leg_span.maximum > leg_span.minimum → Factual(x0, y0))
+26. Q[The, x0, y0](leg_span.maximum == 12_feet and leg_span.minimum < 12_feet → Factual(x0, y0))
+27. Q[The, x0, y0](leg_span.minimum == 1_foot and leg_span.maximum > 1_foot → Factual(x0, y0))
+28. Q[The, x0, y0](leg_span.maximum == 12_feet and leg_span.minimum == 1_foot → Factual(x0, y0))
+29. Q[The, x0, y0](Japanese_spider_crab.leg_span == 12_feet and Japanese_spider_crab.leg_span == 1_foot → Factual(x0, y0))
+30. Q[The, x0, y0](leg_span.conflict == "true" → Factual(x0, y0))

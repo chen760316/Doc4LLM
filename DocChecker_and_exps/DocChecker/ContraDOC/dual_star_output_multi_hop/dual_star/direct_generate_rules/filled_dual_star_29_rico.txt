@@ -1,0 +1,48 @@
+Predicates:
+Ben Carson.label != "Person"
+Ben Carson.label != LGBT Rights.label
+Ben Carson.label != jail.label
+Ben Carson.label = "Person"
+Ben Carson.name != "Ben Carson"
+Ben Carson.name != LGBT Rights.name
+Ben Carson.name != jail.name
+Ben Carson.name = "Ben Carson"
+Ben Carson.nationality != "American"
+Ben Carson.nationality = "American"
+Ben Carson.occupation != "Political figure"
+Ben Carson.occupation = "Political figure"
+Ben Carson___LGBT Rights.doc_id != Ben Carson___jail.doc_id
+Ben Carson___LGBT Rights.doc_id = "3489738271_2"
+Ben Carson___LGBT Rights.relationship != Ben Carson___jail.relationship
+Ben Carson___LGBT Rights.relationship = "Ben Carson made a controversial statement regarding LGBT rights."
+Ben Carson___jail.doc_id = "3489738271_1"
+Ben Carson___jail.relationship = "Ben Carson stated that jail turns people gay."
+LGBT Rights.label != "Issue"
+LGBT Rights.label != jail.label
+LGBT Rights.label = "Issue"
+LGBT Rights.name != "LGBT Rights"
+LGBT Rights.name != jail.name
+LGBT Rights.name = "LGBT Rights"
+LGBT Rights.status != "Controversial"
+LGBT Rights.status != jail.status
+LGBT Rights.status = "Controversial"
+None_ML(Ben Carson___LGBT Rights.attrs, Ben Carson___jail.attrs)
+None_ML(jail.attrs, Ben Carson.attrs)
+jail.label != "Law"
+jail.label = "Law"
+jail.name != "jail"
+jail.name = "jail"
+jail.status != "statement"
+jail.status = "statement"
+
+Rules:
+Q[Ben Carson,Ben Carson] (Ben Carson.occupation = "Political figure" ∧ Ben Carson.name = "Ben Carson" ∧ jail.status = "statement" ∧ Ben Carson___LGBT Rights.relationship = "Ben Carson made a controversial statement regarding LGBT rights." → jail.status != "statement")
+Q[Ben Carson,Ben Carson] (jail.label = "Law" ∧ LGBT Rights.status != jail.status ∧ LGBT Rights.name != jail.name → jail.label != "Law")
+Q[Ben Carson,Ben Carson] (Ben Carson___jail.relationship = "Ben Carson stated that jail turns people gay." ∧ Ben Carson___LGBT Rights.doc_id = "3489738271_2" ∧ Ben Carson.name != jail.name ∧ Ben Carson___jail.doc_id = "3489738271_1" ∧ LGBT Rights.label = "Issue" → Ben Carson.nationality != "American")
+Q[Ben Carson,Ben Carson] (jail.status != "statement" ∧ LGBT Rights.label != "Issue" → Ben Carson.label = "Person")
+Q[Ben Carson,Ben Carson] (LGBT Rights.label != "Issue" ∧ LGBT Rights.label = "Issue" ∧ Ben Carson.occupation = "Political figure" ∧ jail.label != "Law" ∧ Ben Carson.name != jail.name ∧ LGBT Rights.status != jail.status → LGBT Rights.label != jail.label)
+Q[Ben Carson,Ben Carson] (LGBT Rights.status != "Controversial" ∧ Ben Carson.label != LGBT Rights.label ∧ jail.name = "jail" ∧ jail.status = "statement" ∧ LGBT Rights.status != jail.status → Ben Carson.label != jail.label)
+Q[Ben Carson,Ben Carson] (jail.name = "jail" ∧ LGBT Rights.status != "Controversial" ∧ LGBT Rights.status != jail.status ∧ jail.label != "Law" ∧ LGBT Rights.name = "LGBT Rights" ∧ LGBT Rights.name != jail.name → Ben Carson___jail.relationship = "Ben Carson stated that jail turns people gay.")
+Q[Ben Carson,Ben Carson] (Ben Carson___jail.relationship = "Ben Carson stated that jail turns people gay." ∧ LGBT Rights.status = "Controversial" ∧ None_ML(jail.attrs, Ben Carson.attrs) → Ben Carson___LGBT Rights.doc_id = "3489738271_2")
+Q[Ben Carson,Ben Carson] (Ben Carson.name != LGBT Rights.name ∧ LGBT Rights.status != "Controversial" → LGBT Rights.label != "Issue")
+Q[Ben Carson,Ben Carson] (Ben Carson.label != jail.label ∧ LGBT Rights.name != jail.name ∧ Ben Carson.name != "Ben Carson" ∧ LGBT Rights.status != jail.status → LGBT Rights.status != "Controversial")

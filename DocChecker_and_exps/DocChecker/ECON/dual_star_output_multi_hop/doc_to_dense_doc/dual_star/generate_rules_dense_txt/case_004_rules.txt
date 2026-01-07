@@ -1,0 +1,57 @@
+Source: dense_text.txt (Index 4)
+S1: Barack Obama's father was born in Honolulu, Hawaii, USA.
+S2: Barack Obama's father was born in Nyang’oma Kogelo, Rachuonyo District, Kenya Colony.
+
+Predicates:
+1. Barack_Obama.father
+2. Barack_Obama.father.birthplace
+3. Barack_Obama.father.birthplace.Honolulu_Hawaii_USA
+4. Barack_Obama.father.birthplace.Nyang’oma_Kogelo_Kenya
+5. Honolulu_Hawaii_USA.is_a.birthplace
+6. Nyang’oma_Kogelo_Kenya.is_a.birthplace
+7. birthplace.conflict
+8. birthplace.Honolulu_Hawaii_USA.is_conflicting_with.Nyang’oma_Kogelo_Kenya
+9. M_NLI(S1, S2)
+10. Factual(S1, S2)
+11. violate(S1, S2)
+12. Barack_Obama.father.birth_year
+13. Barack_Obama.father.nationality
+14. Barack_Obama.father.nationality.USA
+15. Barack_Obama.father.nationality.Kenya
+16. birthplace.Honolulu_Hawaii_USA.is_in.USA
+17. birthplace.Nyang’oma_Kogelo_Kenya.is_in.Kenya
+18. Barack_Obama.father.residence
+19. Barack_Obama.father.residence.Honolulu_Hawaii_USA
+20. Barack_Obama.father.residence.Nyang’oma_Kogelo_Kenya
+21. birthplace.Honolulu_Hawaii_USA.is_not_equal_to.Nyang’oma_Kogelo_Kenya
+22. Barack_Obama.father.citizenship
+23. Barack_Obama.father.citizenship.USA
+24. Barack_Obama.father.citizenship.Kenya
+25. birthplace.Honolulu_Hawaii_USA.has_conflict_with.Nyang’oma_Kogelo_Kenya
+26. Barack_Obama.father.ancestry
+27. Barack_Obama.father.ancestry.Kenyan
+28. Barack_Obama.father.ancestry.American
+29. birthplace.Honolulu_Hawaii_USA.is_a.geographical_location
+30. birthplace.Nyang’oma_Kogelo_Kenya.is_a.geographical_location
+
+Rules:
+1. Q[Barack_Obama, Barack_Obama.father.birthplace, Honolulu_Hawaii_USA](Barack_Obama.father.birthplace == "Honolulu_Hawaii_USA" → Factual(Barack_Obama.father, Honolulu_Hawaii_USA))
+2. Q[Barack_Obama, Barack_Obama.father.birthplace, Nyang’oma_Kogelo_Kenya](Barack_Obama.father.birthplace == "Nyang’oma_Kogelo_Kenya" → Factual(Barack_Obama.father, Nyang’oma_Kogelo_Kenya))
+3. Q[Barack_Obama, birthplace.Honolulu_Hawaii_USA, birthplace.Nyang’oma_Kogelo_Kenya](birthplace.Honolulu_Hawaii_USA.is_not_equal_to.Nyang’oma_Kogelo_Kenya → Factual(Barack_Obama.father, birthplace.Honolulu_Hawaii_USA))
+4. Q[Barack_Obama, birthplace.Honolulu_Hawaii_USA, birthplace.Nyang’oma_Kogelo_Kenya](birthplace.Honolulu_Hawaii_USA.has_conflict_with.Nyang’oma_Kogelo_Kenya → Factual(Barack_Obama.father, birthplace.Honolulu_Hawaii_USA))
+5. Q[Barack_Obama, Barack_Obama.father.birthplace, birthplace.Honolulu_Hawaii_USA](Barack_Obama.father.birthplace == "Honolulu_Hawaii_USA" ∧ birthplace.Honolulu_Hawaii_USA.is_a.birthplace → Factual(Barack_Obama.father, birthplace.Honolulu_Hawaii_USA))
+6. Q[Barack_Obama, Barack_Obama.father.birthplace, birthplace.Nyang’oma_Kogelo_Kenya](Barack_Obama.father.birthplace == "Nyang’oma_Kogelo_Kenya" ∧ birthplace.Nyang’oma_Kogelo_Kenya.is_a.birthplace → Factual(Barack_Obama.father, birthplace.Nyang’oma_Kogelo_Kenya))
+7. Q[Barack_Obama, birthplace.Honolulu_Hawaii_USA, birthplace.Nyang’oma_Kogelo_Kenya](birthplace.Honolulu_Hawaii_USA.is_a.geographical_location ∧ birthplace.Nyang’oma_Kogelo_Kenya.is_a.geographical_location → Factual(Barack_Obama.father, birthplace.Honolulu_Hawaii_USA))
+8. Q[Barack_Obama, birthplace.Honolulu_Hawaii_USA, birthplace.Nyang’oma_Kogelo_Kenya](birthplace.Honolulu_Hawaii_USA.is_in.USA ∧ birthplace.Nyang’oma_Kogelo_Kenya.is_in.Kenya → Factual(Barack_Obama.father, birthplace.Honolulu_Hawaii_USA))
+9. Q[Barack_Obama, Barack_Obama.father.birthplace, birthplace.Honolulu_Hawaii_USA](Barack_Obama.father.birthplace == "Honolulu_Hawaii_USA" ∧ birthplace.Honolulu_Hawaii_USA.is_a.birthplace → Factual(Barack_Obama.father, birthplace.Honolulu_Hawaii_USA))
+10. Q[Barack_Obama, Barack_Obama.father.birthplace, birthplace.Nyang’oma_Kogelo_Kenya](Barack_Obama.father.birthplace == "Nyang’oma_Kogelo_Kenya" ∧ birthplace.Nyang’oma_Kogelo_Kenya.is_a.birthplace → Factual(Barack_Obama.father, birthplace.Nyang’oma_Kogelo_Kenya))
+11. Q[Barack_Obama, birthplace.Honolulu_Hawaii_USA, birthplace.Nyang’oma_Kogelo_Kenya](birthplace.Honolulu_Hawaii_USA.is_a.birthplace ∧ birthplace.Nyang’oma_Kogelo_Kenya.is_a.birthplace → Factual(Barack_Obama.father, birthplace.Honolulu_Hawaii_USA))
+12. Q[Barack_Obama, birthplace.Honolulu_Hawaii_USA, birthplace.Nyang’oma_Kogelo_Kenya](birthplace.Honolulu_Hawaii_USA.is_not_equal_to.Nyang’oma_Kogelo_Kenya → Factual(Barack_Obama.father, birthplace.Honolulu_Hawaii_USA))
+13. Q[Barack_Obama, birthplace.Honolulu_Hawaii_USA, birthplace.Nyang’oma_Kogelo_Kenya](birthplace.Honolulu_Hawaii_USA.has_conflict_with.Nyang’oma_Kogelo_Kenya → Factual(Barack_Obama.father, birthplace.Honolulu_Hawaii_USA))
+14. Q[Barack_Obama, Barack_Obama.father.birthplace, birthplace.Honolulu_Hawaii_USA](Barack_Obama.father.birthplace == "Honolulu_Hawaii_USA" ∧ birthplace.Honolulu_Hawaii_USA.is_a.geographical_location → Factual(Barack_Obama.father, birthplace.Honolulu_Hawaii_USA))
+15. Q[Barack_Obama, Barack_Obama.father.birthplace, birthplace.Nyang’oma_Kogelo_Kenya](Barack_Obama.father.birthplace == "Nyang’oma_Kogelo_Kenya" ∧ birthplace.Nyang’oma_Kogelo_Kenya.is_a.geographical_location → Factual(Barack_Obama.father, birthplace.Nyang’oma_Kogelo_Kenya))
+16. Q[Barack_Obama, birthplace.Honolulu_Hawaii_USA, birthplace.Nyang’oma_Kogelo_Kenya](birthplace.Honolulu_Hawaii_USA.is_in.USA ∧ birthplace.Nyang’oma_Kogelo_Kenya.is_in.Kenya → Factual(Barack_Obama.father, birthplace.Honolulu_Hawaii_USA))
+17. Q[Barack_Obama, birthplace.Honolulu_Hawaii_USA, birthplace.Nyang’oma_Kogelo_Kenya](birthplace.Honolulu_Hawaii_USA.has_conflict_with.Nyang’oma_Kogelo_Kenya → Factual(Barack_Obama.father, birthplace.Honolulu_Hawaii_USA))
+18. Q[Barack_Obama, Barack_Obama.father.birthplace, birthplace.Honolulu_Hawaii_USA](Barack_Obama.father.birthplace == "Honolulu_Hawaii_USA" ∧ birthplace.Honolulu_Hawaii_USA.is_a.birthplace → Factual(Barack_Obama.father, birthplace.Honolulu_Hawaii_USA))
+19. Q[Barack_Obama, Barack_Obama.father.birthplace, birthplace.Nyang’oma_Kogelo_Kenya](Barack_Obama.father.birthplace == "Nyang’oma_Kogelo_Kenya" ∧ birthplace.Nyang’oma_Kogelo_Kenya.is_a.birthplace → Factual(Barack_Obama.father, birthplace.Nyang’oma_Kogelo_Kenya))
+20. Q[Barack_Obama, birthplace.Honolulu_Hawaii_USA, birthplace.Nyang’oma_Kogelo_Kenya](birthplace.Honolulu_Hawaii_USA.is

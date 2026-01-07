@@ -1,0 +1,48 @@
+Predicates:
+Dr Watson.label != "Person"
+Dr Watson.label = "Person"
+Dr Watson.location != "Baker Street"
+Dr Watson.location = "Baker Street"
+Dr Watson.name != "Dr Watson"
+Dr Watson.name = "Dr Watson"
+Dr Watson.occupation != "doctor"
+Dr Watson.occupation = "doctor"
+Mr Culverton Smith.label != "Person"
+Mr Culverton Smith.label = "Person"
+Mr Culverton Smith.location != "Baker Street"
+Mr Culverton Smith.location = "Baker Street"
+Mr Culverton Smith.name != "Mr Culverton Smith"
+Mr Culverton Smith.name != Dr Watson.name
+Mr Culverton Smith.name = "Mr Culverton Smith"
+None_ML(Sherlock Holmes.attrs, Mr Culverton Smith.attrs)
+None_ML(Sherlock Holmes___Mr Culverton Smith.attrs, Sherlock Holmes___Dr Watson.attrs)
+Sherlock Holmes.label != "Person"
+Sherlock Holmes.label = "Person"
+Sherlock Holmes.location != "Baker Street"
+Sherlock Holmes.location = "Baker Street"
+Sherlock Holmes.name != "Sherlock Holmes"
+Sherlock Holmes.name != Dr Watson.name
+Sherlock Holmes.name != Mr Culverton Smith.name
+Sherlock Holmes.name = "Sherlock Holmes"
+Sherlock Holmes.status != "not dying"
+Sherlock Holmes.status = "not dying"
+Sherlock Holmes___Dr Watson.doc_id = "3488771839_11"
+Sherlock Holmes___Dr Watson.reason = "highly infectious"
+Sherlock Holmes___Dr Watson.relationship = "Holmes calls for Watson to present himself as a witness to the conversation."
+Sherlock Holmes___Mr Culverton Smith.doc_id = "3488771839_11"
+Sherlock Holmes___Mr Culverton Smith.reason != Sherlock Holmes___Dr Watson.reason
+Sherlock Holmes___Mr Culverton Smith.reason = "confession of murder"
+Sherlock Holmes___Mr Culverton Smith.relationship != Sherlock Holmes___Dr Watson.relationship
+Sherlock Holmes___Mr Culverton Smith.relationship = "Holmes tells Inspector Morton to arrest Culverton Smith for the murder of his nephew."
+
+Rules:
+Q[Sherlock Holmes,Sherlock Holmes] (Dr Watson.occupation != "doctor" ∧ Sherlock Holmes.status != "not dying" → Mr Culverton Smith.label = "Person")
+Q[Sherlock Holmes,Sherlock Holmes] (Sherlock Holmes.name != Dr Watson.name ∧ Dr Watson.occupation = "doctor" ∧ Mr Culverton Smith.label = "Person" → Sherlock Holmes___Mr Culverton Smith.doc_id = "3488771839_11")
+Q[Sherlock Holmes,Sherlock Holmes] (Sherlock Holmes___Mr Culverton Smith.reason != Sherlock Holmes___Dr Watson.reason ∧ Sherlock Holmes___Mr Culverton Smith.relationship != Sherlock Holmes___Dr Watson.relationship ∧ Sherlock Holmes.name = "Sherlock Holmes" ∧ Sherlock Holmes.status != "not dying" → Dr Watson.location != "Baker Street")
+Q[Sherlock Holmes,Sherlock Holmes] (Mr Culverton Smith.name = "Mr Culverton Smith" ∧ Sherlock Holmes___Mr Culverton Smith.reason != Sherlock Holmes___Dr Watson.reason ∧ Dr Watson.location != "Baker Street" ∧ Sherlock Holmes.name = "Sherlock Holmes" ∧ Sherlock Holmes___Mr Culverton Smith.relationship = "Holmes tells Inspector Morton to arrest Culverton Smith for the murder of his nephew." → Sherlock Holmes___Dr Watson.doc_id = "3488771839_11")
+Q[Sherlock Holmes,Sherlock Holmes] (Sherlock Holmes___Mr Culverton Smith.reason = "confession of murder" ∧ None_ML(Sherlock Holmes___Mr Culverton Smith.attrs, Sherlock Holmes___Dr Watson.attrs) ∧ Sherlock Holmes.location = "Baker Street" ∧ Sherlock Holmes.status != "not dying" ∧ Mr Culverton Smith.location != "Baker Street" ∧ Mr Culverton Smith.location = "Baker Street" → Sherlock Holmes.location != "Baker Street")
+Q[Sherlock Holmes,Sherlock Holmes] (Sherlock Holmes.status != "not dying" ∧ Sherlock Holmes___Mr Culverton Smith.reason != Sherlock Holmes___Dr Watson.reason ∧ Dr Watson.location = "Baker Street" ∧ Mr Culverton Smith.location != "Baker Street" ∧ Mr Culverton Smith.name = "Mr Culverton Smith" → Dr Watson.name != "Dr Watson")
+Q[Sherlock Holmes,Sherlock Holmes] (Mr Culverton Smith.name = "Mr Culverton Smith" ∧ Sherlock Holmes___Dr Watson.reason = "highly infectious" → Dr Watson.label = "Person")
+Q[Sherlock Holmes,Sherlock Holmes] (Mr Culverton Smith.name != Dr Watson.name ∧ Dr Watson.name = "Dr Watson" ∧ Sherlock Holmes.location = "Baker Street" → Sherlock Holmes___Mr Culverton Smith.reason != Sherlock Holmes___Dr Watson.reason)
+Q[Sherlock Holmes,Sherlock Holmes] (Sherlock Holmes.name != "Sherlock Holmes" ∧ Sherlock Holmes___Mr Culverton Smith.relationship != Sherlock Holmes___Dr Watson.relationship ∧ Sherlock Holmes___Dr Watson.reason = "highly infectious" ∧ Sherlock Holmes___Mr Culverton Smith.reason != Sherlock Holmes___Dr Watson.reason → Sherlock Holmes.location = "Baker Street")
+Q[Sherlock Holmes,Sherlock Holmes] (None_ML(Sherlock Holmes___Mr Culverton Smith.attrs, Sherlock Holmes___Dr Watson.attrs) ∧ Dr Watson.location != "Baker Street" ∧ Mr Culverton Smith.location = "Baker Street" ∧ Sherlock Holmes___Dr Watson.relationship = "Holmes calls for Watson to present himself as a witness to the conversation." ∧ Dr Watson.occupation = "doctor" ∧ Sherlock Holmes___Mr Culverton Smith.reason = "confession of murder" → Sherlock Holmes.status = "not dying")

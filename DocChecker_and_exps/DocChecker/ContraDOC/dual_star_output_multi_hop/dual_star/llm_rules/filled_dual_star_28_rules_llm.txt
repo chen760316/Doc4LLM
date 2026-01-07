@@ -1,0 +1,127 @@
+Predicates:
+1. Iran.enrichment_level = "weapons-grade"
+2. Iran.enrichment_level != "low-grade"
+3. Iran.enrichment_level > "low-grade"
+4. Iran.enrichment_level < "high-grade"
+5. Iran.enrichment_level >= "weapons-grade"
+6. Iran.enrichment_level <= "high-grade"
+7. "If Iran enriches uranium to weapons-grade levels, monitors will alert the U.N. Security Council.".time = "in a matter of days"
+8. "If Iran enriches uranium to weapons-grade levels, monitors will alert the U.N. Security Council.".time != "in a matter of weeks"
+9. "If Iran enriches uranium to weapons-grade levels, monitors will alert the U.N. Security Council.".time < "in a matter of weeks"
+10. "If Iran enriches uranium to weapons-grade levels, monitors will alert the U.N. Security Council.".time > "immediately"
+11. "If Iran enriches uranium to weapons-grade levels, monitors will alert the U.N. Security Council.".time <= "in a matter of days"
+12. "If Iran enriches uranium to weapons-grade levels, monitors will alert the U.N. Security Council.".time >= "in a matter of days"
+13. Iran.goal = "annihilate Israel"
+14. Iran.goal != "peaceful coexistence"
+15. Iran.goal < "regional stability"
+16. Iran.goal > "diplomatic resolution"
+17. Iran.goal <= "annihilate Israel"
+18. Iran.goal >= "regional dominance"
+19. "Iran has been training and funding Hezbollah.".context = "annihilate Israel"
+20. "Iran has been training and funding Hezbollah.".context != "supporting peace"
+21. "Iran has been training and funding Hezbollah.".context < "regional stability"
+22. "Iran has been training and funding Hezbollah.".context > "diplomatic engagement"
+23. "Iran has been training and funding Hezbollah.".context <= "annihilate Israel"
+24. "Iran has been training and funding Hezbollah.".context >= "regional influence"
+25. Belarus.event = "Resumption of capital punishment"
+26. Belarus.event != "abolition of capital punishment"
+27. Belarus.event < "introduction of new laws"
+28. Belarus.event > "reform of justice system"
+29. Belarus.event <= "Resumption of capital punishment"
+30. Belarus.event >= "introduction of capital punishment"
+31. Belarus.status = "Only country in Europe and Central Asia to execute people"
+32. Belarus.status != "country with abolished capital punishment"
+33. Belarus.status < "country with human rights violations"
+34. Belarus.status > "country with progressive laws"
+35. Belarus.status <= "Only country in Europe and Central Asia to execute people"
+36. Belarus.status >= "country with capital punishment"
+37. executions.number = "35"
+38. executions.number != "0"
+39. executions.number < "100"
+40. executions.number > "30"
+41. executions.number <= "35"
+42. executions.number >= "30"
+43. "Executions.previous_year".number = "39"
+44. "Executions.previous_year".number != "40"
+45. "Executions.previous_year".number < "50"
+46. "Executions.previous_year".number > "30"
+47. "Executions.previous_year".number <= "39"
+48. "Executions.previous_year".number >= "30"
+49. Hezbollah.status = "terrorist group"
+50. Hezbollah.status != "political organization"
+51. Hezbollah.status < "non-violent group"
+52. Hezbollah.status > "freedom fighters"
+53. Hezbollah.status <= "terrorist group"
+54. Hezbollah.status >= "militant organization"
+55. Resumption_of_Capital_Punishment.duration = "two year hiatus"
+56. Resumption_of_Capital_Punishment.duration != "permanent"
+57. Resumption_of_Capital_Punishment.duration < "five years"
+58. Resumption_of_Capital_Punishment.duration > "one year"
+59. Resumption_of_Capital_Punishment.duration <= "two year hiatus"
+60. Resumption_of_Capital_Punishment.duration >= "one year"
+61. U.S..location = "Switzerland"
+62. U.S..location != "Iran"
+63. U.S..location < "North Korea"
+64. U.S..location > "Russia"
+65. U.S..location <= "Switzerland"
+66. U.S..location >= "Germany"
+67. Yemen.status = "civil war"
+68. Yemen.status != "peaceful"
+69. Yemen.status < "stable"
+70. Yemen.status > "conflict-free"
+71. Yemen.status <= "civil war"
+72. Yemen.status >= "conflict zone"
+73. executions.count = "35"
+74. executions.count != "0"
+75. executions.count < "100"
+76. executions.count > "30"
+77. executions.count <= "35"
+78. executions.count >= "30"
+79. executions.previous_year_count = "39"
+80. executions.previous_year_count != "40"
+81. executions.previous_year_count < "50"
+82. executions.previous_year_count > "30"
+83. executions.previous_year_count <= "39"
+84. executions.previous_year_count >= "30"
+85. "Resumption of Capital Punishment".duration = "two year hiatus"
+86. "Resumption of Capital Punishment".duration != "permanent"
+87. "Resumption of Capital Punishment".duration < "five years"
+88. "Resumption of Capital Punishment".duration > "one year"
+89. "Resumption of Capital Punishment".duration <= "two year hiatus"
+90. "Resumption of Capital Punishment".duration >= "one year"
+91. M_NLI(Iran.enrichment_level, Iran.goal)
+92. M_NLU(Belarus.event, Belarus.status)
+93. M_TEM(Yemen.status, executions.count)
+94. contra("Iran enriches uranium", "Iran does not enrich uranium")
+95. S(Iran.enrichment_level, "Iran enriches uranium to weapons-grade levels")
+96. S(executions.count, "Executions number is 35")
+97. T("Iran enriches uranium", "Iran does not enrich uranium", "Negation")
+98. tau(Iran.enrichment_level, executions.count)
+99. tau("If Iran enriches uranium", "Iran does not enrich uranium")
+100. tau("Belarus event", "Belarus status")
+
+Rules:
+1. Q[1, 1](Iran.enrichment_level = "weapons-grade" ∧ Iran.enrichment_level != "low-grade" → Iran.goal = "annihilate Israel")
+2. Q[2, 2](Iran.enrichment_level < "high-grade" ∧ Iran.enrichment_level >= "weapons-grade" → "If Iran enriches uranium to weapons-grade levels, monitors will alert the U.N. Security Council.".time = "in a matter of days")
+3. Q[3, 3](Iran.goal = "annihilate Israel" ∧ Iran.goal != "peaceful coexistence" ∧ "Iran has been training and funding Hezbollah.".context = "annihilate Israel" → Belarus.event = "Resumption of capital punishment")
+4. Q[4, 4](Belarus.event = "Resumption of capital punishment" ∧ Belarus.status = "Only country in Europe and Central Asia to execute people" ∧ executions.number > "30" ∧ executions.number < "100" → Hezbollah.status = "terrorist group")
+5. Q[5, 5](Belarus.event != "abolition of capital punishment" ∧ executions.number >= "30" ∧ executions.number <= "35" ∧ "Executions.previous_year".number < "50" ∧ "Executions.previous_year".number > "30" → Yemen.status = "civil war")
+6. Q[6, 6](Yemen.status = "civil war" ∧ Yemen.status != "peaceful" ∧ executions.count > "30" ∧ executions.count < "100" ∧ "Resumption of Capital Punishment".duration > "one year" ∧ "Resumption of Capital Punishment".duration < "five years" → Iran.enrichment_level != "low-grade")
+7. Q[1, 2](Iran.enrichment_level > "low-grade" ∧ Iran.enrichment_level < "high-grade" → Belarus.status = "Only country in Europe and Central Asia to execute people")
+8. Q[2, 3](Iran.goal < "regional stability" ∧ "Iran has been training and funding Hezbollah.".context > "diplomatic engagement" → executions.number = "35")
+9. Q[3, 4](Belarus.event < "introduction of new laws" ∧ executions.number != "0" ∧ executions.number < "100" → Hezbollah.status != "political organization")
+10. Q[4, 5](Belarus.status >= "country with capital punishment" ∧ "Executions.previous_year".number >= "30" ∧ "Executions.previous_year".number <= "39" ∧ executions.count > "30" → Yemen.status < "stable")
+11. Q[5, 6](Yemen.status > "conflict-free" ∧ executions.count != "0" ∧ executions.count < "100" ∧ "Resumption of Capital Punishment".duration >= "one year" → Iran.goal != "peaceful coexistence")
+12. Q[6, 1](Iran.enrichment_level <= "high-grade" ∧ Iran.enrichment_level != "low-grade" ∧ "If Iran enriches uranium to weapons-grade levels, monitors will alert the U.N. Security Council.".time >= "in a matter of days" → Belarus.event = "Resumption of capital punishment")
+13. Q[1, 3](Iran.enrichment_level = "weapons-grade" ∧ Iran.goal >= "regional dominance" → executions.number < "100")
+14. Q[2, 4](Belarus.event != "abolition of capital punishment" ∧ Belarus.status < "country with human rights violations" ∧ executions.number > "30" → Hezbollah.status >= "militant organization")
+15. Q[3, 5](Yemen.status <= "civil war" ∧ executions.count >= "30" ∧ executions.count <= "35" → "Executions.previous_year".number != "40")
+16. Q[4, 6](Iran.goal > "diplomatic resolution" ∧ "Iran has been training and funding Hezbollah.".context < "regional stability" ∧ "Resumption of Capital Punishment".duration < "five years" → Iran.enrichment_level < "high-grade")
+17. Q[5, 1](Iran.enrichment_level >= "weapons-grade" ∧ "If Iran enriches uranium to weapons-grade levels, monitors will alert the U.N. Security Council.".time < "in a matter of weeks" → Belarus.status != "country with abolished capital punishment")
+18. Q[6, 2](Yemen.status != "peaceful" ∧ executions.count < "100" ∧ executions.count > "30" ∧ "Resumption of Capital Punishment".duration > "one year" → Iran.goal = "annihilate Israel")
+19. Q[1, 4](Iran.enrichment_level < "high-grade" ∧ Iran.goal <= "annihilate Israel" → Belarus.event = "Resumption of capital punishment")
+20. Q[2, 5](Belarus.status != "country with abolished capital punishment" ∧ executions.number < "100" ∧ executions.number > "30" → Hezbollah.status < "non-violent group")
+21. Q[3, 6](Yemen.status >= "conflict zone" ∧ executions.previous_year_count < "50" ∧ executions.previous_year_count > "30" → "Executions.previous_year".number = "39")
+22. Q[4, 1](Iran.goal < "regional stability" ∧ "Iran has been training and funding Hezbollah.".context > "diplomatic engagement" ∧ "Resumption of Capital Punishment".duration < "five years" → Iran.enrichment_level != "low-grade")
+23. Q[5, 2](Yemen.status > "conflict-free" ∧ executions.count != "0" ∧ executions.count < "100" ∧ "Resumption of Capital Punishment".duration >= "one year" → Iran.goal != "peaceful coexistence")
+24. Q[6, 3](Iran.enrichment_level <= "high-grade" ∧ Iran.enrichment_level != "low-grade" ∧ "If Iran enriches uranium to weapons-grade levels, monitors will alert the U.N. Security Council.".time >= "in a matter of days" → Belarus.event = "Resumption of capital punishment")

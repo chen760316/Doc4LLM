@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 258)
+S1: The sooner he finished his homework, the sooner he could go to his friend Jacob's house, where he was spending the night.
+S2: William's parents wouldn't allow him to go to Jacob's house until he finished his homework first.
+
+Predicates:
+1. Homework.finished
+2. Jacob's_house.access
+3. William.parents.allow
+4. Homework.finished -> Jacob's_house.access
+5. Jacob's_house.access -> Homework.finished
+6. William.parents.restriction
+7. Homework.finished -> William.parents.allow
+8. Jacob's_house.spending_night
+9. William.go_to(Jacob's_house)
+10. Homework.not_finished -> William.parents.restriction
+11. Homework.finished -> William.go_to(Jacob's_house)
+12. Jacob's_house.sooner_access
+13. William.sooner_go_to(Jacob's_house)
+14. Homework.finished -> sooner(Jacob's_house.access)
+15. William.parents.not_allow -> Homework.not_finished
+16. Jacob's_house.sooner_spending_night
+17. Homework.finished -> sooner(William.go_to(Jacob's_house))
+18. William.parents.allow -> Homework.finished
+19. Jacob's_house.restriction
+20. Homework.finished -> Jacob's_house.sooner_access
+21. William.sooner_finish_homework
+22. Jacob's_house.sooner_spending_night -> Homework.finished
+23. Homework.not_finished -> Jacob's_house.restriction
+24. William.parents.allow -> Jacob's_house.access
+25. Homework.finished -> William.sooner_go_to(Jacob's_house)
+26. Jacob's_house.access -> Homework.finished
+27. William.parents.restriction -> Homework.not_finished
+28. Homework.finished -> William.parents.allow
+29. Jacob's_house.access -> William.go_to(Jacob's_house)
+30. Homework.not_finished -> William.sooner_go_to(Jacob's_house)
+
+Rules:
+1. Q[The, Homework.finished, Jacob's_house.access](Homework.finished == true → Causal(Homework.finished, Jacob's_house.access))
+2. Q[The, Jacob's_house.access, Homework.finished](Jacob's_house.access == true → Causal(Jacob's_house.access, Homework.finished))
+3. Q[The, William.parents.allow, Homework.finished](William.parents.allow == true → Causal(William.parents.allow, Homework.finished))
+4. Q[The, Homework.finished, William.parents.allow](Homework.finished == true → Causal(Homework.finished, William.parents.allow))
+5. Q[The, Homework.not_finished, William.parents.restriction](Homework.not_finished == true → Causal(Homework.not_finished, William.parents.restriction))
+6. Q[The, William.parents.restriction, Homework.not_finished](William.parents.restriction == true → Causal(William.parents.restriction, Homework.not_finished))
+7. Q[The, Homework.finished, William.go_to(Jacob's_house)](Homework.finished == true → Causal(Homework.finished, William.go_to(Jacob's_house)))
+8. Q[The, Jacob's_house.access, William.go_to(Jacob's_house)](Jacob's_house.access == true → Causal(Jacob's_house.access, William.go_to(Jacob's_house)))
+9. Q[The, Homework.finished, Jacob's_house.sooner_access](Homework.finished == true → Causal(Homework.finished, Jacob's_house.sooner_access))
+10. Q[The, Jacob's_house.sooner_access, Homework.finished](Jacob's_house.sooner_access == true → Causal(Jacob's_house.sooner_access, Homework.finished))
+11. Q[The, Homework.finished, William.sooner_go_to(Jacob's_house)](Homework.finished == true → Causal(Homework.finished, William.sooner_go_to(Jacob's_house)))
+12. Q[The, William.sooner_go_to(Jacob's_house), Homework.finished](William.sooner_go_to(Jacob's_house) == true → Causal(William.sooner_go_to(Jacob's_house), Homework.finished))
+13. Q[The, Homework.not_finished, Jacob's_house.restriction](Homework.not_finished == true → Causal(Homework.not_finished, Jacob's_house.restriction))
+14. Q[The, Jacob's_house.restriction, Homework.not_finished](Jacob's_house.restriction == true → Causal(Jacob's_house.restriction, Homework.not_finished))
+15. Q[The, William.parents.allow, Jacob's_house.access](William.parents.allow == true → Causal(William.parents.allow, Jacob's_house.access))
+16. Q[The, Jacob's_house.access, William.parents.allow](Jacob's_house.access == true → Causal(Jacob's_house.access, William.parents.allow))
+17. Q[The, Homework.finished, Jacob's_house.sooner_spending_night](Homework.finished == true → Causal(Homework.finished, Jacob's_house.sooner_spending_night))
+18. Q[The, Jacob's_house.sooner_spending_night, Homework.finished](Jacob's_house.sooner_spending_night == true → Causal(Jacob's_house.sooner_spending_night, Homework.finished))
+19. Q[The, Homework.finished, sooner(William.go_to(Jacob's_house))](Homework.finished == true → Causal(Homework.finished, sooner(William.go_to(Jacob's_house))))
+20. Q[The, sooner(William.go_to(Jacob's_house)), Homework.finished](sooner(William.go_to(Jacob's_house)) == true → Causal(sooner(William.go_to(Jacob's_house)), Homework.finished))
+21. Q[The, Homework.finished, William.sooner_finish_homework](Homework.finished == true → Causal(Homework.finished, William.sooner_finish_homework))
+22. Q[The, William.sooner_finish_homework, Homework.finished](William.sooner_finish_homework == true → Causal(William.sooner_finish_homework, Homework.finished))
+23. Q[The, Homework.finished, Homework.finished -> William.parents.allow](Homework.finished == true → Causal(Homework.finished, Homework.finished -> William.parents.allow))
+24. Q[The, Homework.not_finished, William.parents.restriction](Homework.not_finished == true → Causal(Homework.not_finished, William.parents.restriction))
+25. Q[The, Homework.finished, Homework.finished -> Jacob's_house.access](Homework.finished == true → Causal(Homework.finished, Homework.finished -> Jacob's_house.access))
+26. Q[The, Jacob's_house.access, Homework.finished -> William.go_to(Jacob's_house)](Jacob's_house.access == true → Causal(Jacob's_house.access, Homework.finished -> William.go_to(Jacob's_house)))
+27. Q[The, Homework.finished, Homework.finished -> sooner(Jacob's_house.access)](Homework.finished == true → Causal(Homework.finished, Homework.finished -> sooner(Jacob's_house.access)))
+28. Q[The, Homework.not_finished, Homework.not_finished -> William.sooner_go_to(Jacob's_house)](Homework.not_finished == true → Causal(Homework.not_finished, Homework.not_finished -> William.sooner_go_to(Jacob's_house)))
+29. Q[The, Homework.finished, Homework.finished -> William.sooner_go_to(Jacob's_house)](Homework.finished == true → Causal(Homework.finished, Homework.finished -> William.sooner_go_to(Jacob's_house)))
+30. Q[The, Homework.not_finished, Homework.not_finished -> Jacob's_house.restriction](Homework.not_finished == true → Causal(Homework.not_finished, Homework.not_finished -> Jacob's_house.restriction))

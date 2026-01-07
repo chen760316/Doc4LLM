@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 788)
+S1: Raising interest rates would depress the economy now.
+S2: Raising interest rates now (which would depress the economy now) to avoid a possible financial crisis (which would depress the economy later) is a lot like destroying the village in order to save it.
+
+Predicates:
+1. Raising_interest_rates.immediate_effect
+2. Economy.now.negative_effect
+3. Raising_interest_rates.now.intended_outcome
+4. Financial_crisis.possible_future
+5. Economy.later.negative_effect
+6. Destroying_village.intended_purpose
+7. Saving_village.intended_outcome
+8. Causal(raising_interest_rates, economy_now)
+9. Causal(raising_interest_rates_now, financial_crisis)
+10. Violate(raising_interest_rates, financial_crisis)
+11. M_NLI(S1, S2)
+12. Causal(raising_interest_rates, negative_effect)
+13. Causal(raising_interest_rates_now, negative_effect)
+14. Economy.now.depressed
+15. Economy.later.depressed
+16. Financial_crisis.negative_impact
+17. Raising_interest_rates.avoidance_strategy
+18. Destroying_village.negative_consequence
+19. Saving_village.positive_intent
+20. Raising_interest_rates.now.negative_consequence
+21. Financial_crisis.now.impact
+22. Economy.now.stability
+23. Raising_interest_rates.impact_on_economy
+24. Causal(destroying_village, saving_village)
+25. Violate(destroying_village, saving_village)
+26. Raising_interest_rates.avoid_future_crisis
+27. Economy.later.stability
+28. Financial_crisis.impact_on_economy
+29. Raising_interest_rates.now.impact_on_economy
+30. Causal(destroying_village, negative_outcome)
+
+Rules:
+1. Q[Raising, raising_interest_rates.immediate_effect == true](Raising_interest_rates.immediate_effect → Causal(raising_interest_rates, economy_now))
+2. Q[Raising, economy.now.negative_effect == true](Economy.now.negative_effect → Causal(raising_interest_rates, economy_now))
+3. Q[Raising, raising_interest_rates.now.intended_outcome == false](Raising_interest_rates.now.intended_outcome → Causal(raising_interest_rates_now, financial_crisis))
+4. Q[Raising, financial_crisis.possible_future == true](Financial_crisis.possible_future → Causal(raising_interest_rates_now, financial_crisis))
+5. Q[Raising, economy.later.negative_effect == true](Economy.later.negative_effect → Causal(raising_interest_rates_now, financial_crisis))
+6. Q[Raising, destroying_village.intended_purpose == false](Destroying_village.intended_purpose → Causal(destroying_village, saving_village))
+7. Q[Raising, saving_village.intended_outcome == true](Saving_village.intended_outcome → Causal(destroying_village, saving_village))
+8. Q[Raising, raising_interest_rates.avoidance_strategy == true](Raising_interest_rates.avoidance_strategy → Causal(raising_interest_rates, financial_crisis))
+9. Q[Raising, raising_interest_rates.now.negative_consequence == true](Raising_interest_rates.now.negative_consequence → Causal(raising_interest_rates_now, negative_effect))
+10. Q[Raising, financial_crisis.negative_impact == true](Financial_crisis.negative_impact → Causal(raising_interest_rates_now, financial_crisis))
+11. Q[Raising, economy.now.depressed == true](Economy.now.depressed → Causal(raising_interest_rates, economy_now))
+12. Q[Raising, economy.later.depressed == true](Economy.later.depressed → Causal(raising_interest_rates_now, financial_crisis))
+13. Q[Raising, raising_interest_rates.impact_on_economy == negative](Raising_interest_rates.impact_on_economy → Causal(raising_interest_rates, economy_now))
+14. Q[Raising, causal(raising_interest_rates, negative_effect) == true](Causal(raising_interest_rates, negative_effect) → Causal(raising_interest_rates, economy_now))
+15. Q[Raising, raising_interest_rates.now.impact_on_economy == negative](Raising_interest_rates.now.impact_on_economy → Causal(raising_interest_rates_now, negative_effect))
+16. Q[Raising, violate(raising_interest_rates, financial_crisis) == true](Violate(raising_interest_rates, financial_crisis) → Causal(raising_interest_rates, financial_crisis))
+17. Q[Raising, causal(destroying_village, negative_outcome) == true](Causal(destroying_village, negative_outcome) → Causal(destroying_village, saving_village))
+18. Q[Raising, economy.now.stability == false](Economy.now.stability → Causal(raising_interest_rates, economy_now))
+19. Q[Raising, financial_crisis.impact_on_economy == negative](Financial_crisis.impact_on_economy → Causal(raising_interest_rates_now, financial_crisis))
+20. Q[Raising, raising_interest_rates.avoid_future_crisis == true](Raising_interest_rates.avoid_future_crisis → Causal(raising_interest_rates, financial_crisis))
+21. Q[Raising, economy.later.stability == false](Economy.later.stability → Causal(raising_interest_rates_now, financial_crisis))
+22. Q[Raising, causal(raising_interest_rates_now, negative_effect) == true](Causal(raising_interest_rates_now, negative_effect) → Causal(raising_interest_rates_now, financial_crisis))
+23. Q[Raising, raising_interest_rates.now.negative_effect == true](Raising_interest_rates.now.negative_effect → Causal(raising_interest_rates_now, negative_effect))
+24. Q[Raising, causal(raising_interest_rates, economy_now) == true](Causal(raising_interest_rates, economy_now) → Causal(raising_interest_rates, economy_now))
+25. Q[Raising, causal(raising_interest_rates_now, financial_crisis) == true](Causal(raising_interest_rates_now, financial_crisis) → Causal(raising_interest_rates_now, financial_crisis))
+26. Q[Raising, raising_interest_rates.impact_on_economy == negative](Raising_interest_rates.impact_on_economy → Causal(raising_interest_rates, economy_now))
+27. Q[Raising, financial_crisis.now.impact == negative](Financial_crisis.now.impact → Causal(raising_interest_rates_now, financial_crisis))
+28. Q[Raising, raising_interest_rates.now.negative_consequence == true](Raising_interest_rates.now.negative_consequence → Causal(raising_interest_rates_now, negative_effect))
+29. Q[Raising, causal(destroying_village, saving_village) == false](Causal(destroying_village, saving_village) → Causal(destroying_village, negative_outcome))
+30. Q[Raising, violate(destroying_village, saving_village) == true](Violate(destroying_village, saving_village) → Causal(destroying_village, negative_outcome))

@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 1326)
+S1: The man slept while his laundry was being washed.
+S2: A young adult reads a book at the laundromat as he waits for his laundry to be done.
+
+Predicates:
+1. Man.is_awake = false
+2. Man.is_sleeping = true
+3. Laundry.is_being_washed = true
+4. Young_adult.is_reading = true
+5. Young_adult.is_waiting = true
+6. Young_adult.location = laundromat
+7. Laundry.is_done = false
+8. Man.location = laundromat
+9. Man.activity = sleeping
+10. Young_adult.activity = reading
+11. Laundry.is_in_progress = true
+12. Man.is_not_active = true
+13. Young_adult.is_active = true
+14. Reading_material.type = book
+15. Book.is_being_read = true
+16. Laundromat.has_customers = true
+17. Man.is_not_waiting = true
+18. Young_adult.is_not_sleeping = true
+19. Laundry.is_a_task = true
+20. Waiting.is_an_activity = true
+21. Reading.is_an_activity = true
+22. Man.is_in_laundromat = true
+23. Young_adult.is_in_laundromat = true
+24. Laundry.is_a_process = true
+25. Man.is_not_interacting = true
+26. Young_adult.is_interacting_with_book = true
+27. Laundry.is_a_service = true
+28. Man.is_not_reading = true
+29. Young_adult.is_not_washing_laundry = true
+30. Man.is_not_engaged = true
+
+Rules:
+1. Q[The, Man.is_awake == false, Young_adult.is_reading == true](Man.is_sleeping == true → Causal(Man, Young_adult))
+2. Q[The, Man.is_sleeping == true, Young_adult.is_waiting == true](Laundry.is_being_washed == true → Causal(Man, Young_adult))
+3. Q[The, Man.is_not_active == true, Young_adult.is_active == true](Man.activity == sleeping → Causal(Man, Young_adult))
+4. Q[The, Man.is_in_laundromat == true, Young_adult.location == laundromat](Laundry.is_being_washed == true → Causal(Man, Young_adult))
+5. Q[The, Man.is_not_waiting == true, Young_adult.is_waiting == true](Laundry.is_in_progress == true → Causal(Man, Young_adult))
+6. Q[The, Man.is_not_interacting == true, Young_adult.is_interacting_with_book == true](Young_adult.activity == reading → Causal(Man, Young_adult))
+7. Q[The, Man.is_not_reading == true, Young_adult.is_reading == true](Laundry.is_done == false → Causal(Man, Young_adult))
+8. Q[The, Man.is_sleeping == true, Young_adult.is_not_sleeping == true](Laundry.is_a_task == true → Causal(Man, Young_adult))
+9. Q[The, Man.is_not_engaged == true, Young_adult.is_active == true](Waiting.is_an_activity == true → Causal(Man, Young_adult))
+10. Q[The, Man.is_not_active == true, Young_adult.is_interacting_with_book == true](Reading.is_an_activity == true → Causal(Man, Young_adult))
+11. Q[The, Man.is_sleeping == true, Young_adult.is_in_laundromat == true](Laundromat.has_customers == true → Causal(Man, Young_adult))
+12. Q[The, Man.is_not_waiting == true, Young_adult.is_waiting == true](Laundry.is_a_process == true → Causal(Man, Young_adult))
+13. Q[The, Man.is_not_reading == true, Young_adult.is_reading == true](Laundry.is_a_service == true → Causal(Man, Young_adult))
+14. Q[The, Man.is_sleeping == true, Young_adult.is_active == true](Laundry.is_being_washed == true → Causal(Man, Young_adult))
+15. Q[The, Man.is_not_interacting == true, Young_adult.is_waiting == true](Laundry.is_in_progress == true → Causal(Man, Young_adult))
+16. Q[The, Man.is_in_laundromat == true, Young_adult.is_in_laundromat == true](Man.activity == sleeping → Causal(Man, Young_adult))
+17. Q[The, Man.is_not_engaged == true, Young_adult.is_reading == true](Young_adult.activity == reading → Causal(Man, Young_adult))
+18. Q[The, Man.is_sleeping == true, Young_adult.is_not_sleeping == true](Laundry.is_being_washed == true → Causal(Man, Young_adult))
+19. Q[The, Man.is_not_active == true, Young_adult.is_waiting == true](Laundry.is_a_task == true → Causal(Man, Young_adult))
+20. Q[The, Man.is_not_waiting == true, Young_adult.is_waiting == true](Laundry.is_a_process == true → Causal(Man, Young_adult))
+21. Q[The, Man.is_sleeping == true, Young_adult.is_active == true](Laundry.is_a_service == true → Causal(Man, Young_adult))
+22. Q[The, Man.is_not_reading == true, Young_adult.is_reading == true](Laundry.is_done == false → Causal(Man, Young_adult))
+23. Q[The, Man.is_not_engaged == true, Young_adult.is_waiting == true](Waiting.is_an_activity == true → Causal(Man, Young_adult))
+24. Q[The, Man.is_sleeping == true, Young_adult.is_interacting_with_book == true](Reading.is_an_activity == true → Causal(Man, Young_adult))
+25. Q[The, Man.is_not_active == true, Young_adult.is_not_sleeping == true](Laundry.is_being_washed == true → Causal(Man, Young_adult))
+26. Q[The, Man.is_in_laundromat == true, Young_adult.is_in_laundromat == true](Man.activity == sleeping → Causal(Man, Young_adult))
+27. Q[The, Man.is_not_waiting == true, Young_adult.is_waiting == true](Laundry.is_a_task == true → Causal(Man, Young_adult))
+28. Q[The, Man.is_sleeping == true, Young_adult.is_active == true](Laundry.is_a_process == true → Causal(Man, Young_adult))
+29. Q[The, Man.is_not_reading == true, Young_adult.is_reading == true](Laundry.is_done == false → Causal(Man, Young_adult))
+30. Q[The, Man.is_not_engaged == true, Young_adult.is_waiting == true](Waiting.is_an_activity == true → Causal(Man, Young_adult))

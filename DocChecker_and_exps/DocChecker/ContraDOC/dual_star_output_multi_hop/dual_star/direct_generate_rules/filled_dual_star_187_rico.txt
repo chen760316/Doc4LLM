@@ -1,0 +1,40 @@
+Predicates:
+Cindy Crawford.label != "Client"
+Cindy Crawford.label = "Client"
+Cindy Crawford.name != "Cindy Crawford"
+Cindy Crawford.name = "Cindy Crawford"
+Melissa Silver.label != "Makeup Artist"
+Melissa Silver.label != Cindy Crawford.label
+Melissa Silver.label != Renée Zellweger.label
+Melissa Silver.label = "Makeup Artist"
+Melissa Silver.name != "Melissa Silver"
+Melissa Silver.name != Cindy Crawford.name
+Melissa Silver.name != Renée Zellweger.name
+Melissa Silver.name = "Melissa Silver"
+Melissa Silver___Cindy Crawford.doc_id = "news_train_62"
+Melissa Silver___Cindy Crawford.relationship = "Melissa Silver suggests plum or sheer red for nighttime for Cindy Crawford."
+Melissa Silver___Cindy Crawford.time = "nighttime"
+Melissa Silver___Renée Zellweger.doc_id = "news_train_62"
+Melissa Silver___Renée Zellweger.relationship != Melissa Silver___Cindy Crawford.relationship
+Melissa Silver___Renée Zellweger.relationship = "Melissa Silver uses fuchsia on cool skin tones for daytime for Renée Zellweger."
+Melissa Silver___Renée Zellweger.time != Melissa Silver___Cindy Crawford.time
+Melissa Silver___Renée Zellweger.time = "daytime"
+None_ML(Melissa Silver.attrs, Renée Zellweger.attrs)
+None_ML(Melissa Silver___Renée Zellweger.attrs, Melissa Silver___Cindy Crawford.attrs)
+Renée Zellweger.label != "Client"
+Renée Zellweger.label = "Client"
+Renée Zellweger.name != "Renée Zellweger"
+Renée Zellweger.name != Cindy Crawford.name
+Renée Zellweger.name = "Renée Zellweger"
+
+Rules:
+Q[Melissa Silver,Melissa Silver] (Renée Zellweger.label = "Client" ∧ Melissa Silver.label != Renée Zellweger.label ∧ Melissa Silver.name != Renée Zellweger.name ∧ Melissa Silver___Cindy Crawford.doc_id = "news_train_62" ∧ None_ML(Melissa Silver___Renée Zellweger.attrs, Melissa Silver___Cindy Crawford.attrs) → Renée Zellweger.name = "Renée Zellweger")
+Q[Melissa Silver,Melissa Silver] (Melissa Silver___Renée Zellweger.doc_id = "news_train_62" ∧ Melissa Silver.name != "Melissa Silver" ∧ Melissa Silver___Cindy Crawford.time = "nighttime" ∧ Melissa Silver.label != Cindy Crawford.label → Renée Zellweger.name != Cindy Crawford.name)
+Q[Melissa Silver,Melissa Silver] (Renée Zellweger.label = "Client" ∧ Melissa Silver.label != "Makeup Artist" ∧ Melissa Silver___Renée Zellweger.time != Melissa Silver___Cindy Crawford.time → Melissa Silver.name != "Melissa Silver")
+Q[Melissa Silver,Melissa Silver] (Cindy Crawford.name != "Cindy Crawford" ∧ Melissa Silver___Cindy Crawford.relationship = "Melissa Silver suggests plum or sheer red for nighttime for Cindy Crawford." → Melissa Silver___Cindy Crawford.time = "nighttime")
+Q[Melissa Silver,Melissa Silver] (Melissa Silver___Renée Zellweger.relationship != Melissa Silver___Cindy Crawford.relationship ∧ Melissa Silver___Renée Zellweger.time = "daytime" ∧ Cindy Crawford.label = "Client" ∧ Melissa Silver___Cindy Crawford.doc_id = "news_train_62" ∧ Cindy Crawford.name != "Cindy Crawford" ∧ Melissa Silver.name != Renée Zellweger.name → Melissa Silver.name = "Melissa Silver")
+Q[Melissa Silver,Melissa Silver] (Melissa Silver___Cindy Crawford.doc_id = "news_train_62" ∧ Melissa Silver.label = "Makeup Artist" → None_ML(Melissa Silver___Renée Zellweger.attrs, Melissa Silver___Cindy Crawford.attrs))
+Q[Melissa Silver,Melissa Silver] (None_ML(Melissa Silver.attrs, Renée Zellweger.attrs) ∧ Melissa Silver___Renée Zellweger.relationship = "Melissa Silver uses fuchsia on cool skin tones for daytime for Renée Zellweger." ∧ Renée Zellweger.name = "Renée Zellweger" → Melissa Silver.label != "Makeup Artist")
+Q[Melissa Silver,Melissa Silver] (Melissa Silver.name != Cindy Crawford.name ∧ Renée Zellweger.name != "Renée Zellweger" ∧ None_ML(Melissa Silver.attrs, Renée Zellweger.attrs) ∧ Melissa Silver___Renée Zellweger.relationship != Melissa Silver___Cindy Crawford.relationship ∧ Melissa Silver.name != "Melissa Silver" → Cindy Crawford.label = "Client")
+Q[Melissa Silver,Melissa Silver] (Melissa Silver.name != Cindy Crawford.name ∧ Melissa Silver.name != Renée Zellweger.name ∧ Renée Zellweger.label != "Client" ∧ Melissa Silver.name = "Melissa Silver" ∧ Cindy Crawford.label != "Client" ∧ Cindy Crawford.name = "Cindy Crawford" → Melissa Silver___Cindy Crawford.doc_id = "news_train_62")
+Q[Melissa Silver,Melissa Silver] (Melissa Silver.label != Renée Zellweger.label ∧ Melissa Silver.name != Renée Zellweger.name ∧ Melissa Silver___Renée Zellweger.relationship = "Melissa Silver uses fuchsia on cool skin tones for daytime for Renée Zellweger." ∧ Melissa Silver___Cindy Crawford.time = "nighttime" → Renée Zellweger.name != "Renée Zellweger")

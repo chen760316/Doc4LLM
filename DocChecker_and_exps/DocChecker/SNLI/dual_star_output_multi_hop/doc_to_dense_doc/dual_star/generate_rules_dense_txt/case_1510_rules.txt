@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 1510)
+S1: A father sitting.
+S2: A father standing on the side of a pond fishing as his son begins to wander off with the fishing net.
+
+Predicates:
+1. Father.state
+2. Father.position
+3. Father.activity
+4. Father.location
+5. Son.state
+6. Son.activity
+7. Son.location
+8. Pond.state
+9. Fishing_net.state
+10. Father.sitting
+11. Father.standing
+12. Father.fishing
+13. Son.wandering
+14. Son.taking_net
+15. Father.sides
+16. Father.pond
+17. Fishing_net.held_by
+18. Father.son_relationship
+19. Father.son.activity
+20. Father.son.location
+21. Father.pond_relationship
+22. Father.fishing_net_relationship
+23. Son.pond_relationship
+24. Son.fishing_net_relationship
+25. Father.sitting.violate(Father.standing)
+26. Father.standing.violate(Father.sitting)
+27. Father.fishing.violate(Father.sitting)
+28. Son.wandering.violate(Son.activity)
+29. Fishing_net.wandering.violate(Son.activity)
+30. M_NLI(S1, S2)
+
+Rules:
+1. Q[father, Father.state, Father.state](Father.sitting == "true" → Causal(Father.state, Father.state))
+2. Q[father, Father.position, Father.position](Father.sitting == "true" → Causal(Father.position, Father.position))
+3. Q[father, Father.activity, Father.activity](Father.sitting == "true" → Causal(Father.activity, Father.activity))
+4. Q[father, Father.location, Father.location](Father.sitting == "true" → Causal(Father.location, Father.location))
+5. Q[father, Father.sitting, Father.standing](Father.sitting == "true" → Causal(Father.sitting, Father.standing))
+6. Q[father, Father.standing, Father.sitting](Father.standing == "true" → Causal(Father.standing, Father.sitting))
+7. Q[father, Father.fishing, Father.activity](Father.fishing == "true" → Causal(Father.fishing, Father.activity))
+8. Q[father, Father.son_relationship, Father.son_relationship](Father.sitting == "true" → Causal(Father.son_relationship, Father.son_relationship))
+9. Q[father, Father.pond_relationship, Father.pond_relationship](Father.sitting == "true" → Causal(Father.pond_relationship, Father.pond_relationship))
+10. Q[father, Father.fishing_net_relationship, Father.fishing_net_relationship](Father.sitting == "true" → Causal(Father.fishing_net_relationship, Father.fishing_net_relationship))
+11. Q[father, Father.sitting.violate, Father.standing](Father.sitting == "true" → Causal(Father.sitting.violate(Father.standing), Father.standing))
+12. Q[father, Father.standing.violate, Father.sitting](Father.standing == "true" → Causal(Father.standing.violate(Father.sitting), Father.sitting))
+13. Q[father, Father.fishing.violate, Father.sitting](Father.fishing == "true" → Causal(Father.fishing.violate(Father.sitting), Father.sitting))
+14. Q[son, Son.state, Son.state](Son.wandering == "true" → Causal(Son.state, Son.state))
+15. Q[son, Son.activity, Son.activity](Son.wandering == "true" → Causal(Son.activity, Son.activity))
+16. Q[son, Son.location, Son.location](Son.wandering == "true" → Causal(Son.location, Son.location))
+17. Q[son, Son.wandering.violate, Son.activity](Son.wandering == "true" → Causal(Son.wandering.violate(Son.activity), Son.activity))
+18. Q[son, Son.taking_net, Son.activity](Son.taking_net == "true" → Causal(Son.taking_net, Son.activity))
+19. Q[son, Son.pond_relationship, Son.pond_relationship](Son.wandering == "true" → Causal(Son.pond_relationship, Son.pond_relationship))
+20. Q[son, Son.fishing_net_relationship, Son.fishing_net_relationship](Son.taking_net == "true" → Causal(Son.fishing_net_relationship, Son.fishing_net_relationship))
+21. Q[father, Father.sitting.violate, Father.fishing](Father.sitting == "true" → Causal(Father.sitting.violate(Father.fishing), Father.fishing))
+22. Q[father, Father.standing.violate, Father.fishing](Father.standing == "true" → Causal(Father.standing.violate(Father.fishing), Father.fishing))
+23. Q[father, Father.fishing.violate, Father.standing](Father.fishing == "true" → Causal(Father.fishing.violate(Father.standing), Father.standing))
+24. Q[father, Father.sitting.violate, Father.activity](Father.sitting == "true" → Causal(Father.sitting.violate(Father.activity), Father.activity))
+25. Q[father, Father.standing.violate, Father.activity](Father.standing == "true" → Causal(Father.standing.violate(Father.activity), Father.activity))
+26. Q[father, Father.fishing.violate, Father.activity](Father.fishing == "true" → Causal(Father.fishing.violate(Father.activity), Father.activity))
+27. Q[father, Father.sitting.violate, Father.location](Father.sitting == "true" → Causal(Father.sitting.violate(Father.location), Father.location))
+28. Q[father, Father.standing.violate, Father.location](Father.standing == "true" → Causal(Father.standing.violate(Father.location), Father.location))
+29. Q[father, Father.fishing.violate, Father.location](Father.fishing == "true" → Causal(Father.fishing.violate(Father.location), Father.location))
+30. Q[father, M_NLI(S1, S2), M_NLI(S1, S2)](Father.sitting == "true" ∧ Father.standing == "true" → Causal(M_NLI(S1, S2), M_NLI(S1, S2)))

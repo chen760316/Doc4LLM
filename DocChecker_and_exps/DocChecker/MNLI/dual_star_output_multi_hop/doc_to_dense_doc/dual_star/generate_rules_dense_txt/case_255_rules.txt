@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 255)
+S1: It's stress free in every way.
+S2: Overwhelms in every way.
+
+Predicates:
+1. Experience.stress_free
+2. Experience.overwhelming
+3. Claim.experience_stress_free
+4. Claim.experience_overwhelming
+5. Reason.first_sentence_claims
+6. Reason.second_sentence_suggests
+7. M_NLI(S1, S2)
+8. Content(S1, S2)
+9. violate(S1, S2)
+10. StressFree.experience
+11. Overwhelming.experience
+12. S1.expresses_stress_free
+13. S2.expresses_overwhelming
+14. Experience.type(S1, stress_free)
+15. Experience.type(S2, overwhelming)
+16. Claim.type(S1, stress_free)
+17. Claim.type(S2, overwhelming)
+18. Relationship.claims(S1, stress_free)
+19. Relationship.suggests(S2, overwhelming)
+20. Meta.analysis(S1, S2)
+21. Meta.evaluation(S1, S2)
+22. Node.experience(S1, stress_free)
+23. Node.experience(S2, overwhelming)
+24. Entity.experience(S1)
+25. Entity.experience(S2)
+26. Reason.contradiction(S1, S2)
+27. Reason.comparison(S1, S2)
+28. Content.type(S1, claim)
+29. Content.type(S2, suggestion)
+30. Violation.type(S1, S2)
+
+Rules:
+1. Q[stress, x0, y0](Experience.stress_free == true → Content(x0, y0))
+2. Q[stress, x0, y0](Claim.experience_stress_free == true → Content(x0, y0))
+3. Q[stress, x0, y0](Reason.first_sentence_claims == true → Content(x0, y0))
+4. Q[stress, x0, y0](Node.experience(S1, stress_free) == true → Content(x0, y0))
+5. Q[stress, x0, y0](Relationship.claims(S1, stress_free) == true → Content(x0, y0))
+6. Q[stress, x0, y0](Experience.type(S1, stress_free) == true → Content(x0, y0))
+7. Q[overwhelming, x0, y0](Experience.overwhelming == true → Content(x0, y0))
+8. Q[overwhelming, x0, y0](Claim.experience_overwhelming == true → Content(x0, y0))
+9. Q[overwhelming, x0, y0](Reason.second_sentence_suggests == true → Content(x0, y0))
+10. Q[overwhelming, x0, y0](Node.experience(S2, overwhelming) == true → Content(x0, y0))
+11. Q[overwhelming, x0, y0](Relationship.suggests(S2, overwhelming) == true → Content(x0, y0))
+12. Q[overwhelming, x0, y0](Experience.type(S2, overwhelming) == true → Content(x0, y0))
+13. Q[stress, x0, y0](M_NLI(S1, S2) == false → Content(x0, y0))
+14. Q[stress, x0, y0](Reason.contradiction(S1, S2) == true → Content(x0, y0))
+15. Q[stress, x0, y0](violate(S1, S2) == true → Content(x0, y0))
+16. Q[stress, x0, y0](Meta.analysis(S1, S2) == true → Content(x0, y0))
+17. Q[stress, x0, y0](Meta.evaluation(S1, S2) == true → Content(x0, y0))
+18. Q[stress, x0, y0](Content.type(S1, claim) == true → Content(x0, y0))
+19. Q[overwhelming, x0, y0](Content.type(S2, suggestion) == true → Content(x0, y0))
+20. Q[stress, x0, y0](Experience.stress_free == true ∧ Experience.overwhelming == false → Content(x0, y0))
+21. Q[overwhelming, x0, y0](Experience.overwhelming == true ∧ Experience.stress_free == false → Content(x0, y0))
+22. Q[stress, x0, y0](Claim.type(S1, stress_free) == true → Content(x0, y0))
+23. Q[overwhelming, x0, y0](Claim.type(S2, overwhelming) == true → Content(x0, y0))
+24. Q[stress, x0, y0](Entity.experience(S1) == true → Content(x0, y0))
+25. Q[overwhelming, x0, y0](Entity.experience(S2) == true → Content(x0, y0))
+26. Q[stress, x0, y0](Reason.comparison(S1, S2) == true → Content(x0, y0))
+27. Q[stress, x0, y0](Experience.type(S1, stress_free) ∧ Experience.type(S2, overwhelming) → Content(x0, y0))
+28. Q[overwhelming, x0, y0](Experience.type(S2, overwhelming) ∧ Experience.type(S1, stress_free) → Content(x0, y0))
+29. Q[stress, x0, y0](Node.experience(S1, stress_free) ∧ Node.experience(S2, overwhelming) → Content(x0, y0))
+30. Q[overwhelming, x0, y0](Node.experience(S2, overwhelming) ∧ Node.experience(S1, stress_free) → Content(x0, y0))

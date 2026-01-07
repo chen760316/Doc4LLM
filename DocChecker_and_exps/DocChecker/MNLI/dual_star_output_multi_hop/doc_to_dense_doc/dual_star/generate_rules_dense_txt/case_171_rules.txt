@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 171)
+S1: As a result of the program monitoring and evaluation activities these reviews permit, the government has set new, more challenging targets for future performance.
+S2: As a result of the program monitoring and evaluation activities these reviews permit, the government has shut down the program.
+
+Predicates:
+1. Program.monitoring_activity
+2. Program.evaluation_activity
+3. Government.set_targets
+4. Government.shut_down_program
+5. Reviews.permit
+6. Targets.challenging
+7. Performance.future
+8. Program.leads_to_targets
+9. Program.leads_to_shutdown
+10. Monitoring_activity.permits_reviews
+11. Evaluation_activity.permits_reviews
+12. New_targets.set_by_government
+13. Program.shutdown.indicates_failure
+14. Reviews.indicate_performance
+15. Targets.indicate_performance
+16. Government.response_to_reviews
+17. Performance.indicates_success
+18. Monitoring_activity.indicates_progress
+19. Evaluation_activity.indicates_progress
+20. Reviews.assess_performance
+21. Government.adjusts_targets
+22. Program.successful_if_targets_met
+23. Program.unsuccessful_if_shutdown
+24. Causal(reviews, targets)
+25. Causal(reviews, shutdown)
+26. Violate(causal_relationship, shutdown)
+27. Violate(causal_relationship, targets)
+28. M_NLI(S1, S2)
+29. Causal(program, targets)
+30. Causal(program, shutdown)
+
+Rules:
+1. Q[monitoring_activity, Program.monitoring_activity, Government.set_targets](Program.monitoring_activity == true → Causal(Program.monitoring_activity, Government.set_targets))
+2. Q[evaluation_activity, Program.evaluation_activity, Government.set_targets](Program.evaluation_activity == true → Causal(Program.evaluation_activity, Government.set_targets))
+3. Q[permit, Reviews.permit, Government.set_targets](Reviews.permit == true → Causal(Reviews.permit, Government.set_targets))
+4. Q[set_targets, Government.set_targets, Performance.future](Government.set_targets == true → Causal(Government.set_targets, Performance.future))
+5. Q[shut_down_program, Government.shut_down_program, Program.leads_to_shutdown](Government.shut_down_program == true → Causal(Government.shut_down_program, Program.leads_to_shutdown))
+6. Q[permit, Reviews.permit, Program.leads_to_targets](Reviews.permit == true → Causal(Reviews.permit, Program.leads_to_targets))
+7. Q[set_targets, New_targets.set_by_government, Performance.future](New_targets.set_by_government == true → Causal(New_targets.set_by_government, Performance.future))
+8. Q[shut_down_program, Government.shut_down_program, Program.successful_if_targets_met](Government.shut_down_program == true → Causal(Government.shut_down_program, Program.successful_if_targets_met))
+9. Q[monitoring_activity, Monitoring_activity.permits_reviews, Reviews.indicate_performance](Monitoring_activity.permits_reviews == true → Causal(Monitoring_activity.permits_reviews, Reviews.indicate_performance))
+10. Q[evaluation_activity, Evaluation_activity.permits_reviews, Reviews.assess_performance](Evaluation_activity.permits_reviews == true → Causal(Evaluation_activity.permits_reviews, Reviews.assess_performance))
+11. Q[set_targets, Government.adjusts_targets, Targets.indicate_performance](Government.adjusts_targets == true → Causal(Government.adjusts_targets, Targets.indicate_performance))
+12. Q[shutdown, Program.shutdown.indicates_failure, Performance.indicates_success](Program.shutdown.indicates_failure == true → Causal(Program.shutdown.indicates_failure, Performance.indicates_success))
+13. Q[monitoring_activity, Monitoring_activity.indicates_progress, Performance.future](Monitoring_activity.indicates_progress == true → Causal(Monitoring_activity.indicates_progress, Performance.future))
+14. Q[evaluation_activity, Evaluation_activity.indicates_progress, Performance.future](Evaluation_activity.indicates_progress == true → Causal(Evaluation_activity.indicates_progress, Performance.future))
+15. Q[set_targets, Targets.challenging, Government.response_to_reviews](Targets.challenging == true → Causal(Targets.challenging, Government.response_to_reviews))
+16. Q[shut_down_program, Government.shut_down_program, Program.unsuccessful_if_shutdown](Government.shut_down_program == true → Causal(Government.shut_down_program, Program.unsuccessful_if_shutdown))
+17. Q[permit, Reviews.permit, Causal(reviews, targets)](Reviews.permit == true → Causal(Reviews.permit, Causal(reviews, targets)))
+18. Q[shutdown, Government.shut_down_program, Causal(reviews, shutdown)](Government.shut_down_program == true → Causal(Government.shut_down_program, Causal(reviews, shutdown)))
+19. Q[set_targets, Government.set_targets, Causal(program, targets)](Government.set_targets == true → Causal(Government.set_targets, Causal(program, targets)))
+20. Q[monitoring_activity, Program.monitoring_activity, Causal(program, targets)](Program.monitoring_activity == true → Causal(Program.monitoring_activity, Causal(program, targets)))
+21. Q[evaluation_activity, Program.evaluation_activity, Causal(program, shutdown)](Program.evaluation_activity == true → Causal(Program.evaluation_activity, Causal(program, shutdown)))
+22. Q[permit, Reviews.permit, Violate(causal_relationship, targets)](Reviews.permit == true → Causal(Reviews.permit, Violate(causal_relationship, targets)))
+23. Q[shutdown, Government.shut_down_program, Violate(causal_relationship, shutdown)](Government.shut_down_program == true → Causal(Government.shut_down_program, Violate(causal_relationship, shutdown)))
+24. Q[set_targets, New_targets.set_by_government, Causal(program, targets)](New_targets.set_by_government == true → Causal(New_targets.set_by_government, Causal(program, targets)))
+25. Q[monitoring_activity, Monitoring_activity.indicates_progress, Causal(program, shutdown)](Monitoring_activity.indicates_progress == true → Causal(Monitoring_activity.indicates_progress, Causal(program, shutdown)))
+26. Q[evaluation_activity, Evaluation_activity.indicates_progress, Causal(program, targets)](Evaluation_activity.indicates_progress == true → Causal(Evaluation_activity.indicates_progress, Causal(program, targets)))
+27. Q[set_targets, Government.adjusts_targets, Causal(reviews, targets)](Government.adjusts_targets == true → Causal(Government.adjusts_targets, Causal(reviews, targets)))
+28. Q[shutdown, Program.shutdown.indicates_failure, Causal(reviews, shutdown)](Program.shutdown.indicates_failure == true → Causal(Program.shutdown.indicates_failure, Causal(reviews, shutdown)))
+29. Q[monitoring_activity, Program.monitoring_activity, Causal(reviews, targets)](Program.monitoring_activity == true → Causal(Program.monitoring_activity, Causal(reviews, targets)))
+30. Q[evaluation_activity, Program.evaluation_activity, Causal(reviews, shutdown)](Program.evaluation_activity == true → Causal(Program.evaluation_activity, Causal(reviews, shutdown)))

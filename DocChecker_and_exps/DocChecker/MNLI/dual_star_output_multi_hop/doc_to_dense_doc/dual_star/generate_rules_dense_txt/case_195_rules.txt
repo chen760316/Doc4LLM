@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 195)
+S1: The U.S. has been able to invest more than it saves by borrowing from abroad.
+S2: The U.S. has been able to invest less than it saves by borrowing from abroad.
+
+Predicates:
+1. U.S.investment.amount
+2. U.S.savings.amount
+3. U.S.borrowing.from_abroad.amount
+4. U.S.investment.greater_than.savings
+5. U.S.investment.less_than.savings
+6. U.S.borrowing.from_abroad.investment
+7. U.S.borrowing.from_abroad.savings
+8. U.S.investment.ability
+9. U.S.savings.ability
+10. U.S.borrowing.ability
+11. M_NLI(S1, S2)
+12. Numeric(investment, savings)
+13. Numeric(borrowing, investment)
+14. Numeric(borrowing, savings)
+15. violate(investment, savings)
+16. violate(savings, investment)
+17. U.S.investment.positive
+18. U.S.savings.positive
+19. U.S.borrowing.positive
+20. U.S.investment.negative
+21. U.S.savings.negative
+22. U.S.borrowing.negative
+23. U.S.investment.equality
+24. U.S.savings.equality
+25. U.S.borrowing.equality
+26. U.S.investment.ratio
+27. U.S.savings.ratio
+28. U.S.borrowing.ratio
+29. U.S.investment.trend
+30. U.S.savings.trend
+
+Rules:
+1. Q[The, x0, y0](U.S.investment.greater_than.savings == true → Numeric(x0, y0))
+2. Q[The, x0, y0](U.S.investment.less_than.savings == true → Numeric(x0, y0))
+3. Q[The, x0, y0](U.S.investment.amount > U.S.savings.amount → Numeric(x0, y0))
+4. Q[The, x0, y0](U.S.investment.amount < U.S.savings.amount → Numeric(x0, y0))
+5. Q[The, x0, y0](U.S.borrowing.from_abroad.amount > U.S.investment.amount → Numeric(x0, y0))
+6. Q[The, x0, y0](U.S.borrowing.from_abroad.amount < U.S.investment.amount → Numeric(x0, y0))
+7. Q[The, x0, y0](U.S.investment.ability == "greater" → Numeric(x0, y0))
+8. Q[The, x0, y0](U.S.investment.ability == "less" → Numeric(x0, y0))
+9. Q[The, x0, y0](U.S.savings.ability == "greater" → Numeric(x0, y0))
+10. Q[The, x0, y0](U.S.savings.ability == "less" → Numeric(x0, y0))
+11. Q[The, x0, y0](M_NLI(S1, S2) == true → Numeric(x0, y0))
+12. Q[The, x0, y0](U.S.investment.positive == true → Numeric(x0, y0))
+13. Q[The, x0, y0](U.S.savings.positive == true → Numeric(x0, y0))
+14. Q[The, x0, y0](U.S.borrowing.positive == true → Numeric(x0, y0))
+15. Q[The, x0, y0](U.S.investment.amount + U.S.borrowing.from_abroad.amount > U.S.savings.amount → Numeric(x0, y0))
+16. Q[The, x0, y0](U.S.investment.amount + U.S.borrowing.from_abroad.amount < U.S.savings.amount → Numeric(x0, y0))
+17. Q[The, x0, y0](U.S.investment.ratio > U.S.savings.ratio → Numeric(x0, y0))
+18. Q[The, x0, y0](U.S.investment.ratio < U.S.savings.ratio → Numeric(x0, y0))
+19. Q[The, x0, y0](U.S.borrowing.from_abroad.investment > U.S.investment.amount → Numeric(x0, y0))
+20. Q[The, x0, y0](U.S.borrowing.from_abroad.savings < U.S.savings.amount → Numeric(x0, y0))
+21. Q[The, x0, y0](U.S.investment.trend == "increasing" → Numeric(x0, y0))
+22. Q[The, x0, y0](U.S.savings.trend == "decreasing" → Numeric(x0, y0))
+23. Q[The, x0, y0](U.S.investment.equality == false → Numeric(x0, y0))
+24. Q[The, x0, y0](U.S.savings.equality == false → Numeric(x0, y0))
+25. Q[The, x0, y0](violate(investment, savings) == true → Numeric(x0, y0))
+26. Q[The, x0, y0](violate(savings, investment) == true → Numeric(x0, y0))
+27. Q[The, x0, y0](U.S.investment.amount == U.S.savings.amount → Numeric(x0, y0))
+28. Q[The, x0, y0](U.S.borrowing.ability == "exceeding" → Numeric(x0, y0))
+29. Q[The, x0, y0](U.S.borrowing.ability == "deficient" → Numeric(x0, y0))
+30. Q[The, x0, y0](U.S.investment.greater_than.savings == true AND U.S.investment.less_than.savings == true → Numeric(x0, y0))

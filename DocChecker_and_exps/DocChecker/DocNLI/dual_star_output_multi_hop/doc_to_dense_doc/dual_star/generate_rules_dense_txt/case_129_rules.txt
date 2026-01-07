@@ -1,0 +1,58 @@
+Source: dense_text.txt (Index 129)
+S1: The football club has been working with both M88 and Mansion since the start of the 2017-18 season.
+S2: AFC Bournemouth has renewed its shirt sponsorship deal with gambling firm Mansion Group until the end of next season.
+
+Predicates:
+1. FootballClub.hasPartnershipWith.M88
+2. FootballClub.hasPartnershipWith.Mansion
+3. FootballClub.partnershipStartDate.2017_18
+4. AFCBournemouth.hasRenewedDeal.MansionGroup
+5. AFCBournemouth.dealEndDate.nextSeason
+6. MansionGroup.isGamblingFirm
+7. M88.isGamblingFirm
+8. FootballClub.hasPartnershipWith.BothM88AndMansion
+9. MansionGroup.hasSponsorshipDeal.AFCBournemouth
+10. FootballClub.partnershipStatus.active
+11. AFCBournemouth.sponsorshipType.shirt
+12. AFCBournemouth.dealDuration.renewed
+13. FootballClub.hasExclusivePartnership.Mansion
+14. FootballClub.hasPartnershipChange
+15. FootballClub.partnershipContradiction.M88
+16. AFCBournemouth.sponsorshipRenewalStatus.renewed
+17. MansionGroup.sponsorshipDuration.untilEndOfNextSeason
+18. FootballClub.partnershipImplication.exclusivity
+19. M88.partnershipStatus.active
+20. Mansion.partnershipStatus.active
+21. FootballClub.hasMultiplePartnerships
+22. AFCBournemouth.sponsorshipType.gambling
+23. FootballClub.hasPartnershipWith.MansionOnly
+24. FootballClub.partnershipChangeReason.renewal
+25. AFCBournemouth.sponsorshipFirm.MansionGroup
+26. FootballClub.hasPartnershipWith.MansionSince2017_18
+27. AFCBournemouth.sponsorshipDealType.shirt
+28. FootballClub.hasPartnershipWith.M88Since2017_18
+29. FootballClub.partnershipConflict.M88AndMansion
+30. AFCBournemouth.sponsorshipRenewalReason.exclusivity
+
+Rules:
+1. Q[The, FootballClub.hasPartnershipWith.M88 == true, FootballClub.hasPartnershipChange](FootballClub.hasPartnershipWith.M88 == true ∧ FootballClub.hasPartnershipWith.Mansion == true → Causal(FootballClub.hasPartnershipWith.M88, FootballClub.hasPartnershipChange))
+2. Q[The, FootballClub.hasPartnershipWith.Mansion == true, FootballClub.hasPartnershipChange](FootballClub.hasPartnershipWith.Mansion == true ∧ FootballClub.hasPartnershipWith.M88 == true → Causal(FootballClub.hasPartnershipWith.Mansion, FootballClub.hasPartnershipChange))
+3. Q[The, FootballClub.partnershipStartDate.2017_18 == true, FootballClub.hasPartnershipChange](FootballClub.partnershipStartDate.2017_18 == true ∧ FootballClub.hasPartnershipWith.Mansion == true → Causal(FootballClub.partnershipStartDate.2017_18, FootballClub.hasPartnershipChange))
+4. Q[The, AFCBournemouth.hasRenewedDeal.MansionGroup == true, FootballClub.hasExclusivePartnership.Mansion](AFCBournemouth.hasRenewedDeal.MansionGroup == true ∧ FootballClub.hasPartnershipWith.Mansion == true → Causal(AFCBournemouth.hasRenewedDeal.MansionGroup, FootballClub.hasExclusivePartnership.Mansion))
+5. Q[The, AFCBournemouth.dealEndDate.nextSeason == true, FootballClub.hasExclusivePartnership.Mansion](AFCBournemouth.dealEndDate.nextSeason == true ∧ FootballClub.hasPartnershipWith.Mansion == true → Causal(AFCBournemouth.dealEndDate.nextSeason, FootballClub.hasExclusivePartnership.Mansion))
+6. Q[The, MansionGroup.isGamblingFirm == true, FootballClub.hasPartnershipChange](MansionGroup.isGamblingFirm == true ∧ FootballClub.hasPartnershipWith.Mansion == true → Causal(MansionGroup.isGamblingFirm, FootballClub.hasPartnershipChange))
+7. Q[The, M88.isGamblingFirm == true, FootballClub.partnershipContradiction.M88](M88.isGamblingFirm == true ∧ FootballClub.hasPartnershipWith.M88 == true → Causal(M88.isGamblingFirm, FootballClub.partnershipContradiction.M88))
+8. Q[The, FootballClub.hasPartnershipWith.BothM88AndMansion == true, FootballClub.partnershipChangeReason.renewal](FootballClub.hasPartnershipWith.BothM88AndMansion == true ∧ AFCBournemouth.hasRenewedDeal.MansionGroup == true → Causal(FootballClub.hasPartnershipWith.BothM88AndMansion, FootballClub.partnershipChangeReason.renewal))
+9. Q[The, MansionGroup.hasSponsorshipDeal.AFCBournemouth == true, FootballClub.hasPartnershipChange](MansionGroup.hasSponsorshipDeal.AFCBournemouth == true ∧ FootballClub.hasPartnershipWith.Mansion == true → Causal(MansionGroup.hasSponsorshipDeal.AFCBournemouth, FootballClub.hasPartnershipChange))
+10. Q[The, FootballClub.partnershipStatus.active == true, FootballClub.hasPartnershipChange](FootballClub.partnershipStatus.active == true ∧ FootballClub.hasPartnershipWith.Mansion == true → Causal(FootballClub.partnershipStatus.active, FootballClub.hasPartnershipChange))
+11. Q[The, AFCBournemouth.sponsorshipType.shirt == true, FootballClub.hasPartnershipChange](AFCBournemouth.sponsorshipType.shirt == true ∧ FootballClub.hasPartnershipWith.Mansion == true → Causal(AFCBournemouth.sponsorshipType.shirt, FootballClub.hasPartnershipChange))
+12. Q[The, AFCBournemouth.dealDuration.renewed == true, FootballClub.hasPartnershipChange](AFCBournemouth.dealDuration.renewed == true ∧ FootballClub.hasPartnershipWith.Mansion == true → Causal(AFCBournemouth.dealDuration.renewed, FootballClub.hasPartnershipChange))
+13. Q[The, FootballClub.hasPartnershipWith.MansionSince2017_18 == true, FootballClub.hasPartnershipChange](FootballClub.hasPartnershipWith.MansionSince2017_18 == true ∧ AFCBournemouth.hasRenewedDeal.MansionGroup == true → Causal(FootballClub.hasPartnershipWith.MansionSince2017_18, FootballClub.hasPartnershipChange))
+14. Q[The, AFCBournemouth.sponsorshipFirm.MansionGroup == true, FootballClub.hasPartnershipChange](AFCBournemouth.sponsorshipFirm.MansionGroup == true ∧ FootballClub.hasPartnershipWith.Mansion == true → Causal(AFCBournemouth.sponsorshipFirm.MansionGroup, FootballClub.hasPartnershipChange))
+15. Q[The, FootballClub.hasPartnershipWith.MansionOnly == true, FootballClub.hasPartnershipChange](FootballClub.hasPartnershipWith.MansionOnly == true ∧ FootballClub.hasPartnershipWith.M88 == true → Causal(FootballClub.hasPartnershipWith.MansionOnly, FootballClub.hasPartnershipChange))
+16. Q[The, FootballClub.hasMultiplePartnerships == true, FootballClub.partnershipConflict.M88AndMansion](FootballClub.hasMultiplePartnerships == true ∧ FootballClub.hasPartnershipWith.Mansion == true → Causal(FootballClub.hasMultiplePartnerships, FootballClub.partnershipConflict.M88AndMansion))
+17. Q[The, AFCBournemouth.sponsorshipRenewalStatus.renewed == true, FootballClub.hasPartnershipChange](AFCBournemouth.sponsorshipRenewalStatus.renewed == true ∧ FootballClub.hasPartnershipWith.Mansion == true → Causal(AFCBournemouth.sponsorshipRenewalStatus.renewed, FootballClub.hasPartnershipChange))
+18. Q[The, FootballClub.partnershipImplication.exclusivity == true, FootballClub.hasPartnershipChange](FootballClub.partnershipImplication.exclusivity == true ∧ AFCBournemouth.hasRenewedDeal.MansionGroup == true → Causal(FootballClub.partnershipImplication.exclusivity, FootballClub.hasPartnershipChange))
+19. Q[The, M88.partnershipStatus.active == true, FootballClub.partnershipConflict.M88AndMansion](M88.partnershipStatus.active == true ∧ FootballClub.hasPartnershipWith.Mansion == true → Causal(M88.partnershipStatus.active, FootballClub.partnershipConflict.M88AndMansion))
+20. Q[The, Mansion.partnershipStatus.active == true, FootballClub.hasPartnershipChange](Mansion.partnershipStatus.active == true ∧ FootballClub.hasPartnershipWith.Mansion == true → Causal(Mansion.partnershipStatus.active, FootballClub.hasPartnershipChange))
+21. Q[The, FootballClub.hasPartnershipWith.M88Since2017_18 == true, FootballClub.partnershipChangeReason.renewal](FootballClub.hasPartnershipWith.M88Since2017_18 == true ∧ AFCBournemouth.hasRenewedDeal

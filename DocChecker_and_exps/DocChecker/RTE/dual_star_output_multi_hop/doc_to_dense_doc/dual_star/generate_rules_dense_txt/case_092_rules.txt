@@ -1,0 +1,58 @@
+Source: dense_text.txt (Index 92)
+S1: Although the line was formed in 1995, the stations date back to 1969, when they were opened as part of the Zamoskvoretskaya line.
+S2: The Kakhovskaya line was built in 1995.
+
+Predicates:
+1. Line_1995.year
+2. Stations_1969.year
+3. Zamoskvoretskaya_line.opened_year
+4. Kakhovskaya_line.built_year
+5. Stations.opened_as_part_of.Zamoskvoretskaya_line
+6. Line_1995.has_stations
+7. Stations_1969.part_of.Zamoskvoretskaya_line
+8. Kakhovskaya_line.has_stations
+9. Year_1969.is_before.Year_1995
+10. Year_1995.is_after.Year_1969
+11. Zamoskvoretskaya_line.year_of_opening
+12. Kakhovskaya_line.year_of_construction
+13. Stations.date_back_to.Year_1969
+14. Line_1995.is_constructed_in.Year_1995
+15. Stations_1969.are_opened_in.Year_1969
+16. Zamoskvoretskaya_line.has_opened_stations
+17. Kakhovskaya_line.is_built_in.Year_1995
+18. Year_1969.is_the_year_of_stations_opening
+19. Year_1995.is_the_year_of_line_construction
+20. Stations_1969.are_part_of.line
+21. Line_1995.is_related_to.Kakhovskaya_line
+22. Zamoskvoretskaya_line.is_older_than.Kakhovskaya_line
+23. Stations_1969.exist_before.Line_1995
+24. Line_1995.has_opened_stations
+25. Kakhovskaya_line.is_newer_than.Zamoskvoretskaya_line
+26. Year_1969.is_the_start_year.for.Stations
+27. Year_1995.is_the_start_year.for.Line
+28. Stations_1969.have_relationship_with.Zamoskvoretskaya_line
+29. Kakhovskaya_line.is_constructed_after.Zamoskvoretskaya_line
+30. M_NLI(S1, S2)
+
+Rules:
+1. Q[Although, Stations_1969.year, Line_1995.year](Stations_1969.year == 1969 → Factual(Stations_1969.year, Line_1995.year))
+2. Q[Although, Line_1995.year, Stations_1969.year](Line_1995.year == 1995 → Factual(Line_1995.year, Stations_1969.year))
+3. Q[Although, Zamoskvoretskaya_line.opened_year, Kakhovskaya_line.built_year](Zamoskvoretskaya_line.opened_year == 1969 → Factual(Zamoskvoretskaya_line.opened_year, Kakhovskaya_line.built_year))
+4. Q[Although, Kakhovskaya_line.built_year, Zamoskvoretskaya_line.opened_year](Kakhovskaya_line.built_year == 1995 → Factual(Kakhovskaya_line.built_year, Zamoskvoretskaya_line.opened_year))
+5. Q[Although, Stations_1969.part_of.Zamoskvoretskaya_line, Line_1995.has_stations](Stations_1969.part_of.Zamoskvoretskaya_line == true → Factual(Stations_1969.part_of.Zamoskvoretskaya_line, Line_1995.has_stations))
+6. Q[Although, Line_1995.has_stations, Stations_1969.part_of.Zamoskvoretskaya_line](Line_1995.has_stations == true → Factual(Line_1995.has_stations, Stations_1969.part_of.Zamoskvoretskaya_line))
+7. Q[Although, Year_1969.is_before.Year_1995, Year_1995.is_after.Year_1969](Year_1969.is_before.Year_1995 == true → Factual(Year_1969.is_before.Year_1995, Year_1995.is_after.Year_1969))
+8. Q[Although, Year_1995.is_after.Year_1969, Year_1969.is_before.Year_1995](Year_1995.is_after.Year_1969 == true → Factual(Year_1995.is_after.Year_1969, Year_1969.is_before.Year_1995))
+9. Q[Although, Stations.date_back_to.Year_1969, Kakhovskaya_line.is_built_in.Year_1995](Stations.date_back_to.Year_1969 == true → Factual(Stations.date_back_to.Year_1969, Kakhovskaya_line.is_built_in.Year_1995))
+10. Q[Although, Kakhovskaya_line.is_built_in.Year_1995, Stations.date_back_to.Year_1969](Kakhovskaya_line.is_built_in.Year_1995 == true → Factual(Kakhovskaya_line.is_built_in.Year_1995, Stations.date_back_to.Year_1969))
+11. Q[Although, Year_1969.is_the_year_of_stations_opening, Year_1995.is_the_year_of_line_construction](Year_1969.is_the_year_of_stations_opening == true → Factual(Year_1969.is_the_year_of_stations_opening, Year_1995.is_the_year_of_line_construction))
+12. Q[Although, Year_1995.is_the_year_of_line_construction, Year_1969.is_the_year_of_stations_opening](Year_1995.is_the_year_of_line_construction == true → Factual(Year_1995.is_the_year_of_line_construction, Year_1969.is_the_year_of_stations_opening))
+13. Q[Although, Stations_1969.exist_before.Line_1995, Line_1995.is_constructed_in.Year_1995](Stations_1969.exist_before.Line_1995 == true → Factual(Stations_1969.exist_before.Line_1995, Line_1995.is_constructed_in.Year_1995))
+14. Q[Although, Line_1995.is_constructed_in.Year_1995, Stations_1969.exist_before.Line_1995](Line_1995.is_constructed_in.Year_1995 == true → Factual(Line_1995.is_constructed_in.Year_1995, Stations_1969.exist_before.Line_1995))
+15. Q[Although, Kakhovskaya_line.is_newer_than.Zamoskvoretskaya_line, Zamoskvoretskaya_line.is_older_than.Kakhovskaya_line](Kakhovskaya_line.is_newer_than.Zamoskvoretskaya_line == true → Factual(Kakhovskaya_line.is_newer_than.Zamoskvoretskaya_line, Zamoskvoretskaya_line.is_older_than.Kakhovskaya_line))
+16. Q[Although, Zamoskvoretskaya_line.is_older_than.Kakhovskaya_line, Kakhovskaya_line.is_newer_than.Zamoskvoretskaya_line](Zamoskvoretskaya_line.is_older_than.Kakhovskaya_line == true → Factual(Zamoskvoretskaya_line.is_older_than.Kakhovskaya_line, Kakhovskaya_line.is_newer_than.Zamoskvoretskaya_line))
+17. Q[Although, Stations_1969.have_relationship_with.Zamoskvoretskaya_line, Line_1995.has_opened_stations](Stations_1969.have_relationship_with.Zamoskvoretskaya_line == true → Factual(Stations_1969.have_relationship_with.Zamoskvoretskaya_line, Line_1995.has_opened_stations))
+18. Q[Although, Line_1995.has_opened_stations, Stations_1969.have_relationship_with.Zamoskvoretskaya_line](Line_1995.has_opened_stations == true → Factual(Line_1995.has_opened_stations, Stations_1969.have_relationship_with.Zamoskvoretskaya_line))
+19. Q[Although, Kakhovskaya_line.is_constructed_after.Zamoskvoretskaya_line, Zamoskvoretskaya_line.is_older_than.Kakhovskaya_line](Kakhovskaya_line.is_constructed_after.Zamoskvoretskaya_line == true → Factual(Kakhovskaya_line.is_constructed_after.Zamoskvoretskaya_line, Zamoskvoretskaya_line.is_older_than.Kakhovskaya_line))
+20. Q[Although, Zamoskvoretskaya_line.is_older_than.Kakhovskaya_line, Kakhovskaya_line.is_constructed_after.Zamoskvoretskaya_line](Zamoskvoretskaya_line.is_older_than.Kakhovskaya_line == true → Factual(Zamoskvoretskaya_line.is_older_than.Kakhovskaya_line, Kakhovskaya_line.is_constructed_after.Zamoskvoretskaya_line))
+21. Q[Although, Line_1995.is_related_to.Kakhovskaya_line, Kakhovskaya_line.has_stations](Line_1995.is

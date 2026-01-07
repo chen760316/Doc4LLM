@@ -1,0 +1,39 @@
+Predicates:
+M_NLI(('Sales Report', 'Sales').attrs, ('sales report', 'during the year').attrs)
+M_NLI(('sales report', 'during the year').attrs, Sales have not increased at all during the year, according to the latest report..attrs)
+M_NLI(Sales Report.attrs, sales report.attrs)
+M_NLI(The report showed a steady increase in sales throughout the year..attrs, ('sales report', 'during the year').attrs)
+M_NLI(sales report.attrs, during the year.attrs)
+M_NLU(('Sales Report', 'Sales').attrs, The report showed a steady increase in sales throughout the year..attrs)
+None_ML(('Sales Report', 'Sales').attrs, Sales have not increased at all during the year, according to the latest report..attrs)
+None_ML(Sales Report.attrs, during the year.attrs)
+None_ML(The report showed a steady increase in sales throughout the year..attrs, Sales have not increased at all during the year, according to the latest report..attrs)
+Sales Report___Sales.relationship != "The report showed a steady increase in sales throughout the year."
+Sales Report___Sales.relationship != sales report_during the year.relationship
+Sales Report___Sales.relationship = "The report showed a steady increase in sales throughout the year."
+during the year.label != "Time"
+during the year.label = "Time"
+during the year.name != "during the year"
+during the year.name = "during the year"
+sales report.label != "Sales"
+sales report.label != during the year.label
+sales report.label = "Sales"
+sales report.name != "sales report"
+sales report.name != during the year.name
+sales report.name = "sales report"
+sales report.status != "not increased"
+sales report.status = "not increased"
+sales report___during the year.relationship != "Sales have not increased at all during the year, according to the latest report."
+sales report___during the year.relationship = "Sales have not increased at all during the year, according to the latest report."
+
+Rules:
+Q[Sales Report,sales report] (Sales Report___Sales.relationship = "The report showed a steady increase in sales throughout the year." ∧ None_ML(('Sales Report', 'Sales').attrs, Sales have not increased at all during the year, according to the latest report..attrs) → None_ML(('Sales Report', 'Sales').attrs, Sales have not increased at all during the year, according to the latest report..attrs))
+Q[Sales Report,sales report] (M_NLI(('sales report', 'during the year').attrs, Sales have not increased at all during the year, according to the latest report..attrs) ∧ sales report.name != during the year.name → sales report.name != during the year.name)
+Q[Sales Report,sales report] (sales report.label != "Sales" ∧ M_NLI(sales report.attrs, during the year.attrs) → sales report.label != "Sales")
+Q[Sales Report,sales report] (sales report.name != "sales report" ∧ during the year.label = "Time" → during the year.label = "Time")
+Q[Sales Report,sales report] (M_NLI(The report showed a steady increase in sales throughout the year..attrs, ('sales report', 'during the year').attrs) ∧ Sales Report___Sales.relationship = "The report showed a steady increase in sales throughout the year." → Sales Report___Sales.relationship = "The report showed a steady increase in sales throughout the year.")
+Q[Sales Report,sales report] (sales report___during the year.relationship != "Sales have not increased at all during the year, according to the latest report." ∧ sales report.label != during the year.label → sales report.label != during the year.label)
+Q[Sales Report,sales report] (Sales Report___Sales.relationship != "The report showed a steady increase in sales throughout the year." ∧ Sales Report___Sales.relationship != sales report_during the year.relationship → Sales Report___Sales.relationship != sales report_during the year.relationship)
+Q[Sales Report,sales report] (sales report.status != "not increased" ∧ sales report___during the year.relationship = "Sales have not increased at all during the year, according to the latest report." → sales report.status != "not increased")
+Q[Sales Report,sales report] (during the year.name != "during the year" ∧ during the year.label != "Time" → during the year.label != "Time")
+Q[Sales Report,sales report] (sales report.name != "sales report" ∧ sales report.label = "Sales" → sales report.label = "Sales")

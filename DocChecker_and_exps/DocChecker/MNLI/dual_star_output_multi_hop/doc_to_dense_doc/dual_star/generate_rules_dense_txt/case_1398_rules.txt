@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 1398)
+S1: 3 percent to slightly below CBO's level due to unspecified permanent policy actions that reduce revenue and increase spending to eliminate the nonSocial Security surpluses.
+S2: There is still a lot to be done to eliminate the non-Social Security surpluses.
+
+Predicates:
+1. PolicyAction.permanent
+2. Revenue.reduced
+3. Spending.increased
+4. Surplus.nonSocialSecurity
+5. Surplus.eliminated
+6. Action.taken
+7. Task.remaining
+8. Surplus.notEliminated
+9. CBO.level.slightlyBelow
+10. Action.unspecified
+11. PolicyAction.impact
+12. Revenue.level
+13. Spending.level
+14. Surplus.status
+15. Action.effective
+16. Task.urgency
+17. Surplus.amount
+18. PolicyAction.type
+19. Revenue.impact
+20. Spending.impact
+21. Surplus.reduction
+22. Action.required
+23. Task.completion
+24. Surplus.evaluation
+25. PolicyAction.evaluation
+26. Revenue.trend
+27. Spending.trend
+28. Surplus.analysis
+29. Action.assessment
+30. Task.progress
+
+Rules:
+1. Q[percent, PolicyAction.permanent == true, Surplus.notEliminated](Action.taken → Causal(PolicyAction.permanent, Surplus.notEliminated))
+2. Q[percent, Revenue.reduced == true, Surplus.notEliminated](Action.taken → Causal(Revenue.reduced, Surplus.notEliminated))
+3. Q[percent, Spending.increased == true, Surplus.notEliminated](Action.taken → Causal(Spending.increased, Surplus.notEliminated))
+4. Q[percent, Surplus.nonSocialSecurity == true, Surplus.notEliminated](Action.taken → Causal(Surplus.nonSocialSecurity, Surplus.notEliminated))
+5. Q[percent, Action.taken == true, Task.remaining == true](Action.taken → Causal(Action.taken, Task.remaining))
+6. Q[percent, Surplus.eliminated == false, Task.remaining == true](Surplus.eliminated == false → Causal(Surplus.eliminated, Task.remaining))
+7. Q[percent, Action.unspecified == true, Surplus.notEliminated](Action.taken → Causal(Action.unspecified, Surplus.notEliminated))
+8. Q[percent, PolicyAction.impact == "negative", Surplus.notEliminated](Action.taken → Causal(PolicyAction.impact, Surplus.notEliminated))
+9. Q[percent, Revenue.level == "decreased", Surplus.notEliminated](Action.taken → Causal(Revenue.level, Surplus.notEliminated))
+10. Q[percent, Spending.level == "increased", Surplus.notEliminated](Action.taken → Causal(Spending.level, Surplus.notEliminated))
+11. Q[percent, Surplus.status == "not eliminated", Task.remaining == true](Surplus.status == "not eliminated" → Causal(Surplus.status, Task.remaining))
+12. Q[percent, Action.effective == false, Surplus.notEliminated](Action.taken → Causal(Action.effective, Surplus.notEliminated))
+13. Q[percent, Task.urgency == "high", Surplus.notEliminated](Action.taken → Causal(Task.urgency, Surplus.notEliminated))
+14. Q[percent, Surplus.amount == "high", Surplus.notEliminated](Action.taken → Causal(Surplus.amount, Surplus.notEliminated))
+15. Q[percent, PolicyAction.type == "unspecified", Surplus.notEliminated](Action.taken → Causal(PolicyAction.type, Surplus.notEliminated))
+16. Q[percent, Revenue.impact == "negative", Surplus.notEliminated](Action.taken → Causal(Revenue.impact, Surplus.notEliminated))
+17. Q[percent, Spending.impact == "negative", Surplus.notEliminated](Action.taken → Causal(Spending.impact, Surplus.notEliminated))
+18. Q[percent, Surplus.reduction == false, Surplus.notEliminated](Action.taken → Causal(Surplus.reduction, Surplus.notEliminated))
+19. Q[percent, Action.required == true, Task.remaining == true](Action.taken → Causal(Action.required, Task.remaining))
+20. Q[percent, Task.completion == false, Surplus.notEliminated](Action.taken → Causal(Task.completion, Surplus.notEliminated))
+21. Q[percent, Surplus.evaluation == "incomplete", Surplus.notEliminated](Action.taken → Causal(Surplus.evaluation, Surplus.notEliminated))
+22. Q[percent, PolicyAction.evaluation == "pending", Surplus.notEliminated](Action.taken → Causal(PolicyAction.evaluation, Surplus.notEliminated))
+23. Q[percent, Revenue.trend == "declining", Surplus.notEliminated](Action.taken → Causal(Revenue.trend, Surplus.notEliminated))
+24. Q[percent, Spending.trend == "increasing", Surplus.notEliminated](Action.taken → Causal(Spending.trend, Surplus.notEliminated))
+25. Q[percent, Surplus.analysis == "inconclusive", Surplus.notEliminated](Action.taken → Causal(Surplus.analysis, Surplus.notEliminated))
+26. Q[percent, Action.assessment == "negative", Surplus.notEliminated](Action.taken → Causal(Action.assessment, Surplus.notEliminated))
+27. Q[percent, Task.progress == "slow", Surplus.notEliminated](Action.taken → Causal(Task.progress, Surplus.notEliminated))
+28. Q[percent, Surplus.nonSocialSecurity == true, Surplus.eliminated == false](Surplus.nonSocialSecurity == true → Causal(Surplus.nonSocialSecurity, Surplus.eliminated))
+29. Q[percent, Action.taken == true, Surplus.eliminated == false](Action.taken → Causal(Action.taken, Surplus.eliminated))
+30. Q[percent, Task.remaining == true, Surplus.eliminated == false](Task.remaining == true → Causal(Task.remaining, Surplus.eliminated))

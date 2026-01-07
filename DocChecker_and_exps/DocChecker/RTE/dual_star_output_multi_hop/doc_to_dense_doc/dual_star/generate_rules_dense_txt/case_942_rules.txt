@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 942)
+S1: Researchers from the State police testified in a preliminary hearing Delbert told the 64 age of death was a mercy killing.
+S2: It was Delbert Ward who told authorities that he strangled his brother.
+
+Predicates:
+1. Researcher.testified
+2. State_police.testified
+3. Delbert.age_of_death
+4. Delbert.statement
+5. Delbert.mercy_killing
+6. Delbert.strangled
+7. Brother.strangled
+8. Authorities.received_statement
+9. Preliminary_hearing.event
+10. Mercy_killing.event
+11. Strangling.event
+12. Delbert.narrative
+13. Conflicting_narratives.event
+14. State_police.investigation
+15. Delbert.brother_relationship
+16. Delbert.testimony
+17. Hearing.outcome
+18. Delbert.64_age_of_death
+19. Delbert.mercy_killing_claim
+20. Authorities.testimony_received
+21. Strangling.motive
+22. Mercy_killing.motive
+23. Delbert.brother_age
+24. State_police.evidence
+25. Preliminary_hearing.testimony
+26. Delbert.confession
+27. Brother.death
+28. Delbert.legal_status
+29. Authorities.investigation
+30. Delbert.event_sequence
+
+Rules:
+1. Q[Researchers, Delbert.statement, Delbert.mercy_killing](Researchers.testified → Causal(Delbert.statement, Delbert.mercy_killing))
+2. Q[Researchers, Delbert.strangled, Brother.strangled](Researchers.testified → Causal(Delbert.strangled, Brother.strangled))
+3. Q[Researchers, Delbert.mercy_killing_claim, Delbert.strangled](Researchers.testified → Causal(Delbert.mercy_killing_claim, Delbert.strangled))
+4. Q[State_police, Delbert.age_of_death, Delbert.mercy_killing](State_police.testified → Causal(Delbert.age_of_death, Delbert.mercy_killing))
+5. Q[State_police, Delbert.statement, Delbert.strangled](State_police.testified → Causal(Delbert.statement, Delbert.strangled))
+6. Q[State_police, Delbert.mercy_killing, Strangling.motive](State_police.testified → Causal(Delbert.mercy_killing, Strangling.motive))
+7. Q[Delbert, Delbert.brother_relationship, Brother.death](Delbert.age_of_death == 64 → Causal(Delbert.brother_relationship, Brother.death))
+8. Q[Delbert, Delbert.mercy_killing, Delbert.strangled](Delbert.mercy_killing == true → Causal(Delbert.mercy_killing, Delbert.strangled))
+9. Q[Delbert, Delbert.narrative, Conflicting_narratives.event](Delbert.statement == "mercy killing" → Causal(Delbert.narrative, Conflicting_narratives.event))
+10. Q[Delbert, Authorities.received_statement, Delbert.confession](Delbert.strangled == true → Causal(Authorities.received_statement, Delbert.confession))
+11. Q[Delbert, Preliminary_hearing.event, Hearing.outcome](Delbert.statement == "mercy killing" → Causal(Preliminary_hearing.event, Hearing.outcome))
+12. Q[Delbert, Delbert.mercy_killing_claim, Delbert.legal_status](Delbert.mercy_killing_claim == true → Causal(Delbert.mercy_killing_claim, Delbert.legal_status))
+13. Q[Delbert, State_police.evidence, Delbert.strangled](Delbert.strangled == true → Causal(State_police.evidence, Delbert.strangled))
+14. Q[Delbert, Delbert.brother_age, Delbert.age_of_death](Delbert.brother_age == 64 → Causal(Delbert.brother_age, Delbert.age_of_death))
+15. Q[Delbert, Delbert.mercy_killing, Mercy_killing.event](Delbert.mercy_killing == true → Causal(Delbert.mercy_killing, Mercy_killing.event))
+16. Q[Delbert, Delbert.strangled, Strangling.event](Delbert.strangled == true → Causal(Delbert.strangled, Strangling.event))
+17. Q[Delbert, Authorities.investigation, Delbert.statement](Delbert.strangled == true → Causal(Authorities.investigation, Delbert.statement))
+18. Q[Delbert, Delbert.narrative, State_police.investigation](Delbert.statement == "mercy killing" → Causal(Delbert.narrative, State_police.investigation))
+19. Q[Delbert, Delbert.mercy_killing_claim, Authorities.testimony_received](Delbert.mercy_killing_claim == true → Causal(Delbert.mercy_killing_claim, Authorities.testimony_received))
+20. Q[Delbert, Delbert.strangled, Delbert.confession](Delbert.strangled == true → Causal(Delbert.strangled, Delbert.confession))
+21. Q[Delbert, Delbert.mercy_killing, Delbert.brother_relationship](Delbert.mercy_killing == true → Causal(Delbert.mercy_killing, Delbert.brother_relationship))
+22. Q[Delbert, Delbert.age_of_death, Delbert.mercy_killing](Delbert.age_of_death == 64 → Causal(Delbert.age_of_death, Delbert.mercy_killing))
+23. Q[Delbert, Delbert.statement, Delbert.brother_relationship](Delbert.statement == "mercy killing" → Causal(Delbert.statement, Delbert.brother_relationship))
+24. Q[Delbert, Delbert.strangled, Mercy_killing.event](Delbert.strangled == true → Causal(Delbert.strangled, Mercy_killing.event))
+25. Q[Delbert, Delbert.mercy_killing_claim, Delbert.narrative](Delbert.mercy_killing_claim == true → Causal(Delbert.mercy_killing_claim, Delbert.narrative))
+26. Q[Delbert, Delbert.brother_relationship, Brother.death](Delbert.brother_relationship == true → Causal(Delbert.brother_relationship, Brother.death))
+27. Q[Delbert, Delbert.strangled, State_police.evidence](Delbert.strangled == true → Causal(Delbert.strangled, State_police.evidence))
+28. Q[Delbert, Delbert.mercy_killing, Delbert.confession](Delbert.mercy_killing == true → Causal(Delbert.mercy_killing, Delbert.confession))
+29. Q[Delbert, Delbert.narrative, Delbert.statement](Delbert.narrative == "mercy killing" → Causal(Delbert.narrative, Delbert.statement))
+30. Q[Delbert, Delbert.strangled, Delbert.mercy_killing_claim](Delbert.strangled == true → Causal(Delbert.strangled, Delbert.mercy_killing_claim))

@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 813)
+S1: The men are in a retro diner.
+S2: A person sitting on tan bench and man in green shirt standing on black and gray floor.
+
+Predicates:
+1. Location.retro_diner
+2. Location.bench
+3. Location.floor
+4. Entity.men
+5. Entity.person
+6. Entity.man
+7. Entity.green_shirt
+8. Entity.tan_bench
+9. Entity.black_gray_floor
+10. Relationship.sitting.on
+11. Relationship.standing.on
+12. Relationship.located.in
+13. M_NLI.s1_s2
+14. Relation.men_location_diner
+15. Relation.person_location_bench
+16. Relation.man_location_floor
+17. violate.men_person
+18. violate.men_man
+19. violate.person_man
+20. Entity.diner
+21. Entity.retro_style
+22. Relationship.diner_contains
+23. Relationship.bench_contains
+24. Relationship.floor_type
+25. Meta.s1_location
+26. Meta.s2_location
+27. Meta.s1_description
+28. Meta.s2_description
+29. Relation.bench_floor
+30. violate.diner_bench
+
+Rules:
+1. Q[The, Location.retro_diner, Location.bench](Location.retro_diner == true → Relation.men_location_diner)
+2. Q[The, Location.retro_diner, Location.floor](Location.retro_diner == true → Relation.men_location_diner)
+3. Q[The, Entity.men, Entity.person](Entity.men == true → violate.men_person)
+4. Q[The, Entity.men, Entity.man](Entity.men == true → violate.men_man)
+5. Q[The, Entity.person, Entity.man](Entity.person == true → violate.person_man)
+6. Q[The, Entity.man, Entity.green_shirt](Entity.man == true → Relation.man_location_floor)
+7. Q[The, Entity.person, Entity.tan_bench](Entity.person == true → Relation.person_location_bench)
+8. Q[The, Entity.man, Entity.tan_bench](Entity.man == true → violate.man_person)
+9. Q[The, Entity.men, Entity.tan_bench](Entity.men == true → violate.men_person)
+10. Q[The, Entity.men, Entity.black_gray_floor](Entity.men == true → violate.men_man)
+11. Q[The, Entity.person, Entity.black_gray_floor](Entity.person == true → violate.person_man)
+12. Q[The, Entity.man, Entity.black_gray_floor](Entity.man == true → Relation.man_location_floor)
+13. Q[The, Location.bench, Location.floor](Location.bench == true → Relation.bench_floor)
+14. Q[The, Relationship.sitting.on, Entity.tan_bench](Relationship.sitting.on == true → Relation.person_location_bench)
+15. Q[The, Relationship.standing.on, Entity.black_gray_floor](Relationship.standing.on == true → Relation.man_location_floor)
+16. Q[The, Meta.s1_location, Meta.s2_location](Meta.s1_location == "retro diner" → violate.diner_bench)
+17. Q[The, Meta.s1_description, Meta.s2_description](Meta.s1_description == "men in retro diner" → violate.men_person)
+18. Q[The, Relationship.diner_contains, Entity.men](Relationship.diner_contains == true → Relation.men_location_diner)
+19. Q[The, Relationship.bench_contains, Entity.person](Relationship.bench_contains == true → Relation.person_location_bench)
+20. Q[The, Location.retro_diner, Entity.diner](Location.retro_diner == true → Relation.men_location_diner)
+21. Q[The, Entity.green_shirt, Entity.man](Entity.green_shirt == true → Relation.man_location_floor)
+22. Q[The, Entity.tan_bench, Entity.person](Entity.tan_bench == true → Relation.person_location_bench)
+23. Q[The, Entity.black_gray_floor, Entity.man](Entity.black_gray_floor == true → Relation.man_location_floor)
+24. Q[The, Location.bench, Entity.tan_bench](Location.bench == true → Relation.bench_floor)
+25. Q[The, Location.floor, Entity.black_gray_floor](Location.floor == true → Relation.bench_floor)
+26. Q[The, Entity.men, Location.retro_diner](Entity.men == true → Relation.men_location_diner)
+27. Q[The, Entity.person, Location.bench](Entity.person == true → Relation.person_location_bench)
+28. Q[The, Entity.man, Location.floor](Entity.man == true → Relation.man_location_floor)
+29. Q[The, Relationship.located.in, Entity.diner](Relationship.located.in == true → Relation.men_location_diner)
+30. Q[The, Relationship.located.in, Entity.bench](Relationship.located.in == true → Relation.person_location_bench)

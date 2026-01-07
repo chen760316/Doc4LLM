@@ -1,0 +1,128 @@
+Predicates:
+1. entity1.name = "Alice"
+2. entity1.age = 30
+3. entity1.occupation = "Engineer"
+4. entity2.name = "Bob"
+5. entity2.age = 25
+6. entity2.occupation = "Artist"
+7. "considered as an alternative to".source = "Alice"
+8. "considered as an alternative to".target = "Bob"
+9. "fended for herself during".subject = "Alice"
+10. "fended for herself during".event = "crisis"
+11. "had to take care of".subject = "Bob"
+12. "had to take care of".dependent = "sibling"
+13. "replaced by".entity = "Alice"
+14. "replaced by".new_entity = "Bob"
+15. M_NLI(entity1.occupation, entity2.occupation)
+16. T("Alice is an engineer", "Alice is not an engineer", tau)
+17. tau(entity1.age, entity2.age)
+18. violate(entity1.name, entity2.name)
+19. Factual(entity1.age, entity2.age)
+20. Causal(entity1.occupation, entity2.occupation)
+21. Numeric(entity1.age, entity2.age)
+22. Temporal(entity1.name, entity2.name)
+23. Content(entity1.occupation, entity2.occupation)
+24. Relation(entity1.name, entity2.name)
+25. "considered as an alternative to".context = "career choices"
+26. "fended for herself during".time_period = "2020"
+27. "had to take care of".time_period = "2021"
+28. "replaced by".context = "job roles"
+29. entity1.location = "New York"
+30. entity2.location = "Los Angeles"
+31. "considered as an alternative to".reason = "job market"
+32. "fended for herself during".duration = "months"
+33. "had to take care of".reason = "financial issues"
+34. "replaced by".reason = "new technology"
+35. M_NLI(entity1.location, entity2.location)
+36. T("Alice lives in New York", "Alice does not live in New York", tau)
+37. tau(entity1.occupation, entity2.occupation)
+38. violate(entity1.age, entity2.age)
+39. Factual(entity1.location, entity2.location)
+40. Causal(entity1.name, entity2.name)
+41. Numeric(entity1.age, entity2.age)
+42. Temporal(entity1.occupation, entity2.occupation)
+43. Content(entity1.location, entity2.location)
+44. Relation(entity1.name, entity2.name)
+45. "considered as an alternative to".impact = "career growth"
+46. "fended for herself during".event_type = "emergency"
+47. "had to take care of".dependent_type = "child"
+48. "replaced by".entity_type = "employee"
+49. entity1.education = "Masters"
+50. entity2.education = "Bachelors"
+51. "considered as an alternative to".evaluation = "performance"
+52. "fended for herself during".support = "none"
+53. "had to take care of".support = "family"
+54. "replaced by".evaluation = "efficiency"
+55. M_NLI(entity1.education, entity2.education)
+56. T("Alice has a Masters degree", "Alice does not have a Masters degree", tau)
+57. tau(entity1.occupation, entity2.occupation)
+58. violate(entity1.education, entity2.education)
+59. Factual(entity1.education, entity2.education)
+60. Causal(entity1.location, entity2.location)
+61. Numeric(entity1.age, entity2.age)
+62. Temporal(entity1.education, entity2.education)
+63. Content(entity1.occupation, entity2.occupation)
+64. Relation(entity1.name, entity2.name)
+65. "considered as an alternative to".criteria = "skills"
+66. "fended for herself during".situation = "job loss"
+67. "had to take care of".situation = "elderly parent"
+68. "replaced by".criteria = "performance metrics"
+69. entity1.skills = "programming"
+70. entity2.skills = "artistic"
+71. "considered as an alternative to".evaluation_method = "peer review"
+72. "fended for herself during".support_system = "friends"
+73. "had to take care of".support_system = "community"
+74. "replaced by".evaluation_method = "automated systems"
+75. M_NLI(entity1.skills, entity2.skills)
+76. T("Alice is skilled in programming", "Alice is not skilled in programming", tau)
+77. tau(entity1.occupation, entity2.occupation)
+78. violate(entity1.skills, entity2.skills)
+79. Factual(entity1.skills, entity2.skills)
+80. Causal(entity1.education, entity2.education)
+81. Numeric(entity1.age, entity2.age)
+82. Temporal(entity1.skills, entity2.skills)
+83. Content(entity1.occupation, entity2.occupation)
+84. Relation(entity1.name, entity2.name)
+85. "considered as an alternative to".decision_maker = "HR"
+86. "fended for herself during".time_frame = "2022"
+87. "had to take care of".time_frame = "2023"
+88. "replaced by".decision_maker = "management"
+89. entity1.experience = "5 years"
+90. entity2.experience = "2 years"
+91. "considered as an alternative to".feedback = "positive"
+92. "fended for herself during".resources = "limited"
+93. "had to take care of".resources = "adequate"
+94. "replaced by".feedback = "negative"
+95. M_NLI(entity1.experience, entity2.experience)
+96. T("Alice has 5 years of experience", "Alice does not have 5 years of experience", tau)
+97. tau(entity1.occupation, entity2.occupation)
+98. violate(entity1.experience, entity2.experience)
+99. Factual(entity1.experience, entity2.experience)
+100. Causal(entity1.skills, entity2.skills)
+violate(x0, y0)
+
+Rules:
+1. Q[x0, y0](entity1.name = "Alice" ∧ entity2.name = "Bob" → violate(x0, y0))
+2. Q[x0, y0](entity1.age = 30 ∧ entity2.age = 25 → violate(x0, y0))
+3. Q[x0, y0](entity1.occupation = "Engineer" ∧ entity2.occupation = "Artist" → violate(x0, y0))
+4. Q[x0, y0](entity1.name = "Alice" ∧ entity1.age = 30 ∧ entity2.name = "Bob" → violate(x0, y0))
+5. Q[x0, y0](entity1.occupation = "Engineer" ∧ entity2.occupation = "Artist" ∧ "considered as an alternative to".source = "Alice" → violate(x0, y0))
+6. Q[x0, y0](entity1.age = 30 ∧ entity2.age = 25 ∧ "fended for herself during".event = "crisis" → violate(x0, y0))
+7. Q[x0, y0](entity1.name = "Alice" ∧ entity2.name = "Bob" ∧ "considered as an alternative to".target = "Bob" ∧ "fended for herself during".event = "crisis" → violate(x0, y0))
+8. Q[x0, y0](entity1.age = 30 ∧ entity2.age = 25 ∧ "had to take care of".dependent = "sibling" ∧ "replaced by".entity = "Alice" → violate(x0, y0))
+9. Q[x0, y0](entity1.occupation = "Engineer" ∧ entity2.occupation = "Artist" ∧ "considered as an alternative to".reason = "job market" ∧ "fended for herself during".time_period = "2020" → violate(x0, y0))
+10. Q[x0, y0](entity1.location = "New York" ∧ entity2.location = "Los Angeles" ∧ "considered as an alternative to".context = "career choices" ∧ "fended for herself during".support = "none" → violate(x0, y0))
+11. Q[x0, y0](entity1.education = "Masters" ∧ entity2.education = "Bachelors" ∧ "replaced by".reason = "new technology" ∧ "had to take care of".situation = "elderly parent" → violate(x0, y0))
+12. Q[x0, y0](entity1.skills = "programming" ∧ entity2.skills = "artistic" ∧ "considered as an alternative to".evaluation_method = "peer review" ∧ "fended for herself during".resources = "limited" → violate(x0, y0))
+13. Q[x0, y0](entity1.experience = "5 years" ∧ entity2.experience = "2 years" ∧ "replaced by".feedback = "negative" ∧ "had to take care of".resources = "adequate" → violate(x0, y0))
+14. Q[x0, y0](entity1.name = "Alice" ∧ entity1.age = 30 ∧ entity1.occupation = "Engineer" ∧ entity2.name = "Bob" ∧ entity2.age = 25 → violate(x0, y0))
+15. Q[x0, y0](entity1.name = "Alice" ∧ entity1.occupation = "Engineer" ∧ "considered as an alternative to".impact = "career growth" ∧ "fended for herself during".time_frame = "2022" → violate(x0, y0))
+16. Q[x0, y0](entity1.age = 30 ∧ entity2.age = 25 ∧ "had to take care of".dependent = "sibling" ∧ "replaced by".context = "job roles" ∧ "considered as an alternative to".evaluation = "performance" → violate(x0, y0))
+17. Q[x0, y0](entity1.occupation = "Engineer" ∧ entity2.occupation = "Artist" ∧ "fended for herself during".event = "crisis" ∧ "had to take care of".situation = "elderly parent" ∧ "replaced by".entity_type = "employee" → violate(x0, y0))
+18. Q[x0, y0](entity1.location = "New York" ∧ entity2.location = "Los Angeles" ∧ "considered as an alternative to".criteria = "skills" ∧ "fended for herself during".support_system = "friends" ∧ "had to take care of".support_system = "community" → violate(x0, y0))
+19. Q[x0, y0](entity1.education = "Masters" ∧ entity2.education = "Bachelors" ∧ "replaced by".evaluation = "efficiency" ∧ "had to take care of".time_frame = "2023" ∧ "considered as an alternative to".feedback = "positive" → violate(x0, y0))
+20. Q[x0, y0](entity1.skills = "programming" ∧ entity2.skills = "artistic" ∧ "considered as an alternative to".evaluation_method = "automated systems" ∧ "fended for herself during".situation = "job loss" ∧ "had to take care of".resources = "limited" → violate(x0, y0))
+21. Q[x0, y0](entity1.experience = "5 years" ∧ entity2.experience = "2 years" ∧ "replaced by".decision_maker = "management" ∧ "considered as an alternative to".decision_maker = "HR" ∧ "fended for herself during".time_frame = "2022" → violate(x0, y0))
+22. Q[x0, y0](entity1.name = "Alice" ∧ entity1.age = 30 ∧ entity1.occupation = "Engineer" ∧ entity2.name = "Bob" ∧ entity2.age = 25 ∧ "considered as an alternative to".source = "Alice" → violate(x0, y0))
+23. Q[x0, y0](entity1.location = "New York" ∧ entity2.location = "Los Angeles" ∧ "considered as an alternative to".context = "career choices" ∧ "fended for herself during".time_period = "2020" ∧ "had to take care of".dependent = "sibling" → violate(x0, y0))
+24. Q[x0, y0](entity1.education = "Masters" ∧ entity2.education = "Bachelors" ∧ "replaced by".reason = "new technology" ∧ "had to take care of".situation =

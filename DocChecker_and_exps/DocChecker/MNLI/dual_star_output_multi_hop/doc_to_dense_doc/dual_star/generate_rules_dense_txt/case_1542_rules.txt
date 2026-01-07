@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 1542)
+S1: On Martinique you're likely to get the same discount if you pay with one of the major credit cards.
+S2: On Martinique you're not likely to receive a discount if playing with a check.
+
+Predicates:
+1. Martinique.discount_credit_card
+2. Martinique.discount_check
+3. Major_credit_cards.discount
+4. Check.discount
+5. Payment_method.credit_card
+6. Payment_method.check
+7. Likelihood.discount_credit_card
+8. Likelihood.discount_check
+9. Discount.received_credit_card
+10. Discount.not_received_check
+11. Payment_method.favorable_credit_card
+12. Payment_method.unfavorable_check
+13. Discount.implied_credit_card
+14. Discount.suggested_check
+15. Relation.credit_card_discount
+16. Relation.check_discount
+17. M_NLI(S1, S2)
+18. Relation(payment_method, discount)
+19. violate(payment_method.credit_card, payment_method.check)
+20. Likelihood.credit_card_discount
+21. Likelihood.check_discount
+22. Major_credit_cards.payment_method
+23. Check.payment_method
+24. Discount.condition_credit_card
+25. Discount.condition_check
+26. Payment_method.advantage_credit_card
+27. Payment_method.disadvantage_check
+28. Discount.received_credit_card_implied
+29. Discount.not_received_check_implied
+30. Relation(credit_card, favorable_discount)
+
+Rules:
+1. Q[Martinique, Martinique.discount_credit_card, Martinique.discount_check](Martinique.discount_credit_card == true → Relation(Martinique.discount_credit_card, Martinique.discount_check))
+2. Q[Martinique, Likelihood.discount_credit_card, Likelihood.discount_check](Likelihood.discount_credit_card == high → Relation(Likelihood.discount_credit_card, Likelihood.discount_check))
+3. Q[Martinique, Payment_method.credit_card, Payment_method.check](Payment_method.credit_card == favorable → Relation(Payment_method.credit_card, Payment_method.check))
+4. Q[Martinique, Discount.received_credit_card, Discount.not_received_check](Discount.received_credit_card == true → Relation(Discount.received_credit_card, Discount.not_received_check))
+5. Q[Martinique, Major_credit_cards.discount, Check.discount](Major_credit_cards.discount == similar → Relation(Major_credit_cards.discount, Check.discount))
+6. Q[Martinique, Likelihood.credit_card_discount, Likelihood.check_discount](Likelihood.credit_card_discount == high → Relation(Likelihood.credit_card_discount, Likelihood.check_discount))
+7. Q[Martinique, Payment_method.advantage_credit_card, Payment_method.disadvantage_check](Payment_method.advantage_credit_card == true → Relation(Payment_method.advantage_credit_card, Payment_method.disadvantage_check))
+8. Q[Martinique, Discount.condition_credit_card, Discount.condition_check](Discount.condition_credit_card == favorable → Relation(Discount.condition_credit_card, Discount.condition_check))
+9. Q[Martinique, Discount.implied_credit_card, Discount.suggested_check](Discount.implied_credit_card == true → Relation(Discount.implied_credit_card, Discount.suggested_check))
+10. Q[Martinique, Likelihood.discount_credit_card, Discount.received_credit_card](Likelihood.discount_credit_card == high → Relation(Likelihood.discount_credit_card, Discount.received_credit_card))
+11. Q[Martinique, Payment_method.credit_card, Discount.received_credit_card](Payment_method.credit_card == favorable → Relation(Payment_method.credit_card, Discount.received_credit_card))
+12. Q[Martinique, Payment_method.check, Discount.not_received_check](Payment_method.check == unfavorable → Relation(Payment_method.check, Discount.not_received_check))
+13. Q[Martinique, Major_credit_cards.payment_method, Check.payment_method](Major_credit_cards.payment_method == favorable → Relation(Major_credit_cards.payment_method, Check.payment_method))
+14. Q[Martinique, Likelihood.discount_credit_card, Payment_method.credit_card](Likelihood.discount_credit_card == high → Relation(Likelihood.discount_credit_card, Payment_method.credit_card))
+15. Q[Martinique, Payment_method.unfavorable_check, Discount.not_received_check](Payment_method.unfavorable_check == true → Relation(Payment_method.unfavorable_check, Discount.not_received_check))
+16. Q[Martinique, Discount.received_credit_card_implied, Discount.not_received_check_implied](Discount.received_credit_card_implied == true → Relation(Discount.received_credit_card_implied, Discount.not_received_check_implied))
+17. Q[Martinique, Relation.credit_card_discount, Relation.check_discount](Relation.credit_card_discount == favorable → Relation(Relation.credit_card_discount, Relation.check_discount))
+18. Q[Martinique, Payment_method.credit_card, Likelihood.discount_credit_card](Payment_method.credit_card == favorable → Relation(Payment_method.credit_card, Likelihood.discount_credit_card))
+19. Q[Martinique, Payment_method.check, Likelihood.check_discount](Payment_method.check == unfavorable → Relation(Payment_method.check, Likelihood.check_discount))
+20. Q[Martinique, Discount.condition_credit_card, Payment_method.credit_card](Discount.condition_credit_card == favorable → Relation(Discount.condition_credit_card, Payment_method.credit_card))
+21. Q[Martinique, Discount.condition_check, Payment_method.check](Discount.condition_check == unfavorable → Relation(Discount.condition_check, Payment_method.check))
+22. Q[Martinique, Likelihood.discount_credit_card, Discount.received_credit_card](Likelihood.discount_credit_card == high → Relation(Likelihood.discount_credit_card, Discount.received_credit_card))
+23. Q[Martinique, Likelihood.check_discount, Discount.not_received_check](Likelihood.check_discount == low → Relation(Likelihood.check_discount, Discount.not_received_check))
+24. Q[Martinique, Payment_method.advantage_credit_card, Discount.received_credit_card](Payment_method.advantage_credit_card == true → Relation(Payment_method.advantage_credit_card, Discount.received_credit_card))
+25. Q[Martinique, Payment_method.disadvantage_check, Discount.not_received_check](Payment_method.disadvantage_check == true → Relation(Payment_method.disadvantage_check, Discount.not_received_check))
+26. Q[Martinique, Major_credit_cards.discount, Discount.received_credit_card](Major_credit_cards.discount == similar → Relation(Major_credit_cards.discount, Discount.received_credit_card))
+27. Q[Martinique, Major_credit_cards.discount, Discount.not_received_check](Major_credit_cards.discount == similar → Relation(Major_credit_cards.discount, Discount.not_received_check))
+28. Q[Martinique, Likelihood.credit_card_discount, Payment_method.credit_card](Likelihood.credit_card_discount == high → Relation(Likelihood.credit_card_discount, Payment_method.credit_card))
+29. Q[Martinique, Likelihood.check_discount, Payment_method.check](Likelihood.check_discount == low → Relation(Likelihood.check_discount, Payment_method.check))
+30. Q[Martinique, Relation(credit_card, favorable_discount), Relation(check, unfavorable_discount)](Relation(credit_card, favorable_discount) == true → Relation(Relation(credit_card, favorable_discount), Relation(check, unfavorable_discount)))

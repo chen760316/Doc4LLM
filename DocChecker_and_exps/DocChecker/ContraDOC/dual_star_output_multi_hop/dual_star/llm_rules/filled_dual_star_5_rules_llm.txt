@@ -1,0 +1,97 @@
+Predicates:
+1. Adelma Cifuentes.age = "unknown"
+2. Adelma Cifuentes.education != "high school"
+3. Adelma Cifuentes.location < "urban Guatemala"
+4. Adelma Cifuentes.occupation > "victim"
+5. Adelma Cifuentes.status <= "survivor"
+6. Adelma Cifuentes.status >= "victim"
+7. "Adelma Cifuentes was married to her abusive husband.".duration = "12 years"
+8. "Adelma Cifuentes was married to her abusive husband.".type != "supportive"
+9. "Adelma Cifuentes was married to her abusive husband.".type < "non-abusive"
+10. "Adelma Cifuentes was married to her abusive husband.".type > "violent"
+11. "Adelma Cifuentes was married to her abusive husband.".duration <= "15 years"
+12. "Adelma Cifuentes was married to her abusive husband.".duration >= "10 years"
+13. "Adelma's sons protected her during an attack.".event = "attack by her husband"
+14. "Adelma's sons protected her during an attack.".method != "ignored"
+15. "Adelma's sons protected her during an attack.".method < "called for help"
+16. "Adelma's sons protected her during an attack.".method > "fled"
+17. "Adelma's sons protected her during an attack.".time <= "during an attack"
+18. "Adelma's sons protected her during an attack.".time >= "before the attack"
+19. "CICAM helped Adelma Cifuentes escape her abusive husband.".outcome = "escaped and sought justice"
+20. "CICAM helped Adelma Cifuentes escape her abusive husband.".outcome != "remained in danger"
+21. "CICAM helped Adelma Cifuentes escape her abusive husband.".outcome < "failed to escape"
+22. "CICAM helped Adelma Cifuentes escape her abusive husband.".outcome > "just escaped"
+23. "CICAM helped Adelma Cifuentes escape her abusive husband.".type = "support organization"
+24. "Cifuentes' sons protected her from an assassination attempt.".method = "dragged her inside"
+25. "Cifuentes' sons protected her from an assassination attempt.".time != "after the attack"
+26. "Cifuentes' sons protected her from an assassination attempt.".time < "before the attack"
+27. "Cifuentes' sons protected her from an assassination attempt.".time > "during an attack"
+28. Adelma Cifuentes' husband.sentence = "27 years in prison"
+29. Adelma Cifuentes' husband.status != "innocent"
+30. Adelma Cifuentes' husband.status < "non-abusive"
+31. Adelma Cifuentes' husband.status > "violent"
+32. Adelma Cifuentes' husband.sentence <= "30 years"
+33. Adelma Cifuentes' husband.sentence >= "20 years"
+34. Adelma's sons.number = "2"
+35. Adelma's sons.status != "passive"
+36. Adelma's sons.status < "indifferent"
+37. Adelma's sons.status > "unprotective"
+38. Lesbia Téllez.status = "main character in play"
+39. Lesbia Téllez.status != "minor character"
+40. Lesbia Téllez.status < "supporting role"
+41. Lesbia Téllez.status > "background character"
+42. "Adelma Cifuentes and Lesbia Téllez are part of a theater group.".group_name = "La Poderosas"
+43. "Adelma Cifuentes and Lesbia Téllez are part of a theater group.".purpose != "entertainment"
+44. "Adelma Cifuentes and Lesbia Téllez are part of a theater group.".purpose < "social gathering"
+45. "Adelma Cifuentes and Lesbia Téllez are part of a theater group.".purpose > "artistic expression"
+46. "Adelma Cifuentes and Lesbia Téllez are part of a theater group.".group_name <= "La Poderosas"
+47. "Adelma Cifuentes and Lesbia Téllez are part of a theater group.".group_name >= "La Poderosas"
+48. M_NLI(Adelma Cifuentes.education, Adelma Cifuentes.occupation)
+49. M_NLU(Adelma Cifuentes.status, Adelma Cifuentes.husband.status)
+50. M_TEM(Adelma Cifuentes.location, Adelma Cifuentes.husband.location)
+51. contra("Adelma Cifuentes is a survivor", "Adelma Cifuentes is a victim")
+52. S(Adelma Cifuentes, "Adelma Cifuentes")
+53. S(ex, "CICAM helped Adelma Cifuentes escape her abusive husband.")
+54. T("Adelma Cifuentes was married to her abusive husband.", "Adelma Cifuentes was never married", Factual)
+55. tau(Adelma Cifuentes.education, Adelma Cifuentes.husband.status)
+56. tau("Adelma's sons protected her during an attack.", "Adelma's sons did not protect her", Relational)
+57. M_NLI(Adelma Cifuentes.husband.sentence, Adelma Cifuentes.husband.status)
+58. M_NLU(CICAM.type, Adelma Cifuentes.occupation)
+59. M_TEM(Adelma Cifuentes.sons.number, Adelma Cifuentes.husband.sentence)
+60. contra("CICAM is a support organization", "CICAM is not a support organization")
+61. S(Adelma's sons, "Adelma's sons")
+62. S(ex, "Adelma's sons protected her during an attack.")
+63. T("Lesbia Téllez is a main character", "Lesbia Téllez is a minor character", Content)
+64. tau("Adelma Cifuentes was married to her abusive husband.", "Adelma Cifuentes was never married")
+65. tau("CICAM helped Adelma Cifuentes escape her abusive husband.", "CICAM did not help Adelma")
+66. M_NLI(Adelma Cifuentes.husband.status, Adelma Cifuentes.husband.sentence)
+67. M_NLU(Adelma Cifuentes.sons.status, Adelma Cifuentes.occupation)
+68. M_TEM(Adelma Cifuentes.location, Lesbia Téllez.status)
+69. contra("Adelma Cifuentes is an abuse survivor", "Adelma Cifuentes is an abuser")
+70. S(Adelma Cifuentes.husband, "Adelma Cifuentes' husband")
+71. S(ex, "Cifuentes' two sons status")
+72. T("Adelma's sons are protective", "Adelma's
+
+Rules:
+1. Q[Adelma Cifuentes, husband](Adelma Cifuentes.status >= "victim" ∧ Adelma Cifuentes.husband.status != "innocent" → Adelma Cifuentes.husband.status < "non-abusive")
+2. Q[Adelma Cifuentes, sons](Adelma Cifuentes.education != "high school" ∧ Adelma Cifuentes.sons.number = "2" → Adelma Cifuentes.age = "unknown")
+3. Q[CICAM, Adelma Cifuentes](CICAM.type = "support organization" ∧ CICAM.outcome != "remained in danger" → Adelma Cifuentes.status <= "survivor")
+4. Q[Adelma Cifuentes, attack](Adelma Cifuentes.occupation > "victim" ∧ "Adelma's sons protected her during an attack.".method != "ignored" → "Adelma's sons protected her during an attack.".event = "attack by her husband")
+5. Q[Adelma Cifuentes, theater group](Adelma Cifuentes.location < "urban Guatemala" ∧ "Adelma Cifuentes and Lesbia Téllez are part of a theater group.".purpose > "artistic expression" → "Adelma Cifuentes and Lesbia Téllez are part of a theater group.".group_name = "La Poderosas")
+6. Q[Adelma Cifuentes, husband](Adelma Cifuentes.status <= "survivor" ∧ Adelma Cifuentes.husband.sentence >= "20 years" ∧ Adelma Cifuentes.husband.status > "violent" → Adelma Cifuentes.husband.sentence < "30 years")
+7. Q[CICAM, outcome](CICAM.outcome = "escaped and sought justice" ∧ "CICAM helped Adelma Cifuentes escape her abusive husband.".type = "support organization" → "CICAM helped Adelma Cifuentes escape her abusive husband.".outcome != "failed to escape")
+8. Q[Adelma Cifuentes, sons](Adelma Cifuentes.status >= "victim" ∧ Adelma Cifuentes.sons.status != "passive" ∧ "Cifuentes' sons protected her from an assassination attempt.".time > "during an attack" → "Cifuentes' sons protected her from an assassination attempt.".method = "dragged her inside")
+9. Q[Adelma Cifuentes, husband](Adelma Cifuentes.education != "high school" ∧ Adelma Cifuentes.husband.status < "non-abusive" ∧ "Adelma Cifuentes was married to her abusive husband.".duration >= "10 years" → Adelma Cifuentes.husband.sentence = "27 years in prison")
+10. Q[Lesbia Téllez, theater group](Lesbia Téllez.status != "minor character" ∧ "Adelma Cifuentes and Lesbia Téllez are part of a theater group.".purpose < "social gathering" → Lesbia Téllez.status < "supporting role")
+11. Q[Adelma Cifuentes, attack](Adelma Cifuentes.status >= "victim" ∧ "Adelma's sons protected her during an attack.".time <= "during an attack" ∧ "Adelma's sons protected her during an attack.".method > "fled" → Adelma Cifuentes.occupation > "victim")
+12. Q[CICAM, outcome](CICAM.outcome < "failed to escape" ∧ "CICAM helped Adelma Cifuentes escape her abusive husband.".outcome != "remained in danger" → CICAM.type = "support organization")
+13. Q[Adelma Cifuentes, husband](Adelma Cifuentes.husband.status != "innocent" ∧ Adelma Cifuentes.husband.status > "violent" ∧ Adelma Cifuentes.husband.sentence <= "30 years" → Adelma Cifuentes.husband.sentence >= "20 years")
+14. Q[Adelma Cifuentes, sons](Adelma Cifuentes.status <= "survivor" ∧ Adelma Cifuentes.sons.status < "indifferent" ∧ "Cifuentes' sons protected her from an assassination attempt.".time != "after the attack" → Adelma Cifuentes.sons.number = "2")
+15. Q[Adelma Cifuentes, theater group](Adelma Cifuentes.education != "high school" ∧ "Adelma Cifuentes and Lesbia Téllez are part of a theater group.".group_name >= "La Poderosas" ∧ "Adelma Cifuentes and Lesbia Téllez are part of a theater group.".purpose > "artistic expression" → "Adelma Cifuentes and Lesbia Téllez are part of a theater group.".purpose != "entertainment")
+16. Q[Adelma Cifuentes, husband](Adelma Cifuentes.husband.status < "non-abusive" ∧ Adelma Cifuentes.husband.sentence >= "20 years" ∧ "Adelma Cifuentes was married to her abusive husband.".duration <= "15 years" → Adelma Cifuentes.husband.sentence < "30 years")
+17. Q[CICAM, outcome](CICAM.outcome > "just escaped" ∧ "CICAM helped Adelma Cifuentes escape her abusive husband.".type = "support organization" → CICAM.outcome != "remained in danger")
+18. Q[Adelma Cifuentes, attack](Adelma Cifuentes.status >= "victim" ∧ "Adelma's sons protected her during an attack.".method < "called for help" ∧ "Adelma's sons protected her during an attack.".time >= "before the attack" → Adelma Cifuentes.occupation > "victim")
+19. Q[Lesbia Téllez, theater group](Lesbia Téllez.status > "background character" ∧ "Adelma Cifuentes and Lesbia Téllez are part of a theater group.".group_name <= "La Poderosas" → Lesbia Téllez.status != "minor character")
+20. Q[Adelma Cifuentes, husband](Adelma Cifuentes.husband.status != "innocent" ∧ Adelma Cifuentes.husband.status > "violent" ∧ Adelma Cifuentes.husband.sentence >= "20 years" → Adelma Cifuentes.husband.sentence <= "30 years")
+21. Q[CICAM, outcome](CICAM.outcome != "remained in danger" ∧ "CICAM helped Adelma Cifuentes escape her abusive husband.".type = "support organization" → CICAM.outcome < "failed to escape")
+22. Q[Adelma Cifuentes, sons](Adelma Cifuentes.status

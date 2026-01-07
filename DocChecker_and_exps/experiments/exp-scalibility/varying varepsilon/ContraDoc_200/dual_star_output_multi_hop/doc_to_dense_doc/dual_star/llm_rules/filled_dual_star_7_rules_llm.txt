@@ -1,0 +1,126 @@
+Predicates:
+1. drought.status = "continuing"
+2. drought.time = "next winter"
+3. catastrophic consequences.status = "potential"
+4. "If the drought continues, the consequences could be catastrophic.".action = "not conserve more"
+5. "If the drought continues, the consequences could be catastrophic.".condition = "if drought continues"
+6. "The California drought may affect food prices this year.".certainty = "unknown"
+7. "The California drought may affect food prices this year.".influence = "strong dollar"
+8. "The California drought may affect food prices this year.".doc_index = "53"
+9. "If the drought continues, the consequences could be catastrophic.".doc_index = "55"
+10. "The drought could lead to catastrophic consequences if it continues.".action = "do not conserve more"
+11. "The drought could lead to catastrophic consequences if it continues.".condition = "continues through next winter"
+12. "The drought could lead to catastrophic consequences if it continues.".doc_index = "25"
+13. M_NLI("If the drought continues, the consequences could be catastrophic.", "The drought could lead to catastrophic consequences if it continues.")
+14. T("If the drought continues, the consequences could be catastrophic.", "The California drought may affect food prices this year.", tau)
+15. tau("drought.status", "catastrophic consequences.status")
+16. violate("drought", "catastrophic consequences")
+17. Factual("drought", "catastrophic consequences")
+18. Causal("drought", "food prices")
+19. Numeric("food prices", "catastrophic consequences")
+20. Temporal("drought.time", "catastrophic consequences.status")
+21. Content("drought.status", "drought.time")
+22. Relation("drought", "food prices")
+23. "The drought may lead to increased food prices.".certainty = "likely"
+24. "The drought may lead to increased food prices.".doc_index = "54"
+25. "Food prices are expected to rise due to the drought.".certainty = "certain"
+26. "Food prices are expected to rise due to the drought.".doc_index = "55"
+27. M_NLI("The drought may lead to increased food prices.", "Food prices are expected to rise due to the drought.")
+28. T("The drought may lead to increased food prices.", "Food prices are expected to rise due to the drought.", tau)
+29. tau("drought.status", "food prices")
+30. violate("drought", "food prices")
+31. Factual("drought", "food prices")
+32. Causal("drought", "food prices")
+33. Numeric("food prices", "drought")
+34. Temporal("drought.time", "food prices")
+35. Content("drought.status", "food prices")
+36. Relation("drought", "food prices")
+37. "The drought will not affect food prices this year.".action = "not affect"
+38. "The drought will not affect food prices this year.".certainty = "certain"
+39. M_NLI("The drought may affect food prices this year.", "The drought will not affect food prices this year.")
+40. T("The drought may affect food prices this year.", "The drought will not affect food prices this year.", tau)
+41. tau("drought.status", "food prices")
+42. violate("drought", "food prices")
+43. Factual("drought", "food prices")
+44. Causal("drought", "food prices")
+45. Numeric("food prices", "drought")
+46. Temporal("drought.time", "food prices")
+47. Content("drought.status", "food prices")
+48. Relation("drought", "food prices")
+49. "If the drought continues, food prices will rise.".action = "rise"
+50. "If the drought continues, food prices will rise.".condition = "if drought continues"
+51. M_NLI("If the drought continues, food prices will rise.", "The drought may affect food prices this year.")
+52. T("If the drought continues, food prices will rise.", "The drought may affect food prices this year.", tau)
+53. tau("drought.status", "food prices")
+54. violate("drought", "food prices")
+55. Factual("drought", "food prices")
+56. Causal("drought", "food prices")
+57. Numeric("food prices", "drought")
+58. Temporal("drought.time", "food prices")
+59. Content("drought.status", "food prices")
+60. Relation("drought", "food prices")
+61. "The drought will not lead to catastrophic consequences.".action = "not lead"
+62. "The drought will not lead to catastrophic consequences.".certainty = "certain"
+63. M_NLI("The drought could lead to catastrophic consequences if it continues.", "The drought will not lead to catastrophic consequences.")
+64. T("The drought could lead to catastrophic consequences if it continues.", "The drought will not lead to catastrophic consequences.", tau)
+65. tau("drought.status", "catastrophic consequences")
+66. violate("drought", "catastrophic consequences")
+67. Factual("drought", "catastrophic consequences")
+68. Causal("drought", "catastrophic consequences")
+69. Numeric("catastrophic consequences", "drought")
+70. Temporal("drought.time", "catastrophic consequences")
+71. Content("drought.status", "catastrophic consequences")
+72. Relation("drought", "catastrophic consequences")
+73. "The drought is expected to end soon.".certainty = "certain"
+74. "The drought is expected to end soon.".doc_index = "56"
+75. M_NLI("The drought is continuing.", "The drought is expected to end soon.")
+76. T("The drought is continuing.", "The drought is expected to end soon.", tau)
+77. tau("drought.status", "drought.time")
+78. violate("drought", "drought")
+79. Factual("drought", "drought")
+80. Causal("drought", "drought")
+81. Numeric("drought", "drought")
+82. Temporal("drought.time", "drought")
+83. Content("drought.status", "drought")
+84. Relation("drought", "drought")
+85. "Food prices will not rise this year.".action = "not rise"
+86. "Food prices will not rise this year.".certainty = "certain"
+87. M_NLI("Food prices are expected to rise due to the drought.", "Food prices will not rise this year.")
+88. T("Food prices are expected to rise due to the drought.", "Food prices will not rise this year.", tau)
+89. tau("food prices", "drought")
+90. violate("food prices", "drought")
+91. Factual("food prices", "drought")
+92. Causal("food prices", "drought")
+93. Numeric("drought", "food prices")
+94. Temporal("food prices", "drought")
+95. Content("food prices", "drought")
+96. Relation("food prices", "drought")
+violate(x0, y0)
+
+Rules:
+1. Q[x0, y0](drought.status = "continuing" ∧ drought.time = "next winter" → violate(x0, y0))
+2. Q[x0, y0](catastrophic consequences.status = "potential" ∧ "If the drought continues, the consequences could be catastrophic.".action = "not conserve more" → violate(x0, y0))
+3. Q[x0, y0](drought.status = "continuing" ∧ "The drought may lead to increased food prices.".certainty = "likely" → violate(x0, y0))
+4. Q[x0, y0](drought.status = "continuing" ∧ "The drought will not affect food prices this year.".certainty = "certain" → violate(x0, y0))
+5. Q[x0, y0](drought.status = "continuing" ∧ "If the drought continues, food prices will rise.".action = "rise" → violate(x0, y0))
+6. Q[x0, y0](drought.status = "continuing" ∧ "The drought is expected to end soon.".certainty = "certain" → violate(x0, y0))
+7. Q[x0, y0](drought.status = "continuing" ∧ drought.time = "next winter" ∧ catastrophic consequences.status = "potential" → violate(x0, y0))
+8. Q[x0, y0](catastrophic consequences.status = "potential" ∧ "If the drought continues, the consequences could be catastrophic.".condition = "if drought continues" ∧ "The drought could lead to catastrophic consequences if it continues.".action = "do not conserve more" → violate(x0, y0))
+9. Q[x0, y0](drought.status = "continuing" ∧ "The California drought may affect food prices this year.".certainty = "unknown" ∧ "Food prices are expected to rise due to the drought.".certainty = "certain" → violate(x0, y0))
+10. Q[x0, y0](drought.status = "continuing" ∧ "The drought will not lead to catastrophic consequences.".certainty = "certain" ∧ "If the drought continues, food prices will rise.".condition = "if drought continues" → violate(x0, y0))
+11. Q[x0, y0](drought.status = "continuing" ∧ "The drought may lead to increased food prices.".certainty = "likely" ∧ "Food prices will not rise this year.".certainty = "certain" → violate(x0, y0))
+12. Q[x0, y0](drought.status = "continuing" ∧ "The drought is expected to end soon.".certainty = "certain" ∧ "The drought will not affect food prices this year.".certainty = "certain" → violate(x0, y0))
+13. Q[x0, y0](drought.status = "continuing" ∧ drought.time = "next winter" ∧ "If the drought continues, food prices will rise.".action = "rise" ∧ "Food prices are expected to rise due to the drought.".certainty = "certain" → violate(x0, y0))
+14. Q[x0, y0](catastrophic consequences.status = "potential" ∧ "If the drought continues, the consequences could be catastrophic.".doc_index = "55" ∧ "The drought will not lead to catastrophic consequences.".certainty = "certain" → violate(x0, y0))
+15. Q[x0, y0](drought.status = "continuing" ∧ "The drought may affect food prices this year.".certainty = "unknown" ∧ "The drought will not affect food prices this year.".certainty = "certain" → violate(x0, y0))
+16. Q[x0, y0](drought.status = "continuing" ∧ "If the drought continues, the consequences could be catastrophic.".condition = "if drought continues" ∧ "The drought will not lead to catastrophic consequences.".certainty = "certain" → violate(x0, y0))
+17. Q[x0, y0](drought.status = "continuing" ∧ "The drought is expected to end soon.".certainty = "certain" ∧ "If the drought continues, the consequences could be catastrophic.".action = "not conserve more" → violate(x0, y0))
+18. Q[x0, y0](drought.status = "continuing" ∧ "The drought may lead to increased food prices.".certainty = "likely" ∧ "Food prices will not rise this year.".certainty = "certain" → violate(x0, y0))
+19. Q[x0, y0](drought.status = "continuing" ∧ "If the drought continues, food prices will rise.".action = "rise" ∧ "The drought will not affect food prices this year.".certainty = "certain" → violate(x0, y0))
+20. Q[x0, y0](catastrophic consequences.status = "potential" ∧ "The drought could lead to catastrophic consequences if it continues.".action = "do not conserve more" ∧ "The drought will not lead to catastrophic consequences.".certainty = "certain" → violate(x0, y0))
+21. Q[x0, y0](drought.status = "continuing" ∧ drought.time = "next winter" ∧ "The drought may affect food prices this year.".certainty = "unknown" ∧ "Food prices are expected to rise due to the drought.".certainty = "certain" → violate(x0, y0))
+22. Q[x0, y0](drought.status = "continuing" ∧ "If the drought continues, food prices will rise.".condition = "if drought continues" ∧ "The drought will not affect food prices this year.".certainty = "certain" → violate(x0, y0))
+23. Q[x0, y0](drought.status = "continuing" ∧ "The drought is expected to end soon.".certainty = "certain" ∧ "If the drought continues, the consequences could be catastrophic.".action = "not conserve more" ∧ "The drought will not lead to catastrophic consequences.".certainty = "certain" → violate(x0, y0))
+24. Q[x0, y0](drought.status = "continuing" ∧ "The drought may lead to increased food prices.".certainty = "likely" ∧ "Food prices will not rise this year.".certainty = "certain" ∧ "If the drought continues, food prices will rise.".action = "rise" → violate(x0, y0))
+25. Q[x0, y0](catastrophic consequences.status = "potential" ∧ "If the drought continues, the consequences could be catastrophic.".condition = "if drought continues" ∧ "The drought will not lead to catastrophic consequences.".certainty = "certain" ∧ "The drought is expected to end soon.".certainty = "certain" → violate(x0, y0))
+26. Q[x0, y0](drought.status = "continuing" ∧ "The drought may affect food prices

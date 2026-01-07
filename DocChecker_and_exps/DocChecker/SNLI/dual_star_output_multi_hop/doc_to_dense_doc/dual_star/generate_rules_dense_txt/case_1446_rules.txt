@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 1446)
+S1: Two men are sitting by themselves in a cafe.
+S2: Two men are sitting on a steel bench in a crowded park.
+
+Predicates:
+1. Cafe.location
+2. Park.location
+3. Man1.sitting
+4. Man2.sitting
+5. Man1.by_himself
+6. Man2.by_himself
+7. Steel_bench.material
+8. Steel_bench.location
+9. Crowded_park.crowd_density
+10. Two_men.count
+11. Sitting.position
+12. Cafe.occupancy
+13. Park.occupancy
+14. Man1.environment
+15. Man2.environment
+16. Sitting.in_cafe
+17. Sitting.in_park
+18. Man1.activity
+19. Man2.activity
+20. Cafe.type
+21. Park.type
+22. Man1.is_in_cafe
+23. Man2.is_in_cafe
+24. Man1.is_in_park
+25. Man2.is_in_park
+26. Relationship.sitting
+27. Relationship.by_himself
+28. Relationship.in_cafe
+29. Relationship.in_park
+30. M_NLI(S1, S2)
+
+Rules:
+1. Q[Cafe, Man1.is_in_cafe, Man1.is_in_park](Cafe.location == "cafe" → Relation(Man1.is_in_cafe, Man1.is_in_park))
+2. Q[Cafe, Man2.is_in_cafe, Man2.is_in_park](Cafe.location == "cafe" → Relation(Man2.is_in_cafe, Man2.is_in_park))
+3. Q[Two, Two_men.count, Man1.by_himself](Two_men.count == 2 → Relation(Two_men.count, Man1.by_himself))
+4. Q[Two, Two_men.count, Man2.by_himself](Two_men.count == 2 → Relation(Two_men.count, Man2.by_himself))
+5. Q[Park, Man1.is_in_park, Man1.is_in_cafe](Park.location == "park" → Relation(Man1.is_in_park, Man1.is_in_cafe))
+6. Q[Park, Man2.is_in_park, Man2.is_in_cafe](Park.location == "park" → Relation(Man2.is_in_park, Man2.is_in_cafe))
+7. Q[Two, Man1.sitting, Man2.sitting](Two_men.count == 2 → Relation(Man1.sitting, Man2.sitting))
+8. Q[Two, Man1.environment, Man2.environment](Two_men.count == 2 → Relation(Man1.environment, Man2.environment))
+9. Q[Cafe, Cafe.occupancy, Park.occupancy](Cafe.occupancy > 0 → Relation(Cafe.occupancy, Park.occupancy))
+10. Q[Park, Crowded_park.crowd_density, Cafe.occupancy](Crowded_park.crowd_density > 0 → Relation(Crowded_park.crowd_density, Cafe.occupancy))
+11. Q[Steel_bench, Steel_bench.material, Man1.sitting](Steel_bench.material == "steel" → Relation(Steel_bench.material, Man1.sitting))
+12. Q[Steel_bench, Steel_bench.location, Man2.sitting](Steel_bench.location == "park" → Relation(Steel_bench.location, Man2.sitting))
+13. Q[Two, Sitting.in_cafe, Sitting.in_park](Two_men.count == 2 → Relation(Sitting.in_cafe, Sitting.in_park))
+14. Q[Cafe, Man1.activity, Man2.activity](Cafe.type == "cafe" → Relation(Man1.activity, Man2.activity))
+15. Q[Park, Man1.activity, Man2.activity](Park.type == "park" → Relation(Man1.activity, Man2.activity))
+16. Q[Two, Man1.by_himself, Man2.by_himself](Two_men.count == 2 → Relation(Man1.by_himself, Man2.by_himself))
+17. Q[Cafe, Man1.environment, Man2.environment](Cafe.location == "cafe" → Relation(Man1.environment, Man2.environment))
+18. Q[Park, Man1.environment, Man2.environment](Park.location == "park" → Relation(Man1.environment, Man2.environment))
+19. Q[Two, Man1.is_in_cafe, Man2.is_in_cafe](Two_men.count == 2 → Relation(Man1.is_in_cafe, Man2.is_in_cafe))
+20. Q[Two, Man1.is_in_park, Man2.is_in_park](Two_men.count == 2 → Relation(Man1.is_in_park, Man2.is_in_park))
+21. Q[Cafe, Man1.sitting, Man2.sitting](Cafe.location == "cafe" → Relation(Man1.sitting, Man2.sitting))
+22. Q[Park, Man1.sitting, Man2.sitting](Park.location == "park" → Relation(Man1.sitting, Man2.sitting))
+23. Q[Cafe, Cafe.occupancy, Man1.is_in_cafe](Cafe.occupancy > 0 → Relation(Cafe.occupancy, Man1.is_in_cafe))
+24. Q[Park, Park.occupancy, Man2.is_in_park](Park.occupancy > 0 → Relation(Park.occupancy, Man2.is_in_park))
+25. Q[Two, Sitting.position, Man1.sitting](Two_men.count == 2 → Relation(Sitting.position, Man1.sitting))
+26. Q[Two, Sitting.position, Man2.sitting](Two_men.count == 2 → Relation(Sitting.position, Man2.sitting))
+27. Q[Cafe, Man1.is_in_cafe, Man2.is_in_cafe](Cafe.location == "cafe" → Relation(Man1.is_in_cafe, Man2.is_in_cafe))
+28. Q[Park, Man1.is_in_park, Man2.is_in_park](Park.location == "park" → Relation(Man1.is_in_park, Man2.is_in_park))
+29. Q[Two, Relationship.in_cafe, Relationship.in_park](Two_men.count == 2 → Relation(Relationship.in_cafe, Relationship.in_park))
+30. Q[Two, M_NLI(S1, S2), Relation](Two_men.count == 2 → Relation(M_NLI(S1, S2), Relation))

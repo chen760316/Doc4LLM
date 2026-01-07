@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 481)
+S1: None of the things he owned can be seen.
+S2: You can see some of his belongings, his famous portrait by fellow-monk Fra Bartolomeo, and the picture of his burning at the stake in Piazza della Signoria.
+
+Predicates:
+1. Belongings.can_be_seen = False
+2. Belongings.can_be_seen = True
+3. Portrait.by = Fra_Bartolomeo
+4. Portrait.is_famous = True
+5. Picture.is_of = burning_at_the_stake
+6. Picture.location = Piazza_della_Signoria
+7. Belongings.include = Portrait
+8. Belongings.include = Picture
+9. None_of_the_things_owned.can_be_seen = True
+10. Some_of_the_belongings.can_be_seen = True
+11. Fra_Bartolomeo.is_a = fellow_monk
+12. Burning_at_the_stake.is_a = historical_event
+13. Piazza_della_Signoria.is_a = location
+14. Belongings.is_a = collection
+15. Collection.includes = Portrait
+16. Collection.includes = Picture
+17. Ownership.is_of = Belongings
+18. Ownership.is_visible = False
+19. Visibility.is_of = Belongings
+20. Visibility.is_visible = True
+21. Famous_portrait.is_owned_by = individual
+22. Individual.owns = Belongings
+23. Belongings.can_be_seen = some
+24. Belongings.can_be_seen = none
+25. Historical_event.is_visible = True
+26. Location.is_visible = True
+27. Portrait.is_visible = True
+28. Picture.is_visible = True
+29. Ownership.is_visible = False
+30. Ownership.is_visible = True
+
+Rules:
+1. Q[None, None_of_the_things_owned.can_be_seen == True → Factual(x0, y0)]
+2. Q[None, Belongings.can_be_seen == False → Factual(x0, y0)]
+3. Q[None, Ownership.is_visible == False → Factual(x0, y0)]
+4. Q[None, Visibility.is_of(Belongings) == False → Factual(x0, y0)]
+5. Q[None, Belongings.include(Portrait) ∧ Portrait.is_visible == True → Factual(x0, y0)]
+6. Q[None, Belongings.include(Picture) ∧ Picture.is_visible == True → Factual(x0, y0)]
+7. Q[None, Some_of_the_belongings.can_be_seen == True → Factual(x0, y0)]
+8. Q[None, Belongings.can_be_seen == some → Factual(x0, y0)]
+9. Q[None, Collection.includes(Portrait) ∧ Portrait.is_famous == True → Factual(x0, y0)]
+10. Q[None, Collection.includes(Picture) ∧ Picture.is_of(burning_at_the_stake) == True → Factual(x0, y0)]
+11. Q[None, Ownership.is_of(Belongings) ∧ Ownership.is_visible == False → Factual(x0, y0)]
+12. Q[None, None_of_the_things_owned.can_be_seen == True ∧ Some_of_the_belongings.can_be_seen == True → Factual(x0, y0)]
+13. Q[None, Belongings.can_be_seen == none ∧ Belongings.can_be_seen == some → Factual(x0, y0)]
+14. Q[None, Visibility.is_visible == True ∧ Ownership.is_visible == False → Factual(x0, y0)]
+15. Q[None, Portrait.by == Fra_Bartolomeo ∧ Portrait.is_visible == True → Factual(x0, y0)]
+16. Q[None, Picture.location == Piazza_della_Signoria ∧ Picture.is_visible == True → Factual(x0, y0)]
+17. Q[None, Historical_event.is_visible == True ∧ Picture.is_of(burning_at_the_stake) == True → Factual(x0, y0)]
+18. Q[None, Individual.owns(Belongings) ∧ Belongings.can_be_seen == False → Factual(x0, y0)]
+19. Q[None, Ownership.is_visible == True ∧ None_of_the_things_owned.can_be_seen == True → Factual(x0, y0)]
+20. Q[None, Belongings.include(Portrait) ∧ Belongings.include(Picture) ∧ Some_of_the_belongings.can_be_seen == True → Factual(x0, y0)]
+21. Q[None, Ownership.is_of(Belongings) ∧ Belongings.can_be_seen == False → Factual(x0, y0)]
+22. Q[None, Visibility.is_of(Belongings) == True ∧ None_of_the_things_owned.can_be_seen == True → Factual(x0, y0)]
+23. Q[None, Belongings.can_be_seen == False ∧ Belongings.can_be_seen == some → Factual(x0, y0)]
+24. Q[None, Ownership.is_visible == False ∧ Ownership.is_visible == True → Factual(x0, y0)]
+25. Q[None, None_of_the_things_owned.can_be_seen == True ∧ Belongings.can_be_seen == True → Factual(x0, y0)]
+26. Q[None, Collection.includes(Portrait) ∧ Collection.includes(Picture) ∧ Some_of_the_belongings.can_be_seen == True → Factual(x0, y0)]
+27. Q[None, Portrait.is_visible == True ∧ None_of_the_things_owned.can_be_seen == True → Factual(x0, y0)]
+28. Q[None, Picture.is_visible == True ∧ None_of_the_things_owned.can_be_seen == True → Factual(x0, y0)]
+29. Q[None, Belongings.can_be_seen == False ∧ Belongings.can_be_seen == none → Factual(x0, y0)]
+30. Q[None, Ownership.is_visible == True ∧ None_of_the_things_owned.can_be_seen == True → Factual(x0, y0)]

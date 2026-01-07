@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 125)
+S1: The simple answer is, there is no Air Force base.
+S2: there is no Air Force base in Idaho.
+
+Predicates:
+1. NonExistence.AirForceBase
+2. NonExistence.AirForceBase.Idaho
+3. M_NLI(S1, S2)
+4. Factual(S1, NonExistence.AirForceBase)
+5. Factual(S2, NonExistence.AirForceBase.Idaho)
+6. violate(S1, S2)
+7. Assertion.General(NON_EXISTENCE, AirForceBase)
+8. Assertion.Specific(NON_EXISTENCE, AirForceBase.Idaho)
+9. Relationship.asserts(S1, NonExistence.AirForceBase)
+10. Relationship.asserts(S2, NonExistence.AirForceBase.Idaho)
+11. Entity.AirForceBase.exists
+12. Entity.AirForceBase.Idaho.exists
+13. NonExistence.AirForceBase.general
+14. NonExistence.AirForceBase.Idaho.specific
+15. M_NLI(GeneralAssertion, SpecificAssertion)
+16. Factual(GeneralAssertion, NonExistence.AirForceBase)
+17. Factual(SpecificAssertion, NonExistence.AirForceBase.Idaho)
+18. violate(GeneralAssertion, SpecificAssertion)
+19. Assertion.General(NON_EXISTENCE, AirForceBase) -> True
+20. Assertion.Specific(NON_EXISTENCE, AirForceBase.Idaho) -> True
+21. Relationship.asserts(S1, True)
+22. Relationship.asserts(S2, True)
+23. Entity.AirForceBase.Idaho.status
+24. Entity.AirForceBase.status
+25. NonExistence.AirForceBase.verified
+26. NonExistence.AirForceBase.Idaho.verified
+27. M_NLI(Assertion1, Assertion2)
+28. Factual(Assertion1, NonExistence.AirForceBase)
+29. Factual(Assertion2, NonExistence.AirForceBase.Idaho)
+30. violate(Assertion1, Assertion2)
+
+Rules:
+1. Q[The, x0, y0](NonExistence.AirForceBase == True → Factual(x0, y0))
+2. Q[there, x0, y0](NonExistence.AirForceBase.Idaho == True → Factual(x0, y0))
+3. Q[The, x0, y0](Assertion.General(NON_EXISTENCE, AirForceBase) → Factual(x0, y0))
+4. Q[there, x0, y0](Assertion.Specific(NON_EXISTENCE, AirForceBase.Idaho) → Factual(x0, y0))
+5. Q[The, x0, y0](Relationship.asserts(S1, NonExistence.AirForceBase) → Factual(x0, y0))
+6. Q[there, x0, y0](Relationship.asserts(S2, NonExistence.AirForceBase.Idaho) → Factual(x0, y0))
+7. Q[The, x0, y0](M_NLI(S1, S2) → violate(S1, S2))
+8. Q[there, x0, y0](M_NLI(S1, S2) → Factual(x0, y0))
+9. Q[The, x0, y0](NonExistence.AirForceBase.general == True → Factual(x0, y0))
+10. Q[there, x0, y0](NonExistence.AirForceBase.Idaho.specific == True → Factual(x0, y0))
+11. Q[The, x0, y0](Factual(S1, NonExistence.AirForceBase) → Factual(x0, y0))
+12. Q[there, x0, y0](Factual(S2, NonExistence.AirForceBase.Idaho) → Factual(x0, y0))
+13. Q[The, x0, y0](violate(S1, S2) → Factual(x0, y0))
+14. Q[there, x0, y0](Entity.AirForceBase.exists == False → Factual(x0, y0))
+15. Q[The, x0, y0](Entity.AirForceBase.Idaho.exists == False → Factual(x0, y0))
+16. Q[The, x0, y0](NonExistence.AirForceBase.verified == True → Factual(x0, y0))
+17. Q[there, x0, y0](NonExistence.AirForceBase.Idaho.verified == True → Factual(x0, y0))
+18. Q[The, x0, y0](Factual(GeneralAssertion, NonExistence.AirForceBase) → Factual(x0, y0))
+19. Q[there, x0, y0](Factual(SpecificAssertion, NonExistence.AirForceBase.Idaho) → Factual(x0, y0))
+20. Q[The, x0, y0](Assertion.General(NON_EXISTENCE, AirForceBase) → Assertion.Specific(NON_EXISTENCE, AirForceBase.Idaho))
+21. Q[there, x0, y0](Assertion.Specific(NON_EXISTENCE, AirForceBase.Idaho) → Assertion.General(NON_EXISTENCE, AirForceBase))
+22. Q[The, x0, y0](M_NLI(Assertion1, Assertion2) → violate(Assertion1, Assertion2))
+23. Q[there, x0, y0](Factual(Assertion1, NonExistence.AirForceBase) → Factual(x0, y0))
+24. Q[The, x0, y0](Factual(Assertion2, NonExistence.AirForceBase.Idaho) → Factual(x0, y0))
+25. Q[The, x0, y0](Entity.AirForceBase.Idaho.status == False → Factual(x0, y0))
+26. Q[there, x0, y0](Entity.AirForceBase.status == False → Factual(x0, y0))
+27. Q[The, x0, y0](NonExistence.AirForceBase.general == False → violate(S1, S2))
+28. Q[there, x0, y0](NonExistence.AirForceBase.Idaho.specific == False → violate(S1, S2))
+29. Q[The, x0, y0](Assertion.General(NON_EXISTENCE, AirForceBase) → violate(S1, S2))
+30. Q[there, x0, y0](Assertion.Specific(NON_EXISTENCE, AirForceBase.Idaho) → violate(S1, S2))

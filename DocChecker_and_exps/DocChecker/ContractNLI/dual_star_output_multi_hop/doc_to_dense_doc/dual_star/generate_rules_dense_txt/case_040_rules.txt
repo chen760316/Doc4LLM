@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 40)
+S1: A D C and Polaroid agree to make full disclosure of any business dealings or arrangements with third parties, persons, or entities introduced by the other party in connection with such Confidential Information and/or projects.
+S2: Nothing contained in this Agreement shall be construed as granting or conferring any rights by license or otherwise in any Proprietary Information disclosed to the receiving party.
+
+Predicates:
+1. A.disclosure
+2. Polaroid.disclosure
+3. A.business_dealings
+4. Polaroid.business_dealings
+5. A.third_party_introduction
+6. Polaroid.third_party_introduction
+7. Confidential_Information.full_disclosure
+8. Agreement.rights_granted
+9. Proprietary_Information.no_rights
+10. A.agreement_with_Polaroid
+11. Polaroid.agreement_with_A
+12. A.information_sharing
+13. Polaroid.information_sharing
+14. Confidential_Information.shared_with_A
+15. Confidential_Information.shared_with_Polaroid
+16. Proprietary_Information.disclosed_to_A
+17. Proprietary_Information.disclosed_to_Polaroid
+18. Agreement.license_granted
+19. Agreement.license_not_granted
+20. A.legal_obligation
+21. Polaroid.legal_obligation
+22. business_dealings.full_disclosure
+23. third_party.introduced_by_A
+24. third_party.introduced_by_Polaroid
+25. M_NLI(S1, S2)
+26. Factual(A, Polaroid)
+27. violate(A, Proprietary_Information)
+28. violate(Polaroid, Proprietary_Information)
+29. Agreement.terms_of_disclosure
+30. Agreement.terms_of_proprietary_information
+
+Rules:
+1. Q[and, A.disclosure, Proprietary_Information.no_rights](A.disclosure == "full" → Factual(A, Polaroid))
+2. Q[and, Polaroid.disclosure, Proprietary_Information.no_rights](Polaroid.disclosure == "full" → Factual(A, Polaroid))
+3. Q[and, A.business_dealings, Agreement.rights_granted](A.business_dealings == "full" → Factual(A, Polaroid))
+4. Q[and, Polaroid.business_dealings, Agreement.rights_granted](Polaroid.business_dealings == "full" → Factual(A, Polaroid))
+5. Q[and, A.third_party_introduction, Proprietary_Information.no_rights](A.third_party_introduction == "full" → Factual(A, Polaroid))
+6. Q[and, Polaroid.third_party_introduction, Proprietary_Information.no_rights](Polaroid.third_party_introduction == "full" → Factual(A, Polaroid))
+7. Q[and, Confidential_Information.full_disclosure, Agreement.license_not_granted](Confidential_Information.full_disclosure == "true" → Factual(A, Polaroid))
+8. Q[and, Agreement.rights_granted, Proprietary_Information.no_rights](Agreement.rights_granted == "false" → Factual(A, Polaroid))
+9. Q[and, A.information_sharing, Proprietary_Information.no_rights](A.information_sharing == "true" → Factual(A, Polaroid))
+10. Q[and, Polaroid.information_sharing, Proprietary_Information.no_rights](Polaroid.information_sharing == "true" → Factual(A, Polaroid))
+11. Q[and, Confidential_Information.shared_with_A, Proprietary_Information.no_rights](Confidential_Information.shared_with_A == "true" → Factual(A, Polaroid))
+12. Q[and, Confidential_Information.shared_with_Polaroid, Proprietary_Information.no_rights](Confidential_Information.shared_with_Polaroid == "true" → Factual(A, Polaroid))
+13. Q[and, Proprietary_Information.disclosed_to_A, Agreement.license_not_granted](Proprietary_Information.disclosed_to_A == "true" → Factual(A, Polaroid))
+14. Q[and, Proprietary_Information.disclosed_to_Polaroid, Agreement.license_not_granted](Proprietary_Information.disclosed_to_Polaroid == "true" → Factual(A, Polaroid))
+15. Q[and, Agreement.license_granted, Proprietary_Information.no_rights](Agreement.license_granted == "false" → Factual(A, Polaroid))
+16. Q[and, A.legal_obligation, Proprietary_Information.no_rights](A.legal_obligation == "true" → Factual(A, Polaroid))
+17. Q[and, Polaroid.legal_obligation, Proprietary_Information.no_rights](Polaroid.legal_obligation == "true" → Factual(A, Polaroid))
+18. Q[and, business_dealings.full_disclosure, Proprietary_Information.no_rights](business_dealings.full_disclosure == "true" → Factual(A, Polaroid))
+19. Q[and, third_party.introduced_by_A, Proprietary_Information.no_rights](third_party.introduced_by_A == "true" → Factual(A, Polaroid))
+20. Q[and, third_party.introduced_by_Polaroid, Proprietary_Information.no_rights](third_party.introduced_by_Polaroid == "true" → Factual(A, Polaroid))
+21. Q[and, M_NLI(S1, S2), Proprietary_Information.no_rights](M_NLI(S1, S2) == "true" → Factual(A, Polaroid))
+22. Q[and, Agreement.terms_of_disclosure, Proprietary_Information.no_rights](Agreement.terms_of_disclosure == "true" → Factual(A, Polaroid))
+23. Q[and, Agreement.terms_of_proprietary_information, Proprietary_Information.no_rights](Agreement.terms_of_proprietary_information == "true" → Factual(A, Polaroid))
+24. Q[and, A.agreement_with_Polaroid, Proprietary_Information.no_rights](A.agreement_with_Polaroid == "true" → Factual(A, Polaroid))
+25. Q[and, Polaroid.agreement_with_A, Proprietary_Information.no_rights](Polaroid.agreement_with_A == "true" → Factual(A, Polaroid))
+26. Q[and, A.business_dealings, Confidential_Information.full_disclosure](A.business_dealings == "true" → Factual(A, Polaroid))
+27. Q[and, Polaroid.business_dealings, Confidential_Information.full_disclosure](Polaroid.business_dealings == "true" → Factual(A, Polaroid))
+28. Q[and, A.third_party_introduction, Confidential_Information.full_disclosure](A.third_party_introduction == "true" → Factual(A, Polaroid))
+29. Q[and, Polaroid.third_party_introduction, Confidential_Information.full_disclosure](Polaroid.third_party_introduction == "true" → Factual(A, Polaroid))
+30. Q[and, Confidential_Information.full_disclosure, Agreement.license_not_granted](Confidential_Information.full_disclosure == "true" → Factual(A, Polaroid))

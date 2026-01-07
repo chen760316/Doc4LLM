@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 130)
+S1: A woman who is outdoors jumps from a stone street.
+S2: A woman in jeans and a red coat and carrying a multicolored handbag spreads put her arms while leaping up from a cobblestone street.
+
+Predicates:
+1. Woman.outdoors
+2. Woman.jumps
+3. Woman.in_jeans
+4. Woman.in_red_coat
+5. Woman.carrying_multicolored_handbag
+6. Woman.spreads_arms
+7. Woman.leaping
+8. Street.stone
+9. Street.cobblestone
+10. Action.simple
+11. Action.elaborate
+12. Context.different
+13. M_NLI(S1, S2)
+14. Relation(Woman, Action)
+15. Relation(Woman, Street)
+16. Relation(Woman, Context)
+17. violate(Woman, Action)
+18. violate(Woman, Context)
+19. Woman.jumps_from(Street)
+20. Woman.leaps_up_from(Street)
+21. Handbag.multicolored
+22. Coat.red
+23. Jeans.present
+24. Arms.spread
+25. Action.jumping
+26. Action.leaping
+27. Street.type(stone)
+28. Street.type(cobblestone)
+29. Context.outdoors
+30. Context.indoor
+
+Rules:
+1. Q[woman, Woman.outdoors, Context.outdoors](Woman.outdoors == true → Relation(Woman, Context))
+2. Q[woman, Woman.jumps, Action.simple](Woman.jumps == true → Relation(Woman, Action))
+3. Q[woman, Woman.leaping, Action.elaborate](Woman.leaping == true → Relation(Woman, Action))
+4. Q[woman, Woman.in_jeans, Jeans.present](Woman.in_jeans == true → Relation(Woman, Action))
+5. Q[woman, Woman.in_red_coat, Coat.red](Woman.in_red_coat == true → Relation(Woman, Action))
+6. Q[woman, Woman.carrying_multicolored_handbag, Handbag.multicolored](Woman.carrying_multicolored_handbag == true → Relation(Woman, Action))
+7. Q[woman, Woman.spreads_arms, Arms.spread](Woman.spreads_arms == true → Relation(Woman, Action))
+8. Q[woman, Woman.jumps_from(Street.stone), Street.type(stone)](Woman.jumps_from(Street.stone) == true → Relation(Woman, Street))
+9. Q[woman, Woman.leaps_up_from(Street.cobblestone), Street.type(cobblestone)](Woman.leaps_up_from(Street.cobblestone) == true → Relation(Woman, Street))
+10. Q[woman, Action.simple, Action.elaborate](Action.simple == true → Relation(Woman, Action))
+11. Q[woman, Action.elaborate, Context.different](Action.elaborate == true → Relation(Woman, Context))
+12. Q[woman, Action.simple, Context.different](Action.simple == true → Relation(Woman, Context))
+13. Q[woman, Context.different, Context.indoor](Context.different == true → Relation(Woman, Context))
+14. Q[woman, Action.jumping, Action.simple](Action.jumping == true → Relation(Woman, Action))
+15. Q[woman, Action.leaping, Action.elaborate](Action.leaping == true → Relation(Woman, Action))
+16. Q[woman, Street.type(stone), Street.type(cobblestone)](Street.type(stone) == true → Relation(Woman, Street))
+17. Q[woman, Street.type(cobblestone), Street.type(stone)](Street.type(cobblestone) == true → Relation(Woman, Street))
+18. Q[woman, Action.simple, violate(Woman, Action)](Action.simple == true → violate(Woman, Action))
+19. Q[woman, Action.elaborate, violate(Woman, Action)](Action.elaborate == true → violate(Woman, Action))
+20. Q[woman, Action.simple, violate(Woman, Context)](Action.simple == true → violate(Woman, Context))
+21. Q[woman, Action.elaborate, violate(Woman, Context)](Action.elaborate == true → violate(Woman, Context))
+22. Q[woman, Woman.jumps, Context.different](Woman.jumps == true → Relation(Woman, Context))
+23. Q[woman, Woman.leaping, Context.different](Woman.leaping == true → Relation(Woman, Context))
+24. Q[woman, Woman.spreads_arms, Context.different](Woman.spreads_arms == true → Relation(Woman, Context))
+25. Q[woman, Woman.in_jeans, Context.different](Woman.in_jeans == true → Relation(Woman, Context))
+26. Q[woman, Woman.in_red_coat, Context.different](Woman.in_red_coat == true → Relation(Woman, Context))
+27. Q[woman, Woman.carrying_multicolored_handbag, Context.different](Woman.carrying_multicolored_handbag == true → Relation(Woman, Context))
+28. Q[woman, Street.stone, Context.different](Street.type(stone) == true → Relation(Woman, Context))
+29. Q[woman, Street.cobblestone, Context.different](Street.type(cobblestone) == true → Relation(Woman, Context))
+30. Q[woman, M_NLI(S1, S2), Context.different](M_NLI(S1, S2) == true → Relation(Woman, Context))

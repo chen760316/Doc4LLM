@@ -1,0 +1,95 @@
+Predicates:
+1. Don Gormas.occupation = "general"
+2. Don Gormas.occupation != "soldier"
+3. Don Gormas.occupation < "king"
+4. Don Gormas.occupation > "lieutenant"
+5. Don Gormas.occupation <= "general"
+6. Don Gormas.occupation >= "captain"
+7. Rodrigue.title = "the Cid"
+8. Rodrigue.title != "the King"
+9. Rodrigue.title < "the Emperor"
+10. Rodrigue.title > "the Knight"
+11. Rodrigue.title <= "the Cid"
+12. Rodrigue.title >= "the Squire"
+13. "Chimène will set the date for the wedding.".time_frame = "up to a year in advance"
+14. "Chimène will set the date for the wedding.".time_frame != "immediate"
+15. "Chimène will set the date for the wedding.".time_frame < "two years in advance"
+16. "Chimène will set the date for the wedding.".time_frame > "six months in advance"
+17. "Chimène will set the date for the wedding.".time_frame <= "one year in advance"
+18. "Chimène will set the date for the wedding.".time_frame >= "three months in advance"
+19. "Rodrigue faces Don Gormas in a duel.".outcome = "Don Gormas is killed"
+20. "Rodrigue faces Don Gormas in a duel.".outcome != "Rodrigue is victorious"
+21. "Rodrigue faces Don Gormas in a duel.".outcome < "Rodrigue wins"
+22. "Rodrigue faces Don Gormas in a duel.".outcome > "Don Gormas survives"
+23. "Rodrigue faces Don Gormas in a duel.".outcome <= "Don Gormas is killed"
+24. "Rodrigue faces Don Gormas in a duel.".outcome >= "Rodrigue loses"
+25. "Rodrigue redeems himself in the eye of the nation.".context = "Moors attack"
+26. "Rodrigue redeems himself in the eye of the nation.".context != "peace treaty"
+27. "Rodrigue redeems himself in the eye of the nation.".context < "civil unrest"
+28. "Rodrigue redeems himself in the eye of the nation.".context > "celebration"
+29. "Rodrigue redeems himself in the eye of the nation.".context <= "foreign invasion"
+30. "Rodrigue redeems himself in the eye of the nation.".context >= "internal conflict"
+31. "Rodrigue speaks to Chimène privately about the duel.".promise = "will not defend himself against her hand"
+32. "Rodrigue speaks to Chimène privately about the duel.".promise != "will fight for her"
+33. "Rodrigue speaks to Chimène privately about the duel.".promise < "will protect her"
+34. "Rodrigue speaks to Chimène privately about the duel.".promise > "will seek revenge"
+35. "Rodrigue speaks to Chimène privately about the duel.".promise <= "will honor her wishes"
+36. "Rodrigue speaks to Chimène privately about the duel.".promise >= "will not harm her"
+37. "Rodrigue will conduct a war against the Moors.".context = "in their own territory"
+38. "Rodrigue will conduct a war against the Moors.".context != "in a foreign land"
+39. "Rodrigue will conduct a war against the Moors.".context < "in peace"
+40. "Rodrigue will conduct a war against the Moors.".context > "in negotiations"
+41. "Rodrigue will conduct a war against the Moors.".context <= "in hostile territory"
+42. "Rodrigue will conduct a war against the Moors.".context >= "in a safe zone"
+43. M_NLI(Don Gormas.occupation, Rodrigue.title)
+44. M_NLU("Chimène will set the date for the wedding.", "Rodrigue faces Don Gormas in a duel.")
+45. M_TEM("Rodrigue redeems himself in the eye of the nation.", "Rodrigue will conduct a war against the Moors.")
+46. contra("Rodrigue speaks to Chimène privately about the duel.", "Rodrigue will conduct a war against the Moors.")
+47. S(Don Gormas.occupation, "general")
+48. S(Rodrigue.title, "the Cid")
+49. S("Chimène will set the date for the wedding.", "up to a year in advance")
+50. S("Rodrigue faces Don Gormas in a duel.", "Don Gormas is killed")
+51. S("Rodrigue redeems himself in the eye of the nation.", "Moors attack")
+52. S("Rodrigue speaks to Chimène privately about the duel.", "will not defend himself against her hand")
+53. S("Rodrigue will conduct a war against the Moors.", "in their own territory")
+54. T("Rodrigue faces Don Gormas in a duel.", "Rodrigue wins", Factual)
+55. T("Rodrigue redeems himself in the eye of the nation.", "Rodrigue is defeated", Content)
+56. tau(Don Gormas.occupation, Rodrigue.title)
+57. tau("Chimène will set the date for the wedding.", "Rodrigue faces Don Gormas in a duel.")
+58. tau("Rodrigue speaks to Chimène privately about the duel.", "Rodrigue will conduct a war against the Moors.")
+59. "Chimène will set the date for the wedding.".time_frame >= "six months in advance"
+60. "Rodrigue faces Don Gormas in a duel.".outcome <= "Don Gormas is killed"
+61. "Rodrigue redeems himself in the eye of the nation.".context >= "Moors attack"
+62. "Rodrigue speaks to Chimène privately about the duel.".promise <= "will not defend himself against her hand"
+63. "Rodrigue will conduct a war against the Moors.".context >= "in their own territory"
+64. Don Gormas.occupation != "commander"
+65. Rodrigue.title != "the Traitor"
+66. "Chimène will set the date for the wedding.".time_frame != "next week"
+67. "Rodrigue faces Don Gormas in a duel.".outcome != "both survive"
+68. "Rodrigue redeems himself in the eye of the nation.".context != "peaceful times"
+69. "Rodrigue speaks to Chimène privately about the duel.".promise != "will betray her"
+70. "Rodrigue will conduct a war against the Moors.".context != "in a friendly manner"
+71. M_NLI("Chimène will set the date for the wedding.", "Rodrigue redeems himself in the eye of the nation.")
+72. M_NLU(D
+
+Rules:
+1. Q[1, 1](Don Gormas.occupation = "general" ∧ Don Gormas.occupation != "soldier" → Rodrigue.title = "the Cid")
+2. Q[1, 2](Don Gormas.occupation < "king" ∧ Don Gormas.occupation > "lieutenant" → Rodrigue.title != "the King")
+3. Q[1, 3](Don Gormas.occupation <= "general" ∧ Don Gormas.occupation >= "captain" → Rodrigue.title < "the Emperor")
+4. Q[1, 4](Rodrigue.title = "the Cid" ∧ Rodrigue.title != "the King" ∧ Rodrigue.title < "the Emperor" → "Chimène will set the date for the wedding.".time_frame = "up to a year in advance")
+5. Q[2, 1](Rodrigue.title > "the Knight" ∧ Rodrigue.title <= "the Cid" → "Chimène will set the date for the wedding.".time_frame != "immediate")
+6. Q[2, 2](Rodrigue.title >= "the Squire" ∧ "Chimène will set the date for the wedding.".time_frame < "two years in advance" → "Rodrigue faces Don Gormas in a duel.".outcome = "Don Gormas is killed")
+7. Q[2, 3](Rodrigue.title > "the Knight" ∧ "Chimène will set the date for the wedding.".time_frame > "six months in advance" → "Rodrigue redeems himself in the eye of the nation.".context = "Moors attack")
+8. Q[3, 1](Rodrigue.faces Don Gormas in a duel.".outcome != "Rodrigue is victorious" ∧ "Rodrigue faces Don Gormas in a duel.".outcome < "Rodrigue wins" → "Rodrigue redeems himself in the eye of the nation.".context != "peace treaty")
+9. Q[3, 2](Rodrigue faces Don Gormas in a duel.".outcome > "Don Gormas survives" ∧ "Rodrigue faces Don Gormas in a duel.".outcome <= "Don Gormas is killed" → "Rodrigue speaks to Chimène privately about the duel.".promise = "will not defend himself against her hand")
+10. Q[3, 3](Rodrigue faces Don Gormas in a duel.".outcome >= "Rodrigue loses" ∧ "Rodrigue redeems himself in the eye of the nation.".context < "civil unrest" → "Rodrigue will conduct a war against the Moors.".context = "in their own territory")
+11. Q[4, 1](Rodrigue redeems himself in the eye of the nation.".context != "peace treaty" ∧ Rodrigue.title < "the Emperor" ∧ "Chimène will set the date for the wedding.".time_frame <= "one year in advance" → "Rodrigue will conduct a war against the Moors.".context != "in a friendly manner")
+12. Q[4, 2](Rodrigue.title >= "the Squire" ∧ "Chimène will set the date for the wedding.".time_frame >= "three months in advance" ∧ "Rodrigue faces Don Gormas in a duel.".outcome < "Rodrigue wins" → Don Gormas.occupation != "commander")
+13. Q[4, 3](Don Gormas.occupation < "king" ∧ Don Gormas.occupation > "lieutenant" ∧ Rodrigue.title != "the Traitor" → "Rodrigue speaks to Chimène privately about the duel.".promise != "will fight for her")
+14. Q[5, 1](Rodrigue.title < "the Emperor" ∧ Rodrigue.title > "the Knight" ∧ "Chimène will set the date for the wedding.".time_frame < "two years in advance" ∧ "Rodrigue faces Don Gormas in a duel.".outcome != "both survive" → "Rodrigue redeems himself in the eye of the nation.".context >= "internal conflict")
+15. Q[5, 2](Don Gormas.occupation <= "general" ∧ Don Gormas.occupation >= "captain" ∧ "Chimène will set the date for the wedding.".time_frame >= "six months in advance" ∧ "Rodrigue will conduct a war against the Moors.".context < "in peace" → "Rodrigue speaks to Chimène privately about the duel.".promise >= "will not harm her")
+16. Q[5, 3](Rodrigue.title != "the King" ∧ Rodrigue.title < "the Emperor" ∧ "Rodrigue faces Don Gormas in a duel.".outcome <= "Don Gormas is killed" ∧ "Rodrigue redeems himself in the eye of the nation.".context >= "Moors attack" → "Rodrigue will conduct a war against the Moors.".context = "in their own territory")
+17. Q[6, 1](Don Gormas.occupation != "soldier" ∧ Don Gormas.occupation < "king" ∧ Don Gormas.occupation > "lieutenant" ∧ Rodrigue.title != "the Traitor" ∧ "Chimène will set the date for the wedding.".time_frame != "next week" → "Rodrigue faces Don Gormas in a duel.".outcome != "Rodrigue is victorious")
+18. Q[6, 2](Rodrigue.title <= "the Cid" ∧ Rodrigue.title >= "the Squire" ∧ "Rodrigue redeems himself in the eye of the nation.".context > "celebration" ∧ "Rodrigue speaks to Chimène privately about the duel.".promise < "will protect her" ∧ "Rodrigue will conduct a war against the Moors.".context >= "in a safe zone" → Don Gormas.occupation != "commander")
+19. Q[6, 3](Don Gormas.occupation < "king" ∧ Don Gormas.occupation > "lieutenant" ∧ "Chimène will set the date for the wedding.".time_frame < "two years in advance" ∧ "Rodrigue faces Don Gormas in a duel.".outcome <= "Don Gormas is killed" ∧ "Rodrigue redeems himself in the eye of the nation.".context != "peaceful times" → Rodrigue.title != "the King")
+20. Q[6, 4](Rodrigue.title < "the Emperor" ∧ Rodrigue.title > "the Knight" ∧ "Chimène will set the date for the wedding.".time_frame >= "three months in advance" ∧ "Rodrigue faces Don Gorm

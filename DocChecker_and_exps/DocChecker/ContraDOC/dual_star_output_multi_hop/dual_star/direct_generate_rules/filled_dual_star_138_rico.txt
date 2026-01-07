@@ -1,0 +1,41 @@
+Predicates:
+Donny Lawson.label != "Person"
+Donny Lawson.label = "Person"
+Donny Lawson.name != "Donny Lawson"
+Donny Lawson.name = "Donny Lawson"
+Donny Lawson.occupation != "Character"
+Donny Lawson.occupation = "Character"
+Jenna Maroney.label != "Person"
+Jenna Maroney.label = "Person"
+Jenna Maroney.name != "Jenna Maroney"
+Jenna Maroney.name != Donny Lawson.name
+Jenna Maroney.name = "Jenna Maroney"
+Jenna Maroney.occupation != "Character"
+Jenna Maroney.occupation = "Character"
+Kenneth Parcell.label != "Person"
+Kenneth Parcell.label = "Person"
+Kenneth Parcell.name != "Kenneth Parcell"
+Kenneth Parcell.name != Donny Lawson.name
+Kenneth Parcell.name != Jenna Maroney.name
+Kenneth Parcell.name = "Kenneth Parcell"
+Kenneth Parcell.occupation != "Character"
+Kenneth Parcell.occupation = "Character"
+Kenneth Parcell___Donny Lawson.doc_id = "3503017483_1"
+Kenneth Parcell___Donny Lawson.relationship = "Donny Lawson offers Kenneth Parcell a choice between going to New Jersey or competing in a page off."
+Kenneth Parcell___Jenna Maroney.doc_id = "3503017483_1"
+Kenneth Parcell___Jenna Maroney.relationship != Kenneth Parcell___Donny Lawson.relationship
+Kenneth Parcell___Jenna Maroney.relationship = "Jenna Maroney accidentally burns Kenneth Parcell's page jacket."
+None_ML(Donny Lawson.attrs, Kenneth Parcell.attrs)
+None_ML(Kenneth Parcell___Donny Lawson.attrs, Kenneth Parcell___Jenna Maroney.attrs)
+
+Rules:
+Q[Kenneth Parcell,Kenneth Parcell] (Kenneth Parcell___Jenna Maroney.relationship = "Jenna Maroney accidentally burns Kenneth Parcell's page jacket." ∧ Kenneth Parcell___Donny Lawson.relationship = "Donny Lawson offers Kenneth Parcell a choice between going to New Jersey or competing in a page off." → Kenneth Parcell___Jenna Maroney.doc_id = "3503017483_1")
+Q[Kenneth Parcell,Kenneth Parcell] (Jenna Maroney.occupation = "Character" ∧ Kenneth Parcell___Donny Lawson.doc_id = "3503017483_1" ∧ Kenneth Parcell.name != Jenna Maroney.name ∧ Kenneth Parcell___Donny Lawson.relationship = "Donny Lawson offers Kenneth Parcell a choice between going to New Jersey or competing in a page off." ∧ Jenna Maroney.label != "Person" → Kenneth Parcell___Jenna Maroney.relationship != Kenneth Parcell___Donny Lawson.relationship)
+Q[Kenneth Parcell,Kenneth Parcell] (Jenna Maroney.name != "Jenna Maroney" ∧ Kenneth Parcell.name = "Kenneth Parcell" ∧ Kenneth Parcell.name != Donny Lawson.name → Donny Lawson.label = "Person")
+Q[Kenneth Parcell,Kenneth Parcell] (Kenneth Parcell.label = "Person" ∧ Kenneth Parcell.name != Donny Lawson.name ∧ Jenna Maroney.name = "Jenna Maroney" ∧ Kenneth Parcell.name != "Kenneth Parcell" → Kenneth Parcell___Donny Lawson.relationship = "Donny Lawson offers Kenneth Parcell a choice between going to New Jersey or competing in a page off.")
+Q[Kenneth Parcell,Kenneth Parcell] (Jenna Maroney.name != "Jenna Maroney" ∧ Kenneth Parcell.name != Donny Lawson.name ∧ None_ML(Donny Lawson.attrs, Kenneth Parcell.attrs) ∧ Kenneth Parcell___Jenna Maroney.relationship != Kenneth Parcell___Donny Lawson.relationship ∧ Kenneth Parcell___Jenna Maroney.relationship = "Jenna Maroney accidentally burns Kenneth Parcell's page jacket." ∧ Kenneth Parcell.occupation != "Character" → Jenna Maroney.label = "Person")
+Q[Kenneth Parcell,Kenneth Parcell] (Kenneth Parcell.name != Jenna Maroney.name ∧ Jenna Maroney.name != "Jenna Maroney" ∧ Donny Lawson.name != "Donny Lawson" ∧ Donny Lawson.occupation != "Character" ∧ Donny Lawson.label = "Person" ∧ Kenneth Parcell.label != "Person" → None_ML(Kenneth Parcell___Donny Lawson.attrs, Kenneth Parcell___Jenna Maroney.attrs))
+Q[Kenneth Parcell,Kenneth Parcell] (Donny Lawson.label != "Person" ∧ Kenneth Parcell___Donny Lawson.doc_id = "3503017483_1" ∧ Jenna Maroney.name = "Jenna Maroney" ∧ Jenna Maroney.occupation != "Character" → Jenna Maroney.name != "Jenna Maroney")
+Q[Kenneth Parcell,Kenneth Parcell] (Kenneth Parcell.name != "Kenneth Parcell" ∧ Kenneth Parcell.name != Jenna Maroney.name → Kenneth Parcell.label = "Person")
+Q[Kenneth Parcell,Kenneth Parcell] (Jenna Maroney.name != "Jenna Maroney" ∧ Kenneth Parcell.name != Donny Lawson.name ∧ None_ML(Kenneth Parcell___Donny Lawson.attrs, Kenneth Parcell___Jenna Maroney.attrs) ∧ Donny Lawson.name = "Donny Lawson" ∧ Kenneth Parcell.name = "Kenneth Parcell" → Kenneth Parcell.name != "Kenneth Parcell")
+Q[Kenneth Parcell,Kenneth Parcell] (Donny Lawson.name = "Donny Lawson" ∧ Kenneth Parcell___Donny Lawson.doc_id = "3503017483_1" ∧ None_ML(Donny Lawson.attrs, Kenneth Parcell.attrs) → Jenna Maroney.occupation = "Character")

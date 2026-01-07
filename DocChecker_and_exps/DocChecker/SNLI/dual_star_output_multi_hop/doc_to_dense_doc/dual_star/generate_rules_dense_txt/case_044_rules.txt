@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 44)
+S1: One man in a uniform standing inside a school bus with the backdoor open, while another man sits on top of the boss wearing a similar uniform.
+S2: A uniformed man is standing inside a school bus.
+
+Predicates:
+1. Man1.in_uniform
+2. Man2.in_uniform
+3. Man1.inside_bus
+4. Man2.on_top_of_bus
+5. Bus.backdoor_open
+6. Man1.is_a(Uniformed_Man)
+7. Man2.is_a(Uniformed_Man)
+8. Bus.has_two_men
+9. Man1.is_standing
+10. Man2.is_sitting
+11. Man1.is_inside(Bus)
+12. Man2.is_on(Bus)
+13. Bus.is_a(School_Bus)
+14. Man1.relationship(inside, Bus)
+15. Man2.relationship(on_top_of, Bus)
+16. Bus.has_backdoor
+17. Backdoor.is_open
+18. Man1.is_visible
+19. Man2.is_visible
+20. Man1.is_different_from(Man2)
+21. Man1.is_not_equal(Man2)
+22. M_NLI(S1, S2)
+23. Negation(S1, S2)
+24. violate(S1, S2)
+25. Man1.has_attribute(standing)
+26. Man2.has_attribute(sitting)
+27. Bus.has_attribute(open_backdoor)
+28. Man1.has_relationship(with, Man2)
+29. Man2.has_relationship(with, Man1)
+30. Bus.has_attribute(two_men_present)
+
+Rules:
+1. Q[One, Man1.in_uniform == true, Man2.in_uniform == true](Bus.has_two_men → Negation(Man1.inside_bus, Man2.on_top_of_bus))
+2. Q[One, Man1.is_a(Uniformed_Man) == true, Man2.is_a(Uniformed_Man) == true](Bus.has_two_men → Negation(Man1.inside_bus, Man2.on_top_of_bus))
+3. Q[One, Man1.is_standing == true, Man2.is_sitting == true](Bus.has_two_men → Negation(Man1.inside_bus, Man2.on_top_of_bus))
+4. Q[One, Bus.backdoor_open == true, Man1.in_uniform == true](Bus.has_two_men → Negation(Man1.inside_bus, Man2.on_top_of_bus))
+5. Q[One, Man1.relationship(inside, Bus) == true, Man2.relationship(on_top_of, Bus) == true](Bus.has_two_men → Negation(Man1.inside_bus, Man2.on_top_of_bus))
+6. Q[One, Man1.is_visible == true, Man2.is_visible == true](Bus.has_two_men → Negation(Man1.inside_bus, Man2.on_top_of_bus))
+7. Q[One, Man1.is_different_from(Man2) == true, Man1.is_not_equal(Man2) == true](Bus.has_two_men → Negation(Man1.inside_bus, Man2.on_top_of_bus))
+8. Q[One, Man1.has_relationship(with, Man2) == true, Man2.has_relationship(with, Man1) == true](Bus.has_two_men → Negation(Man1.inside_bus, Man2.on_top_of_bus))
+9. Q[One, Bus.is_a(School_Bus) == true, Bus.has_backdoor == true](Bus.has_two_men → Negation(Man1.inside_bus, Man2.on_top_of_bus))
+10. Q[One, Man1.in_uniform == true, Man1.is_standing == true](Bus.has_two_men → Negation(Man1.inside_bus, Man2.on_top_of_bus))
+11. Q[One, Man2.in_uniform == true, Man2.is_sitting == true](Bus.has_two_men → Negation(Man1.inside_bus, Man2.on_top_of_bus))
+12. Q[One, Man1.has_attribute(standing) == true, Man2.has_attribute(sitting) == true](Bus.has_two_men → Negation(Man1.inside_bus, Man2.on_top_of_bus))
+13. Q[One, Bus.has_attribute(open_backdoor) == true, Man1.in_uniform == true](Bus.has_two_men → Negation(Man1.inside_bus, Man2.on_top_of_bus))
+14. Q[One, Man1.is_inside(Bus) == true, Man2.is_on(Bus) == true](Bus.has_two_men → Negation(Man1.inside_bus, Man2.on_top_of_bus))
+15. Q[One, Man1.in_uniform == true, Man2.in_uniform == true](Bus.has_attribute(two_men_present) → Negation(Man1.inside_bus, Man2.on_top_of_bus))
+16. Q[One, Man1.is_a(Uniformed_Man) == true, Man2.is_a(Uniformed_Man) == true](Bus.has_attribute(two_men_present) → Negation(Man1.inside_bus, Man2.on_top_of_bus))
+17. Q[One, Man1.is_standing == true, Man2.is_sitting == true](Bus.has_attribute(two_men_present) → Negation(Man1.inside_bus, Man2.on_top_of_bus))
+18. Q[One, Bus.backdoor_open == true, Man1.in_uniform == true](Bus.has_attribute(two_men_present) → Negation(Man1.inside_bus, Man2.on_top_of_bus))
+19. Q[One, Man1.relationship(inside, Bus) == true, Man2.relationship(on_top_of, Bus) == true](Bus.has_attribute(two_men_present) → Negation(Man1.inside_bus, Man2.on_top_of_bus))
+20. Q[One, Man1.is_visible == true, Man2.is_visible == true](Bus.has_attribute(two_men_present) → Negation(Man1.inside_bus, Man2.on_top_of_bus))
+21. Q[One, Man1.is_different_from(Man2) == true, Man1.is_not_equal(Man2) == true](Bus.has_attribute(two_men_present) → Negation(Man1.inside_bus, Man2.on_top_of_bus))
+22. Q[One, Man1.has_relationship(with, Man2) == true, Man2.has_relationship(with, Man1) == true](Bus.has_attribute(two_men_present) → Negation(Man1.inside_bus, Man2.on_top_of_bus))
+23. Q[One, Bus.is_a(School_Bus) == true, Bus.has_backdoor == true](Bus.has_attribute(two_men_present) → Negation(Man1.inside_bus, Man2.on_top_of_bus))
+24. Q[One, Man1.in_uniform == true, Man1.is_standing == true](Bus.has_attribute(two_men_present) → Negation(Man1.inside_bus, Man2.on_top_of_bus))
+25. Q[One, Man2.in_uniform == true, Man2.is_sitting == true](Bus.has_attribute(two_men_present) → Negation(Man1.inside_bus, Man2.on_top_of_bus))
+26. Q[One, Man1.has_attribute(standing) == true, Man2.has_attribute(sitting) == true](Bus.has_attribute(two_men_present) → Negation(Man1.inside_bus, Man2.on_top_of_bus))
+27. Q[One, Bus.has_backdoor == true, Man1.in_uniform == true](Bus.has_attribute(two_men_present) → Negation(Man1.inside_bus, Man2.on_top_of_bus))
+28. Q[One, Man1.is_inside(Bus) == true, Man2.is_on(Bus) == true](Bus.has_attribute(two_men_present) → Negation(Man1.inside_bus, Man2.on_top_of_bus))
+29. Q[One, Man1.in_uniform == true, Man2.in_uniform == true](Bus.has_two_men → Negation(Man1.inside_bus, Man2.on_top_of_bus))
+30. Q[One, Man1.is_a(Uniformed_Man) == true, Man2.is_a(Uniformed_Man) == true](Bus.has_two_men → Negation(Man1.inside_bus, Man2.on_top_of_bus))

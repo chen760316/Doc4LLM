@@ -1,0 +1,110 @@
+Predicates:
+1. Larry.favorite_food = "cake"
+2. Larry.favorite_flavor = "chocolate"
+3. cake.flavor = "chocolate"
+4. party.atmosphere = "fun"
+5. "Larry tried to have fun at the party.".effort = "high"
+6. "Larry tried to have fun at the party.".result = "liked the party"
+7. "Larry's favorite food is cake, and he hopes they got the right flavor.".doc_index = "220"
+8. "Larry's favorite food is cake, and his favorite flavor is chocolate.".doc_index = "224"
+9. "Larry tried to have fun at the party.".doc_index = "223"
+10. "Larry's favorite food is cake, and he hopes they got the right flavor.".source_id = "Index_220"
+11. "Larry's favorite food is cake, and his favorite flavor is chocolate.".source_id = "Index_224"
+12. "Larry tried to have fun at the party.".source_id = "Index_223"
+13. M_NLI(Larry.favorite_food, Larry.favorite_flavor)
+14. M_NLI(cake.flavor, party.atmosphere)
+15. T("Larry tried to have fun at the party.", "Larry did not enjoy the party.", tau)
+16. tau(Larry.favorite_food, "pizza")
+17. tau(cake.flavor, "vanilla")
+18. violate(Larry.favorite_food, "pizza")
+19. Factual(Larry.favorite_flavor, "vanilla")
+20. Causal("Larry tried to have fun at the party.", "Larry left the party early.")
+21. Numeric("Larry's favorite food is cake.", "Larry has no favorite food.")
+22. Temporal("Larry enjoyed the party in 2023.", "Larry disliked the party in 2024.")
+23. Negation("Larry's favorite food is cake.", "Larry's favorite food is not cake.")
+24. Relation("Larry is at the party.", "Larry is not at the party.")
+25. "Larry tried to have fun at the party.".source_domain = "N/A"
+26. "Larry's favorite food is cake, and he hopes they got the right flavor.".source_domain = "N/A"
+27. "Larry's favorite food is cake, and his favorite flavor is chocolate.".source_domain = "N/A"
+28. "Larry tried to have fun at the party.".result = "disliked the party"
+29. M_NLI("Larry's favorite food is cake.", "Larry's favorite food is pie.")
+30. T("Larry's favorite flavor is chocolate.", "Larry's favorite flavor is strawberry.", tau)
+31. tau(Larry.favorite_flavor, "strawberry")
+32. violate(Larry.favorite_flavor, "vanilla")
+33. Factual("Larry's favorite flavor is chocolate.", "Larry's favorite flavor is vanilla.")
+34. Causal("Larry enjoyed the cake.", "Larry did not enjoy the cake.")
+35. Numeric("Larry has 5 cakes.", "Larry has no cakes.")
+36. Temporal("Larry liked the party in 2023.", "Larry disliked the party in 2022.")
+37. Negation("Larry's favorite flavor is chocolate.", "Larry's favorite flavor is not chocolate.")
+38. Relation("Larry is friends with John.", "Larry is enemies with John.")
+39. "Larry's favorite food is cake.".doc_index = "220"
+40. "Larry's favorite food is cake.".doc_index = "224"
+41. "Larry tried to have fun at the party.".doc_index = "223"
+42. M_NLI("Larry's favorite food is cake.", "Larry's favorite food is ice cream.")
+43. T("Larry hopes they got the right flavor.", "Larry does not care about the flavor.", tau)
+44. tau(Larry.favorite_flavor, "mint")
+45. violate(Larry.favorite_food, "ice cream")
+46. Factual("Larry's favorite food is cake.", "Larry's favorite food is salad.")
+47. Causal("Larry had a great time at the party.", "Larry was bored at the party.")
+48. Numeric("Larry has 10 friends.", "Larry has no friends.")
+49. Temporal("Larry enjoyed the party last year.", "Larry did not enjoy the party this year.")
+50. Negation("Larry's favorite food is cake.", "Larry's favorite food is not cake.")
+51. Relation("Larry loves chocolate.", "Larry hates chocolate.")
+52. "Larry tried to have fun at the party.".effort = "low"
+53. "Larry's favorite food is cake, and he hopes they got the right flavor.".source_id = "Index_220"
+54. "Larry's favorite food is cake, and his favorite flavor is chocolate.".source_id = "Index_224"
+55. "Larry tried to have fun at the party.".result = "had a bad time"
+56. M_NLI("Larry's favorite flavor is chocolate.", "Larry's favorite flavor is lemon.")
+57. T("Larry hopes they got the right flavor.", "Larry does not care about the flavor.", tau)
+58. tau(Larry.favorite_flavor, "raspberry")
+59. violate(Larry.favorite_flavor, "lemon")
+60. Factual("Larry's favorite flavor is chocolate.", "Larry's favorite flavor is raspberry.")
+61. Causal("Larry enjoyed the cake.", "Larry found the cake disgusting.")
+62. Numeric("Larry has 3 cakes.", "Larry has 0 cakes.")
+63. Temporal("Larry liked the party last week.", "Larry disliked the party last month.")
+64. Negation("Larry's favorite flavor is chocolate.", "Larry's favorite flavor is not chocolate.")
+65. Relation("Larry is at the party.", "Larry is not at the party.")
+66. "Larry's favorite food is cake.".doc_index = "220"
+67. "Larry's favorite food is cake.".doc_index = "224"
+68. "Larry tried to have fun at the party.".doc_index = "223"
+69. M_NLI("Larry's favorite food is cake.", "Larry's favorite food is cookies.")
+70. T("Larry hopes they got the right flavor.", "Larry is indifferent to the flavor.", tau)
+71. tau(Larry.favorite_flavor, "coconut")
+72. violate(Larry.favorite_food, "cookies")
+73. Factual("Larry's favorite food is cake.", "Larry's favorite food is pasta.")
+74. Causal("Larry had a good time at the party.", "Larry was unhappy at the party.")
+75. Numeric("Larry has 2 cakes.", "Larry has 5 cakes.")
+76. Temporal("Larry enjoyed the party last month.", "Larry disliked the party last week.")
+77. Negation("Larry's favorite flavor is chocolate.", "Larry's favorite flavor is not chocolate.")
+78. Relation("Larry loves cake.", "Larry hates cake.")
+79. "Larry tried to have fun at the party.".effort = "medium"
+80. "Larry's favorite food is cake, and he hopes they got the right flavor.".source_id = "Index_220"
+81. "Larry's favorite food is cake, and his favorite flavor is chocolate.".source_id = "Index_224"
+82. "Larry tried to
+violate(x0, y0)
+
+Rules:
+1. Q[Larry, cake](Larry.favorite_food = "cake" ∧ Larry.favorite_flavor = "chocolate" → violate(Larry.favorite_flavor, "vanilla"))
+2. Q[Larry, party](party.atmosphere = "fun" ∧ "Larry tried to have fun at the party.".effort = "high" → violate("Larry tried to have fun at the party.", "Larry did not enjoy the party."))
+3. Q[Larry, cake](M_NLI(Larry.favorite_food, Larry.favorite_flavor) ∧ cake.flavor = "chocolate" ∧ "Larry's favorite food is cake, and his favorite flavor is chocolate.".doc_index = "224" → violate(Larry.favorite_food, "pizza"))
+4. Q[Larry, party](Causal("Larry tried to have fun at the party.", "Larry left the party early.") ∧ "Larry tried to have fun at the party.".result = "disliked the party" → violate(Larry.favorite_food, "ice cream"))
+5. Q[Larry, cake](Factual(Larry.favorite_flavor, "vanilla") ∧ tau(Larry.favorite_flavor, "strawberry") ∧ "Larry's favorite food is cake.".doc_index = "220" → violate(Larry.favorite_flavor, "chocolate"))
+6. Q[Larry, party](Temporal("Larry enjoyed the party in 2023.", "Larry disliked the party in 2024.") ∧ "Larry tried to have fun at the party.".result = "had a bad time" → violate(Larry.favorite_food, "salad"))
+7. Q[Larry, cake](Larry.favorite_food = "cake" ∧ "Larry's favorite food is cake, and he hopes they got the right flavor.".source_id = "Index_220" ∧ "Larry's favorite food is cake.".doc_index = "224" → violate(Larry.favorite_flavor, "mint"))
+8. Q[Larry, party](Causal("Larry had a great time at the party.", "Larry was bored at the party.") ∧ "Larry tried to have fun at the party.".result = "liked the party" ∧ party.atmosphere = "fun" → violate(Larry.favorite_food, "cookies"))
+9. Q[Larry, cake](Numeric("Larry has 5 cakes.", "Larry has no cakes.") ∧ "Larry's favorite food is cake.".doc_index = "220" ∧ "Larry's favorite food is cake.".doc_index = "224" → violate(Larry.favorite_flavor, "lemon"))
+10. Q[Larry, party](Relation("Larry is at the party.", "Larry is not at the party.") ∧ "Larry tried to have fun at the party.".effort = "low" ∧ "Larry tried to have fun at the party.".result = "disliked the party" → violate(Larry.favorite_food, "pasta"))
+11. Q[Larry, cake](M_NLI("Larry's favorite food is cake.", "Larry's favorite food is pie.") ∧ tau(Larry.favorite_flavor, "coconut") → violate(Larry.favorite_flavor, "strawberry"))
+12. Q[Larry, party](Temporal("Larry liked the party last week.", "Larry disliked the party last month.") ∧ "Larry tried to have fun at the party.".result = "had a bad time" ∧ "Larry tried to have fun at the party.".effort = "medium" → violate(Larry.favorite_food, "pizza"))
+13. Q[Larry, cake](Negation("Larry's favorite food is cake.", "Larry's favorite food is not cake.") ∧ Factual("Larry's favorite flavor is chocolate.", "Larry's favorite flavor is raspberry.") → violate(Larry.favorite_flavor, "vanilla"))
+14. Q[Larry, party](Causal("Larry enjoyed the cake.", "Larry found the cake disgusting.") ∧ "Larry tried to have fun at the party.".result = "disliked the party" ∧ party.atmosphere = "fun" → violate(Larry.favorite_food, "ice cream"))
+15. Q[Larry, cake](tau(Larry.favorite_flavor, "raspberry") ∧ "Larry's favorite food is cake, and he hopes they got the right flavor.".source_domain = "N/A" → violate(Larry.favorite_flavor, "chocolate"))
+16. Q[Larry, party](Relation("Larry loves cake.", "Larry hates cake.") ∧ "Larry tried to have fun at the party.".result = "had a bad time" ∧ "Larry tried to have fun at the party.".effort = "high" → violate(Larry.favorite_food, "cookies"))
+17. Q[Larry, cake](Factual("Larry's favorite food is cake.", "Larry's favorite food is salad.") ∧ "Larry's favorite food is cake.".doc_index = "224" ∧ "Larry's favorite food is cake.".doc_index = "220" → violate(Larry.favorite_flavor, "vanilla"))
+18. Q[Larry, party](Causal("Larry had a good time at the party.", "Larry was unhappy at the party.") ∧ "Larry tried to have fun at the party.".result = "liked the party" ∧ party.atmosphere = "fun" → violate(Larry.favorite_food, "pasta"))
+19. Q[Larry, cake](Numeric("Larry has 10 friends.", "Larry has no friends.") ∧ "Larry's favorite food is cake.".doc_index = "220" ∧ "Larry's favorite food is cake.".doc_index = "224" → violate(Larry.favorite_flavor, "strawberry"))
+20. Q[Larry, party](Temporal("Larry enjoyed the party last year.", "Larry did not enjoy the party this year.") ∧ "Larry tried to have fun at the party.".result = "disliked the party" ∧ "Larry tried to have fun at the party.".effort = "medium" → violate(Larry.favorite_food, "ice cream"))
+21. Q[Larry, cake](Negation("Larry's favorite flavor is chocolate.", "Larry's favorite flavor is not chocolate.") ∧ tau(Larry.favorite_flavor, "mint") → violate(Larry.favorite_flavor, "vanilla"))
+22. Q[Larry, party](Relation("Larry is friends with John.", "Larry is enemies with John.") ∧ "Larry tried to have fun at the party.".result = "had a bad time" ∧ "Larry tried to have fun at the party.".effort = "low" → violate(Larry.favorite_food, "pizza"))
+23. Q[Larry, cake](M_NLI("Larry's favorite food is cake.", "Larry's favorite food is cookies.") ∧ tau(Larry.favorite_flavor, "coconut") → violate(Larry.favorite_flavor, "chocolate"))
+24. Q[Larry, party](Causal("Larry enjoyed the cake.", "Larry found the cake disgusting.") ∧ "Larry tried to have fun at the party.".result = "disliked the party" ∧ "Larry tried to have fun at the party.".effort = "

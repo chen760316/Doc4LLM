@@ -1,0 +1,52 @@
+Predicates:
+Chimène.label != "Character"
+Chimène.label = "Character"
+Chimène.name != "Chimène"
+Chimène.name != Don Gormas.name
+Chimène.name != King.name
+Chimène.name = "Chimène"
+Don Gormas.label != "Character"
+Don Gormas.label = "Character"
+Don Gormas.name != "Don Gormas"
+Don Gormas.name != King.name
+Don Gormas.name = "Don Gormas"
+Don Gormas.occupation != "general"
+Don Gormas.occupation = "general"
+Don Rodrigue.label != "Character"
+Don Rodrigue.label = "Character"
+Don Rodrigue.name != "Don Rodrigue"
+Don Rodrigue.name != Chimène.name
+Don Rodrigue.name != Don Gormas.name
+Don Rodrigue.name != King.name
+Don Rodrigue.name = "Don Rodrigue"
+Don Rodrigue.title != "the Cid"
+Don Rodrigue.title = "the Cid"
+Don Rodrigue___Chimène.doc_id = "3488771841_6"
+Don Rodrigue___Chimène.relationship != Don Rodrigue___Don Gormas.relationship
+Don Rodrigue___Chimène.relationship != Don Rodrigue___King.relationship
+Don Rodrigue___Chimène.relationship = "Don Rodrigue and Chimène love each other."
+Don Rodrigue___Don Gormas.doc_id = "3488771841_6"
+Don Rodrigue___Don Gormas.outcome = "Don Gormas is killed"
+Don Rodrigue___Don Gormas.relationship != Don Rodrigue___King.relationship
+Don Rodrigue___Don Gormas.relationship = "Rodrigue faces Don Gormas in a duel."
+Don Rodrigue___King.context = "Moors attack"
+Don Rodrigue___King.doc_id = "3488771841_6"
+Don Rodrigue___King.relationship = "Rodrigue redeems himself in the eye of the nation."
+King.label != "Character"
+King.label = "Character"
+King.name != "King"
+King.name = "King"
+None_ML(Don Gormas.attrs, Don Rodrigue.attrs)
+None_ML(Don Rodrigue___Don Gormas.attrs, Don Rodrigue___King.attrs)
+
+Rules:
+Q[Don Rodrigue,Don Rodrigue] (Don Rodrigue___Don Gormas.outcome = "Don Gormas is killed" ∧ Don Rodrigue.name != King.name ∧ Don Gormas.label = "Character" ∧ Don Rodrigue___King.doc_id = "3488771841_6" ∧ Don Rodrigue.label = "Character" ∧ None_ML(Don Gormas.attrs, Don Rodrigue.attrs) → Don Rodrigue___Don Gormas.doc_id = "3488771841_6")
+Q[Don Rodrigue,Don Rodrigue] (Don Rodrigue___Don Gormas.relationship = "Rodrigue faces Don Gormas in a duel." ∧ Don Gormas.occupation != "general" ∧ King.label = "Character" → Don Rodrigue___Chimène.relationship != Don Rodrigue___King.relationship)
+Q[Don Rodrigue,Don Rodrigue] (Don Gormas.occupation = "general" ∧ Don Rodrigue.name != Don Gormas.name ∧ Don Rodrigue.label = "Character" ∧ Don Rodrigue.label != "Character" → Don Rodrigue___Don Gormas.relationship = "Rodrigue faces Don Gormas in a duel.")
+Q[Don Rodrigue,Don Rodrigue] (King.name = "King" ∧ None_ML(Don Rodrigue___Don Gormas.attrs, Don Rodrigue___King.attrs) ∧ Don Rodrigue.name != "Don Rodrigue" ∧ Don Gormas.name != King.name ∧ Don Rodrigue___King.relationship = "Rodrigue redeems himself in the eye of the nation." → Don Rodrigue.name = "Don Rodrigue")
+Q[Don Rodrigue,Don Rodrigue] (Don Rodrigue___Don Gormas.outcome = "Don Gormas is killed" ∧ Don Rodrigue.name != King.name → Chimène.label != "Character")
+Q[Don Rodrigue,Don Rodrigue] (Don Rodrigue___Chimène.relationship = "Don Rodrigue and Chimène love each other." ∧ Don Rodrigue___King.doc_id = "3488771841_6" → Don Gormas.occupation = "general")
+Q[Don Rodrigue,Don Rodrigue] (Chimène.name != "Chimène" ∧ King.label = "Character" ∧ Don Rodrigue.label = "Character" ∧ Don Rodrigue___Don Gormas.outcome = "Don Gormas is killed" ∧ Don Rodrigue.label != "Character" → Don Gormas.label = "Character")
+Q[Don Rodrigue,Don Rodrigue] (Don Rodrigue___Chimène.relationship != Don Rodrigue___Don Gormas.relationship ∧ Chimène.label != "Character" ∧ Don Rodrigue___Don Gormas.relationship = "Rodrigue faces Don Gormas in a duel." → Chimène.label = "Character")
+Q[Don Rodrigue,Don Rodrigue] (Don Rodrigue___King.relationship = "Rodrigue redeems himself in the eye of the nation." ∧ Don Rodrigue.name != King.name ∧ Don Rodrigue.name != Don Gormas.name ∧ Chimène.label != "Character" → King.label != "Character")
+Q[Don Rodrigue,Don Rodrigue] (Chimène.name != King.name ∧ Don Rodrigue___Chimène.relationship != Don Rodrigue___King.relationship ∧ None_ML(Don Rodrigue___Don Gormas.attrs, Don Rodrigue___King.attrs) ∧ King.name != "King" ∧ None_ML(Don Gormas.attrs, Don Rodrigue.attrs) ∧ Chimène.label = "Character" → Don Rodrigue___Chimène.relationship = "Don Rodrigue and Chimène love each other.")

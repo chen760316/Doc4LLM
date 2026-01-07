@@ -1,0 +1,59 @@
+Source: dense_text.txt (Index 630)
+S1: Shops may close by 5:30 or 6 pm and all day Sunday, with late-night shopping until 8 pm on Thursday.
+S2: Shops may close by 10 PM outside of the center, but usually we have them open 24/7.
+
+Predicates:
+1. Shops.closing_time_1 = 5:30 PM
+2. Shops.closing_time_2 = 6 PM
+3. Shops.closed_on = Sunday
+4. Shops.late_night_shopping_time = 8 PM
+5. Shops.late_night_shopping_day = Thursday
+6. Shops.closing_time_outside_center = 10 PM
+7. Shops.opening_hours_outside_center = 24/7
+8. Shops.opening_hours_center = variable
+9. Shops.closing_time_variable = 5:30 PM or 6 PM
+10. Shops.open_on = Thursday
+11. Shops.closed_all_day = Sunday
+12. Shops.late_night_shopping = true
+13. Shops.opening_time = variable
+14. Shops.closing_time = variable
+15. Shops.opening_hours = variable
+16. Shops.opening_hours_Sunday = closed
+17. Shops.opening_hours_Thursday = until 8 PM
+18. Shops.opening_hours_10_PM = true
+19. Shops.opening_hours_24_7 = true
+20. Shops.closing_time_violates = 10 PM
+21. Shops.opening_hours_violates = 24/7
+22. Shops.late_night_shopping_violates = false
+23. Shops.closing_time_1_violates = 6 PM
+24. Shops.closing_time_2_violates = 5:30 PM
+25. Shops.opening_hours_Sunday_violates = true
+26. Shops.opening_hours_Thursday_violates = false
+27. Shops.closing_time_outside_center_violates = 10 PM
+28. Shops.opening_hours_center_violates = variable
+29. M_NLI(S1, S2) = true
+30. Temporal(S1, S2) = true
+
+Rules:
+1. Q[Shops, Shops.closing_time_1 == 5:30 PM, Shops.opening_hours_outside_center == 24/7](Shops.closing_time_1 == 5:30 PM ∧ Shops.opening_hours_outside_center == 24/7 → Temporal(Shops, Shops.opening_hours_outside_center))
+2. Q[Shops, Shops.closing_time_2 == 6 PM, Shops.opening_hours_outside_center == 24/7](Shops.closing_time_2 == 6 PM ∧ Shops.opening_hours_outside_center == 24/7 → Temporal(Shops, Shops.opening_hours_outside_center))
+3. Q[Shops, Shops.closed_on == Sunday, Shops.opening_hours_outside_center == 24/7](Shops.closed_on == Sunday ∧ Shops.opening_hours_outside_center == 24/7 → Temporal(Shops, Shops.opening_hours_outside_center))
+4. Q[Shops, Shops.late_night_shopping_time == 8 PM, Shops.opening_hours_outside_center == 24/7](Shops.late_night_shopping_time == 8 PM ∧ Shops.opening_hours_outside_center == 24/7 → Temporal(Shops, Shops.opening_hours_outside_center))
+5. Q[Shops, Shops.late_night_shopping_day == Thursday, Shops.opening_hours_outside_center == 24/7](Shops.late_night_shopping_day == Thursday ∧ Shops.opening_hours_outside_center == 24/7 → Temporal(Shops, Shops.opening_hours_outside_center))
+6. Q[Shops, Shops.closing_time_outside_center == 10 PM, Shops.opening_hours_outside_center == 24/7](Shops.closing_time_outside_center == 10 PM ∧ Shops.opening_hours_outside_center == 24/7 → Temporal(Shops, Shops.opening_hours_outside_center))
+7. Q[Shops, Shops.opening_hours_center == variable, Shops.opening_hours_outside_center == 24/7](Shops.opening_hours_center == variable ∧ Shops.opening_hours_outside_center == 24/7 → Temporal(Shops, Shops.opening_hours_outside_center))
+8. Q[Shops, Shops.closing_time_variable == 5:30 PM or 6 PM, Shops.opening_hours_outside_center == 24/7](Shops.closing_time_variable == 5:30 PM or 6 PM ∧ Shops.opening_hours_outside_center == 24/7 → Temporal(Shops, Shops.opening_hours_outside_center))
+9. Q[Shops, Shops.open_on == Thursday, Shops.opening_hours_outside_center == 24/7](Shops.open_on == Thursday ∧ Shops.opening_hours_outside_center == 24/7 → Temporal(Shops, Shops.opening_hours_outside_center))
+10. Q[Shops, Shops.closed_all_day == Sunday, Shops.opening_hours_outside_center == 24/7](Shops.closed_all_day == Sunday ∧ Shops.opening_hours_outside_center == 24/7 → Temporal(Shops, Shops.opening_hours_outside_center))
+11. Q[Shops, Shops.late_night_shopping == true, Shops.opening_hours_outside_center == 24/7](Shops.late_night_shopping == true ∧ Shops.opening_hours_outside_center == 24/7 → Temporal(Shops, Shops.opening_hours_outside_center))
+12. Q[Shops, Shops.opening_time == variable, Shops.opening_hours_outside_center == 24/7](Shops.opening_time == variable ∧ Shops.opening_hours_outside_center == 24/7 → Temporal(Shops, Shops.opening_hours_outside_center))
+13. Q[Shops, Shops.closing_time == variable, Shops.opening_hours_outside_center == 24/7](Shops.closing_time == variable ∧ Shops.opening_hours_outside_center == 24/7 → Temporal(Shops, Shops.opening_hours_outside_center))
+14. Q[Shops, Shops.opening_hours == variable, Shops.opening_hours_outside_center == 24/7](Shops.opening_hours == variable ∧ Shops.opening_hours_outside_center == 24/7 → Temporal(Shops, Shops.opening_hours_outside_center))
+15. Q[Shops, Shops.opening_hours_Sunday == closed, Shops.opening_hours_outside_center == 24/7](Shops.opening_hours_Sunday == closed ∧ Shops.opening_hours_outside_center == 24/7 → Temporal(Shops, Shops.opening_hours_outside_center))
+16. Q[Shops, Shops.opening_hours_Thursday == until 8 PM, Shops.opening_hours_outside_center == 24/7](Shops.opening_hours_Thursday == until 8 PM ∧ Shops.opening_hours_outside_center == 24/7 → Temporal(Shops, Shops.opening_hours_outside_center))
+17. Q[Shops, Shops.opening_hours_10_PM == true, Shops.opening_hours_outside_center == 24/7](Shops.opening_hours_10_PM == true ∧ Shops.opening_hours_outside_center == 24/7 → Temporal(Shops, Shops.opening_hours_outside_center))
+18. Q[Shops, Shops.opening_hours_24_7 == true, Shops.opening_hours_outside_center == 24/7](Shops.opening_hours_24_7 == true ∧ Shops.opening_hours_outside_center == 24/7 → Temporal(Shops, Shops.opening_hours_outside_center))
+19. Q[Shops, Shops.closing_time_violates == 10 PM, Shops.opening_hours_outside_center == 24/7](Shops.closing_time_violates == 10 PM ∧ Shops.opening_hours_outside_center == 24/7 → Temporal(Shops, Shops.opening_hours_outside_center))
+20. Q[Shops, Shops.opening_hours_violates == 24/7, Shops.opening_hours_outside_center == 24/7](Shops.opening_hours_violates == 24/7 ∧ Shops.opening_hours_outside_center == 24/7 → Temporal(Shops, Shops.opening_hours_outside_center))
+21. Q[Shops, Shops.late_night_shopping_violates == false, Shops.opening_hours_outside_center == 24/7](Shops.late_night_shopping_violates == false ∧ Shops.opening_hours_outside_center == 24/7 → Temporal(Shops, Shops.opening_hours_outside_center))
+22. Q[Shops, Shops.closing_time_1_violates == 6 PM, Shops.opening_hours_outside_center == 24/7](Shops.closing_time_1_violates == 6 PM ∧ Shops

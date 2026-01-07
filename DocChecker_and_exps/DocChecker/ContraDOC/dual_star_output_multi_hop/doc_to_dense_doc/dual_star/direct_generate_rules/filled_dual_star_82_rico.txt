@@ -1,0 +1,56 @@
+Predicates:
+Gloria Petyarre.label != "Person"
+Gloria Petyarre.label = "Person"
+Gloria Petyarre.name != "Gloria Petyarre"
+Gloria Petyarre.name = "Gloria Petyarre"
+Gloria Petyarre.relationship != "sister-in-law"
+Gloria Petyarre.relationship = "sister-in-law"
+Josie Petrick.label != "Person"
+Josie Petrick.label = "Person"
+Josie Petrick.location != "Utopia"
+Josie Petrick.location = "Utopia"
+Josie Petrick.name != "Josie Petrick"
+Josie Petrick.name != Gloria Petyarre.name
+Josie Petrick.name != Robin Petyarre.name
+Josie Petrick.name = "Josie Petrick"
+Josie Petrick.year != 1990
+Josie Petrick.year < 1995
+Josie Petrick.year = 1990
+Josie Petrick.year > 1985
+Josie Petrick___Gloria Petyarre.contradiction_type = "Relation"
+Josie Petrick___Gloria Petyarre.location = "Utopia"
+Josie Petrick___Gloria Petyarre.relationship = "After marrying Robin Petyarre, Josie Petrick moved to Utopia and began painting."
+Josie Petrick___Gloria Petyarre.source_id = "3499318676_4"
+Josie Petrick___Gloria Petyarre.time != 1990
+Josie Petrick___Gloria Petyarre.time = 1990
+Josie Petrick___Robin Petyarre.contradiction_type = "Relation"
+Josie Petrick___Robin Petyarre.relationship != Josie Petrick___Gloria Petyarre.relationship
+Josie Petrick___Robin Petyarre.relationship = "Josie Petrick's husband died, leading her to divide her time between Alice Springs and Harts Range."
+Josie Petrick___Robin Petyarre.source_id = "3499318676_4"
+Josie Petrick___Robin Petyarre.time != 2008
+Josie Petrick___Robin Petyarre.time != Josie Petrick___Gloria Petyarre.time
+Josie Petrick___Robin Petyarre.time = 2008
+None_ML(Gloria Petyarre.attrs, Josie Petrick.attrs)
+None_ML(Josie Petrick___Gloria Petyarre.attrs, Josie Petrick___Robin Petyarre.attrs)
+Robin Petyarre.label != "Person"
+Robin Petyarre.label = "Person"
+Robin Petyarre.name != "Robin Petyarre"
+Robin Petyarre.name != Gloria Petyarre.name
+Robin Petyarre.name = "Robin Petyarre"
+Robin Petyarre.relation_to_artist != "brother of Gloria Petyarre"
+Robin Petyarre.relation_to_artist = "brother of Gloria Petyarre"
+Robin Petyarre.relationship != "husband"
+Robin Petyarre.relationship != Gloria Petyarre.relationship
+Robin Petyarre.relationship = "husband"
+
+Rules:
+Q[Josie Petrick,Josie Petrick] (Robin Petyarre.label = "Person" ∧ Josie Petrick.name != Gloria Petyarre.name ∧ Josie Petrick.location = "Utopia" ∧ Josie Petrick.name != Robin Petyarre.name → Josie Petrick.year != 1990)
+Q[Josie Petrick,Josie Petrick] (Josie Petrick.name != Gloria Petyarre.name ∧ Josie Petrick___Robin Petyarre.relationship = "Josie Petrick's husband died, leading her to divide her time between Alice Springs and Harts Range." ∧ Josie Petrick.label = "Person" ∧ Josie Petrick___Robin Petyarre.time != 2008 ∧ Josie Petrick.year < 1995 → None_ML(Gloria Petyarre.attrs, Josie Petrick.attrs))
+Q[Josie Petrick,Josie Petrick] (Josie Petrick___Robin Petyarre.source_id = "3499318676_4" ∧ Josie Petrick.location = "Utopia" ∧ None_ML(Gloria Petyarre.attrs, Josie Petrick.attrs) → Josie Petrick.year = 1990)
+Q[Josie Petrick,Josie Petrick] (Josie Petrick.location != "Utopia" ∧ Josie Petrick.label = "Person" ∧ Josie Petrick.label != "Person" ∧ Josie Petrick___Gloria Petyarre.contradiction_type = "Relation" ∧ Josie Petrick.name = "Josie Petrick" ∧ Josie Petrick.name != Robin Petyarre.name → Josie Petrick___Gloria Petyarre.relationship = "After marrying Robin Petyarre, Josie Petrick moved to Utopia and began painting.")
+Q[Josie Petrick,Josie Petrick] (Josie Petrick.name != "Josie Petrick" ∧ Josie Petrick.location != "Utopia" → Josie Petrick___Robin Petyarre.time != Josie Petrick___Gloria Petyarre.time)
+Q[Josie Petrick,Josie Petrick] (Josie Petrick___Gloria Petyarre.time = 1990 ∧ Josie Petrick.name != Gloria Petyarre.name → Josie Petrick.location = "Utopia")
+Q[Josie Petrick,Josie Petrick] (None_ML(Gloria Petyarre.attrs, Josie Petrick.attrs) ∧ Josie Petrick___Robin Petyarre.relationship != Josie Petrick___Gloria Petyarre.relationship ∧ Josie Petrick___Gloria Petyarre.source_id = "3499318676_4" → Josie Petrick___Robin Petyarre.time != 2008)
+Q[Josie Petrick,Josie Petrick] (Josie Petrick.name != "Josie Petrick" ∧ Josie Petrick.year > 1985 ∧ Robin Petyarre.relationship != Gloria Petyarre.relationship ∧ Robin Petyarre.relationship != "husband" → Josie Petrick___Robin Petyarre.source_id = "3499318676_4")
+Q[Josie Petrick,Josie Petrick] (Josie Petrick.label = "Person" ∧ Josie Petrick___Robin Petyarre.contradiction_type = "Relation" ∧ Josie Petrick.year != 1990 ∧ Robin Petyarre.relation_to_artist != "brother of Gloria Petyarre" ∧ Gloria Petyarre.label != "Person" ∧ Josie Petrick.label != "Person" → Josie Petrick.name = "Josie Petrick")
+Q[Josie Petrick,Josie Petrick] (Robin Petyarre.name = "Robin Petyarre" ∧ Josie Petrick.label = "Person" ∧ Josie Petrick.name != Robin Petyarre.name ∧ None_ML(Gloria Petyarre.attrs, Josie Petrick.attrs) ∧ Josie Petrick___Robin Petyarre.relationship != Josie Petrick___Gloria Petyarre.relationship → Gloria Petyarre.label != "Person")

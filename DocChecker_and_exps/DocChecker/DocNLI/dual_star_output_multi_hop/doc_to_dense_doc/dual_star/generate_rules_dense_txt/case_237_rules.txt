@@ -1,0 +1,65 @@
+Source: dense_text.txt (Index 237)
+S1: More than 2,700 American troops have died during the war, according to a 2006 count.
+S2: More than 2,700 NATO troops have died during the war, according to a CNN count.
+
+Predicates:
+1. American_troops.count > 2700
+2. NATO_troops.count > 2700
+3. War.year = 2006
+4. Count.source = CNN
+5. Count.source = 2006_count
+6. American_troops.died_in_war = true
+7. NATO_troops.died_in_war = true
+8. M_NLI(S1, S2)
+9. Factual(American_troops.count, 2700)
+10. Factual(NATO_troops.count, 2700)
+11. violate(American_troops.count, NATO_troops.count)
+12. War.type = "military"
+13. War.participants = "NATO"
+14. War.participants = "United States"
+15. Count.year = 2006
+16. Count.method = "count"
+17. American_troops.source = "2006_count"
+18. NATO_troops.source = "CNN"
+19. American_troops.died = true
+20. NATO_troops.died = true
+21. War.casualties = "high"
+22. American_troops.count > NATO_troops.count
+23. NATO_troops.count > American_troops.count
+24. War.duration = "ongoing"
+25. Count.accuracy = "verified"
+26. American_troops.count = NATO_troops.count
+27. War.location = "unknown"
+28. War.cause = "conflict"
+29. Count.date = "2006"
+30. M_NLI(S2, S1)
+
+Rules:
+1. Q[More, American_troops.count, NATO_troops.count](American_troops.count > 2700 ∧ NATO_troops.count > 2700 → Factual(American_troops.count, NATO_troops.count))
+2. Q[More, American_troops.count, NATO_troops.count](American_troops.died_in_war = true ∧ NATO_troops.died_in_war = true → Factual(American_troops.count, NATO_troops.count))
+3. Q[More, American_troops.count, NATO_troops.count](War.year = 2006 ∧ Count.source = 2006_count → Factual(American_troops.count, NATO_troops.count))
+4. Q[More, American_troops.count, NATO_troops.count](War.year = 2006 ∧ Count.source = CNN → Factual(American_troops.count, NATO_troops.count))
+5. Q[More, American_troops.count, NATO_troops.count](American_troops.count > NATO_troops.count ∧ NATO_troops.count > American_troops.count → Factual(American_troops.count, NATO_troops.count))
+6. Q[More, American_troops.count, NATO_troops.count](Count.source = 2006_count ∧ Count.source = CNN → Factual(American_troops.count, NATO_troops.count))
+7. Q[More, American_troops.count, NATO_troops.count](War.participants = "NATO" ∧ War.participants = "United States" → Factual(American_troops.count, NATO_troops.count))
+8. Q[More, American_troops.count, NATO_troops.count](War.casualties = "high" ∧ American_troops.died = true → Factual(American_troops.count, NATO_troops.count))
+9. Q[More, American_troops.count, NATO_troops.count](War.casualties = "high" ∧ NATO_troops.died = true → Factual(American_troops.count, NATO_troops.count))
+10. Q[More, American_troops.count, NATO_troops.count](War.duration = "ongoing" ∧ American_troops.count > 2700 → Factual(American_troops.count, NATO_troops.count))
+11. Q[More, American_troops.count, NATO_troops.count](War.duration = "ongoing" ∧ NATO_troops.count > 2700 → Factual(American_troops.count, NATO_troops.count))
+12. Q[More, American_troops.count, NATO_troops.count](Count.year = 2006 ∧ Count.method = "count" → Factual(American_troops.count, NATO_troops.count))
+13. Q[More, American_troops.count, NATO_troops.count](American_troops.count = NATO_troops.count ∧ violate(American_troops.count, NATO_troops.count) → Factual(American_troops.count, NATO_troops.count))
+14. Q[More, American_troops.count, NATO_troops.count](American_troops.count > NATO_troops.count ∧ War.type = "military" → Factual(American_troops.count, NATO_troops.count))
+15. Q[More, American_troops.count, NATO_troops.count](NATO_troops.count > American_troops.count ∧ War.type = "military" → Factual(American_troops.count, NATO_troops.count))
+16. Q[More, American_troops.count, NATO_troops.count](Count.accuracy = "verified" ∧ American_troops.count > 2700 → Factual(American_troops.count, NATO_troops.count))
+17. Q[More, American_troops.count, NATO_troops.count](Count.accuracy = "verified" ∧ NATO_troops.count > 2700 → Factual(American_troops.count, NATO_troops.count))
+18. Q[More, American_troops.count, NATO_troops.count](American_troops.source = "2006_count" ∧ NATO_troops.source = "CNN" → Factual(American_troops.count, NATO_troops.count))
+19. Q[More, American_troops.count, NATO_troops.count](War.cause = "conflict" ∧ American_troops.died_in_war = true → Factual(American_troops.count, NATO_troops.count))
+20. Q[More, American_troops.count, NATO_troops.count](War.cause = "conflict" ∧ NATO_troops.died_in_war = true → Factual(American_troops.count, NATO_troops.count))
+21. Q[More, American_troops.count, NATO_troops.count](American_troops.count > NATO_troops.count ∧ NATO_troops.count > American_troops.count → Factual(American_troops.count, NATO_troops.count))
+22. Q[More, American_troops.count, NATO_troops.count](American_troops.count = NATO_troops.count ∧ War.year = 2006 → Factual(American_troops.count, NATO_troops.count))
+23. Q[More, American_troops.count, NATO_troops.count](War.participants = "NATO" ∧ War.participants = "United States" → Factual(American_troops.count, NATO_troops.count))
+24. Q[More, American_troops.count, NATO_troops.count](Count.date = "2006" ∧ American_troops.count > 2700 → Factual(American_troops.count, NATO_troops.count))
+25. Q[More, American_troops.count, NATO_troops.count](Count.date = "2006" ∧ NATO_troops.count > 2700 → Factual(American_troops.count, NATO_troops.count))
+26. Q[More, American_troops.count, NATO_troops.count](American_troops.count > NATO_troops.count ∧ War.duration = "ongoing" → Factual(American_troops.count, NATO_troops.count))
+27. Q[More, American_troops.count, NATO_troops.count](NATO_troops.count > American_troops.count ∧ War.duration = "ongoing" → Factual(American_troops.count, NATO_troops.count))
+28. Q[More, American_troops.count, NATO_troops.count](American_tro

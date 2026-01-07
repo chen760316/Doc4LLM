@@ -1,0 +1,104 @@
+Predicates:
+1. Dr. Seuss.occupation = "author"
+2. Dr. Seuss.year_obtained = "1956"
+3. Dr. Seuss.start_year = "1920"
+4. Dr. Seuss.published_a_children's_book = "true"
+5. Harvard University.type = "University"
+6. Helen Palmer.occupation = "artist"
+7. Helen Palmer.influence = "none"
+8. Helen Palmer.inspiration = "much of Dr. Seuss's work"
+9. "Dr. Seuss obtained a PhD in English Literature from Harvard University.".year_obtained = "1956"
+10. "Dr. Seuss published a children's book".date = "1950"
+11. "Dr. Seuss was married to Audrey Dimond".source_id = "Index_278"
+12. "Dr. Seuss was married to Helen Palmer".source_id = "Index_278"
+13. "Helen Palmer inspired much of Dr. Seuss's work.".source_id = "Index_279"
+14. "Helen Palmer had no influence on Dr. Seuss's career choices.".source_id = "Index_281"
+15. "Helen Palmer had no influence on Dr. Seuss's work whatsoever.".source_id = "Index_281"
+16. "Children's Book".publication_year = "1950"
+17. "Dr. Seuss obtained a PhD in English Literature from Harvard University.".doc_index = "47"
+18. "Dr. Seuss published a children's book".doc_index = "46"
+19. "Dr. Seuss was married to Audrey Dimond".doc_index = "278"
+20. "Dr. Seuss was married to Helen Palmer".doc_index = "278"
+21. "Helen Palmer inspired much of Dr. Seuss's work.".doc_index = "279"
+22. "Helen Palmer had no influence on Dr. Seuss's career choices but inspired much of his work.".doc_index = "280"
+23. "Helen Palmer had no influence on Dr. Seuss's career choices.".doc_index = "281"
+24. "Helen Palmer had no influence on Dr. Seuss's work whatsoever.".doc_index = "281"
+25. "Dr. Seuss obtained a PhD in English Literature from Harvard University.".source_domain = "Unknown"
+26. "Dr. Seuss published a children's book".source_domain = "Unknown"
+27. "Dr. Seuss was married to Audrey Dimond".source_domain = "Unknown"
+28. "Dr. Seuss was married to Helen Palmer".source_domain = "Unknown"
+29. "Helen Palmer inspired much of Dr. Seuss's work.".source_domain = "Unknown"
+30. "Helen Palmer had no influence on Dr. Seuss's career choices but inspired much of his work.".source_domain = "Unknown"
+31. "Helen Palmer had no influence on Dr. Seuss's career choices.".source_domain = "Unknown"
+32. "Helen Palmer had no influence on Dr. Seuss's work whatsoever.".source_domain = "Unknown"
+33. M_NLI(Dr. Seuss.occupation, Helen Palmer.occupation)
+34. M_NLI(Dr. Seuss.year_obtained, Dr. Seuss.start_year)
+35. T("Dr. Seuss obtained a PhD in English Literature from Harvard University.", "Dr. Seuss did not obtain a PhD from Harvard University.", tau)
+36. tau(Dr. Seuss.year_obtained, "1950")
+37. violate(Dr. Seuss, Helen Palmer)
+38. Factual(Dr. Seuss.year_obtained, "1950")
+39. Causal(Dr. Seuss.published_a_children's_book, "Dr. Seuss did not publish a children's book")
+40. Numeric(Dr. Seuss.year_obtained, "1950")
+41. Temporal("Dr. Seuss published a children's book", "Dr. Seuss obtained a PhD in 1956")
+42. tau(Helen Palmer.influence, "influence")
+43. violate(Helen Palmer, Dr. Seuss)
+44. Factual(Helen Palmer.influence, "influence")
+45. Causal(Helen Palmer.inspiration, "no inspiration")
+46. Numeric("Dr. Seuss published 10 books", "Dr. Seuss published 5 books")
+47. Temporal("Dr. Seuss was married to Helen Palmer", "Dr. Seuss was never married")
+48. M_NLI(Helen Palmer.influence, "influence")
+49. T("Helen Palmer inspired much of Dr. Seuss's work.", "Helen Palmer did not inspire Dr. Seuss", tau)
+50. tau(Dr. Seuss.published_a_children's_book, "not published")
+51. violate(Dr. Seuss, "not an author")
+52. Factual(Dr. Seuss.start_year, "not 1920")
+53. Causal("Dr. Seuss's career was influenced by Helen Palmer", "Helen Palmer had no influence")
+54. Numeric("Dr. Seuss published 5 books", "Dr. Seuss published 20 books")
+55. Temporal("Dr. Seuss was married to Helen Palmer", "Dr. Seuss was married to someone else")
+56. M_NLI(Dr. Seuss.start_year, "not 1920")
+57. T("Helen Palmer had no influence on Dr. Seuss's work", "Helen Palmer influenced Dr. Seuss", tau)
+58. tau(Dr. Seuss.published_a_children's_book, "not published")
+59. violate(Helen Palmer, "not an artist")
+60. Factual(Helen Palmer.inspiration, "not inspired")
+61. Causal("Dr. Seuss's work was inspired by Helen Palmer", "Dr. Seuss's work was not inspired")
+62. Numeric("Dr. Seuss published 10 books", "Dr. Seuss published 0 books")
+63. Temporal("Dr. Seuss was married to Helen Palmer", "Dr. Seuss was never married")
+64. M_NLI(Dr. Seuss.year_obtained, "not 1956")
+65. T("Dr. Seuss obtained a PhD in English Literature", "Dr. Seuss did not obtain a PhD", tau)
+66. tau(Helen Palmer.influence, "influence")
+67. violate(Dr. Seuss, "not an author")
+68. Factual(Dr. Seuss.published_a_children's_book, "not published")
+69. Causal("Helen Palmer inspired Dr. Seuss", "Helen Palmer did not inspire")
+70. Numeric("Dr. Seuss published 5 books", "Dr. Seuss published 15 books")
+71. Temporal("Dr. Seuss was married to Helen Palmer", "Dr. Seuss was married to someone else")
+72. M_NLI(Dr. Seuss.occupation, "not an author")
+73. T("Helen Palmer had no influence", "Helen Palmer influenced", tau)
+74. tau(Dr. Seuss.start_year, "not 1920")
+75. violate(Helen Palmer, "not an artist")
+76. Factual(Helen Palmer.inspiration, "not
+violate(x0, y0)
+
+Rules:
+1. Q[Dr. Seuss, Helen Palmer](Dr. Seuss.occupation = "author" ∧ Helen Palmer.occupation = "artist" → violate(Dr. Seuss, Helen Palmer))
+2. Q[Dr. Seuss, Harvard University](Dr. Seuss.year_obtained = "1956" ∧ Harvard University.type = "University" → violate(Dr. Seuss, Harvard University))
+3. Q[Dr. Seuss, "not an author"](Dr. Seuss.published_a_children's_book = "true" ∧ Dr. Seuss.occupation = "author" → violate(Dr. Seuss, "not an author"))
+4. Q[Dr. Seuss, "not published"](Dr. Seuss.start_year = "1920" ∧ Dr. Seuss.year_obtained = "1956" → violate(Dr. Seuss, "not published"))
+5. Q[Dr. Seuss, "not an author"](Dr. Seuss.published_a_children's_book = "true" ∧ Dr. Seuss.year_obtained = "1956" ∧ Dr. Seuss.start_year = "1920" → violate(Dr. Seuss, "not an author"))
+6. Q[Dr. Seuss, "not published"](Dr. Seuss.start_year = "1920" ∧ Dr. Seuss.year_obtained = "1956" ∧ Dr. Seuss.published_a_children's_book = "true" ∧ Dr. Seuss.occupation = "author" → violate(Dr. Seuss, "not published"))
+7. Q[Dr. Seuss, Helen Palmer](Helen Palmer.influence = "none" ∧ Helen Palmer.inspiration = "much of Dr. Seuss's work" → violate(Dr. Seuss, Helen Palmer))
+8. Q[Dr. Seuss, "not an author"](Dr. Seuss.year_obtained = "1956" ∧ Dr. Seuss.start_year = "1920" ∧ Dr. Seuss.published_a_children's_book = "true" → violate(Dr. Seuss, "not an author"))
+9. Q[Dr. Seuss, "not inspired"](Helen Palmer.inspiration = "much of Dr. Seuss's work" ∧ Helen Palmer.influence = "none" → violate(Dr. Seuss, "not inspired"))
+10. Q[Dr. Seuss, "not published"](Dr. Seuss.published_a_children's_book = "true" ∧ "Dr. Seuss published a children's book".date = "1950" → violate(Dr. Seuss, "not published"))
+11. Q[Dr. Seuss, "not married"](Dr. Seuss.was_married_to_Helen_Palmer = "true" ∧ Dr. Seuss.was_married_to_Audrey_Dimond = "true" → violate(Dr. Seuss, "not married"))
+12. Q[Dr. Seuss, "not an author"](Dr. Seuss.occupation = "author" ∧ "Dr. Seuss obtained a PhD in English Literature from Harvard University.".year_obtained = "1956" → violate(Dr. Seuss, "not an author"))
+13. Q[Dr. Seuss, "not inspired"](Helen Palmer.inspiration = "much of Dr. Seuss's work" ∧ Helen Palmer.had_no_influence_on_Dr_Seuss = "true" → violate(Dr. Seuss, "not inspired"))
+14. Q[Dr. Seuss, "not published"](Dr. Seuss.published_a_children's_book = "true" ∧ "Children's Book".publication_year = "1950" → violate(Dr. Seuss, "not published"))
+15. Q[Dr. Seuss, "not an author"](Dr. Seuss.year_obtained = "1956" ∧ "Dr. Seuss published a children's book".doc_index = "46" → violate(Dr. Seuss, "not an author"))
+16. Q[Dr. Seuss, "not married"](Dr. Seuss.was_married_to_Helen_Palmer = "true" ∧ Dr. Seuss.was_married_to_Audrey_Dimond = "true" ∧ "Dr. Seuss was married to Helen Palmer".source_id = "Index_278" → violate(Dr. Seuss, "not married"))
+17. Q[Dr. Seuss, "not inspired"](Helen Palmer.influence = "none" ∧ Helen Palmer.inspiration = "much of Dr. Seuss's work" ∧ "Helen Palmer had no influence on Dr. Seuss's work whatsoever." → violate(Dr. Seuss, "not inspired"))
+18. Q[Dr. Seuss, "not published"](Dr. Seuss.published_a_children's_book = "true" ∧ "Dr. Seuss published a children's book".date = "1950" ∧ "Dr. Seuss obtained a PhD in English Literature from Harvard University.".year_obtained = "1956" → violate(Dr. Seuss, "not published"))
+19. Q[Dr. Seuss, "not an author"](Dr. Seuss.occupation = "author" ∧ "Dr. Seuss was married to Helen Palmer".source_id = "Index_278" ∧ "Dr. Seuss was married to Audrey Dimond".source_id = "Index_278" → violate(Dr. Seuss, "not an author"))
+20. Q[Dr. Seuss, "not inspired"](Helen Palmer.influence = "none" ∧ Helen Palmer.inspiration = "much of Dr. Seuss's work" ∧ "Helen Palmer had no influence on Dr. Seuss's career choices." → violate(Dr. Seuss, "not inspired"))
+21. Q[Dr. Seuss, "not published"](Dr. Seuss.published_a_children's_book = "true" ∧ "Children's Book".publication_year = "1950" ∧ "Dr. Seuss obtained a PhD in English Literature from Harvard University.".year_obtained = "1956" ∧ Dr. Seuss.start_year = "1920" → violate(Dr. Seuss, "not published"))
+22. Q[Dr. Seuss, "not married"](Dr. Seuss.was_married_to_Helen_Palmer = "true" ∧ "Dr. Seuss was married to Audrey Dimond".source_id = "Index_278" ∧ "Dr. Seuss was married to Helen Palmer".source_id = "Index_278" → violate(Dr. Seuss, "not married"))
+23. Q[Dr. Seuss, "not inspired"](Helen Palmer.influence = "none" ∧ Helen Palmer.inspiration = "much of Dr. Seuss's work" ∧ "Helen Palmer had no influence on Dr. Seuss's career choices but inspired much of his work." → violate(Dr. Seuss, "not inspired"))
+24. Q[Dr. Seuss

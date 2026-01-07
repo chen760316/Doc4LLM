@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 54)
+S1: Two children are interacting with each other wearing different colors.
+S2: A child in pink throwing a snowball at a child in blue.
+
+Predicates:
+1. Child1.color
+2. Child2.color
+3. Child1.action
+4. Child2.action
+5. Child1.interaction
+6. Child2.interaction
+7. Child1.emotion
+8. Child2.emotion
+9. Child1.age
+10. Child2.age
+11. Child1.location
+12. Child2.location
+13. Child1.outfit
+14. Child2.outfit
+15. Child1.throwing
+16. Child2.receiving
+17. Child1.aggression_level
+18. Child2.cooperation_level
+19. Child1.snowball
+20. Child2.snowball
+21. Interaction.type
+22. Interaction.intensity
+23. Interaction.context
+24. Interaction.duration
+25. M_NLI(S1, S2)
+26. Content(Child1, Child2)
+27. violate(Child1, Child2)
+28. Color.pink
+29. Color.blue
+30. Action.throw
+
+Rules:
+1. Q[Two, Child1.color, Child2.color](Child1.color == Color.pink → Content(Child1, Child2))
+2. Q[Two, Child1.action, Child2.action](Child1.action == Action.throw → Content(Child1, Child2))
+3. Q[Two, Child1.interaction, Child2.interaction](Child1.interaction == Interaction.type → Content(Child1, Child2))
+4. Q[Two, Child1.emotion, Child2.emotion](Child1.emotion == "aggressive" → Content(Child1, Child2))
+5. Q[Two, Child1.age, Child2.age](Child1.age == "child" → Content(Child1, Child2))
+6. Q[Two, Child1.location, Child2.location](Child1.location == "playground" → Content(Child1, Child2))
+7. Q[Two, Child1.outfit, Child2.outfit](Child1.outfit == "pink" → Content(Child1, Child2))
+8. Q[Two, Child1.throwing, Child2.receiving](Child1.throwing == true → Content(Child1, Child2))
+9. Q[Two, Child1.aggression_level, Child2.cooperation_level](Child1.aggression_level > 5 → Content(Child1, Child2))
+10. Q[Two, Child1.snowball, Child2.snowball](Child1.snowball == true → Content(Child1, Child2))
+11. Q[Two, Interaction.type, Interaction.intensity](Interaction.type == "competitive" → Content(Child1, Child2))
+12. Q[Two, Interaction.context, Interaction.duration](Interaction.context == "snowball fight" → Content(Child1, Child2))
+13. Q[Two, Child1.color, Child2.color](Child2.color == Color.blue → Content(Child1, Child2))
+14. Q[Two, Child1.action, Child2.action](Child2.action == "receiving" → Content(Child1, Child2))
+15. Q[Two, Child1.interaction, Child2.interaction](Child2.interaction == "defensive" → Content(Child1, Child2))
+16. Q[Two, Child1.emotion, Child2.emotion](Child2.emotion == "surprised" → Content(Child1, Child2))
+17. Q[Two, Child1.age, Child2.age](Child2.age == "child" → Content(Child1, Child2))
+18. Q[Two, Child1.location, Child2.location](Child2.location == "playground" → Content(Child1, Child2))
+19. Q[Two, Child1.outfit, Child2.outfit](Child2.outfit == "blue" → Content(Child1, Child2))
+20. Q[Two, Child1.throwing, Child2.receiving](Child2.receiving == true → Content(Child1, Child2))
+21. Q[Two, Child1.aggression_level, Child2.cooperation_level](Child2.cooperation_level < 3 → Content(Child1, Child2))
+22. Q[Two, Child1.snowball, Child2.snowball](Child2.snowball == false → Content(Child1, Child2))
+23. Q[Two, Interaction.type, Interaction.intensity](Interaction.intensity == "high" → Content(Child1, Child2))
+24. Q[Two, Interaction.context, Interaction.duration](Interaction.duration == "short" → Content(Child1, Child2))
+25. Q[Two, Child1.color, Child2.color](Child1.color == Color.pink ∧ Child2.color == Color.blue → Content(Child1, Child2))
+26. Q[Two, Child1.action, Child2.action](Child1.action == Action.throw ∧ Child2.action == "dodging" → Content(Child1, Child2))
+27. Q[Two, Child1.interaction, Child2.interaction](Child1.interaction == "aggressive" ∧ Child2.interaction == "defensive" → Content(Child1, Child2))
+28. Q[Two, Child1.emotion, Child2.emotion](Child1.emotion == "playful" ∧ Child2.emotion == "fearful" → Content(Child1, Child2))
+29. Q[Two, Child1.age, Child2.age](Child1.age == "young" ∧ Child2.age == "young" → Content(Child1, Child2))
+30. Q[Two, Child1.location, Child2.location](Child1.location == "outdoors" ∧ Child2.location == "outdoors" → Content(Child1, Child2))

@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 434)
+S1: It was funny that he was incorrect, he was never correct.
+S2: Of course, in a funny way, he turned out to be right.
+
+Predicates:
+1. S1.implies.he_incorrect
+2. S1.implies.he_never_correct
+3. S2.states.he_turned_out_right
+4. S2.implies.he_was_correct
+5. S1.funny
+6. S2.funny
+7. S1.contradicts.S2
+8. S1.relationship_funny
+9. S2.relationship_funny
+10. S1.meta.M_NLI(S1, S2)
+11. S1.meta.Factual(he, incorrect)
+12. S1.meta.violate(he, correct)
+13. S2.meta.M_NLI(S1, S2)
+14. S2.meta.Factual(he, right)
+15. S2.meta.violate(he, incorrect)
+16. S1.entity.he.attribute(incorrect)
+17. S1.entity.he.attribute(never_correct)
+18. S2.entity.he.attribute(turn_out_right)
+19. S2.entity.he.attribute(correct)
+20. S1.edge.relationship_funny.attribute(S1)
+21. S2.edge.relationship_funny.attribute(S2)
+22. S1.meta.Factual(he, funny)
+23. S2.meta.Factual(he, funny)
+24. S1.edge.contradicts.attribute(S2)
+25. S2.edge.contradicts.attribute(S1)
+26. S1.entity.funny.attribute(S1)
+27. S2.entity.funny.attribute(S2)
+28. S1.meta.violate(he, funny)
+29. S2.meta.violate(he, funny)
+30. S1.entity.incorrect.attribute(S1)
+
+Rules:
+1. Q[was, S1.implies.he_incorrect, S2.states.he_turned_out_right](S1.implies.he_incorrect == true → Factual(he, incorrect))
+2. Q[was, S1.implies.he_never_correct, S2.states.he_turned_out_right](S1.implies.he_never_correct == true → Factual(he, never_correct))
+3. Q[was, S1.implies.he_incorrect, S2.implies.he_was_correct](S1.implies.he_incorrect == true → Factual(he, incorrect))
+4. Q[was, S1.implies.he_never_correct, S2.implies.he_was_correct](S1.implies.he_never_correct == true → Factual(he, never_correct))
+5. Q[was, S1.funny, S2.states.he_turned_out_right](S1.funny == true → Factual(he, funny))
+6. Q[was, S1.funny, S2.implies.he_was_correct](S1.funny == true → Factual(he, funny))
+7. Q[was, S1.contradicts.S2, S2.states.he_turned_out_right](S1.contradicts.S2 == true → Factual(he, incorrect))
+8. Q[was, S1.relationship_funny, S2.states.he_turned_out_right](S1.relationship_funny == true → Factual(he, funny))
+9. Q[was, S1.meta.M_NLI(S1, S2), S2.states.he_turned_out_right](S1.meta.M_NLI(S1, S2) == true → Factual(he, incorrect))
+10. Q[was, S1.meta.Factual(he, incorrect), S2.states.he_turned_out_right](S1.meta.Factual(he, incorrect) == true → Factual(he, incorrect))
+11. Q[was, S1.meta.violate(he, correct), S2.states.he_turned_out_right](S1.meta.violate(he, correct) == true → Factual(he, incorrect))
+12. Q[was, S1.entity.he.attribute(incorrect), S2.states.he_turned_out_right](S1.entity.he.attribute(incorrect) == true → Factual(he, incorrect))
+13. Q[was, S1.entity.he.attribute(never_correct), S2.states.he_turned_out_right](S1.entity.he.attribute(never_correct) == true → Factual(he, never_correct))
+14. Q[was, S2.states.he_turned_out_right, S1.implies.he_incorrect](S2.states.he_turned_out_right == true → Factual(he, right))
+15. Q[was, S2.implies.he_was_correct, S1.implies.he_incorrect](S2.implies.he_was_correct == true → Factual(he, right))
+16. Q[was, S2.meta.Factual(he, right), S1.implies.he_never_correct](S2.meta.Factual(he, right) == true → Factual(he, right))
+17. Q[was, S2.meta.violate(he, incorrect), S1.implies.he_never_correct](S2.meta.violate(he, incorrect) == true → Factual(he, right))
+18. Q[was, S1.edge.relationship_funny.attribute(S1), S2.states.he_turned_out_right](S1.edge.relationship_funny.attribute(S1) == true → Factual(he, funny))
+19. Q[was, S2.edge.relationship_funny.attribute(S2), S1.implies.he_incorrect](S2.edge.relationship_funny.attribute(S2) == true → Factual(he, funny))
+20. Q[was, S1.meta.Factual(he, funny), S2.states.he_turned_out_right](S1.meta.Factual(he, funny) == true → Factual(he, funny))
+21. Q[was, S2.meta.Factual(he, funny), S1.implies.he_never_correct](S2.meta.Factual(he, funny) == true → Factual(he, funny))
+22. Q[was, S1.entity.funny.attribute(S1), S2.states.he_turned_out_right](S1.entity.funny.attribute(S1) == true → Factual(he, funny))
+23. Q[was, S2.entity.funny.attribute(S2), S1.implies.he_incorrect](S2.entity.funny.attribute(S2) == true → Factual(he, funny))
+24. Q[was, S1.meta.violate(he, funny), S2.states.he_turned_out_right](S1.meta.violate(he, funny) == true → Factual(he, incorrect))
+25. Q[was, S2.meta.violate(he, funny), S1.implies.he_never_correct](S2.meta.violate(he, funny) == true → Factual(he, right))
+26. Q[was, S1.entity.incorrect.attribute(S1), S2.states.he_turned_out_right](S1.entity.incorrect.attribute(S1) == true → Factual(he, incorrect))
+27. Q[was, S1.entity.he.attribute(incorrect), S2.implies.he_was_correct](S1.entity.he.attribute(incorrect) == true → Factual(he, incorrect))
+28. Q[was, S1.entity.he.attribute(never_correct), S2.implies.he_was_correct](S1.entity.he.attribute(never_correct) == true → Factual(he, never_correct))
+29. Q[was, S1.edge.contradicts.attribute(S2), S2.states.he_turned_out_right](S1.edge.contradicts.attribute(S2) == true → Factual(he, incorrect))
+30. Q[was, S2.edge.contradicts.attribute(S1), S1.implies.he_never_correct](S2.edge.contradicts.attribute(S1) == true → Factual(he, right))

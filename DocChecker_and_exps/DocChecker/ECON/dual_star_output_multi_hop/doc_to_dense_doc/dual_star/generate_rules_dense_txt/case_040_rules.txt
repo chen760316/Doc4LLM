@@ -1,0 +1,64 @@
+Source: dense_text.txt (Index 40)
+S1: Tove Torvalds is a six-time Finnish national karate champion.
+S2: Tove Torvalds is a renowned pastry chef with no known athletic achievements.
+
+Predicates:
+1. Tove_Torvalds.athletic_achievements = six-time Finnish national karate champion
+2. Tove_Torvalds.culinary_skills = renowned pastry chef
+3. Tove_Torvalds.athletic_achievements = no known athletic achievements
+4. "contradiction".relationship = Tove_Torvalds.athletic_achievements
+5. "contradiction".relationship = Tove_Torvalds.culinary_skills
+6. M_NLI(S1, S2) = true
+7. Factual(Tove_Torvalds, athletic_achievements)
+8. Factual(Tove_Torvalds, culinary_skills)
+9. violate(Tove_Torvalds.athletic_achievements, Tove_Torvalds.culinary_skills)
+10. Tove_Torvalds.national_titles = 6
+11. Tove_Torvalds.nationality = Finnish
+12. Tove_Torvalds.profession = pastry chef
+13. "achievement_type".karate = national champion
+14. "achievement_type".cooking = pastry chef
+15. Tove_Torvalds.known_for = karate and pastry
+16. "reputation".Tove_Torvalds = renowned
+17. "achievement_count".Tove_Torvalds = 6
+18. "sport".Tove_Torvalds = karate
+19. "cuisine".Tove_Torvalds = pastry
+20. Tove_Torvalds.athletic_status = athlete
+21. Tove_Torvalds.culinary_status = chef
+22. "title".Tove_Torvalds = national champion
+23. "title".Tove_Torvalds = renowned chef
+24. Tove_Torvalds.achievements = {karate, pastry}
+25. "field".Tove_Torvalds = {athletics, culinary}
+26. Tove_Torvalds.achievement_division = national
+27. Tove_Torvalds.chef_expertise = pastry
+28. "conflict".Tove_Torvalds = athletic vs culinary
+29. Tove_Torvalds.athletic_recognition = true
+30. Tove_Torvalds.culinary_recognition = true
+
+Rules:
+1. Q[Tove, Tove_Torvalds.athletic_achievements, six-time Finnish national karate champion](Tove_Torvalds.athletic_achievements == "six-time Finnish national karate champion" → Factual(Tove_Torvalds, athletic_achievements))
+2. Q[Tove, Tove_Torvalds.culinary_skills, renowned pastry chef](Tove_Torvalds.culinary_skills == "renowned pastry chef" → Factual(Tove_Torvalds, culinary_skills))
+3. Q[Tove, Tove_Torvalds.athletic_achievements, no known athletic achievements](Tove_Torvalds.athletic_achievements == "no known athletic achievements" → Factual(Tove_Torvalds, athletic_achievements))
+4. Q[Tove, "contradiction".relationship, Tove_Torvalds.athletic_achievements](M_NLI(S1, S2) == true → Factual(Tove_Torvalds, athletic_achievements))
+5. Q[Tove, "contradiction".relationship, Tove_Torvalds.culinary_skills](M_NLI(S1, S2) == true → Factual(Tove_Torvalds, culinary_skills))
+6. Q[Tove, violate(Tove_Torvalds.athletic_achievements, Tove_Torvalds.culinary_skills), Tove_Torvalds.athletic_achievements](Tove_Torvalds.athletic_achievements == "six-time Finnish national karate champion" ∧ Tove_Torvalds.culinary_skills == "renowned pastry chef" → Factual(Tove_Torvalds, athletic_achievements))
+7. Q[Tove, Tove_Torvalds.national_titles, 6](Tove_Torvalds.national_titles == 6 → Factual(Tove_Torvalds, athletic_achievements))
+8. Q[Tove, Tove_Torvalds.nationality, Finnish](Tove_Torvalds.nationality == "Finnish" → Factual(Tove_Torvalds, athletic_achievements))
+9. Q[Tove, Tove_Torvalds.profession, pastry chef](Tove_Torvalds.profession == "pastry chef" → Factual(Tove_Torvalds, culinary_skills))
+10. Q[Tove, "achievement_type".karate, national champion](Tove_Torvalds.athletic_achievements == "six-time Finnish national karate champion" → Factual(Tove_Torvalds, athletic_achievements))
+11. Q[Tove, "achievement_type".cooking, pastry chef](Tove_Torvalds.culinary_skills == "renowned pastry chef" → Factual(Tove_Torvalds, culinary_skills))
+12. Q[Tove, Tove_Torvalds.known_for, karate and pastry](Tove_Torvalds.known_for == "karate and pastry" → Factual(Tove_Torvalds, athletic_achievements))
+13. Q[Tove, "reputation".Tove_Torvalds, renowned](Tove_Torvalds.culinary_skills == "renowned pastry chef" → Factual(Tove_Torvalds, culinary_skills))
+14. Q[Tove, "achievement_count".Tove_Torvalds, 6](Tove_Torvalds.national_titles == 6 → Factual(Tove_Torvalds, athletic_achievements))
+15. Q[Tove, "sport".Tove_Torvalds, karate](Tove_Torvalds.athletic_achievements == "six-time Finnish national karate champion" → Factual(Tove_Torvalds, athletic_achievements))
+16. Q[Tove, "cuisine".Tove_Torvalds, pastry](Tove_Torvalds.culinary_skills == "renowned pastry chef" → Factual(Tove_Torvalds, culinary_skills))
+17. Q[Tove, Tove_Torvalds.athletic_status, athlete](Tove_Torvalds.athletic_achievements == "six-time Finnish national karate champion" → Factual(Tove_Torvalds, athletic_achievements))
+18. Q[Tove, Tove_Torvalds.culinary_status, chef](Tove_Torvalds.culinary_skills == "renowned pastry chef" → Factual(Tove_Torvalds, culinary_skills))
+19. Q[Tove, "title".Tove_Torvalds, national champion](Tove_Torvalds.athletic_achievements == "six-time Finnish national karate champion" → Factual(Tove_Torvalds, athletic_achievements))
+20. Q[Tove, "title".Tove_Torvalds, renowned chef](Tove_Torvalds.culinary_skills == "renowned pastry chef" → Factual(Tove_Torvalds, culinary_skills))
+21. Q[Tove, Tove_Torvalds.achievements, {karate, pastry}](Tove_Torvalds.athletic_achievements == "six-time Finnish national karate champion" ∧ Tove_Torvalds.culinary_skills == "renowned pastry chef" → Factual(Tove_Torvalds, athletic_achievements))
+22. Q[Tove, "field".Tove_Torvalds, {athletics, culinary}](Tove_Torvalds.athletic_achievements == "six-time Finnish national karate champion" ∧ Tove_Torvalds.culinary_skills == "renowned pastry chef" → Factual(Tove_Torvalds, athletic_achievements))
+23. Q[Tove, Tove_Torvalds.achievement_division, national](Tove_Torvalds.athletic_achievements == "six-time Finnish national karate champion" → Factual(Tove_Torvalds, athletic_achievements))
+24. Q[Tove, Tove_Torvalds.chef_expertise, pastry](Tove_Torvalds.culinary_skills == "renowned pastry chef" → Factual(Tove_Torvalds, culinary_skills))
+25. Q[Tove, "conflict".Tove_Torvalds, athletic vs culinary](Tove_Torvalds.athletic_achievements == "six-time Finnish national karate champion" ∧ Tove_Torvalds.culinary_skills == "renowned pastry chef" → Factual(Tove_Torvalds, athletic_achievements))
+26. Q[Tove, Tove_Torvalds.athletic_recognition, true](Tove_Torvalds.athletic_achievements == "six-time Finnish national karate champion" → Factual(Tove_Torvalds, athletic_achievements))
+27. Q[Tove, Tove

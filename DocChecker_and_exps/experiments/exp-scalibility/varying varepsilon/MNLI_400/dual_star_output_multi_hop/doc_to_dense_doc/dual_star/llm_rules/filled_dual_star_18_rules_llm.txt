@@ -1,0 +1,133 @@
+Predicates:
+1. entity1.attribute = "doubted it"
+2. entity1.doc_index = "24"
+3. entity2.attribute = "was confident it would happen"
+4. entity2.doc_index = "24"
+5. entity3.attribute = "was happy to be saved from struggling with"
+6. entity3.doc_index = "24"
+7. entity4.attribute = "was sad to not take in"
+8. entity4.doc_index = "24"
+9. "Relationship".label_text = "contradiction"
+10. "Relationship".doc_index = "24"
+11. M_NLI(entity1.attribute, entity2.attribute)
+12. M_NLI(entity3.attribute, entity4.attribute)
+13. T("doubted it", "was confident it would happen", tau)
+14. T("was happy to be saved from struggling with", "was sad to not take in", tau)
+15. tau(entity1.attribute, entity2.attribute)
+16. tau(entity3.attribute, entity4.attribute)
+17. violate(entity1, entity2)
+18. violate(entity3, entity4)
+19. Factual(entity1, entity2)
+20. Factual(entity3, entity4)
+21. Causal(entity1, entity2)
+22. Causal(entity3, entity4)
+23. Numeric(entity1, entity2)
+24. Numeric(entity3, entity4)
+25. Temporal(entity1, entity2)
+26. Temporal(entity3, entity4)
+27. Content(entity1, entity2)
+28. Content(entity3, entity4)
+29. Negation(entity1, entity2)
+30. Negation(entity3, entity4)
+31. Relation(entity1, entity2)
+32. Relation(entity3, entity4)
+33. entity1.confidence = "low"
+34. entity2.confidence = "high"
+35. entity3.emotion = "happy"
+36. entity4.emotion = "sad"
+37. "Relationship".type = "emotional"
+38. "Relationship".type = "confidence"
+39. M_NLI(entity1.emotion, entity4.emotion)
+40. M_NLI(entity2.confidence, entity1.confidence)
+41. T("was happy to be saved from struggling with", "was sad to not take in", tau)
+42. tau(entity3.emotion, entity4.emotion)
+43. violate(entity1, entity3)
+44. violate(entity2, entity4)
+45. Factual(entity1, entity3)
+46. Factual(entity2, entity4)
+47. Causal(entity1, entity3)
+48. Causal(entity2, entity4)
+49. Numeric(entity1, entity3)
+50. Numeric(entity2, entity4)
+51. Temporal(entity1, entity3)
+52. Temporal(entity2, entity4)
+53. Content(entity1, entity3)
+54. Content(entity2, entity4)
+55. Negation(entity1, entity3)
+56. Negation(entity2, entity4)
+57. Relation(entity1, entity3)
+58. Relation(entity2, entity4)
+59. entity1.context = "uncertain"
+60. entity2.context = "certain"
+61. entity3.context = "relieved"
+62. entity4.context = "disappointed"
+63. "Relationship".context_type = "emotional"
+64. "Relationship".context_type = "certainty"
+65. M_NLI(entity1.context, entity2.context)
+66. M_NLI(entity3.context, entity4.context)
+67. T("doubted it", "was happy to be saved from struggling with", tau)
+68. tau(entity1.context, entity3.context)
+69. violate(entity1, entity4)
+70. violate(entity2, entity3)
+71. Factual(entity1, entity4)
+72. Factual(entity2, entity3)
+73. Causal(entity1, entity4)
+74. Causal(entity2, entity3)
+75. Numeric(entity1, entity4)
+76. Numeric(entity2, entity3)
+77. Temporal(entity1, entity4)
+78. Temporal(entity2, entity3)
+79. Content(entity1, entity4)
+80. Content(entity2, entity3)
+81. Negation(entity1, entity4)
+82. Negation(entity2, entity3)
+83. Relation(entity1, entity4)
+84. Relation(entity2, entity3)
+85. entity1.outcome = "failure"
+86. entity2.outcome = "success"
+87. entity3.outcome = "relief"
+88. entity4.outcome = "regret"
+89. "Relationship".outcome_type = "success"
+90. "Relationship".outcome_type = "failure"
+91. M_NLI(entity1.outcome, entity2.outcome)
+92. M_NLI(entity3.outcome, entity4.outcome)
+93. T("was confident it would happen", "was sad to not take in", tau)
+94. tau(entity2.outcome, entity4.outcome)
+95. violate(entity3, entity1)
+96. violate(entity4, entity2)
+97. Factual(entity3, entity1)
+98. Factual(entity4, entity2)
+99. Causal(entity3, entity1)
+100. Causal(entity4, entity2)
+violate(x0, y0)
+
+Rules:
+1. Q[x0, y0](entity1.attribute = "doubted it" ∧ entity2.attribute = "was confident it would happen" → violate(x0, y0))
+2. Q[x0, y0](entity3.attribute = "was happy to be saved from struggling with" ∧ entity4.attribute = "was sad to not take in" → violate(x0, y0))
+3. Q[x0, y0](entity1.confidence = "low" ∧ entity2.confidence = "high" → violate(x0, y0))
+4. Q[x0, y0](entity3.emotion = "happy" ∧ entity4.emotion = "sad" → violate(x0, y0))
+5. Q[x0, y0](entity1.context = "uncertain" ∧ entity2.context = "certain" → violate(x0, y0))
+6. Q[x0, y0](entity1.outcome = "failure" ∧ entity2.outcome = "success" → violate(x0, y0))
+7. Q[x0, y0](entity1.attribute = "doubted it" ∧ entity2.attribute = "was confident it would happen" ∧ entity1.doc_index = "24" → violate(x0, y0))
+8. Q[x0, y0](entity3.attribute = "was happy to be saved from struggling with" ∧ entity4.attribute = "was sad to not take in" ∧ entity3.doc_index = "24" → violate(x0, y0))
+9. Q[x0, y0](entity1.confidence = "low" ∧ entity2.confidence = "high" ∧ "Relationship".type = "confidence" → violate(x0, y0))
+10. Q[x0, y0](entity3.emotion = "happy" ∧ entity4.emotion = "sad" ∧ "Relationship".type = "emotional" → violate(x0, y0))
+11. Q[x0, y0](entity1.context = "uncertain" ∧ entity2.context = "certain" ∧ "Relationship".context_type = "certainty" → violate(x0, y0))
+12. Q[x0, y0](entity1.outcome = "failure" ∧ entity2.outcome = "success" ∧ "Relationship".outcome_type = "success" → violate(x0, y0))
+13. Q[x0, y0](entity1.attribute = "doubted it" ∧ entity2.attribute = "was confident it would happen" ∧ entity3.attribute = "was happy to be saved from struggling with" → violate(x0, y0))
+14. Q[x0, y0](entity3.attribute = "was happy to be saved from struggling with" ∧ entity4.attribute = "was sad to not take in" ∧ entity1.confidence = "low" → violate(x0, y0))
+15. Q[x0, y0](entity1.confidence = "low" ∧ entity2.confidence = "high" ∧ entity3.emotion = "happy" → violate(x0, y0))
+16. Q[x0, y0](entity3.emotion = "happy" ∧ entity4.emotion = "sad" ∧ entity1.context = "uncertain" → violate(x0, y0))
+17. Q[x0, y0](entity1.outcome = "failure" ∧ entity2.outcome = "success" ∧ entity3.outcome = "relief" → violate(x0, y0))
+18. Q[x0, y0](entity1.attribute = "doubted it" ∧ entity2.attribute = "was confident it would happen" ∧ entity3.attribute = "was happy to be saved from struggling with" ∧ entity4.attribute = "was sad to not take in" → violate(x0, y0))
+19. Q[x0, y0](entity1.confidence = "low" ∧ entity2.confidence = "high" ∧ entity3.emotion = "happy" ∧ entity4.emotion = "sad" → violate(x0, y0))
+20. Q[x0, y0](entity1.context = "uncertain" ∧ entity2.context = "certain" ∧ entity3.outcome = "relief" ∧ entity4.outcome = "regret" → violate(x0, y0))
+21. Q[x0, y0](entity1.attribute = "doubted it" ∧ entity2.attribute = "was confident it would happen" ∧ entity1.doc_index = "24" ∧ entity2.doc_index = "24" ∧ "Relationship".label_text = "contradiction" → violate(x0, y0))
+22. Q[x0, y0](entity3.attribute = "was happy to be saved from struggling with" ∧ entity4.attribute = "was sad to not take in" ∧ entity3.doc_index = "24" ∧ entity4.doc_index = "24" ∧ "Relationship".label_text = "contradiction" → violate(x0, y0))
+23. Q[x0, y0](entity1.confidence = "low" ∧ entity2.confidence = "high" ∧ "Relationship".type = "confidence" ∧ "Relationship".context_type = "certainty" → violate(x0, y0))
+24. Q[x0, y0](entity3.emotion = "happy" ∧ entity4.emotion = "sad" ∧ "Relationship".type = "emotional" ∧ "Relationship".context_type = "emotional" → violate(x0, y0))
+25. Q[x0, y0](entity1.context = "uncertain" ∧ entity2.context = "certain" ∧ entity1.outcome = "failure" ∧ entity2.outcome = "success" → violate(x0, y0))
+26. Q[x0, y0](entity1.outcome = "failure" ∧ entity2.outcome = "success" ∧ entity3.outcome = "relief" ∧ entity4.outcome = "regret" → violate(x0, y0))
+27. Q[x0, y0](entity1.attribute = "doubted it" ∧ entity2.attribute = "was confident it would happen" ∧ entity3.attribute = "was happy to be saved from struggling with" ∧ entity4.attribute = "was sad to not take in" ∧ entity1.confidence = "low" → violate(x0, y0))
+28. Q[x0, y0](entity1.confidence = "low" ∧ entity2.confidence = "high" ∧ entity3.emotion = "happy" ∧ entity4.emotion = "sad" ∧ entity1.context = "uncertain" → violate(x0, y0))
+29. Q[x0, y0](entity1.outcome = "failure" ∧ entity2.outcome = "success" ∧ entity3.outcome = "relief" ∧ entity4.outcome =

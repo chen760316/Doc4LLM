@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 235)
+S1: The company is taking precautions and rolling it out slowly with a wait list.
+S2: When you download the app, you can reserve a spot on the list and the app will show you how many people are ahead of you.
+
+Predicates:
+1. Company.precautions
+2. Company.slow_rollout
+3. App.download
+4. App.reserve_spot
+5. App.show_people_ahead
+6. Waitlist.access
+7. Waitlist.immediate_access
+8. Rollout.precautions
+9. Rollout.slow
+10. User.reserve_spot
+11. User.download_app
+12. User.see_people_ahead
+13. Download.immediate_access
+14. Precautions.implemented
+15. Precautions.slow_rollout
+16. Spot.reserved
+17. People.ahead_of_user
+18. List.waitlist
+19. Rollout.slow_with_precautions
+20. Access.waitlist
+21. Download.app
+22. App.usage
+23. User.join_waitlist
+24. Waitlist.length
+25. Rollout.strategy
+26. App.functionality
+27. User.information_received
+28. Company.strategy
+29. User.position_in_waitlist
+30. Rollout.implies_precautions
+
+Rules:
+1. Q[The, Company.slow_rollout == true](Company.precautions == true → Causal(Company.slow_rollout, App.reserve_spot))
+2. Q[The, Rollout.slow == true](Rollout.precautions == true → Causal(Rollout.slow, Waitlist.immediate_access))
+3. Q[The, App.download == true](User.download_app == true → Causal(App.download, Waitlist.access))
+4. Q[The, App.reserve_spot == true](App.download == true → Causal(App.reserve_spot, User.position_in_waitlist))
+5. Q[The, App.show_people_ahead == true](User.reserve_spot == true → Causal(App.show_people_ahead, People.ahead_of_user))
+6. Q[The, Waitlist.access == true](App.reserve_spot == true → Causal(Waitlist.access, User.join_waitlist))
+7. Q[The, Rollout.strategy == "slow"](Company.precautions == true → Causal(Rollout.strategy, Rollout.slow))
+8. Q[The, Precautions.implemented == true](Rollout.slow == true → Causal(Precautions.implemented, Company.precautions))
+9. Q[The, Download.immediate_access == true](App.download == true → Causal(Download.immediate_access, User.reserve_spot))
+10. Q[The, User.information_received == true](App.show_people_ahead == true → Causal(User.information_received, User.position_in_waitlist))
+11. Q[The, Waitlist.length == "variable"](Waitlist.access == true → Causal(Waitlist.length, User.position_in_waitlist))
+12. Q[The, Company.strategy == "cautious"](Company.precautions == true → Causal(Company.strategy, Rollout.slow))
+13. Q[The, User.position_in_waitlist == "dynamic"](User.join_waitlist == true → Causal(User.position_in_waitlist, Waitlist.length))
+14. Q[The, App.functionality == "waitlist"](App.download == true → Causal(App.functionality, Waitlist.access))
+15. Q[The, Rollout.implies_precautions == true](Rollout.slow == true → Causal(Rollout.implies_precautions, Company.precautions))
+16. Q[The, User.reserve_spot == true](App.download == true → Causal(User.reserve_spot, Spot.reserved))
+17. Q[The, People.ahead_of_user == "count"](App.show_people_ahead == true → Causal(People.ahead_of_user, User.position_in_waitlist))
+18. Q[The, Access.waitlist == true](User.join_waitlist == true → Causal(Access.waitlist, Waitlist.length))
+19. Q[The, Rollout.slow_with_precautions == true](Company.precautions == true → Causal(Rollout.slow_with_precautions, Rollout.slow))
+20. Q[The, App.usage == "conditional"](App.download == true → Causal(App.usage, User.reserve_spot))
+21. Q[The, User.download_app == true](App.reserve_spot == true → Causal(User.download_app, Waitlist.access))
+22. Q[The, Company.precautions == true](Rollout.slow == true → Causal(Company.precautions, Rollout.strategy))
+23. Q[The, User.see_people_ahead == true](App.show_people_ahead == true → Causal(User.see_people_ahead, People.ahead_of_user))
+24. Q[The, Spot.reserved == true](User.reserve_spot == true → Causal(Spot.reserved, Waitlist.access))
+25. Q[The, Rollout.strategy == "gradual"](Company.precautions == true → Causal(Rollout.strategy, Rollout.slow))
+26. Q[The, App.functionality == "waitlist"](App.reserve_spot == true → Causal(App.functionality, Waitlist.access))
+27. Q[The, User.position_in_waitlist == "updated"](User.join_waitlist == true → Causal(User.position_in_waitlist, Waitlist.length))
+28. Q[The, Precautions.slow_rollout == true](Rollout.slow == true → Causal(Precautions.slow_rollout, Company.precautions))
+29. Q[The, Download.app == true](User.download_app == true → Causal(Download.app, Waitlist.access))
+30. Q[The, Rollout.implies_precautions == true](Rollout.slow_with_precautions == true → Causal(Rollout.implies_precautions, Company.precautions))

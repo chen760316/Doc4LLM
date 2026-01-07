@@ -1,0 +1,65 @@
+Source: dense_text.txt (Index 768)
+S1: T h e C B O e s t i m a t e i s $ 2 5 m i l l i o n f o r t h e f i r s t y e a r a n d $ 1 0 0 m i l l i o n p e r y e a r t h e r e a f t e r .
+S2: T h e C B O e s t i m a t e i s f o r t y t h o u s a n d f o r t h e f i r s t y e a r a n d t e n t h o u s a n d p e r y e a r t h e r e a f t e r .
+
+Predicates:
+1. CBO.estimate_first_year = 25000000
+2. CBO.estimate_thereafter = 100000000
+3. CBO.estimate_first_year = 40000
+4. CBO.estimate_thereafter = 10000
+5. M_NLI(S1, S2)
+6. Numeric(25000000, 100000000)
+7. Numeric(40000, 10000)
+8. violate(25000000, 40000)
+9. violate(100000000, 10000)
+10. CBO.estimate_type = monetary
+11. CBO.estimate_type = numerical
+12. CBO.first_year = 1
+13. CBO.thereafter = 2
+14. CBO.estimate_currency = USD
+15. CBO.estimate_first_year_description = "first year estimate"
+16. CBO.estimate_thereafter_description = "subsequent year estimate"
+17. CBO.estimate_first_year_source = "S1"
+18. CBO.estimate_thereafter_source = "S2"
+19. CBO.estimate_first_year_comparison = "S1 vs S2"
+20. CBO.estimate_thereafter_comparison = "S1 vs S2"
+21. CBO.estimate_first_year_validity = true
+22. CBO.estimate_thereafter_validity = false
+23. CBO.estimate_first_year_context = "financial projection"
+24. CBO.estimate_thereafter_context = "financial projection"
+25. CBO.estimate_first_year_significance = "high"
+26. CBO.estimate_thereafter_significance = "low"
+27. CBO.estimate_first_year_accuracy = "exact"
+28. CBO.estimate_thereafter_accuracy = "approximate"
+29. CBO.estimate_first_year_reliability = "high"
+30. CBO.estimate_thereafter_reliability = "low"
+
+Rules:
+1. Q[CBO.estimate_first_year, 25000000, 40000](CBO.estimate_first_year == 25000000 → Numeric(25000000, 40000))
+2. Q[CBO.estimate_thereafter, 100000000, 10000](CBO.estimate_thereafter == 100000000 → Numeric(100000000, 10000))
+3. Q[CBO.estimate_first_year, 25000000, 40000](CBO.estimate_first_year == 25000000 ∧ CBO.estimate_first_year == 40000 → Numeric(25000000, 40000))
+4. Q[CBO.estimate_thereafter, 100000000, 10000](CBO.estimate_thereafter == 100000000 ∧ CBO.estimate_thereafter == 10000 → Numeric(100000000, 10000))
+5. Q[CBO.estimate_first_year, 25000000, 40000](CBO.estimate_first_year == 25000000 ∧ M_NLI(S1, S2) → Numeric(25000000, 40000))
+6. Q[CBO.estimate_thereafter, 100000000, 10000](CBO.estimate_thereafter == 100000000 ∧ M_NLI(S1, S2) → Numeric(100000000, 10000))
+7. Q[CBO.estimate_first_year, 25000000, 40000](CBO.estimate_first_year == 25000000 ∧ CBO.estimate_first_year_validity == true → Numeric(25000000, 40000))
+8. Q[CBO.estimate_thereafter, 100000000, 10000](CBO.estimate_thereafter == 100000000 ∧ CBO.estimate_thereafter_validity == false → Numeric(100000000, 10000))
+9. Q[CBO.estimate_first_year, 25000000, 40000](CBO.estimate_first_year == 25000000 ∧ CBO.estimate_first_year_significance == "high" → Numeric(25000000, 40000))
+10. Q[CBO.estimate_thereafter, 100000000, 10000](CBO.estimate_thereafter == 100000000 ∧ CBO.estimate_thereafter_significance == "low" → Numeric(100000000, 10000))
+11. Q[CBO.estimate_first_year, 25000000, 40000](CBO.estimate_first_year == 25000000 ∧ CBO.estimate_first_year_accuracy == "exact" → Numeric(25000000, 40000))
+12. Q[CBO.estimate_thereafter, 100000000, 10000](CBO.estimate_thereafter == 100000000 ∧ CBO.estimate_thereafter_accuracy == "approximate" → Numeric(100000000, 10000))
+13. Q[CBO.estimate_first_year, 25000000, 40000](CBO.estimate_first_year == 25000000 ∧ CBO.estimate_first_year_reliability == "high" → Numeric(25000000, 40000))
+14. Q[CBO.estimate_thereafter, 100000000, 10000](CBO.estimate_thereafter == 100000000 ∧ CBO.estimate_thereafter_reliability == "low" → Numeric(100000000, 10000))
+15. Q[CBO.estimate_first_year, 25000000, 40000](CBO.estimate_first_year == 25000000 ∧ CBO.estimate_first_year_source == "S1" → Numeric(25000000, 40000))
+16. Q[CBO.estimate_thereafter, 100000000, 10000](CBO.estimate_thereafter == 100000000 ∧ CBO.estimate_thereafter_source == "S2" → Numeric(100000000, 10000))
+17. Q[CBO.estimate_first_year, 25000000, 40000](CBO.estimate_first_year == 25000000 ∧ CBO.estimate_first_year_description == "first year estimate" → Numeric(25000000, 40000))
+18. Q[CBO.estimate_thereafter, 100000000, 10000](CBO.estimate_thereafter == 100000000 ∧ CBO.estimate_thereafter_description == "subsequent year estimate" → Numeric(100000000, 10000))
+19. Q[CBO.estimate_first_year, 25000000, 40000](CBO.estimate_first_year == 25000000 ∧ CBO.estimate_first_year_comparison == "S1 vs S2" → Numeric(25000000, 40000))
+20. Q[CBO.estimate_thereafter, 100000000, 10000](CBO.estimate_thereafter == 100000000 ∧ CBO.estimate_thereafter_comparison == "S1 vs S2" → Numeric(100000000, 10000))
+21. Q[CBO.estimate_first_year, 25000000, 40000](CBO.estimate_first_year == 25000000 ∧ violate(25000000, 40000) → Numeric(25000000, 40000))
+22. Q[CBO.estimate_thereafter, 100000000, 10000](CBO.estimate_thereafter == 100000000 ∧ violate(100000000, 10000) → Numeric(100000000, 10000))
+23. Q[CBO.estimate_first_year, 25000000, 40000](CBO.estimate_first_year == 25000000 ∧ CBO.estimate_type == monetary → Numeric(25000000, 40000))
+24. Q[CBO.estimate_thereafter, 100000000, 10000](CBO.estimate_thereafter == 100000000 ∧ CBO.estimate_type == numerical → Numeric(100000000, 10000))
+25. Q[CBO.estimate_first_year, 25000000, 40000](CBO.estimate_first_year == 25000000 ∧ CBO.first_year == 1 → Numeric(25000000, 40000))
+26. Q[CBO.estimate_thereafter, 100000000, 10000](CBO.estimate_thereafter == 100000000 ∧ CBO.thereafter == 2 → Numeric(100000000, 10000))
+27. Q[CBO.estimate_first_year, 25000000, 40000](CBO.estimate_first_year == 25000000 ∧ CBO.estimate_first_year_context == "financial projection" → Numeric(25000000, 40000))
+28. Q[CBO.estimate_thereafter, 100000000, 10000](

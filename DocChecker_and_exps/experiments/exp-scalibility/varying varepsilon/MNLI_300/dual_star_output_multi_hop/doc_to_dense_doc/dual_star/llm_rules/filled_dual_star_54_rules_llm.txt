@@ -1,0 +1,134 @@
+Predicates:
+1. item.price = "1000 dollars"
+2. item.price = "100 dollars"
+3. purchase.belief = "can purchase for a thousand dollars or less"
+4. purchase.actual = "can buy for only one hundred dollars"
+5. item.availability = "available for purchase"
+6. item.availability = "not available for purchase"
+7. customer.expectation = "expect to pay less than a thousand dollars"
+8. customer.reality = "paid only one hundred dollars"
+9. transaction.amount = "1000"
+10. transaction.amount = "100"
+11. belief.source = "customer"
+12. belief.source = "market"
+13. market.price = "1000 dollars"
+14. market.price = "100 dollars"
+15. purchase.intent = "purchase item"
+16. purchase.outcome = "successful purchase"
+17. belief.confidence = "high"
+18. belief.confidence = "low"
+19. item.condition = "new"
+20. item.condition = "used"
+21. seller.offer = "price is negotiable"
+22. seller.offer = "price is fixed"
+23. customer.satisfaction = "satisfied with the price"
+24. customer.satisfaction = "dissatisfied with the price"
+25. transaction.date = "2025-04-20"
+26. transaction.date = "2025-04-21"
+27. item.category = "electronics"
+28. item.category = "furniture"
+29. seller.reputation = "highly rated"
+30. seller.reputation = "poorly rated"
+31. purchase.method = "credit card"
+32. purchase.method = "cash"
+33. belief.accuracy = "accurate"
+34. belief.accuracy = "inaccurate"
+35. item.discount = "10%"
+36. item.discount = "0%"
+37. customer.experience = "positive"
+38. customer.experience = "negative"
+39. transaction.success = "successful"
+40. transaction.success = "failed"
+41. violate(x0, y0)
+42. Factual(x0, y0)
+43. Causal(x0, y0)
+44. Numeric(x0, y0)
+45. Temporal(x0, y0)
+46. Content(x0, y0)
+47. Negation(x0, y0)
+48. Relation(x0, y0)
+49. M_NLI(belief.source, purchase.actual)
+50. T(purchase.belief, purchase.actual, tau)
+51. tau(item.price, transaction.amount)
+52. tau(customer.expectation, customer.reality)
+53. tau(belief.confidence, belief.accuracy)
+54. tau(item.discount, item.price)
+55. tau(transaction.date, transaction.date)
+56. tau(seller.offer, market.price)
+57. tau(customer.satisfaction, customer.experience)
+58. tau(item.condition, item.category)
+59. tau(purchase.method, transaction.success)
+60. tau(seller.reputation, customer.satisfaction)
+61. belief.conflict = "true"
+62. belief.conflict = "false"
+63. transaction.success_rate = "high"
+64. transaction.success_rate = "low"
+65. item.stock = "limited"
+66. item.stock = "unlimited"
+67. customer.intent = "buy"
+68. customer.intent = "not buy"
+69. seller.price = "1000 dollars"
+70. seller.price = "100 dollars"
+71. market.trend = "increasing prices"
+72. market.trend = "decreasing prices"
+73. purchase.time = "morning"
+74. purchase.time = "evening"
+75. belief.origin = "personal experience"
+76. belief.origin = "market research"
+77. transaction.method = "online"
+78. transaction.method = "in-store"
+79. item.value = "high"
+80. item.value = "low"
+81. customer.expectation_level = "high"
+82. customer.expectation_level = "low"
+83. seller.communication = "clear"
+84. seller.communication = "confusing"
+85. item.popularity = "high"
+86. item.popularity = "low"
+87. transaction.feedback = "positive"
+88. transaction.feedback = "negative"
+89. belief.update = "recent"
+90. belief.update = "outdated"
+91. item.comparison = "better than competitors"
+92. item.comparison = "worse than competitors"
+93. purchase.assessment = "favorable"
+94. purchase.assessment = "unfavorable"
+95. seller.offer_type = "limited time"
+96. seller.offer_type = "permanent"
+97. customer.knowledge = "informed"
+98. customer.knowledge = "uninformed"
+99. transaction.context = "urgent"
+100. transaction.context = "non-urgent"
+violate(x0, y0)
+
+Rules:
+1. Q[x0, y0](item.price = "1000 dollars" ∧ purchase.belief = "can purchase for a thousand dollars or less" → violate(x0, y0))
+2. Q[x0, y0](item.availability = "available for purchase" ∧ purchase.actual = "can buy for only one hundred dollars" → violate(x0, y0))
+3. Q[x0, y0](customer.expectation = "expect to pay less than a thousand dollars" ∧ transaction.amount = "1000" → violate(x0, y0))
+4. Q[x0, y0](item.price = "100 dollars" ∧ transaction.amount = "1000" → violate(x0, y0))
+5. Q[x0, y0](purchase.intent = "purchase item" ∧ purchase.outcome = "successful purchase" ∧ item.availability = "not available for purchase" → violate(x0, y0))
+6. Q[x0, y0](customer.reality = "paid only one hundred dollars" ∧ market.price = "1000 dollars" ∧ belief.source = "customer" → violate(x0, y0))
+7. Q[x0, y0](item.price = "100 dollars" ∧ seller.offer = "price is fixed" ∧ customer.satisfaction = "satisfied with the price" → violate(x0, y0))
+8. Q[x0, y0](transaction.success = "failed" ∧ transaction.amount = "100" ∧ purchase.method = "credit card" → violate(x0, y0))
+9. Q[x0, y0](item.condition = "new" ∧ item.category = "electronics" ∧ seller.reputation = "poorly rated" → violate(x0, y0))
+10. Q[x0, y0](customer.expectation_level = "high" ∧ belief.confidence = "low" ∧ belief.accuracy = "inaccurate" → violate(x0, y0))
+11. Q[x0, y0](item.discount = "0%" ∧ market.price = "100 dollars" ∧ seller.offer = "price is negotiable" → violate(x0, y0))
+12. Q[x0, y0](transaction.date = "2025-04-20" ∧ transaction.date = "2025-04-21" → violate(x0, y0))
+13. Q[x0, y0](purchase.assessment = "favorable" ∧ customer.experience = "negative" ∧ transaction.feedback = "positive" → violate(x0, y0))
+14. Q[x0, y0](item.value = "high" ∧ item.popularity = "low" ∧ seller.communication = "confusing" → violate(x0, y0))
+15. Q[x0, y0](customer.knowledge = "uninformed" ∧ belief.origin = "market research" ∧ belief.update = "outdated" → violate(x0, y0))
+16. Q[x0, y0](purchase.method = "cash" ∧ transaction.success = "failed" ∧ transaction.context = "urgent" → violate(x0, y0))
+17. Q[x0, y0](item.stock = "limited" ∧ seller.offer_type = "permanent" ∧ customer.satisfaction = "dissatisfied with the price" → violate(x0, y0))
+18. Q[x0, y0](belief.conflict = "true" ∧ belief.conflict = "false" → violate(x0, y0))
+19. Q[x0, y0](market.trend = "increasing prices" ∧ item.price = "100 dollars" ∧ transaction.success_rate = "high" → violate(x0, y0))
+20. Q[x0, y0](purchase.time = "morning" ∧ purchase.time = "evening" → violate(x0, y0))
+21. Q[x0, y0](customer.intent = "buy" ∧ customer.intent = "not buy" → violate(x0, y0))
+22. Q[x0, y0](item.comparison = "better than competitors" ∧ item.comparison = "worse than competitors" → violate(x0, y0))
+23. Q[x0, y0](belief.source = "market" ∧ belief.accuracy = "inaccurate" ∧ belief.update = "recent" → violate(x0, y0))
+24. Q[x0, y0](transaction.method = "online" ∧ transaction.method = "in-store" → violate(x0, y0))
+25. Q[x0, y0](customer.expectation_level = "low" ∧ customer.satisfaction = "satisfied with the price" ∧ transaction.success = "failed" → violate(x0, y0))
+26. Q[x0, y0](item.discount = "10%" ∧ item.discount = "0%" → violate(x0, y0))
+27. Q[x0, y0](seller.price = "1000 dollars" ∧ seller.price = "100 dollars" → violate(x0, y0))
+28. Q[x0, y0](transaction.success_rate = "low" ∧ transaction.success = "successful" → violate(x0, y0))
+29. Q[x0, y0](customer.experience = "positive" ∧ transaction.feedback = "negative" → violate(x0, y0))
+30. Q[x0, y0](item.availability = "not available for purchase" ∧ purchase.outcome = "successful purchase" → violate(x0, y0))

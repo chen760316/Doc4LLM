@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 685)
+S1: You can do almost anything when in battle, but you must have power.
+S2: Without air cover, they were spotted off the coast of Kuantan and sunk by Japanese bombers.
+
+Predicates:
+1. Battle.has_power
+2. Battle.allows_success
+3. Air_cover.is_necessary
+4. Air_cover.is_absent
+5. Japanese_bombers.sink_vessels
+6. Kuantan.is_a_location
+7. Vessels.are_spotted
+8. Vessels.are_sunk
+9. Power.enables_actions
+10. Actions.can_be_done
+11. Success.requires_power
+12. Failure.is_due_to_lack_of_air_cover
+13. Coast.is_a_location
+14. Japanese_bombers.perform_attacks
+15. Entities.have_attributes
+16. Entities.can_fail
+17. Entities.can_succeed
+18. Causal_relationship.exists
+19. M_NLI(S1, S2).is_true
+20. Causal(Battle, Success).is_valid
+21. Causal(Lack_of_air_cover, Failure).is_valid
+22. Relationship(air_cover, vessels).is_critical
+23. Relationship(power, battle).is_enabling
+24. Relationship(Japanese_bombers, vessels).is_damaging
+25. Relationship(vessels, coast).is_spatial
+26. Relationship(vessels, air_cover).is_defensive
+27. Relationship(success, power).is_positive
+28. Relationship(failure, air_cover).is_negative
+29. Causal(Battle, Power).is_enabling
+30. Violate(Power, Success).is_possible
+
+Rules:
+1. Q[You, Battle.has_power == true, Battle.allows_success == true](Premise → Causal(You, Battle.allows_success))
+2. Q[You, Air_cover.is_necessary == true, Air_cover.is_absent == true](Premise → Causal(You, Failure.is_due_to_lack_of_air_cover))
+3. Q[You, Battle.has_power == true, Actions.can_be_done == true](Premise → Causal(You, Actions.can_be_done))
+4. Q[You, Air_cover.is_absent == true, Vessels.are_spotted == true](Premise → Causal(You, Vessels.are_spotted))
+5. Q[You, Air_cover.is_absent == true, Japanese_bombers.perform_attacks == true](Premise → Causal(You, Japanese_bombers.perform_attacks))
+6. Q[You, Vessels.are_spotted == true, Japanese_bombers.sink_vessels == true](Premise → Causal(You, Japanese_bombers.sink_vessels))
+7. Q[You, Vessels.are_sunk == true, Failure.is_due_to_lack_of_air_cover == true](Premise → Causal(You, Failure.is_due_to_lack_of_air_cover))
+8. Q[You, Battle.has_power == true, Success.requires_power == true](Premise → Causal(You, Success.requires_power))
+9. Q[You, Power.enables_actions == true, Actions.can_be_done == true](Premise → Causal(You, Actions.can_be_done))
+10. Q[You, Air_cover.is_necessary == true, Air_cover.is_absent == true](Premise → Causal(You, Failure.is_due_to_lack_of_air_cover))
+11. Q[You, Battle.allows_success == true, Success.requires_power == true](Premise → Causal(You, Success.requires_power))
+12. Q[You, Japanese_bombers.sink_vessels == true, Vessels.are_sunk == true](Premise → Causal(You, Vessels.are_sunk))
+13. Q[You, Coast.is_a_location == true, Vessels.are_spotted == true](Premise → Causal(You, Vessels.are_spotted))
+14. Q[You, Relationship(power, battle).is_enabling == true, Battle.has_power == true](Premise → Causal(You, Battle.has_power))
+15. Q[You, Relationship(air_cover, vessels).is_critical == true, Air_cover.is_absent == true](Premise → Causal(You, Failure.is_due_to_lack_of_air_cover))
+16. Q[You, Relationship(success, power).is_positive == true, Success.requires_power == true](Premise → Causal(You, Success.requires_power))
+17. Q[You, Relationship(failure, air_cover).is_negative == true, Air_cover.is_absent == true](Premise → Causal(You, Failure.is_due_to_lack_of_air_cover))
+18. Q[You, Causal(Battle, Power).is_enabling == true, Battle.has_power == true](Premise → Causal(You, Battle.has_power))
+19. Q[You, Entities.can_fail == true, Failure.is_due_to_lack_of_air_cover == true](Premise → Causal(You, Failure.is_due_to_lack_of_air_cover))
+20. Q[You, Entities.can_succeed == true, Success.requires_power == true](Premise → Causal(You, Success.requires_power))
+21. Q[You, Causal(Lack_of_air_cover, Failure).is_valid == true, Air_cover.is_absent == true](Premise → Causal(You, Failure.is_due_to_lack_of_air_cover))
+22. Q[You, Relationship(vessels, air_cover).is_defensive == true, Air_cover.is_necessary == true](Premise → Causal(You, Air_cover.is_necessary))
+23. Q[You, Relationship(Japanese_bombers, vessels).is_damaging == true, Japanese_bombers.sink_vessels == true](Premise → Causal(You, Japanese_bombers.sink_vessels))
+24. Q[You, Causal(Battle, Success).is_valid == true, Battle.allows_success == true](Premise → Causal(You, Battle.allows_success))
+25. Q[You, Power.enables_actions == true, Actions.can_be_done == true](Premise → Causal(You, Actions.can_be_done))
+26. Q[You, Vessels.are_sunk == true, Japanese_bombers.sink_vessels == true](Premise → Causal(You, Japanese_bombers.sink_vessels))
+27. Q[You, Air_cover.is_necessary == true, Vessels.are_spotted == true](Premise → Causal(You, Vessels.are_spotted))
+28. Q[You, Battle.has_power == true, Success.requires_power == true](Premise → Causal(You, Success.requires_power))
+29. Q[You, Air_cover.is_absent == true, Vessels.are_sunk == true](Premise → Causal(You, Vessels.are_sunk))
+30. Q[You, Causal(Battle, Power).is_enabling == true, Battle.has_power == true](Premise → Causal(You, Battle.has_power))

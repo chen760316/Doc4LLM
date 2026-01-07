@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 1387)
+S1: A man and woman stand next to a table covered in beer glasses and pitchers.
+S2: The man and woman are at a preschool.
+
+Predicates:
+1. Man.location
+2. Woman.location
+3. Table.covered_with
+4. Beer_glasses.type
+5. Beer_pitchers.type
+6. Man.gender
+7. Woman.gender
+8. Preschool.location
+9. Social_setting.type
+10. Recreational_setting.type
+11. Educational_setting.type
+12. Man.age
+13. Woman.age
+14. Table.material
+15. Beer_glasses.quantity
+16. Beer_pitchers.quantity
+17. Man.activity
+18. Woman.activity
+19. Preschool.age_group
+20. Table.shape
+21. Beer_glasses.color
+22. Beer_pitchers.color
+23. Man.relationship_with_woman
+24. Woman.relationship_with_man
+25. Preschool.teachers
+26. Preschool.students
+27. Social_event.type
+28. Recreational_event.type
+29. Educational_event.type
+30. M_NLI(S1, S2)
+
+Rules:
+1. Q[man, man.location, preschool.location](man.location == "table" → Relation(man, preschool))
+2. Q[woman, woman.location, preschool.location](woman.location == "table" → Relation(woman, preschool))
+3. Q[table, table.covered_with, beer_glasses.type](table.covered_with == "beer glasses" → Relation(table, beer_glasses))
+4. Q[table, table.covered_with, beer_pitchers.type](table.covered_with == "beer pitchers" → Relation(table, beer_pitchers))
+5. Q[man, man.gender, woman.gender](man.gender == "male" → Relation(man, woman))
+6. Q[woman, woman.gender, man.gender](woman.gender == "female" → Relation(woman, man))
+7. Q[man, man.activity, social_setting.type](man.activity == "socializing" → Relation(man, social_setting))
+8. Q[woman, woman.activity, social_setting.type](woman.activity == "socializing" → Relation(woman, social_setting))
+9. Q[table, table.material, beer_glasses.quantity](table.material == "wood" → Relation(table, beer_glasses))
+10. Q[table, table.shape, beer_pitchers.quantity](table.shape == "rectangular" → Relation(table, beer_pitchers))
+11. Q[beer_glasses, beer_glasses.quantity, social_event.type](beer_glasses.quantity > 5 → Relation(beer_glasses, social_event))
+12. Q[beer_pitchers, beer_pitchers.quantity, recreational_event.type](beer_pitchers.quantity > 2 → Relation(beer_pitchers, recreational_event))
+13. Q[man, man.age, woman.age](man.age > 21 → Relation(man, woman))
+14. Q[woman, woman.age, man.age](woman.age > 21 → Relation(woman, man))
+15. Q[preschool, preschool.teachers, educational_event.type](preschool.teachers > 1 → Relation(preschool, educational_event))
+16. Q[preschool, preschool.students, educational_event.type](preschool.students > 10 → Relation(preschool, educational_event))
+17. Q[man, man.activity, recreational_setting.type](man.activity == "playing" → Relation(man, recreational_setting))
+18. Q[woman, woman.activity, recreational_setting.type](woman.activity == "playing" → Relation(woman, recreational_setting))
+19. Q[man, man.activity, educational_setting.type](man.activity == "teaching" → Relation(man, educational_setting))
+20. Q[woman, woman.activity, educational_setting.type](woman.activity == "teaching" → Relation(woman, educational_setting))
+21. Q[table, table.covered_with, social_event.type](table.covered_with == "beer glasses" → Relation(table, social_event))
+22. Q[table, table.covered_with, recreational_event.type](table.covered_with == "beer pitchers" → Relation(table, recreational_event))
+23. Q[preschool, preschool.age_group, educational_setting.type](preschool.age_group == "3-5 years" → Relation(preschool, educational_setting))
+24. Q[man, man.relationship_with_woman, social_setting.type](man.relationship_with_woman == "friends" → Relation(man, social_setting))
+25. Q[woman, woman.relationship_with_man, social_setting.type](woman.relationship_with_man == "friends" → Relation(woman, social_setting))
+26. Q[man, man.activity, educational_event.type](man.activity == "learning" → Relation(man, educational_event))
+27. Q[woman, woman.activity, educational_event.type](woman.activity == "learning" → Relation(woman, educational_event))
+28. Q[beer_glasses, beer_glasses.color, social_event.type](beer_glasses.color == "clear" → Relation(beer_glasses, social_event))
+29. Q[beer_pitchers, beer_pitchers.color, recreational_event.type](beer_pitchers.color == "green" → Relation(beer_pitchers, recreational_event))
+30. Q[M_NLI(S1, S2), man, woman](M_NLI(S1, S2) == "contradiction" → Relation(man, woman))

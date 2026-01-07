@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 1467)
+S1: A gentleman with two milk jugs.
+S2: The gentleman only has one milk jug.
+
+Predicates:
+1. Gentleman.has_two_milk_jugs
+2. Gentleman.has_one_milk_jug
+3. M_NLI(S1, S2)
+4. Numeric(2, 1)
+5. violate(2, 1)
+6. MilkJug.count
+7. Gentleman.owns_milk_jugs
+8. MilkJug.is_full
+9. Gentleman.is_a
+10. MilkJug.is_a
+11. Gentleman.has_property
+12. MilkJug.has_capacity
+13. M_NLI(S2, S1)
+14. Numeric(1, 2)
+15. violate(1, 2)
+16. Gentleman.possesses
+17. MilkJug.is_empty
+18. Gentleman.has_exclusive_rights
+19. MilkJug.is_owned_by
+20. Gentleman.has_different_quantities
+21. MilkJug.is_identified_by
+22. Gentleman.has_attributes
+23. MilkJug.is_used_for
+24. Gentleman.is_described_as
+25. MilkJug.is_classified_as
+26. M_NLI(S1, S1)
+27. Numeric(2, 2)
+28. violate(2, 2)
+29. Gentleman.has_milk_jug_count
+30. MilkJug.is_a_container
+
+Rules:
+1. Q[gentleman, x0, y0](Gentleman.has_two_milk_jugs == true → Numeric(2, 1))
+2. Q[gentleman, x0, y0](Gentleman.has_one_milk_jug == true → Numeric(1, 2))
+3. Q[gentleman, x0, y0](Gentleman.has_two_milk_jugs == true ∧ Gentleman.has_one_milk_jug == true → violate(2, 1))
+4. Q[gentleman, x0, y0](Gentleman.has_two_milk_jugs == true ∧ Gentleman.has_one_milk_jug == false → Numeric(2, 0))
+5. Q[gentleman, x0, y0](Gentleman.has_one_milk_jug == true ∧ Gentleman.has_two_milk_jugs == false → Numeric(1, 0))
+6. Q[gentleman, x0, y0](Gentleman.has_two_milk_jugs == false ∧ Gentleman.has_one_milk_jug == true → Numeric(0, 1))
+7. Q[gentleman, x0, y0](Gentleman.has_two_milk_jugs == false ∧ Gentleman.has_one_milk_jug == false → Numeric(0, 0))
+8. Q[gentleman, x0, y0](Gentleman.has_different_quantities == true → violate(2, 1))
+9. Q[gentleman, x0, y0](Gentleman.owns_milk_jugs == true ∧ MilkJug.count == 2 → Numeric(2, 1))
+10. Q[gentleman, x0, y0](Gentleman.owns_milk_jugs == true ∧ MilkJug.count == 1 → Numeric(1, 2))
+11. Q[gentleman, x0, y0](MilkJug.count == 2 ∧ Gentleman.has_one_milk_jug == true → violate(2, 1))
+12. Q[gentleman, x0, y0](MilkJug.count == 1 ∧ Gentleman.has_two_milk_jugs == true → violate(1, 2))
+13. Q[gentleman, x0, y0](Gentleman.has_milk_jug_count == 2 → Numeric(2, 1))
+14. Q[gentleman, x0, y0](Gentleman.has_milk_jug_count == 1 → Numeric(1, 2))
+15. Q[gentleman, x0, y0](Gentleman.has_milk_jug_count == 2 ∧ Gentleman.has_one_milk_jug == true → violate(2, 1))
+16. Q[gentleman, x0, y0](Gentleman.has_milk_jug_count == 1 ∧ Gentleman.has_two_milk_jugs == true → violate(1, 2))
+17. Q[gentleman, x0, y0](Gentleman.has_property == "two milk jugs" → Numeric(2, 1))
+18. Q[gentleman, x0, y0](Gentleman.has_property == "one milk jug" → Numeric(1, 2))
+19. Q[gentleman, x0, y0](Gentleman.has_property == "two milk jugs" ∧ Gentleman.has_property == "one milk jug" → violate(2, 1))
+20. Q[gentleman, x0, y0](Gentleman.has_property == "one milk jug" ∧ Gentleman.has_property == "two milk jugs" → violate(1, 2))
+21. Q[gentleman, x0, y0](MilkJug.is_full == true ∧ Gentleman.has_two_milk_jugs == true → Numeric(2, 1))
+22. Q[gentleman, x0, y0](MilkJug.is_empty == true ∧ Gentleman.has_one_milk_jug == true → Numeric(1, 2))
+23. Q[gentleman, x0, y0](MilkJug.is_full == true ∧ Gentleman.has_one_milk_jug == true → violate(1, 2))
+24. Q[gentleman, x0, y0](MilkJug.is_empty == true ∧ Gentleman.has_two_milk_jugs == true → violate(2, 1))
+25. Q[gentleman, x0, y0](Gentleman.is_a == "man" ∧ Gentleman.has_two_milk_jugs == true → Numeric(2, 1))
+26. Q[gentleman, x0, y0](Gentleman.is_a == "man" ∧ Gentleman.has_one_milk_jug == true → Numeric(1, 2))
+27. Q[gentleman, x0, y0](Gentleman.is_a == "man" ∧ Gentleman.has_two_milk_jugs == true ∧ Gentleman.has_one_milk_jug == true → violate(2, 1))
+28. Q[gentleman, x0, y0](Gentleman.is_a == "man" ∧ Gentleman.has_one_milk_jug == true ∧ Gentleman.has_two_milk_jugs == true → violate(1, 2))
+29. Q[gentleman, x0, y0](Gentleman.has_attributes == "two milk jugs" → Numeric(2, 1))
+30. Q[gentleman, x0, y0](Gentleman.has_attributes == "one milk jug" → Numeric(1, 2))

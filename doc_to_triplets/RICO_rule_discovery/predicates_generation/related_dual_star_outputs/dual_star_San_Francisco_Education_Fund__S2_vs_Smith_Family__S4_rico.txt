@@ -1,0 +1,36 @@
+Predicates:
+San Francisco Education Fund.type != "fund"
+San Francisco Education Fund.type = "fund"
+San Francisco Education Fund__S2_Smith Family__S4.relationship != "related"
+San Francisco Education Fund__S2_Smith Family__S4.relationship = "related"
+Smith Family__S4_San Francisco Education Fund.focus != "support underrepresented students pursuing careers in AI and medicine"
+Smith Family__S4_San Francisco Education Fund.focus = "support underrepresented students pursuing careers in AI and medicine"
+Smith Family__S4_San Francisco Education Fund.relationship != "The Smiths co-funded a scholarship program with the San Francisco Education Fund."
+Smith Family__S4_San Francisco Education Fund.relationship != San Francisco Education Fund__S2_Smith Family__S4.relationship
+Smith Family__S4_San Francisco Education Fund.relationship = "The Smiths co-funded a scholarship program with the San Francisco Education Fund."
+Smith Family__S4_Tokyo.relationship != "The Smith family traveled to Tokyo."
+Smith Family__S4_Tokyo.relationship != San Francisco Education Fund__S2_Smith Family__S4.relationship
+Smith Family__S4_Tokyo.relationship != Smith Family__S4_San Francisco Education Fund.relationship
+Smith Family__S4_Tokyo.relationship = "The Smith family traveled to Tokyo."
+Smith Family__S4_Tokyo.year != 2025
+Smith Family__S4_Tokyo.year < 2026
+Smith Family__S4_Tokyo.year <= 2025
+Smith Family__S4_Tokyo.year = 2025
+Smith Family__S4_Tokyo.year > 2024
+Smith Family__S4_Tokyo.year >= 2025
+contra("use n", "San Francisco Education Fund")
+linkage(San Francisco Education Fund__S2, Smith Family__S4)
+linkage(Smith Family__S4, San Francisco Education Fund)
+linkage(Smith Family__S4, Tokyo)
+
+Rules:
+Q[San Francisco Education Fund__S2,Smith Family__S4] (Smith Family__S4_Tokyo.relationship != San Francisco Education Fund__S2_Smith Family__S4.relationship ∧ San Francisco Education Fund__S2_Smith Family__S4.relationship != "related" → San Francisco Education Fund__S2_Smith Family__S4.relationship != "related")
+Q[San Francisco Education Fund__S2,Smith Family__S4] (Smith Family__S4_San Francisco Education Fund.focus != "support underrepresented students pursuing careers in AI and medicine" ∧ linkage(Smith Family__S4, San Francisco Education Fund) → linkage(Smith Family__S4, San Francisco Education Fund))
+Q[San Francisco Education Fund__S2,Smith Family__S4] (Smith Family__S4_San Francisco Education Fund.focus != "support underrepresented students pursuing careers in AI and medicine" ∧ contra("use n", "San Francisco Education Fund") → contra("use n", "San Francisco Education Fund"))
+Q[San Francisco Education Fund__S2,Smith Family__S4] (Smith Family__S4_San Francisco Education Fund.relationship != San Francisco Education Fund__S2_Smith Family__S4.relationship ∧ Smith Family__S4_Tokyo.year >= 2025 → Smith Family__S4_Tokyo.year >= 2025)
+Q[San Francisco Education Fund__S2,Smith Family__S4] (Smith Family__S4_Tokyo.year <= 2025 ∧ Smith Family__S4_San Francisco Education Fund.focus != "support underrepresented students pursuing careers in AI and medicine" → Smith Family__S4_Tokyo.year <= 2025)
+Q[San Francisco Education Fund__S2,Smith Family__S4] (Smith Family__S4_Tokyo.relationship = "The Smith family traveled to Tokyo." ∧ Smith Family__S4_San Francisco Education Fund.relationship != San Francisco Education Fund__S2_Smith Family__S4.relationship → Smith Family__S4_San Francisco Education Fund.relationship != San Francisco Education Fund__S2_Smith Family__S4.relationship)
+Q[San Francisco Education Fund__S2,Smith Family__S4] (Smith Family__S4_Tokyo.relationship != Smith Family__S4_San Francisco Education Fund.relationship ∧ Smith Family__S4_Tokyo.year != 2025 → Smith Family__S4_Tokyo.relationship != Smith Family__S4_San Francisco Education Fund.relationship)
+Q[San Francisco Education Fund__S2,Smith Family__S4] (Smith Family__S4_Tokyo.year < 2026 ∧ Smith Family__S4_Tokyo.relationship != Smith Family__S4_San Francisco Education Fund.relationship → Smith Family__S4_Tokyo.year < 2026)
+Q[San Francisco Education Fund__S2,Smith Family__S4] (Smith Family__S4_San Francisco Education Fund.relationship = "The Smiths co-funded a scholarship program with the San Francisco Education Fund." ∧ San Francisco Education Fund.type != "fund" → San Francisco Education Fund.type != "fund")
+Q[San Francisco Education Fund__S2,Smith Family__S4] (linkage(San Francisco Education Fund__S2, Smith Family__S4) ∧ Smith Family__S4_Tokyo.relationship != Smith Family__S4_San Francisco Education Fund.relationship → linkage(San Francisco Education Fund__S2, Smith Family__S4))

@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 202)
+S1: The booger on the balloon sailed into a house.
+S2: The booger on the balloon flew out of the house.
+
+Predicates:
+1. Booger.on_balloon
+2. Booger.sailed_into_house
+3. Booger.flew_out_of_house
+4. Balloon.has_booger
+5. House.contains_booger
+6. House.contains_balloon
+7. Booger.is_object
+8. Balloon.is_object
+9. House.is_object
+10. Sailing.is_action
+11. Flying.is_action
+12. Action.cannot_occur_simultaneously
+13. Relation.booger_sailing
+14. Relation.booger_flying
+15. Relation.house_containing_booger
+16. Relation.house_containing_balloon
+17. Violate.sailing_flying
+18. M_NLI(S1, S2)
+19. M_NLI(S2, S1)
+20. Entity.booger
+21. Entity.balloon
+22. Entity.house
+23. Action.sailing
+24. Action.flying
+25. Relationship.contains
+26. Relationship.sails_into
+27. Relationship.flies_out_of
+28. Predicate.booger_on_balloon
+29. Predicate.booger_in_house
+30. Predicate.balloon_in_house
+
+Rules:
+1. Q[The, Booger.on_balloon == true, Booger.sailed_into_house == true](Premise → Conclusion) → Relation(booger_sailing, house_containing_booger)
+2. Q[The, Booger.on_balloon == true, Booger.flew_out_of_house == true](Premise → Conclusion) → Relation(booger_flying, house_containing_booger)
+3. Q[The, Booger.on_balloon == true, Action.sailing == true](Premise → Conclusion) → Relation(booger_sailing, y0)
+4. Q[The, Booger.on_balloon == true, Action.flying == true](Premise → Conclusion) → Relation(booger_flying, y0)
+5. Q[The, House.contains_booger == true, Booger.sailed_into_house == true](Premise → Conclusion) → Relation(house_containing_booger, booger_sailing)
+6. Q[The, House.contains_booger == true, Booger.flew_out_of_house == true](Premise → Conclusion) → Relation(house_containing_booger, booger_flying)
+7. Q[The, House.is_object == true, Booger.sailed_into_house == true](Premise → Conclusion) → Relation(house_containing_booger, booger_sailing)
+8. Q[The, House.is_object == true, Booger.flew_out_of_house == true](Premise → Conclusion) → Relation(house_containing_booger, booger_flying)
+9. Q[The, Balloon.has_booger == true, Booger.sailed_into_house == true](Premise → Conclusion) → Relation(balloon_in_house, booger_sailing)
+10. Q[The, Balloon.has_booger == true, Booger.flew_out_of_house == true](Premise → Conclusion) → Relation(balloon_in_house, booger_flying)
+11. Q[The, Booger.is_object == true, Booger.sailed_into_house == true](Premise → Conclusion) → Relation(booger_sailing, y0)
+12. Q[The, Booger.is_object == true, Booger.flew_out_of_house == true](Premise → Conclusion) → Relation(booger_flying, y0)
+13. Q[The, Action.sailing == true, Action.flying == true](Premise → Conclusion) → Relation(violate.sailing_flying, y0)
+14. Q[The, Action.cannot_occur_simultaneously == true, Booger.sailed_into_house == true](Premise → Conclusion) → Relation(violate.sailing_flying, booger_sailing)
+15. Q[The, Action.cannot_occur_simultaneously == true, Booger.flew_out_of_house == true](Premise → Conclusion) → Relation(violate.sailing_flying, booger_flying)
+16. Q[The, House.contains_balloon == true, Booger.sailed_into_house == true](Premise → Conclusion) → Relation(house_containing_balloon, booger_sailing)
+17. Q[The, House.contains_balloon == true, Booger.flew_out_of_house == true](Premise → Conclusion) → Relation(house_containing_balloon, booger_flying)
+18. Q[The, Booger.sailed_into_house == true, House.is_object == true](Premise → Conclusion) → Relation(booger_sailing, house_containing_booger)
+19. Q[The, Booger.flew_out_of_house == true, House.is_object == true](Premise → Conclusion) → Relation(booger_flying, house_containing_booger)
+20. Q[The, Booger.sailed_into_house == true, Balloon.is_object == true](Premise → Conclusion) → Relation(booger_sailing, y0)
+21. Q[The, Booger.flew_out_of_house == true, Balloon.is_object == true](Premise → Conclusion) → Relation(booger_flying, y0)
+22. Q[The, Booger.sailed_into_house == true, Predicate.booger_in_house == true](Premise → Conclusion) → Relation(booger_sailing, house_containing_booger)
+23. Q[The, Booger.flew_out_of_house == true, Predicate.booger_in_house == true](Premise → Conclusion) → Relation(booger_flying, house_containing_booger)
+24. Q[The, Booger.sailed_into_house == true, Predicate.balloon_in_house == true](Premise → Conclusion) → Relation(booger_sailing, balloon_in_house)
+25. Q[The, Booger.flew_out_of_house == true, Predicate.balloon_in_house == true](Premise → Conclusion) → Relation(booger_flying, balloon_in_house)
+26. Q[The, Action.sailing == true, Action.flying == true](Premise → Conclusion) → Relation(violate.sailing_flying, y0)
+27. Q[The, Booger.on_balloon == true, Action.cannot_occur_simultaneously == true](Premise → Conclusion) → Relation(violate.sailing_flying, y0)
+28. Q[The, House.contains_booger == true, Action.cannot_occur_simultaneously == true](Premise → Conclusion) → Relation(violate.sailing_flying, y0)
+29. Q[The, House.contains_balloon == true, Action.cannot_occur_simultaneously == true](Premise → Conclusion) → Relation(violate.sailing_flying, y0)
+30. Q[The, Booger.is_object == true, Action.cannot_occur_simultaneously == true](Premise → Conclusion) → Relation(violate.sailing_flying, y0)

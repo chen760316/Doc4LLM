@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 206)
+S1: Palm Inc. recently announced that its Treo 650 smart phone is no longer being shipped to Europe, since it doesn't meet RoHS requirements.
+S2: And several Apple Computer Inc. products will not be sold in Europe for the same reason.
+
+Predicates:
+1. Palm_Inc.product_type.Treo_650
+2. Treo_650.shipping_status.not_shipped
+3. Treo_650.region.Europe
+4. Treo_650.RoHS_compliance.not_compliant
+5. Apple_Computer_Inc.product_type.products
+6. Apple_products.shipping_status.not_sold
+7. Apple_products.region.Europe
+8. Apple_products.RoHS_compliance.not_compliant
+9. RoHS.requirements.met
+10. RoHS.requirements.not_met
+11. shipping_status.Treo_650.not_shipped_to_Europe
+12. shipping_status.Apple_products.not_sold_in_Europe
+13. compliance_status.Treo_650.RoHS_not_met
+14. compliance_status.Apple_products.RoHS_not_met
+15. relationship.Treo_650.not_meeting.requirements
+16. relationship.Apple_products.not_meeting.requirements
+17. M_NLI(S1, S2)
+18. Negation(Treo_650, RoHS_compliance)
+19. Negation(Apple_products, RoHS_compliance)
+20. violate(Treo_650, RoHS_requirements)
+21. violate(Apple_products, RoHS_requirements)
+22. shipping_decision.Treo_650.not_shipped_due_to_RoHS
+23. shipping_decision.Apple_products.not_sold_due_to_RoHS
+24. market_status.Treo_650.not_available_in_Europe
+25. market_status.Apple_products.not_available_in_Europe
+26. compliance_check.Treo_650.failed
+27. compliance_check.Apple_products.failed
+28. product_availability.Treo_650.not_available
+29. product_availability.Apple_products.not_available
+30. regulation.RoHS.enforced
+
+Rules:
+1. Q[Palm, Treo_650, RoHS_compliance](Treo_650.RoHS_compliance.not_compliant → Negation(Treo_650, RoHS_compliance))
+2. Q[Palm, Treo_650, shipping_status](Treo_650.shipping_status.not_shipped → Negation(Treo_650, shipping_status))
+3. Q[Palm, Treo_650, region](Treo_650.region.Europe → Negation(Treo_650, region))
+4. Q[Palm, Treo_650, compliance_status](compliance_status.Treo_650.RoHS_not_met → Negation(Treo_650, compliance_status))
+5. Q[Palm, Treo_650, shipping_decision](shipping_decision.Treo_650.not_shipped_due_to_RoHS → Negation(Treo_650, shipping_decision))
+6. Q[Palm, Treo_650, market_status](market_status.Treo_650.not_available_in_Europe → Negation(Treo_650, market_status))
+7. Q[Palm, Treo_650, violate](violate(Treo_650, RoHS_requirements) → Negation(Treo_650, violate))
+8. Q[Palm, Treo_650, compliance_check](compliance_check.Treo_650.failed → Negation(Treo_650, compliance_check))
+9. Q[Palm, Treo_650, product_availability](product_availability.Treo_650.not_available → Negation(Treo_650, product_availability))
+10. Q[Palm, Treo_650, relationship](relationship.Treo_650.not_meeting.requirements → Negation(Treo_650, relationship))
+11. Q[Apple, Apple_products, RoHS_compliance](Apple_products.RoHS_compliance.not_compliant → Negation(Apple_products, RoHS_compliance))
+12. Q[Apple, Apple_products, shipping_status](Apple_products.shipping_status.not_sold → Negation(Apple_products, shipping_status))
+13. Q[Apple, Apple_products, region](Apple_products.region.Europe → Negation(Apple_products, region))
+14. Q[Apple, Apple_products, compliance_status](compliance_status.Apple_products.RoHS_not_met → Negation(Apple_products, compliance_status))
+15. Q[Apple, Apple_products, shipping_decision](shipping_decision.Apple_products.not_sold_due_to_RoHS → Negation(Apple_products, shipping_decision))
+16. Q[Apple, Apple_products, market_status](market_status.Apple_products.not_available_in_Europe → Negation(Apple_products, market_status))
+17. Q[Apple, Apple_products, violate](violate(Apple_products, RoHS_requirements) → Negation(Apple_products, violate))
+18. Q[Apple, Apple_products, compliance_check](compliance_check.Apple_products.failed → Negation(Apple_products, compliance_check))
+19. Q[Apple, Apple_products, product_availability](product_availability.Apple_products.not_available → Negation(Apple_products, product_availability))
+20. Q[Apple, Apple_products, relationship](relationship.Apple_products.not_meeting.requirements → Negation(Apple_products, relationship))
+21. Q[Palm, Treo_650, RoHS.requirements](RoHS.requirements.not_met → Negation(Treo_650, RoHS.requirements))
+22. Q[Apple, Apple_products, RoHS.requirements](RoHS.requirements.not_met → Negation(Apple_products, RoHS.requirements))
+23. Q[Palm, Treo_650, shipping_status](shipping_status.Treo_650.not_shipped_to_Europe → Negation(Treo_650, shipping_status))
+24. Q[Apple, Apple_products, shipping_status](shipping_status.Apple_products.not_sold_in_Europe → Negation(Apple_products, shipping_status))
+25. Q[Palm, Treo_650, regulation](regulation.RoHS.enforced → Negation(Treo_650, regulation))
+26. Q[Apple, Apple_products, regulation](regulation.RoHS.enforced → Negation(Apple_products, regulation))
+27. Q[Palm, Treo_650, compliance_check](compliance_check.Treo_650.failed → Negation(Treo_650, compliance_check))
+28. Q[Apple, Apple_products, compliance_check](compliance_check.Apple_products.failed → Negation(Apple_products, compliance_check))
+29. Q[Palm, Treo_650, product_availability](product_availability.Treo_650.not_available → Negation(Treo_650, product_availability))
+30. Q[Apple, Apple_products, product_availability](product_availability.Apple_products.not_available → Negation(Apple_products, product_availability))

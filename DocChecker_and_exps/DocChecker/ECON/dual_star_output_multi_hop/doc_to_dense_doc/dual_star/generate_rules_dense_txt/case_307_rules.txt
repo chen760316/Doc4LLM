@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 307)
+S1: People that violated China's one child policy were fined heavily and some were sterilized.
+S2: People that violated China's one child policy were rewarded with bonuses and additional benefits.
+
+Predicates:
+1. People.violated_one_child_policy
+2. People.fined_heavily
+3. People.sterilized
+4. People.rewarded_with_bonuses
+5. People.received_additional_benefits
+6. One_Child_Policy.violated_by(People)
+7. Punishment.fines
+8. Punishment.sterilization
+9. Reward.bonuses
+10. Reward.additional_benefits
+11. Violation.cannot_result_in(Punishment, Reward)
+12. Causal(People.violated_one_child_policy, Punishment)
+13. Causal(People.violated_one_child_policy, Reward)
+14. M_NLI(S1, S2)
+15. violate(People, One_Child_Policy)
+16. Policy.one_child
+17. Policy.enforced_in(China)
+18. Consequence(People.violated_one_child_policy, Punishment)
+19. Consequence(People.violated_one_child_policy, Reward)
+20. Fines.associated_with(People.violated_one_child_policy)
+21. Sterilization.associated_with(People.violated_one_child_policy)
+22. Bonuses.associated_with(People.violated_one_child_policy)
+23. Benefits.associated_with(People.violated_one_child_policy)
+24. Violation.results_in(Punishment)
+25. Violation.results_in(Reward)
+26. Policy.enforcement_measures(Punishment)
+27. Policy.enforcement_measures(Reward)
+28. People.experienced(Punishment)
+29. People.experienced(Reward)
+30. One_Child_Policy.has(Punishment, Reward)
+
+Rules:
+1. Q[People, People.violated_one_child_policy, Punishment](People.violated_one_child_policy == true → Causal(People.violated_one_child_policy, Punishment))
+2. Q[People, People.violated_one_child_policy, Reward](People.violated_one_child_policy == true → Causal(People.violated_one_child_policy, Reward))
+3. Q[People, People.fined_heavily, Punishment](People.fined_heavily == true → Causal(People.violated_one_child_policy, Punishment))
+4. Q[People, People.sterilized, Punishment](People.sterilized == true → Causal(People.violated_one_child_policy, Punishment))
+5. Q[People, People.rewarded_with_bonuses, Reward](People.rewarded_with_bonuses == true → Causal(People.violated_one_child_policy, Reward))
+6. Q[People, People.received_additional_benefits, Reward](People.received_additional_benefits == true → Causal(People.violated_one_child_policy, Reward))
+7. Q[People, Violation.cannot_result_in(Punishment, Reward), Causal](Violation.cannot_result_in(Punishment, Reward) == true → Causal(People.violated_one_child_policy, Punishment))
+8. Q[People, Violation.results_in(Punishment), Causal](Violation.results_in(Punishment) == true → Causal(People.violated_one_child_policy, Punishment))
+9. Q[People, Violation.results_in(Reward), Causal](Violation.results_in(Reward) == true → Causal(People.violated_one_child_policy, Reward))
+10. Q[People, Policy.enforcement_measures(Punishment), Causal](Policy.enforcement_measures(Punishment) == true → Causal(People.violated_one_child_policy, Punishment))
+11. Q[People, Policy.enforcement_measures(Reward), Causal](Policy.enforcement_measures(Reward) == true → Causal(People.violated_one_child_policy, Reward))
+12. Q[People, Fines.associated_with(People.violated_one_child_policy), Causal](Fines.associated_with(People.violated_one_child_policy) == true → Causal(People.violated_one_child_policy, Punishment))
+13. Q[People, Sterilization.associated_with(People.violated_one_child_policy), Causal](Sterilization.associated_with(People.violated_one_child_policy) == true → Causal(People.violated_one_child_policy, Punishment))
+14. Q[People, Bonuses.associated_with(People.violated_one_child_policy), Causal](Bonuses.associated_with(People.violated_one_child_policy) == true → Causal(People.violated_one_child_policy, Reward))
+15. Q[People, Benefits.associated_with(People.violated_one_child_policy), Causal](Benefits.associated_with(People.violated_one_child_policy) == true → Causal(People.violated_one_child_policy, Reward))
+16. Q[People, Consequence(People.violated_one_child_policy, Punishment), Causal](Consequence(People.violated_one_child_policy, Punishment) == true → Causal(People.violated_one_child_policy, Punishment))
+17. Q[People, Consequence(People.violated_one_child_policy, Reward), Causal](Consequence(People.violated_one_child_policy, Reward) == true → Causal(People.violated_one_child_policy, Reward))
+18. Q[People, One_Child_Policy.violated_by(People), Causal](One_Child_Policy.violated_by(People) == true → Causal(People.violated_one_child_policy, Punishment))
+19. Q[People, Policy.one_child, Causal](Policy.one_child == true → Causal(People.violated_one_child_policy, Punishment))
+20. Q[People, Policy.enforced_in(China), Causal](Policy.enforced_in(China) == true → Causal(People.violated_one_child_policy, Punishment))
+21. Q[People, Causal(People.violated_one_child_policy, Reward), Causal](Causal(People.violated_one_child_policy, Reward) == true → Causal(People.violated_one_child_policy, Reward))
+22. Q[People, People.experienced(Punishment), Causal](People.experienced(Punishment) == true → Causal(People.violated_one_child_policy, Punishment))
+23. Q[People, People.experienced(Reward), Causal](People.experienced(Reward) == true → Causal(People.violated_one_child_policy, Reward))
+24. Q[People, One_Child_Policy.has(Punishment, Reward), Causal](One_Child_Policy.has(Punishment, Reward) == true → Causal(People.violated_one_child_policy, Punishment))
+25. Q[People, People.violated_one_child_policy, Violation.cannot_result_in](People.violated_one_child_policy == true → Violation.cannot_result_in(Punishment, Reward))
+26. Q[People, People.violated_one_child_policy, Violation.results_in](People.violated_one_child_policy == true → Violation.results_in(Punishment))
+27. Q[People, People.violated_one_child_policy, Violation.results_in](People.violated_one_child_policy == true → Violation.results_in(Reward))
+28. Q[People, Policy.one_child, Causal](Policy.one_child == true → Causal(People.violated_one_child_policy, Punishment))
+29. Q[People, Policy.enforcement_measures(Punishment), Causal](Policy.enforcement_measures(Punishment) == true → Causal(People.violated_one_child_policy, Punishment))
+30. Q[People, Policy.enforcement_measures(Reward), Causal](Policy.enforcement_measures(Reward) == true → Causal(People.violated_one_child_policy, Reward))

@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 57)
+S1: Receiving Party shall not use any Confidential Information for any purpose other than the purposes stated in Agreement.
+S2: You may not use Confidential Information for any other purpose.
+
+Predicates:
+1. Receiving_Party.use_confidential_information = false
+2. Agreement.allowed_purposes = true
+3. You.use_confidential_information = false
+4. Confidential_Information.allowed_use = Agreement.purposes
+5. Confidential_Information.allowed_use = You.purposes
+6. M_NLI(S1, S2) = true
+7. Causal(S1, S2) = true
+8. violate(S1, S2) = true
+9. Receiving_Party.purpose_restriction = true
+10. You.purpose_restriction = true
+11. Agreement.restriction_on_use = true
+12. Confidential_Information.use_scope = Agreement.purposes
+13. Confidential_Information.use_scope = You.purposes
+14. Receiving_Party.allowed_use = Agreement.purposes
+15. You.allowed_use = false
+16. Agreement.confidentiality_clause = true
+17. Confidential_Information.restriction = true
+18. Receiving_Party.purpose = Agreement.purposes
+19. You.purpose = false
+20. Agreement.enforcement = true
+21. Confidential_Information.scope = Agreement.purposes
+22. Receiving_Party.compliance = true
+23. You.compliance = false
+24. Agreement.legal_obligation = true
+25. Confidential_Information.usage_limit = true
+26. Receiving_Party.usage_limit = Agreement.purposes
+27. You.usage_limit = false
+28. Agreement.terms_of_use = true
+29. Confidential_Information.terms = Agreement.purposes
+30. Receiving_Party.violates_terms = true
+
+Rules:
+1. Q[Receiving, Receiving_Party.use_confidential_information == false → Causal(S1, S2)]
+2. Q[Receiving, Agreement.allowed_purposes == true → Causal(S1, S2)]
+3. Q[Receiving, Confidential_Information.allowed_use == Agreement.purposes → Causal(S1, S2)]
+4. Q[Receiving, Confidential_Information.allowed_use == You.purposes → Causal(S1, S2)]
+5. Q[Receiving, M_NLI(S1, S2) == true → Causal(S1, S2)]
+6. Q[Receiving, violate(S1, S2) == true → Causal(S1, S2)]
+7. Q[Receiving, Receiving_Party.purpose_restriction == true → Causal(S1, S2)]
+8. Q[Receiving, You.purpose_restriction == true → Causal(S1, S2)]
+9. Q[Receiving, Agreement.restriction_on_use == true → Causal(S1, S2)]
+10. Q[Receiving, Confidential_Information.use_scope == Agreement.purposes → Causal(S1, S2)]
+11. Q[Receiving, Confidential_Information.use_scope == You.purposes → Causal(S1, S2)]
+12. Q[Receiving, Receiving_Party.allowed_use == Agreement.purposes → Causal(S1, S2)]
+13. Q[Receiving, You.allowed_use == false → Causal(S1, S2)]
+14. Q[Receiving, Agreement.confidentiality_clause == true → Causal(S1, S2)]
+15. Q[Receiving, Confidential_Information.restriction == true → Causal(S1, S2)]
+16. Q[Receiving, Receiving_Party.purpose == Agreement.purposes → Causal(S1, S2)]
+17. Q[Receiving, You.purpose == false → Causal(S1, S2)]
+18. Q[Receiving, Agreement.enforcement == true → Causal(S1, S2)]
+19. Q[Receiving, Confidential_Information.usage_limit == true → Causal(S1, S2)]
+20. Q[Receiving, Receiving_Party.usage_limit == Agreement.purposes → Causal(S1, S2)]
+21. Q[Receiving, You.usage_limit == false → Causal(S1, S2)]
+22. Q[Receiving, Agreement.terms_of_use == true → Causal(S1, S2)]
+23. Q[Receiving, Confidential_Information.terms == Agreement.purposes → Causal(S1, S2)]
+24. Q[Receiving, Receiving_Party.violates_terms == true → Causal(S1, S2)]
+25. Q[You, You.use_confidential_information == false → Causal(S1, S2)]
+26. Q[You, Agreement.allowed_purposes == true → Causal(S1, S2)]
+27. Q[You, Confidential_Information.allowed_use == Agreement.purposes → Causal(S1, S2)]
+28. Q[You, Confidential_Information.allowed_use == You.purposes → Causal(S1, S2)]
+29. Q[You, M_NLI(S1, S2) == true → Causal(S1, S2)]
+30. Q[You, violate(S1, S2) == true → Causal(S1, S2)]

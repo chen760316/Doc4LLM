@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 931)
+S1: They have used a large sample of volumes.
+S2: The ratio of occurrence of hydrogen-ammonia planets and these super-dense water-oxygen worlds of theirs over the entire Galaxy -- and remember that they have actually conducted a survey of significant sample volumes of the Galaxy which we, without interstellar travel, cannot do -- is about 3 to 1.
+
+Predicates:
+1. Sample.large
+2. Sample.volume
+3. Survey.significant
+4. Galaxy.sample
+5. Ratio.occurrence
+6. Planet.hydrogen_ammonia
+7. World.super_dense_water_oxygen
+8. Ratio.value(3, 1)
+9. Entity.has_sample(Sample)
+10. Entity.conducted_survey(Survey)
+11. Survey.of(Galaxy)
+12. Sample.of(Galaxy)
+13. Ratio.of(Planet, World)
+14. Ratio.implies(limited_sample_size)
+15. Entity.uses(Sample)
+16. Sample.includes(volumes)
+17. Volume.is_large
+18. Entity.has_ratio(Ratio)
+19. Ratio.is(3_to_1)
+20. Survey.is_conducted
+21. Entity.lacks(interstellar_travel)
+22. Travel.is_interstellar
+23. Entity.cannot(do(Survey))
+24. Sample.is_large
+25. Volume.is_significant
+26. Ratio.is_about(3_to_1)
+27. Entity.has_occurred(Occurrence)
+28. Occurrence.is_ratio(3_to_1)
+29. Entity.has_world(World)
+30. Entity.has_planet(Planet)
+
+Rules:
+1. Q[They, Sample.large, Ratio.value(3, 1)](Entity.uses(Sample) ∧ Sample.large → Numeric(1, 3))
+2. Q[They, Sample.volume, Ratio.value(3, 1)](Entity.uses(Sample) ∧ Sample.volume → Numeric(1, 3))
+3. Q[They, Survey.significant, Ratio.value(3, 1)](Entity.conducted_survey(Survey) ∧ Survey.significant → Numeric(1, 3))
+4. Q[They, Galaxy.sample, Ratio.value(3, 1)](Entity.has_sample(Sample) ∧ Sample.of(Galaxy) → Numeric(1, 3))
+5. Q[They, Ratio.occurrence, Ratio.value(3, 1)](Ratio.of(Planet, World) ∧ Ratio.occurrence → Numeric(1, 3))
+6. Q[They, Planet.hydrogen_ammonia, Ratio.value(3, 1)](Entity.has_planet(Planet) ∧ Planet.hydrogen_ammonia → Numeric(1, 3))
+7. Q[They, World.super_dense_water_oxygen, Ratio.value(3, 1)](Entity.has_world(World) ∧ World.super_dense_water_oxygen → Numeric(1, 3))
+8. Q[They, Ratio.value(3, 1), Sample.large](Ratio.is(3_to_1) ∧ Sample.large → Numeric(3, 1))
+9. Q[They, Sample.large, Survey.significant](Sample.large ∧ Survey.is_conducted → Numeric(1, 3))
+10. Q[They, Sample.volume, Survey.significant](Sample.volume ∧ Survey.is_conducted → Numeric(1, 3))
+11. Q[They, Galaxy.sample, Survey.significant](Sample.of(Galaxy) ∧ Survey.is_conducted → Numeric(1, 3))
+12. Q[They, Ratio.occurrence, Survey.significant](Ratio.occurrence ∧ Survey.is_conducted → Numeric(1, 3))
+13. Q[They, Sample.large, Ratio.is(3_to_1)](Sample.large ∧ Ratio.is(3_to_1) → Numeric(1, 3))
+14. Q[They, Sample.volume, Ratio.is(3_to_1)](Sample.volume ∧ Ratio.is(3_to_1) → Numeric(1, 3))
+15. Q[They, Survey.significant, Ratio.is(3_to_1)](Survey.significant ∧ Ratio.is(3_to_1) → Numeric(1, 3))
+16. Q[They, Galaxy.sample, Ratio.is(3_to_1)](Sample.of(Galaxy) ∧ Ratio.is(3_to_1) → Numeric(1, 3))
+17. Q[They, Ratio.occurrence, Ratio.is(3_to_1)](Ratio.occurrence ∧ Ratio.is(3_to_1) → Numeric(1, 3))
+18. Q[They, Sample.large, Ratio.implies(limited_sample_size)](Sample.large ∧ Ratio.implies(limited_sample_size) → Numeric(1, 3))
+19. Q[They, Sample.volume, Ratio.implies(limited_sample_size)](Sample.volume ∧ Ratio.implies(limited_sample_size) → Numeric(1, 3))
+20. Q[They, Survey.significant, Ratio.implies(limited_sample_size)](Survey.significant ∧ Ratio.implies(limited_sample_size) → Numeric(1, 3))
+21. Q[They, Galaxy.sample, Ratio.implies(limited_sample_size)](Sample.of(Galaxy) ∧ Ratio.implies(limited_sample_size) → Numeric(1, 3))
+22. Q[They, Ratio.occurrence, Ratio.implies(limited_sample_size)](Ratio.occurrence ∧ Ratio.implies(limited_sample_size) → Numeric(1, 3))
+23. Q[They, Sample.large, Entity.lacks(interstellar_travel)](Sample.large ∧ Entity.lacks(interstellar_travel) → Numeric(1, 3))
+24. Q[They, Sample.volume, Entity.lacks(interstellar_travel)](Sample.volume ∧ Entity.lacks(interstellar_travel) → Numeric(1, 3))
+25. Q[They, Survey.significant, Entity.lacks(interstellar_travel)](Survey.significant ∧ Entity.lacks(interstellar_travel) → Numeric(1, 3))
+26. Q[They, Galaxy.sample, Entity.lacks(interstellar_travel)](Sample.of(Galaxy) ∧ Entity.lacks(interstellar_travel) → Numeric(1, 3))
+27. Q[They, Ratio.occurrence, Entity.lacks(interstellar_travel)](Ratio.occurrence ∧ Entity.lacks(interstellar_travel) → Numeric(1, 3))
+28. Q[They, Sample.large, Entity.cannot(do(Survey))](Sample.large ∧ Entity.cannot(do(Survey)) → Numeric(1, 3))
+29. Q[They, Sample.volume, Entity.cannot(do(Survey))](Sample.volume ∧ Entity.cannot(do(Survey)) → Numeric(1, 3))
+30. Q[They, Survey.significant, Entity.cannot(do(Survey))](Survey.significant ∧ Entity.cannot(do(Survey)) → Numeric(1, 3))

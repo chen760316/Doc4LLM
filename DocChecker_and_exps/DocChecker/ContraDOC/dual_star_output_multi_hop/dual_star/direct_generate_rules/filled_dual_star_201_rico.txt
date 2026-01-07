@@ -1,0 +1,58 @@
+Predicates:
+Husband.label != "Character"
+Husband.label = "Character"
+Husband.name != "Husband"
+Husband.name != Prince.name
+Husband.name != Zoza.name
+Husband.name = "Husband"
+Husband.occupation != "storyteller"
+Husband.occupation = "storyteller"
+Moorish Slave.label != "Character"
+Moorish Slave.label = "Character"
+Moorish Slave.name != "Moorish Slave"
+Moorish Slave.name != Husband.name
+Moorish Slave.name != Prince.name
+Moorish Slave.name != Zoza.name
+Moorish Slave.name = "Moorish Slave"
+Moorish Slave.status != "revealed treachery"
+Moorish Slave.status != Prince.status
+Moorish Slave.status != Zoza.status
+Moorish Slave.status = "revealed treachery"
+Moorish Slave___Husband.doc_id = "3488771903_3"
+Moorish Slave___Husband.reason = "to avoid crushing the unborn child"
+Moorish Slave___Husband.relationship != Moorish Slave___Prince.relationship
+Moorish Slave___Husband.relationship != Moorish Slave___Zoza.relationship
+Moorish Slave___Husband.relationship = "The Moorish slave demands her husband tell her stories."
+Moorish Slave___Prince.doc_id = "3488771903_3"
+Moorish Slave___Prince.relationship = "The Moorish slave steals the pitcher and claims the prince."
+Moorish Slave___Zoza.doc_id = "3488771903_3"
+Moorish Slave___Zoza.outcome = "Moorish woman is buried pregnant and left to die"
+Moorish Slave___Zoza.relationship != Moorish Slave___Prince.relationship
+Moorish Slave___Zoza.relationship = "The Moorish woman's treachery is revealed in the final story told by Zoza."
+None_ML(Moorish Slave___Zoza.attrs, Moorish Slave___Husband.attrs)
+None_ML(Zoza.attrs, Husband.attrs)
+Prince.label != "Character"
+Prince.label = "Character"
+Prince.name != "Prince"
+Prince.name = "Prince"
+Prince.status != "happy"
+Prince.status = "happy"
+Zoza.label != "Character"
+Zoza.label = "Character"
+Zoza.name != "Zoza"
+Zoza.name != Prince.name
+Zoza.name = "Zoza"
+Zoza.status != "happy"
+Zoza.status = "happy"
+
+Rules:
+Q[Moorish Slave,Moorish Slave] (Moorish Slave.status = "revealed treachery" ∧ Prince.name = "Prince" ∧ Husband.label != "Character" ∧ Moorish Slave.status != "revealed treachery" ∧ Moorish Slave.label = "Character" ∧ Husband.name = "Husband" → Moorish Slave___Zoza.relationship != Moorish Slave___Prince.relationship)
+Q[Moorish Slave,Moorish Slave] (Moorish Slave.name != Zoza.name ∧ Moorish Slave.status != "revealed treachery" ∧ Prince.label != "Character" ∧ Husband.occupation = "storyteller" → Moorish Slave___Husband.reason = "to avoid crushing the unborn child")
+Q[Moorish Slave,Moorish Slave] (Husband.label != "Character" ∧ Moorish Slave.name = "Moorish Slave" ∧ Zoza.name != Prince.name → None_ML(Zoza.attrs, Husband.attrs))
+Q[Moorish Slave,Moorish Slave] (Moorish Slave___Husband.relationship != Moorish Slave___Zoza.relationship ∧ Husband.name = "Husband" → Husband.label != "Character")
+Q[Moorish Slave,Moorish Slave] (Moorish Slave.name != Husband.name ∧ Prince.label = "Character" ∧ Moorish Slave.label = "Character" ∧ Prince.name = "Prince" ∧ Moorish Slave___Husband.relationship = "The Moorish slave demands her husband tell her stories." → Moorish Slave.status = "revealed treachery")
+Q[Moorish Slave,Moorish Slave] (Husband.label != "Character" ∧ Moorish Slave.name != Zoza.name ∧ Moorish Slave.name != Prince.name → Zoza.status = "happy")
+Q[Moorish Slave,Moorish Slave] (Husband.name = "Husband" ∧ Moorish Slave.status != "revealed treachery" ∧ Moorish Slave.name != Husband.name ∧ Moorish Slave.name = "Moorish Slave" ∧ Zoza.label = "Character" → Husband.name != Zoza.name)
+Q[Moorish Slave,Moorish Slave] (Moorish Slave.status != "revealed treachery" ∧ Zoza.status != "happy" → Moorish Slave.name != Husband.name)
+Q[Moorish Slave,Moorish Slave] (Zoza.name = "Zoza" ∧ Husband.name != "Husband" ∧ Moorish Slave.status = "revealed treachery" ∧ Moorish Slave.name != Prince.name ∧ Husband.occupation = "storyteller" ∧ Moorish Slave.status != Zoza.status → Prince.status = "happy")
+Q[Moorish Slave,Moorish Slave] (Moorish Slave.name != "Moorish Slave" ∧ None_ML(Zoza.attrs, Husband.attrs) ∧ Husband.name != "Husband" ∧ Zoza.name != Prince.name → Zoza.status != "happy")

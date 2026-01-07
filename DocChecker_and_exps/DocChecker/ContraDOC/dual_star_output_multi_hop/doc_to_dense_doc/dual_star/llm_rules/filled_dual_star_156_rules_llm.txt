@@ -1,0 +1,93 @@
+Predicates:
+1. Charleston.status = "wounded"
+2. Emmett.status = "fine"
+3. FBI agents and task force officers.action = "shot"
+4. Modest Rainfall.precipitation_rate = "0.40 in (1.0 cm) per hour"
+5. New England.country = "USA"
+6. No individuals were killed.status = "contradictory"
+7. Rainfall.amount = "0.40 in (1.0 cm) per hour"
+8. The Rose - in - Bloom.location = "offshore of Barnegat Inlet, New Jersey"
+9. The Rose - in - Bloom.status = "overturned"
+10. Unnamed Hurricane.category = "Category 2-equivalent"
+11. Unnamed Hurricane.date = "25 August"
+12. Unnamed Hurricane.location = "off New England"
+13. Unnamed Hurricane.location_after_dissipation = "south of Nova Scotia"
+14. Unnamed Hurricane.status = "dissipated"
+15. Victims of the hurricane.count = "more than 24"
+16. area hospital.status = "treated and released"
+17. passengers.deaths = "21"
+18. passengers.total = "48"
+19. unknown.relationship = "sibling"
+20. unknown.status = "victim"
+21. "Charleston was shot and wounded by FBI agents and task force officers".injury_severity = "not life threatening"
+22. "Charleston was treated at an area hospital after being shot and wounded.".injury_severity = "not life threatening"
+23. "Damage to the city harbor in Charleston was minimal due to the hurricane.".damage = "minimal"
+24. "Emmett reports that the agents, including Charleston, are fine after treatment.".source_id = "3489738225_4"
+25. "Reports from Boston indicate more modest rainfall amounts compared to Edgartown.".source_id = "3503017442_4"
+26. "Reports in Boston indicate more modest rainfall amounts.".precipitation_rate = "0.40 in (1.0 cm) per hour"
+27. "The Rose - in - Bloom was caught in the hurricane while offshore.".cargo_loss = "$171,000"
+28. "The Rose - in - Bloom was caught in the hurricane while offshore.".deaths = "21"
+29. "The Rose - in - Bloom was caught in the hurricane while offshore.".passengers = "48"
+30. "The Rose - in - Bloom was caught in the hurricane while offshore.".result = "overturned the ship"
+31. "The Rose - in - Bloom was caught in the hurricane while offshore.".total_cargo_value = "$180,000 (1806 USD)"
+32. "The hurricane caused extreme rainfall in New England but no deaths were reported there.".total_deaths = "24"
+33. "The hurricane killed more than 24 individuals along its track.".source_id = "3503017442_2"
+34. "The hurricane maintained maximum sustained winds while offshore and later moved out to sea as a Category 2-equivalent hurricane.".duration = "from offshore to dissipation"
+35. "The hurricane produced significant rainfall in Massachusetts, while reports from Boston indicated lower rainfall amounts.".comparison = "contradictory rainfall reports"
+36. "The hurricane was considered the worst in Georgetown since the 1804 Antigua – Charleston hurricane.".reason = "high winds"
+37. "The hurricane washed aground several ships and uprooted numerous trees in Charleston.".damage = "washed aground ships and uprooted trees"
+38. "The ship resulted in the deaths of 21 of its 48 passengers.".loss = "$171,000"
+39. "The statement contradicts the reported casualties from the hurricane incident.".source_id = "3503017442_4"
+40. M_NLI(Charleston.status, Emmett.status)
+41. T("Charleston was shot and wounded by FBI agents and task force officers", "Charleston was treated at an area hospital after being shot and wounded.", Causal)
+42. tau("Charleston was shot and wounded by FBI agents and task force officers".injury_severity, "Charleston was treated at an area hospital after being shot and wounded.".injury_severity)
+43. violate(Charleston, FBI agents and task force officers)
+44. Factual(Charleston, "No individuals were killed by the hurricane.")
+45. Causal(Charleston, "Emmett reports that the agents, including Charleston, are fine after treatment.")
+46. Numeric("Reports from Boston indicate more modest rainfall amounts compared to Edgartown.", "Reports in Boston indicate more modest rainfall amounts.")
+47. Temporal("The hurricane produced significant rainfall in Massachusetts.", "The hurricane caused extreme rainfall in New England but no deaths were reported there.")
+48. Content("The hurricane was considered the worst in Georgetown since the 1804 Antigua – Charleston hurricane.", "The hurricane washed aground several ships and uprooted numerous trees in Charleston.")
+49. Relation("The Rose - in - Bloom was caught in the hurricane while offshore.", "The ship resulted in the deaths of 21 of its 48 passengers.")
+50. Factual("The hurricane maintained maximum sustained winds while offshore.", "The hurricane killed more than 24 individuals along its track.")
+51. Causal("Charleston was shot and wounded by FBI agents and task force officers.", "Charleston was treated at an area hospital after being shot and wounded.")
+52. Numeric("The hurricane killed more than 24 individuals along its track.", "No individuals were killed by the hurricane.")
+53. Temporal("The hurricane caused extreme rainfall in New England.", "The hurricane was considered the worst in Georgetown since the 1804 Antigua – Charleston hurricane.")
+54. Content("Reports from Boston indicate more modest rainfall amounts compared to Edgartown.", "Reports in Boston indicate more modest rainfall amounts.")
+55. Relation("The Rose - in - Bloom was caught in the hurricane while offshore.", "The Rose - in - Bloom was caught in the hurricane while offshore.")
+56. Factual("The hurricane produced significant rainfall in Massachusetts.", "The hurricane washed aground several ships and uprooted numerous trees in Charleston.")
+57. Causal("The hurricane caused extreme rainfall in New England.", "The hurricane was considered the worst in Georgetown since the 1804 Antigua – Charleston hurricane.")
+58. Numeric("The ship resulted in the deaths of 21 of its 48 passengers.", "The hurricane killed more than 24 individuals along its track.")
+59. Temporal("Charleston was shot and wounded by FBI agents and task force officers.", "Emmett reports that the agents, including Charleston, are fine after treatment.")
+60. Content("The hurricane maintained maximum sustained winds while offshore.", "The hurricane washed aground several ships and uprooted numerous trees in Charleston.")
+61. Relation("The hurricane produced significant rainfall in Massachusetts.", "Reports from Boston indicate more modest rainfall amounts compared to Edgartown.")
+62. Factual("The hurricane was considered the worst in Georgetown since the 1804 Antigua – Charleston hurricane.", "The hurricane caused extreme rainfall in New England but no deaths were reported there.")
+63. Causal("The hurricane washed aground several ships and uprooted numerous trees in Charleston.", "The ship resulted in the deaths of 21 of its 48 passengers.")
+64. Numeric("The hurricane produced
+violate(x0, y0)
+
+Rules:
+1. Q[Charleston, FBI agents and task force officers](Charleston.status = "wounded" ∧ FBI agents and task force officers.action = "shot" → violate(Charleston, FBI agents and task force officers))
+2. Q[Charleston, Emmett](Charleston.status = "wounded" ∧ Emmett.status = "fine" → Factual(Charleston, "No individuals were killed by the hurricane."))
+3. Q[The Rose - in - Bloom, Unnamed Hurricane](The Rose - in - Bloom.status = "overturned" ∧ Unnamed Hurricane.status = "dissipated" → violate(The Rose - in - Bloom, Unnamed Hurricane))
+4. Q[Passengers, The Rose - in - Bloom](passengers.deaths = "21" ∧ passengers.total = "48" → Factual(Passengers, "No individuals were killed by the hurricane."))
+5. Q[Charleston, Unnamed Hurricane](Charleston.status = "wounded" ∧ Unnamed Hurricane.category = "Category 2-equivalent" → violate(Charleston, Unnamed Hurricane))
+6. Q[Emmett, Charleston](Emmett.status = "fine" ∧ Charleston.status = "wounded" → violate(Emmett, Charleston))
+7. Q[The Rose - in - Bloom, Rainfall](The Rose - in - Bloom.status = "overturned" ∧ Rainfall.amount = "0.40 in (1.0 cm) per hour" ∧ Unnamed Hurricane.status = "dissipated" → violate(The Rose - in - Bloom, Rainfall))
+8. Q[Victims, Unnamed Hurricane](Victims of the hurricane.count = "more than 24" ∧ Unnamed Hurricane.status = "dissipated" ∧ No individuals were killed.status = "contradictory" → violate(Victims, Unnamed Hurricane))
+9. Q[Charleston, Rainfall](Charleston.status = "wounded" ∧ Rainfall.amount = "0.40 in (1.0 cm) per hour" ∧ "Charleston was treated at an area hospital after being shot and wounded.".injury_severity = "not life threatening" → violate(Charleston, Rainfall))
+10. Q[The Rose - in - Bloom, passengers](The Rose - in - Bloom.status = "overturned" ∧ passengers.deaths = "21" ∧ passengers.total = "48" → Factual(The Rose - in - Bloom, "No individuals were killed by the hurricane."))
+11. Q[Unnamed Hurricane, Charleston](Unnamed Hurricane.date = "25 August" ∧ Charleston.status = "wounded" ∧ "Charleston was shot and wounded by FBI agents and task force officers".injury_severity = "not life threatening" → violate(Unnamed Hurricane, Charleston))
+12. Q[Emmett, FBI agents](Emmett.status = "fine" ∧ FBI agents and task force officers.action = "shot" ∧ "Charleston was treated at an area hospital after being shot and wounded.".injury_severity = "not life threatening" → violate(Emmett, FBI agents))
+13. Q[The Rose - in - Bloom, Modest Rainfall](The Rose - in - Bloom.status = "overturned" ∧ Modest Rainfall.precipitation_rate = "0.40 in (1.0 cm) per hour" ∧ "Damage to the city harbor in Charleston was minimal due to the hurricane.".damage = "minimal" → violate(The Rose - in - Bloom, Modest Rainfall))
+14. Q[Passengers, Unnamed Hurricane](passengers.total = "48" ∧ Unnamed Hurricane.category = "Category 2-equivalent" ∧ "The hurricane killed more than 24 individuals along its track.".source_id = "3503017442_2" → violate(Passengers, Unnamed Hurricane))
+15. Q[Charleston, Rainfall](Charleston.status = "wounded" ∧ Rainfall.amount = "0.40 in (1.0 cm) per hour" ∧ "The hurricane produced significant rainfall in Massachusetts.".comparison = "contradictory rainfall reports" → violate(Charleston, Rainfall))
+16. Q[The Rose - in - Bloom, Emmett](The Rose - in - Bloom.status = "overturned" ∧ Emmett.status = "fine" ∧ "The hurricane caused extreme rainfall in New England but no deaths were reported there.".total_deaths = "24" → violate(The Rose - in - Bloom, Emmett))
+17. Q[Victims, Charleston](Victims of the hurricane.count = "more than 24" ∧ Charleston.status = "wounded" ∧ "The statement contradicts the reported casualties from the hurricane incident.".source_id = "3503017442_4" → violate(Victims, Charleston))
+18. Q[Passengers, Rainfall](passengers.deaths = "21" ∧ Rainfall.amount = "0.40 in (1.0 cm) per hour" ∧ "The hurricane maintained maximum sustained winds while offshore.".duration = "from offshore to dissipation" → violate(Passengers, Rainfall))
+19. Q[The Rose - in - Bloom, FBI agents](The Rose - in - Bloom.status = "overturned" ∧ FBI agents and task force officers.action = "shot" ∧ "Charleston was treated at an area hospital after being shot and wounded.".injury_severity = "not life threatening" → violate(The Rose - in - Bloom, FBI agents))
+20. Q[Charleston, Unnamed Hurricane](Charleston.status = "wounded" ∧ Unnamed Hurricane.location = "off New England" ∧ "The hurricane was considered the worst in Georgetown since the 1804 Antigua – Charleston hurricane.".reason = "high winds" → violate(Charleston, Unnamed Hurricane))
+21. Q[Emmett, Rainfall](Emmett.status = "fine" ∧ Rainfall.amount = "0.40 in (1.0 cm) per hour" ∧ "The hurricane produced significant rainfall in Massachusetts.".comparison = "contradictory rainfall reports" → violate(Emmett, Rainfall))
+22. Q[The Rose - in - Bloom, Charleston](The Rose - in - Bloom.status = "overturned" ∧ Charleston.status = "wounded" ∧ "The hurricane caused extreme rainfall in New England but no deaths were reported there.".total_deaths = "24" → violate(The Rose - in - Bloom, Charleston))
+23. Q[Victims, Emmett](Victims of the hurricane.count = "more than 24" ∧ Emmett.status = "fine" ∧ "The hurricane killed more than 24 individuals along its track.".source_id = "3503017442_2" → violate(Victims, Emmett))
+24. Q[Passengers, Charleston](passengers.total = "48" ∧ Charleston.status = "wounded" ∧ "The ship resulted in the deaths of 21 of its 48 passengers.".loss = "$171,000" → violate(Passengers, Charleston))
+25. Q

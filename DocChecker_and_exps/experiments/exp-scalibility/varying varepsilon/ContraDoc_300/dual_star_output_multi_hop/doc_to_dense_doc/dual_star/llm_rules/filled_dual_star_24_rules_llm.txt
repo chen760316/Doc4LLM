@@ -1,0 +1,131 @@
+Predicates:
+1. central core.status = "promised storage"
+2. landmark sculpture.status = "removed"
+3. legs.status = "promised storage"
+4. "removal".reason = "removal"
+5. "removal".doc_index = "19"
+6. "removal".entity = "central core"
+7. "removal".entity = "legs"
+8. central core.removal_time = "2023-10-01"
+9. legs.removal_time = "2023-10-01"
+10. central core.condition = "damaged"
+11. legs.condition = "intact"
+12. landmark sculpture.material = "bronze"
+13. central core.size = "large"
+14. legs.size = "medium"
+15. "removal".method = "cutting"
+16. "removal".duration = "2 hours"
+17. central core.location = "gallery"
+18. legs.location = "gallery"
+19. central core.weight = "500 kg"
+20. legs.weight = "200 kg"
+21. "removal".team = "art conservators"
+22. "removal".date = "2023-10-01"
+23. central core.history = "part of a famous installation"
+24. legs.history = "part of a famous installation"
+25. central core.value = "high"
+26. legs.value = "medium"
+27. "removal".risk_level = "high"
+28. "removal".success = "yes"
+29. central core.storage_location = "warehouse"
+30. legs.storage_location = "warehouse"
+31. M_NLI(central core.status, legs.status)
+32. M_NLI(central core.size, legs.size)
+33. T("The central core was removed.", "The legs were not removed.", Negation)
+34. T("The legs were cut apart.", "The legs were intact.", Content)
+35. T("The central core is in promised storage.", "The central core is removed.", Factual)
+36. T("The removal was successful.", "The removal was a failure.", Negation)
+37. tau(central core.status, legs.status)
+38. tau(central core.condition, legs.condition)
+39. violate(central core.status, legs.status)
+40. Factual(central core.value, legs.value)
+41. Causal(central core.removal_time, legs.removal_time)
+42. Numeric(central core.weight, legs.weight)
+43. Temporal(central core.history, legs.history)
+44. Content(central core.condition, legs.condition)
+45. Relation(central core.location, legs.location)
+46. Numeric(central core.size, legs.size)
+47. Factual(central core.material, legs.material)
+48. Causal("removal".duration, "removal".risk_level)
+49. violate(central core.history, legs.history)
+50. Factual(central core.storage_location, legs.storage_location)
+51. Causal("removal".team, "removal".success)
+52. Numeric(central core.size, "removal".duration)
+53. Temporal(central core.removal_time, "removal".date)
+54. Content(central core.value, "removal".risk_level)
+55. Relation(central core.location, "removal".team)
+56. M_NLI(central core.weight, legs.weight)
+57. T("The central core was cut apart.", "The legs were cut apart.", Relation)
+58. T("The legs were removed.", "The legs were intact.", Negation)
+59. tau(central core.value, "removal".success)
+60. violate(central core.condition, legs.condition)
+61. Factual(central core.size, legs.size)
+62. Causal(central core.location, legs.location)
+63. Numeric(central core.weight, legs.weight)
+64. Temporal(central core.removal_time, legs.removal_time)
+65. Content(central core.history, legs.history)
+66. Relation(central core.material, legs.material)
+67. M_NLI("removal".method, "removal".duration)
+68. T("The central core is in storage.", "The central core is removed.", Factual)
+69. T("The legs are in storage.", "The legs are removed.", Factual)
+70. tau("removal".reason, "removal".method)
+71. violate(central core.size, legs.size)
+72. Factual("removal".date, "removal".team)
+73. Causal("removal".success, "removal".risk_level)
+74. Numeric("removal".duration, "removal".risk_level)
+75. Temporal("removal".date, "removal".duration)
+76. Content("removal".reason, "removal".entity)
+77. Relation("removal".team, "removal".date)
+78. M_NLI(central core.value, "removal".success)
+79. T("The central core is valuable.", "The legs are not valuable.", Negation)
+80. T("The legs were cut apart.", "The legs were not cut apart.", Negation)
+81. tau(central core.condition, legs.condition)
+82. violate(central core.material, legs.material)
+83. Factual(central core.location, legs.location)
+84. Causal(central core.size, legs.size)
+85. Numeric(central core.weight, legs.weight)
+86. Temporal(central core.removal_time, legs.removal_time)
+87. Content(central core.history, legs.history)
+88. Relation(central core.value, legs.value)
+89. M_NLI("removal".method, "removal".reason)
+90. T("The removal was successful.", "The removal was unsuccessful.", Negation)
+91. T("The central core is in promised storage.", "The central core is removed.", Factual)
+92. tau("removal".duration, "removal".risk_level)
+93. violate(central core.storage_location, legs.storage_location)
+94. Factual(central core.history, legs.history)
+95. Causal("removal".team, "removal".success)
+96. Numeric(central core.size, legs.size)
+97. Temporal(central core.removal_time, legs.removal_time)
+98. Content(central core.condition, legs.condition)
+99. Relation(central core.material, legs.material)
+100. M_NLI(central core.status, "removal".reason)
+violate(x0, y0)
+
+Rules:
+1. Q[x0, y0](central core.status = "promised storage" ∧ legs.status = "promised storage" → violate(x0, y0))
+2. Q[x0, y0](central core.status = "promised storage" ∧ legs.status = "removed" → violate(x0, y0))
+3. Q[x0, y0](central core.condition = "damaged" ∧ legs.condition = "intact" → violate(x0, y0))
+4. Q[x0, y0](central core.size = "large" ∧ legs.size = "medium" → violate(x0, y0))
+5. Q[x0, y0](central core.value = "high" ∧ legs.value = "medium" → violate(x0, y0))
+6. Q[x0, y0](central core.location = "gallery" ∧ legs.location = "warehouse" → violate(x0, y0))
+7. Q[x0, y0](central core.status = "promised storage" ∧ legs.status = "removed" ∧ central core.condition = "damaged" → violate(x0, y0))
+8. Q[x0, y0](central core.size = "large" ∧ legs.size = "medium" ∧ central core.value = "high" → violate(x0, y0))
+9. Q[x0, y0](central core.removal_time = "2023-10-01" ∧ legs.removal_time = "2023-10-01" ∧ central core.status = "removed" → violate(x0, y0))
+10. Q[x0, y0](central core.history = "part of a famous installation" ∧ legs.history = "part of a famous installation" ∧ central core.value = "high" → violate(x0, y0))
+11. Q[x0, y0](central core.status = "promised storage" ∧ legs.status = "removed" ∧ "removal".success = "yes" ∧ "removal".risk_level = "high" → violate(x0, y0))
+12. Q[x0, y0](central core.condition = "damaged" ∧ legs.condition = "intact" ∧ central core.size = "large" ∧ legs.size = "medium" → violate(x0, y0))
+13. Q[x0, y0](central core.location = "gallery" ∧ legs.location = "gallery" ∧ central core.value = "high" ∧ legs.value = "medium" → violate(x0, y0))
+14. Q[x0, y0](central core.removal_time = "2023-10-01" ∧ legs.removal_time = "2023-10-01" ∧ "removal".method = "cutting" ∧ "removal".duration = "2 hours" → violate(x0, y0))
+15. Q[x0, y0](central core.status = "promised storage" ∧ legs.status = "removed" ∧ central core.condition = "damaged" ∧ legs.condition = "intact" ∧ "removal".success = "yes" → violate(x0, y0))
+16. Q[x0, y0](central core.size = "large" ∧ legs.size = "medium" ∧ central core.value = "high" ∧ legs.value = "medium" ∧ "removal".risk_level = "high" → violate(x0, y0))
+17. Q[x0, y0](central core.history = "part of a famous installation" ∧ legs.history = "part of a famous installation" ∧ central core.location = "gallery" ∧ legs.location = "warehouse" → violate(x0, y0))
+18. Q[x0, y0](central core.status = "promised storage" ∧ legs.status = "removed" ∧ central core.removal_time = "2023-10-01" ∧ legs.removal_time = "2023-10-01" ∧ "removal".success = "yes" → violate(x0, y0))
+19. Q[x0, y0](central core.condition = "damaged" ∧ legs.condition = "intact" ∧ central core.size = "large" ∧ legs.size = "medium" ∧ central core.value = "high" → violate(x0, y0))
+20. Q[x0, y0](central core.location = "gallery" ∧ legs.location = "gallery" ∧ central core.history = "part of a famous installation" ∧ legs.history = "part of a famous installation" ∧ "removal".method = "cutting" → violate(x0, y0))
+21. Q[x0, y0](central core.status = "promised storage" ∧ legs.status = "removed" ∧ central core.condition = "damaged" ∧ legs.condition = "intact" ∧ central core.size = "large" ∧ legs.size = "medium" → violate(x0, y0))
+22. Q[x0, y0](central core.value = "high" ∧ legs.value = "medium" ∧ central core.location = "gallery" ∧ legs.location = "warehouse" ∧ "removal".success = "yes" → violate(x0, y0))
+23. Q[x0, y0](central core.removal_time = "2023-10-01" ∧ legs.removal_time = "2023-10-01" ∧ "removal".method = "cutting" ∧ "removal".duration = "2 hours" ∧ "removal".risk_level = "high" → violate(x0, y0))
+24. Q[x0, y0](central core.status = "promised storage" ∧ legs.status = "removed" ∧ central core.condition = "damaged" ∧ legs.condition = "intact" ∧ central core.history = "part of a famous installation" ∧ legs.history = "part of a famous installation" → violate(x0, y0))
+25. Q[x0, y0](central core.size = "large" ∧ legs.size = "medium" ∧ central core.value = "high" ∧ legs.value = "medium" ∧ central core.location = "gallery" ∧ legs.location = "warehouse" → violate(x0, y0))
+26. Q[x0, y0](central core.removal_time = "2023-10-01" ∧ legs.removal_time = "2023-10-01" ∧ "removal".method = "cutting" ∧ "removal".duration = "2 hours" ∧ "removal".success = "yes" ∧ "removal".risk_level = "high" → violate(x0, y0))
+27. Q[x0, y0](central core.status = "promised storage" ∧ legs.status = "removed" ∧ central core.condition = "damaged" ∧ legs.condition = "intact" ∧ central

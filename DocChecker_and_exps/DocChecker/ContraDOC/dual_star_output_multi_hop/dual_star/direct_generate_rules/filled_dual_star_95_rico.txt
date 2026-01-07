@@ -1,0 +1,40 @@
+Predicates:
+A Song of Ice and Fire.author != "George R.R. Martin"
+A Song of Ice and Fire.author = "George R.R. Martin"
+A Song of Ice and Fire.label != "Book Series"
+A Song of Ice and Fire.label = "Book Series"
+A Song of Ice and Fire.name != "A Song of Ice and Fire"
+A Song of Ice and Fire.name = "A Song of Ice and Fire"
+Doug Gross.label != "Person"
+Doug Gross.label != A Song of Ice and Fire.label
+Doug Gross.label = "Person"
+Doug Gross.name != "Doug Gross"
+Doug Gross.name != A Song of Ice and Fire.name
+Doug Gross.name = "Doug Gross"
+Game of Thrones.label != "TV Show"
+Game of Thrones.label != A Song of Ice and Fire.label
+Game of Thrones.label != Doug Gross.label
+Game of Thrones.label = "TV Show"
+Game of Thrones.name != "Game of Thrones"
+Game of Thrones.name != A Song of Ice and Fire.name
+Game of Thrones.name != Doug Gross.name
+Game of Thrones.name = "Game of Thrones"
+Game of Thrones___A Song of Ice and Fire.doc_id = "3489738221_3"
+Game of Thrones___A Song of Ice and Fire.relationship = "The fifth season will move ahead of the events in George R.R. Martin's books."
+Game of Thrones___Doug Gross.doc_id = "3489738221_3"
+Game of Thrones___Doug Gross.relationship != Game of Thrones___A Song of Ice and Fire.relationship
+Game of Thrones___Doug Gross.relationship = "Doug Gross provides insights on the upcoming fifth season of Game of Thrones."
+None_ML(A Song of Ice and Fire.attrs, Doug Gross.attrs)
+None_ML(Game of Thrones___A Song of Ice and Fire.attrs, Game of Thrones___Doug Gross.attrs)
+
+Rules:
+Q[Game of Thrones,Game of Thrones] (A Song of Ice and Fire.author = "George R.R. Martin" ∧ A Song of Ice and Fire.name != "A Song of Ice and Fire" ∧ Game of Thrones.label != A Song of Ice and Fire.label ∧ Doug Gross.label = "Person" → Game of Thrones___A Song of Ice and Fire.doc_id = "3489738221_3")
+Q[Game of Thrones,Game of Thrones] (Doug Gross.name != "Doug Gross" ∧ A Song of Ice and Fire.label = "Book Series" ∧ Doug Gross.label != "Person" ∧ Game of Thrones.label != Doug Gross.label ∧ Game of Thrones.label != "TV Show" ∧ A Song of Ice and Fire.name = "A Song of Ice and Fire" → Game of Thrones.name = "Game of Thrones")
+Q[Game of Thrones,Game of Thrones] (Game of Thrones___Doug Gross.doc_id = "3489738221_3" ∧ Game of Thrones.name != A Song of Ice and Fire.name ∧ Doug Gross.label = "Person" → A Song of Ice and Fire.label = "Book Series")
+Q[Game of Thrones,Game of Thrones] (A Song of Ice and Fire.label != "Book Series" ∧ Game of Thrones.name != A Song of Ice and Fire.name → A Song of Ice and Fire.author != "George R.R. Martin")
+Q[Game of Thrones,Game of Thrones] (None_ML(A Song of Ice and Fire.attrs, Doug Gross.attrs) ∧ Game of Thrones.name != A Song of Ice and Fire.name ∧ Game of Thrones___A Song of Ice and Fire.relationship = "The fifth season will move ahead of the events in George R.R. Martin's books." ∧ Game of Thrones.label != Doug Gross.label ∧ Game of Thrones.label = "TV Show" → Game of Thrones___Doug Gross.relationship != Game of Thrones___A Song of Ice and Fire.relationship)
+Q[Game of Thrones,Game of Thrones] (Game of Thrones___Doug Gross.doc_id = "3489738221_3" ∧ Game of Thrones.label != Doug Gross.label ∧ Doug Gross.name != A Song of Ice and Fire.name → Doug Gross.label != "Person")
+Q[Game of Thrones,Game of Thrones] (Game of Thrones___Doug Gross.doc_id = "3489738221_3" ∧ Game of Thrones.label != "TV Show" ∧ Doug Gross.label = "Person" ∧ A Song of Ice and Fire.label = "Book Series" ∧ Game of Thrones.label != Doug Gross.label → A Song of Ice and Fire.name != "A Song of Ice and Fire")
+Q[Game of Thrones,Game of Thrones] (A Song of Ice and Fire.author = "George R.R. Martin" ∧ None_ML(Game of Thrones___A Song of Ice and Fire.attrs, Game of Thrones___Doug Gross.attrs) ∧ A Song of Ice and Fire.author != "George R.R. Martin" ∧ Doug Gross.name != A Song of Ice and Fire.name → Doug Gross.name = "Doug Gross")
+Q[Game of Thrones,Game of Thrones] (A Song of Ice and Fire.label = "Book Series" ∧ Game of Thrones___Doug Gross.relationship != Game of Thrones___A Song of Ice and Fire.relationship ∧ Game of Thrones___Doug Gross.doc_id = "3489738221_3" ∧ A Song of Ice and Fire.author != "George R.R. Martin" ∧ Game of Thrones.label = "TV Show" ∧ A Song of Ice and Fire.name = "A Song of Ice and Fire" → Game of Thrones.name != "Game of Thrones")
+Q[Game of Thrones,Game of Thrones] (Game of Thrones___A Song of Ice and Fire.relationship = "The fifth season will move ahead of the events in George R.R. Martin's books." ∧ Game of Thrones.name != Doug Gross.name → Doug Gross.name != "Doug Gross")

@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 1621)
+S1: The 800,000 animals that died were all mice.
+S2: The fuss over the poisoning deaths of 800,000 animals at a cost of $15 million in taxpayer funds...
+
+Predicates:
+1. Animals.died = 800000
+2. Animals.type = mice
+3. Cost.taxpayer_funds = 15000000
+4. Event.poisoning_deaths = true
+5. Event.number_of_animals = 800000
+6. Event.cost = 15000000
+7. M_NLI(S1, S2) = true
+8. Factual(S1, S2) = false
+9. violate(S1, S2) = true
+10. Mice.died = 800000
+11. Taxpayer_funds.amount = 15000000
+12. Poisoning_deaths.involve_animals = 800000
+13. Animals.involved = 800000
+14. Animals.species = mice
+15. Cost.source = taxpayer
+16. Event.fuss = true
+17. Event.investment = 15000000
+18. Mice.involved = 800000
+19. Deaths.type = poisoning
+20. Deaths.number = 800000
+21. Cost.type = taxpayer_funds
+22. Event.cost_expenditure = 15000000
+23. Mice.death_cause = poisoning
+24. Animals.death_cause = poisoning
+25. Event.magnitude = significant
+26. Taxpayer_funds.use = event_cost
+27. Event.impact = large
+28. Mice.total_deaths = 800000
+29. Animals.total_deaths = 800000
+30. Cost.total = 15000000
+
+Rules:
+1. Q[The, Animals.died, 800000](Animals.type == "mice" → Factual(S1, S2))
+2. Q[The, Animals.type, mice](Animals.died == 800000 → Factual(S1, S2))
+3. Q[The, Event.number_of_animals, 800000](Animals.type != "mice" → Factual(S1, S2))
+4. Q[The, Event.cost, 15000000](Cost.taxpayer_funds == 15000000 → Factual(S1, S2))
+5. Q[The, Event.poisoning_deaths, true](Deaths.type == "poisoning" → Factual(S1, S2))
+6. Q[The, Mice.died, 800000](Mice.death_cause == "poisoning" → Factual(S1, S2))
+7. Q[The, Animals.involved, 800000](Animals.type != "mice" → Factual(S1, S2))
+8. Q[The, Deaths.number, 800000](Deaths.type == "poisoning" → Factual(S1, S2))
+9. Q[The, Cost.source, taxpayer](Cost.taxpayer_funds == 15000000 → Factual(S1, S2))
+10. Q[The, Event.fuss, true](Event.number_of_animals == 800000 → Factual(S1, S2))
+11. Q[The, Mice.total_deaths, 800000](Mice.involved == 800000 → Factual(S1, S2))
+12. Q[The, Animals.total_deaths, 800000](Animals.type != "mice" → Factual(S1, S2))
+13. Q[The, Event.impact, large](Event.cost == 15000000 → Factual(S1, S2))
+14. Q[The, Cost.total, 15000000](Cost.type == "taxpayer_funds" → Factual(S1, S2))
+15. Q[The, Event.cost_expenditure, 15000000](Cost.taxpayer_funds == 15000000 → Factual(S1, S2))
+16. Q[The, Mice.involved, 800000](Mice.type == "mice" → Factual(S1, S2))
+17. Q[The, Animals.death_cause, poisoning](Animals.type != "mice" → Factual(S1, S2))
+18. Q[The, Event.magnitude, significant](Event.poisoning_deaths == true → Factual(S1, S2))
+19. Q[The, Poisoning_deaths.involve_animals, 800000](Animals.type != "mice" → Factual(S1, S2))
+20. Q[The, Taxpayer_funds.amount, 15000000](Cost.source == "taxpayer" → Factual(S1, S2))
+21. Q[The, Animals.species, mice](Animals.died == 800000 → Factual(S1, S2))
+22. Q[The, Event.investment, 15000000](Event.cost == 15000000 → Factual(S1, S2))
+23. Q[The, Mice.death_cause, poisoning](Mice.total_deaths == 800000 → Factual(S1, S2))
+24. Q[The, Deaths.type, poisoning](Deaths.number == 800000 → Factual(S1, S2))
+25. Q[The, Event.cost, 15000000](Event.fuss == true → Factual(S1, S2))
+26. Q[The, Animals.type, mice](Event.number_of_animals == 800000 → Factual(S1, S2))
+27. Q[The, Event.poisoning_deaths, true](Mice.died == 800000 → Factual(S1, S2))
+28. Q[The, Cost.type, taxpayer_funds](Cost.total == 15000000 → Factual(S1, S2))
+29. Q[The, Animals.died, 800000](Event.cost_expenditure == 15000000 → Factual(S1, S2))
+30. Q[The, Event.impact, large](Event.magnitude == significant → Factual(S1, S2))

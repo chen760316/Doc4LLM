@@ -1,0 +1,57 @@
+Source: dense_text.txt (Index 46)
+S1: a claimant may still pursue a claim for an abuse of process when the claim is based on actions taken outside of a judicial proceeding or on actions that are taken during a judicial proceeding but which are unrelated to the judicial proceeding.
+S2: The litigation privilege, by definition, is limited to actions taken during a judicial proceeding and which are related to the judicial proceeding.
+
+Predicates:
+1. Claimant.may_pursue_claim(abuse_of_process)
+2. Claim.is_based_on(actions_outside_judicial_proceeding)
+3. Claim.is_based_on(actions_unrelated_to_judicial_proceeding)
+4. Litigation_privilege.is_limited_to(actions_during_judicial_proceeding)
+5. Litigation_privilege.is_limited_to(actions_related_to_judicial_proceeding)
+6. Actions_taken_outside_judicial_proceeding.can_support_claim
+7. Actions_taken_during_judicial_proceeding.can_support_claim
+8. Actions_unrelated_to_judicial_proceeding.can_support_claim
+9. Actions_related_to_judicial_proceeding.is_protected_by_privilege
+10. Claimant.can_pursue_claim_based_on_unrelated_actions
+11. Claimant.can_pursue_claim_based_on_outside_actions
+12. Litigation_privilege.applies_to_related_actions
+13. Claim.is_not_limited_to_related_actions
+14. Abuse_of_process.claim.can_be_pursued
+15. Judicial_proceeding.is_not_required_for_claim
+16. Actions_taken_during_judicial_proceeding.can_be_unrelated
+17. Claimant.has_right_to_pursue_claim
+18. Actions_taken_outside_judicial_proceeding.are_valid_for_claim
+19. Actions_taken_during_judicial_proceeding.can_be_valid_for_claim
+20. Litigation_privilege.does_not_apply_to_unrelated_actions
+21. Claim.is_valid_if_based_on_unrelated_actions
+22. Judicial_proceeding.is_not_a_condition_for_claim
+23. Claimant.has_access_to_abuse_of_process_claim
+24. Actions_related_to_judicial_proceeding.are_protected
+25. Claim.is_valid_if_based_on_actions_taken_outside
+26. Litigation_privilege.is_not_applicable_to_unrelated_claims
+27. Claimant.can_allege_abuse_of_process
+28. Actions_taken_during_judicial_proceeding.can_be_challenged
+29. Claim.is_not_restricted_by_judicial_proceeding
+30. Claimant.can_invoke_abuse_of_process_defense
+
+Rules:
+1. Q[claimant, Claimant.may_pursue_claim(abuse_of_process), Claim.is_based_on(actions_outside_judicial_proceeding)](Claimant.may_pursue_claim(abuse_of_process) → Causal(Claimant.may_pursue_claim(abuse_of_process), Claim.is_based_on(actions_outside_judicial_proceeding)))
+2. Q[claimant, Claimant.may_pursue_claim(abuse_of_process), Claim.is_based_on(actions_unrelated_to_judicial_proceeding)](Claimant.may_pursue_claim(abuse_of_process) → Causal(Claimant.may_pursue_claim(abuse_of_process), Claim.is_based_on(actions_unrelated_to_judicial_proceeding)))
+3. Q[litigation_privilege, Litigation_privilege.is_limited_to(actions_during_judicial_proceeding), Litigation_privilege.is_limited_to(actions_related_to_judicial_proceeding)](Litigation_privilege.is_limited_to(actions_during_judicial_proceeding) → Causal(Litigation_privilege.is_limited_to(actions_during_judicial_proceeding), Litigation_privilege.is_limited_to(actions_related_to_judicial_proceeding)))
+4. Q[claim, Claim.is_not_limited_to_related_actions, Claim.is_based_on(actions_unrelated_to_judicial_proceeding)](Claim.is_not_limited_to_related_actions → Causal(Claim.is_not_limited_to_related_actions, Claim.is_based_on(actions_unrelated_to_judicial_proceeding)))
+5. Q[claimant, Claimant.can_pursue_claim_based_on_unrelated_actions, Claim.is_based_on(actions_unrelated_to_judicial_proceeding)](Claimant.can_pursue_claim_based_on_unrelated_actions → Causal(Claimant.can_pursue_claim_based_on_unrelated_actions, Claim.is_based_on(actions_unrelated_to_judicial_proceeding)))
+6. Q[litigation_privilege, Litigation_privilege.does_not_apply_to_unrelated_actions, Claim.is_based_on(actions_unrelated_to_judicial_proceeding)](Litigation_privilege.does_not_apply_to_unrelated_actions → Causal(Litigation_privilege.does_not_apply_to_unrelated_actions, Claim.is_based_on(actions_unrelated_to_judicial_proceeding)))
+7. Q[claim, Claim.is_valid_if_based_on_unrelated_actions, Claim.is_based_on(actions_unrelated_to_judicial_proceeding)](Claim.is_valid_if_based_on_unrelated_actions → Causal(Claim.is_valid_if_based_on_unrelated_actions, Claim.is_based_on(actions_unrelated_to_judicial_proceeding)))
+8. Q[claimant, Claimant.has_access_to_abuse_of_process_claim, Claim.is_based_on(actions_outside_judicial_proceeding)](Claimant.has_access_to_abuse_of_process_claim → Causal(Claimant.has_access_to_abuse_of_process_claim, Claim.is_based_on(actions_outside_judicial_proceeding)))
+9. Q[litigation_privilege, Litigation_privilege.is_not_applicable_to_unrelated_claims, Claim.is_based_on(actions_unrelated_to_judicial_proceeding)](Litigation_privilege.is_not_applicable_to_unrelated_claims → Causal(Litigation_privilege.is_not_applicable_to_unrelated_claims, Claim.is_based_on(actions_unrelated_to_judicial_proceeding)))
+10. Q[claimant, Claimant.can_allege_abuse_of_process, Claim.is_based_on(actions_unrelated_to_judicial_proceeding)](Claimant.can_allege_abuse_of_process → Causal(Claimant.can_allege_abuse_of_process, Claim.is_based_on(actions_unrelated_to_judicial_proceeding)))
+11. Q[claim, Claim.is_valid_if_based_on_actions_taken_outside, Claim.is_based_on(actions_outside_judicial_proceeding)](Claim.is_valid_if_based_on_actions_taken_outside → Causal(Claim.is_valid_if_based_on_actions_taken_outside, Claim.is_based_on(actions_outside_judicial_proceeding)))
+12. Q[claimant, Claimant.has_right_to_pursue_claim, Claim.is_based_on(actions_unrelated_to_judicial_proceeding)](Claimant.has_right_to_pursue_claim → Causal(Claimant.has_right_to_pursue_claim, Claim.is_based_on(actions_unrelated_to_judicial_proceeding)))
+13. Q[litigation_privilege, Litigation_privilege.applies_to_related_actions, Claim.is_based_on(actions_related_to_judicial_proceeding)](Litigation_privilege.applies_to_related_actions → Causal(Litigation_privilege.applies_to_related_actions, Claim.is_based_on(actions_related_to_judicial_proceeding)))
+14. Q[claim, Claim.is_not_restricted_by_judicial_proceeding, Claim.is_based_on(actions_unrelated_to_judicial_proceeding)](Claim.is_not_restricted_by_judicial_proceeding → Causal(Claim.is_not_restricted_by_judicial_proceeding, Claim.is_based_on(actions_unrelated_to_judicial_proceeding)))
+15. Q[claimant, Claimant.can_invoke_abuse_of_process_defense, Claim.is_based_on(actions_unrelated_to_judicial_proceeding)](Claimant.can_invoke_abuse_of_process_defense → Causal(Claimant.can_invoke_abuse_of_process_defense, Claim.is_based_on(actions_unrelated_to_judicial_proceeding)))
+16. Q[claim, Claim.is_valid_if_based_on_actions_taken_outside, Claim.is_based_on(actions_taken_outside_judicial_proceeding)](Claim.is_valid_if_based_on_actions_taken_outside → Causal(Claim.is_valid_if_based_on_actions_taken_outside, Claim.is_based_on(actions_taken_outside_judicial_proceeding)))
+17. Q[litigation_privilege, Litigation_privilege.is_limited_to(actions_related_to_judicial_proceeding), Claim.is_based_on(actions_unrelated_to_judicial_proceeding)](Litigation_privilege.is_limited_to(actions_related_to_judicial_proceeding) → Causal(Litigation_privilege.is_limited_to(actions_related_to_judicial_proceeding), Claim.is_based_on(actions_unrelated_to_judicial_proceeding)))
+18. Q[claimant, Claimant.can_pursue_claim_based_on_outside_actions, Claim.is_based_on(actions_outside_judicial_proceeding)](Claimant.can_pursue_claim_based_on_outside_actions → Causal(Claimant.can_pursue_claim_based_on_outside_actions, Claim.is_based_on(actions_outside_judicial_proceeding)))
+19. Q[claim, Claim.is_valid_if_based_on_unrelated_actions, Claim.is_based_on(actions_unrelated_to_judicial_proceeding)](Claim.is_valid_if_based_on_unrelated_actions → Causal(Claim.is_valid_if_based_on_unrelated_actions, Claim.is_based_on(actions_unrelated_to_judicial_proceeding)))
+20. Q[litigation_privilege, Litigation_privilege.does_not

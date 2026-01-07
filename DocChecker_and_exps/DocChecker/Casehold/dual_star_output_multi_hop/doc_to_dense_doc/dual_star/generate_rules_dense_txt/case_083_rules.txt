@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 83)
+S1: Montero maintains that this language is not broad enough to encompass his suit, which he alleges arose out 'the shoreside doctor’s negligence.'
+S2: But for Montero’s service on the vessel, none of those claims would have been viable.
+
+Predicates:
+1. Montero.suit_type = "negligence"
+2. Montero.service_on_vessel = true
+3. shoreside_doctor.negligence = true
+4. claims.viable_due_to_service = true
+5. Montero.suit_related_to_doctor = false
+6. Montero.suit_related_to_service = true
+7. claims.viable_if_no_service = false
+8. Montero.argues_language_broad_enough = false
+9. shoreside_doctor.negligence_causes_suit = true
+10. Montero.alleges_negligence = true
+11. claims.dependent_on_service = true
+12. Montero.suit_encompasses_doctor_negligence = false
+13. Montero.service_impact_on_claims = true
+14. claims.exist_without_service = false
+15. Montero.suit_origin = "doctor's negligence"
+16. Montero.service_impact_on_suit = true
+17. shoreside_doctor.service_impact_on_claims = true
+18. Montero.suit_not_encompassed_by_language = true
+19. claims_only_viable_with_service = true
+20. Montero.argues_service_not_related = true
+21. claims.viable_without_service = false
+22. Montero.suit_based_on_doctor_negligence = true
+23. Montero.service_required_for_claims = true
+24. shoreside_doctor.negligence_affects_claims = true
+25. Montero.suit_not_related_to_service = true
+26. claims.viable_due_to_doctor_negligence = false
+27. Montero.suit_origin_related_to_service = false
+28. Montero.suit_encompasses_service = false
+29. claims.viable_if_doctor_negligence = false
+30. Montero.argues_claims_not_viable_without_service = true
+
+Rules:
+1. Q[Montero, Montero.suit_type == "negligence", Montero.suit_origin == "doctor's negligence"](Montero.suit_related_to_doctor == false → Causal(Montero, Montero.suit_origin))
+2. Q[Montero, Montero.service_on_vessel == true, claims.viable_due_to_service == true](claims.viable_if_no_service == false → Causal(Montero, claims))
+3. Q[Montero, Montero.argues_service_not_related == true, Montero.service_on_vessel == true](Montero.suit_related_to_service == true → Causal(Montero, Montero.service_on_vessel))
+4. Q[Montero, Montero.suit_encompasses_doctor_negligence == false, shoreside_doctor.negligence == true](Montero.suit_based_on_doctor_negligence == true → Causal(Montero, shoreside_doctor.negligence))
+5. Q[Montero, Montero.service_impact_on_claims == true, claims.viable_due_to_service == true](Montero.suit_not_related_to_service == true → Causal(Montero, claims))
+6. Q[Montero, Montero.suit_related_to_service == true, claims.viable_due_to_service == true](claims.viable_without_service == false → Causal(Montero, claims))
+7. Q[Montero, Montero.service_on_vessel == true, claims.viable_due_to_service == true](Montero.suit_not_encompassed_by_language == true → Causal(Montero, claims))
+8. Q[Montero, Montero.argues_language_broad_enough == false, Montero.service_on_vessel == true](Montero.suit_encompasses_service == false → Causal(Montero, Montero.service_on_vessel))
+9. Q[Montero, Montero.suit_origin == "doctor's negligence", shoreside_doctor.negligence == true](Montero.suit_encompasses_doctor_negligence == false → Causal(Montero, shoreside_doctor.negligence))
+10. Q[Montero, Montero.service_required_for_claims == true, claims.viable_due_to_service == true](Montero.suit_not_related_to_service == true → Causal(Montero, claims))
+11. Q[Montero, Montero.suit_related_to_service == true, claims.viable_due_to_service == true](claims.exist_without_service == false → Causal(Montero, claims))
+12. Q[Montero, Montero.argues_claims_not_viable_without_service == true, Montero.service_on_vessel == true](Montero.suit_origin_related_to_service == false → Causal(Montero, claims))
+13. Q[Montero, Montero.service_on_vessel == true, claims.viable_due_to_service == true](Montero.suit_not_encompassed_by_language == true → Causal(Montero, claims))
+14. Q[Montero, Montero.suit_based_on_doctor_negligence == true, shoreside_doctor.negligence == true](Montero.suit_encompasses_doctor_negligence == false → Causal(Montero, shoreside_doctor.negligence))
+15. Q[Montero, Montero.service_impact_on_suit == true, claims.viable_due_to_service == true](Montero.suit_not_related_to_service == true → Causal(Montero, claims))
+16. Q[Montero, Montero.argues_service_not_related == true, Montero.service_on_vessel == true](Montero.suit_related_to_service == true → Causal(Montero, Montero.service_on_vessel))
+17. Q[Montero, Montero.suit_encompasses_service == false, claims.viable_due_to_service == true](Montero.suit_origin == "doctor's negligence" → Causal(Montero, claims))
+18. Q[Montero, Montero.service_on_vessel == true, claims.viable_due_to_service == true](Montero.suit_not_encompassed_by_language == true → Causal(Montero, claims))
+19. Q[Montero, Montero.suit_related_to_service == true, claims.viable_due_to_service == true](claims.viable_if_no_service == false → Causal(Montero, claims))
+20. Q[Montero, Montero.suit_origin == "doctor's negligence", shoreside_doctor.negligence == true](Montero.suit_encompasses_doctor_negligence == false → Causal(Montero, shoreside_doctor.negligence))
+21. Q[Montero, Montero.service_on_vessel == true, claims.viable_due_to_service == true](Montero.suit_not_related_to_service == true → Causal(Montero, claims))
+22. Q[Montero, Montero.argues_language_broad_enough == false, Montero.service_on_vessel == true](Montero.suit_encompasses_service == false → Causal(Montero, Montero.service_on_vessel))
+23. Q[Montero, Montero.suit_based_on_doctor_negligence == true, shoreside_doctor.negligence == true](Montero.suit_encompasses_doctor_negligence == false → Causal(Montero, shoreside_doctor.negligence))
+24. Q[Montero, Montero.service_required_for_claims == true, claims.viable_due_to_service == true](Montero.suit_not_related_to_service == true → Causal(Montero, claims))
+25. Q[Montero, Montero.suit_related_to_service == true, claims.viable_due_to_service == true](claims.exist_without_service == false → Causal(Montero, claims))
+26. Q[Montero, Montero.argues_claims_not_viable_without_service == true, Montero.service_on_vessel == true](Montero.suit_origin_related_to_service == false → Causal(Montero, claims))
+27. Q[Montero, Montero.service_on_vessel == true, claims.viable_due_to_service == true](Montero.suit_not_encompassed_by_language == true → Causal(Montero, claims))
+28. Q[Montero, Montero.suit_based_on_doctor_negligence == true, shoreside_doctor.negligence == true](Montero.suit_encompasses_doctor_negligence == false → Causal(Montero, shoreside_doctor.negligence))
+29. Q[Montero, Montero.service_impact_on_suit == true, claims.viable_due_to_service == true](Montero.suit_not_related_to_service == true → Causal(Montero, claims))
+30. Q[Montero, Montero.argues_service_not_related == true, Montero.service_on_vessel == true](Montero.suit_related_to_service == true → Causal(Montero, Montero.service_on_vessel))

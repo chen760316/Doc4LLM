@@ -1,0 +1,49 @@
+Predicates:
+Jesus.label != "Person"
+Jesus.label != husband and children.label
+Jesus.label = "Person"
+Jesus.name != "Jesus"
+Jesus.name != husband and children.name
+Jesus.name = "Jesus"
+Jesus.relationship != "traveling with Mary Magdalene"
+Jesus.relationship = "traveling with Mary Magdalene"
+Mary.label != "Person"
+Mary.label != husband and children.label
+Mary.label = "Person"
+Mary.name != "Mary"
+Mary.name != Jesus.name
+Mary.name != husband and children.name
+Mary.name = "Mary"
+Mary.status != "unlikely to have a husband and children"
+Mary.status != husband and children.status
+Mary.status = "unlikely to have a husband and children"
+Mary___Jesus.contradiction_type = "Causal"
+Mary___Jesus.freedom = "free to travel"
+Mary___Jesus.location = "country"
+Mary___Jesus.relationship != Mary___husband and children.relationship
+Mary___Jesus.relationship = "Mary traveled with Jesus and his disciples"
+Mary___Jesus.source_id = "3489738297_7"
+Mary___husband and children.contradiction_type = "Causal"
+Mary___husband and children.reason = "free to travel with Jesus and his disciples"
+Mary___husband and children.relationship = "Mary was unlikely to have a family waiting for her"
+Mary___husband and children.source_id = "3489738297_7"
+None_ML(Mary.attrs, husband and children.attrs)
+None_ML(Mary___husband and children.attrs, Mary___Jesus.attrs)
+husband and children.label != "Family"
+husband and children.label = "Family"
+husband and children.name != "husband and children"
+husband and children.name = "husband and children"
+husband and children.status != "waiting at home"
+husband and children.status = "waiting at home"
+
+Rules:
+Q[Mary,Mary] (Mary.name != Jesus.name ∧ Mary___husband and children.contradiction_type = "Causal" ∧ Mary.status = "unlikely to have a husband and children" ∧ Mary.name != husband and children.name ∧ Mary___husband and children.source_id = "3489738297_7" → Jesus.relationship = "traveling with Mary Magdalene")
+Q[Mary,Mary] (Mary.name = "Mary" ∧ Mary___Jesus.contradiction_type = "Causal" → Jesus.name = "Jesus")
+Q[Mary,Mary] (Mary.name != Jesus.name ∧ husband and children.status = "waiting at home" ∧ Jesus.name != husband and children.name ∧ husband and children.name = "husband and children" ∧ Jesus.relationship = "traveling with Mary Magdalene" ∧ Mary.label != "Person" → husband and children.status != "waiting at home")
+Q[Mary,Mary] (None_ML(Mary.attrs, husband and children.attrs) ∧ Jesus.name != husband and children.name ∧ Mary___husband and children.contradiction_type = "Causal" ∧ Mary.name != Jesus.name → Mary___husband and children.relationship = "Mary was unlikely to have a family waiting for her")
+Q[Mary,Mary] (Mary.status = "unlikely to have a husband and children" ∧ Mary.name != Jesus.name ∧ Mary.name != "Mary" → Mary.status != husband and children.status)
+Q[Mary,Mary] (None_ML(Mary.attrs, husband and children.attrs) ∧ Mary___husband and children.relationship = "Mary was unlikely to have a family waiting for her" ∧ Mary___Jesus.relationship = "Mary traveled with Jesus and his disciples" → Mary.label != husband and children.label)
+Q[Mary,Mary] (Mary___Jesus.contradiction_type = "Causal" ∧ husband and children.label = "Family" ∧ Mary___Jesus.freedom = "free to travel" ∧ Mary___husband and children.reason = "free to travel with Jesus and his disciples" → Mary.name = "Mary")
+Q[Mary,Mary] (Jesus.relationship != "traveling with Mary Magdalene" ∧ Mary___Jesus.relationship = "Mary traveled with Jesus and his disciples" ∧ Mary.status = "unlikely to have a husband and children" ∧ Mary.status != husband and children.status ∧ Mary___Jesus.relationship != Mary___husband and children.relationship → Jesus.name != husband and children.name)
+Q[Mary,Mary] (Mary.status != husband and children.status ∧ Mary___Jesus.relationship = "Mary traveled with Jesus and his disciples" ∧ None_ML(Mary.attrs, husband and children.attrs) ∧ Mary.label = "Person" ∧ husband and children.status != "waiting at home" ∧ Mary___Jesus.source_id = "3489738297_7" → Mary___husband and children.contradiction_type = "Causal")
+Q[Mary,Mary] (Jesus.name != husband and children.name ∧ Mary.label != husband and children.label → husband and children.name = "husband and children")

@@ -1,0 +1,64 @@
+Source: dense_text.txt (Index 65)
+S1: Three people are talking and eating together.
+S2: Three people are wearing hats, two sitting, talking, and eating, and one laying down.
+
+Predicates:
+1. Person1.is_talking
+2. Person2.is_talking
+3. Person3.is_talking
+4. Person1.is_eating
+5. Person2.is_eating
+6. Person3.is_eating
+7. Person1.is_wearing_hat
+8. Person2.is_wearing_hat
+9. Person3.is_wearing_hat
+10. Person1.is_sitting
+11. Person2.is_sitting
+12. Person3.is_laying_down
+13. Person1.participates_in_activity
+14. Person2.participates_in_activity
+15. Person3.does_not_participate_in_activity
+16. "talking".involves(Person1, Person2)
+17. "talking".involves(Person1, Person3)
+18. "talking".involves(Person2, Person3)
+19. "eating".involves(Person1, Person2)
+20. "eating".involves(Person1, Person3)
+21. "eating".involves(Person2, Person3)
+22. "sitting".involves(Person1, Person2)
+23. "sitting".involves(Person1, Person3)
+24. "sitting".involves(Person2, Person3)
+25. M_NLI(S1, S2)
+26. Factual(Person1, is_talking)
+27. Factual(Person2, is_eating)
+28. Factual(Person3, is_laying_down)
+29. violate(Person3, participates_in_activity)
+30. "eating".is_shared_activity
+
+Rules:
+1. Q[Three, Person1.is_talking, Person3.does_not_participate_in_activity](Person1.is_talking == true ∧ Person2.is_talking == true ∧ Person3.is_laying_down == true → Factual(Person1, Person3))
+2. Q[Three, Person1.is_eating, Person3.does_not_participate_in_activity](Person1.is_eating == true ∧ Person2.is_eating == true ∧ Person3.is_laying_down == true → Factual(Person1, Person3))
+3. Q[Three, Person2.is_talking, Person3.does_not_participate_in_activity](Person1.is_talking == true ∧ Person2.is_talking == true ∧ Person3.is_laying_down == true → Factual(Person2, Person3))
+4. Q[Three, Person2.is_eating, Person3.does_not_participate_in_activity](Person1.is_eating == true ∧ Person2.is_eating == true ∧ Person3.is_laying_down == true → Factual(Person2, Person3))
+5. Q[Three, Person3.is_laying_down, Person3.does_not_participate_in_activity](Person3.is_laying_down == true → Factual(Person3, Person3))
+6. Q[Three, Person1.is_wearing_hat, Person3.does_not_participate_in_activity](Person1.is_wearing_hat == true ∧ Person3.is_laying_down == true → Factual(Person1, Person3))
+7. Q[Three, Person2.is_wearing_hat, Person3.does_not_participate_in_activity](Person2.is_wearing_hat == true ∧ Person3.is_laying_down == true → Factual(Person2, Person3))
+8. Q[Three, Person3.is_wearing_hat, Person3.does_not_participate_in_activity](Person3.is_wearing_hat == true ∧ Person3.is_laying_down == true → Factual(Person3, Person3))
+9. Q[Three, Person1.is_sitting, Person3.does_not_participate_in_activity](Person1.is_sitting == true ∧ Person3.is_laying_down == true → Factual(Person1, Person3))
+10. Q[Three, Person2.is_sitting, Person3.does_not_participate_in_activity](Person2.is_sitting == true ∧ Person3.is_laying_down == true → Factual(Person2, Person3))
+11. Q[Three, Person1.participates_in_activity, Person3.does_not_participate_in_activity](Person1.is_talking == true ∧ Person1.is_eating == true ∧ Person3.is_laying_down == true → Factual(Person1, Person3))
+12. Q[Three, Person2.participates_in_activity, Person3.does_not_participate_in_activity](Person2.is_talking == true ∧ Person2.is_eating == true ∧ Person3.is_laying_down == true → Factual(Person2, Person3))
+13. Q[Three, "talking".involves(Person1, Person2), Person3.does_not_participate_in_activity](Person1.is_talking == true ∧ Person2.is_talking == true ∧ Person3.is_laying_down == true → Factual(Person1, Person3))
+14. Q[Three, "eating".involves(Person1, Person2), Person3.does_not_participate_in_activity](Person1.is_eating == true ∧ Person2.is_eating == true ∧ Person3.is_laying_down == true → Factual(Person1, Person3))
+15. Q[Three, "sitting".involves(Person1, Person2), Person3.does_not_participate_in_activity](Person1.is_sitting == true ∧ Person2.is_sitting == true ∧ Person3.is_laying_down == true → Factual(Person1, Person3))
+16. Q[Three, "talking".involves(Person1, Person3), Person3.does_not_participate_in_activity](Person1.is_talking == true ∧ Person3.is_laying_down == true → Factual(Person1, Person3))
+17. Q[Three, "eating".involves(Person1, Person3), Person3.does_not_participate_in_activity](Person1.is_eating == true ∧ Person3.is_laying_down == true → Factual(Person1, Person3))
+18. Q[Three, "talking".involves(Person2, Person3), Person3.does_not_participate_in_activity](Person2.is_talking == true ∧ Person3.is_laying_down == true → Factual(Person2, Person3))
+19. Q[Three, "eating".involves(Person2, Person3), Person3.does_not_participate_in_activity](Person2.is_eating == true ∧ Person3.is_laying_down == true → Factual(Person2, Person3))
+20. Q[Three, "sitting".involves(Person2, Person3), Person3.does_not_participate_in_activity](Person2.is_sitting == true ∧ Person3.is_laying_down == true → Factual(Person2, Person3))
+21. Q[Three, Person1.is_talking, Person1.participates_in_activity](Person1.is_talking == true ∧ Person2.is_talking == true ∧ Person3.is_laying_down == true → Factual(Person1, Person1))
+22. Q[Three, Person2.is_talking, Person2.participates_in_activity](Person1.is_talking == true ∧ Person2.is_talking == true ∧ Person3.is_laying_down == true → Factual(Person2, Person2))
+23. Q[Three, Person1.is_eating, Person1.participates_in_activity](Person1.is_eating == true ∧ Person2.is_eating == true ∧ Person3.is_laying_down == true → Factual(Person1, Person1))
+24. Q[Three, Person2.is_eating, Person2.participates_in_activity](Person1.is_eating == true ∧ Person2.is_eating == true ∧ Person3.is_laying_down == true → Factual(Person2, Person2))
+25. Q[Three, Person1.is_wearing_hat, Person1.participates_in_activity](Person1.is_wearing_hat == true ∧ Person1.is_talking == true ∧ Person1.is_eating == true → Factual(Person1, Person1))
+26. Q[Three, Person2.is_wearing_hat, Person2.participates_in_activity](Person2.is_wearing_hat == true ∧ Person2.is_talking == true ∧ Person2.is_eating == true → Factual(Person2, Person2))
+27. Q[Three, Person1.is_sitting, Person1.participates_in_activity](Person1.is_sitting == true ∧ Person1.is_talking

@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 501)
+S1: There were 20 survivors, most of them are in critical condition.
+S2: There were 20 survivors, the majority of them are in critical condition.
+
+Predicates:
+1. Survivors.count
+2. Survivors.condition
+3. Survivors.critical_condition
+4. Survivors.majority
+5. Survivors.status
+6. Condition.severity
+7. Condition.critical
+8. Condition.non_critical
+9. Survivors.location
+10. Survivors.age
+11. Survivors.gender
+12. Survivors.injury_type
+13. Survivors.treatment_status
+14. Treatment.type
+15. Treatment.efficacy
+16. Treatment.duration
+17. Hospital.capacity
+18. Hospital.staff_count
+19. Hospital.equipment_availability
+20. Hospital.location
+21. Emergency_response.time
+22. Emergency_response.efficiency
+23. Emergency_response.resources
+24. Incident.severity
+25. Incident.type
+26. Incident.location
+27. Incident.time
+28. Incident.cause
+29. Community.support
+30. Community.resources
+
+Rules:
+1. Q[There, Survivors.count, 20](Survivors.count == 20 → Relation(Survivors.count, 20))
+2. Q[There, Survivors.condition, "critical"](Survivors.condition == "critical" → Relation(Survivors.condition, "critical"))
+3. Q[There, Survivors.critical_condition, true](Survivors.critical_condition == true → Relation(Survivors.critical_condition, true))
+4. Q[There, Survivors.majority, true](Survivors.majority == true → Relation(Survivors.majority, true))
+5. Q[There, Survivors.status, "critical"](Survivors.status == "critical" → Relation(Survivors.status, "critical"))
+6. Q[There, Condition.severity, "critical"](Condition.severity == "critical" → Relation(Condition.severity, "critical"))
+7. Q[There, Condition.critical, true](Condition.critical == true → Relation(Condition.critical, true))
+8. Q[There, Survivors.count, 20](Survivors.count == 20 ∧ Survivors.critical_condition == true → Relation(Survivors.count, 20))
+9. Q[There, Survivors.majority, "critical"](Survivors.majority == "critical" → Relation(Survivors.majority, "critical"))
+10. Q[There, Survivors.condition, "non_critical"](Survivors.condition == "non_critical" → Relation(Survivors.condition, "non_critical"))
+11. Q[There, Survivors.critical_condition, false](Survivors.critical_condition == false → Relation(Survivors.critical_condition, false))
+12. Q[There, Survivors.status, "non_critical"](Survivors.status == "non_critical" → Relation(Survivors.status, "non_critical"))
+13. Q[There, Condition.severity, "non_critical"](Condition.severity == "non_critical" → Relation(Condition.severity, "non_critical"))
+14. Q[There, Survivors.count, 20](Survivors.count == 20 ∧ Survivors.majority == false → Relation(Survivors.count, 20))
+15. Q[There, Survivors.critical_condition, true](Survivors.critical_condition == true ∧ Survivors.majority == true → Relation(Survivors.critical_condition, true))
+16. Q[There, Survivors.condition, "critical"](Survivors.condition == "critical" ∧ Survivors.count == 20 → Relation(Survivors.condition, "critical"))
+17. Q[There, Survivors.status, "critical"](Survivors.status == "critical" ∧ Survivors.critical_condition == true → Relation(Survivors.status, "critical"))
+18. Q[There, Condition.severity, "critical"](Condition.severity == "critical" ∧ Survivors.majority == true → Relation(Condition.severity, "critical"))
+19. Q[There, Survivors.count, 20](Survivors.count == 20 ∧ Survivors.condition == "critical" → Relation(Survivors.count, 20))
+20. Q[There, Survivors.majority, true](Survivors.majority == true ∧ Survivors.critical_condition == true → Relation(Survivors.majority, true))
+21. Q[There, Survivors.critical_condition, true](Survivors.critical_condition == true ∧ Survivors.status == "critical" → Relation(Survivors.critical_condition, true))
+22. Q[There, Survivors.condition, "critical"](Survivors.condition == "critical" ∧ Survivors.status == "critical" → Relation(Survivors.condition, "critical"))
+23. Q[There, Condition.severity, "critical"](Condition.severity == "critical" ∧ Survivors.count == 20 → Relation(Condition.severity, "critical"))
+24. Q[There, Survivors.count, 20](Survivors.count == 20 ∧ Survivors.majority == true → Relation(Survivors.count, 20))
+25. Q[There, Survivors.critical_condition, true](Survivors.critical_condition == true ∧ Survivors.count == 20 → Relation(Survivors.critical_condition, true))
+26. Q[There, Survivors.status, "critical"](Survivors.status == "critical" ∧ Survivors.majority == true → Relation(Survivors.status, "critical"))
+27. Q[There, Condition.severity, "critical"](Condition.severity == "critical" ∧ Survivors.critical_condition == true → Relation(Condition.severity, "critical"))
+28. Q[There, Survivors.count, 20](Survivors.count == 20 ∧ Survivors.condition == "non_critical" → Relation(Survivors.count, 20))
+29. Q[There, Survivors.majority, false](Survivors.majority == false ∧ Survivors.critical_condition == false → Relation(Survivors.majority, false))
+30. Q[There, Survivors.status, "non_critical"](Survivors.status == "non_critical" ∧ Survivors.count == 20 → Relation(Survivors.status, "non_critical"))

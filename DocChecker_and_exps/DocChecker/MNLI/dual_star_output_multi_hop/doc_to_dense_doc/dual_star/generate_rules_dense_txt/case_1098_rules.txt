@@ -1,0 +1,65 @@
+Source: dense_text.txt (Index 1098)
+S1: These weaknesses place critical federal operations, such as national defense, tax collection, law enforcement, air traffic control, and benefit payments, at significant risk of disruption as well as fraud and inappropriate disclosures.
+S2: National Defense and law enforcement are at risk due to these weaknesses.
+
+Predicates:
+1. Weaknesses.place_critical_operations
+2. Critical_operations.risk_of_disruption
+3. Critical_operations.risk_of_fraud
+4. Critical_operations.risk_of_disclosures
+5. National_defense.at_risk
+6. Law_enforcement.at_risk
+7. Tax_collection.at_risk
+8. Air_traffic_control.at_risk
+9. Benefit_payments.at_risk
+10. Weaknesses.affect_national_defense
+11. Weaknesses.affect_law_enforcement
+12. Weaknesses.affect_tax_collection
+13. Weaknesses.affect_air_traffic_control
+14. Weaknesses.affect_benefit_payments
+15. National_defense.is_critical_operation
+16. Law_enforcement.is_critical_operation
+17. Tax_collection.is_critical_operation
+18. Air_traffic_control.is_critical_operation
+19. Benefit_payments.is_critical_operation
+20. Risk_of_disruption.applies_to_national_defense
+21. Risk_of_disruption.applies_to_law_enforcement
+22. Risk_of_fraud.applies_to_national_defense
+23. Risk_of_fraud.applies_to_law_enforcement
+24. Risk_of_disclosures.applies_to_national_defense
+25. Risk_of_disclosures.applies_to_law_enforcement
+26. M_NLI(s1, s2).context
+27. Relation(weaknesses, critical_operations).scope
+28. violate(weaknesses, national_defense)
+29. violate(weaknesses, law_enforcement)
+30. violate(weaknesses, critical_operations)
+
+Rules:
+1. Q[These, weaknesses.place_critical_operations, Critical_operations.risk_of_disruption](weaknesses.place_critical_operations == true → Relation(weaknesses, critical_operations))
+2. Q[These, weaknesses.place_critical_operations, Critical_operations.risk_of_fraud](weaknesses.place_critical_operations == true → Relation(weaknesses, critical_operations))
+3. Q[These, weaknesses.place_critical_operations, Critical_operations.risk_of_disclosures](weaknesses.place_critical_operations == true → Relation(weaknesses, critical_operations))
+4. Q[These, National_defense.at_risk, Law_enforcement.at_risk](National_defense.at_risk == true ∧ Law_enforcement.at_risk == true → Relation(National_defense, Law_enforcement))
+5. Q[These, weaknesses.affect_national_defense, weaknesses.affect_law_enforcement](weaknesses.affect_national_defense == true ∧ weaknesses.affect_law_enforcement == true → Relation(weaknesses, national_defense))
+6. Q[These, Critical_operations.risk_of_disruption, National_defense.is_critical_operation](Critical_operations.risk_of_disruption == true ∧ National_defense.is_critical_operation == true → Relation(Critical_operations, National_defense))
+7. Q[These, Critical_operations.risk_of_disruption, Law_enforcement.is_critical_operation](Critical_operations.risk_of_disruption == true ∧ Law_enforcement.is_critical_operation == true → Relation(Critical_operations, Law_enforcement))
+8. Q[These, weaknesses.affect_tax_collection, weaknesses.affect_air_traffic_control](weaknesses.affect_tax_collection == true ∧ weaknesses.affect_air_traffic_control == true → Relation(weaknesses, tax_collection))
+9. Q[These, weaknesses.affect_benefit_payments, weaknesses.affect_national_defense](weaknesses.affect_benefit_payments == true ∧ weaknesses.affect_national_defense == true → Relation(weaknesses, benefit_payments))
+10. Q[These, Risk_of_disruption.applies_to_national_defense, Risk_of_disruption.applies_to_law_enforcement](Risk_of_disruption.applies_to_national_defense == true ∧ Risk_of_disruption.applies_to_law_enforcement == true → Relation(Risk_of_disruption, national_defense))
+11. Q[These, Risk_of_fraud.applies_to_national_defense, Risk_of_fraud.applies_to_law_enforcement](Risk_of_fraud.applies_to_national_defense == true ∧ Risk_of_fraud.applies_to_law_enforcement == true → Relation(Risk_of_fraud, national_defense))
+12. Q[These, Risk_of_disclosures.applies_to_national_defense, Risk_of_disclosures.applies_to_law_enforcement](Risk_of_disclosures.applies_to_national_defense == true ∧ Risk_of_disclosures.applies_to_law_enforcement == true → Relation(Risk_of_disclosures, national_defense))
+13. Q[These, weaknesses.affect_tax_collection, weaknesses.affect_benefit_payments](weaknesses.affect_tax_collection == true ∧ weaknesses.affect_benefit_payments == true → Relation(weaknesses, tax_collection))
+14. Q[These, weaknesses.affect_air_traffic_control, weaknesses.affect_benefit_payments](weaknesses.affect_air_traffic_control == true ∧ weaknesses.affect_benefit_payments == true → Relation(weaknesses, air_traffic_control))
+15. Q[These, National_defense.is_critical_operation, Law_enforcement.is_critical_operation](National_defense.is_critical_operation == true ∧ Law_enforcement.is_critical_operation == true → Relation(National_defense, Law_enforcement))
+16. Q[These, Critical_operations.risk_of_disruption, Tax_collection.is_critical_operation](Critical_operations.risk_of_disruption == true ∧ Tax_collection.is_critical_operation == true → Relation(Critical_operations, Tax_collection))
+17. Q[These, Critical_operations.risk_of_disruption, Air_traffic_control.is_critical_operation](Critical_operations.risk_of_disruption == true ∧ Air_traffic_control.is_critical_operation == true → Relation(Critical_operations, Air_traffic_control))
+18. Q[These, weaknesses.affect_national_defense, Critical_operations.risk_of_disruption](weaknesses.affect_national_defense == true → Relation(weaknesses, Critical_operations))
+19. Q[These, weaknesses.affect_law_enforcement, Critical_operations.risk_of_fraud](weaknesses.affect_law_enforcement == true → Relation(weaknesses, Critical_operations))
+20. Q[These, weaknesses.affect_tax_collection, Critical_operations.risk_of_disclosures](weaknesses.affect_tax_collection == true → Relation(weaknesses, Critical_operations))
+21. Q[These, weaknesses.affect_air_traffic_control, Critical_operations.risk_of_disruption](weaknesses.affect_air_traffic_control == true → Relation(weaknesses, Critical_operations))
+22. Q[These, weaknesses.affect_benefit_payments, Critical_operations.risk_of_fraud](weaknesses.affect_benefit_payments == true → Relation(weaknesses, Critical_operations))
+23. Q[These, Risk_of_disruption.applies_to_national_defense, Risk_of_disruption.applies_to_tax_collection](Risk_of_disruption.applies_to_national_defense == true ∧ Risk_of_disruption.applies_to_tax_collection == true → Relation(Risk_of_disruption, national_defense))
+24. Q[These, Risk_of_disruption.applies_to_law_enforcement, Risk_of_disruption.applies_to_air_traffic_control](Risk_of_disruption.applies_to_law_enforcement == true ∧ Risk_of_disruption.applies_to_air_traffic_control == true → Relation(Risk_of_disruption, law_enforcement))
+25. Q[These, Risk_of_fraud.applies_to_national_defense, Risk_of_fraud.applies_to_tax_collection](Risk_of_fraud.applies_to_national_defense == true ∧ Risk_of_fraud.applies_to_tax_collection == true → Relation(Risk_of_fraud, national_defense))
+26. Q[These, Risk_of_fraud.applies_to_law_enforcement, Risk_of_fraud.applies_to_air_traffic_control](Risk_of_fraud.applies_to_law_enforcement == true ∧ Risk_of_fraud.applies_to_air_traffic_control == true → Relation(Risk_of_fraud, law_enforcement))
+27. Q[These, Risk_of_disclosures.applies_to_national_defense, Risk_of_disclosures.applies_to_tax_collection](Risk_of_disclosures.applies_to_national_defense == true ∧ Risk_of_disclosures.applies_to_tax_collection == true → Relation(Risk_of_disclosures, national_defense))
+28. Q[These, Risk_of_disclosures.applies_to_law_enforcement, Risk_of_disclosures.applies_to_air_

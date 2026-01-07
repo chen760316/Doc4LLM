@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 665)
+S1: Chronic alcohol abuse has no effects whatsoever to the consumer.
+S2: The effects of acute alcohol intoxication and chronic alcohol abuse on outcome from trauma.
+
+Predicates:
+1. Chronic_Alcohol_Abuse.has_effects(false)
+2. Acute_Alcohol_Intoxication.has_effects(true)
+3. Trauma_Outcome.depends_on(Chronic_Alcohol_Abuse)
+4. Trauma_Outcome.depends_on(Acute_Alcohol_Intoxication)
+5. Chronic_Alcohol_Abuse.impact_on(Trauma_Outcome)
+6. Acute_Alcohol_Intoxication.impact_on(Trauma_Outcome)
+7. S1.claims(Chronic_Alcohol_Abuse.has_effects(false))
+8. S2.implies(Chronic_Alcohol_Abuse.has_effects(true))
+9. S2.implies(Acute_Alcohol_Intoxication.has_effects(true))
+10. S1.violates(S2)
+11. M_NLI(S1, S2)
+12. Factual(Chronic_Alcohol_Abuse, no_effects)
+13. Factual(Acute_Alcohol_Intoxication, has_effects)
+14. Factual(Trauma_Outcome, depends_on_effects)
+15. Chronic_Alcohol_Abuse.is_a(type_of(Alcohol_Abuse))
+16. Acute_Alcohol_Intoxication.is_a(type_of(Alcohol_Intoxication))
+17. Trauma_Outcome.is_a(type_of(Health_Outcome))
+18. Alcohol_Abuse.has_type(Chronic)
+19. Alcohol_Abuse.has_type(Acute)
+20. Alcohol_Abuse.affects(Trauma_Outcome)
+21. Alcohol_Abuse.has_no_effects(Chronic)
+22. Alcohol_Abuse.has_effects(Acute)
+23. S1.is_false(Chronic_Alcohol_Abuse.has_effects)
+24. S2.is_true(Acute_Alcohol_Intoxication.has_effects)
+25. S1.contradicts(S2)
+26. Chronic_Alcohol_Abuse.is_beneficial(false)
+27. Acute_Alcohol_Intoxication.is_harmful(true)
+28. Trauma_Outcome.is_affected_by(Alcohol_Abuse)
+29. Alcohol_Abuse.has_consequences(Trauma_Outcome)
+30. S1.and(S2).create_conflict
+
+Rules:
+1. Q[Chronic, Chronic_Alcohol_Abuse.has_effects(false) → Factual(Chronic_Alcohol_Abuse, no_effects)]
+2. Q[Chronic, S1.claims(Chronic_Alcohol_Abuse.has_effects(false)) → Factual(Chronic_Alcohol_Abuse, no_effects)]
+3. Q[Chronic, S2.implies(Chronic_Alcohol_Abuse.has_effects(true)) → Factual(Chronic_Alcohol_Abuse, has_effects)]
+4. Q[Chronic, Trauma_Outcome.depends_on(Chronic_Alcohol_Abuse) → Factual(Trauma_Outcome, depends_on_effects)]
+5. Q[Chronic, Chronic_Alcohol_Abuse.impact_on(Trauma_Outcome) → Factual(Trauma_Outcome, affected_by(Chronic_Alcohol_Abuse))]
+6. Q[Chronic, S1.violates(S2) → Factual(Chronic_Alcohol_Abuse, contradicts(S2))]
+7. Q[Chronic, S1.is_false(Chronic_Alcohol_Abuse.has_effects) → Factual(Chronic_Alcohol_Abuse, no_effects)]
+8. Q[Chronic, S2.implies(Acute_Alcohol_Intoxication.has_effects(true)) → Factual(Acute_Alcohol_Intoxication, has_effects)]
+9. Q[Chronic, Acute_Alcohol_Intoxication.impact_on(Trauma_Outcome) → Factual(Trauma_Outcome, affected_by(Acute_Alcohol_Intoxication))]
+10. Q[Chronic, Alcohol_Abuse.has_no_effects(Chronic) → Factual(Chronic_Alcohol_Abuse, no_effects)]
+11. Q[Chronic, Alcohol_Abuse.has_effects(Acute) → Factual(Acute_Alcohol_Intoxication, has_effects)]
+12. Q[Chronic, S1.and(S2).create_conflict → Factual(Chronic_Alcohol_Abuse, contradicts(S2))]
+13. Q[Chronic, Trauma_Outcome.is_affected_by(Alcohol_Abuse) → Factual(Trauma_Outcome, affected_by(Chronic_Alcohol_Abuse))]
+14. Q[Chronic, S1.contradicts(S2) → Factual(Chronic_Alcohol_Abuse, contradicts(S2))]
+15. Q[Chronic, Alcohol_Abuse.affects(Trauma_Outcome) → Factual(Trauma_Outcome, affected_by(Chronic_Alcohol_Abuse))]
+16. Q[Chronic, S2.is_true(Acute_Alcohol_Intoxication.has_effects) → Factual(Acute_Alcohol_Intoxication, has_effects)]
+17. Q[Chronic, Chronic_Alcohol_Abuse.is_beneficial(false) → Factual(Chronic_Alcohol_Abuse, no_effects)]
+18. Q[Chronic, Acute_Alcohol_Intoxication.is_harmful(true) → Factual(Acute_Alcohol_Intoxication, has_effects)]
+19. Q[Chronic, Factual(Acute_Alcohol_Intoxication, has_effects) → Factual(Trauma_Outcome, affected_by(Acute_Alcohol_Intoxication))]
+20. Q[Chronic, Factual(Chronic_Alcohol_Abuse, no_effects) → Factual(Trauma_Outcome, depends_on_effects)]
+21. Q[Chronic, Alcohol_Abuse.has_type(Chronic) → Factual(Chronic_Alcohol_Abuse, no_effects)]
+22. Q[Chronic, Alcohol_Abuse.has_type(Acute) → Factual(Acute_Alcohol_Intoxication, has_effects)]
+23. Q[Chronic, S1.is_false(Chronic_Alcohol_Abuse.has_effects) → Factual(Chronic_Alcohol_Abuse, no_effects)]
+24. Q[Chronic, S2.implies(Chronic_Alcohol_Abuse.has_effects(true)) → Factual(Chronic_Alcohol_Abuse, has_effects)]
+25. Q[Chronic, S2.implies(Acute_Alcohol_Intoxication.has_effects(true)) → Factual(Acute_Alcohol_Intoxication, has_effects)]
+26. Q[Chronic, Trauma_Outcome.depends_on(Acute_Alcohol_Intoxication) → Factual(Trauma_Outcome, affected_by(Acute_Alcohol_Intoxication))]
+27. Q[Chronic, Chronic_Alcohol_Abuse.is_a(type_of(Alcohol_Abuse)) → Factual(Chronic_Alcohol_Abuse, no_effects)]
+28. Q[Chronic, Acute_Alcohol_Intoxication.is_a(type_of(Alcohol_Intoxication)) → Factual(Acute_Alcohol_Intoxication, has_effects)]
+29. Q[Chronic, Trauma_Outcome.is_a(type_of(Health_Outcome)) → Factual(Trauma_Outcome, depends_on_effects)]
+30. Q[Chronic, Alcohol_Abuse.has_consequences(Trauma_Outcome) → Factual(Trauma_Outcome, affected_by(Chronic_Alcohol_Abuse))]

@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 218)
+S1: J u a n a n d A m y w e r e h a p p y b e c a u s e t h e y w e r e g o i n g t o h e l p t h e i r m o m m a k e a c a k e.
+S2: J u a n a n d A m y h a p p y b e c a u s e T h e y w e r e g o i n g t o t h e p a r k t o w a l k t h e d o g a n d s w i n g.
+
+Predicates:
+1. Juana.happy
+2. Amy.happy
+3. Juana.going_to.help
+4. Amy.going_to.help
+5. Juana.making_cake
+6. Amy.making_cake
+7. Juana.going_to.park
+8. Amy.going_to.park
+9. Juana.walking_dog
+10. Amy.walking_dog
+11. Juana.swinging
+12. Amy.swinging
+13. Juana.causal_happiness
+14. Amy.causal_happiness
+15. help.mom
+16. make.cake
+17. going_to.help.mom
+18. going_to.park
+19. going_to.walk_dog
+20. going_to.swing
+21. happy.because.helping
+22. happy.because.park
+23. M_NLI(S1, S2)
+24. Causal(Juana, happy)
+25. Causal(Amy, happy)
+26. violate(Juana, Amy)
+27. violate(Amy, Juana)
+28. relationship(Juana, happy)
+29. relationship(Amy, happy)
+30. Juana_and_Amy.happy
+
+Rules:
+1. Q[happy, Juana.happy, Amy.happy](Juana.happy == true ∧ Amy.happy == true → Causal(Juana, happy))
+2. Q[going_to.help, Juana.going_to.help, Amy.going_to.help](Juana.going_to.help == true ∧ Amy.going_to.help == true → Causal(Juana, happy))
+3. Q[make.cake, Juana.making_cake, Amy.making_cake](Juana.making_cake == true ∧ Amy.making_cake == true → Causal(Juana, happy))
+4. Q[going_to.park, Juana.going_to.park, Amy.going_to.park](Juana.going_to.park == true ∧ Amy.going_to.park == true → Causal(Amy, happy))
+5. Q[happy.because.helping, Juana.happy, Amy.happy](Juana.happy == true ∧ Amy.happy == true ∧ happy.because.helping == true → Causal(Juana, happy))
+6. Q[happy.because.park, Juana.happy, Amy.happy](Juana.happy == true ∧ Amy.happy == true ∧ happy.because.park == true → Causal(Amy, happy))
+7. Q[going_to.help.mom, Juana.going_to.help, Amy.going_to.help](Juana.going_to.help == true ∧ Amy.going_to.help == true → Causal(Juana, happy))
+8. Q[going_to.park, Juana.going_to.park, Amy.going_to.park](Juana.going_to.park == true ∧ Amy.going_to.park == true → Causal(Amy, happy))
+9. Q[Juana_and_Amy.happy, Juana.happy, Amy.happy](Juana_and_Amy.happy == true → Causal(Juana, happy))
+10. Q[relationship, Juana.happy, Amy.happy](relationship(Juana, happy) == true ∧ relationship(Amy, happy) == true → Causal(Juana, happy))
+11. Q[Juana_and_Amy.happy, Juana.happy, Amy.happy](Juana_and_Amy.happy == true → Causal(Amy, happy))
+12. Q[going_to.help.mom, Juana.going_to.help, Amy.going_to.help](Juana.going_to.help == true ∧ Amy.going_to.help == false → Causal(Juana, happy))
+13. Q[going_to.park, Juana.going_to.park, Amy.going_to.park](Juana.going_to.park == false ∧ Amy.going_to.park == true → Causal(Amy, happy))
+14. Q[Juana.happy, Juana.happy, Amy.happy](Juana.happy == true ∧ Amy.happy == false → Causal(Juana, happy))
+15. Q[Juana.happy, Juana.happy, Amy.happy](Juana.happy == false ∧ Amy.happy == true → Causal(Amy, happy))
+16. Q[going_to.help, Juana.going_to.help, Amy.going_to.help](Juana.going_to.help == true ∧ Amy.going_to.help == false → Causal(Juana, happy))
+17. Q[going_to.park, Juana.going_to.park, Amy.going_to.park](Juana.going_to.park == false ∧ Amy.going_to.park == true → Causal(Amy, happy))
+18. Q[Juana.happy, Juana.happy, Amy.happy](Juana.happy == true ∧ Amy.happy == false → Causal(Juana, happy))
+19. Q[Juana.happy, Juana.happy, Amy.happy](Juana.happy == false ∧ Amy.happy == true → Causal(Amy, happy))
+20. Q[Juana.causal_happiness, Juana.happy, Amy.happy](Juana.causal_happiness == true ∧ Amy.happy == false → Causal(Juana, happy))
+21. Q[Juana.causal_happiness, Juana.happy, Amy.happy](Juana.happy == false ∧ Amy.causal_happiness == true → Causal(Amy, happy))
+22. Q[going_to.help.mom, Juana.going_to.help, Amy.going_to.help](Juana.going_to.help == true ∧ Amy.going_to.help == false → Causal(Juana, happy))
+23. Q[going_to.park, Juana.going_to.park, Amy.going_to.park](Juana.going_to.park == false ∧ Amy.going_to.park == true → Causal(Amy, happy))
+24. Q[Juana.happy, Juana.happy, Amy.happy](Juana.happy == true ∧ Amy.happy == false → Causal(Juana, happy))
+25. Q[Juana.happy, Juana.happy, Amy.happy](Juana.happy == false ∧ Amy.happy == true → Causal(Amy, happy))
+26. Q[Juana.causal_happiness, Juana.happy, Amy.happy](Juana.causal_happiness == true ∧ Amy.happy == false → Causal(Juana, happy))
+27. Q[Juana.causal_happiness, Juana.happy, Amy.happy](Juana.happy == false ∧ Amy.causal_happiness == true → Causal(Amy, happy))
+28. Q[Juana_and_Amy.happy, Juana.happy, Amy.happy](Juana_and_Amy.happy == true → Causal(Juana, happy))
+29. Q[Juana_and_Amy.happy, Juana.happy, Amy.happy](Juana_and_Amy.happy == true → Causal(Amy, happy))
+30. Q[relationship, Juana.happy, Amy.happy](relationship(Juana, happy) == true ∧ relationship(Amy, happy) == true → Causal(Juana, happy))

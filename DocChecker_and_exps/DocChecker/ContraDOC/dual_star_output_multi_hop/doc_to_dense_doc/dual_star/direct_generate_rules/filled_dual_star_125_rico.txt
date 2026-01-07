@@ -1,0 +1,45 @@
+Predicates:
+Iranian Revolutionary Guard Corps.label != "Military"
+Iranian Revolutionary Guard Corps.label = "Military"
+Iranian Revolutionary Guard Corps.name != "Iranian Revolutionary Guard Corps"
+Iranian Revolutionary Guard Corps.name = "Iranian Revolutionary Guard Corps"
+Iranian military.label != "Military"
+Iranian military.label = "Military"
+Iranian military.location != "at sea or in air"
+Iranian military.location = "at sea or in air"
+Iranian military.name != "Iranian military"
+Iranian military.name != Iranian Revolutionary Guard Corps.name
+Iranian military.name = "Iranian military"
+None_ML(Iranian Revolutionary Guard Corps.attrs, Iranian military.attrs)
+None_ML(Pentagon___Iranian military.attrs, Pentagon___Iranian Revolutionary Guard Corps.attrs)
+Pentagon.label != "Organization"
+Pentagon.label != Iranian Revolutionary Guard Corps.label
+Pentagon.label != Iranian military.label
+Pentagon.label = "Organization"
+Pentagon.name != "Pentagon"
+Pentagon.name != Iranian Revolutionary Guard Corps.name
+Pentagon.name != Iranian military.name
+Pentagon.name = "Pentagon"
+Pentagon___Iranian Revolutionary Guard Corps.context = "encounters at sea or in air"
+Pentagon___Iranian Revolutionary Guard Corps.contradiction_type = "Content"
+Pentagon___Iranian Revolutionary Guard Corps.relationship = "The Pentagon has noted that some missions run by the Iranian Revolutionary Guard Corps forces have been too aggressive against U.S. forces."
+Pentagon___Iranian Revolutionary Guard Corps.source_id = "3489738268_6"
+Pentagon___Iranian military.contradiction_type != Pentagon___Iranian Revolutionary Guard Corps.contradiction_type
+Pentagon___Iranian military.contradiction_type = "Causal"
+Pentagon___Iranian military.duration = "last several years"
+Pentagon___Iranian military.relationship != Pentagon___Iranian Revolutionary Guard Corps.relationship
+Pentagon___Iranian military.relationship = "The Pentagon has noted that most encounters with the Iranian military are conducted professionally."
+Pentagon___Iranian military.source_id != Pentagon___Iranian Revolutionary Guard Corps.source_id
+Pentagon___Iranian military.source_id = "3489738268_1"
+
+Rules:
+Q[Pentagon,Pentagon] (Pentagon___Iranian Revolutionary Guard Corps.context = "encounters at sea or in air" ∧ Pentagon___Iranian military.duration = "last several years" ∧ Pentagon___Iranian Revolutionary Guard Corps.relationship = "The Pentagon has noted that some missions run by the Iranian Revolutionary Guard Corps forces have been too aggressive against U.S. forces." ∧ Iranian military.location = "at sea or in air" ∧ Pentagon___Iranian military.contradiction_type != Pentagon___Iranian Revolutionary Guard Corps.contradiction_type ∧ Iranian military.label = "Military" → Pentagon___Iranian military.relationship != Pentagon___Iranian Revolutionary Guard Corps.relationship)
+Q[Pentagon,Pentagon] (Pentagon___Iranian military.source_id != Pentagon___Iranian Revolutionary Guard Corps.source_id ∧ Iranian military.name != Iranian Revolutionary Guard Corps.name ∧ Pentagon.name != Iranian Revolutionary Guard Corps.name ∧ Pentagon___Iranian military.contradiction_type = "Causal" → Pentagon.label != "Organization")
+Q[Pentagon,Pentagon] (Iranian military.label != "Military" ∧ Pentagon___Iranian military.relationship = "The Pentagon has noted that most encounters with the Iranian military are conducted professionally." → Pentagon.name != Iranian Revolutionary Guard Corps.name)
+Q[Pentagon,Pentagon] (Pentagon___Iranian military.source_id = "3489738268_1" ∧ Pentagon.name != "Pentagon" ∧ Iranian military.location != "at sea or in air" → Pentagon___Iranian military.contradiction_type = "Causal")
+Q[Pentagon,Pentagon] (Pentagon.name != Iranian military.name ∧ Pentagon___Iranian military.relationship = "The Pentagon has noted that most encounters with the Iranian military are conducted professionally." ∧ Pentagon___Iranian military.duration = "last several years" ∧ Iranian Revolutionary Guard Corps.label = "Military" ∧ Pentagon.label = "Organization" → None_ML(Iranian Revolutionary Guard Corps.attrs, Iranian military.attrs))
+Q[Pentagon,Pentagon] (Pentagon.label = "Organization" ∧ Pentagon___Iranian Revolutionary Guard Corps.context = "encounters at sea or in air" ∧ Iranian military.name = "Iranian military" ∧ Pentagon.label != "Organization" → Pentagon___Iranian Revolutionary Guard Corps.relationship = "The Pentagon has noted that some missions run by the Iranian Revolutionary Guard Corps forces have been too aggressive against U.S. forces.")
+Q[Pentagon,Pentagon] (None_ML(Iranian Revolutionary Guard Corps.attrs, Iranian military.attrs) ∧ Iranian military.label != "Military" ∧ Pentagon___Iranian military.contradiction_type = "Causal" ∧ Pentagon.label != "Organization" ∧ Pentagon___Iranian Revolutionary Guard Corps.source_id = "3489738268_6" → Pentagon.name != Iranian military.name)
+Q[Pentagon,Pentagon] (Pentagon___Iranian military.relationship != Pentagon___Iranian Revolutionary Guard Corps.relationship ∧ Iranian military.label = "Military" ∧ Pentagon___Iranian military.contradiction_type != Pentagon___Iranian Revolutionary Guard Corps.contradiction_type → Iranian military.location != "at sea or in air")
+Q[Pentagon,Pentagon] (Pentagon___Iranian Revolutionary Guard Corps.source_id = "3489738268_6" ∧ Pentagon.name != Iranian military.name → Pentagon___Iranian military.source_id != Pentagon___Iranian Revolutionary Guard Corps.source_id)
+Q[Pentagon,Pentagon] (Pentagon___Iranian military.source_id = "3489738268_1" ∧ Pentagon___Iranian military.relationship = "The Pentagon has noted that most encounters with the Iranian military are conducted professionally." ∧ Iranian Revolutionary Guard Corps.name != "Iranian Revolutionary Guard Corps" ∧ Iranian military.label != "Military" ∧ Iranian military.label = "Military" ∧ Pentagon___Iranian Revolutionary Guard Corps.source_id = "3489738268_6" → Pentagon___Iranian Revolutionary Guard Corps.context = "encounters at sea or in air")

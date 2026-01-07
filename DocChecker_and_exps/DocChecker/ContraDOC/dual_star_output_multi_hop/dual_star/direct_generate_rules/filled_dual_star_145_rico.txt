@@ -1,0 +1,59 @@
+Predicates:
+Brazen.label != "Character"
+Brazen.label = "Character"
+Brazen.name != "Brazen"
+Brazen.name != Jack Wilful.name
+Brazen.name = "Brazen"
+Brazen.occupation != "recruiter"
+Brazen.occupation = "recruiter"
+Jack Wilful.label != "Character"
+Jack Wilful.label = "Character"
+Jack Wilful.name != "Jack Wilful"
+Jack Wilful.name = "Jack Wilful"
+Jack Wilful.status != "Disguised Sylvia"
+Jack Wilful.status = "Disguised Sylvia"
+Kite.label != "Character"
+Kite.label = "Character"
+Kite.name != "Kite"
+Kite.name != Brazen.name
+Kite.name != Jack Wilful.name
+Kite.name != Sylvia.name
+Kite.name = "Kite"
+Kite.occupation != "Recruiter"
+Kite.occupation != Brazen.occupation
+Kite.occupation = "Recruiter"
+Kite___Brazen.doc_id != Kite___Jack Wilful.doc_id
+Kite___Brazen.doc_id = "3488771854_1"
+Kite___Brazen.mistaken_identity = "from Melinda"
+Kite___Brazen.relationship != Kite___Jack Wilful.relationship
+Kite___Brazen.relationship = "Kite receives a love letter from Brazen."
+Kite___Jack Wilful.doc_id = "3488771854_8"
+Kite___Jack Wilful.relationship = "Kite abducts 'Wilful' for Brazen."
+Kite___Sylvia.doc_id != Kite___Jack Wilful.doc_id
+Kite___Sylvia.doc_id = "3488771854_1"
+Kite___Sylvia.relationship != Kite___Brazen.relationship
+Kite___Sylvia.relationship != Kite___Jack Wilful.relationship
+Kite___Sylvia.relationship = "Kite's dubious recruiting practices are investigated."
+None_ML(Kite___Sylvia.attrs, Kite___Jack Wilful.attrs)
+None_ML(Sylvia.attrs, Jack Wilful.attrs)
+Sylvia.label != "Character"
+Sylvia.label = "Character"
+Sylvia.name != "Sylvia"
+Sylvia.name != Brazen.name
+Sylvia.name != Jack Wilful.name
+Sylvia.name = "Sylvia"
+Sylvia.status != "In love with Plume"
+Sylvia.status != Jack Wilful.status
+Sylvia.status = "In love with Plume"
+
+Rules:
+Q[Kite,Kite] (Brazen.name = "Brazen" ∧ Kite___Sylvia.doc_id != Kite___Jack Wilful.doc_id ∧ Kite___Brazen.relationship = "Kite receives a love letter from Brazen." → Kite___Sylvia.doc_id = "3488771854_1")
+Q[Kite,Kite] (Kite___Sylvia.doc_id != Kite___Jack Wilful.doc_id ∧ Sylvia.status = "In love with Plume" ∧ Kite___Brazen.relationship = "Kite receives a love letter from Brazen." ∧ Kite___Brazen.doc_id = "3488771854_1" ∧ Kite.occupation != "Recruiter" → Kite.name != Jack Wilful.name)
+Q[Kite,Kite] (Kite___Jack Wilful.relationship = "Kite abducts 'Wilful' for Brazen." ∧ Kite___Jack Wilful.doc_id = "3488771854_8" ∧ Kite___Brazen.doc_id != Kite___Jack Wilful.doc_id ∧ Kite.name != Sylvia.name → Kite.name != Brazen.name)
+Q[Kite,Kite] (Brazen.label = "Character" ∧ Sylvia.status != Jack Wilful.status ∧ Brazen.occupation = "recruiter" ∧ Jack Wilful.label != "Character" ∧ Sylvia.label = "Character" ∧ None_ML(Sylvia.attrs, Jack Wilful.attrs) → Kite.label = "Character")
+Q[Kite,Kite] (Kite___Jack Wilful.doc_id = "3488771854_8" ∧ Jack Wilful.status != "Disguised Sylvia" → Kite___Brazen.relationship = "Kite receives a love letter from Brazen.")
+Q[Kite,Kite] (Kite___Sylvia.doc_id = "3488771854_1" ∧ Sylvia.name = "Sylvia" → Sylvia.name != Brazen.name)
+Q[Kite,Kite] (Sylvia.status != "In love with Plume" ∧ Kite___Brazen.relationship != Kite___Jack Wilful.relationship ∧ Kite.name != Jack Wilful.name → Kite___Sylvia.relationship = "Kite's dubious recruiting practices are investigated.")
+Q[Kite,Kite] (Kite___Sylvia.relationship = "Kite's dubious recruiting practices are investigated." ∧ Sylvia.name = "Sylvia" ∧ Sylvia.label = "Character" ∧ Sylvia.status = "In love with Plume" ∧ Jack Wilful.label != "Character" → Kite.occupation != "Recruiter")
+Q[Kite,Kite] (Kite.name != "Kite" ∧ Brazen.occupation = "recruiter" ∧ Jack Wilful.status != "Disguised Sylvia" ∧ Kite___Brazen.mistaken_identity = "from Melinda" → Jack Wilful.name = "Jack Wilful")
+Q[Kite,Kite] (Kite.occupation != "Recruiter" ∧ Sylvia.name = "Sylvia" ∧ Kite.name != "Kite" ∧ Kite___Brazen.doc_id = "3488771854_1" ∧ Kite.occupation != Brazen.occupation ∧ Kite.name != Sylvia.name → Brazen.label = "Character")

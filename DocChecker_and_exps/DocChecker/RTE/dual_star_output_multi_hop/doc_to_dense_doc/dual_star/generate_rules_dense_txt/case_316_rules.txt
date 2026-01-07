@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 316)
+S1: When the Berlin Wall fell in early November, 1989 Berlin's east and west sections were rejoined to create the third-largest city in Europe, with a population of about 3 million.
+S2: The Berlin wall was torn down in November, 1989.
+
+Predicates:
+1. Berlin_Wall.fell_date = November_1989
+2. Berlin_Wall.torn_down_date = November_1989
+3. Berlin.east_section.rejoined = true
+4. Berlin.west_section.rejoined = true
+5. Berlin.population = 3_million
+6. Berlin.size_rank_in_Europe = 3rd
+7. Berlin_Wall.fell_time = early_November
+8. Berlin_Wall.torn_down_time = November
+9. M_NLI(S1, S2) = true
+10. Temporal(Berlin_Wall.fell_date, Berlin_Wall.torn_down_date) = true
+11. violate(Berlin_Wall.fell_time, Berlin_Wall.torn_down_time) = true
+12. Berlin.city_type = city
+13. Berlin.geographical_location = Europe
+14. Berlin.east_section.population = 1.5_million
+15. Berlin.west_section.population = 1.5_million
+16. Berlin.rejoined_date = November_1989
+17. Berlin.city_size = large
+18. Berlin_Wall.status = torn_down
+19. Berlin_Wall.reunion_event = true
+20. Berlin.population_growth = significant
+21. Berlin.east_section.status = part_of_Berlin
+22. Berlin.west_section.status = part_of_Berlin
+23. Berlin.reunion_time = November_1989
+24. Berlin_Wall.history_event = true
+25. Berlin_Wall.fell_event = true
+26. Berlin_Wall.torn_down_event = true
+27. Berlin.city_population_change = true
+28. Berlin.east_section.reunion_status = true
+29. Berlin.west_section.reunion_status = true
+30. Berlin.city_rank = 3rd_largest_in_Europe
+
+Rules:
+1. Q[When, Berlin_Wall.fell_time == early_November](Berlin_Wall.fell_date = November_1989 → Temporal(Berlin_Wall.fell_date, Berlin_Wall.torn_down_date))
+2. Q[When, Berlin_Wall.torn_down_time == November](Berlin_Wall.torn_down_date = November_1989 → Temporal(Berlin_Wall.fell_date, Berlin_Wall.torn_down_date))
+3. Q[When, Berlin_Wall.fell_time == early_November](violate(Berlin_Wall.fell_time, Berlin_Wall.torn_down_time) = true → Temporal(Berlin_Wall.fell_date, Berlin_Wall.torn_down_date))
+4. Q[When, Berlin_Wall.torn_down_time == November](violate(Berlin_Wall.fell_time, Berlin_Wall.torn_down_time) = true → Temporal(Berlin_Wall.fell_date, Berlin_Wall.torn_down_date))
+5. Q[When, Berlin_Wall.fell_time == early_November](Berlin_Wall.fell_date = November_1989 ∧ Berlin_Wall.torn_down_date = November_1989 → Temporal(Berlin_Wall.fell_date, Berlin_Wall.torn_down_date))
+6. Q[When, Berlin_Wall.torn_down_time == November](Berlin_Wall.fell_date = November_1989 ∧ Berlin_Wall.torn_down_date = November_1989 → Temporal(Berlin_Wall.fell_date, Berlin_Wall.torn_down_date))
+7. Q[When, Berlin_Wall.fell_time == early_November](Berlin_Wall.fell_time != Berlin_Wall.torn_down_time → Temporal(Berlin_Wall.fell_date, Berlin_Wall.torn_down_date))
+8. Q[When, Berlin_Wall.torn_down_time == November](Berlin_Wall.fell_time != Berlin_Wall.torn_down_time → Temporal(Berlin_Wall.fell_date, Berlin_Wall.torn_down_date))
+9. Q[When, Berlin_Wall.fell_time == early_November](M_NLI(S1, S2) = true → Temporal(Berlin_Wall.fell_date, Berlin_Wall.torn_down_date))
+10. Q[When, Berlin_Wall.torn_down_time == November](M_NLI(S1, S2) = true → Temporal(Berlin_Wall.fell_date, Berlin_Wall.torn_down_date))
+11. Q[When, Berlin_Wall.fell_time == early_November](Berlin_Wall.fell_event = true → Temporal(Berlin_Wall.fell_date, Berlin_Wall.torn_down_date))
+12. Q[When, Berlin_Wall.torn_down_time == November](Berlin_Wall.torn_down_event = true → Temporal(Berlin_Wall.fell_date, Berlin_Wall.torn_down_date))
+13. Q[When, Berlin_Wall.fell_time == early_November](Berlin_Wall.history_event = true → Temporal(Berlin_Wall.fell_date, Berlin_Wall.torn_down_date))
+14. Q[When, Berlin_Wall.torn_down_time == November](Berlin_Wall.history_event = true → Temporal(Berlin_Wall.fell_date, Berlin_Wall.torn_down_date))
+15. Q[When, Berlin_Wall.fell_time == early_November](Berlin.reunion_time = November_1989 → Temporal(Berlin_Wall.fell_date, Berlin_Wall.torn_down_date))
+16. Q[When, Berlin_Wall.torn_down_time == November](Berlin.reunion_time = November_1989 → Temporal(Berlin_Wall.fell_date, Berlin_Wall.torn_down_date))
+17. Q[When, Berlin_Wall.fell_time == early_November](Berlin_Wall.reunion_event = true → Temporal(Berlin_Wall.fell_date, Berlin_Wall.torn_down_date))
+18. Q[When, Berlin_Wall.torn_down_time == November](Berlin_Wall.reunion_event = true → Temporal(Berlin_Wall.fell_date, Berlin_Wall.torn_down_date))
+19. Q[When, Berlin_Wall.fell_time == early_November](Berlin_Wall.status = torn_down → Temporal(Berlin_Wall.fell_date, Berlin_Wall.torn_down_date))
+20. Q[When, Berlin_Wall.torn_down_time == November](Berlin_Wall.status = torn_down → Temporal(Berlin_Wall.fell_date, Berlin_Wall.torn_down_date))
+21. Q[When, Berlin_Wall.fell_time == early_November](Berlin.city_population_change = true → Temporal(Berlin_Wall.fell_date, Berlin_Wall.torn_down_date))
+22. Q[When, Berlin_Wall.torn_down_time == November](Berlin.city_population_change = true → Temporal(Berlin_Wall.fell_date, Berlin_Wall.torn_down_date))
+23. Q[When, Berlin_Wall.fell_time == early_November](Berlin.east_section.reunion_status = true → Temporal(Berlin_Wall.fell_date, Berlin_Wall.torn_down_date))
+24. Q[When, Berlin_Wall.torn_down_time == November](Berlin.east_section.reunion_status = true → Temporal(Berlin_Wall.fell_date, Berlin_Wall.torn_down_date))
+25. Q[When, Berlin_Wall.fell_time == early_November](Berlin.west_section.reunion_status = true → Temporal(Berlin_Wall.fell_date, Berlin_Wall.torn_down_date))
+26. Q[When, Berlin_Wall.torn_down_time == November](Berlin.west_section.reunion_status = true → Temporal(Berlin_Wall.fell_date, Berlin_Wall.torn_down_date))
+27. Q[When, Berlin_Wall.fell_time == early_November](Berlin.size_rank_in_Europe = 3rd → Temporal(Berlin_Wall.fell_date, Berlin_Wall.torn_down_date))
+28. Q[When, Berlin_Wall.torn_down_time == November](Berlin.size_rank_in_Europe = 3rd → Temporal(Berlin_Wall.fell_date, Berlin_Wall.torn_down_date))
+29. Q[When, Berlin_Wall.fell_time == early_November](Berlin.population_growth = significant → Temporal(Berlin_Wall.fell_date, Berlin_Wall.torn_down_date))
+30. Q[When, Berlin_Wall.torn_down_time == November](Berlin.population_growth = significant → Temporal(Berlin_Wall.fell_date, Berlin_Wall.torn_down_date))

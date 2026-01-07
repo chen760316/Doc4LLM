@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 1253)
+S1: Women working together on a craft.
+S2: Women working separately on a craft.
+
+Predicates:
+1. Women.collaborating
+2. Women.separating
+3. Craft.collaborated_on
+4. Craft.separated_work
+5. Collaboration.indicates
+6. Non_collaboration.indicates
+7. Women.group_activity
+8. Women.individual_activity
+9. Craft.shared
+10. Craft.individual
+11. M_NLI(Women_working_together, Women_working_separately)
+12. Causal(Women_working_together, Collaboration)
+13. Causal(Women_working_separately, Non_collaboration)
+14. violate(Collaboration, Non_collaboration)
+15. Women.creating_together
+16. Women.creating_separately
+17. Craft.productivity_increases
+18. Craft.productivity_decreases
+19. Collaboration.enhances
+20. Non_collaboration.reduces
+21. Women.team_effort
+22. Women.individual_effort
+23. Craft.shared_resources
+24. Craft.individual_resources
+25. M_NLI(Collaboration, Non_collaboration)
+26. Causal(Women_team_effort, Craft_shared)
+27. Causal(Women_individual_effort, Craft_individual)
+28. violate(Women_team_effort, Women_individual_effort)
+29. Craft.success_rate
+30. Craft.failure_rate
+
+Rules:
+1. Q[Women, Women.collaborating == true, Women.separating == true](Women.collaborating == true → Causal(Women_working_together, Women_working_separately))
+2. Q[Women, Women.group_activity == true, Women.individual_activity == true](Women.group_activity == true → Causal(Women_working_together, Women_working_separately))
+3. Q[Women, Women.creating_together == true, Women.creating_separately == true](Women.creating_together == true → Causal(Women_working_together, Women_working_separately))
+4. Q[Women, Craft.shared == true, Craft.individual == true](Craft.shared == true → Causal(Women_working_together, Women_working_separately))
+5. Q[Women, Collaboration.indicates == true, Non_collaboration.indicates == true](Collaboration.indicates == true → Causal(Women_working_together, Women_working_separately))
+6. Q[Women, Women.team_effort == true, Women.individual_effort == true](Women.team_effort == true → Causal(Women_working_together, Women_working_separately))
+7. Q[Women, Craft.productivity_increases == true, Craft.productivity_decreases == true](Craft.productivity_increases == true → Causal(Women_working_together, Women_working_separately))
+8. Q[Women, Craft.shared_resources == true, Craft.individual_resources == true](Craft.shared_resources == true → Causal(Women_working_together, Women_working_separately))
+9. Q[Women, Collaboration.enhances == true, Non_collaboration.reduces == true](Collaboration.enhances == true → Causal(Women_working_together, Women_working_separately))
+10. Q[Women, Women.collaborating == false, Women.separating == false](Women.collaborating == false → Causal(Women_working_separately, Women_working_together))
+11. Q[Women, Women.group_activity == false, Women.individual_activity == false](Women.group_activity == false → Causal(Women_working_separately, Women_working_together))
+12. Q[Women, Women.creating_together == false, Women.creating_separately == false](Women.creating_together == false → Causal(Women_working_separately, Women_working_together))
+13. Q[Women, Craft.shared == false, Craft.individual == false](Craft.shared == false → Causal(Women_working_separately, Women_working_together))
+14. Q[Women, Collaboration.indicates == false, Non_collaboration.indicates == false](Collaboration.indicates == false → Causal(Women_working_separately, Women_working_together))
+15. Q[Women, Women.team_effort == false, Women.individual_effort == false](Women.team_effort == false → Causal(Women_working_separately, Women_working_together))
+16. Q[Women, Craft.productivity_increases == false, Craft.productivity_decreases == false](Craft.productivity_increases == false → Causal(Women_working_separately, Women_working_together))
+17. Q[Women, Craft.shared_resources == false, Craft.individual_resources == false](Craft.shared_resources == false → Causal(Women_working_separately, Women_working_together))
+18. Q[Women, M_NLI(Women_working_together, Women_working_separately) == true, M_NLI(Women_working_separately, Women_working_together) == true](M_NLI(Women_working_together, Women_working_separately) == true → Causal(Women_working_together, Women_working_separately))
+19. Q[Women, violate(Collaboration, Non_collaboration) == true, violate(Non_collaboration, Collaboration) == true](violate(Collaboration, Non_collaboration) == true → Causal(Women_working_together, Women_working_separately))
+20. Q[Women, Causal(Women_team_effort, Craft.shared) == true, Causal(Women_individual_effort, Craft.individual) == true](Causal(Women_team_effort, Craft.shared) == true → Causal(Women_working_together, Women_working_separately))
+21. Q[Women, Craft.success_rate == true, Craft.failure_rate == true](Craft.success_rate == true → Causal(Women_working_together, Women_working_separately))
+22. Q[Women, Craft.shared == true, Craft.individual == false](Craft.shared == true → Causal(Women_working_together, Women_working_separately))
+23. Q[Women, Craft.individual == true, Craft.shared == false](Craft.individual == true → Causal(Women_working_separately, Women_working_together))
+24. Q[Women, Women.collaborating == true, Women.individual_activity == true](Women.collaborating == true → Causal(Women_working_together, Women_working_separately))
+25. Q[Women, Women.team_effort == true, Craft.individual_resources == true](Women.team_effort == true → Causal(Women_working_together, Women_working_separately))
+26. Q[Women, Women.creating_together == true, Craft.individual == true](Women.creating_together == true → Causal(Women_working_together, Women_working_separately))
+27. Q[Women, Women.individual_activity == false, Craft.shared == false](Women.individual_activity == false → Causal(Women_working_together, Women_working_separately))
+28. Q[Women, Craft.productivity_decreases == true, Craft.productivity_increases == false](Craft.productivity_decreases == true → Causal(Women_working_separately, Women_working_together))
+29. Q[Women, Women.separating == true, Women.collaborating == false](Women.separating == true → Causal(Women_working_separately, Women_working_together))
+30. Q[Women, Craft.individual_resources == true, Craft.shared_resources == false](Craft.individual_resources == true → Causal(Women_working_separately, Women_working_together))

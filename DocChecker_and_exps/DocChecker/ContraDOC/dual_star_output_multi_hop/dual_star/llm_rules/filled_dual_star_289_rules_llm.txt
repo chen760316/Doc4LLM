@@ -1,0 +1,123 @@
+Predicates:
+1. Martin.occupation = "toy finder"
+2. Martin.occupation != "teacher"
+3. Martin.occupation < "zookeeper"
+4. Martin.occupation > "artist"
+5. Martin.occupation <= "toy maker"
+6. Martin.occupation >= "researcher"
+7. unknown.status = "fatality"
+8. unknown.status != "survivor"
+9. unknown.status < "critical"
+10. unknown.status > "missing"
+11. unknown.status <= "injury"
+12. unknown.status >= "deceased"
+13. "Martin.occupation".attribute = "toy finder"
+14. "Martin.occupation".attribute != "engineer"
+15. "Martin.occupation".attribute < "writer"
+16. "Martin.occupation".attribute > "scientist"
+17. "Martin.occupation".attribute <= "developer"
+18. "Martin.occupation".attribute >= "analyst"
+19. "unknown.status".attribute = "fatality"
+20. "unknown.status".attribute != "alive"
+21. "unknown.status".attribute < "serious"
+22. "unknown.status".attribute > "unharmed"
+23. "unknown.status".attribute <= "critical condition"
+24. "unknown.status".attribute >= "missing person"
+25. M_NLI(Martin.occupation, unknown.status)
+26. M_NLU(Martin.occupation, unknown.status)
+27. M_TEM(Martin.occupation, unknown.status)
+28. contra("toy finder", "fatality")
+29. S(Martin, "toy finder")
+30. S(unknown, "fatality")
+31. T("toy finder", "fatality", "Content")
+32. tau(Martin.occupation, unknown.status)
+33. tau("Martin.occupation", "unknown.status")
+34. Martin.occupation != "doctor"
+35. Martin.occupation < "veterinarian"
+36. Martin.occupation > "musician"
+37. Martin.occupation <= "nurse"
+38. Martin.occupation >= "pilot"
+39. unknown.status != "healthy"
+40. unknown.status < "stable"
+41. unknown.status > "recovered"
+42. unknown.status <= "critical state"
+43. unknown.status >= "missing status"
+44. "Martin.occupation".attribute != "lawyer"
+45. "Martin.occupation".attribute < "architect"
+46. "Martin.occupation".attribute > "journalist"
+47. "Martin.occupation".attribute <= "consultant"
+48. "Martin.occupation".attribute >= "salesperson"
+49. "unknown.status".attribute != "well"
+50. "unknown.status".attribute < "alert"
+51. "unknown.status".attribute > "safe"
+52. "unknown.status".attribute <= "uninjured"
+53. "unknown.status".attribute >= "found"
+54. M_NLI(unknown.status, Martin.occupation)
+55. M_NLU(unknown.status, Martin.occupation)
+56. M_TEM(unknown.status, Martin.occupation)
+57. contra("fatality", "toy finder")
+58. S(Martin, "occupation")
+59. S(unknown, "status")
+60. T("fatality", "toy finder", "Factual")
+61. tau(Martin.occupation, unknown.status)
+62. tau("unknown.status", "Martin.occupation")
+63. Martin.occupation < "firefighter"
+64. Martin.occupation > "chef"
+65. Martin.occupation <= "mechanic"
+66. Martin.occupation >= "dancer"
+67. unknown.status < "alive"
+68. unknown.status > "safe"
+69. unknown.status <= "injured"
+70. unknown.status >= "missing"
+71. "Martin.occupation".attribute < "teacher"
+72. "Martin.occupation".attribute > "scientist"
+73. "Martin.occupation".attribute <= "engineer"
+74. "Martin.occupation".attribute >= "artist"
+75. "unknown.status".attribute < "alive"
+76. "unknown.status".attribute > "stable"
+77. "unknown.status".attribute <= "critical"
+78. "unknown.status".attribute >= "missing"
+79. M_NLI(Martin.occupation, "unknown.status")
+80. M_NLU(Martin.occupation, "unknown.status")
+81. M_TEM(Martin.occupation, "unknown.status")
+82. contra("toy finder", "unknown status")
+83. S(Martin, "occupation")
+84. S(unknown, "status")
+85. T("unknown status", "toy finder", "Relational")
+86. tau(Martin.occupation, "unknown.status")
+87. tau("unknown.status", Martin.occupation)
+88. Martin.occupation != "nurse"
+89. Martin.occupation < "doctor"
+90. Martin.occupation > "artist"
+91. Martin.occupation <= "teacher"
+92. Martin.occupation >= "scientist"
+93. unknown.status != "alive"
+94. unknown.status < "stable"
+95. unknown.status > "recovered"
+96. unknown.status <= "critical"
+97. unknown.status >= "missing"
+98. "Martin.occupation".attribute != "lawyer"
+99. "Martin.occupation".attribute < "architect"
+100. "Martin.occupation".attribute > "journalist"
+
+Rules:
+1. Q[Martin, unknown](Martin.occupation = "toy finder" ∧ unknown.status != "alive" → unknown.status = "fatality")
+2. Q[Martin, unknown](Martin.occupation != "teacher" ∧ Martin.occupation < "zookeeper" → Martin.occupation > "artist")
+3. Q[Martin, unknown](Martin.occupation >= "researcher" ∧ Martin.occupation <= "toy maker" → Martin.occupation != "doctor")
+4. Q[Martin, unknown](unknown.status < "critical" ∧ unknown.status > "missing" ∧ unknown.status != "survivor" → unknown.status >= "deceased")
+5. Q[Martin, unknown](unknown.status <= "injury" ∧ unknown.status >= "fatality" ∧ unknown.status != "healthy" → unknown.status < "stable")
+6. Q[Martin, unknown](Martin.occupation < "veterinarian" ∧ Martin.occupation > "musician" ∧ Martin.occupation <= "nurse" → Martin.occupation >= "pilot")
+7. Q[Martin, unknown](unknown.status < "alive" ∧ unknown.status > "safe" ∧ unknown.status <= "uninjured" ∧ unknown.status >= "found" → unknown.status != "well")
+8. Q[Martin, unknown](Martin.occupation < "firefighter" ∧ Martin.occupation > "chef" ∧ Martin.occupation <= "mechanic" ∧ Martin.occupation >= "dancer" → Martin.occupation != "teacher")
+9. Q[Martin, unknown](unknown.status < "serious" ∧ unknown.status > "unharmed" ∧ unknown.status <= "critical condition" ∧ unknown.status >= "missing person" → unknown.status != "alive")
+10. Q[Martin, unknown](Martin.occupation != "nurse" ∧ Martin.occupation < "doctor" ∧ Martin.occupation > "artist" ∧ Martin.occupation <= "teacher" ∧ Martin.occupation >= "scientist" → Martin.occupation != "engineer")
+11. Q[Martin, unknown](unknown.status != "alive" ∧ unknown.status < "stable" ∧ unknown.status > "recovered" ∧ unknown.status <= "critical" ∧ unknown.status >= "missing" → unknown.status != "fatality")
+12. Q[Martin, unknown](Martin.occupation < "teacher" ∧ Martin.occupation > "scientist" ∧ Martin.occupation <= "engineer" ∧ Martin.occupation >= "artist" → Martin.occupation != "lawyer")
+13. Q[Martin, unknown](unknown.status.attribute = "fatality" ∧ unknown.status.attribute != "alive" ∧ unknown.status.attribute < "serious" → unknown.status.attribute >= "missing")
+14. Q[Martin, unknown](Martin.occupation.attribute < "writer" ∧ Martin.occupation.attribute > "scientist" ∧ Martin.occupation.attribute <= "developer" ∧ Martin.occupation.attribute >= "analyst" → Martin.occupation.attribute != "consultant")
+15. Q[Martin, unknown](unknown.status.attribute < "alert" ∧ unknown.status.attribute > "safe" ∧ unknown.status.attribute <= "uninjured" ∧ unknown.status.attribute >= "found" → unknown.status.attribute != "well")
+16. Q[Martin, unknown](Martin.occupation < "zookeeper" ∧ Martin.occupation > "artist" ∧ Martin.occupation <= "toy maker" ∧ Martin.occupation >= "researcher" ∧ Martin.occupation != "teacher" → Martin.occupation != "doctor")
+17. Q[Martin, unknown](unknown.status < "critical" ∧ unknown.status > "missing" ∧ unknown.status != "survivor" ∧ unknown.status <= "injury" → unknown.status >= "deceased")
+18. Q[Martin, unknown](Martin.occupation < "firefighter" ∧ Martin.occupation > "chef" ∧ Martin.occupation <= "mechanic" ∧ Martin.occupation >= "dancer" ∧ Martin.occupation != "nurse" → Martin.occupation != "teacher")
+19. Q[Martin, unknown](unknown.status < "alive" ∧ unknown.status > "safe" ∧ unknown.status <= "uninjured" ∧ unknown.status >= "found" ∧ unknown.status != "healthy" → unknown.status != "fatality")
+20. Q[Martin, unknown](Martin.occupation < "teacher" ∧ Martin.occupation > "scientist" ∧ Martin.occupation <= "engineer" ∧ Martin.occupation >= "artist" ∧ Martin.occupation != "lawyer" → Martin.occupation != "consultant")

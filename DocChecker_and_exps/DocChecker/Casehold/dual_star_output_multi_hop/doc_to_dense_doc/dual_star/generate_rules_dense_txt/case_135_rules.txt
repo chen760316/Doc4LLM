@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 135)
+S1: Defendant does not argue that his innocence is indisputable or his guilt so doubtful that the jury’s verdict 'shocks the conscience.'
+S2: Indeed, he does not even claim there was a lack of substantial evidence to support his conviction.
+
+Predicates:
+1. Defendant.claims_innocence = false
+2. Defendant.claims_guilt_doubt = false
+3. Jury.verdict.shocks_conscience = false
+4. Defendant.claims_lack_of_evidence = false
+5. Evidence.supports_conviction = true
+6. Conviction.is_substantial_evidence = true
+7. Defendant.argues_innocence = false
+8. Defendant.argues_guilt_doubt = false
+9. Jury.verdict.is_valid = true
+10. Evidence.is_substantial = true
+11. Defendant.contests_evidence = false
+12. Conviction.is_not_doubtful = true
+13. Jury.verdict.is_not_shocking = true
+14. Defendant.accepts_conviction = true
+15. Evidence.is_not_lacking = true
+16. Defendant.does_not_claim_innocence = true
+17. Defendant.does_not_claim_guilt_doubt = true
+18. Jury.verdict.is_based_on_evidence = true
+19. Conviction.is_not_indisputable = false
+20. Evidence.is_not_insufficient = true
+21. Defendant.does_not_argue_lack_of_evidence = true
+22. Conviction.is_supported_by_evidence = true
+23. Jury.verdict.is_justified = true
+24. Defendant.is_not_challenging_conviction = true
+25. Evidence.is_adequate = true
+26. Defendant.is_not_disputing_verdict = true
+27. Conviction.is_not_unjust = true
+28. Jury.verdict.is_founded_on_substantial_evidence = true
+29. Defendant.is_not_appealing_conviction = true
+30. Evidence.is_considered_substantial = true
+
+Rules:
+1. Q[Defendant, Defendant.claims_innocence = false, Jury.verdict.shocks_conscience = false](Defendant.does_not_claim_innocence == true → Causal(Defendant, Jury.verdict.shocks_conscience))
+2. Q[Defendant, Defendant.claims_guilt_doubt = false, Jury.verdict.shocks_conscience = false](Defendant.does_not_claim_guilt_doubt == true → Causal(Defendant, Jury.verdict.shocks_conscience))
+3. Q[Defendant, Defendant.argues_innocence = false, Jury.verdict.is_valid = true](Defendant.argues_innocence == false → Causal(Defendant, Jury.verdict.is_valid))
+4. Q[Defendant, Defendant.argues_guilt_doubt = false, Jury.verdict.is_valid = true](Defendant.argues_guilt_doubt == false → Causal(Defendant, Jury.verdict.is_valid))
+5. Q[Defendant, Defendant.claims_lack_of_evidence = false, Evidence.supports_conviction = true](Defendant.does_not_argue_lack_of_evidence == true → Causal(Defendant, Evidence.supports_conviction))
+6. Q[Defendant, Evidence.supports_conviction = true, Conviction.is_substantial_evidence = true](Evidence.supports_conviction == true → Causal(Defendant, Conviction.is_substantial_evidence))
+7. Q[Defendant, Defendant.does_not_claim_innocence = true, Conviction.is_not_doubtful = true](Defendant.does_not_claim_innocence == true → Causal(Defendant, Conviction.is_not_doubtful))
+8. Q[Defendant, Defendant.does_not_claim_guilt_doubt = true, Conviction.is_not_doubtful = true](Defendant.does_not_claim_guilt_doubt == true → Causal(Defendant, Conviction.is_not_doubtful))
+9. Q[Defendant, Jury.verdict.is_valid = true, Evidence.is_substantial = true](Jury.verdict.is_valid == true → Causal(Defendant, Evidence.is_substantial))
+10. Q[Defendant, Evidence.is_not_lacking = true, Conviction.is_supported_by_evidence = true](Evidence.is_not_lacking == true → Causal(Defendant, Conviction.is_supported_by_evidence))
+11. Q[Defendant, Defendant.is_not_challenging_conviction = true, Jury.verdict.is_justified = true](Defendant.is_not_challenging_conviction == true → Causal(Defendant, Jury.verdict.is_justified))
+12. Q[Defendant, Evidence.is_adequate = true, Conviction.is_supported_by_evidence = true](Evidence.is_adequate == true → Causal(Defendant, Conviction.is_supported_by_evidence))
+13. Q[Defendant, Defendant.is_not_disputing_verdict = true, Jury.verdict.is_justified = true](Defendant.is_not_disputing_verdict == true → Causal(Defendant, Jury.verdict.is_justified))
+14. Q[Defendant, Conviction.is_not_unjust = true, Jury.verdict.is_justified = true](Conviction.is_not_unjust == true → Causal(Defendant, Jury.verdict.is_justified))
+15. Q[Defendant, Evidence.is_considered_substantial = true, Conviction.is_supported_by_evidence = true](Evidence.is_considered_substantial == true → Causal(Defendant, Conviction.is_supported_by_evidence))
+16. Q[Defendant, Jury.verdict.is_based_on_evidence = true, Conviction.is_supported_by_evidence = true](Jury.verdict.is_based_on_evidence == true → Causal(Defendant, Conviction.is_supported_by_evidence))
+17. Q[Defendant, Defendant.is_not_appealing_conviction = true, Conviction.is_not_unjust = true](Defendant.is_not_appealing_conviction == true → Causal(Defendant, Conviction.is_not_unjust))
+18. Q[Defendant, Evidence.is_not_insufficient = true, Conviction.is_supported_by_evidence = true](Evidence.is_not_insufficient == true → Causal(Defendant, Conviction.is_supported_by_evidence))
+19. Q[Defendant, Jury.verdict.is_founded_on_substantial_evidence = true, Conviction.is_supported_by_evidence = true](Jury.verdict.is_founded_on_substantial_evidence == true → Causal(Defendant, Conviction.is_supported_by_evidence))
+20. Q[Defendant, Jury.verdict.is_not_shocking = true, Conviction.is_not_unjust = true](Jury.verdict.is_not_shocking == true → Causal(Defendant, Conviction.is_not_unjust))
+21. Q[Defendant, Defendant.accepts_conviction = true, Conviction.is_not_unjust = true](Defendant.accepts_conviction == true → Causal(Defendant, Conviction.is_not_unjust))
+22. Q[Defendant, Evidence.is_substantial = true, Conviction.is_supported_by_evidence = true](Evidence.is_substantial == true → Causal(Defendant, Conviction.is_supported_by_evidence))
+23. Q[Defendant, Defendant.does_not_argue_lack_of_evidence = true, Evidence.is_not_lacking = true](Defendant.does_not_argue_lack_of_evidence == true → Causal(Defendant, Evidence.is_not_lacking))
+24. Q[Defendant, Jury.verdict.is_justified = true, Conviction.is_supported_by_evidence = true](Jury.verdict.is_justified == true → Causal(Defendant, Conviction.is_supported_by_evidence))
+25. Q[Defendant, Conviction.is_not_doubtful = true, Jury.verdict.is_valid = true](Conviction.is_not_doubtful == true → Causal(Defendant, Jury.verdict.is_valid))
+26. Q[Defendant, Evidence.is_adequate = true, Evidence.is_not_lacking = true](Evidence.is_adequate == true → Causal(Defendant, Evidence.is_not_lacking))
+27. Q[Defendant, Jury.verdict.is_based_on_evidence = true, Jury.verdict.is_valid = true](Jury.verdict.is_based_on_evidence == true → Causal(Defendant, Jury.verdict.is_valid))
+28. Q[Defendant, Conviction.is_substantial_evidence = true, Evidence.is_substantial = true](Conviction.is_substantial_evidence == true → Causal(Defendant, Evidence.is_substantial))
+29. Q[Defendant, Defendant.is_not_disputing_verdict = true, Jury.verdict.is_founded_on_substantial_evidence = true](Defendant.is_not_disputing_verdict == true → Causal(Defendant, Jury.verdict.is_founded_on_substantial_evidence))
+30. Q[Defendant, Jury.verdict.is_justified = true, Conviction.is_not_unjust = true](

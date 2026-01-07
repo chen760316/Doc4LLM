@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 893)
+S1: M a d r i d : L u i s R o l d a n , f o r m e r S p a n i s h p o l i c e c h i e f f l e d t h e c o u n t r y a f t e r m a k e s o f s u p p o s e d l y h i v i n g o f f m i l l i o n s o f p o u n d s o f t h e G o v e r n m e n t , 1 0 - m o n t h s e c r e t f u n d s w a s a h o m e a l a s t n i g h t a f t e r b e i n g c a p t u r e d i n B a n g k o k p r i s o n c e l l .
+S2: M a d r i d : L u i s R o l d a n , t h e f o r m e r S p a n i s h c h i e f o f p o l i c e w h o f l e d t h e c o u n t r y 1 0 m o n t h s a g o a f t e r a l l e g e d l y h i v i n g o f f m i l l i o n s o f p o u n d s f r o m s e c r e t g o v e r n m e n t f u n d s , w a s o n h i s w a y h o m e t o a p r i s o n c e l l l a s t n i g h t a f t e r b e i n g c a p t u r e d i n B a n g k o k .
+
+Predicates:
+1. Luis_Roldan.fled_country
+2. Luis_Roldan.captured_in_Bangkok
+3. Luis_Roldan.secret_funds
+4. secret_funds.amount
+5. secret_funds.source
+6. Bangkok.prison_cell
+7. Madrid.location
+8. former_Spanish_police_chief.role
+9. former_Spanish_police_chief.time_of_flight
+10. time_of_flight.duration
+11. time_of_flight.event
+12. event.capture_time
+13. event.fled_time
+14. event.allegation
+15. allegation.hiving_off
+16. allegation.amount
+17. government.funds
+18. government.secret
+19. government.location
+20. Temporal(fled_time, capture_time)
+21. violate(fled_time, 10_months_ago)
+22. M_NLI(S1, S2)
+23. S1.implies(S2)
+24. S2.states(S1)
+25. Bangkok.location
+26. police_chief.role
+27. police_chief.nationality
+28. funds.amount
+29. funds.purpose
+30. purpose.secret_operations
+
+Rules:
+1. Q[Madrid, Luis_Roldan.fled_country, time_of_flight.event](Luis_Roldan.fled_country == true → Temporal(Luis_Roldan.fled_country, time_of_flight.event))
+2. Q[Bangkok, Luis_Roldan.captured_in_Bangkok, event.capture_time](Luis_Roldan.captured_in_Bangkok == true → Temporal(Luis_Roldan.captured_in_Bangkok, event.capture_time))
+3. Q[former_Spanish_police_chief.role, time_of_flight.duration, event.fled_time](former_Spanish_police_chief.role == "police chief" → Temporal(time_of_flight.duration, event.fled_time))
+4. Q[secret_funds.amount, allegation.amount, event.allegation](secret_funds.amount > 0 → Temporal(secret_funds.amount, event.allegation))
+5. Q[government.funds, secret_funds.source, allegation.hiving_off](government.funds == true → Temporal(government.funds, secret_funds.source))
+6. Q[Bangkok.prison_cell, event.capture_time, time_of_flight.event](Bangkok.prison_cell == true → Temporal(Bangkok.prison_cell, event.capture_time))
+7. Q[Madrid.location, former_Spanish_police_chief.time_of_flight, event.fled_time](Madrid.location == true → Temporal(former_Spanish_police_chief.time_of_flight, event.fled_time))
+8. Q[government.secret, secret_funds.source, funds.purpose](government.secret == true → Temporal(government.secret, secret_funds.source))
+9. Q[time_of_flight.event, event.capture_time, time_of_flight.duration](time_of_flight.event == "fled" → Temporal(time_of_flight.event, event.capture_time))
+10. Q[allegation.hiving_off, secret_funds.amount, funds.purpose](allegation.hiving_off == true → Temporal(allegation.hiving_off, secret_funds.amount))
+11. Q[Bangkok.location, Luis_Roldan.captured_in_Bangkok, event.capture_time](Bangkok.location == true → Temporal(Bangkok.location, Luis_Roldan.captured_in_Bangkok))
+12. Q[former_Spanish_police_chief.role, time_of_flight.event, event.fled_time](former_Spanish_police_chief.role == "fled" → Temporal(former_Spanish_police_chief.role, time_of_flight.event))
+13. Q[secret_funds.source, government.funds, funds.purpose](secret_funds.source == "government" → Temporal(secret_funds.source, government.funds))
+14. Q[time_of_flight.duration, event.fled_time, event.capture_time](time_of_flight.duration == "10 months" → Temporal(time_of_flight.duration, event.fled_time))
+15. Q[allegation.amount, secret_funds.amount, funds.purpose](allegation.amount > 0 → Temporal(allegation.amount, secret_funds.amount))
+16. Q[government.location, Bangkok.location, event.capture_time](government.location == "Bangkok" → Temporal(government.location, event.capture_time))
+17. Q[former_Spanish_police_chief.time_of_flight, time_of_flight.event, event.fled_time](former_Spanish_police_chief.time_of_flight == "10 months ago" → Temporal(former_Spanish_police_chief.time_of_flight, time_of_flight.event))
+18. Q[secret_funds.amount, allegation.hiving_off, funds.purpose](secret_funds.amount > 1000000 → Temporal(secret_funds.amount, allegation.hiving_off))
+19. Q[Bangkok.prison_cell, Luis_Roldan.captured_in_Bangkok, event.capture_time](Bangkok.prison_cell == true → Temporal(Bangkok.prison_cell, Luis_Roldan.captured_in_Bangkok))
+20. Q[Madrid.location, former_Spanish_police_chief.role, event.fled_time](Madrid.location == "Spain" → Temporal(Madrid.location, former_Spanish_police_chief.role))
+21. Q[government.secret, secret_funds.source, allegation.hiving_off](government.secret == true → Temporal(government.secret, secret_funds.source))
+22. Q[time_of_flight.event, event.capture_time, time_of_flight.duration](time_of_flight.event == "capture" → Temporal(time_of_flight.event, event.capture_time))
+23. Q[allegation.hiving_off, secret_funds.amount, funds.purpose](allegation.hiving_off == true → Temporal(allegation.hiving_off, secret_funds.amount))
+24. Q[Bangkok.location, Luis_Roldan.captured_in_Bangkok, event.capture_time](Bangkok.location == "Bangkok" → Temporal(Bangkok.location, Luis_Roldan.captured_in_Bangkok))
+25. Q[former_Spanish_police_chief.role, time_of_flight.event, event.fled_time](former_Spanish_police_chief.role == "fled" → Temporal(former_Spanish_police_chief.role, time_of_flight.event))
+26. Q[secret_funds.source, government.funds, funds.purpose](secret_funds.source == "government" → Temporal(secret_funds.source, government.funds))
+27. Q[time_of_flight.event, event.capture_time, time_of_flight.duration](time_of_flight.event == "fled" → Temporal(time_of_flight.event, event.capture_time))
+28. Q[allegation.hiving_off, secret_funds.amount, funds.purpose](allegation.hiving_off == true → Temporal(allegation.hiving_off, secret_funds.amount))
+29. Q[government.location, Bangkok.location, event.capture_time](government.location == "Bangkok" → Temporal(government.location, event.capture_time))
+30. Q[former_Spanish_police_chief.time_of_flight, time_of_flight.event, event.fled_time](former_Spanish_police_chief.time_of_flight == "10 months ago" → Temporal(former_Spanish_police_chief.time_of_flight, time_of_flight.event))

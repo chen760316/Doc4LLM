@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 851)
+S1: Queens and royal children were buried in a valley separate from their fathers and husbands.
+S2: Queens and royal children were buried.
+
+Predicates:
+1. Queens.burial_location
+2. Royal_children.burial_location
+3. Valley.separation
+4. Fathers.burial_location
+5. Husbands.burial_location
+6. Queens.buried
+7. Royal_children.buried
+8. Valley.contains(Queens)
+9. Valley.contains(Royal_children)
+10. Valley.separate_from(Fathers)
+11. Valley.separate_from(Husbands)
+12. Burial_location.is_specific
+13. Burial_location.is_vague
+14. Queens.relationship_with(Fathers)
+15. Royal_children.relationship_with(Husbands)
+16. Burial_location.is_in_valley
+17. Fathers.buried_in(valley)
+18. Husbands.buried_in(valley)
+19. Queens.buried_in(valley)
+20. Royal_children.buried_in(valley)
+21. Separation.is_between(Queens, Fathers)
+22. Separation.is_between(Royal_children, Husbands)
+23. Burial_location.is_not_specified
+24. Queens.and(Royal_children).buried
+25. Valley.is_separate_from(burial_location)
+26. Fathers.and(Husbands).not_in(valley)
+27. Burial_location.is_different_from(valley)
+28. Queens.and(Royal_children).not_buried_with(Fathers)
+29. Queens.and(Royal_children).not_buried_with(Husbands)
+30. Valley.is_designated_for(Queens_and_Royal_children)
+
+Rules:
+1. Q[Queens, Queens.burial_location, Burial_location.is_specific](Queens.buried → Negation(Queens.burial_location, Burial_location.is_vague))
+2. Q[Queens, Queens.buried, Valley.separation](Queens.buried → Negation(Queens.buried, Valley.contains(Fathers)))
+3. Q[Queens, Valley.separate_from(Fathers), Valley.contains(Queens)](Valley.separate_from(Fathers) → Negation(Valley.contains(Queens, Fathers)))
+4. Q[Royal_children, Royal_children.burial_location, Burial_location.is_specific](Royal_children.buried → Negation(Royal_children.burial_location, Burial_location.is_vague))
+5. Q[Royal_children, Royal_children.buried, Valley.separation](Royal_children.buried → Negation(Royal_children.buried, Valley.contains(Husbands)))
+6. Q[Royal_children, Valley.separate_from(Husbands), Valley.contains(Royal_children)](Valley.separate_from(Husbands) → Negation(Valley.contains(Royal_children, Husbands)))
+7. Q[Queens, Valley.is_separate_from(burial_location), Valley.contains(Queens)](Valley.is_separate_from(burial_location) → Negation(Valley.contains(Queens, burial_location)))
+8. Q[Queens, Queens.and(Royal_children).not_buried_with(Fathers), Valley.contains(Queens)](Queens.and(Royal_children).not_buried_with(Fathers) → Negation(Valley.contains(Queens, Fathers)))
+9. Q[Royal_children, Royal_children.and(Queens).not_buried_with(Husbands), Valley.contains(Royal_children)](Royal_children.and(Queens).not_buried_with(Husbands) → Negation(Valley.contains(Royal_children, Husbands)))
+10. Q[Queens, Valley.is_designated_for(Queens_and_Royal_children), Valley.contains(Queens)](Valley.is_designated_for(Queens_and_Royal_children) → Negation(Valley.contains(Queens, Fathers)))
+11. Q[Royal_children, Valley.is_designated_for(Queens_and_Royal_children), Valley.contains(Royal_children)](Valley.is_designated_for(Queens_and_Royal_children) → Negation(Valley.contains(Royal_children, Husbands)))
+12. Q[Queens, Burial_location.is_not_specified, Queens.buried](Burial_location.is_not_specified → Negation(Queens.buried, Valley.contains(Queens)))
+13. Q[Royal_children, Burial_location.is_not_specified, Royal_children.buried](Burial_location.is_not_specified → Negation(Royal_children.buried, Valley.contains(Royal_children)))
+14. Q[Queens, Valley.separate_from(Husbands), Valley.contains(Queens)](Valley.separate_from(Husbands) → Negation(Valley.contains(Queens, Husbands)))
+15. Q[Royal_children, Valley.separate_from(Fathers), Valley.contains(Royal_children)](Valley.separate_from(Fathers) → Negation(Valley.contains(Royal_children, Fathers)))
+16. Q[Queens, Burial_location.is_different_from(valley), Queens.buried](Burial_location.is_different_from(valley) → Negation(Queens.buried, Valley.contains(Queens)))
+17. Q[Royal_children, Burial_location.is_different_from(valley), Royal_children.buried](Burial_location.is_different_from(valley) → Negation(Royal_children.buried, Valley.contains(Royal_children)))
+18. Q[Queens, Valley.is_separate_from(burial_location), Valley.contains(Queens)](Valley.is_separate_from(burial_location) → Negation(Valley.contains(Queens, burial_location)))
+19. Q[Royal_children, Valley.is_separate_from(burial_location), Valley.contains(Royal_children)](Valley.is_separate_from(burial_location) → Negation(Valley.contains(Royal_children, burial_location)))
+20. Q[Queens, Valley.contains(Queens), Valley.separation](Valley.contains(Queens) → Negation(Valley.separation, Fathers))
+21. Q[Royal_children, Valley.contains(Royal_children), Valley.separation](Valley.contains(Royal_children) → Negation(Valley.separation, Husbands))
+22. Q[Queens, Valley.contains(Queens), Valley.is_designated_for(Queens_and_Royal_children)](Valley.contains(Queens) → Negation(Valley.is_designated_for(Queens_and_Royal_children, Fathers)))
+23. Q[Royal_children, Valley.contains(Royal_children), Valley.is_designated_for(Queens_and_Royal_children)](Valley.contains(Royal_children) → Negation(Valley.is_designated_for(Queens_and_Royal_children, Husbands)))
+24. Q[Queens, Queens.buried_in(valley), Valley.is_separate_from(burial_location)](Queens.buried_in(valley) → Negation(Valley.is_separate_from(burial_location, Fathers)))
+25. Q[Royal_children, Royal_children.buried_in(valley), Valley.is_separate_from(burial_location)](Royal_children.buried_in(valley) → Negation(Valley.is_separate_from(burial_location, Husbands)))
+26. Q[Queens, Valley.contains(Queens), Valley.separate_from(Fathers)](Valley.contains(Queens) → Negation(Valley.separate_from(Fathers, Queens)))
+27. Q[Royal_children, Valley.contains(Royal_children), Valley.separate_from(Husbands)](Valley.contains(Royal_children) → Negation(Valley.separate_from(Husbands, Royal_children)))
+28. Q[Queens, Valley.is_separate_from(burial_location), Queens.buried](Valley.is_separate_from(burial_location) → Negation(Queens.buried, Valley.contains(Fathers)))
+29. Q[Royal_children, Valley.is_separate_from(burial_location), Royal_children.buried](Valley.is_separate_from(burial_location) → Negation(Royal_children.buried, Valley.contains(Husbands)))
+30. Q[Queens, Valley.separation, Valley.contains(Queens)](Valley.separation → Negation(Valley.contains(Queens, Fathers)))

@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 101)
+S1: A person at a table, dressed in a black costume.
+S2: The person is dressed in black.
+
+Predicates:
+1. Person.at_table
+2. Person.dressed_in_black_costume
+3. Person.dressed_in_black
+4. Table.has_person
+5. Costume.color
+6. Costume.type
+7. Black_costume.is_a(Costume)
+8. Black.is_a(Color)
+9. Person.is_wearing(Costume)
+10. Table.is_furniture
+11. Person.is_human
+12. Costume.is_worn_by(Person)
+13. Black_costume.is_different_from(Clothing)
+14. Clothing.color
+15. Clothing.type
+16. M_NLI(S1, S2)
+17. Factual(S1, S2)
+18. violate(S1, S2)
+19. Person.has_attribute(dressed_in_black)
+20. Costume.has_color(Black)
+21. Table.supports(Person)
+22. Person.is_sitting_at(Table)
+23. Black_costume.has_attribute(dressed_in_black)
+24. Costume.is_specific_type(Black_costume)
+25. Person.is_identified_by(Costume)
+26. Black_costume.is_specific_to(Person)
+27. Table.contains(Person)
+28. Black.is_used_in(Costume)
+29. Person.is_in_location(Table)
+30. Costume.is_identified_by(color)
+
+Rules:
+1. Q[person, x0, y0](Person.at_table ∧ Person.dressed_in_black_costume → Factual(x0, y0))
+2. Q[person, x0, y0](Person.at_table ∧ Person.dressed_in_black → Factual(x0, y0))
+3. Q[person, x0, y0](Person.dressed_in_black_costume ∧ Costume.color == "black" → Factual(x0, y0))
+4. Q[person, x0, y0](Person.dressed_in_black ∧ Costume.color == "black" → Factual(x0, y0))
+5. Q[person, x0, y0](Person.dressed_in_black_costume ∧ Costume.is_specific_type(Black_costume) → Factual(x0, y0))
+6. Q[person, x0, y0](Person.dressed_in_black ∧ Costume.is_specific_type(Clothing) → Factual(x0, y0))
+7. Q[person, x0, y0](Person.dressed_in_black_costume ∧ Black_costume.is_different_from(Clothing) → Factual(x0, y0))
+8. Q[person, x0, y0](Person.dressed_in_black_costume ∧ Costume.has_color(Black) → Factual(x0, y0))
+9. Q[person, x0, y0](Person.dressed_in_black ∧ Costume.has_color(Black) → Factual(x0, y0))
+10. Q[person, x0, y0](Person.is_wearing(Black_costume) ∧ Costume.color == "black" → Factual(x0, y0))
+11. Q[person, x0, y0](Person.is_wearing(Clothing) ∧ Costume.color == "black" → Factual(x0, y0))
+12. Q[person, x0, y0](Person.is_wearing(Black_costume) ∧ Black_costume.is_specific_to(Person) → Factual(x0, y0))
+13. Q[person, x0, y0](Person.is_wearing(Clothing) ∧ Clothing.color == "black" → Factual(x0, y0))
+14. Q[person, x0, y0](Person.dressed_in_black_costume ∧ Black.is_used_in(Black_costume) → Factual(x0, y0))
+15. Q[person, x0, y0](Person.dressed_in_black ∧ Black.is_used_in(Clothing) → Factual(x0, y0))
+16. Q[person, x0, y0](Person.at_table ∧ Person.is_identified_by(Black_costume) → Factual(x0, y0))
+17. Q[person, x0, y0](Person.at_table ∧ Person.is_identified_by(Clothing) → Factual(x0, y0))
+18. Q[person, x0, y0](Person.is_sitting_at(Table) ∧ Person.dressed_in_black_costume → Factual(x0, y0))
+19. Q[person, x0, y0](Person.is_sitting_at(Table) ∧ Person.dressed_in_black → Factual(x0, y0))
+20. Q[person, x0, y0](Table.contains(Person) ∧ Person.dressed_in_black_costume → Factual(x0, y0))
+21. Q[person, x0, y0](Table.contains(Person) ∧ Person.dressed_in_black → Factual(x0, y0))
+22. Q[person, x0, y0](Table.supports(Person) ∧ Person.dressed_in_black_costume → Factual(x0, y0))
+23. Q[person, x0, y0](Table.supports(Person) ∧ Person.dressed_in_black → Factual(x0, y0))
+24. Q[person, x0, y0](Person.is_human ∧ Person.dressed_in_black_costume → Factual(x0, y0))
+25. Q[person, x0, y0](Person.is_human ∧ Person.dressed_in_black → Factual(x0, y0))
+26. Q[person, x0, y0](Person.has_attribute(dressed_in_black) ∧ Person.dressed_in_black_costume → Factual(x0, y0))
+27. Q[person, x0, y0](Person.has_attribute(dressed_in_black) ∧ Person.dressed_in_black → Factual(x0, y0))
+28. Q[person, x0, y0](Costume.is_worn_by(Person) ∧ Person.dressed_in_black_costume → Factual(x0, y0))
+29. Q[person, x0, y0](Costume.is_worn_by(Person) ∧ Person.dressed_in_black → Factual(x0, y0))
+30. Q[person, x0, y0](M_NLI(S1, S2) → Factual(x0, y0))

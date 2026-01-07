@@ -1,0 +1,69 @@
+Predicates:
+Kim Ki-Jong.age != 55
+Kim Ki-Jong.age < 60
+Kim Ki-Jong.age = 55
+Kim Ki-Jong.age > 50
+Kim Ki-Jong.label != "Person"
+Kim Ki-Jong.label != Yonsei Severance Hospital.label
+Kim Ki-Jong.label = "Person"
+Kim Ki-Jong.location != "Seoul, South Korea"
+Kim Ki-Jong.location = "Seoul, South Korea"
+Kim Ki-Jong.name != "Kim Ki-Jong"
+Kim Ki-Jong.name != Yonsei Severance Hospital.name
+Kim Ki-Jong.name = "Kim Ki-Jong"
+Kim Ki-Jong.status != "charged"
+Kim Ki-Jong.status != Yonsei Severance Hospital.status
+Kim Ki-Jong.status = "charged"
+Mark Lippert.label != "Person"
+Mark Lippert.label != Yonsei Severance Hospital.label
+Mark Lippert.label = "Person"
+Mark Lippert.location != "Seoul, South Korea"
+Mark Lippert.location = "Seoul, South Korea"
+Mark Lippert.name != "Mark Lippert"
+Mark Lippert.name != Kim Ki-Jong.name
+Mark Lippert.name != Yonsei Severance Hospital.name
+Mark Lippert.name = "Mark Lippert"
+Mark Lippert.nationality != "American"
+Mark Lippert.nationality = "American"
+Mark Lippert.occupation != "U.S. Ambassador"
+Mark Lippert.occupation = "U.S. Ambassador"
+Mark Lippert.status != "injured"
+Mark Lippert.status != Kim Ki-Jong.status
+Mark Lippert.status != Yonsei Severance Hospital.status
+Mark Lippert.status = "injured"
+Mark Lippert___Kim Ki-Jong.date = "March 5"
+Mark Lippert___Kim Ki-Jong.doc_id = "3489738224_1"
+Mark Lippert___Kim Ki-Jong.method = "using a 10-inch knife"
+Mark Lippert___Kim Ki-Jong.reason = "opposition to joint South Korean-U.S. military drills"
+Mark Lippert___Kim Ki-Jong.relationship != Mark Lippert___Yonsei Severance Hospital.relationship
+Mark Lippert___Kim Ki-Jong.relationship = "Kim Ki-Jong is accused of stabbing Mark Lippert."
+Mark Lippert___Kim Ki-Jong.weapon = "5-inch knife"
+Mark Lippert___Yonsei Severance Hospital.doc_id = "3489738224_1"
+Mark Lippert___Yonsei Severance Hospital.expected_outcome = "no permanent damage to arm function"
+Mark Lippert___Yonsei Severance Hospital.injuries.length = 2
+Mark Lippert___Yonsei Severance Hospital.permanent_damage = "not expected"
+Mark Lippert___Yonsei Severance Hospital.relationship = "Mark Lippert received medical treatment for his injuries."
+Mark Lippert___Yonsei Severance Hospital.stitches != 80
+Mark Lippert___Yonsei Severance Hospital.stitches = 80
+Mark Lippert___Yonsei Severance Hospital.wound_depth = "2.5 centimeters"
+Mark Lippert___Yonsei Severance Hospital.wound_length = "10 centimeters"
+None_ML(Kim Ki-Jong.attrs, Mark Lippert.attrs)
+None_ML(Mark Lippert___Kim Ki-Jong.attrs, Mark Lippert___Yonsei Severance Hospital.attrs)
+Yonsei Severance Hospital.label != "Hospital"
+Yonsei Severance Hospital.label = "Hospital"
+Yonsei Severance Hospital.name != "Yonsei Severance Hospital"
+Yonsei Severance Hospital.name = "Yonsei Severance Hospital"
+Yonsei Severance Hospital.status != "treatment"
+Yonsei Severance Hospital.status = "treatment"
+
+Rules:
+Q[Mark Lippert,Mark Lippert] (Mark Lippert.location = "Seoul, South Korea" ∧ Yonsei Severance Hospital.label = "Hospital" ∧ Mark Lippert.occupation = "U.S. Ambassador" → Mark Lippert.name != "Mark Lippert")
+Q[Mark Lippert,Mark Lippert] (Mark Lippert.name != Kim Ki-Jong.name ∧ Yonsei Severance Hospital.status != "treatment" ∧ Mark Lippert.occupation = "U.S. Ambassador" ∧ Mark Lippert___Kim Ki-Jong.date = "March 5" ∧ Mark Lippert.name != Yonsei Severance Hospital.name → Kim Ki-Jong.label = "Person")
+Q[Mark Lippert,Mark Lippert] (Kim Ki-Jong.location = "Seoul, South Korea" ∧ Kim Ki-Jong.label != Yonsei Severance Hospital.label ∧ Mark Lippert.label = "Person" ∧ Mark Lippert.status = "injured" ∧ Mark Lippert.nationality != "American" ∧ Kim Ki-Jong.status = "charged" → Mark Lippert___Yonsei Severance Hospital.wound_depth = "2.5 centimeters")
+Q[Mark Lippert,Mark Lippert] (Mark Lippert___Kim Ki-Jong.date = "March 5" ∧ Mark Lippert.label != "Person" → Mark Lippert___Kim Ki-Jong.relationship = "Kim Ki-Jong is accused of stabbing Mark Lippert.")
+Q[Mark Lippert,Mark Lippert] (Mark Lippert.name != "Mark Lippert" ∧ Yonsei Severance Hospital.status = "treatment" ∧ Kim Ki-Jong.age < 60 ∧ Yonsei Severance Hospital.status != "treatment" → Kim Ki-Jong.label != Yonsei Severance Hospital.label)
+Q[Mark Lippert,Mark Lippert] (Mark Lippert___Yonsei Severance Hospital.wound_depth = "2.5 centimeters" ∧ Mark Lippert.nationality = "American" ∧ Yonsei Severance Hospital.status = "treatment" → Mark Lippert.label != "Person")
+Q[Mark Lippert,Mark Lippert] (Kim Ki-Jong.status != "charged" ∧ Yonsei Severance Hospital.label != "Hospital" ∧ Mark Lippert.name != Kim Ki-Jong.name ∧ Mark Lippert___Yonsei Severance Hospital.relationship = "Mark Lippert received medical treatment for his injuries." → Mark Lippert___Yonsei Severance Hospital.injuries.length = 2)
+Q[Mark Lippert,Mark Lippert] (Kim Ki-Jong.name != "Kim Ki-Jong" ∧ Kim Ki-Jong.status = "charged" → Mark Lippert.name != Kim Ki-Jong.name)
+Q[Mark Lippert,Mark Lippert] (Kim Ki-Jong.age < 60 ∧ Mark Lippert.name != Yonsei Severance Hospital.name ∧ Mark Lippert.status != Kim Ki-Jong.status ∧ Mark Lippert___Yonsei Severance Hospital.stitches != 80 ∧ Mark Lippert.name = "Mark Lippert" → Kim Ki-Jong.age = 55)
+Q[Mark Lippert,Mark Lippert] (Kim Ki-Jong.location = "Seoul, South Korea" ∧ Mark Lippert.name = "Mark Lippert" ∧ Kim Ki-Jong.label != Yonsei Severance Hospital.label ∧ Mark Lippert.occupation = "U.S. Ambassador" ∧ Mark Lippert___Kim Ki-Jong.method = "using a 10-inch knife" ∧ Mark Lippert.label != Yonsei Severance Hospital.label → Mark Lippert___Kim Ki-Jong.relationship != Mark Lippert___Yonsei Severance Hospital.relationship)

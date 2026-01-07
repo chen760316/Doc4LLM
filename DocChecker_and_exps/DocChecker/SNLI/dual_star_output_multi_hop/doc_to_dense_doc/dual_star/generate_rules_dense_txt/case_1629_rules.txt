@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 1629)
+S1: The men are standing inside the barn.
+S2: The men are standing in front of a water fountain.
+
+Predicates:
+1. Men.location.barn
+2. Men.location.water_fountain
+3. M_NLI(S1, S2)
+4. Relation(Men, barn)
+5. Relation(Men, water_fountain)
+6. violate(Men, barn)
+7. violate(Men, water_fountain)
+8. Men.status.standing
+9. Barn.location.inside
+10. Water_fountain.location.front
+11. M_NLI(S2, S1)
+12. Relation(barn, inside)
+13. Relation(water_fountain, front)
+14. violate(barn, water_fountain)
+15. Men.activity.standing
+16. Barn.type.structure
+17. Water_fountain.type.structure
+18. M_NLI(S1, S1)
+19. Relation(Men, standing)
+20. Relation(Men, inside)
+21. Relation(Men, in_front_of)
+22. violate(Men, standing)
+23. violate(Men, inside)
+24. violate(Men, in_front_of)
+25. Barn.size.large
+26. Water_fountain.size.medium
+27. M_NLI(S1, S2)
+28. Relation(barn, men)
+29. Relation(water_fountain, men)
+30. violate(barn, men)
+
+Rules:
+1. Q[The, Men.location.barn == true](Men.status.standing == true ∧ Men.location.water_fountain == false → Relation(Men, barn))
+2. Q[The, Men.location.water_fountain == true](Men.status.standing == true ∧ Men.location.barn == false → Relation(Men, water_fountain))
+3. Q[The, Men.location.barn == true](Men.status.standing == true ∧ violate(Men, water_fountain) == true → Relation(Men, barn))
+4. Q[The, Men.location.water_fountain == true](Men.status.standing == true ∧ violate(Men, barn) == true → Relation(Men, water_fountain))
+5. Q[The, Men.status.standing == true](Men.location.barn == true ∧ violate(Men, water_fountain) == true → Relation(Men, standing))
+6. Q[The, Men.status.standing == true](Men.location.water_fountain == true ∧ violate(Men, barn) == true → Relation(Men, standing))
+7. Q[The, Barn.location.inside == true](Men.location.barn == true ∧ Men.location.water_fountain == false → Relation(barn, inside))
+8. Q[The, Water_fountain.location.front == true](Men.location.water_fountain == true ∧ Men.location.barn == false → Relation(water_fountain, front))
+9. Q[The, violate(Men, barn) == true](Men.location.barn == true ∧ Men.location.water_fountain == false → Relation(Men, barn))
+10. Q[The, violate(Men, water_fountain) == true](Men.location.water_fountain == true ∧ Men.location.barn == false → Relation(Men, water_fountain))
+11. Q[The, Men.location.barn == true](Men.activity.standing == true ∧ violate(Men, water_fountain) == true → Relation(Men, barn))
+12. Q[The, Men.location.water_fountain == true](Men.activity.standing == true ∧ violate(Men, barn) == true → Relation(Men, water_fountain))
+13. Q[The, Barn.type.structure == true](Men.location.barn == true ∧ violate(Men, water_fountain) == true → Relation(barn, men))
+14. Q[The, Water_fountain.type.structure == true](Men.location.water_fountain == true ∧ violate(Men, barn) == true → Relation(water_fountain, men))
+15. Q[The, Men.location.barn == true](Men.status.standing == true ∧ violate(Men, water_fountain) == true → Relation(Men, inside))
+16. Q[The, Men.location.water_fountain == true](Men.status.standing == true ∧ violate(Men, barn) == true → Relation(Men, in_front_of))
+17. Q[The, violate(Men, inside) == true](Men.location.barn == true ∧ Men.location.water_fountain == false → Relation(Men, inside))
+18. Q[The, violate(Men, in_front_of) == true](Men.location.water_fountain == true ∧ Men.location.barn == false → Relation(Men, in_front_of))
+19. Q[The, M_NLI(S1, S2) == true](Men.location.barn == true ∧ Men.location.water_fountain == true → Relation(Men, barn))
+20. Q[The, M_NLI(S2, S1) == true](Men.location.water_fountain == true ∧ Men.location.barn == true → Relation(Men, water_fountain))
+21. Q[The, violate(barn, water_fountain) == true](Men.location.barn == true ∧ Men.location.water_fountain == true → Relation(barn, water_fountain))
+22. Q[The, violate(water_fountain, barn) == true](Men.location.water_fountain == true ∧ Men.location.barn == true → Relation(water_fountain, barn))
+23. Q[The, Relation(Men, standing) == true](Men.location.barn == true ∧ Men.location.water_fountain == false → Relation(Men, standing))
+24. Q[The, Relation(Men, standing) == true](Men.location.water_fountain == true ∧ Men.location.barn == false → Relation(Men, standing))
+25. Q[The, Relation(Men, inside) == true](Men.location.barn == true ∧ violate(Men, water_fountain) == true → Relation(Men, inside))
+26. Q[The, Relation(Men, in_front_of) == true](Men.location.water_fountain == true ∧ violate(Men, barn) == true → Relation(Men, in_front_of))
+27. Q[The, Relation(barn, men) == true](Men.location.barn == true ∧ violate(Men, water_fountain) == true → Relation(barn, men))
+28. Q[The, Relation(water_fountain, men) == true](Men.location.water_fountain == true ∧ violate(Men, barn) == true → Relation(water_fountain, men))
+29. Q[The, violate(barn, men) == true](Men.location.barn == true ∧ violate(Men, water_fountain) == true → Relation(barn, men))
+30. Q[The, violate(water_fountain, men) == true](Men.location.water_fountain == true ∧ violate(Men, barn) == true → Relation(water_fountain, men))

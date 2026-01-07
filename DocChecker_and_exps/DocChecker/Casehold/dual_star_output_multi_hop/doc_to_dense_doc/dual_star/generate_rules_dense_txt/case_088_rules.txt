@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 88)
+S1: Government officials may be sued in their personal capacities for damages for actions they take in their official capacity or otherwise, provided that while acting under color of state law, they cause the deprivation of a federal right.
+S2: An official may raise the defense of a qualified immunity against such claims.
+
+Predicates:
+1. GovernmentOfficial.canBeSued
+2. GovernmentOfficial.isInPersonalCapacity
+3. GovernmentOfficial.isInOfficialCapacity
+4. GovernmentOfficial.causesDeprivation
+5. GovernmentOfficial.actsUnderColorOfStateLaw
+6. FederalRight.isDeprived
+7. Official.canRaiseDefense
+8. Official.hasQualifiedImmunity
+9. Claim.isAgainstOfficial
+10. Claim.isForDamages
+11. Liability.isPotential
+12. Liability.isLimitedByImmunity
+13. Action.isOfficial
+14. Action.isPersonal
+15. Deprivation.isFederalRight
+16. Defense.isQualifiedImmunity
+17. Lawsuit.isFiledAgainstOfficial
+18. Official.actionCausesDeprivation
+19. StateLaw.isApplicable
+20. FederalRight.isProtected
+21. GovernmentOfficial.mayBeLiable
+22. Official.mayDefendAgainstClaims
+23. Claim.isBasedOnAction
+24. Action.isUnderColorOfLaw
+25. Immunity.protectsOfficial
+26. Deprivation.isResultOfAction
+27. Official.hasLegalDefense
+28. GovernmentOfficial.isLiableForActions
+29. Claim.isLegitimate
+30. Official.isSubjectToLawsuit
+
+Rules:
+1. Q[Government, GovernmentOfficial.canBeSued == true](GovernmentOfficial.isInOfficialCapacity == true → Causal(GovernmentOfficial, Liability.isPotential))
+2. Q[Government, GovernmentOfficial.causesDeprivation == true](GovernmentOfficial.actsUnderColorOfStateLaw == true → Causal(GovernmentOfficial, FederalRight.isDeprived))
+3. Q[Government, Claim.isAgainstOfficial == true](GovernmentOfficial.isInPersonalCapacity == true → Causal(GovernmentOfficial, Liability.isPotential))
+4. Q[Government, Official.canRaiseDefense == true](Claim.isForDamages == true → Causal(Official, Liability.isLimitedByImmunity))
+5. Q[Government, Official.hasQualifiedImmunity == true](Claim.isBasedOnAction == true → Causal(Official, Defense.isQualifiedImmunity))
+6. Q[Government, Action.isOfficial == true](GovernmentOfficial.mayBeLiable == true → Causal(GovernmentOfficial, Liability.isPotential))
+7. Q[Government, Action.isPersonal == true](Official.mayDefendAgainstClaims == true → Causal(Official, Liability.isLimitedByImmunity))
+8. Q[Government, Deprivation.isFederalRight == true](GovernmentOfficial.causesDeprivation == true → Causal(GovernmentOfficial, FederalRight.isDeprived))
+9. Q[Government, Lawsuit.isFiledAgainstOfficial == true](Official.hasLegalDefense == true → Causal(Official, Liability.isLimitedByImmunity))
+10. Q[Government, Official.isSubjectToLawsuit == true](GovernmentOfficial.isLiableForActions == true → Causal(GovernmentOfficial, Liability.isPotential))
+11. Q[Government, Action.isUnderColorOfLaw == true](GovernmentOfficial.causesDeprivation == true → Causal(GovernmentOfficial, FederalRight.isDeprived))
+12. Q[Government, FederalRight.isProtected == true](Official.hasQualifiedImmunity == true → Causal(Official, Liability.isLimitedByImmunity))
+13. Q[Government, Claim.isLegitimate == true](Official.canRaiseDefense == true → Causal(Official, Liability.isLimitedByImmunity))
+14. Q[Government, GovernmentOfficial.mayBeLiable == true](Official.isSubjectToLawsuit == true → Causal(GovernmentOfficial, Liability.isPotential))
+15. Q[Government, GovernmentOfficial.isInOfficialCapacity == true](Action.isOfficial == true → Causal(GovernmentOfficial, Liability.isPotential))
+16. Q[Government, GovernmentOfficial.actsUnderColorOfStateLaw == true](Claim.isAgainstOfficial == true → Causal(GovernmentOfficial, Liability.isPotential))
+17. Q[Government, Official.hasLegalDefense == true](Claim.isForDamages == true → Causal(Official, Liability.isLimitedByImmunity))
+18. Q[Government, Claim.isBasedOnAction == true](Action.isPersonal == true → Causal(Official, Liability.isLimitedByImmunity))
+19. Q[Government, Deprivation.isResultOfAction == true](GovernmentOfficial.causesDeprivation == true → Causal(GovernmentOfficial, FederalRight.isDeprived))
+20. Q[Government, Official.mayDefendAgainstClaims == true](Claim.isLegitimate == true → Causal(Official, Liability.isLimitedByImmunity))
+21. Q[Government, GovernmentOfficial.isLiableForActions == true](Official.canRaiseDefense == true → Causal(Official, Liability.isLimitedByImmunity))
+22. Q[Government, Action.isUnderColorOfLaw == true](GovernmentOfficial.isInOfficialCapacity == true → Causal(GovernmentOfficial, Liability.isPotential))
+23. Q[Government, FederalRight.isDeprived == true](GovernmentOfficial.causesDeprivation == true → Causal(GovernmentOfficial, Liability.isPotential))
+24. Q[Government, Official.hasQualifiedImmunity == true](Claim.isAgainstOfficial == true → Causal(Official, Liability.isLimitedByImmunity))
+25. Q[Government, GovernmentOfficial.mayBeLiable == true](Action.isOfficial == true → Causal(GovernmentOfficial, Liability.isPotential))
+26. Q[Government, Claim.isForDamages == true](Official.hasLegalDefense == true → Causal(Official, Liability.isLimitedByImmunity))
+27. Q[Government, GovernmentOfficial.causesDeprivation == true](Deprivation.isFederalRight == true → Causal(GovernmentOfficial, Liability.isPotential))
+28. Q[Government, Official.isSubjectToLawsuit == true](GovernmentOfficial.isInPersonalCapacity == true → Causal(GovernmentOfficial, Liability.isPotential))
+29. Q[Government, Action.isPersonal == true](Official.canRaiseDefense == true → Causal(Official, Liability.isLimitedByImmunity))
+30. Q[Government, GovernmentOfficial.actsUnderColorOfStateLaw == true](Claim.isBasedOnAction == true → Causal(GovernmentOfficial, Liability.isPotential))

@@ -1,0 +1,52 @@
+Predicates:
+Mama Krabs.label != "Character"
+Mama Krabs.label = "Character"
+Mama Krabs.location != "Bikini Bottom"
+Mama Krabs.location = "Bikini Bottom"
+Mama Krabs.name != "Mama Krabs"
+Mama Krabs.name != SpongeBob SquarePants.name
+Mama Krabs.name = "Mama Krabs"
+Mama Krabs.occupation != "None"
+Mama Krabs.occupation != SpongeBob SquarePants.occupation
+Mama Krabs.occupation = "None"
+Mr. Krabs.label != "Character"
+Mr. Krabs.label = "Character"
+Mr. Krabs.location != "Krusty Krab"
+Mr. Krabs.location != Mama Krabs.location
+Mr. Krabs.location != SpongeBob SquarePants.location
+Mr. Krabs.location = "Krusty Krab"
+Mr. Krabs.name != "Mr. Krabs"
+Mr. Krabs.name != Mama Krabs.name
+Mr. Krabs.name != SpongeBob SquarePants.name
+Mr. Krabs.name = "Mr. Krabs"
+Mr. Krabs.occupation != "Restaurant Owner"
+Mr. Krabs.occupation != Mama Krabs.occupation
+Mr. Krabs.occupation != SpongeBob SquarePants.occupation
+Mr. Krabs.occupation = "Restaurant Owner"
+Mr. Krabs___Mama Krabs.doc_id = "3502252178_2"
+Mr. Krabs___Mama Krabs.relationship != Mr. Krabs___SpongeBob SquarePants.relationship
+Mr. Krabs___Mama Krabs.relationship = "Mr. Krabs is the son of Mama Krabs."
+Mr. Krabs___SpongeBob SquarePants.doc_id = "3502252178_2"
+Mr. Krabs___SpongeBob SquarePants.relationship = "Mr. Krabs punishes SpongeBob and Patrick by making them paint the Krusty Krab."
+None_ML(Mr. Krabs.attrs, Mama Krabs.attrs)
+None_ML(Mr. Krabs___Mama Krabs.attrs, Mr. Krabs___SpongeBob SquarePants.attrs)
+SpongeBob SquarePants.label != "Character"
+SpongeBob SquarePants.label = "Character"
+SpongeBob SquarePants.location != "Bikini Bottom"
+SpongeBob SquarePants.location = "Bikini Bottom"
+SpongeBob SquarePants.name != "SpongeBob SquarePants"
+SpongeBob SquarePants.name = "SpongeBob SquarePants"
+SpongeBob SquarePants.occupation != "Fry Cook"
+SpongeBob SquarePants.occupation = "Fry Cook"
+
+Rules:
+Q[Mr. Krabs,Mr. Krabs] (Mama Krabs.location != "Bikini Bottom" ∧ Mr. Krabs.location = "Krusty Krab" → Mr. Krabs.name != "Mr. Krabs")
+Q[Mr. Krabs,Mr. Krabs] (Mama Krabs.name = "Mama Krabs" ∧ Mr. Krabs___Mama Krabs.doc_id = "3502252178_2" ∧ SpongeBob SquarePants.label = "Character" ∧ Mama Krabs.name != "Mama Krabs" ∧ None_ML(Mr. Krabs___Mama Krabs.attrs, Mr. Krabs___SpongeBob SquarePants.attrs) → Mr. Krabs.name != Mama Krabs.name)
+Q[Mr. Krabs,Mr. Krabs] (Mr. Krabs.occupation != Mama Krabs.occupation ∧ Mr. Krabs.location != SpongeBob SquarePants.location ∧ SpongeBob SquarePants.name != "SpongeBob SquarePants" → SpongeBob SquarePants.label = "Character")
+Q[Mr. Krabs,Mr. Krabs] (SpongeBob SquarePants.name != "SpongeBob SquarePants" ∧ SpongeBob SquarePants.label = "Character" ∧ Mama Krabs.name = "Mama Krabs" ∧ None_ML(Mr. Krabs.attrs, Mama Krabs.attrs) ∧ Mr. Krabs.name = "Mr. Krabs" ∧ Mr. Krabs.label = "Character" → Mr. Krabs.occupation != "Restaurant Owner")
+Q[Mr. Krabs,Mr. Krabs] (Mr. Krabs.location != SpongeBob SquarePants.location ∧ Mr. Krabs.location != "Krusty Krab" ∧ SpongeBob SquarePants.occupation != "Fry Cook" ∧ Mr. Krabs___Mama Krabs.relationship = "Mr. Krabs is the son of Mama Krabs." → Mr. Krabs.location = "Krusty Krab")
+Q[Mr. Krabs,Mr. Krabs] (Mr. Krabs.name != Mama Krabs.name ∧ SpongeBob SquarePants.location != "Bikini Bottom" ∧ Mr. Krabs.label != "Character" ∧ Mama Krabs.label = "Character" ∧ SpongeBob SquarePants.occupation != "Fry Cook" → SpongeBob SquarePants.location = "Bikini Bottom")
+Q[Mr. Krabs,Mr. Krabs] (Mama Krabs.location != "Bikini Bottom" ∧ Mama Krabs.label != "Character" → Mr. Krabs.name = "Mr. Krabs")
+Q[Mr. Krabs,Mr. Krabs] (Mr. Krabs.name = "Mr. Krabs" ∧ None_ML(Mr. Krabs.attrs, Mama Krabs.attrs) ∧ Mama Krabs.label != "Character" ∧ Mr. Krabs.occupation != SpongeBob SquarePants.occupation ∧ Mr. Krabs___SpongeBob SquarePants.doc_id = "3502252178_2" ∧ Mr. Krabs.occupation = "Restaurant Owner" → Mr. Krabs.label != "Character")
+Q[Mr. Krabs,Mr. Krabs] (Mr. Krabs.location != "Krusty Krab" ∧ Mr. Krabs.label != "Character" ∧ Mr. Krabs.name = "Mr. Krabs" ∧ Mama Krabs.name != SpongeBob SquarePants.name → Mr. Krabs.occupation = "Restaurant Owner")
+Q[Mr. Krabs,Mr. Krabs] (Mama Krabs.occupation = "None" ∧ Mr. Krabs___Mama Krabs.relationship = "Mr. Krabs is the son of Mama Krabs." ∧ Mama Krabs.occupation != SpongeBob SquarePants.occupation → Mr. Krabs.location != SpongeBob SquarePants.location)

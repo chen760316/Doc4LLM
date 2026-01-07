@@ -1,0 +1,131 @@
+Predicates:
+1. entity1.name = "Nobel Prize"
+2. entity1.year_established = 1901
+3. entity1.honor = "Alfred Nobel"
+4. entity2.name = "Hinton"
+5. entity2.award = "world-renowned scientific award"
+6. entity2.year_received = 2024
+7. entity3.name = "Shannon"
+8. entity3.contribution = "field of information"
+9. "represents a triumph of".context = "scientific achievement"
+10. "represents a triumph over".context = "adversity"
+11. "was built on the site of".location = "historical significance"
+12. "was built under the reign of".monarch = "Queen Victoria"
+13. M_NLI(entity1, entity2)
+14. M_NLI(entity2, entity3)
+15. T("The Nobel Prize was established in 1901.", "Hinton received an award in 2024 for Shannon.", tau)
+16. tau(entity1.year_established, entity2.year_received)
+17. violate(entity1, entity2)
+18. Factual(entity1, entity2)
+19. Content(entity1, entity3)
+20. Causal(entity1, entity2)
+21. Negation(entity1, entity2)
+22. Relation(entity1, entity3)
+23. Numeric(entity1.year_established, entity2.year_received)
+24. Temporal(entity1.year_established, entity2.year_received)
+25. entity1.category = "award"
+26. entity2.category = "recipient"
+27. entity3.category = "contributor"
+28. "represents a triumph of".significance = "cultural impact"
+29. "represents a triumph over".significance = "personal struggle"
+30. "was built on the site of".historical_event = "battle"
+31. "was built under the reign of".era = "Victorian era"
+32. M_NLI(entity1, entity3)
+33. T("The Nobel Prize honors Alfred Nobel.", "Hinton's award honors Shannon.", tau)
+34. tau(entity1.honor, entity3.contribution)
+35. violate(entity2, entity3)
+36. Factual(entity2, entity3)
+37. Content(entity2, entity1)
+38. Causal(entity3, entity1)
+39. Negation(entity3, entity1)
+40. Relation(entity2, entity1)
+41. Numeric(entity2.year_received, entity1.year_established)
+42. Temporal(entity3.contribution, entity1.year_established)
+43. entity1.purpose = "recognition"
+44. entity2.impact = "scientific community"
+45. entity3.impact = "information theory"
+46. "represents a triumph of".impact = "innovation"
+47. "represents a triumph over".impact = "challenges"
+48. "was built on the site of".purpose = "commemoration"
+49. "was built under the reign of".purpose = "legacy"
+50. M_NLI(entity1, entity1)
+51. T("The Nobel Prize was established in 1901.", "It was created to honor contributions.", tau)
+52. tau(entity1.year_established, entity1.honor)
+53. violate(entity1, entity1)
+54. Factual(entity1, entity1)
+55. Content(entity1, entity1)
+56. Causal(entity1, entity1)
+57. Negation(entity1, entity1)
+58. Relation(entity1, entity1)
+59. Numeric(entity1.year_established, entity1.year_established)
+60. Temporal(entity1.year_established, entity1.year_established)
+61. entity1.recipient = "scientists"
+62. entity2.recipient = "researchers"
+63. entity3.recipient = "theorists"
+64. "represents a triumph of".scope = "global"
+65. "represents a triumph over".scope = "personal"
+66. "was built on the site of".significance = "historical memory"
+67. "was built under the reign of".significance = "political influence"
+68. M_NLI(entity2, entity1)
+69. T("Hinton received an award in 2024.", "The award was for contributions to information.", tau)
+70. tau(entity2.year_received, entity1.honor)
+71. violate(entity2, entity1)
+72. Factual(entity2, entity1)
+73. Content(entity2, entity3)
+74. Causal(entity1, entity2)
+75. Negation(entity1, entity2)
+76. Relation(entity3, entity2)
+77. Numeric(entity2.year_received, entity3.year_received)
+78. Temporal(entity1.year_established, entity2.year_received)
+79. entity1.field = "science"
+80. entity2.field = "technology"
+81. entity3.field = "mathematics"
+82. "represents a triumph of".theme = "progress"
+83. "represents a triumph over".theme = "obstacles"
+84. "was built on the site of".theme = "heritage"
+85. "was built under the reign of".theme = "tradition"
+86. M_NLI(entity3, entity1)
+87. T("Shannon contributed to information theory.", "Hinton's award was for Shannon's work.", tau)
+88. tau(entity3.contribution, entity2.award)
+89. violate(entity3, entity2)
+90. Factual(entity3, entity2)
+91. Content(entity3, entity1)
+92. Causal(entity2, entity3)
+93. Negation(entity2, entity3)
+94. Relation(entity1, entity3)
+95. Numeric(entity3.contribution, entity1.year_established)
+96. Temporal(entity2.year_received, entity3.contribution)
+97. entity1.recognition = "prestigious"
+98. entity2.recognition = "notable"
+99. entity3.recognition = "significant"
+100. "represents a triumph of".value = "achievement"
+violate(x0, y0)
+
+Rules:
+1. Q[x0, y0](entity1.name = "Nobel Prize" ∧ entity2.year_received = 2024 → violate(x0, y0))
+2. Q[x0, y0](entity1.year_established = 1901 ∧ entity2.name = "Hinton" ∧ entity3.contribution = "field of information" → violate(x0, y0))
+3. Q[x0, y0](entity1.honor = "Alfred Nobel" ∧ entity2.award = "world-renowned scientific award" ∧ entity2.year_received = 2024 ∧ entity3.name = "Shannon" → violate(x0, y0))
+4. Q[x0, y0](entity1.category = "award" ∧ entity2.category = "recipient" ∧ entity3.category = "contributor" ∧ "represents a triumph of".context = "scientific achievement" → violate(x0, y0))
+5. Q[x0, y0](M_NLI(entity1, entity2) ∧ M_NLI(entity2, entity3) ∧ T("The Nobel Prize honors Alfred Nobel.", "Hinton's award honors Shannon.", tau) → violate(x0, y0))
+6. Q[x0, y0](entity1.purpose = "recognition" ∧ entity2.impact = "scientific community" ∧ entity3.impact = "information theory" ∧ "represents a triumph over".impact = "challenges" ∧ "was built on the site of".purpose = "commemoration" → violate(x0, y0))
+7. Q[x0, y0](entity1.name = "Nobel Prize" ∧ entity1.year_established = 1901 → violate(x0, y0))
+8. Q[x0, y0](entity2.name = "Hinton" ∧ entity2.year_received = 2024 ∧ entity3.name = "Shannon" → violate(x0, y0))
+9. Q[x0, y0](entity1.honor = "Alfred Nobel" ∧ entity2.award = "world-renowned scientific award" → violate(x0, y0))
+10. Q[x0, y0](entity1.category = "award" ∧ entity2.category = "recipient" ∧ entity3.category = "contributor" → violate(x0, y0))
+11. Q[x0, y0](M_NLI(entity1, entity2) ∧ T("Hinton received an award in 2024.", "The award was for contributions to information.", tau) → violate(x0, y0))
+12. Q[x0, y0](entity1.year_established = 1901 ∧ entity2.year_received = 2024 ∧ "represents a triumph of".context = "scientific achievement" → violate(x0, y0))
+13. Q[x0, y0](entity1.name = "Nobel Prize" ∧ entity2.name = "Hinton" ∧ entity3.name = "Shannon" ∧ entity1.honor = "Alfred Nobel" → violate(x0, y0))
+14. Q[x0, y0](entity1.purpose = "recognition" ∧ entity2.impact = "scientific community" ∧ entity3.impact = "information theory" ∧ "represents a triumph over".impact = "personal struggle" → violate(x0, y0))
+15. Q[x0, y0](entity1.year_established = 1901 ∧ entity2.year_received = 2024 ∧ entity3.contribution = "field of information" ∧ "was built on the site of".location = "historical significance" → violate(x0, y0))
+16. Q[x0, y0](entity1.honor = "Alfred Nobel" ∧ entity2.award = "world-renowned scientific award" ∧ entity3.contribution = "field of information" ∧ "represents a triumph of".context = "scientific achievement" → violate(x0, y0))
+17. Q[x0, y0](entity1.category = "award" ∧ entity2.category = "recipient" ∧ entity3.category = "contributor" ∧ "was built under the reign of".monarch = "Queen Victoria" → violate(x0, y0))
+18. Q[x0, y0](M_NLI(entity1, entity3) ∧ T("The Nobel Prize honors Alfred Nobel.", "Hinton's award honors Shannon.", tau) ∧ tau(entity1.year_established, entity2.year_received) → violate(x0, y0))
+19. Q[x0, y0](entity1.name = "Nobel Prize" ∧ entity2.year_received = 2024 ∧ entity3.contribution = "field of information" ∧ "represents a triumph over".context = "adversity" → violate(x0, y0))
+20. Q[x0, y0](entity1.year_established = 1901 ∧ entity2.name = "Hinton" ∧ entity3.name = "Shannon" ∧ "was built on the site of".historical_event = "battle" → violate(x0, y0))
+21. Q[x0, y0](entity1.honor = "Alfred Nobel" ∧ entity2.award = "world-renowned scientific award" ∧ entity2.year_received = 2024 ∧ "represents a triumph of".significance = "cultural impact" → violate(x0, y0))
+22. Q[x0, y0](entity1.category = "award" ∧ entity2.category = "recipient" ∧ entity3.category = "contributor" ∧ "was built under the reign of".era = "Victorian era" → violate(x0, y0))
+23. Q[x0, y0](M_NLI(entity2, entity1) ∧ T("Hinton received an award in 2024.", "The award was for contributions to information.", tau) ∧ tau(entity2.year_received, entity1.honor) → violate(x0, y0))
+24. Q[x0, y0](entity1.year_established = 1901 ∧ entity2.year_received = 2024 ∧ "represents a triumph of".theme = "progress" → violate(x0, y0))
+25. Q[x0, y0](entity1.name = "Nobel Prize" ∧ entity2.name = "Hinton" ∧ entity3.name = "Shannon" ∧ "was built on the site of".significance = "historical memory" → violate(x0, y0))
+26. Q[x0, y0](entity1.honor = "Alfred Nobel" ∧ entity2.award = "world-renowned scientific award" ∧ entity3.contribution = "field of information" ∧ "represents a triumph over".theme = "obstacles" → violate(x0, y0))
+27. Q[x0, y0](entity1.category = "award

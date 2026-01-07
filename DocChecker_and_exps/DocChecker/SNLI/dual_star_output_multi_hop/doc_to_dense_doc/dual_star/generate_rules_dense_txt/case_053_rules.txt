@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 53)
+S1: A youth rides a scooter on a sidewalk near a building.
+S2: A person is outside a building.
+
+Predicates:
+1. Youth.activity
+2. Youth.location
+3. Scooter.type
+4. Scooter.location
+5. Building.type
+6. Building.location
+7. Person.activity
+8. Person.location
+9. Sidewalk.type
+10. Sidewalk.location
+11. Youth.age
+12. Youth.gender
+13. Person.age
+14. Person.gender
+15. Building.height
+16. Building.material
+17. Scooter.color
+18. Sidewalk.width
+19. Youth.speed
+20. Person.distance_from_building
+21. Youth.helmet
+22. Scooter.brand
+23. Building.occupancy
+24. Sidewalk.condition
+25. Youth.direction
+26. Person.visibility
+27. Building.address
+28. Scooter.condition
+29. Sidewalk.use
+30. Person.interaction
+
+Rules:
+1. Q[youth, Youth.activity, Person.activity](Youth.activity == "riding scooter" → Relation(youth, Person))
+2. Q[youth, Youth.location, Person.location](Youth.location == "near building" → Relation(youth, Person))
+3. Q[youth, Youth.age, Person.age](Youth.age < 18 → Relation(youth, Person))
+4. Q[youth, Youth.gender, Person.gender](Youth.gender != Person.gender → Relation(youth, Person))
+5. Q[scooter, Scooter.type, Person.activity](Scooter.type == "scooter" → Relation(scooter, Person))
+6. Q[scooter, Scooter.location, Person.location](Scooter.location == "near building" → Relation(scooter, Person))
+7. Q[building, Building.type, Person.location](Building.type == "commercial" → Relation(building, Person))
+8. Q[building, Building.location, Person.location](Building.location == "outside" → Relation(building, Person))
+9. Q[sidewalk, Sidewalk.type, Person.location](Sidewalk.type == "public" → Relation(sidewalk, Person))
+10. Q[sidewalk, Sidewalk.location, Person.location](Sidewalk.location == "near building" → Relation(sidewalk, Person))
+11. Q[youth, Youth.speed, Person.distance_from_building](Youth.speed > 0 → Relation(youth, Person))
+12. Q[youth, Youth.helmet, Person.activity](Youth.helmet == "wearing" → Relation(youth, Person))
+13. Q[scooter, Scooter.brand, Person.activity](Scooter.brand == "brandX" → Relation(scooter, Person))
+14. Q[building, Building.occupancy, Person.location](Building.occupancy == "vacant" → Relation(building, Person))
+15. Q[sidewalk, Sidewalk.condition, Person.location](Sidewalk.condition == "clear" → Relation(sidewalk, Person))
+16. Q[youth, Youth.direction, Person.location](Youth.direction == "towards building" → Relation(youth, Person))
+17. Q[youth, Youth.activity, Person.interaction](Youth.activity == "riding scooter" → Relation(youth, Person))
+18. Q[scooter, Scooter.condition, Person.activity](Scooter.condition == "new" → Relation(scooter, Person))
+19. Q[building, Building.height, Person.location](Building.height > 2 → Relation(building, Person))
+20. Q[sidewalk, Sidewalk.width, Person.location](Sidewalk.width > 1 → Relation(sidewalk, Person))
+21. Q[youth, Youth.age, Person.age](Youth.age >= 18 → Relation(youth, Person))
+22. Q[youth, Youth.gender, Person.gender](Youth.gender == Person.gender → Relation(youth, Person))
+23. Q[scooter, Scooter.color, Person.activity](Scooter.color == "red" → Relation(scooter, Person))
+24. Q[building, Building.address, Person.location](Building.address == "123 Main St" → Relation(building, Person))
+25. Q[sidewalk, Sidewalk.use, Person.activity](Sidewalk.use == "pedestrian" → Relation(sidewalk, Person))
+26. Q[youth, Youth.activity, Person.visibility](Youth.activity == "riding scooter" → Relation(youth, Person))
+27. Q[scooter, Scooter.type, Person.visibility](Scooter.type == "electric" → Relation(scooter, Person))
+28. Q[building, Building.material, Person.location](Building.material == "brick" → Relation(building, Person))
+29. Q[sidewalk, Sidewalk.condition, Person.visibility](Sidewalk.condition == "wet" → Relation(sidewalk, Person))
+30. Q[youth, Youth.speed, Person.visibility](Youth.speed == 10 → Relation(youth, Person))

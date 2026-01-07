@@ -1,0 +1,129 @@
+Predicates:
+1. Department of Justice.abbreviation = "DOJ"
+2. Department of Justice.abbreviation != "DOJ"
+3. Department of Justice.abbreviation < "DOK"
+4. Department of Justice.abbreviation > "DOL"
+5. Department of Justice.abbreviation <= "DOJ"
+6. Department of Justice.abbreviation >= "DOV"
+7. "charged with engaging in a pattern and practice of racial discrimination".reason = "pattern of discrimination"
+8. "charged with engaging in a pattern and practice of racial discrimination".reason != "pattern of fairness"
+9. "charged with engaging in a pattern and practice of racial discrimination".reason < "pattern of discrimination"
+10. "charged with engaging in a pattern and practice of racial discrimination".reason > "pattern of bias"
+11. "charged with engaging in a pattern and practice of racial discrimination".reason <= "pattern of discrimination"
+12. "charged with engaging in a pattern and practice of racial discrimination".reason >= "pattern of injustice"
+13. Ferguson.city = "Ferguson"
+14. Ferguson.city != "St. Louis"
+15. Ferguson.city < "G"
+16. Ferguson.city > "E"
+17. Ferguson.city <= "Ferguson"
+18. Ferguson.city >= "Ferguson"
+19. "suggested by local activists".context = "activist proposal"
+20. "suggested by local activists".context != "government proposal"
+21. "suggested by local activists".context < "activist suggestion"
+22. "suggested by local activists".context > "official suggestion"
+23. "suggested by local activists".context <= "local input"
+24. "suggested by local activists".context >= "community feedback"
+25. "Relationship".attribute = "negotiation"
+26. "Relationship".attribute != "settlement"
+27. "Relationship".attribute < "agreement"
+28. "Relationship".attribute > "dispute"
+29. "Relationship".attribute <= "discussion"
+30. "Relationship".attribute >= "bargaining"
+31. M_NLI(Department of Justice.abbreviation, Ferguson.city)
+32. M_NLU(Department of Justice.abbreviation, "charged with engaging in a pattern and practice of racial discrimination".reason)
+33. M_TEM(Ferguson.city, "suggested by local activists".context)
+34. contra("Department of Justice will negotiate", "Department of Justice will not negotiate")
+35. S(Department of Justice, "The Department of Justice")
+36. S(Ferguson, "the city of Ferguson")
+37. S("charged with engaging in a pattern and practice of racial discrimination", "charged with racial discrimination")
+38. S("suggested by local activists", "suggested by activists")
+39. T("The Department of Justice will negotiate", "The Department of Justice will not negotiate", Negation)
+40. tau(Department of Justice.abbreviation, "DOJ")
+41. tau(Ferguson.city, "Ferguson")
+42. tau("charged with engaging in a pattern and practice of racial discrimination".reason, "pattern of discrimination")
+43. tau("suggested by local activists".context, "activist proposal")
+44. "Relationship".attribute = "restructure"
+45. "Relationship".attribute != "maintain"
+46. "Relationship".attribute < "reform"
+47. "Relationship".attribute > "status quo"
+48. "Relationship".attribute <= "change"
+49. "Relationship".attribute >= "adjustment"
+50. Department of Justice.reason = "addressing discrimination"
+51. Department of Justice.reason != "ignoring discrimination"
+52. Department of Justice.reason < "urgent"
+53. Department of Justice.reason > "non-urgent"
+54. Department of Justice.reason <= "necessary"
+55. Department of Justice.reason >= "critical"
+56. Ferguson.city != "New York"
+57. Ferguson.city < "H"
+58. Ferguson.city > "D"
+59. Ferguson.city <= "Ferguson"
+60. Ferguson.city >= "Ferguson"
+61. "suggested by local activists".context = "community-driven"
+62. "suggested by local activists".context != "top-down"
+63. "suggested by local activists".context < "local initiative"
+64. "suggested by local activists".context > "external suggestion"
+65. "suggested by local activists".context <= "grassroots"
+66. "suggested by local activists".context >= "local advocacy"
+67. M_NLI(Ferguson.city, "St. Louis County Police")
+68. M_NLU("charged with engaging in a pattern and practice of racial discrimination".reason, "Department of Justice.reason")
+69. M_TEM("suggested by local activists".context, "Department of Justice.reason")
+70. contra("Ferguson police department", "St. Louis County Police")
+71. S("Department of Justice", "The Department of Justice")
+72. S("Ferguson", "the city of Ferguson")
+73. S("St. Louis County Police", "St. Louis County Police")
+74. T("Department of Justice will negotiate", "Department of Justice will not negotiate", Negation)
+75. tau("charged with engaging in a pattern and practice of racial discrimination".reason, "pattern of fairness")
+76. tau("suggested by local activists".context, "government proposal")
+77. "Relationship".attribute = "integration"
+78. "Relationship".attribute != "separation"
+79. "Relationship".attribute < "collaboration"
+80. "Relationship".attribute > "isolation"
+81. "Relationship".attribute <= "cooperation"
+82. "Relationship".attribute >= "disconnection"
+83. Department of Justice.reason = "improving community relations"
+84. Department of Justice.reason != "worsening community relations"
+85. Department of Justice.reason < "immediate"
+86. Department of Justice.reason > "long-term"
+87. Department of Justice.reason <= "essential"
+88. Department of Justice.reason >= "important"
+89. Ferguson.city != "Chicago"
+90. Ferguson.city < "I"
+91. Ferguson.city > "C"
+92. Ferguson.city <= "Ferguson"
+93. Ferguson.city >= "Ferguson"
+94. "suggested by local activists".context = "local concerns"
+95. "suggested by local activists".context != "national concerns"
+96. "suggested by local activists".context < "specific issues"
+97. "suggested by local activists".context > "general issues"
+98. "suggested by local activists".context <= "community needs"
+99. "suggested by local activists".context >= "local priorities"
+100. M_TEM(Department of Justice.reason, "suggested by local activists".context)
+
+Rules:
+1. Q[1, 2](Department of Justice.abbreviation = "DOJ" ∧ Ferguson.city != "St. Louis" → "Department of Justice will negotiate")
+2. Q[3, 4](Department of Justice.abbreviation < "DOK" ∧ Department of Justice.abbreviation > "DOL" → "Department of Justice.reason = 'addressing discrimination'")
+3. Q[5, 6, 7](Department of Justice.abbreviation <= "DOJ" ∧ "charged with engaging in a pattern and practice of racial discrimination".reason = "pattern of discrimination" ∧ Ferguson.city = "Ferguson" → "suggested by local activists".context = "community-driven")
+4. Q[8, 9, 10, 11](Department of Justice.abbreviation != "DOJ" ∧ "charged with engaging in a pattern and practice of racial discrimination".reason < "pattern of discrimination" ∧ Ferguson.city > "E" ∧ "suggested by local activists".context >= "local input" → "Relationship.attribute = 'negotiation'")
+5. Q[12, 13, 14, 15, 16](Department of Justice.abbreviation >= "DOV" ∧ Ferguson.city = "Ferguson" ∧ Ferguson.city != "New York" ∧ Ferguson.city < "H" ∧ "suggested by local activists".context <= "local advocacy" → "Department of Justice.reason != 'ignoring discrimination'")
+6. Q[17, 18](Ferguson.city <= "Ferguson" ∧ "suggested by local activists".context >= "community feedback" → "Department of Justice.reason = 'improving community relations'")
+7. Q[19, 20](M_NLI(Department of Justice.abbreviation, Ferguson.city) ∧ "suggested by local activists".context != "government proposal" → "Department of Justice.reason != 'worsening community relations'")
+8. Q[21, 22, 23](M_NLU("charged with engaging in a pattern and practice of racial discrimination".reason, "Department of Justice.reason") ∧ "suggested by local activists".context < "activist suggestion" ∧ "suggested by local activists".context > "official suggestion" → "Relationship.attribute != 'settlement'")
+9. Q[24, 25, 26](M_TEM(Ferguson.city, "suggested by local activists".context) ∧ "Relationship".attribute = "negotiation" ∧ "Relationship".attribute < "agreement" → "Department of Justice.reason >= 'critical'")
+10. Q[27, 28, 29, 30](Department of Justice.reason < "urgent" ∧ Department of Justice.reason > "non-urgent" ∧ "Relationship".attribute > "dispute" ∧ "Relationship".attribute <= "discussion" → "Department of Justice.reason = 'necessary'")
+11. Q[31, 32](M_NLI(Ferguson.city, "St. Louis County Police") ∧ "charged with engaging in a pattern and practice of racial discrimination".reason >= "pattern of injustice" → "Department of Justice.reason != 'worsening community relations'")
+12. Q[33, 34](M_TEM("suggested by local activists".context, "Department of Justice.reason") ∧ contra("Department of Justice will negotiate", "Department of Justice will not negotiate") → "Relationship.attribute = 'integration'")
+13. Q[35, 36, 37](S(Department of Justice, "The Department of Justice") ∧ S(Ferguson, "the city of Ferguson") ∧ S("charged with engaging in a pattern and practice of racial discrimination", "charged with racial discrimination") → "Department of Justice.reason = 'improving community relations'")
+14. Q[38, 39, 40, 41](S("suggested by local activists", "suggested by activists") ∧ T("Department of Justice will negotiate", "Department of Justice will not negotiate", Negation) ∧ tau(Department of Justice.abbreviation, "DOJ") → "Ferguson.city != 'Chicago'")
+15. Q[42, 43, 44](tau("charged with engaging in a pattern and practice of racial discrimination".reason, "pattern of discrimination") ∧ tau("suggested by local activists".context, "activist proposal" ∧ "Relationship".attribute != "maintain" → "Department of Justice.reason < 'immediate'")
+16. Q[45, 46](Relationship.attribute = "restructure" ∧ "Relationship".attribute < "reform" → "Department of Justice.reason >= 'important'")
+17. Q[47, 48, 49](Relationship.attribute > "status quo" ∧ "Relationship".attribute <= "change" ∧ "Relationship".attribute >= "adjustment" → "Department of Justice.reason != 'ignoring discrimination'")
+18. Q[50, 51](Department of Justice.reason = "addressing discrimination" ∧ Department of Justice.reason != "ignoring discrimination" → "Ferguson.city != 'New York'")
+19. Q[52, 53, 54](Department of Justice.reason < "urgent" ∧ Department of Justice.reason > "non-urgent" ∧ Department of Justice.reason <= "necessary" → "suggested by local activists".context = "local concerns")
+20. Q[55, 56, 57, 58](Department of Justice.reason >= "critical" ∧ Ferguson.city != "Chicago" ∧ Ferguson.city < "I" ∧ Ferguson.city > "C" → "suggested by local activists".context != "national concerns")
+21. Q[59, 60](Ferguson.city <= "Ferguson" ∧ Ferguson.city >= "Ferguson" → "Department of Justice.reason = 'critical'")
+22. Q[61, 62](suggested by local activists.context = "community-driven" ∧ suggested by local activists.context != "top-down" → "Department of Justice.reason != 'worsening community relations'")
+23. Q[63, 64, 65](suggested by local activists.context < "local initiative" ∧ suggested by local activists.context > "external suggestion" ∧ suggested by local activists.context <= "grassroots" → "Department of Justice.reason = 'improving community relations'")
+24. Q[66, 67](suggested by local activists.context >= "local advocacy" ∧ M_NLI(Ferguson.city, "St. Louis County Police") → "Department of Justice.reason != 'ignoring discrimination'")
+25. Q[68, 69](M_NLU("charged with engaging in a pattern and practice of racial discrimination".reason, "Department of Justice.reason") ∧ M_TEM("suggested by local activists".context, "Department of Justice.reason") → "Department of Justice.reason < 'immediate'")
+26. Q[70, 71](contra("Ferguson police department", "St. Louis County Police") ∧ S("Department of Justice", "The Department of Justice") → "Department of Justice.reason >=

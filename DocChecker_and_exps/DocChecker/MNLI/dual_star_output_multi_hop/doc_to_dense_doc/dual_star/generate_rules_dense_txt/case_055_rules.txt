@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 55)
+S1: In the eyes of my conservative neighbors I am a liberal--I consistently vote Democratic and will probably vote for Fritz Hollings.
+S2: I will never vote for Fritz Hollings.
+
+Predicates:
+1. Person.political_view
+2. Person.voting_intention
+3. Person.vote_choice
+4. Person.neighbor_view
+5. Person.vote_record
+6. Person.voting_party
+7. Person.voting_behavior
+8. Person.conservative_neighbors
+9. Person.liberal_identity
+10. Person.vote_for.Fritz_Hollings
+11. Person.vote_against.Fritz_Hollings
+12. Opinion.political_affiliation
+13. Opinion.vote_decision
+14. Emotion.conflict
+15. Emotion.confusion
+16. M_NLI(statement1, statement2)
+17. Content.Opinion(statement1, statement2)
+18. Content.Emotion(statement1, statement2)
+19. violate(statement1, statement2)
+20. Neighbor.political_view
+21. Neighbor.perception
+22. Neighbor.voting_behavior
+23. Election.candidate
+24. Election.voting_outcome
+25. Election.voter_intention
+26. Election.political_party
+27. Vote.choice
+28. Vote.decision
+29. Vote.intention
+30. Vote.conflict
+
+Rules:
+1. Q[the, Person.voting_intention, Person.vote_for.Fritz_Hollings](Person.voting_intention == "vote for Fritz Hollings" → Content.Opinion(S1, S2))
+2. Q[the, Person.vote_for.Fritz_Hollings, Person.vote_against.Fritz_Hollings](Person.vote_for.Fritz_Hollings == true → Content.Opinion(S1, S2))
+3. Q[the, Person.vote_against.Fritz_Hollings, Person.vote_for.Fritz_Hollings](Person.vote_against.Fritz_Hollings == true → Content.Opinion(S1, S2))
+4. Q[the, Person.political_view, Person.vote_choice](Person.political_view == "liberal" → Content.Opinion(S1, S2))
+5. Q[the, Person.vote_choice, Person.voting_intention](Person.vote_choice == "vote for Fritz Hollings" → Content.Opinion(S1, S2))
+6. Q[the, Person.voting_party, Person.vote_choice](Person.voting_party == "Democratic" → Content.Opinion(S1, S2))
+7. Q[the, Person.vote_record, Person.vote_for.Fritz_Hollings](Person.vote_record == "vote for Fritz Hollings" → Content.Opinion(S1, S2))
+8. Q[the, Person.neighbor_view, Person.liberal_identity](Person.neighbor_view == "conservative" → Content.Opinion(S1, S2))
+9. Q[the, Person.liberal_identity, Person.vote_against.Fritz_Hollings](Person.liberal_identity == true → Content.Opinion(S1, S2))
+10. Q[the, Person.conservative_neighbors, Person.vote_choice](Person.conservative_neighbors == true → Content.Opinion(S1, S2))
+11. Q[the, Person.voting_behavior, Person.vote_for.Fritz_Hollings](Person.voting_behavior == "vote for Fritz Hollings" → Content.Opinion(S1, S2))
+12. Q[the, Person.vote_for.Fritz_Hollings, Person.voting_behavior](Person.vote_for.Fritz_Hollings == true → Content.Opinion(S1, S2))
+13. Q[the, Person.vote_against.Fritz_Hollings, Person.voting_intention](Person.vote_against.Fritz_Hollings == true → Content.Opinion(S1, S2))
+14. Q[the, Person.vote_choice, Person.vote_against.Fritz_Hollings](Person.vote_choice == "vote against Fritz Hollings" → Content.Opinion(S1, S2))
+15. Q[the, Person.voting_intention, Person.vote_against.Fritz_Hollings](Person.voting_intention == "vote against Fritz Hollings" → Content.Opinion(S1, S2))
+16. Q[the, Person.vote_record, Person.vote_against.Fritz_Hollings](Person.vote_record == "vote against Fritz Hollings" → Content.Opinion(S1, S2))
+17. Q[the, Person.political_view, Person.vote_against.Fritz_Hollings](Person.political_view == "liberal" → Content.Opinion(S1, S2))
+18. Q[the, Person.vote_for.Fritz_Hollings, Person.vote_choice](Person.vote_for.Fritz_Hollings == true → Content.Opinion(S1, S2))
+19. Q[the, Person.vote_against.Fritz_Hollings, Person.vote_choice](Person.vote_against.Fritz_Hollings == true → Content.Opinion(S1, S2))
+20. Q[the, Person.voting_party, Person.vote_against.Fritz_Hollings](Person.voting_party == "Democratic" → Content.Opinion(S1, S2))
+21. Q[the, Person.vote_choice, Person.voting_intention](Person.vote_choice == "vote against Fritz Hollings" → Content.Opinion(S1, S2))
+22. Q[the, Person.vote_for.Fritz_Hollings, Person.vote_record](Person.vote_for.Fritz_Hollings == true → Content.Opinion(S1, S2))
+23. Q[the, Person.vote_against.Fritz_Hollings, Person.vote_record](Person.vote_against.Fritz_Hollings == true → Content.Opinion(S1, S2))
+24. Q[the, Person.voting_intention, Person.vote_choice](Person.voting_intention == "vote for Fritz Hollings" → Content.Opinion(S1, S2))
+25. Q[the, Person.vote_for.Fritz_Hollings, Person.voting_behavior](Person.vote_for.Fritz_Hollings == true → Content.Opinion(S1, S2))
+26. Q[the, Person.vote_against.Fritz_Hollings, Person.voting_behavior](Person.vote_against.Fritz_Hollings == true → Content.Opinion(S1, S2))
+27. Q[the, Person.vote_choice, Person.vote_for.Fritz_Hollings](Person.vote_choice == "vote for Fritz Hollings" → Content.Opinion(S1, S2))
+28. Q[the, Person.vote_record, Person.vote_choice](Person.vote_record == "vote for Fritz Hollings" → Content.Opinion(S1, S2))
+29. Q[the, Person.vote_for.Fritz_Hollings, Person.vote_against.Fritz_Hollings](Person.vote_for.Fritz_Hollings == true → Content.Opinion(S1, S2))
+30. Q[the, Person.vote_against.Fritz_Hollings, Person.vote_for.Fritz_Hollings](Person.vote_against.Fritz_Hollings == true → Content.Opinion(S1, S2))

@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 1635)
+S1: A man is preparing to bake something.
+S2: A man is preparing to kill a chicken.
+
+Predicates:
+1. Man.activity
+2. Man.intent
+3. Baking.activity
+4. Killing.activity
+5. Chicken.entity
+6. Man.preparing
+7. Baking.benign
+8. Killing.harmful
+9. Intent.contradictory
+10. Activity.baking
+11. Activity.killing
+12. Man.baking
+13. Man.killing
+14. Intent.baking
+15. Intent.killing
+16. Causal(baking, killing)
+17. Violate(baking, killing)
+18. M_NLI(S1, S2)
+19. Preparation.baking
+20. Preparation.killing
+21. Activity.intent
+22. Man.entity
+23. Chicken.intent
+24. Baking.intent
+25. Killing.intent
+26. Harmful.intent
+27. Benign.intent
+28. Preparation.intent
+29. Contradictory.intent
+30. Man.choosing_activity
+
+Rules:
+1. Q[man, Man.activity, Baking.activity](Man.preparing == true → Causal(Baking.activity, Killing.activity))
+2. Q[man, Man.intent, Intent.baking](Man.intent == "baking" → Causal(Intent.baking, Intent.killing))
+3. Q[man, Man.activity, Killing.activity](Man.killing == true → Causal(Killing.activity, Baking.activity))
+4. Q[man, Man.intent, Intent.killing](Man.intent == "killing" → Causal(Intent.killing, Intent.baking))
+5. Q[man, Man.preparing, Preparation.baking](Man.preparing == true → Causal(Preparation.baking, Preparation.killing))
+6. Q[man, Man.activity, Activity.baking](Man.activity == "baking" → Causal(Activity.baking, Activity.killing))
+7. Q[man, Man.intent, Intent.contradictory](Intent.contradictory == true → Causal(Intent.baking, Intent.killing))
+8. Q[man, Man.killing, Killing.harmful](Man.killing == true → Causal(Killing.harmful, Baking.benign))
+9. Q[man, Man.activity, Activity.killing](Man.activity == "killing" → Causal(Activity.killing, Activity.baking))
+10. Q[man, Man.intent, Harmful.intent](Man.intent == "killing" → Causal(Harmful.intent, Benign.intent))
+11. Q[man, Man.choosing_activity, Activity.baking](Man.choosing_activity == "baking" → Causal(Activity.baking, Activity.killing))
+12. Q[man, Man.intent, Preparation.intent](Man.intent == "baking" → Causal(Preparation.intent, Killing.intent))
+13. Q[man, Man.activity, Preparation.killing](Man.activity == "killing" → Causal(Preparation.killing, Preparation.baking))
+14. Q[man, Man.intent, Intent.baking](Man.intent == "baking" → Causal(Intent.baking, Intent.killing))
+15. Q[man, Man.preparing, Preparation.killing](Man.preparing == true → Causal(Preparation.killing, Preparation.baking))
+16. Q[man, Man.activity, Killing.intent](Man.activity == "killing" → Causal(Killing.intent, Baking.intent))
+17. Q[man, Man.killing, Intent.killing](Man.killing == true → Causal(Intent.killing, Intent.baking))
+18. Q[man, Man.intent, Intent.contradictory](Intent.contradictory == true → Causal(Intent.baking, Intent.killing))
+19. Q[man, Man.activity, Killing.activity](Man.activity == "killing" → Causal(Killing.activity, Baking.activity))
+20. Q[man, Man.intent, Intent.baking](Man.intent == "baking" → Causal(Intent.baking, Intent.killing))
+21. Q[man, Man.preparing, Preparation.baking](Man.preparing == true → Causal(Preparation.baking, Preparation.killing))
+22. Q[man, Man.activity, Activity.killing](Man.activity == "killing" → Causal(Activity.killing, Activity.baking))
+23. Q[man, Man.intent, Harmful.intent](Man.intent == "killing" → Causal(Harmful.intent, Benign.intent))
+24. Q[man, Man.choosing_activity, Activity.baking](Man.choosing_activity == "baking" → Causal(Activity.baking, Activity.killing))
+25. Q[man, Man.intent, Intent.contradictory](Intent.contradictory == true → Causal(Intent.baking, Intent.killing))
+26. Q[man, Man.killing, Killing.harmful](Man.killing == true → Causal(Killing.harmful, Baking.benign))
+27. Q[man, Man.activity, Activity.baking](Man.activity == "baking" → Causal(Activity.baking, Activity.killing))
+28. Q[man, Man.intent, Intent.killing](Man.intent == "killing" → Causal(Intent.killing, Intent.baking))
+29. Q[man, Man.preparing, Preparation.killing](Man.preparing == true → Causal(Preparation.killing, Preparation.baking))
+30. Q[man, Man.activity, Killing.intent](Man.activity == "killing" → Causal(Killing.intent, Baking.intent))

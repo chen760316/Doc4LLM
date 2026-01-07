@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 290)
+S1: The last important scene of Comet Shoemaker-Levy 9 was beaten just after midnight.
+S2: The final major piece of comet Shoemaker-Levy 9 was to hit just after midnight.
+
+Predicates:
+1. Comet_Shoemaker_Levy_9.scene_completed
+2. Comet_Shoemaker_Levy_9.hit_pending
+3. Scene.time = midnight
+4. Final_piece.time = midnight
+5. Scene.type = important
+6. Event.type = major
+7. Scene.completed = true
+8. Event.pending = true
+9. Comet_Shoemaker_Levy_9.last_scene = true
+10. Comet_Shoemaker_Levy_9.final_piece = true
+11. Scene.completed_after_midnight = true
+12. Event.scheduled_after_midnight = true
+13. Scene.occurrence = last
+14. Event.occurrence = final
+15. Scene.relevance = important
+16. Event.relevance = major
+17. Midnight.time = true
+18. Scene.comet = Comet_Shoemaker_Levy_9
+19. Event.comet = Comet_Shoemaker_Levy_9
+20. Scene.completed_before_event = true
+21. Event.scheduled_time = midnight
+22. Scene.impact = completed
+23. Event.impact = pending
+24. Scene.impact_time = midnight
+25. Event.impact_time = midnight
+26. M_NLI(S1, S2) = true
+27. Causal(Scene.completed, Event.pending) = true
+28. violate(Scene.completed, Event.pending) = true
+29. Scene.finality = last
+30. Event.finality = major
+
+Rules:
+1. Q[The, Comet_Shoemaker_Levy_9.scene_completed, Comet_Shoemaker_Levy_9.hit_pending](Comet_Shoemaker_Levy_9.scene_completed == true → Causal(Comet_Shoemaker_Levy_9.scene_completed, Comet_Shoemaker_Levy_9.hit_pending))
+2. Q[The, Scene.completed, Event.pending](Scene.completed == true → Causal(Scene.completed, Event.pending))
+3. Q[The, Scene.completed_after_midnight, Event.scheduled_after_midnight](Scene.completed_after_midnight == true → Causal(Scene.completed_after_midnight, Event.scheduled_after_midnight))
+4. Q[The, Scene.type, Event.type](Scene.type == "important" → Causal(Scene.type, Event.type))
+5. Q[The, Scene.relevance, Event.relevance](Scene.relevance == "important" → Causal(Scene.relevance, Event.relevance))
+6. Q[The, Scene.occurrence, Event.occurrence](Scene.occurrence == "last" → Causal(Scene.occurrence, Event.occurrence))
+7. Q[The, Scene.completed_before_event, Event.pending](Scene.completed_before_event == true → Causal(Scene.completed_before_event, Event.pending))
+8. Q[The, Scene.impact, Event.impact](Scene.impact == "completed" → Causal(Scene.impact, Event.impact))
+9. Q[The, Scene.finality, Event.finality](Scene.finality == "last" → Causal(Scene.finality, Event.finality))
+10. Q[The, Scene.time, Event.scheduled_time](Scene.time == midnight → Causal(Scene.time, Event.scheduled_time))
+11. Q[The, Comet_Shoemaker_Levy_9.last_scene, Comet_Shoemaker_Levy_9.final_piece](Comet_Shoemaker_Levy_9.last_scene == true → Causal(Comet_Shoemaker_Levy_9.last_scene, Comet_Shoemaker_Levy_9.final_piece))
+12. Q[The, Scene.completed, Scene.completed_after_midnight](Scene.completed == true → Causal(Scene.completed, Scene.completed_after_midnight))
+13. Q[The, Event.pending, Event.scheduled_after_midnight](Event.pending == true → Causal(Event.pending, Event.scheduled_after_midnight))
+14. Q[The, Scene.impact_time, Event.impact_time](Scene.impact_time == midnight → Causal(Scene.impact_time, Event.impact_time))
+15. Q[The, Comet_Shoemaker_Levy_9.final_piece, Event.pending](Comet_Shoemaker_Levy_9.final_piece == true → Causal(Comet_Shoemaker_Levy_9.final_piece, Event.pending))
+16. Q[The, Scene.completed, Scene.time](Scene.completed == true → Causal(Scene.completed, Scene.time))
+17. Q[The, Event.type, Scene.type](Event.type == "major" → Causal(Event.type, Scene.type))
+18. Q[The, Event.occurrence, Scene.occurrence](Event.occurrence == "final" → Causal(Event.occurrence, Scene.occurrence))
+19. Q[The, Event.impact, Scene.impact](Event.impact == "pending" → Causal(Event.impact, Scene.impact))
+20. Q[The, Event.finality, Scene.finality](Event.finality == "major" → Causal(Event.finality, Scene.finality))
+21. Q[The, Scene.completed, Event.impact](Scene.completed == true → Causal(Scene.completed, Event.impact))
+22. Q[The, Scene.completed_after_midnight, Event.pending](Scene.completed_after_midnight == true → Causal(Scene.completed_after_midnight, Event.pending))
+23. Q[The, Scene.completed_before_event, Event.scheduled_time](Scene.completed_before_event == true → Causal(Scene.completed_before_event, Event.scheduled_time))
+24. Q[The, Scene.relevance, Event.pending](Scene.relevance == "important" → Causal(Scene.relevance, Event.pending))
+25. Q[The, Scene.time, Event.impact_time](Scene.time == midnight → Causal(Scene.time, Event.impact_time))
+26. Q[The, Comet_Shoemaker_Levy_9.scene_completed, Scene.completed](Comet_Shoemaker_Levy_9.scene_completed == true → Causal(Comet_Shoemaker_Levy_9.scene_completed, Scene.completed))
+27. Q[The, Event.pending, Scene.completed](Event.pending == true → Causal(Event.pending, Scene.completed))
+28. Q[The, Scene.completed, Event.scheduled_time](Scene.completed == true → Causal(Scene.completed, Event.scheduled_time))
+29. Q[The, Scene.impact_time, Event.scheduled_time](Scene.impact_time == midnight → Causal(Scene.impact_time, Event.scheduled_time))
+30. Q[The, Comet_Shoemaker_Levy_9.final_piece, Scene.completed](Comet_Shoemaker_Levy_9.final_piece == true → Causal(Comet_Shoemaker_Levy_9.final_piece, Scene.completed))

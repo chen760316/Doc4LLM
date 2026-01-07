@@ -1,0 +1,64 @@
+Source: dense_text.txt (Index 732)
+S1: Bismarck fell madly in love with the wife of a Russian ambassador.
+S2: Bismarck fell in love with the wife of the ambassador from Hungary.
+
+Predicates:
+1. Bismarck.love_status = "madly in love"
+2. Russian_ambassador.wife.nationality = "Russian"
+3. Bismarck.love_status = "in love"
+4. Hungarian_ambassador.wife.nationality = "Hungarian"
+5. M_NLI(S1, S2)
+6. Factual(Bismarck, Russian_ambassador.wife)
+7. Factual(Bismarck, Hungarian_ambassador.wife)
+8. violate(Bismarck.love_status, Russian_ambassador.wife.nationality)
+9. violate(Bismarck.love_status, Hungarian_ambassador.wife.nationality)
+10. Bismarck.relationship_status = "conflicted"
+11. Russian_ambassador.wife.relationship = "married"
+12. Hungarian_ambassador.wife.relationship = "married"
+13. Bismarck.emotional_state = "conflicted"
+14. Bismarck.love_object = Russian_ambassador.wife
+15. Bismarck.love_object = Hungarian_ambassador.wife
+16. Russian_ambassador.wife.name = "unknown"
+17. Hungarian_ambassador.wife.name = "unknown"
+18. Bismarck.love_interest = "ambassador's wife"
+19. Bismarck.love_interest_conflict = "true"
+20. Russian_ambassador.nationality = "Russian"
+21. Hungarian_ambassador.nationality = "Hungarian"
+22. Bismarck.love_interest_nationality = "conflicted"
+23. Bismarck.love_interest_type = "wife"
+24. Bismarck.love_interest_source = "ambassador"
+25. Bismarck.love_interest_source_conflict = "true"
+26. Bismarck.emotional_conflict = "true"
+27. Bismarck.love_interest_ambassador = "true"
+28. Bismarck.love_interest_ambassador_conflict = "true"
+29. Bismarck.love_interest_nationality_conflict = "true"
+30. Bismarck.love_interest_relationship = "ambassador's wife"
+
+Rules:
+1. Q[Bismarck, x0, y0](Bismarck.love_status == "madly in love" ∧ Russian_ambassador.wife.nationality == "Russian" → Factual(Bismarck, Russian_ambassador.wife))
+2. Q[Bismarck, x0, y0](Bismarck.love_status == "in love" ∧ Hungarian_ambassador.wife.nationality == "Hungarian" → Factual(Bismarck, Hungarian_ambassador.wife))
+3. Q[Bismarck, x0, y0](Bismarck.love_status == "madly in love" ∧ violate(Bismarck.love_status, Hungarian_ambassador.wife.nationality) → Factual(Bismarck, Hungarian_ambassador.wife))
+4. Q[Bismarck, x0, y0](Bismarck.love_status == "in love" ∧ violate(Bismarck.love_status, Russian_ambassador.wife.nationality) → Factual(Bismarck, Russian_ambassador.wife))
+5. Q[Bismarck, x0, y0](Bismarck.love_object == Russian_ambassador.wife ∧ Bismarck.love_object == Hungarian_ambassador.wife → Factual(Bismarck, Russian_ambassador.wife))
+6. Q[Bismarck, x0, y0](Bismarck.love_interest_conflict == "true" ∧ Bismarck.love_interest_nationality == "conflicted" → Factual(Bismarck, Russian_ambassador.wife))
+7. Q[Bismarck, x0, y0](Bismarck.love_interest_conflict == "true" ∧ Bismarck.love_interest_nationality == "conflicted" → Factual(Bismarck, Hungarian_ambassador.wife))
+8. Q[Bismarck, x0, y0](Bismarck.relationship_status == "conflicted" ∧ Bismarck.love_interest_source_conflict == "true" → Factual(Bismarck, Russian_ambassador.wife))
+9. Q[Bismarck, x0, y0](Bismarck.relationship_status == "conflicted" ∧ Bismarck.love_interest_source_conflict == "true" → Factual(Bismarck, Hungarian_ambassador.wife))
+10. Q[Bismarck, x0, y0](Bismarck.emotional_state == "conflicted" ∧ Bismarck.love_interest_nationality_conflict == "true" → Factual(Bismarck, Russian_ambassador.wife))
+11. Q[Bismarck, x0, y0](Bismarck.emotional_state == "conflicted" ∧ Bismarck.love_interest_nationality_conflict == "true" → Factual(Bismarck, Hungarian_ambassador.wife))
+12. Q[Bismarck, x0, y0](Bismarck.love_interest_ambassador == "true" ∧ Bismarck.love_interest_ambassador_conflict == "true" → Factual(Bismarck, Russian_ambassador.wife))
+13. Q[Bismarck, x0, y0](Bismarck.love_interest_ambassador == "true" ∧ Bismarck.love_interest_ambassador_conflict == "true" → Factual(Bismarck, Hungarian_ambassador.wife))
+14. Q[Bismarck, x0, y0](Bismarck.love_interest_relationship == "ambassador's wife" ∧ Bismarck.love_interest_nationality_conflict == "true" → Factual(Bismarck, Russian_ambassador.wife))
+15. Q[Bismarck, x0, y0](Bismarck.love_interest_relationship == "ambassador's wife" ∧ Bismarck.love_interest_nationality_conflict == "true" → Factual(Bismarck, Hungarian_ambassador.wife))
+16. Q[Bismarck, x0, y0](Bismarck.love_interest == "ambassador's wife" ∧ violate(Bismarck.love_interest, Russian_ambassador.wife.nationality) → Factual(Bismarck, Russian_ambassador.wife))
+17. Q[Bismarck, x0, y0](Bismarck.love_interest == "ambassador's wife" ∧ violate(Bismarck.love_interest, Hungarian_ambassador.wife.nationality) → Factual(Bismarck, Hungarian_ambassador.wife))
+18. Q[Bismarck, x0, y0](Bismarck.love_interest_nationality == "conflicted" ∧ Bismarck.love_interest_type == "wife" → Factual(Bismarck, Russian_ambassador.wife))
+19. Q[Bismarck, x0, y0](Bismarck.love_interest_nationality == "conflicted" ∧ Bismarck.love_interest_type == "wife" → Factual(Bismarck, Hungarian_ambassador.wife))
+20. Q[Bismarck, x0, y0](Bismarck.love_interest_source == "ambassador" ∧ Bismarck.love_interest_source_conflict == "true" → Factual(Bismarck, Russian_ambassador.wife))
+21. Q[Bismarck, x0, y0](Bismarck.love_interest_source == "ambassador" ∧ Bismarck.love_interest_source_conflict == "true" → Factual(Bismarck, Hungarian_ambassador.wife))
+22. Q[Bismarck, x0, y0](Bismarck.emotional_conflict == "true" ∧ Bismarck.love_interest_nationality_conflict == "true" → Factual(Bismarck, Russian_ambassador.wife))
+23. Q[Bismarck, x0, y0](Bismarck.emotional_conflict == "true" ∧ Bismarck.love_interest_nationality_conflict == "true" → Factual(Bismarck, Hungarian_ambassador.wife))
+24. Q[Bismarck, x0, y0](Bismarck.love_interest_nationality_conflict == "true" ∧ Bismarck.love_interest_relationship == "ambassador's wife" → Factual(Bismarck, Russian_ambassador.wife))
+25. Q[Bismarck, x0, y0](Bismarck.love_interest_nationality_conflict == "true" ∧ Bismarck.love_interest_relationship == "ambassador's wife" → Factual(Bismarck, Hungarian_ambassador.wife))
+26. Q[Bismarck, x0, y0](Bismarck.love_interest == "ambassador's wife" ∧ Bismarck.love_interest_nationality == "conflicted" → Factual(Bismarck, Russian_ambassador.wife))
+27. Q[Bismarck, x0, y0](Bismarck.love_interest == "ambassador's wife" ∧ Bismarck

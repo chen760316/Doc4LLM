@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 692)
+S1: Variable costs are those that remain the same when other factors change.
+S2: A cost that varies with changes in the level of an activity, when other factors are held constant.
+
+Predicates:
+1. VariableCosts.definition
+2. VariableCosts.stability
+3. VariableCosts.activityLevel
+4. Cost.definition
+5. Cost.variability
+6. ActivityLevel.change
+7. Factors.constant
+8. VariableCosts.relationship.activity
+9. Cost.relationship.variable
+10. VariableCosts.meta.M_NLI
+11. Cost.meta.Factual
+12. VariableCosts.meta.violate
+13. ActivityLevel.variableCost
+14. Factors.changeImpact
+15. Cost.type.variable
+16. VariableCosts.edge.relationship
+17. Cost.edge.relationship
+18. ActivityLevel.edge.change
+19. VariableCosts.attribute.definition
+20. Cost.attribute.variability
+21. Factors.attribute.constant
+22. VariableCosts.meta.Factual
+23. Cost.meta.M_NLI
+24. ActivityLevel.meta.violate
+25. VariableCosts.edge.activity
+26. Cost.edge.impact
+27. Factors.edge.relationship
+28. VariableCosts.attribute.stability
+29. Cost.attribute.definition
+30. ActivityLevel.attribute.change
+
+Rules:
+1. Q[Variable, VariableCosts.definition, Cost.definition](VariableCosts.definition == "remain the same" → Factual(x0, y0))
+2. Q[Variable, VariableCosts.stability, Cost.variability](VariableCosts.stability == "constant" → Factual(x0, y0))
+3. Q[Variable, VariableCosts.activityLevel, ActivityLevel.change](VariableCosts.activityLevel == "unchanged" → Factual(x0, y0))
+4. Q[Variable, Cost.variability, VariableCosts.relationship.activity](Cost.variability == "changes with activity" → Factual(x0, y0))
+5. Q[Variable, Factors.constant, Factors.changeImpact](Factors.constant == "held constant" → Factual(x0, y0))
+6. Q[Variable, VariableCosts.meta.M_NLI, Cost.meta.Factual](VariableCosts.meta.M_NLI == "contradictory" → Factual(x0, y0))
+7. Q[Variable, VariableCosts.meta.violate, Cost.meta.M_NLI](VariableCosts.meta.violate == "true" → Factual(x0, y0))
+8. Q[Variable, ActivityLevel.variableCost, Cost.type.variable](ActivityLevel.variableCost == "varies" → Factual(x0, y0))
+9. Q[Variable, VariableCosts.edge.relationship, Cost.edge.relationship](VariableCosts.edge.relationship == "inconsistent" → Factual(x0, y0))
+10. Q[Variable, Cost.edge.impact, Factors.edge.relationship](Cost.edge.impact == "dependent on activity" → Factual(x0, y0))
+11. Q[Variable, VariableCosts.attribute.definition, Cost.attribute.definition](VariableCosts.attribute.definition == "fixed" → Factual(x0, y0))
+12. Q[Variable, VariableCosts.attribute.stability, Cost.attribute.variability](VariableCosts.attribute.stability == "unchanging" → Factual(x0, y0))
+13. Q[Variable, Factors.attribute.constant, ActivityLevel.meta.violate](Factors.attribute.constant == "unchanged" → Factual(x0, y0))
+14. Q[Variable, VariableCosts.edge.activity, ActivityLevel.edge.change](VariableCosts.edge.activity == "static" → Factual(x0, y0))
+15. Q[Variable, Cost.relationship.variable, VariableCosts.relationship.activity](Cost.relationship.variable == "dynamic" → Factual(x0, y0))
+16. Q[Variable, ActivityLevel.edge.change, VariableCosts.activityLevel](ActivityLevel.edge.change == "variable" → Factual(x0, y0))
+17. Q[Variable, Cost.meta.Factual, VariableCosts.meta.Factual](Cost.meta.Factual == "true" → Factual(x0, y0))
+18. Q[Variable, VariableCosts.meta.Factual, Cost.variability](VariableCosts.meta.Factual == "false" → Factual(x0, y0))
+19. Q[Variable, Factors.changeImpact, VariableCosts.activityLevel](Factors.changeImpact == "affects costs" → Factual(x0, y0))
+20. Q[Variable, Cost.type.variable, VariableCosts.definition](Cost.type.variable == "variable" → Factual(x0, y0))
+21. Q[Variable, ActivityLevel.attribute.change, VariableCosts.meta.violate](ActivityLevel.attribute.change == "true" → Factual(x0, y0))
+22. Q[Variable, VariableCosts.relationship.activity, Cost.relationship.variable](VariableCosts.relationship.activity == "contradictory" → Factual(x0, y0))
+23. Q[Variable, Cost.edge.relationship, VariableCosts.edge.relationship](Cost.edge.relationship == "inconsistent" → Factual(x0, y0))
+24. Q[Variable, VariableCosts.meta.violate, Factors.constant](VariableCosts.meta.violate == "true" → Factual(x0, y0))
+25. Q[Variable, Cost.attribute.variability, VariableCosts.attribute.stability](Cost.attribute.variability == "dynamic" → Factual(x0, y0))
+26. Q[Variable, ActivityLevel.meta.violate, Factors.changeImpact](ActivityLevel.meta.violate == "true" → Factual(x0, y0))
+27. Q[Variable, VariableCosts.activityLevel, Cost.variability](VariableCosts.activityLevel == "fixed" → Factual(x0, y0))
+28. Q[Variable, Factors.edge.relationship, VariableCosts.edge.activity](Factors.edge.relationship == "constant" → Factual(x0, y0))
+29. Q[Variable, Cost.meta.M_NLI, VariableCosts.meta.Factual](Cost.meta.M_NLI == "contradictory" → Factual(x0, y0))
+30. Q[Variable, VariableCosts.meta.Factual, ActivityLevel.variableCost](VariableCosts.meta.Factual == "false" → Factual(x0, y0))

@@ -1,0 +1,134 @@
+Predicates:
+1. entity1.name = "William"
+2. entity1.emotion = "engaged"
+3. entity1.activity = "reading"
+4. entity1.topic = "computer architecture"
+5. entity2.name = "William"
+6. entity2.emotion = "bored"
+7. entity2.activity = "reading"
+8. entity2.topic = "computer architecture"
+9. entity3.name = "David"
+10. entity3.platform = "YouTube"
+11. entity3.year = "2024"
+12. entity3.video_status = "removed"
+13. entity4.name = "Taylor"
+14. entity4.platform = "YouTube"
+15. entity4.year = "2025"
+16. entity4.video_status = "available"
+17. "contrasts with".relationship_type = "contradiction"
+18. "describes the quality of".relationship_type = "contradiction"
+19. M_NLI(entity1.emotion, entity2.emotion)
+20. M_NLI(entity3.video_status, entity4.video_status)
+21. T("William was engaged while reading.", "William found it boring.", tau)
+22. T("David's video was removed.", "Taylor found the video available.", tau)
+23. tau(entity1.emotion, entity2.emotion)
+24. tau(entity3.video_status, entity4.video_status)
+25. violate(entity1, entity2)
+26. Factual(entity3, entity4)
+27. Content(entity1, entity2)
+28. Causal(entity3, entity4)
+29. Negation(entity1, entity2)
+30. Relation(entity3, entity4)
+31. Numeric(entity1, entity2)
+32. Temporal(entity3, entity4)
+33. entity5.name = "Howard"
+34. entity5.relationship = "married"
+35. entity6.name = "Sheila"
+36. entity6.relationship = "wife"
+37. entity7.name = "Emma"
+38. entity7.relationship = "wife"
+39. M_NLI(entity5.relationship, entity6.relationship)
+40. T("Howard is married to Sheila.", "Howard is married to Emma.", tau)
+41. tau(entity5.relationship, entity6.relationship)
+42. violate(entity5, entity6)
+43. Factual(entity5, entity6)
+44. Relation(entity5, entity6)
+45. entity8.store_name = "Howard's brand store"
+46. entity8.sales = 29
+47. entity9.sales = 0
+48. M_NLI(entity8.sales, entity9.sales)
+49. T("Howard's store sold 29 pairs.", "Howard had no sales.", tau)
+50. tau(entity8.sales, entity9.sales)
+51. violate(entity8, entity9)
+52. Numeric(entity8, entity9)
+53. entity10.date = "April 20, 2025"
+54. entity10.event = "routing disruption"
+55. entity11.date = "April 20, 2025"
+56. entity11.event = "no disruptions"
+57. M_NLI(entity10.event, entity11.event)
+58. T("Router experienced disruption.", "Router had no disruptions.", tau)
+59. tau(entity10.event, entity11.event)
+60. violate(entity10, entity11)
+61. Negation(entity10, entity11)
+62. entity12.year = "1860"
+63. entity12.belief = "nitroglycerin ineffective"
+64. entity13.year = "after Nobel's death"
+65. entity13.belief = "nitroglycerin effective"
+66. M_NLI(entity12.belief, entity13.belief)
+67. T("Nitroglycerin was ineffective in 1860.", "Nitroglycerin is effective after Nobel's death.", tau)
+68. tau(entity12.belief, entity13.belief)
+69. violate(entity12, entity13)
+70. Temporal(entity12, entity13)
+71. entity14.name = "Hinton"
+72. entity14.award = "Nobel Prize"
+73. entity15.year = "2024"
+74. entity15.honor = "Shannon"
+75. M_NLI(entity14.award, entity15.honor)
+76. T("Hinton received the Nobel Prize.", "Nobel Prize was for Shannon.", tau)
+77. tau(entity14.award, entity15.honor)
+78. violate(entity14, entity15)
+79. Factual(entity14, entity15)
+80. Content(entity14, entity15)
+81. entity16.name = "Alice"
+82. entity16.age = 30
+83. entity17.name = "Bob"
+84. entity17.age = 25
+85. M_NLI(entity16.age, entity17.age)
+86. T("Alice is 30 years old.", "Bob is 25 years old.", tau)
+87. tau(entity16.age, entity17.age)
+88. violate(entity16, entity17)
+89. Numeric(entity16, entity17)
+90. entity18.event = "meeting"
+91. entity18.date = "2023-10-01"
+92. entity19.event = "no meeting"
+93. entity19.date = "2023-10-01"
+94. M_NLI(entity18.event, entity19.event)
+95. T("There was a meeting on 2023-10-01.", "There was no meeting on 2023-10-01.", tau)
+96. tau(entity18.event, entity19.event)
+97. violate(entity18, entity19)
+98. Negation(entity18, entity19)
+99. entity20.name = "Charlie"
+100. entity20.status = "active"
+violate(x0, y0)
+
+Rules:
+1. Q[x1, x2](entity1.name = "William" ∧ entity2.name = "William" → violate(x1, x2))
+2. Q[x3, x4](entity1.emotion = "engaged" ∧ entity2.emotion = "bored" → violate(x3, x4))
+3. Q[x5, x6](entity1.activity = "reading" ∧ entity2.activity = "reading" → violate(x5, x6))
+4. Q[x7, x8](entity1.topic = "computer architecture" ∧ entity2.topic = "computer architecture" → violate(x7, x8))
+5. Q[x9, x10](entity3.video_status = "removed" ∧ entity4.video_status = "available" → violate(x9, x10))
+6. Q[x11, x12](entity5.relationship = "married" ∧ entity6.relationship = "wife" → violate(x11, x12))
+7. Q[x13, x14](entity7.relationship = "wife" ∧ entity5.relationship = "married" ∧ entity6.relationship = "wife" → violate(x13, x14))
+8. Q[x15, x16](entity8.sales = 29 ∧ entity9.sales = 0 → violate(x15, x16))
+9. Q[x17, x18](entity10.event = "routing disruption" ∧ entity11.event = "no disruptions" → violate(x17, x18))
+10. Q[x19, x20](entity12.belief = "nitroglycerin ineffective" ∧ entity13.belief = "nitroglycerin effective" → violate(x19, x20))
+11. Q[x21, x22](entity14.award = "Nobel Prize" ∧ entity15.honor = "Shannon" → violate(x21, x22))
+12. Q[x23, x24](entity16.age = 30 ∧ entity17.age = 25 → violate(x23, x24))
+13. Q[x25, x26](entity18.event = "meeting" ∧ entity19.event = "no meeting" → violate(x25, x26))
+14. Q[x27, x28](entity1.name = "William" ∧ entity1.activity = "reading" ∧ entity1.emotion = "engaged" → violate(x27, x28))
+15. Q[x29, x30](entity3.year = "2024" ∧ entity4.year = "2025" ∧ entity3.video_status = "removed" ∧ entity4.video_status = "available" → violate(x29, x30))
+16. Q[x31, x32](entity5.name = "Howard" ∧ entity6.name = "Sheila" ∧ entity5.relationship = "married" ∧ entity6.relationship = "wife" → violate(x31, x32))
+17. Q[x33, x34](entity8.store_name = "Howard's brand store" ∧ entity8.sales = 29 ∧ entity9.sales = 0 → violate(x33, x34))
+18. Q[x35, x36](entity10.date = "April 20, 2025" ∧ entity11.date = "April 20, 2025" ∧ entity10.event = "routing disruption" ∧ entity11.event = "no disruptions" → violate(x35, x36))
+19. Q[x37, x38](entity12.year = "1860" ∧ entity13.year = "after Nobel's death" ∧ entity12.belief = "nitroglycerin ineffective" ∧ entity13.belief = "nitroglycerin effective" → violate(x37, x38))
+20. Q[x39, x40](entity14.name = "Hinton" ∧ entity14.award = "Nobel Prize" ∧ entity15.year = "2024" ∧ entity15.honor = "Shannon" → violate(x39, x40))
+21. Q[x41, x42](entity16.name = "Alice" ∧ entity16.age = 30 ∧ entity17.name = "Bob" ∧ entity17.age = 25 → violate(x41, x42))
+22. Q[x43, x44](entity18.date = "2023-10-01" ∧ entity19.date = "2023-10-01" ∧ entity18.event = "meeting" ∧ entity19.event = "no meeting" → violate(x43, x44))
+23. Q[x45, x46](entity1.emotion = "engaged" ∧ entity2.emotion = "bored" ∧ entity1.activity = "reading" ∧ entity2.activity = "reading" → violate(x45, x46))
+24. Q[x47, x48](entity3.video_status = "removed" ∧ entity4.video_status = "available" ∧ entity3.year = "2024" ∧ entity4.year = "2025" → violate(x47, x48))
+25. Q[x49, x50](entity5.relationship = "married" ∧ entity6.relationship = "wife" ∧ entity7.relationship = "wife" ∧ entity5.name = "Howard" ∧ entity6.name = "Sheila" → violate(x49, x50))
+26. Q[x51, x52](entity8.store_name = "Howard's brand store" ∧ entity8.sales = 29 ∧ entity9.sales = 0 ∧ entity8.sales > entity9.sales → violate(x51, x52))
+27. Q[x53, x54](entity10.event = "routing disruption" ∧ entity11.event = "no disruptions" ∧ entity10.date = "April 20, 2025" ∧ entity11.date = "April 20, 2025" → violate(x53, x54))
+28. Q[x55, x56](entity12.belief = "nitroglycerin ineffective" ∧ entity13.belief = "nitroglycerin effective" ∧ entity12.year = "1860" ∧ entity13.year = "after Nobel's death" → violate(x55, x56))
+29. Q[x57, x58](entity14.award = "Nobel Prize" ∧ entity15.honor = "Shannon" ∧ entity14.name = "Hinton" ∧ entity15.year = "2024" → violate(x57, x58))
+30. Q[x59, x60](entity16.age = 30 ∧ entity17.age = 25 ∧ entity16.name = "Alice" ∧ entity17.name = "Bob" → violate(x59, x60))

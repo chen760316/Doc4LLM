@@ -1,0 +1,33 @@
+Predicates:
+Hadi.label != "Person"
+Hadi.label != Saudi Arabia.label
+Hadi.label = "Person"
+Hadi.location != "Aden"
+Hadi.location = "Aden"
+Hadi.name != "Hadi"
+Hadi.name != Saudi Arabia.name
+Hadi.name = "Hadi"
+Hadi.status != "fled"
+Hadi.status = "fled"
+Hadi___Saudi Arabia.contradiction_type = "Causal"
+Hadi___Saudi Arabia.reason = "rebels and their military allies advanced on Aden"
+Hadi___Saudi Arabia.relationship = "Hadi is holed up in Saudi Arabia while it works to defeat his enemies and reinstall him."
+Hadi___Saudi Arabia.source_id = "3489738279_7"
+Hadi___Saudi Arabia.time = "late March"
+None_ML(Hadi.attrs, Saudi Arabia.attrs)
+Saudi Arabia.label != "Organization"
+Saudi Arabia.label = "Organization"
+Saudi Arabia.name != "Saudi Arabia"
+Saudi Arabia.name = "Saudi Arabia"
+
+Rules:
+Q[Hadi,Hadi] (Hadi.name != "Hadi" ∧ Hadi___Saudi Arabia.reason = "rebels and their military allies advanced on Aden" ∧ Hadi.name = "Hadi" → Hadi.status != "fled")
+Q[Hadi,Hadi] (Saudi Arabia.label != "Organization" ∧ Hadi.name != Saudi Arabia.name ∧ Hadi.location != "Aden" ∧ Hadi.status = "fled" ∧ Saudi Arabia.name = "Saudi Arabia" ∧ Saudi Arabia.label = "Organization" → Hadi.label != Saudi Arabia.label)
+Q[Hadi,Hadi] (Hadi.status != "fled" ∧ Hadi.label = "Person" → Hadi___Saudi Arabia.reason = "rebels and their military allies advanced on Aden")
+Q[Hadi,Hadi] (Hadi___Saudi Arabia.time = "late March" ∧ Hadi.location != "Aden" ∧ Hadi.name = "Hadi" ∧ Hadi.name != Saudi Arabia.name ∧ Hadi.status != "fled" → None_ML(Hadi.attrs, Saudi Arabia.attrs))
+Q[Hadi,Hadi] (Hadi.name != Saudi Arabia.name ∧ Hadi.label != "Person" ∧ Hadi___Saudi Arabia.relationship = "Hadi is holed up in Saudi Arabia while it works to defeat his enemies and reinstall him." ∧ Hadi.name != "Hadi" → Hadi___Saudi Arabia.time = "late March")
+Q[Hadi,Hadi] (Hadi.status = "fled" ∧ Hadi.name != "Hadi" ∧ Hadi.label != "Person" → Hadi.name = "Hadi")
+Q[Hadi,Hadi] (Hadi.status = "fled" ∧ Saudi Arabia.name != "Saudi Arabia" ∧ None_ML(Hadi.attrs, Saudi Arabia.attrs) ∧ Hadi.label != Saudi Arabia.label ∧ Hadi.name != "Hadi" → Hadi___Saudi Arabia.contradiction_type = "Causal")
+Q[Hadi,Hadi] (None_ML(Hadi.attrs, Saudi Arabia.attrs) ∧ Hadi___Saudi Arabia.relationship = "Hadi is holed up in Saudi Arabia while it works to defeat his enemies and reinstall him." ∧ Saudi Arabia.name = "Saudi Arabia" ∧ Hadi___Saudi Arabia.contradiction_type = "Causal" ∧ Hadi.name != Saudi Arabia.name ∧ Hadi.status = "fled" → Saudi Arabia.name != "Saudi Arabia")
+Q[Hadi,Hadi] (None_ML(Hadi.attrs, Saudi Arabia.attrs) ∧ Hadi.location = "Aden" ∧ Hadi___Saudi Arabia.source_id = "3489738279_7" ∧ Hadi___Saudi Arabia.contradiction_type = "Causal" → Hadi.label = "Person")
+Q[Hadi,Hadi] (Hadi___Saudi Arabia.source_id = "3489738279_7" ∧ Hadi___Saudi Arabia.reason = "rebels and their military allies advanced on Aden" → Saudi Arabia.label = "Organization")

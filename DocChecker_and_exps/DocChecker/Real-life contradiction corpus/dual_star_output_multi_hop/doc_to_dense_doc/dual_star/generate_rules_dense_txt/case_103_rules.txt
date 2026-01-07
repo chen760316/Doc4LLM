@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 103)
+S1: The US army initially said four people had died during a raid to find an al-Qaeda supporter in which a building collapsed.
+S2: However, Iraqi police said 11 civilians, including five children and four women, were shot and killed by US troops who then blew up the building.
+
+Predicates:
+1. US_army.initial_statement.deaths = 4
+2. Iraqi_police.reported_deaths.civilians = 11
+3. Iraqi_police.reported_deaths.children = 5
+4. Iraqi_police.reported_deaths.women = 4
+5. US_army.reported_event.type = "raid"
+6. US_army.reported_event.target = "al-Qaeda supporter"
+7. building.collapse.event = "raid"
+8. US_troops.action = "shot and killed"
+9. US_troops.action.building = "blew up"
+10. US_army.initial_statement.source = "US army"
+11. Iraqi_police.reported_event.source = "Iraqi police"
+12. deaths.comparison.US_army = 4
+13. deaths.comparison.Iraqi_police = 11
+14. civilians.killed.type = "reported by Iraqi police"
+15. children.killed.type = "reported by Iraqi police"
+16. women.killed.type = "reported by Iraqi police"
+17. raid.location = "building"
+18. building.status = "collapsed"
+19. US_army.statement.contradicts = "Iraqi police report"
+20. Iraqi_police.statement.contradicts = "US army statement"
+21. event.type = "military operation"
+22. casualties.type = "civilians"
+23. casualties.source = "Iraqi police"
+24. casualties.source = "US army"
+25. US_army.reported_event.outcome = "deaths"
+26. Iraqi_police.reported_event.outcome = "deaths"
+27. US_army.initial_statement.context = "military operation"
+28. Iraqi_police.reported_event.context = "civilian casualties"
+29. building.event.relationship = "collapsed during raid"
+30. casualties.total = 15
+
+Rules:
+1. Q[The, US_army.initial_statement.deaths, Iraqi_police.reported_deaths.civilians](US_army.initial_statement.deaths == 4 → Numeric(4, 11))
+2. Q[However, Iraqi_police.reported_deaths.civilians, US_army.initial_statement.deaths](Iraqi_police.reported_deaths.civilians == 11 → Numeric(11, 4))
+3. Q[The, deaths.comparison.US_army, deaths.comparison.Iraqi_police](deaths.comparison.US_army == 4 → Numeric(4, 11))
+4. Q[However, casualties.type, casualties.source](casualties.type == "civilians" → Numeric(11, 4))
+5. Q[The, US_army.reported_event.outcome, Iraqi_police.reported_event.outcome](US_army.reported_event.outcome == "deaths" → Numeric(4, 11))
+6. Q[The, US_army.initial_statement.source, Iraqi_police.reported_event.source](US_army.initial_statement.source == "US army" → Numeric(4, 11))
+7. Q[The, building.status, building.event.relationship](building.status == "collapsed" → Numeric(4, 11))
+8. Q[However, US_troops.action, Iraqi_police.reported_deaths.civilians](US_troops.action == "shot and killed" → Numeric(11, 4))
+9. Q[The, Iraqi_police.reported_deaths.children, Iraqi_police.reported_deaths.women](Iraqi_police.reported_deaths.children == 5 → Numeric(5, 4))
+10. Q[However, Iraqi_police.reported_deaths.women, Iraqi_police.reported_deaths.children](Iraqi_police.reported_deaths.women == 4 → Numeric(4, 5))
+11. Q[The, US_army.reported_event.type, US_army.initial_statement.deaths](US_army.reported_event.type == "raid" → Numeric(4, 11))
+12. Q[However, Iraqi_police.reported_event.context, US_army.initial_statement.context](Iraqi_police.reported_event.context == "civilian casualties" → Numeric(11, 4))
+13. Q[The, casualties.source, casualties.total](casualties.source == "Iraqi police" → Numeric(11, 4))
+14. Q[However, US_army.statement.contradicts, Iraqi_police.statement.contradicts](US_army.statement.contradicts == "Iraqi police report" → Numeric(4, 11))
+15. Q[The, building.event.relationship, US_army.reported_event.type](building.event.relationship == "collapsed during raid" → Numeric(4, 11))
+16. Q[However, US_army.initial_statement.context, Iraqi_police.reported_event.context](US_army.initial_statement.context == "military operation" → Numeric(4, 11))
+17. Q[The, casualties.source, US_army.reported_event.outcome](casualties.source == "US army" → Numeric(4, 11))
+18. Q[However, deaths.comparison.Iraqi_police, deaths.comparison.US_army](deaths.comparison.Iraqi_police == 11 → Numeric(11, 4))
+19. Q[The, Iraqi_police.reported_deaths.civilians, casualties.type](Iraqi_police.reported_deaths.civilians == 11 → Numeric(11, 4))
+20. Q[However, US_army.initial_statement.deaths, casualties.total](US_army.initial_statement.deaths == 4 → Numeric(4, 15))
+21. Q[The, Iraqi_police.reported_deaths.children, casualties.source](Iraqi_police.reported_deaths.children == 5 → Numeric(5, 11))
+22. Q[However, Iraqi_police.reported_deaths.women, casualties.source](Iraqi_police.reported_deaths.women == 4 → Numeric(4, 11))
+23. Q[The, US_troops.action.building, building.status](US_troops.action.building == "blew up" → Numeric(4, 11))
+24. Q[However, US_army.reported_event.outcome, Iraqi_police.reported_event.outcome](US_army.reported_event.outcome == "deaths" → Numeric(4, 11))
+25. Q[The, US_army.initial_statement.deaths, Iraqi_police.reported_deaths.civilians](US_army.initial_statement.deaths == 4 → Numeric(4, 11))
+26. Q[However, Iraqi_police.reported_event.source, US_army.initial_statement.source](Iraqi_police.reported_event.source == "Iraqi police" → Numeric(11, 4))
+27. Q[The, US_army.reported_event.type, Iraqi_police.reported_event.context](US_army.reported_event.type == "raid" → Numeric(4, 11))
+28. Q[However, casualties.total, deaths.comparison.Iraqi_police](casualties.total == 15 → Numeric(15, 11))
+29. Q[The, building.collapse.event, US_army.reported_event.type](building.collapse.event == "raid" → Numeric(4, 11))
+30. Q[However, US_army.initial_statement.source, Iraqi_police.reported_event.source](US_army.initial_statement.source == "US army" → Numeric(4, 11))

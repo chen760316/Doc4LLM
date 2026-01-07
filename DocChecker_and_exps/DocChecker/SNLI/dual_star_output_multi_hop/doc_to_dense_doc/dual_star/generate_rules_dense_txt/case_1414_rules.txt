@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 1414)
+S1: A man is wearing a blue uniform working on mechanics.
+S2: A man in a blue shirt is holding a sign that says 'Come on now... what's gayer than tea.'
+
+Predicates:
+1. Man1.wearing_uniform
+2. Man1.uniform_color.blue
+3. Man1.occupation.mechanics
+4. Man2.wearing_shirt
+5. Man2.shirt_color.blue
+6. Man2.holding_sign
+7. Sign.text."Come on now... what's gayer than tea."
+8. Man1.context.work
+9. Man2.context.holding_sign
+10. M_NLI(S1, S2)
+11. Factual(Man1, mechanics)
+12. Factual(Man2, holding_sign)
+13. violate(Man1, Man2)
+14. Man1.activity.working
+15. Man2.activity.holding
+16. Uniform.type.blue
+17. Shirt.type.blue
+18. Sign.message."Come on now... what's gayer than tea."
+19. Man1.location.workshop
+20. Man2.location.street
+21. Man1.appearance.male
+22. Man2.appearance.male
+23. Mechanics.field.automotive
+24. Sign.purpose.informative
+25. Man1.task.repair
+26. Man2.task.communicate
+27. Blue_uniform.type.mechanical
+28. Blue_shirt.type.casual
+29. Man1.environment.indoor
+30. Man2.environment.outdoor
+
+Rules:
+1. Q[man, Man1, Man2](Man1.wearing_uniform == true ∧ Man1.uniform_color.blue == true ∧ Man1.occupation.mechanics == true → Factual(Man1, mechanics))
+2. Q[man, Man1, Man2](Man2.wearing_shirt == true ∧ Man2.shirt_color.blue == true ∧ Man2.holding_sign == true → Factual(Man2, holding_sign))
+3. Q[man, Man1, Man2](Man1.context.work == true ∧ Man2.context.holding_sign == true → violate(Man1, Man2))
+4. Q[man, Man1, Man2](Man1.activity.working == true ∧ Man2.activity.holding == true → violate(Man1, Man2))
+5. Q[man, Man1, Man2](Man1.location.workshop == true ∧ Man2.location.street == true → violate(Man1, Man2))
+6. Q[man, Man1, Man2](Man1.appearance.male == true ∧ Man2.appearance.male == true → M_NLI(S1, S2))
+7. Q[man, Man1, Man2](Man1.environment.indoor == true ∧ Man2.environment.outdoor == true → violate(Man1, Man2))
+8. Q[man, Man1, Man2](Man1.task.repair == true ∧ Man2.task.communicate == true → violate(Man1, Man2))
+9. Q[man, Man1, Man2](Uniform.type.blue == true ∧ Blue_uniform.type.mechanical == true → Factual(Man1, mechanics))
+10. Q[man, Man1, Man2](Shirt.type.blue == true ∧ Blue_shirt.type.casual == true → Factual(Man2, holding_sign))
+11. Q[man, Man1, Man2](Man1.wearing_uniform == true ∧ Man1.occupation.mechanics == true → Factual(Man1, mechanics))
+12. Q[man, Man1, Man2](Man2.holding_sign == true ∧ Sign.text."Come on now... what's gayer than tea." == true → Factual(Man2, holding_sign))
+13. Q[man, Man1, Man2](Man1.activity.working == true ∧ Man2.activity.holding == true → violate(Man1, Man2))
+14. Q[man, Man1, Man2](Man1.context.work == true ∧ Man2.context.holding_sign == true → violate(Man1, Man2))
+15. Q[man, Man1, Man2](Man1.location.workshop == true ∧ Man2.location.street == true → violate(Man1, Man2))
+16. Q[man, Man1, Man2](Man1.environment.indoor == true ∧ Man2.environment.outdoor == true → violate(Man1, Man2))
+17. Q[man, Man1, Man2](Man1.occupation.mechanics == true ∧ Man2.holding_sign == true → violate(Man1, Man2))
+18. Q[man, Man1, Man2](Man1.wearing_uniform == true ∧ Man2.wearing_shirt == true → violate(Man1, Man2))
+19. Q[man, Man1, Man2](Man1.uniform_color.blue == true ∧ Man2.shirt_color.blue == true → M_NLI(S1, S2))
+20. Q[man, Man1, Man2](Man1.activity.working == true ∧ Man2.context.holding_sign == true → violate(Man1, Man2))
+21. Q[man, Man1, Man2](Man1.task.repair == true ∧ Man2.task.communicate == true → violate(Man1, Man2))
+22. Q[man, Man1, Man2](Man1.environment.indoor == true ∧ Man2.environment.outdoor == true → violate(Man1, Man2))
+23. Q[man, Man1, Man2](Man1.appearance.male == true ∧ Man2.appearance.male == true → M_NLI(S1, S2))
+24. Q[man, Man1, Man2](Man1.wearing_uniform == true ∧ Man1.activity.working == true → Factual(Man1, mechanics))
+25. Q[man, Man1, Man2](Man2.holding_sign == true ∧ Sign.purpose.informative == true → Factual(Man2, holding_sign))
+26. Q[man, Man1, Man2](Man1.occupation.mechanics == true ∧ Man2.holding_sign == true → violate(Man1, Man2))
+27. Q[man, Man1, Man2](Man1.context.work == true ∧ Man2.context.holding_sign == true → violate(Man1, Man2))
+28. Q[man, Man1, Man2](Man1.activity.working == true ∧ Man2.activity.holding == true → violate(Man1, Man2))
+29. Q[man, Man1, Man2](Man1.location.workshop == true ∧ Man2.location.street == true → violate(Man1, Man2))
+30. Q[man, Man1, Man2](Man1.environment.indoor == true ∧ Man2.environment.outdoor == true → violate(Man1, Man2))

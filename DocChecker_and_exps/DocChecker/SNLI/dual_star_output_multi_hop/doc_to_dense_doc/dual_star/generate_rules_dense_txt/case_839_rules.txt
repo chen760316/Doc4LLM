@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 839)
+S1: Out of the 3 basketball players, one person got a ball through the hoop.
+S2: Three basketball players during a game, one is trying to get the ball through the hoop.
+
+Predicates:
+1. BasketballPlayer1.success
+2. BasketballPlayer2.success
+3. BasketballPlayer3.success
+4. BasketballPlayer1.attempting
+5. BasketballPlayer2.attempting
+6. BasketballPlayer3.attempting
+7. Game1.player_count
+8. Game1.successful_attempts
+9. Game1.attempts
+10. Player1.has_ball
+11. Player2.has_ball
+12. Player3.has_ball
+13. Player1.scored
+14. Player2.scored
+15. Player3.scored
+16. Player1.trying
+17. Player2.trying
+18. Player3.trying
+19. Event1.success
+20. Event1.attempt
+21. Event1.player
+22. Outcome1.success
+23. Outcome1.failure
+24. Outcome1.player
+25. M_NLI(S1, S2)
+26. Causal(Player1, Outcome1)
+27. Causal(Player2, Outcome1)
+28. Causal(Player3, Outcome1)
+29. violate(S1, S2)
+30. violate(Game1, Outcome1)
+
+Rules:
+1. Q[Out, BasketballPlayer1.success, BasketballPlayer1.attempting](BasketballPlayer1.success == true → Causal(BasketballPlayer1, Outcome1))
+2. Q[Out, BasketballPlayer2.success, BasketballPlayer2.attempting](BasketballPlayer2.success == true → Causal(BasketballPlayer2, Outcome1))
+3. Q[Out, BasketballPlayer3.success, BasketballPlayer3.attempting](BasketballPlayer3.success == true → Causal(BasketballPlayer3, Outcome1))
+4. Q[Out, Game1.successful_attempts, Game1.attempts](Game1.successful_attempts == 1 → Causal(Game1, Outcome1))
+5. Q[Out, Player1.scored, Player1.trying](Player1.scored == true → Causal(Player1, Outcome1))
+6. Q[Out, Player2.scored, Player2.trying](Player2.scored == true → Causal(Player2, Outcome1))
+7. Q[Out, Player3.scored, Player3.trying](Player3.scored == true → Causal(Player3, Outcome1))
+8. Q[Out, BasketballPlayer1.attempting, BasketballPlayer1.success](BasketballPlayer1.attempting == true → Causal(BasketballPlayer1, Outcome1))
+9. Q[Out, BasketballPlayer2.attempting, BasketballPlayer2.success](BasketballPlayer2.attempting == true → Causal(BasketballPlayer2, Outcome1))
+10. Q[Out, BasketballPlayer3.attempting, BasketballPlayer3.success](BasketballPlayer3.attempting == true → Causal(BasketballPlayer3, Outcome1))
+11. Q[Out, Player1.has_ball, Player1.scored](Player1.has_ball == true → Causal(Player1, Outcome1))
+12. Q[Out, Player2.has_ball, Player2.scored](Player2.has_ball == true → Causal(Player2, Outcome1))
+13. Q[Out, Player3.has_ball, Player3.scored](Player3.has_ball == true → Causal(Player3, Outcome1))
+14. Q[Out, Event1.success, Event1.player](Event1.success == true → Causal(Event1.player, Outcome1))
+15. Q[Out, Outcome1.success, Outcome1.player](Outcome1.success == true → Causal(Outcome1.player, Outcome1))
+16. Q[Out, Game1.player_count, Game1.attempts](Game1.player_count == 3 → Causal(Game1, Outcome1))
+17. Q[Out, BasketballPlayer1.success, BasketballPlayer2.attempting](BasketballPlayer1.success == true → Causal(BasketballPlayer2, Outcome1))
+18. Q[Out, BasketballPlayer2.success, BasketballPlayer3.attempting](BasketballPlayer2.success == true → Causal(BasketballPlayer3, Outcome1))
+19. Q[Out, BasketballPlayer3.success, BasketballPlayer1.attempting](BasketballPlayer3.success == true → Causal(BasketballPlayer1, Outcome1))
+20. Q[Out, Player1.trying, Player1.scored](Player1.trying == true → Causal(Player1, Outcome1))
+21. Q[Out, Player2.trying, Player2.scored](Player2.trying == true → Causal(Player2, Outcome1))
+22. Q[Out, Player3.trying, Player3.scored](Player3.trying == true → Causal(Player3, Outcome1))
+23. Q[Out, Game1.attempts, Game1.successful_attempts](Game1.attempts > 0 → Causal(Game1, Outcome1))
+24. Q[Out, BasketballPlayer1.success, BasketballPlayer1.attempting](BasketballPlayer1.success == false → Causal(BasketballPlayer1, Outcome1))
+25. Q[Out, BasketballPlayer2.success, BasketballPlayer2.attempting](BasketballPlayer2.success == false → Causal(BasketballPlayer2, Outcome1))
+26. Q[Out, BasketballPlayer3.success, BasketballPlayer3.attempting](BasketballPlayer3.success == false → Causal(BasketballPlayer3, Outcome1))
+27. Q[Out, violate(S1, S2), BasketballPlayer1.success](violate(S1, S2) == true → Causal(BasketballPlayer1, Outcome1))
+28. Q[Out, violate(S1, S2), BasketballPlayer2.success](violate(S1, S2) == true → Causal(BasketballPlayer2, Outcome1))
+29. Q[Out, violate(S1, S2), BasketballPlayer3.success](violate(S1, S2) == true → Causal(BasketballPlayer3, Outcome1))
+30. Q[Out, Game1.successful_attempts, Outcome1.failure](Game1.successful_attempts == 0 → Causal(Game1, Outcome1))

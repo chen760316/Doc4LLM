@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 29)
+S1: T h e s e a r e t h e p e o p l e t h a t n e v e r d r o w n .
+S2: o f c o u r s e t h e s e a r e t h e s a m e p e o p l e t h a t a l s o d r o w n t h e a n d s t u f f l i k e t h a t y o u k n o .
+
+Predicates:
+1. People.never_drown
+2. People.also_drown
+3. M_NLI(S1, S2)
+4. Factual(People.never_drown, People.also_drown)
+5. violate(People.never_drown, People.also_drown)
+6. People.same_people
+7. Drowning_event.does_not_occur
+8. Drowning_event.does_occur
+9. Relationship.same_people_drowning
+10. Relationship.never_drown
+11. Relationship.also_drown
+12. People.drowning_status
+13. People.drowning_claim
+14. M_NLI(People.never_drown, People.also_drown)
+15. Factual(People.same_people, Drowning_event.does_not_occur)
+16. violate(People.same_people, Drowning_event.does_occur)
+17. Drowning_event.occurs
+18. Drowning_event.not_occurs
+19. People.drowning_paradox
+20. Relationship.drowning_conflict
+21. People.drowning_reality
+22. People.drowning_assumption
+23. M_NLI(Drowning_event.does_not_occur, Drowning_event.does_occur)
+24. Factual(People.drowning_paradox, Relationship.drowning_conflict)
+25. violate(People.drowning_reality, People.drowning_assumption)
+26. People.drowning_ambiguity
+27. Relationship.drowning_truth
+28. Drowning_event.ambiguity
+29. People.drowning_statement
+30. Relationship.drowning_statement
+
+Rules:
+1. Q[never_drown, People.never_drown, People.also_drown](People.never_drown == true → Factual(People.never_drown, People.also_drown))
+2. Q[also_drown, People.also_drown, People.never_drown](People.also_drown == true → Factual(People.never_drown, People.also_drown))
+3. Q[same_people, People.same_people, Drowning_event.does_occur](People.same_people == true → Factual(People.never_drown, People.also_drown))
+4. Q[drowning_status, People.drowning_status, Drowning_event.does_not_occur](People.drowning_status == "never" → Factual(People.never_drown, People.also_drown))
+5. Q[drowning_claim, People.drowning_claim, Drowning_event.does_occur](People.drowning_claim == "never drown" → Factual(People.never_drown, People.also_drown))
+6. Q[drowning_paradox, People.drowning_paradox, Relationship.drowning_conflict](People.drowning_paradox == true → Factual(People.never_drown, People.also_drown))
+7. Q[drowning_event, Drowning_event.does_not_occur, Drowning_event.does_occur](Drowning_event.does_not_occur == true → Factual(People.never_drown, People.also_drown))
+8. Q[drowning_event, Drowning_event.does_occur, Drowning_event.not_occurs](Drowning_event.does_occur == true → Factual(People.never_drown, People.also_drown))
+9. Q[drowning_conflict, Relationship.drowning_conflict, People.drowning_reality](Relationship.drowning_conflict == true → Factual(People.never_drown, People.also_drown))
+10. Q[drowning_truth, Relationship.drowning_truth, People.drowning_assumption](Relationship.drowning_truth == true → Factual(People.never_drown, People.also_drown))
+11. Q[drowning_ambiguity, People.drowning_ambiguity, Drowning_event.ambiguity](People.drowning_ambiguity == true → Factual(People.never_drown, People.also_drown))
+12. Q[drowning_statement, People.drowning_statement, Relationship.drowning_statement](People.drowning_statement == "never drown" → Factual(People.never_drown, People.also_drown))
+13. Q[same_people_drowning, Relationship.same_people_drowning, Drowning_event.occurs](Relationship.same_people_drowning == true → Factual(People.never_drown, People.also_drown))
+14. Q[drowning_event, Drowning_event.occurs, Drowning_event.not_occurs](Drowning_event.occurs == true → Factual(People.never_drown, People.also_drown))
+15. Q[drowning_event, Drowning_event.does_occur, Drowning_event.ambiguity](Drowning_event.does_occur == true → Factual(People.never_drown, People.also_drown))
+16. Q[drowning_reality, People.drowning_reality, People.drowning_assumption](People.drowning_reality == true → Factual(People.never_drown, People.also_drown))
+17. Q[drowning_conflict, Relationship.drowning_conflict, People.drowning_paradox](Relationship.drowning_conflict == true → Factual(People.never_drown, People.also_drown))
+18. Q[drowning_status, People.drowning_status, People.drowning_claim](People.drowning_status == "also drown" → Factual(People.never_drown, People.also_drown))
+19. Q[drowning_event, Drowning_event.does_not_occur, Drowning_event.occurs](Drowning_event.does_not_occur == true → Factual(People.never_drown, People.also_drown))
+20. Q[drowning_event, Drowning_event.not_occurs, Drowning_event.occurs](Drowning_event.not_occurs == true → Factual(People.never_drown, People.also_drown))
+21. Q[drowning_paradox, People.drowning_paradox, Relationship.drowning_truth](People.drowning_paradox == true → Factual(People.never_drown, People.also_drown))
+22. Q[drowning_assumption, People.drowning_assumption, Drowning_event.does_occur](People.drowning_assumption == true → Factual(People.never_drown, People.also_drown))
+23. Q[drowning_ambiguity, People.drowning_ambiguity, Relationship.drowning_conflict](People.drowning_ambiguity == true → Factual(People.never_drown, People.also_drown))
+24. Q[drowning_statement, People.drowning_statement, Drowning_event.does_occur](People.drowning_statement == "also drown" → Factual(People.never_drown, People.also_drown))
+25. Q[drowning_event, Drowning_event.occurs, Drowning_event.does_not_occur](Drowning_event.occurs == true → Factual(People.never_drown, People.also_drown))
+26. Q[drowning_event, Drowning_event.does_occur, Drowning_event.not_occurs](Drowning_event.does_occur == true → Factual(People.never_drown, People.also_drown))
+27. Q[drowning_conflict, Relationship.drowning_conflict, People.drowning_reality](Relationship.drowning_conflict == true → Factual(People.never_drown, People.also_drown))
+28. Q[drowning_truth, Relationship.drowning_truth, People.drowning_assumption](Relationship.drowning_truth == true → Factual(People.never_drown, People.also_drown))
+29. Q[drowning_ambiguity, People.drowning_ambiguity, Drowning_event.ambiguity](People.drowning_ambiguity == true → Factual(People.never_drown, People.also_drown))
+30. Q[drowning_statement, People.drowning_statement, Relationship.drowning_statement](People.drowning_statement == "never drown" → Factual(People.never_drown, People.also_drown))

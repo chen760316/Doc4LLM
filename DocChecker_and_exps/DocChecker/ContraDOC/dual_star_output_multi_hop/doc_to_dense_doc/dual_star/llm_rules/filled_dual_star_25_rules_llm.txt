@@ -1,0 +1,125 @@
+Predicates:
+1. Chapel.status = "unused"
+2. Chapel.status = "well-maintained"
+3. Nearby House.status = "private place of worship"
+4. Chapel.time_period = "after early 18th century"
+5. Chapel.time_period = "early 18th century"
+6. "Relationship_1".attribute = "used as a private place of worship"
+7. "Relationship_2".attribute = "fell into disrepair"
+8. "Relationship_3".attribute = "well-maintained after early 18th century"
+9. "Relationship_4".attribute = "unused after early 18th century"
+10. "Relationship_5".attribute = "worship place for nearby house"
+11. M_NLI(Chapel.status, Nearby House.status)
+12. T("The chapel became unused.", "The chapel continued to be used.", Causal)
+13. T("The chapel fell into disrepair.", "The chapel was well-maintained.", Causal)
+14. tau(Chapel.time_period, Nearby House.status)
+15. violate(Chapel, Nearby House)
+16. Factual(Chapel.time_period, "after early 18th century")
+17. Factual(Nearby House.status, "private place of worship")
+18. Causal(Chapel.status, "fell into disrepair")
+19. Causal(Chapel.status, "well-maintained")
+20. Numeric(Chapel.time_period, "early 18th century")
+21. Temporal(Chapel.time_period, "after early 18th century")
+22. Chapel.condition = "fell into disrepair"
+23. "Relationship_6".attribute = "not maintained"
+24. "Relationship_7".attribute = "historical significance"
+25. M_NLI(Chapel.condition, "well-maintained")
+26. T("The chapel was used until the early 18th century.", "The chapel became unused after that.", Temporal)
+27. tau(Chapel.status, "well-maintained")
+28. violate(Chapel, "fell into disrepair")
+29. Factual(Chapel.status, "unused")
+30. Causal(Nearby House.status, "private place of worship")
+31. Numeric(Chapel.time_period, "after early 18th century")
+32. Temporal(Chapel.time_period, "early 18th century")
+33. Chapel.history = "used for worship"
+34. Nearby House.history = "associated with chapel"
+35. "Relationship_8".attribute = "historical use"
+36. M_NLI(Chapel.history, Nearby House.history)
+37. T("The chapel was maintained.", "The chapel fell into disrepair.", Causal)
+38. tau(Chapel.status, "unused")
+39. violate(Nearby House, Chapel)
+40. Factual(Chapel.condition, "well-maintained")
+41. Causal(Chapel.time_period, "after early 18th century")
+42. Numeric(Chapel.status, "not applicable")
+43. Temporal(Nearby House.status, "historical")
+44. Chapel.usage = "private worship"
+45. Nearby House.usage = "worship place"
+46. "Relationship_9".attribute = "disrepair status"
+47. M_NLI(Chapel.usage, Nearby House.usage)
+48. T("The chapel was used until early 18th century.", "The chapel was unused after that.", Temporal)
+49. tau(Chapel.condition, "disrepair")
+50. violate(Chapel, "well-maintained")
+51. Factual(Nearby House.usage, "private worship")
+52. Causal(Chapel.history, "fell into disrepair")
+53. Numeric(Chapel.usage, "not applicable")
+54. Temporal(Chapel.history, "after early 18th century")
+55. Chapel.maintenance = "poor"
+56. Nearby House.maintenance = "good"
+57. "Relationship_10".attribute = "maintenance status"
+58. M_NLI(Chapel.maintenance, Nearby House.maintenance)
+59. T("The chapel was maintained.", "The chapel fell into disrepair.", Causal)
+60. tau(Chapel.usage, "private worship")
+61. violate(Nearby House, "disrepair")
+62. Factual(Chapel.maintenance, "poor")
+63. Causal(Nearby House.usage, "private worship")
+64. Numeric(Chapel.history, "not applicable")
+65. Temporal(Nearby House.history, "historical")
+66. Chapel.condition = "well-maintained"
+67. Nearby House.condition = "not applicable"
+68. "Relationship_11".attribute = "condition status"
+69. M_NLI(Chapel.condition, Nearby House.condition)
+70. T("The chapel was used.", "The chapel was unused.", Causal)
+71. tau(Chapel.status, "well-maintained")
+72. violate(Chapel, "unused")
+73. Factual(Nearby House.condition, "not applicable")
+74. Causal(Chapel.history, "well-maintained")
+75. Numeric(Nearby House.usage, "not applicable")
+76. Temporal(Chapel.history, "historical")
+77. Chapel.usage = "not applicable"
+78. Nearby House.usage = "historical"
+79. "Relationship_12".attribute = "usage status"
+80. M_NLI(Chapel.usage, Nearby House.usage)
+81. T("The chapel was maintained.", "The chapel was unused.", Causal)
+82. tau(Chapel.condition, "not maintained")
+83. violate(Nearby House, "well-maintained")
+84. Factual(Chapel.usage, "not applicable")
+85. Causal(Nearby House.history, "historical")
+86. Numeric(Chapel.history, "not applicable")
+87. Temporal(Nearby House.condition, "historical")
+88. Chapel.status = "not maintained"
+89. Nearby House.status = "historical"
+90. "Relationship_13".attribute = "status comparison"
+91. M_NLI(Chapel.status, Nearby House.status)
+92. T("The chapel was used.", "The chapel was not used.", Negation)
+93. tau(Chapel.usage, "historical")
+94. violate(Chapel, "historical")
+95. Factual(Nearby House.status, "historical")
+96. Causal(Chapel.history, "not maintained")
+97. Numeric(Nearby House.usage, "not applicable")
+98. Temporal(Chapel.history, "historical")
+99. Chapel.condition = "historical"
+100. Nearby House.condition = "not applicable"
+violate(x0, y0)
+
+Rules:
+1. Q[x0, y0](Chapel.status = "unused" ∧ Nearby House.status = "private place of worship" → violate(x0, y0))
+2. Q[x0, y0](Chapel.status = "well-maintained" ∧ Chapel.time_period = "early 18th century" → violate(x0, y0))
+3. Q[x0, y0](Chapel.time_period = "after early 18th century" ∧ "Relationship_1".attribute = "used as a private place of worship" → violate(x0, y0))
+4. Q[x0, y0](Chapel.status = "unused" ∧ "Relationship_4".attribute = "unused after early 18th century" → violate(x0, y0))
+5. Q[x0, y0](Chapel.status = "well-maintained" ∧ "Relationship_2".attribute = "fell into disrepair" → violate(x0, y0))
+6. Q[x0, y0](Chapel.time_period = "early 18th century" ∧ "Relationship_3".attribute = "well-maintained after early 18th century" → violate(x0, y0))
+7. Q[x0, y0](Chapel.status = "unused" ∧ Nearby House.status = "private place of worship" ∧ Chapel.time_period = "after early 18th century" → violate(x0, y0))
+8. Q[x0, y0](Chapel.status = "well-maintained" ∧ "Relationship_1".attribute = "used as a private place of worship" ∧ "Relationship_2".attribute = "fell into disrepair" → violate(x0, y0))
+9. Q[x0, y0](Chapel.time_period = "early 18th century" ∧ "Relationship_3".attribute = "well-maintained after early 18th century" ∧ "Relationship_4".attribute = "unused after early 18th century" → violate(x0, y0))
+10. Q[x0, y0](Chapel.status = "well-maintained" ∧ "Relationship_2".attribute = "fell into disrepair" ∧ "Relationship_5".attribute = "worship place for nearby house" → violate(x0, y0))
+11. Q[x0, y0](Chapel.status = "unused" ∧ Chapel.time_period = "after early 18th century" ∧ "Relationship_4".attribute = "unused after early 18th century" ∧ "Relationship_5".attribute = "worship place for nearby house" → violate(x0, y0))
+12. Q[x0, y0](Chapel.status = "well-maintained" ∧ "Relationship_1".attribute = "used as a private place of worship" ∧ "Relationship_3".attribute = "well-maintained after early 18th century" ∧ "Relationship_4".attribute = "unused after early 18th century" → violate(x0, y0))
+13. Q[x0, y0](Chapel.status = "unused" ∧ Nearby House.status = "private place of worship" ∧ Chapel.time_period = "early 18th century" ∧ "Relationship_2".attribute = "fell into disrepair" ∧ "Relationship_5".attribute = "worship place for nearby house" → violate(x0, y0))
+14. Q[x0, y0](Chapel.status = "well-maintained" ∧ Chapel.time_period = "after early 18th century" ∧ "Relationship_3".attribute = "well-maintained after early 18th century" ∧ "Relationship_4".attribute = "unused after early 18th century" ∧ "Relationship_5".attribute = "worship place for nearby house" → violate(x0, y0))
+15. Q[x0, y0](Chapel.status = "unused" ∧ "Relationship_2".attribute = "fell into disrepair" ∧ "Relationship_3".attribute = "well-maintained after early 18th century" ∧ "Relationship_4".attribute = "unused after early 18th century" ∧ "Relationship_5".attribute = "worship place for nearby house" → violate(x0, y0))
+16. Q[x0, y0](Chapel.status = "well-maintained" ∧ Chapel.time_period = "early 18th century" ∧ "Relationship_1".attribute = "used as a private place of worship" ∧ "Relationship_2".attribute = "fell into disrepair" ∧ "Relationship_3".attribute = "well-maintained after early 18th century" ∧ "Relationship_4".attribute = "unused after early 18th century" → violate(x0, y0))
+17. Q[x0, y0](Chapel.status = "unused" ∧ Nearby House.status = "private place of worship" ∧ Chapel.time_period = "after early 18th century" ∧ "Relationship_1".attribute = "used as a private place of worship" ∧ "Relationship_2".attribute = "fell into disrepair" ∧ "Relationship_3".attribute = "well-maintained after early 18th century" → violate(x0, y0))
+18. Q[x0, y0](Chapel.status = "well-maintained" ∧ Chapel.time_period = "early 18th century" ∧ "Relationship_1".attribute = "used as a private place of worship" ∧ "Relationship_2".attribute = "fell into disrepair" ∧ "Relationship_3".attribute = "well-maintained after early 18th century" ∧ "Relationship_4".attribute = "unused after early 18th century" → violate(x0, y0))
+19. Q[x0, y0](Chapel.status = "unused" ∧ "Relationship_1".attribute = "used as a private place of worship" ∧ "Relationship_2".attribute = "fell into disrepair" ∧ "Relationship_3".attribute = "well-maintained after early 18th century" ∧ "Relationship_4".attribute = "unused after early 18th century" ∧ "Relationship_5".attribute = "worship place for nearby house" → violate(x0, y0))
+20. Q[x0, y0](Chapel.status = "well-maintained" ∧ "Relationship_1".attribute = "used as a private place of worship" ∧ "Relationship_2".attribute = "fell into disrepair" ∧ "Relationship_3".attribute = "well-maintained after early 18th century" ∧ "Relationship_4".attribute = "unused after early 18th century" ∧ "Relationship_5".attribute = "worship place for nearby house" → violate(x0, y0))
+21. Q[x0, y0](Chapel.status = "unused" ∧ Nearby House.status = "private place of worship" ∧ Chapel.time_period = "after early

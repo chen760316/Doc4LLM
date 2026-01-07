@@ -1,0 +1,49 @@
+Predicates:
+Captain Plume.label != "Character"
+Captain Plume.label = "Character"
+Captain Plume.name != "Captain Plume"
+Captain Plume.name != Sergeant Kite.name
+Captain Plume.name != Sylvia.name
+Captain Plume.name = "Captain Plume"
+Captain Plume.occupation != "Recruiter"
+Captain Plume.occupation = "Recruiter"
+Captain Plume.status != "In love with Sylvia"
+Captain Plume.status != Sergeant Kite.status
+Captain Plume.status != Sylvia.status
+Captain Plume.status = "In love with Sylvia"
+Captain Plume___Sergeant Kite.doc_id = "3488771854_8"
+Captain Plume___Sergeant Kite.location = "Shrewsbury"
+Captain Plume___Sergeant Kite.relationship != Captain Plume___Sylvia.relationship
+Captain Plume___Sergeant Kite.relationship = "Kite works under Captain Plume as a recruiter."
+Captain Plume___Sylvia.doc_id = "3488771854_8"
+Captain Plume___Sylvia.relationship = "Plume is in love with Sylvia."
+None_ML(Captain Plume___Sylvia.attrs, Captain Plume___Sergeant Kite.attrs)
+None_ML(Sergeant Kite.attrs, Sylvia.attrs)
+Sergeant Kite.label != "Character"
+Sergeant Kite.label = "Character"
+Sergeant Kite.name != "Sergeant Kite"
+Sergeant Kite.name != Sylvia.name
+Sergeant Kite.name = "Sergeant Kite"
+Sergeant Kite.occupation != "Recruiter"
+Sergeant Kite.occupation = "Recruiter"
+Sergeant Kite.status != "Works with Captain Plume"
+Sergeant Kite.status != Sylvia.status
+Sergeant Kite.status = "Works with Captain Plume"
+Sylvia.label != "Character"
+Sylvia.label = "Character"
+Sylvia.name != "Sylvia"
+Sylvia.name = "Sylvia"
+Sylvia.status != "In love with Plume"
+Sylvia.status = "In love with Plume"
+
+Rules:
+Q[Captain Plume,Captain Plume] (Sergeant Kite.name != Sylvia.name ∧ Captain Plume.name != Sylvia.name ∧ Captain Plume.status != Sergeant Kite.status ∧ Captain Plume___Sylvia.doc_id = "3488771854_8" → Sylvia.status != "In love with Plume")
+Q[Captain Plume,Captain Plume] (Sergeant Kite.status = "Works with Captain Plume" ∧ Captain Plume.status != Sergeant Kite.status ∧ None_ML(Sergeant Kite.attrs, Sylvia.attrs) ∧ Sylvia.status = "In love with Plume" ∧ Sergeant Kite.occupation != "Recruiter" ∧ Sergeant Kite.name = "Sergeant Kite" → Captain Plume.status != Sylvia.status)
+Q[Captain Plume,Captain Plume] (Sergeant Kite.status != Sylvia.status ∧ Sergeant Kite.status != "Works with Captain Plume" ∧ Sergeant Kite.name = "Sergeant Kite" ∧ None_ML(Sergeant Kite.attrs, Sylvia.attrs) ∧ None_ML(Captain Plume___Sylvia.attrs, Captain Plume___Sergeant Kite.attrs) → Sylvia.label = "Character")
+Q[Captain Plume,Captain Plume] (Captain Plume.occupation = "Recruiter" ∧ Captain Plume___Sylvia.relationship = "Plume is in love with Sylvia." ∧ Sergeant Kite.name = "Sergeant Kite" → Sylvia.status = "In love with Plume")
+Q[Captain Plume,Captain Plume] (Captain Plume.name != "Captain Plume" ∧ Sylvia.name = "Sylvia" → Sergeant Kite.occupation = "Recruiter")
+Q[Captain Plume,Captain Plume] (Sergeant Kite.status != "Works with Captain Plume" ∧ Sylvia.name != "Sylvia" → Captain Plume.label != "Character")
+Q[Captain Plume,Captain Plume] (Sergeant Kite.name = "Sergeant Kite" ∧ Captain Plume.name != "Captain Plume" ∧ Captain Plume.name != Sergeant Kite.name → Sergeant Kite.status != "Works with Captain Plume")
+Q[Captain Plume,Captain Plume] (Sylvia.label != "Character" ∧ Sylvia.status != "In love with Plume" ∧ Captain Plume.name != Sylvia.name ∧ Sylvia.name = "Sylvia" ∧ Sergeant Kite.status != "Works with Captain Plume" ∧ Captain Plume.occupation != "Recruiter" → Captain Plume.name != "Captain Plume")
+Q[Captain Plume,Captain Plume] (Captain Plume.status != Sylvia.status ∧ Sergeant Kite.name != "Sergeant Kite" ∧ Sylvia.name != "Sylvia" ∧ None_ML(Sergeant Kite.attrs, Sylvia.attrs) ∧ Captain Plume.label = "Character" → Captain Plume___Sylvia.doc_id = "3488771854_8")
+Q[Captain Plume,Captain Plume] (Captain Plume.status != "In love with Sylvia" ∧ Captain Plume.name != Sylvia.name ∧ Sergeant Kite.status != "Works with Captain Plume" ∧ Captain Plume___Sergeant Kite.location = "Shrewsbury" → Captain Plume___Sergeant Kite.relationship = "Kite works under Captain Plume as a recruiter.")

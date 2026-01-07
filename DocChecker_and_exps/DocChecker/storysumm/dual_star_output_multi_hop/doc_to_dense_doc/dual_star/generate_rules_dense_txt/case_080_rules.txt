@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 80)
+S1: In his dream, he is back on the beach with the mermaid, and the seal attacks him, causing him to wake up again.
+S2: He is never back on the beach with the mermaid, he is with the seal.
+
+Predicates:
+1. Dream.state
+2. Dream.location
+3. Dream.character
+4. Dream.event
+5. Beach.location
+6. Mermaid.character
+7. Seal.character
+8. Attack.event
+9. WakeUp.event
+10. Reality.state
+11. Reality.location
+12. Reality.character
+13. Reality.event
+14. Presence.with
+15. Presence.on
+16. Presence.between
+17. Negation.dream
+18. Negation.beach
+19. Negation.mermaid
+20. Negation.seal
+21. Violate.dream
+22. Violate.presence
+23. Violate.character
+24. M_NLI(dream, reality)
+25. Relationship.between
+26. Relationship.character
+27. Relationship.event
+28. Relationship.location
+29. Cause.event
+30. Cause.wakeUp
+
+Rules:
+1. Q[his, Dream.state, Reality.state](Dream.state == "dream" → Negation(Dream.state, Reality.state))
+2. Q[his, Dream.location, Reality.location](Dream.location == "beach" → Negation(Dream.location, Reality.location))
+3. Q[his, Dream.character, Reality.character](Dream.character == "mermaid" → Negation(Dream.character, Reality.character))
+4. Q[his, Dream.event, Reality.event](Dream.event == "attack" → Negation(Dream.event, Reality.event))
+5. Q[his, Beach.location, Reality.location](Beach.location == "beach" → Negation(Beach.location, Reality.location))
+6. Q[his, Mermaid.character, Seal.character](Mermaid.character == "mermaid" → Negation(Mermaid.character, Seal.character))
+7. Q[his, Seal.character, Mermaid.character](Seal.character == "seal" → Negation(Seal.character, Mermaid.character))
+8. Q[his, Attack.event, WakeUp.event](Attack.event == "attack" → Negation(Attack.event, WakeUp.event))
+9. Q[his, WakeUp.event, Dream.state](WakeUp.event == "wake up" → Negation(WakeUp.event, Dream.state))
+10. Q[his, Reality.state, Dream.state](Reality.state == "awake" → Negation(Reality.state, Dream.state))
+11. Q[his, Reality.location, Dream.location](Reality.location == "not beach" → Negation(Reality.location, Dream.location))
+12. Q[his, Reality.character, Dream.character](Reality.character == "seal" → Negation(Reality.character, Dream.character))
+13. Q[his, Presence.with, Presence.on](Presence.with == "seal" → Negation(Presence.with, Presence.on))
+14. Q[his, Presence.on, Presence.between](Presence.on == "beach" → Negation(Presence.on, Presence.between))
+15. Q[his, Negation.dream, Negation.beach](Negation.dream == true → Negation(Negation.dream, Negation.beach))
+16. Q[his, Negation.mermaid, Negation.seal](Negation.mermaid == true → Negation(Negation.mermaid, Negation.seal))
+17. Q[his, Violate.dream, Violate.presence](Violate.dream == true → Negation(Violate.dream, Violate.presence))
+18. Q[his, Violate.character, Relationship.character](Violate.character == "mermaid" → Negation(Violate.character, Relationship.character))
+19. Q[his, Relationship.between, Relationship.event](Relationship.between == "mermaid and seal" → Negation(Relationship.between, Relationship.event))
+20. Q[his, Cause.event, Attack.event](Cause.event == "seal attack" → Negation(Cause.event, Attack.event))
+21. Q[his, Cause.wakeUp, WakeUp.event](Cause.wakeUp == "wake up" → Negation(Cause.wakeUp, WakeUp.event))
+22. Q[his, Dream.state, Negation.dream](Dream.state == "dream" → Negation(Dream.state, Negation.dream))
+23. Q[his, Dream.location, Negation.beach](Dream.location == "beach" → Negation(Dream.location, Negation.beach))
+24. Q[his, Dream.character, Negation.mermaid](Dream.character == "mermaid" → Negation(Dream.character, Negation.mermaid))
+25. Q[his, Reality.state, Negation.dream](Reality.state == "awake" → Negation(Reality.state, Negation.dream))
+26. Q[his, Reality.location, Negation.beach](Reality.location == "not beach" → Negation(Reality.location, Negation.beach))
+27. Q[his, Reality.character, Negation.seal](Reality.character == "seal" → Negation(Reality.character, Negation.seal))
+28. Q[his, Presence.with, Negation.mermaid](Presence.with == "seal" → Negation(Presence.with, Negation.mermaid))
+29. Q[his, Presence.on, Negation.beach](Presence.on == "beach" → Negation(Presence.on, Negation.beach))
+30. Q[his, Attack.event, Negation.mermaid](Attack.event == "seal attack" → Negation(Attack.event, Negation.mermaid))

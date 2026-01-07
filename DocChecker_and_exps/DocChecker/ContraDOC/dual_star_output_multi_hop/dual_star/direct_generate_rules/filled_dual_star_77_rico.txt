@@ -1,0 +1,92 @@
+Predicates:
+Coloring Easter eggs.description != "A tradition of coloring eggs for Easter."
+Coloring Easter eggs.description != Easter Triduum.description
+Coloring Easter eggs.description = "A tradition of coloring eggs for Easter."
+Coloring Easter eggs.label != "Event"
+Coloring Easter eggs.label != Jesus.label
+Coloring Easter eggs.label = "Event"
+Coloring Easter eggs.name != "Coloring Easter eggs"
+Coloring Easter eggs.name != Easter Triduum.name
+Coloring Easter eggs.name != Jesus.name
+Coloring Easter eggs.name = "Coloring Easter eggs"
+Easter Triduum.description != "the three days of Easter that begin with Good Friday, proceed through Holy Saturday, and conclude with Easter Sunday"
+Easter Triduum.description = "the three days of Easter that begin with Good Friday, proceed through Holy Saturday, and conclude with Easter Sunday"
+Easter Triduum.label != "Event"
+Easter Triduum.label != Jesus.label
+Easter Triduum.label = "Event"
+Easter Triduum.name != "Easter Triduum"
+Easter Triduum.name != Jesus.name
+Easter Triduum.name = "Easter Triduum"
+Easter.description != "the celebration of the resurrection of Jesus"
+Easter.description != Coloring Easter eggs.description
+Easter.description != Easter Triduum.description
+Easter.description != Good Friday.description
+Easter.description = "the celebration of the resurrection of Jesus"
+Easter.label != "Event"
+Easter.label != Jesus.label
+Easter.label = "Event"
+Easter.name != "Easter"
+Easter.name != Coloring Easter eggs.name
+Easter.name != Easter Triduum.name
+Easter.name != Good Friday.name
+Easter.name != Jesus.name
+Easter.name = "Easter"
+Easter.significance != "joy and hope"
+Easter.significance != Good Friday.significance
+Easter.significance = "joy and hope"
+Easter___Coloring Easter eggs.doc_id != Easter___Easter Triduum.doc_id
+Easter___Coloring Easter eggs.doc_id != Easter___Jesus.doc_id
+Easter___Coloring Easter eggs.doc_id = "3489738288_4"
+Easter___Coloring Easter eggs.method = "Using Kool-Aid"
+Easter___Coloring Easter eggs.relationship != Easter___Easter Triduum.relationship
+Easter___Coloring Easter eggs.relationship != Easter___Jesus.relationship
+Easter___Coloring Easter eggs.relationship = "Easter involves the tradition of coloring eggs."
+Easter___Easter Triduum.doc_id = "3489738295_9"
+Easter___Easter Triduum.relationship != Easter___Jesus.relationship
+Easter___Easter Triduum.relationship = "Easter Triduum consists of the three days leading up to Easter."
+Easter___Good Friday.doc_id != Easter___Easter Triduum.doc_id
+Easter___Good Friday.doc_id != Easter___Jesus.doc_id
+Easter___Good Friday.doc_id = "3489738288_4"
+Easter___Good Friday.relationship != Easter___Coloring Easter eggs.relationship
+Easter___Good Friday.relationship != Easter___Easter Triduum.relationship
+Easter___Good Friday.relationship != Easter___Jesus.relationship
+Easter___Good Friday.relationship = "Easter is celebrated after Good Friday."
+Easter___Jesus.doc_id = "3489738295_9"
+Easter___Jesus.relationship = "Easter celebrates the resurrection of Jesus."
+Easter___Jesus.transformation = "from physical to glorified body"
+Good Friday.description != "the day of the crucifixion of Jesus"
+Good Friday.description != Coloring Easter eggs.description
+Good Friday.description != Easter Triduum.description
+Good Friday.description = "the day of the crucifixion of Jesus"
+Good Friday.label != "Event"
+Good Friday.label != Jesus.label
+Good Friday.label = "Event"
+Good Friday.name != "Good Friday"
+Good Friday.name != Coloring Easter eggs.name
+Good Friday.name != Easter Triduum.name
+Good Friday.name != Jesus.name
+Good Friday.name = "Good Friday"
+Good Friday.significance != "day of death and sacrifice"
+Good Friday.significance = "day of death and sacrifice"
+Jesus.label != "Person"
+Jesus.label = "Person"
+Jesus.name != "Jesus"
+Jesus.name = "Jesus"
+Jesus.nationality != "Jewish"
+Jesus.nationality = "Jewish"
+Jesus.occupation != "religious leader"
+Jesus.occupation = "religious leader"
+None_ML(Easter___Good Friday.attrs, Easter___Coloring Easter eggs.attrs)
+None_ML(Good Friday.attrs, Easter.attrs)
+
+Rules:
+Q[Easter,Easter] (Easter___Easter Triduum.doc_id = "3489738295_9" ∧ Easter.label != "Event" ∧ Jesus.name = "Jesus" ∧ Good Friday.significance != "day of death and sacrifice" ∧ Easter___Easter Triduum.relationship = "Easter Triduum consists of the three days leading up to Easter." → Good Friday.description != Easter Triduum.description)
+Q[Easter,Easter] (Jesus.label = "Person" ∧ Easter.description != Coloring Easter eggs.description ∧ Good Friday.label = "Event" ∧ Coloring Easter eggs.name != "Coloring Easter eggs" ∧ Easter___Coloring Easter eggs.method = "Using Kool-Aid" ∧ Easter Triduum.label = "Event" → Coloring Easter eggs.name != Jesus.name)
+Q[Easter,Easter] (Easter.label != Jesus.label ∧ Good Friday.description != Easter Triduum.description ∧ Jesus.occupation != "religious leader" → Jesus.name != "Jesus")
+Q[Easter,Easter] (Coloring Easter eggs.name != Jesus.name ∧ Easter___Good Friday.relationship != Easter___Coloring Easter eggs.relationship ∧ Easter___Coloring Easter eggs.relationship = "Easter involves the tradition of coloring eggs." ∧ Coloring Easter eggs.label != Jesus.label → Easter.name != Good Friday.name)
+Q[Easter,Easter] (Jesus.name != "Jesus" ∧ Good Friday.label = "Event" → Easter___Jesus.relationship = "Easter celebrates the resurrection of Jesus.")
+Q[Easter,Easter] (Easter___Coloring Easter eggs.doc_id != Easter___Easter Triduum.doc_id ∧ Good Friday.label = "Event" ∧ Good Friday.significance != "day of death and sacrifice" ∧ Good Friday.description != Coloring Easter eggs.description ∧ Coloring Easter eggs.label = "Event" ∧ Good Friday.label != "Event" → Jesus.label = "Person")
+Q[Easter,Easter] (Easter.significance != Good Friday.significance ∧ Easter.label = "Event" ∧ Good Friday.name != Easter Triduum.name ∧ Jesus.label = "Person" → Good Friday.name = "Good Friday")
+Q[Easter,Easter] (Coloring Easter eggs.description != "A tradition of coloring eggs for Easter." ∧ None_ML(Good Friday.attrs, Easter.attrs) ∧ Easter Triduum.name != Jesus.name → Easter.significance != "joy and hope")
+Q[Easter,Easter] (Easter Triduum.label != Jesus.label ∧ Easter___Coloring Easter eggs.relationship != Easter___Easter Triduum.relationship ∧ Easter___Coloring Easter eggs.relationship != Easter___Jesus.relationship ∧ Good Friday.label != Jesus.label ∧ Easter___Easter Triduum.relationship != Easter___Jesus.relationship → Easter.description != Easter Triduum.description)
+Q[Easter,Easter] (Easter.name != "Easter" ∧ Coloring Easter eggs.name != Jesus.name → Good Friday.name != "Good Friday")

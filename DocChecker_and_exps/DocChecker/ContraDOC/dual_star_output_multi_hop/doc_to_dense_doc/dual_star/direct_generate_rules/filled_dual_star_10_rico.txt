@@ -1,0 +1,37 @@
+Predicates:
+BEA.country != "France"
+BEA.country = "France"
+BEA.label != "Organization"
+BEA.label != Reichelt.label
+BEA.label = "Organization"
+BEA.name != "BEA"
+BEA.name != Reichelt.name
+BEA.name = "BEA"
+BEA.type != "accident investigation agency"
+BEA.type = "accident investigation agency"
+BEA___Reichelt.context = "dispute over the existence of a video"
+BEA___Reichelt.contradiction_type = "Factual"
+BEA___Reichelt.medium = "television"
+BEA___Reichelt.relationship = "Reichelt claims to have watched a video that the BEA is not aware of."
+BEA___Reichelt.show = "'Erin Burnett: Outfront'"
+BEA___Reichelt.source = "Erin Burnett: Outfront"
+BEA___Reichelt.source_id = "3489825776_7"
+None_ML(BEA.attrs, Reichelt.attrs)
+Reichelt.label != "Person"
+Reichelt.label = "Person"
+Reichelt.name != "Reichelt"
+Reichelt.name = "Reichelt"
+Reichelt.occupation != "journalist"
+Reichelt.occupation = "journalist"
+
+Rules:
+Q[BEA,BEA] (Reichelt.label != "Person" ∧ BEA.label != Reichelt.label → BEA.label = "Organization")
+Q[BEA,BEA] (Reichelt.name = "Reichelt" ∧ Reichelt.name != "Reichelt" ∧ BEA.label = "Organization" → BEA.label != "Organization")
+Q[BEA,BEA] (BEA___Reichelt.contradiction_type = "Factual" ∧ BEA___Reichelt.show = "'Erin Burnett: Outfront'" ∧ BEA___Reichelt.source = "Erin Burnett: Outfront" ∧ BEA___Reichelt.source_id = "3489825776_7" → BEA.label != Reichelt.label)
+Q[BEA,BEA] (BEA___Reichelt.contradiction_type = "Factual" ∧ BEA.label != "Organization" ∧ BEA.name != Reichelt.name ∧ BEA___Reichelt.show = "'Erin Burnett: Outfront'" ∧ BEA.type = "accident investigation agency" ∧ BEA.name = "BEA" → BEA.type != "accident investigation agency")
+Q[BEA,BEA] (BEA.country != "France" ∧ BEA___Reichelt.show = "'Erin Burnett: Outfront'" ∧ BEA.name != "BEA" ∧ BEA___Reichelt.source_id = "3489825776_7" ∧ BEA.name = "BEA" → BEA.type = "accident investigation agency")
+Q[BEA,BEA] (Reichelt.occupation = "journalist" ∧ BEA___Reichelt.medium = "television" ∧ Reichelt.label = "Person" → Reichelt.label != "Person")
+Q[BEA,BEA] (Reichelt.label != "Person" ∧ None_ML(BEA.attrs, Reichelt.attrs) ∧ Reichelt.occupation = "journalist" ∧ BEA___Reichelt.source_id = "3489825776_7" ∧ BEA.name != "BEA" → BEA.country != "France")
+Q[BEA,BEA] (BEA.name = "BEA" ∧ BEA.name != Reichelt.name ∧ None_ML(BEA.attrs, Reichelt.attrs) ∧ BEA___Reichelt.show = "'Erin Burnett: Outfront'" ∧ Reichelt.occupation != "journalist" ∧ Reichelt.label != "Person" → BEA___Reichelt.source = "Erin Burnett: Outfront")
+Q[BEA,BEA] (Reichelt.occupation = "journalist" ∧ None_ML(BEA.attrs, Reichelt.attrs) → BEA___Reichelt.medium = "television")
+Q[BEA,BEA] (BEA.label != "Organization" ∧ BEA___Reichelt.source = "Erin Burnett: Outfront" ∧ Reichelt.occupation != "journalist" ∧ BEA.type != "accident investigation agency" → BEA___Reichelt.source_id = "3489825776_7")

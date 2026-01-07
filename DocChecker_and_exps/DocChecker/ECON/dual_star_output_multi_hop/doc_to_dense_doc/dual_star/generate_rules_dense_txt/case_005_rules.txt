@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 5)
+S1: Barack Obama's father was a Swedish citizen of Nordic descent.
+S2: Barack Obama's father was a Kenyan of the Luo tribe.
+
+Predicates:
+1. Barack_Obama.father_nationality
+2. Barack_Obama.father_ethnicity
+3. Barack_Obama.father_citizenship
+4. Barack_Obama.father_tribe
+5. Barack_Obama.father_descent
+6. Swedish_citizen.nationality
+7. Kenyan.nationality
+8. Luo_tribe.ethnicity
+9. Nordic_descent.ethnicity
+10. "describes".relationship
+11. "has".relationship
+12. "is".relationship
+13. "of".relationship
+14. "was".relationship
+15. "citizen_of".relationship
+16. "belongs_to".relationship
+17. "descended_from".relationship
+18. "originates_from".relationship
+19. "is_a".relationship
+20. "is_not".relationship
+21. M_NLI(S1, S2)
+22. Factual(Barack_Obama.father_nationality, Swedish)
+23. Factual(Barack_Obama.father_nationality, Kenyan)
+24. violate(Barack_Obama.father_nationality, Barack_Obama.father_ethnicity)
+25. violate(Barack_Obama.father_citizenship, Barack_Obama.father_tribe)
+26. "conflicts_with".relationship
+27. "contradicts".relationship
+28. "represents".relationship
+29. "identifies_as".relationship
+30. "is_described_as".relationship
+
+Rules:
+1. Q[Barack, Barack_Obama.father_nationality == "Swedish" → Factual(Barack_Obama.father_nationality, Swedish)]
+2. Q[Barack, Barack_Obama.father_nationality == "Kenyan" → Factual(Barack_Obama.father_nationality, Kenyan)]
+3. Q[Barack, Barack_Obama.father_ethnicity == "Nordic" → Factual(Barack_Obama.father_ethnicity, Nordic)]
+4. Q[Barack, Barack_Obama.father_ethnicity == "Luo" → Factual(Barack_Obama.father_ethnicity, Luo)]
+5. Q[Barack, Barack_Obama.father_citizenship == "Swedish" → Factual(Barack_Obama.father_citizenship, Swedish)]
+6. Q[Barack, Barack_Obama.father_citizenship == "Kenyan" → Factual(Barack_Obama.father_citizenship, Kenyan)]
+7. Q[Barack, Barack_Obama.father_tribe == "Luo" → Factual(Barack_Obama.father_tribe, Luo)]
+8. Q[Barack, Barack_Obama.father_descent == "Nordic" → Factual(Barack_Obama.father_descent, Nordic)]
+9. Q[Barack, Swedish_citizen.nationality == "Swedish" → Factual(Barack_Obama.father_nationality, Swedish)]
+10. Q[Barack, Kenyan.nationality == "Kenyan" → Factual(Barack_Obama.father_nationality, Kenyan)]
+11. Q[Barack, Luo_tribe.ethnicity == "Luo" → Factual(Barack_Obama.father_ethnicity, Luo)]
+12. Q[Barack, Nordic_descent.ethnicity == "Nordic" → Factual(Barack_Obama.father_descent, Nordic)]
+13. Q[Barack, Barack_Obama.father_nationality == "Swedish" AND Barack_Obama.father_nationality == "Kenyan" → Factual(Barack_Obama.father_nationality, Kenyan)]
+14. Q[Barack, Barack_Obama.father_ethnicity == "Nordic" AND Barack_Obama.father_ethnicity == "Luo" → Factual(Barack_Obama.father_ethnicity, Luo)]
+15. Q[Barack, Barack_Obama.father_citizenship == "Swedish" AND Barack_Obama.father_citizenship == "Kenyan" → Factual(Barack_Obama.father_citizenship, Kenyan)]
+16. Q[Barack, Barack_Obama.father_tribe == "Luo" AND Barack_Obama.father_tribe == "Nordic" → Factual(Barack_Obama.father_tribe, Luo)]
+17. Q[Barack, Barack_Obama.father_nationality == "Swedish" AND violate(Barack_Obama.father_nationality, Barack_Obama.father_ethnicity) → Factual(Barack_Obama.father_nationality, Swedish)]
+18. Q[Barack, Barack_Obama.father_nationality == "Kenyan" AND violate(Barack_Obama.father_nationality, Barack_Obama.father_ethnicity) → Factual(Barack_Obama.father_nationality, Kenyan)]
+19. Q[Barack, Barack_Obama.father_citizenship == "Swedish" AND violate(Barack_Obama.father_citizenship, Barack_Obama.father_tribe) → Factual(Barack_Obama.father_citizenship, Swedish)]
+20. Q[Barack, Barack_Obama.father_citizenship == "Kenyan" AND violate(Barack_Obama.father_citizenship, Barack_Obama.father_tribe) → Factual(Barack_Obama.father_citizenship, Kenyan)]
+21. Q[Barack, "describes"(Barack_Obama.father_nationality, "Swedish") AND "describes"(Barack_Obama.father_nationality, "Kenyan") → Factual(Barack_Obama.father_nationality, Kenyan)]
+22. Q[Barack, "is_described_as"(Barack_Obama.father_ethnicity, "Nordic") AND "is_described_as"(Barack_Obama.father_ethnicity, "Luo") → Factual(Barack_Obama.father_ethnicity, Luo)]
+23. Q[Barack, "conflicts_with"(Barack_Obama.father_nationality, Barack_Obama.father_ethnicity) → Factual(Barack_Obama.father_nationality, Kenyan)]
+24. Q[Barack, "contradicts"(Barack_Obama.father_citizenship, Barack_Obama.father_tribe) → Factual(Barack_Obama.father_citizenship, Kenyan)]
+25. Q[Barack, "represents"(Barack_Obama.father_nationality, "Swedish") AND "represents"(Barack_Obama.father_nationality, "Kenyan") → Factual(Barack_Obama.father_nationality, Kenyan)]
+26. Q[Barack, "identifies_as"(Barack_Obama.father_ethnicity, "Nordic") AND "identifies_as"(Barack_Obama.father_ethnicity, "Luo") → Factual(Barack_Obama.father_ethnicity, Luo)]
+27. Q[Barack, "has"(Barack_Obama.father_nationality, "Swedish") AND "has"(Barack_Obama.father_nationality, "Kenyan") → Factual(Barack_Obama.father_nationality, Kenyan)]
+28. Q[Barack, "was"(Barack_Obama.father_nationality, "Swedish") AND "was"(Barack_Obama.father_nationality, "Kenyan") → Factual(Barack_Obama.father_nationality, Kenyan)]
+29. Q[Barack, "originates_from"(Barack_Obama.father_nationality, "Swedish") AND "originates_from"(Barack_Obama.father_nationality, "Kenyan") → Factual(Barack_Obama.father_nationality, Kenyan)]
+30. Q[Barack, "is_not"(Barack_Obama.father_nationality, "Swedish") AND "is_not"(Barack_Obama.father_nationality, "Kenyan") → Factual(Barack_Obama.father_nationality, Kenyan)]

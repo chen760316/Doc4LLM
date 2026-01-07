@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 91)
+S1: The same book cannot have different ISBN numbers.
+S2: Therefore, it's virtually impossible for the same book to have different ISBNs, as this would lead to duplication and contradiction in the database.
+
+Predicates:
+1. Book.ISBN
+2. Book.title
+3. Book.author
+4. Book.publication_year
+5. Book.publisher
+6. ISBN.number
+7. ISBN.format
+8. ISBN.edition
+9. Database.entry
+10. Database.duplication
+11. Database.contradiction
+12. Book.has_ISBN
+13. ISBN.belongs_to_Book
+14. Book.is_unique
+15. ISBN.is_unique
+16. Book.is_identified_by_ISBN
+17. ISBN.is_assigned_to_Book
+18. Book.is_recorded_in_Database
+19. Database.contains_Book
+20. Database.contains_ISBN
+21. ISBN.is_valid
+22. ISBN.is_invalid
+23. Book.is_verified
+24. Book.is_not_verified
+25. ISBN.is_duplicate
+26. ISBN.is_conflicting
+27. Book.has_multiple_ISBNs
+28. ISBN.is_exclusive_to_Book
+29. Database.is_consistent
+30. Database.is_inconsistent
+
+Rules:
+1. Q[The, Book.has_multiple_ISBNs, Database.duplication](Book.is_unique == false → Causal(Book.has_multiple_ISBNs, Database.duplication))
+2. Q[The, ISBN.is_duplicate, Database.contradiction](ISBN.is_unique == false → Causal(ISBN.is_duplicate, Database.contradiction))
+3. Q[The, Book.is_identified_by_ISBN, Database.contains_ISBN](Book.has_multiple_ISBNs == true → Causal(Book.is_identified_by_ISBN, Database.contains_ISBN))
+4. Q[The, ISBN.is_assigned_to_Book, Book.is_unique](Book.has_multiple_ISBNs == true → Causal(ISBN.is_assigned_to_Book, Book.is_unique))
+5. Q[The, Database.contains_Book, Book.has_multiple_ISBNs](Database.is_consistent == false → Causal(Database.contains_Book, Book.has_multiple_ISBNs))
+6. Q[The, ISBN.is_conflicting, Database.is_inconsistent](ISBN.is_duplicate == true → Causal(ISBN.is_conflicting, Database.is_inconsistent))
+7. Q[The, Book.is_verified, ISBN.is_valid](Book.has_multiple_ISBNs == true → Causal(Book.is_verified, ISBN.is_valid))
+8. Q[The, ISBN.is_exclusive_to_Book, Book.is_not_verified](Book.has_multiple_ISBNs == true → Causal(ISBN.is_exclusive_to_Book, Book.is_not_verified))
+9. Q[The, Database.entry, ISBN.is_invalid](Database.is_inconsistent == true → Causal(Database.entry, ISBN.is_invalid))
+10. Q[The, Book.title, ISBN.is_assigned_to_Book](Book.has_multiple_ISBNs == true → Causal(Book.title, ISBN.is_assigned_to_Book))
+11. Q[The, ISBN.format, Book.is_identified_by_ISBN](Book.has_multiple_ISBNs == true → Causal(ISBN.format, Book.is_identified_by_ISBN))
+12. Q[The, Book.publisher, ISBN.is_duplicate](Book.has_multiple_ISBNs == true → Causal(Book.publisher, ISBN.is_duplicate))
+13. Q[The, Book.publication_year, Database.contains_Book](Book.has_multiple_ISBNs == true → Causal(Book.publication_year, Database.contains_Book))
+14. Q[The, ISBN.number, Book.is_unique](Book.has_multiple_ISBNs == true → Causal(ISBN.number, Book.is_unique))
+15. Q[The, Database.duplication, ISBN.is_conflicting](Database.is_inconsistent == true → Causal(Database.duplication, ISBN.is_conflicting))
+16. Q[The, Book.author, ISBN.is_valid](Book.has_multiple_ISBNs == true → Causal(Book.author, ISBN.is_valid))
+17. Q[The, Database.is_consistent, Book.is_verified](Book.has_multiple_ISBNs == true → Causal(Database.is_consistent, Book.is_verified))
+18. Q[The, ISBN.edition, Book.is_not_verified](Book.has_multiple_ISBNs == true → Causal(ISBN.edition, Book.is_not_verified))
+19. Q[The, Database.entry, Book.is_unique](Database.is_inconsistent == true → Causal(Database.entry, Book.is_unique))
+20. Q[The, ISBN.is_invalid, Database.contains_ISBN](Database.is_inconsistent == true → Causal(ISBN.is_invalid, Database.contains_ISBN))
+21. Q[The, Book.is_unique, ISBN.is_duplicate](Book.has_multiple_ISBNs == true → Causal(Book.is_unique, ISBN.is_duplicate))
+22. Q[The, Database.duplication, Book.is_identified_by_ISBN](Database.is_inconsistent == true → Causal(Database.duplication, Book.is_identified_by_ISBN))
+23. Q[The, ISBN.is_conflicting, Book.has_multiple_ISBNs](Book.is_unique == false → Causal(ISBN.is_conflicting, Book.has_multiple_ISBNs))
+24. Q[The, Book.is_verified, Database.is_consistent](Book.has_multiple_ISBNs == true → Causal(Book.is_verified, Database.is_consistent))
+25. Q[The, ISBN.is_assigned_to_Book, Database.contains_ISBN](Database.is_inconsistent == true → Causal(ISBN.is_assigned_to_Book, Database.contains_ISBN))
+26. Q[The, Book.title, ISBN.is_invalid](Book.has_multiple_ISBNs == true → Causal(Book.title, ISBN.is_invalid))
+27. Q[The, ISBN.format, Database.is_consistent](Database.is_inconsistent == true → Causal(ISBN.format, Database.is_consistent))
+28. Q[The, Book.publisher, ISBN.is_conflicting](Book.has_multiple_ISBNs == true → Causal(Book.publisher, ISBN.is_conflicting))
+29. Q[The, Book.publication_year, ISBN.is_duplicate](Book.has_multiple_ISBNs == true → Causal(Book.publication_year, ISBN.is_duplicate))
+30. Q[The, ISBN.number, Database.duplication](Database.is_inconsistent == true → Causal(ISBN.number, Database.duplication))

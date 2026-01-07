@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 360)
+S1: The first two borrowers must start repaying the principal plus interest over a six-week period.
+S2: The borrowers must form five-member groups that, along with the bank's field workers, closely supervise the loans.
+
+Predicates:
+1. Borrower_1.repayment_obligation
+2. Borrower_2.repayment_obligation
+3. Loan.repayment_period
+4. Loan.interest_included
+5. Borrower_group.size
+6. Borrower_group.supervision
+7. Bank_field_worker.supervision
+8. Borrower_1.group_membership
+9. Borrower_2.group_membership
+10. Group.supervision_focus
+11. Repayment_urgency.lack
+12. Repayment_urgency.implied
+13. Loan.supervision_required
+14. Borrowers.group_formation
+15. Loan.repayment_schedule
+16. Borrower_1.loan_amount
+17. Borrower_2.loan_amount
+18. Group.member_count
+19. Supervision.effectiveness
+20. Loan.principal_repayment
+21. Loan.interest_repayment
+22. Borrower_group.monitoring
+23. Bank_field_worker.role
+24. Borrower_1.loan_terms
+25. Borrower_2.loan_terms
+26. Group.cooperation_level
+27. Supervision.intensity
+28. Repayment.obligation_timing
+29. Loan.default_risk
+30. Borrower_group.accountability
+
+Rules:
+1. Q[The, Borrower_1.repayment_obligation == true → Causal(Borrower_1.repayment_obligation, Repayment_urgency.lack)]
+2. Q[The, Borrower_2.repayment_obligation == true → Causal(Borrower_2.repayment_obligation, Repayment_urgency.lack)]
+3. Q[The, Loan.repayment_period == "six weeks" → Causal(Loan.repayment_period, Repayment_urgency.lack)]
+4. Q[The, Loan.interest_included == true → Causal(Loan.interest_included, Repayment_urgency.lack)]
+5. Q[The, Borrower_group.size == 5 → Causal(Borrower_group.size, Repayment_urgency.lack)]
+6. Q[The, Borrower_group.supervision == true → Causal(Borrower_group.supervision, Repayment_urgency.lack)]
+7. Q[The, Bank_field_worker.supervision == true → Causal(Bank_field_worker.supervision, Repayment_urgency.lack)]
+8. Q[The, Borrower_1.group_membership == true → Causal(Borrower_1.group_membership, Repayment_urgency.lack)]
+9. Q[The, Borrower_2.group_membership == true → Causal(Borrower_2.group_membership, Repayment_urgency.lack)]
+10. Q[The, Group.supervision_focus == "primary" → Causal(Group.supervision_focus, Repayment_urgency.lack)]
+11. Q[The, Repayment_urgency.lack == true → Causal(Repayment_urgency.lack, Loan.repayment_period)]
+12. Q[The, Repayment_urgency.implied == true → Causal(Repayment_urgency.implied, Loan.repayment_period)]
+13. Q[The, Loan.supervision_required == true → Causal(Loan.supervision_required, Repayment_urgency.lack)]
+14. Q[The, Borrowers.group_formation == true → Causal(Borrowers.group_formation, Repayment_urgency.lack)]
+15. Q[The, Loan.repayment_schedule == "weekly" → Causal(Loan.repayment_schedule, Repayment_urgency.lack)]
+16. Q[The, Borrower_1.loan_amount > 0 → Causal(Borrower_1.loan_amount, Repayment_urgency.lack)]
+17. Q[The, Borrower_2.loan_amount > 0 → Causal(Borrower_2.loan_amount, Repayment_urgency.lack)]
+18. Q[The, Group.member_count == 5 → Causal(Group.member_count, Repayment_urgency.lack)]
+19. Q[The, Supervision.effectiveness == "high" → Causal(Supervision.effectiveness, Repayment_urgency.lack)]
+20. Q[The, Loan.principal_repayment == true → Causal(Loan.principal_repayment, Repayment_urgency.lack)]
+21. Q[The, Loan.interest_repayment == true → Causal(Loan.interest_repayment, Repayment_urgency.lack)]
+22. Q[The, Borrower_group.monitoring == true → Causal(Borrower_group.monitoring, Repayment_urgency.lack)]
+23. Q[The, Bank_field_worker.role == "supervisor" → Causal(Bank_field_worker.role, Repayment_urgency.lack)]
+24. Q[The, Borrower_1.loan_terms == "strict" → Causal(Borrower_1.loan_terms, Repayment_urgency.lack)]
+25. Q[The, Borrower_2.loan_terms == "strict" → Causal(Borrower_2.loan_terms, Repayment_urgency.lack)]
+26. Q[The, Group.cooperation_level == "high" → Causal(Group.cooperation_level, Repayment_urgency.lack)]
+27. Q[The, Supervision.intensity == "high" → Causal(Supervision.intensity, Repayment_urgency.lack)]
+28. Q[The, Repayment.obligation_timing == "immediate" → Causal(Repayment.obligation_timing, Repayment_urgency.lack)]
+29. Q[The, Loan.default_risk == "low" → Causal(Loan.default_risk, Repayment_urgency.lack)]
+30. Q[The, Borrower_group.accountability == true → Causal(Borrower_group.accountability, Repayment_urgency.lack)]

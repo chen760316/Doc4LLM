@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 22)
+S1: The park had been shut for major landscaping work.
+S2: The landscape contractors worked in the park.
+
+Predicates:
+1. Park.status
+2. Park.shut
+3. Park.landscaping_work
+4. Landscape_Contractors.worked
+5. Landscape_Contractors.in_park
+6. Park.has_landscaping_work
+7. Park.is_open
+8. Contractors.status
+9. Contractors.cannot_work
+10. Contractors.in_park
+11. Time.period
+12. Time.landscaping_work
+13. Time.park_open
+14. Causal(park.shut, contractors.cannot_work)
+15. M_NLI(park.shut, contractors.in_park)
+16. Violate(park.shut, contractors.in_park)
+17. Landscaping_Work.type
+18. Landscaping_Work.contractors
+19. Landscaping_Work.park
+20. Park.landscaping_contractors
+21. Park.work_status
+22. Contractors.working_time
+23. Contractors.park_access
+24. Park.landscaping_status
+25. Park.contractor_activity
+26. Park.landscaping_duration
+27. Contractors.park_work
+28. Park.landscaping_effect
+29. Contractors.working_hours
+30. Park.closed_for_work
+
+Rules:
+1. Q[The, Park.status, Landscape_Contractors.in_park](Park.status == "shut" → Causal(Park.status, Landscape_Contractors.in_park))
+2. Q[The, Park.shut, Contractors.cannot_work](Park.shut == true → Causal(Park.shut, Contractors.cannot_work))
+3. Q[The, Park.landscaping_work, Landscape_Contractors.in_park](Park.landscaping_work == true → Causal(Park.landscaping_work, Landscape_Contractors.in_park))
+4. Q[The, Park.has_landscaping_work, Contractors.cannot_work](Park.has_landscaping_work == true → Causal(Park.has_landscaping_work, Contractors.cannot_work))
+5. Q[The, Park.is_open, Landscape_Contractors.in_park](Park.is_open == false → Causal(Park.is_open, Landscape_Contractors.in_park))
+6. Q[The, Contractors.status, Park.shut](Contractors.status == "cannot work" → Causal(Contractors.status, Park.shut))
+7. Q[The, Contractors.park_access, Park.shut](Contractors.park_access == false → Causal(Contractors.park_access, Park.shut))
+8. Q[The, Time.period, Landscape_Contractors.in_park](Time.period == "landscaping work" → Causal(Time.period, Landscape_Contractors.in_park))
+9. Q[The, Time.landscaping_work, Contractors.cannot_work](Time.landscaping_work == true → Causal(Time.landscaping_work, Contractors.cannot_work))
+10. Q[The, Time.park_open, Landscape_Contractors.in_park](Time.park_open == false → Causal(Time.park_open, Landscape_Contractors.in_park))
+11. Q[The, Park.landscaping_status, Contractors.cannot_work](Park.landscaping_status == "active" → Causal(Park.landscaping_status, Contractors.cannot_work))
+12. Q[The, Park.landscaping_duration, Landscape_Contractors.in_park](Park.landscaping_duration > 0 → Causal(Park.landscaping_duration, Landscape_Contractors.in_park))
+13. Q[The, Park.closed_for_work, Contractors.cannot_work](Park.closed_for_work == true → Causal(Park.closed_for_work, Contractors.cannot_work))
+14. Q[The, Park.work_status, Landscape_Contractors.in_park](Park.work_status == "shut" → Causal(Park.work_status, Landscape_Contractors.in_park))
+15. Q[The, Landscaping_Work.type, Contractors.cannot_work](Landscaping_Work.type == "landscaping" → Causal(Landscaping_Work.type, Contractors.cannot_work))
+16. Q[The, Landscaping_Work.contractors, Park.shut](Landscaping_Work.contractors == true → Causal(Landscaping_Work.contractors, Park.shut))
+17. Q[The, Landscaping_Work.park, Landscape_Contractors.in_park](Landscaping_Work.park == "shut" → Causal(Landscaping_Work.park, Landscape_Contractors.in_park))
+18. Q[The, Park.landscaping_contractors, Contractors.cannot_work](Park.landscaping_contractors == true → Causal(Park.landscaping_contractors, Contractors.cannot_work))
+19. Q[The, Contractors.working_time, Park.shut](Contractors.working_time == "during shut" → Causal(Contractors.working_time, Park.shut))
+20. Q[The, Contractors.working_hours, Landscape_Contractors.in_park](Contractors.working_hours == "not available" → Causal(Contractors.working_hours, Landscape_Contractors.in_park))
+21. Q[The, Park.landscaping_effect, Contractors.cannot_work](Park.landscaping_effect == "none" → Causal(Park.landscaping_effect, Contractors.cannot_work))
+22. Q[The, Park.contractor_activity, Landscape_Contractors.in_park](Park.contractor_activity == "none" → Causal(Park.contractor_activity, Landscape_Contractors.in_park))
+23. Q[The, Contractors.park_work, Park.shut](Contractors.park_work == false → Causal(Contractors.park_work, Park.shut))
+24. Q[The, Park.landscaping_work, Contractors.park_access](Park.landscaping_work == true → Causal(Park.landscaping_work, Contractors.park_access))
+25. Q[The, Park.status, Contractors.park_access](Park.status == "closed" → Causal(Park.status, Contractors.park_access))
+26. Q[The, Park.landscaping_work, Contractors.working_time](Park.landscaping_work == true → Causal(Park.landscaping_work, Contractors.working_time))
+27. Q[The, Park.is_open, Contractors.working_hours](Park.is_open == false → Causal(Park.is_open, Contractors.working_hours))
+28. Q[The, Park.landscaping_duration, Contractors.park_work](Park.landscaping_duration > 0 → Causal(Park.landscaping_duration, Contractors.park_work))
+29. Q[The, Park.landscaping_status, Contractors.working_time](Park.landscaping_status == "active" → Causal(Park.landscaping_status, Contractors.working_time))
+30. Q[The, Park.closed_for_work, Landscape_Contractors.in_park](Park.closed_for_work == true → Causal(Park.closed_for_work, Landscape_Contractors.in_park))

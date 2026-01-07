@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 422)
+S1: A girl is giving a dog a treat.
+S2: A girl gives the dog a treat.
+
+Predicates:
+1. Girl.giving
+2. Girl.gives
+3. Dog.treat
+4. Girl.has_dog
+5. Dog.receives
+6. Treat.is_given
+7. Girl.is_present
+8. Dog.is_present
+9. Action.is_ongoing
+10. Action.is_habitual
+11. Girl.performing_action
+12. Dog.enjoys_treat
+13. Treat.is_delicious
+14. Girl.is_interacting
+15. Dog.is_receptive
+16. Treat.is_available
+17. Girl.is_active
+18. Dog.is_focused
+19. Action.is_positive
+20. Girl.is_caring
+21. Dog.is_playful
+22. Treat.is_reward
+23. Girl.is_young
+24. Dog.is_friendly
+25. Action.is_repeated
+26. Girl.is_engaged
+27. Dog.is_expecting
+28. Treat.is_small
+29. Girl.is_smiling
+30. Dog.is_wagging_tail
+
+Rules:
+1. Q[girl, Girl.giving, Action.is_ongoing](Girl.giving == true → Negation(Girl.gives, Action.is_habitual))
+2. Q[girl, Girl.gives, Action.is_habitual](Girl.gives == true → Negation(Girl.giving, Action.is_ongoing))
+3. Q[dog, Dog.receives, Action.is_ongoing](Dog.receives == true → Negation(Dog.enjoys_treat, Action.is_habitual))
+4. Q[dog, Dog.enjoys_treat, Action.is_habitual](Dog.enjoys_treat == true → Negation(Dog.receives, Action.is_ongoing))
+5. Q[dog, Dog.treat, Treat.is_given](Dog.treat == true → Negation(Treat.is_available, Action.is_habitual))
+6. Q[dog, Dog.is_present, Girl.is_present](Dog.is_present == true → Negation(Girl.is_present, Action.is_habitual))
+7. Q[girl, Girl.is_interacting, Action.is_ongoing](Girl.is_interacting == true → Negation(Girl.is_engaged, Action.is_habitual))
+8. Q[girl, Girl.is_active, Action.is_habitual](Girl.is_active == true → Negation(Girl.is_caring, Action.is_ongoing))
+9. Q[dog, Dog.is_focused, Action.is_ongoing](Dog.is_focused == true → Negation(Dog.is_playful, Action.is_habitual))
+10. Q[dog, Dog.is_receptive, Treat.is_given](Dog.is_receptive == true → Negation(Treat.is_delicious, Action.is_habitual))
+11. Q[girl, Girl.performing_action, Action.is_ongoing](Girl.performing_action == true → Negation(Girl.gives, Action.is_habitual))
+12. Q[dog, Dog.is_expecting, Treat.is_reward](Dog.is_expecting == true → Negation(Treat.is_small, Action.is_habitual))
+13. Q[girl, Girl.is_young, Action.is_habitual](Girl.is_young == true → Negation(Girl.is_smiling, Action.is_ongoing))
+14. Q[dog, Dog.is_friendly, Action.is_habitual](Dog.is_friendly == true → Negation(Dog.is_wagging_tail, Action.is_ongoing))
+15. Q[girl, Girl.is_caring, Action.is_habitual](Girl.is_caring == true → Negation(Girl.is_active, Action.is_ongoing))
+16. Q[dog, Dog.is_playful, Action.is_habitual](Dog.is_playful == true → Negation(Dog.is_focused, Action.is_ongoing))
+17. Q[girl, Girl.is_smiling, Action.is_habitual](Girl.is_smiling == true → Negation(Girl.is_interacting, Action.is_ongoing))
+18. Q[dog, Dog.is_wagging_tail, Action.is_habitual](Dog.is_wagging_tail == true → Negation(Dog.is_receptive, Action.is_ongoing))
+19. Q[girl, Girl.has_dog, Dog.is_present](Girl.has_dog == true → Negation(Dog.is_friendly, Action.is_habitual))
+20. Q[dog, Dog.treat, Treat.is_reward](Dog.treat == true → Negation(Treat.is_delicious, Action.is_habitual))
+21. Q[girl, Girl.is_present, Action.is_ongoing](Girl.is_present == true → Negation(Girl.gives, Action.is_habitual))
+22. Q[dog, Dog.receives, Action.is_habitual](Dog.receives == true → Negation(Dog.is_focused, Action.is_ongoing))
+23. Q[girl, Girl.giving, Action.is_positive](Girl.giving == true → Negation(Girl.is_caring, Action.is_habitual))
+24. Q[dog, Dog.enjoys_treat, Action.is_positive](Dog.enjoys_treat == true → Negation(Dog.is_playful, Action.is_habitual))
+25. Q[girl, Girl.is_engaged, Action.is_ongoing](Girl.is_engaged == true → Negation(Girl.gives, Action.is_habitual))
+26. Q[dog, Dog.is_present, Action.is_positive](Dog.is_present == true → Negation(Dog.is_expecting, Action.is_habitual))
+27. Q[girl, Girl.is_young, Action.is_positive](Girl.is_young == true → Negation(Girl.is_smiling, Action.is_habitual))
+28. Q[dog, Dog.is_friendly, Action.is_positive](Dog.is_friendly == true → Negation(Dog.is_wagging_tail, Action.is_habitual))
+29. Q[girl, Girl.is_active, Action.is_positive](Girl.is_active == true → Negation(Girl.is_interacting, Action.is_habitual))
+30. Q[dog, Dog.is_playful, Action.is_positive](Dog.is_playful == true → Negation(Dog.is_focused, Action.is_habitual))

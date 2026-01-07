@@ -1,0 +1,133 @@
+Predicates:
+1. drink.temperature = "hot"
+2. drink.serving_size = "250ml"
+3. drink.caffeine_content = "95mg"
+4. drink.origin = "Colombia"
+5. drink.flavor = "bitter"
+6. drink.acidity_level = "medium"
+7. drink.sweetness = "low"
+8. drink.serving_method = "brewed"
+9. drink.is_organic = "true"
+10. drink.is_decaffeinated = "false"
+11. beverage.type = "coffee"
+12. beverage.brand = "Starbucks"
+13. beverage.price = "$4.50"
+14. beverage.availability = "in stock"
+15. beverage.popularity = "high"
+16. beverage.serving_temperature = "hot"
+17. beverage.cup_size = "medium"
+18. beverage.ingredients = "coffee, water"
+19. beverage.calories = "2"
+20. beverage.is_sugar_free = "true"
+21. "is served in".location = "mug"
+22. "is served in".temperature = "hot"
+23. "is served with".side_item = "sugar"
+24. "is served with".side_item = "cream"
+25. "is usually served black in".context = "traditional settings"
+26. "is usually served black in".context = "modern cafes"
+27. "is usually served black in".temperature = "hot"
+28. "is usually served black in".presentation = "plain"
+29. M_NLI(drink.temperature, beverage.serving_temperature)
+30. M_NLI(drink.origin, beverage.brand)
+31. T("The coffee is served hot.", "The coffee is served cold.", tau)
+32. T("This beverage is popular.", "This beverage is unpopular.", tau)
+33. tau(drink.flavor, beverage.flavor)
+34. violate(drink, beverage)
+35. Factual(drink.origin, beverage.brand)
+36. Content(drink.sweetness, beverage.sweetness)
+37. Causal(drink.is_organic, beverage.is_organic)
+38. Negation(drink.is_decaffeinated, beverage.is_decaffeinated)
+39. Relation(drink.serving_method, beverage.serving_method)
+40. Numeric(drink.caffeine_content, beverage.caffeine_content)
+41. Temporal(drink.serving_temperature, beverage.serving_temperature)
+42. "is served in".style = "traditional"
+43. "is served with".garnish = "none"
+44. "is served with".garnish = "whipped cream"
+45. drink.serving_time = "morning"
+46. beverage.serving_time = "evening"
+47. drink.cup_material = "ceramic"
+48. beverage.cup_material = "plastic"
+49. drink.is_fair_trade = "true"
+50. beverage.is_fair_trade = "false"
+51. M_NLI(drink.is_organic, beverage.is_organic)
+52. T("The coffee is served with cream.", "The coffee is served without cream.", tau)
+53. tau(drink.acidity_level, beverage.acidity_level)
+54. violate(beverage, drink)
+55. Factual(beverage.price, drink.price)
+56. Content(beverage.popularity, drink.popularity)
+57. Causal(beverage.availability, drink.availability)
+58. Negation(beverage.is_sugar_free, drink.is_sugar_free)
+59. Relation(beverage.cup_size, drink.serving_size)
+60. Numeric(beverage.calories, drink.calories)
+61. Temporal(beverage.serving_time, drink.serving_time)
+62. "is served in".container = "glass"
+63. "is served with".topping = "cinnamon"
+64. "is served with".topping = "nutmeg"
+65. drink.is_caffeinated = "true"
+66. beverage.is_caffeinated = "false"
+67. M_NLI(drink.is_caffeinated, beverage.is_caffeinated)
+68. T("The coffee is served in a mug.", "The coffee is served in a glass.", tau)
+69. tau(drink.temperature, beverage.temperature)
+70. violate(drink, beverage)
+71. Factual(drink.flavor, beverage.flavor)
+72. Content(drink.serving_size, beverage.serving_size)
+73. Causal(drink.is_fair_trade, beverage.is_fair_trade)
+74. Negation(drink.is_organic, beverage.is_organic)
+75. Relation(drink.cup_material, beverage.cup_material)
+76. Numeric(drink.caffeine_content, beverage.caffeine_content)
+77. Temporal(drink.serving_time, beverage.serving_time)
+78. "is served in".presentation_style = "minimalist"
+79. "is served with".accompaniment = "cookies"
+80. "is served with".accompaniment = "cake"
+81. drink.is_fair_trade = "false"
+82. beverage.is_fair_trade = "true"
+83. M_NLI(drink.is_fair_trade, beverage.is_fair_trade)
+84. T("The coffee is served with cookies.", "The coffee is served without cookies.", tau)
+85. tau(drink.sweetness, beverage.sweetness)
+86. violate(beverage, drink)
+87. Factual(beverage.availability, drink.availability)
+88. Content(beverage.serving_temperature, drink.serving_temperature)
+89. Causal(beverage.cup_size, drink.cup_size)
+90. Negation(beverage.is_sugar_free, drink.is_sugar_free)
+91. Relation(beverage.ingredients, drink.ingredients)
+92. Numeric(beverage.price, drink.price)
+93. Temporal(beverage.serving_time, drink.serving_time)
+94. "is served in".style = "modern"
+95. "is served with".garnish = "mint"
+96. "is served with".garnish = "lemon"
+97. drink.is_caffeinated = "false"
+98. beverage.is_caffeinated = "true"
+99. M_NLI(drink.is_caffeinated, beverage.is_caffeinated)
+100. T("The coffee is served in a ceramic mug.", "The coffee is served in a plastic cup.", tau)
+violate(x0, y0)
+
+Rules:
+1. Q[x0, y0](drink.temperature = "hot" ∧ beverage.serving_temperature = "cold" → violate(x0, y0))
+2. Q[x0, y0](drink.is_organic = "true" ∧ beverage.is_fair_trade = "false" → violate(x0, y0))
+3. Q[x0, y0](drink.caffeine_content = "95mg" ∧ beverage.is_caffeinated = "false" → violate(x0, y0))
+4. Q[x0, y0](drink.flavor = "bitter" ∧ beverage.ingredients = "water" → violate(x0, y0))
+5. Q[x0, y0](drink.serving_size = "250ml" ∧ beverage.cup_size = "large" → violate(x0, y0))
+6. Q[x0, y0](drink.origin = "Colombia" ∧ beverage.brand = "Starbucks" ∧ beverage.price = "$4.50" → violate(x0, y0))
+7. Q[x0, y0](drink.temperature = "hot" ∧ beverage.serving_temperature = "cold" ∧ beverage.popularity = "high" → violate(x0, y0))
+8. Q[x0, y0](drink.is_decaffeinated = "false" ∧ beverage.is_caffeinated = "false" ∧ drink.caffeine_content = "95mg" → violate(x0, y0))
+9. Q[x0, y0](drink.sweetness = "low" ∧ beverage.is_sugar_free = "false" ∧ beverage.calories = "2" → violate(x0, y0))
+10. Q[x0, y0](drink.acidity_level = "medium" ∧ beverage.serving_method = "brewed" ∧ beverage.availability = "in stock" → violate(x0, y0))
+11. Q[x0, y0](drink.temperature = "hot" ∧ beverage.serving_temperature = "hot" ∧ beverage.cup_material = "plastic" ∧ drink.cup_material = "ceramic" → violate(x0, y0))
+12. Q[x0, y0](drink.is_organic = "true" ∧ beverage.is_organic = "false" ∧ drink.flavor = "bitter" ∧ beverage.popularity = "high" → violate(x0, y0))
+13. Q[x0, y0](drink.serving_method = "brewed" ∧ beverage.serving_time = "evening" ∧ drink.serving_time = "morning" → violate(x0, y0))
+14. Q[x0, y0](drink.is_fair_trade = "true" ∧ beverage.is_fair_trade = "false" ∧ beverage.price = "$4.50" ∧ drink.origin = "Colombia" → violate(x0, y0))
+15. Q[x0, y0](drink.caffeine_content = "95mg" ∧ beverage.is_caffeinated = "true" ∧ drink.is_decaffeinated = "false" ∧ beverage.popularity = "low" → violate(x0, y0))
+16. Q[x0, y0](drink.flavor = "bitter" ∧ beverage.ingredients = "coffee, water" ∧ beverage.serving_size = "medium" ∧ drink.serving_size = "250ml" → violate(x0, y0))
+17. Q[x0, y0](drink.temperature = "hot" ∧ beverage.serving_temperature = "cold" ∧ beverage.availability = "out of stock" ∧ drink.is_organic = "true" → violate(x0, y0))
+18. Q[x0, y0](drink.sweetness = "low" ∧ beverage.is_sugar_free = "true" ∧ beverage.calories = "100" ∧ drink.acidity_level = "medium" → violate(x0, y0))
+19. Q[x0, y0](drink.origin = "Colombia" ∧ beverage.brand = "Starbucks" ∧ beverage.price = "$4.50" ∧ beverage.popularity = "low" ∧ drink.flavor = "bitter" → violate(x0, y0))
+20. Q[x0, y0](drink.serving_size = "250ml" ∧ beverage.cup_size = "large" ∧ beverage.serving_time = "evening" ∧ drink.serving_time = "morning" → violate(x0, y0))
+21. Q[x0, y0](drink.is_decaffeinated = "false" ∧ beverage.is_caffeinated = "true" ∧ drink.caffeine_content = "95mg" ∧ beverage.popularity = "high" ∧ drink.flavor = "bitter" → violate(x0, y0))
+22. Q[x0, y0](drink.temperature = "hot" ∧ beverage.serving_temperature = "cold" ∧ beverage.ingredients = "coffee, water" ∧ drink.is_fair_trade = "false" ∧ beverage.is_fair_trade = "true" → violate(x0, y0))
+23. Q[x0, y0](drink.sweetness = "low" ∧ beverage.is_sugar_free = "false" ∧ beverage.calories = "2" ∧ drink.acidity_level = "high" → violate(x0, y0))
+24. Q[x0, y0](drink.origin = "Colombia" ∧ beverage.brand = "Starbucks" ∧ beverage.price = "$4.50" ∧ beverage.availability = "out of stock" ∧ drink.flavor = "bitter" → violate(x0, y0))
+25. Q[x0, y0](drink.serving_method = "brewed" ∧ beverage.serving_time = "evening" ∧ drink.serving_time = "morning" ∧ beverage.popularity = "high" ∧ drink.is_organic = "false" → violate(x0, y0))
+26. Q[x0, y0](drink.is_fair_trade = "true" ∧ beverage.is_fair_trade = "false" ∧ beverage.price = "$4.50" ∧ drink.origin = "Colombia" ∧ drink.flavor = "bitter" → violate(x0, y0))
+27. Q[x0, y0](drink.caffeine_content = "95mg" ∧ beverage.is_caffeinated = "false" ∧ drink.is_decaffeinated = "false" ∧ beverage.popularity = "low" ∧ drink.flavor = "bitter" → violate(x0, y0))
+28. Q[x0, y0](drink.temperature = "hot" ∧ beverage.serving_temperature = "cold" ∧ beverage.availability = "in stock" ∧ drink.is_organic = "true" ∧ beverage.is_fair_trade = "false" → violate(x0, y0))
+29. Q[x0, y0](drink.sweetness = "low" ∧ beverage.is_sugar_free = "true" ∧ beverage.cal

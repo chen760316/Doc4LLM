@@ -1,0 +1,50 @@
+Predicates:
+sales report.label = "Sales"
+sales report.label != "Sales"
+sales report.name = "sales report"
+sales report.name != "sales report"
+sales report.status = "not increased"
+sales report.status != "not increased"
+during the year.label = "Time"
+during the year.label != "Time"
+during the year.name = "during the year"
+during the year.name != "during the year"
+M_NLI(sales report(label=Sales, name=sales report, status=not increased), during the year(label=Time, name=during the year))
+M_NLU(sales report(label=Sales, name=sales report, status=not increased), during the year(label=Time, name=during the year))
+M_TEM(sales report(label=Sales, name=sales report, status=not increased), during the year(label=Time, name=during the year))
+M_NLI(during the year(label=Time, name=during the year), sales report(label=Sales, name=sales report, status=not increased))
+M_NLU(during the year(label=Time, name=during the year), sales report(label=Sales, name=sales report, status=not increased))
+M_TEM(during the year(label=Time, name=during the year), sales report(label=Sales, name=sales report, status=not increased))
+S(The report showed a steady increase in sales throughout the year., "ris, France.
+The report showed a steady increase in sales throughout the year.
+")
+S(during the year, "during the year (label=Time name=during the year)")
+S(Sales have not increased at all during the year, according to the latest report., "Victoria.
+Sales have not increased at all during the year, according to the latest report.
+")
+T(during the year (label=Time name=during the year), Victoria.
+Sales have not increased at all during the year, according to the latest report.
+, No Contradiction)
+No Contradiction(during the year., Sales have not increased at all during the year, according to the latest report..)
+
+Rules:
+Q[x0, y0](sales report.label = "Sales" ∧ sales report.name = "sales report" → M_NLI(sales report(label=Sales, name=sales report, status=not increased), during the year(label=Time, name=during the year)))
+Q[x0, y0](during the year.label = "Time" ∧ during the year.name = "during the year" → M_NLU(during the year(label=Time, name=during the year), sales report(label=Sales, name=sales report, status=not increased)))
+Q[x0, y0](sales report.status = "not increased" ∧ during the year.label = "Time" → S(Sales have not increased at all during the year, according to the latest report.))
+Q[x0, y0](sales report.label != "Sales" ∧ during the year.name = "during the year" → sales report.status != "not increased")
+Q[x0, y0](sales report.name = "sales report" ∧ sales report.status = "not increased" ∧ during the year.label = "Time" → M_TEM(sales report(label=Sales, name=sales report, status=not increased), during the year(label=Time, name=during the year)))
+Q[x0, y0](sales report.label = "Sales" ∧ sales report.name = "sales report" ∧ during the year.label = "Time" → No Contradiction(during the year., Sales have not increased at all during the year, according to the latest report.))
+Q[x0, y0](during the year.label = "Time" ∧ during the year.name = "during the year" ∧ sales report.status != "not increased" → M_NLU(during the year(label=Time, name=during the year), sales report(label=Sales, name=sales report, status=not increased)))
+Q[x0, y0](sales report.label = "Sales" ∧ sales report.status = "not increased" ∧ during the year.name = "during the year" → S(The report showed a steady increase in sales throughout the year.))
+Q[x0, y0](sales report.label != "Sales" ∧ sales report.name != "sales report" ∧ during the year.label != "Time" → sales report.status != "not increased")
+Q[x0, y0](sales report.name = "sales report" ∧ during the year.label = "Time" ∧ during the year.name = "during the year" → M_TEM(during the year(label=Time, name=during the year), sales report(label=Sales, name=sales report, status=not increased)))
+Q[x0, y0](sales report.label = "Sales" ∧ sales report.name = "sales report" ∧ sales report.status = "not increased" ∧ during the year.label = "Time" → M_NLI(sales report(label=Sales, name=sales report, status=not increased), during the year(label=Time, name=during the year)))
+Q[x0, y0](during the year.label = "Time" ∧ during the year.name = "during the year" ∧ sales report.status != "not increased" ∧ sales report.name = "sales report" → No Contradiction(during the year., Sales have not increased at all during the year, according to the latest report.))
+Q[x0, y0](sales report.label != "Sales" ∧ sales report.name != "sales report" ∧ sales report.status = "not increased" ∧ during the year.label = "Time" → S(The report showed a steady increase in sales throughout the year.))
+Q[x0, y0](sales report.label = "Sales" ∧ sales report.name = "sales report" ∧ during the year.label = "Time" ∧ during the year.name = "during the year" → M_NLU(sales report(label=Sales, name=sales report, status=not increased), during the year(label=Time, name=during the year)))
+Q[x0, y0](sales report.status = "not increased" ∧ during the year.label = "Time" ∧ during the year.name = "during the year" ∧ sales report.name != "sales report" → sales report.label != "Sales")
+Q[x0, y0](sales report.label = "Sales" ∧ sales report.name = "sales report" ∧ sales report.status = "not increased" ∧ during the year.label = "Time" ∧ during the year.name = "during the year" → No Contradiction(during the year., Sales have not increased at all during the year, according to the latest report.))
+Q[x0, y0](sales report.label != "Sales" ∧ sales report.name != "sales report" ∧ sales report.status != "not increased" ∧ during the year.label != "Time" ∧ during the year.name != "during the year" → S(The report showed a steady increase in sales throughout the year.))
+Q[x0, y0](sales report.label = "Sales" ∧ sales report.status = "not increased" ∧ during the year.label = "Time" ∧ during the year.name = "during the year" ∧ sales report.name != "sales report" → M_TEM(sales report(label=Sales, name=sales report, status=not increased), during the year(label=Time, name=during the year)))
+Q[x0, y0](sales report.name = "sales report" ∧ sales report.status = "not increased" ∧ during the year.label = "Time" ∧ during the year.name = "during the year" ∧ sales report.label != "Sales" → M_NLI(during the year(label=Time, name=during the year), sales report(label=Sales, name=sales report, status=not increased)))
+Q[x0, y0](sales report.label = "Sales" ∧ sales report.name = "sales report" ∧ sales report.status != "not increased" ∧ during the year.label = "Time" ∧ during the year.name = "during the year" → S(Sales have not increased at all during the year, according to the latest report.))

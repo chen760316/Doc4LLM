@@ -1,0 +1,130 @@
+Predicates:
+1. Lords.occupation = "Landowners"
+2. Lords.status = "Noble"
+3. Peasants.location = "manors"
+4. Peasants.status = "free to roam"
+5. Lords.had_peasants = "no"
+6. Peasants.marriage_permission = "required"
+7. Peasants.rights = "few"
+8. Peasants.payment_status = "changed"
+9. Lords.freedom = "Free to roam as they pleased"
+10. Lords.source_domain = "Unknown"
+11. Peasants.source_domain = "Unknown"
+12. Lords.source_id = "Index_330"
+13. Peasants.source_id = "Index_330"
+14. Peasants.condition = "Had few rights"
+15. Peasants.experience = "change in rights"
+16. Lords.manor_type = "agricultural"
+17. Peasants.marriage_condition = "dependent on lord"
+18. Lords.power = "dominant"
+19. Peasants.status_change = "improved"
+20. Lords.control = "over peasants"
+21. Peasants.location_change = "none"
+22. Lords.influence = "high"
+23. Peasants.occupation = "farmers"
+24. Lords.relationship_with_peasants = "hierarchical"
+25. Peasants.rights_change = "increased"
+26. Lords.legal_status = "privileged"
+27. Peasants.legal_status = "subordinate"
+28. Lords.ability_to_grant_rights = "yes"
+29. Peasants.ability_to_own_land = "no"
+30. Lords.annual_income = "high"
+31. Peasants.annual_income = "low"
+32. Lords.maintenance_of_order = "required"
+33. Peasants.ability_to_move = "restricted"
+34. Lords.ownership = "land"
+35. Peasants.ownership = "none"
+36. Lords.heritage = "noble"
+37. Peasants.heritage = "common"
+38. Lords.legal_privileges = "numerous"
+39. Peasants.legal_privileges = "few"
+40. Lords.ability_to_tax = "yes"
+41. Peasants.tax_obligation = "mandatory"
+42. Lords.knowledge_of_peasants = "limited"
+43. Peasants.knowledge_of_lords = "minimal"
+44. Lords.ability_to_enforce_rules = "strong"
+45. Peasants.ability_to_rebel = "limited"
+46. Lords.annual_expenses = "high"
+47. Peasants.annual_expenses = "low"
+48. Lords.involvement_in_governance = "active"
+49. Peasants.involvement_in_governance = "passive"
+50. Lords.access_to_resources = "extensive"
+51. Peasants.access_to_resources = "scarce"
+52. Lords.ability_to_influence_decisions = "significant"
+53. Peasants.ability_to_influence_decisions = "minimal"
+54. Lords.legal_recourse = "available"
+55. Peasants.legal_recourse = "limited"
+56. Lords.ability_to_form_alliances = "yes"
+57. Peasants.ability_to_form_alliances = "no"
+58. Lords.ability_to_protect_peasants = "yes"
+59. Peasants.ability_to_protect_themselves = "no"
+60. Lords.ability_to_communicate = "effective"
+61. Peasants.ability_to_communicate = "restricted"
+62. Lords.ability_to_enforce_laws = "strong"
+63. Peasants.ability_to_follow_laws = "mandatory"
+64. Lords.ability_to_own_property = "yes"
+65. Peasants.ability_to_own_property = "no"
+66. Lords.ability_to_change_laws = "yes"
+67. Peasants.ability_to_change_laws = "no"
+68. Lords.ability_to_educate = "yes"
+69. Peasants.ability_to_educate = "limited"
+70. Lords.ability_to_invest = "high"
+71. Peasants.ability_to_invest = "low"
+72. Lords.ability_to_support_families = "yes"
+73. Peasants.ability_to_support_families = "challenging"
+74. Lords.ability_to_provide_jobs = "yes"
+75. Peasants.ability_to_find_jobs = "limited"
+76. Lords.ability_to_enforce_fines = "yes"
+77. Peasants.ability_to_pay_fines = "limited"
+78. Lords.ability_to_appeal = "yes"
+79. Peasants.ability_to_appeal = "no"
+80. Lords.ability_to_revoke_rights = "yes"
+81. Peasants.ability_to_defend_rights = "limited"
+82. Lords.ability_to_communicate_with_peasants = "effective"
+83. Peasants.ability_to_communicate_with_lords = "restricted"
+84. M_NLI(Lords.status, Peasants.status)
+85. T("Lords had no peasants working on their manors.", "Peasants had to ask their lord for permission to marry.", tau)
+86. tau(Lords.had_peasants, Peasants.marriage_permission)
+87. violate(Lords, Peasants)
+88. Factual(Lords, Peasants)
+89. Content(Lords, Peasants)
+90. Causal(Lords, Peasants)
+91. Negation(Lords, Peasants)
+92. Relation(Lords, Peasants)
+93. Numeric(Lords, Peasants)
+94. Temporal(Lords, Peasants)
+95. M_NLI(Peasants.rights, Lords.control)
+96. T("The peasants experienced a change in their rights and payment status.", "Lords had no peasants working on their manors.", tau)
+97. tau(Peasants.experience, Lords.had_peasants)
+98. violate(Peasants, Lords)
+99. Factual(Peasants, Lords)
+100. Content(Peasants, Lords)
+violate(x0, y0)
+
+Rules:
+1. Q[x0, y0](Lords.occupation = "Landowners" ∧ Lords.had_peasants = "no" → violate(x0, y0))
+2. Q[x0, y0](Lords.status = "Noble" ∧ Peasants.status = "free to roam" → violate(x0, y0))
+3. Q[x0, y0](Lords.power = "dominant" ∧ Peasants.ability_to_own_land = "no" → violate(x0, y0))
+4. Q[x0, y0](Lords.freedom = "Free to roam as they pleased" ∧ Peasants.ability_to_move = "restricted" → violate(x0, y0))
+5. Q[x0, y0](Lords.control = "over peasants" ∧ Peasants.status_change = "improved" → violate(x0, y0))
+6. Q[x0, y0](Lords.ability_to_grant_rights = "yes" ∧ Peasants.rights = "few" → violate(x0, y0))
+7. Q[x0, y0](Lords.annual_income = "high" ∧ Peasants.annual_income = "low" ∧ Lords.ability_to_provide_jobs = "yes" → violate(x0, y0))
+8. Q[x0, y0](Lords.legal_privileges = "numerous" ∧ Peasants.legal_privileges = "few" ∧ Lords.ability_to_enforce_rules = "strong" → violate(x0, y0))
+9. Q[x0, y0](Lords.ability_to_communicate = "effective" ∧ Peasants.ability_to_communicate = "restricted" ∧ Lords.knowledge_of_peasants = "limited" → violate(x0, y0))
+10. Q[x0, y0](Lords.relationship_with_peasants = "hierarchical" ∧ Peasants.ability_to_rebel = "limited" ∧ Lords.influence = "high" → violate(x0, y0))
+11. Q[x0, y0](Lords.had_peasants = "no" ∧ Peasants.marriage_permission = "required" ∧ Peasants.ability_to_form_alliances = "no" → violate(x0, y0))
+12. Q[x0, y0](Lords.ability_to_tax = "yes" ∧ Peasants.tax_obligation = "mandatory" ∧ Peasants.annual_expenses = "low" → violate(x0, y0))
+13. Q[x0, y0](Lords.ability_to_educate = "yes" ∧ Peasants.ability_to_educate = "limited" ∧ Lords.heritage = "noble" ∧ Peasants.heritage = "common" → violate(x0, y0))
+14. Q[x0, y0](Lords.ability_to_change_laws = "yes" ∧ Peasants.ability_to_change_laws = "no" ∧ Lords.legal_status = "privileged" ∧ Peasants.legal_status = "subordinate" → violate(x0, y0))
+15. Q[x0, y0](Lords.ability_to_support_families = "yes" ∧ Peasants.ability_to_support_families = "challenging" ∧ Lords.annual_income = "high" ∧ Peasants.annual_income = "low" → violate(x0, y0))
+16. Q[x0, y0](Lords.ability_to_protect_peasants = "yes" ∧ Peasants.ability_to_protect_themselves = "no" ∧ Lords.ability_to_enforce_laws = "strong" ∧ Peasants.ability_to_follow_laws = "mandatory" → violate(x0, y0))
+17. Q[x0, y0](Lords.ability_to_appeal = "yes" ∧ Peasants.ability_to_appeal = "no" ∧ Lords.ability_to_enforce_fines = "yes" ∧ Peasants.ability_to_pay_fines = "limited" → violate(x0, y0))
+18. Q[x0, y0](Lords.ability_to_influence_decisions = "significant" ∧ Peasants.ability_to_influence_decisions = "minimal" ∧ Lords.involvement_in_governance = "active" ∧ Peasants.involvement_in_governance = "passive" → violate(x0, y0))
+19. Q[x0, y0](Lords.ability_to_form_alliances = "yes" ∧ Peasants.ability_to_form_alliances = "no" ∧ Lords.ability_to_revoke_rights = "yes" ∧ Peasants.ability_to_defend_rights = "limited" → violate(x0, y0))
+20. Q[x0, y0](Lords.ability_to_invest = "high" ∧ Peasants.ability_to_invest = "low" ∧ Lords.access_to_resources = "extensive" ∧ Peasants.access_to_resources = "scarce" → violate(x0, y0))
+21. Q[x0, y0](Lords.source_domain = "Unknown" ∧ Peasants.source_domain = "Unknown" ∧ Lords.knowledge_of_peasants = "limited" ∧ Peasants.knowledge_of_lords = "minimal" → violate(x0, y0))
+22. Q[x0, y0](Lords.annual_expenses = "high" ∧ Peasants.annual_expenses = "low" ∧ Lords.ability_to_protect_peasants = "yes" ∧ Peasants.ability_to_protect_themselves = "no" → violate(x0, y0))
+23. Q[x0, y0](Lords.ability_to_enforce_rules = "strong" ∧ Peasants.ability_to_rebel = "limited" ∧ Lords.power = "dominant" ∧ Peasants.status = "free to roam" → violate(x0, y0))
+24. Q[x0, y0](Lords.occupation = "Landowners" ∧ Lords.status = "Noble" ∧ Peasants.occupation = "farmers" ∧ Peasants.status = "free to roam" → violate(x0, y0))
+25. Q[x0, y0](Lords.involvement_in_governance = "active" ∧ Peasants.involvement_in_governance = "passive" ∧ Lords.ability_to_change_laws = "yes" ∧ Peasants.ability_to_change_laws = "no" → violate(x0, y0))
+26. Q[x0, y0](Lords.ability_to_enforce_fines = "yes" ∧ Peasants.ability_to_pay_fines =

@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 1000)
+S1: I had not read it yet and could not figure out what was going on.
+S2: Well I hadn't read it and I couldn't figure out what was going on half the time so
+
+Predicates:
+1. Sentence1.read_status.not_read
+2. Sentence1.understanding_status.cannot_figure_out
+3. Sentence2.read_status.not_read
+4. Sentence2.understanding_status.cannot_figure_out_half_the_time
+5. Sentence1.sentiment.similar_to_sentence2
+6. Sentence1.sentiment.complete_inability
+7. Sentence2.sentiment.partial_ability
+8. Sentence1.ability_to_understand.is_zero
+9. Sentence2.ability_to_understand.is_partial
+10. M_NLI(S1, S2)
+11. Negation(Sentence1.read_status, Sentence2.read_status)
+12. Negation(Sentence1.understanding_status, Sentence2.understanding_status)
+13. violate(Sentence1.ability_to_understand, Sentence2.ability_to_understand)
+14. Sentence1.context.unclear
+15. Sentence2.context.partially_clear
+16. Sentence1.experience.reading.is_negative
+17. Sentence2.experience.reading.is_negative
+18. Sentence1.time_frame.not_read_yet
+19. Sentence2.time_frame.not_read
+20. Sentence1.understanding_time_frame.complete
+21. Sentence2.understanding_time_frame.partial
+22. Sentence1.experience.figuring_out.is_zero
+23. Sentence2.experience.figuring_out.is_partial
+24. Sentence1.emotional_response.frustration
+25. Sentence2.emotional_response.frustration
+26. Sentence1.knowledge_state.unknown
+27. Sentence2.knowledge_state.partially_known
+28. Sentence1.clarity_status.lacking
+29. Sentence2.clarity_status.partially_present
+30. M_NLI(Sentence1, Sentence2)
+
+Rules:
+1. Q[had, Sentence1.understanding_status.cannot_figure_out, Sentence2.understanding_status.cannot_figure_out_half_the_time](Sentence1.read_status.not_read → Negation(Sentence1.understanding_status, Sentence2.understanding_status))
+2. Q[had, Sentence1.ability_to_understand.is_zero, Sentence2.ability_to_understand.is_partial](Sentence1.read_status.not_read → Negation(Sentence1.ability_to_understand, Sentence2.ability_to_understand))
+3. Q[had, Sentence1.sentiment.complete_inability, Sentence2.sentiment.partial_ability](Sentence1.read_status.not_read → Negation(Sentence1.sentiment, Sentence2.sentiment))
+4. Q[had, Sentence1.experience.figuring_out.is_zero, Sentence2.experience.figuring_out.is_partial](Sentence1.read_status.not_read → Negation(Sentence1.experience.figuring_out, Sentence2.experience.figuring_out))
+5. Q[had, Sentence1.context.unclear, Sentence2.context.partially_clear](Sentence1.read_status.not_read → Negation(Sentence1.context, Sentence2.context))
+6. Q[had, Sentence1.knowledge_state.unknown, Sentence2.knowledge_state.partially_known](Sentence1.read_status.not_read → Negation(Sentence1.knowledge_state, Sentence2.knowledge_state))
+7. Q[had, Sentence1.clarity_status.lacking, Sentence2.clarity_status.partially_present](Sentence1.read_status.not_read → Negation(Sentence1.clarity_status, Sentence2.clarity_status))
+8. Q[had, Sentence1.emotional_response.frustration, Sentence2.emotional_response.frustration](Sentence1.read_status.not_read → Negation(Sentence1.emotional_response, Sentence2.emotional_response))
+9. Q[had, Sentence1.time_frame.not_read_yet, Sentence2.time_frame.not_read](Sentence1.read_status.not_read → Negation(Sentence1.time_frame, Sentence2.time_frame))
+10. Q[had, Sentence1.understanding_time_frame.complete, Sentence2.understanding_time_frame.partial](Sentence1.read_status.not_read → Negation(Sentence1.understanding_time_frame, Sentence2.understanding_time_frame))
+11. Q[had, Sentence1.experience.reading.is_negative, Sentence2.experience.reading.is_negative](Sentence1.read_status.not_read → Negation(Sentence1.experience.reading, Sentence2.experience.reading))
+12. Q[had, Sentence1.sentiment.similar_to_sentence2, Sentence2.sentiment.partial_ability](Sentence1.read_status.not_read → Negation(Sentence1.sentiment, Sentence2.sentiment))
+13. Q[had, Sentence1.understanding_status.cannot_figure_out, Sentence2.understanding_status.cannot_figure_out_half_the_time](Sentence1.ability_to_understand.is_zero → Negation(Sentence1.understanding_status, Sentence2.understanding_status))
+14. Q[had, Sentence1.ability_to_understand.is_zero, Sentence2.ability_to_understand.is_partial](Sentence1.ability_to_understand.is_zero → Negation(Sentence1.ability_to_understand, Sentence2.ability_to_understand))
+15. Q[had, Sentence1.sentiment.complete_inability, Sentence2.sentiment.partial_ability](Sentence1.ability_to_understand.is_zero → Negation(Sentence1.sentiment, Sentence2.sentiment))
+16. Q[had, Sentence1.experience.figuring_out.is_zero, Sentence2.experience.figuring_out.is_partial](Sentence1.ability_to_understand.is_zero → Negation(Sentence1.experience.figuring_out, Sentence2.experience.figuring_out))
+17. Q[had, Sentence1.context.unclear, Sentence2.context.partially_clear](Sentence1.ability_to_understand.is_zero → Negation(Sentence1.context, Sentence2.context))
+18. Q[had, Sentence1.knowledge_state.unknown, Sentence2.knowledge_state.partially_known](Sentence1.ability_to_understand.is_zero → Negation(Sentence1.knowledge_state, Sentence2.knowledge_state))
+19. Q[had, Sentence1.clarity_status.lacking, Sentence2.clarity_status.partially_present](Sentence1.ability_to_understand.is_zero → Negation(Sentence1.clarity_status, Sentence2.clarity_status))
+20. Q[had, Sentence1.emotional_response.frustration, Sentence2.emotional_response.frustration](Sentence1.ability_to_understand.is_zero → Negation(Sentence1.emotional_response, Sentence2.emotional_response))
+21. Q[had, Sentence1.time_frame.not_read_yet, Sentence2.time_frame.not_read](Sentence1.ability_to_understand.is_zero → Negation(Sentence1.time_frame, Sentence2.time_frame))
+22. Q[had, Sentence1.understanding_time_frame.complete, Sentence2.understanding_time_frame.partial](Sentence1.ability_to_understand.is_zero → Negation(Sentence1.understanding_time_frame, Sentence2.understanding_time_frame))
+23. Q[had, Sentence1.experience.reading.is_negative, Sentence2.experience.reading.is_negative](Sentence1.ability_to_understand.is_zero → Negation(Sentence1.experience.reading, Sentence2.experience.reading))
+24. Q[had, Sentence1.read_status.not_read, Sentence2.read_status.not_read](Sentence1.understanding_status.cannot_figure_out → Negation(Sentence1.read_status, Sentence2.read_status))
+25. Q[had, Sentence1.understanding_status.cannot_figure_out, Sentence2.understanding_status.cannot_figure_out_half_the_time](Sentence1.understanding_status.cannot_figure_out → Negation(Sentence1.understanding_status, Sentence2.understanding_status))
+26. Q[had, Sentence1.ability_to_understand.is_zero, Sentence2.ability_to_understand.is_partial](Sentence1.understanding_status.cannot_figure_out → Negation(Sentence1.ability_to_understand, Sentence2.ability_to_understand))
+27. Q[had, Sentence1.sentiment.complete_inability, Sentence2.sentiment.partial_ability](Sentence1.understanding_status.cannot_figure_out → Negation(Sentence1.sentiment, Sentence2.sentiment))
+28. Q[had, Sentence1.experience.figuring_out.is_zero, Sentence2.experience.figuring_out.is_partial](Sentence1.understanding_status.cannot_figure_out → Negation(Sentence1.experience.figuring_out, Sentence2.experience.figuring_out))
+29. Q[had, Sentence1.context.unclear, Sentence2.context.partially_clear](Sentence1.understanding_status.cannot_figure_out → Negation(Sentence1.context, Sentence2.context))
+30. Q[had, Sentence1.knowledge_state.unknown, Sentence2.knowledge_state.partially_known](Sentence1.understanding_status.cannot_figure_out → Negation(Sentence1.knowledge_state, Sentence2.knowledge_state))

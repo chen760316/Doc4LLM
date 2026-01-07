@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 1676)
+S1: Two men are cleaning the windows of a skyscraper.
+S2: Two men cleaning the outside windows of a yacht.
+
+Predicates:
+1. Men1.location
+2. Men2.location
+3. Skyscraper.type
+4. Yacht.type
+5. Men1.activity
+6. Men2.activity
+7. Windows1.location
+8. Windows2.location
+9. Cleaning.activity
+10. Outside.location
+11. Skyscraper.height
+12. Yacht.size
+13. Men1.role
+14. Men2.role
+15. Cleaning1.target
+16. Cleaning2.target
+17. M_NLI(S1, S2)
+18. Relation(Men1, Skyscraper)
+19. Relation(Men2, Yacht)
+20. violate(Men1, Men2)
+21. Windows1.type
+22. Windows2.type
+23. Cleaning1.method
+24. Cleaning2.method
+25. Skyscraper.material
+26. Yacht.material
+27. Men1.tool
+28. Men2.tool
+29. Cleaning1.time
+30. Cleaning2.time
+
+Rules:
+1. Q[Two, Men1.activity, Cleaning1.target](Men1.activity == "cleaning" ∧ Cleaning1.target == "windows of skyscraper" → Relation(Men1, Skyscraper))
+2. Q[Two, Men2.activity, Cleaning2.target](Men2.activity == "cleaning" ∧ Cleaning2.target == "windows of yacht" → Relation(Men2, Yacht))
+3. Q[Two, Men1.location, Windows1.location](Men1.location == "skyscraper" ∧ Windows1.location == "skyscraper" → Relation(Men1, Windows1))
+4. Q[Two, Men2.location, Windows2.location](Men2.location == "yacht" ∧ Windows2.location == "yacht" → Relation(Men2, Windows2))
+5. Q[Two, Skyscraper.type, Yacht.type](Skyscraper.type == "building" ∧ Yacht.type == "boat" → violate(Men1, Men2))
+6. Q[Two, Skyscraper.height, Yacht.size](Skyscraper.height > 0 ∧ Yacht.size > 0 → violate(Men1, Men2))
+7. Q[Two, Cleaning1.method, Cleaning2.method](Cleaning1.method == "window cleaning" ∧ Cleaning2.method == "window cleaning" → Relation(Cleaning1, Cleaning2))
+8. Q[Two, Windows1.type, Windows2.type](Windows1.type == "glass" ∧ Windows2.type == "glass" → violate(Men1, Men2))
+9. Q[Two, Men1.role, Men2.role](Men1.role == "worker" ∧ Men2.role == "worker" → violate(Men1, Men2))
+10. Q[Two, Cleaning1.time, Cleaning2.time](Cleaning1.time == "day" ∧ Cleaning2.time == "day" → violate(Men1, Men2))
+11. Q[Two, Men1.tool, Men2.tool](Men1.tool == "squeegee" ∧ Men2.tool == "squeegee" → violate(Men1, Men2))
+12. Q[Two, Outside.location, Windows1.location](Outside.location == "exterior" ∧ Windows1.location == "skyscraper" → Relation(Outside, Windows1))
+13. Q[Two, Outside.location, Windows2.location](Outside.location == "exterior" ∧ Windows2.location == "yacht" → Relation(Outside, Windows2))
+14. Q[Two, Cleaning1.target, Cleaning2.target](Cleaning1.target == "windows of skyscraper" ∧ Cleaning2.target == "windows of yacht" → violate(Men1, Men2))
+15. Q[Two, Men1.location, Men2.location](Men1.location == "skyscraper" ∧ Men2.location == "yacht" → violate(Men1, Men2))
+16. Q[Two, Windows1.location, Windows2.location](Windows1.location == "skyscraper" ∧ Windows2.location == "yacht" → violate(Men1, Men2))
+17. Q[Two, Cleaning1.activity, Cleaning2.activity](Cleaning1.activity == "cleaning" ∧ Cleaning2.activity == "cleaning" → Relation(Cleaning1, Cleaning2))
+18. Q[Two, Men1.activity, Men2.activity](Men1.activity == "cleaning" ∧ Men2.activity == "cleaning" → violate(Men1, Men2))
+19. Q[Two, Skyscraper.material, Yacht.material](Skyscraper.material == "glass" ∧ Yacht.material == "fiberglass" → violate(Men1, Men2))
+20. Q[Two, Cleaning1.target, Windows1.location](Cleaning1.target == "windows of skyscraper" ∧ Windows1.location == "skyscraper" → Relation(Cleaning1, Windows1))
+21. Q[Two, Cleaning2.target, Windows2.location](Cleaning2.target == "windows of yacht" ∧ Windows2.location == "yacht" → Relation(Cleaning2, Windows2))
+22. Q[Two, Men1.location, Cleaning1.target](Men1.location == "skyscraper" ∧ Cleaning1.target == "windows of skyscraper" → Relation(Men1, Cleaning1))
+23. Q[Two, Men2.location, Cleaning2.target](Men2.location == "yacht" ∧ Cleaning2.target == "windows of yacht" → Relation(Men2, Cleaning2))
+24. Q[Two, Skyscraper.type, Cleaning1.target](Skyscraper.type == "building" ∧ Cleaning1.target == "windows of skyscraper" → Relation(Skyscraper, Cleaning1))
+25. Q[Two, Yacht.type, Cleaning2.target](Yacht.type == "boat" ∧ Cleaning2.target == "windows of yacht" → Relation(Yacht, Cleaning2))
+26. Q[Two, Men1.activity, Cleaning1.method](Men1.activity == "cleaning" ∧ Cleaning1.method == "window cleaning" → Relation(Men1, Cleaning1))
+27. Q[Two, Men2.activity, Cleaning2.method](Men2.activity == "cleaning" ∧ Cleaning2.method == "window cleaning" → Relation(Men2, Cleaning2))
+28. Q[Two, Windows1.location, Men1.location](Windows1.location == "skyscraper" ∧ Men1.location == "skyscraper" → Relation(Windows1, Men1))
+29. Q[Two, Windows2.location, Men2.location](Windows2.location == "yacht" ∧ Men2.location == "yacht" → Relation(Windows2, Men2))
+30. Q[Two, Cleaning1.target, Cleaning2.target](Cleaning1.target == "windows of skyscraper" ∧ Cleaning2.target == "windows of yacht" → violate(Men1, Men2))

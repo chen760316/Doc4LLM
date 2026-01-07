@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 208)
+S1: He owns 8 cats.
+S2: Brendan has 3 cats.
+
+Predicates:
+1. Brendan.owns_cats
+2. Brendan.cat_count
+3. Brendan.has_cats
+4. He.owns_cats
+5. He.cat_count
+6. He.has_cats
+7. owns.cat_count
+8. has.cat_count
+9. cat_count.conflict
+10. M_NLI(S1, S2)
+11. Numeric(8, 3)
+12. Numeric(3, 8)
+13. violate(8, 3)
+14. violate(3, 8)
+15. owns(Brendan, cats)
+16. owns(He, cats)
+17. cat_count(Brendan, 3)
+18. cat_count(He, 8)
+19. conflict(Brendan, He)
+20. conflict(cat_count(Brendan), cat_count(He))
+21. relationship(owns, Brendan)
+22. relationship(owns, He)
+23. relationship(has, Brendan)
+24. relationship(has, He)
+25. Brendan.owns(3, cats)
+26. He.owns(8, cats)
+27. cat_count(Brendan) != cat_count(He)
+28. Brendan.has(3, cats)
+29. He.has(8, cats)
+30. cat_count(Brendan) < cat_count(He)
+
+Rules:
+1. Q[owns, Brendan.owns_cats, He.owns_cats](Brendan.owns_cats == 3 ∧ He.owns_cats == 8 → Numeric(3, 8))
+2. Q[owns, Brendan.cat_count, He.cat_count](Brendan.cat_count == 3 ∧ He.cat_count == 8 → Numeric(3, 8))
+3. Q[owns, Brendan.has_cats, He.has_cats](Brendan.has_cats == 3 ∧ He.has_cats == 8 → Numeric(3, 8))
+4. Q[owns, cat_count(Brendan), cat_count(He)](cat_count(Brendan) == 3 ∧ cat_count(He) == 8 → Numeric(3, 8))
+5. Q[owns, Brendan.owns_cats, He.cat_count](Brendan.owns_cats == 3 ∧ He.cat_count == 8 → Numeric(3, 8))
+6. Q[owns, He.cat_count, Brendan.cat_count](He.cat_count == 8 ∧ Brendan.cat_count == 3 → Numeric(8, 3))
+7. Q[has, Brendan.has_cats, He.has_cats](Brendan.has_cats == 3 ∧ He.has_cats == 8 → Numeric(3, 8))
+8. Q[has, Brendan.cat_count, He.cat_count](Brendan.cat_count == 3 ∧ He.cat_count == 8 → Numeric(3, 8))
+9. Q[has, He.owns_cats, Brendan.owns_cats](He.owns_cats == 8 ∧ Brendan.owns_cats == 3 → Numeric(8, 3))
+10. Q[has, He.cat_count, Brendan.cat_count](He.cat_count == 8 ∧ Brendan.cat_count == 3 → Numeric(8, 3))
+11. Q[cat_count.conflict, Brendan.cat_count, He.cat_count](Brendan.cat_count == 3 ∧ He.cat_count == 8 → Numeric(3, 8))
+12. Q[cat_count.conflict, He.cat_count, Brendan.cat_count](He.cat_count == 8 ∧ Brendan.cat_count == 3 → Numeric(8, 3))
+13. Q[conflict, Brendan.owns_cats, He.owns_cats](Brendan.owns_cats == 3 ∧ He.owns_cats == 8 → Numeric(3, 8))
+14. Q[conflict, Brendan.cat_count, He.cat_count](Brendan.cat_count == 3 ∧ He.cat_count == 8 → Numeric(3, 8))
+15. Q[conflict, He.cat_count, Brendan.cat_count](He.cat_count == 8 ∧ Brendan.cat_count == 3 → Numeric(8, 3))
+16. Q[cat_count(Brendan), cat_count(He)](cat_count(Brendan) == 3 ∧ cat_count(He) == 8 → Numeric(3, 8))
+17. Q[cat_count(He), cat_count(Brendan)](cat_count(He) == 8 ∧ cat_count(Brendan) == 3 → Numeric(8, 3))
+18. Q[violate, Brendan.cat_count, He.cat_count](Brendan.cat_count == 3 ∧ He.cat_count == 8 → Numeric(3, 8))
+19. Q[violate, He.cat_count, Brendan.cat_count](He.cat_count == 8 ∧ Brendan.cat_count == 3 → Numeric(8, 3))
+20. Q[relationship(owns), Brendan.owns_cats, He.owns_cats](relationship(owns, Brendan) ∧ relationship(owns, He) ∧ Brendan.owns_cats == 3 ∧ He.owns_cats == 8 → Numeric(3, 8))
+21. Q[relationship(has), Brendan.has_cats, He.has_cats](relationship(has, Brendan) ∧ relationship(has, He) ∧ Brendan.has_cats == 3 ∧ He.has_cats == 8 → Numeric(3, 8))
+22. Q[cat_count(Brendan), cat_count(He)](cat_count(Brendan) != cat_count(He) → Numeric(3, 8))
+23. Q[cat_count(He), cat_count(Brendan)](cat_count(He) != cat_count(Brendan) → Numeric(8, 3))
+24. Q[conflict(cat_count(Brendan), cat_count(He)), Brendan.cat_count, He.cat_count](conflict(cat_count(Brendan), cat_count(He)) ∧ Brendan.cat_count == 3 ∧ He.cat_count == 8 → Numeric(3, 8))
+25. Q[conflict(cat_count(He), cat_count(Brendan)), He.cat_count, Brendan.cat_count](conflict(cat_count(He), cat_count(Brendan)) ∧ He.cat_count == 8 ∧ Brendan.cat_count == 3 → Numeric(8, 3))
+26. Q[cat_count(Brendan) < cat_count(He), Brendan.cat_count, He.cat_count](cat_count(Brendan) == 3 ∧ cat_count(He) == 8 → Numeric(3, 8))
+27. Q[cat_count(He) < cat_count(Brendan), He.cat_count, Brendan.cat_count](cat_count(He) == 8 ∧ cat_count(Brendan) == 3 → Numeric(8, 3))
+28. Q[cat_count(Brendan), cat_count(He)](cat_count(Brendan) < cat_count(He) → Numeric(3, 8))
+29. Q[cat_count(He), cat_count(Brendan)](cat_count(He) < cat_count(Brendan) → Numeric(8, 3))
+30. Q[violate(Brendan.cat_count, He.cat_count), Brendan.cat_count, He.cat_count](violate(3, 8) → Numeric(3, 8))

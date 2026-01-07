@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 1642)
+S1: Three construction men are working.
+S2: The men are sleeping.
+
+Predicates:
+1. ConstructionMen.status
+2. ConstructionMen.activity
+3. ConstructionMen.number
+4. Men.status
+5. Men.activity
+6. Men.number
+7. WorkingMen.state
+8. SleepingMen.state
+9. WorkingMen.count
+10. SleepingMen.count
+11. Activity.type
+12. Activity.duration
+13. Activity.intensity
+14. Time.current
+15. Time.past
+16. Time.future
+17. Location.worksite
+18. Location.restingPlace
+19. Relationship.work
+20. Relationship.sleep
+21. M_NLI(S1, S2)
+22. Factual(ConstructionMen, Working)
+23. Factual(Men, Sleeping)
+24. violate(WorkingMen, SleepingMen)
+25. ConstructionMen.location
+26. Men.location
+27. WorkingMen.time
+28. SleepingMen.time
+29. Activity.conflict
+30. Activity.simultaneity
+
+Rules:
+1. Q[Three, ConstructionMen.status, Men.status](ConstructionMen.number == 3 ∧ Men.status == "active" → Factual(ConstructionMen, Working))
+2. Q[Three, ConstructionMen.activity, Men.activity](ConstructionMen.number == 3 ∧ ConstructionMen.activity == "working" → Factual(Men, Sleeping))
+3. Q[Three, ConstructionMen.number, Men.number](ConstructionMen.number == 3 ∧ Men.number == 3 → Factual(ConstructionMen, Working))
+4. Q[Three, WorkingMen.state, SleepingMen.state](WorkingMen.count == 3 ∧ SleepingMen.count == 3 → Factual(ConstructionMen, Working))
+5. Q[Three, Men.activity, SleepingMen.state](Men.activity == "working" ∧ SleepingMen.state == "asleep" → Factual(Men, Sleeping))
+6. Q[Three, ConstructionMen.activity, SleepingMen.state](ConstructionMen.activity == "working" ∧ SleepingMen.state == "asleep" → Factual(ConstructionMen, Working))
+7. Q[Three, Men.status, SleepingMen.state](Men.status == "active" ∧ SleepingMen.state == "asleep" → Factual(Men, Sleeping))
+8. Q[Three, WorkingMen.state, SleepingMen.state](WorkingMen.state == "working" ∧ SleepingMen.state == "asleep" → Factual(ConstructionMen, Working))
+9. Q[Three, Activity.type, Activity.type](Activity.type == "work" ∧ Activity.type == "sleep" → Factual(Men, Sleeping))
+10. Q[Three, ConstructionMen.status, Men.activity](ConstructionMen.status == "active" ∧ Men.activity == "sleeping" → Factual(ConstructionMen, Working))
+11. Q[Three, ConstructionMen.activity, Men.activity](ConstructionMen.activity == "working" ∧ Men.activity == "sleeping" → Factual(Men, Sleeping))
+12. Q[Three, WorkingMen.count, SleepingMen.count](WorkingMen.count == 3 ∧ SleepingMen.count == 3 → Factual(ConstructionMen, Working))
+13. Q[Three, Men.number, SleepingMen.count](Men.number == 3 ∧ SleepingMen.count == 3 → Factual(Men, Sleeping))
+14. Q[Three, ConstructionMen.number, Men.number](ConstructionMen.number == 3 ∧ Men.number == 3 → Factual(ConstructionMen, Working))
+15. Q[Three, Men.activity, SleepingMen.time](Men.activity == "working" ∧ SleepingMen.time == "current" → Factual(Men, Sleeping))
+16. Q[Three, WorkingMen.state, SleepingMen.time](WorkingMen.state == "working" ∧ SleepingMen.time == "current" → Factual(ConstructionMen, Working))
+17. Q[Three, Activity.simultaneity, Activity.conflict](Activity.simultaneity == "false" ∧ Activity.conflict == "true" → Factual(Men, Sleeping))
+18. Q[Three, ConstructionMen.activity, Activity.duration](ConstructionMen.activity == "working" ∧ Activity.duration == "current" → Factual(ConstructionMen, Working))
+19. Q[Three, Men.status, Activity.intensity](Men.status == "active" ∧ Activity.intensity == "high" → Factual(Men, Sleeping))
+20. Q[Three, ConstructionMen.status, Activity.intensity](ConstructionMen.status == "active" ∧ Activity.intensity == "high" → Factual(ConstructionMen, Working))
+21. Q[Three, Men.activity, Activity.duration](Men.activity == "working" ∧ Activity.duration == "current" → Factual(Men, Sleeping))
+22. Q[Three, WorkingMen.state, Activity.intensity](WorkingMen.state == "working" ∧ Activity.intensity == "high" → Factual(ConstructionMen, Working))
+23. Q[Three, SleepingMen.state, Activity.type](SleepingMen.state == "asleep" ∧ Activity.type == "work" → Factual(Men, Sleeping))
+24. Q[Three, ConstructionMen.activity, Activity.type](ConstructionMen.activity == "working" ∧ Activity.type == "sleep" → Factual(ConstructionMen, Working))
+25. Q[Three, Men.status, Activity.type](Men.status == "active" ∧ Activity.type == "sleep" → Factual(Men, Sleeping))
+26. Q[Three, WorkingMen.count, SleepingMen.state](WorkingMen.count == 3 ∧ SleepingMen.state == "asleep" → Factual(ConstructionMen, Working))
+27. Q[Three, Men.number, Activity.type](Men.number == 3 ∧ Activity.type == "sleep" → Factual(Men, Sleeping))
+28. Q[Three, ConstructionMen.number, Activity.type](ConstructionMen.number == 3 ∧ Activity.type == "sleep" → Factual(ConstructionMen, Working))
+29. Q[Three, Men.activity, Activity.intensity](Men.activity == "working" ∧ Activity.intensity == "low" → Factual(Men, Sleeping))
+30. Q[Three, WorkingMen.state, Activity.duration](WorkingMen.state == "working" ∧ Activity.duration == "current" → Factual(ConstructionMen, Working))

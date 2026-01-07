@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 241)
+S1: A federal judge struck down the statute as unconstitutional on December 20, and the state then asked the high court to block - at least temporarily - enforcement of the judge's ruling.
+S2: Any action from the high court on the enforcement question would be temporary and not offer the final word on the constitutionality of the state's ban on same-sex marriage.
+
+Predicates:
+1. FederalJudge.ruling_status
+2. FederalJudge.date_of_ruling
+3. State.request_high_court
+4. HighCourt.enforcement_question
+5. HighCourt.temporal_action
+6. HighCourt.final_word
+7. State.ban_on_same_sex_marriage
+8. Statute.constitutionality
+9. Judge.decision_type
+10. Judge.judicial_level
+11. HighCourt.judicial_level
+12. State.legal_action
+13. Enforcement.question_status
+14. Ruling.temporary_effect
+15. Ruling.finality_status
+16. HighCourt.decision_type
+17. State.ban.legal_status
+18. FederalJudge.judicial_branch
+19. HighCourt.judicial_branch
+20. Ruling.impact_on_state
+21. State.legal_challenge
+22. HighCourt.judicial_review
+23. Ruling.uncertainty_level
+24. Statute.enforcement_status
+25. Judge.decision_date
+26. HighCourt.judgment_type
+27. State.legal_precedent
+28. Ruling.legal_implications
+29. HighCourt.temporary_injunction
+30. FederalJudge.case_number
+
+Rules:
+1. Q[federal, FederalJudge.ruling_status == "unconstitutional" → Causal(federal, State.request_high_court)]
+2. Q[federal, FederalJudge.date_of_ruling == "December 20" → Causal(federal, HighCourt.enforcement_question)]
+3. Q[federal, State.request_high_court == true → Causal(federal, HighCourt.temporal_action)]
+4. Q[federal, HighCourt.enforcement_question == true → Causal(federal, HighCourt.final_word)]
+5. Q[federal, State.ban_on_same_sex_marriage == true → Causal(federal, Statute.constitutionality)]
+6. Q[federal, Judge.decision_type == "ruling" → Causal(federal, Ruling.temporary_effect)]
+7. Q[federal, Judge.judicial_level == "federal" → Causal(federal, HighCourt.judicial_level)]
+8. Q[federal, HighCourt.judicial_level == "supreme" → Causal(federal, State.legal_action)]
+9. Q[federal, Enforcement.question_status == "pending" → Causal(federal, Ruling.finality_status)]
+10. Q[federal, Ruling.temporary_effect == true → Causal(federal, HighCourt.decision_type)]
+11. Q[federal, State.ban.legal_status == "challenged" → Causal(federal, HighCourt.judicial_review)]
+12. Q[federal, Ruling.uncertainty_level == "high" → Causal(federal, HighCourt.temporary_injunction)]
+13. Q[federal, Statute.enforcement_status == "blocked" → Causal(federal, Ruling.legal_implications)]
+14. Q[federal, Judge.decision_date == "December 20" → Causal(federal, State.legal_challenge)]
+15. Q[federal, HighCourt.judgment_type == "temporary" → Causal(federal, Ruling.impact_on_state)]
+16. Q[federal, State.request_high_court == true → Causal(federal, HighCourt.temporal_action)]
+17. Q[federal, HighCourt.final_word == "not provided" → Causal(federal, Ruling.uncertainty_level)]
+18. Q[federal, State.ban_on_same_sex_marriage == true → Causal(federal, Ruling.finality_status)]
+19. Q[federal, Ruling.temporary_effect == true → Causal(federal, HighCourt.judicial_branch)]
+20. Q[federal, HighCourt.judicial_branch == "supreme" → Causal(federal, State.legal_precedent)]
+21. Q[federal, FederalJudge.ruling_status == "unconstitutional" → Causal(federal, Ruling.impact_on_state)]
+22. Q[federal, HighCourt.enforcement_question == true → Causal(federal, Ruling.legal_implications)]
+23. Q[federal, Ruling.finality_status == "pending" → Causal(federal, HighCourt.temporary_injunction)]
+24. Q[federal, State.legal_action == true → Causal(federal, HighCourt.judicial_review)]
+25. Q[federal, HighCourt.temporal_action == true → Causal(federal, Ruling.uncertainty_level)]
+26. Q[federal, Judge.decision_type == "ruling" → Causal(federal, State.ban_on_same_sex_marriage)]
+27. Q[federal, HighCourt.judicial_review == true → Causal(federal, Ruling.finality_status)]
+28. Q[federal, Ruling.impact_on_state == "significant" → Causal(federal, HighCourt.judgment_type)]
+29. Q[federal, State.ban.legal_status == "uncertain" → Causal(federal, Ruling.temporary_effect)]
+30. Q[federal, HighCourt.temporary_injunction == true → Causal(federal, Ruling.legal_implications)]

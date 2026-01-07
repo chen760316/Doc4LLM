@@ -1,0 +1,132 @@
+Predicates:
+1. entity.allocated_amount = "6 million"
+2. entity.hiring_status = "no longer hired"
+3. entity.funding_status = "received no funding"
+4. entity.funding_source = "provided funding to"
+5. edge.allocated_for = "project development"
+6. edge.hiring_decision = "terminated employment"
+7. edge.funding_received = "none"
+8. edge.funding_provided = "to research initiative"
+9. M_NLI(entity.allocated_amount, entity.hiring_status)
+10. M_NLI(entity.funding_status, entity.funding_source)
+11. T("allocated 6 million for project development", "received no funding", tau)
+12. T("no longer hired", "still employed", tau)
+13. tau(entity.allocated_amount, entity.funding_status)
+14. tau(entity.hiring_status, entity.funding_source)
+15. violate(entity.allocated_amount, entity.hiring_status)
+16. Factual(entity.allocated_amount, entity.hiring_status)
+17. Causal(entity.funding_status, entity.hiring_status)
+18. Numeric(entity.allocated_amount, entity.funding_status)
+19. Temporal(entity.hiring_status, entity.funding_source)
+20. Content(entity.allocated_amount, entity.funding_source)
+21. Relation(entity.hiring_status, entity.funding_status)
+22. edge.allocated_for = "marketing campaign"
+23. edge.hiring_decision = "reinstated position"
+24. edge.funding_received = "partial"
+25. edge.funding_provided = "to community project"
+26. M_NLI(entity.hiring_status, entity.funding_received)
+27. M_NLI(entity.allocated_amount, entity.funding_provided)
+28. T("allocated 6 million for marketing campaign", "received no funding", tau)
+29. T("no longer hired", "hired again", tau)
+30. tau(entity.allocated_amount, entity.hiring_decision)
+31. tau(entity.funding_received, entity.funding_provided)
+32. violate(entity.hiring_status, entity.funding_received)
+33. Factual(entity.hiring_status, entity.funding_received)
+34. Causal(entity.allocated_amount, entity.hiring_decision)
+35. Numeric(entity.funding_received, entity.funding_provided)
+36. Temporal(entity.hiring_decision, entity.allocated_amount)
+37. Content(entity.funding_status, entity.hiring_status)
+38. Relation(entity.funding_provided, entity.hiring_status)
+39. edge.allocated_for = "infrastructure improvement"
+40. edge.hiring_decision = "contract terminated"
+41. edge.funding_received = "full amount"
+42. edge.funding_provided = "to educational program"
+43. M_NLI(entity.funding_status, entity.allocated_for)
+44. M_NLI(entity.hiring_decision, entity.funding_received)
+45. T("allocated 6 million for infrastructure improvement", "received no funding", tau)
+46. T("no longer hired", "still working", tau)
+47. tau(entity.funding_provided, entity.hiring_decision)
+48. tau(entity.allocated_amount, entity.funding_status)
+49. violate(entity.funding_status, entity.hiring_decision)
+50. Factual(entity.funding_provided, entity.hiring_decision)
+51. Causal(entity.allocated_amount, entity.hiring_status)
+52. Numeric(entity.funding_received, entity.allocated_amount)
+53. Temporal(entity.hiring_status, entity.funding_provided)
+54. Content(entity.hiring_decision, entity.funding_status)
+55. Relation(entity.allocated_amount, entity.hiring_status)
+56. edge.allocated_for = "technology upgrade"
+57. edge.hiring_decision = "position filled"
+58. edge.funding_received = "none"
+59. edge.funding_provided = "to health initiative"
+60. M_NLI(entity.hiring_status, entity.allocated_for)
+61. M_NLI(entity.funding_status, entity.funding_received)
+62. T("allocated 6 million for technology upgrade", "received no funding", tau)
+63. T("no longer hired", "employed", tau)
+64. tau(entity.hiring_decision, entity.funding_status)
+65. tau(entity.allocated_amount, entity.funding_provided)
+66. violate(entity.hiring_status, entity.allocated_amount)
+67. Factual(entity.hiring_decision, entity.funding_status)
+68. Causal(entity.funding_received, entity.hiring_status)
+69. Numeric(entity.allocated_amount, entity.funding_provided)
+70. Temporal(entity.funding_status, entity.hiring_decision)
+71. Content(entity.hiring_status, entity.funding_received)
+72. Relation(entity.allocated_for, entity.hiring_decision)
+73. edge.allocated_for = "community outreach"
+74. edge.hiring_decision = "employment suspended"
+75. edge.funding_received = "some funding"
+76. edge.funding_provided = "to environmental project"
+77. M_NLI(entity.funding_status, entity.hiring_decision)
+78. M_NLI(entity.allocated_amount, entity.funding_provided)
+79. T("allocated 6 million for community outreach", "received no funding", tau)
+80. T("no longer hired", "still on payroll", tau)
+81. tau(entity.funding_received, entity.hiring_status)
+82. tau(entity.allocated_amount, entity.hiring_decision)
+83. violate(entity.funding_status, entity.hiring_decision)
+84. Factual(entity.allocated_amount, entity.hiring_status)
+85. Causal(entity.hiring_decision, entity.funding_received)
+86. Numeric(entity.funding_received, entity.allocated_amount)
+87. Temporal(entity.hiring_status, entity.funding_provided)
+88. Content(entity.hiring_decision, entity.funding_status)
+89. Relation(entity.allocated_for, entity.funding_received)
+90. edge.allocated_for = "research funding"
+91. edge.hiring_decision = "employment terminated"
+92. edge.funding_received = "no funding"
+93. edge.funding_provided = "to social program"
+94. M_NLI(entity.hiring_status, entity.allocated_for)
+95. M_NLI(entity.funding_status, entity.funding_received)
+96. T("allocated 6 million for research funding", "received no funding", tau)
+97. T("no longer hired", "still employed", tau)
+98. tau(entity.hiring_decision, entity.funding_status)
+99. tau(entity.allocated_amount, entity.funding_provided)
+100. violate(entity.hiring_status, entity.allocated_amount)
+violate(x0, y0)
+
+Rules:
+1. Q[x0, y0](entity.allocated_amount = "6 million" ∧ entity.hiring_status = "no longer hired" → violate(x0, y0))
+2. Q[x0, y0](entity.funding_status = "received no funding" ∧ edge.hiring_decision = "terminated employment" → violate(x0, y0))
+3. Q[x0, y0](edge.allocated_for = "project development" ∧ edge.funding_received = "none" → violate(x0, y0))
+4. Q[x0, y0](entity.hiring_status = "no longer hired" ∧ edge.hiring_decision = "reinstated position" → violate(x0, y0))
+5. Q[x0, y0](entity.funding_status = "received no funding" ∧ edge.funding_provided = "to research initiative" → violate(x0, y0))
+6. Q[x0, y0](M_NLI(entity.allocated_amount, entity.hiring_status) ∧ M_NLI(entity.funding_status, entity.funding_source) → violate(x0, y0))
+7. Q[x0, y0](entity.allocated_amount = "6 million" ∧ entity.hiring_status = "no longer hired" ∧ edge.funding_received = "none" → violate(x0, y0))
+8. Q[x0, y0](entity.funding_status = "received no funding" ∧ edge.hiring_decision = "contract terminated" ∧ edge.allocated_for = "infrastructure improvement" → violate(x0, y0))
+9. Q[x0, y0](edge.funding_provided = "to educational program" ∧ edge.hiring_decision = "employment suspended" ∧ entity.hiring_status = "no longer hired" → violate(x0, y0))
+10. Q[x0, y0](M_NLI(entity.hiring_status, entity.funding_received) ∧ M_NLI(entity.allocated_amount, entity.funding_provided) ∧ edge.funding_received = "none" → violate(x0, y0))
+11. Q[x0, y0](T("allocated 6 million for project development", "received no funding", tau) ∧ T("no longer hired", "still employed", tau) → violate(x0, y0))
+12. Q[x0, y0](tau(entity.allocated_amount, entity.funding_status) ∧ tau(entity.hiring_status, entity.funding_source) ∧ edge.hiring_decision = "terminated employment" → violate(x0, y0))
+13. Q[x0, y0](entity.hiring_status = "no longer hired" ∧ edge.funding_received = "full amount" ∧ edge.hiring_decision = "employment terminated" → violate(x0, y0))
+14. Q[x0, y0](entity.allocated_amount = "6 million" ∧ edge.allocated_for = "technology upgrade" ∧ edge.funding_received = "none" ∧ edge.hiring_decision = "position filled" → violate(x0, y0))
+15. Q[x0, y0](M_NLI(entity.funding_status, entity.hiring_decision) ∧ M_NLI(entity.allocated_amount, entity.funding_provided) ∧ edge.hiring_decision = "employment suspended" → violate(x0, y0))
+16. Q[x0, y0](entity.hiring_status = "no longer hired" ∧ edge.funding_provided = "to community project" ∧ edge.funding_received = "partial" ∧ edge.hiring_decision = "terminated employment" → violate(x0, y0))
+17. Q[x0, y0](T("allocated 6 million for marketing campaign", "received no funding", tau) ∧ T("no longer hired", "still working", tau) ∧ edge.hiring_decision = "employment terminated" → violate(x0, y0))
+18. Q[x0, y0](tau(entity.hiring_decision, entity.funding_status) ∧ tau(entity.allocated_amount, entity.hiring_decision) ∧ edge.funding_received = "none" → violate(x0, y0))
+19. Q[x0, y0](entity.hiring_status = "no longer hired" ∧ edge.funding_received = "some funding" ∧ edge.hiring_decision = "employment suspended" ∧ edge.allocated_for = "community outreach" → violate(x0, y0))
+20. Q[x0, y0](M_NLI(entity.hiring_status, entity.allocated_for) ∧ M_NLI(entity.funding_status, entity.funding_received) ∧ edge.hiring_decision = "employment terminated" → violate(x0, y0))
+21. Q[x0, y0](entity.allocated_amount = "6 million" ∧ edge.hiring_decision = "contract terminated" ∧ edge.funding_received = "no funding" ∧ edge.funding_provided = "to social program" → violate(x0, y0))
+22. Q[x0, y0](T("allocated 6 million for research funding", "received no funding", tau) ∧ T("no longer hired", "still employed", tau) ∧ edge.hiring_decision = "employment terminated" → violate(x0, y0))
+23. Q[x0, y0](tau(entity.funding_received, entity.hiring_status) ∧ tau(entity.allocated_amount, entity.funding_provided) ∧ edge.hiring_decision = "position filled" → violate(x0, y0))
+24. Q[x0, y0](entity.hiring_status = "no longer hired" ∧ edge.funding_provided = "to health initiative" ∧ edge.hiring_decision = "terminated employment" ∧ edge.funding_received = "none" → violate(x0, y0))
+25. Q[x0, y0](M_NLI(entity.funding_status, entity.hiring_decision) ∧ M_NLI(entity.allocated_amount, entity.funding_provided) ∧ edge.hiring_decision = "employment suspended" ∧ edge.allocated_for = "research funding" → violate(x0, y0))
+26. Q[x0, y0](entity.allocated_amount = "6 million" ∧ edge.hiring_decision = "employment terminated" ∧ edge.funding_received = "no funding" ∧ edge.funding_provided = "to environmental project" → violate(x0, y0))
+27. Q[x0, y0](T("allocated 6 million for community outreach", "received no funding", tau) ∧ T("no longer hired", "still on payroll", tau) ∧ edge.hiring_decision = "contract terminated" → violate(x0, y0))
+28. Q[x0, y0](tau(entity.hiring_decision, entity.funding_status) ∧ tau(entity.allocated_amount, entity.funding_provided) ∧ edge.hiring_decision = "employment suspended" ∧ edge.funding_received = "none" → violate(x0

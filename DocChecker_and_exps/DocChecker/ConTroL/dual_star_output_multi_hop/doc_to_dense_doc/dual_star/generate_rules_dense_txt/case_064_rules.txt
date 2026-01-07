@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 64)
+S1: Although criminal and civil trespass laws vary from jurisdiction to jurisdiction, most have the following facets in common: Property owners and their agents (for example, security guards) may only use reasonable force to protect their property.
+S2: For example, setting booby traps on a property to hurt trespassers or shooting at trespassers are usually strictly forbidden except in extreme circumstances.
+
+Predicates:
+1. PropertyOwner.hasReasonableForce
+2. PropertyOwner.usesForce
+3. PropertyOwner.agent.hasReasonableForce
+4. SecurityGuard.usesReasonableForce
+5. Trespasser.isHarmedByBoobyTrap
+6. Trespasser.isHarmedByShooting
+7. BoobyTrap.isForbidden
+8. Shooting.isForbidden
+9. ReasonableForce.isAllowed
+10. ExtremeCircumstances.justifyForce
+11. Jurisdiction.hasTrespassLaws
+12. TrespassLaws.varyByJurisdiction
+13. PropertyOwner.protectsProperty
+14. Agent.usesReasonableForce
+15. ReasonableForce.isDefined
+16. BoobyTrap.isExtremeMeasure
+17. Shooting.isExtremeMeasure
+18. ExtremeMeasures.areStrictlyForbidden
+19. ReasonableForce.isNotExtreme
+20. PropertyOwner.agent.isSecurityGuard
+21. Trespasser.isProtectedByLaw
+22. ReasonableForce.isCommonFacet
+23. TrespassLaws.includeReasonableForce
+24. PropertyOwner.hasLegalRights
+25. Agent.hasLegalAuthority
+26. SecurityGuard.protectsProperty
+27. Trespasser.violatesPropertyRights
+28. ReasonableForce.isLegallyPermissible
+29. ExtremeMeasures.requireJustification
+30. PropertyOwner.mayUseForce
+
+Rules:
+1. Q[Although, PropertyOwner.hasReasonableForce == true](PropertyOwner.hasReasonableForce == true → Causal(PropertyOwner, ReasonableForce.isAllowed))
+2. Q[Although, PropertyOwner.usesForce == true](PropertyOwner.usesForce == true → Causal(PropertyOwner, ReasonableForce.isAllowed))
+3. Q[Although, SecurityGuard.usesReasonableForce == true](SecurityGuard.usesReasonableForce == true → Causal(SecurityGuard, ReasonableForce.isAllowed))
+4. Q[Although, PropertyOwner.agent.hasReasonableForce == true](PropertyOwner.agent.hasReasonableForce == true → Causal(PropertyOwner.agent, ReasonableForce.isAllowed))
+5. Q[Although, ReasonableForce.isCommonFacet == true](ReasonableForce.isCommonFacet == true → Causal(ReasonableForce, PropertyOwner.protectsProperty))
+6. Q[Although, PropertyOwner.protectsProperty == true](PropertyOwner.protectsProperty == true → Causal(PropertyOwner, ReasonableForce.isAllowed))
+7. Q[Although, Trespasser.violatesPropertyRights == true](Trespasser.violatesPropertyRights == true → Causal(Trespasser, PropertyOwner.mayUseForce))
+8. Q[Although, ReasonableForce.isLegallyPermissible == true](ReasonableForce.isLegallyPermissible == true → Causal(ReasonableForce, PropertyOwner.hasLegalRights))
+9. Q[Although, Jurisdiction.hasTrespassLaws == true](Jurisdiction.hasTrespassLaws == true → Causal(Jurisdiction, TrespassLaws.varyByJurisdiction))
+10. Q[Although, ExtremeMeasures.areStrictlyForbidden == true](ExtremeMeasures.areStrictlyForbidden == true → Causal(ExtremeMeasures, Shooting.isForbidden))
+11. Q[Although, BoobyTrap.isExtremeMeasure == true](BoobyTrap.isExtremeMeasure == true → Causal(BoobyTrap, ExtremeMeasures.areStrictlyForbidden))
+12. Q[Although, Shooting.isExtremeMeasure == true](Shooting.isExtremeMeasure == true → Causal(Shooting, ExtremeMeasures.areStrictlyForbidden))
+13. Q[Although, ExtremeCircumstances.justifyForce == true](ExtremeCircumstances.justifyForce == true → Causal(ExtremeCircumstances, PropertyOwner.usesForce))
+14. Q[Although, ReasonableForce.isNotExtreme == true](ReasonableForce.isNotExtreme == true → Causal(ReasonableForce, PropertyOwner.usesForce))
+15. Q[Although, Agent.hasLegalAuthority == true](Agent.hasLegalAuthority == true → Causal(Agent, PropertyOwner.protectsProperty))
+16. Q[Although, Trespasser.isProtectedByLaw == true](Trespasser.isProtectedByLaw == true → Causal(Trespasser, PropertyOwner.mayUseForce))
+17. Q[Although, PropertyOwner.hasLegalRights == true](PropertyOwner.hasLegalRights == true → Causal(PropertyOwner, ReasonableForce.isAllowed))
+18. Q[Although, PropertyOwner.agent.isSecurityGuard == true](PropertyOwner.agent.isSecurityGuard == true → Causal(PropertyOwner.agent, SecurityGuard.usesReasonableForce))
+19. Q[Although, TrespassLaws.includeReasonableForce == true](TrespassLaws.includeReasonableForce == true → Causal(TrespassLaws, ReasonableForce.isAllowed))
+20. Q[Although, ReasonableForce.isDefined == true](ReasonableForce.isDefined == true → Causal(ReasonableForce, PropertyOwner.hasReasonableForce))
+21. Q[Although, PropertyOwner.mayUseForce == true](PropertyOwner.mayUseForce == true → Causal(PropertyOwner, ReasonableForce.isAllowed))
+22. Q[Although, Agent.usesReasonableForce == true](Agent.usesReasonableForce == true → Causal(Agent, ReasonableForce.isAllowed))
+23. Q[Although, PropertyOwner.hasReasonableForce == false](PropertyOwner.hasReasonableForce == false → Causal(PropertyOwner, ExtremeMeasures.requireJustification))
+24. Q[Although, Trespasser.isHarmedByBoobyTrap == true](Trespasser.isHarmedByBoobyTrap == true → Causal(Trespasser, BoobyTrap.isForbidden))
+25. Q[Although, Trespasser.isHarmedByShooting == true](Trespasser.isHarmedByShooting == true → Causal(Trespasser, Shooting.isForbidden))
+26. Q[Although, ExtremeMeasures.requireJustification == true](ExtremeMeasures.requireJustification == true → Causal(ExtremeMeasures, Shooting.isExtremeMeasure))
+27. Q[Although, ReasonableForce.isAllowed == false](ReasonableForce.isAllowed == false → Causal(ReasonableForce, ExtremeMeasures.areStrictlyForbidden))
+28. Q[Although, PropertyOwner.agent.hasReasonableForce == false](PropertyOwner.agent.hasReasonableForce == false → Causal(PropertyOwner.agent, ExtremeMeasures.requireJustification))
+29. Q[Although, SecurityGuard.protectsProperty == true](SecurityGuard.protectsProperty == true → Causal(SecurityGuard, ReasonableForce.isAllowed))
+30. Q[Although, PropertyOwner.usesForce == false](PropertyOwner.usesForce == false → Causal(PropertyOwner, ExtremeMeasures.requireJustification))

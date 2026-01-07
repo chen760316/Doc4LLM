@@ -1,0 +1,66 @@
+Predicates:
+Mr. Jackson.label != "Person"
+Mr. Jackson.label != spring cleaning.label
+Mr. Jackson.label = "Person"
+Mr. Jackson.name != "Mr. Jackson"
+Mr. Jackson.name != spring cleaning.name
+Mr. Jackson.name = "Mr. Jackson"
+Mr. Jackson.status != "guest"
+Mr. Jackson.status = "guest"
+Mrs. Tittlemouse.label != "Person"
+Mrs. Tittlemouse.label != house.label
+Mrs. Tittlemouse.label != spring cleaning.label
+Mrs. Tittlemouse.label = "Person"
+Mrs. Tittlemouse.name != "Mrs. Tittlemouse"
+Mrs. Tittlemouse.name != Mr. Jackson.name
+Mrs. Tittlemouse.name != house.name
+Mrs. Tittlemouse.name != spring cleaning.name
+Mrs. Tittlemouse.name = "Mrs. Tittlemouse"
+Mrs. Tittlemouse.status != "host"
+Mrs. Tittlemouse.status != Mr. Jackson.status
+Mrs. Tittlemouse.status = "host"
+Mrs. Tittlemouse___Mr. Jackson.context = "contradictory settings in the narrative"
+Mrs. Tittlemouse___Mr. Jackson.contradiction_type = "Factual"
+Mrs. Tittlemouse___Mr. Jackson.relationship != Mrs. Tittlemouse___spring cleaning.relationship
+Mrs. Tittlemouse___Mr. Jackson.relationship = "Mrs. Tittlemouse allows Mr. Jackson to stay for dinner"
+Mrs. Tittlemouse___Mr. Jackson.source_id != Mrs. Tittlemouse___spring cleaning.source_id
+Mrs. Tittlemouse___Mr. Jackson.source_id = "3488771840_5"
+Mrs. Tittlemouse___house.contradiction_type = "Factual"
+Mrs. Tittlemouse___house.relationship != Mrs. Tittlemouse___Mr. Jackson.relationship
+Mrs. Tittlemouse___house.relationship != Mrs. Tittlemouse___spring cleaning.relationship
+Mrs. Tittlemouse___house.relationship = "Mrs. Tittlemouse tries to keep her house tidy"
+Mrs. Tittlemouse___house.source_id != Mrs. Tittlemouse___Mr. Jackson.source_id
+Mrs. Tittlemouse___house.source_id = "3488771840_9"
+Mrs. Tittlemouse___spring cleaning.contradiction_type = "Factual"
+Mrs. Tittlemouse___spring cleaning.relationship = "Mrs. Tittlemouse spends a day spring cleaning"
+Mrs. Tittlemouse___spring cleaning.source_id = "3488771840_9"
+None_ML(Mr. Jackson.attrs, spring cleaning.attrs)
+None_ML(Mrs. Tittlemouse___spring cleaning.attrs, Mrs. Tittlemouse___house.attrs)
+house.condition != "unknown"
+house.condition = "unknown"
+house.label != "Location"
+house.label != Mr. Jackson.label
+house.label != spring cleaning.label
+house.label = "Location"
+house.name != "house"
+house.name != Mr. Jackson.name
+house.name != spring cleaning.name
+house.name = "house"
+spring cleaning.duration != "one day"
+spring cleaning.duration = "one day"
+spring cleaning.label != "Event"
+spring cleaning.label = "Event"
+spring cleaning.name != "spring cleaning"
+spring cleaning.name = "spring cleaning"
+
+Rules:
+Q[Mrs. Tittlemouse,Mrs. Tittlemouse] (Mrs. Tittlemouse.status != Mr. Jackson.status ∧ Mrs. Tittlemouse.label != house.label ∧ house.label != Mr. Jackson.label ∧ Mrs. Tittlemouse___Mr. Jackson.contradiction_type = "Factual" ∧ house.label != "Location" ∧ Mrs. Tittlemouse___house.relationship != Mrs. Tittlemouse___Mr. Jackson.relationship → Mrs. Tittlemouse.name != "Mrs. Tittlemouse")
+Q[Mrs. Tittlemouse,Mrs. Tittlemouse] (Mrs. Tittlemouse.name != spring cleaning.name ∧ Mrs. Tittlemouse___house.source_id != Mrs. Tittlemouse___Mr. Jackson.source_id ∧ Mrs. Tittlemouse___house.contradiction_type = "Factual" ∧ Mrs. Tittlemouse___house.relationship != Mrs. Tittlemouse___Mr. Jackson.relationship ∧ Mrs. Tittlemouse___Mr. Jackson.context = "contradictory settings in the narrative" → Mrs. Tittlemouse___house.relationship = "Mrs. Tittlemouse tries to keep her house tidy")
+Q[Mrs. Tittlemouse,Mrs. Tittlemouse] (Mrs. Tittlemouse.status != Mr. Jackson.status ∧ Mr. Jackson.name != "Mr. Jackson" → Mrs. Tittlemouse___house.contradiction_type = "Factual")
+Q[Mrs. Tittlemouse,Mrs. Tittlemouse] (spring cleaning.label = "Event" ∧ Mrs. Tittlemouse.status != "host" ∧ Mr. Jackson.label != spring cleaning.label → Mrs. Tittlemouse.label != house.label)
+Q[Mrs. Tittlemouse,Mrs. Tittlemouse] (Mrs. Tittlemouse___house.relationship = "Mrs. Tittlemouse tries to keep her house tidy" ∧ spring cleaning.name = "spring cleaning" ∧ spring cleaning.duration = "one day" ∧ Mr. Jackson.name = "Mr. Jackson" → Mrs. Tittlemouse.name != house.name)
+Q[Mrs. Tittlemouse,Mrs. Tittlemouse] (Mrs. Tittlemouse.name != house.name ∧ Mrs. Tittlemouse___Mr. Jackson.source_id = "3488771840_5" → spring cleaning.name != "spring cleaning")
+Q[Mrs. Tittlemouse,Mrs. Tittlemouse] (Mrs. Tittlemouse___house.source_id = "3488771840_9" ∧ Mrs. Tittlemouse.label != spring cleaning.label ∧ house.name != Mr. Jackson.name → Mrs. Tittlemouse___spring cleaning.relationship = "Mrs. Tittlemouse spends a day spring cleaning")
+Q[Mrs. Tittlemouse,Mrs. Tittlemouse] (Mrs. Tittlemouse.status = "host" ∧ Mrs. Tittlemouse___Mr. Jackson.relationship != Mrs. Tittlemouse___spring cleaning.relationship ∧ Mrs. Tittlemouse.name != house.name ∧ Mrs. Tittlemouse___house.contradiction_type = "Factual" ∧ Mrs. Tittlemouse___house.relationship = "Mrs. Tittlemouse tries to keep her house tidy" ∧ Mr. Jackson.label != spring cleaning.label → Mrs. Tittlemouse___spring cleaning.source_id = "3488771840_9")
+Q[Mrs. Tittlemouse,Mrs. Tittlemouse] (Mrs. Tittlemouse.status = "host" ∧ Mrs. Tittlemouse.name != spring cleaning.name ∧ house.name != "house" ∧ house.label != Mr. Jackson.label → Mr. Jackson.label != spring cleaning.label)
+Q[Mrs. Tittlemouse,Mrs. Tittlemouse] (house.label != spring cleaning.label ∧ Mrs. Tittlemouse___house.source_id != Mrs. Tittlemouse___Mr. Jackson.source_id ∧ house.condition != "unknown" ∧ house.label != "Location" ∧ Mr. Jackson.name = "Mr. Jackson" → Mrs. Tittlemouse___Mr. Jackson.contradiction_type = "Factual")

@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 550)
+S1: A m a n i s b r o w s i n g t h e m u s i c s e l e c t i o n.
+S2: a m a n i s a m u s i c s t o r e l o o k i n g a t a l b u m s , h e i s w e a r i n g a b r o w n s h i r t a n d i s o l d e r.
+
+Predicates:
+1. Man.browsing_music_selection
+2. Man.looking_at_albums
+3. Man.wearing_brown_shirt
+4. Man.is_older
+5. Music_Store.has_music_selection
+6. Music_Store.has_albums
+7. Music_Store.contains_man
+8. Music_Store.is_a_place
+9. Album.is_in_music_store
+10. Album.is_being_looked_at
+11. Activity.browsing
+12. Activity.looking
+13. Activity.is_different
+14. Music_Selection.is_available
+15. Music_Selection.is_browsed
+16. Clothing.brown_shirt
+17. Clothing.is_worn_by_man
+18. Age.is_older
+19. Relation(browsing, looking)
+20. Relation(man, music_store)
+21. Relation(man, album)
+22. Violate(browsing, looking)
+23. M_NLI(S1, S2)
+24. Music_Store.has_customers
+25. Customer.is_in_music_store
+26. Customer.is_browsing
+27. Customer.is_looking
+28. Music_Selection.includes_albums
+29. Album.is_part_of_music_selection
+30. Man.is_in_music_store
+
+Rules:
+1. Q[browsing, Man.browsing_music_selection, Man.looking_at_albums](Man.browsing_music_selection == true → Relation(browsing, looking))
+2. Q[looking, Man.looking_at_albums, Man.browsing_music_selection](Man.looking_at_albums == true → Relation(looking, browsing))
+3. Q[wearing, Man.wearing_brown_shirt, Man.is_older](Man.wearing_brown_shirt == true → Relation(wearing, older))
+4. Q[older, Man.is_older, Man.wearing_brown_shirt](Man.is_older == true → Relation(older, wearing))
+5. Q[Context, Music_Store.has_music_selection, Music_Store.has_albums](Music_Store.has_music_selection == true → Relation(has_music_selection, has_albums))
+6. Q[Context, Music_Store.contains_man, Man.browsing_music_selection](Music_Store.contains_man == true → Relation(contains_man, browsing))
+7. Q[Context, Music_Store.is_a_place, Music_Store.has_customers](Music_Store.is_a_place == true → Relation(is_a_place, has_customers))
+8. Q[Context, Customer.is_in_music_store, Man.is_in_music_store](Customer.is_in_music_store == true → Relation(is_in_music_store, is_in_music_store))
+9. Q[Context, Activity.browsing, Activity.looking](Activity.browsing == true → Relation(browsing, looking))
+10. Q[Context, Music_Selection.is_available, Album.is_in_music_store](Music_Selection.is_available == true → Relation(is_available, is_in_music_store))
+11. Q[Context, Album.is_being_looked_at, Man.looking_at_albums](Album.is_being_looked_at == true → Relation(is_being_looked_at, looking_at_albums))
+12. Q[Context, Music_Selection.is_browsed, Man.browsing_music_selection](Music_Selection.is_browsed == true → Relation(is_browsed, browsing_music_selection))
+13. Q[Context, Music_Store.has_albums, Album.is_part_of_music_selection](Music_Store.has_albums == true → Relation(has_albums, is_part_of_music_selection))
+14. Q[Context, Customer.is_browsing, Man.browsing_music_selection](Customer.is_browsing == true → Relation(is_browsing, browsing_music_selection))
+15. Q[Context, Customer.is_looking, Man.looking_at_albums](Customer.is_looking == true → Relation(is_looking, looking_at_albums))
+16. Q[Context, Activity.is_different, Relation(browsing, looking)](Activity.is_different == true → Relation(is_different, browsing_looking))
+17. Q[Context, Music_Store.has_customers, Customer.is_in_music_store](Music_Store.has_customers == true → Relation(has_customers, is_in_music_store))
+18. Q[Context, Man.is_in_music_store, Music_Store.contains_man](Man.is_in_music_store == true → Relation(is_in_music_store, contains_man))
+19. Q[Context, Album.is_part_of_music_selection, Music_Selection.includes_albums](Album.is_part_of_music_selection == true → Relation(is_part_of_music_selection, includes_albums))
+20. Q[Context, Music_Selection.is_browsed, Music_Store.has_music_selection](Music_Selection.is_browsed == true → Relation(is_browsed, has_music_selection))
+21. Q[Context, Man.browsing_music_selection, Activity.browsing](Man.browsing_music_selection == true → Relation(browsing_music_selection, browsing))
+22. Q[Context, Man.looking_at_albums, Activity.looking](Man.looking_at_albums == true → Relation(looking_at_albums, looking))
+23. Q[Context, Music_Store.has_music_selection, Music_Selection.is_available](Music_Store.has_music_selection == true → Relation(has_music_selection, is_available))
+24. Q[Context, Man.is_older, Clothing.brown_shirt](Man.is_older == true → Relation(is_older, brown_shirt))
+25. Q[Context, Clothing.is_worn_by_man, Man.wearing_brown_shirt](Clothing.is_worn_by_man == true → Relation(is_worn_by_man, wearing_brown_shirt))
+26. Q[Context, Music_Store.is_a_place, Music_Store.has_albums](Music_Store.is_a_place == true → Relation(is_a_place, has_albums))
+27. Q[Context, Album.is_in_music_store, Music_Store.has_albums](Album.is_in_music_store == true → Relation(is_in_music_store, has_albums))
+28. Q[Context, Man.browsing_music_selection, Music_Selection.is_browsed](Man.browsing_music_selection == true → Relation(browsing_music_selection, is_browsed))
+29. Q[Context, Man.looking_at_albums, Album.is_being_looked_at](Man.looking_at_albums == true → Relation(looking_at_albums, is_being_looked_at))
+30. Q[Context, Music_Store.has_customers, Customer.is_browsing](Music_Store.has_customers == true → Relation(has_customers, is_browsing))

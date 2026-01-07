@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 82)
+S1: Animals that cannot fly can access objects at any height without mechanical assistance.
+S2: Animals that cannot fly can only access objects at or near ground level without mechanical assistance.
+
+Predicates:
+1. Animals.cannot_fly.access_objects_height
+2. Animals.cannot_fly.access_objects_ground_level
+3. Animals.cannot_fly.mechanical_assistance_required
+4. Animals.can_fly.access_objects_height
+5. Animals.can_fly.access_objects_ground_level
+6. Animals.can_fly.mechanical_assistance_required
+7. Objects.at_any_height.accessible_by_non_flying_animals
+8. Objects.at_ground_level.accessible_by_non_flying_animals
+9. Non_flying_animals.access_objects_without_mechanical_assistance
+10. Non_flying_animals.access_objects_with_mechanical_assistance
+11. Flying_animals.access_objects_without_mechanical_assistance
+12. Flying_animals.access_objects_with_mechanical_assistance
+13. Access_capabilities.non_flying_animals
+14. Access_capabilities.flying_animals
+15. Mechanical_assistance.required_for_non_flying_animals
+16. Mechanical_assistance.not_required_for_flying_animals
+17. Height.accessibility.for_non_flying_animals
+18. Ground_level.accessibility.for_non_flying_animals
+19. Contradiction.s1_s2
+20. Causal.accessibility.non_flying_animals
+21. Violation.access_capabilities.non_flying_animals
+22. Violation.access_capabilities.flying_animals
+23. Non_flying_animals.can_only_access_ground_level
+24. Non_flying_animals.can_access_any_height
+25. Objects.accessible_without_mechanical_assistance
+26. Objects.accessible_with_mechanical_assistance
+27. Non_flying_animals.limited_access
+28. Non_flying_animals.unlimited_access
+29. Flying_animals.unlimited_access
+30. Flying_animals.limited_access
+
+Rules:
+1. Q[Animals, Non_flying_animals.access_objects_without_mechanical_assistance == true → Causal(Non_flying_animals, Objects.at_any_height.accessible_by_non_flying_animals)]
+2. Q[Animals, Non_flying_animals.access_objects_with_mechanical_assistance == false → Causal(Non_flying_animals, Objects.at_ground_level.accessible_by_non_flying_animals)]
+3. Q[Animals, Non_flying_animals.can_only_access_ground_level == true → Causal(Non_flying_animals, Objects.at_any_height.accessible_by_non_flying_animals)]
+4. Q[Animals, Non_flying_animals.can_access_any_height == true → Causal(Non_flying_animals, Objects.at_ground_level.accessible_by_non_flying_animals)]
+5. Q[Animals, Non_flying_animals.limited_access == true → Causal(Non_flying_animals, Objects.at_any_height.accessible_by_non_flying_animals)]
+6. Q[Animals, Non_flying_animals.unlimited_access == true → Causal(Non_flying_animals, Objects.at_ground_level.accessible_by_non_flying_animals)]
+7. Q[Animals, Non_flying_animals.access_objects_without_mechanical_assistance == true → Causal(Non_flying_animals, Mechanical_assistance.required_for_non_flying_animals)]
+8. Q[Animals, Non_flying_animals.access_objects_with_mechanical_assistance == false → Causal(Non_flying_animals, Mechanical_assistance.not_required_for_non_flying_animals)]
+9. Q[Animals, Access_capabilities.non_flying_animals == "unlimited" → Causal(Non_flying_animals, Objects.at_ground_level.accessible_by_non_flying_animals)]
+10. Q[Animals, Access_capabilities.non_flying_animals == "limited" → Causal(Non_flying_animals, Objects.at_any_height.accessible_by_non_flying_animals)]
+11. Q[Animals, Mechanical_assistance.required_for_non_flying_animals == true → Causal(Non_flying_animals, Objects.at_any_height.accessible_by_non_flying_animals)]
+12. Q[Animals, Mechanical_assistance.not_required_for_non_flying_animals == true → Causal(Non_flying_animals, Objects.at_ground_level.accessible_by_non_flying_animals)]
+13. Q[Animals, Height.accessibility.for_non_flying_animals == "any" → Causal(Non_flying_animals, Objects.at_ground_level.accessible_by_non_flying_animals)]
+14. Q[Animals, Ground_level.accessibility.for_non_flying_animals == "near" → Causal(Non_flying_animals, Objects.at_any_height.accessible_by_non_flying_animals)]
+15. Q[Animals, Non_flying_animals.can_only_access_ground_level == true → Causal(Non_flying_animals, Mechanical_assistance.not_required_for_non_flying_animals)]
+16. Q[Animals, Non_flying_animals.can_access_any_height == true → Causal(Non_flying_animals, Mechanical_assistance.required_for_non_flying_animals)]
+17. Q[Animals, Objects.accessible_without_mechanical_assistance == true → Causal(Non_flying_animals, Objects.at_ground_level.accessible_by_non_flying_animals)]
+18. Q[Animals, Objects.accessible_with_mechanical_assistance == false → Causal(Non_flying_animals, Objects.at_any_height.accessible_by_non_flying_animals)]
+19. Q[Animals, Violation.access_capabilities.non_flying_animals == true → Causal(Non_flying_animals, Objects.at_ground_level.accessible_by_non_flying_animals)]
+20. Q[Animals, Violation.access_capabilities.flying_animals == true → Causal(Non_flying_animals, Objects.at_any_height.accessible_by_non_flying_animals)]
+21. Q[Animals, Non_flying_animals.limited_access == true → Causal(Non_flying_animals, Mechanical_assistance.not_required_for_non_flying_animals)]
+22. Q[Animals, Non_flying_animals.unlimited_access == true → Causal(Non_flying_animals, Mechanical_assistance.required_for_non_flying_animals)]
+23. Q[Animals, Non_flying_animals.access_objects_without_mechanical_assistance == false → Causal(Non_flying_animals, Objects.at_ground_level.accessible_by_non_flying_animals)]
+24. Q[Animals, Non_flying_animals.access_objects_with_mechanical_assistance == true → Causal(Non_flying_animals, Objects.at_any_height.accessible_by_non_flying_animals)]
+25. Q[Animals, Access_capabilities.non_flying_animals == "limited" → Causal(Non_flying_animals, Mechanical_assistance.not_required_for_non_flying_animals)]
+26. Q[Animals, Access_capabilities.non_flying_animals == "unlimited" → Causal(Non_flying_animals, Mechanical_assistance.required_for_non_flying_animals)]
+27. Q[Animals, Non_flying_animals.can_only_access_ground_level == true → Causal(Non_flying_animals, Objects.at_any_height.accessible_by_non_flying_animals)]
+28. Q[Animals, Non_flying_animals.can_access_any_height == true → Causal(Non_flying_animals, Objects.at_ground_level.accessible_by_non_flying_animals)]
+29. Q[Animals, Non_flying_animals.limited_access == true → Causal(Non_flying_animals, Objects.at_any_height.accessible_by_non_flying_animals)]
+30. Q[Animals, Non_flying_animals.unlimited_access == true → Causal(Non_flying_animals, Objects.at_ground_level.accessible_by_non_flying_animals)]

@@ -1,0 +1,60 @@
+Predicates:
+Arcite.label != "Character"
+Arcite.label = "Character"
+Arcite.name != "Arcite"
+Arcite.name != Emily.name
+Arcite.name != Mars.name
+Arcite.name != Palamon.name
+Arcite.name != Theseus.name
+Arcite.name = "Arcite"
+Arcite___Emily.doc_id = "3488771853_2"
+Arcite___Emily.relationship != Arcite___Palamon.relationship
+Arcite___Emily.relationship != Arcite___Theseus.relationship
+Arcite___Emily.relationship = "Arcite tells Emily to marry Palamon before he dies."
+Arcite___Mars.doc_id = "3488771853_2"
+Arcite___Mars.relationship != Arcite___Emily.relationship
+Arcite___Mars.relationship != Arcite___Palamon.relationship
+Arcite___Mars.relationship != Arcite___Theseus.relationship
+Arcite___Mars.relationship = "Arcite prays to Mars for victory in the tournament."
+Arcite___Palamon.doc_id = "3488771853_2"
+Arcite___Palamon.method = "divine intervention by Saturn"
+Arcite___Palamon.relationship = "Arcite wins the battle against Palamon but is mortally injured."
+Arcite___Theseus.doc_id = "3488771853_2"
+Arcite___Theseus.relationship != Arcite___Palamon.relationship
+Arcite___Theseus.relationship = "Arcite is released from prison and exiled through the intervention of Theseus's friend Pirithoos."
+Emily.label != "Character"
+Emily.label = "Character"
+Emily.name != "Emily"
+Emily.name != Palamon.name
+Emily.name != Theseus.name
+Emily.name = "Emily"
+Mars.label != "Character"
+Mars.label = "Character"
+Mars.name != "Mars"
+Mars.name != Emily.name
+Mars.name != Palamon.name
+Mars.name != Theseus.name
+Mars.name = "Mars"
+None_ML(Arcite___Mars.attrs, Arcite___Theseus.attrs)
+None_ML(Emily.attrs, Palamon.attrs)
+Palamon.label != "Character"
+Palamon.label = "Character"
+Palamon.name != "Palamon"
+Palamon.name = "Palamon"
+Theseus.label != "Character"
+Theseus.label = "Character"
+Theseus.name != "Theseus"
+Theseus.name != Palamon.name
+Theseus.name = "Theseus"
+
+Rules:
+Q[Arcite,Arcite] (Theseus.label = "Character" ∧ Emily.label = "Character" → Arcite___Theseus.relationship != Arcite___Palamon.relationship)
+Q[Arcite,Arcite] (Arcite.name != Mars.name ∧ Arcite___Emily.relationship != Arcite___Palamon.relationship ∧ Mars.label = "Character" ∧ Mars.name = "Mars" ∧ Theseus.label != "Character" ∧ Palamon.label != "Character" → Palamon.label = "Character")
+Q[Arcite,Arcite] (Arcite___Emily.relationship = "Arcite tells Emily to marry Palamon before he dies." ∧ Arcite___Theseus.relationship != Arcite___Palamon.relationship ∧ Mars.name != Theseus.name ∧ Arcite___Palamon.method = "divine intervention by Saturn" ∧ Arcite.name = "Arcite" → Theseus.name != Palamon.name)
+Q[Arcite,Arcite] (None_ML(Arcite___Mars.attrs, Arcite___Theseus.attrs) ∧ Arcite___Theseus.relationship = "Arcite is released from prison and exiled through the intervention of Theseus's friend Pirithoos." ∧ Mars.name != Theseus.name → Arcite.name = "Arcite")
+Q[Arcite,Arcite] (Palamon.label != "Character" ∧ Arcite___Emily.relationship = "Arcite tells Emily to marry Palamon before he dies." ∧ Arcite.name != "Arcite" ∧ Arcite___Mars.relationship != Arcite___Palamon.relationship → Emily.name != "Emily")
+Q[Arcite,Arcite] (Mars.name != Palamon.name ∧ Theseus.name != "Theseus" ∧ Arcite___Emily.relationship != Arcite___Theseus.relationship ∧ Arcite___Palamon.relationship = "Arcite wins the battle against Palamon but is mortally injured." → Arcite.name != Mars.name)
+Q[Arcite,Arcite] (Palamon.name = "Palamon" ∧ Arcite___Palamon.relationship = "Arcite wins the battle against Palamon but is mortally injured." ∧ Emily.label != "Character" ∧ Arcite___Emily.relationship != Arcite___Theseus.relationship ∧ Theseus.name != "Theseus" ∧ Arcite___Mars.doc_id = "3488771853_2" → Mars.label = "Character")
+Q[Arcite,Arcite] (Emily.label = "Character" ∧ Emily.name != Palamon.name ∧ Arcite.name != Mars.name → Arcite.label = "Character")
+Q[Arcite,Arcite] (Mars.name != Theseus.name ∧ Theseus.name != "Theseus" → Arcite___Mars.relationship = "Arcite prays to Mars for victory in the tournament.")
+Q[Arcite,Arcite] (Emily.label = "Character" ∧ Palamon.label != "Character" ∧ Arcite___Palamon.method = "divine intervention by Saturn" ∧ Emily.name = "Emily" ∧ Emily.name != "Emily" → Theseus.name != "Theseus")

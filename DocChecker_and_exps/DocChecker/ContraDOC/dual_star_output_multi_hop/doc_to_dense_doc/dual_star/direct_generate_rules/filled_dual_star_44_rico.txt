@@ -1,0 +1,49 @@
+Predicates:
+Children.count != 3
+Children.count < 8
+Children.count = 3
+Children.count > -2
+Children.label != "Children"
+Children.label = "Children"
+Children.name != "Children"
+Children.name = "Children"
+Daughter.label != "Daughter"
+Daughter.label != Children.label
+Daughter.label = "Daughter"
+Daughter.name != "Daughter"
+Daughter.name != Children.name
+Daughter.name = "Daughter"
+Daughter.relationship != "suitor"
+Daughter.relationship = "suitor"
+Duke.label != "Duke"
+Duke.label != Children.label
+Duke.label != Daughter.label
+Duke.label = "Duke"
+Duke.name != "Duke"
+Duke.name != Children.name
+Duke.name != Daughter.name
+Duke.name = "Duke"
+Duke.status != "approving"
+Duke.status = "approving"
+Duke___Children.contradiction_type = "Causal"
+Duke___Children.relationship = "The Duke grows closer to all three of his children and allows their engagements."
+Duke___Children.source_id = "3488771911_1"
+Duke___Children.time = "by the end of the book"
+Duke___Daughter.contradiction_type = "Causal"
+Duke___Daughter.relationship != Duke___Children.relationship
+Duke___Daughter.relationship = "The Duke disapproves of his daughter's suitor."
+Duke___Daughter.source_id = "3488771911_1"
+None_ML(Children.attrs, Daughter.attrs)
+None_ML(Duke___Children.attrs, Duke___Daughter.attrs)
+
+Rules:
+Q[Duke,Duke] (Duke___Daughter.contradiction_type = "Causal" ∧ Duke.label = "Duke" → Children.name != "Children")
+Q[Duke,Duke] (None_ML(Children.attrs, Daughter.attrs) ∧ Duke.label != Daughter.label ∧ Children.label = "Children" ∧ Children.name = "Children" ∧ Duke.label = "Duke" ∧ None_ML(Duke___Children.attrs, Duke___Daughter.attrs) → Duke.label != "Duke")
+Q[Duke,Duke] (Children.name = "Children" ∧ Duke.label != Daughter.label ∧ Duke___Daughter.source_id = "3488771911_1" ∧ Duke.name != Children.name → Daughter.label = "Daughter")
+Q[Duke,Duke] (Duke___Daughter.relationship != Duke___Children.relationship ∧ Children.count > -2 ∧ Duke___Daughter.relationship = "The Duke disapproves of his daughter's suitor." → Duke.name != "Duke")
+Q[Duke,Duke] (Duke.name != "Duke" ∧ Daughter.label != Children.label ∧ Duke___Children.contradiction_type = "Causal" ∧ Children.count = 3 ∧ Daughter.relationship = "suitor" → Duke.label = "Duke")
+Q[Duke,Duke] (Duke___Daughter.relationship != Duke___Children.relationship ∧ Daughter.relationship = "suitor" ∧ Daughter.label = "Daughter" ∧ Duke.name = "Duke" ∧ Children.count < 8 ∧ Duke___Daughter.relationship = "The Duke disapproves of his daughter's suitor." → Duke.label != Daughter.label)
+Q[Duke,Duke] (Duke.status = "approving" ∧ Children.count = 3 ∧ Duke.name != "Duke" ∧ Children.name != "Children" ∧ Duke.label != Daughter.label → Children.name = "Children")
+Q[Duke,Duke] (Duke.label = "Duke" ∧ Daughter.name != Children.name ∧ Duke.name != Daughter.name → Daughter.label != "Daughter")
+Q[Duke,Duke] (Daughter.name != "Daughter" ∧ Duke.label = "Duke" ∧ Daughter.label = "Daughter" ∧ None_ML(Children.attrs, Daughter.attrs) → None_ML(Duke___Children.attrs, Duke___Daughter.attrs))
+Q[Duke,Duke] (Daughter.label != Children.label ∧ Duke___Children.relationship = "The Duke grows closer to all three of his children and allows their engagements." → Children.label = "Children")

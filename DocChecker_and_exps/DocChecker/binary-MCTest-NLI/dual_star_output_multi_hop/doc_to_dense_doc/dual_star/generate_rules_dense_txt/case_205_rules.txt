@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 205)
+S1: I broke the family bank!
+S2: I didn't mean to.
+
+Predicates:
+1. Action.broke
+2. Action.mean_to
+3. Emotion.intentional
+4. Emotion.unintentional
+5. Reason.similar
+6. Reason.contradiction
+7. Entity.family_bank.broken
+8. Entity.individual.unintentional
+9. Entity.individual.intent
+10. Edge.relationship.intentionality
+11. Edge.relationship.unintentionality
+12. Meta.M_NLI(statement1, statement2)
+13. Meta.Causal(action, consequence)
+14. Meta.violate(intentional, unintentional)
+15. Action.claim
+16. Action.contradict
+17. Entity.individual.action
+18. Edge.relationship.action
+19. Emotion.conflict
+20. Emotion.regret
+21. Entity.individual.statement
+22. Edge.relationship.statement
+23. Reason.intent_vs_unintent
+24. Reason.action_vs_claim
+25. Entity.family_bank.status
+26. Edge.relationship.broken
+27. Meta.M_NLI(statement2, statement1)
+28. Meta.Causal(intent, outcome)
+29. Meta.violate(unintentional, intentional)
+30. Action.express_regret
+
+Rules:
+1. Q[broke, Action.broke == true, Entity.family_bank.broken == true](Action.broke → Causal(Action.broke, Entity.family_bank.broken))
+2. Q[mean_to, Emotion.mean_to == true, Entity.individual.unintentional == true](Emotion.mean_to → Causal(Emotion.mean_to, Entity.individual.unintentional))
+3. Q[broke, Action.broke == true, Emotion.intentional == true](Action.broke → Causal(Action.broke, Emotion.intentional))
+4. Q[mean_to, Emotion.mean_to == true, Emotion.unintentional == true](Emotion.mean_to → Causal(Emotion.mean_to, Emotion.unintentional))
+5. Q[broke, Entity.family_bank.status == "broken", Emotion.unintentional == true](Entity.family_bank.status == "broken" → Causal(Entity.family_bank.status, Emotion.unintentional))
+6. Q[broke, Action.broke == true, Edge.relationship.intentionality == true](Action.broke → Causal(Action.broke, Edge.relationship.intentionality))
+7. Q[mean_to, Action.mean_to == true, Edge.relationship.unintentionality == true](Action.mean_to → Causal(Action.mean_to, Edge.relationship.unintentionality))
+8. Q[broke, Emotion.intentional == true, Emotion.unintentional == true](Emotion.intentional → Causal(Emotion.intentional, Emotion.unintentional))
+9. Q[broke, Action.broke == true, Reason.contradiction == true](Action.broke → Causal(Action.broke, Reason.contradiction))
+10. Q[mean_to, Entity.individual.intent == true, Emotion.unintentional == true](Entity.individual.intent == true → Causal(Entity.individual.intent, Emotion.unintentional))
+11. Q[broke, Action.claim == true, Action.contradict == true](Action.claim → Causal(Action.claim, Action.contradict))
+12. Q[mean_to, Emotion.mean_to == true, Reason.intent_vs_unintent == true](Emotion.mean_to → Causal(Emotion.mean_to, Reason.intent_vs_unintent))
+13. Q[broke, Edge.relationship.action == true, Entity.family_bank.status == "broken"](Edge.relationship.action → Causal(Edge.relationship.action, Entity.family_bank.status))
+14. Q[mean_to, Emotion.mean_to == true, Emotion.conflict == true](Emotion.mean_to → Causal(Emotion.mean_to, Emotion.conflict))
+15. Q[broke, Action.broke == true, Meta.M_NLI(S1, S2) == true](Action.broke → Causal(Action.broke, Meta.M_NLI(S1, S2)))
+16. Q[mean_to, Action.mean_to == true, Meta.M_NLI(S2, S1) == true](Action.mean_to → Causal(Action.mean_to, Meta.M_NLI(S2, S1)))
+17. Q[broke, Emotion.intentional == true, Edge.relationship.statement == true](Emotion.intentional → Causal(Emotion.intentional, Edge.relationship.statement))
+18. Q[mean_to, Entity.individual.action == true, Edge.relationship.unintentionality == true](Entity.individual.action → Causal(Entity.individual.action, Edge.relationship.unintentionality))
+19. Q[broke, Reason.similar == true, Emotion.regret == true](Reason.similar → Causal(Reason.similar, Emotion.regret))
+20. Q[mean_to, Action.express_regret == true, Emotion.unintentional == true](Action.express_regret → Causal(Action.express_regret, Emotion.unintentional))
+21. Q[broke, Action.broke == true, Meta.Causal(Action.broke, Entity.family_bank.broken) == true](Action.broke → Causal(Action.broke, Meta.Causal(Action.broke, Entity.family_bank.broken)))
+22. Q[mean_to, Emotion.mean_to == true, Meta.violate(intentional, unintentional) == true](Emotion.mean_to → Causal(Emotion.mean_to, Meta.violate(intentional, unintentional)))
+23. Q[broke, Action.broke == true, Reason.action_vs_claim == true](Action.broke → Causal(Action.broke, Reason.action_vs_claim))
+24. Q[mean_to, Emotion.mean_to == true, Emotion.intentional == true](Emotion.mean_to → Causal(Emotion.mean_to, Emotion.intentional))
+25. Q[broke, Entity.family_bank.status == "broken", Edge.relationship.broken == true](Entity.family_bank.status == "broken" → Causal(Entity.family_bank.status, Edge.relationship.broken))
+26. Q[mean_to, Action.mean_to == true, Entity.individual.intent == true](Action.mean_to → Causal(Action.mean_to, Entity.individual.intent))
+27. Q[broke, Emotion.unintentional == true, Reason.contradiction == true](Emotion.unintentional → Causal(Emotion.unintentional, Reason.contradiction))
+28. Q[mean_to, Action.mean_to == true, Meta.Causal(intent, outcome) == true](Action.mean_to → Causal(Action.mean_to, Meta.Causal(intent, outcome)))
+29. Q[broke, Action.broke == true, Emotion.regret == true](Action.broke → Causal(Action.broke, Emotion.regret))
+30. Q[mean_to, Emotion.mean_to == true, Edge.relationship.intentionality == true](Emotion.mean_to → Causal(Emotion.mean_to, Edge.relationship.intentionality))

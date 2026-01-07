@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 132)
+S1: German admitted that it is not the duty of the legal profession to provide access to the justice system.
+S2: The legal profession, German said, has an obligation to provide access to the justice system because it has taken on the role of gateway to that system.
+
+Predicates:
+1. German.duty_to_provide_access = false
+2. Legal_profession.obligation_to_provide_access = true
+3. German.statement_contradicts = true
+4. Legal_profession.role = gateway_to_justice_system
+5. Justice_system.access_provided_by = legal_profession
+6. German.admitted_no_duty = true
+7. Legal_profession.has_obligation = true
+8. Access_to_justice_system.is_duty_of = legal_profession
+9. German.statement = "no duty to provide access"
+10. Legal_profession.statement = "obligation to provide access"
+11. S1.contradicts.S2 = true
+12. Legal_profession.gateway_role = true
+13. Justice_system.access = legal_profession
+14. German.said = "obligation exists"
+15. Legal_profession.duty = false
+16. German.position = "no duty"
+17. Legal_profession.position = "obligation"
+18. S1.is_true = false
+19. S2.is_true = true
+20. Legal_profession.access_to_justice = true
+21. German.statement_type = admission
+22. Legal_profession.statement_type = obligation
+23. S1.legal_profession_duty = false
+24. S2.legal_profession_obligation = true
+25. German.statement_conflict = true
+26. Legal_profession.access_role = true
+27. Justice_system.access_obligation = legal_profession
+28. German.admission_conflict = true
+29. Legal_profession.duty_conflict = true
+30. S1_and_S2.conflict = true
+
+Rules:
+1. Q[German, German.admitted_no_duty, Legal_profession.obligation_to_provide_access](German.duty_to_provide_access == false → Causal(German.admitted_no_duty, Legal_profession.obligation_to_provide_access))
+2. Q[German, German.admitted_no_duty, Legal_profession.has_obligation](German.duty_to_provide_access == false → Causal(German.admitted_no_duty, Legal_profession.has_obligation))
+3. Q[German, German.position, Legal_profession.position](German.position == "no duty" → Causal(German.position, Legal_profession.position))
+4. Q[German, German.statement_conflict, Legal_profession.statement_type](German.statement_conflict == true → Causal(German.statement_conflict, Legal_profession.statement_type))
+5. Q[German, German.statement, Legal_profession.statement](German.statement == "no duty to provide access" → Causal(German.statement, Legal_profession.statement))
+6. Q[German, German.admission_conflict, Legal_profession.duty_conflict](German.admission_conflict == true → Causal(German.admission_conflict, Legal_profession.duty_conflict))
+7. Q[German, German.statement_contradicts, S1.contradicts.S2](German.statement_contradicts == true → Causal(German.statement_contradicts, S1.contradicts.S2))
+8. Q[German, Legal_profession.role, Justice_system.access](Legal_profession.role == gateway_to_justice_system → Causal(Legal_profession.role, Justice_system.access))
+9. Q[German, Legal_profession.access_role, Justice_system.access_provided_by](Legal_profession.access_role == true → Causal(Legal_profession.access_role, Justice_system.access_provided_by))
+10. Q[German, S1.is_true, S2.is_true](S1.is_true == false → Causal(S1.is_true, S2.is_true))
+11. Q[German, S1.legal_profession_duty, S2.legal_profession_obligation](S1.legal_profession_duty == false → Causal(S1.legal_profession_duty, S2.legal_profession_obligation))
+12. Q[German, Legal_profession.duty, Legal_profession.has_obligation](Legal_profession.duty == false → Causal(Legal_profession.duty, Legal_profession.has_obligation))
+13. Q[German, German.said, Legal_profession.statement](German.said == "obligation exists" → Causal(German.said, Legal_profession.statement))
+14. Q[German, Legal_profession.access_to_justice, Justice_system.access_obligation](Legal_profession.access_to_justice == true → Causal(Legal_profession.access_to_justice, Justice_system.access_obligation))
+15. Q[German, Legal_profession.gateway_role, Justice_system.access](Legal_profession.gateway_role == true → Causal(Legal_profession.gateway_role, Justice_system.access))
+16. Q[German, S1_and_S2.conflict, Legal_profession.duty_conflict](S1_and_S2.conflict == true → Causal(S1_and_S2.conflict, Legal_profession.duty_conflict))
+17. Q[German, German.admitted_no_duty, Legal_profession.access_to_justice](German.admitted_no_duty == true → Causal(German.admitted_no_duty, Legal_profession.access_to_justice))
+18. Q[German, Legal_profession.obligation_to_provide_access, Justice_system.access](Legal_profession.obligation_to_provide_access == true → Causal(Legal_profession.obligation_to_provide_access, Justice_system.access))
+19. Q[German, Legal_profession.position, German.position](Legal_profession.position == "obligation" → Causal(Legal_profession.position, German.position))
+20. Q[German, Legal_profession.has_obligation, Justice_system.access_provided_by](Legal_profession.has_obligation == true → Causal(Legal_profession.has_obligation, Justice_system.access_provided_by))
+21. Q[German, German.statement_conflict, Legal_profession.access_role](German.statement_conflict == true → Causal(German.statement_conflict, Legal_profession.access_role))
+22. Q[German, S1.contradicts.S2, Legal_profession.duty_conflict](S1.contradicts.S2 == true → Causal(S1.contradicts.S2, Legal_profession.duty_conflict))
+23. Q[German, Legal_profession.role, Legal_profession.access_to_justice](Legal_profession.role == gateway_to_justice_system → Causal(Legal_profession.role, Legal_profession.access_to_justice))
+24. Q[German, German.admission_conflict, S2.is_true](German.admission_conflict == true → Causal(German.admission_conflict, S2.is_true))
+25. Q[German, Legal_profession.obligation_to_provide_access, S1.legal_profession_duty](Legal_profession.obligation_to_provide_access == true → Causal(Legal_profession.obligation_to_provide_access, S1.legal_profession_duty))
+26. Q[German, Legal_profession.duty_conflict, S2.legal_profession_obligation](Legal_profession.duty_conflict == true → Causal(Legal_profession.duty_conflict, S2.legal_profession_obligation))
+27. Q[German, S1.is_true, S1_and_S2.conflict](S1.is_true == false → Causal(S1.is_true, S1_and_S2.conflict))
+28. Q[German, Legal_profession.access_role, Legal_profession.has_obligation](Legal_profession.access_role == true → Causal(Legal_profession.access_role, Legal_profession.has_obligation))
+29. Q[German, German.position, Legal_profession.duty](German.position == "no duty" → Causal(German.position, Legal_profession.duty))
+30. Q[German, S2.is_true, Legal_profession.obligation_to_provide_access](S2.is_true == true → Causal(S2.is_true, Legal_profession.obligation_to_provide_access))

@@ -1,0 +1,130 @@
+Predicates:
+1. Unnamed Student.education_level = "college"
+2. Unnamed Student.status = "withdrew"
+3. Unnamed Student.year_withdrew = "2010"
+4. Unnamed Student.contact_with_police = "5"
+5. contact with police.number_of_contacts = "5"
+6. contact with police.reason = "classroom and library disruptions"
+7. Marana Unified School District.location = "suburban Tucson"
+8. "Relationship".source_id = "Index_44"
+9. "Relationship".doc_index = "44"
+10. "Relationship".source_domain = "N/A"
+11. Unnamed Student.dropped_out_year = "2006"
+12. Tamara Crawley.position = "spokeswoman"
+13. Tamara Crawley.organization = "Marana Unified School District"
+14. Unnamed Student.enrollment_start_year = "2005"
+15. Unnamed Student.enrollment_end_year = "2010"
+16. "Relationship".attribute = "education"
+17. "Relationship".attribute = "status"
+18. "Relationship".attribute = "contact_with_police"
+19. M_NLI(Unnamed Student.education_level, Unnamed Student.status)
+20. M_NLI(Unnamed Student.year_withdrew, Unnamed Student.dropped_out_year)
+21. T("The unnamed student dropped out of high school in 2006.", "The unnamed student took college classes until 2010.", Causal)
+22. T("The unnamed student took college classes from 2005 until October 2010.", "The unnamed student dropped out of high school in 2006.", Temporal)
+23. tau(Unnamed Student.year_withdrew, Unnamed Student.dropped_out_year)
+24. violate(Unnamed Student, "dropped out of high school in 2006")
+25. Factual(Unnamed Student, "dropped out of high school in 2006")
+26. Causal(Unnamed Student, "withdrew after five contacts with police")
+27. Numeric(Unnamed Student.contact_with_police, contact with police.number_of_contacts)
+28. Temporal(Unnamed Student.enrollment_end_year, Unnamed Student.year_withdrew)
+29. Content(Unnamed Student.status, "withdrew")
+30. Relation(Unnamed Student, Tamara Crawley)
+31. "Relationship".attribute = "contact"
+32. "Relationship".attribute = "withdrawal"
+33. Unnamed Student.enrollment_duration = "5 years"
+34. Unnamed Student.dropped_out_reason = "unknown"
+35. Tamara Crawley.contact_info = "N/A"
+36. "Relationship".attribute = "spokesperson"
+37. M_NLI(Tamara Crawley.position, "spokeswoman")
+38. T("The unnamed student took college classes from 2005 until October 2010.", "The unnamed student was not enrolled in college after 2006.", Negation)
+39. tau(Unnamed Student.enrollment_start_year, Unnamed Student.dropped_out_year)
+40. violate("dropped out of high school", "took college classes")
+41. Factual("dropped out of high school", "took college classes")
+42. Causal("dropped out of high school", "withdrew after five contacts with police")
+43. Numeric("5 contacts with police", "no contacts with police")
+44. Temporal("withdrew in 2010", "dropped out in 2006")
+45. Content("dropped out", "continued education")
+46. Relation("Unnamed Student", "Tamara Crawley")
+47. "Relationship".attribute = "education_status"
+48. "Relationship".attribute = "police_contacts"
+49. Unnamed Student.total_contacts = "5"
+50. Unnamed Student.last_contact_year = "2010"
+51. "Relationship".attribute = "withdrawal_reason"
+52. M_NLI(Unnamed Student.total_contacts, contact with police.number_of_contacts)
+53. T("The unnamed student was engaged in college classes.", "The unnamed student was not engaged in any educational activities.", Negation)
+54. tau(Unnamed Student.last_contact_year, Unnamed Student.year_withdrew)
+55. violate("engaged in college", "dropped out of high school")
+56. Factual("engaged in college", "not enrolled")
+57. Causal("engaged in college", "withdrew after disruptions")
+58. Numeric("5 contacts", "no contacts")
+59. Temporal("withdrew in 2010", "dropped out in 2006")
+60. Content("engaged", "disengaged")
+61. Relation("Unnamed Student", "Marana Unified School District")
+62. "Relationship".attribute = "location"
+63. "Relationship".attribute = "status_change"
+64. Unnamed Student.education_duration = "5 years"
+65. Unnamed Student.withdrawal_reason = "disruptions"
+66. Tamara Crawley.official_statement = "N/A"
+67. "Relationship".attribute = "official"
+68. M_NLI(Unnamed Student.withdrawal_reason, "unknown")
+69. T("The unnamed student was a model student.", "The unnamed student had multiple disruptions.", Content)
+70. tau(Unnamed Student.education_duration, Unnamed Student.enrollment_duration)
+71. violate("model student", "multiple disruptions")
+72. Factual("model student", "disruptive behavior")
+73. Causal("model student", "withdrew after disruptions")
+74. Numeric("5 years", "3 years")
+75. Temporal("withdrew in 2010", "enrolled in 2005")
+76. Content("model student", "disruptive student")
+77. Relation("Unnamed Student", "education")
+78. "Relationship".attribute = "enrollment"
+79. "Relationship".attribute = "withdrawal"
+80. Unnamed Student.enrollment_status = "active"
+81. Unnamed Student.withdrawal_status = "inactive"
+82. "Relationship".attribute = "status_change"
+83. M_NLI(Unnamed Student.enrollment_status, Unnamed Student.withdrawal_status)
+84. T("The unnamed student was active in college.", "The unnamed student was inactive after withdrawal.", Negation)
+85. tau(Unnamed Student.enrollment_status, Unnamed Student.withdrawal_status)
+86. violate("active in college", "inactive after withdrawal")
+87. Factual("active in college", "inactive")
+88. Causal("active in college", "withdrew")
+89. Numeric("5 years", "2 years")
+90. Temporal("active until 2010", "inactive after 2006")
+91. Content("active", "inactive")
+92. Relation("Unnamed Student", "Tamara Crawley")
+93. "Relationship".attribute = "contact_info"
+94. "Relationship".attribute = "statement"
+95. Unnamed Student.final_status = "withdrawn"
+96. Unnamed Student.final_year = "2010"
+97. "Relationship".attribute = "final_status"
+98. M_NLI(Unnamed Student.final_status, "enrolled")
+99. T("The unnamed student was withdrawn.", "The unnamed student was enrolled.", Negation)
+100. tau(Unnamed Student.final_status, "enrolled")
+violate(x0, y0)
+
+Rules:
+1. Q[x0, y0](Unnamed Student.education_level = "college" ∧ Unnamed Student.status = "withdrew" → violate(x0, y0))
+2. Q[x0, y0](Unnamed Student.year_withdrew = "2010" ∧ Unnamed Student.dropped_out_year = "2006" → violate(x0, y0))
+3. Q[x0, y0](Unnamed Student.contact_with_police = "5" ∧ contact with police.number_of_contacts = "5" → violate(x0, y0))
+4. Q[x0, y0](Unnamed Student.enrollment_start_year = "2005" ∧ Unnamed Student.enrollment_end_year = "2010" → violate(x0, y0))
+5. Q[x0, y0](Unnamed Student.status = "withdrew" ∧ Unnamed Student.dropped_out_reason = "unknown" → violate(x0, y0))
+6. Q[x0, y0](Unnamed Student.education_level = "college" ∧ Unnamed Student.year_withdrew = "2010" ∧ Unnamed Student.dropped_out_year = "2006" → violate(x0, y0))
+7. Q[x0, y0](Unnamed Student.contact_with_police = "5" ∧ contact with police.reason = "classroom and library disruptions" ∧ Unnamed Student.status = "withdrew" → violate(x0, y0))
+8. Q[x0, y0](Unnamed Student.enrollment_start_year = "2005" ∧ Unnamed Student.enrollment_end_year = "2010" ∧ Unnamed Student.year_withdrew = "2010" → violate(x0, y0))
+9. Q[x0, y0](Unnamed Student.dropped_out_year = "2006" ∧ Unnamed Student.final_status = "withdrawn" ∧ Unnamed Student.final_year = "2010" → violate(x0, y0))
+10. Q[x0, y0](Unnamed Student.withdrawal_reason = "disruptions" ∧ Unnamed Student.status = "withdrew" ∧ Unnamed Student.contact_with_police = "5" → violate(x0, y0))
+11. Q[x0, y0](Unnamed Student.education_level = "college" ∧ Unnamed Student.status = "withdrew" ∧ Unnamed Student.dropped_out_year = "2006" ∧ Unnamed Student.year_withdrew = "2010" → violate(x0, y0))
+12. Q[x0, y0](Unnamed Student.contact_with_police = "5" ∧ contact with police.number_of_contacts = "5" ∧ contact with police.reason = "classroom and library disruptions" → violate(x0, y0))
+13. Q[x0, y0](Unnamed Student.enrollment_start_year = "2005" ∧ Unnamed Student.enrollment_end_year = "2010" ∧ Unnamed Student.final_status = "withdrawn" → violate(x0, y0))
+14. Q[x0, y0](Unnamed Student.year_withdrew = "2010" ∧ Unnamed Student.final_year = "2010" ∧ Unnamed Student.dropped_out_year = "2006" → violate(x0, y0))
+15. Q[x0, y0](Unnamed Student.status = "withdrew" ∧ Unnamed Student.withdrawal_reason = "disruptions" ∧ Unnamed Student.final_status = "withdrawn" ∧ Unnamed Student.final_year = "2010" → violate(x0, y0))
+16. Q[x0, y0](Unnamed Student.education_level = "college" ∧ Unnamed Student.status = "withdrew" ∧ Unnamed Student.year_withdrew = "2010" ∧ Unnamed Student.contact_with_police = "5" ∧ contact with police.reason = "classroom and library disruptions" → violate(x0, y0))
+17. Q[x0, y0](Unnamed Student.dropped_out_year = "2006" ∧ Unnamed Student.final_status = "withdrawn" ∧ Unnamed Student.enrollment_start_year = "2005" ∧ Unnamed Student.enrollment_end_year = "2010" → violate(x0, y0))
+18. Q[x0, y0](Unnamed Student.withdrawal_reason = "disruptions" ∧ Unnamed Student.status = "withdrew" ∧ Unnamed Student.year_withdrew = "2010" ∧ Unnamed Student.dropped_out_year = "2006" → violate(x0, y0))
+19. Q[x0, y0](Unnamed Student.contact_with_police = "5" ∧ contact with police.number_of_contacts = "5" ∧ Unnamed Student.status = "withdrew" ∧ Unnamed Student.withdrawal_reason = "disruptions" → violate(x0, y0))
+20. Q[x0, y0](Unnamed Student.education_level = "college" ∧ Unnamed Student.year_withdrew = "2010" ∧ Unnamed Student.final_status = "withdrawn" ∧ Unnamed Student.final_year = "2010" ∧ Unnamed Student.dropped_out_year = "2006" → violate(x0, y0))
+21. Q[x0, y0](Unnamed Student.status = "withdrew" ∧ Unnamed Student.contact_with_police = "5" ∧ contact with police.reason = "classroom and library disruptions" ∧ Unnamed Student.withdrawal_reason = "disruptions" → violate(x0, y0))
+22. Q[x0, y0](Unnamed Student.education_level = "college" ∧ Unnamed Student.status = "withdrew" ∧ Unnamed Student.year_withdrew = "2010" ∧ Unnamed Student.dropped_out_year = "2006" ∧ Unnamed Student.final_status = "withdrawn" → violate(x0, y0))
+23. Q[x0, y0](Unnamed Student.contact_with_police = "5" ∧ contact with police.number_of_contacts = "5" ∧ Unnamed Student.year_withdrew = "2010" ∧ Unnamed Student.final_year = "2010" → violate(x0, y0))
+24. Q[x0, y0](Unnamed Student.enrollment_start_year = "2005" ∧ Unnamed Student.enrollment_end_year = "2010" ∧ Unnamed Student.status = "withdrew" ∧ Unnamed Student.withdrawal_reason = "disruptions" ∧ Unnamed Student.final_status = "withdrawn" → violate(x0, y0))
+25. Q[x0, y0](Unnamed Student.dropped_out_year = "2006" ∧ Unnamed Student.final_year = "2010" ∧ Unnamed Student.withdrawal_reason = "disruptions" ∧ Unnamed Student.contact_with_police = "5" → violate(x0, y0))
+26. Q[x0, y0](Unnamed Student.education_level = "college" ∧ Unnamed Student.status = "

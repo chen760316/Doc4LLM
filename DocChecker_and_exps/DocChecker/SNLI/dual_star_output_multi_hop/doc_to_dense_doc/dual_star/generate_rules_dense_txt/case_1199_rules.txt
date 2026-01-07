@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 1199)
+S1: Two men are hiking in the snow.
+S2: Two men in black outfits are carrying trays of food.
+
+Predicates:
+1. HikingActivity.subjects
+2. CarryingTraysActivity.subjects
+3. HikingActivity.location
+4. CarryingTraysActivity.location
+5. TwoMen.hiking
+6. TwoMen.carryingTrays
+7. TwoMen.outfit
+8. Snow.environment
+9. BlackOutfits.color
+10. Food.tray
+11. M_NLI(S1, S2)
+12. Relation(TwoMen, HikingActivity)
+13. Relation(TwoMen, CarryingTraysActivity)
+14. violate(HikingActivity, CarryingTraysActivity)
+15. TwoMen.activity
+16. HikingActivity.duration
+17. CarryingTraysActivity.duration
+18. HikingActivity.weather
+19. CarryingTraysActivity.time
+20. TwoMen.number
+21. Snow.condition
+22. BlackOutfits.material
+23. Food.type
+24. M_NLI(S2, S1)
+25. Relation(Snow, HikingActivity)
+26. Relation(BlackOutfits, CarryingTraysActivity)
+27. violate(CarryingTraysActivity, HikingActivity)
+28. TwoMen.location
+29. HikingActivity.equipment
+30. CarryingTraysActivity.equipment
+
+Rules:
+1. Q[Two, TwoMen.hiking == true](HikingActivity.subjects → Relation(TwoMen, HikingActivity))
+2. Q[Two, TwoMen.carryingTrays == true](CarryingTraysActivity.subjects → Relation(TwoMen, CarryingTraysActivity))
+3. Q[Two, TwoMen.outfit == "black"](CarryingTraysActivity.subjects → Relation(BlackOutfits, CarryingTraysActivity))
+4. Q[Two, TwoMen.activity == "hiking"](HikingActivity.subjects → Relation(TwoMen, HikingActivity))
+5. Q[Two, TwoMen.activity == "carrying trays"](CarryingTraysActivity.subjects → Relation(TwoMen, CarryingTraysActivity))
+6. Q[Two, HikingActivity.location == "snow"](HikingActivity.subjects → Relation(Snow, HikingActivity))
+7. Q[Two, CarryingTraysActivity.location == "not snow"](CarryingTraysActivity.subjects → Relation(TwoMen, CarryingTraysActivity))
+8. Q[Two, Snow.condition == "cold"](HikingActivity.subjects → Relation(Snow, HikingActivity))
+9. Q[Two, BlackOutfits.color == "black"](CarryingTraysActivity.subjects → Relation(BlackOutfits, CarryingTraysActivity))
+10. Q[Two, TwoMen.number == 2](HikingActivity.subjects → Relation(TwoMen, HikingActivity))
+11. Q[Two, TwoMen.number == 2](CarryingTraysActivity.subjects → Relation(TwoMen, CarryingTraysActivity))
+12. Q[Two, HikingActivity.weather == "snowy"](HikingActivity.subjects → Relation(Snow, HikingActivity))
+13. Q[Two, CarryingTraysActivity.time == "not snowy"](CarryingTraysActivity.subjects → Relation(TwoMen, CarryingTraysActivity))
+14. Q[Two, TwoMen.outfit == "not black"](HikingActivity.subjects → Relation(TwoMen, HikingActivity))
+15. Q[Two, TwoMen.hiking == false](CarryingTraysActivity.subjects → Relation(TwoMen, CarryingTraysActivity))
+16. Q[Two, TwoMen.carryingTrays == false](HikingActivity.subjects → Relation(TwoMen, HikingActivity))
+17. Q[Two, HikingActivity.equipment == "hiking gear"](HikingActivity.subjects → Relation(TwoMen, HikingActivity))
+18. Q[Two, CarryingTraysActivity.equipment == "trays"](CarryingTraysActivity.subjects → Relation(TwoMen, CarryingTraysActivity))
+19. Q[Two, violate(HikingActivity, CarryingTraysActivity) == true](HikingActivity.subjects → Relation(TwoMen, HikingActivity))
+20. Q[Two, violate(CarryingTraysActivity, HikingActivity) == true](CarryingTraysActivity.subjects → Relation(TwoMen, CarryingTraysActivity))
+21. Q[Two, HikingActivity.duration == "long"](HikingActivity.subjects → Relation(TwoMen, HikingActivity))
+22. Q[Two, CarryingTraysActivity.duration == "short"](CarryingTraysActivity.subjects → Relation(TwoMen, CarryingTraysActivity))
+23. Q[Two, Food.type == "not applicable"](HikingActivity.subjects → Relation(TwoMen, HikingActivity))
+24. Q[Two, Food.type == "applicable"](CarryingTraysActivity.subjects → Relation(TwoMen, CarryingTraysActivity))
+25. Q[Two, HikingActivity.subjects == TwoMen](HikingActivity.subjects → Relation(TwoMen, HikingActivity))
+26. Q[Two, CarryingTraysActivity.subjects == TwoMen](CarryingTraysActivity.subjects → Relation(TwoMen, CarryingTraysActivity))
+27. Q[Two, HikingActivity.location == "snow"](HikingActivity.subjects → Relation(Snow, HikingActivity))
+28. Q[Two, CarryingTraysActivity.location == "indoor"](CarryingTraysActivity.subjects → Relation(TwoMen, CarryingTraysActivity))
+29. Q[Two, TwoMen.outfit == "hiking gear"](HikingActivity.subjects → Relation(TwoMen, HikingActivity))
+30. Q[Two, TwoMen.outfit == "not hiking gear"](CarryingTraysActivity.subjects → Relation(TwoMen, CarryingTraysActivity))

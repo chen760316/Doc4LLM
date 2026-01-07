@@ -1,0 +1,54 @@
+Predicates:
+Attorney General's Office.action != "created specialized court for femicides"
+Attorney General's Office.action = "created specialized court for femicides"
+Attorney General's Office.label != "Organization"
+Attorney General's Office.label = "Organization"
+Attorney General's Office.name != "Attorney General's Office"
+Attorney General's Office.name = "Attorney General's Office"
+Attorney General's Office.year != "2010"
+Attorney General's Office.year = "2010"
+Guatemalan government.action != "passed law against femicide"
+Guatemalan government.action != Attorney General's Office.action
+Guatemalan government.action = "passed law against femicide"
+Guatemalan government.label != "Government"
+Guatemalan government.label != Attorney General's Office.label
+Guatemalan government.label != law against femicide.label
+Guatemalan government.label = "Government"
+Guatemalan government.name != "Guatemalan government"
+Guatemalan government.name != Attorney General's Office.name
+Guatemalan government.name != law against femicide.name
+Guatemalan government.name = "Guatemalan government"
+Guatemalan government.year != "2008"
+Guatemalan government.year != Attorney General's Office.year
+Guatemalan government.year = "2008"
+Guatemalan government___Attorney General's Office.doc_id = "3489825762_1"
+Guatemalan government___Attorney General's Office.relationship = "The Guatemalan government has taken steps to address violence against women."
+Guatemalan government___law against femicide.doc_id != Guatemalan government___Attorney General's Office.doc_id
+Guatemalan government___law against femicide.doc_id = "3489825762_5"
+Guatemalan government___law against femicide.relationship != Guatemalan government___Attorney General's Office.relationship
+Guatemalan government___law against femicide.relationship = "The Guatemalan government passed a law against femicide."
+Guatemalan government___law against femicide.type = "legislation"
+None_ML(Guatemalan government___Attorney General's Office.attrs, Guatemalan government___law against femicide.attrs)
+None_ML(law against femicide.attrs, Guatemalan government.attrs)
+law against femicide.label != "Law"
+law against femicide.label != Attorney General's Office.label
+law against femicide.label = "Law"
+law against femicide.name != "law against femicide"
+law against femicide.name != Attorney General's Office.name
+law against femicide.name = "law against femicide"
+law against femicide.year != 2008
+law against femicide.year < 2013
+law against femicide.year = 2008
+law against femicide.year > 2003
+
+Rules:
+Q[Guatemalan government,Guatemalan government] (Attorney General's Office.year != "2010" ∧ Guatemalan government.label != Attorney General's Office.label → Guatemalan government.label != "Government")
+Q[Guatemalan government,Guatemalan government] (Attorney General's Office.action = "created specialized court for femicides" ∧ None_ML(law against femicide.attrs, Guatemalan government.attrs) ∧ law against femicide.name = "law against femicide" ∧ Guatemalan government.name != Attorney General's Office.name → law against femicide.year != 2008)
+Q[Guatemalan government,Guatemalan government] (law against femicide.label != Attorney General's Office.label ∧ None_ML(law against femicide.attrs, Guatemalan government.attrs) ∧ law against femicide.label = "Law" → Guatemalan government___Attorney General's Office.relationship = "The Guatemalan government has taken steps to address violence against women.")
+Q[Guatemalan government,Guatemalan government] (Guatemalan government___law against femicide.type = "legislation" ∧ Attorney General's Office.action = "created specialized court for femicides" ∧ Attorney General's Office.year = "2010" ∧ law against femicide.label != "Law" ∧ Guatemalan government___law against femicide.doc_id != Guatemalan government___Attorney General's Office.doc_id → law against femicide.name != Attorney General's Office.name)
+Q[Guatemalan government,Guatemalan government] (Guatemalan government.action = "passed law against femicide" ∧ law against femicide.label != Attorney General's Office.label ∧ Attorney General's Office.year = "2010" ∧ law against femicide.year = 2008 ∧ law against femicide.name = "law against femicide" ∧ Attorney General's Office.year != "2010" → law against femicide.year < 2013)
+Q[Guatemalan government,Guatemalan government] (Guatemalan government___law against femicide.doc_id != Guatemalan government___Attorney General's Office.doc_id ∧ law against femicide.name = "law against femicide" → Attorney General's Office.action = "created specialized court for femicides")
+Q[Guatemalan government,Guatemalan government] (Attorney General's Office.action != "created specialized court for femicides" ∧ law against femicide.label = "Law" ∧ Guatemalan government___Attorney General's Office.relationship = "The Guatemalan government has taken steps to address violence against women." → Guatemalan government___law against femicide.type = "legislation")
+Q[Guatemalan government,Guatemalan government] (Guatemalan government___Attorney General's Office.doc_id = "3489825762_1" ∧ law against femicide.name != Attorney General's Office.name ∧ law against femicide.name = "law against femicide" ∧ Guatemalan government.name != Attorney General's Office.name → Guatemalan government___law against femicide.doc_id = "3489825762_5")
+Q[Guatemalan government,Guatemalan government] (Guatemalan government.year != "2008" ∧ Guatemalan government___law against femicide.relationship != Guatemalan government___Attorney General's Office.relationship ∧ law against femicide.label != "Law" ∧ law against femicide.year < 2013 ∧ Guatemalan government.label != "Government" → law against femicide.label = "Law")
+Q[Guatemalan government,Guatemalan government] (law against femicide.label = "Law" ∧ Guatemalan government.label != Attorney General's Office.label ∧ Guatemalan government.action != Attorney General's Office.action ∧ Attorney General's Office.label = "Organization" ∧ Guatemalan government.name != "Guatemalan government" ∧ Guatemalan government.name != Attorney General's Office.name → None_ML(law against femicide.attrs, Guatemalan government.attrs))

@@ -1,0 +1,48 @@
+Predicates:
+None_ML(Phi Kappa Psi fraternity.attrs, Rolling Stone.attrs)
+None_ML(Will Dana___Rolling Stone.attrs, Will Dana___Phi Kappa Psi fraternity.attrs)
+Phi Kappa Psi fraternity.label != "Group"
+Phi Kappa Psi fraternity.label = "Group"
+Phi Kappa Psi fraternity.name != "Phi Kappa Psi fraternity"
+Phi Kappa Psi fraternity.name = "Phi Kappa Psi fraternity"
+Phi Kappa Psi fraternity.type != "fraternity"
+Phi Kappa Psi fraternity.type = "fraternity"
+Rolling Stone.label != "Organization"
+Rolling Stone.label != Phi Kappa Psi fraternity.label
+Rolling Stone.label = "Organization"
+Rolling Stone.name != "Rolling Stone"
+Rolling Stone.name != Phi Kappa Psi fraternity.name
+Rolling Stone.name = "Rolling Stone"
+Rolling Stone.status != "retracted article"
+Rolling Stone.status = "retracted article"
+Will Dana.label != "Person"
+Will Dana.label != Phi Kappa Psi fraternity.label
+Will Dana.label != Rolling Stone.label
+Will Dana.label = "Person"
+Will Dana.name != "Will Dana"
+Will Dana.name != Phi Kappa Psi fraternity.name
+Will Dana.name != Rolling Stone.name
+Will Dana.name = "Will Dana"
+Will Dana.occupation != "managing editor"
+Will Dana.occupation = "managing editor"
+Will Dana.status != "apologetic"
+Will Dana.status != Rolling Stone.status
+Will Dana.status = "apologetic"
+Will Dana___Phi Kappa Psi fraternity.doc_id = "3489825751_3"
+Will Dana___Phi Kappa Psi fraternity.relationship = "Will Dana apologized to the Phi Kappa Psi fraternity for the damage caused by the article."
+Will Dana___Rolling Stone.doc_id != Will Dana___Phi Kappa Psi fraternity.doc_id
+Will Dana___Rolling Stone.doc_id = "3489825751_5"
+Will Dana___Rolling Stone.relationship != Will Dana___Phi Kappa Psi fraternity.relationship
+Will Dana___Rolling Stone.relationship = "Will Dana, the managing editor, apologized on behalf of Rolling Stone."
+
+Rules:
+Q[Will Dana,Will Dana] (Will Dana.occupation != "managing editor" ∧ Will Dana.occupation = "managing editor" ∧ Rolling Stone.status = "retracted article" ∧ Will Dana.label != "Person" ∧ Rolling Stone.name != "Rolling Stone" ∧ Will Dana.status = "apologetic" → Will Dana.status != "apologetic")
+Q[Will Dana,Will Dana] (Will Dana.label != "Person" ∧ Will Dana___Phi Kappa Psi fraternity.doc_id = "3489825751_3" ∧ Will Dana.label != Phi Kappa Psi fraternity.label ∧ Will Dana.occupation != "managing editor" ∧ Will Dana.occupation = "managing editor" → Rolling Stone.label != "Organization")
+Q[Will Dana,Will Dana] (Phi Kappa Psi fraternity.type = "fraternity" ∧ Phi Kappa Psi fraternity.name = "Phi Kappa Psi fraternity" ∧ Phi Kappa Psi fraternity.label != "Group" → Will Dana.label = "Person")
+Q[Will Dana,Will Dana] (Will Dana.label = "Person" ∧ Will Dana.status != "apologetic" → Rolling Stone.label != Phi Kappa Psi fraternity.label)
+Q[Will Dana,Will Dana] (Will Dana.name != Rolling Stone.name ∧ Phi Kappa Psi fraternity.type != "fraternity" ∧ Rolling Stone.label != "Organization" ∧ Will Dana.status = "apologetic" → Will Dana.name != "Will Dana")
+Q[Will Dana,Will Dana] (None_ML(Will Dana___Rolling Stone.attrs, Will Dana___Phi Kappa Psi fraternity.attrs) ∧ Will Dana.occupation != "managing editor" ∧ Phi Kappa Psi fraternity.label != "Group" ∧ Will Dana.status != "apologetic" → Will Dana___Rolling Stone.relationship != Will Dana___Phi Kappa Psi fraternity.relationship)
+Q[Will Dana,Will Dana] (Will Dana.name = "Will Dana" ∧ Phi Kappa Psi fraternity.label != "Group" ∧ Will Dana___Rolling Stone.relationship != Will Dana___Phi Kappa Psi fraternity.relationship ∧ Will Dana.status = "apologetic" ∧ Rolling Stone.label != Phi Kappa Psi fraternity.label ∧ Phi Kappa Psi fraternity.name != "Phi Kappa Psi fraternity" → Will Dana.occupation != "managing editor")
+Q[Will Dana,Will Dana] (Rolling Stone.name != Phi Kappa Psi fraternity.name ∧ Rolling Stone.label != Phi Kappa Psi fraternity.label ∧ Will Dana.name != Rolling Stone.name ∧ Will Dana.name = "Will Dana" ∧ Will Dana.label != Rolling Stone.label → None_ML(Will Dana___Rolling Stone.attrs, Will Dana___Phi Kappa Psi fraternity.attrs))
+Q[Will Dana,Will Dana] (Phi Kappa Psi fraternity.label = "Group" ∧ Will Dana.label != "Person" ∧ Will Dana.occupation = "managing editor" → Phi Kappa Psi fraternity.type != "fraternity")
+Q[Will Dana,Will Dana] (Will Dana.status != Rolling Stone.status ∧ Phi Kappa Psi fraternity.type != "fraternity" → Will Dana.status = "apologetic")

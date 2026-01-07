@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 1301)
+S1: Retired employees do pay premiums, however, and the service cost to the employer entity is defined net of the actuarial present value of those future premiums.
+S2: Retired employees pay an average of £50 a month in premiums.
+
+Predicates:
+1. RetiredEmployees.paysPremiums
+2. EmployerEntity.serviceCost
+3. EmployerEntity.actuarialPresentValue
+4. RetiredEmployees.averagePremiumAmount
+5. Premiums.amount
+6. Premiums.monthlyPayment
+7. RetiredEmployees.premiumPaymentFrequency
+8. ActuarialValue.futurePremiums
+9. Premiums.totalCost
+10. EmployerEntity.premiumCost
+11. RetiredEmployees.premiumPayment
+12. Premiums.averageMonthlyCost
+13. RetiredEmployees.premiumContribution
+14. EmployerEntity.netServiceCost
+15. Premiums.serviceCostImpact
+16. RetiredEmployees.premiumAmount
+17. EmployerEntity.futureLiabilities
+18. Premiums.monthlyAverage
+19. RetiredEmployees.premiumObligation
+20. ActuarialValue.premiumCalculation
+21. RetiredEmployees.totalPremiums
+22. EmployerEntity.premiumLiability
+23. Premiums.contributionRate
+24. RetiredEmployees.premiumRate
+25. EmployerEntity.totalServiceCost
+26. Premiums.averageContribution
+27. RetiredEmployees.premiumPaymentHistory
+28. EmployerEntity.premiumExpense
+29. Premiums.futureCostEstimation
+30. RetiredEmployees.premiumFinancialImpact
+
+Rules:
+1. Q[Retired, RetiredEmployees.paysPremiums, Premiums.amount](RetiredEmployees.paysPremiums == true → Numeric(1, 0))
+2. Q[Retired, RetiredEmployees.averagePremiumAmount, Premiums.amount](RetiredEmployees.averagePremiumAmount == 50 → Numeric(50, 0))
+3. Q[Retired, EmployerEntity.serviceCost, Premiums.totalCost](EmployerEntity.serviceCost == EmployerEntity.actuarialPresentValue - Premiums.totalCost → Numeric(1, 0))
+4. Q[Retired, RetiredEmployees.totalPremiums, Premiums.amount](RetiredEmployees.totalPremiums == RetiredEmployees.averagePremiumAmount * RetiredEmployees.premiumPaymentFrequency → Numeric(1, 0))
+5. Q[Retired, EmployerEntity.actuarialPresentValue, Premiums.totalCost](EmployerEntity.actuarialPresentValue == Premiums.totalCost + EmployerEntity.serviceCost → Numeric(1, 0))
+6. Q[Retired, RetiredEmployees.premiumPaymentFrequency, Premiums.monthlyPayment](RetiredEmployees.premiumPaymentFrequency == 12 → Numeric(12, 0))
+7. Q[Retired, Premiums.monthlyAverage, Premiums.averageMonthlyCost](Premiums.monthlyAverage == RetiredEmployees.averagePremiumAmount → Numeric(50, 0))
+8. Q[Retired, EmployerEntity.premiumCost, Premiums.amount](EmployerEntity.premiumCost == RetiredEmployees.totalPremiums → Numeric(1, 0))
+9. Q[Retired, RetiredEmployees.premiumContribution, Premiums.amount](RetiredEmployees.premiumContribution == RetiredEmployees.averagePremiumAmount → Numeric(50, 0))
+10. Q[Retired, EmployerEntity.netServiceCost, EmployerEntity.serviceCost](EmployerEntity.netServiceCost == EmployerEntity.serviceCost - RetiredEmployees.totalPremiums → Numeric(1, 0))
+11. Q[Retired, Premiums.futureCostEstimation, Premiums.amount](Premiums.futureCostEstimation == RetiredEmployees.totalPremiums * 10 → Numeric(500, 0))
+12. Q[Retired, RetiredEmployees.premiumObligation, Premiums.amount](RetiredEmployees.premiumObligation == RetiredEmployees.averagePremiumAmount * RetiredEmployees.premiumPaymentFrequency → Numeric(600, 0))
+13. Q[Retired, EmployerEntity.premiumLiability, Premiums.totalCost](EmployerEntity.premiumLiability == RetiredEmployees.totalPremiums → Numeric(1, 0))
+14. Q[Retired, Premiums.serviceCostImpact, EmployerEntity.serviceCost](Premiums.serviceCostImpact == EmployerEntity.serviceCost - RetiredEmployees.totalPremiums → Numeric(1, 0))
+15. Q[Retired, RetiredEmployees.premiumRate, Premiums.amount](RetiredEmployees.premiumRate == RetiredEmployees.averagePremiumAmount / 100 → Numeric(0.5, 0))
+16. Q[Retired, EmployerEntity.totalServiceCost, Premiums.totalCost](EmployerEntity.totalServiceCost == EmployerEntity.serviceCost + RetiredEmployees.totalPremiums → Numeric(1, 0))
+17. Q[Retired, Premiums.averageContribution, Premiums.amount](Premiums.averageContribution == RetiredEmployees.averagePremiumAmount → Numeric(50, 0))
+18. Q[Retired, RetiredEmployees.premiumPaymentHistory, Premiums.amount](RetiredEmployees.premiumPaymentHistory == RetiredEmployees.averagePremiumAmount * 12 → Numeric(600, 0))
+19. Q[Retired, EmployerEntity.premiumExpense, Premiums.totalCost](EmployerEntity.premiumExpense == RetiredEmployees.totalPremiums → Numeric(1, 0))
+20. Q[Retired, ActuarialValue.futurePremiums, Premiums.amount](ActuarialValue.futurePremiums == RetiredEmployees.totalPremiums * 20 → Numeric(1200, 0))
+21. Q[Retired, RetiredEmployees.premiumFinancialImpact, Premiums.amount](RetiredEmployees.premiumFinancialImpact == RetiredEmployees.averagePremiumAmount * 5 → Numeric(250, 0))
+22. Q[Retired, Premiums.monthlyPayment, Premiums.amount](Premiums.monthlyPayment == RetiredEmployees.averagePremiumAmount → Numeric(50, 0))
+23. Q[Retired, EmployerEntity.futureLiabilities, Premiums.totalCost](EmployerEntity.futureLiabilities == RetiredEmployees.totalPremiums → Numeric(1, 0))
+24. Q[Retired, Premiums.contributionRate, Premiums.amount](Premiums.contributionRate == RetiredEmployees.averagePremiumAmount / 100 → Numeric(0.5, 0))
+25. Q[Retired, RetiredEmployees.premiumPayment, Premiums.amount](RetiredEmployees.premiumPayment == RetiredEmployees.averagePremiumAmount → Numeric(50, 0))
+26. Q[Retired, EmployerEntity.premiumCost, Premiums.totalCost](EmployerEntity.premiumCost == RetiredEmployees.totalPremiums → Numeric(1, 0))
+27. Q[Retired, Premiums.averageMonthlyCost, Premiums.amount](Premiums.averageMonthlyCost == RetiredEmployees.averagePremiumAmount → Numeric(50, 0))
+28. Q[Retired, RetiredEmployees.premiumAmount, Premiums.amount](RetiredEmployees.premiumAmount == RetiredEmployees.averagePremiumAmount → Numeric(50, 0))
+29. Q[Retired, EmployerEntity.serviceCost, Premiums.totalCost](EmployerEntity.serviceCost == RetiredEmployees.totalPremiums → Numeric(1, 0))
+30. Q[Retired, Premiums.totalCost, Premiums.amount](Premiums.totalCost == RetiredEmployees.totalPremiums → Numeric(1, 0))

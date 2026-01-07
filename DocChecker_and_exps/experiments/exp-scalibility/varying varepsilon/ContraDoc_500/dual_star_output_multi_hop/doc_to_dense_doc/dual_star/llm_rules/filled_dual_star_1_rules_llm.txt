@@ -1,0 +1,73 @@
+Predicates:
+1. Agatha_Christie.occupation = "Author"
+2. Brian_Aldiss.occupation = "Author"
+3. Christie's_books.description = "Books written by Agatha Christie"
+4. "Agatha Christie wrote her books up to the last chapter and then decided on the most unlikely suspect.".doc_index = "123"
+5. "Agatha Christie wrote her books up to the last chapter and then decided on the unlikely suspect.".doc_index = "111"
+6. "Brian Aldiss claimed that Agatha Christie told him about her writing process.".doc_index = "123"
+7. "Brian Aldiss claimed that Agatha Christie told him about her writing process.".event = "Desert Island Discs"
+8. "Brian Aldiss claimed that Agatha Christie told him about her writing process.".method = "Wrote up to the last chapter and then decided on the unlikely suspect"
+9. "Brian Aldiss claimed that Agatha Christie told him about her writing process.".year = "2007"
+10. M_NLI(Agatha_Christie.occupation, Brian_Aldiss.occupation)
+11. M_NLI(Christie's_books.description, "Books written by another author")
+12. T("Agatha Christie wrote her books up to the last chapter and then decided on the most unlikely suspect.", "Agatha Christie wrote her books up to the last chapter and then decided on the unlikely suspect.")
+13. T("Brian Aldiss claimed that Agatha Christie told him about her writing process.", "Brian Aldiss did not claim that Agatha Christie told him about her writing process.")
+14. tau(Agatha_Christie.occupation, Brian_Aldiss.occupation)
+15. tau(Christie's_books.description, "Books written by another author")
+16. violate(Agatha_Christie, Brian_Aldiss)
+17. Factual(Agatha_Christie, "Agatha Christie wrote her books up to the last chapter and then decided on the most unlikely suspect.")
+18. Factual(Brian_Aldiss, "Brian Aldiss claimed that Agatha Christie told him about her writing process.")
+19. Causal("Agatha Christie wrote her books up to the last chapter and then decided on the most unlikely suspect.", "Agatha Christie did not decide on the most unlikely suspect.")
+20. Causal("Brian Aldiss claimed that Agatha Christie told him about her writing process.", "Brian Aldiss did not claim that Agatha Christie told him about her writing process.")
+21. Numeric("Agatha Christie wrote her books up to the last chapter and then decided on the most unlikely suspect.", "Agatha Christie wrote her books up to 10 chapters.")
+22. Numeric("Brian Aldiss claimed that Agatha Christie told him about her writing process.", "Brian Aldiss claimed that Agatha Christie told him about her writing process 5 times.")
+23. Temporal("Agatha Christie wrote her books up to the last chapter and then decided on the most unlikely suspect.", "Agatha Christie wrote her books after 2020.")
+24. Temporal("Brian Aldiss claimed that Agatha Christie told him about her writing process in 2007.", "Brian Aldiss claimed that Agatha Christie told him about her writing process in 2010.")
+25. "Agatha Christie wrote her books up to the last chapter and then decided on the most unlikely suspect.".year = "1920"
+26. "Agatha Christie wrote her books up to the last chapter and then decided on the unlikely suspect.".year = "1921"
+27. "Brian Aldiss claimed that Agatha Christie told him about her writing process.".year = "2008"
+28. "Brian Aldiss claimed that Agatha Christie told him about her writing process.".year = "2007"
+29. M_NLI("Agatha Christie wrote her books up to the last chapter and then decided on the most unlikely suspect.", "Agatha Christie wrote her books without deciding on a suspect.")
+30. T("Brian Aldiss claimed that Agatha Christie told him about her writing process.", "Brian Aldiss never spoke about Agatha Christie.")
+31. tau("Agatha Christie wrote her books up to the last chapter and then decided on the most unlikely suspect.", "Agatha Christie wrote her books without a suspect.")
+32. violate("Agatha Christie wrote her books up to the last chapter and then decided on the most unlikely suspect.", "Agatha Christie did not write her books.")
+33. Factual("Agatha Christie wrote her books up to the last chapter and then decided on the most unlikely suspect.", "Agatha Christie wrote her books without a last chapter.")
+34. Causal("Agatha Christie wrote her books up to the last chapter and then decided on the most unlikely suspect.", "Agatha Christie decided on the suspect before writing the last chapter.")
+35. Numeric("Brian Aldiss claimed that Agatha Christie told him about her writing process.", "Brian Aldiss claimed that Agatha Christie told him about her writing process 3 times.")
+36. Temporal("Brian Aldiss claimed that Agatha Christie told him about her writing process in 2007.", "Brian Aldiss claimed that Agatha Christie told him about her writing process in 2005.")
+37. "Agatha Christie wrote her books up to the last chapter and then decided on the most unlikely suspect.".method = "Wrote up to the last chapter"
+38. "Agatha Christie wrote her books up to the last chapter and then decided on the unlikely suspect.".method = "Wrote without a last chapter"
+39. M_NLI("Brian Aldiss claimed that Agatha Christie told him about her writing process.", "Brian Aldiss denied that Agatha Christie told him about her writing process.")
+40. T("Agatha Christie wrote her books up to the last chapter and then decided on the most unlikely suspect.", "Agatha Christie wrote her books without any decisions.")
+41. tau("Brian Aldiss claimed that Agatha Christie told him about her writing process.", "Brian Aldiss did not claim anything about Agatha Christie.")
+42. violate("Agatha Christie wrote her books up to the last chapter and then decided on the most unlikely suspect.", "Agatha Christie never wrote any books.")
+43. Factual("Brian Aldiss claimed that Agatha Christie told him about her writing process.", "Brian Aldiss claimed that Agatha Christie never spoke to him.")
+44. Causal("Agatha Christie wrote her books up to the last chapter and then decided on the most unlikely suspect.", "Agatha Christie wrote her books without any decisions.")
+45. Numeric("Agatha Christie wrote her books up to the last chapter and then decided on the most unlikely suspect.", "Agatha Christie wrote 5 books.")
+46. Temporal("Brian Aldiss claimed that Agatha Christie told him about her writing process in 2007.", "Brian Aldiss claimed that Agatha Christie told him about her writing process in 2006.")
+47. "Agatha Christie wrote her books up to the last chapter and then decided on the most unlikely suspect.".event = "Interview"
+48. "Brian Aldiss claimed that Agatha Christie told him about her writing process.".event = "Podcast"
+49. M_NLI("Agatha Christie wrote her books up to the last chapter and then decided on the most unlikely suspect.", "Agatha Christie wrote her books without
+violate(x0, y0)
+
+Rules:
+1. Q[x0, y0](Agatha_Christie.occupation = "Author" ∧ Brian_Aldiss.occupation = "Author" → violate(x0, y0))
+2. Q[x0, y0](Christie's_books.description = "Books written by Agatha Christie" ∧ "Agatha Christie wrote her books up to the last chapter and then decided on the most unlikely suspect.".doc_index = "123" → violate(x0, y0))
+3. Q[x0, y0](M_NLI(Agatha_Christie.occupation, Brian_Aldiss.occupation) ∧ tau(Agatha_Christie.occupation, Brian_Aldiss.occupation) → violate(x0, y0))
+4. Q[x0, y0](Factual(Agatha_Christie, "Agatha Christie wrote her books up to the last chapter and then decided on the most unlikely suspect.") ∧ Factual(Brian_Aldiss, "Brian Aldiss claimed that Agatha Christie told him about her writing process.") → violate(x0, y0))
+5. Q[x0, y0](Causal("Agatha Christie wrote her books up to the last chapter and then decided on the most unlikely suspect.", "Agatha Christie did not decide on the most unlikely suspect.") ∧ Numeric("Agatha Christie wrote her books up to the last chapter and then decided on the most unlikely suspect.", "Agatha Christie wrote her books up to 10 chapters.") → violate(x0, y0))
+6. Q[x0, y0](Temporal("Brian Aldiss claimed that Agatha Christie told him about her writing process in 2007.", "Brian Aldiss claimed that Agatha Christie told him about her writing process in 2005.") ∧ "Brian Aldiss claimed that Agatha Christie told him about her writing process.".year = "2008" → violate(x0, y0))
+7. Q[x0, y0](M_NLI("Agatha Christie wrote her books up to the last chapter and then decided on the most unlikely suspect.", "Agatha Christie wrote her books without deciding on a suspect.") ∧ T("Agatha Christie wrote her books up to the last chapter and then decided on the most unlikely suspect.", "Agatha Christie wrote her books without any decisions.") → violate(x0, y0))
+8. Q[x0, y0](tau("Agatha Christie wrote her books up to the last chapter and then decided on the most unlikely suspect.", "Agatha Christie wrote her books without a suspect.") ∧ violate("Agatha Christie wrote her books up to the last chapter and then decided on the most unlikely suspect.", "Agatha Christie did not write her books.") → violate(x0, y0))
+9. Q[x0, y0](Causal("Brian Aldiss claimed that Agatha Christie told him about her writing process.", "Brian Aldiss did not claim that Agatha Christie told him about her writing process.") ∧ T("Brian Aldiss claimed that Agatha Christie told him about her writing process.", "Brian Aldiss never spoke about Agatha Christie.") → violate(x0, y0))
+10. Q[x0, y0](Factual("Agatha Christie wrote her books up to the last chapter and then decided on the most unlikely suspect.", "Agatha Christie wrote her books without a last chapter.") ∧ Numeric("Agatha Christie wrote her books up to the last chapter and then decided on the most unlikely suspect.", "Agatha Christie wrote 5 books.") → violate(x0, y0))
+11. Q[x0, y0](M_NLI("Brian Aldiss claimed that Agatha Christie told him about her writing process.", "Brian Aldiss denied that Agatha Christie told him about her writing process.") ∧ tau("Brian Aldiss claimed that Agatha Christie told him about her writing process.", "Brian Aldiss did not claim anything about Agatha Christie.") → violate(x0, y0))
+12. Q[x0, y0](Causal("Agatha Christie wrote her books up to the last chapter and then decided on the most unlikely suspect.", "Agatha Christie wrote her books without any decisions.") ∧ Temporal("Agatha Christie wrote her books up to the last chapter and then decided on the most unlikely suspect.", "Agatha Christie wrote her books after 2020.") → violate(x0, y0))
+13. Q[x0, y0](Causal("Agatha Christie wrote her books up to the last chapter and then decided on the most unlikely suspect.", "Agatha Christie decided on the suspect before writing the last chapter.") ∧ violate("Agatha Christie wrote her books up to the last chapter and then decided on the most unlikely suspect.", "Agatha Christie never wrote any books.") → violate(x0, y0))
+14. Q[x0, y0](Factual(Brian_Aldiss, "Brian Aldiss claimed that Agatha Christie told him about her writing process.") ∧ "Brian Aldiss claimed that Agatha Christie told him about her writing process.".year = "2007" → violate(x0, y0))
+15. Q[x0, y0](M_NLI(Christie's_books.description, "Books written by another author") ∧ tau(Christie's_books.description, "Books written by another author") → violate(x0, y0))
+16. Q[x0, y0](Causal("Agatha Christie wrote her books up to the last chapter and then decided on the most unlikely suspect.", "Agatha Christie wrote her books without a last chapter.") ∧ violate("Agatha Christie wrote her books up to the last chapter and then decided on the most unlikely suspect.", "Agatha Christie did not write her books.") → violate(x0, y0))
+17. Q[x0, y0](T("Brian Aldiss claimed that Agatha Christie told him about her writing process.", "Brian Aldiss never spoke about Agatha Christie.") ∧ "Brian Aldiss claimed that Agatha Christie told him about her writing process.".event = "Podcast" → violate(x0, y0))
+18. Q[x0, y0](Numeric("Brian Aldiss claimed that Agatha Christie told him about her writing process.", "Brian Aldiss claimed that Agatha Christie told him about her writing process 3 times.") ∧ Temporal("Brian Aldiss claimed that Agatha Christie told him about her writing process in 2007.", "Brian Aldiss claimed that Agatha Christie told him about her writing process in 2006.") → violate(x0, y0))
+19. Q[x0, y0](tau("Agatha Christie wrote her books up to the last chapter and then decided on the most unlikely suspect.", "Agatha Christie wrote her books without a suspect.") ∧ violate("Agatha Christie wrote her books up to the last chapter and then decided on the most unlikely suspect.", "Agatha Christie never wrote any books.") → violate(x0, y0))
+20. Q[x0, y0](Factual("Brian Aldiss claimed that Agatha Christie told him about her writing process.", "Brian Aldiss claimed that Agatha Christie never spoke to him.") ∧ "Brian Aldiss claimed that Agatha Christie told him about

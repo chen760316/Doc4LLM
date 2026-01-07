@@ -1,0 +1,115 @@
+Predicates:
+1. entity.died = "2023"
+2. entity.owns = "a car"
+3. entity.is married to = "Alice"
+4. entity.was in a different county when = "2022"
+5. entity.does not open = "the door"
+6. entity.is associated with the statement that he was in a different county = "true"
+7. edge.died.label_text = "contradiction"
+8. edge.owns.label_text = "contradiction"
+9. edge.is married to.label_text = "contradiction"
+10. edge.was in a different county when.label_text = "contradiction"
+11. edge.does not open.label_text = "contradiction"
+12. edge.is associated with the statement that he was in a different county.label_text = "contradiction"
+13. M_NLI(entity.died, entity.owns)
+14. M_NLI(entity.is married to, entity.was in a different county when)
+15. T("He died in 2023", "He is alive", "Negation")
+16. T("He owns a car", "He does not own a car", "Negation")
+17. T("He was married to Alice", "He is single", "Negation")
+18. T("He was in a different county when", "He was in the same county", "Negation")
+19. T("The door does not open", "The door opens", "Negation")
+20. tau(entity.died, entity.is married to)
+21. tau(entity.owns, entity.was in a different county when)
+22. violate(entity.died, entity.owns)
+23. violate(entity.is married to, entity.was in a different county when)
+24. Factual(entity.died, entity.owns)
+25. Factual(entity.is married to, entity.was in a different county when)
+26. Causal(entity.does not open, entity.owns)
+27. Causal(entity.is associated with the statement that he was in a different county, entity.was in a different county when)
+28. Numeric(entity.died, entity.owns)
+29. Numeric(entity.is married to, entity.was in a different county when)
+30. Temporal(entity.does not open, entity.is associated with the statement that he was in a different county)
+31. Temporal(entity.died, entity.owns)
+32. Content(entity.does not open, entity.is married to)
+33. Content(entity.was in a different county when, entity.owns)
+34. edge.does not open.doc_index = "105"
+35. edge.died.doc_index = "61"
+36. edge.is married to.doc_index = "61"
+37. edge.was in a different county when.doc_index = "61"
+38. edge.is associated with the statement that he was in a different county.doc_index = "61"
+39. M_NLI(edge.does not open, edge.died)
+40. M_NLI(edge.is married to, edge.was in a different county when)
+41. T("He died in 2023", "He was seen alive in 2024", "Temporal")
+42. T("He owns a car", "He sold his car", "Temporal")
+43. T("He was married to Alice", "He divorced Alice", "Temporal")
+44. T("He was in a different county when", "He was in the same county", "Factual")
+45. T("The door does not open", "The door is broken", "Causal")
+46. tau(entity.does not open, entity.is married to)
+47. tau(entity.was in a different county when, entity.died)
+48. violate(entity.does not open, entity.is associated with the statement that he was in a different county)
+49. violate(entity.is married to, entity.owns)
+50. Factual(entity.does not open, entity.is associated with the statement that he was in a different county)
+51. Causal(entity.died, entity.owns)
+52. Numeric(entity.is married to, entity.was in a different county when)
+53. Temporal(entity.does not open, entity.died)
+54. Content(entity.owns, entity.is married to)
+55. edge.owns.doc_index = "105"
+56. edge.is associated with the statement that he was in a different county.doc_index = "61"
+57. M_NLI(edge.is married to, edge.does not open)
+58. M_NLI(edge.was in a different county when, edge.died)
+59. T("He died in 2023", "He was reported dead in 2024", "Temporal")
+60. T("He owns a car", "He has no vehicle", "Content")
+61. T("He was married to Alice", "He is engaged to Bob", "Relation")
+62. T("He was in a different county when", "He was in the same county", "Factual")
+63. T("The door does not open", "The door is functional", "Negation")
+64. tau(entity.died, entity.does not open)
+65. tau(entity.owns, entity.is married to)
+66. violate(entity.is associated with the statement that he was in a different county, entity.was in a different county when)
+67. violate(entity.does not open, entity.died)
+68. Factual(entity.is married to, entity.does not open)
+69. Causal(entity.was in a different county when, entity.died)
+70. Numeric(entity.owns, entity.is married to)
+71. Temporal(entity.does not open, entity.was in a different county when)
+72. Content(entity.died, entity.owns)
+73. edge.does not open.label_text = "contradiction"
+74. edge.died.label_text = "contradiction"
+75. edge.is married to.label_text = "contradiction"
+76. edge.was in a different county when.label_text = "contradiction"
+77. edge.is associated with the statement that he was in a different county.label_text = "contradiction"
+78. M_NLI(entity.does not open, entity.is married to)
+79. M_NLI(entity.was in a different county when, entity.died)
+80. T("He died in 2023", "He was alive in 2023", "Factual")
+81. T("He owns a car", "He has no car", "Negation")
+82. T("He was married to Alice", "He is married to Carol", "Relation")
+83. T("He was in a different county when", "He was in the same county", "Causal")
+84. T("The door does not open", "The door is jammed", "Content")
+85. tau(entity.does not open, entity.owns)
+86. tau(entity.is married to, entity.was in a different county when)
+87. violate(entity.died, entity.is married to)
+88. violate(entity.owns, entity.was in a different county when)
+89. Factual(entity.does not open, entity.is associated with the statement that he was in a different county)
+90. Causal(entity.died, entity.is married to)
+91. Numeric(entity.owns, entity.does not open)
+violate(x0, y0)
+
+Rules:
+1. Q[x0, y0](entity.died = "2023" ∧ entity.owns = "a car" → violate(x0, y0))
+2. Q[x0, y0](entity.is married to = "Alice" ∧ entity.was in a different county when = "2022" → violate(x0, y0))
+3. Q[x0, y0](entity.does not open = "the door" ∧ entity.is associated with the statement that he was in a different county = "true" ∧ edge.does not open.label_text = "contradiction" → violate(x0, y0))
+4. Q[x0, y0](entity.died = "2023" ∧ entity.owns = "a car" ∧ edge.is married to.label_text = "contradiction" → violate(x0, y0))
+5. Q[x0, y0](entity.is married to = "Alice" ∧ entity.was in a different county when = "2022" ∧ edge.was in a different county when.label_text = "contradiction" → violate(x0, y0))
+6. Q[x0, y0](entity.does not open = "the door" ∧ entity.is associated with the statement that he was in a different county = "true" ∧ edge.does not open.label_text = "contradiction" ∧ edge.died.label_text = "contradiction" → violate(x0, y0))
+7. Q[x0, y0](entity.died = "2023" ∧ entity.owns = "a car" ∧ edge.is married to.label_text = "contradiction" ∧ edge.was in a different county when.label_text = "contradiction" → violate(x0, y0))
+8. Q[x0, y0](entity.is married to = "Alice" ∧ entity.was in a different county when = "2022" ∧ edge.is associated with the statement that he was in a different county.label_text = "contradiction" ∧ edge.does not open.label_text = "contradiction" → violate(x0, y0))
+9. Q[x0, y0](entity.does not open = "the door" ∧ entity.owns = "a car" ∧ entity.is married to = "Alice" ∧ entity.was in a different county when = "2022" ∧ edge.died.label_text = "contradiction" → violate(x0, y0))
+10. Q[x0, y0](entity.died = "2023" ∧ entity.owns = "a car" ∧ entity.is married to = "Alice" ∧ entity.was in a different county when = "2022" ∧ edge.is associated with the statement that he was in a different county.label_text = "contradiction" → violate(x0, y0))
+11. Q[x0, y0](entity.does not open = "the door" ∧ entity.is associated with the statement that he was in a different county = "true" ∧ edge.does not open.label_text = "contradiction" ∧ edge.is married to.label_text = "contradiction" ∧ edge.was in a different county when.label_text = "contradiction" → violate(x0, y0))
+12. Q[x0, y0](entity.died = "2023" ∧ entity.owns = "a car" ∧ entity.is married to = "Alice" ∧ entity.was in a different county when = "2022" ∧ edge.does not open.label_text = "contradiction" ∧ edge.is associated with the statement that he was in a different county.label_text = "contradiction" → violate(x0, y0))
+13. Q[x0, y0](entity.does not open = "the door" ∧ entity.owns = "a car" ∧ entity.is married to = "Alice" ∧ entity.was in a different county when = "2022" ∧ edge.died.label_text = "contradiction" ∧ edge.is married to.label_text = "contradiction" → violate(x0, y0))
+14. Q[x0, y0](entity.died = "2023" ∧ entity.owns = "a car" ∧ entity.is married to = "Alice" ∧ entity.was in a different county when = "2022" ∧ edge.was in a different county when.label_text = "contradiction" ∧ edge.is associated with the statement that he was in a different county.label_text = "contradiction" → violate(x0, y0))
+15. Q[x0, y0](entity.does not open = "the door" ∧ entity.is associated with the statement that he was in a different county = "true" ∧ edge.does not open.label_text = "contradiction" ∧ edge.died.label_text = "contradiction" ∧ edge.is married to.label_text = "contradiction" → violate(x0, y0))
+16. Q[x0, y0](entity.died = "2023" ∧ entity.owns = "a car" ∧ entity.is married to = "Alice" ∧ entity.was in a different county when = "2022" ∧ edge.was in a different county when.label_text = "contradiction" ∧ edge.does not open.label_text = "contradiction" → violate(x0, y0))
+17. Q[x0, y0](entity.does not open = "the door" ∧ entity.owns = "a car" ∧ entity.is married to = "Alice" ∧ entity.was in a different county when = "2022" ∧ edge.is associated with the statement that he was in a different county.label_text = "contradiction" ∧ edge.died.label_text = "contradiction" → violate(x0, y0))
+18. Q[x0, y0](entity.died = "2023" ∧ entity.owns = "a car" ∧ entity.is married to = "Alice" ∧ entity.was in a different county when = "2022" ∧ edge.is married to.label_text = "contradiction" ∧ edge.was in a different county when.label_text = "contradiction" → violate(x0, y0))
+19. Q[x0, y0](entity.does not open = "the door" ∧ entity.is associated with the statement that he was in a different county = "true" ∧ edge.does not open.label_text = "contradiction" ∧ edge.is married to.label_text = "contradiction" ∧ edge.was in a different county when.label_text = "contradiction" → violate(x0, y0))
+20. Q[x0, y0](entity.died = "2023" ∧ entity.owns = "a car" ∧ entity.is married to = "Alice" ∧ entity.was in a different county when = "2022" ∧

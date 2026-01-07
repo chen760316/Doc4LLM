@@ -1,0 +1,49 @@
+Predicates:
+Blanco Posnet.label != "Person"
+Blanco Posnet.label = "Person"
+Blanco Posnet.location != "American West"
+Blanco Posnet.location = "American West"
+Blanco Posnet.name != "Blanco Posnet"
+Blanco Posnet.name = "Blanco Posnet"
+Blanco Posnet.occupation != "local drunk and reprobate"
+Blanco Posnet.occupation = "local drunk and reprobate"
+Blanco Posnet.status != "released"
+Blanco Posnet.status = "released"
+Man.label != "Person"
+Man.label = "Person"
+Man.name != "Man"
+Man.name != Blanco Posnet.name
+Man.name = "Man"
+Man.status != "unknown"
+Man.status != Blanco Posnet.status
+Man.status = "unknown"
+None_ML(Man.attrs, Blanco Posnet.attrs)
+None_ML(Woman___Man.attrs, Woman___Blanco Posnet.attrs)
+Woman.label != "Person"
+Woman.label = "Person"
+Woman.name != "Woman"
+Woman.name != Blanco Posnet.name
+Woman.name != Man.name
+Woman.name = "Woman"
+Woman.status != "mother of sick child"
+Woman.status != Blanco Posnet.status
+Woman.status != Man.status
+Woman.status = "mother of sick child"
+Woman___Blanco Posnet.doc_id = "3488771919_7"
+Woman___Blanco Posnet.relationship = "The woman denies that Blanco was the man who gave her the horse."
+Woman___Man.doc_id = "3488771919_7"
+Woman___Man.reason = "to take her dying child to the doctor"
+Woman___Man.relationship != Woman___Blanco Posnet.relationship
+Woman___Man.relationship = "The woman was given the horse by a man on the road."
+
+Rules:
+Q[Woman,Woman] (Woman.label = "Person" ∧ Woman___Blanco Posnet.doc_id = "3488771919_7" ∧ Blanco Posnet.name != "Blanco Posnet" ∧ Woman___Man.reason = "to take her dying child to the doctor" ∧ Woman.label != "Person" ∧ Blanco Posnet.location = "American West" → Man.status != "unknown")
+Q[Woman,Woman] (Man.label = "Person" ∧ Woman.status != Blanco Posnet.status ∧ Woman.name != Man.name ∧ Woman.name != Blanco Posnet.name → Woman___Man.doc_id = "3488771919_7")
+Q[Woman,Woman] (Blanco Posnet.name != "Blanco Posnet" ∧ Woman.status = "mother of sick child" ∧ Man.name != Blanco Posnet.name ∧ Woman.name != "Woman" ∧ Man.label = "Person" → Woman.name != Man.name)
+Q[Woman,Woman] (None_ML(Man.attrs, Blanco Posnet.attrs) ∧ Woman___Blanco Posnet.doc_id = "3488771919_7" ∧ Woman.name = "Woman" → Man.label != "Person")
+Q[Woman,Woman] (Woman.status != Man.status ∧ Woman.status != Blanco Posnet.status → Blanco Posnet.name = "Blanco Posnet")
+Q[Woman,Woman] (Blanco Posnet.name = "Blanco Posnet" ∧ Woman___Man.relationship != Woman___Blanco Posnet.relationship ∧ Man.label != "Person" ∧ Woman___Man.relationship = "The woman was given the horse by a man on the road." ∧ Woman.name = "Woman" → Blanco Posnet.location = "American West")
+Q[Woman,Woman] (Woman.name != Man.name ∧ Man.status != Blanco Posnet.status ∧ Woman.label = "Person" ∧ Blanco Posnet.location = "American West" → Woman___Blanco Posnet.doc_id = "3488771919_7")
+Q[Woman,Woman] (Blanco Posnet.location = "American West" ∧ Man.name = "Man" → Blanco Posnet.location != "American West")
+Q[Woman,Woman] (Woman.name != Blanco Posnet.name ∧ Woman___Man.relationship = "The woman was given the horse by a man on the road." ∧ Woman___Blanco Posnet.doc_id = "3488771919_7" → Blanco Posnet.status != "released")
+Q[Woman,Woman] (Man.label != "Person" ∧ Blanco Posnet.occupation = "local drunk and reprobate" ∧ Man.status != "unknown" ∧ Woman.label = "Person" ∧ Man.label = "Person" ∧ Blanco Posnet.location = "American West" → Man.status != Blanco Posnet.status)

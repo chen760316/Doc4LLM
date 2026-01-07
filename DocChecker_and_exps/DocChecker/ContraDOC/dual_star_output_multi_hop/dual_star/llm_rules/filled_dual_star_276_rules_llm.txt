@@ -1,0 +1,124 @@
+Predicates:
+1. Oklahoma.status = "drought"
+2. Texas.status = "drought"
+3. Oklahoma.status != "flood"
+4. Texas.status != "flood"
+5. Oklahoma.categories < ["severe"]
+6. Texas.categories < ["severe"]
+7. Oklahoma.categories >= ["extreme"]
+8. Texas.categories >= ["extreme"]
+9. Oklahoma.attributes['status'] = "drought"
+10. Texas.attributes['status'] = "drought"
+11. "U.S. Drought Monitor report".status = "current"
+12. "U.S. Drought Monitor report".status != "outdated"
+13. "U.S. Drought Monitor report".date >= "2023-10-01"
+14. "U.S. Drought Monitor report".date <= "2023-10-31"
+15. Oklahoma.attributes['categories'] = ["extreme", "exceptional"]
+16. Texas.attributes['categories'] = ["extreme", "exceptional"]
+17. Oklahoma.attributes['categories'] != ["normal"]
+18. Texas.attributes['categories'] != ["normal"]
+19. Oklahoma.attributes['categories'] > ["severe"]
+20. Texas.attributes['categories'] > ["severe"]
+21. "Texas and Oklahoma are also experiencing severe drought conditions.".context = "U.S. Drought Monitor report"
+22. "Texas and Oklahoma are also experiencing severe drought conditions.".context != "Weather Report"
+23. M_NLI(Oklahoma.attributes, Texas.attributes)
+24. M_NLU(Oklahoma.attributes, Texas.attributes)
+25. M_TEM(Oklahoma.attributes, Texas.attributes)
+26. contra("Texas and Oklahoma are also experiencing severe drought conditions.", "Texas and Oklahoma are experiencing normal weather.")
+27. S("Texas and Oklahoma are also experiencing severe drought conditions.", "Texas and Oklahoma are also experiencing severe drought conditions.")
+28. S("U.S. Drought Monitor report", "U.S. Drought Monitor report")
+29. T("Oklahoma is in drought", "Oklahoma is not in drought", "Factual")
+30. T("Texas is in drought", "Texas is not in drought", "Factual")
+31. tau(Oklahoma.status, Texas.status)
+32. tau("Oklahoma.attributes['status']", "Texas.attributes['status']")
+33. "U.S. Drought Monitor report".severity = "high"
+34. "U.S. Drought Monitor report".severity != "low"
+35. Oklahoma.status >= "extreme"
+36. Texas.status >= "extreme"
+37. Oklahoma.categories <= ["exceptional"]
+38. Texas.categories <= ["exceptional"]
+39. Oklahoma.attributes['status'] < "flood"
+40. Texas.attributes['status'] < "flood"
+41. "U.S. Drought Monitor report".report_type = "drought"
+42. "U.S. Drought Monitor report".report_type != "flood"
+43. Oklahoma.attributes['categories'] > ["moderate"]
+44. Texas.attributes['categories'] > ["moderate"]
+45. Oklahoma.status != "normal"
+46. Texas.status != "normal"
+47. "U.S. Drought Monitor report".region = "U.S."
+48. "U.S. Drought Monitor report".region != "International"
+49. Oklahoma.attributes['categories'] >= ["extreme"]
+50. Texas.attributes['categories'] >= ["extreme"]
+51. Oklahoma.status <= "exceptional"
+52. Texas.status <= "exceptional"
+53. "U.S. Drought Monitor report".update_frequency = "weekly"
+54. "U.S. Drought Monitor report".update_frequency != "monthly"
+55. Oklahoma.attributes['status'] > "severe"
+56. Texas.attributes['status'] > "severe"
+57. Oklahoma.status = "exceptional"
+58. Texas.status = "exceptional"
+59. "U.S. Drought Monitor report".source = "government"
+60. "U.S. Drought Monitor report".source != "private"
+61. Oklahoma.categories != ["mild"]
+62. Texas.categories != ["mild"]
+63. Oklahoma.attributes['categories'] < ["catastrophic"]
+64. Texas.attributes['categories'] < ["catastrophic"]
+65. "U.S. Drought Monitor report".impact = "high"
+66. "U.S. Drought Monitor report".impact != "low"
+67. Oklahoma.status >= "extreme"
+68. Texas.status >= "extreme"
+69. Oklahoma.attributes['status'] != "wet"
+70. Texas.attributes['status'] != "wet"
+71. "U.S. Drought Monitor report".validity = "current"
+72. "U.S. Drought Monitor report".validity != "expired"
+73. Oklahoma.categories >= ["extreme"]
+74. Texas.categories >= ["extreme"]
+75. Oklahoma.attributes['status'] < "normal"
+76. Texas.attributes['status'] < "normal"
+77. "U.S. Drought Monitor report".analysis = "detailed"
+78. "U.S. Drought Monitor report".analysis != "summary"
+79. Oklahoma.status != "drought-free"
+80. Texas.status != "drought-free"
+81. Oklahoma.attributes['categories'] > ["mild"]
+82. Texas.attributes['categories'] > ["mild"]
+83. "U.S. Drought Monitor report".frequency = "weekly"
+84. "U.S. Drought Monitor report".frequency != "biweekly"
+85. Oklahoma.status <= "exceptional"
+86. Texas.status <= "exceptional"
+87. Oklahoma.attributes['categories'] < ["extreme"]
+88. Texas.attributes['categories'] < ["extreme"]
+89. "U.S. Drought Monitor report".data_source = "official"
+90. "U.S. Drought Monitor report".data_source != "unofficial"
+91. Oklahoma.status = "extreme"
+92. Texas.status = "extreme"
+93. Oklahoma.attributes['status'] != "normal"
+94. Texas.attributes['status'] != "normal"
+95. "U.S. Drought Monitor report".report_date >= "2023-10-01"
+96. "U.S. Drought Monitor report".report_date <= "2023-10-31"
+97. Oklahoma.categories < ["catastrophic"]
+98. Texas.categories < ["catastrophic"]
+99. Oklahoma.attributes['status'] > "severe"
+100. Texas.attributes['status'] > "severe"
+
+Rules:
+Rules:
+1. Q[Oklahoma, Texas](Oklahoma.status = "drought" ∧ Texas.status = "drought" → "U.S. Drought Monitor report".status = "current")
+2. Q[Oklahoma, Texas](Oklahoma.status != "flood" ∧ Texas.status != "flood" → "U.S. Drought Monitor report".status != "outdated")
+3. Q[Oklahoma, Texas](Oklahoma.categories < ["severe"] ∧ Texas.categories < ["severe"] → Oklahoma.attributes['categories'] != ["extreme"])
+4. Q[Oklahoma, Texas](Oklahoma.categories >= ["extreme"] ∧ Texas.categories >= ["extreme"] → "U.S. Drought Monitor report".severity = "high")
+5. Q[Oklahoma, Texas](Oklahoma.attributes['status'] = "drought" ∧ Texas.attributes['status'] = "drought" ∧ "U.S. Drought Monitor report".status = "current" → Oklahoma.status != "normal")
+6. Q[Oklahoma, Texas](Oklahoma.attributes['categories'] != ["normal"] ∧ Texas.attributes['categories'] != ["normal"] ∧ Oklahoma.attributes['status'] < "flood" → "U.S. Drought Monitor report".impact = "high")
+7. Q[Oklahoma, Texas](Oklahoma.attributes['categories'] > ["severe"] ∧ Texas.attributes['categories'] > ["severe"] ∧ Oklahoma.status >= "extreme" → "U.S. Drought Monitor report".update_frequency = "weekly")
+8. Q[Oklahoma, Texas](Oklahoma.status = "exceptional" ∧ Texas.status = "exceptional" ∧ Oklahoma.attributes['status'] != "wet" → "U.S. Drought Monitor report".validity != "expired")
+9. Q[Oklahoma, Texas](Oklahoma.categories <= ["exceptional"] ∧ Texas.categories <= ["exceptional"] ∧ Oklahoma.attributes['categories'] < ["catastrophic"] ∧ Texas.attributes['categories'] < ["catastrophic"] → "U.S. Drought Monitor report".analysis = "detailed")
+10. Q[Oklahoma, Texas](Oklahoma.status != "drought-free" ∧ Texas.status != "drought-free" ∧ Oklahoma.attributes['categories'] > ["mild"] ∧ Texas.attributes['categories'] > ["mild"] → "U.S. Drought Monitor report".frequency != "biweekly")
+11. Q[Oklahoma, Texas](Oklahoma.status <= "exceptional" ∧ Texas.status <= "exceptional" ∧ Oklahoma.attributes['status'] < "normal" ∧ Texas.attributes['status'] < "normal" → "U.S. Drought Monitor report".data_source = "official")
+12. Q[Oklahoma, Texas](Oklahoma.attributes['status'] != "normal" ∧ Texas.attributes['status'] != "normal" ∧ Oklahoma.categories >= ["extreme"] ∧ Texas.categories >= ["extreme"] ∧ "U.S. Drought Monitor report".report_date >= "2023-10-01" → "U.S. Drought Monitor report".report_type != "flood")
+13. Q[Oklahoma, Texas](Oklahoma.status = "extreme" ∧ Texas.status = "extreme" ∧ Oklahoma.attributes['status'] != "wet" ∧ "U.S. Drought Monitor report".region = "U.S." → Oklahoma.attributes['categories'] < ["catastrophic"])
+14. Q[Oklahoma, Texas](Oklahoma.attributes['categories'] > ["moderate"] ∧ Texas.attributes['categories'] > ["moderate"] ∧ Oklahoma.status != "normal" ∧ Texas.status != "normal" → "U.S. Drought Monitor report".source != "private")
+15. Q[Oklahoma, Texas](Oklahoma.attributes['categories'] < ["extreme"] ∧ Texas.attributes['categories'] < ["extreme"] ∧ Oklahoma.status >= "extreme" ∧ Texas.status >= "extreme" ∧ "U.S. Drought Monitor report".validity = "current" → Oklahoma.categories != ["mild"])
+16. Q[Oklahoma, Texas](Oklahoma.status != "drought-free" ∧ Texas.status != "drought-free" ∧ "U.S. Drought Monitor report".analysis != "summary" ∧ Oklahoma.attributes['status'] > "severe" → "U.S. Drought Monitor report".frequency = "weekly")
+17. Q[Oklahoma, Texas](Oklahoma.attributes['status'] < "normal" ∧ Texas.attributes['status'] < "normal" ∧ Oklahoma.categories < ["catastrophic"] ∧ Texas.categories < ["catastrophic"] ∧ "U.S. Drought Monitor report".impact != "low" → Oklahoma.status != "normal")
+18. Q[Oklahoma, Texas](Oklahoma.status >= "extreme" ∧ Texas.status >= "extreme" ∧ Oklahoma.attributes['status'] != "wet" ∧ "U.S. Drought Monitor report".update_frequency != "monthly" → "U.S. Drought Monitor report".region != "International")
+19. Q[Oklahoma, Texas](Oklahoma.attributes['categories'] > ["mild"] ∧ Texas.attributes['categories'] > ["mild"] ∧ Oklahoma.status <= "exceptional" ∧ Texas.status <= "exceptional" → "U.S. Drought Monitor report".data_source != "unofficial")
+20. Q[Oklahoma, Texas](Oklahoma.attributes['status'] != "normal" ∧ Texas.attributes['status'] != "normal" ∧ Oklahoma.categories >= ["extreme"] ∧ Texas.categories >= ["extreme"] ∧ "U.S. Drought Monitor report".report_date <= "2023-10-31" → Oklahoma.attributes['categories'] < ["catastrophic"])

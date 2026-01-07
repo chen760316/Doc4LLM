@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 1624)
+S1: Three men are riding in a dark blue car.
+S2: Three men are walking down the street.
+
+Predicates:
+1. Men_1.location
+2. Men_2.location
+3. Men_3.location
+4. Car_1.color
+5. Car_1.type
+6. Street_1.type
+7. Men_1.activity
+8. Men_2.activity
+9. Men_3.activity
+10. "riding".status
+11. "walking".status
+12. "in".relationship
+13. "down".relationship
+14. "same".group
+15. "cannot".condition
+16. M_NLI(S1, S2)
+17. Factual(Men_1, Car_1)
+18. Factual(Men_2, Street_1)
+19. Factual(Men_3, Street_1)
+20. violate(Men_1, Men_2)
+21. violate(Men_1, Men_3)
+22. violate(Men_2, Men_3)
+23. "dark blue".color
+24. "riding".activity
+25. "walking".activity
+26. "street".location
+27. "car".location
+28. "three".quantity
+29. "men".entity
+30. "cannot be".state
+
+Rules:
+1. Q[Three, Men_1.location, Car_1](Men_1.activity == "riding" → Factual(Men_1, Car_1))
+2. Q[Three, Men_2.location, Street_1](Men_2.activity == "walking" → Factual(Men_2, Street_1))
+3. Q[Three, Men_3.location, Street_1](Men_3.activity == "walking" → Factual(Men_3, Street_1))
+4. Q[Three, "riding".status, "walking".status](Men_1.activity == "riding" ∧ Men_2.activity == "walking" → Factual(Men_1, Men_2))
+5. Q[Three, "riding".status, "walking".status](Men_1.activity == "riding" ∧ Men_3.activity == "walking" → Factual(Men_1, Men_3))
+6. Q[Three, "riding".status, "walking".status](Men_2.activity == "walking" ∧ Men_3.activity == "walking" → Factual(Men_2, Men_3))
+7. Q[Three, "cannot".condition, "same".group](Men_1.activity == "riding" ∧ Men_2.activity == "walking" → Factual(Men_1, Men_2))
+8. Q[Three, "cannot".condition, "same".group](Men_1.activity == "riding" ∧ Men_3.activity == "walking" → Factual(Men_1, Men_3))
+9. Q[Three, "cannot".condition, "same".group](Men_2.activity == "walking" ∧ Men_3.activity == "walking" → Factual(Men_2, Men_3))
+10. Q[Three, "dark blue".color, Car_1](Car_1.color == "dark blue" → Factual(Men_1, Car_1))
+11. Q[Three, "dark blue".color, Car_1](Car_1.type == "car" → Factual(Men_1, Car_1))
+12. Q[Three, "street".location, Street_1](Street_1.type == "street" → Factual(Men_2, Street_1))
+13. Q[Three, "street".location, Street_1](Street_1.type == "street" → Factual(Men_3, Street_1))
+14. Q[Three, "car".location, Car_1](Men_1.location == "car" → Factual(Men_1, Car_1))
+15. Q[Three, "car".location, Car_1](Men_2.location == "street" → Factual(Men_2, Street_1))
+16. Q[Three, "car".location, Car_1](Men_3.location == "street" → Factual(Men_3, Street_1))
+17. Q[Three, "cannot be".state, "same".group](Men_1.activity == "riding" ∧ Men_2.activity == "walking" → Factual(Men_1, Men_2))
+18. Q[Three, "cannot be".state, "same".group](Men_1.activity == "riding" ∧ Men_3.activity == "walking" → Factual(Men_1, Men_3))
+19. Q[Three, "cannot be".state, "same".group](Men_2.activity == "walking" ∧ Men_3.activity == "walking" → Factual(Men_2, Men_3))
+20. Q[Three, "cannot".condition, "same".group](Men_1.activity == "riding" ∧ Men_2.activity == "walking" → Factual(Men_1, Men_2))
+21. Q[Three, "cannot".condition, "same".group](Men_1.activity == "riding" ∧ Men_3.activity == "walking" → Factual(Men_1, Men_3))
+22. Q[Three, "cannot".condition, "same".group](Men_2.activity == "walking" ∧ Men_3.activity == "walking" → Factual(Men_2, Men_3))
+23. Q[Three, "three".quantity, Men_1](Men_1.activity == "riding" → Factual(Men_1, Men_1))
+24. Q[Three, "three".quantity, Men_2](Men_2.activity == "walking" → Factual(Men_2, Men_2))
+25. Q[Three, "three".quantity, Men_3](Men_3.activity == "walking" → Factual(Men_3, Men_3))
+26. Q[Three, "cannot".condition, "same".group](Men_1.activity == "riding" ∧ Men_2.activity == "walking" → Factual(Men_1, Men_2))
+27. Q[Three, "cannot".condition, "same".group](Men_1.activity == "riding" ∧ Men_3.activity == "walking" → Factual(Men_1, Men_3))
+28. Q[Three, "cannot".condition, "same".group](Men_2.activity == "walking" ∧ Men_3.activity == "walking" → Factual(Men_2, Men_3))
+29. Q[Three, "cannot".condition, "same".group](Men_1.activity == "riding" ∧ Men_2.activity == "walking" → Factual(Men_1, Men_2))
+30. Q[Three, "cannot".condition, "same".group](Men_1.activity == "riding" ∧ Men_3.activity == "walking" → Factual(Men_1, Men_3))

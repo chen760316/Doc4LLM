@@ -1,0 +1,53 @@
+Predicates:
+DNA profiles.count != 150
+DNA profiles.count < 155
+DNA profiles.count = 150
+DNA profiles.count > 145
+DNA profiles.label != "DNA Sample"
+DNA profiles.label = "DNA Sample"
+DNA profiles.name != "DNA profiles"
+DNA profiles.name = "DNA profiles"
+None_ML(DNA profiles.attrs, people.attrs)
+None_ML(crash___people.attrs, crash___DNA profiles.attrs)
+crash.label != "Event"
+crash.label != DNA profiles.label
+crash.label != people.label
+crash.label = "Event"
+crash.location != "crash site"
+crash.location = "crash site"
+crash.name != "crash"
+crash.name != DNA profiles.name
+crash.name != people.name
+crash.name = "crash"
+crash___DNA profiles.contradiction_type = "Factual"
+crash___DNA profiles.relationship = "Lab workers isolated DNA profiles from samples collected at the crash site."
+crash___DNA profiles.source_id = "3489738242_5"
+crash___DNA profiles.total_samples_collected != 2000
+crash___DNA profiles.total_samples_collected = 2000
+crash___people.contradiction_type = "Factual"
+crash___people.relationship != crash___DNA profiles.relationship
+crash___people.relationship = "The crash resulted in the death of all people on board."
+crash___people.source_id = "3489738242_5"
+crash___people.status = "fatal"
+people.count != 150
+people.count < 155
+people.count = 150
+people.count > 145
+people.label != "Person"
+people.label != DNA profiles.label
+people.label = "Person"
+people.name != "people"
+people.name != DNA profiles.name
+people.name = "people"
+
+Rules:
+Q[crash,crash] (people.name != "people" ∧ people.name = "people" ∧ None_ML(crash___people.attrs, crash___DNA profiles.attrs) → crash.name = "crash")
+Q[crash,crash] (people.name = "people" ∧ None_ML(DNA profiles.attrs, people.attrs) → crash.label = "Event")
+Q[crash,crash] (DNA profiles.name = "DNA profiles" ∧ crash.location != "crash site" ∧ crash___people.status = "fatal" ∧ crash.label != people.label → crash___people.relationship = "The crash resulted in the death of all people on board.")
+Q[crash,crash] (crash.name != DNA profiles.name ∧ DNA profiles.label = "DNA Sample" ∧ crash.name != people.name ∧ DNA profiles.count = 150 ∧ DNA profiles.count != 150 ∧ crash___DNA profiles.contradiction_type = "Factual" → crash___people.source_id = "3489738242_5")
+Q[crash,crash] (crash.name != people.name ∧ crash.location = "crash site" ∧ crash.label != people.label ∧ people.count < 155 ∧ DNA profiles.label = "DNA Sample" → crash___DNA profiles.contradiction_type = "Factual")
+Q[crash,crash] (crash___DNA profiles.contradiction_type = "Factual" ∧ crash.label != DNA profiles.label ∧ crash___DNA profiles.total_samples_collected = 2000 ∧ people.label != DNA profiles.label → crash.name != people.name)
+Q[crash,crash] (people.count > 145 ∧ DNA profiles.name != "DNA profiles" ∧ DNA profiles.name = "DNA profiles" → people.label = "Person")
+Q[crash,crash] (DNA profiles.label = "DNA Sample" ∧ DNA profiles.count = 150 ∧ crash___DNA profiles.total_samples_collected = 2000 ∧ crash.label != DNA profiles.label ∧ crash.name != people.name → DNA profiles.label != "DNA Sample")
+Q[crash,crash] (crash.name != "crash" ∧ crash.label != DNA profiles.label → crash___DNA profiles.relationship = "Lab workers isolated DNA profiles from samples collected at the crash site.")
+Q[crash,crash] (crash.label != people.label ∧ crash.name != DNA profiles.name ∧ crash.label = "Event" ∧ DNA profiles.label = "DNA Sample" ∧ crash___people.status = "fatal" ∧ people.count = 150 → DNA profiles.count < 155)

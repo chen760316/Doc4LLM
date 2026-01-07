@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 503)
+S1: The passport of not PET can only be used to Catalonia in the UK, but in many countries of sufficient for Catalonia.
+S2: Guatemala accepts the Pet passport as proof of vaccination.
+
+Predicates:
+1. Passport.not_PET.usage
+2. Passport.not_PET.location
+3. Passport.not_PET.countries
+4. Passport.not_PET.sufficient
+5. Passport.PET.acceptance
+6. Passport.PET.proof_of_vaccination
+7. Country.Guatemala.accepts
+8. Country.Catalonia.usage
+9. Country.Catalonia.location
+10. Country.Catalonia.sufficient
+11. Relationship.usage.restriction
+12. Relationship.acceptance.proof
+13. Meta.M_NLI(S1, S2)
+14. Meta.Negation(Passport.not_PET.usage, Passport.PET.acceptance)
+15. Meta.violate(Passport.not_PET.usage, Passport.PET.acceptance)
+16. Country.Guatemala.vaccination_proof
+17. Country.Catalonia.passport_requirement
+18. Passport.not_PET.restriction
+19. Passport.PET.vaccination_status
+20. Relationship.Catalonia.country
+21. Relationship.Guatemala.country
+22. Entity.Passport.type
+23. Entity.Passport.validity
+24. Entity.Passport.usage_limitations
+25. Entity.Country.name
+26. Entity.Country.acceptance_policy
+27. Entity.Country.vaccination_requirements
+28. Entity.Passport.usage_scope
+29. Entity.Passport.issuance
+30. Entity.Passport.restrictions
+
+Rules:
+1. Q[The, Passport.not_PET.usage == "limited" → Negation(Passport.not_PET.usage, Passport.PET.acceptance)]
+2. Q[The, Passport.not_PET.location == "Catalonia" → Negation(Passport.not_PET.location, Country.Guatemala.accepts)]
+3. Q[The, Passport.not_PET.countries == "few" → Negation(Passport.not_PET.countries, Country.Guatemala.accepts)]
+4. Q[The, Passport.not_PET.sufficient == "no" → Negation(Passport.not_PET.sufficient, Country.Guatemala.accepts)]
+5. Q[The, Passport.PET.acceptance == "valid" → Negation(Passport.not_PET.usage, Passport.PET.acceptance)]
+6. Q[The, Country.Guatemala.accepts == "true" → Negation(Passport.not_PET.usage, Passport.PET.acceptance)]
+7. Q[The, Country.Catalonia.usage == "restricted" → Negation(Passport.not_PET.usage, Passport.PET.acceptance)]
+8. Q[The, Country.Catalonia.location == "UK" → Negation(Passport.not_PET.location, Country.Guatemala.accepts)]
+9. Q[The, Country.Catalonia.sufficient == "false" → Negation(Passport.not_PET.sufficient, Country.Guatemala.accepts)]
+10. Q[The, Relationship.usage.restriction == "exists" → Negation(Passport.not_PET.usage, Passport.PET.acceptance)]
+11. Q[The, Relationship.acceptance.proof == "required" → Negation(Passport.not_PET.usage, Passport.PET.acceptance)]
+12. Q[The, Meta.M_NLI(S1, S2) == "contradiction" → Negation(Passport.not_PET.usage, Passport.PET.acceptance)]
+13. Q[The, Meta.Negation(Passport.not_PET.usage, Passport.PET.acceptance) == "true" → Negation(Passport.not_PET.usage, Passport.PET.acceptance)]
+14. Q[The, Meta.violate(Passport.not_PET.usage, Passport.PET.acceptance) == "true" → Negation(Passport.not_PET.usage, Passport.PET.acceptance)]
+15. Q[The, Country.Guatemala.vaccination_proof == "accepted" → Negation(Passport.not_PET.usage, Passport.PET.acceptance)]
+16. Q[The, Country.Catalonia.passport_requirement == "strict" → Negation(Passport.not_PET.usage, Passport.PET.acceptance)]
+17. Q[The, Passport.not_PET.restriction == "high" → Negation(Passport.not_PET.usage, Passport.PET.acceptance)]
+18. Q[The, Passport.PET.vaccination_status == "valid" → Negation(Passport.not_PET.usage, Passport.PET.acceptance)]
+19. Q[The, Relationship.Catalonia.country == "UK" → Negation(Passport.not_PET.usage, Passport.PET.acceptance)]
+20. Q[The, Relationship.Guatemala.country == "accepts" → Negation(Passport.not_PET.usage, Passport.PET.acceptance)]
+21. Q[The, Entity.Passport.type == "not_PET" → Negation(Passport.not_PET.usage, Passport.PET.acceptance)]
+22. Q[The, Entity.Passport.validity == "limited" → Negation(Passport.not_PET.usage, Passport.PET.acceptance)]
+23. Q[The, Entity.Passport.usage_limitations == "many" → Negation(Passport.not_PET.usage, Passport.PET.acceptance)]
+24. Q[The, Entity.Passport.usage_scope == "restricted" → Negation(Passport.not_PET.usage, Passport.PET.acceptance)]
+25. Q[The, Entity.Passport.issuance == "limited" → Negation(Passport.not_PET.usage, Passport.PET.acceptance)]
+26. Q[The, Entity.Passport.restrictions == "high" → Negation(Passport.not_PET.usage, Passport.PET.acceptance)]
+27. Q[The, Passport.not_PET.usage == "not accepted" → Negation(Passport.not_PET.usage, Passport.PET.acceptance)]
+28. Q[The, Passport.not_PET.location == "not sufficient" → Negation(Passport.not_PET.location, Country.Guatemala.accepts)]
+29. Q[The, Passport.not_PET.countries == "not many" → Negation(Passport.not_PET.countries, Country.Guatemala.accepts)]
+30. Q[The, Passport.not_PET.sufficient == "insufficient" → Negation(Passport.not_PET.sufficient, Country.Guatemala.accepts)]

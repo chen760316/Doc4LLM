@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 57)
+S1: A person who is not a parent has no kids, therefore nobody to produce grandchildren for them.
+S2: A person who is not a parent can still have kids, and therefore can produce grandchildren for their own parents.
+
+Predicates:
+1. Person.is_parent
+2. Person.has_kids
+3. Person.produces_grandchildren
+4. NonParent.has_no_kids
+5. NonParent.can_have_kids
+6. NonParent.produces_grandchildren_for_parents
+7. Parent.has_kids
+8. Parent.produces_grandchildren
+9. Grandchild.is_child_of
+10. Grandparent.has_grandchildren
+11. Person.is_not_parent
+12. Person.has_no_grandchildren
+13. Person.can_be_parent
+14. Person.has_parents
+15. Parent.is_a(Person)
+16. NonParent.is_a(Person)
+17. Grandchild.is_a(Person)
+18. Grandparent.is_a(Person)
+19. Parent.has_relationship_with(Child)
+20. NonParent.has_relationship_with(Child)
+21. Child.is_a(NonParent)
+22. Child.is_a(Parent)
+23. Grandchild.is_descendant_of(Grandparent)
+24. Grandparent.is_ancestor_of(Grandchild)
+25. Person.can_have_relationship_with(Child)
+26. Person.can_have_relationship_with(Grandchild)
+27. NonParent.can_be_ancestor
+28. Parent.can_be_ancestor
+29. Grandchild.can_have_grandparents
+30. Grandparent.can_have_grandchildren
+
+Rules:
+1. Q[person, x0, y0](Person.is_not_parent == true → Factual(x0, y0))
+2. Q[person, x0, y0](NonParent.has_no_kids == true → Factual(x0, y0))
+3. Q[person, x0, y0](NonParent.can_have_kids == true → Factual(x0, y0))
+4. Q[person, x0, y0](NonParent.produces_grandchildren_for_parents == true → Factual(x0, y0))
+5. Q[person, x0, y0](Person.is_not_parent == true ∧ NonParent.has_no_kids == true → Factual(x0, y0))
+6. Q[person, x0, y0](Person.is_not_parent == true ∧ NonParent.can_have_kids == true → Factual(x0, y0))
+7. Q[person, x0, y0](NonParent.has_no_kids == true ∧ NonParent.can_have_kids == true → Factual(x0, y0))
+8. Q[person, x0, y0](NonParent.can_have_kids == true ∧ NonParent.produces_grandchildren_for_parents == true → Factual(x0, y0))
+9. Q[person, x0, y0](Person.is_not_parent == true ∧ Person.has_no_grandchildren == true → Factual(x0, y0))
+10. Q[person, x0, y0](NonParent.has_no_kids == true ∧ Person.can_have_relationship_with(Child) == true → Factual(x0, y0))
+11. Q[person, x0, y0](NonParent.can_have_kids == true ∧ Person.has_relationship_with(Child) == true → Factual(x0, y0))
+12. Q[person, x0, y0](NonParent.can_have_kids == true ∧ NonParent.produces_grandchildren_for_parents == true → Factual(x0, y0))
+13. Q[person, x0, y0](Person.is_not_parent == true ∧ Parent.has_kids == false → Factual(x0, y0))
+14. Q[person, x0, y0](NonParent.has_no_kids == true ∧ Parent.produces_grandchildren == false → Factual(x0, y0))
+15. Q[person, x0, y0](NonParent.can_have_kids == true ∧ Person.has_no_grandchildren == true → Factual(x0, y0))
+16. Q[person, x0, y0](NonParent.can_have_kids == true ∧ NonParent.has_no_kids == false → Factual(x0, y0))
+17. Q[person, x0, y0](Person.is_not_parent == true ∧ NonParent.can_have_relationship_with(Child) == true → Factual(x0, y0))
+18. Q[person, x0, y0](NonParent.has_no_kids == true ∧ Grandparent.has_grandchildren == false → Factual(x0, y0))
+19. Q[person, x0, y0](NonParent.can_have_kids == true ∧ Grandchild.is_a(Person) == true → Factual(x0, y0))
+20. Q[person, x0, y0](Person.is_not_parent == true ∧ Grandparent.is_ancestor_of(Grandchild) == false → Factual(x0, y0))
+21. Q[person, x0, y0](NonParent.can_have_kids == true ∧ Grandchild.can_have_grandparents == true → Factual(x0, y0))
+22. Q[person, x0, y0](NonParent.has_no_kids == true ∧ Grandparent.can_have_grandchildren == false → Factual(x0, y0))
+23. Q[person, x0, y0](Person.is_not_parent == true ∧ Parent.can_be_ancestor == false → Factual(x0, y0))
+24. Q[person, x0, y0](NonParent.can_have_kids == true ∧ Parent.has_relationship_with(Child) == false → Factual(x0, y0))
+25. Q[person, x0, y0](NonParent.has_no_kids == true ∧ Person.can_be_parent == false → Factual(x0, y0))
+26. Q[person, x0, y0](Person.is_not_parent == true ∧ NonParent.produces_grandchildren_for_parents == false → Factual(x0, y0))
+27. Q[person, x0, y0](NonParent.can_have_kids == true ∧ Person.has_parents == true → Factual(x0, y0))
+28. Q[person, x0, y0](NonParent.has_no_kids == true ∧ Grandchild.is_descendant_of(Grandparent) == false → Factual(x0, y0))
+29. Q[person, x0, y0](Person.is_not_parent == true ∧ Parent.has_kids == true → Factual(x0, y0))
+30. Q[person, x0, y0](NonParent.can_have_kids == true ∧ NonParent.has_relationship_with(Child) == true → Factual(x0, y0))

@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 186)
+S1: We camped at DeGray state park in May and it was crowded and way too hot at that time.
+S2: We camped at the DeGray State Park in Arkansas in the fall and there was nobody else hardly around.
+
+Predicates:
+1. Camping_event1.location = DeGray_state_park
+2. Camping_event1.time = May
+3. Camping_event1.crowded = true
+4. Camping_event1.temperature = high
+5. Camping_event2.location = DeGray_state_park
+6. Camping_event2.time = fall
+7. Camping_event2.crowded = false
+8. Camping_event2.temperature = moderate
+9. State_park.name = DeGray_state_park
+10. State_park.location = Arkansas
+11. Temporal(camping_event1.time, camping_event2.time)
+12. M_NLI(camping_event1, camping_event2)
+13. violate(camping_event1.time, camping_event2.time)
+14. Camping_event1.season = spring
+15. Camping_event2.season = autumn
+16. Camping_event1.visitors = many
+17. Camping_event2.visitors = few
+18. Weather.condition1 = crowded
+19. Weather.condition2 = uncrowded
+20. Weather.temperature1 = hot
+21. Weather.temperature2 = mild
+22. Camping_event1.experience = uncomfortable
+23. Camping_event2.experience = pleasant
+24. Camping_event1.activity = camping
+25. Camping_event2.activity = camping
+26. Camping_event1.year = 2023
+27. Camping_event2.year = 2023
+28. State_park.visitation = variable
+29. Camping_event1.time_period = May_to_fall
+30. Camping_event2.time_period = fall_to_fall
+
+Rules:
+1. Q[camped, Camping_event1.time, Camping_event2.time](Camping_event1.location == DeGray_state_park ∧ Camping_event1.time == May → Temporal(Camping_event1.time, Camping_event2.time))
+2. Q[camped, Camping_event1.time, Camping_event2.time](Camping_event1.location == DeGray_state_park ∧ Camping_event2.time == fall → Temporal(Camping_event1.time, Camping_event2.time))
+3. Q[camped, Camping_event1.time, Camping_event2.time](Camping_event1.crowded == true ∧ Camping_event2.crowded == false → Temporal(Camping_event1.time, Camping_event2.time))
+4. Q[camped, Camping_event1.time, Camping_event2.time](Camping_event1.temperature == high ∧ Camping_event2.temperature == moderate → Temporal(Camping_event1.time, Camping_event2.time))
+5. Q[camped, Camping_event1.time, Camping_event2.time](Camping_event1.season == spring ∧ Camping_event2.season == autumn → Temporal(Camping_event1.time, Camping_event2.time))
+6. Q[camped, Camping_event1.time, Camping_event2.time](Camping_event1.visitors == many ∧ Camping_event2.visitors == few → Temporal(Camping_event1.time, Camping_event2.time))
+7. Q[camped, Camping_event1.time, Camping_event2.time](Camping_event1.experience == uncomfortable ∧ Camping_event2.experience == pleasant → Temporal(Camping_event1.time, Camping_event2.time))
+8. Q[camped, Camping_event1.time, Camping_event2.time](Camping_event1.time_period == May_to_fall ∧ Camping_event2.time_period == fall_to_fall → Temporal(Camping_event1.time, Camping_event2.time))
+9. Q[camped, Camping_event1.time, Camping_event2.time](Camping_event1.year == 2023 ∧ Camping_event2.year == 2023 → Temporal(Camping_event1.time, Camping_event2.time))
+10. Q[camped, Camping_event1.time, Camping_event2.time](Weather.condition1 == crowded ∧ Weather.condition2 == uncrowded → Temporal(Camping_event1.time, Camping_event2.time))
+11. Q[camped, Camping_event1.time, Camping_event2.time](Weather.temperature1 == hot ∧ Weather.temperature2 == mild → Temporal(Camping_event1.time, Camping_event2.time))
+12. Q[camped, Camping_event1.time, Camping_event2.time](Camping_event1.location == DeGray_state_park ∧ State_park.location == Arkansas → Temporal(Camping_event1.time, Camping_event2.time))
+13. Q[camped, Camping_event1.time, Camping_event2.time](Camping_event1.crowded == true ∧ Camping_event1.time == May → Temporal(Camping_event1.time, Camping_event2.time))
+14. Q[camped, Camping_event1.time, Camping_event2.time](Camping_event2.crowded == false ∧ Camping_event2.time == fall → Temporal(Camping_event1.time, Camping_event2.time))
+15. Q[camped, Camping_event1.time, Camping_event2.time](Camping_event1.temperature == high ∧ Camping_event1.time == May → Temporal(Camping_event1.time, Camping_event2.time))
+16. Q[camped, Camping_event1.time, Camping_event2.time](Camping_event2.temperature == moderate ∧ Camping_event2.time == fall → Temporal(Camping_event1.time, Camping_event2.time))
+17. Q[camped, Camping_event1.time, Camping_event2.time](Camping_event1.visitors == many ∧ Camping_event1.time == May → Temporal(Camping_event1.time, Camping_event2.time))
+18. Q[camped, Camping_event1.time, Camping_event2.time](Camping_event2.visitors == few ∧ Camping_event2.time == fall → Temporal(Camping_event1.time, Camping_event2.time))
+19. Q[camped, Camping_event1.time, Camping_event2.time](Camping_event1.experience == uncomfortable ∧ Camping_event1.time == May → Temporal(Camping_event1.time, Camping_event2.time))
+20. Q[camped, Camping_event1.time, Camping_event2.time](Camping_event2.experience == pleasant ∧ Camping_event2.time == fall → Temporal(Camping_event1.time, Camping_event2.time))
+21. Q[camped, Camping_event1.time, Camping_event2.time](Camping_event1.time_period == May_to_fall ∧ Camping_event2.time_period == fall_to_fall → Temporal(Camping_event1.time, Camping_event2.time))
+22. Q[camped, Camping_event1.time, Camping_event2.time](Camping_event1.year == 2023 ∧ Camping_event2.year == 2023 → Temporal(Camping_event1.time, Camping_event2.time))
+23. Q[camped, Camping_event1.time, Camping_event2.time](Weather.condition1 == crowded ∧ Weather.condition2 == uncrowded → Temporal(Camping_event1.time, Camping_event2.time))
+24. Q[camped, Camping_event1.time, Camping_event2.time](Weather.temperature1 == hot ∧ Weather.temperature2 == mild → Temporal(Camping_event1.time, Camping_event2.time))
+25. Q[camped, Camping_event1.time, Camping_event2.time](Camping_event1.location == DeGray_state_park ∧ State_park.name == DeGray_state_park → Temporal(Camping_event1.time, Camping_event2.time))
+26. Q[camped, Camping_event1.time, Camping_event2.time](Camping_event1.crowded == true ∧ Camping_event2.crowded == false → Temporal(Camping_event1.time, Camping_event2.time))
+27. Q[camped, Camping_event1.time, Camping_event2.time](Camping_event1.temperature == high ∧ Camping_event2.temperature == moderate → Temporal(Camping_event1.time, Camping_event2.time))
+28. Q[camped, Camping_event1.time, Camping_event2.time](Camping_event1.season == spring ∧ Camping_event2.season == autumn → Temporal(Camping_event1.time, Camping_event2.time))
+29. Q[camped, Camping_event1.time, Camping_event2.time](Camping_event1.visitors == many ∧ Camping_event2.visitors == few → Temporal(Camping_event1.time, Camping_event2.time))
+30. Q[camped, Camping_event1.time, Camping_event2.time](Camping_event1.experience == uncomfortable ∧ Camping_event2.experience == pleasant → Temporal(Camping_event1.time, Camping_event2.time))

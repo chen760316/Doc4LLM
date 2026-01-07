@@ -1,0 +1,38 @@
+Predicates:
+Blanco Posnet.label != "Person"
+Blanco Posnet.label = "Person"
+Blanco Posnet.location != "American West"
+Blanco Posnet.location = "American West"
+Blanco Posnet.name != "Blanco Posnet"
+Blanco Posnet.name = "Blanco Posnet"
+Blanco Posnet.occupation != "local drunk and reprobate"
+Blanco Posnet.occupation = "local drunk and reprobate"
+Blanco Posnet.status != "released"
+Blanco Posnet.status = "released"
+Feemy.label != "Person"
+Feemy.label = "Person"
+Feemy.name != "Feemy"
+Feemy.name != Blanco Posnet.name
+Feemy.name = "Feemy"
+Feemy.occupation != "local prostitute"
+Feemy.occupation != Blanco Posnet.occupation
+Feemy.occupation = "local prostitute"
+Feemy.status != "witness"
+Feemy.status != Blanco Posnet.status
+Feemy.status = "witness"
+Feemy___Blanco Posnet.doc_id = "3488771919_7"
+Feemy___Blanco Posnet.relationship = "Feemy claims to have seen Blanco riding off on the horse."
+Feemy___Blanco Posnet.trust = "Feemy's word cannot be trusted due to her character and state of inebriation"
+None_ML(Feemy.attrs, Blanco Posnet.attrs)
+
+Rules:
+Q[Feemy,Feemy] (Feemy.occupation != "local prostitute" ∧ Blanco Posnet.status = "released" ∧ Feemy.occupation != Blanco Posnet.occupation ∧ Feemy.status = "witness" ∧ Blanco Posnet.status != "released" ∧ Feemy.name != "Feemy" → Blanco Posnet.name = "Blanco Posnet")
+Q[Feemy,Feemy] (Feemy.name != Blanco Posnet.name ∧ Feemy___Blanco Posnet.doc_id = "3488771919_7" ∧ Blanco Posnet.status = "released" ∧ Feemy.name = "Feemy" ∧ Feemy.label = "Person" → Feemy.occupation != "local prostitute")
+Q[Feemy,Feemy] (Feemy.name = "Feemy" ∧ Feemy.name != "Feemy" ∧ Feemy.label != "Person" → Blanco Posnet.name != "Blanco Posnet")
+Q[Feemy,Feemy] (Feemy___Blanco Posnet.relationship = "Feemy claims to have seen Blanco riding off on the horse." ∧ Blanco Posnet.label != "Person" → Blanco Posnet.location = "American West")
+Q[Feemy,Feemy] (Feemy.status != "witness" ∧ Blanco Posnet.label != "Person" ∧ None_ML(Feemy.attrs, Blanco Posnet.attrs) ∧ Feemy___Blanco Posnet.doc_id = "3488771919_7" → Feemy___Blanco Posnet.relationship = "Feemy claims to have seen Blanco riding off on the horse.")
+Q[Feemy,Feemy] (Feemy.occupation = "local prostitute" ∧ Feemy.name = "Feemy" ∧ Blanco Posnet.location = "American West" ∧ Blanco Posnet.location != "American West" ∧ Feemy.label != "Person" → Feemy.status != Blanco Posnet.status)
+Q[Feemy,Feemy] (None_ML(Feemy.attrs, Blanco Posnet.attrs) ∧ Blanco Posnet.status = "released" ∧ Blanco Posnet.location = "American West" ∧ Blanco Posnet.label != "Person" → Blanco Posnet.label = "Person")
+Q[Feemy,Feemy] (Feemy.occupation != "local prostitute" ∧ Feemy.label = "Person" ∧ Feemy.name = "Feemy" ∧ Feemy.name != "Feemy" ∧ Blanco Posnet.name = "Blanco Posnet" ∧ Feemy___Blanco Posnet.relationship = "Feemy claims to have seen Blanco riding off on the horse." → Blanco Posnet.label != "Person")
+Q[Feemy,Feemy] (Blanco Posnet.status = "released" ∧ Feemy.name != Blanco Posnet.name → Blanco Posnet.occupation = "local drunk and reprobate")
+Q[Feemy,Feemy] (Feemy.status != "witness" ∧ Blanco Posnet.location != "American West" ∧ Blanco Posnet.label != "Person" → Blanco Posnet.status = "released")

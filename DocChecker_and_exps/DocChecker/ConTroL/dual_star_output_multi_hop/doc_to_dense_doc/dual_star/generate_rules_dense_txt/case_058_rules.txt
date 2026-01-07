@@ -1,0 +1,64 @@
+Source: dense_text.txt (Index 58)
+S1: Like most other venomous snakes, the taipan uses its venom sparingly.
+S2: As they don't regard man as prey, they have been known to strike and bite without releasing any venom at all, leading to no adverse effects.
+
+Predicates:
+1. Taipan.uses_venom_sparingly
+2. Taipan.regards_man_as_prey
+3. Taipan.strikes_without_releasing_venom
+4. Taipan.bites_without_releasing_venom
+5. Taipan.leads_to_no_adverse_effects
+6. Venomous_snakes.use_venom_sparingly
+7. Venomous_snakes.strike_without_releasing_venom
+8. Venomous_snakes.bite_without_releasing_venom
+9. Venomous_snakes.regard_man_as_prey
+10. Venomous_snakes.lead_to_no_adverse_effects
+11. Taipan.uses_venom_when_strikes
+12. Taipan.bite_leads_to_adverse_effects
+13. Taipan.bite_leads_to_no_adverse_effects
+14. Taipan.uses_venom_when_bites
+15. Taipan.is_a_venomous_snake
+16. Venom.is_used_sparingly
+17. Venom.is_released_when_strikes
+18. Venom.is_not_released_when_bites
+19. Man.is_not_preferred_prey
+20. Man.is_struck_by_taipan
+21. Taipan.bite_is_non_venomous
+22. Taipan.bite_is_venomous
+23. Taipan.venom_effects_are_adverse
+24. Taipan.venom_effects_are_non_adverse
+25. Taipan.bite_can_be_non_venomous
+26. Taipan.bite_can_be_venomous
+27. Taipan.bite_without_venom
+28. Taipan.bite_with_venom
+29. Taipan.venom_usage_is_variable
+30. Taipan.bite_is_a_defensive_action
+
+Rules:
+1. Q[Like, Taipan.uses_venom_sparingly, Taipan.uses_venom_when_strikes](Taipan.uses_venom_sparingly == true → Factual(Taipan.uses_venom_when_strikes, false))
+2. Q[Like, Taipan.regards_man_as_prey, Taipan.bite_without_venom](Taipan.regards_man_as_prey == false → Factual(Taipan.bite_without_venom, true))
+3. Q[Like, Taipan.strikes_without_releasing_venom, Taipan.uses_venom_when_strikes](Taipan.strikes_without_releasing_venom == true → Factual(Taipan.uses_venom_when_strikes, false))
+4. Q[Like, Taipan.bites_without_releasing_venom, Taipan.bite_leads_to_adverse_effects](Taipan.bites_without_releasing_venom == true → Factual(Taipan.bite_leads_to_adverse_effects, false))
+5. Q[Like, Taipan.leads_to_no_adverse_effects, Taipan.bite_leads_to_no_adverse_effects](Taipan.leads_to_no_adverse_effects == true → Factual(Taipan.bite_leads_to_no_adverse_effects, true))
+6. Q[Like, Taipan.uses_venom_when_bites, Taipan.bite_without_venom](Taipan.uses_venom_when_bites == true → Factual(Taipan.bite_without_venom, false))
+7. Q[Like, Taipan.is_a_venomous_snake, Taipan.venom_effects_are_non_adverse](Taipan.is_a_venomous_snake == true → Factual(Taipan.venom_effects_are_non_adverse, false))
+8. Q[Like, Venomous_snakes.use_venom_sparingly, Taipan.uses_venom_when_strikes](Venomous_snakes.use_venom_sparingly == true → Factual(Taipan.uses_venom_when_strikes, false))
+9. Q[Like, Venomous_snakes.strike_without_releasing_venom, Taipan.uses_venom_when_strikes](Venomous_snakes.strike_without_releasing_venom == true → Factual(Taipan.uses_venom_when_strikes, false))
+10. Q[Like, Venomous_snakes.bite_without_releasing_venom, Taipan.bite_with_venom](Venomous_snakes.bite_without_releasing_venom == true → Factual(Taipan.bite_with_venom, false))
+11. Q[Like, Venomous_snakes.regard_man_as_prey, Man.is_not_preferred_prey](Venomous_snakes.regard_man_as_prey == false → Factual(Man.is_not_preferred_prey, true))
+12. Q[Like, Taipan.bite_can_be_non_venomous, Taipan.bite_with_venom](Taipan.bite_can_be_non_venomous == true → Factual(Taipan.bite_with_venom, false))
+13. Q[Like, Taipan.bite_can_be_venomous, Taipan.bite_without_venom](Taipan.bite_can_be_venomous == true → Factual(Taipan.bite_without_venom, false))
+14. Q[Like, Taipan.venom_usage_is_variable, Taipan.uses_venom_when_bites](Taipan.venom_usage_is_variable == true → Factual(Taipan.uses_venom_when_bites, false))
+15. Q[Like, Taipan.bite_is_non_venomous, Taipan.bite_leads_to_adverse_effects](Taipan.bite_is_non_venomous == true → Factual(Taipan.bite_leads_to_adverse_effects, false))
+16. Q[Like, Taipan.bite_is_venomous, Taipan.bite_without_venom](Taipan.bite_is_venomous == true → Factual(Taipan.bite_without_venom, false))
+17. Q[Like, Taipan.venom_effects_are_adverse, Taipan.leads_to_no_adverse_effects](Taipan.venom_effects_are_adverse == true → Factual(Taipan.leads_to_no_adverse_effects, false))
+18. Q[Like, Taipan.bite_is_a_defensive_action, Taipan.strikes_without_releasing_venom](Taipan.bite_is_a_defensive_action == true → Factual(Taipan.strikes_without_releasing_venom, false))
+19. Q[Like, Taipan.bite_leads_to_no_adverse_effects, Taipan.bite_leads_to_adverse_effects](Taipan.bite_leads_to_no_adverse_effects == true → Factual(Taipan.bite_leads_to_adverse_effects, false))
+20. Q[Like, Taipan.uses_venom_sparingly, Taipan.bite_can_be_venomous](Taipan.uses_venom_sparingly == true → Factual(Taipan.bite_can_be_venomous, false))
+21. Q[Like, Taipan.bite_without_venom, Taipan.bite_leads_to_no_adverse_effects](Taipan.bite_without_venom == true → Factual(Taipan.bite_leads_to_no_adverse_effects, true))
+22. Q[Like, Taipan.bite_with_venom, Taipan.bite_leads_to_no_adverse_effects](Taipan.bite_with_venom == true → Factual(Taipan.bite_leads_to_no_adverse_effects, false))
+23. Q[Like, Taipan.uses_venom_when_strikes, Taipan.bite_without_venom](Taipan.uses_venom_when_strikes == true → Factual(Taipan.bite_without_venom, false))
+24. Q[Like, Taipan.bite_is_non_venomous, Taipan.uses_venom_when_bites](Taipan.bite_is_non_venomous == true → Factual(Taipan.uses_venom_when_bites, false))
+25. Q[Like, Taipan.bite_is_venomous, Taipan.bite_without_venom](Taipan.bite_is_venomous == true → Factual(Taipan.bite_without_venom, false))
+26. Q[Like, Taipan.venom_effects_are_non_adverse, Taipan.bite_leads_to_adverse_effects](Taipan.venom_effects_are_non_adverse == true → Factual(Taipan.bite_leads_to_adverse_effects, false))
+27. Q[Like, Taipan.bite_can_be_non_venomous

@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 656)
+S1: The Chernobyl disaster had repercussions outside the ex-USSR.
+S2: The Chernobyl disaster had an impact outside of the Soviet ex-Union.
+
+Predicates:
+1. Chernobyl_disaster.repercussions
+2. Chernobyl_disaster.impact
+3. ex_USSR.scope
+4. Soviet_ex_Union.scope
+5. repercussions.outside(ex_USSR)
+6. impact.outside(Soviet_ex_Union)
+7. M_NLI(S1, S2)
+8. Relation(Chernobyl_disaster, repercussions)
+9. Relation(Chernobyl_disaster, impact)
+10. violate(Chernobyl_disaster, ex_USSR)
+11. violate(Chernobyl_disaster, Soviet_ex_Union)
+12. repercussions.impact
+13. outside.ex_USSR
+14. outside.Soviet_ex_Union
+15. Chernobyl_disaster.context
+16. context.implies(contradiction)
+17. contradiction.scope
+18. repercussions.impact(outside)
+19. impact.repercussions(outside)
+20. M_NLI(S1, S2).validity
+21. Relation(ex_USSR, repercussions)
+22. Relation(Soviet_ex_Union, impact)
+23. Chernobyl_disaster.affected_entities
+24. affected_entities.outside(ex_USSR)
+25. affected_entities.outside(Soviet_ex_Union)
+26. repercussions.affected_entities
+27. impact.affected_entities
+28. context.relation(Chernobyl_disaster, repercussions)
+29. context.relation(Chernobyl_disaster, impact)
+30. contradiction.relation(ex_USSR, Soviet_ex_Union)
+
+Rules:
+1. Q[The, Chernobyl_disaster.repercussions, Chernobyl_disaster.impact](Chernobyl_disaster.repercussions == "outside" → Relation(Chernobyl_disaster, impact))
+2. Q[The, ex_USSR.scope, Soviet_ex_Union.scope](ex_USSR.scope == "outside" → Relation(ex_USSR, repercussions))
+3. Q[The, repercussions.outside(ex_USSR), impact.outside(Soviet_ex_Union)](repercussions.outside(ex_USSR) == true → Relation(repercussions, impact))
+4. Q[The, Chernobyl_disaster.context, context.implies(contradiction)](Chernobyl_disaster.context == "contradictory" → Relation(Chernobyl_disaster, repercussions))
+5. Q[The, repercussions.affected_entities, impact.affected_entities](repercussions.affected_entities == "outside(ex_USSR)" → Relation(repercussions, impact))
+6. Q[The, M_NLI(S1, S2), M_NLI(S1, S2).validity](M_NLI(S1, S2) == "invalid" → Relation(M_NLI(S1, S2), contradiction))
+7. Q[The, outside.ex_USSR, outside.Soviet_ex_Union](outside.ex_USSR == true → Relation(outside, ex_USSR))
+8. Q[The, Chernobyl_disaster.affected_entities, affected_entities.outside(Soviet_ex_Union)](Chernobyl_disaster.affected_entities == "outside" → Relation(Chernobyl_disaster, impact))
+9. Q[The, impact.repercussions(outside), repercussions.impact(outside)](impact.repercussions(outside) == true → Relation(impact, repercussions))
+10. Q[The, violate(Chernobyl_disaster, ex_USSR), violate(Chernobyl_disaster, Soviet_ex_Union)](violate(Chernobyl_disaster, ex_USSR) == true → Relation(violate, contradiction))
+11. Q[The, context.relation(Chernobyl_disaster, repercussions), context.relation(Chernobyl_disaster, impact)](context.relation(Chernobyl_disaster, repercussions) == "contradictory" → Relation(context, impact))
+12. Q[The, repercussions.outside(ex_USSR), repercussions.impact](repercussions.outside(ex_USSR) == true → Relation(repercussions, impact))
+13. Q[The, Chernobyl_disaster.impact, Chernobyl_disaster.repercussions](Chernobyl_disaster.impact == "outside" → Relation(Chernobyl_disaster, repercussions))
+14. Q[The, contradiction.scope, repercussions.affected_entities](contradiction.scope == "ex-USSR" → Relation(contradiction, repercussions))
+15. Q[The, impact.outside(Soviet_ex_Union), repercussions.outside(ex_USSR)](impact.outside(Soviet_ex_Union) == true → Relation(impact, repercussions))
+16. Q[The, repercussions.impact, impact.affected_entities](repercussions.impact == "outside" → Relation(repercussions, impact))
+17. Q[The, Chernobyl_disaster.context, context.relation(Chernobyl_disaster, impact)](Chernobyl_disaster.context == "contradictory" → Relation(Chernobyl_disaster, impact))
+18. Q[The, violate(Chernobyl_disaster, Soviet_ex_Union), repercussions.affected_entities](violate(Chernobyl_disaster, Soviet_ex_Union) == true → Relation(violate, repercussions))
+19. Q[The, M_NLI(S1, S2), contradiction.relation(ex_USSR, Soviet_ex_Union)](M_NLI(S1, S2) == "invalid" → Relation(M_NLI(S1, S2), contradiction))
+20. Q[The, outside.Soviet_ex_Union, outside.ex_USSR](outside.Soviet_ex_Union == true → Relation(outside, Soviet_ex_Union))
+21. Q[The, Chernobyl_disaster.repercussions, repercussions.affected_entities](Chernobyl_disaster.repercussions == "outside" → Relation(Chernobyl_disaster, repercussions))
+22. Q[The, impact.affected_entities, Chernobyl_disaster.affected_entities](impact.affected_entities == "outside" → Relation(impact, Chernobyl_disaster))
+23. Q[The, repercussions.impact(outside), impact.repercussions](repercussions.impact(outside) == true → Relation(repercussions, impact))
+24. Q[The, context.implies(contradiction), contradiction.relation(ex_USSR, Soviet_ex_Union)](context.implies(contradiction) == true → Relation(context, contradiction))
+25. Q[The, repercussions.outside(ex_USSR), impact.outside(Soviet_ex_Union)](repercussions.outside(ex_USSR) == true → Relation(repercussions, impact))
+26. Q[The, Chernobyl_disaster.impact, ex_USSR.scope](Chernobyl_disaster.impact == "outside" → Relation(Chernobyl_disaster, ex_USSR))
+27. Q[The, outside.ex_USSR, repercussions.affected_entities](outside.ex_USSR == true → Relation(outside, repercussions))
+28. Q[The, impact.outside(Soviet_ex_Union), Chernobyl_disaster.affected_entities](impact.outside(Soviet_ex_Union) == true → Relation(impact, Chernobyl_disaster))
+29. Q[The, M_NLI(S1, S2).validity, context.relation(Chernobyl_disaster, impact)](M_NLI(S1, S2).validity == "invalid" → Relation(M_NLI(S1, S2), context))
+30. Q[The, contradiction.relation(ex_USSR, Soviet_ex_Union), Chernobyl_disaster.context](contradiction.relation(ex_USSR, Soviet_ex_Union) == true → Relation(contradiction, Chernobyl_disaster))

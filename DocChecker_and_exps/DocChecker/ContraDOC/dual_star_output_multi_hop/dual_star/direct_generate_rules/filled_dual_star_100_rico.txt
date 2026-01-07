@@ -1,0 +1,110 @@
+Predicates:
+Carefinotu.label != "Person"
+Carefinotu.label != San Francisco.label
+Carefinotu.label != deserted island.label
+Carefinotu.label = "Person"
+Carefinotu.name != "Carefinotu"
+Carefinotu.name != Phina.name
+Carefinotu.name != Professor T. Artelett.name
+Carefinotu.name != San Francisco.name
+Carefinotu.name != deserted island.name
+Carefinotu.name = "Carefinotu"
+Carefinotu.status != "rescued from Polynesians"
+Carefinotu.status != Phina.status
+Carefinotu.status = "rescued from Polynesians"
+Godfrey.age != 22
+Godfrey.age < 27
+Godfrey.age = 22
+Godfrey.age > 17
+Godfrey.label != "Person"
+Godfrey.label != San Francisco.label
+Godfrey.label != deserted island.label
+Godfrey.label = "Person"
+Godfrey.name != "Godfrey"
+Godfrey.name != Carefinotu.name
+Godfrey.name != Phina.name
+Godfrey.name != Professor T. Artelett.name
+Godfrey.name != San Francisco.name
+Godfrey.name != deserted island.name
+Godfrey.name = "Godfrey"
+Godfrey.status != "idle"
+Godfrey.status != Carefinotu.status
+Godfrey.status != Phina.status
+Godfrey.status = "idle"
+Godfrey___Carefinotu.doc_id = "3488771890_2"
+Godfrey___Carefinotu.event != Godfrey___deserted island.event
+Godfrey___Carefinotu.event = "rescue"
+Godfrey___Carefinotu.relationship != Godfrey___Phina.relationship
+Godfrey___Carefinotu.relationship != Godfrey___Professor T. Artelett.relationship
+Godfrey___Carefinotu.relationship != Godfrey___San Francisco.relationship
+Godfrey___Carefinotu.relationship != Godfrey___deserted island.relationship
+Godfrey___Carefinotu.relationship = "Godfrey rescues Carefinotu from Polynesians visiting the island."
+Godfrey___Phina.doc_id = "3488771890_2"
+Godfrey___Phina.relationship != Godfrey___Professor T. Artelett.relationship
+Godfrey___Phina.relationship != Godfrey___deserted island.relationship
+Godfrey___Phina.relationship = "Godfrey is reunited with Phina in San Francisco."
+Godfrey___Phina.status = "engaged to marry"
+Godfrey___Professor T. Artelett.captain = "Captain Turcott"
+Godfrey___Professor T. Artelett.doc_id = "3488771890_2"
+Godfrey___Professor T. Artelett.relationship != Godfrey___deserted island.relationship
+Godfrey___Professor T. Artelett.relationship = "Godfrey is accompanied by his mentor Tartlet on a sea voyage."
+Godfrey___Professor T. Artelett.ship_name = "Dream"
+Godfrey___Professor T. Artelett.voyage_method = "sea voyage"
+Godfrey___San Francisco.doc_id = "3488771890_2"
+Godfrey___San Francisco.event != Godfrey___deserted island.event
+Godfrey___San Francisco.event = "rescue"
+Godfrey___San Francisco.relationship != Godfrey___Phina.relationship
+Godfrey___San Francisco.relationship != Godfrey___Professor T. Artelett.relationship
+Godfrey___San Francisco.relationship != Godfrey___deserted island.relationship
+Godfrey___San Francisco.relationship = "Godfrey is rescued and returned to San Francisco."
+Godfrey___deserted island.doc_id = "3488771890_2"
+Godfrey___deserted island.event = "ship foundering"
+Godfrey___deserted island.relationship = "Godfrey is marooned on a deserted island after abandoning the ship Dream."
+None_ML(Godfrey___deserted island.attrs, Godfrey___San Francisco.attrs)
+None_ML(Professor T. Artelett.attrs, Carefinotu.attrs)
+Phina.label != "Person"
+Phina.label != deserted island.label
+Phina.label = "Person"
+Phina.name != "Phina"
+Phina.name != Professor T. Artelett.name
+Phina.name != deserted island.name
+Phina.name = "Phina"
+Phina.relationship != "love interest of Godfrey"
+Phina.relationship = "love interest of Godfrey"
+Phina.status != "adopted goddaughter of Kolderup"
+Phina.status = "adopted goddaughter of Kolderup"
+Professor T. Artelett.label != "Person"
+Professor T. Artelett.label != deserted island.label
+Professor T. Artelett.label = "Person"
+Professor T. Artelett.name != "Professor T. Artelett"
+Professor T. Artelett.name != deserted island.name
+Professor T. Artelett.name = "Professor T. Artelett"
+Professor T. Artelett.nickname != "Tartlet"
+Professor T. Artelett.nickname = "Tartlet"
+Professor T. Artelett.occupation != "mentor, teacher, dance instructor"
+Professor T. Artelett.occupation = "mentor, teacher, dance instructor"
+San Francisco.label != "Location"
+San Francisco.label != Phina.label
+San Francisco.label != Professor T. Artelett.label
+San Francisco.label = "Location"
+San Francisco.name != "San Francisco"
+San Francisco.name != Phina.name
+San Francisco.name != Professor T. Artelett.name
+San Francisco.name != deserted island.name
+San Francisco.name = "San Francisco"
+deserted island.label != "Location"
+deserted island.label = "Location"
+deserted island.name != "deserted island"
+deserted island.name = "deserted island"
+
+Rules:
+Q[Godfrey,Godfrey] (Godfrey___San Francisco.event != Godfrey___deserted island.event ∧ Godfrey___Phina.relationship = "Godfrey is reunited with Phina in San Francisco." ∧ Godfrey.age < 27 → Godfrey___Professor T. Artelett.doc_id = "3488771890_2")
+Q[Godfrey,Godfrey] (Carefinotu.label != deserted island.label ∧ Godfrey___San Francisco.event != Godfrey___deserted island.event ∧ Carefinotu.name != Phina.name ∧ Phina.name != "Phina" → Phina.status = "adopted goddaughter of Kolderup")
+Q[Godfrey,Godfrey] (Godfrey___Phina.doc_id = "3488771890_2" ∧ Godfrey.label = "Person" → deserted island.label != "Location")
+Q[Godfrey,Godfrey] (Phina.name != deserted island.name ∧ Godfrey___deserted island.doc_id = "3488771890_2" ∧ None_ML(Godfrey___deserted island.attrs, Godfrey___San Francisco.attrs) ∧ Professor T. Artelett.label != deserted island.label ∧ San Francisco.label != Professor T. Artelett.label ∧ Phina.label = "Person" → San Francisco.name != deserted island.name)
+Q[Godfrey,Godfrey] (Carefinotu.status != "rescued from Polynesians" ∧ Godfrey___Phina.status = "engaged to marry" ∧ deserted island.name = "deserted island" ∧ Godfrey___Professor T. Artelett.ship_name = "Dream" ∧ Godfrey___San Francisco.event = "rescue" → Godfrey.age < 27)
+Q[Godfrey,Godfrey] (Godfrey.label = "Person" ∧ Godfrey___Carefinotu.relationship != Godfrey___Professor T. Artelett.relationship ∧ Godfrey___Professor T. Artelett.relationship = "Godfrey is accompanied by his mentor Tartlet on a sea voyage." ∧ Godfrey.name != "Godfrey" ∧ Godfrey.status = "idle" ∧ Godfrey___Professor T. Artelett.voyage_method = "sea voyage" → Phina.label != "Person")
+Q[Godfrey,Godfrey] (deserted island.name = "deserted island" ∧ Godfrey___deserted island.event = "ship foundering" ∧ Godfrey___Professor T. Artelett.relationship = "Godfrey is accompanied by his mentor Tartlet on a sea voyage." ∧ Carefinotu.label != San Francisco.label ∧ Carefinotu.name != Professor T. Artelett.name → Godfrey___Carefinotu.relationship != Godfrey___deserted island.relationship)
+Q[Godfrey,Godfrey] (Professor T. Artelett.name != "Professor T. Artelett" ∧ Godfrey___Carefinotu.event != Godfrey___deserted island.event → Professor T. Artelett.occupation = "mentor, teacher, dance instructor")
+Q[Godfrey,Godfrey] (Carefinotu.status != "rescued from Polynesians" ∧ San Francisco.name != "San Francisco" ∧ Godfrey___San Francisco.relationship != Godfrey___Professor T. Artelett.relationship ∧ deserted island.label != "Location" → deserted island.name = "deserted island")
+Q[Godfrey,Godfrey] (Carefinotu.label != "Person" ∧ Godfrey___Professor T. Artelett.relationship != Godfrey___deserted island.relationship ∧ Godfrey.name = "Godfrey" → Carefinotu.name != deserted island.name)

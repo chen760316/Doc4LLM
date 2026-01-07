@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 7)
+S1: A plastic bottle tax was considered by the government earlier in the year but abandoned after manufacturers pointed out the costs in establishing proper recycling schemes.
+S2: They are pretty much the ultimate in human waste, and a problem that can so easily be solved with very little effort.
+
+Predicates:
+1. Government.considered_tax
+2. Government.abandoned_tax
+3. Manufacturers.pointed_out_costs
+4. Manufacturers.establish_recycling_schemes
+5. Plastic_bottle.tax_considered
+6. Plastic_bottle.tax_abandoned
+7. Human_waste.problem
+8. Human_waste.solvable
+9. Plastic_straws.problem
+10. Plastic_straws.solvable
+11. Recycling_schemes.costs
+12. Tax.abandoned_due_to_costs
+13. Solution.effort_required
+14. Government.lack_of_solution
+15. Waste.from_plastic_bottles
+16. Waste.from_plastic_straws
+17. Problem.can_be_solved
+18. Effort.required_to_solve
+19. Tax.impact_on_manufacturers
+20. Recycling_schemes.efficiency
+21. Government.policy_decision
+22. Manufacturers.influence_on_policy
+23. Plastic_bottle.waste_issue
+24. Plastic_straws.waste_issue
+25. Solution.effort_level
+26. Causal(government.abandoned_tax, manufacturers.pointed_out_costs)
+27. Causal(plastic_straws.problem, solution.effort_required)
+28. Violate(government.lack_of_solution, human_waste.solvable)
+29. M_NLI(S1, S2)
+30. Causal(plastic_bottle.tax_abandoned, plastic_bottle.waste_issue)
+
+Rules:
+1. Q[plastic, Government.considered_tax == true](Government.abandoned_tax → Causal(Government.abandoned_tax, Manufacturers.pointed_out_costs))
+2. Q[plastic, Manufacturers.pointed_out_costs == true](Government.abandoned_tax → Causal(Government.abandoned_tax, Government.lack_of_solution))
+3. Q[plastic, Government.abandoned_tax == true](Manufacturers.establish_recycling_schemes == false → Causal(Government.abandoned_tax, Waste.from_plastic_bottles))
+4. Q[plastic, Waste.from_plastic_bottles == true](Government.abandoned_tax → Causal(Government.abandoned_tax, Plastic_bottle.tax_abandoned))
+5. Q[plastic, Plastic_bottle.tax_abandoned == true](Manufacturers.pointed_out_costs → Causal(Manufacturers.pointed_out_costs, Government.policy_decision))
+6. Q[plastic, Government.lack_of_solution == true](Plastic_bottle.tax_abandoned → Causal(Plastic_bottle.tax_abandoned, Waste.from_plastic_bottles))
+7. Q[plastic, Waste.from_plastic_straws == true](Plastic_straws.problem → Causal(Plastic_straws.problem, Solution.effort_required))
+8. Q[plastic, Human_waste.problem == true](Human_waste.solvable → Causal(Human_waste.problem, Government.lack_of_solution))
+9. Q[plastic, Plastic_straws.solvable == true](Plastic_straws.problem → Causal(Plastic_straws.problem, Effort.required_to_solve))
+10. Q[plastic, Recycling_schemes.costs == true](Manufacturers.pointed_out_costs → Causal(Manufacturers.pointed_out_costs, Tax.abandoned_due_to_costs))
+11. Q[plastic, Tax.abandoned_due_to_costs == true](Government.lack_of_solution → Causal(Government.lack_of_solution, Plastic_bottle.waste_issue))
+12. Q[plastic, Plastic_bottle.waste_issue == true](Plastic_bottle.tax_abandoned → Causal(Plastic_bottle.tax_abandoned, Waste.from_plastic_bottles))
+13. Q[plastic, Solution.effort_level == true](Plastic_straws.solvable → Causal(Plastic_straws.solvable, Human_waste.problem))
+14. Q[plastic, Government.policy_decision == true](Manufacturers.influence_on_policy → Causal(Manufacturers.influence_on_policy, Government.abandoned_tax))
+15. Q[plastic, Waste.from_plastic_bottles == true](Plastic_bottle.tax_abandoned → Causal(Plastic_bottle.tax_abandoned, Recycling_schemes.efficiency))
+16. Q[plastic, Recycling_schemes.efficiency == true](Manufacturers.establish_recycling_schemes → Causal(Manufacturers.establish_recycling_schemes, Plastic_bottle.tax_abandoned))
+17. Q[plastic, Plastic_bottle.tax_considered == true](Government.considered_tax → Causal(Government.considered_tax, Tax.impact_on_manufacturers))
+18. Q[plastic, Tax.impact_on_manufacturers == true](Manufacturers.pointed_out_costs → Causal(Manufacturers.pointed_out_costs, Government.policy_decision))
+19. Q[plastic, Government.abandoned_tax == true](Tax.abandoned_due_to_costs → Causal(Tax.abandoned_due_to_costs, Plastic_bottle.waste_issue))
+20. Q[plastic, Plastic_straws.problem == true](Plastic_straws.solvable → Causal(Plastic_straws.solvable, Solution.effort_required))
+21. Q[plastic, Solution.effort_required == true](Human_waste.problem → Causal(Human_waste.problem, Government.lack_of_solution))
+22. Q[plastic, Government.lack_of_solution == true](Plastic_bottle.tax_abandoned → Causal(Plastic_bottle.tax_abandoned, Waste.from_plastic_straws))
+23. Q[plastic, Waste.from_plastic_straws == true](Plastic_straws.problem → Causal(Plastic_straws.problem, Solution.effort_level))
+24. Q[plastic, Solution.effort_level == true](Human_waste.solvable → Causal(Human_waste.solvable, Government.lack_of_solution))
+25. Q[plastic, Plastic_bottle.waste_issue == true](Waste.from_plastic_bottles → Causal(Waste.from_plastic_bottles, Plastic_bottle.tax_abandoned))
+26. Q[plastic, Plastic_straws.solvable == true](Plastic_straws.problem → Causal(Plastic_straws.problem, Effort.required_to_solve))
+27. Q[plastic, Manufacturers.establish_recycling_schemes == false](Government.abandoned_tax → Causal(Government.abandoned_tax, Manufacturers.pointed_out_costs))
+28. Q[plastic, Government.policy_decision == true](Manufacturers.influence_on_policy → Causal(Manufacturers.influence_on_policy, Tax.abandoned_due_to_costs))
+29. Q[plastic, Tax.abandoned_due_to_costs == true](Government.lack_of_solution → Causal(Government.lack_of_solution, Plastic_bottle.tax_abandoned))
+30. Q[plastic, Plastic_bottle.tax_abandoned == true](Waste.from_plastic_bottles → Causal(Waste.from_plastic_bottles, Plastic_straws.problem))

@@ -1,0 +1,128 @@
+Predicates:
+1. Williams.status = "sentenced"
+2. mandatory minimum.type = "sentencing guideline"
+3. plea agreement.content = "stated the amount of crack involved"
+4. presentence report.content = "referenced the crack guidelines"
+5. technical requirements.description = "burden of proving initial allegations"
+6. "16156".contradiction_type = "Factual"
+7. "41268".contradiction_type = "Causal"
+8. "16156".source_id = "16156"
+9. "41268".source_id = "41268"
+10. Williams.sentence = "mandatory minimum"
+11. Williams.plea agreement = "based on the plea agreement"
+12. Williams.presentence report = "influenced by the presentence report"
+13. mandatory minimum.amount = "specific amount of crack"
+14. plea agreement.date = "2023-01-15"
+15. presentence report.date = "2023-01-20"
+16. Williams.education_level = "low"
+17. Williams.sophistication = "lacking"
+18. "16156".relationship = "plea agreement"
+19. "41268".relationship = "technical requirements"
+20. M_NLI(Williams.status, Williams.sentence)
+21. T("Williams was sentenced pursuant to a mandatory minimum", "Williams was not sentenced pursuant to a mandatory minimum", tau)
+22. Factual(Williams.sentence, "mandatory minimum")
+23. Causal(Williams.education_level, Williams.sophistication)
+24. Numeric(Williams.sentence, "not applicable")
+25. Temporal("2023-01-15", "2023-01-20")
+26. violate(Williams, "mandatory minimum")
+27. Factual(Williams.plea agreement, "amount of crack involved")
+28. Causal(Williams.technical requirements, "initial allegations")
+29. Numeric(mandatory minimum.amount, "0")
+30. Temporal("2023-01-15", "2023-01-25")
+31. Williams.technical requirements = "not met"
+32. "16156".source_id = "plea agreement"
+33. "41268".reason = "lack of education"
+34. M_NLI(mandatory minimum.type, plea agreement.content)
+35. T("Williams was unable to meet the technical requirements", "Williams met the technical requirements", tau)
+36. Factual(Williams.presentence report, "crack guidelines")
+37. Causal(Williams.sentence, "plea agreement")
+38. Numeric(Williams.sentence, "mandatory minimum")
+39. Temporal("2023-01-20", "2023-01-15")
+40. violate(Williams, "technical requirements")
+41. Factual(Williams.status, "not sentenced")
+42. Causal(Williams.education_level, "technical requirements")
+43. Numeric(mandatory minimum.amount, "5")
+44. Temporal("2023-01-20", "2023-01-30")
+45. Williams.sentence_type = "mandatory"
+46. "16156".relationship = "presentence report"
+47. "41268".relationship = "education level"
+48. M_NLI(Williams.sentence, "not sentenced")
+49. T("Williams was sentenced based on the plea agreement", "Williams was not sentenced based on the plea agreement", tau)
+50. Factual(Williams.sentence, "not based on plea agreement")
+51. Causal(Williams.sentence, "influenced by presentence report")
+52. Numeric(Williams.sentence, "10")
+53. Temporal("2023-01-15", "2023-01-10")
+54. violate(Williams, "plea agreement")
+55. Factual(mandatory minimum.type, "not sentencing guideline")
+56. Causal(Williams.sentence, "not influenced by presentence report")
+57. Numeric(mandatory minimum.amount, "3")
+58. Temporal("2023-01-20", "2023-01-25")
+59. Williams.plea agreement_status = "valid"
+60. "16156".source_id = "technical requirements"
+61. "41268".reason = "lack of sophistication"
+62. M_NLI(Williams.education_level, "high")
+63. T("Williams was unable to meet the technical requirements", "Williams met the technical requirements", tau)
+64. Factual(Williams.education_level, "not low")
+65. Causal(Williams.sentence, "not based on plea agreement")
+66. Numeric(Williams.sentence, "15")
+67. Temporal("2023-01-25", "2023-01-30")
+68. violate(Williams, "education level")
+69. Factual(Williams.presentence report, "not referenced")
+70. Causal(Williams.sentence, "not influenced")
+71. Numeric(mandatory minimum.amount, "8")
+72. Temporal("2023-01-20", "2023-01-15")
+73. Williams.sentence_outcome = "appeal"
+74. "16156".relationship = "sentence outcome"
+75. "41268".reason = "lack of proof"
+76. M_NLI(Williams.sentence, "appeal")
+77. T("Williams was sentenced pursuant to a mandatory minimum", "Williams was sentenced without a mandatory minimum", tau)
+78. Factual(Williams.sentence, "not mandatory minimum")
+79. Causal(Williams.education_level, "not sufficient")
+80. Numeric(Williams.sentence, "20")
+81. Temporal("2023-01-30", "2023-01-25")
+82. violate(Williams, "sentence outcome")
+83. Factual(Williams.technical requirements, "not met")
+84. Causal(Williams.sentence, "not based on presentence report")
+85. Numeric(mandatory minimum.amount, "12")
+86. Temporal("2023-01-15", "2023-01-10")
+87. Williams.sentence_type = "not mandatory"
+88. "16156".source_id = "sentence outcome"
+89. "41268".reason = "lack of evidence"
+90. M_NLI(Williams.education_level, "high")
+91. T("Williams was unable to meet the technical requirements", "Williams successfully met the technical requirements", tau)
+92. Factual(Williams.education_level, "not low")
+93. Causal(Williams.sentence, "not influenced by plea agreement")
+94. Numeric(Williams.sentence, "25")
+95. Temporal("2023-01-25", "2023-01-20")
+96. violate(Williams, "technical requirements")
+97. Factual(Williams.sentence, "not based on presentence report")
+98. Causal(Williams.education_level, "not sufficient")
+99. Numeric(mandatory minimum.amount, "18")
+100. Temporal("2023-01-30", "2023-01-25")
+violate(x0, y0)
+
+Rules:
+1. Q[Williams, "mandatory minimum"](Williams.status = "sentenced" ∧ Williams.sentence = "mandatory minimum" → violate(Williams, "mandatory minimum"))
+2. Q[Williams, "technical requirements"](Williams.status = "sentenced" ∧ Williams.technical requirements = "not met" → violate(Williams, "technical requirements"))
+3. Q[Williams, "plea agreement"](Williams.plea agreement_status = "valid" ∧ Williams.sentence = "not mandatory minimum" → violate(Williams, "plea agreement"))
+4. Q[Williams, "plea agreement"](Williams.status = "sentenced" ∧ Williams.plea agreement = "based on the plea agreement" ∧ Williams.sentence = "not based on plea agreement" → violate(Williams, "plea agreement"))
+5. Q[Williams, "technical requirements"](Williams.education_level = "low" ∧ Williams.sophistication = "lacking" ∧ Williams.technical requirements = "not met" → violate(Williams, "technical requirements"))
+6. Q[Williams, "sentence outcome"](Williams.sentence_outcome = "appeal" ∧ Williams.sentence = "mandatory minimum" ∧ Williams.status = "not sentenced" → violate(Williams, "sentence outcome"))
+7. Q[Williams, "technical requirements"](Williams.status = "sentenced" ∧ Williams.education_level = "low" ∧ Williams.sophistication = "lacking" ∧ Williams.technical requirements = "not met" → violate(Williams, "technical requirements"))
+8. Q[Williams, "plea agreement"](Williams.plea agreement = "based on the plea agreement" ∧ Williams.sentence = "mandatory minimum" ∧ Williams.presentence report.content = "referenced the crack guidelines" → violate(Williams, "plea agreement"))
+9. Q[Williams, "mandatory minimum"](Williams.status = "sentenced" ∧ Williams.sentence = "not mandatory minimum" ∧ Williams.sentence_type = "not mandatory" → violate(Williams, "mandatory minimum"))
+10. Q[Williams, "technical requirements"](Williams.technical requirements = "not met" ∧ Williams.education_level = "not low" ∧ Williams.sentence = "mandatory minimum" ∧ Williams.sentence_outcome = "appeal" → violate(Williams, "technical requirements"))
+11. Q[Williams, "plea agreement"](Williams.plea agreement = "based on the plea agreement" ∧ Williams.sentence = "not based on plea agreement" ∧ Williams.presentence report.date = "2023-01-20" ∧ Williams.plea agreement.date = "2023-01-15" → violate(Williams, "plea agreement"))
+12. Q[Williams, "technical requirements"](Williams.status = "sentenced" ∧ Williams.technical requirements = "not met" ∧ Williams.education_level = "low" ∧ Williams.sophistication = "lacking" ∧ Williams.sentence = "mandatory minimum" → violate(Williams, "technical requirements"))
+13. Q[Williams, "mandatory minimum"](Williams.status = "sentenced" ∧ Williams.sentence = "mandatory minimum" ∧ Williams.sentence_type = "not mandatory" ∧ Williams.plea agreement_status = "valid" → violate(Williams, "mandatory minimum"))
+14. Q[Williams, "plea agreement"](Williams.plea agreement = "based on the plea agreement" ∧ Williams.sentence = "not based on plea agreement" ∧ Williams.presentence report.content = "not referenced" → violate(Williams, "plea agreement"))
+15. Q[Williams, "technical requirements"](Williams.status = "sentenced" ∧ Williams.education_level = "low" ∧ Williams.sophistication = "lacking" ∧ Williams.technical requirements = "not met" ∧ Williams.sentence_outcome = "appeal" → violate(Williams, "technical requirements"))
+16. Q[Williams, "mandatory minimum"](Williams.status = "sentenced" ∧ Williams.sentence = "mandatory minimum" ∧ Williams.sentence_outcome = "not appeal" ∧ Williams.plea agreement_status = "invalid" → violate(Williams, "mandatory minimum"))
+17. Q[Williams, "plea agreement"](Williams.plea agreement = "based on the plea agreement" ∧ Williams.sentence = "not based on plea agreement" ∧ Williams.presentence report.content = "not referenced" ∧ Williams.technical requirements = "not met" → violate(Williams, "plea agreement"))
+18. Q[Williams, "technical requirements"](Williams.status = "sentenced" ∧ Williams.education_level = "low" ∧ Williams.sophistication = "lacking" ∧ Williams.technical requirements = "not met" ∧ Williams.sentence = "not mandatory minimum" → violate(Williams, "technical requirements"))
+19. Q[Williams, "mandatory minimum"](Williams.status = "sentenced" ∧ Williams.sentence = "mandatory minimum" ∧ Williams.sentence_type = "not mandatory" ∧ Williams.plea agreement_status = "invalid" ∧ Williams.presentence report.content = "not referenced" → violate(Williams, "mandatory minimum"))
+20. Q[Williams, "plea agreement"](Williams.plea agreement = "based on the plea agreement" ∧ Williams.sentence = "not based on plea agreement" ∧ Williams.presentence report.date = "2023-01-20" ∧ Williams.plea agreement.date = "2023-01-15" ∧ Williams.technical requirements = "not met" → violate(Williams, "plea agreement"))
+21. Q[Williams, "technical requirements"](Williams.status = "sentenced" ∧ Williams.education_level = "low" ∧ Williams.sophistication = "lacking" ∧ Williams.technical requirements = "not met" ∧ Williams.sentence_outcome = "appeal" ∧ Williams.sentence = "mandatory minimum" → violate(Williams, "technical requirements"))
+22. Q[Williams, "mandatory minimum"](Williams.status = "sentenced" ∧ Williams.sentence = "mandatory minimum" ∧ Williams.sentence_outcome = "not appeal" ∧ Williams.plea agreement_status = "valid" ∧ Williams.presentence report.content = "not referenced" → violate(Williams, "mandatory minimum"))
+23. Q[Williams, "plea agreement"](Williams.plea agreement = "based on the plea agreement" ∧ Williams.sentence = "not based on plea agreement" ∧ Williams.presentence report.content = "referenced the crack guidelines" ∧ Williams.technical requirements = "not met" ∧ Williams.sentence_outcome = "appeal" → violate(Williams, "plea agreement"))
+24. Q[Williams, "technical requirements"](Williams.status = "sentenced" ∧ Williams.education_level = "low" ∧ Williams.sophistication = "lacking" ∧ Williams.technical requirements = "not met" ∧ Williams.sentence = "not mandatory minimum" ∧ Williams.sentence

@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 83)
+S1: Colotl has been facing possible deportation to Mexico since she was arrested last year.
+S2: In May, she was released and her deportation was deferred for a year to allow her to finish her studies.
+
+Predicates:
+1. Colotl.deportation_risk
+2. Colotl.arrest_year
+3. Colotl.deportation_deferral
+4. Colotl.study_completion
+5. Colotl.release_month
+6. Colotl.release_year
+7. deportation.deferral_duration
+8. deportation.ongoing_risk
+9. deportation.temporary_relief
+10. arrest.date
+11. arrest.location
+12. studies.completion_status
+13. studies.duration
+14. studies.field
+15. Mexico.deportation_destination
+16. May.release_month
+17. year.2022.arrest
+18. year.2023.release
+19. Colotl.legal_status
+20. Colotl.immigration_case
+21. immigration.case_status
+22. immigration.deferral_reason
+23. immigration.study_permit
+24. immigration.deportation_order
+25. Colotl.legal_representation
+26. legal_representation.case_outcome
+27. legal_representation.advocate_name
+28. advocate.name
+29. advocate.contact_info
+30. advocate.representation_duration
+
+Rules:
+1. Q[Colotl, Colotl.deportation_risk == true, Colotl.deportation_deferral == true](Colotl.deportation_risk == true → Causal(Colotl, Colotl.deportation_deferral))
+2. Q[Colotl, Colotl.deportation_risk == true, deportation.temporary_relief == true](Colotl.deportation_risk == true → Causal(Colotl, deportation.temporary_relief))
+3. Q[Colotl, Colotl.arrest_year == 2022, Colotl.release_year == 2023](Colotl.arrest_year == 2022 → Causal(Colotl, Colotl.release_year == 2023))
+4. Q[Colotl, Colotl.release_month == May, Colotl.deportation_deferral == true](Colotl.release_month == May → Causal(Colotl, Colotl.deportation_deferral))
+5. Q[Colotl, Colotl.deportation_risk == true, deportation.ongoing_risk == true](Colotl.deportation_risk == true → Causal(Colotl, deportation.ongoing_risk))
+6. Q[Colotl, Colotl.release_year == 2023, Colotl.study_completion == true](Colotl.release_year == 2023 → Causal(Colotl, Colotl.study_completion))
+7. Q[Colotl, Colotl.deportation_deferral == true, deportation.deferral_duration == 1](Colotl.deportation_deferral == true → Causal(Colotl, deportation.deferral_duration == 1))
+8. Q[Colotl, Colotl.deportation_risk == true, Colotl.legal_status == "undocumented"](Colotl.deportation_risk == true → Causal(Colotl, Colotl.legal_status == "undocumented"))
+9. Q[Colotl, Colotl.release_month == May, Colotl.legal_representation == true](Colotl.release_month == May → Causal(Colotl, Colotl.legal_representation))
+10. Q[Colotl, Colotl.study_completion == true, studies.completion_status == "completed"](Colotl.study_completion == true → Causal(Colotl, studies.completion_status == "completed"))
+11. Q[Colotl, Colotl.deportation_deferral == true, immigration.deferral_reason == "education"](Colotl.deportation_deferral == true → Causal(Colotl, immigration.deferral_reason == "education"))
+12. Q[Colotl, Colotl.deportation_risk == true, immigration.case_status == "pending"](Colotl.deportation_risk == true → Causal(Colotl, immigration.case_status == "pending"))
+13. Q[Colotl, Colotl.release_year == 2023, Colotl.release_month == May](Colotl.release_year == 2023 → Causal(Colotl, Colotl.release_month == May))
+14. Q[Colotl, Colotl.deportation_deferral == true, deportation.temporary_relief == true](Colotl.deportation_deferral == true → Causal(Colotl, deportation.temporary_relief))
+15. Q[Colotl, Colotl.arrest_year == 2022, Colotl.deportation_risk == true](Colotl.arrest_year == 2022 → Causal(Colotl, Colotl.deportation_risk == true))
+16. Q[Colotl, Colotl.release_month == May, Colotl.release_year == 2023](Colotl.release_month == May → Causal(Colotl, Colotl.release_year == 2023))
+17. Q[Colotl, Colotl.deportation_risk == true, Colotl.immigration_case == "active"](Colotl.deportation_risk == true → Causal(Colotl, Colotl.immigration_case == "active"))
+18. Q[Colotl, Colotl.deportation_deferral == true, deportation.deferral_duration == 1](Colotl.deportation_deferral == true → Causal(Colotl, deportation.deferral_duration == 1))
+19. Q[Colotl, Colotl.release_year == 2023, Colotl.study_completion == true](Colotl.release_year == 2023 → Causal(Colotl, Colotl.study_completion))
+20. Q[Colotl, Colotl.deportation_risk == true, Colotl.legal_representation == false](Colotl.deportation_risk == true → Causal(Colotl, Colotl.legal_representation == false))
+21. Q[Colotl, Colotl.release_month == May, Colotl.deportation_deferral == true](Colotl.release_month == May → Causal(Colotl, Colotl.deportation_deferral))
+22. Q[Colotl, Colotl.deportation_risk == true, immigration.deportation_order == true](Colotl.deportation_risk == true → Causal(Colotl, immigration.deportation_order == true))
+23. Q[Colotl, Colotl.study_completion == true, studies.duration == "1 year"](Colotl.study_completion == true → Causal(Colotl, studies.duration == "1 year"))
+24. Q[Colotl, Colotl.release_year == 2023, Colotl.deportation_deferral == true](Colotl.release_year == 2023 → Causal(Colotl, Colotl.deportation_deferral))
+25. Q[Colotl, Colotl.deportation_risk == true, Colotl.immigration.case_status == "active"](Colotl.deportation_risk == true → Causal(Colotl, Colotl.immigration.case_status == "active"))
+26. Q[Colotl, Colotl.release_month == May, Colotl.deportation_risk == true](Colotl.release_month == May → Causal(Colotl, Colotl.deportation_risk))
+27. Q[Colotl, Colotl.deportation_deferral == true, immigration.study_permit == true](Colotl.deportation_deferral == true → Causal(Colotl, immigration.study_permit == true))
+28. Q[Colotl, Colotl.deportation_risk == true, Colotl.legal_status == "undocumented"](Colotl.deportation_risk == true → Causal(Colotl, Colotl.legal_status == "undocumented"))
+29. Q[Colotl, Colotl.release_year == 2023, Colotl.release_month == May](Colotl.release_year == 2023 → Causal(Colotl, Colotl.release_month == May))
+30. Q[Colotl, Colotl.deportation_deferral == true, deportation.temporary_relief == true](Colotl.deportation_deferral == true → Causal(Colotl, deportation.temporary_relief))

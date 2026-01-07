@@ -1,0 +1,130 @@
+Predicates:
+1. her_testimony.context = "court case"
+2. her_testimony.status = "not compelled to a conclusion"
+3. her_testimony.condition = "if believed in its entirety"
+4. her_testimony.contradiction_type = "Causal"
+5. her_testimony.source_id = "27249"
+6. her_testimony.conclusion = "incapable of holding a job"
+7. court.finding.status = "pending"
+8. court.finding.evidence = "testimony"
+9. court.finding.conclusion = "capable of holding a job"
+10. court.case_id = "27249"
+11. court.judge.name = "Judge Smith"
+12. court.judge.decision = "not guilty"
+13. court.testimony.weight = "significant"
+14. court.testimony.relevance = "high"
+15. court.testimony.credibility = "questionable"
+16. court.testimony.outcome = "inconclusive"
+17. court.testimony.implication = "incapacity"
+18. court.testimony.evaluation = "subjective"
+19. court.testimony.impact = "minimal"
+20. court.testimony.admissibility = "contested"
+21. violate(x0, y0)
+22. M_NLI(her_testimony.condition, court.finding.conclusion)
+23. T("Her testimony could lead a court to find her incapable of holding a job.", "Her testimony did not compel the conclusion of incapacity.", Causal)
+24. tau(her_testimony.conclusion, court.finding.conclusion)
+25. Factual(her_testimony.condition, court.finding.conclusion)
+26. Causal(her_testimony, court.finding)
+27. Negation(her_testimony.conclusion, court.finding.conclusion)
+28. Relation(her_testimony.status, court.finding.status)
+29. Numeric(her_testimony.weight, court.testimony.weight)
+30. Temporal(her_testimony.source_id, court.case_id)
+31. her_testimony.evidence = "witness statements"
+32. her_testimony.impact = "significant"
+33. her_testimony.credibility = "high"
+34. court.finding.evidence = "expert testimony"
+35. court.finding.impact = "decisive"
+36. court.finding.credibility = "low"
+37. court.testimony.evaluation = "objective"
+38. court.testimony.impact = "high"
+39. court.testimony.admissibility = "approved"
+40. her_testimony.evaluation = "favorable"
+41. her_testimony.impact = "high"
+42. her_testimony.admissibility = "accepted"
+43. court.judge.verdict = "dismissed"
+44. court.judge.ruling = "favorable"
+45. court.judge.opinion = "unfounded"
+46. court.judge.reasoning = "lack of evidence"
+47. court.judge.consideration = "testimony weight"
+48. court.judge.finding = "not guilty"
+49. court.judge.statement = "testimony unreliable"
+50. court.judge.assessment = "inconclusive"
+51. Causal(her_testimony, court.judge.statement)
+52. Factual(court.judge.decision, court.finding.conclusion)
+53. Negation(court.judge.statement, court.finding.conclusion)
+54. Relation(court.judge.name, her_testimony.source_id)
+55. Numeric(court.finding.evidence, her_testimony.evidence)
+56. Temporal(court.case_id, her_testimony.source_id)
+57. her_testimony.context = "legal proceedings"
+58. her_testimony.status = "under review"
+59. her_testimony.condition = "subject to interpretation"
+60. court.finding.status = "resolved"
+61. court.finding.evidence = "documentary evidence"
+62. court.finding.conclusion = "not capable of holding a job"
+63. court.case_id = "27250"
+64. court.judge.name = "Judge Johnson"
+65. court.judge.decision = "guilty"
+66. court.testimony.weight = "low"
+67. court.testimony.relevance = "minimal"
+68. court.testimony.credibility = "high"
+69. court.testimony.outcome = "favorable"
+70. court.testimony.implication = "capability"
+71. court.testimony.evaluation = "favorable"
+72. court.testimony.impact = "significant"
+73. court.testimony.admissibility = "approved"
+74. violate(her_testimony.condition, court.finding.conclusion)
+75. M_NLI(court.judge.decision, court.finding.conclusion)
+76. T("Her testimony could lead a court to find her incapable of holding a job.", "Court found her capable of holding a job.", Causal)
+77. tau(her_testimony.credibility, court.testimony.credibility)
+78. Factual(court.judge.decision, court.finding.conclusion)
+79. Causal(court.finding, her_testimony)
+80. Negation(court.finding.conclusion, her_testimony.conclusion)
+81. Relation(court.judge.name, court.case_id)
+82. Numeric(court.finding.evidence, her_testimony.evidence)
+83. Temporal(court.case_id, her_testimony.source_id)
+84. her_testimony.context = "testimony evaluation"
+85. her_testimony.status = "compelled to a conclusion"
+86. her_testimony.condition = "if partially believed"
+87. court.finding.status = "under appeal"
+88. court.finding.evidence = "circumstantial evidence"
+89. court.finding.conclusion = "capable of holding a job"
+90. court.case_id = "27251"
+91. court.judge.name = "Judge Lee"
+92. court.judge.decision = "not guilty"
+93. court.testimony.weight = "moderate"
+94. court.testimony.relevance = "high"
+95. court.testimony.credibility = "questionable"
+96. court.testimony.outcome = "inconclusive"
+97. court.testimony.implication = "incapacity"
+98. court.testimony.evaluation = "subjective"
+99. court.testimony.impact = "minimal"
+100. court.testimony.admissibility = "contested"
+violate(x0, y0)
+
+Rules:
+1. Q[x0, y0](her_testimony.status = "not compelled to a conclusion" ∧ court.finding.conclusion = "capable of holding a job" → violate(x0, y0))
+2. Q[x0, y0](court.judge.decision = "not guilty" ∧ court.testimony.credibility = "questionable" → violate(x0, y0))
+3. Q[x0, y0](court.finding.status = "pending" ∧ court.finding.conclusion = "not capable of holding a job" → violate(x0, y0))
+4. Q[x0, y0](court.testimony.weight = "significant" ∧ court.testimony.outcome = "inconclusive" → violate(x0, y0))
+5. Q[x0, y0](court.judge.name = "Judge Smith" ∧ court.judge.decision = "not guilty" → violate(x0, y0))
+6. Q[x0, y0](court.finding.evidence = "testimony" ∧ court.finding.conclusion = "capable of holding a job" → violate(x0, y0))
+7. Q[x0, y0](her_testimony.condition = "if believed in its entirety" ∧ court.testimony.credibility = "low" ∧ court.finding.conclusion = "capable of holding a job" → violate(x0, y0))
+8. Q[x0, y0](court.judge.ruling = "favorable" ∧ court.testimony.relevance = "high" ∧ court.finding.status = "resolved" → violate(x0, y0))
+9. Q[x0, y0](court.testimony.evaluation = "subjective" ∧ court.testimony.impact = "minimal" ∧ court.finding.conclusion = "not capable of holding a job" → violate(x0, y0))
+10. Q[x0, y0](court.judge.statement = "testimony unreliable" ∧ court.finding.evidence = "documentary evidence" ∧ court.finding.conclusion = "capable of holding a job" → violate(x0, y0))
+11. Q[x0, y0](her_testimony.context = "court case" ∧ her_testimony.status = "under review" ∧ court.finding.conclusion = "not capable of holding a job" ∧ court.judge.decision = "guilty" → violate(x0, y0))
+12. Q[x0, y0](court.finding.evidence = "expert testimony" ∧ court.testimony.weight = "low" ∧ court.judge.name = "Judge Johnson" ∧ court.finding.conclusion = "capable of holding a job" → violate(x0, y0))
+13. Q[x0, y0](court.judge.reasoning = "lack of evidence" ∧ court.testimony.admissibility = "contested" ∧ court.finding.conclusion = "not capable of holding a job" → violate(x0, y0))
+14. Q[x0, y0](her_testimony.credibility = "high" ∧ court.finding.status = "under appeal" ∧ court.judge.decision = "not guilty" ∧ court.finding.conclusion = "capable of holding a job" → violate(x0, y0))
+15. Q[x0, y0](court.testimony.relevance = "minimal" ∧ court.testimony.impact = "high" ∧ court.finding.conclusion = "not capable of holding a job" → violate(x0, y0))
+16. Q[x0, y0](court.judge.name = "Judge Lee" ∧ court.judge.decision = "not guilty" ∧ court.finding.evidence = "circumstantial evidence" ∧ court.finding.conclusion = "capable of holding a job" → violate(x0, y0))
+17. Q[x0, y0](her_testimony.condition = "subject to interpretation" ∧ court.finding.status = "pending" ∧ court.finding.conclusion = "not capable of holding a job" ∧ court.judge.statement = "testimony unreliable" → violate(x0, y0))
+18. Q[x0, y0](court.testimony.weight = "moderate" ∧ court.testimony.evaluation = "favorable" ∧ court.finding.conclusion = "capable of holding a job" ∧ court.judge.ruling = "favorable" → violate(x0, y0))
+19. Q[x0, y0](court.finding.evidence = "witness statements" ∧ court.testimony.credibility = "questionable" ∧ court.finding.conclusion = "not capable of holding a job" ∧ court.judge.decision = "guilty" → violate(x0, y0))
+20. Q[x0, y0](her_testimony.impact = "significant" ∧ court.finding.status = "resolved" ∧ court.finding.conclusion = "capable of holding a job" ∧ court.judge.name = "Judge Smith" → violate(x0, y0))
+21. Q[x0, y0](court.finding.evidence = "documentary evidence" ∧ court.testimony.admissibility = "approved" ∧ court.finding.conclusion = "not capable of holding a job" ∧ court.judge.reasoning = "lack of evidence" → violate(x0, y0))
+22. Q[x0, y0](her_testimony.status = "compelled to a conclusion" ∧ court.finding.status = "under appeal" ∧ court.finding.conclusion = "capable of holding a job" ∧ court.judge.decision = "not guilty" → violate(x0, y0))
+23. Q[x0, y0](court.testimony.outcome = "inconclusive" ∧ court.testimony.impact = "minimal" ∧ court.finding.conclusion = "not capable of holding a job" ∧ court.judge.statement = "testimony unreliable" → violate(x0, y0))
+24. Q[x0, y0](court.judge.name = "Judge Johnson" ∧ court.judge.decision = "guilty" ∧ court.finding.evidence = "expert testimony" ∧ court.finding.conclusion = "capable of holding a job" → violate(x0, y0))
+25. Q[x0, y0](court.testimony.weight = "significant" ∧ court.testimony.relevance = "high" ∧ court.finding.conclusion = "not capable of holding a job" ∧ court.judge.ruling = "favorable" → violate(x0, y0))
+26. Q[x0, y0](court.finding.status = "pending" ∧ court.finding.evidence = "circumstantial evidence" ∧ court.finding.conclusion = "capable of holding a job" ∧ court.judge.name = "Judge Lee" → violate(x0, y

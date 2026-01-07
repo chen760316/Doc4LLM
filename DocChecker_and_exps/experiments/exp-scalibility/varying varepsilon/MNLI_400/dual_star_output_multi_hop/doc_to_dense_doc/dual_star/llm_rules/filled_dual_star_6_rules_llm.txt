@@ -1,0 +1,127 @@
+Predicates:
+1. entity.has_blood = "no"
+2. entity.has_blood = "yes"
+3. entity.splashed_on_face = "true"
+4. entity.splashed_on_face = "false"
+5. entity.splashed_on_armor = "true"
+6. entity.splashed_on_armor = "false"
+7. entity.name = "Jon"
+8. entity.name = "Doe"
+9. entity.location = "battlefield"
+10. entity.location = "hospital"
+11. edge.relationship = "splash"
+12. edge.relationship = "absence"
+13. edge.splashed_on = "armor"
+14. edge.splashed_on = "face"
+15. edge.blood_status = "clean"
+16. edge.blood_status = "dirty"
+17. M_NLI(entity.has_blood, entity.splashed_on_face)
+18. M_NLI(entity.has_blood, entity.splashed_on_armor)
+19. T("had no blood on his face", "splashed on Jon's face", tau)
+20. T("splashed on Jon's armor", "had no blood on his face", tau)
+21. tau(entity.has_blood, entity.splashed_on_face)
+22. tau(entity.splashed_on_armor, entity.splashed_on_face)
+23. violate(entity.has_blood, entity.splashed_on_face)
+24. violate(entity.splashed_on_armor, entity.has_blood)
+25. Factual(entity.has_blood, entity.splashed_on_face)
+26. Factual(entity.splashed_on_armor, entity.has_blood)
+27. Causal(entity.splashed_on_face, entity.has_blood)
+28. Causal(entity.splashed_on_armor, entity.has_blood)
+29. Numeric(entity.blood_amount, 0)
+30. Numeric(entity.blood_amount, 1)
+31. Temporal(entity.event_time, "2025-04-20")
+32. Temporal(entity.event_time, "2025-04-21")
+33. entity.blood_amount = 0
+34. entity.blood_amount = 5
+35. edge.situation = "battle"
+36. edge.situation = "peace"
+37. M_NLI(entity.splashed_on_face, entity.splashed_on_armor)
+38. T("Jon had no blood on his face", "Jon's armor was splashed", tau)
+39. tau(entity.splashed_on_face, entity.splashed_on_armor)
+40. violate(entity.splashed_on_face, entity.splashed_on_armor)
+41. Factual(entity.splashed_on_face, entity.splashed_on_armor)
+42. Causal(entity.splashed_on_armor, entity.has_blood)
+43. Numeric(entity.splashed_amount, 10)
+44. Numeric(entity.splashed_amount, 0)
+45. Temporal(entity.splash_time, "2025-04-20T14:00:00")
+46. Temporal(entity.splash_time, "2025-04-20T15:00:00")
+47. entity.blood_color = "red"
+48. entity.blood_color = "clear"
+49. edge.blood_location = "face"
+50. edge.blood_location = "armor"
+51. M_NLI(entity.blood_color, entity.has_blood)
+52. T("Jon's face was clean", "Jon's armor was dirty", tau)
+53. tau(entity.blood_color, entity.has_blood)
+54. violate(entity.blood_color, entity.has_blood)
+55. Factual(entity.blood_color, entity.splashed_on_face)
+56. Causal(entity.splashed_on_face, entity.blood_color)
+57. Numeric(entity.splash_count, 1)
+58. Numeric(entity.splash_count, 0)
+59. Temporal(entity.clean_time, "2025-04-20T16:00:00")
+60. Temporal(entity.clean_time, "2025-04-20T17:00:00")
+61. entity.splash_type = "liquid"
+62. entity.splash_type = "solid"
+63. edge.splash_effect = "visible"
+64. edge.splash_effect = "invisible"
+65. M_NLI(entity.splash_type, entity.splash_effect)
+66. T("Jon's armor was splashed", "Jon's face was clean", tau)
+67. tau(entity.splash_effect, entity.splash_type)
+68. violate(entity.splash_effect, entity.splash_type)
+69. Factual(entity.splash_effect, entity.splashed_on_face)
+70. Causal(entity.splashed_on_armor, entity.splash_effect)
+71. Numeric(entity.splash_volume, 100)
+72. Numeric(entity.splash_volume, 0)
+73. Temporal(entity.splash_duration, "5 minutes")
+74. Temporal(entity.splash_duration, "0 minutes")
+75. entity.splash_intensity = "high"
+76. entity.splash_intensity = "low"
+77. edge.splash_source = "weapon"
+78. edge.splash_source = "water"
+79. M_NLI(entity.splash_intensity, entity.splash_source)
+80. T("Jon's armor was splashed with blood", "Jon had no blood", tau)
+81. tau(entity.splash_source, entity.splash_intensity)
+82. violate(entity.splash_source, entity.splash_intensity)
+83. Factual(entity.splash_source, entity.splashed_on_armor)
+84. Causal(entity.splashed_on_face, entity.splash_source)
+85. Numeric(entity.splash_count, 3)
+86. Numeric(entity.splash_count, 0)
+87. Temporal(entity.splash_time, "2025-04-20T18:00:00")
+88. Temporal(entity.splash_time, "2025-04-20T19:00:00")
+89. entity.splash_area = "face"
+90. entity.splash_area = "armor"
+91. edge.splash_result = "injury"
+92. edge.splash_result = "no injury"
+93. M_NLI(entity.splash_area, entity.splash_result)
+94. T("Jon's face was injured", "Jon's armor was clean", tau)
+95. tau(entity.splash_result, entity.splash_area)
+96. violate(entity.splash_result, entity.splash_area)
+97. Factual(entity.splash_result, entity.splashed_on_face)
+98. Causal(entity.splashed_on_armor, entity.splash_result)
+99. Numeric(entity.splash_amount, 50)
+100. Numeric(entity.splash_amount, 0
+violate(x0, y0)
+
+Rules:
+1. Q[x0, y0](entity.has_blood = "no" ∧ entity.splashed_on_face = "true" → violate(x0, y0))
+2. Q[x0, y0](entity.has_blood = "yes" ∧ entity.splashed_on_face = "false" → violate(x0, y0))
+3. Q[x0, y0](entity.splashed_on_armor = "true" ∧ entity.splashed_on_face = "false" ∧ entity.has_blood = "no" → violate(x0, y0))
+4. Q[x0, y0](entity.name = "Jon" ∧ entity.location = "battlefield" ∧ edge.relationship = "absence" → violate(x0, y0))
+5. Q[x0, y0](entity.blood_amount = 0 ∧ edge.blood_status = "dirty" ∧ entity.splashed_on_face = "true" ∧ entity.splashed_on_armor = "false" → violate(x0, y0))
+6. Q[x0, y0](entity.blood_color = "clear" ∧ edge.blood_location = "face" ∧ entity.has_blood = "yes" ∧ edge.situation = "peace" → violate(x0, y0))
+7. Q[x0, y0](entity.splash_type = "liquid" ∧ edge.splash_effect = "invisible" ∧ entity.splash_area = "armor" ∧ entity.splash_intensity = "low" ∧ edge.splash_result = "injury" → violate(x0, y0))
+8. Q[x0, y0](entity.splash_volume = 0 ∧ entity.splash_count = 0 ∧ edge.splash_source = "water" ∧ entity.splash_duration = "0 minutes" ∧ edge.situation = "battle" ∧ entity.blood_amount = 5 → violate(x0, y0))
+9. Q[x0, y0](entity.splashed_on_face = "true" ∧ entity.splashed_on_armor = "true" ∧ entity.has_blood = "no" ∧ edge.blood_status = "clean" → violate(x0, y0))
+10. Q[x0, y0](entity.blood_color = "red" ∧ entity.splash_area = "face" ∧ edge.splash_result = "no injury" ∧ entity.splash_intensity = "high" ∧ edge.relationship = "splash" → violate(x0, y0))
+11. Q[x0, y0](entity.blood_amount = 5 ∧ edge.blood_status = "dirty" ∧ entity.splashed_on_face = "false" ∧ entity.splashed_on_armor = "true" ∧ entity.name = "Doe" ∧ edge.situation = "peace" → violate(x0, y0))
+12. Q[x0, y0](entity.splash_count = 1 ∧ entity.splash_volume = 100 ∧ edge.splash_effect = "visible" ∧ entity.splash_area = "armor" ∧ edge.splash_source = "weapon" ∧ entity.has_blood = "no" → violate(x0, y0))
+13. Q[x0, y0](entity.splashed_on_face = "false" ∧ entity.splashed_on_armor = "false" ∧ entity.has_blood = "yes" ∧ edge.blood_status = "clean" ∧ entity.blood_color = "clear" → violate(x0, y0))
+14. Q[x0, y0](entity.splash_duration = "5 minutes" ∧ entity.splash_intensity = "low" ∧ edge.splash_result = "injury" ∧ entity.splash_area = "face" ∧ entity.blood_amount = 0 → violate(x0, y0))
+15. Q[x0, y0](entity.splash_type = "solid" ∧ edge.splash_effect = "invisible" ∧ entity.splash_count = 0 ∧ edge.situation = "battle" ∧ entity.blood_color = "red" ∧ entity.has_blood = "no" → violate(x0, y0))
+16. Q[x0, y0](entity.blood_amount = 0 ∧ edge.blood_status = "dirty" ∧ entity.splashed_on_face = "true" ∧ entity.splashed_on_armor = "false" ∧ entity.name = "Jon" ∧ edge.relationship = "absence" → violate(x0, y0))
+17. Q[x0, y0](entity.splash_volume = 0 ∧ entity.splash_count = 3 ∧ edge.splash_source = "water" ∧ entity.splash_duration = "0 minutes" ∧ edge.situation = "peace" ∧ entity.blood_amount = 5 → violate(x0, y0))
+18. Q[x0, y0](entity.splashed_on_face = "true" ∧ entity.splashed_on_armor = "true" ∧ entity.has_blood = "no" ∧ edge.blood_status = "clean" ∧ entity.blood_color = "red" ∧ edge.situation = "battle" → violate(x0, y0))
+19. Q[x0, y0](entity.splash_area = "armor" ∧ edge.splash_result = "injury" ∧ entity.splash_intensity = "high" ∧ entity.splash_type = "liquid" ∧ entity.blood_amount = 0 ∧ edge.situation = "peace" → violate(x0, y0))
+20. Q[x0, y0](entity.splash_duration = "0 minutes" ∧ entity.splash_count = 0 ∧ edge.splash_source = "weapon" ∧ entity.splash_area = "face" ∧ entity.blood_color = "clear" ∧ entity.has_blood = "yes" → violate(x0, y0))
+21. Q[x0, y0](entity.splashed_on_face = "false" ∧ entity.splashed_on_armor = "true" ∧ entity.has_blood = "yes" ∧ edge.blood_status = "clean" ∧ entity.blood_color = "red" ∧ edge.situation = "battle" → violate(x0, y0))
+22. Q[x0, y0](entity.blood_amount = 5 ∧ edge.blood_status = "dirty" ∧ entity.splashed_on_face = "true" ∧ entity.splashed_on_armor = "false" ∧ entity.name = "Doe" ∧ edge.relationship = "absence" → violate(x0, y0))
+23. Q[x0, y0](entity.splash_count = 1 ∧ entity.splash_volume = 100 ∧ edge.splash_effect = "visible" ∧ entity.splash_area = "armor" ∧ edge.splash_source = "weapon" ∧ entity.has_blood = "no"

@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 1338)
+S1: People are waiting at the airport gate for the plane.
+S2: People in a subway station waiting for their train.
+
+Predicates:
+1. People.location
+2. Plane.location
+3. Train.location
+4. Airport.gate
+5. SubwayStation.platform
+6. People.waiting
+7. People.inAirport
+8. People.inSubwayStation
+9. Plane.status
+10. Train.status
+11. M_NLI(S1, S2)
+12. Relation(People.inAirport, People.inSubwayStation)
+13. violate(People.inAirport, People.inSubwayStation)
+14. Airport.hasPeople
+15. SubwayStation.hasPeople
+16. People.destination
+17. Plane.departureTime
+18. Train.departureTime
+19. People.activity
+20. Airport.hasPlanes
+21. SubwayStation.hasTrains
+22. People.waitingForPlane
+23. People.waitingForTrain
+24. Plane.arrivalTime
+25. Train.arrivalTime
+26. People.traveling
+27. Airport.open
+28. SubwayStation.open
+29. People.count
+30. Plane.capacity
+
+Rules:
+1. Q[People, People.inAirport, People.inSubwayStation](People.location == "Airport" → Relation(People.inAirport, People.inSubwayStation))
+2. Q[People, People.waiting, People.inSubwayStation](People.waiting == true ∧ People.inAirport == true → Relation(People.inAirport, People.inSubwayStation))
+3. Q[People, People.inAirport, People.waitingForTrain](People.inAirport == true ∧ People.waitingForTrain == true → Relation(People.inAirport, People.inSubwayStation))
+4. Q[People, People.inSubwayStation, People.waitingForPlane](People.inSubwayStation == true ∧ People.waitingForPlane == true → Relation(People.inAirport, People.inSubwayStation))
+5. Q[People, People.location, Plane.location](People.location == "Airport" ∧ Plane.location == "Airport" → Relation(People.inAirport, People.inSubwayStation))
+6. Q[People, People.inAirport, SubwayStation.hasPeople](People.inAirport == true ∧ SubwayStation.hasPeople == true → Relation(People.inAirport, People.inSubwayStation))
+7. Q[People, People.inSubwayStation, Airport.hasPeople](People.inSubwayStation == true ∧ Airport.hasPeople == true → Relation(People.inAirport, People.inSubwayStation))
+8. Q[People, People.waiting, Plane.status](People.waiting == true ∧ Plane.status == "Scheduled" → Relation(People.inAirport, People.inSubwayStation))
+9. Q[People, People.waiting, Train.status](People.waiting == true ∧ Train.status == "Scheduled" → Relation(People.inAirport, People.inSubwayStation))
+10. Q[People, People.inAirport, Train.location](People.inAirport == true ∧ Train.location == "SubwayStation" → Relation(People.inAirport, People.inSubwayStation))
+11. Q[People, People.inSubwayStation, Plane.location](People.inSubwayStation == true ∧ Plane.location == "Airport" → Relation(People.inAirport, People.inSubwayStation))
+12. Q[People, People.waitingForPlane, People.inSubwayStation](People.waitingForPlane == true ∧ People.inSubwayStation == true → Relation(People.inAirport, People.inSubwayStation))
+13. Q[People, People.waitingForTrain, People.inAirport](People.waitingForTrain == true ∧ People.inAirport == true → Relation(People.inAirport, People.inSubwayStation))
+14. Q[People, People.activity, Plane.departureTime](People.activity == "Waiting" ∧ Plane.departureTime != null → Relation(People.inAirport, People.inSubwayStation))
+15. Q[People, People.activity, Train.departureTime](People.activity == "Waiting" ∧ Train.departureTime != null → Relation(People.inAirport, People.inSubwayStation))
+16. Q[People, People.inAirport, People.traveling](People.inAirport == true ∧ People.traveling == true → Relation(People.inAirport, People.inSubwayStation))
+17. Q[People, People.inSubwayStation, People.traveling](People.inSubwayStation == true ∧ People.traveling == true → Relation(People.inAirport, People.inSubwayStation))
+18. Q[People, Airport.open, SubwayStation.open](Airport.open == true ∧ SubwayStation.open == true → Relation(People.inAirport, People.inSubwayStation))
+19. Q[People, Airport.hasPlanes, SubwayStation.hasTrains](Airport.hasPlanes == true ∧ SubwayStation.hasTrains == true → Relation(People.inAirport, People.inSubwayStation))
+20. Q[People, People.count, Plane.capacity](People.count > Plane.capacity → Relation(People.inAirport, People.inSubwayStation))
+21. Q[People, People.count, Train.capacity](People.count > Train.capacity → Relation(People.inAirport, People.inSubwayStation))
+22. Q[People, People.waiting, Airport.hasPeople](People.waiting == true ∧ Airport.hasPeople == true → Relation(People.inAirport, People.inSubwayStation))
+23. Q[People, People.waiting, SubwayStation.hasPeople](People.waiting == true ∧ SubwayStation.hasPeople == true → Relation(People.inAirport, People.inSubwayStation))
+24. Q[People, Plane.arrivalTime, Train.arrivalTime](Plane.arrivalTime != null ∧ Train.arrivalTime != null → Relation(People.inAirport, People.inSubwayStation))
+25. Q[People, People.inAirport, People.inSubwayStation](People.inAirport == true ∧ People.inSubwayStation == true → Relation(People.inAirport, People.inSubwayStation))
+26. Q[People, People.waitingForPlane, People.waitingForTrain](People.waitingForPlane == true ∧ People.waitingForTrain == true → Relation(People.inAirport, People.inSubwayStation))
+27. Q[People, People.inAirport, People.location](People.inAirport == true ∧ People.location == "Airport" → Relation(People.inAirport, People.inSubwayStation))
+28. Q[People, People.inSubwayStation, People.location](People.inSubwayStation == true ∧ People.location == "SubwayStation" → Relation(People.inAirport, People.inSubwayStation))
+29. Q[People, People.waiting, People.destination](People.waiting == true ∧ People.destination != null → Relation(People.inAirport, People.inSubwayStation))
+30. Q[People, People.activity, People.waiting](People.activity == "Waiting" ∧ People.waiting == true → Relation(People.inAirport, People.inSubwayStation))

@@ -1,0 +1,49 @@
+Predicates:
+Algiers.country != "Algeria"
+Algiers.country = "Algeria"
+Algiers.label != "Location"
+Algiers.label != United Nations.label
+Algiers.label != bombing.label
+Algiers.label = "Location"
+Algiers.name != "Algiers"
+Algiers.name != United Nations.name
+Algiers.name != bombing.name
+Algiers.name = "Algiers"
+Algiers___United Nations.doc_id = "news_train_87"
+Algiers___United Nations.event = "bombing"
+Algiers___United Nations.relationship != Algiers___bombing.relationship
+Algiers___United Nations.relationship = "Rescuers are searching for survivors in the rubble of the United Nations headquarters in Algiers after a bombing."
+Algiers___United Nations.time != Algiers___bombing.time
+Algiers___United Nations.time = "Tuesday at 9:30 a.m."
+Algiers___bombing.doc_id = "news_train_87"
+Algiers___bombing.location = "Algiers"
+Algiers___bombing.relationship = "Two suspected car bombs struck Algiers within 10 minutes of each other."
+Algiers___bombing.time = "within 10 minutes"
+None_ML(Algiers___bombing.attrs, Algiers___United Nations.attrs)
+None_ML(bombing.attrs, United Nations.attrs)
+United Nations.label != "Organization"
+United Nations.label != bombing.label
+United Nations.label = "Organization"
+United Nations.location != "Algiers"
+United Nations.location = "Algiers"
+United Nations.name != "United Nations"
+United Nations.name != bombing.name
+United Nations.name = "United Nations"
+bombing.death toll != "unknown"
+bombing.death toll = "unknown"
+bombing.label != "Event"
+bombing.label = "Event"
+bombing.name != "bombing"
+bombing.name = "bombing"
+
+Rules:
+Q[Algiers,Algiers] (Algiers.name != bombing.name ∧ Algiers___United Nations.relationship != Algiers___bombing.relationship ∧ United Nations.location = "Algiers" → Algiers.label != "Location")
+Q[Algiers,Algiers] (Algiers.name != bombing.name ∧ bombing.name = "bombing" ∧ bombing.label != "Event" ∧ Algiers___bombing.relationship = "Two suspected car bombs struck Algiers within 10 minutes of each other." ∧ Algiers___bombing.time = "within 10 minutes" → bombing.death toll = "unknown")
+Q[Algiers,Algiers] (Algiers.label != "Location" ∧ Algiers___United Nations.event = "bombing" ∧ United Nations.location = "Algiers" ∧ United Nations.label = "Organization" ∧ Algiers.label != United Nations.label ∧ Algiers.label = "Location" → bombing.label = "Event")
+Q[Algiers,Algiers] (United Nations.label != bombing.label ∧ None_ML(Algiers___bombing.attrs, Algiers___United Nations.attrs) → United Nations.label = "Organization")
+Q[Algiers,Algiers] (Algiers.country = "Algeria" ∧ Algiers___United Nations.time != Algiers___bombing.time ∧ United Nations.location != "Algiers" ∧ Algiers.label != bombing.label → Algiers___United Nations.event = "bombing")
+Q[Algiers,Algiers] (United Nations.name != "United Nations" ∧ Algiers___United Nations.event = "bombing" ∧ None_ML(bombing.attrs, United Nations.attrs) → United Nations.location = "Algiers")
+Q[Algiers,Algiers] (None_ML(bombing.attrs, United Nations.attrs) ∧ Algiers___United Nations.doc_id = "news_train_87" ∧ bombing.label = "Event" ∧ Algiers___United Nations.relationship != Algiers___bombing.relationship → Algiers___bombing.relationship = "Two suspected car bombs struck Algiers within 10 minutes of each other.")
+Q[Algiers,Algiers] (Algiers.country != "Algeria" ∧ Algiers___United Nations.relationship != Algiers___bombing.relationship ∧ Algiers.label != bombing.label ∧ bombing.death toll = "unknown" ∧ United Nations.name != "United Nations" → bombing.name = "bombing")
+Q[Algiers,Algiers] (Algiers.name != United Nations.name ∧ Algiers.label != United Nations.label → Algiers___bombing.location = "Algiers")
+Q[Algiers,Algiers] (United Nations.name = "United Nations" ∧ Algiers.label != "Location" ∧ Algiers___United Nations.event = "bombing" ∧ United Nations.location != "Algiers" ∧ bombing.label != "Event" ∧ Algiers.label != United Nations.label → Algiers___bombing.time = "within 10 minutes")

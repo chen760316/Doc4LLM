@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 1268)
+S1: my cat had her for eight or nine years I had her spayed and I had her declawed which you know was an initial expense but then she has not been sick one day
+S2: whenever I've had a dog you know something always they’re always getting sick or you know breaking a leg
+
+Predicates:
+1. Cat.health_status.is_not_sick
+2. Cat.ownership_duration.years(8)
+3. Cat.spayed_status.is_spayed
+4. Cat.declawed_status.is_declawed
+5. Dog.health_status.is_sick
+6. Dog.injury_status.is_broken_leg
+7. Pet.type.is_cat
+8. Pet.type.is_dog
+9. Pet.owner.has_experience_with_dogs
+10. Pet.owner.has_experience_with_cats
+11. Pet.owner.experience_duration.years(9)
+12. Pet.owner.initial_expense.has_spayed
+13. Pet.owner.initial_expense.has_declawed
+14. Pet.owner.health_experience.is_positive_with_cats
+15. Pet.owner.health_experience.is_negative_with_dogs
+16. Health.experience.cat.is_positive
+17. Health.experience.dog.is_negative
+18. Pet.owner.has_spent_on_initial_expenses
+19. Pet.owner.has_not_spent_on_sick_cats
+20. Pet.owner.has_spent_on_sick_dogs
+21. Pet.owner.perception.of_dogs.is_negative
+22. Pet.owner.perception.of_cats.is_positive
+23. Pet.owner.has_cat
+24. Pet.owner.has_dog
+25. Pet.owner.experience_with_pets.is_varied
+26. Pet.owner.has_health_concerns.with_dogs
+27. Pet.owner.has_health_concerns.with_cats
+28. Pet.owner.experience_with_cats.is_long_term
+29. Pet.owner.experience_with_dogs.is_short_term
+30. M_NLI(S1, S2)
+
+Rules:
+1. Q[cat, Cat.health_status.is_not_sick, Dog.health_status.is_sick](Cat.health_status.is_not_sick → Causal(cat, dog))
+2. Q[cat, Cat.ownership_duration.years(8), Dog.health_status.is_sick](Cat.ownership_duration.years(8) → Causal(cat, dog))
+3. Q[cat, Cat.spayed_status.is_spayed, Dog.health_status.is_sick](Cat.spayed_status.is_spayed → Causal(cat, dog))
+4. Q[cat, Cat.declawed_status.is_declawed, Dog.health_status.is_sick](Cat.declawed_status.is_declawed → Causal(cat, dog))
+5. Q[dog, Dog.health_status.is_sick, Cat.health_status.is_not_sick](Dog.health_status.is_sick → Causal(dog, cat))
+6. Q[dog, Pet.owner.health_experience.is_negative_with_dogs, Cat.health_status.is_not_sick](Pet.owner.health_experience.is_negative_with_dogs → Causal(dog, cat))
+7. Q[dog, Pet.owner.perception.of_dogs.is_negative, Cat.health_status.is_not_sick](Pet.owner.perception.of_dogs.is_negative → Causal(dog, cat))
+8. Q[cat, Pet.owner.health_experience.is_positive_with_cats, Dog.health_status.is_sick](Pet.owner.health_experience.is_positive_with_cats → Causal(cat, dog))
+9. Q[dog, Pet.owner.has_experience_with_dogs, Cat.health_status.is_not_sick](Pet.owner.has_experience_with_dogs → Causal(dog, cat))
+10. Q[cat, Pet.owner.has_cat, Dog.health_status.is_sick](Pet.owner.has_cat → Causal(cat, dog))
+11. Q[dog, Pet.owner.has_dog, Cat.health_status.is_not_sick](Pet.owner.has_dog → Causal(dog, cat))
+12. Q[cat, Pet.owner.initial_expense.has_spayed, Dog.health_status.is_sick](Pet.owner.initial_expense.has_spayed → Causal(cat, dog))
+13. Q[cat, Pet.owner.initial_expense.has_declawed, Dog.health_status.is_sick](Pet.owner.initial_expense.has_declawed → Causal(cat, dog))
+14. Q[dog, Pet.owner.has_health_concerns.with_dogs, Cat.health_status.is_not_sick](Pet.owner.has_health_concerns.with_dogs → Causal(dog, cat))
+15. Q[cat, Pet.owner.experience_with_pets.is_varied, Dog.health_status.is_sick](Pet.owner.experience_with_pets.is_varied → Causal(cat, dog))
+16. Q[cat, Pet.owner.experience_with_cats.is_long_term, Dog.health_status.is_sick](Pet.owner.experience_with_cats.is_long_term → Causal(cat, dog))
+17. Q[dog, Pet.owner.experience_with_dogs.is_short_term, Cat.health_status.is_not_sick](Pet.owner.experience_with_dogs.is_short_term → Causal(dog, cat))
+18. Q[cat, Health.experience.cat.is_positive, Dog.health_status.is_sick](Health.experience.cat.is_positive → Causal(cat, dog))
+19. Q[dog, Health.experience.dog.is_negative, Cat.health_status.is_not_sick](Health.experience.dog.is_negative → Causal(dog, cat))
+20. Q[cat, Pet.owner.has_not_spent_on_sick_cats, Dog.health_status.is_sick](Pet.owner.has_not_spent_on_sick_cats → Causal(cat, dog))
+21. Q[dog, Pet.owner.has_spent_on_sick_dogs, Cat.health_status.is_not_sick](Pet.owner.has_spent_on_sick_dogs → Causal(dog, cat))
+22. Q[cat, Pet.owner.experience_duration.years(9), Dog.health_status.is_sick](Pet.owner.experience_duration.years(9) → Causal(cat, dog))
+23. Q[dog, Pet.owner.has_health_concerns.with_cats, Cat.health_status.is_not_sick](Pet.owner.has_health_concerns.with_cats → Causal(dog, cat))
+24. Q[cat, Pet.owner.has_health_concerns.with_cats, Dog.health_status.is_sick](Pet.owner.has_health_concerns.with_cats → Causal(cat, dog))
+25. Q[dog, Pet.owner.perception.of_cats.is_positive, Cat.health_status.is_not_sick](Pet.owner.perception.of_cats.is_positive → Causal(dog, cat))
+26. Q[cat, Pet.owner.has_experience_with_cats, Dog.health_status.is_sick](Pet.owner.has_experience_with_cats → Causal(cat, dog))
+27. Q[dog, Pet.owner.has_experience_with_dogs, Cat.health_status.is_not_sick](Pet.owner.has_experience_with_dogs → Causal(dog, cat))
+28. Q[cat, Pet.owner.has_spent_on_initial_expenses, Dog.health_status.is_sick](Pet.owner.has_spent_on_initial_expenses → Causal(cat, dog))
+29. Q[dog, Pet.owner.has_health_concerns.with_dogs, Cat.health_status.is_not_sick](Pet.owner.has_health_concerns.with_dogs → Causal(dog, cat))
+30. Q[cat, M_NLI(S1, S2), Dog.health_status.is_sick](M_NLI(S1, S2) → Causal(cat, dog))

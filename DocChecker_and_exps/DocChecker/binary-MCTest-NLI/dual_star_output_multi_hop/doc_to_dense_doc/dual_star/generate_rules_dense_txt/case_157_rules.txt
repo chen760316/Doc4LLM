@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 157)
+S1: His papa said, "Don't draw your cereal. Eat it!"
+S2: Fritz drew first the toothpaste.
+
+Predicates:
+1. Papa.instruction = "Don't draw your cereal."
+2. Fritz.action = "drew toothpaste."
+3. Cereal.instruction = "Eat it."
+4. Fritz.followed_instruction = false
+5. Instruction.implies(Fritz.should_not_draw_cereal)
+6. Toothpaste.first_drawn_by = Fritz
+7. Instruction.contradicts(Fritz.action)
+8. Cereal.is_drawn = false
+9. Fritz.drew_first = Toothpaste
+10. Instruction.is_given_by = Papa
+11. Fritz.violated_instruction = true
+12. Cereal.is_eaten = true
+13. Instruction.applies_to = Fritz
+14. Action.is_contradictory = true
+15. Papa.said(Fritz.should_eat_cereal)
+16. Fritz.drew = Toothpaste
+17. Instruction.is_not_followed_by = Fritz
+18. Cereal.is_not_drawn = true
+19. Instruction.is_ignored_by = Fritz
+20. Action.is_not_allowed = true
+21. Cereal.is_favored_over_toothpaste = true
+22. Instruction.is_specific = true
+23. Fritz.action_type = "drawing"
+24. Instruction.is_directive = true
+25. Cereal.is_preferred = true
+26. Action.is_unrelated_to_instruction = true
+27. Instruction.is_violated = true
+28. Fritz.drew_what = Toothpaste
+29. Instruction.is_contextual = true
+30. Cereal.is_not_drawn_by = Fritz
+
+Rules:
+1. Q[His, Papa.instruction, Fritz.followed_instruction](Papa.instruction == "Don't draw your cereal." → Causal(Papa.instruction, Fritz.followed_instruction))
+2. Q[His, Fritz.action, Instruction.contradicts(Fritz.action)](Fritz.action == "drew toothpaste." → Causal(Fritz.action, Instruction.contradicts(Fritz.action)))
+3. Q[His, Instruction.implies(Fritz.should_not_draw_cereal), Fritz.violated_instruction](Instruction.implies(Fritz.should_not_draw_cereal) → Causal(Instruction.implies(Fritz.should_not_draw_cereal), Fritz.violated_instruction))
+4. Q[His, Cereal.is_drawn, Instruction.is_violated](Cereal.is_drawn == false → Causal(Cereal.is_drawn, Instruction.is_violated))
+5. Q[His, Fritz.drew_first, Cereal.is_not_drawn](Fritz.drew_first == Toothpaste → Causal(Fritz.drew_first, Cereal.is_not_drawn))
+6. Q[His, Instruction.is_given_by, Fritz.followed_instruction](Instruction.is_given_by == Papa → Causal(Instruction.is_given_by, Fritz.followed_instruction))
+7. Q[His, Fritz.action_type, Action.is_contradictory](Fritz.action_type == "drawing" → Causal(Fritz.action_type, Action.is_contradictory))
+8. Q[His, Instruction.is_not_followed_by, Fritz.violated_instruction](Instruction.is_not_followed_by == Fritz → Causal(Instruction.is_not_followed_by, Fritz.violated_instruction))
+9. Q[His, Cereal.is_eaten, Instruction.applies_to](Cereal.is_eaten == true → Causal(Cereal.is_eaten, Instruction.applies_to))
+10. Q[His, Instruction.is_specific, Fritz.action](Instruction.is_specific == true → Causal(Instruction.is_specific, Fritz.action))
+11. Q[His, Cereal.is_favored_over_toothpaste, Fritz.drew](Cereal.is_favored_over_toothpaste == true → Causal(Cereal.is_favored_over_toothpaste, Fritz.drew))
+12. Q[His, Instruction.is_contextual, Fritz.action](Instruction.is_contextual == true → Causal(Instruction.is_contextual, Fritz.action))
+13. Q[His, Cereal.is_not_drawn_by, Fritz.violated_instruction](Cereal.is_not_drawn_by == Fritz → Causal(Cereal.is_not_drawn_by, Fritz.violated_instruction))
+14. Q[His, Instruction.is_directive, Fritz.followed_instruction](Instruction.is_directive == true → Causal(Instruction.is_directive, Fritz.followed_instruction))
+15. Q[His, Fritz.drew_what, Instruction.is_ignored_by](Fritz.drew_what == Toothpaste → Causal(Fritz.drew_what, Instruction.is_ignored_by))
+16. Q[His, Action.is_unrelated_to_instruction, Fritz.action](Action.is_unrelated_to_instruction == true → Causal(Action.is_unrelated_to_instruction, Fritz.action))
+17. Q[His, Instruction.is_violated, Fritz.followed_instruction](Instruction.is_violated == true → Causal(Instruction.is_violated, Fritz.followed_instruction))
+18. Q[His, Cereal.is_not_drawn, Instruction.contradicts(Fritz.action)](Cereal.is_not_drawn == true → Causal(Cereal.is_not_drawn, Instruction.contradicts(Fritz.action)))
+19. Q[His, Fritz.drew_first, Instruction.is_ignored_by](Fritz.drew_first == Toothpaste → Causal(Fritz.drew_first, Instruction.is_ignored_by))
+20. Q[His, Instruction.is_specific, Fritz.should_not_draw_cereal](Instruction.is_specific == true → Causal(Instruction.is_specific, Fritz.should_not_draw_cereal))
+21. Q[His, Cereal.is_preferred, Fritz.action](Cereal.is_preferred == true → Causal(Cereal.is_preferred, Fritz.action))
+22. Q[His, Instruction.is_given_by, Fritz.should_not_draw_cereal](Instruction.is_given_by == Papa → Causal(Instruction.is_given_by, Fritz.should_not_draw_cereal))
+23. Q[His, Fritz.action, Instruction.is_not_followed_by](Fritz.action == "drew toothpaste." → Causal(Fritz.action, Instruction.is_not_followed_by))
+24. Q[His, Instruction.implies(Fritz.should_not_draw_cereal), Fritz.drew_first](Instruction.implies(Fritz.should_not_draw_cereal) → Causal(Instruction.implies(Fritz.should_not_draw_cereal), Fritz.drew_first))
+25. Q[His, Cereal.is_eaten, Fritz.violated_instruction](Cereal.is_eaten == true → Causal(Cereal.is_eaten, Fritz.violated_instruction))
+26. Q[His, Instruction.is_contextual, Fritz.drew_first](Instruction.is_contextual == true → Causal(Instruction.is_contextual, Fritz.drew_first))
+27. Q[His, Action.is_not_allowed, Fritz.action](Action.is_not_allowed == true → Causal(Action.is_not_allowed, Fritz.action))
+28. Q[His, Instruction.is_directive, Fritz.drew_what](Instruction.is_directive == true → Causal(Instruction.is_directive, Fritz.drew_what))
+29. Q[His, Cereal.is_favored_over_toothpaste, Fritz.followed_instruction](Cereal.is_favored_over_toothpaste == true → Causal(Cereal.is_favored_over_toothpaste, Fritz.followed_instruction))
+30. Q[His, Instruction.is_ignored_by, Fritz.drew_first](Instruction.is_ignored_by == Fritz → Causal(Instruction.is_ignored_by, Fritz.drew_first))

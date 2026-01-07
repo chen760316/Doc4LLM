@@ -1,0 +1,69 @@
+Predicates:
+McTeague.label != "Person"
+McTeague.label = "Person"
+McTeague.name != "McTeague"
+McTeague.name = "McTeague"
+McTeague.occupation != "unknown"
+McTeague.occupation = "unknown"
+McTeague.status != "violent"
+McTeague.status = "violent"
+None_ML(Trina___uncle.attrs, Trina___uncle's firm.attrs)
+None_ML(uncle.attrs, McTeague.attrs)
+Trina.label != "Person"
+Trina.label != uncle's firm.label
+Trina.label = "Person"
+Trina.name != "Trina"
+Trina.name != McTeague.name
+Trina.name != uncle's firm.name
+Trina.name != uncle.name
+Trina.name = "Trina"
+Trina.occupation != "unknown"
+Trina.occupation = "unknown"
+Trina.status != "deceased"
+Trina.status != McTeague.status
+Trina.status = "deceased"
+Trina___McTeague.contradiction_type = "Causal"
+Trina___McTeague.relationship = "Trina is left alone with McTeague after the marriage"
+Trina___McTeague.source_id = "3488771897_3"
+Trina___McTeague.status = "alone"
+Trina___uncle's firm.contradiction_type != Trina___McTeague.contradiction_type
+Trina___uncle's firm.contradiction_type = "Factual"
+Trina___uncle's firm.reason = "to admire and handle the coins"
+Trina___uncle's firm.relationship != Trina___McTeague.relationship
+Trina___uncle's firm.relationship != Trina___uncle.relationship
+Trina___uncle's firm.relationship = "Trina withdraws the principal of her prior winnings in gold from her uncle's firm."
+Trina___uncle's firm.source_id = "3488771897_3"
+Trina___uncle.contradiction_type != Trina___McTeague.contradiction_type
+Trina___uncle.contradiction_type = "Factual"
+Trina___uncle.relationship != Trina___McTeague.relationship
+Trina___uncle.relationship = "Trina invests $15,000 with her uncle."
+Trina___uncle.source_id = "3488771897_3"
+uncle's firm.label != "Firm"
+uncle's firm.label != McTeague.label
+uncle's firm.label != uncle.label
+uncle's firm.label = "Firm"
+uncle's firm.name != "uncle's firm"
+uncle's firm.name != McTeague.name
+uncle's firm.name != uncle.name
+uncle's firm.name = "uncle's firm"
+uncle's firm.type != "investment"
+uncle's firm.type = "investment"
+uncle.label != "Person"
+uncle.label = "Person"
+uncle.name != "uncle"
+uncle.name != McTeague.name
+uncle.name = "uncle"
+uncle.relationship != "investor"
+uncle.relationship = "investor"
+
+Rules:
+Q[Trina,Trina] (Trina.label != uncle's firm.label ∧ None_ML(Trina___uncle.attrs, Trina___uncle's firm.attrs) ∧ uncle.name != "uncle" ∧ uncle's firm.type = "investment" ∧ uncle.name != McTeague.name → None_ML(uncle.attrs, McTeague.attrs))
+Q[Trina,Trina] (Trina___uncle's firm.source_id = "3488771897_3" ∧ McTeague.occupation != "unknown" ∧ Trina___McTeague.source_id = "3488771897_3" ∧ None_ML(uncle.attrs, McTeague.attrs) ∧ None_ML(Trina___uncle.attrs, Trina___uncle's firm.attrs) ∧ Trina___McTeague.contradiction_type = "Causal" → Trina.status != McTeague.status)
+Q[Trina,Trina] (McTeague.status = "violent" ∧ Trina.name != uncle.name ∧ Trina___McTeague.status = "alone" ∧ uncle's firm.label != "Firm" → Trina___uncle's firm.relationship != Trina___McTeague.relationship)
+Q[Trina,Trina] (Trina.label = "Person" ∧ Trina___McTeague.status = "alone" ∧ Trina.name != McTeague.name → Trina___uncle's firm.source_id = "3488771897_3")
+Q[Trina,Trina] (McTeague.name != "McTeague" ∧ uncle.name = "uncle" → McTeague.name = "McTeague")
+Q[Trina,Trina] (uncle's firm.type != "investment" ∧ Trina.occupation = "unknown" ∧ Trina___McTeague.contradiction_type = "Causal" → McTeague.occupation != "unknown")
+Q[Trina,Trina] (Trina___uncle's firm.reason = "to admire and handle the coins" ∧ uncle's firm.label != "Firm" ∧ Trina___uncle.relationship != Trina___McTeague.relationship ∧ uncle.name != McTeague.name ∧ uncle's firm.name != McTeague.name ∧ uncle.name = "uncle" → uncle's firm.type != "investment")
+Q[Trina,Trina] (uncle's firm.name != "uncle's firm" ∧ Trina___McTeague.relationship = "Trina is left alone with McTeague after the marriage" ∧ McTeague.name != "McTeague" ∧ Trina___uncle's firm.relationship != Trina___McTeague.relationship → Trina___uncle's firm.relationship = "Trina withdraws the principal of her prior winnings in gold from her uncle's firm.")
+Q[Trina,Trina] (McTeague.status != "violent" ∧ Trina.name != "Trina" → Trina.name != uncle's firm.name)
+Q[Trina,Trina] (Trina___uncle's firm.contradiction_type != Trina___McTeague.contradiction_type ∧ McTeague.status != "violent" ∧ McTeague.name = "McTeague" ∧ uncle's firm.label != uncle.label ∧ uncle's firm.label = "Firm" → Trina.occupation = "unknown")

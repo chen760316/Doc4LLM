@@ -1,0 +1,126 @@
+Predicates:
+1. Operation USA.aid_shipped > "$400 million"
+2. Operation USA.aid_shipped < "$500 million"
+3. Operation USA.year = "2011"
+4. Operation USA.focus != "military aid"
+5. Operation USA.revenue >= "$20 million"
+6. Operation USA.founded < "1980"
+7. Operation USA.type = "non-profit"
+8. "Operation USA has shipped humanitarian aid to Chile.".year = "2011"
+9. "Operation USA has shipped humanitarian aid to Haiti.".year != "2010"
+10. "Operation USA has shipped humanitarian aid to Japan.".year <= "2011"
+11. "Operation USA has shipped humanitarian aid to Kenya.".year >= "2011"
+12. "Operation USA has shipped humanitarian aid to Pakistan.".year < "2012"
+13. "Operation USA partnered with UniversalGiving to raise funds for recovery aid to Nepal Earthquake victims.".year > "2014"
+14. "The government of Pakistan lifted a six-year moratorium on the execution of civilians.".consequences = "More than 60 people executed"
+15. "The government of Pakistan lifted a six-year moratorium on the execution of civilians.".date != "January"
+16. Death Sentences and Executions 2014.type = "Annual report"
+17. Japan.gun_ownership != "civilians can own guns"
+18. Lifting of Moratorium.type = "execution of civilians"
+19. Lifting of moratorium on executions.duration > "five years"
+20. Lifting of moratorium on executions.reason = "Taliban attack on school in Peshawar"
+21. Nobel Peace Prize.year < "2000"
+22. President's Volunteer Action Award.year >= "1980"
+23. executions.count < "40"
+24. executions.previous_year_count > "30"
+25. lifting moratorium.type != "pardon"
+26. light gun.availability = "more realistic light guns widely available"
+27. Operation USA.aid_shipped <= "$450 million"
+28. Operation USA.funding = "privately funded"
+29. "Operation USA has shipped humanitarian aid to Haiti.".year >= "2011"
+30. "Operation USA has shipped humanitarian aid to Japan.".year < "2012"
+31. "Operation USA has shipped humanitarian aid to Kenya.".year <= "2011"
+32. "Operation USA has shipped humanitarian aid to Pakistan.".year > "2010"
+33. "Operation USA partnered with UniversalGiving to raise funds for recovery aid to Nepal Earthquake victims.".year < "2016"
+34. "The government of Pakistan lifted a six-year moratorium on the execution of civilians.".date >= "December"
+35. Japan.gun_ownership = "civilians cannot legally own guns"
+36. Lifting of moratorium on executions.duration < "seven years"
+37. Lifting of moratorium on executions.reason != "natural disaster"
+38. Nobel Peace Prize.year > "1995"
+39. President's Volunteer Action Award.year < "1990"
+40. executions.count >= "30"
+41. executions.previous_year_count <= "39"
+42. lifting moratorium.type = "execution"
+43. Operation USA.aid_shipped != "$400 million"
+44. Operation USA.focus = "humanitarian aid"
+45. Operation USA.revenue < "$25 million"
+46. "Operation USA has shipped humanitarian aid to Chile.".year != "2010"
+47. "Operation USA has shipped humanitarian aid to Haiti.".year < "2012"
+48. "Operation USA has shipped humanitarian aid to Japan.".year >= "2011"
+49. "Operation USA has shipped humanitarian aid to Kenya.".year > "2010"
+50. "Operation USA has shipped humanitarian aid to Pakistan.".year <= "2011"
+51. "Operation USA partnered with UniversalGiving to raise funds for recovery aid to Nepal Earthquake victims.".year >= "2015"
+52. "The government of Pakistan lifted a six-year moratorium on the execution of civilians.".consequences != "No executions"
+53. Death Sentences and Executions 2014.type != "Monthly report"
+54. Japan.gun_ownership < "civilians can own guns"
+55. Lifting of Moratorium.type != "clemency"
+56. Lifting of moratorium on executions.duration >= "six years"
+57. Lifting of moratorium on executions.reason = "security concerns"
+58. Nobel Peace Prize.year != "2000"
+59. President's Volunteer Action Award.year > "1980"
+60. executions.count != "40"
+61. executions.previous_year_count < "40"
+62. lifting moratorium.type = "capital punishment"
+63. light gun.availability != "limited availability"
+64. M_NLI(Operation USA.aid_shipped, Operation USA.focus)
+65. M_NLU(Operation USA.funding, Operation USA.type)
+66. M_TEM(Operation USA.year, Operation USA.aid_shipped)
+67. contra("The government of Pakistan lifted a six-year moratorium on the execution of civilians.", "No executions occurred")
+68. S(Operation USA.aid_shipped, "Operation USA has shipped humanitarian aid")
+69. S("Operation USA has shipped humanitarian aid to Chile.", "Operation USA has shipped humanitarian aid to Chile.")
+70. T("Operation USA has shipped humanitarian aid to Haiti.", "Operation USA has shipped humanitarian aid to Japan.", "Relational")
+71. tau(Operation USA.aid_shipped, executions.count)
+72. tau("Operation USA has shipped humanitarian aid to Kenya.", "Operation USA has shipped humanitarian aid to Pakistan.")
+73. tau(executions.count, executions.previous_year_count)
+74. tau("The government of Pakistan lifted a six-year moratorium on the execution of civilians.", "More than 60 people executed")
+75. tau(Lifting of moratorium.on executions.reason, Lifting of moratorium.on executions.duration)
+76. tau(Nobel Peace Prize.year, President's Volunteer Action Award.year)
+77. tau(Japan.gun_ownership, light gun.availability)
+78. tau(Operation USA.focus, Operation USA.type)
+79. tau(Operation USA.funding, Operation USA.revenue)
+80. tau("Operation USA has shipped humanitarian aid to Haiti.", "Operation USA has shipped humanitarian aid to Japan.")
+81. tau("Operation USA has shipped humanitarian aid to Kenya.", "Operation USA has shipped humanitarian aid to Pakistan.")
+82. tau("The government of Pakistan lifted a six-year moratorium on the execution of civilians.", "executions.count")
+83. tau(executions.previous_year_count, executions.count)
+84. tau(Lifting of moratorium.on executions.reason, Lifting of moratorium.on executions.type)
+85. tau(Nobel Peace Prize.year, "1997")
+86. tau(President's Volunteer Action Award.year, "1983")
+87. tau(Operation USA.aid_shipped, "$425 million")
+88. tau(Operation USA.revenue, "$22 million")
+89. tau(Operation USA.founded, "1979")
+90. tau("Operation USA has shipped humanitarian aid to Japan.", "Operation USA has shipped humanitarian aid to Kenya.")
+91. tau("Operation USA has shipped humanitarian aid to Haiti.", "Operation USA has shipped humanitarian aid to Chile.")
+92. tau("The government of Pakistan lifted a six-year moratorium on the execution of civilians.", "
+
+Rules:
+Rules:
+1. Q[1, 2](Operation USA.aid_shipped > "$400 million" ∧ Operation USA.aid_shipped < "$500 million" → Operation USA.aid_shipped = "$450 million")
+2. Q[3, 4](Operation USA.year = "2011" ∧ Operation USA.focus != "military aid" → Operation USA.type = "non-profit")
+3. Q[5, 6](Operation USA.revenue >= "$20 million" ∧ Operation USA.founded < "1980" → Operation USA.aid_shipped > "$400 million")
+4. Q[7, 8](Operation USA.type = "non-profit" ∧ "Operation USA has shipped humanitarian aid to Chile.".year = "2011" → Operation USA.focus = "humanitarian aid")
+5. Q[9, 10](Operation USA.aid_shipped <= "$450 million" ∧ "Operation USA has shipped humanitarian aid to Japan.".year < "2012" → Operation USA.year != "2011")
+6. Q[11, 12](Operation USA.aid_shipped < "$500 million" ∧ "Operation USA has shipped humanitarian aid to Kenya.".year >= "2011" ∧ "Operation USA has shipped humanitarian aid to Pakistan.".year < "2012" → Operation USA.focus = "humanitarian aid")
+7. Q[13, 14](Operation USA.partnered with UniversalGiving to raise funds for recovery aid to Nepal Earthquake victims.year > "2014" ∧ "The government of Pakistan lifted a six-year moratorium on the execution of civilians.".consequences = "More than 60 people executed" → Lifting of moratorium.type = "execution")
+8. Q[15, 16](Lifting of moratorium.type = "execution of civilians" ∧ Death Sentences and Executions 2014.type = "Annual report" → executions.count >= "30")
+9. Q[17, 18](Japan.gun_ownership != "civilians can own guns" ∧ Lifting of moratorium.type != "pardon" → Japan.gun_ownership = "civilians cannot legally own guns")
+10. Q[19, 20](Lifting of moratorium on executions.duration > "five years" ∧ Lifting of moratorium on executions.reason = "Taliban attack on school in Peshawar" → Lifting of moratorium.on executions.duration < "seven years")
+11. Q[21, 22](Nobel Peace Prize.year < "2000" ∧ President's Volunteer Action Award.year >= "1980" → Nobel Peace Prize.year != "1995")
+12. Q[23, 24](executions.count < "40" ∧ executions.previous_year_count > "30" → executions.count != "30")
+13. Q[25, 26](lifting moratorium.type != "pardon" ∧ light gun.availability = "more realistic light guns widely available" → light gun.availability != "limited availability")
+14. Q[27, 28](Operation USA.aid_shipped <= "$450 million" ∧ Operation USA.funding = "privately funded" → Operation USA.revenue < "$25 million")
+15. Q[29, 30](Operation USA.aid_shipped != "$400 million" ∧ "Operation USA has shipped humanitarian aid to Haiti.".year < "2012" → Operation USA.focus != "military aid")
+16. Q[31, 32](Operation USA.has shipped humanitarian aid to Kenya.".year <= "2011" ∧ "Operation USA has shipped humanitarian aid to Pakistan.".year > "2010" → Operation USA.aid_shipped < "$500 million")
+17. Q[33, 34](Operation USA partnered with UniversalGiving to raise funds for recovery aid to Nepal Earthquake victims.year < "2016" ∧ "The government of Pakistan lifted a six-year moratorium on the execution of civilians.".date >= "December" → executions.count < "40")
+18. Q[35, 36](Japan.gun_ownership = "civilians cannot legally own guns" ∧ Lifting of moratorium on executions.duration < "seven years" → Lifting of moratorium.on executions.reason != "natural disaster")
+19. Q[37, 38](Lifting of moratorium on executions.reason != "natural disaster" ∧ Nobel Peace Prize.year > "1995" → President's Volunteer Action Award.year < "1990")
+20. Q[39, 40](President's Volunteer Action Award.year < "1990" ∧ executions.count >= "30" → executions.previous_year_count < "40")
+21. Q[41, 42](executions.previous_year_count <= "39" ∧ lifting moratorium.type = "execution" → executions.count != "40")
+22. Q[43, 44](Operation USA.aid_shipped != "$400 million" ∧ Operation USA.focus = "humanitarian aid" → Operation USA.revenue < "$25 million")
+23. Q[45, 46](Operation USA.revenue < "$25 million" ∧ "Operation USA has shipped humanitarian aid to Chile.".year != "2010" → Operation USA.aid_shipped < "$500 million")
+24. Q[47, 48](Operation USA.has shipped humanitarian aid to Haiti.".year < "2012" ∧ "Operation USA has shipped humanitarian aid to Japan.".year >= "2011" → Operation USA.aid_shipped > "$400 million")
+25. Q[49, 50](Operation USA.has shipped humanitarian aid to Kenya.".year > "2010" ∧ "Operation USA has shipped humanitarian aid to Pakistan.".year <= "2011" → Operation USA.focus != "military aid")
+26. Q[51, 52](Operation USA partnered with UniversalGiving to raise funds for recovery aid to Nepal Earthquake victims.year >= "2015" ∧ "The government of Pakistan lifted a six-year moratorium on the execution of civilians.".consequences != "No executions" → executions.count >= "30")
+27. Q[53, 54](Death Sentences and Executions 2014.type != "Monthly report" ∧ Japan.gun_ownership < "civilians can own guns" → light gun.availability != "limited availability")
+28. Q[55, 56](Lifting of moratorium.type != "clemency" ∧ Lifting of moratorium on executions.duration >= "six years" → Lifting of moratorium.on executions.reason = "security concerns")
+29. Q[57, 58](Lifting of moratorium on executions.reason = "security concerns" ∧ Nobel Peace Prize.year != "2000" → President's Volunteer Action Award.year > "1980")
+30. Q[59, 60](President's Volunteer Action Award.year > "1980" ∧ executions.count != "40" → executions.previous_year_count < "40")

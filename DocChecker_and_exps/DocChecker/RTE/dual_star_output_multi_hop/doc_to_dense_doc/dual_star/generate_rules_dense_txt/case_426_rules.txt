@@ -1,0 +1,65 @@
+Source: dense_text.txt (Index 426)
+S1: The presidents of Honduras and El Salvador were set yesterday to begin two days of talks in San Salvador, amid continuing tension in border areas.
+S2: Honduras and El Salvador entered a dispute over their borders.
+
+Predicates:
+1. President_Honduras.name
+2. President_ElSalvador.name
+3. Talks.date
+4. Talks.location
+5. Tension.border_areas
+6. Dispute.countries_involved
+7. Honduras.border_dispute
+8. ElSalvador.border_dispute
+9. Talks.duration
+10. Talks.participants
+11. SanSalvador.city
+12. Border_areas.tension_level
+13. Diplomatic_effort.type
+14. Conflict.type
+15. Relation(Honduras, ElSalvador)
+16. M_NLI(S1, S2)
+17. Violate(diplomatic_effort, conflict)
+18. Talks.initiated_by
+19. Dispute.initiated_by
+20. Talks.objective
+21. Tension.origin
+22. Dispute.resolution_attempt
+23. Talks.outcome
+24. President_Honduras.role
+25. President_ElSalvador.role
+26. Border_areas.geography
+27. Talks.agenda
+28. Dispute.history
+29. Tension.impact_on_relations
+30. Diplomatic_effort.outcome
+
+Rules:
+1. Q[The, President_Honduras.name, President_ElSalvador.name](President_Honduras.role == "leader" ∧ President_ElSalvador.role == "leader" → Relation(President_Honduras.name, President_ElSalvador.name))
+2. Q[The, Talks.date, Talks.location](Talks.date == "yesterday" ∧ Talks.location == "San Salvador" → Relation(Talks.date, Talks.location))
+3. Q[The, Tension.border_areas, Dispute.countries_involved](Tension.border_areas == "high" ∧ Dispute.countries_involved == "Honduras, El Salvador" → Relation(Tension.border_areas, Dispute.countries_involved))
+4. Q[The, Talks.duration, Talks.participants](Talks.duration == "2 days" ∧ Talks.participants == "Honduras, El Salvador" → Relation(Talks.duration, Talks.participants))
+5. Q[The, SanSalvador.city, Tension.origin](SanSalvador.city == "San Salvador" ∧ Tension.origin == "border areas" → Relation(SanSalvador.city, Tension.origin))
+6. Q[The, Diplomatic_effort.type, Conflict.type](Diplomatic_effort.type == "talks" ∧ Conflict.type == "dispute" → Relation(Diplomatic_effort.type, Conflict.type))
+7. Q[The, Talks.objective, Dispute.resolution_attempt](Talks.objective == "resolve tensions" ∧ Dispute.resolution_attempt == "ongoing" → Relation(Talks.objective, Dispute.resolution_attempt))
+8. Q[The, Tension.impact_on_relations, Diplomatic_effort.outcome](Tension.impact_on_relations == "negative" ∧ Diplomatic_effort.outcome == "uncertain" → Relation(Tension.impact_on_relations, Diplomatic_effort.outcome))
+9. Q[The, Honduras.border_dispute, ElSalvador.border_dispute](Honduras.border_dispute == "active" ∧ ElSalvador.border_dispute == "active" → Relation(Honduras.border_dispute, ElSalvador.border_dispute))
+10. Q[The, Talks.agenda, Dispute.history](Talks.agenda == "border issues" ∧ Dispute.history == "long-standing" → Relation(Talks.agenda, Dispute.history))
+11. Q[The, Tension.border_areas, Talks.initiated_by](Tension.border_areas == "high" ∧ Talks.initiated_by == "presidents" → Relation(Tension.border_areas, Talks.initiated_by))
+12. Q[The, Dispute.initiated_by, Talks.outcome](Dispute.initiated_by == "Honduras, El Salvador" ∧ Talks.outcome == "pending" → Relation(Dispute.initiated_by, Talks.outcome))
+13. Q[The, President_Honduras.name, Talks.initiated_by](President_Honduras.name == "Honduras President" ∧ Talks.initiated_by == "Honduras, El Salvador" → Relation(President_Honduras.name, Talks.initiated_by))
+14. Q[The, President_ElSalvador.name, Talks.initiated_by](President_ElSalvador.name == "El Salvador President" ∧ Talks.initiated_by == "Honduras, El Salvador" → Relation(President_ElSalvador.name, Talks.initiated_by))
+15. Q[The, Tension.border_areas, Talks.objective](Tension.border_areas == "high" ∧ Talks.objective == "reduce tensions" → Relation(Tension.border_areas, Talks.objective))
+16. Q[The, Dispute.countries_involved, Tension.border_areas](Dispute.countries_involved == "Honduras, El Salvador" ∧ Tension.border_areas == "high" → Relation(Dispute.countries_involved, Tension.border_areas))
+17. Q[The, Talks.date, Tension.border_areas](Talks.date == "yesterday" ∧ Tension.border_areas == "high" → Relation(Talks.date, Tension.border_areas))
+18. Q[The, Talks.participants, Dispute.countries_involved](Talks.participants == "Honduras, El Salvador" ∧ Dispute.countries_involved == "Honduras, El Salvador" → Relation(Talks.participants, Dispute.countries_involved))
+19. Q[The, Talks.location, Dispute.history](Talks.location == "San Salvador" ∧ Dispute.history == "long-standing" → Relation(Talks.location, Dispute.history))
+20. Q[The, Tension.border_areas, Diplomatic_effort.type](Tension.border_areas == "high" ∧ Diplomatic_effort.type == "talks" → Relation(Tension.border_areas, Diplomatic_effort.type))
+21. Q[The, Dispute.resolution_attempt, Talks.outcome](Dispute.resolution_attempt == "ongoing" ∧ Talks.outcome == "pending" → Relation(Dispute.resolution_attempt, Talks.outcome))
+22. Q[The, Talks.agenda, Tension.impact_on_relations](Talks.agenda == "border issues" ∧ Tension.impact_on_relations == "negative" → Relation(Talks.agenda, Tension.impact_on_relations))
+23. Q[The, President_Honduras.role, President_ElSalvador.role](President_Honduras.role == "leader" ∧ President_ElSalvador.role == "leader" → Relation(President_Honduras.role, President_ElSalvador.role))
+24. Q[The, Talks.duration, Talks.objective](Talks.duration == "2 days" ∧ Talks.objective == "resolve tensions" → Relation(Talks.duration, Talks.objective))
+25. Q[The, Tension.origin, Dispute.countries_involved](Tension.origin == "border areas" ∧ Dispute.countries_involved == "Honduras, El Salvador" → Relation(Tension.origin, Dispute.countries_involved))
+26. Q[The, Diplomatic_effort.outcome, Conflict.type](Diplomatic_effort.outcome == "uncertain" ∧ Conflict.type == "dispute" → Relation(Diplomatic_effort.outcome, Conflict.type))
+27. Q[The, Talks.initiated_by, Dispute.initiated_by](Talks.initiated_by == "Honduras, El Salvador" ∧ Dispute.initiated_by == "Honduras, El Salvador" → Relation(Talks.initiated_by, Dispute.initiated_by))
+28. Q[The, Tension.border_areas, Dispute.history](Tension.border_areas == "high" ∧ Dispute.history == "long-standing" → Relation(Tension.border_areas, Dispute.history))

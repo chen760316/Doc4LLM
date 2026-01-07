@@ -1,0 +1,130 @@
+Predicates:
+1. Person.not_a_parent = "true"
+2. Person.has_kids = "false"
+3. Person.has_grandchildren = "true"
+4. Grandchildren.status = "produced for their own parents"
+5. Kids.status = "can have kids"
+6. Person.not_a_parent.status = "not a parent"
+7. Person.has_kids.status = "has kids"
+8. Person.has_grandchildren.status = "has grandchildren"
+9. "Relationship".parent_child = "not a parent"
+10. "Relationship".grandparent_grandchild = "produced for their own parents"
+11. "Relationship".parent_status = "not a parent"
+12. "Relationship".grandchild_status = "produced"
+13. M_NLI(Person.not_a_parent, Person.has_kids)
+14. M_NLI(Person.not_a_parent, Person.has_grandchildren)
+15. T("A person who is not a parent can produce grandchildren for their own parents.", "A person who is not a parent has no kids.", tau)
+16. T("A person who is not a parent can still have kids.", "A person who is not a parent has no kids.", tau)
+17. tau(Person.not_a_parent, Person.has_kids)
+18. tau(Person.has_grandchildren, Person.has_kids)
+19. violate(Person.not_a_parent, Person.has_kids)
+20. Factual(Person.not_a_parent, Person.has_grandchildren)
+21. Factual(Person.has_kids, Person.has_grandchildren)
+22. Causal(Person.has_kids, Person.has_grandchildren)
+23. Negation(Person.has_kids, Person.has_grandchildren)
+24. Relation(Person.not_a_parent, Person.has_kids)
+25. Numeric(Person.has_kids, Person.has_grandchildren)
+26. Temporal(Person.not_a_parent, Person.has_kids)
+27. "Relationship".grandparent_status = "can produce grandchildren"
+28. "Relationship".parenthood = "not a parent"
+29. "Relationship".grandchildren_produced = "true"
+30. "Relationship".children_status = "can have kids"
+31. Person.has_kids = "true"
+32. Person.has_grandchildren = "false"
+33. Person.not_a_parent = "false"
+34. Grandchildren.status = "not produced"
+35. Kids.status = "cannot have kids"
+36. "Relationship".parent_child = "is a parent"
+37. "Relationship".grandparent_grandchild = "not produced"
+38. M_NLI(Person.has_kids, Person.has_grandchildren)
+39. T("A person who is not a parent can still have kids.", "A person who is a parent has no kids.", tau)
+40. tau(Person.has_kids, Person.has_grandchildren)
+41. violate(Person.has_kids, Person.has_grandchildren)
+42. Factual(Person.has_kids, Person.not_a_parent)
+43. Causal(Person.has_kids, Person.not_a_parent)
+44. Negation(Person.has_kids, Person.not_a_parent)
+45. Relation(Person.has_kids, Person.has_grandchildren)
+46. Numeric(Person.has_kids, Person.not_a_parent)
+47. Temporal(Person.has_kids, Person.has_grandchildren)
+48. "Relationship".parenthood_status = "is a parent"
+49. "Relationship".grandchildren_status = "not produced"
+50. "Relationship".children_status = "cannot have kids"
+51. Person.not_a_parent = "true"
+52. Person.has_kids = "false"
+53. Person.has_grandchildren = "true"
+54. Grandchildren.status = "produced"
+55. Kids.status = "can have kids"
+56. "Relationship".parent_child = "is a parent"
+57. "Relationship".grandparent_grandchild = "produced"
+58. M_NLI(Person.not_a_parent, Person.has_grandchildren)
+59. T("A person who is not a parent can produce grandchildren for their own parents.", "A person who is a parent cannot produce grandchildren.", tau)
+60. tau(Person.not_a_parent, Person.has_grandchildren)
+61. violate(Person.not_a_parent, Person.has_grandchildren)
+62. Factual(Person.not_a_parent, Person.has_kids)
+63. Causal(Person.not_a_parent, Person.has_kids)
+64. Negation(Person.not_a_parent, Person.has_kids)
+65. Relation(Person.not_a_parent, Person.has_grandchildren)
+66. Numeric(Person.not_a_parent, Person.has_kids)
+67. Temporal(Person.not_a_parent, Person.has_grandchildren)
+68. "Relationship".grandparent_status = "can produce grandchildren"
+69. "Relationship".parenthood = "is a parent"
+70. "Relationship".grandchildren_produced = "false"
+71. "Relationship".children_status = "can have kids"
+72. Person.has_kids = "true"
+73. Person.has_grandchildren = "false"
+74. Person.not_a_parent = "false"
+75. Grandchildren.status = "not produced"
+76. Kids.status = "cannot have kids"
+77. "Relationship".parent_child = "not a parent"
+78. "Relationship".grandparent_grandchild = "not produced"
+79. M_NLI(Person.has_kids, Person.has_grandchildren)
+80. T("A person who is not a parent can still have kids.", "A person who is a parent has no kids.", tau)
+81. tau(Person.has_kids, Person.has_grandchildren)
+82. violate(Person.has_kids, Person.has_grandchildren)
+83. Factual(Person.has_kids, Person.not_a_parent)
+84. Causal(Person.has_kids, Person.not_a_parent)
+85. Negation(Person.has_kids, Person.not_a_parent)
+86. Relation(Person.has_kids, Person.has_grandchildren)
+87. Numeric(Person.has_kids, Person.not_a_parent)
+88. Temporal(Person.has_kids, Person.has_grandchildren)
+89. "Relationship".parenthood_status = "is a parent"
+90. "Relationship".grandchildren_status = "not produced"
+91. "Relationship".children_status = "cannot have kids"
+92. Person.not_a_parent = "true"
+93. Person.has_kids = "false"
+94. Person.has_grandchildren = "true"
+95. Grandchildren.status = "produced"
+96. Kids.status = "can have kids"
+97. "Relationship".parent_child = "is a parent"
+98. "Relationship".grandparent_grandchild = "produced"
+99. M_NLI(Person.not_a_parent, Person.has_grandchildren)
+100. T("A person who is not a parent can produce grandchildren for their own parents.", "A person who is a parent cannot produce grandchildren.", tau)
+violate(x0, y0)
+
+Rules:
+1. Q[x0, y0](Person.not_a_parent ∧ Person.has_kids = "false" → violate(x0, y0))
+2. Q[x0, y0](Person.has_kids = "false" ∧ Person.has_grandchildren = "true" → violate(x0, y0))
+3. Q[x0, y0](Person.not_a_parent ∧ "Relationship".parent_status = "not a parent" → violate(x0, y0))
+4. Q[x0, y0](Person.has_kids = "false" ∧ "Relationship".grandparent_grandchild = "produced for their own parents" → violate(x0, y0))
+5. Q[x0, y0](Person.not_a_parent ∧ Person.has_grandchildren = "true" → violate(x0, y0))
+6. Q[x0, y0](Person.has_kids = "false" ∧ "Relationship".children_status = "can have kids" → violate(x0, y0))
+7. Q[x0, y0](Person.not_a_parent ∧ Person.has_kids = "false" ∧ Person.has_grandchildren = "true" → violate(x0, y0))
+8. Q[x0, y0](Person.has_kids = "false" ∧ Person.has_grandchildren = "true" ∧ "Relationship".grandchildren_produced = "true" → violate(x0, y0))
+9. Q[x0, y0](Person.not_a_parent ∧ "Relationship".parenthood = "not a parent" ∧ "Relationship".grandparent_status = "can produce grandchildren" → violate(x0, y0))
+10. Q[x0, y0](Person.has_kids = "false" ∧ "Relationship".parent_child = "not a parent" ∧ "Relationship".grandchildren_status = "produced" → violate(x0, y0))
+11. Q[x0, y0](Person.not_a_parent ∧ Person.has_kids = "false" ∧ Person.has_grandchildren = "true" ∧ "Relationship".grandparent_grandchild = "produced" → violate(x0, y0))
+12. Q[x0, y0](Person.has_kids = "false" ∧ Person.has_grandchildren = "true" ∧ "Relationship".parenthood = "not a parent" ∧ "Relationship".grandchildren_produced = "false" → violate(x0, y0))
+13. Q[x0, y0](Person.not_a_parent ∧ "Relationship".parent_status = "not a parent" ∧ "Relationship".grandchild_status = "produced" ∧ "Relationship".grandchildren_status = "not produced" → violate(x0, y0))
+14. Q[x0, y0](Person.has_kids = "false" ∧ "Relationship".parent_child = "not a parent" ∧ "Relationship".grandparent_status = "can produce grandchildren" ∧ "Relationship".grandchildren_produced = "false" → violate(x0, y0))
+15. Q[x0, y0](Person.not_a_parent ∧ Person.has_kids = "false" ∧ "Relationship".grandparent_grandchild = "produced" ∧ "Relationship".children_status = "cannot have kids" → violate(x0, y0))
+16. Q[x0, y0](Person.has_kids = "false" ∧ Person.has_grandchildren = "true" ∧ "Relationship".parenthood = "not a parent" ∧ "Relationship".grandchildren_status = "not produced" ∧ "Relationship".grandparent_status = "can produce grandchildren" → violate(x0, y0))
+17. Q[x0, y0](Person.not_a_parent ∧ "Relationship".parent_status = "not a parent" ∧ "Relationship".grandchild_status = "produced" ∧ "Relationship".children_status = "can have kids" ∧ "Relationship".grandchildren_produced = "false" → violate(x0, y0))
+18. Q[x0, y0](Person.has_kids = "false" ∧ Person.has_grandchildren = "true" ∧ "Relationship".parent_child = "not a parent" ∧ "Relationship".grandparent_grandchild = "produced for their own parents" ∧ "Relationship".grandchildren_status = "not produced" → violate(x0, y0))
+19. Q[x0, y0](Person.not_a_parent ∧ Person.has_kids = "false" ∧ "Relationship".parenthood = "not a parent" ∧ "Relationship".grandchildren_produced = "true" ∧ "Relationship".grandparent_status = "can produce grandchildren" → violate(x0, y0))
+20. Q[x0, y0](Person.has_kids = "false" ∧ "Relationship".parent_child = "not a parent" ∧ "Relationship".grandchildren_status = "produced" ∧ "Relationship".grandparent_grandchild = "produced" ∧ "Relationship".children_status = "cannot have kids" → violate(x0, y0))
+21. Q[x0, y0](Person.not_a_parent ∧ Person.has_kids = "false" ∧ Person.has_grandchildren = "true" ∧ "Relationship".grandparent_grandchild = "produced" ∧ "Relationship".grandchildren_status = "not produced" ∧ "Relationship".children_status = "can have kids" → violate(x0, y0))
+22. Q[x0, y0](Person.has_kids = "false" ∧ "Relationship".parent_child = "not a parent" ∧ "Relationship".grandparent_grandchild = "produced for their own parents" ∧ "Relationship".grandchildren_produced = "false" ∧ "Relationship".children_status = "cannot have kids" → violate(x0, y0))
+23. Q[x0, y0](Person.not_a_parent ∧ "Relationship".parent_status = "not a parent" ∧ "Relationship".grandchild_status = "produced" ∧ "Relationship".grandchildren_produced = "true" ∧ "Relationship".children_status = "can have kids" → violate(x0, y0))
+24. Q[x0, y0](Person.has_kids = "false" ∧ "Relationship".parent_child = "not a parent" ∧ "Relationship".grandchildren_status = "produced" ∧ "Relationship".grandparent_grandchild = "produced" ∧ "Relationship".grandchildren_produced = "false" → violate(x0, y0))
+25. Q[x0, y0](Person.not_a_parent ∧ Person.has_kids = "false" ∧ "Relationship".parenthood = "not a parent" ∧ "Relationship".grandchildren_produced = "true" ∧ "Relationship".grandparent_status = "can produce grandchildren" ∧ "Relationship".children_status = "cannot have kids" → violate(x0, y0))
+26. Q[x0, y0](Person

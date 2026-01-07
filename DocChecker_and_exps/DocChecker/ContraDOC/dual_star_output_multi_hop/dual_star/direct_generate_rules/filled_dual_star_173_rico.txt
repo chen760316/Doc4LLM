@@ -1,0 +1,43 @@
+Predicates:
+Emma Hollis.label != "Person"
+Emma Hollis.label = "Person"
+Emma Hollis.name != "Emma Hollis"
+Emma Hollis.name = "Emma Hollis"
+Emma Hollis.occupation != "FBI agent"
+Emma Hollis.occupation = "FBI agent"
+Frank Black.label != "Person"
+Frank Black.label = "Person"
+Frank Black.name != "Frank Black"
+Frank Black.name != Emma Hollis.name
+Frank Black.name = "Frank Black"
+Frank Black.occupation != "FBI agent"
+Frank Black.occupation = "FBI agent"
+Mark Bianco.label != "Person"
+Mark Bianco.label = "Person"
+Mark Bianco.name != "Mark Bianco"
+Mark Bianco.name != Emma Hollis.name
+Mark Bianco.name != Frank Black.name
+Mark Bianco.name = "Mark Bianco"
+Mark Bianco.occupation != "method actor"
+Mark Bianco.occupation != Emma Hollis.occupation
+Mark Bianco.occupation != Frank Black.occupation
+Mark Bianco.occupation = "method actor"
+Mark Bianco___Emma Hollis.doc_id = "3502252170_5"
+Mark Bianco___Emma Hollis.relationship = "Mark Bianco attacks Emma Hollis with a chainsaw."
+Mark Bianco___Frank Black.doc_id = "3502252170_5"
+Mark Bianco___Frank Black.relationship != Mark Bianco___Emma Hollis.relationship
+Mark Bianco___Frank Black.relationship = "Mark Bianco plays the role of Frank Black in the film."
+None_ML(Frank Black.attrs, Mark Bianco.attrs)
+None_ML(Mark Bianco___Frank Black.attrs, Mark Bianco___Emma Hollis.attrs)
+
+Rules:
+Q[Mark Bianco,Mark Bianco] (None_ML(Frank Black.attrs, Mark Bianco.attrs) ∧ Mark Bianco.occupation = "method actor" ∧ Emma Hollis.label != "Person" ∧ Frank Black.label = "Person" ∧ Mark Bianco.occupation != "method actor" ∧ Mark Bianco___Frank Black.doc_id = "3502252170_5" → Frank Black.name = "Frank Black")
+Q[Mark Bianco,Mark Bianco] (Mark Bianco.occupation != Emma Hollis.occupation ∧ Emma Hollis.name != "Emma Hollis" ∧ Mark Bianco___Emma Hollis.doc_id = "3502252170_5" ∧ None_ML(Frank Black.attrs, Mark Bianco.attrs) → Mark Bianco.label = "Person")
+Q[Mark Bianco,Mark Bianco] (Mark Bianco.occupation != Emma Hollis.occupation ∧ Frank Black.name != Emma Hollis.name ∧ Mark Bianco.label != "Person" ∧ Emma Hollis.name = "Emma Hollis" ∧ Mark Bianco.occupation != "method actor" → Mark Bianco.occupation != Frank Black.occupation)
+Q[Mark Bianco,Mark Bianco] (None_ML(Frank Black.attrs, Mark Bianco.attrs) ∧ Mark Bianco.label = "Person" → Mark Bianco.name != "Mark Bianco")
+Q[Mark Bianco,Mark Bianco] (Frank Black.name = "Frank Black" ∧ Emma Hollis.label != "Person" ∧ Mark Bianco___Emma Hollis.doc_id = "3502252170_5" → None_ML(Frank Black.attrs, Mark Bianco.attrs))
+Q[Mark Bianco,Mark Bianco] (Emma Hollis.label = "Person" ∧ Mark Bianco.name != Emma Hollis.name ∧ Mark Bianco.occupation = "method actor" ∧ Mark Bianco.label != "Person" ∧ Emma Hollis.occupation = "FBI agent" → Mark Bianco___Emma Hollis.relationship = "Mark Bianco attacks Emma Hollis with a chainsaw.")
+Q[Mark Bianco,Mark Bianco] (Mark Bianco.name != Frank Black.name ∧ Frank Black.name != Emma Hollis.name ∧ Mark Bianco.name != Emma Hollis.name ∧ Emma Hollis.occupation = "FBI agent" ∧ Mark Bianco___Frank Black.relationship = "Mark Bianco plays the role of Frank Black in the film." ∧ None_ML(Frank Black.attrs, Mark Bianco.attrs) → Frank Black.label = "Person")
+Q[Mark Bianco,Mark Bianco] (Mark Bianco.name != "Mark Bianco" ∧ Emma Hollis.occupation != "FBI agent" ∧ Mark Bianco.occupation = "method actor" ∧ Mark Bianco.name = "Mark Bianco" → Frank Black.label != "Person")
+Q[Mark Bianco,Mark Bianco] (Mark Bianco___Emma Hollis.relationship = "Mark Bianco attacks Emma Hollis with a chainsaw." ∧ Mark Bianco.name != "Mark Bianco" → Mark Bianco.label != "Person")
+Q[Mark Bianco,Mark Bianco] (Mark Bianco.name != Frank Black.name ∧ Emma Hollis.name = "Emma Hollis" ∧ Mark Bianco___Frank Black.doc_id = "3502252170_5" → Mark Bianco.name = "Mark Bianco")

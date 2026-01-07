@@ -1,0 +1,23 @@
+### Entity Mapping ###
+x0: "Market"
+y0: "Market"
+
+### Rules with Substituted Entities ###
+Rule: Q["Market", "Market"](Consumer_Confidence.status = "dropped" ∧ Market.status = "dipped" → violate(x0, y0))
+
+Rule: Q["Market", "Market"](Interest_Rate.status = "risen" ∧ Market.status = "dipped" → violate(x0, y0))
+
+Rule: Q["Market", "Market"](Market.status = "dipped" ∧ "Market_ConsumerConfidence_Relationship".cause = "drop" → violate(x0, y0))
+
+Rule: Q["Market", "Market"](Market.status = "dipped" ∧ "Market_InterestRate_Relationship".cause = "rise" → violate(x0, y0))
+
+Rule: Q["Market", "Market"](Consumer_Confidence.status = "dropped" ∧ Interest_Rate.status = "risen" ∧ Market.status = "dipped" → violate(x0, y0))
+
+Rule: Q["Market", "Market"](Consumer_Confidence.status = "dropped" ∧ Market.status = "dipped" ∧ "Market_ConsumerConfidence_Relationship".status = "active" → violate(x0, y0))
+
+Rule: Q["Market", "Market"](Interest_Rate.status = "risen" ∧ Market.status = "dipped" ∧ "Market_InterestRate_Relationship".status = "active" → violate(x0, y0))
+
+Rule: Q["Market", "Market"](Consumer_Confidence.trend = "declining" ∧ Interest_Rate.trend = "increasing" ∧ Market.trend = "falling" → violate(x0, y0))
+
+Rule: Q["Market", "Market"](Market.status = "dipped" ∧ "Market_ConsumerConfidence_Relationship".impact = "significant" ∧ "Market_InterestRate_Relationship".impact = "significant" ∧ violate(Consumer_Confidence.status, Interest_Rate.status) → violate(x0, y0))
+

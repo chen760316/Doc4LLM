@@ -1,0 +1,63 @@
+Predicates:
+Chris.label != "Person"
+Chris.label != strange world.label
+Chris.label = "Person"
+Chris.name != "Chris"
+Chris.name != Kitty.name
+Chris.name != Margaret.name
+Chris.name != strange world.name
+Chris.name = "Chris"
+Chris___Kitty.contradiction_type = "Negation"
+Chris___Kitty.relationship = "Chris is now married to Kitty"
+Chris___Kitty.source_id = "3488771834_6"
+Chris___Kitty.time = "fifteen years after Monkey Island summer"
+Chris___Margaret.contradiction_type != Chris___Kitty.contradiction_type
+Chris___Margaret.contradiction_type != Chris___strange world.contradiction_type
+Chris___Margaret.contradiction_type = "Causal"
+Chris___Margaret.relationship != Chris___Kitty.relationship
+Chris___Margaret.relationship != Chris___strange world.relationship
+Chris___Margaret.relationship = "Chris acknowledges the passage of time but cannot retrieve memories of Margaret."
+Chris___Margaret.source_id != Chris___Kitty.source_id
+Chris___Margaret.source_id != Chris___strange world.source_id
+Chris___Margaret.source_id = "3488771834_5"
+Chris___strange world.contradiction_type = "Negation"
+Chris___strange world.relationship != Chris___Kitty.relationship
+Chris___strange world.relationship = "Chris finds himself in a strange world that has aged beyond his memory"
+Chris___strange world.source_id = "3488771834_6"
+Chris___strange world.time != Chris___Kitty.time
+Chris___strange world.time = "fifteen years"
+Kitty.label != "Person"
+Kitty.label = "Person"
+Kitty.name != "Kitty"
+Kitty.name = "Kitty"
+Margaret.label != "Person"
+Margaret.label != strange world.label
+Margaret.label = "Person"
+Margaret.name != "Margaret"
+Margaret.name != Kitty.name
+Margaret.name != strange world.name
+Margaret.name = "Margaret"
+None_ML(Chris___Margaret.attrs, Chris___strange world.attrs)
+None_ML(strange world.attrs, Chris.attrs)
+strange world.age != 15
+strange world.age < 20
+strange world.age = 15
+strange world.age > 10
+strange world.label != "World"
+strange world.label != Kitty.label
+strange world.label = "World"
+strange world.name != "strange world"
+strange world.name != Kitty.name
+strange world.name = "strange world"
+
+Rules:
+Q[Chris,Chris] (Kitty.name != "Kitty" ∧ Margaret.name = "Margaret" ∧ Chris___Margaret.source_id = "3488771834_5" ∧ Chris___Kitty.source_id = "3488771834_6" ∧ Chris.label != "Person" ∧ Chris.label != strange world.label → Chris___Kitty.relationship = "Chris is now married to Kitty")
+Q[Chris,Chris] (Chris___strange world.relationship != Chris___Kitty.relationship ∧ strange world.name != "strange world" ∧ Kitty.name = "Kitty" ∧ strange world.name = "strange world" → Chris.label != "Person")
+Q[Chris,Chris] (Chris___Margaret.source_id != Chris___strange world.source_id ∧ Margaret.label != strange world.label → Chris.label != strange world.label)
+Q[Chris,Chris] (Margaret.label != strange world.label ∧ None_ML(strange world.attrs, Chris.attrs) ∧ Margaret.label = "Person" → Chris___Margaret.relationship != Chris___strange world.relationship)
+Q[Chris,Chris] (Margaret.name != Kitty.name ∧ Chris___Kitty.time = "fifteen years after Monkey Island summer" ∧ Chris___Margaret.relationship != Chris___strange world.relationship ∧ strange world.age > 10 ∧ Chris___Margaret.relationship != Chris___Kitty.relationship → None_ML(Chris___Margaret.attrs, Chris___strange world.attrs))
+Q[Chris,Chris] (Chris___strange world.time = "fifteen years" ∧ strange world.age < 20 ∧ Chris.name != "Chris" → strange world.label != Kitty.label)
+Q[Chris,Chris] (Chris___strange world.relationship != Chris___Kitty.relationship ∧ strange world.label != Kitty.label ∧ Margaret.name != strange world.name ∧ strange world.name = "strange world" ∧ Chris.label != "Person" ∧ Chris___strange world.time = "fifteen years" → strange world.label = "World")
+Q[Chris,Chris] (Margaret.name != Kitty.name ∧ Chris___strange world.time != Chris___Kitty.time ∧ strange world.age = 15 ∧ Kitty.label != "Person" ∧ strange world.label != Kitty.label → Margaret.label = "Person")
+Q[Chris,Chris] (Chris___Kitty.source_id = "3488771834_6" ∧ Margaret.name != Kitty.name → Kitty.name != "Kitty")
+Q[Chris,Chris] (Margaret.name = "Margaret" ∧ strange world.label = "World" ∧ Margaret.name != "Margaret" ∧ Kitty.label = "Person" → Margaret.label != "Person")

@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 948)
+S1: The horses are sharing a tender moment.
+S2: One horse presses its nose to another horse in a field.
+
+Predicates:
+1. Horses.interaction_type = tender_moment
+2. Horse1.nose_contact = Horse2
+3. Horse1.location = field
+4. Horse1.action = presses
+5. Horse2.action = receives_nose_contact
+6. Interaction.type = peaceful
+7. Interaction.type = aggressive
+8. Horse1.emotion = calm
+9. Horse2.emotion = startled
+10. Horse1.relationship_with_Horse2 = friendly
+11. Horse1.relationship_with_Horse2 = assertive
+12. Field.environment = open_space
+13. Horse1.size = large
+14. Horse2.size = large
+15. Horse1.species = equine
+16. Horse2.species = equine
+17. Horse1.color = brown
+18. Horse2.color = black
+19. Interaction.context = natural
+20. Interaction.intensity = low
+21. Interaction.intensity = high
+22. Horse1.position = near
+23. Horse2.position = near
+24. Horse1.behavior = social
+25. Horse2.behavior = defensive
+26. M_NLI(S1, S2) = true
+27. Causal(Horse1, Horse2) = true
+28. violate(Horse1, Horse2) = false
+29. Horse1.age = adult
+30. Horse2.age = adult
+
+Rules:
+1. Q[The, Horses.interaction_type, Interaction.type](Horses.interaction_type == "tender_moment" → Causal(Horses, Interaction))
+2. Q[One, Horse1.action, Horse2.action](Horse1.action == "presses" → Causal(Horse1, Horse2))
+3. Q[its, Horse1.emotion, Horse2.emotion](Horse1.emotion == "calm" → Causal(Horse1, Horse2))
+4. Q[Another, Horse1.relationship_with_Horse2, Horse2.relationship_with_Horse1](Horse1.relationship_with_Horse2 == "friendly" → Causal(Horse1, Horse2))
+5. Q[Horse, Interaction.type, Interaction.intensity](Interaction.type == "peaceful" → Causal(Horse1, Horse2))
+6. Q[Horse, Horse2.action, Horse1.action](Horse2.action == "receives_nose_contact" → Causal(Horse1, Horse2))
+7. Q[Horse, Horse1.location, Field.environment](Horse1.location == "field" → Causal(Horse1, Horse2))
+8. Q[Horse, Interaction.intensity, Interaction.type](Interaction.intensity == "low" → Causal(Horse1, Horse2))
+9. Q[Horse, Horse1.behavior, Horse2.behavior](Horse2.behavior == "defensive" → Causal(Horse1, Horse2))
+10. Q[Horse, Horse1.relationship_with_Horse2, Horse1.relationship_with_Horse2](Horse1.relationship_with_Horse2 == "assertive" → Causal(Horse1, Horse2))
+11. Q[The, Horse1.emotion, Horse2.emotion](Horse2.emotion == "startled" → Causal(Horse1, Horse2))
+12. Q[The, Interaction.type, Interaction.intensity](Interaction.type == "aggressive" → Causal(Horse1, Horse2))
+13. Q[The, Horse1.position, Horse2.position](Horse1.position == "near" → Causal(Horse1, Horse2))
+14. Q[The, Field.environment, Horse1.location](Field.environment == "open_space" → Causal(Horse1, Horse2))
+15. Q[The, Horse1.size, Horse2.size](Horse1.size == "large" → Causal(Horse1, Horse2))
+16. Q[The, Horse1.species, Horse2.species](Horse1.species == "equine" → Causal(Horse1, Horse2))
+17. Q[The, Horse1.color, Horse2.color](Horse2.color == "black" → Causal(Horse1, Horse2))
+18. Q[The, Horse1.age, Horse2.age](Horse1.age == "adult" → Causal(Horse1, Horse2))
+19. Q[The, Horse1.action, Horse2.action](Horse1.action == "presses" → Causal(Horse1, Horse2))
+20. Q[The, Interaction.context, Interaction.type](Interaction.context == "natural" → Causal(Horse1, Horse2))
+21. Q[The, Horse1.relationship_with_Horse2, Horse1.relationship_with_Horse2](Horse1.relationship_with_Horse2 == "friendly" → Causal(Horse1, Horse2))
+22. Q[The, Horse1.behavior, Horse2.behavior](Horse1.behavior == "social" → Causal(Horse1, Horse2))
+23. Q[The, Horse1.emotion, Horse2.emotion](Horse1.emotion == "calm" → Causal(Horse1, Horse2))
+24. Q[The, Interaction.intensity, Interaction.type](Interaction.intensity == "high" → Causal(Horse1, Horse2))
+25. Q[The, Horse1.position, Horse2.position](Horse2.position == "near" → Causal(Horse1, Horse2))
+26. Q[The, Horse1.species, Horse2.species](Horse2.species == "equine" → Causal(Horse1, Horse2))
+27. Q[The, Horse1.color, Horse2.color](Horse1.color == "brown" → Causal(Horse1, Horse2))
+28. Q[The, Horse1.age, Horse2.age](Horse2.age == "adult" → Causal(Horse1, Horse2))
+29. Q[The, Horse1.relationship_with_Horse2, Horse2.relationship_with_Horse1](Horse1.relationship_with_Horse2 == "assertive" → Causal(Horse1, Horse2))
+30. Q[The, Interaction.type, Interaction.intensity](Interaction.type == "peaceful" → Causal(Horse1, Horse2))

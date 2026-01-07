@@ -1,0 +1,109 @@
+Predicates:
+Faith.label != "Person"
+Faith.label = "Person"
+Faith.name != "Faith"
+Faith.name != Gerald (Jerry).name
+Faith.name != Rosemary West.name
+Faith.name != Thomas Carlyle (Carl).name
+Faith.name != Una.name
+Faith.name = "Faith"
+Faith.parent != "John Meredith"
+Faith.parent = "John Meredith"
+Faith.status != "child"
+Faith.status != Rosemary West.status
+Faith.status = "child"
+Gerald (Jerry).label != "Person"
+Gerald (Jerry).label = "Person"
+Gerald (Jerry).name != "Gerald (Jerry)"
+Gerald (Jerry).name != Thomas Carlyle (Carl).name
+Gerald (Jerry).name = "Gerald (Jerry)"
+Gerald (Jerry).parent != "John Meredith"
+Gerald (Jerry).parent = "John Meredith"
+Gerald (Jerry).status != "child"
+Gerald (Jerry).status = "child"
+John Meredith.children_count != 4
+John Meredith.children_count < 9
+John Meredith.children_count = 4
+John Meredith.children_count > -1
+John Meredith.label != "Person"
+John Meredith.label = "Person"
+John Meredith.name != "John Meredith"
+John Meredith.name != Faith.name
+John Meredith.name != Gerald (Jerry).name
+John Meredith.name != Rosemary West.name
+John Meredith.name != Thomas Carlyle (Carl).name
+John Meredith.name != Una.name
+John Meredith.name = "John Meredith"
+John Meredith.status != "widower"
+John Meredith.status != Faith.status
+John Meredith.status != Gerald (Jerry).status
+John Meredith.status != Rosemary West.status
+John Meredith.status != Thomas Carlyle (Carl).status
+John Meredith.status != Una.status
+John Meredith.status = "widower"
+John Meredith___Faith.doc_id = "3488771876_2"
+John Meredith___Faith.relationship != John Meredith___Gerald (Jerry).relationship
+John Meredith___Faith.relationship != John Meredith___Rosemary West.relationship
+John Meredith___Faith.relationship != John Meredith___Thomas Carlyle (Carl).relationship
+John Meredith___Faith.relationship != John Meredith___Una.relationship
+John Meredith___Faith.relationship = "John Meredith is the father of Faith."
+John Meredith___Gerald (Jerry).doc_id = "3488771876_2"
+John Meredith___Gerald (Jerry).relationship != John Meredith___Thomas Carlyle (Carl).relationship
+John Meredith___Gerald (Jerry).relationship = "John Meredith is the father of Gerald (Jerry)."
+John Meredith___Rosemary West.doc_id = "3488771876_2"
+John Meredith___Rosemary West.relationship != John Meredith___Gerald (Jerry).relationship
+John Meredith___Rosemary West.relationship != John Meredith___Thomas Carlyle (Carl).relationship
+John Meredith___Rosemary West.relationship = "John Meredith falls in love with Rosemary West."
+John Meredith___Thomas Carlyle (Carl).doc_id = "3488771876_2"
+John Meredith___Thomas Carlyle (Carl).relationship = "John Meredith is the father of Thomas Carlyle (Carl)."
+John Meredith___Una.doc_id = "3488771876_2"
+John Meredith___Una.relationship != John Meredith___Gerald (Jerry).relationship
+John Meredith___Una.relationship != John Meredith___Rosemary West.relationship
+John Meredith___Una.relationship != John Meredith___Thomas Carlyle (Carl).relationship
+John Meredith___Una.relationship = "John Meredith is the father of Una."
+None_ML(Faith.attrs, Gerald (Jerry).attrs)
+None_ML(John Meredith___Una.attrs, John Meredith___Faith.attrs)
+Rosemary West.age != "late thirties"
+Rosemary West.age = "late thirties"
+Rosemary West.label != "Person"
+Rosemary West.label = "Person"
+Rosemary West.name != "Rosemary West"
+Rosemary West.name != Gerald (Jerry).name
+Rosemary West.name != Thomas Carlyle (Carl).name
+Rosemary West.name = "Rosemary West"
+Rosemary West.status != "single"
+Rosemary West.status != Gerald (Jerry).status
+Rosemary West.status != Thomas Carlyle (Carl).status
+Rosemary West.status = "single"
+Thomas Carlyle (Carl).label != "Person"
+Thomas Carlyle (Carl).label = "Person"
+Thomas Carlyle (Carl).name != "Thomas Carlyle (Carl)"
+Thomas Carlyle (Carl).name = "Thomas Carlyle (Carl)"
+Thomas Carlyle (Carl).parent != "John Meredith"
+Thomas Carlyle (Carl).parent = "John Meredith"
+Thomas Carlyle (Carl).status != "child"
+Thomas Carlyle (Carl).status = "child"
+Una.label != "Person"
+Una.label = "Person"
+Una.name != "Una"
+Una.name != Gerald (Jerry).name
+Una.name != Rosemary West.name
+Una.name != Thomas Carlyle (Carl).name
+Una.name = "Una"
+Una.parent != "John Meredith"
+Una.parent = "John Meredith"
+Una.status != "child"
+Una.status != Rosemary West.status
+Una.status = "child"
+
+Rules:
+Q[John Meredith,John Meredith] (Una.name != "Una" ∧ Una.name != Thomas Carlyle (Carl).name ∧ Una.status = "child" ∧ Una.status != "child" ∧ John Meredith.status != Rosemary West.status → John Meredith___Una.relationship = "John Meredith is the father of Una.")
+Q[John Meredith,John Meredith] (Faith.name != Una.name ∧ None_ML(John Meredith___Una.attrs, John Meredith___Faith.attrs) → John Meredith.status != Gerald (Jerry).status)
+Q[John Meredith,John Meredith] (Una.parent = "John Meredith" ∧ John Meredith.status != Thomas Carlyle (Carl).status ∧ Gerald (Jerry).name != "Gerald (Jerry)" → Rosemary West.name != Gerald (Jerry).name)
+Q[John Meredith,John Meredith] (John Meredith___Gerald (Jerry).relationship = "John Meredith is the father of Gerald (Jerry)." ∧ John Meredith.label = "Person" ∧ Rosemary West.status != Gerald (Jerry).status ∧ John Meredith___Una.relationship = "John Meredith is the father of Una." ∧ Thomas Carlyle (Carl).parent != "John Meredith" ∧ Faith.name = "Faith" → John Meredith___Una.relationship != John Meredith___Thomas Carlyle (Carl).relationship)
+Q[John Meredith,John Meredith] (Thomas Carlyle (Carl).status != "child" ∧ John Meredith___Una.relationship != John Meredith___Thomas Carlyle (Carl).relationship ∧ Rosemary West.name = "Rosemary West" ∧ Una.name != Thomas Carlyle (Carl).name → Faith.parent = "John Meredith")
+Q[John Meredith,John Meredith] (Rosemary West.name != Thomas Carlyle (Carl).name ∧ Faith.status != "child" ∧ John Meredith___Una.relationship = "John Meredith is the father of Una." ∧ Thomas Carlyle (Carl).status = "child" ∧ John Meredith___Faith.doc_id = "3488771876_2" ∧ John Meredith.name != "John Meredith" → Rosemary West.status != Thomas Carlyle (Carl).status)
+Q[John Meredith,John Meredith] (None_ML(Faith.attrs, Gerald (Jerry).attrs) ∧ Thomas Carlyle (Carl).label != "Person" ∧ John Meredith___Rosemary West.doc_id = "3488771876_2" ∧ John Meredith___Rosemary West.relationship = "John Meredith falls in love with Rosemary West." ∧ Una.name != Gerald (Jerry).name → John Meredith.status != Thomas Carlyle (Carl).status)
+Q[John Meredith,John Meredith] (John Meredith.status != Gerald (Jerry).status ∧ John Meredith___Gerald (Jerry).relationship != John Meredith___Thomas Carlyle (Carl).relationship ∧ John Meredith___Thomas Carlyle (Carl).doc_id = "3488771876_2" ∧ Faith.label != "Person" → John Meredith.status != Faith.status)
+Q[John Meredith,John Meredith] (Thomas Carlyle (Carl).status != "child" ∧ John Meredith___Una.relationship = "John Meredith is the father of Una." → Una.status != Rosemary West.status)
+Q[John Meredith,John Meredith] (Faith.parent != "John Meredith" ∧ John Meredith.status != "widower" ∧ Faith.status != Rosemary West.status → Rosemary West.name != Thomas Carlyle (Carl).name)

@@ -1,0 +1,134 @@
+Predicates:
+1. entity1.name = "Alice"
+2. entity1.age = 30
+3. entity1.occupation = "Engineer"
+4. entity2.name = "Bob"
+5. entity2.age = 25
+6. entity2.occupation = "Doctor"
+7. "does not have".source = "Alice"
+8. "does not have".target = "Bob"
+9. "establishes and improves".source = "Alice"
+10. "establishes and improves".target = "Bob"
+11. "guides".source = "Alice"
+12. "guides".target = "Bob"
+13. "provides guidance and education for".source = "Alice"
+14. "provides guidance and education for".target = "Bob"
+15. M_NLI(entity1.name, entity2.name)
+16. M_NLI(entity1.age, entity2.age)
+17. T("Alice is 30 years old", "Alice is not 30 years old", tau)
+18. T("Bob is a doctor", "Bob is not a doctor", tau)
+19. tau(entity1.occupation, entity2.occupation)
+20. violate(entity1.name, entity2.name)
+21. Factual(entity1.age, entity2.age)
+22. Causal(entity1.occupation, entity2.occupation)
+23. Numeric(entity1.age, entity2.age)
+24. Temporal(entity1.age, entity2.age)
+25. Content(entity1.occupation, entity2.occupation)
+26. Relation(entity1.name, entity2.name)
+27. "does not have".doc_index = "40"
+28. "does not have".label_text = "absence"
+29. "establishes and improves".doc_index = "40"
+30. "establishes and improves".label_text = "enhancement"
+31. "guides".doc_index = "40"
+32. "guides".label_text = "direction"
+33. "provides guidance and education for".doc_index = "40"
+34. "provides guidance and education for".label_text = "instruction"
+35. M_NLI(entity1.occupation, entity2.occupation)
+36. T("Alice guides Bob", "Alice does not guide Bob", tau)
+37. tau(entity1.age, entity2.age)
+38. violate(entity1.age, entity2.age)
+39. Factual(entity1.name, entity2.name)
+40. Causal(entity1.age, entity2.age)
+41. Numeric(entity1.age, entity2.age)
+42. Temporal(entity1.age, entity2.age)
+43. Content(entity1.name, entity2.name)
+44. Relation(entity1.occupation, entity2.occupation)
+45. entity1.location = "New York"
+46. entity2.location = "Los Angeles"
+47. "does not have".source = "New York"
+48. "does not have".target = "Los Angeles"
+49. "establishes and improves".source = "New York"
+50. "establishes and improves".target = "Los Angeles"
+51. "guides".source = "New York"
+52. "guides".target = "Los Angeles"
+53. "provides guidance and education for".source = "New York"
+54. "provides guidance and education for".target = "Los Angeles"
+55. M_NLI(entity1.location, entity2.location)
+56. T("Alice lives in New York", "Alice does not live in New York", tau)
+57. tau(entity1.location, entity2.location)
+58. violate(entity1.location, entity2.location)
+59. Factual(entity1.location, entity2.location)
+60. Causal(entity1.location, entity2.location)
+61. Numeric(entity1.age, entity2.age)
+62. Temporal(entity1.location, entity2.location)
+63. Content(entity1.location, entity2.location)
+64. Relation(entity1.name, entity2.name)
+65. entity1.hobby = "Reading"
+66. entity2.hobby = "Sports"
+67. "does not have".source = "Reading"
+68. "does not have".target = "Sports"
+69. "establishes and improves".source = "Reading"
+70. "establishes and improves".target = "Sports"
+71. "guides".source = "Reading"
+72. "guides".target = "Sports"
+73. "provides guidance and education for".source = "Reading"
+74. "provides guidance and education for".target = "Sports"
+75. M_NLI(entity1.hobby, entity2.hobby)
+76. T("Alice enjoys reading", "Alice does not enjoy reading", tau)
+77. tau(entity1.hobby, entity2.hobby)
+78. violate(entity1.hobby, entity2.hobby)
+79. Factual(entity1.hobby, entity2.hobby)
+80. Causal(entity1.hobby, entity2.hobby)
+81. Numeric(entity1.age, entity2.age)
+82. Temporal(entity1.hobby, entity2.hobby)
+83. Content(entity1.hobby, entity2.hobby)
+84. Relation(entity1.name, entity2.name)
+85. entity1.education = "Masters"
+86. entity2.education = "Bachelors"
+87. "does not have".source = "Masters"
+88. "does not have".target = "Bachelors"
+89. "establishes and improves".source = "Masters"
+90. "establishes and improves".target = "Bachelors"
+91. "guides".source = "Masters"
+92. "guides".target = "Bachelors"
+93. "provides guidance and education for".source = "Masters"
+94. "provides guidance and education for".target = "Bachelors"
+95. M_NLI(entity1.education, entity2.education)
+96. T("Alice has a Masters degree", "Alice does not have a Masters degree", tau)
+97. tau(entity1.education, entity2.education)
+98. violate(entity1.education, entity2.education)
+99. Factual(entity1.education, entity2.education)
+100. Causal(entity1.education, entity2.education)
+violate(x0, y0)
+
+Rules:
+1. Q[x0, y0](entity1.name = "Alice" ∧ entity2.name = "Bob" → violate(x0, y0))
+2. Q[x0, y0](entity1.age = 30 ∧ entity2.age = 25 → violate(x0, y0))
+3. Q[x0, y0](entity1.occupation = "Engineer" ∧ entity2.occupation = "Doctor" → violate(x0, y0))
+4. Q[x0, y0](entity1.name = "Alice" ∧ "does not have".source = "Alice" → violate(x0, y0))
+5. Q[x0, y0](entity1.age = 30 ∧ "does not have".target = "Bob" → violate(x0, y0))
+6. Q[x0, y0](entity1.occupation = "Engineer" ∧ "establishes and improves".target = "Bob" → violate(x0, y0))
+7. Q[x0, y0](entity1.name = "Alice" ∧ entity2.name = "Bob" ∧ "guides".source = "Alice" → violate(x0, y0))
+8. Q[x0, y0](entity1.age = 30 ∧ entity2.age = 25 ∧ "provides guidance and education for".source = "Alice" → violate(x0, y0))
+9. Q[x0, y0](entity1.occupation = "Engineer" ∧ entity2.occupation = "Doctor" ∧ "does not have".source = "Alice" → violate(x0, y0))
+10. Q[x0, y0](entity1.name = "Alice" ∧ entity2.name = "Bob" ∧ "establishes and improves".target = "Bob" ∧ "guides".source = "Alice" → violate(x0, y0))
+11. Q[x0, y0](entity1.age = 30 ∧ entity2.age = 25 ∧ "does not have".source = "Alice" ∧ "provides guidance and education for".target = "Bob" → violate(x0, y0))
+12. Q[x0, y0](entity1.occupation = "Engineer" ∧ entity2.occupation = "Doctor" ∧ "guides".source = "Alice" ∧ "provides guidance and education for".target = "Bob" → violate(x0, y0))
+13. Q[x0, y0](entity1.name = "Alice" ∧ entity2.name = "Bob" ∧ "does not have".source = "Alice" ∧ "does not have".target = "Bob" ∧ "guides".source = "Alice" → violate(x0, y0))
+14. Q[x0, y0](entity1.age = 30 ∧ entity2.age = 25 ∧ "establishes and improves".source = "Alice" ∧ "provides guidance and education for".target = "Bob" ∧ "guides".source = "Alice" → violate(x0, y0))
+15. Q[x0, y0](entity1.occupation = "Engineer" ∧ entity2.occupation = "Doctor" ∧ "does not have".source = "Alice" ∧ "does not have".target = "Bob" ∧ "establishes and improves".target = "Bob" → violate(x0, y0))
+16. Q[x0, y0](entity1.location = "New York" ∧ entity2.location = "Los Angeles" → violate(x0, y0))
+17. Q[x0, y0](entity1.hobby = "Reading" ∧ entity2.hobby = "Sports" → violate(x0, y0))
+18. Q[x0, y0](entity1.education = "Masters" ∧ entity2.education = "Bachelors" → violate(x0, y0))
+19. Q[x0, y0](entity1.location = "New York" ∧ "does not have".source = "New York" → violate(x0, y0))
+20. Q[x0, y0](entity1.hobby = "Reading" ∧ "does not have".target = "Sports" → violate(x0, y0))
+21. Q[x0, y0](entity1.education = "Masters" ∧ "establishes and improves".target = "Bachelors" → violate(x0, y0))
+22. Q[x0, y0](entity1.location = "New York" ∧ entity2.location = "Los Angeles" ∧ "guides".source = "New York" → violate(x0, y0))
+23. Q[x0, y0](entity1.hobby = "Reading" ∧ entity2.hobby = "Sports" ∧ "provides guidance and education for".source = "Reading" → violate(x0, y0))
+24. Q[x0, y0](entity1.education = "Masters" ∧ entity2.education = "Bachelors" ∧ "does not have".source = "Masters" → violate(x0, y0))
+25. Q[x0, y0](entity1.location = "New York" ∧ entity2.location = "Los Angeles" ∧ "does not have".target = "Los Angeles" ∧ "guides".source = "New York" → violate(x0, y0))
+26. Q[x0, y0](entity1.hobby = "Reading" ∧ entity2.hobby = "Sports" ∧ "establishes and improves".source = "Reading" ∧ "provides guidance and education for".target = "Sports" → violate(x0, y0))
+27. Q[x0, y0](entity1.education = "Masters" ∧ entity2.education = "Bachelors" ∧ "guides".source = "Masters" ∧ "does not have".target = "Bachelors" → violate(x0, y0))
+28. Q[x0, y0](entity1.name = "Alice" ∧ entity2.name = "Bob" ∧ "does not have".source = "Alice" ∧ "does not have".target = "Bob" ∧ "establishes and improves".target = "Bob" ∧ "guides".source = "Alice" → violate(x0, y0))
+29. Q[x0, y0](entity1.age = 30 ∧ entity2.age = 25 ∧ "does not have".source = "Alice" ∧ "provides guidance and education for".target = "Bob" ∧ "guides".source = "Alice" ∧ "establishes and improves".target = "Bob" → violate(x0, y0))
+30. Q[x0, y0](entity1.occupation = "Engineer" ∧ entity2.occupation = "Doctor" ∧ "does not have".source = "Alice" ∧ "does not have".target = "Bob

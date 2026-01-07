@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 297)
+S1: On 2 December 2010, it was announced that Qatar will host the 2022 FIFA World Cup.
+S2: Qatar will not be the host of the World Cup.
+
+Predicates:
+1. Announcement.date
+2. Qatar.hosts.World_Cup
+3. World_Cup.year
+4. Qatar.negation.hosts.World_Cup
+5. S1.announces.hosting
+6. S2.declares.not_hosting
+7. FIFA.World_Cup.year
+8. Qatar.2022.World_Cup
+9. S1.date
+10. S2.date
+11. Qatar.2022.hosting_status
+12. Hosting.decision.date
+13. World_Cup.hosting_country
+14. Qatar.2022.FIFA_event
+15. S1.hosting.decision
+16. S2.hosting.decision
+17. Announcement.source
+18. S1.2022.FIFA_event
+19. S2.2022.FIFA_event
+20. Qatar.2022.event_status
+21. Negation(Qatar.hosts.World_Cup, Qatar.negation.hosts.World_Cup)
+22. M_NLI(S1, S2)
+23. Violate(S1, S2)
+24. Qatar.hosting.decision
+25. FIFA.event.hosting
+26. S1.2022.decision
+27. S2.2022.decision
+28. World_Cup.hosting.announcement
+29. Qatar.hosting.announcement
+30. S1.announcement.source
+
+Rules:
+1. Q[December, Qatar.hosts.World_Cup, Qatar.negation.hosts.World_Cup](S1.announcement.source == "FIFA" → Negation(Qatar.hosts.World_Cup, Qatar.negation.hosts.World_Cup))
+2. Q[World_Cup, Qatar.hosts.World_Cup, Qatar.negation.hosts.World_Cup](Qatar.hosts.World_Cup == true → Negation(Qatar.hosts.World_Cup, Qatar.negation.hosts.World_Cup))
+3. Q[2022, Qatar.hosts.World_Cup, Qatar.negation.hosts.World_Cup](World_Cup.year == 2022 → Negation(Qatar.hosts.World_Cup, Qatar.negation.hosts.World_Cup))
+4. Q[Qatar, Qatar.hosts.World_Cup, Qatar.negation.hosts.World_Cup](Qatar.hosts.World_Cup == true → Negation(Qatar.hosts.World_Cup, Qatar.negation.hosts.World_Cup))
+5. Q[announcement, S1.announces.hosting, S2.declares.not_hosting](S1.announces.hosting == true → Negation(S1.announces.hosting, S2.declares.not_hosting))
+6. Q[date, S1.date, S2.date](S1.date == "2 December 2010" → Negation(S1.date, S2.date))
+7. Q[hosting, S1.hosting.decision, S2.hosting.decision](S1.hosting.decision == true → Negation(S1.hosting.decision, S2.hosting.decision))
+8. Q[Qatar, Qatar.2022.hosting_status, Qatar.negation.hosts.World_Cup](Qatar.2022.hosting_status == "hosts" → Negation(Qatar.2022.hosting_status, Qatar.negation.hosts.World_Cup))
+9. Q[World_Cup, FIFA.event.hosting, Qatar.negation.hosts.World_Cup](FIFA.event.hosting == "Qatar" → Negation(FIFA.event.hosting, Qatar.negation.hosts.World_Cup))
+10. Q[Qatar, S1.2022.FIFA_event, S2.2022.FIFA_event](S1.2022.FIFA_event == true → Negation(S1.2022.FIFA_event, S2.2022.FIFA_event))
+11. Q[hosting, Qatar.hosting.announcement, Qatar.negation.hosts.World_Cup](Qatar.hosting.announcement == true → Negation(Qatar.hosting.announcement, Qatar.negation.hosts.World_Cup))
+12. Q[decision, S1.2022.decision, S2.2022.decision](S1.2022.decision == true → Negation(S1.2022.decision, S2.2022.decision))
+13. Q[date, Hosting.decision.date, S2.date](Hosting.decision.date == "2 December 2010" → Negation(Hosting.decision.date, S2.date))
+14. Q[Qatar, Qatar.2022.event_status, Qatar.negation.hosts.World_Cup](Qatar.2022.event_status == "confirmed" → Negation(Qatar.2022.event_status, Qatar.negation.hosts.World_Cup))
+15. Q[World_Cup, World_Cup.hosting_country, Qatar.negation.hosts.World_Cup](World_Cup.hosting_country == "Qatar" → Negation(World_Cup.hosting_country, Qatar.negation.hosts.World_Cup))
+16. Q[announcement, S1.hosting.decision, S2.hosting.decision](S1.hosting.decision == true → Negation(S1.hosting.decision, S2.hosting.decision))
+17. Q[date, S1.date, S2.date](S1.date == "2 December 2010" → Negation(S1.date, S2.date))
+18. Q[Qatar, Qatar.2022.FIFA_event, Qatar.negation.hosts.World_Cup](Qatar.2022.FIFA_event == true → Negation(Qatar.2022.FIFA_event, Qatar.negation.hosts.World_Cup))
+19. Q[World_Cup, Qatar.hosting.decision, Qatar.negation.hosts.World_Cup](Qatar.hosting.decision == true → Negation(Qatar.hosting.decision, Qatar.negation.hosts.World_Cup))
+20. Q[Qatar, Qatar.hosts.World_Cup, S2.declares.not_hosting](S2.declares.not_hosting == true → Negation(Qatar.hosts.World_Cup, S2.declares.not_hosting))
+21. Q[date, S1.date, S2.date](S2.date == "unknown" → Negation(S1.date, S2.date))
+22. Q[Qatar, Qatar.2022.hosting_status, S2.declares.not_hosting](S2.declares.not_hosting == true → Negation(Qatar.2022.hosting_status, S2.declares.not_hosting))
+23. Q[World_Cup, FIFA.World_Cup.year, Qatar.negation.hosts.World_Cup](FIFA.World_Cup.year == 2022 → Negation(FIFA.World_Cup.year, Qatar.negation.hosts.World_Cup))
+24. Q[announcement, Qatar.hosting.announcement, S2.declares.not_hosting](S2.declares.not_hosting == true → Negation(Qatar.hosting.announcement, S2.declares.not_hosting))
+25. Q[date, Hosting.decision.date, S2.date](S2.date == "not applicable" → Negation(Hosting.decision.date, S2.date))
+26. Q[Qatar, Qatar.2022.hosting_status, S2.declares.not_hosting](S2.declares.not_hosting == true → Negation(Qatar.2022.hosting_status, S2.declares.not_hosting))
+27. Q[World_Cup, Qatar.hosts.World_Cup, S2.declares.not_hosting](S2.declares.not_hosting == true → Negation(Qatar.hosts.World_Cup, S2.declares.not_hosting))
+28. Q[announcement, S1.2022.FIFA_event, S2.2022.FIFA_event](S2.2022.FIFA_event == false → Negation(S1.2022.FIFA_event, S2.2022.FIFA_event))
+29. Q[date, S1.date, S2.date](S1.date == "2 December 2010" → Negation(S1.date, S2.date))
+30. Q[Qatar, Qatar.hosts.World_Cup, Qatar.negation.hosts.World_Cup](Qatar.hosts.World_Cup == true → Negation(Qatar.hosts.World_Cup, Qatar.negation.hosts.World_Cup))

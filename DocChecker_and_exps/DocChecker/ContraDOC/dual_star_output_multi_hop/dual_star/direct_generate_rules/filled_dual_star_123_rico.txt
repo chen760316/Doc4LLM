@@ -1,0 +1,78 @@
+Predicates:
+Indiana.label != "State"
+Indiana.label != Mike Pence.label
+Indiana.label != Scott Walker.label
+Indiana.label = "State"
+Indiana.name != "Indiana"
+Indiana.name != Mike Pence.name
+Indiana.name != Scott Walker.name
+Indiana.name = "Indiana"
+Jeb Bush.label != "Person"
+Jeb Bush.label != Indiana.label
+Jeb Bush.label = "Person"
+Jeb Bush.name != "Jeb Bush"
+Jeb Bush.name != Indiana.name
+Jeb Bush.name != Mike Pence.name
+Jeb Bush.name != Scott Walker.name
+Jeb Bush.name = "Jeb Bush"
+Jeb Bush.nationality != "American"
+Jeb Bush.nationality = "American"
+Jeb Bush.occupation != "political candidate"
+Jeb Bush.occupation != Mike Pence.occupation
+Jeb Bush.occupation != Scott Walker.occupation
+Jeb Bush.occupation = "political candidate"
+Jeb Bush___Indiana.context != Jeb Bush___Scott Walker.context
+Jeb Bush___Indiana.context = "political response to backlash"
+Jeb Bush___Indiana.doc_id != Jeb Bush___Mike Pence.doc_id
+Jeb Bush___Indiana.doc_id != Jeb Bush___Scott Walker.doc_id
+Jeb Bush___Indiana.doc_id = "3489825766_2"
+Jeb Bush___Indiana.relationship != Jeb Bush___Mike Pence.relationship
+Jeb Bush___Indiana.relationship != Jeb Bush___Scott Walker.relationship
+Jeb Bush___Indiana.relationship = "Jeb Bush moderated his support for Indiana's religious freedom law after backlash."
+Jeb Bush___Mike Pence.doc_id = "3489738271_1"
+Jeb Bush___Mike Pence.relationship = "Jeb Bush defended Mike Pence and the Religious Freedom Law."
+Jeb Bush___Scott Walker.context = "Republican primary"
+Jeb Bush___Scott Walker.doc_id != Jeb Bush___Mike Pence.doc_id
+Jeb Bush___Scott Walker.doc_id = "3489825779_10"
+Jeb Bush___Scott Walker.relationship != Jeb Bush___Mike Pence.relationship
+Jeb Bush___Scott Walker.relationship = "Jeb Bush and Scott Walker are among the likely candidates for the 2016 presidential election."
+Mike Pence.label != "Person"
+Mike Pence.label = "Person"
+Mike Pence.location != "Indiana"
+Mike Pence.location = "Indiana"
+Mike Pence.name != "Mike Pence"
+Mike Pence.name = "Mike Pence"
+Mike Pence.nationality != "American"
+Mike Pence.nationality = "American"
+Mike Pence.occupation != "Governor"
+Mike Pence.occupation = "Governor"
+Mike Pence.status != "political candidate"
+Mike Pence.status = "political candidate"
+None_ML(Jeb Bush.attrs, Mike Pence.attrs)
+None_ML(Jeb Bush___Mike Pence.attrs, Jeb Bush___Scott Walker.attrs)
+Scott Walker.label != "Person"
+Scott Walker.label = "Person"
+Scott Walker.location != "Wisconsin"
+Scott Walker.location != Mike Pence.location
+Scott Walker.location = "Wisconsin"
+Scott Walker.name != "Scott Walker"
+Scott Walker.name != Mike Pence.name
+Scott Walker.name = "Scott Walker"
+Scott Walker.nationality != "American"
+Scott Walker.nationality = "American"
+Scott Walker.occupation != "Governor"
+Scott Walker.occupation = "Governor"
+Scott Walker.status != "political candidate"
+Scott Walker.status = "political candidate"
+
+Rules:
+Q[Jeb Bush,Jeb Bush] (Jeb Bush.label != "Person" ∧ Jeb Bush.occupation != Mike Pence.occupation ∧ Jeb Bush.occupation = "political candidate" → Jeb Bush___Scott Walker.doc_id != Jeb Bush___Mike Pence.doc_id)
+Q[Jeb Bush,Jeb Bush] (Scott Walker.location != Mike Pence.location ∧ Scott Walker.occupation = "Governor" ∧ Indiana.name = "Indiana" ∧ Jeb Bush___Indiana.doc_id != Jeb Bush___Scott Walker.doc_id ∧ Jeb Bush.name = "Jeb Bush" → Scott Walker.name != Mike Pence.name)
+Q[Jeb Bush,Jeb Bush] (Mike Pence.status != "political candidate" ∧ Jeb Bush.name != Scott Walker.name ∧ Indiana.name != "Indiana" ∧ Jeb Bush.label != "Person" → None_ML(Jeb Bush.attrs, Mike Pence.attrs))
+Q[Jeb Bush,Jeb Bush] (Scott Walker.location != Mike Pence.location ∧ Jeb Bush___Mike Pence.relationship = "Jeb Bush defended Mike Pence and the Religious Freedom Law." ∧ Jeb Bush___Scott Walker.doc_id = "3489825779_10" ∧ Scott Walker.location = "Wisconsin" ∧ Mike Pence.status != "political candidate" ∧ Jeb Bush.name != "Jeb Bush" → Indiana.label != Mike Pence.label)
+Q[Jeb Bush,Jeb Bush] (Scott Walker.occupation != "Governor" ∧ Jeb Bush.name != Mike Pence.name → Mike Pence.name = "Mike Pence")
+Q[Jeb Bush,Jeb Bush] (Mike Pence.status != "political candidate" ∧ Scott Walker.occupation != "Governor" ∧ Mike Pence.occupation = "Governor" ∧ Jeb Bush.occupation = "political candidate" ∧ Jeb Bush___Indiana.context != Jeb Bush___Scott Walker.context → Scott Walker.name != "Scott Walker")
+Q[Jeb Bush,Jeb Bush] (Jeb Bush___Scott Walker.context = "Republican primary" ∧ Mike Pence.label = "Person" ∧ Jeb Bush.nationality != "American" ∧ Jeb Bush___Mike Pence.relationship = "Jeb Bush defended Mike Pence and the Religious Freedom Law." → Scott Walker.occupation = "Governor")
+Q[Jeb Bush,Jeb Bush] (Scott Walker.status = "political candidate" ∧ Indiana.name = "Indiana" ∧ Indiana.label != Mike Pence.label → Indiana.label = "State")
+Q[Jeb Bush,Jeb Bush] (Jeb Bush.occupation != "political candidate" ∧ Jeb Bush.name != Mike Pence.name → Jeb Bush___Scott Walker.relationship != Jeb Bush___Mike Pence.relationship)
+Q[Jeb Bush,Jeb Bush] (Indiana.name != Mike Pence.name ∧ Jeb Bush___Mike Pence.relationship = "Jeb Bush defended Mike Pence and the Religious Freedom Law." ∧ Mike Pence.status != "political candidate" ∧ Mike Pence.nationality = "American" ∧ Scott Walker.occupation = "Governor" ∧ Jeb Bush.name != Mike Pence.name → Jeb Bush___Indiana.context != Jeb Bush___Scott Walker.context)

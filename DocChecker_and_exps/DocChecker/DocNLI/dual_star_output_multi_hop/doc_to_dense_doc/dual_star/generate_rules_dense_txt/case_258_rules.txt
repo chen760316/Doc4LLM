@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 258)
+S1: I don't sleep much, between my arthritis and the lights in my cell, which are kept on 24 hours a day.
+S2: I am allowed out of my cell for one hour a day, which he spends in a small courtyard with high walls and limited views of the sky and nothing else.
+
+Predicates:
+1. Person.sleep_duration
+2. Person.arthritis_condition
+3. Cell.lights_status
+4. Cell.lights_duration
+5. Person.cell_time
+6. Person.outside_time
+7. Courtyard.wall_height
+8. Courtyard.sky_view
+9. Person.allowed_out_time
+10. Person.courtyard_activity
+11. Cell.continuous_state
+12. Time.hourly_schedule
+13. Time.cell_time
+14. Time.outside_time
+15. Person.perception_of_time
+16. Person.experience_of_cell
+17. Person.experience_of_courtyard
+18. Cell.environment
+19. Courtyard.environment
+20. Person.limited_views
+21. Person.sense_of_time
+22. M_NLI(S1, S2)
+23. Temporal(cell_time, outside_time)
+24. violate(cell_time, outside_time)
+25. Cell.lights_on
+26. Person.mental_state
+27. Person.physical_condition
+28. Time.courtyard_duration
+29. Time.cell_duration
+30. Person.sense_of_reality
+
+Rules:
+1. Q[lights, Person.sleep_duration, Time.cell_duration](Person.sleep_duration == "low" → Temporal(Person.sleep_duration, Time.cell_duration))
+2. Q[lights, Cell.lights_status, Cell.lights_duration](Cell.lights_status == "on" → Temporal(Cell.lights_status, Cell.lights_duration))
+3. Q[cell, Person.cell_time, Time.cell_time](Person.cell_time == "continuous" → Temporal(Person.cell_time, Time.cell_time))
+4. Q[allowed, Person.allowed_out_time, Time.outside_time](Person.allowed_out_time == "one hour" → Temporal(Person.allowed_out_time, Time.outside_time))
+5. Q[courtyard, Person.outside_time, Time.outside_time](Person.outside_time == "one hour" → Temporal(Person.outside_time, Time.outside_time))
+6. Q[lights, Cell.lights_duration, Time.cell_duration](Cell.lights_duration == "24 hours" → Temporal(Cell.lights_duration, Time.cell_duration))
+7. Q[cell, Person.experience_of_cell, Time.cell_time](Person.experience_of_cell == "continuous" → Temporal(Person.experience_of_cell, Time.cell_time))
+8. Q[courtyard, Person.experience_of_courtyard, Time.outside_time](Person.experience_of_courtyard == "limited" → Temporal(Person.experience_of_courtyard, Time.outside_time))
+9. Q[allowed, Person.courtyard_activity, Time.outside_time](Person.courtyard_activity == "limited" → Temporal(Person.courtyard_activity, Time.outside_time))
+10. Q[lights, Cell.lights_on, Cell.lights_duration](Cell.lights_on == "true" → Temporal(Cell.lights_on, Cell.lights_duration))
+11. Q[cell, Person.mental_state, Time.cell_time](Person.mental_state == "affected" → Temporal(Person.mental_state, Time.cell_time))
+12. Q[arthritis, Person.arthritis_condition, Person.sleep_duration](Person.arthritis_condition == "present" → Temporal(Person.arthritis_condition, Person.sleep_duration))
+13. Q[views, Person.limited_views, Courtyard.sky_view](Person.limited_views == "true" → Temporal(Person.limited_views, Courtyard.sky_view))
+14. Q[cell, Cell.environment, Time.cell_time](Cell.environment == "constant" → Temporal(Cell.environment, Time.cell_time))
+15. Q[courtyard, Courtyard.environment, Time.outside_time](Courtyard.environment == "restricted" → Temporal(Courtyard.environment, Time.outside_time))
+16. Q[lights, Cell.continuous_state, Time.cell_duration](Cell.continuous_state == "true" → Temporal(Cell.continuous_state, Time.cell_duration))
+17. Q[allowed, Person.sense_of_time, Time.outside_time](Person.sense_of_time == "distorted" → Temporal(Person.sense_of_time, Time.outside_time))
+18. Q[cell, Person.physical_condition, Time.cell_time](Person.physical_condition == "deteriorating" → Temporal(Person.physical_condition, Time.cell_time))
+19. Q[courtyard, Courtyard.wall_height, Person.outside_time](Courtyard.wall_height == "high" → Temporal(Courtyard.wall_height, Person.outside_time))
+20. Q[lights, Cell.lights_duration, Time.cell_duration](Cell.lights_duration == "24 hours" → Temporal(Cell.lights_duration, Time.cell_duration))
+21. Q[cell, Person.sense_of_reality, Time.cell_time](Person.sense_of_reality == "confused" → Temporal(Person.sense_of_reality, Time.cell_time))
+22. Q[allowed, Person.cell_time, Time.cell_time](Person.cell_time == "most of the day" → Temporal(Person.cell_time, Time.cell_time))
+23. Q[courtyard, Person.outside_time, Time.outside_time](Person.outside_time == "limited" → Temporal(Person.outside_time, Time.outside_time))
+24. Q[lights, Cell.lights_on, Time.cell_duration](Cell.lights_on == "on" → Temporal(Cell.lights_on, Time.cell_duration))
+25. Q[cell, Person.perception_of_time, Time.cell_time](Person.perception_of_time == "altered" → Temporal(Person.perception_of_time, Time.cell_time))
+26. Q[courtyard, Person.sense_of_time, Time.outside_time](Person.sense_of_time == "disrupted" → Temporal(Person.sense_of_time, Time.outside_time))
+27. Q[allowed, Person.cell_time, Time.cell_time](Person.cell_time == "long" → Temporal(Person.cell_time, Time.cell_time))
+28. Q[courtyard, Person.courtyard_activity, Time.outside_time](Person.courtyard_activity == "minimal" → Temporal(Person.courtyard_activity, Time.outside_time))
+29. Q[lights, Cell.lights_status, Time.cell_duration](Cell.lights_status == "always on" → Temporal(Cell.lights_status, Time.cell_duration))
+30. Q[cell, Person.experience_of_cell, Time.cell_time](Person.experience_of_cell == "monotonous" → Temporal(Person.experience_of_cell, Time.cell_time))

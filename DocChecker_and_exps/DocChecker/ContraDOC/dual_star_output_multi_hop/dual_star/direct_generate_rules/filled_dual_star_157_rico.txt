@@ -1,0 +1,47 @@
+Predicates:
+Isabel Boncassen.label != "Heiress"
+Isabel Boncassen.label = "Heiress"
+Isabel Boncassen.name != "Isabel Boncassen"
+Isabel Boncassen.name = "Isabel Boncassen"
+Isabel Boncassen.nationality != "American"
+Isabel Boncassen.nationality = "American"
+Isabel Boncassen.relationship_with_silverbridge != "fiancée"
+Isabel Boncassen.relationship_with_silverbridge = "fiancée"
+Lady Mabel Grex.label != "Lady"
+Lady Mabel Grex.label != Isabel Boncassen.label
+Lady Mabel Grex.label = "Lady"
+Lady Mabel Grex.name != "Lady Mabel Grex"
+Lady Mabel Grex.name != Isabel Boncassen.name
+Lady Mabel Grex.name = "Lady Mabel Grex"
+Lady Mabel Grex.relationship_with_silverbridge != "suitor"
+Lady Mabel Grex.relationship_with_silverbridge != Isabel Boncassen.relationship_with_silverbridge
+Lady Mabel Grex.relationship_with_silverbridge = "suitor"
+Lord Silverbridge.label != "Child"
+Lord Silverbridge.label != Isabel Boncassen.label
+Lord Silverbridge.label != Lady Mabel Grex.label
+Lord Silverbridge.label = "Child"
+Lord Silverbridge.name != "Lord Silverbridge"
+Lord Silverbridge.name != Isabel Boncassen.name
+Lord Silverbridge.name != Lady Mabel Grex.name
+Lord Silverbridge.name = "Lord Silverbridge"
+Lord Silverbridge___Isabel Boncassen.condition = "Duke must welcome her into the family"
+Lord Silverbridge___Isabel Boncassen.doc_id = "3488771911_1"
+Lord Silverbridge___Isabel Boncassen.relationship = "Lord Silverbridge becomes enamoured with Isabel Boncassen."
+Lord Silverbridge___Lady Mabel Grex.doc_id = "3488771911_1"
+Lord Silverbridge___Lady Mabel Grex.relationship != Lord Silverbridge___Isabel Boncassen.relationship
+Lord Silverbridge___Lady Mabel Grex.relationship = "Lord Silverbridge proposed to Lady Mabel Grex."
+Lord Silverbridge___Lady Mabel Grex.response = "turned him down"
+None_ML(Lady Mabel Grex.attrs, Lord Silverbridge.attrs)
+None_ML(Lord Silverbridge___Isabel Boncassen.attrs, Lord Silverbridge___Lady Mabel Grex.attrs)
+
+Rules:
+Q[Lord Silverbridge,Lord Silverbridge] (Isabel Boncassen.relationship_with_silverbridge != "fiancée" ∧ Isabel Boncassen.relationship_with_silverbridge = "fiancée" ∧ Lady Mabel Grex.name != Isabel Boncassen.name ∧ Isabel Boncassen.name != "Isabel Boncassen" → Lady Mabel Grex.name = "Lady Mabel Grex")
+Q[Lord Silverbridge,Lord Silverbridge] (Lady Mabel Grex.label = "Lady" ∧ None_ML(Lord Silverbridge___Isabel Boncassen.attrs, Lord Silverbridge___Lady Mabel Grex.attrs) ∧ Isabel Boncassen.relationship_with_silverbridge != "fiancée" → Lady Mabel Grex.label != "Lady")
+Q[Lord Silverbridge,Lord Silverbridge] (Isabel Boncassen.nationality = "American" ∧ Lord Silverbridge___Lady Mabel Grex.relationship != Lord Silverbridge___Isabel Boncassen.relationship → Lady Mabel Grex.relationship_with_silverbridge = "suitor")
+Q[Lord Silverbridge,Lord Silverbridge] (Lord Silverbridge.name = "Lord Silverbridge" ∧ Lord Silverbridge___Lady Mabel Grex.doc_id = "3488771911_1" ∧ Lord Silverbridge___Lady Mabel Grex.relationship = "Lord Silverbridge proposed to Lady Mabel Grex." ∧ Lord Silverbridge.name != Lady Mabel Grex.name ∧ Lord Silverbridge___Isabel Boncassen.doc_id = "3488771911_1" ∧ Lord Silverbridge.label != Isabel Boncassen.label → Lord Silverbridge___Isabel Boncassen.condition = "Duke must welcome her into the family")
+Q[Lord Silverbridge,Lord Silverbridge] (Lady Mabel Grex.relationship_with_silverbridge = "suitor" ∧ Lord Silverbridge___Isabel Boncassen.doc_id = "3488771911_1" ∧ Lord Silverbridge.name = "Lord Silverbridge" ∧ Lord Silverbridge___Isabel Boncassen.relationship = "Lord Silverbridge becomes enamoured with Isabel Boncassen." ∧ Isabel Boncassen.nationality = "American" → None_ML(Lord Silverbridge___Isabel Boncassen.attrs, Lord Silverbridge___Lady Mabel Grex.attrs))
+Q[Lord Silverbridge,Lord Silverbridge] (Lord Silverbridge___Isabel Boncassen.condition = "Duke must welcome her into the family" ∧ Lord Silverbridge___Lady Mabel Grex.doc_id = "3488771911_1" ∧ Lord Silverbridge.label != Lady Mabel Grex.label ∧ Lady Mabel Grex.name != "Lady Mabel Grex" → None_ML(Lady Mabel Grex.attrs, Lord Silverbridge.attrs))
+Q[Lord Silverbridge,Lord Silverbridge] (Lord Silverbridge.name != "Lord Silverbridge" ∧ Lord Silverbridge.name = "Lord Silverbridge" ∧ Lady Mabel Grex.relationship_with_silverbridge != "suitor" ∧ Lord Silverbridge___Isabel Boncassen.condition = "Duke must welcome her into the family" ∧ None_ML(Lady Mabel Grex.attrs, Lord Silverbridge.attrs) → Lady Mabel Grex.name != "Lady Mabel Grex")
+Q[Lord Silverbridge,Lord Silverbridge] (Lady Mabel Grex.relationship_with_silverbridge = "suitor" ∧ Lord Silverbridge___Lady Mabel Grex.response = "turned him down" ∧ Lord Silverbridge.label != "Child" → Isabel Boncassen.name = "Isabel Boncassen")
+Q[Lord Silverbridge,Lord Silverbridge] (Lady Mabel Grex.name != "Lady Mabel Grex" ∧ Lord Silverbridge___Isabel Boncassen.condition = "Duke must welcome her into the family" → Lord Silverbridge___Lady Mabel Grex.relationship = "Lord Silverbridge proposed to Lady Mabel Grex.")
+Q[Lord Silverbridge,Lord Silverbridge] (Lord Silverbridge___Lady Mabel Grex.doc_id = "3488771911_1" ∧ Isabel Boncassen.nationality = "American" ∧ Lady Mabel Grex.relationship_with_silverbridge != "suitor" ∧ Lord Silverbridge___Lady Mabel Grex.relationship = "Lord Silverbridge proposed to Lady Mabel Grex." ∧ Lord Silverbridge.label = "Child" ∧ Lord Silverbridge.name != Isabel Boncassen.name → Isabel Boncassen.relationship_with_silverbridge = "fiancée")

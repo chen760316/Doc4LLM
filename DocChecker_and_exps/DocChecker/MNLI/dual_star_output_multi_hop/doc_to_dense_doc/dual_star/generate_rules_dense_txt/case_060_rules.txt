@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 60)
+S1: I only have domestic vehicles.
+S2: yeah already have foreign cars
+
+Predicates:
+1. Vehicle.possession = domestic
+2. Vehicle.possession = foreign
+3. M_NLI(S1, S2)
+4. Factual(S1, possession)
+5. Factual(S2, possession)
+6. violate(S1, S2)
+7. Vehicle.type = domestic
+8. Vehicle.type = foreign
+9. Person.has(Vehicle) = domestic
+10. Person.has(Vehicle) = foreign
+11. Assertion.possession(S1) = only domestic
+12. Assertion.possession(S2) = foreign
+13. Relationship.assertion(S1, S2) = contradict
+14. Entity.Person.vehicles = domestic
+15. Entity.Person.vehicles = foreign
+16. Edge.relationship(S1, S2) = contradiction
+17. Meta.assertion(S1) = true
+18. Meta.assertion(S2) = false
+19. Vehicle.category(S1) = domestic
+20. Vehicle.category(S2) = foreign
+21. Person.owns(Vehicle) = domestic
+22. Person.owns(Vehicle) = foreign
+23. Factual(Assertion(S1), Assertion(S2))
+24. M_NLI(S1, S2) = true
+25. M_NLI(S1, S2) = false
+26. Possession.type(S1) = exclusive
+27. Possession.type(S2) = inclusive
+28. Entity.Person.ownership = domestic
+29. Entity.Person.ownership = foreign
+30. Edge.relationship(S1, S2) = possession conflict
+
+Rules:
+1. Q[only, x0, y0](Assertion.possession(S1) = only domestic → Factual(x0, y0))
+2. Q[only, x0, y0](Person.has(Vehicle) = domestic → Factual(x0, y0))
+3. Q[only, x0, y0](Entity.Person.vehicles = domestic → Factual(x0, y0))
+4. Q[only, x0, y0](Vehicle.possession = domestic → Factual(x0, y0))
+5. Q[only, x0, y0](Meta.assertion(S1) = true → Factual(x0, y0))
+6. Q[only, x0, y0](Possession.type(S1) = exclusive → Factual(x0, y0))
+7. Q[only, x0, y0](Assertion.possession(S2) = foreign → Factual(x0, y0))
+8. Q[only, x0, y0](Person.has(Vehicle) = foreign → Factual(x0, y0))
+9. Q[only, x0, y0](Entity.Person.vehicles = foreign → Factual(x0, y0))
+10. Q[only, x0, y0](Vehicle.possession = foreign → Factual(x0, y0))
+11. Q[only, x0, y0](Meta.assertion(S2) = false → Factual(x0, y0))
+12. Q[only, x0, y0](Possession.type(S2) = inclusive → Factual(x0, y0))
+13. Q[only, x0, y0](Relationship.assertion(S1, S2) = contradict → Factual(x0, y0))
+14. Q[only, x0, y0](Edge.relationship(S1, S2) = contradiction → Factual(x0, y0))
+15. Q[only, x0, y0](M_NLI(S1, S2) = true → Factual(x0, y0))
+16. Q[only, x0, y0](Factual(S1, possession) → Factual(x0, y0))
+17. Q[only, x0, y0](Factual(S2, possession) → Factual(x0, y0))
+18. Q[only, x0, y0](Vehicle.type = domestic → Factual(x0, y0))
+19. Q[only, x0, y0](Vehicle.type = foreign → Factual(x0, y0))
+20. Q[only, x0, y0](Entity.Person.ownership = domestic → Factual(x0, y0))
+21. Q[only, x0, y0](Entity.Person.ownership = foreign → Factual(x0, y0))
+22. Q[only, x0, y0](violate(S1, S2) → Factual(x0, y0))
+23. Q[only, x0, y0](Edge.relationship(S1, S2) = possession conflict → Factual(x0, y0))
+24. Q[only, x0, y0](Assertion.possession(S1) = only domestic ∧ Assertion.possession(S2) = foreign → Factual(x0, y0))
+25. Q[only, x0, y0](Person.owns(Vehicle) = domestic ∧ Person.owns(Vehicle) = foreign → Factual(x0, y0))
+26. Q[only, x0, y0](M_NLI(S1, S2) = false → Factual(x0, y0))
+27. Q[only, x0, y0](Vehicle.category(S1) = domestic → Factual(x0, y0))
+28. Q[only, x0, y0](Vehicle.category(S2) = foreign → Factual(x0, y0))
+29. Q[only, x0, y0](Assertion.possession(S1) = only domestic ∧ Assertion.possession(S2) = foreign → Factual(x0, y0))
+30. Q[only, x0, y0](Person.has(Vehicle) = domestic ∧ Person.has(Vehicle) = foreign → Factual(x0, y0))

@@ -1,0 +1,52 @@
+Predicates:
+Dorothy Vaneman.label != "Character"
+Dorothy Vaneman.label = "Character"
+Dorothy Vaneman.name != "Dorothy Vaneman"
+Dorothy Vaneman.name = "Dorothy Vaneman"
+Dorothy Vaneman.relationship != "fiancée"
+Dorothy Vaneman.relationship = "fiancée"
+DuQuesne.label != "Person"
+DuQuesne.label != Dorothy Vaneman.label
+DuQuesne.label = "Person"
+DuQuesne.name != "DuQuesne"
+DuQuesne.name != Dorothy Vaneman.name
+DuQuesne.name = "DuQuesne"
+DuQuesne.role != "sabotager"
+DuQuesne.role = "sabotager"
+None_ML(Seaton.attrs, DuQuesne.attrs)
+None_ML(Seaton___Dorothy Vaneman.attrs, Seaton___DuQuesne.attrs)
+Seaton.label != "Person"
+Seaton.label != Dorothy Vaneman.label
+Seaton.label = "Person"
+Seaton.name != "Seaton"
+Seaton.name != Dorothy Vaneman.name
+Seaton.name != DuQuesne.name
+Seaton.name = "Seaton"
+Seaton.role != "hostage rescuer"
+Seaton.role != DuQuesne.role
+Seaton.role = "hostage rescuer"
+Seaton___Dorothy Vaneman.ceremony = "solemnized by the Kondalian monarchy"
+Seaton___Dorothy Vaneman.contradiction_type = "Temporal"
+Seaton___Dorothy Vaneman.relationship = "Seaton is married to Dorothy Vaneman."
+Seaton___Dorothy Vaneman.source_id = "3488771849_6"
+Seaton___DuQuesne.action = "promise extraction"
+Seaton___DuQuesne.context = "return to Earth"
+Seaton___DuQuesne.contradiction_type != Seaton___Dorothy Vaneman.contradiction_type
+Seaton___DuQuesne.contradiction_type = "Causal"
+Seaton___DuQuesne.location = "Earth"
+Seaton___DuQuesne.relationship != Seaton___Dorothy Vaneman.relationship
+Seaton___DuQuesne.relationship = "Seaton extracts a promise from DuQuesne to act as part of the group until they return to Earth."
+Seaton___DuQuesne.source_id != Seaton___Dorothy Vaneman.source_id
+Seaton___DuQuesne.source_id = "3488771849_4"
+
+Rules:
+Q[Seaton,Seaton] (Seaton___Dorothy Vaneman.relationship = "Seaton is married to Dorothy Vaneman." ∧ Seaton___DuQuesne.contradiction_type != Seaton___Dorothy Vaneman.contradiction_type ∧ Seaton.name != "Seaton" ∧ DuQuesne.name != Dorothy Vaneman.name → Dorothy Vaneman.name = "Dorothy Vaneman")
+Q[Seaton,Seaton] (None_ML(Seaton___Dorothy Vaneman.attrs, Seaton___DuQuesne.attrs) ∧ Seaton.name != "Seaton" ∧ Seaton.name != DuQuesne.name → Seaton___DuQuesne.action = "promise extraction")
+Q[Seaton,Seaton] (Seaton___Dorothy Vaneman.source_id = "3488771849_6" ∧ DuQuesne.name != Dorothy Vaneman.name ∧ Dorothy Vaneman.name = "Dorothy Vaneman" ∧ Seaton___DuQuesne.relationship = "Seaton extracts a promise from DuQuesne to act as part of the group until they return to Earth." ∧ Seaton.role != "hostage rescuer" → Seaton.role = "hostage rescuer")
+Q[Seaton,Seaton] (Seaton___DuQuesne.location = "Earth" ∧ DuQuesne.name = "DuQuesne" ∧ DuQuesne.label != "Person" ∧ Dorothy Vaneman.label != "Character" ∧ Seaton.name != DuQuesne.name ∧ Seaton.role != "hostage rescuer" → None_ML(Seaton___Dorothy Vaneman.attrs, Seaton___DuQuesne.attrs))
+Q[Seaton,Seaton] (Seaton.name != Dorothy Vaneman.name ∧ Seaton.label != Dorothy Vaneman.label → Seaton.name != DuQuesne.name)
+Q[Seaton,Seaton] (DuQuesne.name != "DuQuesne" ∧ DuQuesne.label != "Person" ∧ Seaton.label != Dorothy Vaneman.label ∧ Seaton___Dorothy Vaneman.relationship = "Seaton is married to Dorothy Vaneman." ∧ Seaton.label != "Person" ∧ Seaton.name != "Seaton" → Seaton___Dorothy Vaneman.source_id = "3488771849_6")
+Q[Seaton,Seaton] (Seaton.name != DuQuesne.name ∧ Seaton___DuQuesne.contradiction_type != Seaton___Dorothy Vaneman.contradiction_type ∧ DuQuesne.label = "Person" ∧ DuQuesne.label != Dorothy Vaneman.label → Seaton___Dorothy Vaneman.ceremony = "solemnized by the Kondalian monarchy")
+Q[Seaton,Seaton] (Seaton.label != "Person" ∧ None_ML(Seaton___Dorothy Vaneman.attrs, Seaton___DuQuesne.attrs) ∧ Dorothy Vaneman.name = "Dorothy Vaneman" → DuQuesne.role != "sabotager")
+Q[Seaton,Seaton] (Seaton___DuQuesne.source_id != Seaton___Dorothy Vaneman.source_id ∧ Seaton___DuQuesne.contradiction_type != Seaton___Dorothy Vaneman.contradiction_type → DuQuesne.name != "DuQuesne")
+Q[Seaton,Seaton] (Seaton.label != Dorothy Vaneman.label ∧ DuQuesne.role != "sabotager" ∧ DuQuesne.name = "DuQuesne" ∧ DuQuesne.label != "Person" ∧ Seaton___DuQuesne.relationship = "Seaton extracts a promise from DuQuesne to act as part of the group until they return to Earth." → Seaton___DuQuesne.source_id != Seaton___Dorothy Vaneman.source_id)

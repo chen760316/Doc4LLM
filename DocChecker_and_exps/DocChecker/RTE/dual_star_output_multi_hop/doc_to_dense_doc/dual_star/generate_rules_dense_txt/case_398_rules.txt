@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 398)
+S1: If toxic waste cyanide is not disposed of correctly, can drain in sewers, reservoirs, ponds, streams.
+S2: If toxic waste containing cyanide is not disposed of properly, it may drain into ponds, streams, sewers, and reservoirs.
+
+Predicates:
+1. ToxicWaste.cyanide
+2. DisposalMethod.correct
+3. DisposalMethod.proper
+4. DrainLocation.sewers
+5. DrainLocation.reservoirs
+6. DrainLocation.ponds
+7. DrainLocation.streams
+8. Outcome.certainty
+9. ToxicWaste.containsCyanide
+10. ToxicWaste.notDisposedCorrectly
+11. ToxicWaste.notDisposedProperly
+12. Causal(toxicWaste.notDisposedCorrectly, drainLocation.sewers)
+13. Causal(toxicWaste.notDisposedProperly, drainLocation.ponds)
+14. M_NLI(S1, S2)
+15. M_NLI(S2, S1)
+16. violate(toxicWaste.notDisposedCorrectly, drainLocation.streams)
+17. violate(toxicWaste.notDisposedProperly, drainLocation.reservoirs)
+18. DrainOutcome.mayDrain
+19. DrainOutcome.canDrain
+20. DisposalMethod.incorrect
+21. DisposalMethod.improper
+22. ToxicWaste.drainInto
+23. DrainLocation.mayContain
+24. ToxicWaste.isHazardous
+25. DrainLocation.isAffected
+26. Causal(toxicWaste.isHazardous, drainLocation.isAffected)
+27. Outcome.possible
+28. Outcome.improbable
+29. ToxicWaste.isNotSafe
+30. DrainLocation.isPolluted
+
+Rules:
+1. Q[toxic, ToxicWaste.notDisposedCorrectly, DrainLocation.sewers](ToxicWaste.cyanide == true ∧ DisposalMethod.correct == false → Causal(toxicWaste.notDisposedCorrectly, drainLocation.sewers))
+2. Q[toxic, ToxicWaste.notDisposedCorrectly, DrainLocation.ponds](ToxicWaste.cyanide == true ∧ DisposalMethod.correct == false → Causal(toxicWaste.notDisposedCorrectly, drainLocation.ponds))
+3. Q[toxic, ToxicWaste.notDisposedCorrectly, DrainLocation.streams](ToxicWaste.cyanide == true ∧ DisposalMethod.correct == false → Causal(toxicWaste.notDisposedCorrectly, drainLocation.streams))
+4. Q[toxic, ToxicWaste.notDisposedCorrectly, DrainLocation.reservoirs](ToxicWaste.cyanide == true ∧ DisposalMethod.correct == false → Causal(toxicWaste.notDisposedCorrectly, drainLocation.reservoirs))
+5. Q[toxic, ToxicWaste.notDisposedProperly, DrainLocation.sewers](ToxicWaste.containsCyanide == true ∧ DisposalMethod.proper == false → Causal(toxicWaste.notDisposedProperly, drainLocation.sewers))
+6. Q[toxic, ToxicWaste.notDisposedProperly, DrainLocation.ponds](ToxicWaste.containsCyanide == true ∧ DisposalMethod.proper == false → Causal(toxicWaste.notDisposedProperly, drainLocation.ponds))
+7. Q[toxic, ToxicWaste.notDisposedProperly, DrainLocation.streams](ToxicWaste.containsCyanide == true ∧ DisposalMethod.proper == false → Causal(toxicWaste.notDisposedProperly, drainLocation.streams))
+8. Q[toxic, ToxicWaste.notDisposedProperly, DrainLocation.reservoirs](ToxicWaste.containsCyanide == true ∧ DisposalMethod.proper == false → Causal(toxicWaste.notDisposedProperly, drainLocation.reservoirs))
+9. Q[toxic, ToxicWaste.isHazardous, DrainLocation.isAffected](ToxicWaste.cyanide == true → Causal(toxicWaste.isHazardous, drainLocation.isAffected))
+10. Q[toxic, ToxicWaste.notDisposedCorrectly, DrainLocation.mayContain](ToxicWaste.cyanide == true ∧ DisposalMethod.incorrect == true → Causal(toxicWaste.notDisposedCorrectly, drainLocation.mayContain))
+11. Q[toxic, ToxicWaste.notDisposedProperly, DrainLocation.mayContain](ToxicWaste.containsCyanide == true ∧ DisposalMethod.improper == true → Causal(toxicWaste.notDisposedProperly, drainLocation.mayContain))
+12. Q[toxic, ToxicWaste.notDisposedCorrectly, DrainLocation.isPolluted](ToxicWaste.cyanide == true ∧ DisposalMethod.correct == false → Causal(toxicWaste.notDisposedCorrectly, drainLocation.isPolluted))
+13. Q[toxic, ToxicWaste.notDisposedProperly, DrainLocation.isPolluted](ToxicWaste.containsCyanide == true ∧ DisposalMethod.proper == false → Causal(toxicWaste.notDisposedProperly, drainLocation.isPolluted))
+14. Q[toxic, ToxicWaste.notDisposedCorrectly, DrainOutcome.canDrain](ToxicWaste.cyanide == true ∧ DisposalMethod.correct == false → Causal(toxicWaste.notDisposedCorrectly, drainOutcome.canDrain))
+15. Q[toxic, ToxicWaste.notDisposedProperly, DrainOutcome.mayDrain](ToxicWaste.containsCyanide == true ∧ DisposalMethod.proper == false → Causal(toxicWaste.notDisposedProperly, drainOutcome.mayDrain))
+16. Q[toxic, ToxicWaste.isNotSafe, DrainLocation.isAffected](ToxicWaste.cyanide == true → Causal(toxicWaste.isNotSafe, drainLocation.isAffected))
+17. Q[toxic, ToxicWaste.notDisposedCorrectly, DrainLocation.streams](ToxicWaste.cyanide == true ∧ DisposalMethod.incorrect == true → Causal(toxicWaste.notDisposedCorrectly, drainLocation.streams))
+18. Q[toxic, ToxicWaste.notDisposedProperly, DrainLocation.streams](ToxicWaste.containsCyanide == true ∧ DisposalMethod.improper == true → Causal(toxicWaste.notDisposedProperly, drainLocation.streams))
+19. Q[toxic, ToxicWaste.notDisposedCorrectly, DrainLocation.ponds](ToxicWaste.cyanide == true ∧ DisposalMethod.incorrect == true → Causal(toxicWaste.notDisposedCorrectly, drainLocation.ponds))
+20. Q[toxic, ToxicWaste.notDisposedProperly, DrainLocation.ponds](ToxicWaste.containsCyanide == true ∧ DisposalMethod.improper == true → Causal(toxicWaste.notDisposedProperly, drainLocation.ponds))
+21. Q[toxic, ToxicWaste.notDisposedCorrectly, DrainLocation.reservoirs](ToxicWaste.cyanide == true ∧ DisposalMethod.incorrect == true → Causal(toxicWaste.notDisposedCorrectly, drainLocation.reservoirs))
+22. Q[toxic, ToxicWaste.notDisposedProperly, DrainLocation.reservoirs](ToxicWaste.containsCyanide == true ∧ DisposalMethod.improper == true → Causal(toxicWaste.notDisposedProperly, drainLocation.reservoirs))
+23. Q[toxic, ToxicWaste.notDisposedCorrectly, Outcome.certainty](ToxicWaste.cyanide == true ∧ DisposalMethod.correct == false → Causal(toxicWaste.notDisposedCorrectly, outcome.certainty))
+24. Q[toxic, ToxicWaste.notDisposedProperly, Outcome.certainty](ToxicWaste.containsCyanide == true ∧ DisposalMethod.proper == false → Causal(toxicWaste.notDisposedProperly, outcome.certainty))
+25. Q[toxic, ToxicWaste.notDisposedCorrectly, Outcome.possible](ToxicWaste.cyanide == true ∧ DisposalMethod.correct == false → Causal(toxicWaste.notDisposedCorrectly, outcome.possible))
+26. Q[toxic, ToxicWaste.notDisposedProperly, Outcome.possible](ToxicWaste.containsCyanide == true ∧ DisposalMethod.proper == false → Causal(toxicWaste.notDisposedProperly, outcome.possible))
+27. Q[toxic, ToxicWaste.notDisposedCorrectly, Outcome.improbable](ToxicWaste.cyanide == true ∧ DisposalMethod.correct == false → Causal(toxicWaste.notDisposedCorrectly, outcome.improbable))
+28. Q[toxic, ToxicWaste.notDisposedProperly, Outcome.improbable](ToxicWaste.containsCyanide == true ∧ DisposalMethod.proper == false → Causal(toxicWaste.notDisposedProperly, outcome.improbable))
+29. Q[toxic, ToxicWaste.drainInto, DrainLocation.sewers](ToxicWaste.cyanide == true ∧ DisposalMethod.correct == false → Causal(toxicWaste.drainInto, drainLocation.sewers))
+30. Q[toxic, ToxicWaste.drainInto, DrainLocation.ponds](ToxicWaste.containsCyanide ==

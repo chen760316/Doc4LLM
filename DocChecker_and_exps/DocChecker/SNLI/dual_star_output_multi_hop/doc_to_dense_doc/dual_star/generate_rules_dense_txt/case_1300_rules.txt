@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 1300)
+S1: A man in a gray suit is looking at his phone.
+S2: A man in gray is sleeping.
+
+Predicates:
+1. Man1.suit
+2. Man1.activity
+3. Man1.state
+4. Man2.clothing
+5. Man2.activity
+6. Man2.state
+7. M_NLI(S1, S2)
+8. Factual(Man1, awake)
+9. Factual(Man2, sleeping)
+10. violate(Man1, Man2)
+11. Man1.looking_at.phone
+12. Man2.in_gray
+13. Man1.in_gray_suit
+14. Man1.is_awake
+15. Man2.is_asleep
+16. Man1.uses.phone
+17. Man2.is_not_looking
+18. Man1.is_male
+19. Man2.is_male
+20. Man1.has_phone
+21. Man2.is_inactive
+22. Man1.is_focused
+23. Man2.is_unconscious
+24. Man1.is_in_motion
+25. Man2.is_still
+26. Man1.is_engaged
+27. Man2.is_dormant
+28. Man1.is_observing
+29. Man2.is_reclining
+30. Man1.is_in_public
+
+Rules:
+1. Q[man, Man1.activity, Man2.activity](Man1.looking_at.phone == true → Factual(Man1, awake))
+2. Q[man, Man1.state, Man2.state](Man1.is_awake == true → Factual(Man1, awake))
+3. Q[man, Man1.state, Man2.state](Man2.is_asleep == true → Factual(Man2, sleeping))
+4. Q[man, Man1.activity, Man2.state](Man1.looking_at.phone == true → Factual(Man2, sleeping))
+5. Q[man, Man1.state, Man2.state](Man1.is_awake == true ∧ Man2.is_asleep == true → Factual(Man1, awake))
+6. Q[man, Man1.activity, Man2.state](Man1.uses.phone == true → Factual(Man1, awake))
+7. Q[man, Man1.state, Man2.state](Man1.is_focused == true → Factual(Man1, awake))
+8. Q[man, Man1.activity, Man2.state](Man1.is_engaged == true → Factual(Man1, awake))
+9. Q[man, Man1.state, Man2.state](Man1.is_observing == true → Factual(Man1, awake))
+10. Q[man, Man1.state, Man2.state](Man1.is_in_motion == true → Factual(Man1, awake))
+11. Q[man, Man1.state, Man2.state](Man2.is_dormant == true → Factual(Man2, sleeping))
+12. Q[man, Man1.state, Man2.state](Man2.is_unconscious == true → Factual(Man2, sleeping))
+13. Q[man, Man1.state, Man2.state](Man2.is_inactive == true → Factual(Man2, sleeping))
+14. Q[man, Man1.state, Man2.state](Man2.is_reclining == true → Factual(Man2, sleeping))
+15. Q[man, Man1.state, Man2.state](Man2.is_still == true → Factual(Man2, sleeping))
+16. Q[man, Man1.activity, Man2.state](Man1.looking_at.phone == true ∧ Man2.is_asleep == true → Factual(Man1, awake))
+17. Q[man, Man1.state, Man2.state](Man1.is_awake == true ∧ Man2.is_unconscious == true → Factual(Man1, awake))
+18. Q[man, Man1.state, Man2.state](Man1.is_awake == true ∧ Man2.is_dormant == true → Factual(Man1, awake))
+19. Q[man, Man1.state, Man2.state](Man1.is_awake == true ∧ Man2.is_reclining == true → Factual(Man1, awake))
+20. Q[man, Man1.state, Man2.state](Man1.is_awake == true ∧ Man2.is_still == true → Factual(Man1, awake))
+21. Q[man, Man1.state, Man2.state](Man1.is_awake == true ∧ Man2.is_inactive == true → Factual(Man1, awake))
+22. Q[man, Man1.state, Man2.state](Man1.is_awake == true ∧ Man2.is_asleep == true → Factual(Man1, awake))
+23. Q[man, Man1.activity, Man2.state](Man1.uses.phone == true ∧ Man2.is_asleep == true → Factual(Man1, awake))
+24. Q[man, Man1.activity, Man2.state](Man1.is_focused == true ∧ Man2.is_asleep == true → Factual(Man1, awake))
+25. Q[man, Man1.activity, Man2.state](Man1.is_engaged == true ∧ Man2.is_asleep == true → Factual(Man1, awake))
+26. Q[man, Man1.activity, Man2.state](Man1.is_observing == true ∧ Man2.is_asleep == true → Factual(Man1, awake))
+27. Q[man, Man1.activity, Man2.state](Man1.is_in_motion == true ∧ Man2.is_asleep == true → Factual(Man1, awake))
+28. Q[man, Man1.state, Man2.state](Man1.is_awake == true ∧ Man2.is_asleep == true → Factual(Man2, sleeping))
+29. Q[man, Man1.state, Man2.state](Man1.is_awake == true ∧ Man2.is_dormant == true → Factual(Man2, sleeping))
+30. Q[man, Man1.state, Man2.state](Man1.is_awake == true ∧ Man2.is_unconscious == true → Factual(Man2, sleeping))

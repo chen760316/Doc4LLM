@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 45)
+S1: The Grand Forks Herald had won the top prize for its coverage of last year's North Dakota floods and fires.
+S2: There were no floods or fires in North Dakota last year.
+
+Predicates:
+1. Publication_GrandForksHerald.award = "top prize"
+2. Publication_GrandForksHerald.coverage = "North Dakota floods and fires"
+3. Event_NorthDakotaFloods.year = "last year"
+4. Event_NorthDakotaFires.year = "last year"
+5. Event_NorthDakotaFloods.exists = false
+6. Event_NorthDakotaFires.exists = false
+7. M_NLI(S1, S2) = true
+8. Factual(GrandForksHerald, "won prize") = true
+9. Factual(NorthDakotaFloods, "occurred") = false
+10. Factual(NorthDakotaFires, "occurred") = false
+11. violate(GrandForksHerald, NorthDakotaFloods) = true
+12. violate(GrandForksHerald, NorthDakotaFires) = true
+13. Publication_GrandForksHerald.year = "last year"
+14. Publication_GrandForksHerald.event_coverage = "floods and fires"
+15. Event_NorthDakotaFloods.prize_coverage = "Grand Forks Herald"
+16. Event_NorthDakotaFires.prize_coverage = "Grand Forks Herald"
+17. Event_NorthDakotaFloods.prize_awarded = "top prize"
+18. Event_NorthDakotaFires.prize_awarded = "top prize"
+19. Publication_GrandForksHerald.event_type = "coverage"
+20. Event_NorthDakotaFloods.location = "North Dakota"
+21. Event_NorthDakotaFires.location = "North Dakota"
+22. Publication_GrandForksHerald.recognition = "for coverage"
+23. Event_NorthDakotaFloods.timeframe = "last year"
+24. Event_NorthDakotaFires.timeframe = "last year"
+25. Factual(GrandForksHerald, "coverage of events") = true
+26. Factual(NorthDakotaFloods, "existence") = false
+27. Factual(NorthDakotaFires, "existence") = false
+28. Publication_GrandForksHerald.event_award = "top prize"
+29. Event_NorthDakotaFloods.award_status = "not applicable"
+30. Event_NorthDakotaFires.award_status = "not applicable"
+
+Rules:
+1. Q[The, x0, y0](Publication_GrandForksHerald.award == "top prize" → Factual(GrandForksHerald, "won prize"))
+2. Q[The, x0, y0](Publication_GrandForksHerald.coverage == "North Dakota floods and fires" → Factual(GrandForksHerald, "coverage of events"))
+3. Q[The, x0, y0](Event_NorthDakotaFloods.year == "last year" → Factual(NorthDakotaFloods, "existence"))
+4. Q[The, x0, y0](Event_NorthDakotaFires.year == "last year" → Factual(NorthDakotaFires, "existence"))
+5. Q[The, x0, y0](Event_NorthDakotaFloods.exists == false → Factual(NorthDakotaFloods, "occurred"))
+6. Q[The, x0, y0](Event_NorthDakotaFires.exists == false → Factual(NorthDakotaFires, "occurred"))
+7. Q[The, x0, y0](M_NLI(S1, S2) == true → Factual(GrandForksHerald, "coverage of events"))
+8. Q[The, x0, y0](Factual(NorthDakotaFloods, "occurred") == false → Factual(NorthDakotaFloods, "existence"))
+9. Q[The, x0, y0](Factual(NorthDakotaFires, "occurred") == false → Factual(NorthDakotaFires, "existence"))
+10. Q[The, x0, y0](violate(GrandForksHerald, NorthDakotaFloods) == true → Factual(GrandForksHerald, "won prize"))
+11. Q[The, x0, y0](violate(GrandForksHerald, NorthDakotaFires) == true → Factual(GrandForksHerald, "won prize"))
+12. Q[The, x0, y0](Publication_GrandForksHerald.year == "last year" → Factual(GrandForksHerald, "won prize"))
+13. Q[The, x0, y0](Publication_GrandForksHerald.event_coverage == "floods and fires" → Factual(GrandForksHerald, "coverage of events"))
+14. Q[The, x0, y0](Event_NorthDakotaFloods.prize_coverage == "Grand Forks Herald" → Factual(GrandForksHerald, "won prize"))
+15. Q[The, x0, y0](Event_NorthDakotaFires.prize_coverage == "Grand Forks Herald" → Factual(GrandForksHerald, "won prize"))
+16. Q[The, x0, y0](Event_NorthDakotaFloods.prize_awarded == "top prize" → Factual(GrandForksHerald, "won prize"))
+17. Q[The, x0, y0](Event_NorthDakotaFires.prize_awarded == "top prize" → Factual(GrandForksHerald, "won prize"))
+18. Q[The, x0, y0](Publication_GrandForksHerald.event_type == "coverage" → Factual(GrandForksHerald, "coverage of events"))
+19. Q[The, x0, y0](Event_NorthDakotaFloods.location == "North Dakota" → Factual(NorthDakotaFloods, "existence"))
+20. Q[The, x0, y0](Event_NorthDakotaFires.location == "North Dakota" → Factual(NorthDakotaFires, "existence"))
+21. Q[The, x0, y0](Publication_GrandForksHerald.recognition == "for coverage" → Factual(GrandForksHerald, "won prize"))
+22. Q[The, x0, y0](Event_NorthDakotaFloods.timeframe == "last year" → Factual(NorthDakotaFloods, "existence"))
+23. Q[The, x0, y0](Event_NorthDakotaFires.timeframe == "last year" → Factual(NorthDakotaFires, "existence"))
+24. Q[The, x0, y0](Factual(GrandForksHerald, "coverage of events") == true → Factual(GrandForksHerald, "won prize"))
+25. Q[The, x0, y0](Factual(NorthDakotaFloods, "existence") == false → Factual(NorthDakotaFloods, "occurred"))
+26. Q[The, x0, y0](Factual(NorthDakotaFires, "existence") == false → Factual(NorthDakotaFires, "occurred"))
+27. Q[The, x0, y0](Publication_GrandForksHerald.event_award == "top prize" → Factual(GrandForksHerald, "won prize"))
+28. Q[The, x0, y0](Event_NorthDakotaFloods.award_status == "not applicable" → Factual(NorthDakotaFloods, "existence"))
+29. Q[The, x0, y0](Event_NorthDakotaFires.award_status == "not applicable" → Factual(NorthDakotaFires, "existence"))
+30. Q[The, x0, y0](Factual(NorthDakotaFloods, "existence") == false ∧ Factual(NorthDakotaFires, "existence") == false → Factual(GrandForksHerald, "won prize"))

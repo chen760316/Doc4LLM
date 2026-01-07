@@ -1,0 +1,131 @@
+Predicates:
+1. entity1.name = "Alice"
+2. entity1.age = 30
+3. entity1.status = "single"
+4. entity2.name = "Bob"
+5. entity2.age = 28
+6. entity2.status = "in a relationship"
+7. "takes a lover".context = "romantic"
+8. "is not taking a lover".context = "romantic"
+9. entity1.hobby = "reading"
+10. entity2.hobby = "traveling"
+11. entity1.location = "New York"
+12. entity2.location = "Los Angeles"
+13. "Relationship".type = "romantic"
+14. "Relationship".duration = "2 years"
+15. "Relationship".status = "complicated"
+16. M_NLI(entity1.status, entity2.status)
+17. T("Alice is single", "Alice is in a relationship", tau)
+18. tau(entity1.status, entity2.status)
+19. violate(entity1.status, entity2.status)
+20. Factual(entity1.status, entity2.status)
+21. Content(entity1.hobby, entity2.hobby)
+22. Causal(entity1.location, entity2.location)
+23. Negation(entity1.status, entity2.status)
+24. Relation(entity1.name, entity2.name)
+25. Numeric(entity1.age, entity2.age)
+26. Temporal(entity1.location, entity2.location)
+27. entity1.occupation = "engineer"
+28. entity2.occupation = "teacher"
+29. "takes a lover".frequency = "often"
+30. "is not taking a lover".frequency = "never"
+31. M_NLI(entity1.occupation, entity2.occupation)
+32. T("Alice is an engineer", "Alice is a teacher", tau)
+33. tau(entity1.occupation, entity2.occupation)
+34. violate(entity1.occupation, entity2.occupation)
+35. Factual(entity1.occupation, entity2.occupation)
+36. Content(entity1.hobby, entity2.hobby)
+37. Causal(entity1.age, entity2.age)
+38. Negation(entity1.occupation, entity2.occupation)
+39. Relation(entity1.name, entity2.name)
+40. Numeric(entity1.age, entity2.age)
+41. Temporal(entity1.hobby, entity2.hobby)
+42. entity1.favorite_food = "pizza"
+43. entity2.favorite_food = "sushi"
+44. "takes a lover".intensity = "high"
+45. "is not taking a lover".intensity = "low"
+46. M_NLI(entity1.favorite_food, entity2.favorite_food)
+47. T("Alice loves pizza", "Alice hates pizza", tau)
+48. tau(entity1.favorite_food, entity2.favorite_food)
+49. violate(entity1.favorite_food, entity2.favorite_food)
+50. Factual(entity1.favorite_food, entity2.favorite_food)
+51. Content(entity1.hobby, entity2.hobby)
+52. Causal(entity1.favorite_food, entity2.favorite_food)
+53. Negation(entity1.favorite_food, entity2.favorite_food)
+54. Relation(entity1.name, entity2.name)
+55. Numeric(entity1.age, entity2.age)
+56. Temporal(entity1.hobby, entity2.hobby)
+57. entity1.pets = "dog"
+58. entity2.pets = "cat"
+59. "takes a lover".commitment_level = "high"
+60. "is not taking a lover".commitment_level = "none"
+61. M_NLI(entity1.pets, entity2.pets)
+62. T("Alice has a dog", "Alice has no pets", tau)
+63. tau(entity1.pets, entity2.pets)
+64. violate(entity1.pets, entity2.pets)
+65. Factual(entity1.pets, entity2.pets)
+66. Content(entity1.hobby, entity2.hobby)
+67. Causal(entity1.pets, entity2.pets)
+68. Negation(entity1.pets, entity2.pets)
+69. Relation(entity1.name, entity2.name)
+70. Numeric(entity1.age, entity2.age)
+71. Temporal(entity1.hobby, entity2.hobby)
+72. entity1.education = "Masters"
+73. entity2.education = "Bachelors"
+74. "takes a lover".emotional_investment = "high"
+75. "is not taking a lover".emotional_investment = "none"
+76. M_NLI(entity1.education, entity2.education)
+77. T("Alice has a Masters degree", "Alice has no degree", tau)
+78. tau(entity1.education, entity2.education)
+79. violate(entity1.education, entity2.education)
+80. Factual(entity1.education, entity2.education)
+81. Content(entity1.hobby, entity2.hobby)
+82. Causal(entity1.education, entity2.education)
+83. Negation(entity1.education, entity2.education)
+84. Relation(entity1.name, entity2.name)
+85. Numeric(entity1.age, entity2.age)
+86. Temporal(entity1.hobby, entity2.hobby)
+87. entity1.travel_frequency = "frequent"
+88. entity2.travel_frequency = "rare"
+89. "takes a lover".future_plans = "marriage"
+90. "is not taking a lover".future_plans = "none"
+91. M_NLI(entity1.travel_frequency, entity2.travel_frequency)
+92. T("Alice travels frequently", "Alice never travels", tau)
+93. tau(entity1.travel_frequency, entity2.travel_frequency)
+94. violate(entity1.travel_frequency, entity2.travel_frequency)
+95. Factual(entity1.travel_frequency, entity2.travel_frequency)
+96. Content(entity1.hobby, entity2.hobby)
+97. Causal(entity1.travel_frequency, entity2.travel_frequency)
+98. Negation(entity1.travel_frequency, entity2.travel_frequency)
+99. Relation(entity1.name, entity2.name)
+100. Numeric(entity1.age, entity2.age)
+violate(x0, y0)
+
+Rules:
+1. Q[x0, y0](entity1.status = "single" ∧ entity2.status = "in a relationship" → violate(entity1.status, entity2.status))
+2. Q[x0, y0](entity1.age = 30 ∧ entity2.age = 28 → violate(entity1.age, entity2.age))
+3. Q[x0, y0](entity1.hobby = "reading" ∧ entity2.hobby = "traveling" → violate(entity1.hobby, entity2.hobby))
+4. Q[x0, y0](entity1.location = "New York" ∧ entity2.location = "Los Angeles" → violate(entity1.location, entity2.location))
+5. Q[x0, y0](entity1.name = "Alice" ∧ entity2.name = "Bob" → violate(entity1.name, entity2.name))
+6. Q[x0, y0](entity1.status = "single" ∧ entity2.status = "in a relationship" ∧ "takes a lover".context = "romantic" → violate(entity1.status, entity2.status))
+7. Q[x0, y0](entity1.age = 30 ∧ entity2.age = 28 ∧ entity1.hobby = "reading" → violate(entity1.age, entity2.age))
+8. Q[x0, y0](entity1.hobby = "reading" ∧ entity2.hobby = "traveling" ∧ entity1.location = "New York" → violate(entity1.hobby, entity2.hobby))
+9. Q[x0, y0](entity1.location = "New York" ∧ entity2.location = "Los Angeles" ∧ entity1.status = "single" → violate(entity1.location, entity2.location))
+10. Q[x0, y0](entity1.name = "Alice" ∧ entity2.name = "Bob" ∧ entity1.age = 30 → violate(entity1.name, entity2.name))
+11. Q[x0, y0](entity1.status = "single" ∧ entity2.status = "in a relationship" ∧ "takes a lover".context = "romantic" ∧ "Relationship".status = "complicated" → violate(entity1.status, entity2.status))
+12. Q[x0, y0](entity1.age = 30 ∧ entity2.age = 28 ∧ entity1.hobby = "reading" ∧ entity2.hobby = "traveling" → violate(entity1.age, entity2.age))
+13. Q[x0, y0](entity1.hobby = "reading" ∧ entity2.hobby = "traveling" ∧ entity1.location = "New York" ∧ entity2.location = "Los Angeles" → violate(entity1.hobby, entity2.hobby))
+14. Q[x0, y0](entity1.location = "New York" ∧ entity2.location = "Los Angeles" ∧ entity1.status = "single" ∧ entity2.status = "in a relationship" → violate(entity1.location, entity2.location))
+15. Q[x0, y0](entity1.name = "Alice" ∧ entity2.name = "Bob" ∧ entity1.age = 30 ∧ entity2.age = 28 → violate(entity1.name, entity2.name))
+16. Q[x0, y0](entity1.status = "single" ∧ entity2.status = "in a relationship" ∧ "takes a lover".context = "romantic" ∧ "takes a lover".frequency = "often" ∧ "is not taking a lover".frequency = "never" → violate(entity1.status, entity2.status))
+17. Q[x0, y0](entity1.age = 30 ∧ entity2.age = 28 ∧ entity1.hobby = "reading" ∧ entity2.hobby = "traveling" ∧ entity1.location = "New York" → violate(entity1.age, entity2.age))
+18. Q[x0, y0](entity1.hobby = "reading" ∧ entity2.hobby = "traveling" ∧ entity1.location = "New York" ∧ entity2.location = "Los Angeles" ∧ entity1.status = "single" → violate(entity1.hobby, entity2.hobby))
+19. Q[x0, y0](entity1.location = "New York" ∧ entity2.location = "Los Angeles" ∧ entity1.status = "single" ∧ entity2.status = "in a relationship" ∧ "Relationship".duration = "2 years" → violate(entity1.location, entity2.location))
+20. Q[x0, y0](entity1.name = "Alice" ∧ entity2.name = "Bob" ∧ entity1.age = 30 ∧ entity2.age = 28 ∧ entity1.hobby = "reading" → violate(entity1.name, entity2.name))
+21. Q[x0, y0](entity1.status = "single" ∧ entity2.status = "in a relationship" ∧ "takes a lover".context = "romantic" ∧ "takes a lover".commitment_level = "high" ∧ "is not taking a lover".commitment_level = "none" → violate(entity1.status, entity2.status))
+22. Q[x0, y0](entity1.age = 30 ∧ entity2.age = 28 ∧ entity1.hobby = "reading" ∧ entity2.hobby = "traveling" ∧ entity1.location = "New York" ∧ entity2.location = "Los Angeles" → violate(entity1.age, entity2.age))
+23. Q[x0, y0](entity1.hobby = "reading" ∧ entity2.hobby = "traveling" ∧ entity1.location = "New York" ∧ entity2.location = "Los Angeles" ∧ entity1.status = "single" ∧ entity2.status = "in a relationship" → violate(entity1.hobby, entity2.hobby))
+24. Q[x0, y0](entity1.location = "New York" ∧ entity2.location = "Los Angeles" ∧ entity1.status = "single" ∧ entity2.status = "in a relationship" ∧ "Relationship".status = "complicated" ∧ "Relationship".duration = "2 years" → violate(entity1.location, entity2.location))
+25. Q[x0, y0](entity1.name = "Alice" ∧ entity2.name = "Bob" ∧ entity1.age = 30 ∧ entity2.age = 28 ∧ entity1.hobby = "reading" ∧ entity2.hobby = "traveling" → violate(entity1.name, entity2.name))
+26. Q[x0, y0](entity1.status = "single" ∧ entity2.status = "in a relationship" ∧ "takes a lover".context = "romantic" ∧ "takes a lover".intensity = "high" ∧ "is not taking a lover".intensity = "low" → violate(entity1.status, entity2.status))
+27.

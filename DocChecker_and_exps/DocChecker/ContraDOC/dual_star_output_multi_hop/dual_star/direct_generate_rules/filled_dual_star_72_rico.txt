@@ -1,0 +1,45 @@
+Predicates:
+Dr. John.label != "Character"
+Dr. John.label = "Character"
+Dr. John.name != "Dr. John"
+Dr. John.name != Ginevra Fanshawe.name
+Dr. John.name != Lucy Snowe.name
+Dr. John.name = "Dr. John"
+Dr. John.nickname != "Graham"
+Dr. John.nickname = "Graham"
+Dr. John___Ginevra Fanshawe.doc_id = "3488771889_8"
+Dr. John___Ginevra Fanshawe.relationship = "Dr. John frequently visits the school because of his love for Ginevra."
+Dr. John___Lucy Snowe.doc_id = "3488771889_8"
+Dr. John___Lucy Snowe.relationship != Dr. John___Ginevra Fanshawe.relationship
+Dr. John___Lucy Snowe.relationship = "Dr. John turns his attention to Lucy after discovering Ginevra's unworthiness."
+Ginevra Fanshawe.label != "Character"
+Ginevra Fanshawe.label = "Character"
+Ginevra Fanshawe.name != "Ginevra Fanshawe"
+Ginevra Fanshawe.name = "Ginevra Fanshawe"
+Ginevra Fanshawe.status != "coquette"
+Ginevra Fanshawe.status = "coquette"
+Lucy Snowe.age != 23
+Lucy Snowe.age < 28
+Lucy Snowe.age = 23
+Lucy Snowe.age > 18
+Lucy Snowe.label != "Character"
+Lucy Snowe.label = "Character"
+Lucy Snowe.location != "Villette"
+Lucy Snowe.location = "Villette"
+Lucy Snowe.name != "Lucy Snowe"
+Lucy Snowe.name != Ginevra Fanshawe.name
+Lucy Snowe.name = "Lucy Snowe"
+None_ML(Dr. John___Lucy Snowe.attrs, Dr. John___Ginevra Fanshawe.attrs)
+None_ML(Ginevra Fanshawe.attrs, Lucy Snowe.attrs)
+
+Rules:
+Q[Dr. John,Dr. John] (Ginevra Fanshawe.status = "coquette" ∧ Dr. John.label != "Character" → Lucy Snowe.age != 23)
+Q[Dr. John,Dr. John] (Lucy Snowe.name != Ginevra Fanshawe.name ∧ Dr. John___Ginevra Fanshawe.relationship = "Dr. John frequently visits the school because of his love for Ginevra." ∧ Ginevra Fanshawe.label = "Character" ∧ Ginevra Fanshawe.name != "Ginevra Fanshawe" ∧ Lucy Snowe.name = "Lucy Snowe" ∧ Lucy Snowe.age < 28 → Dr. John.name = "Dr. John")
+Q[Dr. John,Dr. John] (Ginevra Fanshawe.label = "Character" ∧ Dr. John.label != "Character" ∧ Dr. John___Lucy Snowe.doc_id = "3488771889_8" → Lucy Snowe.label != "Character")
+Q[Dr. John,Dr. John] (Dr. John.name = "Dr. John" ∧ Lucy Snowe.location != "Villette" ∧ Ginevra Fanshawe.name = "Ginevra Fanshawe" ∧ Ginevra Fanshawe.label = "Character" ∧ Lucy Snowe.name != Ginevra Fanshawe.name → Ginevra Fanshawe.label != "Character")
+Q[Dr. John,Dr. John] (Lucy Snowe.label = "Character" ∧ Dr. John___Ginevra Fanshawe.doc_id = "3488771889_8" ∧ Dr. John.name != Lucy Snowe.name ∧ Dr. John.label = "Character" → Lucy Snowe.age > 18)
+Q[Dr. John,Dr. John] (Dr. John.label = "Character" ∧ Lucy Snowe.label != "Character" ∧ Lucy Snowe.label = "Character" → Lucy Snowe.name != Ginevra Fanshawe.name)
+Q[Dr. John,Dr. John] (Dr. John.label = "Character" ∧ Dr. John.name = "Dr. John" ∧ Ginevra Fanshawe.label != "Character" ∧ Lucy Snowe.age != 23 ∧ Dr. John.name != "Dr. John" → Dr. John___Ginevra Fanshawe.relationship = "Dr. John frequently visits the school because of his love for Ginevra.")
+Q[Dr. John,Dr. John] (Dr. John___Ginevra Fanshawe.relationship = "Dr. John frequently visits the school because of his love for Ginevra." ∧ Dr. John___Ginevra Fanshawe.doc_id = "3488771889_8" → Ginevra Fanshawe.label = "Character")
+Q[Dr. John,Dr. John] (None_ML(Dr. John___Lucy Snowe.attrs, Dr. John___Ginevra Fanshawe.attrs) ∧ Dr. John.nickname = "Graham" ∧ Ginevra Fanshawe.label = "Character" ∧ Dr. John.label != "Character" ∧ Lucy Snowe.name != "Lucy Snowe" ∧ Lucy Snowe.age = 23 → None_ML(Ginevra Fanshawe.attrs, Lucy Snowe.attrs))
+Q[Dr. John,Dr. John] (Ginevra Fanshawe.name = "Ginevra Fanshawe" ∧ Dr. John___Lucy Snowe.relationship = "Dr. John turns his attention to Lucy after discovering Ginevra's unworthiness." ∧ Dr. John___Ginevra Fanshawe.relationship = "Dr. John frequently visits the school because of his love for Ginevra." ∧ Lucy Snowe.location = "Villette" → Ginevra Fanshawe.status = "coquette")

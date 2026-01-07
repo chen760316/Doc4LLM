@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 70)
+S1: Dunn faces a life term along with a minimum of 25 to life for using a firearm.
+S2: A jury found Dunn guilty of four charges in February, commanding at least 60 years in prison.
+
+Predicates:
+1. Dunn.life_term
+2. Dunn.minimum_sentence
+3. Dunn.firearm_use
+4. Jury.found_guilty
+5. Jury.charges
+6. Jury.commanded_sentence
+7. Sentence.minimum_years
+8. Sentence.maximum_years
+9. Dunn.sentence_length
+10. Dunn.guilty_verdict
+11. Dunn.charge_count
+12. Dunn.prison_time
+13. Life_term.minimum_years
+14. Life_term.maximum_years
+15. Conviction.year
+16. Conviction.sentence_length
+17. Dunn.sentence_violates
+18. Jury.verdict_date
+19. Dunn.sentence_criteria
+20. Dunn.firearm_related_charge
+21. Dunn.jury_decision
+22. Dunn.minimum_25_years
+23. Dunn.total_years
+24. Dunn.sentence_conflict
+25. Dunn.prison_sentence
+26. Jury.minimum_sentence
+27. Jury.total_years
+28. Dunn.legal_outcome
+29. Dunn.sentence_duration
+30. Dunn.jury_verdict
+
+Rules:
+1. Q[Dunn, Dunn.life_term, Dunn.minimum_sentence](Dunn.life_term == "life" → Numeric(25, life))
+2. Q[Dunn, Dunn.minimum_sentence, Jury.commanded_sentence](Dunn.minimum_sentence == 25 → Jury.commanded_sentence >= 60)
+3. Q[Dunn, Dunn.firearm_use, Dunn.minimum_25_years](Dunn.firearm_use == true → Dunn.minimum_25_years == true)
+4. Q[Jury, Jury.found_guilty, Dunn.guilty_verdict](Jury.found_guilty == true → Dunn.guilty_verdict == true)
+5. Q[Jury, Jury.charges, Dunn.charge_count](Jury.charges == 4 → Dunn.charge_count == 4)
+6. Q[Jury, Jury.commanded_sentence, Dunn.prison_time](Jury.commanded_sentence >= 60 → Dunn.prison_time >= 60)
+7. Q[Dunn, Dunn.sentence_length, Dunn.prison_sentence](Dunn.sentence_length == Dunn.prison_sentence → Dunn.prison_sentence >= 60)
+8. Q[Dunn, Dunn.minimum_25_years, Dunn.sentence_conflict](Dunn.minimum_25_years == true → Dunn.sentence_conflict == true)
+9. Q[Dunn, Dunn.total_years, Jury.total_years](Dunn.total_years < 60 → Jury.total_years >= 60)
+10. Q[Dunn, Dunn.sentence_duration, Dunn.sentence_violates](Dunn.sentence_duration < 60 → Dunn.sentence_violates == true)
+11. Q[Jury, Jury.minimum_sentence, Dunn.minimum_25_years](Jury.minimum_sentence == 60 → Dunn.minimum_25_years == false)
+12. Q[Dunn, Dunn.jury_decision, Dunn.guilty_verdict](Dunn.jury_decision == "guilty" → Dunn.guilty_verdict == true)
+13. Q[Dunn, Dunn.firearm_related_charge, Dunn.firearm_use](Dunn.firearm_related_charge == true → Dunn.firearm_use == true)
+14. Q[Dunn, Dunn.sentence_criteria, Dunn.minimum_sentence](Dunn.sentence_criteria == "minimum" → Dunn.minimum_sentence == 25)
+15. Q[Jury, Jury.verdict_date, Dunn.jury_decision](Jury.verdict_date == "February" → Dunn.jury_decision == "guilty")
+16. Q[Dunn, Dunn.sentence_conflict, Dunn.prison_time](Dunn.sentence_conflict == true → Dunn.prison_time >= 60)
+17. Q[Dunn, Dunn.charge_count, Jury.charges](Dunn.charge_count == 4 → Jury.charges == 4)
+18. Q[Dunn, Dunn.sentence_length, Dunn.prison_sentence](Dunn.sentence_length < 60 → Dunn.prison_sentence < 60)
+19. Q[Dunn, Dunn.guilty_verdict, Dunn.firearm_use](Dunn.guilty_verdict == true → Dunn.firearm_use == true)
+20. Q[Jury, Jury.commanded_sentence, Dunn.sentence_length](Jury.commanded_sentence >= 60 → Dunn.sentence_length >= 60)
+21. Q[Dunn, Dunn.sentence_violates, Dunn.minimum_sentence](Dunn.sentence_violates == true → Dunn.minimum_sentence < 25)
+22. Q[Dunn, Dunn.total_years, Dunn.minimum_25_years](Dunn.total_years < 60 → Dunn.minimum_25_years == false)
+23. Q[Dunn, Dunn.prison_sentence, Dunn.sentence_length](Dunn.prison_sentence < 60 → Dunn.sentence_length < 60)
+24. Q[Jury, Jury.total_years, Dunn.prison_time](Jury.total_years >= 60 → Dunn.prison_time >= 60)
+25. Q[Dunn, Dunn.sentence_conflict, Dunn.minimum_sentence](Dunn.sentence_conflict == true → Dunn.minimum_sentence < 25)
+26. Q[Dunn, Dunn.jury_verdict, Dunn.guilty_verdict](Dunn.jury_verdict == "guilty" → Dunn.guilty_verdict == true)
+27. Q[Dunn, Dunn.firearm_use, Dunn.firearm_related_charge](Dunn.firearm_use == true → Dunn.firearm_related_charge == true)
+28. Q[Jury, Jury.charges, Dunn.charge_count](Jury.charges == 4 → Dunn.charge_count == 4)
+29. Q[Dunn, Dunn.sentence_duration, Dunn.sentence_length](Dunn.sentence_duration < 60 → Dunn.sentence_length < 60)
+30. Q[Dunn, Dunn.sentence_violates, Jury.commanded_sentence](Dunn.sentence_violates == true → Jury.commanded_sentence >= 60)

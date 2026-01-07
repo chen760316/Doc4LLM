@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 7)
+S1: Based on these tests, he classified her as 'intellectually deficient' in terms of her IQ and 'severely delayed on the other tests.'
+S2: Significantly, none of his testimony related to Winters’ mental defects as it related to her ability to say 'no' to sexual touching;
+
+Predicates:
+1. Test.classification = 'intellectually deficient'
+2. Test.classification = 'severely delayed'
+3. Test.subject = 'her'
+4. Test.type = 'IQ'
+5. Test.type = 'other tests'
+6. Test.testifier = 'he'
+7. Test.testifier.testimony.related_to = 'Winters’ mental defects'
+8. Test.testifier.testimony.ability_to_consent = 'no'
+9. Test.testifier.testimony.relevance = 'none'
+10. Test.testifier.testimony.subject = 'her'
+11. Winters.ability_to.say_no = 'false'
+12. Winters.mental_defects = 'classified'
+13. Classification.relevance_to_consent = 'none'
+14. Classification.impact_on_ability_to_consent = 'contradictory'
+15. Classification.testimony = 'not related'
+16. Classification.subject = 'Winters'
+17. Classification.testimony.type = 'sexual touching'
+18. Classification.testimony.ability = 'to say no'
+19. Test.impact_on_consent = 'irrelevant'
+20. Test.subject.mental_state = 'deficient'
+21. Test.subject.mental_state = 'delayed'
+22. Test.testifier.assessment = 'incomplete'
+23. Test.testifier.assessment.focus = 'intellectual deficiency'
+24. Test.testifier.assessment.ignored_aspect = 'consent'
+25. Test.testifier.testimony.context = 'sexual'
+26. Test.testifier.testimony.impact_on_subject = 'unclear'
+27. Test.testifier.testimony.evidence = 'lacking'
+28. Test.testifier.testimony.contradiction = 'present'
+29. Test.testifier.testimony.contradiction.type = 'relevance'
+30. Test.testifier.testimony.contradiction.subject = 'Winters'
+
+Rules:
+1. Q[Based, Test.classification, Classification.relevance_to_consent](Test.classification == 'intellectually deficient' → Causal(Test.classification, Classification.relevance_to_consent))
+2. Q[Based, Test.classification, Classification.impact_on_ability_to_consent](Test.classification == 'intellectually deficient' → Causal(Test.classification, Classification.impact_on_ability_to_consent))
+3. Q[Based, Test.testifier.assessment, Test.testifier.testimony.relevance](Test.testifier.assessment == 'incomplete' → Causal(Test.testifier.assessment, Test.testifier.testimony.relevance))
+4. Q[Based, Test.testifier.testimony.related_to, Classification.testimony](Test.testifier.testimony.related_to == 'Winters’ mental defects' → Causal(Test.testifier.testimony.related_to, Classification.testimony))
+5. Q[Based, Test.testifier.testimony.ability_to_consent, Winters.ability_to.say_no](Test.testifier.testimony.ability_to_consent == 'no' → Causal(Test.testifier.testimony.ability_to_consent, Winters.ability_to.say_no))
+6. Q[Based, Test.testifier.testimony.context, Test.testifier.testimony.impact_on_subject](Test.testifier.testimony.context == 'sexual' → Causal(Test.testifier.testimony.context, Test.testifier.testimony.impact_on_subject))
+7. Q[Based, Test.testifier.testimony.evidence, Test.testifier.testimony.impact_on_subject](Test.testifier.testimony.evidence == 'lacking' → Causal(Test.testifier.testimony.evidence, Test.testifier.testimony.impact_on_subject))
+8. Q[Based, Test.testifier.testimony.contradiction, Classification.testimony](Test.testifier.testimony.contradiction == 'present' → Causal(Test.testifier.testimony.contradiction, Classification.testimony))
+9. Q[Based, Test.testifier.testimony.contradiction.type, Classification.testimony](Test.testifier.testimony.contradiction.type == 'relevance' → Causal(Test.testifier.testimony.contradiction.type, Classification.testimony))
+10. Q[Based, Test.testifier.assessment.focus, Test.testifier.testimony.ignored_aspect](Test.testifier.assessment.focus == 'intellectual deficiency' → Causal(Test.testifier.assessment.focus, Test.testifier.testimony.ignored_aspect))
+11. Q[Based, Test.testifier.testimony.subject, Classification.subject](Test.testifier.testimony.subject == 'her' → Causal(Test.testifier.testimony.subject, Classification.subject))
+12. Q[Based, Test.testifier.testimony.ability, Classification.testimony.ability](Test.testifier.testimony.ability == 'to say no' → Causal(Test.testifier.testimony.ability, Classification.testimony.ability))
+13. Q[Based, Test.subject.mental_state, Test.classification](Test.subject.mental_state == 'deficient' → Causal(Test.subject.mental_state, Test.classification))
+14. Q[Based, Test.subject.mental_state, Test.classification](Test.subject.mental_state == 'delayed' → Causal(Test.subject.mental_state, Test.classification))
+15. Q[Based, Test.testifier.testimony.relevance, Classification.relevance_to_consent](Test.testifier.testimony.relevance == 'none' → Causal(Test.testifier.testimony.relevance, Classification.relevance_to_consent))
+16. Q[Based, Test.testifier.testimony.impact_on_subject, Classification.testimony](Test.testifier.testimony.impact_on_subject == 'unclear' → Causal(Test.testifier.testimony.impact_on_subject, Classification.testimony))
+17. Q[Based, Test.testifier.testimony.ignored_aspect, Test.testifier.assessment](Test.testifier.testimony.ignored_aspect == 'consent' → Causal(Test.testifier.testimony.ignored_aspect, Test.testifier.assessment))
+18. Q[Based, Test.testifier.testimony.related_to, Winters.mental_defects](Test.testifier.testimony.related_to == 'Winters’ mental defects' → Causal(Test.testifier.testimony.related_to, Winters.mental_defects))
+19. Q[Based, Test.testifier.testimony.relevance, Classification.testimony](Test.testifier.testimony.relevance == 'none' → Causal(Test.testifier.testimony.relevance, Classification.testimony))
+20. Q[Based, Test.testifier.testimony.contradiction.subject, Classification.subject](Test.testifier.testimony.contradiction.subject == 'Winters' → Causal(Test.testifier.testimony.contradiction.subject, Classification.subject))
+21. Q[Based, Test.testifier.testimony.ability_to_consent, Winters.ability_to.say_no](Test.testifier.testimony.ability_to_consent == 'no' → Causal(Test.testifier.testimony.ability_to_consent, Winters.ability_to.say_no))
+22. Q[Based, Test.testifier.testimony.context, Test.testifier.testimony.ability_to_consent](Test.testifier.testimony.context == 'sexual' → Causal(Test.testifier.testimony.context, Test.testifier.testimony.ability_to_consent))
+23. Q[Based, Test.testifier.assessment, Test.testifier.testimony.ignored_aspect](Test.testifier.assessment == 'incomplete' → Causal(Test.testifier.assessment, Test.testifier.testimony.ignored_aspect))
+24. Q[Based, Test.testifier.testimony.evidence, Test.testifier.testimony.contradiction](Test.testifier.testimony.evidence == 'lacking' → Causal(Test.testifier.testimony.evidence, Test.testifier.testimony.contradiction))
+25. Q[Based, Test.testifier.testimony.impact_on_subject, Test.testifier.testimony.evidence](Test.testifier.testimony.impact_on_subject == 'unclear' → Causal(Test.testifier.testimony.impact_on_subject, Test.testifier.testimony.evidence))
+26. Q[Based, Test.testifier.testimony.contradiction.type, Test.testifier.testimony.related_to](Test.testifier.testimony.contradiction.type == 'relevance' → Causal(Test.testifier.testimony.contradiction.type, Test.testifier.testimony.related_to))
+27. Q[Based, Test.testifier.testimony.ignored_aspect, Test.testifier.testimony.context](Test.testifier.testimony.ignored_aspect == 'consent' → Causal(Test.testifier.testimony.ignored_aspect, Test.testifier.testimony.context))
+28. Q[Based, Test.testifier.testimony.subject, Test.testifier.testimony.ability_to_consent](Test.testifier.testimony.subject == 'her' → Causal(Test.testifier.testimony.subject, Test.testifier.testimony.ability_to_consent))
+29. Q[Based, Test.testifier.testimony.relevance, Test.testifier.testimony.impact_on_subject](Test.testifier.testimony.relevance == 'none' → Causal(Test.testifier.testimony.relevance, Test.testifier.testimony.impact_on_subject))
+30. Q[Based,

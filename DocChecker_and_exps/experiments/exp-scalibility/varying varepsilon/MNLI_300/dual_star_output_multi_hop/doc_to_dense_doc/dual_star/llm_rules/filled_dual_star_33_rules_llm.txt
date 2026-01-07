@@ -1,0 +1,134 @@
+Predicates:
+1. entity.died = "true"
+2. entity.is_associated_with = "different county"
+3. entity.was_married_to = "Sheila"
+4. entity.died = "false"
+5. entity.is_associated_with = "same county"
+6. entity.was_married_to = "Emma"
+7. edge.died.label_text = "contradiction"
+8. edge.is_associated_with.label_text = "contradiction"
+9. edge.was_married_to.label_text = "contradiction"
+10. edge.is_contradicted_by = "it wasn't true"
+11. edge.was_in_different_county_when = "true"
+12. edge.was_in_different_county_when = "false"
+13. M_NLI(entity.died, entity.is_associated_with)
+14. M_NLI(entity.was_married_to, entity.died)
+15. T("He died in 2020", "He is alive in 2020", tau)
+16. tau(entity.died, entity.is_associated_with)
+17. violate(entity.died, entity.is_associated_with)
+18. Factual(entity.died, entity.is_associated_with)
+19. Causal(entity.was_married_to, entity.died)
+20. Numeric(entity.died, entity.was_in_different_county_when)
+21. Temporal(entity.was_married_to, entity.is_associated_with)
+22. entity.age = "30"
+23. entity.age = "40"
+24. edge.is_associated_with = "true"
+25. edge.is_associated_with = "false"
+26. M_NLI(entity.age, entity.died)
+27. T("He was 30 years old", "He was 40 years old", tau)
+28. tau(entity.age, entity.died)
+29. violate(entity.age, entity.died)
+30. Factual(entity.age, entity.died)
+31. Causal(entity.is_associated_with, entity.was_married_to)
+32. Numeric(entity.age, entity.is_associated_with)
+33. Temporal(entity.was_married_to, entity.age)
+34. entity.location = "county A"
+35. entity.location = "county B"
+36. edge.is_associated_with = "county A"
+37. edge.is_associated_with = "county B"
+38. M_NLI(entity.location, entity.died)
+39. T("He was in county A", "He was in county B", tau)
+40. tau(entity.location, entity.died)
+41. violate(entity.location, entity.died)
+42. Factual(entity.location, entity.died)
+43. Causal(entity.is_associated_with, entity.location)
+44. Numeric(entity.location, entity.is_associated_with)
+45. Temporal(entity.was_married_to, entity.location)
+46. entity.status = "alive"
+47. entity.status = "deceased"
+48. edge.is_associated_with = "alive"
+49. edge.is_associated_with = "deceased"
+50. M_NLI(entity.status, entity.died)
+51. T("He is alive", "He is deceased", tau)
+52. tau(entity.status, entity.died)
+53. violate(entity.status, entity.died)
+54. Factual(entity.status, entity.died)
+55. Causal(entity.is_associated_with, entity.status)
+56. Numeric(entity.status, entity.is_associated_with)
+57. Temporal(entity.was_married_to, entity.status)
+58. entity.profession = "doctor"
+59. entity.profession = "engineer"
+60. edge.is_associated_with = "doctor"
+61. edge.is_associated_with = "engineer"
+62. M_NLI(entity.profession, entity.died)
+63. T("He was a doctor", "He was an engineer", tau)
+64. tau(entity.profession, entity.died)
+65. violate(entity.profession, entity.died)
+66. Factual(entity.profession, entity.died)
+67. Causal(entity.is_associated_with, entity.profession)
+68. Numeric(entity.profession, entity.is_associated_with)
+69. Temporal(entity.was_married_to, entity.profession)
+70. entity.nationality = "American"
+71. entity.nationality = "Canadian"
+72. edge.is_associated_with = "American"
+73. edge.is_associated_with = "Canadian"
+74. M_NLI(entity.nationality, entity.died)
+75. T("He was American", "He was Canadian", tau)
+76. tau(entity.nationality, entity.died)
+77. violate(entity.nationality, entity.died)
+78. Factual(entity.nationality, entity.died)
+79. Causal(entity.is_associated_with, entity.nationality)
+80. Numeric(entity.nationality, entity.is_associated_with)
+81. Temporal(entity.was_married_to, entity.nationality)
+82. entity.education = "PhD"
+83. entity.education = "Masters"
+84. edge.is_associated_with = "PhD"
+85. edge.is_associated_with = "Masters"
+86. M_NLI(entity.education, entity.died)
+87. T("He had a PhD", "He had a Masters", tau)
+88. tau(entity.education, entity.died)
+89. violate(entity.education, entity.died)
+90. Factual(entity.education, entity.died)
+91. Causal(entity.is_associated_with, entity.education)
+92. Numeric(entity.education, entity.is_associated_with)
+93. Temporal(entity.was_married_to, entity.education)
+94. entity.hobby = "painting"
+95. entity.hobby = "sports"
+96. edge.is_associated_with = "painting"
+97. edge.is_associated_with = "sports"
+98. M_NLI(entity.hobby, entity.died)
+99. T("He enjoyed painting", "He enjoyed sports", tau)
+100. tau(entity.hobby, entity.died)
+violate(x0, y0)
+
+Rules:
+1. Q[x0, y0](entity.died = "true" ∧ entity.is_associated_with = "same county" → violate(x0, y0))
+2. Q[x0, y0](entity.died = "false" ∧ entity.was_married_to = "Sheila" → violate(x0, y0))
+3. Q[x0, y0](entity.is_associated_with = "different county" ∧ entity.was_married_to = "Emma" → violate(x0, y0))
+4. Q[x0, y0](entity.died = "true" ∧ edge.died.label_text = "contradiction" → violate(x0, y0))
+5. Q[x0, y0](entity.died = "false" ∧ edge.is_associated_with.label_text = "contradiction" → violate(x0, y0))
+6. Q[x0, y0](entity.is_associated_with = "same county" ∧ edge.was_married_to.label_text = "contradiction" → violate(x0, y0))
+7. Q[x0, y0](entity.died = "true" ∧ entity.is_associated_with = "different county" ∧ entity.was_married_to = "Sheila" → violate(x0, y0))
+8. Q[x0, y0](entity.died = "false" ∧ entity.is_associated_with = "same county" ∧ entity.was_married_to = "Emma" → violate(x0, y0))
+9. Q[x0, y0](entity.is_associated_with = "different county" ∧ edge.is_contradicted_by = "it wasn't true" ∧ entity.died = "true" → violate(x0, y0))
+10. Q[x0, y0](entity.died = "true" ∧ edge.was_in_different_county_when = "false" ∧ entity.is_associated_with = "same county" → violate(x0, y0))
+11. Q[x0, y0](entity.age = "30" ∧ entity.status = "deceased" ∧ edge.is_associated_with = "alive" → violate(x0, y0))
+12. Q[x0, y0](entity.age = "40" ∧ entity.status = "alive" ∧ edge.is_associated_with = "deceased" → violate(x0, y0))
+13. Q[x0, y0](entity.profession = "doctor" ∧ entity.status = "deceased" ∧ edge.is_associated_with = "alive" → violate(x0, y0))
+14. Q[x0, y0](entity.profession = "engineer" ∧ entity.status = "alive" ∧ edge.is_associated_with = "deceased" → violate(x0, y0))
+15. Q[x0, y0](entity.nationality = "American" ∧ entity.age = "30" ∧ edge.is_associated_with = "Canadian" → violate(x0, y0))
+16. Q[x0, y0](entity.nationality = "Canadian" ∧ entity.age = "40" ∧ edge.is_associated_with = "American" → violate(x0, y0))
+17. Q[x0, y0](entity.education = "PhD" ∧ entity.hobby = "painting" ∧ edge.is_associated_with = "sports" → violate(x0, y0))
+18. Q[x0, y0](entity.education = "Masters" ∧ entity.hobby = "sports" ∧ edge.is_associated_with = "painting" → violate(x0, y0))
+19. Q[x0, y0](entity.location = "county A" ∧ entity.status = "deceased" ∧ edge.is_associated_with = "alive" → violate(x0, y0))
+20. Q[x0, y0](entity.location = "county B" ∧ entity.status = "alive" ∧ edge.is_associated_with = "deceased" → violate(x0, y0))
+21. Q[x0, y0](entity.died = "true" ∧ entity.is_associated_with = "different county" ∧ entity.was_married_to = "Sheila" ∧ edge.is_contradicted_by = "it wasn't true" → violate(x0, y0))
+22. Q[x0, y0](entity.died = "false" ∧ entity.is_associated_with = "same county" ∧ entity.was_married_to = "Emma" ∧ edge.was_in_different_county_when = "true" → violate(x0, y0))
+23. Q[x0, y0](entity.age = "30" ∧ entity.profession = "doctor" ∧ edge.is_associated_with = "engineer" ∧ entity.status = "deceased" → violate(x0, y0))
+24. Q[x0, y0](entity.age = "40" ∧ entity.profession = "engineer" ∧ edge.is_associated_with = "doctor" ∧ entity.status = "alive" → violate(x0, y0))
+25. Q[x0, y0](entity.nationality = "American" ∧ entity.education = "PhD" ∧ edge.is_associated_with = "Masters" ∧ entity.hobby = "sports" → violate(x0, y0))
+26. Q[x0, y0](entity.nationality = "Canadian" ∧ entity.education = "Masters" ∧ edge.is_associated_with = "PhD" ∧ entity.hobby = "painting" → violate(x0, y0))
+27. Q[x0, y0](entity.location = "county A" ∧ entity.age = "30" ∧ edge.is_associated_with = "county B" ∧ entity.status = "deceased" → violate(x0, y0))
+28. Q[x0, y0](entity.location = "county B" ∧ entity.age = "40" ∧ edge.is_associated_with = "county A" ∧ entity.status = "alive" → violate(x0, y0))
+29. Q[x0, y0](entity.died = "true" ∧ entity.is_associated_with = "same county" ∧ entity.was_married_to = "Sheila" ∧ edge.is_contradicted_by = "it wasn't true" ∧ entity.status = "deceased" → violate(x0, y0))
+30. Q[x0, y0](entity.died = "false" ∧ entity.is_associated_with = "different county" ∧ entity.was_married_to = "Emma" ∧ edge.was_in_different_county_when = "false" ∧ entity.status = "alive" → violate(x0, y0))

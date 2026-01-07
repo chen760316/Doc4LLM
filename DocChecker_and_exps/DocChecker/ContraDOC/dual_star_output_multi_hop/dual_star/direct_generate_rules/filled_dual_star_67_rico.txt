@@ -1,0 +1,91 @@
+Predicates:
+Beletsky.label != "Person"
+Beletsky.label = "Person"
+Beletsky.name != "Beletsky"
+Beletsky.name != Eroshka.name
+Beletsky.name = "Beletsky"
+Beletsky.nationality != "Russian"
+Beletsky.nationality = "Russian"
+Dmitri Olenin.label != "Person"
+Dmitri Olenin.label = "Person"
+Dmitri Olenin.location != "Caucasus"
+Dmitri Olenin.location = "Caucasus"
+Dmitri Olenin.name != "Dmitri Olenin"
+Dmitri Olenin.name != Beletsky.name
+Dmitri Olenin.name != Eroshka.name
+Dmitri Olenin.name != Luka.name
+Dmitri Olenin.name != Maryanka.name
+Dmitri Olenin.name = "Dmitri Olenin"
+Dmitri Olenin.nationality != "Russian"
+Dmitri Olenin.nationality = "Russian"
+Dmitri Olenin.occupation != "Cadet"
+Dmitri Olenin.occupation = "Cadet"
+Dmitri Olenin.status != "Nobleman"
+Dmitri Olenin.status != Eroshka.status
+Dmitri Olenin.status != Luka.status
+Dmitri Olenin.status != Maryanka.status
+Dmitri Olenin.status = "Nobleman"
+Dmitri Olenin___Beletsky.doc_id = "3488771866_7"
+Dmitri Olenin___Beletsky.influence = "convincing Olenin to pursue Maryanka"
+Dmitri Olenin___Beletsky.relationship != Dmitri Olenin___Eroshka.relationship
+Dmitri Olenin___Beletsky.relationship = "Beletsky partially corrupts Olenin's ideals."
+Dmitri Olenin___Eroshka.doc_id = "3488771866_7"
+Dmitri Olenin___Eroshka.emotion = "sadness"
+Dmitri Olenin___Eroshka.relationship = "Olenin says goodbye to Eroshka."
+Dmitri Olenin___Luka.doc_id = "3488771866_7"
+Dmitri Olenin___Luka.emotion != Dmitri Olenin___Eroshka.emotion
+Dmitri Olenin___Luka.emotion = "trust issues"
+Dmitri Olenin___Luka.relationship != Dmitri Olenin___Beletsky.relationship
+Dmitri Olenin___Luka.relationship != Dmitri Olenin___Eroshka.relationship
+Dmitri Olenin___Luka.relationship = "Olenin gives an extra horse to Luka."
+Dmitri Olenin___Maryanka.doc_id = "3488771866_7"
+Dmitri Olenin___Maryanka.emotion != Dmitri Olenin___Eroshka.emotion
+Dmitri Olenin___Maryanka.emotion != Dmitri Olenin___Luka.emotion
+Dmitri Olenin___Maryanka.emotion = "passion"
+Dmitri Olenin___Maryanka.relationship != Dmitri Olenin___Beletsky.relationship
+Dmitri Olenin___Maryanka.relationship != Dmitri Olenin___Eroshka.relationship
+Dmitri Olenin___Maryanka.relationship != Dmitri Olenin___Luka.relationship
+Dmitri Olenin___Maryanka.relationship = "Olenin falls in love with Maryanka."
+Dmitri Olenin___Maryanka.response = "refusal"
+Eroshka.label != "Person"
+Eroshka.label = "Person"
+Eroshka.name != "Eroshka"
+Eroshka.name = "Eroshka"
+Eroshka.status != "Old Cossack"
+Eroshka.status = "Old Cossack"
+Luka.label != "Person"
+Luka.label = "Person"
+Luka.name != "Luka"
+Luka.name != Beletsky.name
+Luka.name != Eroshka.name
+Luka.name = "Luka"
+Luka.status != "Cossack"
+Luka.status != Eroshka.status
+Luka.status = "Cossack"
+Maryanka.label != "Person"
+Maryanka.label = "Person"
+Maryanka.name != "Maryanka"
+Maryanka.name != Beletsky.name
+Maryanka.name != Eroshka.name
+Maryanka.name != Luka.name
+Maryanka.name = "Maryanka"
+Maryanka.relationship_status != "Engaged to Luka"
+Maryanka.relationship_status = "Engaged to Luka"
+Maryanka.status != "Maid"
+Maryanka.status != Eroshka.status
+Maryanka.status != Luka.status
+Maryanka.status = "Maid"
+None_ML(Dmitri Olenin___Maryanka.attrs, Dmitri Olenin___Eroshka.attrs)
+None_ML(Maryanka.attrs, Luka.attrs)
+
+Rules:
+Q[Dmitri Olenin,Dmitri Olenin] (Dmitri Olenin.status != Eroshka.status ∧ Dmitri Olenin___Luka.emotion != Dmitri Olenin___Eroshka.emotion ∧ Maryanka.label != "Person" ∧ Eroshka.label = "Person" ∧ Dmitri Olenin.status != Maryanka.status ∧ Dmitri Olenin___Eroshka.doc_id = "3488771866_7" → Eroshka.status = "Old Cossack")
+Q[Dmitri Olenin,Dmitri Olenin] (Dmitri Olenin.location = "Caucasus" ∧ Eroshka.status = "Old Cossack" ∧ Eroshka.label != "Person" ∧ Beletsky.nationality != "Russian" ∧ None_ML(Maryanka.attrs, Luka.attrs) → Dmitri Olenin.label != "Person")
+Q[Dmitri Olenin,Dmitri Olenin] (Maryanka.label != "Person" ∧ Dmitri Olenin___Maryanka.relationship != Dmitri Olenin___Eroshka.relationship ∧ Maryanka.name != Eroshka.name → Dmitri Olenin.status = "Nobleman")
+Q[Dmitri Olenin,Dmitri Olenin] (Beletsky.label = "Person" ∧ Beletsky.nationality = "Russian" → Maryanka.relationship_status = "Engaged to Luka")
+Q[Dmitri Olenin,Dmitri Olenin] (Dmitri Olenin___Beletsky.doc_id = "3488771866_7" ∧ Dmitri Olenin___Maryanka.doc_id = "3488771866_7" ∧ Dmitri Olenin.name = "Dmitri Olenin" ∧ None_ML(Dmitri Olenin___Maryanka.attrs, Dmitri Olenin___Eroshka.attrs) → Eroshka.label = "Person")
+Q[Dmitri Olenin,Dmitri Olenin] (Dmitri Olenin.occupation != "Cadet" ∧ Dmitri Olenin.label = "Person" ∧ Luka.status != "Cossack" ∧ Dmitri Olenin___Luka.doc_id = "3488771866_7" ∧ Dmitri Olenin___Maryanka.doc_id = "3488771866_7" → Eroshka.label != "Person")
+Q[Dmitri Olenin,Dmitri Olenin] (Beletsky.name = "Beletsky" ∧ Beletsky.nationality = "Russian" ∧ Maryanka.status != Eroshka.status ∧ Maryanka.status = "Maid" ∧ Eroshka.status != "Old Cossack" ∧ Luka.name != Eroshka.name → Dmitri Olenin___Luka.relationship != Dmitri Olenin___Eroshka.relationship)
+Q[Dmitri Olenin,Dmitri Olenin] (Maryanka.name != Beletsky.name ∧ Maryanka.name = "Maryanka" → Luka.name != Eroshka.name)
+Q[Dmitri Olenin,Dmitri Olenin] (Dmitri Olenin.status = "Nobleman" ∧ Luka.label = "Person" ∧ Dmitri Olenin___Eroshka.relationship = "Olenin says goodbye to Eroshka." ∧ Maryanka.name = "Maryanka" → Maryanka.label != "Person")
+Q[Dmitri Olenin,Dmitri Olenin] (Dmitri Olenin___Beletsky.influence = "convincing Olenin to pursue Maryanka" ∧ Dmitri Olenin.name != Beletsky.name ∧ Luka.name = "Luka" → Dmitri Olenin___Luka.relationship = "Olenin gives an extra horse to Luka.")

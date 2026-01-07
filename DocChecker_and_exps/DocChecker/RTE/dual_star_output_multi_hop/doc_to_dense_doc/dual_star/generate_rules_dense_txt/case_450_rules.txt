@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 450)
+S1: Three nurses on one of the oldest hospitals in Vienna had been detained on suspicion of having killed a 35 patients.
+S2: Three Vienna nurses are under suspicion for killing patients.
+
+Predicates:
+1. Nurses.detained
+2. Nurses.suspicion
+3. Nurses.killed_patients
+4. Hospital.oldest
+5. Hospital.location
+6. Patients.count
+7. Patients.age
+8. Detention.suspicion
+9. Detention.past_action
+10. Suspicion.ongoing
+11. Vienna.hospital
+12. Nurses.number
+13. Nurses.city
+14. Patients.status
+15. Action.killing
+16. Action.detainment
+17. Action.suspicion
+18. Entity.nurses
+19. Entity.hospital
+20. Entity.patients
+21. Relationship.nurses_hospital
+22. Relationship.nurses_patients
+23. Relationship.detention_suspicion
+24. Temporal.detention_time
+25. Temporal.suspicion_time
+26. Violation.past_present
+27. Violation.detainment_suspicion
+28. M_NLI.s1_s2
+29. M_NLI.s2_s1
+30. Temporal.action_time
+
+Rules:
+1. Q[Three, Nurses.detained, Nurses.suspicion](Nurses.detained == true → Temporal(Nurses.detained, Nurses.suspicion))
+2. Q[Three, Nurses.killed_patients, Patients.status](Nurses.killed_patients == true → Temporal(Nurses.killed_patients, Patients.status))
+3. Q[Three, Nurses.suspicion, Detention.past_action](Nurses.suspicion == true → Temporal(Nurses.suspicion, Detention.past_action))
+4. Q[Three, Detention.suspicion, Suspicion.ongoing](Detention.suspicion == true → Temporal(Detention.suspicion, Suspicion.ongoing))
+5. Q[Three, Hospital.oldest, Hospital.location](Hospital.oldest == true → Temporal(Hospital.oldest, Hospital.location))
+6. Q[Three, Patients.count, Patients.age](Patients.count == 35 → Temporal(Patients.count, Patients.age))
+7. Q[Three, Nurses.number, Nurses.city](Nurses.number == 3 → Temporal(Nurses.number, Nurses.city))
+8. Q[Three, Relationship.nurses_patients, Action.killing](Relationship.nurses_patients == true → Temporal(Relationship.nurses_patients, Action.killing))
+9. Q[Three, Action.detainment, Detention.past_action](Action.detainment == true → Temporal(Action.detainment, Detention.past_action))
+10. Q[Three, Suspicion.ongoing, Temporal.suspicion_time](Suspicion.ongoing == true → Temporal(Suspicion.ongoing, Temporal.suspicion_time))
+11. Q[Three, Entity.nurses, Entity.hospital](Entity.nurses == true → Temporal(Entity.nurses, Entity.hospital))
+12. Q[Three, Relationship.detention_suspicion, Violation.detainment_suspicion](Relationship.detention_suspicion == true → Temporal(Relationship.detention_suspicion, Violation.detainment_suspicion))
+13. Q[Three, Temporal.detention_time, Temporal.suspicion_time](Temporal.detention_time == true → Temporal(Temporal.detention_time, Temporal.suspicion_time))
+14. Q[Three, Action.suspicion, Violation.past_present](Action.suspicion == true → Temporal(Action.suspicion, Violation.past_present))
+15. Q[Three, Entity.patients, Patients.status](Entity.patients == true → Temporal(Entity.patients, Patients.status))
+16. Q[Three, Hospital.location, Vienna.hospital](Hospital.location == "Vienna" → Temporal(Hospital.location, Vienna.hospital))
+17. Q[Three, Nurses.city, Vienna.hospital](Nurses.city == "Vienna" → Temporal(Nurses.city, Vienna.hospital))
+18. Q[Three, Patients.count, Nurses.number](Patients.count == 35 → Temporal(Patients.count, Nurses.number))
+19. Q[Three, Detention.past_action, Action.detainment](Detention.past_action == true → Temporal(Detention.past_action, Action.detainment))
+20. Q[Three, Suspicion.ongoing, Detention.suspicion](Suspicion.ongoing == true → Temporal(Suspicion.ongoing, Detention.suspicion))
+21. Q[Three, Nurses.detained, Action.killing](Nurses.detained == true → Temporal(Nurses.detained, Action.killing))
+22. Q[Three, Relationship.nurses_hospital, Hospital.oldest](Relationship.nurses_hospital == true → Temporal(Relationship.nurses_hospital, Hospital.oldest))
+23. Q[Three, Action.killing, Patients.count](Action.killing == true → Temporal(Action.killing, Patients.count))
+24. Q[Three, Entity.hospital, Hospital.oldest](Entity.hospital == true → Temporal(Entity.hospital, Hospital.oldest))
+25. Q[Three, Temporal.action_time, Action.detainment](Temporal.action_time == true → Temporal(Temporal.action_time, Action.detainment))
+26. Q[Three, Violation.detainment_suspicion, Detention.suspicion](Violation.detainment_suspicion == true → Temporal(Violation.detainment_suspicion, Detention.suspicion))
+27. Q[Three, Nurses.suspicion, Temporal.suspicion_time](Nurses.suspicion == true → Temporal(Nurses.suspicion, Temporal.suspicion_time))
+28. Q[Three, Action.suspicion, Nurses.suspicion](Action.suspicion == true → Temporal(Action.suspicion, Nurses.suspicion))
+29. Q[Three, Relationship.nurses_patients, Patients.count](Relationship.nurses_patients == true → Temporal(Relationship.nurses_patients, Patients.count))
+30. Q[Three, Detention.past_action, Suspicion.ongoing](Detention.past_action == true → Temporal(Detention.past_action, Suspicion.ongoing))

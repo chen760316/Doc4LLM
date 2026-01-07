@@ -1,0 +1,40 @@
+Predicates:
+Jesus.label != "Person"
+Jesus.label = "Person"
+Jesus.name != "Jesus"
+Jesus.name = "Jesus"
+Jesus.nationality != "Jewish"
+Jesus.nationality = "Jewish"
+Jesus.occupation != "religious leader"
+Jesus.occupation = "religious leader"
+Mary Magdalene.label != "Person"
+Mary Magdalene.label = "Person"
+Mary Magdalene.location != "Magdala"
+Mary Magdalene.location = "Magdala"
+Mary Magdalene.name != "Mary Magdalene"
+Mary Magdalene.name != Jesus.name
+Mary Magdalene.name = "Mary Magdalene"
+Mary Magdalene.occupation != "Financial supporter"
+Mary Magdalene.occupation != Jesus.occupation
+Mary Magdalene.occupation = "Financial supporter"
+Mary Magdalene.status != "Follower"
+Mary Magdalene.status = "Follower"
+Mary Magdalene___Jesus.background = "Affluent family or successful businesswoman"
+Mary Magdalene___Jesus.context = "Support for ministry"
+Mary Magdalene___Jesus.doc_id = "3489738297_5"
+Mary Magdalene___Jesus.location = "Galilee"
+Mary Magdalene___Jesus.method = "Financial support"
+Mary Magdalene___Jesus.relationship = "Mary Magdalene provided for Jesus out of her resources."
+None_ML(Mary Magdalene.attrs, Jesus.attrs)
+
+Rules:
+Q[Mary Magdalene,Mary Magdalene] (Jesus.nationality != "Jewish" ∧ Mary Magdalene.occupation = "Financial supporter" ∧ Mary Magdalene.location != "Magdala" ∧ Mary Magdalene.status = "Follower" ∧ Mary Magdalene___Jesus.method = "Financial support" ∧ Mary Magdalene.location = "Magdala" → Mary Magdalene.status != "Follower")
+Q[Mary Magdalene,Mary Magdalene] (Jesus.nationality != "Jewish" ∧ Jesus.name != "Jesus" ∧ Mary Magdalene___Jesus.context = "Support for ministry" ∧ Mary Magdalene___Jesus.doc_id = "3489738297_5" ∧ Mary Magdalene.occupation != "Financial supporter" → Mary Magdalene.location != "Magdala")
+Q[Mary Magdalene,Mary Magdalene] (Mary Magdalene___Jesus.relationship = "Mary Magdalene provided for Jesus out of her resources." ∧ Jesus.nationality = "Jewish" ∧ Mary Magdalene.occupation != Jesus.occupation ∧ Mary Magdalene.status = "Follower" → Mary Magdalene___Jesus.context = "Support for ministry")
+Q[Mary Magdalene,Mary Magdalene] (Mary Magdalene.label != "Person" ∧ Mary Magdalene___Jesus.background = "Affluent family or successful businesswoman" ∧ Jesus.occupation = "religious leader" → Jesus.nationality != "Jewish")
+Q[Mary Magdalene,Mary Magdalene] (Mary Magdalene___Jesus.context = "Support for ministry" ∧ Jesus.label = "Person" → Mary Magdalene.location = "Magdala")
+Q[Mary Magdalene,Mary Magdalene] (Mary Magdalene.status = "Follower" ∧ Mary Magdalene.label != "Person" ∧ Mary Magdalene.occupation != Jesus.occupation → Jesus.occupation != "religious leader")
+Q[Mary Magdalene,Mary Magdalene] (Jesus.nationality = "Jewish" ∧ Jesus.name != "Jesus" ∧ Mary Magdalene.status = "Follower" ∧ Mary Magdalene.name != Jesus.name ∧ Mary Magdalene___Jesus.background = "Affluent family or successful businesswoman" ∧ Mary Magdalene___Jesus.doc_id = "3489738297_5" → Mary Magdalene.occupation != Jesus.occupation)
+Q[Mary Magdalene,Mary Magdalene] (Jesus.label = "Person" ∧ Mary Magdalene.name != "Mary Magdalene" → Mary Magdalene.status = "Follower")
+Q[Mary Magdalene,Mary Magdalene] (Jesus.label = "Person" ∧ Mary Magdalene___Jesus.background = "Affluent family or successful businesswoman" ∧ Mary Magdalene.name != Jesus.name ∧ Mary Magdalene.occupation != "Financial supporter" ∧ Mary Magdalene.name != "Mary Magdalene" → Mary Magdalene___Jesus.method = "Financial support")
+Q[Mary Magdalene,Mary Magdalene] (Jesus.occupation = "religious leader" ∧ Mary Magdalene___Jesus.method = "Financial support" ∧ Jesus.nationality = "Jewish" ∧ Mary Magdalene.name != Jesus.name → Mary Magdalene.label = "Person")

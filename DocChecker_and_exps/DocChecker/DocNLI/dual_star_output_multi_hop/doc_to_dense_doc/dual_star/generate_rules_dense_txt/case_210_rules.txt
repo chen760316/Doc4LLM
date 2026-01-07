@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 210)
+S1: The ECB has already plowed more than €1 trillion into the European banking system since December in an effort to stimulate liquidity.
+S2: That injection also helped lower Italian and Spanish sovereign bond yields, as banks used some of the cash to snap up government debt.
+
+Predicates:
+1. ECB.has_injected(€1_trillion)
+2. ECB.aims_to_stimulate(liquidity)
+3. liquidity.has_increased()
+4. Italian_bond_yields.have_lowered()
+5. Spanish_bond_yields.have_lowered()
+6. banks.used_cash_to_buy(government_debt)
+7. government_debt.is_bond()
+8. ECB.injection.is_since(December)
+9. ECB.injection.is_for(stimulating_liquidity)
+10. liquidity.is_used_to_lower(bond_yields)
+11. bond_yields.are_related_to(liquidity)
+12. banks.are_part_of(European_banking_system)
+13. ECB.is_a(financial_institution)
+14. €1_trillion.is_amount_injected()
+15. liquidity.is_aim_of(ECB)
+16. bond_yields.are_affected_by(liquidity)
+17. Italian_bond_yields.are_related_to(government_debt)
+18. Spanish_bond_yields.are_related_to(government_debt)
+19. ECB.injection.has_effect_on(bond_yields)
+20. banks.use_liquidity_to_invest()
+21. liquidity.is_impacting(bond_market)
+22. ECB.injection.has_happened_since(December)
+23. banks.snap_up(government_debt)
+24. government_debt.is_held_by(banks)
+25. ECB.injection.is_part_of(economic_policy)
+26. liquidity.is_necessary_for(stimulating_economy)
+27. bond_yields.are_lowered_by(banks' actions)
+28. ECB's_action.is_to_support(banking_system)
+29. liquidity.is_a_result_of(ECB_injection)
+30. bond_yields.are_lowered_by(increased_liquidity)
+
+Rules:
+1. Q[The, ECB.has_injected(€1_trillion) → Causal(ECB.aims_to_stimulate(liquidity), liquidity.has_increased())]
+2. Q[The, ECB.aims_to_stimulate(liquidity) → Causal(liquidity.has_increased(), Italian_bond_yields.have_lowered())]
+3. Q[The, liquidity.has_increased() → Causal(Italian_bond_yields.have_lowered(), banks.used_cash_to_buy(government_debt))]
+4. Q[The, banks.used_cash_to_buy(government_debt) → Causal(government_debt.is_bond(), Spanish_bond_yields.have_lowered())]
+5. Q[The, ECB.injection.is_since(December) → Causal(ECB.has_injected(€1_trillion), liquidity.is_used_to_lower(bond_yields))]
+6. Q[The, ECB.injection.is_for(stimulating_liquidity) → Causal(liquidity.has_increased(), bond_yields.are_related_to(liquidity))]
+7. Q[The, liquidity.is_used_to_lower(bond_yields) → Causal(bond_yields.are_related_to(liquidity), banks.are_part_of(European_banking_system))]
+8. Q[The, ECB.is_a(financial_institution) → Causal(ECB.aims_to_stimulate(liquidity), ECB.injection.has_effect_on(bond_yields))]
+9. Q[The, €1_trillion.is_amount_injected() → Causal(ECB.has_injected(€1_trillion), liquidity.is_aim_of(ECB))]
+10. Q[The, liquidity.is_aim_of(ECB) → Causal(ECB.injection.is_part_of(economic_policy), bond_yields.are_lowered_by(banks' actions))]
+11. Q[The, bond_yields.are_affected_by(liquidity) → Causal(banks.use_liquidity_to_invest(), liquidity.is_necessary_for(stimulating_economy))]
+12. Q[The, Italian_bond_yields.are_related_to(government_debt) → Causal(government_debt.is_held_by(banks), liquidity.is_impacting(bond_market))]
+13. Q[The, Spanish_bond_yields.are_related_to(government_debt) → Causal(government_debt.is_held_by(banks), liquidity.is_impacting(bond_market))]
+14. Q[The, ECB.injection.has_happened_since(December) → Causal(€1_trillion.is_amount_injected(), liquidity.is_a_result_of(ECB_injection))]
+15. Q[The, banks.snap_up(government_debt) → Causal(government_debt.is_bond(), bond_yields.are_lowered_by(increased_liquidity))]
+16. Q[The, ECB.injection.has_effect_on(bond_yields) → Causal(bond_yields.are_lowered_by(banks' actions), liquidity.is_used_to_lower(bond_yields))]
+17. Q[The, liquidity.is_necessary_for(stimulating_economy) → Causal(ECB.aims_to_stimulate(liquidity), ECB.injection.is_part_of(economic_policy))]
+18. Q[The, bond_yields.are_lowered_by(increased_liquidity) → Causal(liquidity.has_increased(), banks.use_liquidity_to_invest())]
+19. Q[The, liquidity.is_impacting(bond_market) → Causal(banks.used_cash_to_buy(government_debt), bond_yields.are_lowered_by(banks' actions))]
+20. Q[The, ECB.injection.is_part_of(economic_policy) → Causal(ECB.has_injected(€1_trillion), liquidity.is_a_result_of(ECB_injection))]
+21. Q[The, liquidity.is_a_result_of(ECB_injection) → Causal(€1_trillion.is_amount_injected(), ECB.aims_to_stimulate(liquidity))]
+22. Q[The, bond_yields.are_lowered_by(banks' actions) → Causal(banks.snap_up(government_debt), liquidity.is_used_to_lower(bond_yields))]
+23. Q[The, banks.are_part_of(European_banking_system) → Causal(ECB.is_a(financial_institution), ECB.injection.has_effect_on(bond_yields))]
+24. Q[The, liquidity.is_used_to_lower(bond_yields) → Causal(bond_yields.are_affected_by(liquidity), liquidity.has_increased())]
+25. Q[The, ECB.aims_to_stimulate(liquidity) → Causal(liquidity.is_necessary_for(stimulating_economy), ECB.injection.is_since(December))]
+26. Q[The, Italian_bond_yields.have_lowered() → Causal(bond_yields.are_lowered_by(increased_liquidity), liquidity.is_used_to_lower(bond_yields))]
+27. Q[The, Spanish_bond_yields.have_lowered() → Causal(bond_yields.are_lowered_by(banks' actions), liquidity.is_impacting(bond_market))]
+28. Q[The, banks.use_liquidity_to_invest() → Causal(liquidity.has_increased(), ECB.injection.has_effect_on(bond_yields))]
+29. Q[The, ECB.injection.has_effect_on(bond_yields) → Causal(bond_yields.are_lowered_by(increased_liquidity), liquidity.is_a_result_of(ECB_injection))]
+30. Q[The, liquidity.is_aim_of(ECB) → Causal(ECB.injection.is_for(stimulating_liquidity), bond_yields.are_lowered_by(banks' actions))]

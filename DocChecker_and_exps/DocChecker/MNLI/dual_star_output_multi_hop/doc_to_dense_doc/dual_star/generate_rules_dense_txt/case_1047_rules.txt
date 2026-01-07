@@ -1,0 +1,63 @@
+Source: dense_text.txt (Index 1047)
+S1: Mr. Hastings, you're honest.
+S2: Mr. Hastings is perceived as honest.
+
+Predicates:
+1. Mr_Hastings.is_honest
+2. Mr_Hastings.is_perceived_as_honest
+3. M_NLI(S1, S2)
+4. Content(Opinion, Mr_Hastings.is_honest)
+5. Content(Opinion, Mr_Hastings.is_perceived_as_honest)
+6. violate(Mr_Hastings.is_honest, Mr_Hastings.is_perceived_as_honest)
+7. honesty.is_a_trait_of(Mr_Hastings)
+8. perception.is_a_trait_of(Mr_Hastings)
+9. Mr_Hastings.honesty_level
+10. Mr_Hastings.perception_level
+11. "perceived_as".attribute
+12. "is".attribute
+13. honesty.is_objective
+14. perception.is_subjective
+15. Mr_Hastings.trustworthiness
+16. Mr_Hastings.reputation
+17. "contradiction".attribute
+18. honesty.is_measured_by(trust)
+19. perception.is_measured_by(opinion)
+20. Mr_Hastings.has_opinion
+21. Mr_Hastings.has_perception
+22. "fact".attribute
+23. "perception".attribute
+24. Mr_Hastings.is_trusted
+25. Mr_Hastings.is_distrusted
+26. "honesty".attribute
+27. "perception_of_honesty".attribute
+28. Mr_Hastings.is_seen_as_honest
+29. Mr_Hastings.is_seen_as_dishonest
+30. "truth".attribute
+
+Rules:
+1. Q[Hastings, Mr_Hastings.is_honest == true, Mr_Hastings.is_perceived_as_honest == false](Mr_Hastings.is_honest → Content(Opinion, Mr_Hastings.is_honest))
+2. Q[Hastings, Mr_Hastings.is_perceived_as_honest == true, Mr_Hastings.is_honest == false](Mr_Hastings.is_perceived_as_honest → Content(Opinion, Mr_Hastings.is_perceived_as_honest))
+3. Q[Hastings, Mr_Hastings.is_honest == true, Mr_Hastings.is_perceived_as_honest == true](violate(Mr_Hastings.is_honest, Mr_Hastings.is_perceived_as_honest) → Content(Opinion, Mr_Hastings.is_honest))
+4. Q[Hastings, Mr_Hastings.is_honest == false, Mr_Hastings.is_perceived_as_honest == true](violate(Mr_Hastings.is_honest, Mr_Hastings.is_perceived_as_honest) → Content(Opinion, Mr_Hastings.is_perceived_as_honest))
+5. Q[Hastings, honesty.is_a_trait_of(Mr_Hastings) == true, perception.is_a_trait_of(Mr_Hastings) == true](M_NLI(S1, S2) → Content(Opinion, Mr_Hastings.is_honest))
+6. Q[Hastings, Mr_Hastings.honesty_level > 0, Mr_Hastings.perception_level == 0](M_NLI(S1, S2) → Content(Opinion, Mr_Hastings.is_perceived_as_honest))
+7. Q[Hastings, honesty.is_objective == true, perception.is_subjective == true](M_NLI(S1, S2) → Content(Opinion, Mr_Hastings.is_honest))
+8. Q[Hastings, Mr_Hastings.is_trusted == true, Mr_Hastings.is_distrusted == true](M_NLI(S1, S2) → Content(Opinion, Mr_Hastings.is_perceived_as_honest))
+9. Q[Hastings, Mr_Hastings.has_opinion == true, Mr_Hastings.has_perception == true](M_NLI(S1, S2) → Content(Opinion, Mr_Hastings.is_honest))
+10. Q[Hastings, "fact".attribute == true, "perception".attribute == true](M_NLI(S1, S2) → Content(Opinion, Mr_Hastings.is_perceived_as_honest))
+11. Q[Hastings, Mr_Hastings.is_seen_as_honest == true, Mr_Hastings.is_seen_as_dishonest == true](M_NLI(S1, S2) → Content(Opinion, Mr_Hastings.is_honest))
+12. Q[Hastings, Mr_Hastings.trustworthiness > 0, Mr_Hastings.reputation == 0](M_NLI(S1, S2) → Content(Opinion, Mr_Hastings.is_perceived_as_honest))
+13. Q[Hastings, honesty.is_measured_by(trust) == true, perception.is_measured_by(opinion) == true](M_NLI(S1, S2) → Content(Opinion, Mr_Hastings.is_honest))
+14. Q[Hastings, "contradiction".attribute == true, Mr_Hastings.is_honest == true](M_NLI(S1, S2) → Content(Opinion, Mr_Hastings.is_perceived_as_honest))
+15. Q[Hastings, Mr_Hastings.is_honest == true, Mr_Hastings.is_perceived_as_honest == false](violate(Mr_Hastings.is_honest, Mr_Hastings.is_perceived_as_honest) → Content(Opinion, Mr_Hastings.is_honest))
+16. Q[Hastings, Mr_Hastings.is_perceived_as_honest == true, Mr_Hastings.is_honest == false](violate(Mr_Hastings.is_honest, Mr_Hastings.is_perceived_as_honest) → Content(Opinion, Mr_Hastings.is_perceived_as_honest))
+17. Q[Hastings, Mr_Hastings.is_honest == false, Mr_Hastings.is_perceived_as_honest == false](M_NLI(S1, S2) → Content(Opinion, Mr_Hastings.is_honest))
+18. Q[Hastings, Mr_Hastings.is_honest == true, Mr_Hastings.is_seen_as_honest == false](M_NLI(S1, S2) → Content(Opinion, Mr_Hastings.is_perceived_as_honest))
+19. Q[Hastings, Mr_Hastings.is_distrusted == true, Mr_Hastings.is_trusted == false](M_NLI(S1, S2) → Content(Opinion, Mr_Hastings.is_honest))
+20. Q[Hastings, Mr_Hastings.is_honest == true, Mr_Hastings.honesty_level < 1](M_NLI(S1, S2) → Content(Opinion, Mr_Hastings.is_perceived_as_honest))
+21. Q[Hastings, Mr_Hastings.is_perceived_as_honest == false, Mr_Hastings.perception_level < 1](M_NLI(S1, S2) → Content(Opinion, Mr_Hastings.is_honest))
+22. Q[Hastings, honesty.is_a_trait_of(Mr_Hastings) == true, Mr_Hastings.is_seen_as_honest == false](M_NLI(S1, S2) → Content(Opinion, Mr_Hastings.is_perceived_as_honest))
+23. Q[Hastings, Mr_Hastings.is_honest == true, Mr_Hastings.is_distrusted == true](M_NLI(S1, S2) → Content(Opinion, Mr_Hastings.is_perceived_as_honest))
+24. Q[Hastings, Mr_Hastings.is_perceived_as_honest == true, Mr_Hastings.is_trusted == false](M_NLI(S1, S2) → Content(Opinion, Mr_Hastings.is_honest))
+25. Q[Hastings, Mr_Hastings.is_honest == false, Mr_Hastings.is_seen_as_honest == true](M_NLI(S1, S2) → Content(Opinion, Mr_Hastings.is_perceived_as_honest))
+26. Q[Hastings, Mr_Hastings.is_honest == true, Mr_Hastings.is_perceived_as_honest == false](M_NLI

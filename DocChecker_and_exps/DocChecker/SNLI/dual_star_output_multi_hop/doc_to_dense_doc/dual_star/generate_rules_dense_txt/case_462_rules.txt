@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 462)
+S1: Three male workers in bright jackets are working in a field with shovels.
+S2: The three males are working.
+
+Predicates:
+1. Worker_1.gender
+2. Worker_2.gender
+3. Worker_3.gender
+4. Worker_1.jacket_color
+5. Worker_2.jacket_color
+6. Worker_3.jacket_color
+7. Worker_1.tool
+8. Worker_2.tool
+9. Worker_3.tool
+10. Worker_1.activity
+11. Worker_2.activity
+12. Worker_3.activity
+13. Field.location
+14. Field.condition
+15. Field.size
+16. "is_working".activity
+17. "is_male".gender
+18. "wears_jacket".attribute
+19. "uses_tool".attribute
+20. "is_in_field".location
+21. "has_shovel".tool
+22. "is_bright".jacket_color
+23. "is_specific".context
+24. "is_vague".context
+25. M_NLI(S1, S2)
+26. Relation(Worker_1, Worker_2)
+27. Relation(Worker_2, Worker_3)
+28. Relation(Worker_1, Worker_3)
+29. violate(S1, S2)
+30. "is_working_in_field".activity
+
+Rules:
+1. Q[Three, Worker_1.gender, Worker_2.gender](Worker_1.gender == "is_male" ∧ Worker_2.gender == "is_male" → Relation(Worker_1, Worker_2))
+2. Q[Three, Worker_1.gender, Worker_3.gender](Worker_1.gender == "is_male" ∧ Worker_3.gender == "is_male" → Relation(Worker_1, Worker_3))
+3. Q[Three, Worker_2.gender, Worker_3.gender](Worker_2.gender == "is_male" ∧ Worker_3.gender == "is_male" → Relation(Worker_2, Worker_3))
+4. Q[Three, Worker_1.jacket_color, Worker_2.jacket_color](Worker_1.jacket_color == "is_bright" ∧ Worker_2.jacket_color == "is_bright" → Relation(Worker_1, Worker_2))
+5. Q[Three, Worker_1.jacket_color, Worker_3.jacket_color](Worker_1.jacket_color == "is_bright" ∧ Worker_3.jacket_color == "is_bright" → Relation(Worker_1, Worker_3))
+6. Q[Three, Worker_2.jacket_color, Worker_3.jacket_color](Worker_2.jacket_color == "is_bright" ∧ Worker_3.jacket_color == "is_bright" → Relation(Worker_2, Worker_3))
+7. Q[Three, Worker_1.tool, Worker_2.tool](Worker_1.tool == "has_shovel" ∧ Worker_2.tool == "has_shovel" → Relation(Worker_1, Worker_2))
+8. Q[Three, Worker_1.tool, Worker_3.tool](Worker_1.tool == "has_shovel" ∧ Worker_3.tool == "has_shovel" → Relation(Worker_1, Worker_3))
+9. Q[Three, Worker_2.tool, Worker_3.tool](Worker_2.tool == "has_shovel" ∧ Worker_3.tool == "has_shovel" → Relation(Worker_2, Worker_3))
+10. Q[Three, Worker_1.activity, Worker_2.activity](Worker_1.activity == "is_working" ∧ Worker_2.activity == "is_working" → Relation(Worker_1, Worker_2))
+11. Q[Three, Worker_1.activity, Worker_3.activity](Worker_1.activity == "is_working" ∧ Worker_3.activity == "is_working" → Relation(Worker_1, Worker_3))
+12. Q[Three, Worker_2.activity, Worker_3.activity](Worker_2.activity == "is_working" ∧ Worker_3.activity == "is_working" → Relation(Worker_2, Worker_3))
+13. Q[Three, Field.location, Field.condition](Field.location == "is_in_field" ∧ Field.condition == "is_specific" → Relation(Field.location, Field.condition))
+14. Q[Three, Field.size, Field.condition](Field.size == "is_specific" ∧ Field.condition == "is_specific" → Relation(Field.size, Field.condition))
+15. Q[Three, Worker_1.activity, Field.condition](Worker_1.activity == "is_working_in_field" ∧ Field.condition == "is_specific" → Relation(Worker_1, Field.condition))
+16. Q[Three, Worker_2.activity, Field.condition](Worker_2.activity == "is_working_in_field" ∧ Field.condition == "is_specific" → Relation(Worker_2, Field.condition))
+17. Q[Three, Worker_3.activity, Field.condition](Worker_3.activity == "is_working_in_field" ∧ Field.condition == "is_specific" → Relation(Worker_3, Field.condition))
+18. Q[Three, Worker_1.activity, "is_vague".context](Worker_1.activity == "is_working" ∧ "is_vague".context == "is_vague" → Relation(Worker_1, "is_vague".context))
+19. Q[Three, Worker_2.activity, "is_vague".context](Worker_2.activity == "is_working" ∧ "is_vague".context == "is_vague" → Relation(Worker_2, "is_vague".context))
+20. Q[Three, Worker_3.activity, "is_vague".context](Worker_3.activity == "is_working" ∧ "is_vague".context == "is_vague" → Relation(Worker_3, "is_vague".context))
+21. Q[Three, Worker_1.activity, "is_specific".context](Worker_1.activity == "is_working" ∧ "is_specific".context == "is_specific" → Relation(Worker_1, "is_specific".context))
+22. Q[Three, Worker_2.activity, "is_specific".context](Worker_2.activity == "is_working" ∧ "is_specific".context == "is_specific" → Relation(Worker_2, "is_specific".context))
+23. Q[Three, Worker_3.activity, "is_specific".context](Worker_3.activity == "is_working" ∧ "is_specific".context == "is_specific" → Relation(Worker_3, "is_specific".context))
+24. Q[Three, "is_specific".context, "is_vague".context]( "is_specific".context == "is_specific" ∧ "is_vague".context == "is_vague" → Relation("is_specific".context, "is_vague".context))
+25. Q[Three, Field.condition, "is_vague".context](Field.condition == "is_specific" ∧ "is_vague".context == "is_vague" → Relation(Field.condition, "is_vague".context))
+26. Q[Three, Field.condition, "is_specific".context](Field.condition == "is_specific" ∧ "is_specific".context == "is_specific" → Relation(Field.condition, "is_specific".context))
+27. Q[Three, Worker_1.activity, "is_working".activity](Worker_1.activity == "is_working" ∧ "is_working".activity == "is_working" → Relation(Worker_1, "is_working".activity))
+28. Q[Three, Worker_2.activity, "is_working".activity](Worker_2.activity == "is_working" ∧ "is_working".activity == "is_working" → Relation(Worker_2, "is_working".activity))
+29. Q[Three, Worker_3.activity, "is_working".activity](Worker_3.activity == "is_working" ∧ "is_working".activity == "is_working" → Relation(Worker_3, "is_working".activity))
+30. Q[Three, "is_specific".context, "is_working".activity]( "is

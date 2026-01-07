@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 456)
+S1: the German proficiency badge is included.
+S2: the German proficiency badge does go on the ORB.
+
+Predicates:
+1. German_proficiency_badge.included
+2. German_proficiency_badge.on_ORB
+3. M_NLI(S1, S2)
+4. Relation(German_proficiency_badge, included)
+5. Relation(German_proficiency_badge, on_ORB)
+6. violate(German_proficiency_badge, included)
+7. violate(German_proficiency_badge, on_ORB)
+8. German_proficiency_badge.recognized
+9. German_proficiency_badge.context
+10. ORB.contains(German_proficiency_badge)
+11. ORB.recognition_status
+12. M_NLI(S2, S1)
+13. Relation(ORB, contains)
+14. Relation(ORB, recognition_status)
+15. violate(ORB, contains)
+16. violate(ORB, recognition_status)
+17. German_proficiency_badge.placement
+18. German_proficiency_badge.usage
+19. M_NLI(S1, S1)
+20. Relation(German_proficiency_badge, usage)
+21. violate(German_proficiency_badge, usage)
+22. German_proficiency_badge.eligibility
+23. ORB.eligibility_criteria
+24. Relation(ORB, eligibility_criteria)
+25. violate(ORB, eligibility_criteria)
+26. German_proficiency_badge.value
+27. ORB.value_assessment
+28. Relation(ORB, value_assessment)
+29. violate(ORB, value_assessment)
+30. German_proficiency_badge.impact
+
+Rules:
+1. Q[the, German_proficiency_badge.included, German_proficiency_badge.on_ORB](German_proficiency_badge.included == true → Relation(German_proficiency_badge, on_ORB))
+2. Q[the, German_proficiency_badge.on_ORB, German_proficiency_badge.included](German_proficiency_badge.on_ORB == true → Relation(German_proficiency_badge, included))
+3. Q[the, German_proficiency_badge.included, violate(German_proficiency_badge, on_ORB)](German_proficiency_badge.included == true → violate(German_proficiency_badge, on_ORB))
+4. Q[the, German_proficiency_badge.on_ORB, violate(German_proficiency_badge, included)](German_proficiency_badge.on_ORB == true → violate(German_proficiency_badge, included))
+5. Q[the, German_proficiency_badge.recognized, German_proficiency_badge.included](German_proficiency_badge.recognized == true → Relation(German_proficiency_badge, included))
+6. Q[the, German_proficiency_badge.included, German_proficiency_badge.recognized](German_proficiency_badge.included == true → Relation(German_proficiency_badge, recognized))
+7. Q[the, ORB.contains(German_proficiency_badge), German_proficiency_badge.on_ORB](ORB.contains(German_proficiency_badge) == true → Relation(German_proficiency_badge, on_ORB))
+8. Q[the, German_proficiency_badge.on_ORB, ORB.contains(German_proficiency_badge)](German_proficiency_badge.on_ORB == true → Relation(ORB, contains))
+9. Q[the, violate(German_proficiency_badge, included), German_proficiency_badge.on_ORB](violate(German_proficiency_badge, included) == true → Relation(German_proficiency_badge, on_ORB))
+10. Q[the, violate(German_proficiency_badge, on_ORB), German_proficiency_badge.included](violate(German_proficiency_badge, on_ORB) == true → Relation(German_proficiency_badge, included))
+11. Q[the, German_proficiency_badge.placement, German_proficiency_badge.on_ORB](German_proficiency_badge.placement == "not on ORB" → Relation(German_proficiency_badge, on_ORB))
+12. Q[the, German_proficiency_badge.on_ORB, German_proficiency_badge.placement](German_proficiency_badge.on_ORB == true → Relation(German_proficiency_badge, placement))
+13. Q[the, ORB.recognition_status, German_proficiency_badge.on_ORB](ORB.recognition_status == "not recognized" → Relation(German_proficiency_badge, on_ORB))
+14. Q[the, German_proficiency_badge.on_ORB, ORB.recognition_status](German_proficiency_badge.on_ORB == true → Relation(ORB, recognition_status))
+15. Q[the, violate(ORB, recognition_status), German_proficiency_badge.on_ORB](violate(ORB, recognition_status) == true → Relation(German_proficiency_badge, on_ORB))
+16. Q[the, violate(German_proficiency_badge, on_ORB), ORB.recognition_status](violate(German_proficiency_badge, on_ORB) == true → Relation(ORB, recognition_status))
+17. Q[the, German_proficiency_badge.usage, German_proficiency_badge.included](German_proficiency_badge.usage == "not included" → Relation(German_proficiency_badge, included))
+18. Q[the, German_proficiency_badge.included, German_proficiency_badge.usage](German_proficiency_badge.included == true → Relation(German_proficiency_badge, usage))
+19. Q[the, violate(German_proficiency_badge, usage), German_proficiency_badge.included](violate(German_proficiency_badge, usage) == true → Relation(German_proficiency_badge, included))
+20. Q[the, violate(German_proficiency_badge, included), German_proficiency_badge.usage](violate(German_proficiency_badge, included) == true → Relation(German_proficiency_badge, usage))
+21. Q[the, ORB.eligibility_criteria, German_proficiency_badge.on_ORB](ORB.eligibility_criteria == "not met" → Relation(German_proficiency_badge, on_ORB))
+22. Q[the, German_proficiency_badge.on_ORB, ORB.eligibility_criteria](German_proficiency_badge.on_ORB == true → Relation(ORB, eligibility_criteria))
+23. Q[the, violate(ORB, eligibility_criteria), German_proficiency_badge.on_ORB](violate(ORB, eligibility_criteria) == true → Relation(German_proficiency_badge, on_ORB))
+24. Q[the, violate(German_proficiency_badge, on_ORB), ORB.eligibility_criteria](violate(German_proficiency_badge, on_ORB) == true → Relation(ORB, eligibility_criteria))
+25. Q[the, ORB.value_assessment, German_proficiency_badge.on_ORB](ORB.value_assessment == "not assessed" → Relation(German_proficiency_badge, on_ORB))
+26. Q[the, German_proficiency_badge.on_ORB, ORB.value_assessment](German_proficiency_badge.on_ORB == true → Relation(ORB, value_assessment))
+27. Q[the, violate(ORB, value_assessment), German_proficiency_badge.on_ORB](violate(ORB, value_assessment) == true → Relation(German_proficiency_badge, on_ORB))
+28. Q[the, violate(German_proficiency_badge, on_ORB), ORB.value_assessment](violate(German_proficiency_badge, on_ORB) == true → Relation(ORB, value_assessment))
+29. Q[the, German_proficiency_badge.impact, German_proficiency_badge.included](German_proficiency_badge.impact == "not included" → Relation(German_proficiency_badge, included))
+30. Q[the, German_proficiency_badge.included, German_proficiency_badge.impact](German_proficiency_badge.included == true → Relation(German_proficiency_badge, impact))

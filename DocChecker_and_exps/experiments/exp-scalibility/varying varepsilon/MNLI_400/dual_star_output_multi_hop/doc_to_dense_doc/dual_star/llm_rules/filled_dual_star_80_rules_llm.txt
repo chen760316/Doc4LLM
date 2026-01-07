@@ -1,0 +1,134 @@
+Predicates:
+1. person.name = "John Doe"
+2. person.age = 30
+3. person.occupation = "teacher"
+4. person.moral_standing = "moral"
+5. person.accusation = "molesting"
+6. person.reputation = "good"
+7. person.location = "New York"
+8. person.education_level = "PhD"
+9. person.hobbies = "reading"
+10. person.family_status = "married"
+11. organization.name = "Community Center"
+12. organization.type = "non-profit"
+13. organization.location = "New York"
+14. organization.funding = "government"
+15. organization.mission = "support youth"
+16. event.date = "2025-04-20"
+17. event.type = "community meeting"
+18. event.attendance = 50
+19. event.topic = "youth safety"
+20. event.outcome = "positive"
+21. relationship.type = "marriage"
+22. relationship.status = "happy"
+23. relationship.participant1 = "John Doe"
+24. relationship.participant2 = "Jane Doe"
+25. relationship.duration = "5 years"
+26. accusation.type = "sexual misconduct"
+27. accusation.evidence = "testimony"
+28. accusation.date = "2025-04-15"
+29. accusation.outcome = "pending"
+30. accusation.source = "anonymous"
+31. "is accused of molesting".evidence = "witness statements"
+32. "is accused of molesting".date = "2025-04-15"
+33. "is considered to be a moral man in regards to".context = "community service"
+34. "is considered to be a moral man in regards to".source = "local newspaper"
+35. "is considered to be a moral man in regards to".date = "2025-04-10"
+36. M_NLI(person.accusation, person.reputation)
+37. T("John Doe is accused of molesting", "John Doe is a moral man", tau)
+38. tau(person.accusation, person.moral_standing)
+39. violate(person.accusation, person.moral_standing)
+40. Factual(person.accusation, person.reputation)
+41. Content(person.hobbies, organization.mission)
+42. Causal(event.outcome, event.attendance)
+43. Negation(person.reputation, person.accusation)
+44. Relation(relationship.participant1, relationship.participant2)
+45. Numeric(event.attendance, 0)
+46. Temporal(event.date, accusation.date)
+47. "is accused of molesting".context = "public opinion"
+48. "is considered to be a moral man in regards to".impact = "community trust"
+49. person.trust_level = "high"
+50. organization.impact = "positive"
+51. event.impact = "community awareness"
+52. accusation.impact = "reputation damage"
+53. relationship.impact = "family stability"
+54. "is accused of molesting".public_reaction = "mixed"
+55. "is considered to be a moral man in regards to".public_reaction = "supportive"
+56. M_NLI(organization.mission, person.reputation)
+57. T("John Doe is a teacher", "John Doe is a criminal", tau)
+58. tau(organization.type, accusation.type)
+59. violate(organization.mission, accusation.type)
+60. Factual(organization.location, person.location)
+61. Content(event.topic, event.outcome)
+62. Causal(relationship.status, person.reputation)
+63. Negation(person.age, person.education_level)
+64. Relation(organization.name, person.occupation)
+65. Numeric(event.attendance, 100)
+66. Temporal(relationship.duration, event.date)
+67. "is accused of molesting".duration = "ongoing"
+68. "is considered to be a moral man in regards to".duration = "recent"
+69. person.trust_level = "low"
+70. organization.funding = "private"
+71. event.attendance = 0
+72. accusation.source = "media"
+73. accusation.evidence = "video"
+74. "is accused of molesting".source = "social media"
+75. "is considered to be a moral man in regards to".source = "community leaders"
+76. M_NLI(person.trust_level, organization.impact)
+77. T("John Doe is a teacher", "John Doe is a predator", tau)
+78. tau(person.hobbies, organization.mission)
+79. violate(person.hobbies, person.accusation)
+80. Factual(relationship.status, accusation.type)
+81. Content(event.impact, accusation.impact)
+82. Causal(organization.funding, organization.type)
+83. Negation(relationship.duration, event.date)
+84. Relation(person.name, organization.name)
+85. Numeric(event.attendance, 50)
+86. Temporal(accusation.date, event.date)
+87. "is accused of molesting".severity = "high"
+88. "is considered to be a moral man in regards to".severity = "low"
+89. person.reputation = "damaged"
+90. organization.impact = "negative"
+91. event.outcome = "negative"
+92. accusation.impact = "community division"
+93. relationship.impact = "trust issues"
+94. "is accused of molesting".public_opinion = "divided"
+95. "is considered to be a moral man in regards to".public_opinion = "universal"
+96. M_NLI(person.reputation, accusation.impact)
+97. T("John Doe is a teacher", "John Doe is a felon", tau)
+98. tau(organization.mission, person.trust_level)
+99. violate(organization.impact, person.reputation)
+100. Factual(relationship.participant1, relationship.participant2)
+violate(x0, y0)
+
+Rules:
+1. Q[x0, y0](person.name = "John Doe" ∧ person.reputation = "good" → violate(x0, y0))
+2. Q[x0, y0](person.age = 30 ∧ person.accusation = "molesting" → violate(x0, y0))
+3. Q[x0, y0](person.occupation = "teacher" ∧ person.moral_standing = "moral" → violate(x0, y0))
+4. Q[x0, y0](person.location = "New York" ∧ organization.location = "New York" → violate(x0, y0))
+5. Q[x0, y0](person.education_level = "PhD" ∧ person.hobbies = "reading" → violate(x0, y0))
+6. Q[x0, y0](organization.name = "Community Center" ∧ organization.type = "non-profit" → violate(x0, y0))
+7. Q[x0, y0](person.name = "John Doe" ∧ person.accusation = "molesting" ∧ person.reputation = "good" → violate(x0, y0))
+8. Q[x0, y0](person.age = 30 ∧ person.occupation = "teacher" ∧ person.moral_standing = "moral" → violate(x0, y0))
+9. Q[x0, y0](person.reputation = "good" ∧ person.location = "New York" ∧ organization.mission = "support youth" → violate(x0, y0))
+10. Q[x0, y0](person.education_level = "PhD" ∧ person.hobbies = "reading" ∧ person.family_status = "married" → violate(x0, y0))
+11. Q[x0, y0](organization.name = "Community Center" ∧ organization.funding = "government" ∧ organization.type = "non-profit" → violate(x0, y0))
+12. Q[x0, y0](event.date = "2025-04-20" ∧ event.type = "community meeting" ∧ event.attendance = 50 → violate(x0, y0))
+13. Q[x0, y0](person.name = "John Doe" ∧ person.accusation = "molesting" ∧ person.reputation = "good" ∧ person.moral_standing = "moral" → violate(x0, y0))
+14. Q[x0, y0](person.age = 30 ∧ person.occupation = "teacher" ∧ person.location = "New York" ∧ person.family_status = "married" → violate(x0, y0))
+15. Q[x0, y0](organization.name = "Community Center" ∧ organization.type = "non-profit" ∧ organization.location = "New York" ∧ organization.mission = "support youth" → violate(x0, y0))
+16. Q[x0, y0](event.date = "2025-04-20" ∧ event.type = "community meeting" ∧ event.attendance = 50 ∧ event.outcome = "positive" → violate(x0, y0))
+17. Q[x0, y0](person.name = "John Doe" ∧ person.accusation = "molesting" ∧ person.reputation = "damaged" ∧ person.moral_standing = "moral" → violate(x0, y0))
+18. Q[x0, y0](person.age = 30 ∧ person.occupation = "teacher" ∧ person.reputation = "good" ∧ person.hobbies = "reading" → violate(x0, y0))
+19. Q[x0, y0](organization.name = "Community Center" ∧ organization.funding = "government" ∧ organization.impact = "positive" ∧ organization.type = "non-profit" → violate(x0, y0))
+20. Q[x0, y0](event.date = "2025-04-20" ∧ event.type = "community meeting" ∧ event.attendance = 50 ∧ event.outcome = "negative" → violate(x0, y0))
+21. Q[x0, y0](person.name = "John Doe" ∧ person.accusation = "molesting" ∧ person.reputation = "damaged" ∧ person.moral_standing = "moral" ∧ person.location = "New York" → violate(x0, y0))
+22. Q[x0, y0](person.age = 30 ∧ person.occupation = "teacher" ∧ person.family_status = "married" ∧ person.education_level = "PhD" → violate(x0, y0))
+23. Q[x0, y0](organization.name = "Community Center" ∧ organization.type = "non-profit" ∧ organization.location = "New York" ∧ organization.mission = "support youth" ∧ organization.funding = "government" → violate(x0, y0))
+24. Q[x0, y0](event.date = "2025-04-20" ∧ event.type = "community meeting" ∧ event.attendance = 50 ∧ event.outcome = "positive" ∧ event.topic = "youth safety" → violate(x0, y0))
+25. Q[x0, y0](person.name = "John Doe" ∧ person.accusation = "molesting" ∧ person.reputation = "good" ∧ person.moral_standing = "moral" ∧ person.hobbies = "reading" → violate(x0, y0))
+26. Q[x0, y0](person.age = 30 ∧ person.occupation = "teacher" ∧ person.reputation = "damaged" ∧ person.hobbies = "reading" ∧ person.family_status = "married" → violate(x0, y0))
+27. Q[x0, y0](organization.name = "Community Center" ∧ organization.type = "non-profit" ∧ organization.location = "New York" ∧ organization.mission = "support youth" ∧ organization.funding = "private" → violate(x0, y0))
+28. Q[x0, y0](event.date = "2025-04-20" ∧ event.type = "community meeting" ∧ event.attendance = 0 ∧ event.outcome = "negative" → violate(x0, y0))
+29. Q[x0, y0](person.name = "John Doe" ∧ person.accusation = "molesting" ∧ person.reputation = "good" ∧ person.moral_standing = "moral" ∧ person.location = "New York" ∧ person.education_level = "PhD" → violate(x0, y0))
+30. Q[x0, y0](person.age = 30 ∧ person.occupation = "teacher" ∧ person.reputation = "damaged" ∧ person.hobbies = "reading" ∧ person.family_status = "married"

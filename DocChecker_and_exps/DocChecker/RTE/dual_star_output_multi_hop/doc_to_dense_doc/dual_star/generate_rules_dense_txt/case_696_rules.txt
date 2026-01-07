@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 696)
+S1: The EU Germany a partial suspension of the CPA with the subcommittees and the cooperation committee was suspended indefinitely.
+S2: The EU announced a partial suspension of the PCA with all subcommittees and the Cooperation Committee suspended indefinitely.
+
+Predicates:
+1. EU.suspension_status
+2. Germany.suspension_status
+3. CPA.suspension_type
+4. PCA.suspension_type
+5. subcommittees.suspension_status
+6. Cooperation_Committee.suspension_status
+7. indefinite.suspension_duration
+8. EU.announced
+9. CPA.difference_from_PCA
+10. PCA.difference_from_CPA
+11. partial.suspension_type
+12. suspension.indefinite
+13. EU.agreement_type
+14. Germany.agreement_type
+15. subcommittees.agreement_type
+16. Cooperation_Committee.agreement_type
+17. M_NLI(S1, S2)
+18. Factual(S1, S2)
+19. violate(S1, S2)
+20. CPA.involvement_with_EU
+21. PCA.involvement_with_EU
+22. subcommittees.involvement_with_EU
+23. Cooperation_Committee.involvement_with_EU
+24. EU.suspension_reason
+25. Germany.suspension_reason
+26. CPA.suspension_reason
+27. PCA.suspension_reason
+28. indefinite.suspension_reason
+29. EU.impact_on_Germany
+30. EU.impact_on_subcommittees
+
+Rules:
+1. Q[The, EU.suspension_status, Germany.suspension_status](EU.suspension_status == "partial" → Factual(x0, y0))
+2. Q[The, CPA.suspension_type, PCA.suspension_type](CPA.suspension_type == "partial" → Factual(x0, y0))
+3. Q[The, subcommittees.suspension_status, Cooperation_Committee.suspension_status](subcommittees.suspension_status == "suspended" → Factual(x0, y0))
+4. Q[The, indefinite.suspension_duration, EU.announced](indefinite.suspension_duration == true → Factual(x0, y0))
+5. Q[The, CPA.difference_from_PCA, PCA.difference_from_CPA](CPA.difference_from_PCA == true → Factual(x0, y0))
+6. Q[The, EU.agreement_type, Germany.agreement_type](EU.agreement_type == "PCA" → Factual(x0, y0))
+7. Q[The, CPA.involvement_with_EU, PCA.involvement_with_EU](CPA.involvement_with_EU == false → Factual(x0, y0))
+8. Q[The, subcommittees.involvement_with_EU, Cooperation_Committee.involvement_with_EU](subcommittees.involvement_with_EU == true → Factual(x0, y0))
+9. Q[The, EU.suspension_reason, Germany.suspension_reason](EU.suspension_reason == "indefinite" → Factual(x0, y0))
+10. Q[The, CPA.suspension_reason, PCA.suspension_reason](CPA.suspension_reason == "different" → Factual(x0, y0))
+11. Q[The, indefinite.suspension_reason, EU.impact_on_Germany](indefinite.suspension_reason == true → Factual(x0, y0))
+12. Q[The, EU.impact_on_subcommittees, Cooperation_Committee.agreement_type](EU.impact_on_subcommittees == true → Factual(x0, y0))
+13. Q[The, Germany.suspension_status, CPA.suspension_status](Germany.suspension_status == "suspended" → Factual(x0, y0))
+14. Q[The, PCA.suspension_type, CPA.suspension_type](PCA.suspension_type == "different" → Factual(x0, y0))
+15. Q[The, subcommittees.agreement_type, Cooperation_Committee.agreement_type](subcommittees.agreement_type == "different" → Factual(x0, y0))
+16. Q[The, EU.announced, indefinite.suspension_duration](EU.announced == true → Factual(x0, y0))
+17. Q[The, CPA.involvement_with_EU, subcommittees.involvement_with_EU](CPA.involvement_with_EU == false → Factual(x0, y0))
+18. Q[The, PCA.involvement_with_EU, Cooperation_Committee.involvement_with_EU](PCA.involvement_with_EU == true → Factual(x0, y0))
+19. Q[The, indefinite.suspension_duration, EU.suspension_status](indefinite.suspension_duration == true → Factual(x0, y0))
+20. Q[The, CPA.suspension_type, indefinite.suspension_duration](CPA.suspension_type == "partial" → Factual(x0, y0))
+21. Q[The, EU.suspension_reason, CPA.suspension_reason](EU.suspension_reason == "different" → Factual(x0, y0))
+22. Q[The, Germany.agreement_type, PCA.agreement_type](Germany.agreement_type == "different" → Factual(x0, y0))
+23. Q[The, subcommittees.suspension_status, indefinite.suspension_duration](subcommittees.suspension_status == "suspended" → Factual(x0, y0))
+24. Q[The, Cooperation_Committee.suspension_status, indefinite.suspension_duration](Cooperation_Committee.suspension_status == "suspended" → Factual(x0, y0))
+25. Q[The, EU.impact_on_Germany, indefinite.suspension_duration](EU.impact_on_Germany == true → Factual(x0, y0))
+26. Q[The, CPA.difference_from_PCA, indefinite.suspension_duration](CPA.difference_from_PCA == true → Factual(x0, y0))
+27. Q[The, PCA.difference_from_CPA, indefinite.suspension_duration](PCA.difference_from_CPA == true → Factual(x0, y0))
+28. Q[The, EU.suspension_status, indefinite.suspension_duration](EU.suspension_status == "partial" → Factual(x0, y0))
+29. Q[The, Germany.suspension_reason, indefinite.suspension_duration](Germany.suspension_reason == "different" → Factual(x0, y0))
+30. Q[The, EU.announced, PCA.suspension_type](EU.announced == true → Factual(x0, y0))

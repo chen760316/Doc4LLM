@@ -1,0 +1,68 @@
+Predicates:
+Zully Broussard.label = "Person"
+Zully Broussard.label != "Person"
+Zully Broussard.name = "Zully Broussard"
+Zully Broussard.name != "Zully Broussard"
+Zully Broussard.action = "donated kidney"
+Zully Broussard.action != "donated kidney"
+Zully Broussard.label = "Person"
+Zully Broussard.label != "Person"
+Zully Broussard.name = "Zully Broussard"
+Zully Broussard.name != "Zully Broussard"
+Zully Broussard.action = "donated kidney"
+Zully Broussard.action != "donated kidney"
+Lisa.label = "Person"
+Lisa.label != "Person"
+Lisa.name = "Lisa"
+Lisa.name != "Lisa"
+Lisa.age = "70"
+Lisa.age != 70
+Lisa.age < 70
+Lisa.age > 70
+Lisa.age <= 70
+Lisa.age >= 70
+Lisa.action = "donor"
+Lisa.action != "donor"
+Zully Broussard donated her kidney, possibly for a close friend, while Lisa is a donor aged 70..age_range = "20-45"
+Zully Broussard donated her kidney, possibly for a close friend, while Lisa is a donor aged 70..age_range != "20-45"
+M_NLI(Zully Broussard(label=Person, name=Zully Broussard, action=donated kidney), Lisa(label=Person, name=Lisa, age=70, action=donor))
+M_NLU(Zully Broussard(label=Person, name=Zully Broussard, action=donated kidney), Lisa(label=Person, name=Lisa, age=70, action=donor))
+M_TEM(Zully Broussard(label=Person, name=Zully Broussard, action=donated kidney), Lisa(label=Person, name=Lisa, age=70, action=donor))
+M_NLI(Lisa(label=Person, name=Lisa, age=70, action=donor), Zully Broussard(label=Person, name=Zully Broussard, action=donated kidney))
+M_NLU(Lisa(label=Person, name=Lisa, age=70, action=donor), Zully Broussard(label=Person, name=Zully Broussard, action=donated kidney))
+M_TEM(Lisa(label=Person, name=Lisa, age=70, action=donor), Zully Broussard(label=Person, name=Zully Broussard, action=donated kidney))
+S(Zully Broussard, " that Zully Bro (label=Person name=Zully Broussard action=donated kidney)")
+S(Zully Broussard may or may not have donated her kidney to a stranger., " Zully Broussard never donated her kidney, while others say she did—donating to a stranger. All dono")
+S(Zully Broussard, "Zully Broussard (label=Person name=Zully Broussard action=donated kidney)")
+S(Lisa, "Lisa (label=Person name=Lisa age=70 action=donor)")
+S(Zully Broussard donated her kidney, possibly for a close friend, while Lisa is a donor aged 70., "ome state she donated her kidney, while others claim she did so for a close friend. Lisa, another do")
+T(Zully Broussard (label=Person name=Zully Broussard action=donated kidney), Lisa (label=Person name=Lisa age=70 action=donor), Contradiction type)
+Contradiction type(Zully Broussard., Lisa.)
+T(Lisa (label=Person name=Lisa age=70 action=donor), Zully Broussard (label=Person name=Zully Broussard action=donated kidney), No Contradiction)
+No Contradiction(Lisa., Zully Broussard.)
+T(Zully Broussard (label=Person name=Zully Broussard action=donated kidney), ome state she donated her kidney, while others claim she did so for a close friend. Lisa, another do, No Contradiction)
+No Contradiction(Zully Broussard., Zully Broussard donated her kidney, possibly for a close friend, while Lisa is a donor aged 70..)
+T(Lisa (label=Person name=Lisa age=70 action=donor), ome state she donated her kidney, while others claim she did so for a close friend. Lisa, another do, No Contradiction)
+No Contradiction(Lisa., Zully Broussard donated her kidney, possibly for a close friend, while Lisa is a donor aged 70..)
+
+Rules:
+Q[x0, y0](Zully Broussard.label = "Person" ∧ Zully Broussard.name = "Zully Broussard" → Zully Broussard.action != "donor")
+Q[x0, y0](Lisa.label = "Person" ∧ Lisa.age = "70" → Lisa.age >= 70)
+Q[x0, y0](Zully Broussard.action = "donated kidney" ∧ Lisa.action = "donor" → No Contradiction(Zully Broussard., Lisa.))
+Q[x0, y0](Lisa.age < 70 ∧ Lisa.age != 70 → Lisa.age_range != "20-45")
+Q[x0, y0](Zully Broussard.label = "Person" ∧ Lisa.label = "Person" ∧ Lisa.age = "70" → Lisa.action != "donated kidney")
+Q[x0, y0](Zully Broussard.name = "Zully Broussard" ∧ Zully Broussard.action = "donated kidney" ∧ Lisa.action = "donor" → M_NLI(Zully Broussard(label=Person, name=Zully Broussard, action=donated kidney), Lisa(label=Person, name=Lisa, age=70, action=donor)))
+Q[x0, y0](Lisa.age = "70" ∧ Lisa.action = "donor" ∧ Lisa.age_range != "20-45" ∧ Zully Broussard.action = "donated kidney" → No Contradiction(Lisa., Zully Broussard donated her kidney, possibly for a close friend, while Lisa is a donor aged 70..))
+Q[x0, y0](Zully Broussard.label = "Person" ∧ Zully Broussard.name = "Zully Broussard" ∧ Lisa.label = "Person" ∧ Lisa.name = "Lisa" ∧ Lisa.age = "70" → M_TEM(Lisa(label=Person, name=Lisa, age=70, action=donor), Zully Broussard(label=Person, name=Zully Broussard, action=donated kidney)))
+Q[x0, y0](Zully Broussard.action = "donated kidney" ∧ Lisa.action = "donor" ∧ Lisa.age >= 70 ∧ Lisa.age_range != "20-45" ∧ Zully Broussard.label = "Person" → No Contradiction(Zully Broussard., Lisa.))
+Q[x0, y0](Zully Broussard.name = "Zully Broussard" ∧ Zully Broussard.action = "donated kidney" ∧ Lisa.name = "Lisa" ∧ Lisa.age = "70" ∧ Lisa.action = "donor" ∧ Lisa.age_range != "20-45" → M_NLU(Lisa(label=Person, name=Lisa, age=70, action=donor), Zully Broussard(label=Person, name=Zully Broussard, action=donated kidney)))
+Q[x0, y0](Lisa.age = "70" ∧ Lisa.age != 70 → Contradiction type(Zully Broussard., Lisa.))
+Q[x0, y0](Zully Broussard.action = "donated kidney" ∧ Zully Broussard.action != "donated kidney" → Contradiction type(Zully Broussard., Zully Broussard.))
+Q[x0, y0](Lisa.age < 70 ∧ Lisa.age >= 70 → Contradiction type(Lisa., Lisa.))
+Q[x0, y0](Zully Broussard.label != "Person" ∧ Zully Broussard.name = "Zully Broussard" → Contradiction type(Zully Broussard., Zully Broussard.))
+Q[x0, y0](Lisa.action = "donor" ∧ Lisa.action != "donor" → Contradiction type(Lisa., Lisa.))
+Q[x0, y0](Zully Broussard.label = "Person" ∧ Lisa.label = "Person" → No Contradiction(Zully Broussard., Lisa.))
+Q[x0, y0](Lisa.age = "70" ∧ Lisa.age_range = "20-45" → Contradiction type(Lisa., Lisa.))
+Q[x0, y0](Zully Broussard.name != "Zully Broussard" ∧ Zully Broussard.action = "donated kidney" → Contradiction type(Zully Broussard., Zully Broussard.))
+Q[x0, y0](Lisa.age = "70" ∧ Lisa.age > 70 → Contradiction type(Lisa., Lisa.))
+Q[x0, y0](Zully Broussard.action = "donated kidney" ∧ Lisa.action = "donor" ∧ Lisa.age = "70" ∧ Lisa.age_range != "20-45" ∧ Zully Broussard.label = "Person" ∧ Lisa.label = "Person" → No Contradiction(Lisa., Zully Broussard donated her kidney, possibly for a close friend, while Lisa is a donor aged 70..))

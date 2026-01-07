@@ -1,0 +1,68 @@
+E:\Anaconda\envs\attribute_graph\python.exe "E:\Document cleaning\kg-gen\document_cleaning\doc_to_llm\downstream tasks\downstream_nlp_tasks\fact_validation.py"
+2025-11-25 19:03:30.023964: I tensorflow/core/util/port.cc:113] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+WARNING:tensorflow:From E:\Anaconda\envs\attribute_graph\Lib\site-packages\keras\src\losses.py:2976: The name tf.losses.sparse_softmax_cross_entropy is deprecated. Please use tf.compat.v1.losses.sparse_softmax_cross_entropy instead.
+
+Loading and sampling data from ../../../datasets/data_from_related_work/DOCNLI/Data/binary-FEVER-NLI/train.txt...
+Loaded 1200 samples from ../../../datasets/data_from_related_work/DOCNLI/Data/binary-FEVER-NLI/train.txt.
+Loading and sampling data from ../../../datasets/data_from_related_work/DOCNLI/Data/binary-FEVER-NLI/test.txt...
+Loaded 1200 samples from ../../../datasets/data_from_related_work/DOCNLI/Data/binary-FEVER-NLI/test.txt.
+Loading and sampling data from ../../../datasets/data_from_related_work/DOCNLI/Data/binary-FEVER-NLI/dev.txt...
+Loaded 1200 samples from ../../../datasets/data_from_related_work/DOCNLI/Data/binary-FEVER-NLI/dev.txt.
+
+============================================================
+--- 阶段 I: 基线性能 (原始训练集) ---
+
+--- baseline：正在训练/评估 BERT 模型 ---
+Some weights of BertForSequenceClassification were not initialized from the model checkpoint at bert-base-uncased and are newly initialized: ['classifier.bias', 'classifier.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+{'loss': 0.633, 'grad_norm': 10.12484359741211, 'learning_rate': 2.8000000000000003e-05, 'epoch': 1.3333333333333333}
+{'loss': 0.3419, 'grad_norm': 7.6931681632995605, 'learning_rate': 5.777777777777778e-06, 'epoch': 2.6666666666666665}
+{'train_runtime': 78.9855, 'train_samples_per_second': 45.578, 'train_steps_per_second': 2.849, 'train_loss': 0.45527781804402667, 'epoch': 3.0}
+{'eval_loss': 0.833387017250061, 'eval_accuracy': 0.7183333333333334, 'eval_runtime': 7.2149, 'eval_samples_per_second': 166.321, 'eval_steps_per_second': 5.267, 'epoch': 3.0}
+**baseline 事实核查精度:** 0.7183
+============================================================
+
+🧠 正在注入 360 条【隐蔽性】损坏数据 (使用标记列)...
+✅ 注入 360 条损坏数据。总训练集大小: 1560
+
+============================================================
+--- 阶段 II: 注入损坏数据后的性能 (使用损坏数据微调) ---
+
+--- inject：正在训练/评估 BERT 模型 ---
+Some weights of BertForSequenceClassification were not initialized from the model checkpoint at bert-base-uncased and are newly initialized: ['classifier.bias', 'classifier.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+{'loss': 0.7072, 'grad_norm': 2.7753102779388428, 'learning_rate': 3.316326530612245e-05, 'epoch': 1.0204081632653061}
+{'loss': 0.6976, 'grad_norm': 1.7736396789550781, 'learning_rate': 1.6156462585034015e-05, 'epoch': 2.0408163265306123}
+{'train_runtime': 101.9586, 'train_samples_per_second': 45.901, 'train_steps_per_second': 2.884, 'train_loss': 0.6852503277006603, 'epoch': 3.0}
+{'eval_loss': 0.7794901728630066, 'eval_accuracy': 0.4866666666666667, 'eval_runtime': 7.2975, 'eval_samples_per_second': 164.44, 'eval_steps_per_second': 5.207, 'epoch': 3.0}
+**inject 事实核查精度:** 0.4867
+============================================================
+
+🔍 正在进行矛盾检索与清理 (使用标记列进行完美过滤)...
+✅ 清理完成。共识别并过滤掉 360 条矛盾数据。清理后大小: 1200
+
+============================================================
+--- 阶段 IV: 清理后性能 (使用清理数据微调) ---
+
+--- clean：正在训练/评估 BERT 模型 ---
+Some weights of BertForSequenceClassification were not initialized from the model checkpoint at bert-base-uncased and are newly initialized: ['classifier.bias', 'classifier.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+{'loss': 0.5823, 'grad_norm': 6.633378505706787, 'learning_rate': 2.8000000000000003e-05, 'epoch': 1.3333333333333333}
+{'loss': 0.3104, 'grad_norm': 12.190637588500977, 'learning_rate': 5.777777777777778e-06, 'epoch': 2.6666666666666665}
+{'train_runtime': 78.8761, 'train_samples_per_second': 45.641, 'train_steps_per_second': 2.853, 'train_loss': 0.41560067070855033, 'epoch': 3.0}
+{'eval_loss': 0.793774425983429, 'eval_accuracy': 0.7075, 'eval_runtime': 7.2976, 'eval_samples_per_second': 164.437, 'eval_steps_per_second': 5.207, 'epoch': 3.0}
+**clean 事实核查精度:** 0.7075
+============================================================
+
+
+##############################
+### 实验结果总结 ###
+1. 原始基线精度: 0.7183
+2. 损坏后精度: 0.4867
+3. 清理后精度: 0.7075
+
+🎉 结论: 矛盾检索清理成功提升了事实核查精度！
+精度提升: 0.2208
+##############################
+
+Process finished with exit code 0

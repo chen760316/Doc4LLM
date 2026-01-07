@@ -1,0 +1,38 @@
+Predicates:
+McTeague.label != "Person"
+McTeague.label = "Person"
+McTeague.name != "McTeague"
+McTeague.name != Trina.name
+McTeague.name = "McTeague"
+McTeague.occupation != "unknown"
+McTeague.occupation = "unknown"
+McTeague.status != "violent"
+McTeague.status != Trina.status
+McTeague.status = "violent"
+McTeague___Trina.contradiction_type = "Causal"
+McTeague___Trina.method = "wooing"
+McTeague___Trina.reason = "aggravated by whisky"
+McTeague___Trina.relationship = "McTeague successfully woos Trina"
+McTeague___Trina.result = "death"
+McTeague___Trina.source_id = "3488771897_3"
+None_ML(Trina.attrs, McTeague.attrs)
+Trina.label != "Person"
+Trina.label = "Person"
+Trina.name != "Trina"
+Trina.name = "Trina"
+Trina.occupation != "unknown"
+Trina.occupation = "unknown"
+Trina.status != "deceased"
+Trina.status = "deceased"
+
+Rules:
+Q[McTeague,McTeague] (Trina.label != "Person" ∧ McTeague___Trina.reason = "aggravated by whisky" → Trina.occupation = "unknown")
+Q[McTeague,McTeague] (McTeague___Trina.method = "wooing" ∧ McTeague___Trina.contradiction_type = "Causal" ∧ McTeague___Trina.result = "death" ∧ Trina.occupation != "unknown" ∧ McTeague.occupation != "unknown" → Trina.label = "Person")
+Q[McTeague,McTeague] (McTeague.occupation != "unknown" ∧ McTeague.name != Trina.name ∧ Trina.status = "deceased" → McTeague.status != "violent")
+Q[McTeague,McTeague] (McTeague.label = "Person" ∧ Trina.name = "Trina" ∧ McTeague.name != "McTeague" ∧ McTeague___Trina.contradiction_type = "Causal" ∧ McTeague.name = "McTeague" ∧ Trina.label = "Person" → None_ML(Trina.attrs, McTeague.attrs))
+Q[McTeague,McTeague] (McTeague.label = "Person" ∧ McTeague___Trina.method = "wooing" ∧ Trina.name != "Trina" ∧ Trina.label != "Person" → Trina.name = "Trina")
+Q[McTeague,McTeague] (Trina.status != "deceased" ∧ Trina.name != "Trina" ∧ McTeague___Trina.method = "wooing" ∧ McTeague.status != Trina.status ∧ McTeague___Trina.source_id = "3488771897_3" ∧ McTeague.occupation = "unknown" → McTeague___Trina.result = "death")
+Q[McTeague,McTeague] (Trina.label != "Person" ∧ McTeague___Trina.source_id = "3488771897_3" ∧ McTeague___Trina.relationship = "McTeague successfully woos Trina" ∧ McTeague.occupation != "unknown" ∧ Trina.label = "Person" → Trina.occupation != "unknown")
+Q[McTeague,McTeague] (McTeague___Trina.reason = "aggravated by whisky" ∧ Trina.label = "Person" ∧ McTeague___Trina.method = "wooing" ∧ None_ML(Trina.attrs, McTeague.attrs) → McTeague.status = "violent")
+Q[McTeague,McTeague] (Trina.occupation != "unknown" ∧ Trina.status = "deceased" → Trina.label != "Person")
+Q[McTeague,McTeague] (McTeague.occupation = "unknown" ∧ McTeague.name != "McTeague" ∧ McTeague.label = "Person" → McTeague___Trina.reason = "aggravated by whisky")

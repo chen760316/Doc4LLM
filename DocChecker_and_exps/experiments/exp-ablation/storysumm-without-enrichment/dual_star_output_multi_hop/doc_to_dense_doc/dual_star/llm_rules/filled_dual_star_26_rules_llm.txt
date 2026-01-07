@@ -1,0 +1,134 @@
+Predicates:
+1. Unknown Female.action = "not involved"
+2. Unknown Female.status = "not served"
+3. Unknown Male.action = "does not prepare meal"
+4. Unknown Male.status = "self-serving"
+5. "Relationship".doc_index = "24"
+6. "Relationship".reason = "self-interest"
+7. "Relationship".source_domain = "N/A"
+8. "Relationship".source_id = "Index_24"
+9. "Relationship".method = "stabbing"
+10. "Relationship".reason = "cannibalism"
+11. "Relationship".source_domain = "N/A"
+12. "Relationship".source_id = "Index_24"
+13. Male.prepares_meal = "false"
+14. Male.prepares_meal_for_female = "false"
+15. Male.prepares_meal_for_himself = "true"
+16. Male.action = "stabs"
+17. Male.intent = "cannibalism"
+18. Female.status = "not served"
+19. Female.action = "arrives"
+20. Meal.prepared_for = "himself"
+21. Meal.prepared_for_female = "false"
+22. Meal.type = "cannibalistic"
+23. Meal.served_to = "not applicable"
+24. Meal.served_to_female = "false"
+25. Male.relationship_with_female = "antagonistic"
+26. Male.relationship_with_female = "violent"
+27. Male.motivation = "self-interest"
+28. Female.relationship_with_male = "dangerous"
+29. Male.prepares_meal_for = "himself"
+30. Male.prepares_meal_for_female = "false"
+31. Male.action = "cooks"
+32. Male.action = "kills"
+33. Male.action = "eats"
+34. Female.arrival_time = "unknown"
+35. Female.arrival_time = "after meal preparation"
+36. Meal.preparation_time = "unknown"
+37. Meal.preparation_time = "before female's arrival"
+38. Male.prepares_meal = "true"
+39. Male.prepares_meal_for_female = "false"
+40. Male.prepares_meal_for_himself = "true"
+41. Male.intent = "self-serving"
+42. Male.intent = "malicious"
+43. Male.action = "serves meal"
+44. Male.action = "attacks"
+45. Male.action = "consumes"
+46. Female.status = "unserved"
+47. Female.status = "in danger"
+48. Meal.type = "human flesh"
+49. Meal.type = "not for female"
+50. Meal.served_to = "himself"
+51. Meal.served_to_female = "false"
+52. Meal.preparation_method = "cooking"
+53. Meal.preparation_method = "stabbing"
+54. Meal.preparation_outcome = "cannibalism"
+55. Meal.preparation_outcome = "violence"
+56. Male.relationship_with_female = "hostile"
+57. Male.relationship_with_female = "dangerous"
+58. Male.action = "prepares"
+59. Male.action = "kills"
+60. Male.action = "eats"
+61. Female.action = "not involved"
+62. Female.action = "arrives"
+63. Female.status = "not served"
+64. Female.status = "in danger"
+65. violate(x0, y0)
+66. Factual(x0, y0)
+67. Causal(x0, y0)
+68. Numeric(x0, y0)
+69. Temporal(x0, y0)
+70. Content(x0, y0)
+71. Negation(x0, y0)
+72. Relation(x0, y0)
+73. M_NLI(Male.status, Female.status)
+74. T("The male does not prepare a meal for the female", "The male prepares a meal for the female", "Content")
+75. T("The male prepares a meal for himself", "The male prepares a meal for the female", "Causal")
+76. tau(Male.action, Female.action)
+77. tau(Male.relationship_with_female, Female.relationship_with_male)
+78. tau(Male.intent, Female.status)
+79. tau(Meal.prepared_for, Meal.served_to)
+80. tau(Male.action, Male.status)
+81. tau(Female.action, Male.action)
+82. tau(Male.prepares_meal_for, Meal.served_to)
+83. tau(Male.prepares_meal_for_female, Meal.served_to_female)
+84. tau(Male.relationship_with_female, Meal.type)
+85. tau(Male.action, Meal.preparation_method)
+86. tau(Male.intent, Meal.preparation_outcome)
+87. tau(Female.status, Meal.served_to)
+88. tau(Male.action, Male.relationship_with_female)
+89. tau(Female.action, Male.intent)
+90. tau(Male.action, Female.status)
+91. tau(Male.prepares_meal, Female.action)
+92. tau(Male.action, Meal.type)
+93. tau(Male.relationship_with_female, Female.action)
+94. tau(Male.intent, Male.action)
+95. tau(Female.status, Male.prepares_meal)
+96. tau(Male.action, Meal.preparation_time)
+97. tau(Male.relationship_with_female, Meal.preparation_method)
+98. tau(Male.action, Meal.served_to)
+99. tau(Female.action, Meal.preparation_outcome)
+100. tau(Male.intent, Female.status)
+violate(x0, y0)
+
+Rules:
+1. Q[x0, y0](Unknown Female.action = "not involved" ∧ Unknown Male.action = "does not prepare meal" → violate(x0, y0))
+2. Q[x0, y0](Unknown Male.status = "self-serving" ∧ Male.prepares_meal_for_female = "false" → violate(x0, y0))
+3. Q[x0, y0](Male.action = "stabs" ∧ Male.intent = "cannibalism" → violate(x0, y0))
+4. Q[x0, y0](Female.status = "not served" ∧ Meal.served_to_female = "false" → violate(x0, y0))
+5. Q[x0, y0](Male.relationship_with_female = "violent" ∧ Male.action = "kills" → violate(x0, y0))
+6. Q[x0, y0](Meal.type = "cannibalistic" ∧ Meal.served_to = "not applicable" → violate(x0, y0))
+7. Q[x0, y0](Unknown Female.status = "not served" ∧ Male.prepares_meal_for = "himself" ∧ Meal.served_to_female = "false" → violate(x0, y0))
+8. Q[x0, y0](Male.relationship_with_female = "dangerous" ∧ Female.status = "in danger" ∧ Male.intent = "malicious" → violate(x0, y0))
+9. Q[x0, y0](Male.action = "eats" ∧ Meal.type = "human flesh" ∧ Female.status = "not served" → violate(x0, y0))
+10. Q[x0, y0](Male.prepares_meal = "false" ∧ Male.action = "serves meal" ∧ Meal.served_to_female = "false" → violate(x0, y0))
+11. Q[x0, y0](Male.prepares_meal_for_female = "false" ∧ Male.action = "attacks" ∧ Female.status = "not served" → violate(x0, y0))
+12. Q[x0, y0](Meal.preparation_method = "stabbing" ∧ Male.intent = "cannibalism" ∧ Female.status = "in danger" → violate(x0, y0))
+13. Q[x0, y0](Male.relationship_with_female = "hostile" ∧ Male.action = "consumes" ∧ Meal.served_to_female = "false" → violate(x0, y0))
+14. Q[x0, y0](Male.prepares_meal_for_himself = "true" ∧ Meal.type = "not for female" ∧ Female.status = "not served" → violate(x0, y0))
+15. Q[x0, y0](Male.action = "kills" ∧ Male.relationship_with_female = "dangerous" ∧ Female.action = "arrives" → violate(x0, y0))
+16. Q[x0, y0](Unknown Male.action = "does not prepare meal" ∧ Male.prepares_meal_for_female = "false" ∧ Meal.served_to = "himself" → violate(x0, y0))
+17. Q[x0, y0](Male.intent = "self-serving" ∧ Meal.preparation_outcome = "violence" ∧ Female.status = "unserved" → violate(x0, y0))
+18. Q[x0, y0](Meal.preparation_time = "before female's arrival" ∧ Female.arrival_time = "after meal preparation" ∧ Male.action = "kills" → violate(x0, y0))
+19. Q[x0, y0](Male.action = "cooks" ∧ Meal.type = "cannibalistic" ∧ Female.status = "not served" → violate(x0, y0))
+20. Q[x0, y0](Male.relationship_with_female = "violent" ∧ Male.action = "attacks" ∧ Female.status = "in danger" → violate(x0, y0))
+21. Q[x0, y0](Male.prepares_meal = "true" ∧ Meal.served_to_female = "false" ∧ Female.status = "not served" → violate(x0, y0))
+22. Q[x0, y0](Male.intent = "malicious" ∧ Meal.type = "human flesh" ∧ Female.action = "not involved" → violate(x0, y0))
+23. Q[x0, y0](Male.action = "consumes" ∧ Meal.served_to = "himself" ∧ Female.status = "not served" → violate(x0, y0))
+24. Q[x0, y0](Male.prepares_meal_for = "himself" ∧ Meal.served_to_female = "false" ∧ Female.status = "in danger" → violate(x0, y0))
+25. Q[x0, y0](Male.relationship_with_female = "dangerous" ∧ Male.action = "stabs" ∧ Female.status = "not served" → violate(x0, y0))
+26. Q[x0, y0](Male.action = "kills" ∧ Male.intent = "cannibalism" ∧ Meal.type = "not for female" → violate(x0, y0))
+27. Q[x0, y0](Male.prepares_meal_for_female = "false" ∧ Meal.served_to = "not applicable" ∧ Female.status = "unserved" → violate(x0, y0))
+28. Q[x0, y0](Male.action = "attacks" ∧ Male.relationship_with_female = "hostile" ∧ Female.status = "in danger" → violate(x0, y0))
+29. Q[x0, y0](Meal.preparation_outcome = "cannibalism" ∧ Male.intent = "self-serving" ∧ Female.status = "not served" → violate(x0, y0))
+30. Q[x0, y0](Male.prepares_meal_for_himself = "true" ∧ Meal.type = "cannibalistic" ∧ Female.status = "in danger" → violate(x0, y0))

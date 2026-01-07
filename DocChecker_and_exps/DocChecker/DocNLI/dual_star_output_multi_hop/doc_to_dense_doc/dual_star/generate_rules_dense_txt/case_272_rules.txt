@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 272)
+S1: The attack happened about 10 minutes after the start of a previously scheduled constituent meeting outside a Safeway grocery store.
+S2: The shooting occurred outside a Tucson, Arizona, supermarket Saturday, killing six and wounding 12 including the congresswoman, the local sheriff said hours after the shooting.
+
+Predicates:
+1. Meeting.start_time
+2. Attack.time
+3. Shooting.location
+4. Shooting.date
+5. Victim.count
+6. Wounded.count
+7. Sheriff.statement_time
+8. Grocery_store.name
+9. Meeting.duration
+10. Attack.duration
+11. Tucson.location
+12. Arizona.state
+13. Meeting.scheduled_time
+14. Attack.occurred_after_meeting
+15. Shooting.occurred_after_meeting
+16. Meeting.participants
+17. Victim.identity
+18. Wounded.identity
+19. Sheriff.name
+20. Grocery_store.type
+21. Attack.motive
+22. Shooting.weapon
+23. Meeting.agenda
+24. Attack.witnesses
+25. Shooting.response_time
+26. Victim.role
+27. Wounded.severity
+28. Sheriff.investigation_status
+29. Grocery_store.address
+30. Temporal(Attack.time, Meeting.start_time)
+
+Rules:
+1. Q[The, Attack.time, Meeting.start_time](Attack.occurred_after_meeting == true → Temporal(Attack.time, Meeting.start_time))
+2. Q[The, Shooting.date, Meeting.start_time](Shooting.occurred_after_meeting == true → Temporal(Shooting.date, Meeting.start_time))
+3. Q[The, Attack.time, Sheriff.statement_time](Attack.time < Sheriff.statement_time → Temporal(Attack.time, Sheriff.statement_time))
+4. Q[The, Shooting.location, Grocery_store.name](Shooting.location == Grocery_store.name → Temporal(Shooting.location, Grocery_store.name))
+5. Q[The, Meeting.start_time, Attack.time](Meeting.start_time + Meeting.duration < Attack.time → Temporal(Meeting.start_time, Attack.time))
+6. Q[The, Meeting.start_time, Shooting.date](Meeting.start_time + Meeting.duration < Shooting.date → Temporal(Meeting.start_time, Shooting.date))
+7. Q[The, Attack.time, Shooting.date](Attack.time < Shooting.date → Temporal(Attack.time, Shooting.date))
+8. Q[The, Sheriff.statement_time, Attack.time](Sheriff.statement_time > Attack.time → Temporal(Sheriff.statement_time, Attack.time))
+9. Q[The, Sheriff.statement_time, Shooting.date](Sheriff.statement_time > Shooting.date → Temporal(Sheriff.statement_time, Shooting.date))
+10. Q[The, Meeting.start_time, Sheriff.statement_time](Meeting.start_time < Sheriff.statement_time → Temporal(Meeting.start_time, Sheriff.statement_time))
+11. Q[The, Attack.time, Meeting.scheduled_time](Attack.time > Meeting.scheduled_time → Temporal(Attack.time, Meeting.scheduled_time))
+12. Q[The, Shooting.date, Meeting.scheduled_time](Shooting.date > Meeting.scheduled_time → Temporal(Shooting.date, Meeting.scheduled_time))
+13. Q[The, Attack.time, Meeting.duration](Attack.time > Meeting.start_time + Meeting.duration → Temporal(Attack.time, Meeting.duration))
+14. Q[The, Shooting.date, Meeting.duration](Shooting.date > Meeting.start_time + Meeting.duration → Temporal(Shooting.date, Meeting.duration))
+15. Q[The, Attack.time, Tucson.location](Attack.time < Tucson.location → Temporal(Attack.time, Tucson.location))
+16. Q[The, Shooting.date, Tucson.location](Shooting.date < Tucson.location → Temporal(Shooting.date, Tucson.location))
+17. Q[The, Attack.time, Wounded.count](Attack.time < Wounded.count → Temporal(Attack.time, Wounded.count))
+18. Q[The, Shooting.date, Victim.count](Shooting.date < Victim.count → Temporal(Shooting.date, Victim.count))
+19. Q[The, Attack.time, Grocery_store.type](Attack.time < Grocery_store.type → Temporal(Attack.time, Grocery_store.type))
+20. Q[The, Shooting.date, Grocery_store.type](Shooting.date < Grocery_store.type → Temporal(Shooting.date, Grocery_store.type))
+21. Q[The, Attack.time, Victim.identity](Attack.time < Victim.identity → Temporal(Attack.time, Victim.identity))
+22. Q[The, Shooting.date, Wounded.identity](Shooting.date < Wounded.identity → Temporal(Shooting.date, Wounded.identity))
+23. Q[The, Attack.time, Sheriff.name](Attack.time < Sheriff.name → Temporal(Attack.time, Sheriff.name))
+24. Q[The, Shooting.date, Sheriff.name](Shooting.date < Sheriff.name → Temporal(Shooting.date, Sheriff.name))
+25. Q[The, Attack.time, Attack.duration](Attack.time < Attack.duration → Temporal(Attack.time, Attack.duration))
+26. Q[The, Shooting.date, Shooting.response_time](Shooting.date < Shooting.response_time → Temporal(Shooting.date, Shooting.response_time))
+27. Q[The, Attack.time, Meeting.participants](Attack.time < Meeting.participants → Temporal(Attack.time, Meeting.participants))
+28. Q[The, Shooting.date, Meeting.agenda](Shooting.date < Meeting.agenda → Temporal(Shooting.date, Meeting.agenda))
+29. Q[The, Attack.time, Attack.motive](Attack.time < Attack.motive → Temporal(Attack.time, Attack.motive))
+30. Q[The, Shooting.date, Shooting.weapon](Shooting.date < Shooting.weapon → Temporal(Shooting.date, Shooting.weapon))

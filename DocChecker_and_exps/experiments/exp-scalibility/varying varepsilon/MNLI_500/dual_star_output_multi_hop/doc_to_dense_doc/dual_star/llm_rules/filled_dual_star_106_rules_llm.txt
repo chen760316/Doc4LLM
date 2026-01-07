@@ -1,0 +1,128 @@
+Predicates:
+1. entity1.name = "Entity A"
+2. entity1.type = "Organization"
+3. entity1.status = "Active"
+4. entity1.location = "Location X"
+5. entity1.founded_year = 2000
+6. entity1.employee_count = 150
+7. entity1.revenue = 5000000
+8. entity1.industry = "Technology"
+9. entity1.leadership = "CEO A"
+10. entity1.mission = "Innovate solutions"
+11. entity2.name = "Entity B"
+12. entity2.type = "Organization"
+13. entity2.status = "Inactive"
+14. entity2.location = "Location Y"
+15. entity2.founded_year = 1995
+16. entity2.employee_count = 0
+17. entity2.revenue = 0
+18. entity2.industry = "Healthcare"
+19. entity2.leadership = "CEO B"
+20. entity2.mission = "Provide healthcare"
+21. "were involved in internal strife with".source = "Entity A"
+22. "were involved in internal strife with".target = "Entity B"
+23. "were involved in internal strife with".date = "2023-01-15"
+24. "were involved in internal strife with".intensity = "High"
+25. "were involved in internal strife with".duration = "6 months"
+26. "were involved in internal strife with".outcome = "Unresolved"
+27. M_NLI(entity1.mission, entity2.mission)
+28. T("Entity A is active", "Entity B is inactive", tau)
+29. tau(entity1.status, entity2.status)
+30. violate(entity1, entity2)
+31. Factual(entity1.founded_year, entity2.founded_year)
+32. Causal(entity1.revenue, entity2.revenue)
+33. Numeric(entity1.employee_count, entity2.employee_count)
+34. Temporal(entity1.founded_year, entity2.founded_year)
+35. Content(entity1.mission, entity2.mission)
+36. Relation(entity1.leadership, entity2.leadership)
+37. entity1.revenue_growth = "10%"
+38. entity2.revenue_growth = "0%"
+39. "were involved in internal strife with".reason = "Disagreement on strategy"
+40. "were involved in internal strife with".resolution = "Pending"
+41. M_NLI(entity1.status, entity2.status)
+42. T("Entity A has a CEO", "Entity B has no CEO", tau)
+43. tau(entity1.leadership, entity2.leadership)
+44. violate(entity1, entity2)
+45. Factual(entity1.location, entity2.location)
+46. Causal(entity1.employee_count, entity2.employee_count)
+47. Numeric(entity1.revenue, entity2.revenue)
+48. Temporal(entity1.status, entity2.status)
+49. Content(entity1.industry, entity2.industry)
+50. Relation(entity1.mission, entity2.mission)
+51. entity1.partnerships = "5"
+52. entity2.partnerships = "0"
+53. "were involved in internal strife with".impact = "Negative"
+54. "were involved in internal strife with".date_resolved = "N/A"
+55. M_NLI(entity1.industry, entity2.industry)
+56. T("Entity A is in technology", "Entity B is in healthcare", tau)
+57. tau(entity1.partnerships, entity2.partnerships)
+58. violate(entity1, entity2)
+59. Factual(entity1.employee_count, entity2.employee_count)
+60. Causal(entity1.revenue_growth, entity2.revenue_growth)
+61. Numeric(entity1.partnerships, entity2.partnerships)
+62. Temporal(entity1.location, entity2.location)
+63. Content(entity1.status, entity2.status)
+64. Relation(entity1.revenue, entity2.revenue)
+65. entity1.investment = "1 million"
+66. entity2.investment = "0"
+67. "were involved in internal strife with".consequences = "Loss of trust"
+68. "were involved in internal strife with".final_outcome = "Ongoing"
+69. M_NLI(entity1.investment, entity2.investment)
+70. T("Entity A has investments", "Entity B has no investments", tau)
+71. tau(entity1.investment, entity2.investment)
+72. violate(entity1, entity2)
+73. Factual(entity1.revenue_growth, entity2.revenue_growth)
+74. Causal(entity1.partnerships, entity2.partnerships)
+75. Numeric(entity1.investment, entity2.investment)
+76. Temporal(entity1.industry, entity2.industry)
+77. Content(entity1.leadership, entity2.leadership)
+78. Relation(entity1.mission, entity2.mission)
+79. entity1.project_count = 10
+80. entity2.project_count = 0
+81. "were involved in internal strife with".effects = "Decreased morale"
+82. "were involved in internal strife with".resolution_status = "Unresolved"
+83. M_NLI(entity1.project_count, entity2.project_count)
+84. T("Entity A has projects", "Entity B has no projects", tau)
+85. tau(entity1.project_count, entity2.project_count)
+86. violate(entity1, entity2)
+87. Factual(entity1.revenue, entity2.revenue)
+88. Causal(entity1.project_count, entity2.project_count)
+89. Numeric(entity1.investment, entity2.investment)
+90. Temporal(entity1.status, entity2.status)
+91. Content(entity1.location, entity2.location)
+92. Relation(entity1.industry, entity2.industry)
+93. entity1.client_count = 50
+94. entity2.client_count = 0
+95. "were involved in internal strife with".financial_impact = "Significant"
+96. "were involved in internal strife with".future_outlook = "Uncertain"
+97. M_NLI(entity1.client_count, entity2.client_count)
+98. T("Entity A has clients", "Entity B has no clients", tau)
+99. tau(entity1.client_count, entity2.client_count)
+100. violate(entity1, entity2)
+violate(x0, y0)
+
+Rules:
+1. Q[x0, y0](entity1.status = "Active" ∧ entity2.status = "Inactive" → violate(x0, y0))
+2. Q[x0, y0](entity1.type = "Organization" ∧ entity2.type = "Organization" → violate(x0, y0))
+3. Q[x0, y0](entity1.employee_count = 150 ∧ entity2.employee_count = 0 → violate(x0, y0))
+4. Q[x0, y0](entity1.revenue = 5000000 ∧ entity2.revenue = 0 → violate(x0, y0))
+5. Q[x0, y0](entity1.location = "Location X" ∧ entity2.location = "Location Y" → violate(x0, y0))
+6. Q[x0, y0](entity1.industry = "Technology" ∧ entity2.industry = "Healthcare" → violate(x0, y0))
+7. Q[x0, y0](entity1.founded_year = 2000 ∧ entity2.founded_year = 1995 ∧ entity1.status = "Active" → violate(x0, y0))
+8. Q[x0, y0](entity1.mission = "Innovate solutions" ∧ entity2.mission = "Provide healthcare" ∧ entity1.type = "Organization" → violate(x0, y0))
+9. Q[x0, y0](entity1.leadership = "CEO A" ∧ entity2.leadership = "CEO B" ∧ entity1.status = "Active" ∧ entity2.status = "Inactive" → violate(x0, y0))
+10. Q[x0, y0](entity1.revenue_growth = "10%" ∧ entity2.revenue_growth = "0%" ∧ entity1.employee_count = 150 ∧ entity2.employee_count = 0 → violate(x0, y0))
+11. Q[x0, y0](entity1.partnerships = "5" ∧ entity2.partnerships = "0" ∧ entity1.status = "Active" ∧ entity2.status = "Inactive" ∧ entity1.industry = "Technology" → violate(x0, y0))
+12. Q[x0, y0](entity1.client_count = 50 ∧ entity2.client_count = 0 ∧ entity1.revenue = 5000000 ∧ entity2.revenue = 0 ∧ entity1.type = "Organization" → violate(x0, y0))
+13. Q[x0, y0](entity1.project_count = 10 ∧ entity2.project_count = 0 ∧ entity1.mission = "Innovate solutions" ∧ entity2.mission = "Provide healthcare" ∧ entity1.status = "Active" → violate(x0, y0))
+14. Q[x0, y0](entity1.investment = "1 million" ∧ entity2.investment = "0" ∧ entity1.employee_count = 150 ∧ entity2.employee_count = 0 ∧ entity1.revenue = 5000000 ∧ entity2.revenue = 0 → violate(x0, y0))
+15. Q[x0, y0](entity1.status = "Active" ∧ entity1.type = "Organization" ∧ entity2.status = "Inactive" ∧ entity2.type = "Organization" ∧ "were involved in internal strife with".outcome = "Unresolved" → violate(x0, y0))
+16. Q[x0, y0](entity1.location = "Location X" ∧ entity2.location = "Location Y" ∧ entity1.industry = "Technology" ∧ entity2.industry = "Healthcare" ∧ "were involved in internal strife with".intensity = "High" → violate(x0, y0))
+17. Q[x0, y0](entity1.founded_year = 2000 ∧ entity2.founded_year = 1995 ∧ entity1.revenue_growth = "10%" ∧ entity2.revenue_growth = "0%" ∧ "were involved in internal strife with".resolution = "Pending" → violate(x0, y0))
+18. Q[x0, y0](entity1.mission = "Innovate solutions" ∧ entity2.mission = "Provide healthcare" ∧ entity1.leadership = "CEO A" ∧ entity2.leadership = "CEO B" ∧ "were involved in internal strife with".reason = "Disagreement on strategy" → violate(x0, y0))
+19. Q[x0, y0](entity1.employee_count = 150 ∧ entity2.employee_count = 0 ∧ entity1.revenue = 5000000 ∧ entity2.revenue = 0 ∧ "were involved in internal strife with".impact = "Negative" ∧ "were involved in internal strife with".final_outcome = "Ongoing" → violate(x0, y0))
+20. Q[x0, y0](entity1.client_count = 50 ∧ entity2.client_count = 0 ∧ entity1.project_count = 10 ∧ entity2.project_count = 0 ∧ "were involved in internal strife with".financial_impact = "Significant" ∧ "were involved in internal strife with".future_outlook = "Uncertain" → violate(x0, y0))
+21. Q[x0, y0](entity1.revenue_growth = "10%" ∧ entity2.revenue_growth = "0%" ∧ entity1.partnerships = "5" ∧ entity2.partnerships = "0" ∧ entity1.status = "Active" ∧ entity2.status = "Inactive" → violate(x0, y0))
+22. Q[x0, y0](entity1.type = "Organization" ∧ entity2.type = "Organization" ∧ entity1.status = "Active" ∧ entity2.status = "Inactive" ∧ "were involved in internal strife with".date = "2023-01-15" ∧ "were involved in internal strife with".intensity = "High" → violate(x0, y0))
+23. Q[x0, y0](entity1.location = "Location X" ∧ entity2.location = "Location Y" ∧ entity1.industry = "Technology" ∧ entity2.industry = "Healthcare" ∧ "were involved in internal strife with".duration = "6 months" ∧ "were involved in internal strife with".outcome = "Unresolved" → violate(x0, y0))
+24. Q[x0, y0](entity1.founded_year = 2000 ∧ entity2.founded_year = 1995 ∧ entity1.mission = "Innovate solutions" ∧ entity2.mission = "Provide healthcare" ∧ "were involved in internal strife with".reason = "Disagreement on strategy" ∧ "were involved in internal strife with".resolution = "Pending" → violate(x0, y

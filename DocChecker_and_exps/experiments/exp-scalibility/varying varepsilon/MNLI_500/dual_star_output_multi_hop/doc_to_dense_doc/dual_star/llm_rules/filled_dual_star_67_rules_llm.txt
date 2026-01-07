@@ -1,0 +1,130 @@
+Predicates:
+1. entity1.name = "David"
+2. entity1.age = 30
+3. entity1.occupation = "YouTuber"
+4. entity1.video_count = 50
+5. entity1.subscriber_count = 100000
+6. entity2.name = "Taylor"
+7. entity2.age = 25
+8. entity2.occupation = "Viewer"
+9. entity2.video_count = 0
+10. entity2.subscriber_count = 0
+11. "did not experience".doc_index = "38"
+12. "did not experience".label_text = "contradiction"
+13. entity1.location = "California"
+14. entity2.location = "New York"
+15. entity1.video_title = "How to Cook"
+16. entity2.video_title = "How to Cook"
+17. entity1.publish_date = "2024-01-01"
+18. entity2.publish_date = "2025-01-01"
+19. entity1.view_count = 5000
+20. entity2.view_count = 0
+21. M_NLI(entity1.video_title, entity2.video_title)
+22. T("David's video was removed", "David's video is still available", "Causal")
+23. tau(entity1.view_count, entity2.view_count)
+24. violate(entity1, entity2)
+25. Factual(entity1, entity2)
+26. Causal(entity1, entity2)
+27. Numeric(entity1, entity2)
+28. Temporal(entity1, entity2)
+29. entity1.rating = 4.5
+30. entity2.rating = 0
+31. M_NLI(entity1.rating, entity2.rating)
+32. T("David's video has a high rating", "David's video has no rating", "Content")
+33. tau(entity1.publish_date, entity2.publish_date)
+34. violate(entity1.location, entity2.location)
+35. Factual(entity1.location, entity2.location)
+36. Causal(entity1.video_count, entity2.video_count)
+37. Numeric(entity1.subscriber_count, entity2.subscriber_count)
+38. Temporal(entity1.age, entity2.age)
+39. entity1.comment_count = 100
+40. entity2.comment_count = 0
+41. M_NLI(entity1.comment_count, entity2.comment_count)
+42. T("David's video has many comments", "David's video has no comments", "Content")
+43. tau(entity1.occupation, entity2.occupation)
+44. violate(entity1.video_title, entity2.video_title)
+45. Factual(entity1.video_title, entity2.video_title)
+46. Causal(entity1.view_count, entity2.view_count)
+47. Numeric(entity1.comment_count, entity2.comment_count)
+48. Temporal(entity1.publish_date, entity2.publish_date)
+49. entity1.likes = 300
+50. entity2.likes = 0
+51. M_NLI(entity1.likes, entity2.likes)
+52. T("David's video is popular", "David's video is unpopular", "Content")
+53. tau(entity1.age, entity2.age)
+54. violate(entity1.occupation, entity2.occupation)
+55. Factual(entity1.location, entity2.location)
+56. Causal(entity1.subscriber_count, entity2.subscriber_count)
+57. Numeric(entity1.video_count, entity2.video_count)
+58. Temporal(entity1.rating, entity2.rating)
+59. entity1.dislikes = 10
+60. entity2.dislikes = 0
+61. M_NLI(entity1.dislikes, entity2.dislikes)
+62. T("David's video has some dislikes", "David's video has no dislikes", "Content")
+63. tau(entity1.view_count, entity2.view_count)
+64. violate(entity1.comment_count, entity2.comment_count)
+65. Factual(entity1.publish_date, entity2.publish_date)
+66. Causal(entity1.likes, entity2.likes)
+67. Numeric(entity1.dislikes, entity2.dislikes)
+68. Temporal(entity1.video_count, entity2.video_count)
+69. entity1.share_count = 200
+70. entity2.share_count = 0
+71. M_NLI(entity1.share_count, entity2.share_count)
+72. T("David's video is widely shared", "David's video is not shared", "Content")
+73. tau(entity1.rating, entity2.rating)
+74. violate(entity1.subscriber_count, entity2.subscriber_count)
+75. Factual(entity1.age, entity2.age)
+76. Causal(entity1.comment_count, entity2.comment_count)
+77. Numeric(entity1.share_count, entity2.share_count)
+78. Temporal(entity1.likes, entity2.likes)
+79. entity1.recommendation_count = 150
+80. entity2.recommendation_count = 0
+81. M_NLI(entity1.recommendation_count, entity2.recommendation_count)
+82. T("David's video is recommended by many", "David's video is not recommended", "Content")
+83. tau(entity1.video_title, entity2.video_title)
+84. violate(entity1.view_count, entity2.view_count)
+85. Factual(entity1.comment_count, entity2.comment_count)
+86. Causal(entity1.recommendation_count, entity2.recommendation_count)
+87. Numeric(entity1.recommendation_count, entity2.recommendation_count)
+88. Temporal(entity1.dislikes, entity2.dislikes)
+89. entity1.favorites_count = 80
+90. entity2.favorites_count = 0
+91. M_NLI(entity1.favorites_count, entity2.favorites_count)
+92. T("David's video is a favorite", "David's video is not a favorite", "Content")
+93. tau(entity1.likes, entity2.likes)
+94. violate(entity1.favorites_count, entity2.favorites_count)
+95. Factual(entity1.share_count, entity2.share_count)
+96. Causal(entity1.favorites_count, entity2.favorites_count)
+97. Numeric(entity1.favorites_count, entity2.favorites_count)
+98. Temporal(entity1.recommendation_count, entity2.recommendation_count)
+99. entity1.engagement_rate = 0.75
+100. entity2.engagement_rate = 0.0
+violate(x0, y0)
+
+Rules:
+1. Q[x0, y0](entity1.name = "David" ∧ entity2.name = "Taylor" → violate(x0, y0))
+2. Q[x0, y0](entity1.age = 30 ∧ entity2.age = 25 → violate(x0, y0))
+3. Q[x0, y0](entity1.occupation = "YouTuber" ∧ entity2.occupation = "Viewer" → violate(x0, y0))
+4. Q[x0, y0](entity1.video_count = 50 ∧ entity2.video_count = 0 → violate(x0, y0))
+5. Q[x0, y0](entity1.subscriber_count = 100000 ∧ entity2.subscriber_count = 0 → violate(x0, y0))
+6. Q[x0, y0](entity1.location = "California" ∧ entity2.location = "New York" → violate(x0, y0))
+7. Q[x0, y0](entity1.video_title = "How to Cook" ∧ entity2.video_title = "How to Cook" ∧ entity1.view_count = 5000 → violate(x0, y0))
+8. Q[x0, y0](entity1.publish_date = "2024-01-01" ∧ entity2.publish_date = "2025-01-01" ∧ entity1.video_count = 50 → violate(x0, y0))
+9. Q[x0, y0](entity1.view_count = 5000 ∧ entity2.view_count = 0 ∧ entity1.rating = 4.5 → violate(x0, y0))
+10. Q[x0, y0](entity1.likes = 300 ∧ entity2.likes = 0 ∧ entity1.comment_count = 100 → violate(x0, y0))
+11. Q[x0, y0](entity1.dislikes = 10 ∧ entity2.dislikes = 0 ∧ entity1.share_count = 200 ∧ entity2.share_count = 0 → violate(x0, y0))
+12. Q[x0, y0](entity1.recommendation_count = 150 ∧ entity2.recommendation_count = 0 ∧ entity1.favorites_count = 80 ∧ entity2.favorites_count = 0 → violate(x0, y0))
+13. Q[x0, y0](entity1.age = 30 ∧ entity1.occupation = "YouTuber" ∧ entity2.age = 25 ∧ entity2.occupation = "Viewer" ∧ entity1.location = "California" → violate(x0, y0))
+14. Q[x0, y0](entity1.video_count = 50 ∧ entity1.subscriber_count = 100000 ∧ entity2.video_count = 0 ∧ entity2.subscriber_count = 0 ∧ entity1.view_count = 5000 → violate(x0, y0))
+15. Q[x0, y0](entity1.rating = 4.5 ∧ entity1.likes = 300 ∧ entity2.rating = 0 ∧ entity2.likes = 0 ∧ entity1.comment_count = 100 ∧ entity2.comment_count = 0 → violate(x0, y0))
+16. Q[x0, y0](entity1.video_title = "How to Cook" ∧ entity2.video_title = "How to Cook" ∧ entity1.publish_date = "2024-01-01" ∧ entity2.publish_date = "2025-01-01" ∧ entity1.view_count = 5000 ∧ entity2.view_count = 0 → violate(x0, y0))
+17. Q[x0, y0](entity1.subscriber_count = 100000 ∧ entity1.video_count = 50 ∧ entity1.view_count = 5000 ∧ entity2.subscriber_count = 0 ∧ entity2.video_count = 0 ∧ entity2.view_count = 0 → violate(x0, y0))
+18. Q[x0, y0](entity1.engagement_rate = 0.75 ∧ entity2.engagement_rate = 0.0 ∧ entity1.likes = 300 ∧ entity2.likes = 0 ∧ entity1.comment_count = 100 ∧ entity2.comment_count = 0 → violate(x0, y0))
+19. Q[x0, y0](entity1.share_count = 200 ∧ entity2.share_count = 0 ∧ entity1.recommendation_count = 150 ∧ entity2.recommendation_count = 0 ∧ entity1.favorites_count = 80 ∧ entity2.favorites_count = 0 → violate(x0, y0))
+20. Q[x0, y0](entity1.video_count = 50 ∧ entity1.subscriber_count = 100000 ∧ entity1.view_count = 5000 ∧ entity1.rating = 4.5 ∧ entity2.video_count = 0 ∧ entity2.subscriber_count = 0 → violate(x0, y0))
+21. Q[x0, y0](entity1.comment_count = 100 ∧ entity2.comment_count = 0 ∧ entity1.likes = 300 ∧ entity2.likes = 0 ∧ entity1.dislikes = 10 ∧ entity2.dislikes = 0 → violate(x0, y0))
+22. Q[x0, y0](entity1.video_title = "How to Cook" ∧ entity2.video_title = "How to Cook" ∧ entity1.view_count = 5000 ∧ entity1.publish_date = "2024-01-01" ∧ entity2.publish_date = "2025-01-01" ∧ entity1.rating = 4.5 → violate(x0, y0))
+23. Q[x0, y0](entity1.location = "California" ∧ entity2.location = "New York" ∧ entity1.age = 30 ∧ entity2.age = 25 ∧ entity1.occupation = "YouTuber" ∧ entity2.occupation = "Viewer" → violate(x0, y0))
+24. Q[x0, y0](entity1.video_count = 50 ∧ entity1.subscriber_count = 100000 ∧ entity1.view_count = 5000 ∧ entity2.video_count = 0 ∧ entity2.subscriber_count = 0 ∧ entity2.view_count = 0 → violate(x0, y0))
+25. Q[x0, y0](entity1.engagement_rate = 0.75 ∧ entity2.engagement_rate = 0.0 ∧ entity1.likes = 300 ∧ entity2.likes = 0 ∧ entity1.favorites_count = 80 ∧ entity2.favorites_count = 0 → violate(x0, y0))
+26. Q[x0, y0](entity1.recommendation_count = 150 ∧ entity2.recommendation_count = 0 ∧ entity1.share_count = 200 ∧ entity2.share_count = 0 ∧

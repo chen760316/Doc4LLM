@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 105)
+S1: Transient and intermittent insomnia may not require any direct action since these conditions last only a few days at a time.
+S2: However, if insomnia interferes with a person's daily activities, something should be done.
+
+Predicates:
+1. Insomnia.type(transient)
+2. Insomnia.type(intermittent)
+3. Insomnia.duration(few_days)
+4. Insomnia.requires_action(false)
+5. Insomnia.interferes_with_daily_activities(true)
+6. Action.required(when_insomnia_interferes)
+7. Insomnia.condition(transient)
+8. Insomnia.condition(intermittent)
+9. Daily_activities.impacted(when_insomnia_present)
+10. Intervention.necessary(when_insomnia_impacts_daily_activities)
+11. Transient_insomnia.duration(short)
+12. Intermittent_insomnia.duration(short)
+13. Insomnia.intervention(needed_if_daily_activities_impacted)
+14. Insomnia.action_required(false_if_transient)
+15. Insomnia.action_required(true_if_interferes)
+16. Insomnia.impact_on_life(negative)
+17. Insomnia.type(does_not_require_action)
+18. Insomnia.type(requires_intervention)
+19. Insomnia.condition(does_not_interfere_with_daily_activities)
+20. Insomnia.condition(interferes_with_daily_activities)
+21. Action.taken(when_insomnia_is_interfering)
+22. Insomnia.impact_on_daily_activities(yes)
+23. Insomnia.impact_on_daily_activities(no)
+24. Insomnia.requires_intervention(when_interfering)
+25. Insomnia.requires_no_action(when_transient)
+26. Insomnia.intervention(necessary_if_condition_interferes)
+27. Insomnia.condition(temporary)
+28. Insomnia.condition(persistent)
+29. Insomnia.action(conditional)
+30. Insomnia.intervention(conditional_on_impact)
+
+Rules:
+1. Q[Transient, Insomnia.type(transient) → Causal(Insomnia.type(transient), Insomnia.requires_action(false))]
+2. Q[Transient, Insomnia.duration(few_days) → Causal(Insomnia.duration(few_days), Insomnia.requires_action(false))]
+3. Q[Transient, Insomnia.condition(transient) → Causal(Insomnia.condition(transient), Insomnia.requires_action(false))]
+4. Q[Transient, Insomnia.action_required(false_if_transient) → Causal(Insomnia.action_required(false_if_transient), Insomnia.requires_action(false))]
+5. Q[Transient, Insomnia.type(does_not_require_action) → Causal(Insomnia.type(does_not_require_action), Insomnia.requires_action(false))]
+6. Q[Transient, Insomnia.requires_no_action(when_transient) → Causal(Insomnia.requires_no_action(when_transient), Insomnia.requires_action(false))]
+7. Q[Intermittent, Insomnia.type(intermittent) → Causal(Insomnia.type(intermittent), Insomnia.requires_action(false))]
+8. Q[Intermittent, Insomnia.condition(intermittent) → Causal(Insomnia.condition(intermittent), Insomnia.requires_action(false))]
+9. Q[Intermittent, Insomnia.duration(short) → Causal(Insomnia.duration(short), Insomnia.requires_action(false))]
+10. Q[Intermittent, Insomnia.action_required(false_if_transient) → Causal(Insomnia.action_required(false_if_transient), Insomnia.requires_action(false))]
+11. Q[Intermittent, Insomnia.requires_no_action(when_transient) → Causal(Insomnia.requires_no_action(when_transient), Insomnia.requires_action(false))]
+12. Q[Intermittent, Insomnia.interferes_with_daily_activities(true) → Causal(Insomnia.interferes_with_daily_activities(true), Action.required(when_insomnia_interferes))]
+13. Q[Intermittent, Insomnia.impact_on_daily_activities(yes) → Causal(Insomnia.impact_on_daily_activities(yes), Action.required(when_insomnia_interferes))]
+14. Q[Intermittent, Insomnia.requires_intervention(when_interfering) → Causal(Insomnia.requires_intervention(when_interfering), Action.required(when_insomnia_interferes))]
+15. Q[Intermittent, Insomnia.intervention(necessary_if_condition_interferes) → Causal(Insomnia.intervention(necessary_if_condition_interferes), Action.required(when_insomnia_interferes))]
+16. Q[Intermittent, Insomnia.impact_on_life(negative) → Causal(Insomnia.impact_on_life(negative), Action.required(when_insomnia_interferes))]
+17. Q[Intermittent, Daily_activities.impacted(when_insomnia_present) → Causal(Daily_activities.impacted(when_insomnia_present), Action.required(when_insomnia_interferes))]
+18. Q[Intermittent, Insomnia.condition(interferes_with_daily_activities) → Causal(Insomnia.condition(interferes_with_daily_activities), Action.required(when_insomnia_interferes))]
+19. Q[Intermittent, Insomnia.action_required(true_if_interferes) → Causal(Insomnia.action_required(true_if_interferes), Action.required(when_insomnia_interferes))]
+20. Q[Intermittent, Insomnia.intervention(conditional_on_impact) → Causal(Insomnia.intervention(conditional_on_impact), Action.required(when_insomnia_interferes))]
+21. Q[Intermittent, Insomnia.type(requires_intervention) → Causal(Insomnia.type(requires_intervention), Action.required(when_insomnia_interferes))]
+22. Q[Transient, Insomnia.condition(does_not_interfere_with_daily_activities) → Causal(Insomnia.condition(does_not_interfere_with_daily_activities), Insomnia.requires_action(false))]
+23. Q[Transient, Insomnia.impact_on_daily_activities(no) → Causal(Insomnia.impact_on_daily_activities(no), Insomnia.requires_action(false))]
+24. Q[Transient, Insomnia.condition(temporary) → Causal(Insomnia.condition(temporary), Insomnia.requires_action(false))]
+25. Q[Transient, Insomnia.condition(persistent) → Causal(Insomnia.condition(persistent), Insomnia.requires_action(false))]
+26. Q[Transient, Insomnia.intervention(conditional_on_impact) → Causal(Insomnia.intervention(conditional_on_impact), Insomnia.requires_action(false))]
+27. Q[Transient, Insomnia.action(conditional) → Causal(Insomnia.action(conditional), Insomnia.requires_action(false))]
+28. Q[Intermittent, Insomnia.type(requires_intervention) → Causal(Insomnia.type(requires_intervention), Insomnia.requires_action(true))]
+29. Q[Intermittent, Insomnia.requires_intervention(when_interfering) → Causal(Insomnia.requires_intervention(when_interfering), Insomnia.requires_action(true))]
+30. Q[Intermittent, Insomnia.impact_on_daily_activities(yes) → Causal(Insomnia.impact_on_daily_activities(yes), Insomnia.requires_action(true))]

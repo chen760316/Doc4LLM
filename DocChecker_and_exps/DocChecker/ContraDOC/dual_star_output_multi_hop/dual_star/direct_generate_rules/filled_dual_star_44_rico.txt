@@ -1,0 +1,40 @@
+Predicates:
+Carmindy.label != "Makeup Artist"
+Carmindy.label != Heidi Klum.label
+Carmindy.label != Jamie-Lynn Sigler.label
+Carmindy.label = "Makeup Artist"
+Carmindy.name != "Carmindy"
+Carmindy.name != Heidi Klum.name
+Carmindy.name != Jamie-Lynn Sigler.name
+Carmindy.name = "Carmindy"
+Carmindy___Heidi Klum.doc_id = "news_train_62"
+Carmindy___Heidi Klum.relationship != Carmindy___Jamie-Lynn Sigler.relationship
+Carmindy___Heidi Klum.relationship = "Carmindy provides neutral picks for daytime to enhance Heidi Klum's natural lip color."
+Carmindy___Heidi Klum.time != Carmindy___Jamie-Lynn Sigler.time
+Carmindy___Heidi Klum.time = "daytime"
+Carmindy___Jamie-Lynn Sigler.doc_id = "news_train_62"
+Carmindy___Jamie-Lynn Sigler.relationship = "Carmindy recommends dark berry or true red for nighttime looks for Jamie-Lynn Sigler."
+Carmindy___Jamie-Lynn Sigler.time = "nighttime"
+Heidi Klum.label != "Client"
+Heidi Klum.label = "Client"
+Heidi Klum.name != "Heidi Klum"
+Heidi Klum.name != Jamie-Lynn Sigler.name
+Heidi Klum.name = "Heidi Klum"
+Jamie-Lynn Sigler.label != "Client"
+Jamie-Lynn Sigler.label = "Client"
+Jamie-Lynn Sigler.name != "Jamie-Lynn Sigler"
+Jamie-Lynn Sigler.name = "Jamie-Lynn Sigler"
+None_ML(Carmindy.attrs, Heidi Klum.attrs)
+None_ML(Carmindy___Heidi Klum.attrs, Carmindy___Jamie-Lynn Sigler.attrs)
+
+Rules:
+Q[Carmindy,Carmindy] (Carmindy___Heidi Klum.time != Carmindy___Jamie-Lynn Sigler.time ∧ Heidi Klum.label = "Client" → Jamie-Lynn Sigler.name = "Jamie-Lynn Sigler")
+Q[Carmindy,Carmindy] (Carmindy.name = "Carmindy" ∧ Carmindy___Heidi Klum.relationship = "Carmindy provides neutral picks for daytime to enhance Heidi Klum's natural lip color." ∧ Carmindy___Jamie-Lynn Sigler.time = "nighttime" ∧ Carmindy.name != Heidi Klum.name ∧ Heidi Klum.label != "Client" → Carmindy.label = "Makeup Artist")
+Q[Carmindy,Carmindy] (Heidi Klum.label = "Client" ∧ Carmindy___Jamie-Lynn Sigler.time = "nighttime" ∧ Carmindy.name != Jamie-Lynn Sigler.name ∧ Carmindy___Heidi Klum.relationship = "Carmindy provides neutral picks for daytime to enhance Heidi Klum's natural lip color." → Carmindy.name = "Carmindy")
+Q[Carmindy,Carmindy] (Carmindy___Jamie-Lynn Sigler.relationship = "Carmindy recommends dark berry or true red for nighttime looks for Jamie-Lynn Sigler." ∧ None_ML(Carmindy.attrs, Heidi Klum.attrs) ∧ None_ML(Carmindy___Heidi Klum.attrs, Carmindy___Jamie-Lynn Sigler.attrs) → Jamie-Lynn Sigler.label = "Client")
+Q[Carmindy,Carmindy] (Jamie-Lynn Sigler.name = "Jamie-Lynn Sigler" ∧ Heidi Klum.label = "Client" ∧ Jamie-Lynn Sigler.name != "Jamie-Lynn Sigler" ∧ Carmindy.name != Jamie-Lynn Sigler.name ∧ Carmindy___Heidi Klum.relationship = "Carmindy provides neutral picks for daytime to enhance Heidi Klum's natural lip color." ∧ Carmindy.label != "Makeup Artist" → Heidi Klum.name != Jamie-Lynn Sigler.name)
+Q[Carmindy,Carmindy] (Carmindy.name != Heidi Klum.name ∧ Carmindy___Heidi Klum.time = "daytime" ∧ Carmindy___Heidi Klum.relationship != Carmindy___Jamie-Lynn Sigler.relationship ∧ Carmindy___Jamie-Lynn Sigler.doc_id = "news_train_62" → None_ML(Carmindy___Heidi Klum.attrs, Carmindy___Jamie-Lynn Sigler.attrs))
+Q[Carmindy,Carmindy] (Carmindy.name != Jamie-Lynn Sigler.name ∧ Carmindy___Heidi Klum.time = "daytime" ∧ Heidi Klum.label != "Client" → Carmindy___Jamie-Lynn Sigler.time = "nighttime")
+Q[Carmindy,Carmindy] (Heidi Klum.name != "Heidi Klum" ∧ Carmindy___Heidi Klum.relationship != Carmindy___Jamie-Lynn Sigler.relationship → Carmindy.name != Jamie-Lynn Sigler.name)
+Q[Carmindy,Carmindy] (Carmindy.name != Heidi Klum.name ∧ Heidi Klum.name != Jamie-Lynn Sigler.name ∧ Carmindy.name = "Carmindy" ∧ Carmindy___Jamie-Lynn Sigler.doc_id = "news_train_62" ∧ Carmindy.label = "Makeup Artist" ∧ Heidi Klum.label = "Client" → Heidi Klum.name = "Heidi Klum")
+Q[Carmindy,Carmindy] (Carmindy___Heidi Klum.relationship = "Carmindy provides neutral picks for daytime to enhance Heidi Klum's natural lip color." ∧ Heidi Klum.name != "Heidi Klum" ∧ Carmindy___Heidi Klum.doc_id = "news_train_62" ∧ Carmindy___Heidi Klum.time = "daytime" ∧ Carmindy.name = "Carmindy" → Heidi Klum.label = "Client")

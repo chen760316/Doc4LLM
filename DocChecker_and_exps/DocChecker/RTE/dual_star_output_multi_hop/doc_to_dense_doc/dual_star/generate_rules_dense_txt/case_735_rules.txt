@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 735)
+S1: Strong support was not given to the conservation, water recycling and demand reduction, options while the increase in storage (dam construction) was rejected because it would have enough water to fill any new dams.
+S2: Strong support was given to water conservation, recycling and demand reduction options, while storage augmentation (dam building) was rejected on the grounds that there would not be sufficient water to fill any new dams.
+
+Predicates:
+1. S1.support.conservation = false
+2. S1.support.water_recycling = false
+3. S1.support.demand_reduction = false
+4. S1.rejected.storage_augmentation = true
+5. S1.reason.storage_augmentation = "enough water to fill any new dams"
+6. S2.support.conservation = true
+7. S2.support.water_recycling = true
+8. S2.support.demand_reduction = true
+9. S2.rejected.storage_augmentation = true
+10. S2.reason.storage_augmentation = "not sufficient water to fill any new dams"
+11. M_NLI(S1, S2) = true
+12. Factual(S1, S2) = false
+13. violate(S1, S2) = true
+14. S1.storage_augmentation = "dam construction"
+15. S2.storage_augmentation = "dam building"
+16. S1.water_availability = "enough"
+17. S2.water_availability = "not sufficient"
+18. S1.conservation_efforts = "not supported"
+19. S2.conservation_efforts = "supported"
+20. S1.demand_reduction = "not supported"
+21. S2.demand_reduction = "supported"
+22. S1.water_recycling = "not supported"
+23. S2.water_recycling = "supported"
+24. S1.rejection_reason = "enough water"
+25. S2.rejection_reason = "not sufficient water"
+26. S1.storage_decision = "rejected"
+27. S2.storage_decision = "rejected"
+28. S1.conservation_decision = "not supported"
+29. S2.conservation_decision = "supported"
+30. S1.demand_reduction_decision = "not supported"
+
+Rules:
+1. Q[Strong, S1.support.conservation == false, S2.support.conservation == true](S1.support.conservation == false → Factual(S1, S2))
+2. Q[Strong, S1.support.water_recycling == false, S2.support.water_recycling == true](S1.support.water_recycling == false → Factual(S1, S2))
+3. Q[Strong, S1.support.demand_reduction == false, S2.support.demand_reduction == true](S1.support.demand_reduction == false → Factual(S1, S2))
+4. Q[Strong, S1.rejected.storage_augmentation == true, S2.rejected.storage_augmentation == true](S1.rejected.storage_augmentation == true → Factual(S1, S2))
+5. Q[Strong, S1.reason.storage_augmentation == "enough water to fill any new dams", S2.reason.storage_augmentation == "not sufficient water to fill any new dams"](S1.reason.storage_augmentation == "enough water to fill any new dams" → Factual(S1, S2))
+6. Q[Strong, S1.storage_augmentation == "dam construction", S2.storage_augmentation == "dam building"](S1.storage_augmentation == "dam construction" → Factual(S1, S2))
+7. Q[Strong, S1.water_availability == "enough", S2.water_availability == "not sufficient"](S1.water_availability == "enough" → Factual(S1, S2))
+8. Q[Strong, S1.conservation_efforts == "not supported", S2.conservation_efforts == "supported"](S1.conservation_efforts == "not supported" → Factual(S1, S2))
+9. Q[Strong, S1.demand_reduction == "not supported", S2.demand_reduction == "supported"](S1.demand_reduction == "not supported" → Factual(S1, S2))
+10. Q[Strong, S1.water_recycling == "not supported", S2.water_recycling == "supported"](S1.water_recycling == "not supported" → Factual(S1, S2))
+11. Q[Strong, S1.rejection_reason == "enough water", S2.rejection_reason == "not sufficient water"](S1.rejection_reason == "enough water" → Factual(S1, S2))
+12. Q[Strong, S1.storage_decision == "rejected", S2.storage_decision == "rejected"](S1.storage_decision == "rejected" → Factual(S1, S2))
+13. Q[Strong, S1.conservation_decision == "not supported", S2.conservation_decision == "supported"](S1.conservation_decision == "not supported" → Factual(S1, S2))
+14. Q[Strong, S1.demand_reduction_decision == "not supported", S2.demand_reduction_decision == "supported"](S1.demand_reduction_decision == "not supported" → Factual(S1, S2))
+15. Q[Strong, S1.support.conservation == false, S2.support.conservation == true](M_NLI(S1, S2) == true → Factual(S1, S2))
+16. Q[Strong, S1.support.water_recycling == false, S2.support.water_recycling == true](M_NLI(S1, S2) == true → Factual(S1, S2))
+17. Q[Strong, S1.support.demand_reduction == false, S2.support.demand_reduction == true](M_NLI(S1, S2) == true → Factual(S1, S2))
+18. Q[Strong, S1.reason.storage_augmentation == "enough water to fill any new dams", S2.reason.storage_augmentation == "not sufficient water to fill any new dams"](violate(S1, S2) == true → Factual(S1, S2))
+19. Q[Strong, S1.water_availability == "enough", S2.water_availability == "not sufficient"](violate(S1, S2) == true → Factual(S1, S2))
+20. Q[Strong, S1.conservation_efforts == "not supported", S2.conservation_efforts == "supported"](violate(S1, S2) == true → Factual(S1, S2))
+21. Q[Strong, S1.demand_reduction == "not supported", S2.demand_reduction == "supported"](violate(S1, S2) == true → Factual(S1, S2))
+22. Q[Strong, S1.water_recycling == "not supported", S2.water_recycling == "supported"](violate(S1, S2) == true → Factual(S1, S2))
+23. Q[Strong, S1.rejection_reason == "enough water", S2.rejection_reason == "not sufficient water"](violate(S1, S2) == true → Factual(S1, S2))
+24. Q[Strong, S1.storage_decision == "rejected", S2.storage_decision == "rejected"](violate(S1, S2) == true → Factual(S1, S2))
+25. Q[Strong, S1.conservation_decision == "not supported", S2.conservation_decision == "supported"](violate(S1, S2) == true → Factual(S1, S2))
+26. Q[Strong, S1.demand_reduction_decision == "not supported", S2.demand_reduction_decision == "supported"](violate(S1, S2) == true → Factual(S1, S2))
+27. Q[Strong, S1.support.conservation == false, S2.support.conservation == true](Factual(S1, S2) == false → Factual(S1, S2))
+28. Q[Strong, S1.support.water_recycling == false, S2.support.water_recycling == true](Factual(S1, S2) == false → Factual(S1, S2))
+29. Q[Strong, S1.support.demand_reduction == false, S2.support.demand_reduction == true](Factual(S1, S2) == false → Factual(S1, S2))
+30. Q[Strong, S1.rejected.storage_augmentation == true, S2.rejected.storage_augmentation == true](Factual(S1, S2) == false → Factual(S1, S2))

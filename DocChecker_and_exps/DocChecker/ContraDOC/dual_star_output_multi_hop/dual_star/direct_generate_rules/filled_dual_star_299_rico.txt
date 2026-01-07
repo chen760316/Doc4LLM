@@ -1,0 +1,33 @@
+Predicates:
+"Weird Al" Yankovic.label != "Artist"
+"Weird Al" Yankovic.label != Fat.label
+"Weird Al" Yankovic.label = "Artist"
+"Weird Al" Yankovic.name != "'Weird Al' Yankovic"
+"Weird Al" Yankovic.name != Fat.name
+"Weird Al" Yankovic.name = "'Weird Al' Yankovic"
+"Weird Al" Yankovic.nationality != "American"
+"Weird Al" Yankovic.nationality = "American"
+"Weird Al" Yankovic___Fat.ceremony = "31st Grammy Awards"
+"Weird Al" Yankovic___Fat.doc_id = "3503017446_7"
+"Weird Al" Yankovic___Fat.relationship = "'Weird Al' Yankovic received the Grammy Award for Best Concept Music Video for his song 'Fat'."
+Fat.label != "Song"
+Fat.label = "Song"
+Fat.name != "Fat"
+Fat.name = "Fat"
+Fat.year != 1989
+Fat.year < 1994
+Fat.year = 1989
+Fat.year > 1984
+None_ML("Weird Al" Yankovic.attrs, Fat.attrs)
+
+Rules:
+Q["Weird Al" Yankovic,"Weird Al" Yankovic] (None_ML("Weird Al" Yankovic.attrs, Fat.attrs) ∧ Fat.name != "Fat" → Fat.name = "Fat")
+Q["Weird Al" Yankovic,"Weird Al" Yankovic] (Fat.label = "Song" ∧ Fat.label != "Song" ∧ "Weird Al" Yankovic.nationality != "American" ∧ Fat.year != 1989 → None_ML("Weird Al" Yankovic.attrs, Fat.attrs))
+Q["Weird Al" Yankovic,"Weird Al" Yankovic] ("Weird Al" Yankovic___Fat.relationship = "'Weird Al' Yankovic received the Grammy Award for Best Concept Music Video for his song 'Fat'." ∧ Fat.year > 1984 ∧ "Weird Al" Yankovic.name != Fat.name ∧ "Weird Al" Yankovic___Fat.ceremony = "31st Grammy Awards" ∧ None_ML("Weird Al" Yankovic.attrs, Fat.attrs) → Fat.name != "Fat")
+Q["Weird Al" Yankovic,"Weird Al" Yankovic] (Fat.year != 1989 ∧ None_ML("Weird Al" Yankovic.attrs, Fat.attrs) ∧ "Weird Al" Yankovic.label = "Artist" → Fat.label = "Song")
+Q["Weird Al" Yankovic,"Weird Al" Yankovic] ("Weird Al" Yankovic___Fat.relationship = "'Weird Al' Yankovic received the Grammy Award for Best Concept Music Video for his song 'Fat'." ∧ "Weird Al" Yankovic.label = "Artist" ∧ "Weird Al" Yankovic.name = "'Weird Al' Yankovic" ∧ "Weird Al" Yankovic.name != "'Weird Al' Yankovic" ∧ "Weird Al" Yankovic___Fat.ceremony = "31st Grammy Awards" ∧ "Weird Al" Yankovic.label != "Artist" → "Weird Al" Yankovic.nationality = "American")
+Q["Weird Al" Yankovic,"Weird Al" Yankovic] ("Weird Al" Yankovic.label != Fat.label ∧ Fat.name != "Fat" → "Weird Al" Yankovic___Fat.ceremony = "31st Grammy Awards")
+Q["Weird Al" Yankovic,"Weird Al" Yankovic] ("Weird Al" Yankovic___Fat.doc_id = "3503017446_7" ∧ Fat.label = "Song" ∧ Fat.label != "Song" ∧ "Weird Al" Yankovic.name != "'Weird Al' Yankovic" ∧ None_ML("Weird Al" Yankovic.attrs, Fat.attrs) ∧ "Weird Al" Yankovic.nationality != "American" → Fat.year = 1989)
+Q["Weird Al" Yankovic,"Weird Al" Yankovic] ("Weird Al" Yankovic___Fat.ceremony = "31st Grammy Awards" ∧ Fat.label != "Song" ∧ None_ML("Weird Al" Yankovic.attrs, Fat.attrs) ∧ Fat.year = 1989 → "Weird Al" Yankovic___Fat.doc_id = "3503017446_7")
+Q["Weird Al" Yankovic,"Weird Al" Yankovic] (Fat.year < 1994 ∧ "Weird Al" Yankovic___Fat.ceremony = "31st Grammy Awards" ∧ "Weird Al" Yankovic.label != "Artist" → "Weird Al" Yankovic.nationality != "American")
+Q["Weird Al" Yankovic,"Weird Al" Yankovic] ("Weird Al" Yankovic___Fat.doc_id = "3503017446_7" ∧ "Weird Al" Yankovic.name = "'Weird Al' Yankovic" ∧ "Weird Al" Yankovic___Fat.relationship = "'Weird Al' Yankovic received the Grammy Award for Best Concept Music Video for his song 'Fat'." ∧ Fat.name = "Fat" ∧ Fat.label != "Song" → "Weird Al" Yankovic.name != Fat.name)

@@ -1,0 +1,34 @@
+Predicates:
+Chechen.label != "Person"
+Chechen.label = "Person"
+Chechen.name != "Chechen"
+Chechen.name = "Chechen"
+Chechen.status != "Enemy"
+Chechen.status = "Enemy"
+Luka.label != "Person"
+Luka.label = "Person"
+Luka.name != "Luka"
+Luka.name != Chechen.name
+Luka.name = "Luka"
+Luka.status != "Cossack"
+Luka.status != Chechen.status
+Luka.status = "Cossack"
+Luka___Chechen.action = "killing"
+Luka___Chechen.context = "confrontation with Chechens"
+Luka___Chechen.doc_id = "3488771866_7"
+Luka___Chechen.injury = "shot in the belly"
+Luka___Chechen.reason = "self-defense"
+Luka___Chechen.relationship = "Luka kills a Chechen who is trying to scout the Cossacks."
+None_ML(Chechen.attrs, Luka.attrs)
+
+Rules:
+Q[Luka,Luka] (Luka.label = "Person" ∧ Luka.status != Chechen.status ∧ Luka___Chechen.doc_id = "3488771866_7" ∧ Luka.name != "Luka" → Chechen.label != "Person")
+Q[Luka,Luka] (Chechen.name != "Chechen" ∧ Luka.status != "Cossack" ∧ Luka___Chechen.doc_id = "3488771866_7" ∧ Chechen.status != "Enemy" ∧ Luka.name != Chechen.name → Luka.label != "Person")
+Q[Luka,Luka] (Chechen.name = "Chechen" ∧ Luka___Chechen.doc_id = "3488771866_7" → Chechen.label = "Person")
+Q[Luka,Luka] (Chechen.status != "Enemy" ∧ Luka.label = "Person" ∧ Chechen.label != "Person" → Luka.name != "Luka")
+Q[Luka,Luka] (Luka___Chechen.doc_id = "3488771866_7" ∧ None_ML(Chechen.attrs, Luka.attrs) ∧ Luka___Chechen.context = "confrontation with Chechens" ∧ Chechen.name != "Chechen" ∧ Chechen.label != "Person" ∧ Luka.label = "Person" → Luka___Chechen.reason = "self-defense")
+Q[Luka,Luka] (Luka.status != Chechen.status ∧ Luka___Chechen.context = "confrontation with Chechens" ∧ Chechen.label != "Person" ∧ Luka___Chechen.doc_id = "3488771866_7" ∧ Luka.label != "Person" ∧ Chechen.name = "Chechen" → Luka.name = "Luka")
+Q[Luka,Luka] (Luka.label != "Person" ∧ Chechen.label != "Person" ∧ Luka.name != Chechen.name ∧ Luka.name != "Luka" → Chechen.name = "Chechen")
+Q[Luka,Luka] (Luka.label != "Person" ∧ Luka.name != Chechen.name → Chechen.name != "Chechen")
+Q[Luka,Luka] (Luka___Chechen.injury = "shot in the belly" ∧ Chechen.status = "Enemy" ∧ Luka___Chechen.context = "confrontation with Chechens" → Luka.status != "Cossack")
+Q[Luka,Luka] (Luka___Chechen.injury = "shot in the belly" ∧ Luka___Chechen.relationship = "Luka kills a Chechen who is trying to scout the Cossacks." ∧ Luka.name != Chechen.name ∧ Luka___Chechen.context = "confrontation with Chechens" ∧ Luka.status != Chechen.status → None_ML(Chechen.attrs, Luka.attrs))

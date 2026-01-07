@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 415)
+S1: We have a pretty good size garden.
+S2: Our garden is tiny.
+
+Predicates:
+1. Garden.size
+2. Garden.opinion
+3. Garden.size.positive
+4. Garden.size.tiny
+5. Opinion.positive
+6. Opinion.negative
+7. Size.contradiction
+8. Size.garden
+9. Size.positive
+10. Size.tiny
+11. M_NLI(S1, S2)
+12. Content(S1, S2)
+13. violate(S1, S2)
+14. Garden.size.adequate
+15. Garden.size.small
+16. Opinion.garden.size
+17. Opinion.garden.positive
+18. Opinion.garden.negative
+19. Size.adequate
+20. Size.small
+21. Relationship.size.opinion
+22. Relationship.opinion.contradiction
+23. Garden.size.evaluation
+24. Garden.evaluation.positive
+25. Garden.evaluation.negative
+26. Size.evaluation
+27. Size.positive.opinion
+28. Size.negative.opinion
+29. Garden.size.comparison
+30. Garden.opinion.contradiction
+
+Rules:
+1. Q[have, Garden.size, Garden.size.positive](Garden.size == "good" → Content(Garden.size, Garden.size.positive))
+2. Q[have, Garden.size, Garden.size.tiny](Garden.size == "tiny" → Content(Garden.size, Garden.size.tiny))
+3. Q[have, Opinion.garden.size, Opinion.positive](Opinion.garden.size == "good" → Content(Opinion.garden.size, Opinion.positive))
+4. Q[have, Opinion.garden.size, Opinion.negative](Opinion.garden.size == "tiny" → Content(Opinion.garden.size, Opinion.negative))
+5. Q[have, Garden.size, Size.positive](Garden.size == "good" → Content(Garden.size, Size.positive))
+6. Q[have, Garden.size, Size.tiny](Garden.size == "tiny" → Content(Garden.size, Size.tiny))
+7. Q[have, Garden.size.positive, Garden.size.adequate](Garden.size.positive == true → Content(Garden.size.positive, Garden.size.adequate))
+8. Q[have, Garden.size.tiny, Garden.size.small](Garden.size.tiny == true → Content(Garden.size.tiny, Garden.size.small))
+9. Q[have, Opinion.garden.positive, Opinion.garden.negative](Opinion.garden.positive == true → Content(Opinion.garden.positive, Opinion.garden.negative))
+10. Q[have, Size.positive, Size.negative](Size.positive == true → Content(Size.positive, Size.negative))
+11. Q[have, Garden.size.evaluation, Garden.evaluation.positive](Garden.size.evaluation == "good" → Content(Garden.size.evaluation, Garden.evaluation.positive))
+12. Q[have, Garden.size.evaluation, Garden.evaluation.negative](Garden.size.evaluation == "tiny" → Content(Garden.size.evaluation, Garden.evaluation.negative))
+13. Q[have, Size.evaluation, Size.positive](Size.evaluation == "good" → Content(Size.evaluation, Size.positive))
+14. Q[have, Size.evaluation, Size.negative](Size.evaluation == "tiny" → Content(Size.evaluation, Size.negative))
+15. Q[have, Garden.size.comparison, Size.contradiction](Garden.size.comparison == "good vs tiny" → Content(Garden.size.comparison, Size.contradiction))
+16. Q[have, Garden.opinion, Opinion.garden.positive](Garden.opinion == "good" → Content(Garden.opinion, Opinion.garden.positive))
+17. Q[have, Garden.opinion, Opinion.garden.negative](Garden.opinion == "tiny" → Content(Garden.opinion, Opinion.garden.negative))
+18. Q[have, Relationship.size.opinion, Size.contradiction](Relationship.size.opinion == "good vs tiny" → Content(Relationship.size.opinion, Size.contradiction))
+19. Q[have, Garden.size, Garden.size.small](Garden.size == "small" → Content(Garden.size, Garden.size.small))
+20. Q[have, Garden.size.positive, Garden.size.tiny](Garden.size.positive == true → Content(Garden.size.positive, Garden.size.tiny))
+21. Q[have, Opinion.garden.size, Size.positive](Opinion.garden.size == "good" → Content(Opinion.garden.size, Size.positive))
+22. Q[have, Opinion.garden.size, Size.tiny](Opinion.garden.size == "tiny" → Content(Opinion.garden.size, Size.tiny))
+23. Q[have, Garden.size.adequate, Size.positive](Garden.size.adequate == true → Content(Garden.size.adequate, Size.positive))
+24. Q[have, Garden.size.adequate, Size.tiny](Garden.size.adequate == false → Content(Garden.size.adequate, Size.tiny))
+25. Q[have, Garden.size, Garden.evaluation.positive](Garden.size == "good" → Content(Garden.size, Garden.evaluation.positive))
+26. Q[have, Garden.size, Garden.evaluation.negative](Garden.size == "tiny" → Content(Garden.size, Garden.evaluation.negative))
+27. Q[have, Size.positive, Size.negative](Size.positive == true → Content(Size.positive, Size.negative))
+28. Q[have, Size.positive, Size.tiny](Size.positive == false → Content(Size.positive, Size.tiny))
+29. Q[have, Garden.size, Garden.opinion.contradiction](Garden.size == "good" → Content(Garden.size, Garden.opinion.contradiction))
+30. Q[have, Garden.size.tiny, Garden.opinion.contradiction](Garden.size.tiny == true → Content(Garden.size.tiny, Garden.opinion.contradiction))

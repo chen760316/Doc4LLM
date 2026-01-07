@@ -1,0 +1,47 @@
+Predicates:
+Kim.label != "Person"
+Kim.label != trial.label
+Kim.label = "Person"
+Kim.name != "Kim"
+Kim.name != Lippert.name
+Kim.name != trial.name
+Kim.name = "Kim"
+Kim___Lippert.contradiction_type = "Factual"
+Kim___Lippert.reason = "opposed the joint South Korean-U.S. military drills"
+Kim___Lippert.relationship = "Kim stabbed Lippert"
+Kim___Lippert.source_id = "3489738224_3"
+Kim___Lippert.weapon = "10-inch knife"
+Kim___trial.contradiction_type != Kim___Lippert.contradiction_type
+Kim___trial.contradiction_type = "Numeric"
+Kim___trial.law = "South Korean law"
+Kim___trial.relationship != Kim___Lippert.relationship
+Kim___trial.relationship = "Kim's trial must begin within a specified time frame after receiving the indictment."
+Kim___trial.source_id != Kim___Lippert.source_id
+Kim___trial.source_id = "3489738224_1"
+Kim___trial.time_frame = "30 days"
+Lippert.label != "Person"
+Lippert.label = "Person"
+Lippert.name != "Lippert"
+Lippert.name = "Lippert"
+Lippert.status != "victim"
+Lippert.status = "victim"
+None_ML(Kim.attrs, Lippert.attrs)
+None_ML(Kim___trial.attrs, Kim___Lippert.attrs)
+trial.label != "LegalProcedure"
+trial.label != Lippert.label
+trial.label = "LegalProcedure"
+trial.name != "trial"
+trial.name != Lippert.name
+trial.name = "trial"
+
+Rules:
+Q[Kim,Kim] (None_ML(Kim.attrs, Lippert.attrs) ∧ Kim.label != "Person" ∧ Lippert.label != "Person" ∧ Kim.name = "Kim" ∧ Lippert.status = "victim" ∧ Kim___Lippert.weapon = "10-inch knife" → trial.label = "LegalProcedure")
+Q[Kim,Kim] (Kim.label = "Person" ∧ Kim.name != Lippert.name ∧ Kim___trial.contradiction_type = "Numeric" ∧ Kim.name = "Kim" → trial.name = "trial")
+Q[Kim,Kim] (trial.name != "trial" ∧ Kim.name = "Kim" ∧ trial.name != Lippert.name ∧ Lippert.status = "victim" ∧ Kim___trial.relationship != Kim___Lippert.relationship → trial.label != "LegalProcedure")
+Q[Kim,Kim] (Kim___trial.time_frame = "30 days" ∧ Kim___trial.source_id != Kim___Lippert.source_id ∧ Kim.name != Lippert.name → Lippert.status != "victim")
+Q[Kim,Kim] (Kim___trial.relationship != Kim___Lippert.relationship ∧ Kim___trial.law = "South Korean law" → trial.name != Lippert.name)
+Q[Kim,Kim] (trial.name = "trial" ∧ None_ML(Kim.attrs, Lippert.attrs) ∧ Kim___trial.contradiction_type = "Numeric" ∧ Kim___Lippert.source_id = "3489738224_3" ∧ Lippert.status != "victim" ∧ Lippert.label = "Person" → Lippert.name = "Lippert")
+Q[Kim,Kim] (Kim___Lippert.source_id = "3489738224_3" ∧ Kim___Lippert.reason = "opposed the joint South Korean-U.S. military drills" → Kim.label = "Person")
+Q[Kim,Kim] (trial.name = "trial" ∧ Kim.label != "Person" ∧ trial.label = "LegalProcedure" ∧ Kim___trial.source_id = "3489738224_1" ∧ Kim___trial.time_frame = "30 days" → trial.label != Lippert.label)
+Q[Kim,Kim] (Kim.name != trial.name ∧ Kim___trial.contradiction_type != Kim___Lippert.contradiction_type ∧ Kim___trial.relationship != Kim___Lippert.relationship → Kim___trial.relationship = "Kim's trial must begin within a specified time frame after receiving the indictment.")
+Q[Kim,Kim] (Kim___Lippert.source_id = "3489738224_3" ∧ trial.name != Lippert.name ∧ None_ML(Kim.attrs, Lippert.attrs) ∧ Kim___trial.source_id != Kim___Lippert.source_id → Lippert.label != "Person")

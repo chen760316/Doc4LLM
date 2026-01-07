@@ -1,0 +1,64 @@
+Source: dense_text.txt (Index 63)
+S1: Close began her professional stage career in 1974 in Love for Love, and was mostly a New York stage actress through the rest of the 1970s and early 1980s, appearing in both plays and musicals, including the Broadway productions of Barnum in 1980 and The Real Thing in 1983, for which she won the Tony Award for Best Actress in a Play.
+S2: Close appeared in both New York and Los Angeles.
+
+Predicates:
+1. Close.professional_stage_career_start_year = 1974
+2. Close.first_stage_performance = "Love for Love"
+3. Close.stage_actress_location = "New York"
+4. Close.stage_actress_decade = "1970s"
+5. Close.stage_actress_decade = "1980s"
+6. Close.appeared_in_both_plays_and_musicals = true
+7. Close.Broadway_production = "Barnum"
+8. Barnum.production_year = 1980
+9. Close.Broadway_production = "The Real Thing"
+10. The_Real_Thing.production_year = 1983
+11. Close.won_award = "Tony Award for Best Actress in a Play"
+12. Close.appeared_in_location = "Los Angeles"
+13. Close.primary_location = "New York"
+14. Close.secondary_location = "Los Angeles"
+15. Close.stage_performance_decade = "1970s"
+16. Close.stage_performance_decade = "1980s"
+17. Close.appeared_in_Broadway = true
+18. Close.won_award_year = 1983
+19. Close.appeared_in_Barnum = true
+20. Close.appeared_in_The_Real_Thing = true
+21. Close.stage_actress = true
+22. Close.career_start_year = 1974
+23. Close.stage_performance_type = "plays"
+24. Close.stage_performance_type = "musicals"
+25. Close.location_based_in = "New York"
+26. Close.location_based_in = "Los Angeles"
+27. M_NLI(S1, S2) = true
+28. Relation(Close, New_York) = true
+29. Relation(Close, Los_Angeles) = true
+30. violate(Close, primary_location) = true
+
+Rules:
+1. Q[Close, Close.stage_actress_location, "New York"](Close.stage_actress == true ∧ Close.primary_location == "New York" → Relation(Close, Close.stage_actress_location))
+2. Q[Close, Close.appeared_in_location](Close.appeared_in_location == "Los Angeles" ∧ Close.primary_location == "New York" → Relation(Close, Close.appeared_in_location))
+3. Q[Close, Close.primary_location](Close.primary_location == "New York" ∧ Close.secondary_location == "Los Angeles" → Relation(Close, Close.primary_location))
+4. Q[Close, Close.stage_actress_location](Close.stage_actress_location == "New York" ∧ Close.appeared_in_location == "Los Angeles" → Relation(Close, Close.stage_actress_location))
+5. Q[Close, Close.location_based_in](Close.location_based_in == "New York" ∧ Close.appeared_in_location == "Los Angeles" → Relation(Close, Close.location_based_in))
+6. Q[Close, Close.stage_actress](Close.stage_actress == true ∧ Close.primary_location == "New York" ∧ Close.appeared_in_location == "Los Angeles" → Relation(Close, Close.stage_actress))
+7. Q[Close, Close.appeared_in_both_plays_and_musicals](Close.appeared_in_both_plays_and_musicals == true ∧ Close.primary_location == "New York" ∧ Close.appeared_in_location == "Los Angeles" → Relation(Close, Close.appeared_in_both_plays_and_musicals))
+8. Q[Close, Close.career_start_year](Close.career_start_year == 1974 ∧ Close.primary_location == "New York" ∧ Close.appeared_in_location == "Los Angeles" → Relation(Close, Close.career_start_year))
+9. Q[Close, Close.first_stage_performance](Close.first_stage_performance == "Love for Love" ∧ Close.primary_location == "New York" ∧ Close.appeared_in_location == "Los Angeles" → Relation(Close, Close.first_stage_performance))
+10. Q[Close, Close.Broadway_production](Close.Broadway_production == "Barnum" ∧ Close.primary_location == "New York" ∧ Close.appeared_in_location == "Los Angeles" → Relation(Close, Close.Broadway_production))
+11. Q[Close, Close.Broadway_production](Close.Broadway_production == "The Real Thing" ∧ Close.primary_location == "New York" ∧ Close.appeared_in_location == "Los Angeles" → Relation(Close, Close.Broadway_production))
+12. Q[Close, Close.won_award](Close.won_award == "Tony Award for Best Actress in a Play" ∧ Close.primary_location == "New York" ∧ Close.appeared_in_location == "Los Angeles" → Relation(Close, Close.won_award))
+13. Q[Close, Close.appeared_in_Broadway](Close.appeared_in_Broadway == true ∧ Close.primary_location == "New York" ∧ Close.appeared_in_location == "Los Angeles" → Relation(Close, Close.appeared_in_Broadway))
+14. Q[Close, Close.stage_performance_decade](Close.stage_performance_decade == "1970s" ∧ Close.primary_location == "New York" ∧ Close.appeared_in_location == "Los Angeles" → Relation(Close, Close.stage_performance_decade))
+15. Q[Close, Close.stage_performance_decade](Close.stage_performance_decade == "1980s" ∧ Close.primary_location == "New York" ∧ Close.appeared_in_location == "Los Angeles" → Relation(Close, Close.stage_performance_decade))
+16. Q[Close, Close.appeared_in_Barnum](Close.appeared_in_Barnum == true ∧ Close.primary_location == "New York" ∧ Close.appeared_in_location == "Los Angeles" → Relation(Close, Close.appeared_in_Barnum))
+17. Q[Close, Close.appeared_in_The_Real_Thing](Close.appeared_in_The_Real_Thing == true ∧ Close.primary_location == "New York" ∧ Close.appeared_in_location == "Los Angeles" → Relation(Close, Close.appeared_in_The_Real_Thing))
+18. Q[Close, Close.won_award_year](Close.won_award_year == 1983 ∧ Close.primary_location == "New York" ∧ Close.appeared_in_location == "Los Angeles" → Relation(Close, Close.won_award_year))
+19. Q[Close, Close.stage_actress_decade](Close.stage_actress_decade == "1970s" ∧ Close.primary_location == "New York" ∧ Close.appeared_in_location == "Los Angeles" → Relation(Close, Close.stage_actress_decade))
+20. Q[Close, Close.stage_actress_decade](Close.stage_actress_decade == "1980s" ∧ Close.primary_location == "New York" ∧ Close.appeared_in_location == "Los Angeles" → Relation(Close, Close.stage_actress_decade))
+21. Q[Close, Close.location_based_in](Close.location_based_in == "New York" ∧ Close.appeared_in_location == "Los Angeles" → Relation(Close, Close.location_based_in))
+22. Q[Close, Close.appeared_in_location](Close.appeared_in_location == "Los Angeles" ∧ Close.primary_location == "New York" → Relation(Close, Close.appeared_in_location))
+23. Q[Close, Close.primary_location](Close.primary_location == "New York" ∧ Close.secondary_location == "Los Angeles" → Relation(Close, Close.primary_location))
+24. Q[Close, Close.stage_actress](Close.stage_actress == true ∧ Close.primary_location == "New York" ∧ Close.appeared_in_location == "Los Angeles" → Relation(Close, Close.stage_actress))
+25. Q[Close, Close.appeared_in_both_plays_and_musicals](Close.appeared_in_both_plays_and_musicals == true ∧ Close.primary_location == "New York" ∧ Close.appeared_in_location == "Los Angeles" → Relation(Close, Close.appeared_in_both_plays_and_musicals))
+26. Q[Close, Close.career_start_year](Close.career_start_year == 1974 ∧ Close.primary_location == "New York" ∧ Close.appeared_in_location == "Los Angeles" → Relation(Close, Close.career_start_year))
+27. Q[Close, Close.first_stage_performance](Close.first_stage_performance == "Love for Love" ∧ Close.primary_location == "New York" ∧ Close.appeared_in_location == "Los Angeles" → Relation(Close,

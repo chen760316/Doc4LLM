@@ -1,0 +1,114 @@
+Predicates:
+1. Murray.occupation = "personal physician"
+2. Murray.status = "long-time"
+3. people.description = "told I wasn't good enough"
+4. unknown.status = "failed to provide equipment"
+5. "Relationship".attribute = "long-time personal physician"
+6. "Relationship".entity1 = "Murray"
+7. "Relationship".entity2 = "Mr. Jackson"
+8. "Relationship".context = "employment contract"
+9. "Relationship".reason = "failed to provide promised equipment"
+10. "Relationship".status = "failed"
+11. M_NLI(Murray.occupation, people.description)
+12. M_NLI(Murray.status, unknown.status)
+13. T("Murray was Mr. Jackson's long-time personal physician.", "Murray was not Mr. Jackson's physician.", tau)
+14. T("The company failed to provide Murray with equipment.", "The company provided all necessary equipment.", tau)
+15. tau(Murray.occupation, "not a physician")
+16. tau(Murray.status, "short-time")
+17. violate(Murray, "Mr. Jackson")
+18. Factual(Murray.occupation, "not a physician")
+19. Factual("The company failed to provide equipment", "The company provided equipment")
+20. Causal("The company failed to provide equipment", "Murray was able to perform his duties")
+21. Negation("Murray was Mr. Jackson's long-time personal physician", "Murray was not Mr. Jackson's physician")
+22. Relation("Murray is Mr. Jackson's physician", "Murray is not Mr. Jackson's physician")
+23. Numeric("The company sold 0 pieces of equipment", "The company sold 5 pieces of equipment")
+24. Temporal("Murray worked for Mr. Jackson in 2020", "Murray did not work for Mr. Jackson until 2021")
+25. "Relationship".date = "2020"
+26. "Relationship".duration = "long-term"
+27. "Relationship".equipment = "cardio-pulmonary resuscitation equipment"
+28. "Relationship".nurse = "nurse not provided"
+29. M_NLI("Murray was Mr. Jackson's long-time personal physician.", "Murray was a temporary physician.")
+30. T("The girl in Mississippi was told she wasn't good enough.", "The girl was praised for her abilities.", tau)
+31. tau(people.description, "was told she was good enough")
+32. violate("The company", "Murray")
+33. Factual("The girl was told she wasn't good enough", "The girl was told she was excellent")
+34. Causal("The girl was told she wasn't good enough", "The girl became confident")
+35. Negation("The girl was told she wasn't good enough", "The girl was told she was good enough")
+36. Relation("The girl was told she wasn't good enough", "The girl was told she was the best")
+37. Numeric("The girl received 10 compliments", "The girl received 0 compliments")
+38. Temporal("The girl was told she wasn't good enough in 2020", "The girl was told she was good enough in 2021")
+39. "Relationship".feedback = "negative feedback"
+40. "Relationship".context = "personal development"
+41. "Relationship".status = "unfulfilled promise"
+42. M_NLI("Murray was not provided equipment", "Murray received all necessary equipment")
+43. T("Murray was Mr. Jackson's long-time personal physician.", "Murray was never Mr. Jackson's physician.", tau)
+44. tau(Murray.status, "temporary")
+45. violate("Murray", "equipment")
+46. Factual("The company provided Murray with equipment", "The company failed to provide equipment")
+47. Causal("Murray was not provided equipment", "Murray was able to perform his duties")
+48. Negation("Murray was Mr. Jackson's long-time personal physician", "Murray was not Mr. Jackson's physician")
+49. Relation("Murray is Mr. Jackson's physician", "Murray is not Mr. Jackson's physician")
+50. Numeric("The company sold 10 pieces of equipment", "The company sold 0 pieces of equipment")
+51. Temporal("Murray worked for Mr. Jackson in 2021", "Murray did not work for Mr. Jackson until 2022")
+52. "Relationship".promise = "equipment provision"
+53. "Relationship".entity1 = "Murray"
+54. "Relationship".entity2 = "the company"
+55. M_NLI("The girl was told she wasn't good enough", "The girl was told she was amazing")
+56. T("The company failed to provide equipment", "The company provided all necessary equipment", tau)
+57. tau(unknown.status, "provided equipment")
+58. violate("The girl", "people")
+59. Factual("The girl was told she wasn't good enough", "The girl was told she was the best")
+60. Causal("The girl was told she wasn't good enough", "The girl became confident")
+61. Negation("The girl was told she wasn't good enough", "The girl was told she was good enough")
+62. Relation("The girl was told she wasn't good enough", "The girl was praised")
+63. Numeric("The girl received 5 compliments", "The girl received 0 compliments")
+64. Temporal("The girl was told she wasn't good enough in 2021", "The girl was told she was good enough in 2022")
+65. "Relationship".feedback = "constructive feedback"
+66. "Relationship".context = "personal growth"
+67. "Relationship".status = "unmet expectations"
+68. M_NLI("Murray was not provided equipment", "Murray received all necessary equipment")
+69. T("Murray was Mr. Jackson's long-time personal physician.", "Murray was never Mr. Jackson's physician.", tau)
+70. tau(Murray.status, "temporary")
+71. violate("Murray", "the company")
+72. Factual("The company provided Murray with equipment", "The company failed to provide equipment")
+73. Causal("Murray was not provided equipment", "Murray was able to perform his duties")
+74. Negation("Murray was Mr. Jackson's long-time personal physician", "Murray was not Mr. Jackson's physician")
+75. Relation("Murray is Mr. Jackson's physician", "Murray is not Mr. Jackson's physician")
+76. Numeric("The company sold 15 pieces of equipment", "The company sold 0 pieces of equipment")
+77. Temporal("Murray worked for Mr. Jackson in 2022", "Murray did not work for Mr. Jackson until 2023")
+78. "Relationship".promise = "nurse provision"
+79. "Relationship".entity1 = "Murray"
+80. "Relationship".entity2 = "the company"
+81. M_NLI("The girl was told she wasn't good enough", "The girl was told she was amazing")
+82. T("The company failed to provide equipment", "The company provided all necessary equipment", tau)
+83. tau(unknown.status, "provided equipment")
+84. violate("
+violate(x0, y0)
+
+Rules:
+1. Q[Murray, Mr. Jackson](Murray.occupation = "personal physician" ∧ "Relationship".status = "failed" → violate(Murray, Mr. Jackson))
+2. Q[Murray, Mr. Jackson](Murray.status = "long-time" ∧ "Relationship".reason = "failed to provide promised equipment" → violate(Murray, Mr. Jackson))
+3. Q[Murray, Mr. Jackson](M_NLI(Murray.occupation, people.description) ∧ "Relationship".context = "employment contract" → violate(Murray, Mr. Jackson))
+4. Q[Murray, Mr. Jackson](Murray.status = "long-time" ∧ "Relationship".attribute = "long-time personal physician" → violate(Murray, Mr. Jackson))
+5. Q[Murray, Mr. Jackson](unknown.status = "failed to provide equipment" ∧ "Relationship".status = "failed" → violate(Murray, Mr. Jackson))
+6. Q[Murray, Mr. Jackson](M_NLI(Murray.status, unknown.status) ∧ "Relationship".entity1 = "Murray" ∧ "Relationship".entity2 = "Mr. Jackson" → violate(Murray, Mr. Jackson))
+7. Q[Murray, Mr. Jackson](M_NLI("Murray was Mr. Jackson's long-time personal physician.", "Murray was not Mr. Jackson's physician.") ∧ "Relationship".status = "failed" ∧ "Relationship".reason = "failed to provide promised equipment" → violate(Murray, Mr. Jackson))
+8. Q[Murray, Mr. Jackson](T("The company failed to provide equipment.", "The company provided all necessary equipment.", tau) ∧ "Relationship".context = "employment contract" ∧ "Relationship".status = "failed" → violate(Murray, Mr. Jackson))
+9. Q[Murray, Mr. Jackson](tau(Murray.occupation, "not a physician") ∧ "Relationship".attribute = "long-time personal physician" ∧ "Relationship".status = "failed" → violate(Murray, Mr. Jackson))
+10. Q[Murray, Mr. Jackson](Factual(Murray.occupation, "not a physician") ∧ "Relationship".reason = "failed to provide promised equipment" ∧ "Relationship".status = "failed" → violate(Murray, Mr. Jackson))
+11. Q[Murray, Mr. Jackson](M_NLI("The girl was told she wasn't good enough", "The girl was told she was amazing") ∧ "Relationship".feedback = "negative feedback" ∧ "Relationship".status = "unfulfilled promise" → violate(Murray, Mr. Jackson))
+12. Q[Murray, Mr. Jackson](Causal("The company failed to provide equipment", "Murray was able to perform his duties") ∧ "Relationship".context = "employment contract" ∧ "Relationship".status = "failed" → violate(Murray, Mr. Jackson))
+13. Q[Murray, Mr. Jackson](Negation("Murray was Mr. Jackson's long-time personal physician", "Murray was not Mr. Jackson's physician") ∧ "Relationship".status = "failed" ∧ "Relationship".reason = "failed to provide promised equipment" → violate(Murray, Mr. Jackson))
+14. Q[Murray, Mr. Jackson](Relation("Murray is Mr. Jackson's physician", "Murray is not Mr. Jackson's physician") ∧ "Relationship".status = "failed" ∧ "Relationship".reason = "failed to provide promised equipment" → violate(Murray, Mr. Jackson))
+15. Q[Murray, Mr. Jackson](Numeric("The company sold 0 pieces of equipment", "The company sold 5 pieces of equipment") ∧ "Relationship".status = "failed" ∧ "Relationship".reason = "failed to provide promised equipment" → violate(Murray, Mr. Jackson))
+16. Q[Murray, Mr. Jackson](Temporal("Murray worked for Mr. Jackson in 2020", "Murray did not work for Mr. Jackson until 2021") ∧ "Relationship".status = "failed" ∧ "Relationship".reason = "failed to provide promised equipment" → violate(Murray, Mr. Jackson))
+17. Q[Murray, Mr. Jackson](tau(Murray.status, "temporary") ∧ "Relationship".status = "unfulfilled promise" ∧ "Relationship".reason = "failed to provide promised equipment" → violate(Murray, Mr. Jackson))
+18. Q[Murray, Mr. Jackson](Factual("The company provided Murray with equipment", "The company failed to provide equipment") ∧ "Relationship".status = "failed" ∧ "Relationship".reason = "failed to provide promised equipment" → violate(Murray, Mr. Jackson))
+19. Q[Murray, Mr. Jackson](Causal("Murray was not provided equipment", "Murray was able to perform his duties") ∧ "Relationship".status = "failed" ∧ "Relationship".reason = "failed to provide promised equipment" → violate(Murray, Mr. Jackson))
+20. Q[Murray, Mr. Jackson](Negation("Murray was Mr. Jackson's long-time personal physician", "Murray was not Mr. Jackson's physician") ∧ "Relationship".status = "failed" ∧ "Relationship".reason = "failed to provide promised equipment" → violate(Murray, Mr. Jackson))
+21. Q[Murray, Mr. Jackson](Relation("Murray is Mr. Jackson's physician", "Murray is not Mr. Jackson's physician") ∧ "Relationship".status = "failed" ∧ "Relationship".reason = "failed to provide promised equipment" → violate(Murray, Mr. Jackson))
+22. Q[Murray, Mr. Jackson](Numeric("The company sold 10 pieces of equipment", "The company sold 0 pieces of equipment") ∧ "Relationship".status = "failed" ∧ "Relationship".reason = "failed to provide promised equipment" → violate(Murray, Mr. Jackson))
+23. Q[Murray, Mr. Jackson](Temporal("Murray worked for Mr. Jackson in 2021", "Murray did not work for Mr. Jackson until 2022") ∧ "Relationship".status = "failed" ∧ "Relationship".reason = "failed to provide promised equipment" → violate(Murray, Mr. Jackson))
+24. Q[Murray, Mr. Jackson](tau(unknown.status, "provided equipment") ∧ "Relationship".status = "failed" ∧ "Relationship".reason = "failed to provide promised equipment" → violate(Murray, Mr. Jackson))
+25. Q[Murray, Mr. Jackson](M_NLI("The girl was told she wasn't good enough", "The girl was told she was amazing") ∧ "Relationship".feedback = "negative feedback" ∧ "Relationship".context = "personal development" ∧ "Relationship".status = "unfulfilled promise" → violate(Murray, Mr. Jackson))
+26. Q[Murray, Mr. Jackson](Causal("The girl was told she wasn't good enough", "The girl became confident") ∧ "Relationship".status = "failed" ∧ "Relationship".

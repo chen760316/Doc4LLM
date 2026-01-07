@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 57)
+S1: Four people walk down a city sidewalk - three facing the camera one away.
+S2: People are on the sidewalk.
+
+Predicates:
+1. Person_1.direction = facing_camera
+2. Person_2.direction = facing_camera
+3. Person_3.direction = facing_camera
+4. Person_4.direction = away_from_camera
+5. Sidewalk.location = city
+6. Sidewalk.occupants = four_people
+7. People.presence = on_sidewalk
+8. Person_1.position = on_sidewalk
+9. Person_2.position = on_sidewalk
+10. Person_3.position = on_sidewalk
+11. Person_4.position = on_sidewalk
+12. Camera.position = facing_towards_people
+13. Camera.view = three_people_visible
+14. Camera.view = one_person_not_visible
+15. Situation.number_of_people = four
+16. Situation.number_of_people = greater_than_three
+17. Situation.number_of_people = less_than_five
+18. Sidewalk.activity = walking
+19. Person_1.activity = walking
+20. Person_2.activity = walking
+21. Person_3.activity = walking
+22. Person_4.activity = walking
+23. Sidewalk.condition = urban
+24. People.count = four
+25. People.count = not_equal_to_three
+26. People.count = not_equal_to_five
+27. M_NLI(S1, S2) = true
+28. Negation(S1, S2) = false
+29. violate(S1, S2) = false
+30. Sidewalk.type = public
+
+Rules:
+1. Q[Four, Situation.number_of_people, People.count](Situation.number_of_people = four → Negation(four, not_equal_to_three))
+2. Q[Four, Situation.number_of_people, People.count](Situation.number_of_people = four → Negation(four, not_equal_to_five))
+3. Q[Four, Sidewalk.occupants, People.count](Sidewalk.occupants = four_people → Negation(four_people, not_equal_to_three))
+4. Q[Four, Sidewalk.occupants, People.count](Sidewalk.occupants = four_people → Negation(four_people, not_equal_to_five))
+5. Q[Four, Person_1.position, Person_4.position](Person_1.position = on_sidewalk → Negation(on_sidewalk, away_from_camera))
+6. Q[Four, Person_2.position, Person_4.position](Person_2.position = on_sidewalk → Negation(on_sidewalk, away_from_camera))
+7. Q[Four, Person_3.position, Person_4.position](Person_3.position = on_sidewalk → Negation(on_sidewalk, away_from_camera))
+8. Q[Four, Person_4.direction, Person_4.position](Person_4.direction = away_from_camera → Negation(away_from_camera, on_sidewalk))
+9. Q[Four, Camera.view, People.count](Camera.view = three_people_visible → Negation(three_people_visible, not_equal_to_four))
+10. Q[Four, Camera.view, People.count](Camera.view = one_person_not_visible → Negation(one_person_not_visible, not_equal_to_four))
+11. Q[Four, Sidewalk.activity, Person_4.activity](Sidewalk.activity = walking → Negation(walking, away_from_camera))
+12. Q[Four, Sidewalk.location, Sidewalk.condition](Sidewalk.location = city → Negation(city, not_equal_to_urban))
+13. Q[Four, Sidewalk.type, Sidewalk.condition](Sidewalk.type = public → Negation(public, not_equal_to_urban))
+14. Q[Four, Person_1.activity, Person_4.activity](Person_1.activity = walking → Negation(walking, away_from_camera))
+15. Q[Four, Person_2.activity, Person_4.activity](Person_2.activity = walking → Negation(walking, away_from_camera))
+16. Q[Four, Person_3.activity, Person_4.activity](Person_3.activity = walking → Negation(walking, away_from_camera))
+17. Q[Four, People.presence, Sidewalk.occupants](People.presence = on_sidewalk → Negation(on_sidewalk, not_equal_to_four_people))
+18. Q[Four, People.count, Situation.number_of_people](People.count = four → Negation(four, greater_than_three))
+19. Q[Four, People.count, Situation.number_of_people](People.count = four → Negation(four, less_than_five))
+20. Q[Four, Camera.position, Person_4.direction](Camera.position = facing_towards_people → Negation(facing_towards_people, away_from_camera))
+21. Q[Four, Person_1.direction, Person_4.direction](Person_1.direction = facing_camera → Negation(facing_camera, away_from_camera))
+22. Q[Four, Person_2.direction, Person_4.direction](Person_2.direction = facing_camera → Negation(facing_camera, away_from_camera))
+23. Q[Four, Person_3.direction, Person_4.direction](Person_3.direction = facing_camera → Negation(facing_camera, away_from_camera))
+24. Q[Four, Sidewalk.occupants, Situation.number_of_people](Sidewalk.occupants = four_people → Negation(four_people, not_equal_to_four))
+25. Q[Four, Sidewalk.activity, Situation.number_of_people](Sidewalk.activity = walking → Negation(walking, not_equal_to_four))
+26. Q[Four, Sidewalk.condition, Sidewalk.location](Sidewalk.condition = urban → Negation(urban, not_equal_to_city))
+27. Q[Four, Camera.view, Situation.number_of_people](Camera.view = three_people_visible → Negation(three_people_visible, not_equal_to_four))
+28. Q[Four, Camera.view, Situation.number_of_people](Camera.view = one_person_not_visible → Negation(one_person_not_visible, not_equal_to_four))
+29. Q[Four, People.count, Sidewalk.occupants](People.count = four → Negation(four, not_equal_to_four_people))
+30. Q[Four, Sidewalk.activity, Sidewalk.occupants](Sidewalk.activity = walking → Negation(walking, not_equal_to_four_people))

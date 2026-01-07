@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 31)
+S1: Goose did not like carrots.
+S2: Rabbit had brought carrots.
+
+Predicates:
+1. Goose.likes(carrots) -> False
+2. Rabbit.brought(carrots) -> True
+3. M_NLI(S1, S2)
+4. Relation(Rabbit, carrots)
+5. violate(Goose, carrots)
+6. Goose.doesNotLike(carrots) -> True
+7. Rabbit.has(carrots) -> True
+8. M_NLI(S2, S1)
+9. Relation(Goose, carrots)
+10. violate(Rabbit, carrots)
+11. Goose.enjoys(carrots) -> False
+12. Rabbit.delivers(carrots) -> True
+13. M_NLI(S1, S1)
+14. Relation(carrots, picnic)
+15. violate(carrots, picnic)
+16. Goose.prefers(other_food) -> True
+17. Rabbit.offers(carrots) -> True
+18. M_NLI(S2, S2)
+19. Relation(Goose, picnic)
+20. violate(Goose, picnic)
+21. Goose.refuses(carrots) -> True
+22. Rabbit.intends(carrots) -> True
+23. M_NLI(S1, S2)
+24. Relation(carrots, enjoyment)
+25. violate(carrots, enjoyment)
+26. Goose.dislikes(carrots) -> True
+27. Rabbit.presents(carrots) -> True
+28. M_NLI(S2, S1)
+29. Relation(Goose, dislike)
+30. violate(Rabbit, enjoyment)
+
+Rules:
+1. Q[Goose, Goose.likes(carrots), False](Goose.likes(carrots) == False → Relation(Goose, carrots))
+2. Q[Rabbit, Rabbit.brought(carrots), True](Rabbit.brought(carrots) == True → Relation(Rabbit, carrots))
+3. Q[Goose, Goose.doesNotLike(carrots), True](Goose.doesNotLike(carrots) == True → Relation(Goose, carrots))
+4. Q[Rabbit, Rabbit.has(carrots), True](Rabbit.has(carrots) == True → Relation(Rabbit, carrots))
+5. Q[Goose, Goose.enjoys(carrots), False](Goose.enjoys(carrots) == False → Relation(Goose, carrots))
+6. Q[Rabbit, Rabbit.delivers(carrots), True](Rabbit.delivers(carrots) == True → Relation(Rabbit, carrots))
+7. Q[Goose, Goose.prefers(other_food), True](Goose.prefers(other_food) == True → Relation(Goose, carrots))
+8. Q[Rabbit, Rabbit.offers(carrots), True](Rabbit.offers(carrots) == True → Relation(Rabbit, carrots))
+9. Q[Goose, Goose.refuses(carrots), True](Goose.refuses(carrots) == True → Relation(Goose, carrots))
+10. Q[Rabbit, Rabbit.intends(carrots), True](Rabbit.intends(carrots) == True → Relation(Rabbit, carrots))
+11. Q[Goose, Goose.dislikes(carrots), True](Goose.dislikes(carrots) == True → Relation(Goose, carrots))
+12. Q[Rabbit, Rabbit.presents(carrots), True](Rabbit.presents(carrots) == True → Relation(Rabbit, carrots))
+13. Q[Goose, violate(Goose, carrots), True](violate(Goose, carrots) == True → Relation(Goose, carrots))
+14. Q[Rabbit, violate(Rabbit, carrots), False](violate(Rabbit, carrots) == False → Relation(Rabbit, carrots))
+15. Q[Goose, violate(Goose, picnic), True](violate(Goose, picnic) == True → Relation(Goose, picnic))
+16. Q[Rabbit, violate(carrots, picnic), True](violate(carrots, picnic) == True → Relation(carrots, picnic))
+17. Q[Goose, violate(carrots, enjoyment), True](violate(carrots, enjoyment) == True → Relation(carrots, enjoyment))
+18. Q[Rabbit, violate(Rabbit, enjoyment), True](violate(Rabbit, enjoyment) == True → Relation(Rabbit, enjoyment))
+19. Q[Goose, Relation(Goose, dislike), True](Relation(Goose, dislike) == True → Relation(Goose, carrots))
+20. Q[Rabbit, Relation(carrots, enjoyment), False](Relation(carrots, enjoyment) == False → Relation(Rabbit, carrots))
+21. Q[Goose, Relation(carrots, enjoyment), False](Relation(carrots, enjoyment) == False → Relation(Goose, carrots))
+22. Q[Rabbit, Relation(Rabbit, carrots), True](Relation(Rabbit, carrots) == True → Relation(Rabbit, carrots))
+23. Q[Goose, Relation(Goose, carrots), False](Relation(Goose, carrots) == False → Relation(Goose, carrots))
+24. Q[Rabbit, Relation(carrots, picnic), True](Relation(carrots, picnic) == True → Relation(Rabbit, carrots))
+25. Q[Goose, Relation(Goose, picnic), True](Relation(Goose, picnic) == True → Relation(Goose, carrots))
+26. Q[Rabbit, Relation(Rabbit, enjoyment), False](Relation(Rabbit, enjoyment) == False → Relation(Rabbit, carrots))
+27. Q[Goose, Relation(Goose, carrots), True](Relation(Goose, carrots) == True → Relation(Goose, carrots))
+28. Q[Rabbit, Relation(carrots, enjoyment), True](Relation(carrots, enjoyment) == True → Relation(Rabbit, carrots))
+29. Q[Goose, violate(Goose, carrots), False](violate(Goose, carrots) == False → Relation(Goose, carrots))
+30. Q[Rabbit, violate(Rabbit, carrots), True](violate(Rabbit, carrots) == True → Relation(Rabbit, carrots))

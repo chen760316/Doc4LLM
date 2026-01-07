@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 21)
+S1: I want to return.
+S2: I want to go back again.
+
+Predicates:
+1. Desire.return
+2. Desire.go_back
+3. Context.return
+4. Context.go_back
+5. Intention.return
+6. Intention.go_back
+7. M_NLI(S1, S2)
+8. Relation(desire, context)
+9. Relation(desire, intention)
+10. violate(desire.return, desire.go_back)
+11. violate(context.return, context.go_back)
+12. violate(intention.return, intention.go_back)
+13. Entity.return.intent
+14. Entity.go_back.intent
+15. Edge.desire.context
+16. Edge.intention.context
+17. Meta.desire.contradiction
+18. Meta.intention.contradiction
+19. Entity.return.context
+20. Entity.go_back.context
+21. Edge.return.intent
+22. Edge.go_back.intent
+23. Relation(return, go_back)
+24. Relation(intent, contradiction)
+25. violate(Entity.return, Entity.go_back)
+26. violate(Edge.return, Edge.go_back)
+27. M_NLI(desire.return, desire.go_back)
+28. M_NLI(context.return, context.go_back)
+29. M_NLI(intention.return, intention.go_back)
+30. Relation(Desire, Intention)
+
+Rules:
+1. Q[want, Desire.return, Desire.go_back](Desire.return == "true" → Relation(Desire.return, Desire.go_back))
+2. Q[want, Context.return, Context.go_back](Context.return == "true" → Relation(Context.return, Context.go_back))
+3. Q[want, Intention.return, Intention.go_back](Intention.return == "true" → Relation(Intention.return, Intention.go_back))
+4. Q[want, violate(desire.return, desire.go_back), Relation(return, go_back)](Desire.return == "true" ∧ Desire.go_back == "true" → Relation(return, go_back))
+5. Q[want, violate(context.return, context.go_back), Relation(return, go_back)](Context.return == "true" ∧ Context.go_back == "true" → Relation(return, go_back))
+6. Q[want, violate(intention.return, intention.go_back), Relation(return, go_back)](Intention.return == "true" ∧ Intention.go_back == "true" → Relation(return, go_back))
+7. Q[want, M_NLI(S1, S2), Relation(desire, context)](M_NLI(S1, S2) == "true" → Relation(desire, context))
+8. Q[want, Meta.desire.contradiction, Relation(desire, intention)](Meta.desire.contradiction == "true" → Relation(desire, intention))
+9. Q[want, Entity.return.intent, Entity.go_back.intent](Entity.return.intent == "true" → Relation(Entity.return.intent, Entity.go_back.intent))
+10. Q[want, Edge.desire.context, Edge.intention.context](Edge.desire.context == "true" → Relation(Edge.desire.context, Edge.intention.context))
+11. Q[want, violate(Entity.return, Entity.go_back), Relation(return, go_back)](Entity.return == "true" ∧ Entity.go_back == "true" → Relation(return, go_back))
+12. Q[want, violate(Edge.return, Edge.go_back), Relation(return, go_back)](Edge.return == "true" ∧ Edge.go_back == "true" → Relation(return, go_back))
+13. Q[want, M_NLI(desire.return, desire.go_back), Relation(desire, intention)](M_NLI(desire.return, desire.go_back) == "true" → Relation(desire, intention))
+14. Q[want, M_NLI(context.return, context.go_back), Relation(desire, context)](M_NLI(context.return, context.go_back) == "true" → Relation(desire, context))
+15. Q[want, M_NLI(intention.return, intention.go_back), Relation(intention, contradiction)](M_NLI(intention.return, intention.go_back) == "true" → Relation(intention, contradiction))
+16. Q[want, Relation(return, go_back), violate(desire.return, desire.go_back)](Relation(return, go_back) == "true" → violate(desire.return, desire.go_back))
+17. Q[want, Relation(return, go_back), violate(context.return, context.go_back)](Relation(return, go_back) == "true" → violate(context.return, context.go_back))
+18. Q[want, Relation(return, go_back), violate(intention.return, intention.go_back)](Relation(return, go_back) == "true" → violate(intention.return, intention.go_back))
+19. Q[want, Entity.return.context, Entity.go_back.context](Entity.return.context == "true" → Relation(Entity.return.context, Entity.go_back.context))
+20. Q[want, Edge.return.intent, Edge.go_back.intent](Edge.return.intent == "true" → Relation(Edge.return.intent, Edge.go_back.intent))
+21. Q[want, Relation(desire, intention), Meta.intention.contradiction](Relation(desire, intention) == "true" → Meta.intention.contradiction)
+22. Q[want, violate(Edge.return, Edge.go_back), Relation(return, go_back)](Edge.return == "true" ∧ Edge.go_back == "true" → Relation(return, go_back))
+23. Q[want, violate(Entity.return, Entity.go_back), Relation(return, go_back)](Entity.return == "true" ∧ Entity.go_back == "true" → Relation(return, go_back))
+24. Q[want, M_NLI(S1, S2), Relation(return, go_back)](M_NLI(S1, S2) == "true" → Relation(return, go_back))
+25. Q[want, violate(desire.return, desire.go_back), Relation(desire, intention)](violate(desire.return, desire.go_back) == "true" → Relation(desire, intention))
+26. Q[want, violate(context.return, context.go_back), Relation(desire, intention)](violate(context.return, context.go_back) == "true" → Relation(desire, intention))
+27. Q[want, violate(intention.return, intention.go_back), Relation(desire, intention)](violate(intention.return, intention.go_back) == "true" → Relation(desire, intention))
+28. Q[want, Relation(return, go_back), M_NLI(S1, S2)](Relation(return, go_back) == "true" → M_NLI(S1, S2))
+29. Q[want, Relation(return, go_back), Meta.desire.contradiction](Relation(return, go_back) == "true" → Meta.desire.contradiction)
+30. Q[want, Relation(return, go_back), Relation(desire, context)](Relation(return, go_back) == "true" → Relation(desire, context))

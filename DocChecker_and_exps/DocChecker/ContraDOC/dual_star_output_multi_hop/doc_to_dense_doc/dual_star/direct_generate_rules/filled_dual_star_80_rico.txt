@@ -1,0 +1,38 @@
+Predicates:
+Brian Aldiss.label != "Person"
+Brian Aldiss.label = "Person"
+Brian Aldiss.name != "Brian Aldiss"
+Brian Aldiss.name = "Brian Aldiss"
+Brian Aldiss.occupation != "Author"
+Brian Aldiss.occupation = "Author"
+Brian Aldiss.year != 2007
+Brian Aldiss.year < 2012
+Brian Aldiss.year = 2007
+Brian Aldiss.year > 2002
+John Curran.label != "Person"
+John Curran.label = "Person"
+John Curran.name != "John Curran"
+John Curran.name != Brian Aldiss.name
+John Curran.name = "John Curran"
+John Curran.occupation != "Author"
+John Curran.occupation = "Author"
+John Curran___Brian Aldiss.context = "Contradictory claims about Christie's writing methods"
+John Curran___Brian Aldiss.contradiction != True
+John Curran___Brian Aldiss.contradiction = True
+John Curran___Brian Aldiss.contradiction_type = "Factual"
+John Curran___Brian Aldiss.relationship = "John Curran's work describes different working methods for Agatha Christie's bibliography, which contradicts Brian Aldiss's claim about Christie's writing process."
+John Curran___Brian Aldiss.source = "Agatha Christie: The Secret Notebooks"
+John Curran___Brian Aldiss.source_id = "3488771870_6"
+None_ML(Brian Aldiss.attrs, John Curran.attrs)
+
+Rules:
+Q[John Curran,John Curran] (Brian Aldiss.year != 2007 ∧ John Curran.label != "Person" → John Curran.occupation != "Author")
+Q[John Curran,John Curran] (John Curran___Brian Aldiss.contradiction_type = "Factual" ∧ Brian Aldiss.name != "Brian Aldiss" ∧ Brian Aldiss.year > 2002 ∧ Brian Aldiss.name = "Brian Aldiss" ∧ John Curran___Brian Aldiss.source = "Agatha Christie: The Secret Notebooks" ∧ Brian Aldiss.label != "Person" → Brian Aldiss.year = 2007)
+Q[John Curran,John Curran] (Brian Aldiss.name != "Brian Aldiss" ∧ John Curran___Brian Aldiss.source_id = "3488771870_6" ∧ John Curran.occupation != "Author" ∧ John Curran___Brian Aldiss.contradiction_type = "Factual" ∧ Brian Aldiss.label != "Person" → John Curran.name != Brian Aldiss.name)
+Q[John Curran,John Curran] (John Curran___Brian Aldiss.context = "Contradictory claims about Christie's writing methods" ∧ Brian Aldiss.label = "Person" ∧ John Curran___Brian Aldiss.source_id = "3488771870_6" ∧ Brian Aldiss.occupation != "Author" → John Curran.label = "Person")
+Q[John Curran,John Curran] (John Curran.label != "Person" ∧ John Curran.occupation != "Author" ∧ John Curran.name != Brian Aldiss.name → John Curran___Brian Aldiss.contradiction_type = "Factual")
+Q[John Curran,John Curran] (John Curran___Brian Aldiss.source_id = "3488771870_6" ∧ John Curran___Brian Aldiss.context = "Contradictory claims about Christie's writing methods" ∧ Brian Aldiss.year = 2007 → Brian Aldiss.year != 2007)
+Q[John Curran,John Curran] (Brian Aldiss.label = "Person" ∧ John Curran.label = "Person" ∧ John Curran___Brian Aldiss.contradiction != True ∧ Brian Aldiss.occupation = "Author" ∧ John Curran.name != "John Curran" ∧ John Curran.occupation != "Author" → Brian Aldiss.label != "Person")
+Q[John Curran,John Curran] (Brian Aldiss.label != "Person" ∧ John Curran___Brian Aldiss.source_id = "3488771870_6" → Brian Aldiss.year > 2002)
+Q[John Curran,John Curran] (John Curran.name = "John Curran" ∧ Brian Aldiss.year < 2012 ∧ Brian Aldiss.year = 2007 ∧ John Curran___Brian Aldiss.relationship = "John Curran's work describes different working methods for Agatha Christie's bibliography, which contradicts Brian Aldiss's claim about Christie's writing process." ∧ John Curran.name != "John Curran" → None_ML(Brian Aldiss.attrs, John Curran.attrs))
+Q[John Curran,John Curran] (John Curran___Brian Aldiss.context = "Contradictory claims about Christie's writing methods" ∧ John Curran___Brian Aldiss.source_id = "3488771870_6" ∧ John Curran___Brian Aldiss.source = "Agatha Christie: The Secret Notebooks" ∧ Brian Aldiss.occupation = "Author" → John Curran___Brian Aldiss.contradiction != True)

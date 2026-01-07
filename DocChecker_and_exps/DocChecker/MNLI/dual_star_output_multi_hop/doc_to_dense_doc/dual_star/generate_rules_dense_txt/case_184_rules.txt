@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 184)
+S1: She enjoys the car.
+S2: She hates the car.
+
+Predicates:
+1. She.enjoys.the_car
+2. She.hates.the_car
+3. M_NLI(S1, S2)
+4. Content(Opinion, enjoys)
+5. Content(Opinion, hates)
+6. violate(enjoys, hates)
+7. She.emotion.enjoyment
+8. She.emotion.hatred
+9. the_car.attribute.enjoyable
+10. the_car.attribute.hateful
+11. relationship.emotion
+12. relationship.enjoyment
+13. relationship.hatred
+14. She.preference.car
+15. She.dislike.car
+16. M_NLI(S2, S1)
+17. Content(Emotion, enjoyment)
+18. Content(Emotion, hatred)
+19. violate(hatred, enjoyment)
+20. She.likes.the_car
+21. She.dislikes.the_car
+22. the_car.quality.positive
+23. the_car.quality.negative
+24. relationship.preference
+25. relationship.dislike
+26. She.feels.positive_about(the_car)
+27. She.feels.negative_about(the_car)
+28. M_NLI(S1, S1)
+29. M_NLI(S2, S2)
+30. Content(Opinion, preference)
+
+Rules:
+1. Q[She, x0, y0](She.enjoys.the_car → Content(Opinion, enjoys))
+2. Q[She, x0, y0](She.hates.the_car → Content(Opinion, hates))
+3. Q[She, x0, y0](She.enjoys.the_car ∧ She.hates.the_car → violate(enjoys, hates))
+4. Q[She, x0, y0](She.enjoys.the_car → She.emotion.enjoyment)
+5. Q[She, x0, y0](She.hates.the_car → She.emotion.hatred)
+6. Q[She, x0, y0](She.emotion.enjoyment ∧ She.emotion.hatred → violate(hatred, enjoyment))
+7. Q[She, x0, y0](She.enjoys.the_car → the_car.attribute.enjoyable)
+8. Q[She, x0, y0](She.hates.the_car → the_car.attribute.hateful)
+9. Q[She, x0, y0](the_car.attribute.enjoyable ∧ the_car.attribute.hateful → violate(enjoys, hates))
+10. Q[She, x0, y0](She.enjoys.the_car → relationship.enjoyment)
+11. Q[She, x0, y0](She.hates.the_car → relationship.hatred)
+12. Q[She, x0, y0](relationship.enjoyment ∧ relationship.hatred → violate(hatred, enjoyment))
+13. Q[She, x0, y0](She.preference.car → She.enjoys.the_car)
+14. Q[She, x0, y0](She.dislike.car → She.hates.the_car)
+15. Q[She, x0, y0](She.enjoys.the_car → She.likes.the_car)
+16. Q[She, x0, y0](She.hates.the_car → She.dislikes.the_car)
+17. Q[She, x0, y0](She.likes.the_car ∧ She.dislikes.the_car → violate(enjoys, hates))
+18. Q[She, x0, y0](She.feels.positive_about(the_car) → She.enjoys.the_car)
+19. Q[She, x0, y0](She.feels.negative_about(the_car) → She.hates.the_car)
+20. Q[She, x0, y0](She.enjoys.the_car → Content(Emotion, enjoyment))
+21. Q[She, x0, y0](She.hates.the_car → Content(Emotion, hatred))
+22. Q[She, x0, y0](Content(Emotion, enjoyment) ∧ Content(Emotion, hatred) → violate(hatred, enjoyment))
+23. Q[She, x0, y0](the_car.quality.positive → She.enjoys.the_car)
+24. Q[She, x0, y0](the_car.quality.negative → She.hates.the_car)
+25. Q[She, x0, y0](the_car.quality.positive ∧ the_car.quality.negative → violate(enjoys, hates))
+26. Q[She, x0, y0](M_NLI(S1, S2) → violate(enjoys, hates))
+27. Q[She, x0, y0](M_NLI(S2, S1) → violate(hates, enjoys))
+28. Q[She, x0, y0](Content(Opinion, enjoys) ∧ Content(Opinion, hates) → violate(hatred, enjoyment))
+29. Q[She, x0, y0](She.enjoys.the_car → Content(Opinion, preference))
+30. Q[She, x0, y0](She.hates.the_car → Content(Opinion, preference))

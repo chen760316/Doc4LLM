@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 2)
+S1: I upgraded to softer and more expensive sock varieties.
+S2: I used to use the cheapest socks available.
+
+Predicates:
+1. Upgrade.sock_variety
+2. Use.sock_variety
+3. Preference.sock_price
+4. Upgrade.expensive
+5. Use.cheap
+6. Upgrade.softer
+7. Preference.upgrade
+8. Use.expensive
+9. Upgrade.sock_type
+10. Use.sock_type
+11. Relationship.indicates
+12. Relationship.states
+13. Meta.M_NLI(S1, S2)
+14. Meta.Content(S1, S2)
+15. Meta.violate(S1, S2)
+16. Entity.socks.expensive
+17. Entity.socks.cheap
+18. Entity.socks.softer
+19. Entity.socks.variety
+20. Edge.indicates.upgrade
+21. Edge.states.preference
+22. Upgrade.indicates.preference
+23. Use.indicates.preference
+24. Upgrade.violates.use
+25. Use.violates.upgrade
+26. Preference.violates.upgrade
+27. Preference.violates.use
+28. Upgrade.relationship.indicates
+29. Use.relationship.states
+30. Meta.relationship.violate
+
+Rules:
+1. Q[upgraded, Upgrade.sock_variety, Use.sock_variety](Upgrade.sock_variety == "expensive" → Content(Upgrade.sock_variety, Use.sock_variety))
+2. Q[upgraded, Upgrade.sock_variety, Preference.sock_price](Upgrade.sock_variety == "expensive" → Content(Upgrade.sock_variety, Preference.sock_price))
+3. Q[upgraded, Upgrade.expensive, Use.cheap](Upgrade.expensive == true → Content(Upgrade.expensive, Use.cheap))
+4. Q[upgraded, Upgrade.softer, Use.sock_type](Upgrade.softer == true → Content(Upgrade.softer, Use.sock_type))
+5. Q[upgraded, Upgrade.sock_variety, Use.expensive](Upgrade.sock_variety == "expensive" → Content(Upgrade.sock_variety, Use.expensive))
+6. Q[upgraded, Upgrade.sock_variety, Preference.upgrade](Upgrade.sock_variety == "expensive" → Content(Upgrade.sock_variety, Preference.upgrade))
+7. Q[upgraded, Upgrade.indicates.preference, Use.cheap](Upgrade.indicates.preference == true → Content(Upgrade.indicates.preference, Use.cheap))
+8. Q[upgraded, Upgrade.violates.use, Use.sock_variety](Upgrade.violates.use == true → Content(Upgrade.violates.use, Use.sock_variety))
+9. Q[upgraded, Upgrade.relationship.indicates, Use.cheap](Upgrade.relationship.indicates == true → Content(Upgrade.relationship.indicates, Use.cheap))
+10. Q[upgraded, Upgrade.sock_variety, Use.sock_type](Upgrade.sock_variety == "expensive" → Content(Upgrade.sock_variety, Use.sock_type))
+11. Q[upgraded, Upgrade.violates.use, Preference.sock_price](Upgrade.violates.use == true → Content(Upgrade.violates.use, Preference.sock_price))
+12. Q[upgraded, Upgrade.sock_variety, Use.indicates.preference](Upgrade.sock_variety == "expensive" → Content(Upgrade.sock_variety, Use.indicates.preference))
+13. Q[upgraded, Upgrade.relationship.indicates, Preference.sock_price](Upgrade.relationship.indicates == true → Content(Upgrade.relationship.indicates, Preference.sock_price))
+14. Q[upgraded, Upgrade.sock_variety, Preference.violates.use](Upgrade.sock_variety == "expensive" → Content(Upgrade.sock_variety, Preference.violates.use))
+15. Q[upgraded, Upgrade.indicates.preference, Use.sock_variety](Upgrade.indicates.preference == true → Content(Upgrade.indicates.preference, Use.sock_variety))
+16. Q[upgraded, Upgrade.violates.use, Upgrade.sock_variety](Upgrade.violates.use == true → Content(Upgrade.violates.use, Upgrade.sock_variety))
+17. Q[upgraded, Upgrade.sock_variety, Use.cheap](Upgrade.sock_variety == "expensive" → Content(Upgrade.sock_variety, Use.cheap))
+18. Q[upgraded, Upgrade.relationship.states, Use.sock_variety](Upgrade.relationship.states == true → Content(Upgrade.relationship.states, Use.sock_variety))
+19. Q[upgraded, Upgrade.sock_variety, Preference.violates.upgrade](Upgrade.sock_variety == "expensive" → Content(Upgrade.sock_variety, Preference.violates.upgrade))
+20. Q[upgraded, Upgrade.indicates.preference, Use.expensive](Upgrade.indicates.preference == true → Content(Upgrade.indicates.preference, Use.expensive))
+21. Q[upgraded, Upgrade.violates.use, Upgrade.expensive](Upgrade.violates.use == true → Content(Upgrade.violates.use, Upgrade.expensive))
+22. Q[upgraded, Upgrade.sock_variety, Use.indicates.preference](Upgrade.sock_variety == "expensive" → Content(Upgrade.sock_variety, Use.indicates.preference))
+23. Q[upgraded, Upgrade.relationship.indicates, Use.expensive](Upgrade.relationship.indicates == true → Content(Upgrade.relationship.indicates, Use.expensive))
+24. Q[upgraded, Upgrade.sock_variety, Preference.upgrade](Upgrade.sock_variety == "expensive" → Content(Upgrade.sock_variety, Preference.upgrade))
+25. Q[upgraded, Upgrade.violates.use, Preference.upgrade](Upgrade.violates.use == true → Content(Upgrade.violates.use, Preference.upgrade))
+26. Q[upgraded, Upgrade.sock_variety, Use.cheap](Upgrade.sock_variety == "expensive" → Content(Upgrade.sock_variety, Use.cheap))
+27. Q[upgraded, Upgrade.relationship.states, Preference.sock_price](Upgrade.relationship.states == true → Content(Upgrade.relationship.states, Preference.sock_price))
+28. Q[upgraded, Upgrade.sock_variety, Use.sock_type](Upgrade.sock_variety == "expensive" → Content(Upgrade.sock_variety, Use.sock_type))
+29. Q[upgraded, Upgrade.indicates.preference, Use.cheap](Upgrade.indicates.preference == true → Content(Upgrade.indicates.preference, Use.cheap))
+30. Q[upgraded, Upgrade.violates.use, Use.sock_variety](Upgrade.violates.use == true → Content(Upgrade.violates.use, Use.sock_variety))

@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 1354)
+S1: A climber is wearing a blue helmet.
+S2: alone climber wearing a white helmet climbing a wall.
+
+Predicates:
+1. Climber.helmet_color = blue
+2. Climber.helmet_color = white
+3. Climber.state = alone
+4. Climber.activity = climbing
+5. Climber.equipment = helmet
+6. Wall.type = climbing_wall
+7. Climber.helmet_color != Climber.helmet_color
+8. Climber.helmet_color = blue -> Climber.helmet_color != white
+9. Climber.helmet_color = white -> Climber.helmet_color != blue
+10. Climber.is_wearing = true
+11. Climber.is_climbing = true
+12. Climber.is_alone = true
+13. Climber.helmet_color ∈ {blue, white}
+14. Climber.helmet_color = blue ∨ Climber.helmet_color = white
+15. Climber.helmet_color = blue ↔ Climber.is_wearing_helmet
+16. Climber.helmet_color = white ↔ Climber.is_wearing_helmet
+17. Climber.climbing_surface = wall
+18. Climber.helmet_color = blue ∧ Climber.is_climbing = true
+19. Climber.helmet_color = white ∧ Climber.is_climbing = true
+20. Climber.helmet_color = blue ∧ Climber.is_alone = true
+21. Climber.helmet_color = white ∧ Climber.is_alone = true
+22. Climber.helmet_color = blue → Climber.is_wearing_helmet = true
+23. Climber.helmet_color = white → Climber.is_wearing_helmet = true
+24. Climber.helmet_color != blue → Climber.helmet_color = white
+25. Climber.helmet_color != white → Climber.helmet_color = blue
+26. Climber.activity = climbing → Climber.is_wearing_helmet = true
+27. Climber.state = alone → Climber.is_wearing_helmet = true
+28. Climber.helmet_color = blue ∧ Climber.activity = climbing
+29. Climber.helmet_color = white ∧ Climber.activity = climbing
+30. M_NLI(S1, S2)
+
+Rules:
+1. Q[climber, Climber.helmet_color = blue](Climber.helmet_color = blue → Factual(x0, y0))
+2. Q[climber, Climber.helmet_color = white](Climber.helmet_color = white → Factual(x0, y0))
+3. Q[climber, Climber.helmet_color = blue](Climber.helmet_color = blue ∧ Climber.helmet_color != Climber.helmet_color → Factual(x0, y0))
+4. Q[climber, Climber.helmet_color = white](Climber.helmet_color = white ∧ Climber.helmet_color != Climber.helmet_color → Factual(x0, y0))
+5. Q[climber, Climber.helmet_color = blue](Climber.helmet_color = blue → Climber.helmet_color != white → Factual(x0, y0))
+6. Q[climber, Climber.helmet_color = white](Climber.helmet_color = white → Climber.helmet_color != blue → Factual(x0, y0))
+7. Q[climber, Climber.is_wearing](Climber.helmet_color = blue → Climber.is_wearing = true → Factual(x0, y0))
+8. Q[climber, Climber.is_wearing](Climber.helmet_color = white → Climber.is_wearing = true → Factual(x0, y0))
+9. Q[climber, Climber.is_climbing](Climber.activity = climbing → Climber.is_climbing = true → Factual(x0, y0))
+10. Q[climber, Climber.is_alone](Climber.state = alone → Climber.is_alone = true → Factual(x0, y0))
+11. Q[climber, Climber.helmet_color](Climber.helmet_color = blue ∧ Climber.is_climbing = true → Factual(x0, y0))
+12. Q[climber, Climber.helmet_color](Climber.helmet_color = white ∧ Climber.is_climbing = true → Factual(x0, y0))
+13. Q[climber, Climber.helmet_color](Climber.helmet_color = blue ∧ Climber.is_alone = true → Factual(x0, y0))
+14. Q[climber, Climber.helmet_color](Climber.helmet_color = white ∧ Climber.is_alone = true → Factual(x0, y0))
+15. Q[climber, Climber.helmet_color](Climber.helmet_color = blue → Climber.helmet_color != white → Factual(x0, y0))
+16. Q[climber, Climber.helmet_color](Climber.helmet_color = white → Climber.helmet_color != blue → Factual(x0, y0))
+17. Q[climber, Climber.helmet_color](Climber.helmet_color = blue ∨ Climber.helmet_color = white → Factual(x0, y0))
+18. Q[climber, Climber.helmet_color](Climber.helmet_color != blue → Climber.helmet_color = white → Factual(x0, y0))
+19. Q[climber, Climber.helmet_color](Climber.helmet_color != white → Climber.helmet_color = blue → Factual(x0, y0))
+20. Q[climber, Climber.helmet_color](Climber.helmet_color = blue → Climber.is_wearing_helmet = true → Factual(x0, y0))
+21. Q[climber, Climber.helmet_color](Climber.helmet_color = white → Climber.is_wearing_helmet = true → Factual(x0, y0))
+22. Q[climber, Climber.activity](Climber.activity = climbing → Climber.is_wearing_helmet = true → Factual(x0, y0))
+23. Q[climber, Climber.state](Climber.state = alone → Climber.is_wearing_helmet = true → Factual(x0, y0))
+24. Q[climber, Climber.helmet_color](Climber.helmet_color = blue ∧ Climber.activity = climbing → Factual(x0, y0))
+25. Q[climber, Climber.helmet_color](Climber.helmet_color = white ∧ Climber.activity = climbing → Factual(x0, y0))
+26. Q[climber, Climber.helmet_color](Climber.helmet_color = blue → Climber.helmet_color != Climber.helmet_color → Factual(x0, y0))
+27. Q[climber, Climber.helmet_color](Climber.helmet_color = white → Climber.helmet_color != Climber.helmet_color → Factual(x0, y0))
+28. Q[climber, Climber.helmet_color](Climber.helmet_color = blue → Climber.helmet_color = white → Factual(x0, y0))
+29. Q[climber, Climber.helmet_color](Climber.helmet_color = white → Climber.helmet_color = blue → Factual(x0, y0))
+30. Q[climber, Climber.helmet_color](M_NLI(S1, S2) → Factual(x0, y0))

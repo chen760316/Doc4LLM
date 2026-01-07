@@ -1,0 +1,61 @@
+Source: dense_text.txt (Index 332)
+S1: Cancer is a disease characterized by the formation of tumors.
+S2: Cancer is a disease characterized by the absence of tumors.
+
+Predicates:
+1. Cancer.is_a.disease
+2. Cancer.characterized_by.tumor_formation
+3. Cancer.characterized_by.absence_of_tumors
+4. Tumor.formation.is_a.characteristic_of.Cancer
+5. Absence_of_tumors.is_a.characteristic_of.Cancer
+6. M_NLI(S1, S2)
+7. Factual(Cancer, disease)
+8. violate(Cancer.characterized_by.tumor_formation, Cancer.characterized_by.absence_of_tumors)
+9. Tumors.form.in.Cancer
+10. Tumors.absent.in.Cancer
+11. Cancer.has.characteristic.tumor_formation
+12. Cancer.has.characteristic.absence_of_tumors
+13. Tumor_formation.is.a.disease_characteristic
+14. Absence_of_tumors.is.a.disease_characteristic
+15. Cancer.is.characterized_by.tumor_formation
+16. Cancer.is.characterized_by.absence_of_tumors
+17. Tumor_formation.indicates.Cancer
+18. Absence_of_tumors.indicates.Cancer
+19. Cancer.is.a.pathological_condition
+20. Tumors.indicate.pathological_conditions
+21. Absence_of_tumors.indicates.health
+22. M_NLI(Cancer.characterized_by.tumor_formation, Cancer.characterized_by.absence_of_tumors)
+23. Factual(Cancer, characterized_by.tumor_formation)
+24. Factual(Cancer, characterized_by.absence_of_tumors)
+25. violate(Cancer.is_a.disease, Cancer.characterized_by.absence_of_tumors)
+26. Cancer.is.a.malignant_condition
+27. Tumor_formation.is.a.sign_of.Cancer
+28. Absence_of_tumors.is.a.sign_of.health
+29. Cancer.has.tumors
+30. Cancer.lacks.tumors
+
+Rules:
+1. Q[Cancer, Cancer.characterized_by.tumor_formation, Cancer.characterized_by.absence_of_tumors](Cancer.is_a.disease ∧ Cancer.characterized_by.tumor_formation → Factual(Cancer, characterized_by.tumor_formation))
+2. Q[Cancer, Cancer.characterized_by.absence_of_tumors, Cancer.characterized_by.tumor_formation](Cancer.is_a.disease ∧ Cancer.characterized_by.absence_of_tumors → Factual(Cancer, characterized_by.absence_of_tumors))
+3. Q[Cancer, Tumor.formation.is_a.characteristic_of.Cancer, Absence_of_tumors.is_a.characteristic_of.Cancer](Tumor.formation.is_a.characteristic_of.Cancer ∧ Absence_of_tumors.is_a.characteristic_of.Cancer → Factual(Cancer, characterized_by.tumor_formation))
+4. Q[Cancer, Tumors.form.in.Cancer, Tumors.absent.in.Cancer](Tumors.form.in.Cancer ∧ Tumors.absent.in.Cancer → Factual(Cancer, characterized_by.tumor_formation))
+5. Q[Cancer, Cancer.has.characteristic.tumor_formation, Cancer.has.characteristic.absence_of_tumors](Cancer.has.characteristic.tumor_formation ∧ Cancer.has.characteristic.absence_of_tumors → Factual(Cancer, characterized_by.tumor_formation))
+6. Q[Cancer, Tumor_formation.is.a.disease_characteristic, Absence_of_tumors.is.a.disease_characteristic](Tumor_formation.is.a.disease_characteristic ∧ Absence_of_tumors.is.a.disease_characteristic → Factual(Cancer, characterized_by.tumor_formation))
+7. Q[Cancer, Cancer.is.characterized_by.tumor_formation, Cancer.is.characterized_by.absence_of_tumors](Cancer.is.characterized_by.tumor_formation ∧ Cancer.is.characterized_by.absence_of_tumors → Factual(Cancer, characterized_by.tumor_formation))
+8. Q[Cancer, Tumor_formation.indicates.Cancer, Absence_of_tumors.indicates.Cancer](Tumor_formation.indicates.Cancer ∧ Absence_of_tumors.indicates.Cancer → Factual(Cancer, characterized_by.tumor_formation))
+9. Q[Cancer, Cancer.is.a.pathological_condition, Absence_of_tumors.indicates.health](Cancer.is.a.pathological_condition ∧ Absence_of_tumors.indicates.health → Factual(Cancer, characterized_by.tumor_formation))
+10. Q[Cancer, M_NLI(Cancer.characterized_by.tumor_formation, Cancer.characterized_by.absence_of_tumors), Factual(Cancer, disease)](M_NLI(Cancer.characterized_by.tumor_formation, Cancer.characterized_by.absence_of_tumors) → Factual(Cancer, disease))
+11. Q[Cancer, violate(Cancer.characterized_by.tumor_formation, Cancer.characterized_by.absence_of_tumors), Factual(Cancer, characterized_by.tumor_formation)](violate(Cancer.characterized_by.tumor_formation, Cancer.characterized_by.absence_of_tumors) → Factual(Cancer, characterized_by.tumor_formation))
+12. Q[Cancer, Cancer.is.a.malignant_condition, Cancer.characterized_by.absence_of_tumors](Cancer.is.a.malignant_condition ∧ Cancer.characterized_by.absence_of_tumors → Factual(Cancer, characterized_by.tumor_formation))
+13. Q[Cancer, Tumor_formation.is.a.sign_of.Cancer, Absence_of_tumors.is.a.sign_of.health](Tumor_formation.is.a.sign_of.Cancer ∧ Absence_of_tumors.is.a.sign_of.health → Factual(Cancer, characterized_by.tumor_formation))
+14. Q[Cancer, Cancer.has.tumors, Cancer.lacks.tumors](Cancer.has.tumors ∧ Cancer.lacks.tumors → Factual(Cancer, characterized_by.tumor_formation))
+15. Q[Cancer, violate(Cancer.is_a.disease, Cancer.characterized_by.absence_of_tumors), Factual(Cancer, disease)](violate(Cancer.is_a.disease, Cancer.characterized_by.absence_of_tumors) → Factual(Cancer, disease))
+16. Q[Cancer, Cancer.characterized_by.tumor_formation, Tumor_formation.is.a.characteristic_of.Cancer](Cancer.characterized_by.tumor_formation ∧ Tumor_formation.is.a.characteristic_of.Cancer → Factual(Cancer, characterized_by.tumor_formation))
+17. Q[Cancer, Cancer.characterized_by.absence_of_tumors, Absence_of_tumors.is.a.characteristic_of.Cancer](Cancer.characterized_by.absence_of_tumors ∧ Absence_of_tumors.is.a.characteristic_of.Cancer → Factual(Cancer, characterized_by.absence_of_tumors))
+18. Q[Cancer, Tumors.indicate.pathological_conditions, Absence_of_tumors.indicates.health](Tumors.indicate.pathological_conditions ∧ Absence_of_tumors.indicates.health → Factual(Cancer, characterized_by.tumor_formation))
+19. Q[Cancer, Factual(Cancer, characterized_by.tumor_formation), Factual(Cancer, characterized_by.absence_of_tumors)](Factual(Cancer, characterized_by.tumor_formation) ∧ Factual(Cancer, characterized_by.absence_of_tumors) → Factual(Cancer, characterized_by.tumor_formation))
+20. Q[Cancer, Cancer.is.characterized_by.tumor_formation, Cancer.is.characterized_by.absence_of_tumors](Cancer.is.characterized_by.tumor_formation ∧ Cancer.is.characterized_by.absence_of_tumors → Factual(Cancer, characterized_by.tumor_formation))
+21. Q[Cancer, M_NLI(Cancer.characterized_by.tumor_formation, Cancer.characterized_by.absence_of_tumors), Factual(Cancer, characterized_by.tumor_formation)](M_NLI(Cancer.characterized_by.tumor_formation, Cancer.characterized_by.absence_of_tumors) → Factual(Cancer, characterized_by.tumor_formation))
+22. Q[Cancer, Tumor_formation.is.a.sign_of.Cancer, Cancer.characterized_by.absence_of_tumors](Tumor_formation.is.a.sign_of.Cancer ∧ Cancer.characterized_by.absence_of_tumors → Factual(Cancer, characterized_by.tumor_formation))
+23. Q[Cancer, Absence_of_tumors.is.a.sign_of.health, Cancer.characterized_by.tumor_formation](Absence_of_tumors.is.a.sign_of.health ∧ Cancer.characterized_by.tumor_formation → Factual(Cancer, characterized_by.tumor_formation))
+24. Q[Cancer, Cancer.has.character

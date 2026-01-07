@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 228)
+S1: The lungs and brains of children who grow up in polluted air offer further evidence of its destructive power.
+S2: The old and ill, however, are the most vulnerable to the acute effects of heavily polluted stagnant air.
+
+Predicates:
+1. Children.pollution_effects
+2. Children.vulnerability_level
+3. Old.vulnerability_level
+4. Ill.vulnerability_level
+5. Polluted_air.destructive_power
+6. Stagnant_air.pollution_level
+7. Acute_effects.pollution_type
+8. Children.lungs_health
+9. Children.brains_health
+10. Old.lungs_health
+11. Old.brains_health
+12. Ill.lungs_health
+13. Ill.brains_health
+14. Vulnerable_population.age_group
+15. Vulnerable_population.health_status
+16. Pollution.air_quality
+17. Pollution.environmental_impact
+18. Children.environmental_exposure
+19. Old.environmental_exposure
+20. Ill.environmental_exposure
+21. Relationship.most_vulnerable
+22. Relationship.pollution_impact
+23. M_NLI(S1, S2)
+24. Relation(Children, Old)
+25. Relation(Children, Ill)
+26. Relation(Old, Ill)
+27. Violate(Children, Old)
+28. Violate(Children, Ill)
+29. Violate(Old, Ill)
+30. Pollution.effects_on_health
+
+Rules:
+1. Q[The, Children.pollution_effects, Old.vulnerability_level](Children.pollution_effects == "significant" → Relation(Children, Old))
+2. Q[The, Children.vulnerability_level, Ill.vulnerability_level](Children.vulnerability_level == "high" → Relation(Children, Ill))
+3. Q[The, Polluted_air.destructive_power, Old.vulnerability_level](Polluted_air.destructive_power == "evident" → Relation(Polluted_air, Old))
+4. Q[The, Children.lungs_health, Old.lungs_health](Children.lungs_health == "affected" → Relation(Children, Old))
+5. Q[The, Children.brains_health, Ill.brains_health](Children.brains_health == "impaired" → Relation(Children, Ill))
+6. Q[The, Old.vulnerability_level, Ill.vulnerability_level](Old.vulnerability_level == "higher" → Relation(Old, Ill))
+7. Q[The, Acute_effects.pollution_type, Children.vulnerability_level](Acute_effects.pollution_type == "severe" → Relation(Acute_effects, Children))
+8. Q[The, Stagnant_air.pollution_level, Old.vulnerability_level](Stagnant_air.pollution_level == "high" → Relation(Stagnant_air, Old))
+9. Q[The, Children.environmental_exposure, Old.environmental_exposure](Children.environmental_exposure == "greater" → Relation(Children, Old))
+10. Q[The, Pollution.air_quality, Children.vulnerability_level](Pollution.air_quality == "poor" → Relation(Pollution, Children))
+11. Q[The, Pollution.environmental_impact, Old.vulnerability_level](Pollution.environmental_impact == "negative" → Relation(Pollution, Old))
+12. Q[The, Children.pollution_effects, Ill.vulnerability_level](Children.pollution_effects == "harmful" → Relation(Children, Ill))
+13. Q[The, Children.lungs_health, Old.brains_health](Children.lungs_health == "compromised" → Relation(Children, Old))
+14. Q[The, Ill.environmental_exposure, Old.environmental_exposure](Ill.environmental_exposure == "high" → Relation(Ill, Old))
+15. Q[The, Vulnerable_population.age_group, Children.vulnerability_level](Vulnerable_population.age_group == "children" → Relation(Vulnerable_population, Children))
+16. Q[The, Vulnerable_population.health_status, Old.vulnerability_level](Vulnerable_population.health_status == "ill" → Relation(Vulnerable_population, Old))
+17. Q[The, Pollution.effects_on_health, Children.vulnerability_level](Pollution.effects_on_health == "detrimental" → Relation(Pollution, Children))
+18. Q[The, Children.environmental_exposure, Ill.environmental_exposure](Children.environmental_exposure == "extensive" → Relation(Children, Ill))
+19. Q[The, Old.lungs_health, Ill.lungs_health](Old.lungs_health == "declining" → Relation(Old, Ill))
+20. Q[The, Children.brains_health, Old.brains_health](Children.brains_health == "affected" → Relation(Children, Old))
+21. Q[The, Pollution.air_quality, Old.vulnerability_level](Pollution.air_quality == "hazardous" → Relation(Pollution, Old))
+22. Q[The, Children.vulnerability_level, Pollution.effects_on_health](Children.vulnerability_level == "critical" → Relation(Children, Pollution))
+23. Q[The, Old.vulnerability_level, Pollution.effects_on_health](Old.vulnerability_level == "severe" → Relation(Old, Pollution))
+24. Q[The, Children.pollution_effects, Pollution.environmental_impact](Children.pollution_effects == "serious" → Relation(Children, Pollution))
+25. Q[The, Ill.vulnerability_level, Pollution.effects_on_health](Ill.vulnerability_level == "high" → Relation(Ill, Pollution))
+26. Q[The, Children.environmental_exposure, Pollution.air_quality](Children.environmental_exposure == "high" → Relation(Children, Pollution))
+27. Q[The, Old.vulnerability_level, Children.vulnerability_level](Old.vulnerability_level == "greater" → Relation(Old, Children))
+28. Q[The, Ill.vulnerability_level, Children.vulnerability_level](Ill.vulnerability_level == "higher" → Relation(Ill, Children))
+29. Q[The, Pollution.environmental_impact, Children.vulnerability_level](Pollution.environmental_impact == "harmful" → Relation(Pollution, Children))
+30. Q[The, Acute_effects.pollution_type, Old.vulnerability_level](Acute_effects.pollution_type == "critical" → Relation(Acute_effects, Old))

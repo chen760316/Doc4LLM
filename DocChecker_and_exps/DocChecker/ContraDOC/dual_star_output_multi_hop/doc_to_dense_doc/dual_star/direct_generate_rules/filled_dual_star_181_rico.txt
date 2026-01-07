@@ -1,0 +1,60 @@
+Predicates:
+China's Supreme Court.label != "Organization"
+China's Supreme Court.label = "Organization"
+China's Supreme Court.location != "China"
+China's Supreme Court.location = "China"
+China's Supreme Court.name != "China's Supreme Court"
+China's Supreme Court.name = "China's Supreme Court"
+China's Supreme Court.type != "judicial authority"
+China's Supreme Court.type = "judicial authority"
+None_ML(Zhou Yongkang.attrs, China's Supreme Court.attrs)
+None_ML(Zhou Yongkang___China's Supreme Court.attrs, Zhou Yongkang___Supreme People's Procuratorate.attrs)
+Supreme People's Procuratorate.label != "Organization"
+Supreme People's Procuratorate.label = "Organization"
+Supreme People's Procuratorate.location != "China"
+Supreme People's Procuratorate.location = "China"
+Supreme People's Procuratorate.name != "Supreme People's Procuratorate"
+Supreme People's Procuratorate.name != China's Supreme Court.name
+Supreme People's Procuratorate.name = "Supreme People's Procuratorate"
+Supreme People's Procuratorate.type != "prosecution authority"
+Supreme People's Procuratorate.type != China's Supreme Court.type
+Supreme People's Procuratorate.type = "prosecution authority"
+Zhou Yongkang.age != 72
+Zhou Yongkang.age < 77
+Zhou Yongkang.age = 72
+Zhou Yongkang.age > 67
+Zhou Yongkang.label != "Person"
+Zhou Yongkang.label != China's Supreme Court.label
+Zhou Yongkang.label != Supreme People's Procuratorate.label
+Zhou Yongkang.label = "Person"
+Zhou Yongkang.name != "Zhou Yongkang"
+Zhou Yongkang.name != China's Supreme Court.name
+Zhou Yongkang.name != Supreme People's Procuratorate.name
+Zhou Yongkang.name = "Zhou Yongkang"
+Zhou Yongkang.nationality != "Chinese"
+Zhou Yongkang.nationality = "Chinese"
+Zhou Yongkang.occupation != "former leader"
+Zhou Yongkang.occupation = "former leader"
+Zhou Yongkang.status != "accused"
+Zhou Yongkang.status = "accused"
+Zhou Yongkang___China's Supreme Court.contradiction_type = "Causal"
+Zhou Yongkang___China's Supreme Court.relationship = "The president of China's supreme court stated there would be no trials for accused former leaders like Zhou Yongkang."
+Zhou Yongkang___China's Supreme Court.source_id = "3489738247_3"
+Zhou Yongkang___China's Supreme Court.statement = "no trials for accused former leaders"
+Zhou Yongkang___Supreme People's Procuratorate.charges.length = 2
+Zhou Yongkang___Supreme People's Procuratorate.contradiction_type = "Causal"
+Zhou Yongkang___Supreme People's Procuratorate.relationship != Zhou Yongkang___China's Supreme Court.relationship
+Zhou Yongkang___Supreme People's Procuratorate.relationship = "Zhou Yongkang was charged with abuse of power and leaking state secrets by the Supreme People's Procuratorate."
+Zhou Yongkang___Supreme People's Procuratorate.source_id = "3489738247_3"
+
+Rules:
+Q[Zhou Yongkang,Zhou Yongkang] (Zhou Yongkang___Supreme People's Procuratorate.contradiction_type = "Causal" ∧ China's Supreme Court.label != "Organization" → Zhou Yongkang.age > 67)
+Q[Zhou Yongkang,Zhou Yongkang] (Zhou Yongkang.occupation != "former leader" ∧ Zhou Yongkang___Supreme People's Procuratorate.contradiction_type = "Causal" ∧ Zhou Yongkang.age > 67 ∧ Zhou Yongkang.label != Supreme People's Procuratorate.label ∧ China's Supreme Court.type != "judicial authority" ∧ China's Supreme Court.location = "China" → Zhou Yongkang___Supreme People's Procuratorate.charges.length = 2)
+Q[Zhou Yongkang,Zhou Yongkang] (Zhou Yongkang.name != China's Supreme Court.name ∧ Zhou Yongkang.name != Supreme People's Procuratorate.name ∧ Zhou Yongkang.status != "accused" → Zhou Yongkang.nationality = "Chinese")
+Q[Zhou Yongkang,Zhou Yongkang] (Supreme People's Procuratorate.name != "Supreme People's Procuratorate" ∧ Zhou Yongkang.name = "Zhou Yongkang" ∧ China's Supreme Court.label != "Organization" ∧ Zhou Yongkang___China's Supreme Court.relationship = "The president of China's supreme court stated there would be no trials for accused former leaders like Zhou Yongkang." → Supreme People's Procuratorate.location = "China")
+Q[Zhou Yongkang,Zhou Yongkang] (Zhou Yongkang___Supreme People's Procuratorate.relationship != Zhou Yongkang___China's Supreme Court.relationship ∧ Zhou Yongkang.age > 67 ∧ Zhou Yongkang.label = "Person" ∧ Zhou Yongkang___Supreme People's Procuratorate.source_id = "3489738247_3" ∧ China's Supreme Court.type != "judicial authority" → Zhou Yongkang___China's Supreme Court.source_id = "3489738247_3")
+Q[Zhou Yongkang,Zhou Yongkang] (Zhou Yongkang.label = "Person" ∧ Zhou Yongkang___Supreme People's Procuratorate.contradiction_type = "Causal" → Zhou Yongkang___China's Supreme Court.relationship = "The president of China's supreme court stated there would be no trials for accused former leaders like Zhou Yongkang.")
+Q[Zhou Yongkang,Zhou Yongkang] (Zhou Yongkang.label != "Person" ∧ Zhou Yongkang.label = "Person" ∧ Zhou Yongkang.name != "Zhou Yongkang" ∧ Supreme People's Procuratorate.name != China's Supreme Court.name ∧ China's Supreme Court.name != "China's Supreme Court" → Zhou Yongkang___Supreme People's Procuratorate.relationship = "Zhou Yongkang was charged with abuse of power and leaking state secrets by the Supreme People's Procuratorate.")
+Q[Zhou Yongkang,Zhou Yongkang] (Zhou Yongkang.name != "Zhou Yongkang" ∧ Supreme People's Procuratorate.name = "Supreme People's Procuratorate" ∧ China's Supreme Court.label = "Organization" ∧ China's Supreme Court.type = "judicial authority" ∧ China's Supreme Court.name != "China's Supreme Court" ∧ None_ML(Zhou Yongkang.attrs, China's Supreme Court.attrs) → Zhou Yongkang.age < 77)
+Q[Zhou Yongkang,Zhou Yongkang] (China's Supreme Court.type != "judicial authority" ∧ Zhou Yongkang.age != 72 ∧ Zhou Yongkang.label != China's Supreme Court.label ∧ Zhou Yongkang___China's Supreme Court.contradiction_type = "Causal" → Zhou Yongkang___Supreme People's Procuratorate.contradiction_type = "Causal")
+Q[Zhou Yongkang,Zhou Yongkang] (Zhou Yongkang___Supreme People's Procuratorate.contradiction_type = "Causal" ∧ Zhou Yongkang___Supreme People's Procuratorate.relationship = "Zhou Yongkang was charged with abuse of power and leaking state secrets by the Supreme People's Procuratorate." ∧ Zhou Yongkang.age = 72 → Zhou Yongkang.occupation = "former leader")

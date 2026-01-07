@@ -1,0 +1,130 @@
+Predicates:
+1. entity1.name = "Entity A"
+2. entity1.type = "Type 1"
+3. entity1.status = "active"
+4. entity1.value = 100
+5. entity1.date_created = "2023-01-01"
+6. entity2.name = "Entity B"
+7. entity2.type = "Type 2"
+8. entity2.status = "inactive"
+9. entity2.value = 200
+10. entity2.date_created = "2023-02-01"
+11. "does not compel expenditure of".source = "Document A"
+12. "does not compel expenditure of".target = "Document B"
+13. "does not compel expenditure under".source = "Document C"
+14. "does not compel expenditure under".target = "Document D"
+15. M_NLI(entity1.value, entity2.value)
+16. T("The expenditure is not required", "The expenditure is required", tau)
+17. tau(entity1.status, entity2.status)
+18. violate(entity1, entity2)
+19. Factual(entity1.value, entity2.value)
+20. Causal(entity1.date_created, entity2.date_created)
+21. Numeric(entity1.value, entity2.value)
+22. Temporal(entity1.date_created, entity2.date_created)
+23. Content(entity1.status, entity2.status)
+24. Relation(entity1.type, entity2.type)
+25. entity1.location = "Location A"
+26. entity2.location = "Location B"
+27. "does not compel expenditure of".context = "Legal"
+28. "does not compel expenditure under".context = "Financial"
+29. M_NLI(entity1.location, entity2.location)
+30. T("The location is valid", "The location is invalid", tau)
+31. tau(entity1.value, entity2.value)
+32. violate(entity1.location, entity2.location)
+33. Factual(entity1.location, entity2.location)
+34. Causal(entity1.date_created, entity2.date_created)
+35. Numeric(entity1.value, entity2.value)
+36. Temporal(entity1.date_created, entity2.date_created)
+37. Content(entity1.type, entity2.type)
+38. Relation(entity1.status, entity2.status)
+39. entity1.category = "Category A"
+40. entity2.category = "Category B"
+41. "does not compel expenditure of".reason = "Policy"
+42. "does not compel expenditure under".reason = "Regulation"
+43. M_NLI(entity1.category, entity2.category)
+44. T("The category is appropriate", "The category is inappropriate", tau)
+45. tau(entity1.category, entity2.category)
+46. violate(entity1.category, entity2.category)
+47. Factual(entity1.category, entity2.category)
+48. Causal(entity1.value, entity2.value)
+49. Numeric(entity1.value, entity2.value)
+50. Temporal(entity1.date_created, entity2.date_created)
+51. Content(entity1.status, entity2.status)
+52. Relation(entity1.type, entity2.type)
+53. entity1.owner = "Owner A"
+54. entity2.owner = "Owner B"
+55. "does not compel expenditure of".implication = "None"
+56. "does not compel expenditure under".implication = "Some"
+57. M_NLI(entity1.owner, entity2.owner)
+58. T("The owner is valid", "The owner is invalid", tau)
+59. tau(entity1.owner, entity2.owner)
+60. violate(entity1.owner, entity2.owner)
+61. Factual(entity1.owner, entity2.owner)
+62. Causal(entity1.value, entity2.value)
+63. Numeric(entity1.value, entity2.value)
+64. Temporal(entity1.date_created, entity2.date_created)
+65. Content(entity1.type, entity2.type)
+66. Relation(entity1.status, entity2.status)
+67. entity1.priority = "High"
+68. entity2.priority = "Low"
+69. "does not compel expenditure of".effect = "None"
+70. "does not compel expenditure under".effect = "Some"
+71. M_NLI(entity1.priority, entity2.priority)
+72. T("The priority is justified", "The priority is unjustified", tau)
+73. tau(entity1.priority, entity2.priority)
+74. violate(entity1.priority, entity2.priority)
+75. Factual(entity1.priority, entity2.priority)
+76. Causal(entity1.value, entity2.value)
+77. Numeric(entity1.value, entity2.value)
+78. Temporal(entity1.date_created, entity2.date_created)
+79. Content(entity1.status, entity2.status)
+80. Relation(entity1.type, entity2.type)
+81. entity1.version = "1.0"
+82. entity2.version = "2.0"
+83. "does not compel expenditure of".scope = "Limited"
+84. "does not compel expenditure under".scope = "Broad"
+85. M_NLI(entity1.version, entity2.version)
+86. T("The version is current", "The version is outdated", tau)
+87. tau(entity1.version, entity2.version)
+88. violate(entity1.version, entity2.version)
+89. Factual(entity1.version, entity2.version)
+90. Causal(entity1.value, entity2.value)
+91. Numeric(entity1.value, entity2.value)
+92. Temporal(entity1.date_created, entity2.date_created)
+93. Content(entity1.status, entity2.status)
+94. Relation(entity1.type, entity2.type)
+95. entity1.source = "Source A"
+96. entity2.source = "Source B"
+97. "does not compel expenditure of".condition = "None"
+98. "does not compel expenditure under".condition = "Some"
+99. M_NLI(entity1.source, entity2.source)
+100. T("The source is credible", "The source is not credible", tau)
+violate(x0, y0)
+
+Rules:
+1. Q[x0, y0](entity1.status = "active" ∧ entity2.status = "inactive" → violate(x0, y0))
+2. Q[x0, y0](entity1.value = 100 ∧ entity2.value = 200 → violate(x0, y0))
+3. Q[x0, y0](entity1.type = "Type 1" ∧ entity2.type = "Type 2" → violate(x0, y0))
+4. Q[x0, y0](entity1.date_created = "2023-01-01" ∧ entity2.date_created = "2023-02-01" → violate(x0, y0))
+5. Q[x0, y0](entity1.location = "Location A" ∧ entity2.location = "Location B" → violate(x0, y0))
+6. Q[x0, y0](entity1.category = "Category A" ∧ entity2.category = "Category B" → violate(x0, y0))
+7. Q[x0, y0](entity1.owner = "Owner A" ∧ entity2.owner = "Owner B" ∧ entity1.status = "active" → violate(x0, y0))
+8. Q[x0, y0](entity1.priority = "High" ∧ entity2.priority = "Low" ∧ entity1.value = 100 → violate(x0, y0))
+9. Q[x0, y0](entity1.version = "1.0" ∧ entity2.version = "2.0" ∧ entity1.type = "Type 1" → violate(x0, y0))
+10. Q[x0, y0](entity1.source = "Source A" ∧ entity2.source = "Source B" ∧ entity1.status = "active" → violate(x0, y0))
+11. Q[x0, y0](entity1.name = "Entity A" ∧ entity2.name = "Entity B" ∧ entity1.value = 100 ∧ entity2.value = 200 → violate(x0, y0))
+12. Q[x0, y0](entity1.date_created = "2023-01-01" ∧ entity2.date_created = "2023-02-01" ∧ entity1.status = "active" ∧ entity2.status = "inactive" → violate(x0, y0))
+13. Q[x0, y0](entity1.type = "Type 1" ∧ entity2.type = "Type 2" ∧ entity1.category = "Category A" ∧ entity2.category = "Category B" → violate(x0, y0))
+14. Q[x0, y0](entity1.location = "Location A" ∧ entity2.location = "Location B" ∧ entity1.owner = "Owner A" ∧ entity2.owner = "Owner B" → violate(x0, y0))
+15. Q[x0, y0](entity1.priority = "High" ∧ entity2.priority = "Low" ∧ entity1.version = "1.0" ∧ entity2.version = "2.0" → violate(x0, y0))
+16. Q[x0, y0](entity1.value = 100 ∧ entity2.value = 200 ∧ entity1.date_created = "2023-01-01" ∧ entity2.date_created = "2023-02-01" ∧ entity1.status = "active" → violate(x0, y0))
+17. Q[x0, y0](entity1.name = "Entity A" ∧ entity1.type = "Type 1" ∧ entity1.status = "active" ∧ entity2.name = "Entity B" ∧ entity2.type = "Type 2" ∧ entity2.status = "inactive" → violate(x0, y0))
+18. Q[x0, y0](entity1.category = "Category A" ∧ entity2.category = "Category B" ∧ entity1.owner = "Owner A" ∧ entity2.owner = "Owner B" ∧ entity1.priority = "High" ∧ entity2.priority = "Low" → violate(x0, y0))
+19. Q[x0, y0](entity1.source = "Source A" ∧ entity2.source = "Source B" ∧ entity1.version = "1.0" ∧ entity2.version = "2.0" ∧ entity1.status = "active" ∧ entity2.status = "inactive" → violate(x0, y0))
+20. Q[x0, y0](entity1.value = 100 ∧ entity2.value = 200 ∧ entity1.date_created = "2023-01-01" ∧ entity2.date_created = "2023-02-01" ∧ entity1.location = "Location A" ∧ entity2.location = "Location B" → violate(x0, y0))
+21. Q[x0, y0](entity1.name = "Entity A" ∧ entity1.type = "Type 1" ∧ entity1.value = 100 ∧ entity2.name = "Entity B" ∧ entity2.type = "Type 2" ∧ entity2.value = 200 → violate(x0, y0))
+22. Q[x0, y0](entity1.date_created = "2023-01-01" ∧ entity2.date_created = "2023-02-01" ∧ entity1.category = "Category A" ∧ entity2.category = "Category B" ∧ entity1.owner = "Owner A" ∧ entity2.owner = "Owner B" → violate(x0, y0))
+23. Q[x0, y0](entity1.priority = "High" ∧ entity2.priority = "Low" ∧ entity1.version = "1.0" ∧ entity2.version = "2.0" ∧ entity1.source = "Source A" ∧ entity2.source = "Source B" → violate(x0, y0))
+24. Q[x0, y0](entity1.location = "Location A" ∧ entity2.location = "Location B" ∧ entity1.date_created = "2023-01-01" ∧ entity2.date_created = "2023-02-01" ∧ entity1.status = "active" ∧ entity2.status = "inactive" → violate(x0, y0))
+25. Q[x0, y0](entity1.name = "Entity A" ∧ entity1.type = "Type 1" ∧ entity1.status = "active" ∧ entity1.value = 100 ∧ entity2.name = "Entity B" ∧ entity2.type = "Type 2" ∧ entity2.status = "inactive" ∧ entity2.value = 200 → violate(x0, y0))
+26. Q[x0, y0](entity1.category = "Category A" ∧ entity2.category = "Category B" ∧ entity1.owner = "Owner A" ∧ entity2.owner = "Owner

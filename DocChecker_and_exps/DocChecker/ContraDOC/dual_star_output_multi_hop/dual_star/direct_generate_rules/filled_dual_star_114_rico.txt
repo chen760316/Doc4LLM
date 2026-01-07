@@ -1,0 +1,32 @@
+Predicates:
+INS Chakra.label != "Submarine"
+INS Chakra.label != Indian Navy.label
+INS Chakra.label = "Submarine"
+INS Chakra.lease_year != "2012"
+INS Chakra.lease_year = "2012"
+INS Chakra.leased_from != "Russia"
+INS Chakra.leased_from = "Russia"
+INS Chakra.name != "INS Chakra"
+INS Chakra.name != Indian Navy.name
+INS Chakra.name = "INS Chakra"
+INS Chakra.type != "Akula-class submarine"
+INS Chakra.type = "Akula-class submarine"
+INS Chakra___Indian Navy.doc_id = "3503017444_3"
+INS Chakra___Indian Navy.relationship = "The Indian Navy will train on INS Chakra, an Akula-class submarine leased from Russia."
+Indian Navy.label != "Navy"
+Indian Navy.label = "Navy"
+Indian Navy.name != "Indian Navy"
+Indian Navy.name = "Indian Navy"
+None_ML(Indian Navy.attrs, INS Chakra.attrs)
+
+Rules:
+Q[INS Chakra,INS Chakra] (Indian Navy.name != "Indian Navy" ∧ INS Chakra.name != "INS Chakra" ∧ INS Chakra.label != "Submarine" → Indian Navy.name = "Indian Navy")
+Q[INS Chakra,INS Chakra] (INS Chakra___Indian Navy.relationship = "The Indian Navy will train on INS Chakra, an Akula-class submarine leased from Russia." ∧ Indian Navy.name != "Indian Navy" ∧ INS Chakra___Indian Navy.doc_id = "3503017444_3" ∧ INS Chakra.type = "Akula-class submarine" → INS Chakra.name = "INS Chakra")
+Q[INS Chakra,INS Chakra] (INS Chakra___Indian Navy.relationship = "The Indian Navy will train on INS Chakra, an Akula-class submarine leased from Russia." ∧ INS Chakra.label != Indian Navy.label → INS Chakra.label = "Submarine")
+Q[INS Chakra,INS Chakra] (INS Chakra.name = "INS Chakra" ∧ INS Chakra.leased_from != "Russia" ∧ INS Chakra.lease_year = "2012" ∧ INS Chakra.leased_from = "Russia" ∧ Indian Navy.label != "Navy" ∧ INS Chakra.type = "Akula-class submarine" → Indian Navy.name != "Indian Navy")
+Q[INS Chakra,INS Chakra] (Indian Navy.name != "Indian Navy" ∧ INS Chakra.name = "INS Chakra" ∧ INS Chakra.name != Indian Navy.name ∧ Indian Navy.name = "Indian Navy" ∧ INS Chakra.name != "INS Chakra" → Indian Navy.label = "Navy")
+Q[INS Chakra,INS Chakra] (INS Chakra.name != Indian Navy.name ∧ INS Chakra___Indian Navy.relationship = "The Indian Navy will train on INS Chakra, an Akula-class submarine leased from Russia." → INS Chakra.label != Indian Navy.label)
+Q[INS Chakra,INS Chakra] (INS Chakra.type = "Akula-class submarine" ∧ None_ML(Indian Navy.attrs, INS Chakra.attrs) ∧ INS Chakra.type != "Akula-class submarine" ∧ Indian Navy.name != "Indian Navy" ∧ INS Chakra.leased_from = "Russia" → INS Chakra.name != Indian Navy.name)
+Q[INS Chakra,INS Chakra] (INS Chakra.type = "Akula-class submarine" ∧ INS Chakra___Indian Navy.relationship = "The Indian Navy will train on INS Chakra, an Akula-class submarine leased from Russia." ∧ INS Chakra.label = "Submarine" ∧ Indian Navy.label != "Navy" ∧ INS Chakra.leased_from = "Russia" ∧ INS Chakra.name != Indian Navy.name → INS Chakra.type != "Akula-class submarine")
+Q[INS Chakra,INS Chakra] (INS Chakra.name != "INS Chakra" ∧ None_ML(Indian Navy.attrs, INS Chakra.attrs) ∧ INS Chakra.label != Indian Navy.label ∧ INS Chakra.name = "INS Chakra" → INS Chakra.label != "Submarine")
+Q[INS Chakra,INS Chakra] (INS Chakra.leased_from != "Russia" ∧ Indian Navy.label = "Navy" ∧ INS Chakra.lease_year = "2012" → INS Chakra.leased_from = "Russia")

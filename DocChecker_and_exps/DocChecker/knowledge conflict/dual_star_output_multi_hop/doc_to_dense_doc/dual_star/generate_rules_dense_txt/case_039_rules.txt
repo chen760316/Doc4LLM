@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 39)
+S1: Rome's eventual victory, and the destruction of Carthage marked the end of Carthaginian power in the region.
+S2: Syria's eventual victory, and the destruction of Carthage marked the end of Carthaginian power in the region.
+
+Predicates:
+1. Rome.victory
+2. Carthage.destruction
+3. Carthaginian_power.end
+4. Syria.victory
+5. Rome.region
+6. Carthage.region
+7. Carthaginian_power.region
+8. Rome.contradiction(Syria)
+9. Syria.contradiction(Rome)
+10. Rome.victor(S1)
+11. Syria.victor(S2)
+12. Carthage.defeated_by(Rome)
+13. Carthage.defeated_by(Syria)
+14. Rome.power_in(region)
+15. Syria.power_in(region)
+16. Carthaginian_power.decline
+17. Rome.history_event(S1)
+18. Syria.history_event(S2)
+19. Carthage.history_event(destruction)
+20. Rome.victory_marked_by(destruction_of_Carthage)
+21. Syria.victory_marked_by(destruction_of_Carthage)
+22. M_NLI(S1, S2)
+23. Factual(Rome, victory)
+24. Factual(Syria, victory)
+25. violate(Rome, Syria)
+26. violate(Syria, Rome)
+27. Rome.impact_on(Carthaginian_power)
+28. Syria.impact_on(Carthaginian_power)
+29. Carthaginian_power.collapse
+30. Rome_and_Syria.contradiction
+
+Rules:
+1. Q[Rome, x0, y0](Rome.victory == true → Factual(x0, y0))
+2. Q[Carthage, x0, y0](Carthage.destruction == true → Factual(x0, y0))
+3. Q[Carthaginian_power, x0, y0](Carthaginian_power.end == true → Factual(x0, y0))
+4. Q[Syria, x0, y0](Syria.victory == true → Factual(x0, y0))
+5. Q[Rome, x0, y0](Rome.victor(S1) == true → Factual(x0, y0))
+6. Q[Syria, x0, y0](Syria.victor(S2) == true → Factual(x0, y0))
+7. Q[Carthage, x0, y0](Carthage.defeated_by(Rome) == true → Factual(x0, y0))
+8. Q[Carthage, x0, y0](Carthage.defeated_by(Syria) == true → Factual(x0, y0))
+9. Q[Rome, x0, y0](Rome.history_event(S1) == true → Factual(x0, y0))
+10. Q[Syria, x0, y0](Syria.history_event(S2) == true → Factual(x0, y0))
+11. Q[Carthage, x0, y0](Carthage.history_event(destruction) == true → Factual(x0, y0))
+12. Q[Rome, x0, y0](Rome.victory_marked_by(destruction_of_Carthage) == true → Factual(x0, y0))
+13. Q[Syria, x0, y0](Syria.victory_marked_by(destruction_of_Carthage) == true → Factual(x0, y0))
+14. Q[Rome, x0, y0](Rome.impact_on(Carthaginian_power) == true → Factual(x0, y0))
+15. Q[Syria, x0, y0](Syria.impact_on(Carthaginian_power) == true → Factual(x0, y0))
+16. Q[Carthaginian_power, x0, y0](Carthaginian_power.collapse == true → Factual(x0, y0))
+17. Q[Rome, x0, y0](Rome.region == "Carthaginian" → Factual(x0, y0))
+18. Q[Syria, x0, y0](Syria.region == "Carthaginian" → Factual(x0, y0))
+19. Q[Carthaginian_power, x0, y0](Carthaginian_power.region == "Carthage" → Factual(x0, y0))
+20. Q[Rome, x0, y0](Rome.contradiction(Syria) == true → Factual(x0, y0))
+21. Q[Syria, x0, y0](Syria.contradiction(Rome) == true → Factual(x0, y0))
+22. Q[Rome, x0, y0](Rome.power_in(region) == true → Factual(x0, y0))
+23. Q[Syria, x0, y0](Syria.power_in(region) == true → Factual(x0, y0))
+24. Q[Rome_and_Syria, x0, y0](Rome_and_Syria.contradiction == true → Factual(x0, y0))
+25. Q[Carthaginian_power, x0, y0](Carthaginian_power.decline == true → Factual(x0, y0))
+26. Q[Rome, x0, y0](Rome.victory == true ∧ Syria.victory == false → Factual(x0, y0))
+27. Q[Syria, x0, y0](Syria.victory == true ∧ Rome.victory == false → Factual(x0, y0))
+28. Q[Carthage, x0, y0](Carthage.defeated_by(Rome) ∧ Carthage.defeated_by(Syria) == false → Factual(x0, y0))
+29. Q[Carthage, x0, y0](Carthage.defeated_by(Syria) ∧ Carthage.defeated_by(Rome) == false → Factual(x0, y0))
+30. Q[Carthaginian_power, x0, y0](Carthaginian_power.end == true ∧ Rome.victory == true ∧ Syria.victory == false → Factual(x0, y0))

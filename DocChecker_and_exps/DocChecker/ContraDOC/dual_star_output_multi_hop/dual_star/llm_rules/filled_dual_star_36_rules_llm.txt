@@ -1,0 +1,118 @@
+Predicates:
+1. California.attributes['status'] = "breadbasket"
+2. California.attributes['vegetable_production'] > "30%"
+3. California.attributes['fruit_production'] < "70%"
+4. "California is a major agricultural producer for the United States.".reason != "California does not grow vegetables and fruits."
+5. "California is a major agricultural producer for the United States.".reason >= "California grows a significant portion of the nation's vegetables and fruits."
+6. "If Iran enriches uranium to weapons-grade levels, monitors will alert the U.N. Security Council.".time <= "in a week"
+7. "If Iran enriches uranium to weapons-grade levels, monitors will alert the U.N. Security Council.".time > "in a month"
+8. "Iran and world powers, including the U.S., are meeting to negotiate a deal limiting Tehran's nuclear program.".time = "this month"
+9. "Iran has been training and funding Hezbollah.".goal != "support peace in the region"
+10. "Iran has been training and funding Hezbollah.".goal >= "annihilate Israel"
+11. "Iran ratified the Additional Protocol allowing expanded access to nuclear sites.".permanence = "does not sunset"
+12. "Iran supported the Houthis in Yemen.".context < "supporting the government"
+13. "Iran's lack of cooperation with inspections by the International Atomic Energy Agency is noted.".evidence != "full cooperation"
+14. Jerry Brown.attributes['occupation'] = "Governor"
+15. Jerry Brown.attributes['location'] != "New York"
+16. Jerry Brown.attributes['location'] >= "California"
+17. "Jerry Brown announced a mandatory cutback in water consumption due to the drought in California.".cutback_percentage < "30%"
+18. "Jerry Brown announced a mandatory cutback in water consumption due to the drought in California.".cutback_percentage > "20%"
+19. "Jerry Brown announced a mandatory cutback in water consumption due to the drought in California.".context = "mandatory regulations in all cities"
+20. executions.count < "40"
+21. executions.previous_year_count > "30"
+22. Hezbollah.status = "terrorist group"
+23. Yemen.status != "peaceful"
+24. Yemen.status = "civil war"
+25. "mandatory water cutback.attributes".percentage = "25%"
+26. "mandatory water cutback.attributes".location = "all cities"
+27. "mandatory water cutback.attributes".date >= "March"
+28. "water service regulation.attributes".description != "water served freely"
+29. "water service regulation.attributes".date < "April"
+30. wine grape harvest.attributes['quality'] = "excellent"
+31. wine grape harvest.attributes['years'] >= "2012"
+32. wine grape harvest.attributes['years'] <= "2014"
+33. M_NLI(California.attributes, Jerry Brown.attributes)
+34. M_NLU(Iran.attributes, Hezbollah.attributes)
+35. M_TEM(Iran.attributes, U.S..attributes)
+36. contra("Iran enriches uranium", "Iran does not enrich uranium")
+37. S(California, "California is a major agricultural producer for the United States.")
+38. S(executions, "Executions number is 35")
+39. T("Iran enriches uranium", "Iran does not enrich uranium", "Factual")
+40. tau(California.attributes['vegetable_production'], "more than a third")
+41. tau("If Iran enriches uranium to weapons-grade levels", "Iran does not enrich uranium")
+42. "Iran's lack of cooperation with inspections by the International Atomic Energy Agency is noted.".evidence >= "noted"
+43. "Iran supported the Houthis in Yemen.".context > "overthrew the government"
+44. "Jerry Brown announced a mandatory cutback in water consumption due to the drought in California.".cutback_percentage <= "25%"
+45. "Jerry Brown announced a mandatory cutback in water consumption due to the drought in California.".context != "optional regulations"
+46. "California grows a significant portion of the nation's vegetables and fruits.".reason < "California does not grow vegetables"
+47. "If Iran enriches uranium to weapons-grade levels, monitors will alert the U.N. Security Council.".time > "in a few days"
+48. "Iran and world powers, including the U.S., are meeting to negotiate a deal limiting Tehran's nuclear program.".time != "next year"
+49. "Iran has been training and funding Hezbollah.".goal <= "annihilate Israel"
+50. "Iran ratified the Additional Protocol allowing expanded access to nuclear sites.".permanence != "temporary"
+51. "Iran supported the Houthis in Yemen.".context >= "overthrew the government"
+52. "Iran's lack of cooperation with inspections by the International Atomic Energy Agency is noted.".evidence < "full cooperation"
+53. Jerry Brown.attributes['occupation'] != "Senator"
+54. Jerry Brown.attributes['location'] < "Oregon"
+55. Jerry Brown.attributes['location'] > "Nevada"
+56. executions.count >= "30"
+57. executions.previous_year_count < "40"
+58. Hezbollah.status != "peaceful organization"
+59. Yemen.status >= "civil war"
+60. "mandatory water cutback.attributes".percentage != "30%"
+61. "mandatory water cutback.attributes".location != "specific cities"
+62. "mandatory water cutback.attributes".date < "April"
+63. "water service regulation.attributes".description = "water served only on request"
+64. "water service regulation.attributes".date >= "March"
+65. wine grape harvest.attributes['quality'] != "poor"
+66. wine grape harvest.attributes['years'] > "2010"
+67. wine grape harvest.attributes['years'] < "2015"
+68. M_NLI(Jerry Brown.attributes, California.attributes)
+69. M_NLU(Hezbollah.attributes, Iran.attributes)
+70. M_TEM(Yemen.attributes, Iran.attributes)
+71. contra("Iran supports Houthis", "Iran does not support Houthis")
+72. S(Iran, "Iran enriches uranium")
+73. S(executions, "Executions number is 35")
+74. T("Iran supports Hezbollah", "Iran does not support Hezbollah", "Factual")
+75. tau(Jerry Brown.attributes['location'], "California")
+76. tau("Iran enriches uranium", "Iran does not enrich uranium")
+77. "California is a major agricultural producer for the United States.".reason < "California does not produce food"
+78. "If Iran enriches uranium to weapons-grade levels, monitors will alert the U.N. Security Council.".time >= "in a few days"
+79. "Iran and world powers, including the U.S., are meeting to negotiate a deal limiting Tehran's nuclear program.".time < "next month"
+80. "Iran has been training and funding Hezbollah.".goal != "promote peace"
+81. "Iran ratified the Additional Protocol allowing expanded access to nuclear sites.".permanence > "temporary"
+82. "Iran supported the Houthis in Yemen.".context != "supporting the government"
+83. "Iran's lack of cooperation with inspections by the International Atomic Energy Agency is noted.".evidence >= "noted"
+84. Jerry Brown.attributes['occupation'] < "President"
+85. Jerry
+
+Rules:
+1. Q[California, Jerry Brown](California.attributes['status'] = "breadbasket" ∧ California.attributes['vegetable_production'] > "30%" → "California is a major agricultural producer for the United States.".reason != "California does not grow vegetables and fruits.")
+2. Q[California, Jerry Brown](California.attributes['fruit_production'] < "70%" ∧ "California is a major agricultural producer for the United States.".reason >= "California grows a significant portion of the nation's vegetables and fruits." → "California is known for its diverse agricultural output.")
+3. Q[Iran, Hezbollah](Iran.has_been.training_and_funding_Hezbollah.goal != "support peace in the region" ∧ Iran.supported_the_Houthis_in_Yemen.context < "supporting the government" → Iran's actions are viewed as hostile.)
+4. Q[Iran, U.S.](Iran.enriches_uranium_to_weapons_grade_levels.time <= "in a week" ∧ Iran.enriches_uranium_to_weapons_grade_levels.time > "in a month" → "Iran's nuclear program is under scrutiny.")
+5. Q[Yemen, Hezbollah](Yemen.status != "peaceful" ∧ Yemen.status = "civil war" → "Yemen is experiencing significant conflict.")
+6. Q[Jerry Brown, California](Jerry Brown.attributes['occupation'] = "Governor" ∧ Jerry Brown.attributes['location'] != "New York" ∧ Jerry Brown.attributes['location'] >= "California" → "Jerry Brown is actively involved in California's governance.")
+7. Q[Jerry Brown, California](Jerry Brown.attributes['location'] < "Oregon" ∧ Jerry Brown.attributes['location'] > "Nevada" ∧ Jerry Brown.attributes['occupation'] != "Senator" → "Jerry Brown is located within California's borders.")
+8. Q[executions, Iran](executions.count < "40" ∧ executions.previous_year_count > "30" → "The execution rate is concerning.")
+9. Q[Hezbollah, Iran](Hezbollah.status = "terrorist group" ∧ Iran.has_been_training_and_funding_Hezbollah.goal >= "annihilate Israel" → "Iran's support for Hezbollah raises international tensions.")
+10. Q[California, Jerry Brown](California.attributes['vegetable_production'] > "30%" ∧ "mandatory water cutback.attributes".percentage = "25%" → "California's agricultural practices are under pressure due to drought.")
+11. Q[Iran, U.S.](Iran.ratified_the_Additional_Protocol.permanence = "does not sunset" ∧ Iran's_lack_of_cooperation_with_inspections.evidence != "full cooperation" → "Iran's nuclear compliance is questionable.")
+12. Q[Yemen, Iran](Yemen.status >= "civil war" ∧ Iran.supported_the_Houthis_in_Yemen.context >= "overthrew the government" → "Iran's involvement in Yemen exacerbates the conflict.")
+13. Q[Jerry Brown, California](Jerry Brown.attributes['occupation'] = "Governor" ∧ "Jerry Brown announced a mandatory cutback in water consumption due to the drought in California.".cutback_percentage > "20%" → "Jerry Brown is addressing California's water crisis.")
+14. Q[California, executions](California.attributes['status'] = "breadbasket" ∧ executions.previous_year_count < "40" → "California's agricultural status is not directly related to execution rates.")
+15. Q[Iran, Hezbollah](Iran.has_been_training_and_funding_Hezbollah.goal <= "annihilate Israel" ∧ Hezbollah.status != "peaceful organization" → "Iran's support for Hezbollah is linked to regional instability.")
+16. Q[Jerry Brown, California](Jerry Brown.attributes['location'] >= "California" ∧ "mandatory water cutback.attributes".location = "all cities" → "Water regulations are enforced statewide.")
+17. Q[California, executions](California.attributes['fruit_production'] < "70%" ∧ executions.count >= "30" → "California's agricultural output does not correlate with execution statistics.")
+18. Q[Iran, U.S.](Iran.enriches_uranium_to_weapons_grade_levels.time > "in a month" ∧ Iran.ratified_the_Additional_Protocol.permanence != "temporary" → "Iran's nuclear timeline is extended.")
+19. Q[Yemen, Hezbollah](Yemen.status = "civil war" ∧ Hezbollah.status = "terrorist group" → "Yemen's conflict is influenced by external militant groups.")
+20. Q[Jerry Brown, California](Jerry Brown.attributes['occupation'] != "Senator" ∧ Jerry Brown.attributes['location'] < "Oregon" ∧ Jerry Brown.attributes['location'] > "Nevada" → "Jerry Brown's political role is confined to state governance.")
+21. Q[California, executions](California.attributes['status'] = "breadbasket" ∧ executions.previous_year_count < "40" ∧ executions.count >= "30" → "California's agricultural status does not mitigate execution concerns.")
+22. Q[Iran, Hezbollah](Iran.has_been_training_and_funding_Hezbollah.goal != "promote peace" ∧ Hezbollah.status = "terrorist group" → "Iran's support for Hezbollah is not aimed at stability.")
+23. Q[Jerry Brown, California](Jerry Brown.attributes['occupation'] = "Governor" ∧ "Jerry Brown announced a mandatory cutback in water consumption due to the drought in California.".cutback_percentage < "30%" → "Jerry Brown's policies reflect the severity of the drought.")
+24. Q[California, executions](California.attributes['vegetable_production'] > "30%" ∧ executions.count < "40" → "California's agricultural output is not directly linked to execution rates.")
+25. Q[Iran, U.S.](Iran.enriches_uranium_to_weapons_grade_levels.time <= "in a week" ∧ Iran.ratified_the_Additional_Protocol.permanence > "temporary" → "Iran's nuclear activities are under close observation.")
+26. Q[Yemen, Iran](Yemen.status != "peaceful" ∧ Iran.supported_the_Houthis_in_Yemen.context < "supporting the government" → "Iran's involvement in Yemen is contentious.")
+27. Q[Jerry Brown, California](Jerry Brown.attributes['location'] != "New York" ∧ Jerry Brown.attributes['location'] >= "California" → "Jerry Brown is committed to California.")
+28. Q[executions, Iran](executions.previous_year_count < "40" ∧ executions.count >= "30" → "The execution rate is alarming.")
+29. Q[Hezbollah, Iran](Hezbollah.status != "peaceful organization" ∧ Iran.has_been_training_and_funding_Hezbollah.goal >= "annihilate Israel" → "Iran's support for Hezbollah is a threat to regional peace.")
+30. Q[Jerry Brown, California](Jerry Brown.attributes['occupation'] < "President" ∧ Jerry Brown.attributes['location'] < "Oregon" → "Jerry Brown's political influence is limited to state matters.")

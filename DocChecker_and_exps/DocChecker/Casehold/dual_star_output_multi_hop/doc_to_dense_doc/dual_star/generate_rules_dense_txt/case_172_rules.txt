@@ -1,0 +1,62 @@
+Source: dense_text.txt (Index 172)
+S1: There is nothing in the record to indicate that the prosecutor’s questions were asked in bad faith.
+S2: the trial court sustained the objections, struck one question from the record, and issued a curative instruction.
+
+Predicates:
+1. Record.indicates_prosecutor_questions_bad_faith = False
+2. TrialCourt.sustained_objections = True
+3. TrialCourt.struck_question_from_record = True
+4. TrialCourt.issued_curative_instruction = True
+5. Prosecutor.questions.inappropriate = True
+6. Prosecutor.questions.bad_faith = False
+7. Objections.sustained_by_trial_court = True
+8. Curative_instruction.issued_by_trial_court = True
+9. Questions.struck_from_record = True
+10. TrialCourt.action.indicates_inappropriateness = True
+11. Prosecutor.questions.asked_in_bad_faith = False
+12. TrialCourt.sustained_objections.implies_inappropriateness = True
+13. Curative_instruction.addresses_inappropriate_questions = True
+14. Questions.asked_by_prosecutor = True
+15. Record.contains_prosecutor_questions = True
+16. TrialCourt.action.contradicts_bad_faith = True
+17. Objections.indicate_inappropriate_questions = True
+18. Curative_instruction.is_response_to_inappropriate_questions = True
+19. Prosecutor.questions.require_curative_instruction = True
+20. TrialCourt.sustained_objections.indicates_inappropriateness = True
+21. Questions.asked_in_good_faith = False
+22. TrialCourt.action.is_justified_by_questions = True
+23. Record.evidence_of_prosecutor_questions = True
+24. Bad_faith.questions.require_sustained_objections = True
+25. TrialCourt.action.is_based_on_prosecutor_questions = True
+26. Questions.asked_in_bad_faith = False
+27. TrialCourt.sustained_objections.indicates_bad_faith = False
+28. Curative_instruction.is_necessary_due_to_questions = True
+29. Prosecutor.questions.triggered_objections = True
+30. TrialCourt.action.reflects_on_prosecutor_questions = True
+
+Rules:
+1. Q[There, Record.indicates_prosecutor_questions_bad_faith == False, TrialCourt.action.indicates_inappropriateness == True](Record.indicates_prosecutor_questions_bad_faith == False → Causal(Record.indicates_prosecutor_questions_bad_faith, TrialCourt.action.indicates_inappropriateness))
+2. Q[There, TrialCourt.sustained_objections == True, Prosecutor.questions.inappropriate == True](TrialCourt.sustained_objections == True → Causal(TrialCourt.sustained_objections, Prosecutor.questions.inappropriate))
+3. Q[There, TrialCourt.struck_question_from_record == True, Curative_instruction.addresses_inappropriate_questions == True](TrialCourt.struck_question_from_record == True → Causal(TrialCourt.struck_question_from_record, Curative_instruction.addresses_inappropriate_questions))
+4. Q[There, TrialCourt.issued_curative_instruction == True, Questions.asked_by_prosecutor == True](TrialCourt.issued_curative_instruction == True → Causal(TrialCourt.issued_curative_instruction, Questions.asked_by_prosecutor))
+5. Q[There, Prosecutor.questions.bad_faith == False, TrialCourt.sustained_objections.implies_inappropriateness == True](Prosecutor.questions.bad_faith == False → Causal(Prosecutor.questions.bad_faith, TrialCourt.sustained_objections.implies_inappropriateness))
+6. Q[There, TrialCourt.sustained_objections == True, Bad_faith.questions.require_sustained_objections == True](TrialCourt.sustained_objections == True → Causal(TrialCourt.sustained_objections, Bad_faith.questions.require_sustained_objections))
+7. Q[There, TrialCourt.action.contradicts_bad_faith == True, Prosecutor.questions.require_curative_instruction == True](TrialCourt.action.contradicts_bad_faith == True → Causal(TrialCourt.action.contradicts_bad_faith, Prosecutor.questions.require_curative_instruction))
+8. Q[There, Objections.sustained_by_trial_court == True, Curative_instruction.is_necessary_due_to_questions == True](Objections.sustained_by_trial_court == True → Causal(Objections.sustained_by_trial_court, Curative_instruction.is_necessary_due_to_questions))
+9. Q[There, TrialCourt.action.is_based_on_prosecutor_questions == True, Questions.asked_in_bad_faith == False](TrialCourt.action.is_based_on_prosecutor_questions == True → Causal(TrialCourt.action.is_based_on_prosecutor_questions, Questions.asked_in_bad_faith))
+10. Q[There, TrialCourt.sustained_objections == True, TrialCourt.action.reflects_on_prosecutor_questions == True](TrialCourt.sustained_objections == True → Causal(TrialCourt.sustained_objections, TrialCourt.action.reflects_on_prosecutor_questions))
+11. Q[There, Record.contains_prosecutor_questions == True, TrialCourt.action.is_justified_by_questions == True](Record.contains_prosecutor_questions == True → Causal(Record.contains_prosecutor_questions, TrialCourt.action.is_justified_by_questions))
+12. Q[There, TrialCourt.sustained_objections == True, TrialCourt.action.indicates_bad_faith == False](TrialCourt.sustained_objections == True → Causal(TrialCourt.sustained_objections, TrialCourt.action.indicates_bad_faith))
+13. Q[There, Curative_instruction.issued_by_trial_court == True, TrialCourt.sustained_objections.indicates_inappropriateness == True](Curative_instruction.issued_by_trial_court == True → Causal(Curative_instruction.issued_by_trial_court, TrialCourt.sustained_objections.indicates_inappropriateness))
+14. Q[There, Questions.asked_by_prosecutor == True, TrialCourt.action.is_justified_by_questions == True](Questions.asked_by_prosecutor == True → Causal(Questions.asked_by_prosecutor, TrialCourt.action.is_justified_by_questions))
+15. Q[There, TrialCourt.action.is_justified_by_questions == True, Prosecutor.questions.inappropriate == True](TrialCourt.action.is_justified_by_questions == True → Causal(TrialCourt.action.is_justified_by_questions, Prosecutor.questions.inappropriate))
+16. Q[There, TrialCourt.sustained_objections == True, Curative_instruction.is_response_to_inappropriate_questions == True](TrialCourt.sustained_objections == True → Causal(TrialCourt.sustained_objections, Curative_instruction.is_response_to_inappropriate_questions))
+17. Q[There, TrialCourt.action.indicates_inappropriateness == True, Questions.asked_in_good_faith == False](TrialCourt.action.indicates_inappropriateness == True → Causal(TrialCourt.action.indicates_inappropriateness, Questions.asked_in_good_faith))
+18. Q[There, TrialCourt.sustained_objections == True, TrialCourt.action.contradicts_bad_faith == True](TrialCourt.sustained_objections == True → Causal(TrialCourt.sustained_objections, TrialCourt.action.contradicts_bad_faith))
+19. Q[There, Curative_instruction.is_necessary_due_to_questions == True, TrialCourt.sustained_objections == True](Curative_instruction.is_necessary_due_to_questions == True → Causal(Curative_instruction.is_necessary_due_to_questions, TrialCourt.sustained_objections))
+20. Q[There, TrialCourt.action.reflects_on_prosecutor_questions == True, Prosecutor.questions.inappropriate == True](TrialCourt.action.reflects_on_prosecutor_questions == True → Causal(TrialCourt.action.reflects_on_prosecutor_questions, Prosecutor.questions.inappropriate))
+21. Q[There, TrialCourt.issued_curative_instruction == True, TrialCourt.action.indicates_inappropriateness == True](TrialCourt.issued_curative_instruction == True → Causal(TrialCourt.issued_curative_instruction, TrialCourt.action.indicates_inappropriateness))
+22. Q[There, Questions.asked_by_prosecutor == True, TrialCourt.sustained_objections == True](Questions.asked_by_prosecutor == True → Causal(Questions.asked_by_prosecutor, TrialCourt.sustained_objections))
+23. Q[There, TrialCourt.sustained_objections == True, Curative_instruction.addresses_inappropriate_questions == True](TrialCourt.sustained_objections == True → Causal(TrialCourt.sustained_objections, Curative_instruction.addresses_inappropriate_questions))
+24. Q[There, Record.indicates_prosecutor_questions_bad_faith == False, TrialCourt.action.is_justified_by_questions == True](Record.indicates_prosecutor_questions_bad_faith == False → Causal(Record.indicates_prosecutor_questions_bad_faith, TrialCourt.action.is_justified_by_questions))
+25. Q[There, TrialCourt.action.contradicts_bad_faith

@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 58)
+S1: Girls who got the vaccine were not more likely to be infected with a sexually transmitted infection, get pregnant or seek contraceptive counseling.
+S2: Some are concerned that giving the vaccine makes girls more likely to have sex.
+
+Predicates:
+1. Girls.vaccine_received
+2. Girls.infection_rate
+3. Girls.pregnancy_rate
+4. Girls.contraceptive_counseling
+5. Vaccine.efficacy
+6. Vaccine.sexual_risk_behaviors
+7. Concerned_individuals.vaccine_effect
+8. Concerned_individuals.sexual_activity
+9. Sexual_transmitted_infection.incidence
+10. Contraceptive_counseling.requests
+11. Pregnancy.incidence
+12. Vaccine.adverse_effects
+13. Girls.sexual_activity
+14. Vaccine.impact_on_health
+15. Sexual_risk_behaviors.increase
+16. Girls.vaccine_concern
+17. Vaccine.recommendation
+18. Girls.education_on_vaccine
+19. Sexual_health.counseling
+20. Vaccine.accessibility
+21. Girls.health_outcomes
+22. Concerned_individuals.education_level
+23. Vaccine.policy_impact
+24. Girls.risk_perception
+25. Sexual_health.education
+26. Vaccine.safety
+27. Girls.age_group
+28. Sexual_activity.trends
+29. Vaccine.public_perception
+30. Girls.healthcare_access
+
+Rules:
+1. Q[Girls, Girls.vaccine_received, Girls.sexual_activity](Girls.vaccine_received == "yes" → Causal(Girls, Girls.sexual_activity))
+2. Q[Girls, Girls.infection_rate, Sexual_transmitted_infection.incidence](Girls.infection_rate == "low" → Causal(Girls, Sexual_transmitted_infection.incidence))
+3. Q[Girls, Girls.pregnancy_rate, Pregnancy.incidence](Girls.pregnancy_rate == "low" → Causal(Girls, Pregnancy.incidence))
+4. Q[Girls, Girls.contraceptive_counseling, Contraceptive_counseling.requests](Girls.contraceptive_counseling == "low" → Causal(Girls, Contraceptive_counseling.requests))
+5. Q[Concerned_individuals, Concerned_individuals.vaccine_effect, Girls.sexual_activity](Concerned_individuals.vaccine_effect == "negative" → Causal(Concerned_individuals, Girls.sexual_activity))
+6. Q[Girls, Vaccine.efficacy, Girls.infection_rate](Vaccine.efficacy == "high" → Causal(Girls, Girls.infection_rate))
+7. Q[Girls, Vaccine.sexual_risk_behaviors, Girls.sexual_activity](Vaccine.sexual_risk_behaviors == "none" → Causal(Girls, Girls.sexual_activity))
+8. Q[Concerned_individuals, Concerned_individuals.sexual_activity, Girls.sexual_activity](Concerned_individuals.sexual_activity == "high" → Causal(Concerned_individuals, Girls.sexual_activity))
+9. Q[Girls, Girls.vaccine_concern, Vaccine.safety](Girls.vaccine_concern == "low" → Causal(Girls, Vaccine.safety))
+10. Q[Girls, Girls.health_outcomes, Vaccine.impact_on_health](Girls.health_outcomes == "positive" → Causal(Girls, Vaccine.impact_on_health))
+11. Q[Girls, Girls.age_group, Girls.sexual_activity](Girls.age_group == "adolescent" → Causal(Girls, Girls.sexual_activity))
+12. Q[Concerned_individuals, Concerned_individuals.education_level, Girls.vaccine_concern](Concerned_individuals.education_level == "low" → Causal(Concerned_individuals, Girls.vaccine_concern))
+13. Q[Girls, Girls.healthcare_access, Girls.contraceptive_counseling](Girls.healthcare_access == "high" → Causal(Girls, Girls.contraceptive_counseling))
+14. Q[Girls, Vaccine.adverse_effects, Girls.health_outcomes](Vaccine.adverse_effects == "none" → Causal(Girls, Girls.health_outcomes))
+15. Q[Girls, Sexual_health.education, Girls.sexual_activity](Sexual_health.education == "effective" → Causal(Girls, Girls.sexual_activity))
+16. Q[Concerned_individuals, Vaccine.public_perception, Girls.vaccine_concern](Vaccine.public_perception == "positive" → Causal(Concerned_individuals, Girls.vaccine_concern))
+17. Q[Girls, Girls.risk_perception, Girls.sexual_activity](Girls.risk_perception == "low" → Causal(Girls, Girls.sexual_activity))
+18. Q[Girls, Vaccine.recommendation, Girls.vaccine_received](Vaccine.recommendation == "strong" → Causal(Girls, Girls.vaccine_received))
+19. Q[Girls, Sexual_activity.trends, Girls.sexual_activity](Sexual_activity.trends == "stable" → Causal(Girls, Girls.sexual_activity))
+20. Q[Concerned_individuals, Concerned_individuals.vaccine_effect, Vaccine.impact_on_health](Concerned_individuals.vaccine_effect == "concern" → Causal(Concerned_individuals, Vaccine.impact_on_health))
+21. Q[Girls, Girls.education_on_vaccine, Girls.vaccine_received](Girls.education_on_vaccine == "adequate" → Causal(Girls, Girls.vaccine_received))
+22. Q[Girls, Girls.health_outcomes, Vaccine.accessibility](Girls.health_outcomes == "improved" → Causal(Girls, Vaccine.accessibility))
+23. Q[Concerned_individuals, Concerned_individuals.sexual_activity, Girls.pregnancy_rate](Concerned_individuals.sexual_activity == "high" → Causal(Concerned_individuals, Girls.pregnancy_rate))
+24. Q[Girls, Girls.infection_rate, Sexual_health.counseling](Girls.infection_rate == "low" → Causal(Girls, Sexual_health.counseling))
+25. Q[Girls, Girls.vaccine_received, Girls.health_outcomes](Girls.vaccine_received == "yes" → Causal(Girls, Girls.health_outcomes))
+26. Q[Concerned_individuals, Concerned_individuals.education_level, Vaccine.recommendation](Concerned_individuals.education_level == "high" → Causal(Concerned_individuals, Vaccine.recommendation))
+27. Q[Girls, Girls.contraceptive_counseling, Girls.pregnancy_rate](Girls.contraceptive_counseling == "high" → Causal(Girls, Girls.pregnancy_rate))
+28. Q[Girls, Vaccine.safety, Girls.health_outcomes](Vaccine.safety == "high" → Causal(Girls, Girls.health_outcomes))
+29. Q[Concerned_individuals, Concerned_individuals.vaccine_effect, Girls.infection_rate](Concerned_individuals.vaccine_effect == "concern" → Causal(Concerned_individuals, Girls.infection_rate))
+30. Q[Girls, Girls.sexual_activity, Vaccine.sexual_risk_behaviors](Girls.sexual_activity == "low" → Causal(Girls, Vaccine.sexual_risk_behaviors))

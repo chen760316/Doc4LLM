@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 1108)
+S1: The Hebrew University and the Hadassah Medical Centre were built on Mount Scopus beginning in 1925 and became the pride of the Jewish community in Palestine under British control.
+S2: The Hadassah Medical Centre was built on Mount Scopus in 1925.
+
+Predicates:
+1. Hebrew_University.location = Mount_Scopus
+2. Hadassah_Medical_Centre.location = Mount_Scopus
+3. Hebrew_University.year_built = 1925
+4. Hadassah_Medical_Centre.year_built = 1925
+5. Hebrew_University.pride_of_community = Jewish_community
+6. Hadassah_Medical_Centre.pride_of_community = Jewish_community
+7. Jewish_community.location = Palestine
+8. British_control.year = 1925
+9. Mount_Scopus.has_institution = Hebrew_University
+10. Mount_Scopus.has_institution = Hadassah_Medical_Centre
+11. Hebrew_University.built_under = British_control
+12. Hadassah_Medical_Centre.built_under = British_control
+13. Jewish_community.significance = pride
+14. Palestine.has_institution = Hebrew_University
+15. Palestine.has_institution = Hadassah_Medical_Centre
+16. British_control.has_institution = Hebrew_University
+17. British_control.has_institution = Hadassah_Medical_Centre
+18. Mount_Scopus.year_started_construction = 1925
+19. Hebrew_University.community_significance = true
+20. Hadassah_Medical_Centre.community_significance = true
+21. Mount_Scopus.institution_count = 2
+22. Hebrew_University.is_a = educational_institution
+23. Hadassah_Medical_Centre.is_a = medical_institution
+24. Jewish_community.pride_source = Mount_Scopus
+25. British_control.influence_on = Jewish_community
+26. 1925.year = construction_start
+27. Mount_Scopus.has_pride = Jewish_community
+28. Hebrew_University.construction_year = 1925
+29. Hadassah_Medical_Centre.construction_year = 1925
+30. Jewish_community.is_located_in = Palestine
+
+Rules:
+1. Q[The, Hebrew_University.location, Mount_Scopus](Hebrew_University.pride_of_community == "Jewish_community" → Relation(Hebrew_University, Mount_Scopus))
+2. Q[The, Hadassah_Medical_Centre.location, Mount_Scopus](Hadassah_Medical_Centre.pride_of_community == "Jewish_community" → Relation(Hadassah_Medical_Centre, Mount_Scopus))
+3. Q[The, Hebrew_University.year_built, 1925](Hebrew_University.pride_of_community == "Jewish_community" → Relation(Hebrew_University, 1925))
+4. Q[The, Hadassah_Medical_Centre.year_built, 1925](Hadassah_Medical_Centre.pride_of_community == "Jewish_community" → Relation(Hadassah_Medical_Centre, 1925))
+5. Q[The, Hebrew_University.pride_of_community, Jewish_community](Hebrew_University.year_built == 1925 → Relation(Hebrew_University, Jewish_community))
+6. Q[The, Hadassah_Medical_Centre.pride_of_community, Jewish_community](Hadassah_Medical_Centre.year_built == 1925 → Relation(Hadassah_Medical_Centre, Jewish_community))
+7. Q[The, Jewish_community.location, Palestine](Jewish_community.pride_source == "Mount_Scopus" → Relation(Jewish_community, Palestine))
+8. Q[The, British_control.year, 1925](Hebrew_University.built_under == "British_control" → Relation(British_control, 1925))
+9. Q[The, Mount_Scopus.has_institution, Hebrew_University](Hebrew_University.community_significance == true → Relation(Mount_Scopus, Hebrew_University))
+10. Q[The, Mount_Scopus.has_institution, Hadassah_Medical_Centre](Hadassah_Medical_Centre.community_significance == true → Relation(Mount_Scopus, Hadassah_Medical_Centre))
+11. Q[The, Palestine.has_institution, Hebrew_University](Hebrew_University.pride_of_community == "Jewish_community" → Relation(Palestine, Hebrew_University))
+12. Q[The, Palestine.has_institution, Hadassah_Medical_Centre](Hadassah_Medical_Centre.pride_of_community == "Jewish_community" → Relation(Palestine, Hadassah_Medical_Centre))
+13. Q[The, British_control.has_institution, Hebrew_University](Hebrew_University.built_under == "British_control" → Relation(British_control, Hebrew_University))
+14. Q[The, British_control.has_institution, Hadassah_Medical_Centre](Hadassah_Medical_Centre.built_under == "British_control" → Relation(British_control, Hadassah_Medical_Centre))
+15. Q[The, Mount_Scopus.year_started_construction, 1925](Hebrew_University.location == "Mount_Scopus" → Relation(Mount_Scopus, 1925))
+16. Q[The, Mount_Scopus.year_started_construction, 1925](Hadassah_Medical_Centre.location == "Mount_Scopus" → Relation(Mount_Scopus, 1925))
+17. Q[The, Mount_Scopus.has_pride, Jewish_community](Jewish_community.significance == "pride" → Relation(Mount_Scopus, Jewish_community))
+18. Q[The, Hebrew_University.is_a, educational_institution](Hebrew_University.community_significance == true → Relation(Hebrew_University, educational_institution))
+19. Q[The, Hadassah_Medical_Centre.is_a, medical_institution](Hadassah_Medical_Centre.community_significance == true → Relation(Hadassah_Medical_Centre, medical_institution))
+20. Q[The, Jewish_community.pride_source, Mount_Scopus](Jewish_community.location == "Palestine" → Relation(Jewish_community, Mount_Scopus))
+21. Q[The, British_control.influence_on, Jewish_community](British_control.year == 1925 → Relation(British_control, Jewish_community))
+22. Q[The, Mount_Scopus.institution_count, 2](Hebrew_University.location == "Mount_Scopus" → Relation(Mount_Scopus, 2))
+23. Q[The, Mount_Scopus.institution_count, 2](Hadassah_Medical_Centre.location == "Mount_Scopus" → Relation(Mount_Scopus, 2))
+24. Q[The, Jewish_community.is_located_in, Palestine](Jewish_community.pride_source == "Mount_Scopus" → Relation(Jewish_community, Palestine))
+25. Q[The, 1925.year, construction_start](Hebrew_University.year_built == 1925 → Relation(1925, construction_start))
+26. Q[The, 1925.year, construction_start](Hadassah_Medical_Centre.year_built == 1925 → Relation(1925, construction_start))
+27. Q[The, Mount_Scopus.has_institution, Hebrew_University](Hebrew_University.location == "Mount_Scopus" → Relation(Mount_Scopus, Hebrew_University))
+28. Q[The, Mount_Scopus.has_institution, Hadassah_Medical_Centre](Hadassah_Medical_Centre.location == "Mount_Scopus" → Relation(Mount_Scopus, Hadassah_Medical_Centre))
+29. Q[The, Jewish_community.pride_of_community, Jewish_community](Jewish_community.significance == "pride" → Relation(Jewish_community, Jewish_community))
+30. Q[The, British_control.year, 1925](British_control.has_institution == "Hebrew_University" → Relation(British_control, 1925))

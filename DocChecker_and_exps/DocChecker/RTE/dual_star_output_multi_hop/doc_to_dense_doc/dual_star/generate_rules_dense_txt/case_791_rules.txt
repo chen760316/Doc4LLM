@@ -1,0 +1,63 @@
+Source: dense_text.txt (Index 791)
+S1: The longest life support from the Russian Salyuts was 63 days.
+S2: Therefore, a ferry supply was required to maintain a Salyut fully Operating System for two years with 40,000 pounds of fuel, food, clothing and water.
+
+Predicates:
+1. Salyut.lifesupport_duration = 63_days
+2. Salyut.supply_requirement = 2_years
+3. Salyut.fuel_needed = 40000_pounds
+4. Salyut.food_needed = 40000_pounds
+5. Salyut.clothing_needed = 40000_pounds
+6. Salyut.water_needed = 40000_pounds
+7. Salyut.operating_system_status = fully_operational
+8. Salyut.max_duration = 63_days
+9. ferry.supply_type = life_support
+10. ferry.supply_duration = 2_years
+11. ferry.supply_weight = 40000_pounds
+12. Salyut.requires_ferry_supply = true
+13. Salyut.max_lifesupport_duration < ferry.supply_duration
+14. Salyut.lifesupport_duration < ferry.supply_duration
+15. ferry.supply_duration > Salyut.max_duration
+16. ferry.supply_weight > Salyut.fuel_needed
+17. ferry.supply_weight > Salyut.food_needed
+18. ferry.supply_weight > Salyut.clothing_needed
+19. ferry.supply_weight > Salyut.water_needed
+20. Salyut.lifesupport_duration != ferry.supply_duration
+21. Salyut.lifesupport_duration < ferry.supply_duration
+22. Salyut.requires_ferry_supply.violates_max_duration = true
+23. M_NLI(S1, S2) = true
+24. Causal(S1, S2) = true
+25. violate(S1, S2) = true
+26. Salyut.supply_duration = ferry.supply_duration
+27. Salyut.supply_duration < ferry.supply_duration
+28. ferry.supply_duration contradicts Salyut.max_duration = true
+29. Salyut.operating_system = requires_ferry_supply
+30. ferry.supply = necessary_for_Salyut_operation
+
+Rules:
+1. Q[The, Salyut.lifesupport_duration == 63_days, ferry.supply_duration == 2_years](Salyut.lifesupport_duration == 63_days → Causal(Salyut.lifesupport_duration, ferry.supply_duration))
+2. Q[The, Salyut.max_duration == 63_days, ferry.supply_duration == 2_years](Salyut.max_duration == 63_days → Causal(Salyut.max_duration, ferry.supply_duration))
+3. Q[The, Salyut.requires_ferry_supply == true, ferry.supply_duration == 2_years](Salyut.requires_ferry_supply == true → Causal(Salyut.requires_ferry_supply, ferry.supply_duration))
+4. Q[The, Salyut.lifesupport_duration < ferry.supply_duration, ferry.supply_duration == 2_years](Salyut.lifesupport_duration < ferry.supply_duration → Causal(Salyut.lifesupport_duration, ferry.supply_duration))
+5. Q[The, Salyut.lifesupport_duration != ferry.supply_duration, ferry.supply_duration == 2_years](Salyut.lifesupport_duration != ferry.supply_duration → Causal(Salyut.lifesupport_duration, ferry.supply_duration))
+6. Q[The, Salyut.max_lifesupport_duration < ferry.supply_duration, ferry.supply_duration == 2_years](Salyut.max_lifesupport_duration < ferry.supply_duration → Causal(Salyut.max_lifesupport_duration, ferry.supply_duration))
+7. Q[The, ferry.supply_duration > Salyut.max_duration, ferry.supply_duration == 2_years](ferry.supply_duration > Salyut.max_duration → Causal(ferry.supply_duration, Salyut.max_duration))
+8. Q[The, ferry.supply_weight > Salyut.fuel_needed, ferry.supply_weight == 40000_pounds](ferry.supply_weight > Salyut.fuel_needed → Causal(ferry.supply_weight, Salyut.fuel_needed))
+9. Q[The, ferry.supply_weight > Salyut.food_needed, ferry.supply_weight == 40000_pounds](ferry.supply_weight > Salyut.food_needed → Causal(ferry.supply_weight, Salyut.food_needed))
+10. Q[The, ferry.supply_weight > Salyut.clothing_needed, ferry.supply_weight == 40000_pounds](ferry.supply_weight > Salyut.clothing_needed → Causal(ferry.supply_weight, Salyut.clothing_needed))
+11. Q[The, ferry.supply_weight > Salyut.water_needed, ferry.supply_weight == 40000_pounds](ferry.supply_weight > Salyut.water_needed → Causal(ferry.supply_weight, Salyut.water_needed))
+12. Q[The, Salyut.lifesupport_duration < ferry.supply_duration, Salyut.requires_ferry_supply == true](Salyut.lifesupport_duration < ferry.supply_duration → Causal(Salyut.lifesupport_duration, Salyut.requires_ferry_supply))
+13. Q[The, ferry.supply_duration contradicts Salyut.max_duration == true, Salyut.max_duration == 63_days](ferry.supply_duration contradicts Salyut.max_duration == true → Causal(ferry.supply_duration, Salyut.max_duration))
+14. Q[The, Salyut.operating_system_status == fully_operational, Salyut.requires_ferry_supply == true](Salyut.operating_system_status == fully_operational → Causal(Salyut.operating_system_status, Salyut.requires_ferry_supply))
+15. Q[The, Salyut.supply_requirement == 2_years, ferry.supply_duration == 2_years](Salyut.supply_requirement == 2_years → Causal(Salyut.supply_requirement, ferry.supply_duration))
+16. Q[The, Salyut.lifesupport_duration < ferry.supply_duration, Salyut.requires_ferry_supply == true](Salyut.lifesupport_duration < ferry.supply_duration → Causal(Salyut.lifesupport_duration, Salyut.requires_ferry_supply))
+17. Q[The, ferry.supply_duration > Salyut.lifesupport_duration, Salyut.lifesupport_duration == 63_days](ferry.supply_duration > Salyut.lifesupport_duration → Causal(ferry.supply_duration, Salyut.lifesupport_duration))
+18. Q[The, Salyut.lifesupport_duration < ferry.supply_duration, Salyut.supply_requirement == 2_years](Salyut.lifesupport_duration < ferry.supply_duration → Causal(Salyut.lifesupport_duration, Salyut.supply_requirement))
+19. Q[The, Salyut.requires_ferry_supply.violates_max_duration == true, ferry.supply_duration == 2_years](Salyut.requires_ferry_supply.violates_max_duration == true → Causal(Salyut.requires_ferry_supply.violates_max_duration, ferry.supply_duration))
+20. Q[The, Salyut.supply_duration < ferry.supply_duration, ferry.supply_duration == 2_years](Salyut.supply_duration < ferry.supply_duration → Causal(Salyut.supply_duration, ferry.supply_duration))
+21. Q[The, Salyut.lifesupport_duration < ferry.supply_duration, Salyut.max_duration == 63_days](Salyut.lifesupport_duration < ferry.supply_duration → Causal(Salyut.lifesupport_duration, Salyut.max_duration))
+22. Q[The, ferry.supply_duration > Salyut.lifesupport_duration, Salyut.lifesupport_duration == 63_days](ferry.supply_duration > Salyut.lifesupport_duration → Causal(ferry.supply_duration, Salyut.lifesupport_duration))
+23. Q[The, Salyut.requires_ferry_supply == true, Salyut.max_duration == 63_days](Salyut.requires_ferry_supply == true → Causal(Salyut.requires_ferry_supply, Salyut.max_duration))
+24. Q[The, ferry.supply_duration contradicts Salyut.max_duration == true, Salyut.lifesupport_duration == 63_days](ferry.supply_duration contradicts Salyut.max_duration == true → Causal(ferry.supply_duration, Salyut.lifesupport_duration))
+25. Q[The, Salyut.lifesupport_duration < ferry.supply_duration, Salyut.supply_requirement == 2_years](Salyut.lifesupport_duration < ferry.supply_duration → Causal(Salyut.lifesupport_duration, Salyut.supply_requirement))
+26. Q[The, ferry.supply_duration > Salyut.max_duration, Salyut.max_duration == 63_days](ferry.supply_duration > Salyut.max_duration → Causal(ferry.supply_duration, Salyut.max_duration))

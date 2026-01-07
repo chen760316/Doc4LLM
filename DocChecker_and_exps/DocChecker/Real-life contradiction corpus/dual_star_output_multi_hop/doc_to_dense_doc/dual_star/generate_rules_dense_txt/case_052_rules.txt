@@ -1,0 +1,59 @@
+Source: dense_text.txt (Index 52)
+S1: Zarqawi did in fact survive the airstrike.
+S2: Abu Musab al-Zarqawi was killed in an airstrike.
+
+Predicates:
+1. Zarqawi.alive
+2. Zarqawi.killed
+3. Airstrike.event
+4. Airstrike.successful
+5. Abu_Musab_al_Zarqawi.killed
+6. Abu_Musab_al_Zarqawi.survived
+7. M_NLI(S1, S2)
+8. Factual(Zarqawi, Airstrike)
+9. violate(Zarqawi, Abu_Musab_al_Zarqawi)
+10. Airstrike.date
+11. Airstrike.location
+12. Zarqawi.injured
+13. Zarqawi.escape
+14. Abu_Musab_al_Zarqawi.alive
+15. Abu_Musab_al_Zarqawi.injured
+16. Airstrike.target
+17. Airstrike.causal_relationship
+18. Zarqawi.survived_airstrike
+19. Abu_Musab_al_Zarqawi.failed_escape
+20. Airstrike.outcome
+21. Zarqawi.witnessed_airstrike
+22. Abu_Musab_al_Zarqawi.declared_dead
+23. Airstrike.impact
+24. Zarqawi.associated_with_Airstrike
+25. Abu_Musab_al_Zarqawi.associated_with_Airstrike
+26. M_NLI(Airstrike, Zarqawi)
+27. Factual(Airstrike, Abu_Musab_al_Zarqawi)
+28. violate(Airstrike, Zarqawi)
+29. Zarqawi.involved_in_Airstrike
+30. Abu_Musab_al_Zarqawi.involved_in_Airstrike
+
+Rules:
+1. Q[Zarqawi, Zarqawi.alive, Abu_Musab_al_Zarqawi.killed](Zarqawi.alive == true ∧ Abu_Musab_al_Zarqawi.killed == true → Factual(Zarqawi, Abu_Musab_al_Zarqawi))
+2. Q[Zarqawi, Zarqawi.survived_airstrike, Abu_Musab_al_Zarqawi.killed](Zarqawi.survived_airstrike == true ∧ Abu_Musab_al_Zarqawi.killed == true → Factual(Zarqawi, Abu_Musab_al_Zarqawi))
+3. Q[Zarqawi, Zarqawi.killed, Abu_Musab_al_Zarqawi.survived](Zarqawi.killed == true ∧ Abu_Musab_al_Zarqawi.survived == true → Factual(Zarqawi, Abu_Musab_al_Zarqawi))
+4. Q[Zarqawi, Zarqawi.injured, Abu_Musab_al_Zarqawi.killed](Zarqawi.injured == true ∧ Abu_Musab_al_Zarqawi.killed == true → Factual(Zarqawi, Abu_Musab_al_Zarqawi))
+5. Q[Zarqawi, Zarqawi.escape, Abu_Musab_al_Zarqawi.killed](Zarqawi.escape == true ∧ Abu_Musab_al_Zarqawi.killed == true → Factual(Zarqawi, Abu_Musab_al_Zarqawi))
+6. Q[Zarqawi, Zarqawi.witnessed_airstrike, Abu_Musab_al_Zarqawi.killed](Zarqawi.witnessed_airstrike == true ∧ Abu_Musab_al_Zarqawi.killed == true → Factual(Zarqawi, Abu_Musab_al_Zarqawi))
+7. Q[Zarqawi, Zarqawi.associated_with_Airstrike, Abu_Musab_al_Zarqawi.killed](Zarqawi.associated_with_Airstrike == true ∧ Abu_Musab_al_Zarqawi.killed == true → Factual(Zarqawi, Abu_Musab_al_Zarqawi))
+8. Q[Zarqawi, Zarqawi.involved_in_Airstrike, Abu_Musab_al_Zarqawi.killed](Zarqawi.involved_in_Airstrike == true ∧ Abu_Musab_al_Zarqawi.killed == true → Factual(Zarqawi, Abu_Musab_al_Zarqawi))
+9. Q[Zarqawi, Airstrike.successful, Abu_Musab_al_Zarqawi.killed](Airstrike.successful == true ∧ Abu_Musab_al_Zarqawi.killed == true → Factual(Zarqawi, Abu_Musab_al_Zarqawi))
+10. Q[Zarqawi, Airstrike.outcome, Abu_Musab_al_Zarqawi.killed](Airstrike.outcome == "killed" ∧ Abu_Musab_al_Zarqawi.killed == true → Factual(Zarqawi, Abu_Musab_al_Zarqawi))
+11. Q[Zarqawi, Airstrike.impact, Abu_Musab_al_Zarqawi.killed](Airstrike.impact == "fatal" ∧ Abu_Musab_al_Zarqawi.killed == true → Factual(Zarqawi, Abu_Musab_al_Zarqawi))
+12. Q[Zarqawi, Abu_Musab_al_Zarqawi.declared_dead, Zarqawi.alive](Abu_Musab_al_Zarqawi.declared_dead == true ∧ Zarqawi.alive == true → Factual(Zarqawi, Abu_Musab_al_Zarqawi))
+13. Q[Zarqawi, Abu_Musab_al_Zarqawi.failed_escape, Zarqawi.alive](Abu_Musab_al_Zarqawi.failed_escape == true ∧ Zarqawi.alive == true → Factual(Zarqawi, Abu_Musab_al_Zarqawi))
+14. Q[Zarqawi, Airstrike.target, Abu_Musab_al_Zarqawi.killed](Airstrike.target == "Zarqawi" ∧ Abu_Musab_al_Zarqawi.killed == true → Factual(Zarqawi, Abu_Musab_al_Zarqawi))
+15. Q[Zarqawi, M_NLI(S1, S2), Factual(Zarqawi, Abu_Musab_al_Zarqawi)](M_NLI(S1, S2) == true → Factual(Zarqawi, Abu_Musab_al_Zarqawi))
+16. Q[Zarqawi, Airstrike.causal_relationship, Abu_Musab_al_Zarqawi.killed](Airstrike.causal_relationship == "Zarqawi killed" ∧ Abu_Musab_al_Zarqawi.killed == true → Factual(Zarqawi, Abu_Musab_al_Zarqawi))
+17. Q[Zarqawi, Airstrike.date, Abu_Musab_al_Zarqawi.killed](Airstrike.date == "same" ∧ Abu_Musab_al_Zarqawi.killed == true → Factual(Zarqawi, Abu_Musab_al_Zarqawi))
+18. Q[Zarqawi, Airstrike.location, Abu_Musab_al_Zarqawi.killed](Airstrike.location == "same" ∧ Abu_Musab_al_Zarqawi.killed == true → Factual(Zarqawi, Abu_Musab_al_Zarqawi))
+19. Q[Zarqawi, Abu_Musab_al_Zarqawi.associated_with_Airstrike, Zarqawi.alive](Abu_Musab_al_Zarqawi.associated_with_Airstrike == true ∧ Zarqawi.alive == true → Factual(Zarqawi, Abu_Musab_al_Zarqawi))
+20. Q[Zarqawi, Abu_Musab_al_Zarqawi.involved_in_Airstrike, Zarqawi.alive](Abu_Musab_al_Zarqawi.involved_in_Airstrike == true ∧ Zarqawi.alive == true → Factual(Zarqawi, Abu_Musab_al_Zarqawi))
+21. Q[Zarqawi, Airstrike.event, Abu_Musab_al_Zarqawi.killed](Airstrike.event == "killed" ∧ Abu_Musab_al_Zarqawi.killed == true → Factual(Zarqawi, Abu_Musab_al_Zarqawi))
+22. Q[Zarqawi, Airstrike.impact, Abu_Mus

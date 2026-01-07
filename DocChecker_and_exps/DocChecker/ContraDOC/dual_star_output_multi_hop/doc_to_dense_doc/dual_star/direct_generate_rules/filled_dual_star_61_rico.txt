@@ -1,0 +1,78 @@
+Predicates:
+Detroit.label != "City"
+Detroit.label != Lost River.label
+Detroit.label = "City"
+Detroit.name != "Detroit"
+Detroit.name != Lost River.name
+Detroit.name != Motor City.name
+Detroit.name = "Detroit"
+Gosling.label != "Person"
+Gosling.label != Detroit.label
+Gosling.label != Lost River.label
+Gosling.label != Motor City.label
+Gosling.label = "Person"
+Gosling.location != "Cornwall, Ontario"
+Gosling.location != Lost River.location
+Gosling.location = "Cornwall, Ontario"
+Gosling.name != "Gosling"
+Gosling.name != Detroit.name
+Gosling.name != Lost River.name
+Gosling.name != Motor City.name
+Gosling.name = "Gosling"
+Gosling.occupation != "actor"
+Gosling.occupation = "actor"
+Gosling___Detroit.contradiction_type != Gosling___Lost River.contradiction_type
+Gosling___Detroit.contradiction_type != Gosling___Motor City.contradiction_type
+Gosling___Detroit.contradiction_type = "Relation"
+Gosling___Detroit.relationship != Gosling___Lost River.relationship
+Gosling___Detroit.relationship != Gosling___Motor City.relationship
+Gosling___Detroit.relationship = "Gosling claims that a paradox should exist when discussing Detroit."
+Gosling___Detroit.source_id != Gosling___Lost River.source_id
+Gosling___Detroit.source_id != Gosling___Motor City.source_id
+Gosling___Detroit.source_id = "3489738269_5"
+Gosling___Lost River.claim = "paradox exists"
+Gosling___Lost River.context = "first white social housing development in America"
+Gosling___Lost River.contradiction_type != Gosling___Motor City.contradiction_type
+Gosling___Lost River.contradiction_type = "Factual"
+Gosling___Lost River.purpose = "convey message"
+Gosling___Lost River.relationship != Gosling___Motor City.relationship
+Gosling___Lost River.relationship = "Gosling claims that the paradox of dereliction and hope should be discussed in relation to Detroit and is a central theme of the film."
+Gosling___Lost River.source_id = "3489738269_3"
+Gosling___Motor City.contradiction_type = "Causal"
+Gosling___Motor City.reason = "personal connection to the area"
+Gosling___Motor City.relationship = "Gosling has a longstanding affection for Motor City, having grown up nearby."
+Gosling___Motor City.source_id = "3489738269_3"
+Gosling___Motor City.time = "ongoing"
+Lost River.description != "a collection of speculative shots"
+Lost River.description != Motor City.description
+Lost River.description = "a collection of speculative shots"
+Lost River.label != "Film"
+Lost River.label != Motor City.label
+Lost River.label = "Film"
+Lost River.location != "Brewster-Douglass Projects"
+Lost River.location = "Brewster-Douglass Projects"
+Lost River.name != "Lost River"
+Lost River.name != Motor City.name
+Lost River.name = "Lost River"
+Motor City.description != "40 miles of dead neighborhoods"
+Motor City.description = "40 miles of dead neighborhoods"
+Motor City.label != "City"
+Motor City.label = "City"
+Motor City.name != "Motor City"
+Motor City.name = "Motor City"
+Motor City.status != "bankrupt"
+Motor City.status = "bankrupt"
+None_ML(Gosling___Lost River.attrs, Gosling___Motor City.attrs)
+None_ML(Motor City.attrs, Lost River.attrs)
+
+Rules:
+Q[Gosling,Gosling] (Detroit.name != Lost River.name ∧ None_ML(Gosling___Lost River.attrs, Gosling___Motor City.attrs) ∧ Gosling___Motor City.source_id = "3489738269_3" ∧ Lost River.label != Motor City.label → Detroit.label = "City")
+Q[Gosling,Gosling] (Detroit.name != "Detroit" ∧ Lost River.description = "a collection of speculative shots" ∧ Gosling___Detroit.source_id != Gosling___Lost River.source_id ∧ Lost River.description != Motor City.description ∧ Gosling___Detroit.source_id != Gosling___Motor City.source_id ∧ Gosling.label != Lost River.label → Gosling___Motor City.source_id = "3489738269_3")
+Q[Gosling,Gosling] (Detroit.name != "Detroit" ∧ Gosling.label != "Person" ∧ Gosling.location != Lost River.location ∧ Lost River.location = "Brewster-Douglass Projects" ∧ Gosling___Lost River.relationship = "Gosling claims that the paradox of dereliction and hope should be discussed in relation to Detroit and is a central theme of the film." → Gosling___Lost River.contradiction_type = "Factual")
+Q[Gosling,Gosling] (Detroit.label = "City" ∧ Gosling___Detroit.contradiction_type = "Relation" → Motor City.label = "City")
+Q[Gosling,Gosling] (Lost River.name != "Lost River" ∧ Lost River.location != "Brewster-Douglass Projects" ∧ Gosling___Detroit.relationship != Gosling___Lost River.relationship → None_ML(Motor City.attrs, Lost River.attrs))
+Q[Gosling,Gosling] (Detroit.name != Motor City.name ∧ Lost River.label != Motor City.label ∧ Gosling.name != "Gosling" → Gosling.location != Lost River.location)
+Q[Gosling,Gosling] (Lost River.label = "Film" ∧ Gosling___Lost River.contradiction_type = "Factual" ∧ Gosling___Detroit.relationship != Gosling___Lost River.relationship ∧ Gosling.label != Detroit.label ∧ Gosling___Detroit.contradiction_type != Gosling___Motor City.contradiction_type → Lost River.description != Motor City.description)
+Q[Gosling,Gosling] (Gosling.name != Lost River.name ∧ None_ML(Motor City.attrs, Lost River.attrs) → Lost River.location = "Brewster-Douglass Projects")
+Q[Gosling,Gosling] (Gosling___Detroit.source_id != Gosling___Motor City.source_id ∧ Gosling___Detroit.contradiction_type != Gosling___Lost River.contradiction_type ∧ Gosling.name != Detroit.name ∧ Gosling.label != "Person" → Gosling___Lost River.context = "first white social housing development in America")
+Q[Gosling,Gosling] (Motor City.status = "bankrupt" ∧ Gosling___Lost River.contradiction_type != Gosling___Motor City.contradiction_type ∧ Gosling.location = "Cornwall, Ontario" ∧ Detroit.name = "Detroit" ∧ Gosling.name != "Gosling" ∧ Gosling___Lost River.claim = "paradox exists" → Gosling___Motor City.relationship = "Gosling has a longstanding affection for Motor City, having grown up nearby.")

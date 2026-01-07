@@ -1,0 +1,64 @@
+sample_data.py从RTE3.xml采样各500条entailment为"ENTAILMENT"，"CONTRADICTION"和"UNKNOWN"的数据，每10条保存为一个复杂案例，保存在sampled_data.json文件下
+√ generate_with_llm_v3.py从sampled_data.json中进行属性图提取得到output_knowledge_graph_v3.json
+filter.py用于从output_knowledge_graph_v3.json删除node_1和node_2都仅出现一次的三元组，保留可以提取双星结构的三元组，得到filtered_knowledge_graph.json
+graph_enrich.py用于从filtered_knowledge_graph.json得到图丰富后文件filtered_knowledge_graph_enrich.json
+
+1.1：dual_star_output_multi_hop文件夹下：
+dual_star_discovery_multi_hop.py用于从../filtered_knowledge_graph_enrich.json中构建多跳双星结构，结果保存在dual_star_json文件夹下
+attrs_add.py用于对dual_star_json文件夹下保存的json文件进行属性丰富，结果保存在dual_star_json_with_attrs文件夹下
+√ rule_generation_llm.py借助llm从dual_star_json_with_attrs文件夹下的所有json文件中生成RICO谓词和规则，将结果保存到dual_star/llm_rules文件夹下
+
+1.1.1 doc_to_dense_doc文件夹下：
+√ get_dense_doc_v2.py从../../sampled_contradoc.json文件中生成矛盾句子富集的文档dense_text.json
+√ dense_property_graph.json为generate_with_llm_v3.py从dense_text.json进行属性图转换得到
+graph_enrich.py用于从dense_property_graph.json到图丰富后文件dense_property_graph_enrich.json
+filter.py用于用于从dense_property_graph_enrich.json删除node_1和node_2都仅出现一次的三元组，保留可以提取双星结构的三元组，得到filtered_dense_property_graph_enrich.json
+dual_star_discovery_multi_hop.py用于从filtered_dense_property_graph_enrich.json中构建多跳双星结构，结果保存在dual_star_json文件夹下
+attrs_add.py用于对dual_star_json文件夹下保存的json文件进行属性丰富，结果保存在dual_star_json_with_attrs文件夹下
+√ rule_generation_llm.py借助llm从dual_star_json_with_attrs文件夹下的所有json文件中生成RICO谓词和规则，将结果保存到dual_star/llm_rules文件夹下（改为并发模式后耗时很短）
+convert.py将dense_text.json转为有效的dense_text.txt文件，用于对rule_evaluation_v3.py进行评估
+√ rule_evaluation_v3.py文件对llm_folder = './dual_star/llm_rules'文件夹下各个文件中的规则进行了解释和矛盾判断的内容，结果保存在./dual_star/llm_evaluations_v3/initial文件夹下（改进版本，减少了评估量加快评估速度）
+√ rule_effective_v3.py文件对./dual_star/llm_evaluations_v3/initial文件夹下各个文件中的规则进行筛选，将反映了矛盾的有效规则保存在了./dual_star/llm_evaluations_v3/effective文件夹下
+replace_center_name.py文件对dual_star/llm_evaluations_v3/effective文件夹下的文件，进行规则中x0和y0的替换，替换为对应的实体名称，结果保存在dual_star/llm_evaluations_v3/effective_with_center_name文件夹下
+√ learn_from_effective_rules.py文件对dual_star/llm_evaluations_v3/effective_with_center_name中的有效规则进行学习，从dual_star_json_with_attrs的双星中借助llm生成规则，结果保存在dual_star/llm_learning_rules文件夹下
+√ metric_evaluation.py对'dual_star/llm_learning_rules'文件夹和'dual_star/llm_evaluations_v3/effective_with_center_name'文件夹下生成的规则进行评估，评估其对dense_text.txt中矛盾的覆盖范围（各种类型矛盾的覆盖比例）
+
+
+
+#####################################################################################################################################################################
+修改文件：generate_with_llm_v3.py
+doc_to_dense_doc/generate_with_llm_v3.py
+
+
+Learner: 总耗时407.82s
+1.1：dual_star_output_multi_hop文件夹下：
+（98.25s）rule_generation_llm.py借助llm从dual_star_json_with_attrs文件夹下的所有json文件中生成RICO谓词和规则，将结果保存到dual_star/llm_rules文件夹下
+
+1.1.1 doc_to_dense_doc文件夹下：
+（142.33s）rule_generation_llm.py借助llm从dual_star_json_with_attrs文件夹下的所有json文件中生成RICO谓词和规则，将结果保存到dual_star/llm_rules文件夹下（改为并发模式后耗时很短）
+（167.24s）learn_from_effective_rules.py文件对dual_star/llm_evaluations_v3/effective_with_center_name中的有效规则进行学习，从dual_star_json_with_attrs的双星中借助llm生成规则，结果保存在dual_star/llm_learning_rules文件夹下
+
+
+
+#####################################################################################################################################################################
+Detector: 总耗时315.33s
+1.1.1 doc_to_dense_doc文件夹下：
+（270.02s）rule_evaluation_v3.py文件对llm_folder = './dual_star/llm_rules'文件夹下各个文件中的规则进行了解释和矛盾判断的内容，结果保存在./dual_star/llm_evaluations_v3/initial文件夹下（改进版本，减少了评估量加快评估速度）
+（45.31s）rule_effective_v3.py文件对./dual_star/llm_evaluations_v3/initial文件夹下各个文件中的规则进行筛选，将反映了矛盾的有效规则保存在了./dual_star/llm_evaluations_v3/effective文件夹下
+
+
+#####################################################################################################################################################################
+DocChecker: 总耗时974.44s
+（28.22s）graph_enrich.py用于从filtered_knowledge_graph.json得到图丰富后文件filtered_knowledge_graph_enrich.json
+（66.49s）generate_with_llm_v3.py从sampled_data.json中进行属性图提取得到output_knowledge_graph_v3.json
+
+1.1：dual_star_output_multi_hop文件夹下：
+（8.80s）dual_star_discovery_multi_hop.py用于从../filtered_knowledge_graph_enrich.json中构建多跳双星结构，结果保存在dual_star_json文件夹下
+
+
+1.1.1 doc_to_dense_doc文件夹下：
+（62.82s）get_dense_doc_v2.py从../../sampled_contradoc.json文件中生成矛盾句子富集的文档dense_text.json
+（76.99s）dense_property_graph.json为generate_with_llm_v3.py从dense_text.json进行属性图转换得到
+（7.97s）dual_star_discovery_multi_hop.py用于从filtered_dense_property_graph_enrich.json中构建多跳双星结构，结果保存在dual_star_json文件夹下
+
++Learner运行时间+Detector运行时间

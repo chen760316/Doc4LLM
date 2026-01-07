@@ -1,0 +1,64 @@
+Predicates:
+Road T51.label = "Road"
+Road T51.label != "Road"
+Road T51.name = "Road T51"
+Road T51.name != "Road T51"
+Road T51.label = "Road"
+Road T51.label != "Road"
+Road T51.name = "Road T51"
+Road T51.name != "Road T51"
+California.label = "State"
+California.label != "State"
+California.name = "California"
+California.name != "California"
+M_NLI(Road T51(label=Road, name=Road T51), California(label=State, name=California))
+M_NLU(Road T51(label=Road, name=Road T51), California(label=State, name=California))
+M_TEM(Road T51(label=Road, name=Road T51), California(label=State, name=California))
+M_NLI(California(label=State, name=California), Road T51(label=Road, name=Road T51))
+M_NLU(California(label=State, name=California), Road T51(label=Road, name=Road T51))
+M_TEM(California(label=State, name=California), Road T51(label=Road, name=Road T51))
+S(Road T51, "e report (label=Road name=Road T51)")
+S(Road T51 was located in New York., "or spoke highly of the project, calling it “a breakthrough.”
+Road T51 was located in New York.
+I sla")
+S(Road T51, "Road T51 (label=Road name=Road T51)")
+S(California, "California (label=State name=California)")
+S(Road T51 was located in California., "riticized the project, saying it had no real impact.
+Road T51 was located in California.
+After I do ")
+T(Road T51 (label=Road name=Road T51), or spoke highly of the project, calling it “a breakthrough.”
+Road T51 was located in New York.
+I sla, No Contradiction)
+No Contradiction(Road T51., Road T51 was located in New York..)
+T(Road T51 (label=Road name=Road T51), California (label=State name=California), No Contradiction)
+No Contradiction(Road T51., California.)
+T(California (label=State name=California), Road T51 (label=Road name=Road T51), No Contradiction)
+No Contradiction(California., Road T51.)
+T(Road T51 (label=Road name=Road T51), riticized the project, saying it had no real impact.
+Road T51 was located in California.
+After I do , No Contradiction)
+No Contradiction(Road T51., Road T51 was located in California..)
+T(California (label=State name=California), riticized the project, saying it had no real impact.
+Road T51 was located in California.
+After I do , No Contradiction)
+No Contradiction(California., Road T51 was located in California..)
+
+Rules:
+Q[x0, y0](Road T51.label = "Road" ∧ Road T51.name = "Road T51" → No Contradiction(Road T51., Road T51 was located in California..))
+Q[x0, y0](California.label = "State" ∧ California.name = "California" → No Contradiction(California., Road T51 was located in California..))
+Q[x0, y0](Road T51.label != "Road" ∧ Road T51.name != "Road T51" → No Contradiction(Road T51., Road T51 was located in New York..))
+Q[x0, y0](California.label != "State" ∧ California.name != "California" → No Contradiction(California., Road T51 was located in New York..))
+Q[x0, y0](Road T51.label = "Road" ∧ California.label = "State" ∧ M_NLI(Road T51(label=Road, name=Road T51), California(label=State, name=California)) → No Contradiction(Road T51., California.))
+Q[x0, y0](Road T51.name = "Road T51" ∧ California.name = "California" ∧ M_NLU(California(label=State, name=California), Road T51(label=Road, name=Road T51)) → No Contradiction(California., Road T51.))
+Q[x0, y0](Road T51.label = "Road" ∧ Road T51.name = "Road T51" ∧ California.label = "State" ∧ California.name = "California" → No Contradiction(Road T51., California.))
+Q[x0, y0](Road T51.label != "Road" ∧ Road T51.name != "Road T51" ∧ California.label != "State" ∧ California.name != "California" → No Contradiction(Road T51., California.))
+Q[x0, y0](Road T51.label = "Road" ∧ California.label = "State" ∧ M_TEM(Road T51(label=Road, name=Road T51), California(label=State, name=California)) ∧ S(Road T51, "Road T51 (label=Road name=Road T51)") → No Contradiction(Road T51., California.))
+Q[x0, y0](Road T51.name = "Road T51" ∧ California.name = "California" ∧ M_NLI(California(label=State, name=California), Road T51(label=Road, name=Road T51)) ∧ S(California, "California (label=State name=California)") → No Contradiction(California., Road T51.))
+Q[x0, y0](Road T51.label = "Road" ∧ Road T51.name = "Road T51" ∧ California.label = "State" ∧ California.name = "California" ∧ M_NLU(Road T51(label=Road, name=Road T51), California(label=State, name=California)) → No Contradiction(Road T51., California.))
+Q[x0, y0](Road T51.label != "Road" ∧ Road T51.name != "Road T51" ∧ California.label != "State" ∧ California.name != "California" ∧ M_TEM(California(label=State, name=California), Road T51(label=Road, name=Road T51)) → No Contradiction(California., Road T51.))
+Q[x0, y0](Road T51.label = "Road" ∧ California.label = "State" ∧ M_NLI(Road T51(label=Road, name=Road T51), California(label=State, name=California)) ∧ S(Road T51, "Road T51 (label=Road name=Road T51)") ∧ T(Road T51 (label=Road name=Road T51), California (label=State name=California), No Contradiction) → No Contradiction(Road T51., California.))
+Q[x0, y0](Road T51.name = "Road T51" ∧ California.name = "California" ∧ M_NLU(California(label=State, name=California), Road T51(label=Road, name=Road T51)) ∧ S(California, "California (label=State name=California)") ∧ T(California (label=State name=California), Road T51 (label=Road name=Road T51), No Contradiction) → No Contradiction(California., Road T51.))
+Q[x0, y0](Road T51.label = "Road" ∧ Road T51.name = "Road T51" ∧ California.label = "State" ∧ California.name = "California" ∧ M_TEM(Road T51(label=Road, name=Road T51), California(label=State, name=California)) ∧ S(Road T51, "Road T51 (label=Road name=Road T51)") → No Contradiction(Road T51., California.))
+Q[x0, y0](Road T51.label != "Road" ∧ Road T51.name != "Road T51" ∧ California.label != "State" ∧ California.name != "California" ∧ M_NLI(California(label=State, name=California), Road T51(label=Road, name=Road T51)) ∧ S(California, "California (label=State name=California)") → No Contradiction(California., Road T51.))
+Q[x0, y0](Road T51.label = "Road" ∧ California.label = "State" ∧ M_NLU(Road T51(label=Road, name=Road T51), California(label=State, name=California)) ∧ S(Road T51, "Road T51 (label=Road name=Road T51)") ∧ T(Road T51 (label=Road name=Road T51), riticized the project, saying it had no real impact. Road T51 was located in California. After I do , No Contradiction) → No Contradiction(Road T51., California.))
+Q[x0, y0](Road T51.name = "Road T51" ∧ California.name = "California" ∧ M_TEM(California(label=State, name=California), Road T51(label=Road, name=Road T51)) ∧ S(California, "California (label=State name=California)") ∧ T(California (label=State name=California), riticized the project, saying it had no real impact. Road T51 was located in California. After I do , No Contradiction) → No Contradiction(California., Road T51.))

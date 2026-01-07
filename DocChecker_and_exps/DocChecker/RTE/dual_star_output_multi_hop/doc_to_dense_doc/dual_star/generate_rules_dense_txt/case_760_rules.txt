@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 760)
+S1: The fourth, the Ebola Reston, has caused disease in non-human primates, but not in humans.
+S2: Three of the four have caused disease in humans: Ebola Zaire, Ebola-Sudan and Côte d'Ivoire Ebola.
+
+Predicates:
+1. Ebola_Reston.affects_humans = false
+2. Ebola_Zaire.affects_humans = true
+3. Ebola_Sudan.affects_humans = true
+4. Côte_d'Ivoire_Ebola.affects_humans = true
+5. Ebola_Reston.affects_non_human_primates = true
+6. Ebola_Zaire.affects_non_human_primates = true
+7. Ebola_Sudan.affects_non_human_primates = true
+8. Côte_d'Ivoire_Ebola.affects_non_human_primates = true
+9. Ebola_Reston.disease_in_humans = false
+10. Ebola_Zaire.disease_in_humans = true
+11. Ebola_Sudan.disease_in_humans = true
+12. Côte_d'Ivoire_Ebola.disease_in_humans = true
+13. Ebola_Reston.disease_in_non_human_primates = true
+14. Ebola_Zaire.disease_in_non_human_primates = true
+15. Ebola_Sudan.disease_in_non_human_primates = true
+16. Côte_d'Ivoire_Ebola.disease_in_non_human_primates = true
+17. "causes".Ebola_Reston = false
+18. "causes".Ebola_Zaire = true
+19. "causes".Ebola_Sudan = true
+20. "causes".Côte_d'Ivoire_Ebola = true
+21. M_NLI(S1, S2) = true
+22. Factual(Ebola_Reston, affects_humans) = false
+23. Factual(Ebola_Zaire, affects_humans) = true
+24. Factual(Ebola_Sudan, affects_humans) = true
+25. Factual(Côte_d'Ivoire_Ebola, affects_humans) = true
+26. violate(Ebola_Reston, affects_humans)
+27. violate(Ebola_Zaire, affects_humans)
+28. violate(Ebola_Sudan, affects_humans)
+29. violate(Côte_d'Ivoire_Ebola, affects_humans)
+30. "subtype_of".Ebola_Reston = Ebola
+
+Rules:
+1. Q[The, Ebola_Reston.affects_humans, false](Ebola_Reston.affects_humans == false → Factual(Ebola_Reston, affects_humans))
+2. Q[The, Ebola_Zaire.affects_humans, true](Ebola_Zaire.affects_humans == true → Factual(Ebola_Zaire, affects_humans))
+3. Q[The, Ebola_Sudan.affects_humans, true](Ebola_Sudan.affects_humans == true → Factual(Ebola_Sudan, affects_humans))
+4. Q[The, Côte_d'Ivoire_Ebola.affects_humans, true](Côte_d'Ivoire_Ebola.affects_humans == true → Factual(Côte_d'Ivoire_Ebola, affects_humans))
+5. Q[The, Ebola_Reston.disease_in_humans, false](Ebola_Reston.disease_in_humans == false → Factual(Ebola_Reston, disease_in_humans))
+6. Q[The, Ebola_Zaire.disease_in_humans, true](Ebola_Zaire.disease_in_humans == true → Factual(Ebola_Zaire, disease_in_humans))
+7. Q[The, Ebola_Sudan.disease_in_humans, true](Ebola_Sudan.disease_in_humans == true → Factual(Ebola_Sudan, disease_in_humans))
+8. Q[The, Côte_d'Ivoire_Ebola.disease_in_humans, true](Côte_d'Ivoire_Ebola.disease_in_humans == true → Factual(Côte_d'Ivoire_Ebola, disease_in_humans))
+9. Q[The, Ebola_Reston.affects_non_human_primates, true](Ebola_Reston.affects_non_human_primates == true → Factual(Ebola_Reston, affects_non_human_primates))
+10. Q[The, Ebola_Zaire.affects_non_human_primates, true](Ebola_Zaire.affects_non_human_primates == true → Factual(Ebola_Zaire, affects_non_human_primates))
+11. Q[The, Ebola_Sudan.affects_non_human_primates, true](Ebola_Sudan.affects_non_human_primates == true → Factual(Ebola_Sudan, affects_non_human_primates))
+12. Q[The, Côte_d'Ivoire_Ebola.affects_non_human_primates, true](Côte_d'Ivoire_Ebola.affects_non_human_primates == true → Factual(Côte_d'Ivoire_Ebola, affects_non_human_primates))
+13. Q[The, "causes".Ebola_Reston, false](Ebola_Reston.disease_in_humans == false → Factual(Ebola_Reston, "causes"))
+14. Q[The, "causes".Ebola_Zaire, true](Ebola_Zaire.disease_in_humans == true → Factual(Ebola_Zaire, "causes"))
+15. Q[The, "causes".Ebola_Sudan, true](Ebola_Sudan.disease_in_humans == true → Factual(Ebola_Sudan, "causes"))
+16. Q[The, "causes".Côte_d'Ivoire_Ebola, true](Côte_d'Ivoire_Ebola.disease_in_humans == true → Factual(Côte_d'Ivoire_Ebola, "causes"))
+17. Q[The, Ebola_Reston.affects_humans, false](Ebola_Reston.affects_humans == false ∧ Ebola_Zaire.affects_humans == true → Factual(Ebola_Reston, affects_humans))
+18. Q[The, Ebola_Reston.disease_in_humans, false](Ebola_Reston.disease_in_humans == false ∧ Ebola_Sudan.disease_in_humans == true → Factual(Ebola_Reston, disease_in_humans))
+19. Q[The, Ebola_Reston.affects_humans, false](Ebola_Reston.affects_humans == false ∧ Côte_d'Ivoire_Ebola.affects_humans == true → Factual(Ebola_Reston, affects_humans))
+20. Q[The, Ebola_Zaire.affects_humans, true](Ebola_Zaire.affects_humans == true ∧ Ebola_Reston.affects_humans == false → Factual(Ebola_Zaire, affects_humans))
+21. Q[The, Ebola_Sudan.affects_humans, true](Ebola_Sudan.affects_humans == true ∧ Ebola_Reston.affects_humans == false → Factual(Ebola_Sudan, affects_humans))
+22. Q[The, Côte_d'Ivoire_Ebola.affects_humans, true](Côte_d'Ivoire_Ebola.affects_humans == true ∧ Ebola_Reston.affects_humans == false → Factual(Côte_d'Ivoire_Ebola, affects_humans))
+23. Q[The, Ebola_Reston.disease_in_humans, false](Ebola_Reston.disease_in_humans == false ∧ Ebola_Zaire.disease_in_humans == true → Factual(Ebola_Reston, disease_in_humans))
+24. Q[The, Ebola_Reston.disease_in_humans, false](Ebola_Reston.disease_in_humans == false ∧ Ebola_Sudan.disease_in_humans == true → Factual(Ebola_Reston, disease_in_humans))
+25. Q[The, Ebola_Reston.disease_in_humans, false](Ebola_Reston.disease_in_humans == false ∧ Côte_d'Ivoire_Ebola.disease_in_humans == true → Factual(Ebola_Reston, disease_in_humans))
+26. Q[The, "subtype_of".Ebola_Reston, Ebola](Ebola_Reston.affects_humans == false → Factual(Ebola_Reston, "subtype_of"))
+27. Q[The, "subtype_of".Ebola_Zaire, Ebola](Ebola_Zaire.affects_humans == true → Factual(Ebola_Zaire, "subtype_of"))
+28. Q[The, "subtype_of".Ebola_Sudan, Ebola](Ebola_Sudan.affects_humans == true → Factual(Ebola_Sudan, "subtype_of"))
+29. Q[The, "subtype_of".Côte_d'Ivoire_Ebola, Ebola](Côte_d'Ivoire_Ebola.affects_humans == true → Factual(Côte_d'Ivoire_Ebola, "subtype_of"))
+30. Q[The, M_NLI(S1, S2), true](M_NLI(S1, S2) == true → Factual(Ebola_Reston, affects_humans))

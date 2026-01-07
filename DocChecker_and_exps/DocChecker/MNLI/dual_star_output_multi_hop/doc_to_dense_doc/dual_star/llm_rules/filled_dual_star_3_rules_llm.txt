@@ -1,0 +1,110 @@
+Predicates:
+1. volume_increases_to(5, 30_billion)
+2. volume_decreases_from(30_billion, 30_million)
+3. trend_is_increasing(volume, 30_billion)
+4. trend_is_decreasing(volume, 30_billion, 30_million)
+5. volume_at(30_billion) implies trend_is_increasing
+6. volume_at(30_billion) implies not trend_is_decreasing
+7. volume_at(30_million) implies trend_is_decreasing
+8. volume_at(30_million) implies not trend_is_increasing
+9. if volume_increases_to(5, X) then X is greater than 30_billion
+10. if volume_decreases_from(X, 30_million) then X is greater than 30_billion
+11. increasing_trend(X) implies volume_at(X)
+12. decreasing_trend(X, Y) implies volume_at(X) and volume_at(Y)
+13. if trend_is_increasing(volume, X) then volume_at(X) is increasing
+14. if trend_is_decreasing(volume, X, Y) then volume_at(X) is decreasing
+15. volume_increases_to(Y, 30_billion) implies Y > 5
+16. volume_decreases_from(30_billion, Z) implies Z < 30_million
+17. if volume_at(30_billion) then trend_is_increasing
+18. if volume_at(30_million) then trend_is_decreasing
+19. if trend_is_increasing(volume, 30_billion) then volume > 30_billion
+20. if trend_is_decreasing(volume, 30_billion, 30_million) then volume < 30_billion
+21. volume_increases_to(5, X) implies X is a future volume
+22. volume_decreases_from(X, 30_million) implies X is a past volume
+23. if volume_at(X) and trend_is_increasing then volume_at(Y) where Y > X
+24. if volume_at(X) and trend_is_decreasing then volume_at(Y) where Y < X
+25. increasing_trend(X) implies volume_at(X) and future_projection(X)
+26. decreasing_trend(X, Y) implies volume_at(X) and past_projection(Y)
+27. if volume_increases_to(Y, 30_billion) then Y is a target volume
+28. if volume_decreases_from(30_billion, Z) then Z is a target volume
+29. if trend_is_increasing(volume, 30_billion) then future_volume > current_volume
+30. if trend_is_decreasing(volume, 30_billion, 30_million) then future_volume < current_volume
+31. volume_increases_to(5, X) implies X is a significant increase
+32. volume_decreases_from(X, 30_million) implies X is a significant decrease
+33. if volume_at(30_billion) then trend_is_positive
+34. if volume_at(30_million) then trend_is_negative
+35. if trend_is_increasing(volume, 30_billion) then volume_growth_rate > 0
+36. if trend_is_decreasing(volume, 30_billion, 30_million) then volume_decline_rate > 0
+37. volume_increases_to(Y, 30_billion) implies Y is a projected volume
+38. volume_decreases_from(30_billion, Z) implies Z is a projected volume
+39. if volume_at(X) and trend_is_increasing then future_volume_at(Y) where Y > X
+40. if volume_at(X) and trend_is_decreasing then future_volume_at(Y) where Y < X
+41. increasing_trend(X) implies future_volume_at(X)
+42. decreasing_trend(X, Y) implies past_volume_at(Y)
+43. if volume_increases_to(Y, 30_billion) then Y is a target for growth
+44. if volume_decreases_from(30_billion, Z) then Z is a target for reduction
+45. if trend_is_increasing(volume, 30_billion) then future_volume > current_volume
+46. if trend_is_decreasing(volume, 30_billion, 30_million) then future_volume < current_volume
+47. volume_increases_to(5, X) implies X is a future target
+48. volume_decreases_from(X, 30_million) implies X is a past target
+49. if volume_at(30_billion) then trend_is_upward
+50. if volume_at(30_million) then trend_is_downward
+51. if trend_is_increasing(volume, 30_billion) then volume_growth > 0
+52. if trend_is_decreasing(volume, 30_billion, 30_million) then volume_decline < 0
+53. volume_increases_to(Y, 30_billion) implies Y is a significant target
+54. volume_decreases_from(30_billion, Z) implies Z is a significant target
+55. if volume_at(X) and trend_is_increasing then future_volume_at(Y) where Y > X
+56. if volume_at(X) and trend_is_decreasing then future_volume_at(Y) where Y < X
+57. increasing_trend(X) implies future_volume_at(X)
+58. decreasing_trend(X, Y) implies past_volume_at(Y)
+59. if volume_increases_to(Y, 30_billion) then Y is a target for expansion
+60. if volume_decreases_from(30_billion, Z) then Z is a target for contraction
+61. if trend_is_increasing(volume, 30_billion) then future_volume > current_volume
+62. if trend_is_decreasing(volume, 30_billion, 30_million) then future_volume < current_volume
+63. volume_increases_to(5, X) implies X is a future projection
+64. volume_decreases_from(X, 30_million) implies X is a past projection
+65. if volume_at(30_billion) then trend_is upward
+66. if volume_at(30_million) then trend_is downward
+67. if trend_is_increasing(volume, 30_billion) then volume_growth_rate > 0
+68. if trend_is_decreasing(volume, 30_billion, 30_million) then volume_decline_rate < 0
+69. volume_increases_to(Y, 30_billion) implies Y is a significant increase
+70. volume_decreases_from(30_billion, Z) implies Z is a significant decrease
+71. if volume_at(X) and trend_is_increasing then future_volume_at(Y) where Y > X
+72. if volume_at(X) and trend_is_decreasing then future_volume_at(Y) where Y < X
+73. increasing_trend(X) implies future_volume_at(X)
+74. decreasing_trend(X, Y) implies past_volume_at(Y)
+75. if volume_increases_to(Y, 30_billion) then Y is a target for growth
+76. if volume_decreases_from(30_billion, Z) then Z is a target for reduction
+77. if trend_is_increasing(volume,
+
+Rules:
+1. Q[1, 2](volume_increases_to(5, 30_billion) ∧ trend_is_increasing(volume, 30_billion) → volume_at(30_billion))
+2. Q[3, 4](volume_decreases_from(30_billion, 30_million) ∧ trend_is_decreasing(volume, 30_billion, 30_million) → volume_at(30_million))
+3. Q[5, 6](volume_at(30_billion) ∧ trend_is_increasing(volume, 30_billion) → volume > 30_billion)
+4. Q[7, 8](volume_at(30_million) ∧ trend_is_decreasing(volume, 30_billion, 30_million) → volume < 30_billion)
+5. Q[9, 10](volume_increases_to(5, X) ∧ volume_decreases_from(X, 30_million) → X is a future volume)
+6. Q[11, 12](increasing_trend(X) ∧ decreasing_trend(X, Y) → volume_at(Y))
+7. Q[13, 14](if trend_is_increasing(volume, 30_billion) ∧ volume_at(30_billion) → future_volume > current_volume)
+8. Q[15, 16](volume_increases_to(Y, 30_billion) ∧ volume_decreases_from(30_billion, Z) → Z is a target volume)
+9. Q[17, 18](if volume_at(30_billion) ∧ trend_is_positive → future_volume > current_volume)
+10. Q[19, 20](if trend_is_decreasing(volume, 30_billion, 30_million) ∧ volume_at(30_million) → trend_is_negative)
+11. Q[21, 22](volume_increases_to(5, X) ∧ volume_decreases_from(X, 30_million) ∧ trend_is_decreasing(volume, 30_billion, 30_million) → X is a past volume)
+12. Q[23, 24](if volume_at(X) ∧ trend_is_increasing ∧ volume_at(Y) where Y > X → future_volume_at(Y))
+13. Q[25, 26](increasing_trend(X) ∧ decreasing_trend(X, Y) ∧ volume_at(X) → future_volume_at(X))
+14. Q[27, 28](if volume_increases_to(Y, 30_billion) ∧ volume_decreases_from(30_billion, Z) → Z is a target for reduction)
+15. Q[29, 30](if trend_is_increasing(volume, 30_billion) ∧ volume_growth_rate > 0 → future_volume > current_volume)
+16. Q[31, 32](volume_increases_to(Y, 30_billion) ∧ volume_decreases_from(30_billion, Z) ∧ trend_is_positive → Y is a significant target)
+17. Q[33, 34](if volume_at(30_billion) ∧ trend_is_upward → future_volume > current_volume)
+18. Q[35, 36](if trend_is_decreasing(volume, 30_billion, 30_million) ∧ volume_decline_rate > 0 → future_volume < current_volume)
+19. Q[37, 38](volume_increases_to(Y, 30_billion) ∧ volume_decreases_from(30_billion, Z) ∧ trend_is_negative → Z is a significant decrease)
+20. Q[39, 40](if volume_at(X) ∧ trend_is_decreasing ∧ future_volume_at(Y) where Y < X → volume_at(Y))
+21. Q[41, 42](increasing_trend(X) ∧ decreasing_trend(X, Y) ∧ volume_at(Y) → past_volume_at(Y))
+22. Q[43, 44](if volume_increases_to(Y, 30_billion) ∧ trend_is_positive → Y is a target for growth)
+23. Q[45, 46](if trend_is_increasing(volume, 30_billion) ∧ future_volume > current_volume → volume_growth_rate > 0)
+24. Q[47, 48](volume_increases_to(5, X) ∧ volume_decreases_from(X, 30_million) ∧ trend_is_upward → X is a future projection)
+25. Q[49, 50](if volume_at(30_billion) ∧ trend_is_upward → future_volume > current_volume)
+26. Q[51, 52](if trend_is_decreasing(volume, 30_billion, 30_million) ∧ volume_decline < 0 → future_volume < current_volume)
+27. Q[53, 54](volume_increases_to(Y, 30_billion) ∧ volume_decreases_from(30_billion, Z) ∧ trend_is_upward → Z is a significant target)
+28. Q[55, 56](if volume_at(X) ∧ trend_is_increasing ∧ future_volume_at(Y) where Y > X → volume_at(Y))
+29. Q[57, 58](increasing_trend(X) ∧ past_volume_at(Y) → future_volume_at(X))
+30. Q[59, 60](if volume_increases_to(Y, 30_billion) ∧ trend_is_positive → Y is a target for expansion)

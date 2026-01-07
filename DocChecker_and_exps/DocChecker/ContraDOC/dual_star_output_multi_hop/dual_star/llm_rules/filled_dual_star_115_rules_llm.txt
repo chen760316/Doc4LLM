@@ -1,0 +1,116 @@
+Predicates:
+1. Iran.enrichment_level = "weapons-grade"
+2. Iran.enrichment_level != "low-grade"
+3. Iran.enrichment_level > "low-grade"
+4. Iran.enrichment_level < "high-grade"
+5. Iran.enrichment_level >= "weapons-grade"
+6. Iran.enrichment_level <= "high-grade"
+7. Hezbollah.status = "terrorist group"
+8. Hezbollah.status != "political organization"
+9. Hezbollah.status < "militant group"
+10. Hezbollah.status > "non-violent group"
+11. Hezbollah.status >= "terrorist organization"
+12. Hezbollah.status <= "militant organization"
+13. Yemen.status = "civil war"
+14. Yemen.status != "peace"
+15. Yemen.status < "stability"
+16. Yemen.status > "conflict-free"
+17. Yemen.status >= "civil unrest"
+18. Yemen.status <= "civil war"
+19. "Iran enriches uranium to weapons-grade levels".time = "in a matter of days"
+20. "Iran enriches uranium to weapons-grade levels".time != "immediately"
+21. "Iran enriches uranium to weapons-grade levels".time < "one week"
+22. "Iran enriches uranium to weapons-grade levels".time > "one day"
+23. "Iran enriches uranium to weapons-grade levels".time <= "one week"
+24. "Iran enriches uranium to weapons-grade levels".time >= "one day"
+25. "Iran and world powers negotiate a deal limiting Tehran's nuclear program".event = "negotiation"
+26. "Iran and world powers negotiate a deal limiting Tehran's nuclear program".event != "war"
+27. "Iran and world powers negotiate a deal limiting Tehran's nuclear program".event < "treaty signing"
+28. "Iran and world powers negotiate a deal limiting Tehran's nuclear program".event > "discussion"
+29. "Iran and world powers negotiate a deal limiting Tehran's nuclear program".event <= "agreement"
+30. "Iran and world powers negotiate a deal limiting Tehran's nuclear program".event >= "talks"
+31. "Iran has been training and funding Hezbollah".goal = "annihilate Israel"
+32. "Iran has been training and funding Hezbollah".goal != "promote peace"
+33. "Iran has been training and funding Hezbollah".goal < "regional stability"
+34. "Iran has been training and funding Hezbollah".goal > "diplomatic relations"
+35. "Iran has been training and funding Hezbollah".goal <= "military support"
+36. "Iran has been training and funding Hezbollah".goal >= "support for allies"
+37. "Iran ratified the Additional Protocol allowing expanded access to nuclear sites".permanence = "does not sunset"
+38. "Iran ratified the Additional Protocol allowing expanded access to nuclear sites".permanence != "temporary"
+39. "Iran ratified the Additional Protocol allowing expanded access to nuclear sites".permanence < "limited duration"
+40. "Iran ratified the Additional Protocol allowing expanded access to nuclear sites".permanence > "indefinite"
+41. "Iran ratified the Additional Protocol allowing expanded access to nuclear sites".permanence <= "permanent"
+42. "Iran ratified the Additional Protocol allowing expanded access to nuclear sites".permanence >= "long-term"
+43. "The U.N. Security Council discussed the humanitarian situation".time = "Saturday"
+44. "The U.N. Security Council discussed the humanitarian situation".time != "Sunday"
+45. "The U.N. Security Council discussed the humanitarian situation".time < "next week"
+46. "The U.N. Security Council discussed the humanitarian situation".time > "Friday"
+47. "The U.N. Security Council discussed the humanitarian situation".time <= "Saturday"
+48. "The U.N. Security Council discussed the humanitarian situation".time >= "Saturday"
+49. "The United States is concerned about the deal with Iran".context = "potential catastrophic instability in the Middle East"
+50. "The United States is concerned about the deal with Iran".context != "regional peace"
+51. "The United States is concerned about the deal with Iran".context < "minor issue"
+52. "The United States is concerned about the deal with Iran".context > "non-issue"
+53. "The United States is concerned about the deal with Iran".context <= "major concern"
+54. "The United States is concerned about the deal with Iran".context >= "significant risk"
+55. "The agreement imposes restrictions and obligations almost exclusively on Iran".sanctions = "economic sanctions to be eased and removed"
+56. "The agreement imposes restrictions and obligations almost exclusively on Iran".sanctions != "no sanctions"
+57. "The agreement imposes restrictions and obligations almost exclusively on Iran".sanctions < "light sanctions"
+58. "The agreement imposes restrictions and obligations almost exclusively on Iran".sanctions > "strict sanctions"
+59. "The agreement imposes restrictions and obligations almost exclusively on Iran".sanctions <= "temporary sanctions"
+60. "The agreement imposes restrictions and obligations almost exclusively on Iran".sanctions >= "long-term sanctions"
+61. executions.count = "35"
+62. executions.count != "40"
+63. executions.count < "50"
+64. executions.count > "30"
+65. executions.count <= "35"
+66. executions.count >= "30"
+67. executions.previous_year_count = "39"
+68. executions.previous_year_count != "38"
+69. executions.previous_year_count < "40"
+70. executions.previous_year_count > "35"
+71. executions.previous_year_count <= "39"
+72. executions.previous_year_count >= "35"
+73. M_NLI(Iran.enrichment_level, Hezbollah.status)
+74. M_NLU(Iran.enrichment_level, Yemen.status)
+75. M_TEM(Iran.enrichment_level, "Iran enriches uranium to weapons-grade levels")
+76. contra("Iran enriches uranium to weapons-grade levels", "Iran does not enrich uranium")
+77. S(Iran.enrichment_level, "Iran enriches uranium to weapons-grade levels")
+78. S("Iran enriches uranium to weapons-grade levels", "Iran enriches uranium to weapons-grade levels")
+79. T("Iran enriches uranium to weapons-grade levels", "Iran does not enrich uranium", "Factual")
+80. tau(Iran.enrichment_level, Hezbollah.status)
+81. tau("Iran enriches uranium to weapons-grade levels", "Iran does not enrich uranium")
+82. M_NLI("Iran and world powers negotiate a deal limiting Tehran's nuclear program", "Iran does not negotiate")
+83. M_NLU("Iran has been training and funding Hezbollah", "Iran supports peace")
+84. M_TEM("Iran ratified the Additional Protocol allowing expanded access to nuclear sites", "Iran does not ratify protocols")
+85. contra("The U.N. Security Council discussed the humanitarian situation", "The U.N. Security Council ignored the humanitarian situation")
+86. S(Yemen.status, "Yemen is in civil war")
+87. S("The United States is concerned about the deal with Iran", "The United States is indifferent to the deal")
+88. T("The agreement imposes restrictions and obligations almost exclusively on Iran", "The agreement imposes no restrictions", "Factual
+
+Rules:
+1. Q[x0, y0](Iran.enrichment_level = "weapons-grade" ∧ Iran.enrichment_level != "low-grade" → Hezbollah.status = "terrorist group")
+2. Q[x0, y0](Iran.enrichment_level < "high-grade" ∧ Iran.enrichment_level > "low-grade" → Yemen.status = "civil war")
+3. Q[x0, y0](Hezbollah.status = "terrorist group" ∧ Yemen.status = "civil war" ∧ Iran.enrichment_level = "weapons-grade" → "Iran enriches uranium to weapons-grade levels".time = "in a matter of days")
+4. Q[x0, y0](Iran.enrichment_level >= "weapons-grade" ∧ Hezbollah.status != "political organization" ∧ Yemen.status != "peace" → "Iran and world powers negotiate a deal limiting Tehran's nuclear program".event = "negotiation")
+5. Q[x0, y0](Iran.enrichment_level <= "high-grade" ∧ Hezbollah.status < "militant group" ∧ Yemen.status > "conflict-free" ∧ "Iran enriches uranium to weapons-grade levels".time < "one week" → "The U.N. Security Council discussed the humanitarian situation".time = "Saturday")
+6. Q[x0, y0](Iran.enrichment_level > "low-grade" ∧ Hezbollah.status >= "terrorist organization" ∧ Yemen.status < "stability" ∧ "Iran has been training and funding Hezbollah".goal = "annihilate Israel" ∧ "The United States is concerned about the deal with Iran".context = "potential catastrophic instability in the Middle East" → executions.count < "50")
+7. Q[x0, y0](Iran.enrichment_level != "low-grade" ∧ Hezbollah.status > "non-violent group" → "Iran enriches uranium to weapons-grade levels".time > "one day")
+8. Q[x0, y0](Yemen.status = "civil war" ∧ "Iran enriches uranium to weapons-grade levels".time <= "one week" → "Iran has been training and funding Hezbollah".goal != "promote peace")
+9. Q[x0, y0](Hezbollah.status <= "militant organization" ∧ Yemen.status != "peace" ∧ "Iran and world powers negotiate a deal limiting Tehran's nuclear program".event < "treaty signing" → "The agreement imposes restrictions and obligations almost exclusively on Iran".sanctions != "no sanctions")
+10. Q[x0, y0](Iran.enrichment_level < "high-grade" ∧ "Iran enriches uranium to weapons-grade levels".time >= "one day" → "The United States is concerned about the deal with Iran".context < "minor issue")
+11. Q[x0, y0](Iran.enrichment_level = "weapons-grade" ∧ Hezbollah.status != "political organization" ∧ Yemen.status > "conflict-free" → "Iran ratified the Additional Protocol allowing expanded access to nuclear sites".permanence = "does not sunset")
+12. Q[x0, y0](Yemen.status < "stability" ∧ Hezbollah.status >= "terrorist organization" ∧ "The U.N. Security Council discussed the humanitarian situation".time > "Friday" → executions.previous_year_count < "40")
+13. Q[x0, y0](Iran.enrichment_level < "high-grade" ∧ "Iran enriches uranium to weapons-grade levels".time < "one week" ∧ "Iran has been training and funding Hezbollah".goal > "diplomatic relations" → "The agreement imposes restrictions and obligations almost exclusively on Iran".sanctions < "light sanctions")
+14. Q[x0, y0](Hezbollah.status < "militant group" ∧ Yemen.status != "peace" ∧ "Iran enriches uranium to weapons-grade levels".time > "one day" → "The United States is concerned about the deal with Iran".context >= "significant risk")
+15. Q[x0, y0](Iran.enrichment_level >= "weapons-grade" ∧ Hezbollah.status <= "militant organization" ∧ Yemen.status = "civil war" → "Iran enriches uranium to weapons-grade levels".time != "immediately")
+16. Q[x0, y0](Iran.enrichment_level < "high-grade" ∧ Hezbollah.status > "non-violent group" ∧ Yemen.status < "stability" ∧ "Iran has been training and funding Hezbollah".goal < "regional stability" → "The U.N. Security Council discussed the humanitarian situation".time < "next week")
+17. Q[x0, y0](Iran.enrichment_level != "low-grade" ∧ Hezbollah.status >= "terrorist organization" ∧ Yemen.status > "conflict-free" → "Iran ratified the Additional Protocol allowing expanded access to nuclear sites".permanence != "temporary")
+18. Q[x0, y0](Yemen.status = "civil war" ∧ "Iran enriches uranium to weapons-grade levels".time < "one week" ∧ "The United States is concerned about the deal with Iran".context > "non-issue" → executions.count >= "30")
+19. Q[x0, y0](Iran.enrichment_level > "low-grade" ∧ Hezbollah.status < "militant group" ∧ Yemen.status != "peace" → "Iran has been training and funding Hezbollah".goal = "support for allies")
+20. Q[x0, y0](Iran.enrichment_level < "high-grade" ∧ Hezbollah.status != "political organization" ∧ Yemen.status < "stability" ∧ "Iran enriches uranium to weapons-grade levels".time >= "one day" → "The agreement imposes restrictions and obligations almost exclusively on Iran".sanctions > "strict sanctions")
+21. Q[x0, y0](Iran.enrichment_level = "weapons-grade" ∧ Hezbollah.status >= "terrorist organization" ∧ Yemen.status = "civil war" → "Iran enriches uranium to weapons-grade levels".time < "one week")
+22. Q[x0, y0](Hezbollah.status < "militant group" ∧ Yemen.status != "peace" ∧ "Iran has been training and funding Hezbollah".goal > "diplomatic relations" → "The United States is concerned about the deal with Iran".context = "potential catastrophic instability in the Middle East")
+23. Q[x0, y0](Iran.enrichment_level != "low-grade" ∧ Hezbollah.status > "non-violent group" ∧ Yemen.status < "stability" ∧ "Iran enriches uranium to weapons-grade levels".time > "one day" → "The U.N. Security Council discussed the humanitarian situation".time >= "Saturday")
+24. Q[x0, y0](Iran.enrichment_level < "high-grade" ∧ Hezbollah.status <= "militant organization" ∧ Yemen.status = "civil war" → "Iran ratified the Additional Protocol allowing expanded access to nuclear sites".permanence < "limited duration")
+25. Q[x0, y0](Yemen.status != "peace" ∧ "Iran enriches uranium

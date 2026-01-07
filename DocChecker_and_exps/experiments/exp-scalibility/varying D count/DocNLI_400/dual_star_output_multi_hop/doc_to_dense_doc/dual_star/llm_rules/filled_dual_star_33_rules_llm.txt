@@ -1,0 +1,113 @@
+Predicates:
+1. Vinson.location = "Dallas"
+2. Vinson.time = "after returning from a trip"
+3. "returned to Dallas from a trip to visit family in".doc_index = "35"
+4. "returned to Dallas from a trip to visit family in".source_domain = "N/A"
+5. "returned to Dallas from a trip to visit family in".source_id = "Index_35"
+6. "was diagnosed with".doc_index = "35"
+7. "was diagnosed with".source_domain = "N/A"
+8. "was diagnosed with".source_id = "Index_35"
+9. M_NLI(Vinson.location, "Houston")
+10. M_NLI(Vinson.time, "before returning from a trip")
+11. T("Vinson returned to Dallas", "Vinson did not return to Dallas", tau)
+12. tau(Vinson.location, "Houston")
+13. violate("Vinson returned to Dallas", "Vinson did not return to Dallas")
+14. Factual("Vinson returned to Dallas", "Vinson did not return to Dallas")
+15. Causal("Vinson was diagnosed with a condition", "Vinson was never diagnosed with a condition")
+16. Numeric("Vinson visited family 3 times", "Vinson visited family 0 times")
+17. Temporal("Vinson returned from a trip in 2023", "Vinson returned from a trip in 2024")
+18. Content("Vinson enjoyed his trip", "Vinson disliked his trip")
+19. Relation("Vinson is in Dallas", "Vinson is in Houston")
+20. "returned to Dallas from a trip to visit family in".time = "2023"
+21. "was diagnosed with".condition = "flu"
+22. Vinson.condition = "healthy"
+23. M_NLI("Vinson returned to Dallas", "Vinson is still in Houston")
+24. T("Vinson returned to Dallas", "Vinson is still in Houston", tau)
+25. tau("returned to Dallas", "still in Houston")
+26. violate("Vinson was diagnosed with flu", "Vinson is healthy")
+27. Factual("Vinson was diagnosed with flu", "Vinson was never diagnosed with flu")
+28. Causal("Vinson returned to Dallas", "Vinson is still in Houston")
+29. Numeric("Vinson visited family 5 times", "Vinson visited family 2 times")
+30. Temporal("Vinson returned from a trip in 2022", "Vinson returned from a trip in 2023")
+31. Content("Vinson found the trip enjoyable", "Vinson found the trip exhausting")
+32. Relation("Vinson is in Dallas", "Vinson is in a different city")
+33. "returned to Dallas from a trip to visit family in".duration = "1 week"
+34. "was diagnosed with".severity = "mild"
+35. Vinson.severity = "none"
+36. M_NLI("Vinson returned to Dallas", "Vinson is still away")
+37. T("Vinson returned to Dallas", "Vinson is still away", tau)
+38. tau("returned to Dallas", "is still away")
+39. violate("Vinson was diagnosed with mild flu", "Vinson is completely healthy")
+40. Factual("Vinson was diagnosed with mild flu", "Vinson was diagnosed with severe flu")
+41. Causal("Vinson returned to Dallas", "Vinson is still visiting family")
+42. Numeric("Vinson visited family 4 times", "Vinson visited family 1 time")
+43. Temporal("Vinson returned from a trip in 2021", "Vinson returned from a trip in 2023")
+44. Content("Vinson enjoyed the family visit", "Vinson was bored during the family visit")
+45. Relation("Vinson is in Dallas", "Vinson is in Austin")
+46. "returned to Dallas from a trip to visit family in".purpose = "family gathering"
+47. "was diagnosed with".type = "viral infection"
+48. Vinson.type = "no illness"
+49. M_NLI("Vinson returned to Dallas", "Vinson is still traveling")
+50. T("Vinson returned to Dallas", "Vinson is still traveling", tau)
+51. tau("returned to Dallas", "is still traveling")
+52. violate("Vinson was diagnosed with viral infection", "Vinson is in perfect health")
+53. Factual("Vinson was diagnosed with viral infection", "Vinson was diagnosed with bacterial infection")
+54. Causal("Vinson returned to Dallas", "Vinson is still on vacation")
+55. Numeric("Vinson visited family 6 times", "Vinson visited family 3 times")
+56. Temporal("Vinson returned from a trip in 2020", "Vinson returned from a trip in 2023")
+57. Content("Vinson had a great time", "Vinson had a terrible time")
+58. Relation("Vinson is in Dallas", "Vinson is in another state")
+59. "returned to Dallas from a trip to visit family in".motive = "family reunion"
+60. "was diagnosed with".diagnosis_date = "2023-01-01"
+61. Vinson.diagnosis_date = "2023-01-02"
+62. M_NLI("Vinson returned to Dallas", "Vinson is still in another city")
+63. T("Vinson returned to Dallas", "Vinson is still in another city", tau)
+64. tau("returned to Dallas", "is still in another city")
+65. violate("Vinson was diagnosed on January 1", "Vinson was diagnosed on January 2")
+66. Factual("Vinson was diagnosed on January 1", "Vinson was diagnosed on January 3")
+67. Causal("Vinson returned to Dallas", "Vinson is still visiting relatives")
+68. Numeric("Vinson visited family 7 times", "Vinson visited family 4 times")
+69. Temporal("Vinson returned from a trip in 2019", "Vinson returned from a trip in 2023")
+70. Content("Vinson loved the family visit", "Vinson hated the family visit")
+71. Relation("Vinson is in Dallas", "Vinson is in a different country")
+72. "returned to Dallas from a trip to visit family in".outcome = "successful visit"
+73. "was diagnosed with".treatment = "antibiotics"
+74. Vinson.treatment = "no treatment"
+75. M_NLI("Vinson returned to Dallas", "Vinson is still away visiting family")
+76. T("Vinson returned to Dallas", "Vinson is still away visiting family", tau)
+77. tau("returned to Dallas", "is still away visiting family")
+78. violate("Vinson was diagnosed with antibiotics", "Vinson received no treatment")
+79. Factual("Vinson was diagnosed with antibiotics", "Vinson was diagnosed with pain relief")
+80. Causal("Vinson returned to Dallas", "Vinson is still on a trip")
+81. Numeric("Vinson visited family 8 times", "Vinson visited family 5 times")
+82. Temporal
+violate(x0, y0)
+
+Rules:
+1. Q[Vinson, "Dallas"](Vinson.location = "Dallas" ∧ Vinson.time = "after returning from a trip" → violate("Vinson returned to Dallas", "Vinson did not return to Dallas"))
+2. Q[Vinson, "Houston"](M_NLI(Vinson.location, "Houston") ∧ Vinson.location = "Dallas" → violate("Vinson is in Dallas", "Vinson is in Houston"))
+3. Q[Vinson, "Houston"](M_NLI(Vinson.time, "before returning from a trip") ∧ Vinson.time = "after returning from a trip" → violate("Vinson returned from a trip", "Vinson did not return from a trip"))
+4. Q[Vinson, "healthy"](Vinson.condition = "healthy" ∧ violate("Vinson was diagnosed with flu", "Vinson is healthy") → violate("Vinson was diagnosed with flu", "Vinson is healthy"))
+5. Q[Vinson, "Dallas"](Relation("Vinson is in Dallas", "Vinson is in Houston") ∧ Vinson.location = "Dallas" → violate("Vinson is in Dallas", "Vinson is in Houston"))
+6. Q[Vinson, "2023"](Temporal("Vinson returned from a trip in 2023", "Vinson returned from a trip in 2024") ∧ "returned to Dallas from a trip to visit family in".time = "2023" → violate("Vinson returned from a trip in 2023", "Vinson returned from a trip in 2024"))
+7. Q[Vinson, "healthy"](Vinson.condition = "healthy" ∧ "was diagnosed with".condition = "flu" ∧ violate("Vinson was diagnosed with flu", "Vinson is healthy") → violate("Vinson was diagnosed with flu", "Vinson is healthy"))
+8. Q[Vinson, "Dallas"](M_NLI("Vinson returned to Dallas", "Vinson is still in Houston") ∧ Vinson.location = "Dallas" → violate("Vinson returned to Dallas", "Vinson is still in Houston"))
+9. Q[Vinson, "2023"](Temporal("Vinson returned from a trip in 2022", "Vinson returned from a trip in 2023") ∧ "returned to Dallas from a trip to visit family in".time = "2023" → violate("Vinson returned from a trip in 2022", "Vinson returned from a trip in 2023"))
+10. Q[Vinson, "Dallas"](Causal("Vinson returned to Dallas", "Vinson is still visiting family") ∧ Vinson.location = "Dallas" → violate("Vinson returned to Dallas", "Vinson is still visiting family"))
+11. Q[Vinson, "healthy"](Vinson.condition = "healthy" ∧ "was diagnosed with".severity = "mild" ∧ violate("Vinson was diagnosed with mild flu", "Vinson is completely healthy") → violate("Vinson was diagnosed with mild flu", "Vinson is completely healthy"))
+12. Q[Vinson, "Dallas"](Relation("Vinson is in Dallas", "Vinson is in Austin") ∧ Vinson.location = "Dallas" → violate("Vinson is in Dallas", "Vinson is in Austin"))
+13. Q[Vinson, "2023"](Temporal("Vinson returned from a trip in 2021", "Vinson returned from a trip in 2023") ∧ "returned to Dallas from a trip to visit family in".time = "2023" → violate("Vinson returned from a trip in 2021", "Vinson returned from a trip in 2023"))
+14. Q[Vinson, "Dallas"](M_NLI("Vinson returned to Dallas", "Vinson is still traveling") ∧ Vinson.location = "Dallas" → violate("Vinson returned to Dallas", "Vinson is still traveling"))
+15. Q[Vinson, "healthy"](Vinson.condition = "healthy" ∧ "was diagnosed with".type = "viral infection" ∧ violate("Vinson was diagnosed with viral infection", "Vinson is in perfect health") → violate("Vinson was diagnosed with viral infection", "Vinson is in perfect health"))
+16. Q[Vinson, "Dallas"](Causal("Vinson returned to Dallas", "Vinson is still on vacation") ∧ Vinson.location = "Dallas" → violate("Vinson returned to Dallas", "Vinson is still on vacation"))
+17. Q[Vinson, "Dallas"](M_NLI("Vinson returned to Dallas", "Vinson is still away visiting family") ∧ Vinson.location = "Dallas" → violate("Vinson returned to Dallas", "Vinson is still away visiting family"))
+18. Q[Vinson, "Dallas"](Relation("Vinson is in Dallas", "Vinson is in a different country") ∧ Vinson.location = "Dallas" → violate("Vinson is in Dallas", "Vinson is in a different country"))
+19. Q[Vinson, "Dallas"](M_NLI("Vinson returned to Dallas", "Vinson is still in another city") ∧ Vinson.location = "Dallas" → violate("Vinson returned to Dallas", "Vinson is still in another city"))
+20. Q[Vinson, "Dallas"](T("Vinson returned to Dallas", "Vinson is still away", tau) ∧ Vinson.location = "Dallas" → violate("Vinson returned to Dallas", "Vinson is still away"))
+21. Q[Vinson, "Dallas"](Causal("Vinson returned to Dallas", "Vinson is still visiting relatives") ∧ Vinson.location = "Dallas" → violate("Vinson returned to Dallas", "Vinson is still visiting relatives"))
+22. Q[Vinson, "Dallas"](Factual("Vinson was diagnosed with flu", "Vinson was never diagnosed with flu") ∧ Vinson.condition = "healthy" → violate("Vinson was diagnosed with flu", "Vinson was never diagnosed with flu"))
+23. Q[Vinson, "Dallas"](Causal("Vinson returned to Dallas", "Vinson is still visiting family") ∧ Vinson.location = "Dallas" → violate("Vinson returned to Dallas", "Vinson is still visiting family"))
+24. Q[Vinson, "Dallas"](Numeric("Vinson visited family 3 times", "Vinson visited family 0 times") ∧ Vinson.location = "Dallas" → violate("Vinson visited family 3 times", "Vinson visited family 0 times"))
+25. Q[Vinson, "Dallas"](Temporal("Vinson returned from a trip in 2020", "Vinson returned from a trip in 2023") ∧ Vinson.location = "Dallas" → violate("Vinson returned from a trip in 2020", "Vinson returned from a trip in 2023"))
+26. Q[Vinson, "Dallas"](Content("Vinson enjoyed the family visit", "Vinson was bored during the family visit") ∧ Vinson.location = "Dallas" → violate("Vinson enjoyed the family visit", "Vinson was bored during the family visit"))
+27. Q

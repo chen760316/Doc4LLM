@@ -1,0 +1,127 @@
+Predicates:
+1. Ginger.status = "divorced"
+2. Randall.status = "married"
+3. Ginger.awarded_options = "50%"
+4. Randall.holdings = "fair value options"
+5. Onex_Food_Services.inc = "Onex Food Services, Inc."
+6. divorce_decree.type = "divorce decree"
+7. divorce_decree.source_id = "32605"
+8. divorce_decree.awards = "half of the fair value options"
+9. fair_value_options.percentage = "50%"
+10. Randall_C_Boyd.name = "Randall C. Boyd"
+11. Ginger.name = "Ginger"
+12. divorce_decree.context = "divorce decree"
+13. divorce_decree.holder = "Randall C. Boyd"
+14. Ginger.receives = "options to purchase shares"
+15. Randall.owns = "options in Onex Food Services"
+16. divorce_decree.awarded_to = "Ginger"
+17. Ginger.divorce_date = "2023-01-15"
+18. Randall.divorce_date = "2023-01-15"
+19. divorce_decree.date = "2023-01-15"
+20. Ginger.legal_status = "divorced"
+21. Randall.legal_status = "single"
+22. Ginger.entitled_options = "50%"
+23. Randall.entitled_options = "0%"
+24. divorce_decree.value = "fair value options"
+25. Ginger.income = "unknown"
+26. Randall.income = "unknown"
+27. divorce_decree.held_by = "Randall C. Boyd"
+28. Onex_Food_Services.inc.value = "unknown"
+29. Ginger.ownership_percentage = "50%"
+30. Randall.ownership_percentage = "0%"
+31. divorce_decree.awards_percentage = "50%"
+32. divorce_decree.holder_name = "Randall C. Boyd"
+33. Ginger.divorce_settlement = "options to purchase shares"
+34. Randall.divorce_settlement = "none"
+35. divorce_decree.awarded_value = "half"
+36. Ginger.legal_claim = "fair value options"
+37. Randall.legal_claim = "none"
+38. divorce_decree.legal_document = "true"
+39. Ginger.legal_rights = "options"
+40. Randall.legal_rights = "none"
+41. divorce_decree.enforcement = "mandatory"
+42. Ginger.entitlement = "50%"
+43. Randall.entitlement = "0%"
+44. divorce_decree.enforced = "true"
+45. Ginger.valuation = "unknown"
+46. Randall.valuation = "unknown"
+47. divorce_decree.finalized = "true"
+48. Ginger.ownership_status = "entitled"
+49. Randall.ownership_status = "not entitled"
+50. divorce_decree.legal_effect = "binding"
+51. Ginger.legal_obligation = "none"
+52. Randall.legal_obligation = "none"
+53. divorce_decree.terms = "50% to Ginger"
+54. Ginger.legal_fees = "unknown"
+55. Randall.legal_fees = "unknown"
+56. divorce_decree.judgment = "final"
+57. Ginger.legal_advice = "sought"
+58. Randall.legal_advice = "none"
+59. divorce_decree.appeal = "not applicable"
+60. Ginger.legal_status_change = "true"
+61. Randall.legal_status_change = "false"
+62. divorce_decree.impact = "significant"
+63. Ginger.future_income = "unknown"
+64. Randall.future_income = "unknown"
+65. divorce_decree.impact_on_income = "true"
+66. Ginger.legal_rights_change = "true"
+67. Randall.legal_rights_change = "false"
+68. divorce_decree.impact_on_assets = "true"
+69. Ginger.assets = "options"
+70. Randall.assets = "none"
+71. divorce_decree.impact_on_assets_value = "true"
+72. Ginger.legal_recourse = "available"
+73. Randall.legal_recourse = "none"
+74. divorce_decree.legal_recourse_available = "true"
+75. Ginger.legal_claims = "valid"
+76. Randall.legal_claims = "invalid"
+77. divorce_decree.legal_claims_status = "valid"
+78. Ginger.legal_documentation = "complete"
+79. Randall.legal_documentation = "incomplete"
+80. divorce_decree.legal_documentation_status = "complete"
+81. M_NLI(Ginger.status, Randall.status)
+82. T(Ginger.divorce_date, Randall.divorce_date, tau)
+83. tau(Ginger.awarded_options, Randall.entitled_options)
+84. violate(Ginger, Randall)
+85. Factual(Ginger, Randall)
+86. Causal(Ginger, Randall)
+87. Numeric(Ginger, Randall)
+88. Temporal(Ginger, Randall)
+89. Relation(Ginger, Randall)
+90. Content(Ginger, Randall)
+91. Negation(Ginger, Randall)
+92. M_NLI(divorce_decree.type, Randall.status)
+93. T(divorce_decree.holder, Randall.name, tau)
+94. tau(divorce_decree.awarded_value, Randall.ownership_percentage)
+95. violate(divorce_decree, Randall)
+96. Factual(divorce_decree, Randall)
+97. Causal(divorce_decree, Randall)
+98. Numeric(divorce_decree, Randall)
+99. Temporal(divorce_decree, Randall)
+100. Relation(divorce_decree, Randall)
+violate(x0, y0)
+
+Rules:
+1. Q[Ginger, Randall](Ginger.status = "divorced" ∧ Randall.status = "married" → violate(Ginger, Randall))
+2. Q[Ginger, Randall](Ginger.legal_status = "divorced" ∧ Randall.legal_status = "single" → violate(Ginger, Randall))
+3. Q[Ginger, Randall](Ginger.entitled_options = "50%" ∧ Randall.entitled_options = "0%" → violate(Ginger, Randall))
+4. Q[Ginger, Randall](Ginger.awarded_options = "50%" ∧ Randall.holdings = "fair value options" ∧ divorce_decree.awarded_to = "Ginger" → violate(Ginger, Randall))
+5. Q[Ginger, Randall](Ginger.divorce_date = "2023-01-15" ∧ Randall.divorce_date = "2023-01-15" ∧ divorce_decree.date = "2023-01-15" → violate(Ginger, Randall))
+6. Q[Ginger, Randall](Ginger.legal_rights = "options" ∧ Randall.legal_rights = "none" ∧ divorce_decree.terms = "50% to Ginger" → violate(Ginger, Randall))
+7. Q[Ginger, Randall](Ginger.legal_claim = "fair value options" ∧ Randall.legal_claim = "none" ∧ divorce_decree.awarded_value = "half" ∧ Randall.legal_obligation = "none" → violate(Ginger, Randall))
+8. Q[Ginger, Randall](Ginger.ownership_percentage = "50%" ∧ Randall.ownership_percentage = "0%" ∧ divorce_decree.awards_percentage = "50%" ∧ Randall.assets = "none" → violate(Ginger, Randall))
+9. Q[Ginger, Randall](Ginger.legal_documentation = "complete" ∧ Randall.legal_documentation = "incomplete" ∧ divorce_decree.legal_documentation_status = "complete" ∧ Randall.legal_claims = "invalid" → violate(Ginger, Randall))
+10. Q[Ginger, Randall](Ginger.legal_fees = "unknown" ∧ Randall.legal_fees = "unknown" ∧ divorce_decree.impact_on_income = "true" ∧ Randall.future_income = "unknown" ∧ Ginger.future_income = "unknown" → violate(Ginger, Randall))
+11. Q[Ginger, Randall](Ginger.legal_rights_change = "true" ∧ Randall.legal_rights_change = "false" ∧ divorce_decree.enforcement = "mandatory" ∧ Randall.legal_recourse = "none" ∧ divorce_decree.legal_recourse_available = "true" → violate(Ginger, Randall))
+12. Q[Ginger, Randall](Ginger.valuation = "unknown" ∧ Randall.valuation = "unknown" ∧ divorce_decree.impact_on_assets_value = "true" ∧ Randall.ownership_status = "not entitled" ∧ Ginger.ownership_status = "entitled" → violate(Ginger, Randall))
+13. Q[Ginger, Randall](Ginger.receives = "options to purchase shares" ∧ Randall.divorce_settlement = "none" ∧ divorce_decree.holder = "Randall C. Boyd" ∧ Randall.entitlement = "0%" ∧ divorce_decree.awarded_to = "Ginger" ∧ Randall.legal_claims = "invalid" → violate(Ginger, Randall))
+14. Q[Ginger, Randall](Ginger.assets = "options" ∧ Randall.assets = "none" ∧ divorce_decree.impact_on_assets = "true" ∧ Randall.legal_obligation = "none" ∧ divorce_decree.legal_effect = "binding" ∧ Randall.legal_claim = "none" → violate(Ginger, Randall))
+15. Q[Ginger, Randall](Ginger.legal_status_change = "true" ∧ Randall.legal_status_change = "false" ∧ divorce_decree.finalized = "true" ∧ Randall.legal_rights = "none" ∧ divorce_decree.legal_documentation = "complete" ∧ Randall.legal_claims = "invalid" → violate(Ginger, Randall))
+16. Q[Ginger, Randall](Ginger.divorce_settlement = "options to purchase shares" ∧ Randall.divorce_settlement = "none" ∧ divorce_decree.holder_name = "Randall C. Boyd" ∧ Randall.legal_rights = "none" ∧ divorce_decree.terms = "50% to Ginger" ∧ Randall.legal_claims = "invalid" → violate(Ginger, Randall))
+17. Q[Ginger, Randall](Ginger.legal_advice = "sought" ∧ Randall.legal_advice = "none" ∧ divorce_decree.appeal = "not applicable" ∧ Randall.legal_claims = "invalid" ∧ divorce_decree.legal_documentation_status = "complete" ∧ Randall.legal_obligation = "none" → violate(Ginger, Randall))
+18. Q[Ginger, Randall](Ginger.income = "unknown" ∧ Randall.income = "unknown" ∧ divorce_decree.impact_on_income = "true" ∧ Randall.future_income = "unknown" ∧ Ginger.future_income = "unknown" ∧ divorce_decree.impact_on_assets = "true" → violate(Ginger, Randall))
+19. Q[Ginger, Randall](Ginger.legal_rights = "options" ∧ Randall.legal_rights = "none" ∧ divorce_decree.enforced = "true" ∧ Randall.legal_claims = "invalid" ∧ divorce_decree.legal_recourse_available = "true" ∧ Randall.legal_obligation = "none" → violate(Ginger, Randall))
+20. Q[Ginger, Randall](Ginger.ownership_status = "entitled" ∧ Randall.ownership_status = "not entitled" ∧ divorce_decree.value = "fair value options" ∧ Randall.entitlement = "0%" ∧ divorce_decree.awarded_to = "Ginger" ∧ Randall.legal_claims = "invalid" → violate(Ginger, Randall))
+21. Q[Ginger, Randall](Ginger.valuation = "unknown" ∧ Randall.valuation = "unknown" ∧ divorce_decree.impact_on_assets_value = "true" ∧ Randall.legal_obligation = "none" ∧ divorce_decree.legal_effect = "binding" ∧ Randall.legal_claim = "none" → violate(Ginger, Randall))
+22. Q[Ginger, Randall](Ginger.legal_claims = "valid" ∧ Randall.legal_claims = "invalid" ∧ divorce_decree.legal_claims_status = "valid" ∧ Randall.legal_documentation = "incomplete" ∧ divorce_decree.legal_documentation_status = "complete" ∧ Randall.legal_obligation = "none" → violate(Ginger, Randall))
+23. Q[Ginger, Randall](Ginger.legal_fees = "unknown" ∧ Randall.legal_fees = "unknown"

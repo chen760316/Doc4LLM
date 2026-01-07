@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 203)
+S1: Under the table was snow and an alligator.
+S2: The booger on the balloon fell on top of an alligator, never to be seen again.
+
+Predicates:
+1. Snow.location
+2. Alligator1.location
+3. Alligator2.location
+4. Booger.location
+5. Balloon.location
+6. Booger.fell_on
+7. Alligator1.has_snow
+8. Alligator2.has_snow
+9. Booger.is_on
+10. Balloon.has_booger
+11. Alligator1.is_under_table
+12. Alligator2.is_under_table
+13. Booger.is_visible
+14. Alligator1.is_visible
+15. Alligator2.is_visible
+16. Booger.is_not_visible
+17. Relation(Booger, Alligator1)
+18. Relation(Booger, Alligator2)
+19. M_NLI(S1, S2)
+20. violate(Booger, Alligator1)
+21. violate(Booger, Alligator2)
+22. Alligator1.is_unique
+23. Alligator2.is_unique
+24. Snow.is_below
+25. Alligator1.is_below
+26. Alligator2.is_below
+27. Booger.is_above
+28. Balloon.is_above
+29. Alligator1.is_not_visible
+30. Alligator2.is_not_visible
+
+Rules:
+1. Q[Under, Alligator1.location, Alligator2.location](Alligator1.is_under_table == true → Relation(Alligator1, Alligator2))
+2. Q[Under, Booger.location, Alligator1.location](Booger.is_above == true → Relation(Booger, Alligator1))
+3. Q[Under, Booger.location, Alligator2.location](Booger.is_above == true → Relation(Booger, Alligator2))
+4. Q[Under, Alligator1.has_snow, Alligator2.has_snow](Alligator1.has_snow == true → Relation(Alligator1, Alligator2))
+5. Q[Under, Alligator1.is_visible, Alligator2.is_visible](Alligator1.is_visible == false → Relation(Alligator1, Alligator2))
+6. Q[Under, Booger.is_visible, Alligator1.is_visible](Booger.is_visible == false → Relation(Booger, Alligator1))
+7. Q[Under, Booger.is_visible, Alligator2.is_visible](Booger.is_visible == false → Relation(Booger, Alligator2))
+8. Q[Under, Booger.fell_on, Alligator1.location](Booger.fell_on == Alligator1 → Relation(Booger, Alligator1))
+9. Q[Under, Booger.fell_on, Alligator2.location](Booger.fell_on == Alligator2 → Relation(Booger, Alligator2))
+10. Q[Under, Alligator1.is_unique, Alligator2.is_unique](Alligator1.is_unique == true → Relation(Alligator1, Alligator2))
+11. Q[Under, Alligator1.is_not_visible, Alligator2.is_not_visible](Alligator1.is_not_visible == true → Relation(Alligator1, Alligator2))
+12. Q[Under, Snow.location, Alligator1.location](Snow.location == Alligator1.location → Relation(Snow, Alligator1))
+13. Q[Under, Snow.location, Alligator2.location](Snow.location == Alligator2.location → Relation(Snow, Alligator2))
+14. Q[Under, Balloon.location, Alligator1.location](Balloon.location == Alligator1.location → Relation(Balloon, Alligator1))
+15. Q[Under, Balloon.location, Alligator2.location](Balloon.location == Alligator2.location → Relation(Balloon, Alligator2))
+16. Q[Under, Alligator1.is_below, Alligator2.is_below](Alligator1.is_below == true → Relation(Alligator1, Alligator2))
+17. Q[Under, Alligator1.is_above, Alligator2.is_above](Alligator1.is_above == false → Relation(Alligator1, Alligator2))
+18. Q[Under, Booger.is_not_visible, Alligator1.is_visible](Booger.is_not_visible == true → Relation(Booger, Alligator1))
+19. Q[Under, Booger.is_not_visible, Alligator2.is_visible](Booger.is_not_visible == true → Relation(Booger, Alligator2))
+20. Q[Under, Alligator1.is_under_table, Alligator2.is_under_table](Alligator1.is_under_table == true → Relation(Alligator1, Alligator2))
+21. Q[Under, Booger.is_on, Alligator1.location](Booger.is_on == Alligator1 → Relation(Booger, Alligator1))
+22. Q[Under, Booger.is_on, Alligator2.location](Booger.is_on == Alligator2 → Relation(Booger, Alligator2))
+23. Q[Under, Alligator1.has_snow, Snow.location](Alligator1.has_snow == true → Relation(Alligator1, Snow))
+24. Q[Under, Alligator2.has_snow, Snow.location](Alligator2.has_snow == true → Relation(Alligator2, Snow))
+25. Q[Under, Alligator1.is_visible, Booger.is_visible](Alligator1.is_visible == false → Relation(Alligator1, Booger))
+26. Q[Under, Alligator2.is_visible, Booger.is_visible](Alligator2.is_visible == false → Relation(Alligator2, Booger))
+27. Q[Under, Alligator1.is_below, Booger.is_above](Alligator1.is_below == true → Relation(Alligator1, Booger))
+28. Q[Under, Alligator2.is_below, Booger.is_above](Alligator2.is_below == true → Relation(Alligator2, Booger))
+29. Q[Under, Alligator1.is_unique, Booger.is_visible](Alligator1.is_unique == true → Relation(Alligator1, Booger))
+30. Q[Under, Alligator2.is_unique, Booger.is_visible](Alligator2.is_unique == true → Relation(Alligator2, Booger))

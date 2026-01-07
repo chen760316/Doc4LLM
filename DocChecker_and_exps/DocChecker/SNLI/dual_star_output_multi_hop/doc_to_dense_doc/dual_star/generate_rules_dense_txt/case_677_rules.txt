@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 677)
+S1: The rusty lock is attached to a chain.
+S2: The rusty lock was cut and hanging from the chain.
+
+Predicates:
+1. rusty_lock.attached_to(chain)
+2. rusty_lock.cut_and_hanging_from(chain)
+3. chain.has(rusty_lock)
+4. rusty_lock.is_cut()
+5. rusty_lock.is_hanging()
+6. chain.is_attached_to(rusty_lock)
+7. lock.is_rusty()
+8. lock.is_cut()
+9. lock.is_hanging()
+10. chain.is_not_cut()
+11. chain.is_not_hanging()
+12. M_NLI(S1, S2)
+13. Causal(rusty_lock.attached_to(chain), rusty_lock.cut_and_hanging_from(chain))
+14. violate(rusty_lock.attached_to(chain), rusty_lock.cut_and_hanging_from(chain))
+15. rusty_lock.is_not_attached_to(chain)
+16. chain.is_not_attached_to(rusty_lock)
+17. rusty_lock.is_a(lock)
+18. chain.is_a(chain)
+19. rusty_lock.has_attribute(rust)
+20. chain.has_attribute(attachment)
+21. lock.is_not_hanging()
+22. lock.is_not_attached_to(chain)
+23. chain.is_not_cut_and_hanging()
+24. rusty_lock.is_not_cut_and_hanging()
+25. M_NLI(rusty_lock.attached_to(chain), rusty_lock.cut_and_hanging_from(chain))
+26. Causal(lock.is_attached_to(chain), lock.is_not_cut())
+27. violate(lock.is_attached_to(chain), lock.is_cut())
+28. chain.has(rusty_lock) => lock.is_attached_to(chain)
+29. lock.is_cut() => lock.is_not_attached_to(chain)
+30. chain.is_attached_to(lock) => lock.is_not_cut()
+
+Rules:
+1. Q[The, rusty_lock.attached_to(chain) → Causal(rusty_lock.attached_to(chain), rusty_lock.cut_and_hanging_from(chain))]
+2. Q[The, rusty_lock.is_cut() → Causal(rusty_lock.is_cut(), rusty_lock.cut_and_hanging_from(chain))]
+3. Q[The, rusty_lock.is_hanging() → Causal(rusty_lock.is_hanging(), rusty_lock.cut_and_hanging_from(chain))]
+4. Q[The, chain.has(rusty_lock) → Causal(chain.has(rusty_lock), rusty_lock.cut_and_hanging_from(chain))]
+5. Q[The, chain.is_attached_to(rusty_lock) → Causal(chain.is_attached_to(rusty_lock), rusty_lock.cut_and_hanging_from(chain))]
+6. Q[The, rusty_lock.is_not_attached_to(chain) → Causal(rusty_lock.is_not_attached_to(chain), rusty_lock.cut_and_hanging_from(chain))]
+7. Q[The, chain.is_not_attached_to(rusty_lock) → Causal(chain.is_not_attached_to(rusty_lock), rusty_lock.cut_and_hanging_from(chain))]
+8. Q[The, rusty_lock.is_a(lock) → Causal(rusty_lock.is_a(lock), rusty_lock.cut_and_hanging_from(chain))]
+9. Q[The, chain.is_a(chain) → Causal(chain.is_a(chain), rusty_lock.cut_and_hanging_from(chain))]
+10. Q[The, rusty_lock.has_attribute(rust) → Causal(rusty_lock.has_attribute(rust), rusty_lock.cut_and_hanging_from(chain))]
+11. Q[The, chain.has_attribute(attachment) → Causal(chain.has_attribute(attachment), rusty_lock.cut_and_hanging_from(chain))]
+12. Q[The, lock.is_rusty() → Causal(lock.is_rusty(), rusty_lock.cut_and_hanging_from(chain))]
+13. Q[The, lock.is_cut() → Causal(lock.is_cut(), rusty_lock.cut_and_hanging_from(chain))]
+14. Q[The, lock.is_hanging() → Causal(lock.is_hanging(), rusty_lock.cut_and_hanging_from(chain))]
+15. Q[The, chain.is_not_cut() → Causal(chain.is_not_cut(), rusty_lock.cut_and_hanging_from(chain))]
+16. Q[The, chain.is_not_hanging() → Causal(chain.is_not_hanging(), rusty_lock.cut_and_hanging_from(chain))]
+17. Q[The, rusty_lock.is_not_cut_and_hanging() → Causal(rusty_lock.is_not_cut_and_hanging(), rusty_lock.cut_and_hanging_from(chain))]
+18. Q[The, M_NLI(S1, S2) → Causal(M_NLI(S1, S2), rusty_lock.cut_and_hanging_from(chain))]
+19. Q[The, violate(rusty_lock.attached_to(chain), rusty_lock.cut_and_hanging_from(chain)) → Causal(violate(rusty_lock.attached_to(chain), rusty_lock.cut_and_hanging_from(chain), rusty_lock.cut_and_hanging_from(chain))]
+20. Q[The, Causal(lock.is_attached_to(chain), lock.is_not_cut()) → Causal(Causal(lock.is_attached_to(chain), lock.is_not_cut()), rusty_lock.cut_and_hanging_from(chain))]
+21. Q[The, violate(lock.is_attached_to(chain), lock.is_cut()) → Causal(violate(lock.is_attached_to(chain), lock.is_cut()), rusty_lock.cut_and_hanging_from(chain))]
+22. Q[The, chain.has(rusty_lock) => lock.is_attached_to(chain) → Causal(chain.has(rusty_lock) => lock.is_attached_to(chain), rusty_lock.cut_and_hanging_from(chain))]
+23. Q[The, lock.is_cut() => lock.is_not_attached_to(chain) → Causal(lock.is_cut() => lock.is_not_attached_to(chain), rusty_lock.cut_and_hanging_from(chain))]
+24. Q[The, chain.is_attached_to(lock) => lock.is_not_cut() → Causal(chain.is_attached_to(lock) => lock.is_not_cut(), rusty_lock.cut_and_hanging_from(chain))]
+25. Q[The, rusty_lock.is_cut() → Causal(rusty_lock.is_cut(), rusty_lock.is_not_attached_to(chain))]
+26. Q[The, rusty_lock.is_hanging() → Causal(rusty_lock.is_hanging(), rusty_lock.is_not_attached_to(chain))]
+27. Q[The, chain.is_not_cut() → Causal(chain.is_not_cut(), rusty_lock.is_not_attached_to(chain))]
+28. Q[The, chain.is_not_hanging() → Causal(chain.is_not_hanging(), rusty_lock.is_not_attached_to(chain))]
+29. Q[The, rusty_lock.is_not_cut() → Causal(rusty_lock.is_not_cut(), rusty_lock.is_not_attached_to(chain))]
+30. Q[The, rusty_lock.is_not_hanging() → Causal(rusty_lock.is_not_hanging(), rusty_lock.is_not_attached_to(chain))]

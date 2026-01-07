@@ -1,0 +1,69 @@
+Predicates:
+Emily Clark__S0.age != 42
+Emily Clark__S0.age != Emily Clark__S2.age
+Emily Clark__S0.age < 47
+Emily Clark__S0.age <= 42
+Emily Clark__S0.age = 42
+Emily Clark__S0.age > 37
+Emily Clark__S0.age >= 42
+Emily Clark__S0.country_of_citizenship != "United Kingdom"
+Emily Clark__S0.country_of_citizenship != Emily Clark__S2.country_of_citizenship
+Emily Clark__S0.country_of_citizenship = "United Kingdom"
+Emily Clark__S0.location != "San Francisco"
+Emily Clark__S0.location = "San Francisco"
+Emily Clark__S0.nationality != "American"
+Emily Clark__S0.nationality = "American"
+Emily Clark__S0.occupation != "writer"
+Emily Clark__S0.occupation != Emily Clark__S2.occupation
+Emily Clark__S0.occupation = "writer"
+Emily Clark__S0.status != "married"
+Emily Clark__S0.status = "married"
+Emily Clark__S0_Emily Clark__S2.relationship != "same_entity"
+Emily Clark__S0_Emily Clark__S2.relationship = "same_entity"
+Emily Clark__S0_St. Mary's Hospital.relationship != "Emily Clark works at St. Mary's Hospital"
+Emily Clark__S0_St. Mary's Hospital.relationship != Emily Clark__S0_Emily Clark__S2.relationship
+Emily Clark__S0_St. Mary's Hospital.relationship != Emily Clark__S2_ICU.relationship
+Emily Clark__S0_St. Mary's Hospital.relationship = "Emily Clark works at St. Mary's Hospital"
+Emily Clark__S2.age != 42
+Emily Clark__S2.age < 47
+Emily Clark__S2.age <= 42
+Emily Clark__S2.age = 42
+Emily Clark__S2.age > 37
+Emily Clark__S2.age >= 42
+Emily Clark__S2.country_of_citizenship != "United Kingdom"
+Emily Clark__S2.country_of_citizenship = "United Kingdom"
+Emily Clark__S2.occupation != "writer"
+Emily Clark__S2.occupation = "writer"
+Emily Clark__S2_ICU.award != "community award for outstanding medical service"
+Emily Clark__S2_ICU.award = "community award for outstanding medical service"
+Emily Clark__S2_ICU.duration != "over six months"
+Emily Clark__S2_ICU.duration = "over six months"
+Emily Clark__S2_ICU.relationship != "Emily Clark volunteered in the ICU department"
+Emily Clark__S2_ICU.relationship != Emily Clark__S0_Emily Clark__S2.relationship
+Emily Clark__S2_ICU.relationship = "Emily Clark volunteered in the ICU department"
+Emily Clark__S2_ICU.year != 2020
+Emily Clark__S2_ICU.year < 2021
+Emily Clark__S2_ICU.year <= 2020
+Emily Clark__S2_ICU.year = 2020
+Emily Clark__S2_ICU.year > 2019
+Emily Clark__S2_ICU.year >= 2020
+contra("Emily Clark", "his influence beyo")
+contra("Emily Clark", "n collabora")
+contra("Emily Clark", "on")
+contra("St. Mary's Hospital", "n collabora")
+contra("St. Mary's Hospital", "on")
+linkage(Emily Clark__S0, Emily Clark__S2)
+linkage(Emily Clark__S0, St. Mary's Hospital)
+linkage(Emily Clark__S2, ICU)
+
+Rules:
+Q[Emily Clark__S0,Emily Clark__S2] (Emily Clark__S0.age = 42 ∧ Emily Clark__S0.age <= 42 → Emily Clark__S0.age <= 42)
+Q[Emily Clark__S0,Emily Clark__S2] (Emily Clark__S0.country_of_citizenship = "United Kingdom" ∧ contra("Emily Clark", "on") → contra("Emily Clark", "on"))
+Q[Emily Clark__S0,Emily Clark__S2] (Emily Clark__S0.location != "San Francisco" ∧ linkage(Emily Clark__S0, Emily Clark__S2) → linkage(Emily Clark__S0, Emily Clark__S2))
+Q[Emily Clark__S0,Emily Clark__S2] (Emily Clark__S0.occupation = "writer" ∧ Emily Clark__S0.nationality != "American" → Emily Clark__S0.nationality != "American")
+Q[Emily Clark__S0,Emily Clark__S2] (Emily Clark__S2.age > 37 ∧ Emily Clark__S0.occupation = "writer" → Emily Clark__S0.occupation = "writer")
+Q[Emily Clark__S0,Emily Clark__S2] (Emily Clark__S0_Emily Clark__S2.relationship = "same_entity" ∧ Emily Clark__S0_St. Mary's Hospital.relationship != Emily Clark__S2_ICU.relationship → Emily Clark__S0_Emily Clark__S2.relationship = "same_entity")
+Q[Emily Clark__S0,Emily Clark__S2] (Emily Clark__S2_ICU.year >= 2020 ∧ Emily Clark__S2_ICU.duration = "over six months" → Emily Clark__S2_ICU.year >= 2020)
+Q[Emily Clark__S0,Emily Clark__S2] (Emily Clark__S0_St. Mary's Hospital.relationship = "Emily Clark works at St. Mary's Hospital" ∧ Emily Clark__S2.age < 47 → Emily Clark__S2.age < 47)
+Q[Emily Clark__S0,Emily Clark__S2] (contra("Emily Clark", "n collabora") ∧ Emily Clark__S0.country_of_citizenship = "United Kingdom" → Emily Clark__S0.country_of_citizenship = "United Kingdom")
+Q[Emily Clark__S0,Emily Clark__S2] (Emily Clark__S2_ICU.duration = "over six months" ∧ Emily Clark__S0.occupation != Emily Clark__S2.occupation → Emily Clark__S0.occupation != Emily Clark__S2.occupation)

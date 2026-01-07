@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 1187)
+S1: I handed him out half a dollar, and that settled that.
+S2: I gave him 50 cents to settle the dispute.
+
+Predicates:
+1. Transaction.amount
+2. Transaction.method
+3. Transaction.participant
+4. Transaction.settlement
+5. Currency.value
+6. Currency.type
+7. Dispute.status
+8. Dispute.resolution
+9. Dispute.participant
+10. Amount.value
+11. Amount.type
+12. Amount.currency
+13. Settlement.method
+14. Settlement.amount
+15. Settlement.participant
+16. M_NLI(S1, S2)
+17. Numeric(0.50, 0.50)
+18. Numeric(0.50, 0.00)
+19. Numeric(0.50, 0.25)
+20. Numeric(0.50, 0.75)
+21. Numeric(0.50, 1.00)
+22. Numeric(0.50, 0.10)
+23. Numeric(0.50, 0.20)
+24. Numeric(0.50, 0.30)
+25. Numeric(0.50, 0.40)
+26. Numeric(0.50, 0.60)
+27. Numeric(0.50, 0.70)
+28. Numeric(0.50, 0.80)
+29. Numeric(0.50, 0.90)
+30. violate(0.50, 0.00)
+
+Rules:
+1. Q[handed, Transaction.amount, Amount.value](Transaction.amount == 0.50 → Numeric(0.50, 0.50))
+2. Q[gave, Transaction.amount, Amount.value](Transaction.amount == 0.50 → Numeric(0.50, 0.50))
+3. Q[settled, Transaction.settlement, Settlement.amount](Transaction.settlement == "dispute" → Numeric(0.50, 0.50))
+4. Q[handed, Amount.value, Currency.value](Amount.value == 0.50 → Numeric(0.50, 0.50))
+5. Q[gave, Amount.value, Currency.value](Amount.value == 0.50 → Numeric(0.50, 0.50))
+6. Q[settled, Dispute.status, Dispute.resolution](Dispute.status == "settled" → Numeric(0.50, 0.50))
+7. Q[handed, Settlement.amount, Amount.value](Settlement.amount == 0.50 → Numeric(0.50, 0.50))
+8. Q[gave, Settlement.amount, Amount.value](Settlement.amount == 0.50 → Numeric(0.50, 0.50))
+9. Q[settled, Settlement.amount, Amount.value](Settlement.amount == 0.50 → Numeric(0.50, 0.50))
+10. Q[handed, Transaction.participant, Dispute.participant](Transaction.participant == "him" → Numeric(0.50, 0.50))
+11. Q[gave, Transaction.participant, Dispute.participant](Transaction.participant == "him" → Numeric(0.50, 0.50))
+12. Q[settled, Transaction.participant, Dispute.participant](Transaction.participant == "him" → Numeric(0.50, 0.50))
+13. Q[handed, Currency.type, Amount.type](Currency.type == "dollar" → Numeric(0.50, 0.50))
+14. Q[gave, Currency.type, Amount.type](Currency.type == "dollar" → Numeric(0.50, 0.50))
+15. Q[settled, Currency.type, Amount.type](Currency.type == "dollar" → Numeric(0.50, 0.50))
+16. Q[handed, Amount.currency, Currency.type](Amount.currency == "dollar" → Numeric(0.50, 0.50))
+17. Q[gave, Amount.currency, Currency.type](Amount.currency == "dollar" → Numeric(0.50, 0.50))
+18. Q[settled, Amount.currency, Currency.type](Amount.currency == "dollar" → Numeric(0.50, 0.50))
+19. Q[handed, Dispute.participant, Transaction.participant](Dispute.participant == "him" → Numeric(0.50, 0.50))
+20. Q[gave, Dispute.participant, Transaction.participant](Dispute.participant == "him" → Numeric(0.50, 0.50))
+21. Q[settled, Dispute.participant, Transaction.participant](Dispute.participant == "him" → Numeric(0.50, 0.50))
+22. Q[handed, Amount.value, Settlement.amount](Amount.value == 0.50 → Numeric(0.50, 0.50))
+23. Q[gave, Amount.value, Settlement.amount](Amount.value == 0.50 → Numeric(0.50, 0.50))
+24. Q[settled, Amount.value, Settlement.amount](Amount.value == 0.50 → Numeric(0.50, 0.50))
+25. Q[handed, Amount.value, Transaction.amount](Amount.value == 0.50 → Numeric(0.50, 0.50))
+26. Q[gave, Amount.value, Transaction.amount](Amount.value == 0.50 → Numeric(0.50, 0.50))
+27. Q[settled, Amount.value, Transaction.amount](Amount.value == 0.50 → Numeric(0.50, 0.50))
+28. Q[handed, Settlement.participant, Transaction.participant](Settlement.participant == "him" → Numeric(0.50, 0.50))
+29. Q[gave, Settlement.participant, Transaction.participant](Settlement.participant == "him" → Numeric(0.50, 0.50))
+30. Q[settled, Settlement.participant, Transaction.participant](Settlement.participant == "him" → Numeric(0.50, 0.50))

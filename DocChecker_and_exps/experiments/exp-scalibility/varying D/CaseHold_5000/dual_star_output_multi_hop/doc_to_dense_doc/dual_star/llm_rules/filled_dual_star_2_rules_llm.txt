@@ -1,0 +1,94 @@
+Predicates:
+1. Defendant.assertion = "was not arrested until after taking actions underlying the charges"
+2. Vehicle.status = "imobile"
+3. Backpack.status = "searched"
+4. Appointed Counsel.conflict_of_interest = "True"
+5. Charges.attributes = "{'underlying_actions': True}"
+6. Offenses.attributes = "{'similar_conduct': True, 'occurred_time_frame': 'three months apart'}"
+7. "Defendant and Johnson were arrested.".time = "at the time of the assertion"
+8. "Both car and contents had been seized.".time = "at that point"
+9. "Defendant asserts that the automobile exception was extinguished.".source_id = "Index_9"
+10. "Defendant is the prevailing party and is presumably entitled to an award of costs.".source_id = "Index_20"
+11. "The defendant contends that he was not arrested until after he had taken the actions underlying the charges.".doc_index = "11"
+12. "The defendant does not contend that the vehicle was immobile when the stop occurred.".source_id = "Index_8"
+13. "The defendant contends that by the time the backpack was searched, the vehicle had been constructively impounded by the police.".method = "constructively impounded"
+14. "Defendant and Johnson were arrested.".source_domain = "N/A"
+15. "Both car and contents had been seized.".source_domain = "N/A"
+16. "Defendant asserts that the automobile exception was extinguished.".doc_index = "9"
+17. "Defendant is the prevailing party and is presumably entitled to an award of costs.".doc_index = "20"
+18. "The defendant asserts that the offenses involved similar conduct and occurred three months apart.".source_id = "Index_11"
+19. "The defendant contends that by the time the backpack was searched, the vehicle had been constructively impounded by the police.".time = "by the time the backpack was searched"
+20. "The defendant was deprived of his Sixth Amendment right to counsel due to a conflict of interest with appointed counsels.".source_id = "Index_12"
+21. "Defendant asserts that the automobile exception was extinguished.".source_domain = "N/A"
+22. "Defendant and Johnson were arrested.".doc_index = "9"
+23. "Both car and contents had been seized.".doc_index = "9"
+24. "The defendant contends that he was not arrested until after he had taken the actions underlying the charges.".source_domain = "N/A"
+25. "The defendant does not contend that the vehicle was immobile when the stop occurred.".doc_index = "8"
+26. "The defendant contends that by the time the backpack was searched, the vehicle had been constructively impounded by the police.".agent = "police"
+27. M_NLI(Defendant.assertion, Vehicle.status)
+28. M_NLI(Backpack.status, Charges.attributes)
+29. T("Defendant asserts that the automobile exception was extinguished.", "Defendant does not contend that the vehicle was immobile when the stop occurred.", tau)
+30. tau(Charges.attributes, Offenses.attributes)
+31. violate(x0, y0)
+32. Factual(x0, y0)
+33. Causal(x0, y0)
+34. Numeric(x0, y0)
+35. Temporal(x0, y0)
+36. Relation(x0, y0)
+37. Content(x0, y0)
+38. Factual(Defendant.assertion, Vehicle.status)
+39. Causal(Backpack.status, Charges.attributes)
+40. Numeric(Charges.attributes, Offenses.attributes)
+41. Temporal("Defendant and Johnson were arrested.", "Both car and contents had been seized.")
+42. Relation("Defendant asserts that the automobile exception was extinguished.", "The defendant does not contend that the vehicle was immobile when the stop occurred.")
+43. Content("The defendant contends that he was not arrested until after he had taken the actions underlying the charges.", "The defendant was deprived of his Sixth Amendment right to counsel due to a conflict of interest with appointed counsels.")
+44. M_NLI("Defendant is the prevailing party and is presumably entitled to an award of costs.", "Defendant asserts that the automobile exception was extinguished.")
+45. T("Both car and contents had been seized.", "Defendant and Johnson were arrested.", tau)
+46. tau(Backpack.status, Vehicle.status)
+47. violate(Charges.attributes, Offenses.attributes)
+48. Factual(Backpack.status, "searched")
+49. Causal("Defendant and Johnson were arrested.", "The defendant contends that by the time the backpack was searched, the vehicle had been constructively impounded by the police.")
+50. Numeric("Defendant asserts that the automobile exception was extinguished.", "Defendant is the prevailing party and is presumably entitled to an award of costs.")
+51. Temporal("The defendant contends that he was not arrested until after he had taken the actions underlying the charges.", "The defendant asserts that the offenses involved similar conduct and occurred three months apart.")
+52. Relation("The defendant does not contend that the vehicle was immobile when the stop occurred.", "The defendant was deprived of his Sixth Amendment right to counsel due to a conflict of interest with appointed counsels.")
+53. Content("Defendant asserts that the automobile exception was extinguished.", "Defendant and Johnson were arrested.")
+54. M_NLI("The defendant contends that by the time the backpack was searched, the vehicle had been constructively impounded by the police.", "Both car and contents had been seized.")
+55. T("Defendant is the prevailing party and is presumably entitled to an award of costs.", "The defendant contends that he was not arrested until after he had taken the actions underlying the charges.", tau)
+56. tau(Backpack.status, "searched")
+57. violate(Defendant.assertion, Vehicle.status)
+58. Factual("Defendant and Johnson were arrested.", "The defendant contends that he was not arrested until after he had taken the actions underlying the charges.")
+59. Causal("Both car and contents had been seized.", "The defendant contends that by the time the backpack was searched, the vehicle had been constructively impounded by the police.")
+60. Numeric("Defendant asserts that the automobile exception was extinguished.", "The defendant asserts that the offenses involved similar conduct and occurred three months apart.")
+61. Temporal("The defendant does not contend that the vehicle was immobile when the stop occurred.", "The defendant was deprived of his Sixth Amendment right to counsel due to a conflict of interest with appointed counsels.")
+62. Relation("Defendant is the prevailing party and is presumably entitled to an award of costs.", "The defendant contends that he was not arrested until after he had taken the actions underlying the charges.")
+63. Content("Both car and contents had been seized.", "Defendant asserts that the automobile exception was extinguished.")
+64. M_NLI("The defendant contends that he was not arrested until after he had taken the actions underlying the charges.", "The defendant does not contend that the vehicle was immobile when the stop occurred.")
+65. T("Charges.attributes", "Offenses.attributes", tau)
+66
+violate(x0, y0)
+
+Rules:
+1. Q[x0, y0](Defendant.assertion ∧ Vehicle.status → violate(x0, y0))
+2. Q[x0, y0](Backpack.status ∧ Appointed Counsel.conflict_of_interest = "True" → violate(x0, y0))
+3. Q[x0, y0](Charges.attributes = "{'underlying_actions': True}" ∧ "Defendant and Johnson were arrested.".time = "at the time of the assertion" → violate(x0, y0))
+4. Q[x0, y0](Offenses.attributes = "{'similar_conduct': True, 'occurred_time_frame': 'three months apart'}" ∧ "Both car and contents had been seized.".time = "at that point" → violate(x0, y0))
+5. Q[x0, y0](Defendant.assertion ∧ "Defendant contends that he was not arrested until after he had taken the actions underlying the charges." → violate(x0, y0))
+6. Q[x0, y0](Defendant.assertion ∧ Vehicle.status ∧ "Defendant and Johnson were arrested.".time = "at the time of the assertion" → violate(x0, y0))
+7. Q[x0, y0](Backpack.status ∧ Appointed Counsel.conflict_of_interest = "True" ∧ "Defendant asserts that the automobile exception was extinguished." → violate(x0, y0))
+8. Q[x0, y0](Charges.attributes = "{'underlying_actions': True}" ∧ Offenses.attributes = "{'similar_conduct': True, 'occurred_time_frame': 'three months apart'}" → violate(x0, y0))
+9. Q[x0, y0](Defendant.assertion ∧ "Both car and contents had been seized.".time = "at that point" ∧ "Defendant contends that he was not arrested until after he had taken the actions underlying the charges." → violate(x0, y0))
+10. Q[x0, y0](Vehicle.status ∧ "Defendant asserts that the automobile exception was extinguished." ∧ "The defendant does not contend that the vehicle was immobile when the stop occurred." → violate(x0, y0))
+11. Q[x0, y0](Defendant.assertion ∧ Vehicle.status ∧ Backpack.status ∧ Appointed Counsel.conflict_of_interest = "True" → violate(x0, y0))
+12. Q[x0, y0](Charges.attributes = "{'underlying_actions': True}" ∧ Offenses.attributes = "{'similar_conduct': True, 'occurred_time_frame': 'three months apart'}" ∧ "Defendant and Johnson were arrested.".time = "at the time of the assertion" → violate(x0, y0))
+13. Q[x0, y0](Defendant.assertion ∧ "Both car and contents had been seized.".time = "at that point" ∧ "Defendant contends that by the time the backpack was searched, the vehicle had been constructively impounded by the police." → violate(x0, y0))
+14. Q[x0, y0](Backpack.status ∧ "Defendant asserts that the automobile exception was extinguished." ∧ "The defendant does not contend that the vehicle was immobile when the stop occurred." ∧ Appointed Counsel.conflict_of_interest = "True" → violate(x0, y0))
+15. Q[x0, y0](Defendant.assertion ∧ Vehicle.status ∧ "Defendant contends that he was not arrested until after he had taken the actions underlying the charges." ∧ "Defendant and Johnson were arrested.".time = "at the time of the assertion" → violate(x0, y0))
+16. Q[x0, y0](Charges.attributes = "{'underlying_actions': True}" ∧ Offenses.attributes = "{'similar_conduct': True, 'occurred_time_frame': 'three months apart'}" ∧ "Both car and contents had been seized.".time = "at that point" ∧ "Defendant asserts that the automobile exception was extinguished." → violate(x0, y0))
+17. Q[x0, y0](Defendant.assertion ∧ Vehicle.status ∧ Backpack.status ∧ "Defendant contends that he was not arrested until after he had taken the actions underlying the charges." ∧ Appointed Counsel.conflict_of_interest = "True" → violate(x0, y0))
+18. Q[x0, y0](Defendant.assertion ∧ "Both car and contents had been seized.".time = "at that point" ∧ "Defendant contends that by the time the backpack was searched, the vehicle had been constructively impounded by the police." ∧ "Defendant and Johnson were arrested.".time = "at the time of the assertion" → violate(x0, y0))
+19. Q[x0, y0](Backpack.status ∧ "Defendant asserts that the automobile exception was extinguished." ∧ "The defendant does not contend that the vehicle was immobile when the stop occurred." ∧ Charges.attributes = "{'underlying_actions': True}" → violate(x0, y0))
+20. Q[x0, y0](Defendant.assertion ∧ Vehicle.status ∧ "Defendant contends that he was not arrested until after he had taken the actions underlying the charges." ∧ "Both car and contents had been seized.".time = "at that point" ∧ Appointed Counsel.conflict_of_interest = "True" → violate(x0, y0))
+21. Q[x0, y0](Defendant.assertion ∧ Vehicle.status ∧ Backpack.status ∧ "Defendant contends that by the time the backpack was searched, the vehicle had been constructively impounded by the police." ∧ "Defendant and Johnson were arrested.".time = "at the time of the assertion" → violate(x0, y0))
+22. Q[x0, y0](Charges.attributes = "{'underlying_actions': True}" ∧ Offenses.attributes = "{'similar_conduct': True, 'occurred_time_frame': 'three months apart'}" ∧ "Both car and contents had been seized.".time = "at that point" ∧ "Defendant asserts that the automobile exception was extinguished." ∧ Appointed Counsel.conflict_of_interest = "True" → violate(x0, y0))
+23. Q[x0, y0](Defendant.assertion ∧ Vehicle.status ∧ "Defendant contends that he was not arrested until after he had taken the actions underlying the charges." ∧ "Both car and contents had been seized.".time = "at that point" ∧ "Defendant asserts that the offenses involved similar conduct and occurred three months apart." → violate(x0, y0))
+24. Q[x0, y0](Backpack.status ∧ "Defendant asserts that the automobile exception was extinguished." ∧ "The defendant does not contend that the vehicle was immobile when the stop occurred." ∧ Charges.attributes = "{'underlying_actions': True}" ∧ Offenses.attributes = "{'similar_conduct': True

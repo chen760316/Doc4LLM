@@ -1,0 +1,33 @@
+Predicates:
+Mildred.label != "Person"
+Mildred.label = "Person"
+Mildred.name != "Mildred"
+Mildred.name != Philip.name
+Mildred.name = "Mildred"
+Mildred.status != "supported financially"
+Mildred.status != Philip.status
+Mildred.status = "supported financially"
+Mildred___Philip.contradiction_type = "Factual"
+Mildred___Philip.relationship = "Mildred tells Philip she is getting married to another man"
+Mildred___Philip.source_id = "3488771846_3"
+None_ML(Philip.attrs, Mildred.attrs)
+Philip.label != "Person"
+Philip.label = "Person"
+Philip.name != "Philip"
+Philip.name = "Philip"
+Philip.occupation != "medical student"
+Philip.occupation = "medical student"
+Philip.status != "licensed doctor"
+Philip.status = "licensed doctor"
+
+Rules:
+Q[Mildred,Mildred] (Philip.label != "Person" ∧ Philip.occupation != "medical student" ∧ Mildred___Philip.contradiction_type = "Factual" ∧ Mildred___Philip.source_id = "3488771846_3" ∧ Philip.occupation = "medical student" ∧ Mildred.status = "supported financially" → Philip.name != "Philip")
+Q[Mildred,Mildred] (Mildred___Philip.relationship = "Mildred tells Philip she is getting married to another man" ∧ Philip.status = "licensed doctor" → None_ML(Philip.attrs, Mildred.attrs))
+Q[Mildred,Mildred] (Philip.label = "Person" ∧ Philip.name = "Philip" ∧ Mildred.label = "Person" ∧ Mildred.name != Philip.name → Philip.label != "Person")
+Q[Mildred,Mildred] (Philip.label = "Person" ∧ Mildred.label = "Person" ∧ Philip.label != "Person" ∧ Philip.status = "licensed doctor" ∧ Mildred.status = "supported financially" → Mildred___Philip.contradiction_type = "Factual")
+Q[Mildred,Mildred] (None_ML(Philip.attrs, Mildred.attrs) ∧ Mildred.status != Philip.status ∧ Mildred___Philip.contradiction_type = "Factual" → Mildred.name != Philip.name)
+Q[Mildred,Mildred] (None_ML(Philip.attrs, Mildred.attrs) ∧ Mildred___Philip.source_id = "3488771846_3" ∧ Philip.name != "Philip" → Mildred.name = "Mildred")
+Q[Mildred,Mildred] (Mildred.name != Philip.name ∧ Mildred.status != "supported financially" → Mildred___Philip.source_id = "3488771846_3")
+Q[Mildred,Mildred] (Philip.occupation = "medical student" ∧ Mildred___Philip.relationship = "Mildred tells Philip she is getting married to another man" ∧ Mildred.status = "supported financially" ∧ Mildred.name != "Mildred" ∧ Philip.label != "Person" → Philip.status = "licensed doctor")
+Q[Mildred,Mildred] (Philip.status = "licensed doctor" ∧ None_ML(Philip.attrs, Mildred.attrs) ∧ Mildred.name != "Mildred" ∧ Mildred___Philip.source_id = "3488771846_3" → Mildred.status = "supported financially")
+Q[Mildred,Mildred] (Philip.status != "licensed doctor" ∧ Philip.name = "Philip" ∧ Philip.occupation != "medical student" ∧ Mildred___Philip.source_id = "3488771846_3" ∧ Mildred___Philip.relationship = "Mildred tells Philip she is getting married to another man" ∧ Philip.status = "licensed doctor" → Mildred.status != "supported financially")

@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 109)
+S1: A woman walks.
+S2: A woman is wearing a black coat.
+
+Predicates:
+1. Woman.walks
+2. Woman.wearing_coat
+3. Woman.movement
+4. Woman.stationary
+5. Coat.color
+6. Coat.black
+7. Movement.indicates
+8. Stationary.indicates
+9. Relationship.implies
+10. Walking.implies
+11. Wearing.indicates
+12. M_NLI(S1, S2)
+13. Negation(S1, S2)
+14. Violate(S1, S2)
+15. Woman.is
+16. Woman.has
+17. Coat.is
+18. Coat.has
+19. Movement.is
+20. Stationary.is
+21. Walking.is
+22. Wearing.is
+23. Woman.attributes
+24. Coat.attributes
+25. Movement.attributes
+26. Stationary.attributes
+27. Walking.attributes
+28. Wearing.attributes
+29. Relationship.attributes
+30. Implication.attributes
+
+Rules:
+1. Q[woman, Woman.walks, Woman.stationary](Woman.walks == true → Negation(Woman.walks, Woman.stationary))
+2. Q[woman, Woman.walks, Woman.wearing_coat](Woman.walks == true → Negation(Woman.walks, Woman.wearing_coat))
+3. Q[woman, Woman.movement, Woman.stationary](Woman.movement == true → Negation(Woman.movement, Woman.stationary))
+4. Q[woman, Woman.movement, Woman.wearing_coat](Woman.movement == true → Negation(Woman.movement, Woman.wearing_coat))
+5. Q[woman, Woman.stationary, Woman.wearing_coat](Woman.stationary == true → Negation(Woman.stationary, Woman.wearing_coat))
+6. Q[woman, Woman.walking, Woman.stationary](Woman.walking == true → Negation(Woman.walking, Woman.stationary))
+7. Q[woman, Woman.walking, Woman.wearing_coat](Woman.walking == true → Negation(Woman.walking, Woman.wearing_coat))
+8. Q[woman, Woman.has, Woman.stationary](Woman.has == "movement" → Negation(Woman.has, Woman.stationary))
+9. Q[woman, Woman.has, Woman.wearing_coat](Woman.has == "movement" → Negation(Woman.has, Woman.wearing_coat))
+10. Q[woman, Woman.is, Woman.stationary](Woman.is == "moving" → Negation(Woman.is, Woman.stationary))
+11. Q[woman, Woman.is, Woman.wearing_coat](Woman.is == "moving" → Negation(Woman.is, Woman.wearing_coat))
+12. Q[woman, Movement.indicates, Stationary.indicates](Movement.indicates == true → Negation(Movement.indicates, Stationary.indicates))
+13. Q[woman, Walking.implies, Stationary.indicates](Walking.implies == true → Negation(Walking.implies, Stationary.indicates))
+14. Q[woman, Wearing.indicates, Stationary.indicates](Wearing.indicates == true → Negation(Wearing.indicates, Stationary.indicates))
+15. Q[woman, Woman.attributes, Woman.stationary](Woman.attributes == "walking" → Negation(Woman.attributes, Woman.stationary))
+16. Q[woman, Woman.attributes, Woman.wearing_coat](Woman.attributes == "walking" → Negation(Woman.attributes, Woman.wearing_coat))
+17. Q[woman, Movement.attributes, Woman.stationary](Movement.attributes == "walking" → Negation(Movement.attributes, Woman.stationary))
+18. Q[woman, Movement.attributes, Woman.wearing_coat](Movement.attributes == "walking" → Negation(Movement.attributes, Woman.wearing_coat))
+19. Q[woman, Stationary.attributes, Woman.wearing_coat](Stationary.attributes == "not walking" → Negation(Stationary.attributes, Woman.wearing_coat))
+20. Q[woman, Coat.color, Coat.black](Coat.color == "black" → Negation(Coat.color, Coat.black))
+21. Q[woman, Coat.has, Coat.black](Coat.has == "color" → Negation(Coat.has, Coat.black))
+22. Q[woman, Woman.walks, Movement.is](Woman.walks == true → Negation(Woman.walks, Movement.is))
+23. Q[woman, Woman.wearing_coat, Movement.is](Woman.wearing_coat == true → Negation(Woman.wearing_coat, Movement.is))
+24. Q[woman, Woman.is, Movement.is](Woman.is == "walking" → Negation(Woman.is, Movement.is))
+25. Q[woman, Woman.has, Movement.is](Woman.has == "movement" → Negation(Woman.has, Movement.is))
+26. Q[woman, Coat.is, Coat.black](Coat.is == "black" → Negation(Coat.is, Coat.black))
+27. Q[woman, Woman.attributes, Movement.is](Woman.attributes == "stationary" → Negation(Woman.attributes, Movement.is))
+28. Q[woman, Woman.attributes, Coat.black](Woman.attributes == "wearing coat" → Negation(Woman.attributes, Coat.black))
+29. Q[woman, Relationship.implies, Woman.stationary](Relationship.implies == true → Negation(Relationship.implies, Woman.stationary))
+30. Q[woman, Implication.attributes, Woman.stationary](Implication.attributes == "walking" → Negation(Implication.attributes, Woman.stationary))

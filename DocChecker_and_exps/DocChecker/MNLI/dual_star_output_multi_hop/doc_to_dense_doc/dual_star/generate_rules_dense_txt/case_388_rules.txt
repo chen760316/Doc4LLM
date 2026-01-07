@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 388)
+S1: N o e s t i m a t e o f t h i s i s a v a i l a b l e b u t i f t h e g r o w t h i s h i g h , t h e p o s t a l s e r v i c e l o s s f o r t h e p r o g r a m c o u l d b e l o w , w h i c h w o u l d y i e l d a d i s c o u n t l a r g e r t h a n 4 . 5 a .
+S2: T h e r e i s a n e s t i m a t e t h a t i f t h e g r o w t h i s h i g h , p o s t a l s e r v i c e l o s s f o r t h e p r o g r a m w i l l b e a t a r e c o r d h i g h .
+
+Predicates:
+1. S1.estimate.available
+2. S1.growth.high
+3. S1.postal_service_loss.low
+4. S1.discount.larger_than_4.5a
+5. S2.estimate.exists
+6. S2.growth.high
+7. S2.postal_service_loss.record_high
+8. S1.postal_service_loss.relationship.S2.postal_service_loss
+9. S1.growth.relationship.S2.growth
+10. S1.discount.relationship.S2.postal_service_loss
+11. M_NLI(S1, S2)
+12. Factual(S1.postal_service_loss.low, S2.postal_service_loss.record_high)
+13. violate(S1.postal_service_loss.low, S2.postal_service_loss.record_high)
+14. S1.growth.high.relationship.S1.postal_service_loss.low
+15. S2.growth.high.relationship.S2.postal_service_loss.record_high
+16. S1.discount.larger_than_4.5a.relationship.S1.growth.high
+17. S2.estimate.exists.relationship.S2.growth.high
+18. S1.postal_service_loss.low.relationship.S1.discount.larger_than_4.5a
+19. S2.postal_service_loss.record_high.relationship.S2.estimate.exists
+20. S1.postal_service_loss.low.relationship.S2.postal_service_loss.record_high
+21. S1.growth.high.relationship.S2.growth.high
+22. S1.estimate.available.relationship.S1.growth.high
+23. S2.estimate.exists.relationship.S2.postal_service_loss.record_high
+24. S1.discount.larger_than_4.5a.relationship.S1.estimate.available
+25. S1.postal_service_loss.low.relationship.S1.discount.larger_than_4.5a
+26. S2.postal_service_loss.record_high.relationship.S2.estimate.exists
+27. S1.growth.high.relationship.S1.postal_service_loss.low
+28. S2.growth.high.relationship.S2.postal_service_loss.record_high
+29. M_NLI(S1, S2).relationship.Factual(S1.postal_service_loss.low, S2.postal_service_loss.record_high)
+30. violate(S1.growth.high, S2.growth.high)
+
+Rules:
+1. Q[estimate, S1.estimate.available, S2.estimate.exists](S1.estimate.available == true → Factual(S1.postal_service_loss.low, S2.postal_service_loss.record_high))
+2. Q[growth, S1.growth.high, S2.growth.high](S1.growth.high == true → Factual(S1.postal_service_loss.low, S2.postal_service_loss.record_high))
+3. Q[postal_service_loss, S1.postal_service_loss.low, S2.postal_service_loss.record_high](S1.postal_service_loss.low == true → Factual(S1.postal_service_loss.low, S2.postal_service_loss.record_high))
+4. Q[discount, S1.discount.larger_than_4.5a, S1.postal_service_loss.low](S1.discount.larger_than_4.5a == true → Factual(S1.postal_service_loss.low, S2.postal_service_loss.record_high))
+5. Q[estimate, S2.estimate.exists, S2.postal_service_loss.record_high](S2.estimate.exists == true → Factual(S1.postal_service_loss.low, S2.postal_service_loss.record_high))
+6. Q[growth, S2.growth.high, S2.postal_service_loss.record_high](S2.growth.high == true → Factual(S1.postal_service_loss.low, S2.postal_service_loss.record_high))
+7. Q[postal_service_loss, S1.postal_service_loss.low, S1.discount.larger_than_4.5a](S1.postal_service_loss.low == true → Factual(S1.postal_service_loss.low, S2.postal_service_loss.record_high))
+8. Q[growth, S1.growth.high, S1.postal_service_loss.low](S1.growth.high == true → Factual(S1.postal_service_loss.low, S2.postal_service_loss.record_high))
+9. Q[growth, S2.growth.high, S1.postal_service_loss.low](S2.growth.high == true → Factual(S1.postal_service_loss.low, S2.postal_service_loss.record_high))
+10. Q[postal_service_loss, S2.postal_service_loss.record_high, S1.growth.high](S2.postal_service_loss.record_high == true → Factual(S1.postal_service_loss.low, S2.postal_service_loss.record_high))
+11. Q[estimate, S1.estimate.available, S1.growth.high](S1.estimate.available == true → Factual(S1.postal_service_loss.low, S2.postal_service_loss.record_high))
+12. Q[growth, S1.growth.high, S2.estimate.exists](S1.growth.high == true → Factual(S1.postal_service_loss.low, S2.postal_service_loss.record_high))
+13. Q[postal_service_loss, S1.postal_service_loss.low, S2.estimate.exists](S1.postal_service_loss.low == true → Factual(S1.postal_service_loss.low, S2.postal_service_loss.record_high))
+14. Q[discount, S1.discount.larger_than_4.5a, S2.postal_service_loss.record_high](S1.discount.larger_than_4.5a == true → Factual(S1.postal_service_loss.low, S2.postal_service_loss.record_high))
+15. Q[growth, S1.growth.high, S2.postal_service_loss.record_high](S1.growth.high == true → Factual(S1.postal_service_loss.low, S2.postal_service_loss.record_high))
+16. Q[postal_service_loss, S2.postal_service_loss.record_high, S1.discount.larger_than_4.5a](S2.postal_service_loss.record_high == true → Factual(S1.postal_service_loss.low, S2.postal_service_loss.record_high))
+17. Q[growth, S2.growth.high, S1.discount.larger_than_4.5a](S2.growth.high == true → Factual(S1.postal_service_loss.low, S2.postal_service_loss.record_high))
+18. Q[estimate, S2.estimate.exists, S1.growth.high](S2.estimate.exists == true → Factual(S1.postal_service_loss.low, S2.postal_service_loss.record_high))
+19. Q[growth, S1.growth.high, S1.discount.larger_than_4.5a](S1.growth.high == true → Factual(S1.postal_service_loss.low, S2.postal_service_loss.record_high))
+20. Q[postal_service_loss, S1.postal_service_loss.low, S1.growth.high](S1.postal_service_loss.low == true → Factual(S1.postal_service_loss.low, S2.postal_service_loss.record_high))
+21. Q[growth, S2.growth.high, S1.postal_service_loss.low](S2.growth.high == true → Factual(S1.postal_service_loss.low, S2.postal_service_loss.record_high))
+22. Q[estimate, S1.estimate.available, S2.postal_service_loss.record_high](S1.estimate.available == true → Factual(S1.postal_service_loss.low, S2.postal_service_loss.record_high))
+23. Q[growth, S1.growth.high, S2.estimate.exists](S1.growth.high == true → Factual(S1.postal_service_loss.low, S2.postal_service_loss.record_high))
+24. Q[postal_service_loss, S2.postal_service_loss.record_high, S1.growth.high](S2.postal_service_loss.record_high == true → Factual(S1.postal_service_loss.low, S2.postal_service_loss.record_high))
+25. Q[discount, S1.discount.larger_than_4.5a, S2.growth.high](S1.discount.larger_than_4.5a == true → Factual(S1.postal_service_loss.low, S2.postal_service_loss.record_high))
+26. Q[growth, S1.growth.high, S2.postal_service_loss.record_high](S1.growth.high == true → Factual(S1.postal_service_loss.low, S2.postal_service_loss.record_high))
+27. Q[postal_service_loss, S1.postal_service_loss.low, S2.estimate.exists](S1.postal_service_loss.low == true → Factual(S1.postal_service_loss.low, S2.postal_service_loss.record_high))
+28. Q[growth, S2.growth.high, S1.estimate.available](S2.growth.high == true → Factual(S1.postal_service_loss.low, S2.postal_service_loss.record_high))
+29. Q[postal_service_loss, S1.postal_service_loss.low, S1.growth.high](S1.postal_service_loss.low == true → Factual(S1.postal_service_loss.low, S2.postal_service_loss.record_high))
+30. Q[growth, S1.growth.high, S2.postal_service_loss.record_high](S1.growth.high == true → Factual(S1.postal_service_loss.low, S2.postal_service_loss.record

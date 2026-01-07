@@ -1,0 +1,76 @@
+Predicates:
+Blanco Posnet.label != "Person"
+Blanco Posnet.label = "Person"
+Blanco Posnet.location != "American West"
+Blanco Posnet.location != Brother.location
+Blanco Posnet.location = "American West"
+Blanco Posnet.name != "Blanco Posnet"
+Blanco Posnet.name != Brother.name
+Blanco Posnet.name != Feemy.name
+Blanco Posnet.name != Sheriff.name
+Blanco Posnet.name = "Blanco Posnet"
+Blanco Posnet.occupation != "local drunk and reprobate"
+Blanco Posnet.occupation != Feemy.occupation
+Blanco Posnet.occupation != Sheriff.occupation
+Blanco Posnet.occupation = "local drunk and reprobate"
+Blanco Posnet.status != "released"
+Blanco Posnet.status != Brother.status
+Blanco Posnet.status != Feemy.status
+Blanco Posnet.status != Sheriff.status
+Blanco Posnet.status = "released"
+Blanco Posnet___Brother.doc_id = "3488771919_7"
+Blanco Posnet___Brother.relationship = "Blanco left his brother's house before being accused."
+Blanco Posnet___Brother.time = "early hours of the morning"
+Blanco Posnet___Feemy.doc_id = "3488771919_7"
+Blanco Posnet___Feemy.relationship != Blanco Posnet___Brother.relationship
+Blanco Posnet___Feemy.relationship != Blanco Posnet___Sheriff.relationship
+Blanco Posnet___Feemy.relationship = "Blanco offers to marry Feemy in thanks for her help."
+Blanco Posnet___Feemy.response = "Feemy accepts"
+Blanco Posnet___Sheriff.doc_id = "3488771919_7"
+Blanco Posnet___Sheriff.relationship != Blanco Posnet___Brother.relationship
+Blanco Posnet___Sheriff.relationship = "Blanco Posnet is accused of stealing a horse belonging to the Sheriff."
+Brother.label != "Person"
+Brother.label = "Person"
+Brother.location != "England"
+Brother.location = "England"
+Brother.name != "Brother"
+Brother.name = "Brother"
+Brother.status != "brother/husband"
+Brother.status = "brother/husband"
+Feemy.label != "Person"
+Feemy.label = "Person"
+Feemy.name != "Feemy"
+Feemy.name != Brother.name
+Feemy.name != Sheriff.name
+Feemy.name = "Feemy"
+Feemy.occupation != "local prostitute"
+Feemy.occupation != Sheriff.occupation
+Feemy.occupation = "local prostitute"
+Feemy.status != "witness"
+Feemy.status != Brother.status
+Feemy.status != Sheriff.status
+Feemy.status = "witness"
+None_ML(Blanco Posnet___Feemy.attrs, Blanco Posnet___Sheriff.attrs)
+None_ML(Brother.attrs, Sheriff.attrs)
+Sheriff.label != "Person"
+Sheriff.label = "Person"
+Sheriff.name != "Sheriff"
+Sheriff.name != Brother.name
+Sheriff.name = "Sheriff"
+Sheriff.occupation != "Sheriff"
+Sheriff.occupation = "Sheriff"
+Sheriff.status != "owner of the horse"
+Sheriff.status != Brother.status
+Sheriff.status = "owner of the horse"
+
+Rules:
+Q[Blanco Posnet,Blanco Posnet] (Blanco Posnet___Feemy.relationship != Blanco Posnet___Sheriff.relationship ∧ Brother.label = "Person" ∧ Sheriff.status = "owner of the horse" → Brother.status = "brother/husband")
+Q[Blanco Posnet,Blanco Posnet] (Blanco Posnet.status != Feemy.status ∧ Blanco Posnet.occupation != Feemy.occupation ∧ Sheriff.occupation != "Sheriff" ∧ Blanco Posnet___Feemy.relationship != Blanco Posnet___Brother.relationship ∧ Sheriff.occupation = "Sheriff" ∧ Sheriff.status != "owner of the horse" → Feemy.status != "witness")
+Q[Blanco Posnet,Blanco Posnet] (Blanco Posnet.status != Brother.status ∧ Blanco Posnet.location != "American West" → Blanco Posnet.name != Sheriff.name)
+Q[Blanco Posnet,Blanco Posnet] (Blanco Posnet___Brother.relationship = "Blanco left his brother's house before being accused." ∧ Blanco Posnet___Feemy.response = "Feemy accepts" ∧ Blanco Posnet___Feemy.relationship != Blanco Posnet___Sheriff.relationship ∧ Feemy.status = "witness" → Blanco Posnet.occupation = "local drunk and reprobate")
+Q[Blanco Posnet,Blanco Posnet] (Blanco Posnet.name != "Blanco Posnet" ∧ Blanco Posnet.occupation != Sheriff.occupation ∧ Feemy.occupation != Sheriff.occupation ∧ Blanco Posnet.status = "released" ∧ Brother.status = "brother/husband" → Brother.label != "Person")
+Q[Blanco Posnet,Blanco Posnet] (Blanco Posnet___Sheriff.relationship != Blanco Posnet___Brother.relationship ∧ Blanco Posnet___Feemy.doc_id = "3488771919_7" ∧ Blanco Posnet.status != Brother.status ∧ Feemy.label != "Person" ∧ Blanco Posnet___Brother.doc_id = "3488771919_7" → Sheriff.label != "Person")
+Q[Blanco Posnet,Blanco Posnet] (Feemy.status != Sheriff.status ∧ Blanco Posnet.status != Brother.status ∧ Blanco Posnet___Feemy.response = "Feemy accepts" → Blanco Posnet.location != Brother.location)
+Q[Blanco Posnet,Blanco Posnet] (Brother.label != "Person" ∧ None_ML(Blanco Posnet___Feemy.attrs, Blanco Posnet___Sheriff.attrs) ∧ Blanco Posnet___Brother.time = "early hours of the morning" ∧ Blanco Posnet___Feemy.relationship != Blanco Posnet___Sheriff.relationship → Blanco Posnet___Sheriff.doc_id = "3488771919_7")
+Q[Blanco Posnet,Blanco Posnet] (Sheriff.label = "Person" ∧ Feemy.label != "Person" → Blanco Posnet___Brother.doc_id = "3488771919_7")
+Q[Blanco Posnet,Blanco Posnet] (Blanco Posnet___Feemy.relationship = "Blanco offers to marry Feemy in thanks for her help." ∧ Feemy.name != "Feemy" ∧ Blanco Posnet___Brother.doc_id = "3488771919_7" ∧ Feemy.status = "witness" ∧ Blanco Posnet.label = "Person" ∧ Blanco Posnet.name != Sheriff.name → Sheriff.occupation = "Sheriff")

@@ -1,0 +1,91 @@
+Predicates:
+1. Close.occupation = "stage actress"
+2. Close.nationality = "American"
+3. Close.status = "active"
+4. Close.location = "New York"
+5. Close.appeared_in("The Real Thing", 1983)
+6. Close.appeared_in("Barnum", 1980)
+7. Close.began_professional_stage_career("Love for Love", 1974)
+8. Close.appeared_in_both("New York", "Los Angeles")
+9. Barnum.year = "1980"
+10. Love for Love.year = "1974"
+11. The Real Thing.year = "1983"
+12. Close.award = "Tony Award for Best Actress in a Play"
+13. Close.doc_index = "63"
+14. Close.source_domain = "N/A"
+15. Close.source_id = "Index_63"
+16. "Close appeared in The Real Thing in 1983.".doc_index = "63"
+17. "Close appeared in The Real Thing in 1983.".source_domain = "N/A"
+18. "Close appeared in The Real Thing in 1983.".source_id = "Index_63"
+19. "Close appeared in both New York and Los Angeles.".doc_index = "63"
+20. "Close appeared in both New York and Los Angeles.".source_domain = "N/A"
+21. "Close appeared in both New York and Los Angeles.".source_id = "Index_63"
+22. "Close appeared in the Broadway production of Barnum in 1980.".doc_index = "63"
+23. "Close appeared in the Broadway production of Barnum in 1980.".source_domain = "N/A"
+24. "Close appeared in the Broadway production of Barnum in 1980.".source_id = "Index_63"
+25. "Close began her professional stage career in Love for Love in 1974.".doc_index = "63"
+26. "Close began her professional stage career in Love for Love in 1974.".source_domain = "N/A"
+27. "Close began her professional stage career in Love for Love in 1974.".source_id = "Index_63"
+28. "Close was mostly a New York stage actress through the rest of the 1970s and early 1980s.".doc_index = "63"
+29. "Close was mostly a New York stage actress through the rest of the 1970s and early 1980s.".source_domain = "N/A"
+30. "Close was mostly a New York stage actress through the rest of the 1970s and early 1980s.".source_id = "Index_63"
+31. M_NLI(Close.occupation, Close.nationality)
+32. T("Close appeared in The Real Thing in 1983.", "Close did not appear in The Real Thing in 1983.", Negation)
+33. T("Close began her professional stage career in Love for Love in 1974.", "Close did not begin her professional stage career in Love for Love in 1974.", Negation)
+34. T("Close appeared in both New York and Los Angeles.", "Close only appeared in New York.", Negation)
+35. tau(Close.location, Close.appeared_in("The Real Thing", 1983))
+36. violate(Close.appeared_in("The Real Thing", 1983), Close.appeared_in("The Real Thing", 1980))
+37. Factual(Close.appeared_in("The Real Thing", 1983), Close.appeared_in("The Real Thing", 1980))
+38. Causal(Close.appeared_in("The Real Thing", 1983), Close.appeared_in("Barnum", 1980))
+39. Numeric(Close.award, "Tony Award for Best Actress in a Play")
+40. Temporal(Close.began_professional_stage_career("Love for Love", 1974), Close.appeared_in("The Real Thing", 1983))
+41. Relation(Close.appeared_in("The Real Thing", 1983), Close.appeared_in("Barnum", 1980))
+42. Factual(Close.location, "Los Angeles")
+43. Causal(Close.appeared_in("Barnum", 1980), Close.appeared_in("The Real Thing", 1983))
+44. Numeric(Close.appeared_in("The Real Thing", 1983), 1)
+45. Temporal(Close.appeared_in("Barnum", 1980), Close.appeared_in("The Real Thing", 1983))
+46. violate(Close.appeared_in("Barnum", 1980), Close.appeared_in("The Real Thing", 1983))
+47. Factual(Close.status, "inactive")
+48. Causal(Close.appeared_in("The Real Thing", 1983), Close.award)
+49. Numeric(Close.appeared_in("The Real Thing", 1983), 0)
+50. Temporal(Close.appeared_in("The Real Thing", 1983), Close.began_professional_stage_career("Love for Love", 1974))
+51. Relation(Close.appeared_in("The Real Thing", 1983), Close.appeared_in("Barnum", 1980))
+52. M_NLI(Close.award, Close.appeared_in("The Real Thing", 1983))
+53. T("Close was mostly a New York stage actress through the rest of the 1970s and early 1980s.", "Close was not a New York stage actress during that time.", Negation)
+54. tau(Close.appeared_in("The Real Thing", 1983), Close.appeared_in("Barnum", 1980))
+55. violate(Close.appeared_in("Barnum", 1980), Close.appeared_in("The Real Thing", 1983))
+56. Factual(Close.appeared_in("The Real Thing", 1983), Close.appeared_in("Love for Love", 1974))
+57. Causal(Close.appeared_in("The Real Thing", 1983), Close.began_professional_stage_career("Love for Love", 1974))
+58. Numeric(Close.appeared_in("The Real Thing", 1983), 2)
+59. Temporal(Close.appeared_in("The Real Thing", 1983), Close.appeared_in("Barnum", 1980))
+60. Relation(Close.appeared_in("The Real Thing", 1983), Close.appeared_in("Love for Love", 1974))
+61. M_NLI(Close.location, Close.appeared_in("Barnum", 1980))
+62. T("Close appeared in both New York and Los Angeles.", "Close only appeared in Los Angeles.", Negation)
+63. tau(Close.award, Close.appeared_in("The Real Thing", 1983))
+64. violate(Close.appeared_in("The Real Thing", 1983), Close.appeared_in("Barnum", 1980))
+65
+violate(x0, y0)
+
+Rules:
+1. Q[x0, y0](Close.occupation = "stage actress" ∧ Close.nationality = "American" → violate(x0, y0))
+2. Q[x0, y0](Close.status = "active" ∧ Close.location = "New York" → violate(x0, y0))
+3. Q[x0, y0](Close.appeared_in("The Real Thing", 1983) ∧ Close.appeared_in("Barnum", 1980) → violate(x0, y0))
+4. Q[x0, y0](Close.began_professional_stage_career("Love for Love", 1974) ∧ Close.appeared_in_both("New York", "Los Angeles") → violate(x0, y0))
+5. Q[x0, y0](Close.award = "Tony Award for Best Actress in a Play" ∧ Close.location = "Los Angeles" → violate(x0, y0))
+6. Q[x0, y0](Close.appeared_in("The Real Thing", 1983) ∧ Close.appeared_in("The Real Thing", 1980) ∧ Close.status = "active" → violate(x0, y0))
+7. Q[x0, y0](Close.occupation = "stage actress" ∧ Close.nationality = "American" ∧ Close.status = "active" → violate(x0, y0))
+8. Q[x0, y0](Close.location = "New York" ∧ Close.appeared_in("Barnum", 1980) ∧ Close.began_professional_stage_career("Love for Love", 1974) → violate(x0, y0))
+9. Q[x0, y0](Close.appeared_in("The Real Thing", 1983) ∧ Close.award = "Tony Award for Best Actress in a Play" ∧ Close.status = "inactive" → violate(x0, y0))
+10. Q[x0, y0](Close.appeared_in_both("New York", "Los Angeles") ∧ Close.appeared_in("Barnum", 1980) ∧ Close.began_professional_stage_career("Love for Love", 1974) → violate(x0, y0))
+11. Q[x0, y0](Close.appeared_in("The Real Thing", 1983) ∧ Close.appeared_in("Barnum", 1980) ∧ Close.location = "Los Angeles" ∧ Close.status = "inactive" → violate(x0, y0))
+12. Q[x0, y0](Close.began_professional_stage_career("Love for Love", 1974) ∧ Close.appeared_in("The Real Thing", 1983) ∧ Close.award = "Tony Award for Best Actress in a Play" ∧ Close.location = "New York" → violate(x0, y0))
+13. Q[x0, y0](Close.appeared_in("The Real Thing", 1983) ∧ Close.appeared_in("Barnum", 1980) ∧ Close.began_professional_stage_career("Love for Love", 1974) ∧ Close.status = "inactive" → violate(x0, y0))
+14. Q[x0, y0](Close.appeared_in("The Real Thing", 1983) ∧ Close.appeared_in("Barnum", 1980) ∧ Close.location = "New York" ∧ Close.nationality = "American" ∧ Close.status = "active" → violate(x0, y0))
+15. Q[x0, y0](Close.appeared_in("The Real Thing", 1983) ∧ Close.appeared_in("Barnum", 1980) ∧ Close.began_professional_stage_career("Love for Love", 1974) ∧ Close.award = "Tony Award for Best Actress in a Play" ∧ Close.location = "Los Angeles" → violate(x0, y0))
+16. Q[x0, y0](Close.appeared_in("The Real Thing", 1983) ∧ Close.appeared_in("Barnum", 1980) ∧ Close.began_professional_stage_career("Love for Love", 1974) ∧ Close.status = "inactive" ∧ Close.nationality = "American" → violate(x0, y0))
+17. Q[x0, y0](Close.appeared_in("The Real Thing", 1983) ∧ Close.appeared_in("Barnum", 1980) ∧ Close.began_professional_stage_career("Love for Love", 1974) ∧ Close.location = "New York" ∧ Close.award = "Tony Award for Best Actress in a Play" ∧ Close.status = "active" → violate(x0, y0))
+18. Q[x0, y0](Close.appeared_in("The Real Thing", 1983) ∧ Close.appeared_in("Barnum", 1980) ∧ Close.began_professional_stage_career("Love for Love", 1974) ∧ Close.location = "Los Angeles" ∧ Close.nationality = "American" ∧ Close.status = "inactive" → violate(x0, y0))
+19. Q[x0, y0](Close.appeared_in("The Real Thing", 1983) ∧ Close.appeared_in("Barnum", 1980) ∧ Close.began_professional_stage_career("Love for Love", 1974) ∧ Close.award = "Tony Award for Best Actress in a Play" ∧ Close.location = "New York" ∧ Close.status = "inactive" → violate(x0, y0))
+20. Q[x0, y0](Close.appeared_in("The Real Thing", 1983) ∧ Close.appeared_in("Barnum", 1980) ∧ Close.began_professional_stage_career("Love for Love", 1974) ∧ Close.award = "Tony Award for Best Actress in a Play" ∧ Close.location = "Los Angeles" ∧ Close.nationality = "American" → violate(x0, y0))
+21. Q[x0, y0](Close.appeared_in("The Real Thing", 1983) ∧ Close.appeared_in("Barnum", 1980) ∧ Close.began_professional_stage_career("Love for Love", 1974) ∧ Close.status = "active" ∧ Close.location = "New York" ∧ Close.nationality = "American" → violate(x0, y0))
+22. Q[x0, y0](Close.appeared_in("The Real Thing", 1983) ∧ Close.appeared_in("Barnum", 1980) ∧ Close.began_professional_stage_career("Love for Love", 1974) ∧ Close.award = "Tony Award for Best Actress in a Play" ∧ Close.status = "inactive"

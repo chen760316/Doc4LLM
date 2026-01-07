@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 239)
+S1: I won't wear those shirts you bear bosses, I won't wear my socks.
+S2: They chose a king who didn't have a mustache and never, ever wore a shirt and tie.
+
+Predicates:
+1. Refusal.Truman.wear_shirts
+2. Refusal.Truman.wear_socks
+3. King.chosen.wear_no_shirt
+4. King.chosen.wear_no_tie
+5. King.has_no_mustache
+6. Clothing.refusal.socks
+7. Clothing.refusal.shirts
+8. Clothing.king.no_shirt
+9. Clothing.king.no_tie
+10. Clothing.king.no_mustache
+11. M_NLI(S1, S2)
+12. Factual(Truman, refusal)
+13. Factual(king, clothing)
+14. violate(Truman, king)
+15. Refusal.Truman.accept_clothing
+16. King.chosen.has_clothing
+17. Clothing.king.acceptance
+18. Refusal.Truman.wear_clothing
+19. King.wear_clothing
+20. M_NLI(Refusal, Clothing)
+21. Factual(Truman, clothing_choice)
+22. Factual(king, clothing_choice)
+23. violate(acceptance, refusal)
+24. King.chosen.has_no_clothing
+25. Clothing.refusal.king
+26. Clothing.refusal.Truman
+27. King.wear_no_clothing
+28. Refusal.Truman.clothing_preference
+29. King.clothing_preference
+30. M_NLI(Clothing, Refusal)
+
+Rules:
+1. Q[won, Refusal.Truman.wear_shirts, King.chosen.wear_no_shirt](Refusal.Truman.wear_shirts == true → Factual(Truman, refusal))
+2. Q[won, Refusal.Truman.wear_socks, King.chosen.wear_no_tie](Refusal.Truman.wear_socks == true → Factual(Truman, refusal))
+3. Q[won, King.has_no_mustache, King.chosen.wear_no_shirt](King.has_no_mustache == true → Factual(king, clothing))
+4. Q[won, Clothing.refusal.socks, King.chosen.wear_no_tie](Clothing.refusal.socks == true → Factual(Truman, refusal))
+5. Q[won, Clothing.refusal.shirts, King.chosen.wear_no_shirt](Clothing.refusal.shirts == true → Factual(Truman, refusal))
+6. Q[won, Clothing.king.no_shirt, King.chosen.has_no_clothing](Clothing.king.no_shirt == true → Factual(king, clothing))
+7. Q[won, Clothing.king.no_tie, King.chosen.has_no_clothing](Clothing.king.no_tie == true → Factual(king, clothing))
+8. Q[won, Clothing.king.no_mustache, King.chosen.has_no_clothing](Clothing.king.no_mustache == true → Factual(king, clothing))
+9. Q[won, Refusal.Truman.wear_clothing, King.chosen.has_clothing](Refusal.Truman.wear_clothing == true → Factual(Truman, refusal))
+10. Q[won, King.wear_clothing, King.chosen.has_no_clothing](King.wear_clothing == true → Factual(king, clothing))
+11. Q[won, Refusal.Truman.clothing_preference, King.clothing_preference](Refusal.Truman.clothing_preference == true → Factual(Truman, clothing_choice))
+12. Q[won, Clothing.refusal.king, King.chosen.has_no_clothing](Clothing.refusal.king == true → Factual(king, clothing))
+13. Q[won, Clothing.refusal.Truman, King.chosen.has_no_clothing](Clothing.refusal.Truman == true → Factual(Truman, refusal))
+14. Q[won, King.wear_no_clothing, King.chosen.has_no_clothing](King.wear_no_clothing == true → Factual(king, clothing))
+15. Q[won, M_NLI(S1, S2), Factual(king, clothing)](M_NLI(S1, S2) == true → Factual(king, clothing))
+16. Q[won, Factual(Truman, clothing_choice), Factual(king, clothing_choice)](Factual(Truman, clothing_choice) == true → Factual(king, clothing_choice))
+17. Q[won, violate(Truman, king), Factual(king, clothing)](violate(Truman, king) == true → Factual(king, clothing))
+18. Q[won, violate(acceptance, refusal), Factual(king, clothing)](violate(acceptance, refusal) == true → Factual(king, clothing))
+19. Q[won, M_NLI(Refusal, Clothing), Factual(king, clothing)](M_NLI(Refusal, Clothing) == true → Factual(king, clothing))
+20. Q[won, Refusal.Truman.accept_clothing, King.chosen.has_no_clothing](Refusal.Truman.accept_clothing == false → Factual(king, clothing))
+21. Q[won, King.chosen.has_clothing, King.chosen.has_no_clothing](King.chosen.has_clothing == false → Factual(king, clothing))
+22. Q[won, Clothing.king.acceptance, King.chosen.has_no_clothing](Clothing.king.acceptance == false → Factual(king, clothing))
+23. Q[won, Refusal.Truman.wear_shirts, Clothing.king.no_shirt](Refusal.Truman.wear_shirts == true → Factual(king, clothing))
+24. Q[won, Refusal.Truman.wear_socks, Clothing.king.no_tie](Refusal.Truman.wear_socks == true → Factual(king, clothing))
+25. Q[won, Clothing.refusal.socks, Clothing.king.no_tie](Clothing.refusal.socks == true → Factual(king, clothing))
+26. Q[won, Clothing.refusal.shirts, Clothing.king.no_shirt](Clothing.refusal.shirts == true → Factual(king, clothing))
+27. Q[won, King.chosen.has_no_clothing, King.chosen.wear_no_shirt](King.chosen.has_no_clothing == true → Factual(king, clothing))
+28. Q[won, King.chosen.has_no_clothing, King.chosen.wear_no_tie](King.chosen.has_no_clothing == true → Factual(king, clothing))
+29. Q[won, King.chosen.has_no_clothing, King.has_no_mustache](King.chosen.has_no_clothing == true → Factual(king, clothing))
+30. Q[won, Refusal.Truman.wear_clothing, Clothing.king.acceptance](Refusal.Truman.wear_clothing == true → Factual(king, clothing))

@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 512)
+S1: Two dogs running on wet sand.
+S2: The two dogs are outside.
+
+Predicates:
+1. Dog1.location
+2. Dog2.location
+3. Dog1.activity
+4. Dog2.activity
+5. WetSand.condition
+6. WetSand.location
+7. Outside.condition
+8. Outside.location
+9. Dog1.isRunning
+10. Dog2.isRunning
+11. TwoDogs.count
+12. TwoDogs.activity
+13. TwoDogs.location
+14. WetSand.isWet
+15. Outside.isOpen
+16. Dog1.isOutside
+17. Dog2.isOutside
+18. RunningOnWetSand.condition
+19. RunningOnWetSand.location
+20. TwoDogs.areOutside
+21. WetSand.isNearWater
+22. Outside.isSunny
+23. Dog1.isPlaying
+24. Dog2.isPlaying
+25. TwoDogs.areActive
+26. WetSand.isSoft
+27. Outside.isSafe
+28. Dog1.isFriendly
+29. Dog2.isFriendly
+30. TwoDogs.areTogether
+
+Rules:
+1. Q[Two, Dog1.location, Outside.location](Dog1.location == WetSand.location → Relation(Dog1, Outside))
+2. Q[Two, Dog2.location, Outside.location](Dog2.location == WetSand.location → Relation(Dog2, Outside))
+3. Q[Two, TwoDogs.location, Outside.location](TwoDogs.location == WetSand.location → Relation(TwoDogs, Outside))
+4. Q[Two, Dog1.isOutside, Outside.condition](Dog1.isOutside == false → Relation(Dog1, Outside))
+5. Q[Two, Dog2.isOutside, Outside.condition](Dog2.isOutside == false → Relation(Dog2, Outside))
+6. Q[Two, TwoDogs.areOutside, Outside.condition](TwoDogs.areOutside == false → Relation(TwoDogs, Outside))
+7. Q[Two, WetSand.isWet, Outside.condition](WetSand.isWet == true → Relation(WetSand, Outside))
+8. Q[Two, Dog1.activity, TwoDogs.activity](Dog1.activity == RunningOnWetSand.condition → Relation(Dog1, TwoDogs))
+9. Q[Two, Dog2.activity, TwoDogs.activity](Dog2.activity == RunningOnWetSand.condition → Relation(Dog2, TwoDogs))
+10. Q[Two, TwoDogs.activity, Dog1.activity](TwoDogs.activity == RunningOnWetSand.condition → Relation(TwoDogs, Dog1))
+11. Q[Two, Dog1.isRunning, TwoDogs.activity](Dog1.isRunning == true → Relation(Dog1, TwoDogs))
+12. Q[Two, Dog2.isRunning, TwoDogs.activity](Dog2.isRunning == true → Relation(Dog2, TwoDogs))
+13. Q[Two, TwoDogs.areActive, Dog1.isRunning](TwoDogs.areActive == true → Relation(TwoDogs, Dog1))
+14. Q[Two, TwoDogs.areActive, Dog2.isRunning](TwoDogs.areActive == true → Relation(TwoDogs, Dog2))
+15. Q[Two, WetSand.isNearWater, Outside.condition](WetSand.isNearWater == true → Relation(WetSand, Outside))
+16. Q[Two, Outside.isOpen, Dog1.isOutside](Outside.isOpen == true → Relation(Outside, Dog1))
+17. Q[Two, Outside.isOpen, Dog2.isOutside](Outside.isOpen == true → Relation(Outside, Dog2))
+18. Q[Two, Outside.isOpen, TwoDogs.areOutside](Outside.isOpen == true → Relation(Outside, TwoDogs))
+19. Q[Two, WetSand.isSoft, Dog1.activity](WetSand.isSoft == true → Relation(WetSand, Dog1))
+20. Q[Two, WetSand.isSoft, Dog2.activity](WetSand.isSoft == true → Relation(WetSand, Dog2))
+21. Q[Two, WetSand.isSoft, TwoDogs.activity](WetSand.isSoft == true → Relation(WetSand, TwoDogs))
+22. Q[Two, Outside.isSunny, Dog1.isOutside](Outside.isSunny == true → Relation(Outside, Dog1))
+23. Q[Two, Outside.isSunny, Dog2.isOutside](Outside.isSunny == true → Relation(Outside, Dog2))
+24. Q[Two, Outside.isSunny, TwoDogs.areOutside](Outside.isSunny == true → Relation(Outside, TwoDogs))
+25. Q[Two, Dog1.isPlaying, TwoDogs.activity](Dog1.isPlaying == true → Relation(Dog1, TwoDogs))
+26. Q[Two, Dog2.isPlaying, TwoDogs.activity](Dog2.isPlaying == true → Relation(Dog2, TwoDogs))
+27. Q[Two, TwoDogs.areTogether, Dog1.isOutside](TwoDogs.areTogether == true → Relation(TwoDogs, Dog1))
+28. Q[Two, TwoDogs.areTogether, Dog2.isOutside](TwoDogs.areTogether == true → Relation(TwoDogs, Dog2))
+29. Q[Two, Dog1.isFriendly, TwoDogs.activity](Dog1.isFriendly == true → Relation(Dog1, TwoDogs))
+30. Q[Two, Dog2.isFriendly, TwoDogs.activity](Dog2.isFriendly == true → Relation(Dog2, TwoDogs))

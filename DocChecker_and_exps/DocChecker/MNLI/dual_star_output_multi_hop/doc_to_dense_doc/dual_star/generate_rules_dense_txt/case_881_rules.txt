@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 881)
+S1: It was cool but very exhausting.
+S2: It was cool you know and it was just uhh very tiring though.
+
+Predicates:
+1. Experience.cool
+2. Experience.exhausting
+3. Experience.tiring
+4. Opinion.positive
+5. Opinion.negative
+6. Emotion.cool
+7. Emotion.exhausted
+8. Emotion.tired
+9. M_NLI(S1, S2)
+10. Content(Opinion, Experience)
+11. Content(Emotion, Experience)
+12. violate(Opinion, Emotion)
+13. Relationship.experience_description
+14. Relationship.emotional_response
+15. Experience.positive_response
+16. Experience.negative_response
+17. Opinion.experience
+18. Emotion.experience
+19. Experience.coolness
+20. Experience.tiringness
+21. Opinion.cool
+22. Opinion.tiring
+23. Emotion.positive
+24. Emotion.negative
+25. M_NLI(S1, S2).contradiction
+26. Relationship.cool_but_exhausting
+27. Relationship.cool_and_tiring
+28. Opinion.exhausting
+29. Emotion.exhaustion
+30. violate(cool, exhausting)
+
+Rules:
+1. Q[was, x0, y0](Experience.cool == true → Content(Opinion, Experience)(x0, y0))
+2. Q[was, x0, y0](Experience.exhausting == true → Content(Opinion, Experience)(x0, y0))
+3. Q[was, x0, y0](Experience.tiring == true → Content(Opinion, Experience)(x0, y0))
+4. Q[was, x0, y0](Emotion.cool == true → Content(Emotion, Experience)(x0, y0))
+5. Q[was, x0, y0](Emotion.exhausted == true → Content(Emotion, Experience)(x0, y0))
+6. Q[was, x0, y0](Emotion.tired == true → Content(Emotion, Experience)(x0, y0))
+7. Q[was, x0, y0](M_NLI(S1, S2) == true → violate(Opinion, Emotion))
+8. Q[was, x0, y0](Relationship.cool_but_exhausting == true → violate(Opinion, Emotion))
+9. Q[was, x0, y0](Relationship.cool_and_tiring == true → violate(Opinion, Emotion))
+10. Q[was, x0, y0](Experience.cool == true ∧ Experience.exhausting == true → violate(Opinion, Emotion))
+11. Q[was, x0, y0](Experience.cool == true ∧ Experience.tiring == true → violate(Opinion, Emotion))
+12. Q[was, x0, y0](Opinion.positive == true ∧ Opinion.negative == true → violate(Opinion, Emotion))
+13. Q[was, x0, y0](Emotion.positive == true ∧ Emotion.negative == true → violate(Opinion, Emotion))
+14. Q[was, x0, y0](Experience.positive_response == true ∧ Experience.negative_response == true → violate(Opinion, Emotion))
+15. Q[was, x0, y0](Experience.coolness == true ∧ Experience.exhausting == true → violate(Opinion, Emotion))
+16. Q[was, x0, y0](Experience.tiringness == true ∧ Experience.exhausting == true → violate(Opinion, Emotion))
+17. Q[was, x0, y0](Opinion.cool == true ∧ Opinion.exhausting == true → violate(Opinion, Emotion))
+18. Q[was, x0, y0](Emotion.cool == true ∧ Emotion.exhaustion == true → violate(Opinion, Emotion))
+19. Q[was, x0, y0](M_NLI(S1, S2).contradiction == true → Content(Opinion, Emotion)(x0, y0))
+20. Q[was, x0, y0](Experience.cool == true ∧ Experience.tiring == true → Content(Opinion, Emotion)(x0, y0))
+21. Q[was, x0, y0](Experience.exhausting == true ∧ Experience.tiring == true → Content(Opinion, Emotion)(x0, y0))
+22. Q[was, x0, y0](Opinion.tiring == true ∧ Opinion.exhausting == true → Content(Opinion, Emotion)(x0, y0))
+23. Q[was, x0, y0](Emotion.tired == true ∧ Emotion.exhaustion == true → Content(Opinion, Emotion)(x0, y0))
+24. Q[was, x0, y0](Relationship.experience_description == true → Content(Opinion, Emotion)(x0, y0))
+25. Q[was, x0, y0](Experience.cool == true ∧ Opinion.negative == true → violate(Opinion, Emotion))
+26. Q[was, x0, y0](Experience.tiring == true ∧ Emotion.positive == true → violate(Opinion, Emotion))
+27. Q[was, x0, y0](Experience.cool == true ∧ Emotion.tired == true → violate(Opinion, Emotion))
+28. Q[was, x0, y0](Experience.exhausting == true ∧ Opinion.positive == true → violate(Opinion, Emotion))
+29. Q[was, x0, y0](Experience.tiring == true ∧ Opinion.exhausting == true → violate(Opinion, Emotion))
+30. Q[was, x0, y0](Experience.cool == true ∧ Experience.exhausting == true ∧ Experience.tiring == true → violate(Opinion, Emotion))

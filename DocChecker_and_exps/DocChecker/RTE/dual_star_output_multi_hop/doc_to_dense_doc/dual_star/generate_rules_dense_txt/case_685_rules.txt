@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 685)
+S1: If you have an immediate problem with ice dams, you must remove the part of the roof snow directly on top of the ice dam.
+S2: If you have an immediate problem with ice dams, you should remove the snow from the part of the roof directly above the ice dam.
+
+Predicates:
+1. IceDams.problem
+2. RoofSnow.removal
+3. IceDams.immediateProblem
+4. RoofSnow.directlyAboveIceDam
+5. IceDams.necessity
+6. IceDams.recommendation
+7. RoofSnow.urgency
+8. RoofSnow.requirement
+9. IceDams.must
+10. IceDams.should
+11. RoofSnow.part
+12. IceDams.situation
+13. RoofSnow.snowRemoval
+14. IceDams.iceDam
+15. RoofSnow.snowOnRoof
+16. IceDams.iceDamLocation
+17. RoofSnow.immediateAction
+18. IceDams.urgentAction
+19. RoofSnow.snowRemovalMethod
+20. IceDams.snowRemovalNecessity
+21. RoofSnow.snowAboveIceDam
+22. IceDams.problemResolution
+23. RoofSnow.snowClearing
+24. IceDams.iceDamManagement
+25. RoofSnow.snowAccumulation
+26. IceDams.safetyConcern
+27. RoofSnow.snowRemovalAdvice
+28. IceDams.iceDamImpact
+29. RoofSnow.snowRemovalImportance
+30. IceDams.iceDamPrevention
+
+Rules:
+1. Q[you, IceDams.immediateProblem, RoofSnow.removal](IceDams.immediateProblem == true → Causal(you, IceDams.problemResolution))
+2. Q[you, IceDams.immediateProblem, RoofSnow.directlyAboveIceDam](IceDams.immediateProblem == true → Causal(you, RoofSnow.snowRemovalImportance))
+3. Q[you, IceDams.problem, IceDams.must](IceDams.problem == true ∧ IceDams.must == true → Causal(you, IceDams.urgentAction))
+4. Q[you, IceDams.problem, IceDams.should](IceDams.problem == true ∧ IceDams.should == true → Causal(you, RoofSnow.snowRemovalAdvice))
+5. Q[you, RoofSnow.snowOnRoof, IceDams.necessity](RoofSnow.snowOnRoof == true ∧ IceDams.necessity == true → Causal(you, RoofSnow.snowClearing))
+6. Q[you, RoofSnow.part, IceDams.urgentAction](RoofSnow.part == "directly above ice dam" ∧ IceDams.urgentAction == true → Causal(you, RoofSnow.snowRemovalMethod))
+7. Q[you, IceDams.problem, RoofSnow.urgency](IceDams.problem == true ∧ RoofSnow.urgency == "high" → Causal(you, IceDams.safetyConcern))
+8. Q[you, IceDams.immediateProblem, IceDams.must](IceDams.immediateProblem == true ∧ IceDams.must == true → Causal(you, IceDams.iceDamManagement))
+9. Q[you, RoofSnow.snowAboveIceDam, IceDams.should](RoofSnow.snowAboveIceDam == true ∧ IceDams.should == true → Causal(you, RoofSnow.snowRemovalAdvice))
+10. Q[you, IceDams.problemResolution, IceDams.necessity](IceDams.problemResolution == true ∧ IceDams.necessity == true → Causal(you, IceDams.iceDamImpact))
+11. Q[you, RoofSnow.snowRemovalImportance, IceDams.should](RoofSnow.snowRemovalImportance == true ∧ IceDams.should == true → Causal(you, RoofSnow.snowRemovalAdvice))
+12. Q[you, IceDams.immediateProblem, RoofSnow.snowRemovalMethod](IceDams.immediateProblem == true ∧ RoofSnow.snowRemovalMethod == "urgent" → Causal(you, IceDams.problemResolution))
+13. Q[you, IceDams.problem, RoofSnow.requirement](IceDams.problem == true ∧ RoofSnow.requirement == "must" → Causal(you, IceDams.urgentAction))
+14. Q[you, RoofSnow.snowAccumulation, IceDams.immediateProblem](RoofSnow.snowAccumulation == true ∧ IceDams.immediateProblem == true → Causal(you, RoofSnow.snowClearing))
+15. Q[you, IceDams.iceDamLocation, RoofSnow.directlyAboveIceDam](IceDams.iceDamLocation == "above" ∧ RoofSnow.directlyAboveIceDam == true → Causal(you, RoofSnow.snowRemovalImportance))
+16. Q[you, IceDams.safetyConcern, IceDams.must](IceDams.safetyConcern == true ∧ IceDams.must == true → Causal(you, IceDams.problemResolution))
+17. Q[you, RoofSnow.snowRemovalAdvice, IceDams.should](RoofSnow.snowRemovalAdvice == true ∧ IceDams.should == true → Causal(you, RoofSnow.snowRemovalMethod))
+18. Q[you, IceDams.immediateProblem, RoofSnow.snowRemoval](IceDams.immediateProblem == true ∧ RoofSnow.snowRemoval == true → Causal(you, IceDams.iceDamManagement))
+19. Q[you, RoofSnow.snowClearing, IceDams.urgentAction](RoofSnow.snowClearing == true ∧ IceDams.urgentAction == true → Causal(you, IceDams.problemResolution))
+20. Q[you, IceDams.problem, RoofSnow.snowRemovalImportance](IceDams.problem == true ∧ RoofSnow.snowRemovalImportance == true → Causal(you, IceDams.iceDamImpact))
+21. Q[you, IceDams.immediateProblem, RoofSnow.snowRemovalImportance](IceDams.immediateProblem == true ∧ RoofSnow.snowRemovalImportance == true → Causal(you, IceDams.iceDamManagement))
+22. Q[you, RoofSnow.snowRemovalMethod, IceDams.must](RoofSnow.snowRemovalMethod == "necessary" ∧ IceDams.must == true → Causal(you, IceDams.problemResolution))
+23. Q[you, IceDams.urgentAction, RoofSnow.directlyAboveIceDam](IceDams.urgentAction == true ∧ RoofSnow.directlyAboveIceDam == true → Causal(you, RoofSnow.snowRemovalAdvice))
+24. Q[you, IceDams.immediateProblem, RoofSnow.snowAboveIceDam](IceDams.immediateProblem == true ∧ RoofSnow.snowAboveIceDam == true → Causal(you, IceDams.problemResolution))
+25. Q[you, IceDams.problemResolution, RoofSnow.snowRemoval](IceDams.problemResolution == true ∧ RoofSnow.snowRemoval == true → Causal(you, IceDams.iceDamImpact))
+26. Q[you, RoofSnow.snowRemovalAdvice, IceDams.necessity](RoofSnow.snowRemovalAdvice == true ∧ IceDams.necessity == true → Causal(you, RoofSnow.snowClearing))
+27. Q[you, IceDams.immediateProblem, IceDams.should](IceDams.immediateProblem == true ∧ IceDams.should == true → Causal(you, RoofSnow.snowRemovalAdvice))
+28. Q[you, RoofSnow.snowRemovalMethod, IceDams.should](RoofSnow.snowRemovalMethod == "recommended" ∧ IceDams.should == true → Causal(you, RoofSnow.snowRemovalAdvice))
+29. Q[you, IceDams.problem, RoofSnow.snowRemovalMethod](IceDams.problem == true ∧ RoofSnow.snowRemovalMethod == "necessary" → Causal(you, IceDams.urgentAction))
+30. Q[you, IceDams.immediateProblem, IceDams.necessity](IceDams.immediateProblem == true ∧ IceDams.necessity == true → Causal(you, IceDams.problemResolution))

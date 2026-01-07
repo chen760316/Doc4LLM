@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 1391)
+S1: A group of cyclists headed in one direction pedaling through a deserted town on an overcast day.
+S2: Several people walking across a bridge in both directions.
+
+Predicates:
+1. Cyclists.direction
+2. Cyclists.activity
+3. Town.condition
+4. Town.occupancy
+5. People.direction
+6. People.activity
+7. Bridge.location
+8. Day.weather
+9. Cyclists.group_size
+10. People.group_size
+11. Cyclists.speed
+12. People.speed
+13. Town.visibility
+14. Cyclists.route
+15. People.route
+16. Bridge.traffic
+17. Day.time
+18. Cyclists.equipment
+19. People.equipment
+20. Town.features
+21. Cyclists.experience_level
+22. People.experience_level
+23. Cyclists.purpose
+24. People.purpose
+25. Town.history
+26. Cyclists.safety
+27. People.safety
+28. Bridge.material
+29. Day.season
+30. Town.is_deserted
+
+Rules:
+1. Q[cyclists, Cyclists.direction, People.direction](Cyclists.direction == "one direction" → Relation(Cyclists.direction, People.direction))
+2. Q[cyclists, Cyclists.activity, People.activity](Cyclists.activity == "pedaling" → Relation(Cyclists.activity, People.activity))
+3. Q[town, Town.condition, People.direction](Town.condition == "deserted" → Relation(Town.condition, People.direction))
+4. Q[town, Town.occupancy, People.group_size](Town.occupancy == "low" → Relation(Town.occupancy, People.group_size))
+5. Q[people, People.direction, Cyclists.direction](People.direction == "both directions" → Relation(People.direction, Cyclists.direction))
+6. Q[bridge, Bridge.traffic, Cyclists.speed](Bridge.traffic == "low" → Relation(Bridge.traffic, Cyclists.speed))
+7. Q[day, Day.weather, Town.condition](Day.weather == "overcast" → Relation(Day.weather, Town.condition))
+8. Q[cyclists, Cyclists.group_size, People.group_size](Cyclists.group_size > 1 → Relation(Cyclists.group_size, People.group_size))
+9. Q[people, People.activity, Cyclists.activity](People.activity == "walking" → Relation(People.activity, Cyclists.activity))
+10. Q[town, Town.visibility, Day.weather](Town.visibility == "clear" → Relation(Town.visibility, Day.weather))
+11. Q[bridge, Bridge.location, Town.condition](Bridge.location == "in town" → Relation(Bridge.location, Town.condition))
+12. Q[day, Day.time, Town.condition](Day.time == "day" → Relation(Day.time, Town.condition))
+13. Q[cyclists, Cyclists.speed, People.speed](Cyclists.speed > People.speed → Relation(Cyclists.speed, People.speed))
+14. Q[people, People.route, Cyclists.route](People.route == "across bridge" → Relation(People.route, Cyclists.route))
+15. Q[town, Town.features, Bridge.location](Town.features == "deserted" → Relation(Town.features, Bridge.location))
+16. Q[cyclists, Cyclists.equipment, People.equipment](Cyclists.equipment == "bicycles" → Relation(Cyclists.equipment, People.equipment))
+17. Q[day, Day.season, Town.condition](Day.season == "autumn" → Relation(Day.season, Town.condition))
+18. Q[cyclists, Cyclists.experience_level, People.experience_level](Cyclists.experience_level == "varied" → Relation(Cyclists.experience_level, People.experience_level))
+19. Q[people, People.purpose, Cyclists.purpose](People.purpose == "recreation" → Relation(People.purpose, Cyclists.purpose))
+20. Q[town, Town.history, Day.weather](Town.history == "quiet" → Relation(Town.history, Day.weather))
+21. Q[bridge, Bridge.material, Town.condition](Bridge.material == "concrete" → Relation(Bridge.material, Town.condition))
+22. Q[cyclists, Cyclists.safety, People.safety](Cyclists.safety == "high" → Relation(Cyclists.safety, People.safety))
+23. Q[people, People.direction, Cyclists.direction](People.direction == "conflicting" → Relation(People.direction, Cyclists.direction))
+24. Q[town, Town.is_deserted, People.activity](Town.is_deserted == true → Relation(Town.is_deserted, People.activity))
+25. Q[bridge, Bridge.traffic, Cyclists.activity](Bridge.traffic == "minimal" → Relation(Bridge.traffic, Cyclists.activity))
+26. Q[day, Day.weather, Cyclists.activity](Day.weather == "cloudy" → Relation(Day.weather, Cyclists.activity))
+27. Q[cyclists, Cyclists.route, Town.condition](Cyclists.route == "through town" → Relation(Cyclists.route, Town.condition))
+28. Q[people, People.speed, Cyclists.speed](People.speed < Cyclists.speed → Relation(People.speed, Cyclists.speed))
+29. Q[town, Town.occupancy, Cyclists.group_size](Town.occupancy == "sparse" → Relation(Town.occupancy, Cyclists.group_size))
+30. Q[bridge, Bridge.location, People.direction](Bridge.location == "central" → Relation(Bridge.location, People.direction))

@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 666)
+S1: A man is riding a red bike in a field.
+S2: A man wearing racing gear rides a bicycle on a road past fields of grapevines.
+
+Predicates:
+1. Man1.riding_bike
+2. Bike1.color
+3. Field1.location
+4. Man2.wearing_gear
+5. Bicycle1.type
+6. Road1.location
+7. Field2.type
+8. GrapeVines1.location
+9. Man1.location
+10. Man2.location
+11. Bike1.type
+12. Bicycle1.location
+13. Relationship1.different_locations
+14. Relationship2.different_bicycles
+15. M_NLI(S1, S2)
+16. Relation(Man1, Bike1)
+17. Relation(Man2, Bicycle1)
+18. violate(Man1, Man2)
+19. Bike1.in_field
+20. Bicycle1.on_road
+21. Man1.past(Bike1)
+22. Man2.past(Bicycle1)
+23. Field1.contains(Bike1)
+24. Road1.contains(Bicycle1)
+25. GrapeVines1.adjacent_to(Road1)
+26. Man1.is_in(Field1)
+27. Man2.is_on(Road1)
+28. Bike1.is_red
+29. Bicycle1.is_racing
+30. Field1.is_different_from(Field2)
+
+Rules:
+1. Q[man, Man1.riding_bike == true](Man1.is_in(Field1) → Relation(Man1, Bike1))
+2. Q[man, Man2.wearing_gear == true](Man2.is_on(Road1) → Relation(Man2, Bicycle1))
+3. Q[man, Man1.location == Field1](Man1.is_in(Field1) → Relation(Man1, Bike1))
+4. Q[man, Man2.location == Road1](Man2.is_on(Road1) → Relation(Man2, Bicycle1))
+5. Q[bike, Bike1.color == "red"](Bike1.in_field → Relation(Man1, Bike1))
+6. Q[bike, Bicycle1.type == "racing"](Bicycle1.on_road → Relation(Man2, Bicycle1))
+7. Q[location, Field1.location == Field1](Man1.is_in(Field1) → Relationship1.different_locations)
+8. Q[location, Road1.location == Road1](Man2.is_on(Road1) → Relationship1.different_locations)
+9. Q[bike, Bike1.type == "unknown"](Bike1.in_field → Relationship2.different_bicycles)
+10. Q[bike, Bicycle1.type == "racing"](Bicycle1.on_road → Relationship2.different_bicycles)
+11. Q[location, Field1.is_different_from(Field2)](Man1.is_in(Field1) → Relationship1.different_locations)
+12. Q[location, GrapeVines1.location == Road1](GrapeVines1.adjacent_to(Road1) → Relationship1.different_locations)
+13. Q[man, Man1.past(Bike1) == true](Man1.is_in(Field1) → Relation(Man1, Bike1))
+14. Q[man, Man2.past(Bicycle1) == true](Man2.is_on(Road1) → Relation(Man2, Bicycle1))
+15. Q[bike, Bike1.in_field == true](Man1.is_in(Field1) → Relation(Man1, Bike1))
+16. Q[bike, Bicycle1.on_road == true](Man2.is_on(Road1) → Relation(Man2, Bicycle1))
+17. Q[location, Man1.location == Field1](Man1.is_in(Field1) → Relationship1.different_locations)
+18. Q[location, Man2.location == Road1](Man2.is_on(Road1) → Relationship1.different_locations)
+19. Q[bike, Bike1.is_red == true](Bike1.in_field → Relation(Man1, Bike1))
+20. Q[bike, Bicycle1.is_racing == true](Bicycle1.on_road → Relation(Man2, Bicycle1))
+21. Q[location, Field1.contains(Bike1) == true](Man1.is_in(Field1) → Relation(Man1, Bike1))
+22. Q[location, Road1.contains(Bicycle1) == true](Man2.is_on(Road1) → Relation(Man2, Bicycle1))
+23. Q[location, Field1.is_different_from(Field2)](Man1.is_in(Field1) → Relationship1.different_locations)
+24. Q[location, GrapeVines1.adjacent_to(Road1)](Man2.is_on(Road1) → Relationship1.different_locations)
+25. Q[man, Man1.location == Field1](Man1.is_in(Field1) → Relationship1.different_locations)
+26. Q[man, Man2.location == Road1](Man2.is_on(Road1) → Relationship1.different_locations)
+27. Q[bike, Bike1.color == "red"](Bike1.in_field → Relation(Man1, Bike1))
+28. Q[bike, Bicycle1.type == "racing"](Bicycle1.on_road → Relation(Man2, Bicycle1))
+29. Q[location, Field1.is_different_from(Field2)](Man1.is_in(Field1) → Relationship1.different_locations)
+30. Q[location, GrapeVines1.location == Road1](GrapeVines1.adjacent_to(Road1) → Relationship1.different_locations)

@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 516)
+S1: they are disgusting pigs.
+S2: oh they've been getting cleaner.
+
+Predicates:
+1. Pigs.opinion = "disgusting"
+2. Pigs.cleanliness = "improving"
+3. M_NLI(S1, S2) = True
+4. Content(Opinion, Negative) = (S1, Pigs)
+5. Content(Opinion, Positive) = (S2, Pigs)
+6. violate(S1, S2) = True
+7. Pigs.change = "cleaner"
+8. Pigs.state = "disgusting"
+9. Pigs.state_change = "cleaner"
+10. Opinion(Pigs, Negative) = S1
+11. Opinion(Pigs, Positive) = S2
+12. Relationship(opinion, cleanliness) = "change"
+13. Pigs.negative_opinion = S1
+14. Pigs.positive_change = S2
+15. Emotion(Pigs, Disgust) = S1
+16. Emotion(Pigs, Relief) = S2
+17. Pigs.quality = "poor"
+18. Pigs.quality_change = "better"
+19. Opinion_change(Pigs) = "from disgusting to cleaner"
+20. S1.relationship = "negative opinion"
+21. S2.relationship = "positive change"
+22. Pigs.cleanliness_status = "improving"
+23. Pigs.perception = "negative"
+24. Pigs.perception_change = "positive"
+25. Opinion(Pigs, Disgusting) = S1
+26. Opinion(Pigs, Cleaner) = S2
+27. Pigs.evolution = "from disgusting to cleaner"
+28. S1.emotion = "disgust"
+29. S2.emotion = "hope"
+30. Pigs.trajectory = "improvement"
+
+Rules:
+1. Q[they, Pigs.opinion, Pigs.cleanliness](Pigs.opinion == "disgusting" → Content(Opinion, Negative)(S1, Pigs))
+2. Q[they, Pigs.cleanliness, Pigs.opinion](Pigs.cleanliness == "improving" → Content(Opinion, Positive)(S2, Pigs))
+3. Q[they, Pigs.state, Pigs.change](Pigs.state == "disgusting" → Content(Opinion, Negative)(S1, Pigs))
+4. Q[they, Pigs.change, Pigs.state](Pigs.change == "cleaner" → Content(Opinion, Positive)(S2, Pigs))
+5. Q[they, Pigs.negative_opinion, Pigs.positive_change](Pigs.negative_opinion == S1 → Content(Opinion, Negative)(S1, Pigs))
+6. Q[they, Pigs.positive_change, Pigs.negative_opinion](Pigs.positive_change == S2 → Content(Opinion, Positive)(S2, Pigs))
+7. Q[they, Pigs.quality, Pigs.cleanliness](Pigs.quality == "poor" → Content(Opinion, Negative)(S1, Pigs))
+8. Q[they, Pigs.cleanliness_status, Pigs.quality_change](Pigs.cleanliness_status == "improving" → Content(Opinion, Positive)(S2, Pigs))
+9. Q[they, Pigs.perception, Pigs.state_change](Pigs.perception == "negative" → Content(Opinion, Negative)(S1, Pigs))
+10. Q[they, Pigs.state_change, Pigs.perception](Pigs.state_change == "cleaner" → Content(Opinion, Positive)(S2, Pigs))
+11. Q[they, Pigs.evolution, Pigs.trajectory](Pigs.evolution == "from disgusting to cleaner" → Content(Opinion, Negative)(S1, Pigs))
+12. Q[they, Pigs.trajectory, Pigs.evolution](Pigs.trajectory == "improvement" → Content(Opinion, Positive)(S2, Pigs))
+13. Q[they, Pigs.opinion, Pigs.quality](Pigs.opinion == "disgusting" → Content(Opinion, Negative)(S1, Pigs))
+14. Q[they, Pigs.quality_change, Pigs.cleanliness](Pigs.quality_change == "better" → Content(Opinion, Positive)(S2, Pigs))
+15. Q[they, Pigs.relationship, Pigs.change](Pigs.relationship == "negative opinion" → Content(Opinion, Negative)(S1, Pigs))
+16. Q[they, Pigs.change, Pigs.relationship](Pigs.relationship == "positive change" → Content(Opinion, Positive)(S2, Pigs))
+17. Q[they, Pigs.emotion, Pigs.negative_opinion](Emotion(Pigs, Disgust) == S1 → Content(Opinion, Negative)(S1, Pigs))
+18. Q[they, Pigs.positive_change, Pigs.emotion](Emotion(Pigs, Relief) == S2 → Content(Opinion, Positive)(S2, Pigs))
+19. Q[they, Pigs.perception_change, Pigs.quality](Pigs.perception_change == "positive" → Content(Opinion, Positive)(S2, Pigs))
+20. Q[they, Pigs.quality, Pigs.perception](Pigs.quality == "poor" → Content(Opinion, Negative)(S1, Pigs))
+21. Q[they, Pigs.state, Pigs.cleanliness_status](Pigs.state == "disgusting" → Content(Opinion, Negative)(S1, Pigs))
+22. Q[they, Pigs.cleanliness_status, Pigs.state](Pigs.cleanliness_status == "improving" → Content(Opinion, Positive)(S2, Pigs))
+23. Q[they, Pigs.relationship, Pigs.negative_opinion](Pigs.relationship == "negative opinion" → Content(Opinion, Negative)(S1, Pigs))
+24. Q[they, Pigs.negative_opinion, Pigs.positive_change](Pigs.positive_change == S2 → Content(Opinion, Positive)(S2, Pigs))
+25. Q[they, Pigs.change, Pigs.trajectory](Pigs.change == "cleaner" → Content(Opinion, Positive)(S2, Pigs))
+26. Q[they, Pigs.trajectory, Pigs.change](Pigs.trajectory == "improvement" → Content(Opinion, Positive)(S2, Pigs))
+27. Q[they, Pigs.state_change, Pigs.evolution](Pigs.state_change == "cleaner" → Content(Opinion, Positive)(S2, Pigs))
+28. Q[they, Pigs.evolution, Pigs.state](Pigs.evolution == "from disgusting to cleaner" → Content(Opinion, Negative)(S1, Pigs))
+29. Q[they, Pigs.cleanliness, Pigs.quality](Pigs.cleanliness == "improving" → Content(Opinion, Positive)(S2, Pigs))
+30. Q[they, Pigs.perception, Pigs.quality_change](Pigs.perception == "negative" → Content(Opinion, Negative)(S1, Pigs))

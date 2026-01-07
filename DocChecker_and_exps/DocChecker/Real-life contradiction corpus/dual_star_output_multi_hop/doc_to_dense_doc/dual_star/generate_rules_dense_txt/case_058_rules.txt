@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 58)
+S1: No one has been arrested in the case.
+S2: Collin Finnerty was arrested on charges of sexual offense.
+
+Predicates:
+1. Case.arrested = false
+2. Collin_Finnerty.arrested = true
+3. Case.has_arrests = false
+4. Collin_Finnerty.charges = sexual_offense
+5. Arrest.status = none
+6. Collin_Finnerty.status = arrested
+7. Case.investigation_status = ongoing
+8. Collin_Finnerty.offense_type = sexual
+9. Arrest.record.exists = true
+10. Case.arrest_count = 0
+11. Collin_Finnerty.legal_status = charged
+12. Case.evidence = insufficient
+13. Collin_Finnerty.defense = pending
+14. Case.suspect_count = 1
+15. Collin_Finnerty.case_id = 12345
+16. Case.victims = unknown
+17. Collin_Finnerty.bail_status = set
+18. Case.jurisdiction = local
+19. Collin_Finnerty.attorney = assigned
+20. Case.prosecution_status = active
+21. Collin_Finnerty.hearing_date = upcoming
+22. Case.witnesses = none
+23. Collin_Finnerty.plea = not_guilty
+24. Case.outcome = unresolved
+25. Collin_Finnerty.sentence = none
+26. Case.public_interest = high
+27. Collin_Finnerty.evidence = presented
+28. Case.media_coverage = extensive
+29. Collin_Finnerty.previous_offenses = none
+30. Case.legal_proceedings = initiated
+
+Rules:
+1. Q[one, Case.arrested, false](Case.has_arrests == false → Factual(one, false))
+2. Q[one, Case.arrest_count, 0](Case.has_arrests == false → Factual(one, 0))
+3. Q[one, Arrest.status, none](Case.has_arrests == false → Factual(one, none))
+4. Q[one, Collin_Finnerty.arrested, true](Collin_Finnerty.status == arrested → Factual(one, true))
+5. Q[one, Case.evidence, insufficient](Case.has_arrests == false → Factual(one, insufficient))
+6. Q[one, Case.investigation_status, ongoing](Case.has_arrests == false → Factual(one, ongoing))
+7. Q[one, Case.suspect_count, 1](Case.has_arrests == false → Factual(one, 1))
+8. Q[one, Collin_Finnerty.charges, sexual_offense](Collin_Finnerty.legal_status == charged → Factual(one, sexual_offense))
+9. Q[one, Collin_Finnerty.defense, pending](Collin_Finnerty.status == arrested → Factual(one, pending))
+10. Q[one, Collin_Finnerty.plea, not_guilty](Collin_Finnerty.legal_status == charged → Factual(one, not_guilty))
+11. Q[one, Collin_Finnerty.bail_status, set](Collin_Finnerty.status == arrested → Factual(one, set))
+12. Q[one, Collin_Finnerty.case_id, 12345](Collin_Finnerty.status == arrested → Factual(one, 12345))
+13. Q[one, Case.jurisdiction, local](Case.has_arrests == false → Factual(one, local))
+14. Q[one, Case.prosecution_status, active](Case.has_arrests == false → Factual(one, active))
+15. Q[one, Case.outcome, unresolved](Case.has_arrests == false → Factual(one, unresolved))
+16. Q[one, Collin_Finnerty.previous_offenses, none](Collin_Finnerty.status == arrested → Factual(one, none))
+17. Q[one, Collin_Finnerty.evidence, presented](Collin_Finnerty.status == arrested → Factual(one, presented))
+18. Q[one, Case.media_coverage, extensive](Case.has_arrests == false → Factual(one, extensive))
+19. Q[one, Case.victims, unknown](Case.has_arrests == false → Factual(one, unknown))
+20. Q[one, Case.witnesses, none](Case.has_arrests == false → Factual(one, none))
+21. Q[one, Collin_Finnerty.hearing_date, upcoming](Collin_Finnerty.status == arrested → Factual(one, upcoming))
+22. Q[one, Collin_Finnerty.sentence, none](Collin_Finnerty.status == arrested → Factual(one, none))
+23. Q[one, Case.legal_proceedings, initiated](Case.has_arrests == false → Factual(one, initiated))
+24. Q[one, Case.public_interest, high](Case.has_arrests == false → Factual(one, high))
+25. Q[one, Collin_Finnerty.offense_type, sexual](Collin_Finnerty.legal_status == charged → Factual(one, sexual))
+26. Q[one, Case.arrested, false](Collin_Finnerty.arrested == true → Factual(one, false))
+27. Q[one, Case.has_arrests, false](Collin_Finnerty.arrested == true → Factual(one, false))
+28. Q[one, Arrest.record.exists, true](Collin_Finnerty.arrested == true → Factual(one, true))
+29. Q[one, Case.arrested, false](Case.arrest_count == 0 → Factual(one, false))
+30. Q[one, Case.has_arrests, false](Case.arrested == false → Factual(one, false))

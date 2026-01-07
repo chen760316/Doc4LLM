@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 360)
+S1: A boy with dark and a woman in a brown shirt are playing with a purple stuffed toy.
+S2: The woman in a brown shirt and the boy in a dark shirt play with the purple stuffed toy.
+
+Predicates:
+1. Boy.clothing = dark
+2. Woman.clothing = brown shirt
+3. Boy.activity = playing
+4. Woman.activity = playing
+5. Toy.color = purple
+6. Boy.has_toy = purple stuffed toy
+7. Woman.has_toy = purple stuffed toy
+8. Boy.gender = male
+9. Woman.gender = female
+10. Boy.age_group = child
+11. Woman.age_group = adult
+12. Boy.location = playground
+13. Woman.location = playground
+14. Toy.type = stuffed
+15. Boy.relationship_with_woman = playing together
+16. Woman.relationship_with_boy = playing together
+17. Boy.shirt_color = dark
+18. Woman.shirt_color = brown
+19. Boy.playing_with = purple stuffed toy
+20. Woman.playing_with = purple stuffed toy
+21. Boy.appearance = dark clothing
+22. Woman.appearance = brown clothing
+23. Boy.interaction = playing
+24. Woman.interaction = playing
+25. Toy.owner = boy or woman
+26. Boy.emotion = happy
+27. Woman.emotion = happy
+28. Boy.activity_location = playground
+29. Woman.activity_location = playground
+30. M_NLI(S1, S2) = true
+
+Rules:
+1. Q[boy, Boy.shirt_color, Woman.shirt_color](Boy.shirt_color == "dark" → Relation(Boy.shirt_color, Woman.shirt_color))
+2. Q[boy, Boy.appearance, Woman.appearance](Boy.appearance == "dark clothing" → Relation(Boy.appearance, Woman.appearance))
+3. Q[boy, Boy.activity, Woman.activity](Boy.activity == "playing" → Relation(Boy.activity, Woman.activity))
+4. Q[boy, Boy.has_toy, Woman.has_toy](Boy.has_toy == "purple stuffed toy" → Relation(Boy.has_toy, Woman.has_toy))
+5. Q[boy, Boy.gender, Woman.gender](Boy.gender == "male" → Relation(Boy.gender, Woman.gender))
+6. Q[boy, Boy.age_group, Woman.age_group](Boy.age_group == "child" → Relation(Boy.age_group, Woman.age_group))
+7. Q[boy, Boy.location, Woman.location](Boy.location == "playground" → Relation(Boy.location, Woman.location))
+8. Q[boy, Boy.relationship_with_woman, Woman.relationship_with_boy](Boy.relationship_with_woman == "playing together" → Relation(Boy.relationship_with_woman, Woman.relationship_with_boy))
+9. Q[boy, Boy.interaction, Woman.interaction](Boy.interaction == "playing" → Relation(Boy.interaction, Woman.interaction))
+10. Q[boy, Boy.emotion, Woman.emotion](Boy.emotion == "happy" → Relation(Boy.emotion, Woman.emotion))
+11. Q[boy, Boy.activity_location, Woman.activity_location](Boy.activity_location == "playground" → Relation(Boy.activity_location, Woman.activity_location))
+12. Q[boy, Toy.color, Toy.color](Toy.color == "purple" → Relation(Toy.color, Toy.color))
+13. Q[boy, Toy.type, Toy.type](Toy.type == "stuffed" → Relation(Toy.type, Toy.type))
+14. Q[boy, Boy.playing_with, Woman.playing_with](Boy.playing_with == "purple stuffed toy" → Relation(Boy.playing_with, Woman.playing_with))
+15. Q[boy, Boy.clothing, Woman.clothing](Boy.clothing == "dark" → Relation(Boy.clothing, Woman.clothing))
+16. Q[boy, Boy.shirt_color, Boy.appearance](Boy.shirt_color == "dark" → Relation(Boy.shirt_color, Boy.appearance))
+17. Q[boy, Woman.shirt_color, Woman.appearance](Woman.shirt_color == "brown" → Relation(Woman.shirt_color, Woman.appearance))
+18. Q[boy, Boy.activity, Boy.playing_with](Boy.activity == "playing" → Relation(Boy.activity, Boy.playing_with))
+19. Q[boy, Woman.activity, Woman.playing_with](Woman.activity == "playing" → Relation(Woman.activity, Woman.playing_with))
+20. Q[boy, Boy.has_toy, Toy.owner](Boy.has_toy == "purple stuffed toy" → Relation(Boy.has_toy, Toy.owner))
+21. Q[boy, Woman.has_toy, Toy.owner](Woman.has_toy == "purple stuffed toy" → Relation(Woman.has_toy, Toy.owner))
+22. Q[boy, Boy.appearance, Boy.clothing](Boy.appearance == "dark clothing" → Relation(Boy.appearance, Boy.clothing))
+23. Q[boy, Woman.appearance, Woman.clothing](Woman.appearance == "brown clothing" → Relation(Woman.appearance, Woman.clothing))
+24. Q[boy, Boy.activity, Boy.location](Boy.activity == "playing" → Relation(Boy.activity, Boy.location))
+25. Q[boy, Woman.activity, Woman.location](Woman.activity == "playing" → Relation(Woman.activity, Woman.location))
+26. Q[boy, Boy.relationship_with_woman, Boy.activity](Boy.relationship_with_woman == "playing together" → Relation(Boy.relationship_with_woman, Boy.activity))
+27. Q[boy, Woman.relationship_with_boy, Woman.activity](Woman.relationship_with_boy == "playing together" → Relation(Woman.relationship_with_boy, Woman.activity))
+28. Q[boy, Boy.interaction, Boy.activity](Boy.interaction == "playing" → Relation(Boy.interaction, Boy.activity))
+29. Q[boy, Woman.interaction, Woman.activity](Woman.interaction == "playing" → Relation(Woman.interaction, Woman.activity))
+30. Q[boy, M_NLI(S1, S2), M_NLI(S1, S2)](M_NLI(S1, S2) == true → Relation(M_NLI(S1, S2), M_NLI(S1, S2)))

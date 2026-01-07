@@ -1,0 +1,134 @@
+Predicates:
+1. Consumer_Confidence.status = "dropped"
+2. Interest_Rate.status = "risen"
+3. Market.status = "dipped"
+4. "Market_ConsumerConfidence_Relationship".cause = "drop"
+5. "Market_InterestRate_Relationship".cause = "rise"
+6. "Market_ConsumerConfidence_Relationship".effect = "dipped"
+7. "Market_InterestRate_Relationship".effect = "dipped"
+8. Consumer_Confidence.trend = "negative"
+9. Interest_Rate.trend = "positive"
+10. Market.trend = "downward"
+11. M_NLI(Consumer_Confidence.status, Interest_Rate.status)
+12. T("The market has dipped following a drop in consumer confidence.", "The market has dipped following a rise in interest rates.", tau)
+13. tau(Consumer_Confidence.status, Interest_Rate.status)
+14. violate(Market.status, Consumer_Confidence.status)
+15. violate(Market.status, Interest_Rate.status)
+16. Factual(Market.status, Consumer_Confidence.status)
+17. Factual(Market.status, Interest_Rate.status)
+18. Causal(Market.status, Consumer_Confidence.status)
+19. Causal(Market.status, Interest_Rate.status)
+20. Numeric(Market.status, Interest_Rate.status)
+21. Temporal(Consumer_Confidence.status, Interest_Rate.status)
+22. Content(Consumer_Confidence.trend, Interest_Rate.trend)
+23. Relation(Market.status, Consumer_Confidence.status)
+24. Relation(Market.status, Interest_Rate.status)
+25. "Market_ConsumerConfidence_Relationship".status = "active"
+26. "Market_InterestRate_Relationship".status = "active"
+27. Consumer_Confidence.change = "decrease"
+28. Interest_Rate.change = "increase"
+29. Market.change = "decrease"
+30. M_NLI(Market.status, "dipped")
+31. T("The market has dipped.", "The market has not dipped.", tau)
+32. tau(Market.status, "not dipped")
+33. violate(Consumer_Confidence.status, Interest_Rate.status)
+34. Factual(Consumer_Confidence.status, Interest_Rate.status)
+35. Causal(Consumer_Confidence.status, Market.status)
+36. Numeric(Consumer_Confidence.status, Market.status)
+37. Temporal(Consumer_Confidence.status, Market.status)
+38. Content(Interest_Rate.status, Market.status)
+39. Relation(Consumer_Confidence.status, Market.status)
+40. "Market_ConsumerConfidence_Relationship".impact = "significant"
+41. "Market_InterestRate_Relationship".impact = "significant"
+42. Consumer_Confidence.level = "low"
+43. Interest_Rate.level = "high"
+44. Market.level = "low"
+45. M_NLI(Interest_Rate.status, "risen")
+46. T("Interest rates have risen.", "Interest rates have not risen.", tau)
+47. tau(Interest_Rate.status, "not risen")
+48. violate(Market.status, "not dipped")
+49. Factual(Market.status, "not dipped")
+50. Causal(Market.status, Interest_Rate.status)
+51. Numeric(Market.status, "not dipped")
+52. Temporal(Market.status, Interest_Rate.status)
+53. Content(Consumer_Confidence.status, "not dropped")
+54. Relation(Market.status, "not dipped")
+55. "Market_ConsumerConfidence_Relationship".duration = "short-term"
+56. "Market_InterestRate_Relationship".duration = "short-term"
+57. Consumer_Confidence.effect = "negative"
+58. Interest_Rate.effect = "positive"
+59. Market.effect = "negative"
+60. M_NLI(Market.status, "stable")
+61. T("The market is stable.", "The market is not stable.", tau)
+62. tau(Market.status, "not stable")
+63. violate(Interest_Rate.status, "not risen")
+64. Factual(Interest_Rate.status, "not risen")
+65. Causal(Interest_Rate.status, Market.status)
+66. Numeric(Interest_Rate.status, "not risen")
+67. Temporal(Interest_Rate.status, Market.status)
+68. Content(Consumer_Confidence.status, "not dropped")
+69. Relation(Interest_Rate.status, Market.status)
+70. "Market_ConsumerConfidence_Relationship".magnitude = "high"
+71. "Market_InterestRate_Relationship".magnitude = "high"
+72. Consumer_Confidence.indicator = "negative"
+73. Interest_Rate.indicator = "positive"
+74. Market.indicator = "negative"
+75. M_NLI(Consumer_Confidence.status, "stable")
+76. T("Consumer confidence is stable.", "Consumer confidence is not stable.", tau)
+77. tau(Consumer_Confidence.status, "not stable")
+78. violate(Market.status, "stable")
+79. Factual(Market.status, "stable")
+80. Causal(Market.status, Consumer_Confidence.status)
+81. Numeric(Market.status, "stable")
+82. Temporal(Market.status, Consumer_Confidence.status)
+83. Content(Interest_Rate.status, "not risen")
+84. Relation(Market.status, Consumer_Confidence.status)
+85. "Market_ConsumerConfidence_Relationship".frequency = "frequent"
+86. "Market_InterestRate_Relationship".frequency = "frequent"
+87. Consumer_Confidence.trend = "declining"
+88. Interest_Rate.trend = "increasing"
+89. Market.trend = "falling"
+90. M_NLI(Market.status, "increased")
+91. T("The market has increased.", "The market has not increased.", tau)
+92. tau(Market.status, "not increased")
+93. violate(Consumer_Confidence.status, "not dropped")
+94. Factual(Consumer_Confidence.status, "not dropped")
+95. Causal(Consumer_Confidence.status, Market.status)
+96. Numeric(Consumer_Confidence.status, "not dropped")
+97. Temporal(Consumer_Confidence.status, Market.status)
+98. Content(Interest_Rate.status, "not risen")
+99. Relation(Consumer_Confidence.status, Market.status)
+100. violate(Market.status, "not dipped")
+violate(x0, y0)
+
+Rules:
+1. Q[x0, y0](Consumer_Confidence.status = "dropped" ∧ Market.status = "dipped" → violate(x0, y0))
+2. Q[x0, y0](Interest_Rate.status = "risen" ∧ Market.status = "dipped" → violate(x0, y0))
+3. Q[x0, y0](Consumer_Confidence.trend = "negative" ∧ Interest_Rate.trend = "positive" → violate(x0, y0))
+4. Q[x0, y0](Market.status = "dipped" ∧ "Market_ConsumerConfidence_Relationship".cause = "drop" → violate(x0, y0))
+5. Q[x0, y0](Market.status = "dipped" ∧ "Market_InterestRate_Relationship".cause = "rise" → violate(x0, y0))
+6. Q[x0, y0](Consumer_Confidence.change = "decrease" ∧ Interest_Rate.change = "increase" → violate(x0, y0))
+7. Q[x0, y0](Consumer_Confidence.status = "dropped" ∧ Interest_Rate.status = "risen" ∧ Market.status = "dipped" → violate(x0, y0))
+8. Q[x0, y0](Market.trend = "downward" ∧ Consumer_Confidence.trend = "negative" ∧ Interest_Rate.trend = "positive" → violate(x0, y0))
+9. Q[x0, y0](Market.status = "dipped" ∧ "Market_ConsumerConfidence_Relationship".effect = "dipped" ∧ "Market_InterestRate_Relationship".effect = "dipped" → violate(x0, y0))
+10. Q[x0, y0](Consumer_Confidence.level = "low" ∧ Interest_Rate.level = "high" ∧ Market.level = "low" → violate(x0, y0))
+11. Q[x0, y0](Consumer_Confidence.status = "dropped" ∧ Market.status = "dipped" ∧ "Market_ConsumerConfidence_Relationship".status = "active" → violate(x0, y0))
+12. Q[x0, y0](Interest_Rate.status = "risen" ∧ Market.status = "dipped" ∧ "Market_InterestRate_Relationship".status = "active" → violate(x0, y0))
+13. Q[x0, y0](Market.change = "decrease" ∧ Consumer_Confidence.change = "decrease" ∧ Interest_Rate.change = "increase" → violate(x0, y0))
+14. Q[x0, y0](Consumer_Confidence.trend = "declining" ∧ Interest_Rate.trend = "increasing" ∧ Market.trend = "falling" → violate(x0, y0))
+15. Q[x0, y0](M_NLI(Consumer_Confidence.status, Interest_Rate.status) ∧ "Market_ConsumerConfidence_Relationship".impact = "significant" → violate(x0, y0))
+16. Q[x0, y0](Market.status = "dipped" ∧ "Market_InterestRate_Relationship".impact = "significant" ∧ "Market_ConsumerConfidence_Relationship".impact = "significant" → violate(x0, y0))
+17. Q[x0, y0](Consumer_Confidence.status = "dropped" ∧ Interest_Rate.status = "risen" ∧ Market.status = "stable" → violate(x0, y0))
+18. Q[x0, y0](Market.status = "dipped" ∧ Factual(Market.status, Consumer_Confidence.status) ∧ Causal(Market.status, Interest_Rate.status) → violate(x0, y0))
+19. Q[x0, y0](Market.status = "dipped" ∧ Numeric(Market.status, Interest_Rate.status) ∧ Temporal(Market.status, Consumer_Confidence.status) → violate(x0, y0))
+20. Q[x0, y0](Consumer_Confidence.indicator = "negative" ∧ Interest_Rate.indicator = "positive" ∧ Market.indicator = "negative" → violate(x0, y0))
+21. Q[x0, y0](Market.status = "dipped" ∧ "Market_ConsumerConfidence_Relationship".frequency = "frequent" ∧ "Market_InterestRate_Relationship".frequency = "frequent" → violate(x0, y0))
+22. Q[x0, y0](Consumer_Confidence.trend = "negative" ∧ Interest_Rate.trend = "positive" ∧ Market.trend = "downward" ∧ "Market_ConsumerConfidence_Relationship".duration = "short-term" → violate(x0, y0))
+23. Q[x0, y0](Interest_Rate.status = "risen" ∧ Market.status = "dipped" ∧ "Market_InterestRate_Relationship".duration = "short-term" → violate(x0, y0))
+24. Q[x0, y0](Consumer_Confidence.status = "dropped" ∧ Interest_Rate.status = "risen" ∧ Market.status = "not dipped" → violate(x0, y0))
+25. Q[x0, y0](Market.status = "dipped" ∧ "Market_ConsumerConfidence_Relationship".magnitude = "high" ∧ "Market_InterestRate_Relationship".magnitude = "high" → violate(x0, y0))
+26. Q[x0, y0](Consumer_Confidence.trend = "negative" ∧ Interest_Rate.trend = "positive" ∧ Market.trend = "falling" ∧ M_NLI(Market.status, "increased") → violate(x0, y0))
+27. Q[x0, y0](Market.status = "dipped" ∧ Factual(Market.status, "not dipped") ∧ Causal(Market.status, Consumer_Confidence.status) → violate(x0, y0))
+28. Q[x0, y0](Market.status = "dipped" ∧ Numeric(Market.status, "not dipped") ∧ Temporal(Market.status, Interest_Rate.status) → violate(x0, y0))
+29. Q[x0, y0](Consumer_Confidence.status = "dropped" ∧ Interest_Rate.status = "risen" ∧ Market.status = "stable" ∧ violate(Market.status, "not dipped") → violate(x0, y0))
+30. Q[x0, y0](Market.status = "dipped" ∧ "Market_ConsumerConfidence_Relationship".impact = "significant" ∧ "Market_InterestRate_Relationship".impact = "significant" ∧ violate(Consumer_Confidence.status, Interest_Rate.status) → violate(x0, y0))

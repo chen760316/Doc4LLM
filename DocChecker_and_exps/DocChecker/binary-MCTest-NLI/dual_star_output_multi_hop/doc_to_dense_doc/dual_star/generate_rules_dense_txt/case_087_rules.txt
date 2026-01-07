@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 87)
+S1: They called the police to get an accident report.
+S2: When the police arrived, they put Ben and Sasha in handcuffs because they had been stealing.
+
+Predicates:
+1. AccidentReport.calling.police
+2. Police.arrival.time
+3. Ben.handcuffed.status
+4. Sasha.handcuffed.status
+5. Ben.stealing.action
+6. Sasha.stealing.action
+7. Police.putInHandcuffs.reason
+8. AccidentReport.nonCriminalSituation
+9. Stealing.criminalAct
+10. Police.investigation.type
+11. Ben.and.Sasha.involvement.crime
+12. Police.response.time
+13. AccidentReport.requester.identity
+14. Handcuffs.use.purpose
+15. Police.arrival.location
+16. Ben.and.Sasha.relationship
+17. Police.officer.name
+18. AccidentReport.details.content
+19. Stealing.evidence.collection
+20. Ben.and.Sasha.arrest.status
+21. Police.procedure.followed
+22. AccidentReport.filing.time
+23. Witness.testimony.relevance
+24. Police.dispatch.call.time
+25. Ben.and.Sasha.defense.claim
+26. Police.report.filing.status
+27. AccidentReport.outcome
+28. Stealing.penalty.assessment
+29. Police.interrogation.method
+30. Ben.and.Sasha.bail.status
+
+Rules:
+1. Q[They, AccidentReport.calling.police == true, AccidentReport.nonCriminalSituation == true](AccidentReport.calling.police == true → Factual(They, AccidentReport.nonCriminalSituation))
+2. Q[They, Police.arrival.time == true, Police.investigation.type == "theft"](Police.arrival.time == true → Factual(They, Police.investigation.type))
+3. Q[They, Ben.handcuffed.status == "handcuffed", Ben.stealing.action == true](Ben.handcuffed.status == "handcuffed" → Factual(They, Ben.stealing.action))
+4. Q[They, Sasha.handcuffed.status == "handcuffed", Sasha.stealing.action == true](Sasha.handcuffed.status == "handcuffed" → Factual(They, Sasha.stealing.action))
+5. Q[They, Police.putInHandcuffs.reason == "theft", AccidentReport.nonCriminalSituation == true](Police.putInHandcuffs.reason == "theft" → Factual(They, AccidentReport.nonCriminalSituation))
+6. Q[They, Ben.and.Sasha.involvement.crime == true, AccidentReport.nonCriminalSituation == true](Ben.and.Sasha.involvement.crime == true → Factual(They, AccidentReport.nonCriminalSituation))
+7. Q[They, Stealing.criminalAct == true, AccidentReport.nonCriminalSituation == true](Stealing.criminalAct == true → Factual(They, AccidentReport.nonCriminalSituation))
+8. Q[They, Police.response.time < 5, AccidentReport.nonCriminalSituation == true](Police.response.time < 5 → Factual(They, AccidentReport.nonCriminalSituation))
+9. Q[They, AccidentReport.requester.identity == "Ben", Ben.stealing.action == true](AccidentReport.requester.identity == "Ben" → Factual(They, Ben.stealing.action))
+10. Q[They, AccidentReport.details.content == "minor accident", Ben.and.Sasha.involvement.crime == true](AccidentReport.details.content == "minor accident" → Factual(They, Ben.and.Sasha.involvement.crime))
+11. Q[They, Police.dispatch.call.time < 10, AccidentReport.nonCriminalSituation == true](Police.dispatch.call.time < 10 → Factual(They, AccidentReport.nonCriminalSituation))
+12. Q[They, Handcuffs.use.purpose == "detain for theft", AccidentReport.nonCriminalSituation == true](Handcuffs.use.purpose == "detain for theft" → Factual(They, AccidentReport.nonCriminalSituation))
+13. Q[They, Police.officer.name == "Officer Smith", Ben.and.Sasha.arrest.status == "arrested"](Police.officer.name == "Officer Smith" → Factual(They, Ben.and.Sasha.arrest.status))
+14. Q[They, AccidentReport.filing.time == "immediate", Stealing.criminalAct == true](AccidentReport.filing.time == "immediate" → Factual(They, Stealing.criminalAct))
+15. Q[They, Witness.testimony.relevance == "high", Ben.and.Sasha.involvement.crime == true](Witness.testimony.relevance == "high" → Factual(They, Ben.and.Sasha.involvement.crime))
+16. Q[They, Police.report.filing.status == "completed", AccidentReport.nonCriminalSituation == true](Police.report.filing.status == "completed" → Factual(They, AccidentReport.nonCriminalSituation))
+17. Q[They, AccidentReport.outcome == "no injuries", Ben.stealing.action == true](AccidentReport.outcome == "no injuries" → Factual(They, Ben.stealing.action))
+18. Q[They, Ben.and.Sasha.bail.status == "denied", AccidentReport.nonCriminalSituation == true](Ben.and.Sasha.bail.status == "denied" → Factual(They, AccidentReport.nonCriminalSituation))
+19. Q[They, Police.interrogation.method == "standard", Ben.and.Sasha.involvement.crime == true](Police.interrogation.method == "standard" → Factual(They, Ben.and.Sasha.involvement.crime))
+20. Q[They, AccidentReport.calling.police == true, Police.putInHandcuffs.reason == "theft"](AccidentReport.calling.police == true → Factual(They, Police.putInHandcuffs.reason))
+21. Q[They, AccidentReport.details.content == "fender bender", Ben.and.Sasha.involvement.crime == true](AccidentReport.details.content == "fender bender" → Factual(They, Ben.and.Sasha.involvement.crime))
+22. Q[They, Police.arrival.location == "scene of accident", Stealing.criminalAct == true](Police.arrival.location == "scene of accident" → Factual(They, Stealing.criminalAct))
+23. Q[They, AccidentReport.nonCriminalSituation == true, Police.procedure.followed == true](AccidentReport.nonCriminalSituation == true → Factual(They, Police.procedure.followed))
+24. Q[They, Ben.and.Sasha.defense.claim == "innocent", Police.putInHandcuffs.reason == "theft"](Ben.and.Sasha.defense.claim == "innocent" → Factual(They, Police.putInHandcuffs.reason))
+25. Q[They, AccidentReport.filing.time == "after incident", Ben.handcuffed.status == "handcuffed"](AccidentReport.filing.time == "after incident" → Factual(They, Ben.handcuffed.status))
+26. Q[They, Police.response.time > 5, AccidentReport.nonCriminalSituation == true](Police.response.time > 5 → Factual(They, AccidentReport.nonCriminalSituation))
+27. Q[They, Ben.and.Sasha.relationship == "friends", Ben.stealing.action == true](Ben.and.Sasha.relationship == "friends" → Factual(They, Ben.stealing.action))
+28. Q[They, AccidentReport.outcome == "resolved", Stealing.criminalAct == true](AccidentReport.outcome == "resolved" → Factual(They, Stealing.criminalAct))
+29. Q[They, Police.dispatch.call.time == 5, AccidentReport.nonCriminalSituation == true](Police.dispatch.call.time == 5 → Factual(They, AccidentReport.nonCriminalSituation))
+30. Q[They, AccidentReport.details.content == "no damage", Ben.and.Sasha.involvement.crime == true](AccidentReport.details.content == "no damage" → Factual(They, Ben.and.Sasha.involvement.crime))

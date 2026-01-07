@@ -1,0 +1,39 @@
+Predicates:
+M_NLI(('New Product', 'Unnamed Company').attrs, ('new product', 'unknown company').attrs)
+M_NLI(('New Product', 'Unnamed Company').attrs, The company had not yet revealed any details about its new product by February 2025..attrs)
+M_NLI(The company announced its new product in January 2025..attrs, ('new product', 'unknown company').attrs)
+M_NLU(('New Product', 'Unnamed Company').attrs, The company announced its new product in January 2025..attrs)
+M_NLU(New Product.attrs, new product.attrs)
+M_NLU(The company announced its new product in January 2025..attrs, The company had not yet revealed any details about its new product by February 2025..attrs)
+M_NLU(new product.attrs, unknown company.attrs)
+M_TEM(('new product', 'unknown company').attrs, The company had not yet revealed any details about its new product by February 2025..attrs)
+New Product___Unnamed Company.relationship != "The company announced its new product in January 2025."
+New Product___Unnamed Company.relationship != new product_unknown company.relationship
+New Product___Unnamed Company.relationship = "The company announced its new product in January 2025."
+None_ML(New Product.attrs, unknown company.attrs)
+new product.label != "Product"
+new product.label != unknown company.label
+new product.label = "Product"
+new product.name != "new product"
+new product.name != unknown company.name
+new product.name = "new product"
+new product.status != "not revealed"
+new product.status = "not revealed"
+new product___unknown company.relationship != "The company had not yet revealed any details about its new product by February 2025."
+new product___unknown company.relationship = "The company had not yet revealed any details about its new product by February 2025."
+unknown company.label != "Company"
+unknown company.label = "Company"
+unknown company.name != "unknown company"
+unknown company.name = "unknown company"
+
+Rules:
+Q[New Product,new product] (unknown company.label != "Company" ∧ unknown company.name != "unknown company" → unknown company.name != "unknown company")
+Q[New Product,new product] (M_NLI(The company announced its new product in January 2025..attrs, ('new product', 'unknown company').attrs) ∧ M_TEM(('new product', 'unknown company').attrs, The company had not yet revealed any details about its new product by February 2025..attrs) → M_TEM(('new product', 'unknown company').attrs, The company had not yet revealed any details about its new product by February 2025..attrs))
+Q[New Product,new product] (new product___unknown company.relationship = "The company had not yet revealed any details about its new product by February 2025." ∧ M_NLU(The company announced its new product in January 2025..attrs, The company had not yet revealed any details about its new product by February 2025..attrs) → new product___unknown company.relationship = "The company had not yet revealed any details about its new product by February 2025.")
+Q[New Product,new product] (unknown company.label = "Company" ∧ M_NLU(('New Product', 'Unnamed Company').attrs, The company announced its new product in January 2025..attrs) → M_NLU(('New Product', 'Unnamed Company').attrs, The company announced its new product in January 2025..attrs))
+Q[New Product,new product] (new product.label != "Product" ∧ new product.status != "not revealed" → new product.label != "Product")
+Q[New Product,new product] (new product.name = "new product" ∧ new product.name != "new product" → new product.name != "new product")
+Q[New Product,new product] (M_NLI(('New Product', 'Unnamed Company').attrs, The company had not yet revealed any details about its new product by February 2025..attrs) ∧ new product.label != unknown company.label → new product.label != unknown company.label)
+Q[New Product,new product] (M_NLI(The company announced its new product in January 2025..attrs, ('new product', 'unknown company').attrs) ∧ new product.label != "Product" → M_NLI(The company announced its new product in January 2025..attrs, ('new product', 'unknown company').attrs))
+Q[New Product,new product] (new product___unknown company.relationship = "The company had not yet revealed any details about its new product by February 2025." ∧ New Product___Unnamed Company.relationship = "The company announced its new product in January 2025." → New Product___Unnamed Company.relationship = "The company announced its new product in January 2025.")
+Q[New Product,new product] (new product.name != unknown company.name ∧ new product.status != "not revealed" → new product.name != unknown company.name)

@@ -1,0 +1,132 @@
+Predicates:
+1. "cut".doc_index = "43"
+2. "cut".label_text = "contradiction"
+3. "have implemented".doc_index = "43"
+4. "have implemented".label_text = "contradiction"
+5. "is part of".doc_index = "43"
+6. "is part of".label_text = "contradiction"
+7. "tripled".doc_index = "43"
+8. "tripled".label_text = "contradiction"
+9. entity1.name = "Alice"
+10. entity1.age = "30"
+11. entity2.name = "Bob"
+12. entity2.age = "25"
+13. edge1.relationship = "friend"
+14. edge1.status = "active"
+15. edge2.relationship = "colleague"
+16. edge2.status = "inactive"
+17. M_NLI(entity1.age, entity2.age)
+18. T("Alice is 30 years old", "Alice is 25 years old", tau)
+19. tau(entity1.name, entity2.name)
+20. violate(entity1, entity2)
+21. Factual(entity1.age, entity2.age)
+22. Causal(entity1.status, edge1.status)
+23. Numeric(entity1.age, entity2.age)
+24. Temporal(entity1.status, edge2.status)
+25. Content(entity1.name, entity2.name)
+26. Relation(edge1.relationship, edge2.relationship)
+27. "cut".type = "text"
+28. "have implemented".type = "action"
+29. "is part of".type = "membership"
+30. "tripled".type = "quantity"
+31. entity1.location = "New York"
+32. entity2.location = "Los Angeles"
+33. edge1.duration = "2 years"
+34. edge2.duration = "5 years"
+35. M_NLI(entity1.location, entity2.location)
+36. T("Alice lives in New York", "Alice lives in Los Angeles", tau)
+37. tau(entity1.location, entity2.location)
+38. violate(entity1, entity2)
+39. Factual(entity1.location, entity2.location)
+40. Causal(edge1.duration, edge2.duration)
+41. Numeric(edge1.duration, edge2.duration)
+42. Temporal(edge1.duration, edge2.duration)
+43. Content(entity1.location, entity2.location)
+44. Relation(edge1.relationship, edge2.relationship)
+45. "cut".context = "dispute"
+46. "have implemented".context = "policy"
+47. "is part of".context = "group"
+48. "tripled".context = "growth"
+49. entity1.salary = "50000"
+50. entity2.salary = "60000"
+51. edge1.project = "Project A"
+52. edge2.project = "Project B"
+53. M_NLI(entity1.salary, entity2.salary)
+54. T("Alice earns 50000", "Alice earns 60000", tau)
+55. tau(entity1.salary, entity2.salary)
+56. violate(entity1, entity2)
+57. Factual(entity1.salary, entity2.salary)
+58. Causal(edge1.project, edge2.project)
+59. Numeric(entity1.salary, entity2.salary)
+60. Temporal(edge1.project, edge2.project)
+61. Content(entity1.salary, entity2.salary)
+62. Relation(edge1.project, edge2.project)
+63. "cut".source = "report"
+64. "have implemented".source = "initiative"
+65. "is part of".source = "team"
+66. "tripled".source = "data"
+67. entity1.experience = "5 years"
+68. entity2.experience = "10 years"
+69. edge1.role = "manager"
+70. edge2.role = "director"
+71. M_NLI(entity1.experience, entity2.experience)
+72. T("Alice has 5 years of experience", "Alice has 10 years of experience", tau)
+73. tau(entity1.experience, entity2.experience)
+74. violate(entity1, entity2)
+75. Factual(entity1.experience, entity2.experience)
+76. Causal(edge1.role, edge2.role)
+77. Numeric(entity1.experience, entity2.experience)
+78. Temporal(edge1.role, edge2.role)
+79. Content(entity1.experience, entity2.experience)
+80. Relation(edge1.role, edge2.role)
+81. "cut".impact = "negative"
+82. "have implemented".impact = "positive"
+83. "is part of".impact = "neutral"
+84. "tripled".impact = "significant"
+85. entity1.project_count = "3"
+86. entity2.project_count = "0"
+87. edge1.success = "high"
+88. edge2.success = "low"
+89. M_NLI(entity1.project_count, entity2.project_count)
+90. T("Alice has worked on 3 projects", "Alice has not worked on any projects", tau)
+91. tau(entity1.project_count, entity2.project_count)
+92. violate(entity1, entity2)
+93. Factual(entity1.project_count, entity2.project_count)
+94. Causal(edge1.success, edge2.success)
+95. Numeric(entity1.project_count, entity2.project_count)
+96. Temporal(edge1.success, edge2.success)
+97. Content(entity1.project_count, entity2.project_count)
+98. Relation(edge1.success, edge2.success)
+99. "cut".reason = "disagreement"
+100. "have implemented".reason = "consensus"
+violate(x0, y0)
+
+Rules:
+1. Q[x0, y0](entity1.name = "Alice" ∧ entity2.name = "Bob" → violate(x0, y0))
+2. Q[x0, y0](entity1.age = "30" ∧ entity2.age = "25" → violate(x0, y0))
+3. Q[x0, y0](edge1.relationship = "friend" ∧ edge2.relationship = "colleague" → violate(x0, y0))
+4. Q[x0, y0](entity1.location = "New York" ∧ entity2.location = "Los Angeles" → violate(x0, y0))
+5. Q[x0, y0](entity1.salary = "50000" ∧ entity2.salary = "60000" → violate(x0, y0))
+6. Q[x0, y0](entity1.experience = "5 years" ∧ entity2.experience = "10 years" → violate(x0, y0))
+7. Q[x0, y0](entity1.age = "30" ∧ entity2.age = "25" ∧ edge1.status = "active" → violate(x0, y0))
+8. Q[x0, y0](entity1.name = "Alice" ∧ entity2.name = "Bob" ∧ edge1.relationship = "friend" → violate(x0, y0))
+9. Q[x0, y0](entity1.location = "New York" ∧ entity2.location = "Los Angeles" ∧ edge1.duration = "2 years" → violate(x0, y0))
+10. Q[x0, y0](entity1.salary = "50000" ∧ entity2.salary = "60000" ∧ edge1.role = "manager" → violate(x0, y0))
+11. Q[x0, y0](entity1.experience = "5 years" ∧ entity2.experience = "10 years" ∧ edge1.success = "high" → violate(x0, y0))
+12. Q[x0, y0](entity1.project_count = "3" ∧ entity2.project_count = "0" ∧ edge1.success = "high" ∧ edge2.success = "low" → violate(x0, y0))
+13. Q[x0, y0](entity1.name = "Alice" ∧ entity1.age = "30" ∧ entity1.location = "New York" ∧ entity1.salary = "50000" → violate(x0, y0))
+14. Q[x0, y0](entity2.name = "Bob" ∧ entity2.age = "25" ∧ entity2.location = "Los Angeles" ∧ entity2.salary = "60000" → violate(x0, y0))
+15. Q[x0, y0](edge1.relationship = "friend" ∧ edge2.relationship = "colleague" ∧ edge1.status = "active" ∧ edge2.status = "inactive" → violate(x0, y0))
+16. Q[x0, y0](entity1.experience = "5 years" ∧ entity2.experience = "10 years" ∧ edge1.role = "manager" ∧ edge2.role = "director" → violate(x0, y0))
+17. Q[x0, y0](entity1.project_count = "3" ∧ entity2.project_count = "0" ∧ edge1.success = "high" ∧ edge2.success = "low" ∧ edge1.duration = "2 years" → violate(x0, y0))
+18. Q[x0, y0](entity1.name = "Alice" ∧ entity1.age = "30" ∧ entity1.location = "New York" ∧ entity1.experience = "5 years" ∧ entity1.salary = "50000" → violate(x0, y0))
+19. Q[x0, y0](entity2.name = "Bob" ∧ entity2.age = "25" ∧ entity2.location = "Los Angeles" ∧ entity2.experience = "10 years" ∧ entity2.salary = "60000" → violate(x0, y0))
+20. Q[x0, y0](edge1.relationship = "friend" ∧ edge2.relationship = "colleague" ∧ edge1.status = "active" ∧ edge2.status = "inactive" ∧ edge1.duration = "2 years" → violate(x0, y0))
+21. Q[x0, y0](entity1.project_count = "3" ∧ entity2.project_count = "0" ∧ edge1.success = "high" ∧ edge2.success = "low" ∧ edge1.role = "manager" ∧ edge2.role = "director" → violate(x0, y0))
+22. Q[x0, y0](entity1.name = "Alice" ∧ entity1.age = "30" ∧ entity1.location = "New York" ∧ entity1.experience = "5 years" ∧ entity1.salary = "50000" ∧ edge1.relationship = "friend" → violate(x0, y0))
+23. Q[x0, y0](entity2.name = "Bob" ∧ entity2.age = "25" ∧ entity2.location = "Los Angeles" ∧ entity2.experience = "10 years" ∧ entity2.salary = "60000" ∧ edge2.relationship = "colleague" → violate(x0, y0))
+24. Q[x0, y0](entity1.project_count = "3" ∧ entity2.project_count = "0" ∧ edge1.success = "high" ∧ edge2.success = "low" ∧ edge1.role = "manager" ∧ edge2.role = "director" ∧ edge1.duration = "2 years" → violate(x0, y0))
+25. Q[x0, y0](entity1.age = "30" ∧ entity2.age = "25" ∧ edge1.relationship = "friend" ∧ edge2.relationship = "colleague" ∧ edge1.status = "active" ∧ edge2.status = "inactive" → violate(x0, y0))
+26. Q[x0, y0](entity1.location = "New York" ∧ entity2.location = "Los Angeles" ∧ edge1.duration = "2 years" ∧ edge2.duration = "5 years" ∧ edge1.success = "high" ∧ edge2.success = "low" → violate(x0, y0))
+27. Q[x0, y0](entity1.salary = "50000" ∧ entity2.salary = "60000" ∧ edge1.role = "manager" ∧ edge2.role = "director" ∧ entity1.experience = "5 years" ∧ entity2.experience = "10 years" → violate(x0, y0))
+28. Q[x0, y0](entity1.name = "Alice" ∧ entity1.age = "30" ∧ entity1.location = "New York" ∧ entity

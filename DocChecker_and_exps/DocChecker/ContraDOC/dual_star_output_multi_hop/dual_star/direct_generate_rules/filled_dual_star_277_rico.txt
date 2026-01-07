@@ -1,0 +1,81 @@
+Predicates:
+Catharine Pleyel.label != "Person"
+Catharine Pleyel.label = "Person"
+Catharine Pleyel.name != "Catharine Pleyel"
+Catharine Pleyel.name != Clara Wieland.name
+Catharine Pleyel.name != Louisa Conway.name
+Catharine Pleyel.name = "Catharine Pleyel"
+Catharine Pleyel.relationship_with_theodore != "wife"
+Catharine Pleyel.relationship_with_theodore != Clara Wieland.relationship_with_theodore
+Catharine Pleyel.relationship_with_theodore = "wife"
+Catharine Pleyel.status != "deceased"
+Catharine Pleyel.status != Clara Wieland.status
+Catharine Pleyel.status = "deceased"
+Clara Wieland.label != "Person"
+Clara Wieland.label = "Person"
+Clara Wieland.name != "Clara Wieland"
+Clara Wieland.name = "Clara Wieland"
+Clara Wieland.relationship_with_pleyel != "in love"
+Clara Wieland.relationship_with_pleyel = "in love"
+Clara Wieland.relationship_with_theodore != "sister"
+Clara Wieland.relationship_with_theodore = "sister"
+Clara Wieland.status != "survivor"
+Clara Wieland.status = "survivor"
+Louisa Conway.label != "Person"
+Louisa Conway.label = "Person"
+Louisa Conway.name != "Louisa Conway"
+Louisa Conway.name != Clara Wieland.name
+Louisa Conway.name = "Louisa Conway"
+Louisa Conway.status != "deceased"
+Louisa Conway.status != Clara Wieland.status
+Louisa Conway.status = "deceased"
+None_ML(Clara Wieland.attrs, Catharine Pleyel.attrs)
+None_ML(Theodore Wieland___Clara Wieland.attrs, Theodore Wieland___Louisa Conway.attrs)
+Theodore Wieland.children != 4
+Theodore Wieland.children < 9
+Theodore Wieland.children = 4
+Theodore Wieland.children > -1
+Theodore Wieland.label != "Person"
+Theodore Wieland.label = "Person"
+Theodore Wieland.mental_state != "madness"
+Theodore Wieland.mental_state = "madness"
+Theodore Wieland.name != "Theodore Wieland"
+Theodore Wieland.name != Catharine Pleyel.name
+Theodore Wieland.name != Clara Wieland.name
+Theodore Wieland.name != Louisa Conway.name
+Theodore Wieland.name = "Theodore Wieland"
+Theodore Wieland.relationship_with_clara != "brother"
+Theodore Wieland.relationship_with_clara = "brother"
+Theodore Wieland.status != "deceased"
+Theodore Wieland.status != Clara Wieland.status
+Theodore Wieland.status = "deceased"
+Theodore Wieland___Catharine Pleyel.children != 4
+Theodore Wieland___Catharine Pleyel.children = 4
+Theodore Wieland___Catharine Pleyel.doc_id != Theodore Wieland___Louisa Conway.doc_id
+Theodore Wieland___Catharine Pleyel.doc_id = "3488771875_7"
+Theodore Wieland___Catharine Pleyel.marriage_type = "childhood friends"
+Theodore Wieland___Catharine Pleyel.relationship != Theodore Wieland___Clara Wieland.relationship
+Theodore Wieland___Catharine Pleyel.relationship != Theodore Wieland___Louisa Conway.relationship
+Theodore Wieland___Catharine Pleyel.relationship = "Theodore marries Catharine Pleyel."
+Theodore Wieland___Clara Wieland.doc_id = "3488771875_7"
+Theodore Wieland___Clara Wieland.mental_state = "no remorse"
+Theodore Wieland___Clara Wieland.method = "murder"
+Theodore Wieland___Clara Wieland.motive = "divine orders"
+Theodore Wieland___Clara Wieland.outcome = "suicide"
+Theodore Wieland___Clara Wieland.relationship = "Theodore kills Clara's children and Louisa Conway."
+Theodore Wieland___Louisa Conway.doc_id != Theodore Wieland___Clara Wieland.doc_id
+Theodore Wieland___Louisa Conway.doc_id = "3488771875_8"
+Theodore Wieland___Louisa Conway.relationship != Theodore Wieland___Clara Wieland.relationship
+Theodore Wieland___Louisa Conway.relationship = "Theodore's children and Louisa Conway are killed."
+
+Rules:
+Q[Theodore Wieland,Theodore Wieland] (Theodore Wieland___Catharine Pleyel.doc_id = "3488771875_7" ∧ None_ML(Clara Wieland.attrs, Catharine Pleyel.attrs) → Theodore Wieland___Catharine Pleyel.children != 4)
+Q[Theodore Wieland,Theodore Wieland] (Theodore Wieland.mental_state != "madness" ∧ Clara Wieland.status != "survivor" ∧ Louisa Conway.label = "Person" ∧ Theodore Wieland___Catharine Pleyel.relationship != Theodore Wieland___Louisa Conway.relationship ∧ Catharine Pleyel.name != Clara Wieland.name → Theodore Wieland.label != "Person")
+Q[Theodore Wieland,Theodore Wieland] (Theodore Wieland___Catharine Pleyel.children = 4 ∧ Theodore Wieland___Louisa Conway.relationship = "Theodore's children and Louisa Conway are killed." ∧ Theodore Wieland___Catharine Pleyel.marriage_type = "childhood friends" ∧ Louisa Conway.status != "deceased" ∧ None_ML(Theodore Wieland___Clara Wieland.attrs, Theodore Wieland___Louisa Conway.attrs) ∧ Clara Wieland.relationship_with_pleyel = "in love" → Theodore Wieland___Clara Wieland.outcome = "suicide")
+Q[Theodore Wieland,Theodore Wieland] (Theodore Wieland.status != "deceased" ∧ Catharine Pleyel.status != "deceased" ∧ Theodore Wieland___Clara Wieland.relationship = "Theodore kills Clara's children and Louisa Conway." ∧ Theodore Wieland___Catharine Pleyel.relationship = "Theodore marries Catharine Pleyel." → Catharine Pleyel.label != "Person")
+Q[Theodore Wieland,Theodore Wieland] (Clara Wieland.relationship_with_theodore = "sister" ∧ Catharine Pleyel.relationship_with_theodore != Clara Wieland.relationship_with_theodore ∧ Theodore Wieland.name != Catharine Pleyel.name → Theodore Wieland___Louisa Conway.relationship = "Theodore's children and Louisa Conway are killed.")
+Q[Theodore Wieland,Theodore Wieland] (Catharine Pleyel.name = "Catharine Pleyel" ∧ Theodore Wieland___Louisa Conway.relationship != Theodore Wieland___Clara Wieland.relationship ∧ None_ML(Theodore Wieland___Clara Wieland.attrs, Theodore Wieland___Louisa Conway.attrs) ∧ Theodore Wieland___Clara Wieland.motive = "divine orders" → Louisa Conway.label = "Person")
+Q[Theodore Wieland,Theodore Wieland] (Theodore Wieland.mental_state = "madness" ∧ Louisa Conway.name != "Louisa Conway" ∧ Catharine Pleyel.name != Clara Wieland.name ∧ Theodore Wieland___Catharine Pleyel.doc_id = "3488771875_7" ∧ Theodore Wieland.name != Louisa Conway.name → Theodore Wieland___Clara Wieland.method = "murder")
+Q[Theodore Wieland,Theodore Wieland] (Catharine Pleyel.name = "Catharine Pleyel" ∧ Clara Wieland.label = "Person" → Clara Wieland.relationship_with_pleyel = "in love")
+Q[Theodore Wieland,Theodore Wieland] (Theodore Wieland.label != "Person" ∧ Theodore Wieland.status = "deceased" ∧ Theodore Wieland___Louisa Conway.doc_id != Theodore Wieland___Clara Wieland.doc_id → Theodore Wieland.status != Clara Wieland.status)
+Q[Theodore Wieland,Theodore Wieland] (Louisa Conway.label != "Person" ∧ None_ML(Theodore Wieland___Clara Wieland.attrs, Theodore Wieland___Louisa Conway.attrs) ∧ Catharine Pleyel.name = "Catharine Pleyel" ∧ Louisa Conway.label = "Person" ∧ None_ML(Clara Wieland.attrs, Catharine Pleyel.attrs) ∧ Catharine Pleyel.name != "Catharine Pleyel" → Louisa Conway.name = "Louisa Conway")

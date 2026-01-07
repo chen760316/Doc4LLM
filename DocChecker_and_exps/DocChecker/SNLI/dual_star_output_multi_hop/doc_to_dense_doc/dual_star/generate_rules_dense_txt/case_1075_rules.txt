@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 1075)
+S1: A very dirty man is sleeping on the step of a building.
+S2: A drunk man has passed out next to a puddle of vomit in front of a building.
+
+Predicates:
+1. DirtyMan.state
+2. DirtyMan.location
+3. DrunkMan.state
+4. DrunkMan.location
+5. Building.step
+6. Building.front
+7. PuddleOfVomit.location
+8. PuddleOfVomit.state
+9. Man.sleeping
+10. Man.passedOut
+11. Man.dirty
+12. Man.drunk
+13. Step.hasMan
+14. Front.hasMan
+15. Step.hasVomit
+16. Front.hasVomit
+17. Man.onStep
+18. Man.nextToPuddle
+19. Sleeping.state
+20. PassedOut.state
+21. Man.differentState
+22. Man.differentLocation
+23. Building.hasStep
+24. Building.hasFront
+25. Step.isDirty
+26. Puddle.isVomit
+27. Man.isDirty
+28. Man.isDrunk
+29. Relation(dirtyMan, sleeping)
+30. Relation(drunkMan, passedOut)
+
+Rules:
+1. Q[very, DirtyMan.state, DrunkMan.state](DirtyMan.state == "dirty" ∧ DrunkMan.state == "drunk" → Relation(DirtyMan, DrunkMan))
+2. Q[very, DirtyMan.location, DrunkMan.location](DirtyMan.location == "step" ∧ DrunkMan.location == "front" → Relation(DirtyMan, DrunkMan))
+3. Q[very, DirtyMan.state, PuddleOfVomit.state](DirtyMan.state == "dirty" ∧ PuddleOfVomit.state == "vomit" → Relation(DirtyMan, PuddleOfVomit))
+4. Q[very, DrunkMan.state, PuddleOfVomit.state](DrunkMan.state == "drunk" ∧ PuddleOfVomit.state == "vomit" → Relation(DrunkMan, PuddleOfVomit))
+5. Q[very, DirtyMan.location, PuddleOfVomit.location](DirtyMan.location == "step" ∧ PuddleOfVomit.location == "front" → Relation(DirtyMan, PuddleOfVomit))
+6. Q[very, DirtyMan.state, Man.sleeping](DirtyMan.state == "dirty" ∧ Man.sleeping == true → Relation(DirtyMan, Man))
+7. Q[very, DrunkMan.state, Man.passedOut](DrunkMan.state == "drunk" ∧ Man.passedOut == true → Relation(DrunkMan, Man))
+8. Q[very, DirtyMan.location, Man.onStep](DirtyMan.location == "step" ∧ Man.onStep == true → Relation(DirtyMan, Man))
+9. Q[very, DrunkMan.location, Man.nextToPuddle](DrunkMan.location == "front" ∧ Man.nextToPuddle == true → Relation(DrunkMan, Man))
+10. Q[very, DirtyMan.state, Man.dirty](DirtyMan.state == "dirty" ∧ Man.dirty == true → Relation(DirtyMan, Man))
+11. Q[very, DrunkMan.state, Man.drunk](DrunkMan.state == "drunk" ∧ Man.drunk == true → Relation(DrunkMan, Man))
+12. Q[very, Building.step, Building.front](Building.hasStep == true ∧ Building.hasFront == true → Relation(Building.step, Building.front))
+13. Q[very, Step.hasMan, Front.hasMan](Step.hasMan == true ∧ Front.hasMan == true → Relation(Step.hasMan, Front.hasMan))
+14. Q[very, Step.hasVomit, Front.hasVomit](Step.hasVomit == false ∧ Front.hasVomit == true → Relation(Step.hasVomit, Front.hasVomit))
+15. Q[very, Man.sleeping, Man.passedOut](Man.sleeping == true ∧ Man.passedOut == true → Relation(Man.sleeping, Man.passedOut))
+16. Q[very, Man.differentState, Man.differentLocation](Man.differentState == true ∧ Man.differentLocation == true → Relation(Man.differentState, Man.differentLocation))
+17. Q[very, DirtyMan.state, Man.isDirty](DirtyMan.state == "dirty" ∧ Man.isDirty == true → Relation(DirtyMan, Man))
+18. Q[very, DrunkMan.state, Man.isDrunk](DrunkMan.state == "drunk" ∧ Man.isDrunk == true → Relation(DrunkMan, Man))
+19. Q[very, Step.isDirty, Puddle.isVomit](Step.isDirty == true ∧ Puddle.isVomit == true → Relation(Step.isDirty, Puddle.isVomit))
+20. Q[very, Building.hasStep, Building.hasFront](Building.hasStep == true ∧ Building.hasFront == true → Relation(Building.hasStep, Building.hasFront))
+21. Q[very, Man.onStep, Man.nextToPuddle](Man.onStep == true ∧ Man.nextToPuddle == true → Relation(Man.onStep, Man.nextToPuddle))
+22. Q[very, DirtyMan.location, Building.step](DirtyMan.location == "step" ∧ Building.step == true → Relation(DirtyMan, Building.step))
+23. Q[very, DrunkMan.location, Building.front](DrunkMan.location == "front" ∧ Building.front == true → Relation(DrunkMan, Building.front))
+24. Q[very, PuddleOfVomit.location, Building.front](PuddleOfVomit.location == "front" ∧ Building.front == true → Relation(PuddleOfVomit, Building.front))
+25. Q[very, DirtyMan.state, Sleeping.state](DirtyMan.state == "dirty" ∧ Sleeping.state == "sleeping" → Relation(DirtyMan, Sleeping.state))
+26. Q[very, DrunkMan.state, PassedOut.state](DrunkMan.state == "drunk" ∧ PassedOut.state == "passedOut" → Relation(DrunkMan, PassedOut.state))
+27. Q[very, Man.differentState, Man.differentLocation](Man.differentState == true ∧ Man.differentLocation == true → Relation(Man.differentState, Man.differentLocation))
+28. Q[very, Step.hasMan, Step.isDirty](Step.hasMan == true ∧ Step.isDirty == true → Relation(Step.hasMan, Step.isDirty))
+29. Q[very, Front.hasMan, Front.hasVomit](Front.hasMan == true ∧ Front.hasVomit == true → Relation(Front.hasMan, Front.hasVomit))
+30. Q[very, Man.sleeping, Man.differentState](Man.sleeping == true ∧ Man.differentState == true → Relation(Man.sleeping, Man.differentState))

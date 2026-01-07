@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 793)
+S1: They’re not in the home by choice.
+S2: You know that they’re not in the home by choice anymore.
+
+Predicates:
+1. They.choice = false
+2. They.in_home = true
+3. They.choice_change = true
+4. They.previous_choice = true
+5. They.current_choice = false
+6. They.in_home_by_choice = false
+7. They.in_home_now = true
+8. They.were_in_home_by_choice = true
+9. They.situation_change = true
+10. They.choice_status = "not by choice"
+11. They.previous_status = "by choice"
+12. They.current_status = "not by choice"
+13. They.experience_change = true
+14. They.residence = "home"
+15. They.choice_reason = "not by choice"
+16. They.previous_residence = "home"
+17. They.current_residence = "home"
+18. They.choice_motivation = "external factors"
+19. They.previous_choice_motivation = "internal factors"
+20. They.in_home_duration = "ongoing"
+21. They.choice_history = "changed"
+22. They.situation_history = "changed"
+23. They.choice_evidence = "implied change"
+24. They.in_home_condition = "not voluntary"
+25. They.previous_condition = "voluntary"
+26. They.current_condition = "involuntary"
+27. They.choice_implication = "change in status"
+28. They.residence_change = true
+29. They.choice_context = "changed circumstances"
+30. They.in_home_experience = "not by choice"
+
+Rules:
+1. Q[They, They.choice, false](They.in_home_by_choice == false → Causal(They.choice, They.choice_change))
+2. Q[They, They.in_home, true](They.in_home_now == true → Causal(They.in_home, They.situation_change))
+3. Q[They, They.choice_change, true](They.previous_choice == true → Causal(They.choice_change, They.in_home_by_choice))
+4. Q[They, They.current_choice, false](They.current_status == "not by choice" → Causal(They.current_choice, They.in_home_condition))
+5. Q[They, They.in_home_by_choice, false](They.in_home_duration == "ongoing" → Causal(They.in_home_by_choice, They.choice_status))
+6. Q[They, They.were_in_home_by_choice, true](They.previous_status == "by choice" → Causal(They.were_in_home_by_choice, They.choice_implication))
+7. Q[They, They.situation_change, true](They.choice_history == "changed" → Causal(They.situation_change, They.choice_motivation))
+8. Q[They, They.previous_choice, true](They.previous_condition == "voluntary" → Causal(They.previous_choice, They.choice_context))
+9. Q[They, They.current_status, "not by choice"](They.in_home_condition == "not voluntary" → Causal(They.current_status, They.in_home_experience))
+10. Q[They, They.previous_status, "by choice"](They.choice_evidence == "implied change" → Causal(They.previous_status, They.choice_history))
+11. Q[They, They.in_home_now, true](They.residence_change == true → Causal(They.in_home_now, They.in_home_duration))
+12. Q[They, They.choice_motivation, "external factors"](They.choice_reason == "not by choice" → Causal(They.choice_motivation, They.choice_change))
+13. Q[They, They.previous_choice_motivation, "internal factors"](They.previous_choice == true → Causal(They.previous_choice_motivation, They.were_in_home_by_choice))
+14. Q[They, They.in_home_condition, "not voluntary"](They.current_condition == "involuntary" → Causal(They.in_home_condition, They.situation_change))
+15. Q[They, They.choice_status, "not by choice"](They.choice_implication == "change in status" → Causal(They.choice_status, They.choice_change))
+16. Q[They, They.in_home_experience, "not by choice"](They.in_home_now == true → Causal(They.in_home_experience, They.in_home_condition))
+17. Q[They, They.previous_residence, "home"](They.previous_choice == true → Causal(They.previous_residence, They.were_in_home_by_choice))
+18. Q[They, They.current_residence, "home"](They.in_home_now == true → Causal(They.current_residence, They.in_home_duration))
+19. Q[They, They.choice_history, "changed"](They.situation_history == "changed" → Causal(They.choice_history, They.choice_change))
+20. Q[They, They.choice_evidence, "implied change"](They.choice_status == "not by choice" → Causal(They.choice_evidence, They.situation_change))
+21. Q[They, They.in_home_duration, "ongoing"](They.in_home_now == true → Causal(They.in_home_duration, They.in_home_condition))
+22. Q[They, They.choice_context, "changed circumstances"](They.choice_motivation == "external factors" → Causal(They.choice_context, They.choice_change))
+23. Q[They, They.in_home_condition, "not voluntary"](They.current_choice == false → Causal(They.in_home_condition, They.choice_status))
+24. Q[They, They.previous_condition, "voluntary"](They.previous_choice == true → Causal(They.previous_condition, They.were_in_home_by_choice))
+25. Q[They, They.situation_history, "changed"](They.choice_history == "changed" → Causal(They.situation_history, They.situation_change))
+26. Q[They, They.choice_implication, "change in status"](They.previous_status == "by choice" → Causal(They.choice_implication, They.choice_change))
+27. Q[They, They.in_home_experience, "not by choice"](They.in_home_by_choice == false → Causal(They.in_home_experience, They.in_home_now))
+28. Q[They, They.choice_reason, "not by choice"](They.choice_motivation == "external factors" → Causal(They.choice_reason, They.choice_change))
+29. Q[They, They.previous_choice_motivation, "internal factors"](They.previous_condition == "voluntary" → Causal(They.previous_choice_motivation, They.were_in_home_by_choice))
+30. Q[They, They.current_condition, "involuntary"](They.in_home_condition == "not voluntary" → Causal(They.current_condition, They.situation_change))

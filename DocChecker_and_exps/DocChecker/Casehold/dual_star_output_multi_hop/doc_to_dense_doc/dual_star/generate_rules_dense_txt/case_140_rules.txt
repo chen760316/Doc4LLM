@@ -1,0 +1,56 @@
+Source: dense_text.txt (Index 140)
+S1: Sosa did not file a petition for writ of certiorari in the Supreme Court of the United States, and his conviction thus became 'final' for the purpose of § 2255’s one year statute of limitations on October 29,1998, -90 days after we entered judgment.
+S2: holding that jurisdiction to entertain a motion to withdraw a guilty plea pursuant to icr 33c expires when the judgment of conviction becomes final ie when an appeal is concluded or in the absence of an appeal when the time for appeal has expired
+
+Predicates:
+1. Sosa.conviction_final_date = October_29_1998
+2. Sosa.filed_petition_for_writ_of_certiorari = False
+3. §_2255.statute_of_limitations_years = 1
+4. Sosa.jurisdiction_to_withdraw_guilty_plea = False
+5. judgment_of_conviction.finality = True
+6. appeal.concluded = True
+7. appeal.time_for_appeal_expired = True
+8. jurisdiction.motion_to_withdraw_guilty_plea.expires = True
+9. Sosa.judgment_of_conviction_date = October_29_1998
+10. Sosa.possibility_to_withdraw_plea_before_finality = True
+11. Sosa.conviction_status = final
+12. Sosa.appeal_status = not_appealed
+13. Sosa.jurisdiction_to_withdraw_guilty_plea.expiration_event = judgment_finality
+14. Sosa.jurisdiction_to_withdraw_guilty_plea.expiration_time = time_for_appeal_expiration
+15. Sosa.judgment_finality_event = appeal_conclusion
+16. Sosa.judgment_finality_event = time_for_appeal_expiration
+17. Sosa.jurisdiction_to_withdraw_guilty_plea.valid_before_finality = True
+18. Sosa.jurisdiction_to_withdraw_guilty_plea.valid_after_finality = False
+19. Sosa.conviction_finality_event = October_29_1998
+20. Sosa.appeal_status = concluded
+21. Sosa.appeal_status = expired
+22. Sosa.jurisdiction_to_withdraw_guilty_plea.condition = appeal_status
+23. Sosa.jurisdiction_to_withdraw_guilty_plea.condition = judgment_finality
+24. Sosa.jurisdiction_to_withdraw_guilty_plea.condition = time_for_appeal
+25. Sosa.jurisdiction_to_withdraw_guilty_plea.condition = not_appealed
+26. Sosa.jurisdiction_to_withdraw_guilty_plea.condition = final_judgment
+27. Sosa.jurisdiction_to_withdraw_guilty_plea.condition = expired_appeal
+28. Sosa.jurisdiction_to_withdraw_guilty_plea.condition = concluded_appeal
+29. Sosa.jurisdiction_to_withdraw_guilty_plea.condition = finality_established
+30. Sosa.jurisdiction_to_withdraw_guilty_plea.condition = expiration_of_jurisdiction
+
+Rules:
+1. Q[Sosa, Sosa.conviction_final_date, Sosa.jurisdiction_to_withdraw_guilty_plea](Sosa.filed_petition_for_writ_of_certiorari == False → Causal(Sosa.conviction_final_date, Sosa.jurisdiction_to_withdraw_guilty_plea))
+2. Q[Sosa, Sosa.jurisdiction_to_withdraw_guilty_plea, Sosa.judgment_of_conviction_date](Sosa.jurisdiction_to_withdraw_guilty_plea == False → Causal(Sosa.jurisdiction_to_withdraw_guilty_plea, Sosa.judgment_of_conviction_date))
+3. Q[Sosa, Sosa.judgment_of_conviction_date, Sosa.jurisdiction_to_withdraw_guilty_plea](Sosa.judgment_of_conviction_date == October_29_1998 → Causal(Sosa.judgment_of_conviction_date, Sosa.jurisdiction_to_withdraw_guilty_plea))
+4. Q[Sosa, Sosa.jurisdiction_to_withdraw_guilty_plea, Sosa.conviction_status](Sosa.jurisdiction_to_withdraw_guilty_plea == False → Causal(Sosa.jurisdiction_to_withdraw_guilty_plea, Sosa.conviction_status))
+5. Q[Sosa, Sosa.jurisdiction_to_withdraw_guilty_plea, Sosa.appeal_status](Sosa.appeal_status == not_appealed → Causal(Sosa.jurisdiction_to_withdraw_guilty_plea, Sosa.appeal_status))
+6. Q[Sosa, Sosa.jurisdiction_to_withdraw_guilty_plea, Sosa.judgment_finality_event](Sosa.judgment_finality_event == appeal_conclusion → Causal(Sosa.jurisdiction_to_withdraw_guilty_plea, Sosa.judgment_finality_event))
+7. Q[Sosa, Sosa.jurisdiction_to_withdraw_guilty_plea, Sosa.judgment_finality_event](Sosa.judgment_finality_event == time_for_appeal_expiration → Causal(Sosa.jurisdiction_to_withdraw_guilty_plea, Sosa.judgment_finality_event))
+8. Q[Sosa, Sosa.jurisdiction_to_withdraw_guilty_plea, Sosa.jurisdiction_to_withdraw_guilty_plea.condition](Sosa.jurisdiction_to_withdraw_guilty_plea.condition == final_judgment → Causal(Sosa.jurisdiction_to_withdraw_guilty_plea, Sosa.jurisdiction_to_withdraw_guilty_plea.condition))
+9. Q[Sosa, Sosa.jurisdiction_to_withdraw_guilty_plea, Sosa.jurisdiction_to_withdraw_guilty_plea.condition](Sosa.jurisdiction_to_withdraw_guilty_plea.condition == expired_appeal → Causal(Sosa.jurisdiction_to_withdraw_guilty_plea, Sosa.jurisdiction_to_withdraw_guilty_plea.condition))
+10. Q[Sosa, Sosa.jurisdiction_to_withdraw_guilty_plea, Sosa.jurisdiction_to_withdraw_guilty_plea.condition](Sosa.jurisdiction_to_withdraw_guilty_plea.condition == concluded_appeal → Causal(Sosa.jurisdiction_to_withdraw_guilty_plea, Sosa.jurisdiction_to_withdraw_guilty_plea.condition))
+11. Q[Sosa, Sosa.jurisdiction_to_withdraw_guilty_plea, Sosa.jurisdiction_to_withdraw_guilty_plea.condition](Sosa.jurisdiction_to_withdraw_guilty_plea.condition == time_for_appeal → Causal(Sosa.jurisdiction_to_withdraw_guilty_plea, Sosa.jurisdiction_to_withdraw_guilty_plea.condition))
+12. Q[Sosa, Sosa.jurisdiction_to_withdraw_guilty_plea, Sosa.jurisdiction_to_withdraw_guilty_plea.condition](Sosa.jurisdiction_to_withdraw_guilty_plea.condition == not_appealed → Causal(Sosa.jurisdiction_to_withdraw_guilty_plea, Sosa.jurisdiction_to_withdraw_guilty_plea.condition))
+13. Q[Sosa, Sosa.jurisdiction_to_withdraw_guilty_plea, Sosa.jurisdiction_to_withdraw_guilty_plea.condition](Sosa.jurisdiction_to_withdraw_guilty_plea.condition == finality_established → Causal(Sosa.jurisdiction_to_withdraw_guilty_plea, Sosa.jurisdiction_to_withdraw_guilty_plea.condition))
+14. Q[Sosa, Sosa.jurisdiction_to_withdraw_guilty_plea, Sosa.jurisdiction_to_withdraw_guilty_plea.condition](Sosa.jurisdiction_to_withdraw_guilty_plea.condition == expiration_of_jurisdiction → Causal(Sosa.jurisdiction_to_withdraw_guilty_plea, Sosa.jurisdiction_to_withdraw_guilty_plea.condition))
+15. Q[Sosa, Sosa.jurisdiction_to_withdraw_guilty_plea, Sosa.jurisdiction_to_withdraw_guilty_plea.valid_before_finality](Sosa.jurisdiction_to_withdraw_guilty_plea.valid_before_finality == True → Causal(Sosa.jurisdiction_to_withdraw_guilty_plea, Sosa.jurisdiction_to_withdraw_guilty_plea.valid_before_finality))
+16. Q[Sosa, Sosa.jurisdiction_to_withdraw_guilty_plea, Sosa.jurisdiction_to_withdraw_guilty_plea.valid_after_finality](Sosa.jurisdiction_to_withdraw_guilty_plea.valid_after_finality == False → Causal(Sosa.jurisdiction_to_withdraw_guilty_plea, Sosa.jurisdiction_to_withdraw_guilty_plea.valid_after_finality))
+17. Q[Sosa, Sosa.jurisdiction_to_withdraw_guilty_plea, Sosa.conviction_finality_event](Sosa.conviction_finality_event == October_29_1998 → Causal(Sosa.jurisdiction_to_withdraw_guilty_plea, Sosa.conviction_finality_event))
+18. Q[Sosa, Sosa.jurisdiction_to_withdraw_guilty_plea, Sosa.appeal.time_for_appeal_expired](Sosa.appeal.time_for_appeal_expired == True → Causal(Sosa.jurisdiction_to_withdraw_guilty_plea, Sosa.appeal.time_for_appeal_expired))
+19. Q[Sosa, Sosa.jurisdiction_to_withdraw_g

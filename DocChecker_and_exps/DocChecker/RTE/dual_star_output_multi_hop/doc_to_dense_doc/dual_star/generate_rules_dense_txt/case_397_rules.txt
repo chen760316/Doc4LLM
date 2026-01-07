@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 397)
+S1: Honduras and El Salvador entered a dispute over their borders.
+S2: Honduras and El Salvador are in a dispute over their borders.
+
+Predicates:
+1. Honduras.dispute_status
+2. El_Salvador.dispute_status
+3. dispute.borders
+4. dispute.is_ongoing
+5. dispute.has_started
+6. Honduras.entered_dispute
+7. El_Salvador.entered_dispute
+8. dispute.involves(Honduras, El_Salvador)
+9. dispute.timing
+10. dispute.is_past
+11. M_NLI(S1, S2)
+12. Temporal(dispute.start_time, dispute.end_time)
+13. violate(dispute.start_time, dispute.end_time)
+14. Honduras.border_issue
+15. El_Salvador.border_issue
+16. dispute.type
+17. dispute.is_active
+18. dispute.has_resolution
+19. Honduras.has_claim
+20. El_Salvador.has_claim
+21. dispute.is_conflict
+22. dispute.is_territorial
+23. dispute.parties_involved
+24. dispute.has_impact
+25. Honduras.is_involved
+26. El_Salvador.is_involved
+27. dispute.has_history
+28. dispute.is_escalating
+29. dispute.is_settled
+30. dispute.requires_negotiation
+
+Rules:
+1. Q[Honduras, Honduras.entered_dispute, dispute.is_ongoing](Honduras.entered_dispute == true → Temporal(Honduras.entered_dispute, dispute.is_ongoing))
+2. Q[El_Salvador, El_Salvador.entered_dispute, dispute.is_ongoing](El_Salvador.entered_dispute == true → Temporal(El_Salvador.entered_dispute, dispute.is_ongoing))
+3. Q[Honduras, Honduras.dispute_status, dispute.is_ongoing](Honduras.dispute_status == "disputed" → Temporal(Honduras.dispute_status, dispute.is_ongoing))
+4. Q[El_Salvador, El_Salvador.dispute_status, dispute.is_ongoing](El_Salvador.dispute_status == "disputed" → Temporal(El_Salvador.dispute_status, dispute.is_ongoing))
+5. Q[dispute, dispute.has_started, dispute.is_ongoing](dispute.has_started == true → Temporal(dispute.has_started, dispute.is_ongoing))
+6. Q[dispute, dispute.is_past, dispute.is_ongoing](dispute.is_past == true → Temporal(dispute.is_past, dispute.is_ongoing))
+7. Q[dispute, dispute.is_active, dispute.is_past](dispute.is_active == false → Temporal(dispute.is_active, dispute.is_past))
+8. Q[dispute, dispute.timing, dispute.is_ongoing](dispute.timing == "ongoing" → Temporal(dispute.timing, dispute.is_ongoing))
+9. Q[dispute, dispute.is_conflict, dispute.is_ongoing](dispute.is_conflict == true → Temporal(dispute.is_conflict, dispute.is_ongoing))
+10. Q[dispute, dispute.is_territorial, dispute.is_ongoing](dispute.is_territorial == true → Temporal(dispute.is_territorial, dispute.is_ongoing))
+11. Q[dispute, dispute.requires_negotiation, dispute.is_ongoing](dispute.requires_negotiation == true → Temporal(dispute.requires_negotiation, dispute.is_ongoing))
+12. Q[dispute, dispute.has_history, dispute.is_ongoing](dispute.has_history == true → Temporal(dispute.has_history, dispute.is_ongoing))
+13. Q[dispute, dispute.is_escalating, dispute.is_ongoing](dispute.is_escalating == true → Temporal(dispute.is_escalating, dispute.is_ongoing))
+14. Q[Honduras, Honduras.border_issue, dispute.is_ongoing](Honduras.border_issue == true → Temporal(Honduras.border_issue, dispute.is_ongoing))
+15. Q[El_Salvador, El_Salvador.border_issue, dispute.is_ongoing](El_Salvador.border_issue == true → Temporal(El_Salvador.border_issue, dispute.is_ongoing))
+16. Q[dispute, dispute.parties_involved, dispute.is_ongoing](dispute.parties_involved == "Honduras, El_Salvador" → Temporal(dispute.parties_involved, dispute.is_ongoing))
+17. Q[dispute, dispute.has_impact, dispute.is_ongoing](dispute.has_impact == true → Temporal(dispute.has_impact, dispute.is_ongoing))
+18. Q[Honduras, Honduras.is_involved, dispute.is_ongoing](Honduras.is_involved == true → Temporal(Honduras.is_involved, dispute.is_ongoing))
+19. Q[El_Salvador, El_Salvador.is_involved, dispute.is_ongoing](El_Salvador.is_involved == true → Temporal(El_Salvador.is_involved, dispute.is_ongoing))
+20. Q[dispute, dispute.has_resolution, dispute.is_ongoing](dispute.has_resolution == false → Temporal(dispute.has_resolution, dispute.is_ongoing))
+21. Q[dispute, dispute.is_settled, dispute.is_ongoing](dispute.is_settled == false → Temporal(dispute.is_settled, dispute.is_ongoing))
+22. Q[dispute, dispute.type, dispute.is_ongoing](dispute.type == "border" → Temporal(dispute.type, dispute.is_ongoing))
+23. Q[dispute, dispute.is_active, dispute.is_past](dispute.is_active == false → Temporal(dispute.is_active, dispute.is_past))
+24. Q[dispute, dispute.has_started, dispute.is_past](dispute.has_started == true → Temporal(dispute.has_started, dispute.is_past))
+25. Q[dispute, dispute.is_conflict, dispute.is_past](dispute.is_conflict == true → Temporal(dispute.is_conflict, dispute.is_past))
+26. Q[dispute, dispute.is_territorial, dispute.is_past](dispute.is_territorial == true → Temporal(dispute.is_territorial, dispute.is_past))
+27. Q[dispute, dispute.requires_negotiation, dispute.is_past](dispute.requires_negotiation == false → Temporal(dispute.requires_negotiation, dispute.is_past))
+28. Q[dispute, dispute.has_history, dispute.is_past](dispute.has_history == true → Temporal(dispute.has_history, dispute.is_past))
+29. Q[dispute, dispute.is_escalating, dispute.is_past](dispute.is_escalating == false → Temporal(dispute.is_escalating, dispute.is_past))
+30. Q[dispute, dispute.parties_involved, dispute.is_past](dispute.parties_involved == "Honduras, El_Salvador" → Temporal(dispute.parties_involved, dispute.is_past))

@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 392)
+S1: A man who looks like Andy Dick is talking to a man in a hall with a man with a splotch of primary-colored red on his hair.
+S2: A man is shaving in a mirror.
+
+Predicates:
+1. Man1.appearance
+2. Man1.activity
+3. Man1.location
+4. Man2.activity
+5. Man2.location
+6. Man3.hair_color
+7. Hall.size
+8. Hall.occupants
+9. Conversation.topic
+10. Mirror.reflection
+11. Shaving_tool.type
+12. Shaving_tool.condition
+13. Man1.relationship_with_Man2
+14. Man1.relationship_with_Man3
+15. Man2.relationship_with_Man3
+16. Man1.emotion
+17. Man2.emotion
+18. Man3.emotion
+19. Primary_color.red_intensity
+20. Primary_color.blue_intensity
+21. Primary_color.yellow_intensity
+22. Hall.lighting
+23. Hall.acoustics
+24. Man1.voice_volume
+25. Man2.voice_volume
+26. Man3.voice_volume
+27. Shaving_tool.brand
+28. Shaving_tool.usage_frequency
+29. Man1.eye_contact
+30. Man2.eye_contact
+
+Rules:
+1. Q[man, Man1.activity, Man2.activity](Man1.activity == "talking" → Relation(Man1, Man2))
+2. Q[man, Man1.location, Hall.size](Man1.location == "hall" → Relation(Man1, Hall))
+3. Q[man, Man1.appearance, Man3.hair_color](Man1.appearance == "looks like Andy Dick" → Relation(Man1, Man3))
+4. Q[man, Man2.activity, Man3.hair_color](Man2.activity == "shaving" → Relation(Man2, Man3))
+5. Q[man, Hall.occupants, Man1.relationship_with_Man2](Hall.occupants == 2 → Relation(Man1, Man2))
+6. Q[man, Hall.lighting, Man1.emotion](Hall.lighting == "bright" → Relation(Man1, Man1.emotion))
+7. Q[man, Man1.voice_volume, Man2.voice_volume](Man1.voice_volume == "normal" → Relation(Man1, Man2))
+8. Q[man, Man1.eye_contact, Man2.eye_contact](Man1.eye_contact == "yes" → Relation(Man1, Man2))
+9. Q[man, Man2.location, Hall.size](Man2.location == "hall" → Relation(Man2, Hall))
+10. Q[man, Man3.hair_color, Primary_color.red_intensity](Man3.hair_color == "splotch of primary-colored red" → Relation(Man3, Primary_color))
+11. Q[man, Man1.activity, Man2.location](Man1.activity == "talking" → Relation(Man1, Man2))
+12. Q[man, Hall.acoustics, Man1.emotion](Hall.acoustics == "echoing" → Relation(Man1, Man1.emotion))
+13. Q[man, Shaving_tool.type, Man2.activity](Shaving_tool.type == "razor" → Relation(Shaving_tool, Man2))
+14. Q[man, Shaving_tool.condition, Man2.activity](Shaving_tool.condition == "new" → Relation(Shaving_tool, Man2))
+15. Q[man, Man1.relationship_with_Man3, Man3.emotion](Man1.relationship_with_Man3 == "neutral" → Relation(Man1, Man3))
+16. Q[man, Man2.activity, Man1.emotion](Man2.activity == "shaving" → Relation(Man2, Man1.emotion))
+17. Q[man, Hall.occupants, Man1.activity](Hall.occupants == 3 → Relation(Hall, Man1))
+18. Q[man, Man1.emotion, Man2.emotion](Man1.emotion == "happy" → Relation(Man1, Man2))
+19. Q[man, Man3.emotion, Man2.activity](Man3.emotion == "indifferent" → Relation(Man3, Man2))
+20. Q[man, Man1.activity, Man3.hair_color](Man1.activity == "talking" → Relation(Man1, Man3))
+21. Q[man, Hall.size, Man1.location](Hall.size == "large" → Relation(Hall, Man1))
+22. Q[man, Man2.activity, Shaving_tool.usage_frequency](Man2.activity == "shaving" → Relation(Man2, Shaving_tool))
+23. Q[man, Man1.appearance, Man2.activity](Man1.appearance == "looks like Andy Dick" → Relation(Man1, Man2))
+24. Q[man, Man1.location, Man2.activity](Man1.location == "hall" → Relation(Man1, Man2))
+25. Q[man, Man3.hair_color, Primary_color.red_intensity](Man3.hair_color == "splotch of primary-colored red" → Relation(Man3, Primary_color))
+26. Q[man, Man1.activity, Hall.occupants](Man1.activity == "talking" → Relation(Man1, Hall))
+27. Q[man, Man2.location, Hall.size](Man2.location == "hall" → Relation(Man2, Hall))
+28. Q[man, Man1.emotion, Man2.activity](Man1.emotion == "curious" → Relation(Man1, Man2))
+29. Q[man, Man2.activity, Man1.relationship_with_Man3](Man2.activity == "shaving" → Relation(Man2, Man3))
+30. Q[man, Hall.lighting, Man2.activity](Hall.lighting == "dim" → Relation(Hall, Man2))

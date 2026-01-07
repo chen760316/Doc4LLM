@@ -1,0 +1,43 @@
+Predicates:
+Foible.label != "Person"
+Foible.label = "Person"
+Foible.name != "Foible"
+Foible.name = "Foible"
+Mirabell.label != "Person"
+Mirabell.label = "Person"
+Mirabell.name != "Mirabell"
+Mirabell.name != Foible.name
+Mirabell.name = "Mirabell"
+Mirabell.occupation != "restorer"
+Mirabell.occupation = "restorer"
+Mrs. Fainall.label != "Person"
+Mrs. Fainall.label = "Person"
+Mrs. Fainall.name != "Mrs. Fainall"
+Mrs. Fainall.name != Foible.name
+Mrs. Fainall.name != Mirabell.name
+Mrs. Fainall.name = "Mrs. Fainall"
+Mrs. Fainall.status != "property owner"
+Mrs. Fainall.status = "property owner"
+Mrs. Fainall___Foible.contradiction_type = "Causal"
+Mrs. Fainall___Foible.relationship = "Mrs. Fainall informs Foible about her previous affair with Mirabell being public knowledge"
+Mrs. Fainall___Foible.source_id = "3488771860_4"
+Mrs. Fainall___Mirabell.contract = "from the time before the marriage of the Fainalls"
+Mrs. Fainall___Mirabell.contradiction_type != Mrs. Fainall___Foible.contradiction_type
+Mrs. Fainall___Mirabell.contradiction_type = "Factual"
+Mrs. Fainall___Mirabell.relationship != Mrs. Fainall___Foible.relationship
+Mrs. Fainall___Mirabell.relationship = "Mrs. Fainall gives all her property to Mirabell."
+Mrs. Fainall___Mirabell.source_id = "3488771860_4"
+None_ML(Mirabell.attrs, Foible.attrs)
+None_ML(Mrs. Fainall___Foible.attrs, Mrs. Fainall___Mirabell.attrs)
+
+Rules:
+Q[Mrs. Fainall,Mrs. Fainall] (Foible.name != "Foible" ∧ Mirabell.label = "Person" → Mrs. Fainall.name != Mirabell.name)
+Q[Mrs. Fainall,Mrs. Fainall] (Mirabell.label != "Person" ∧ Mrs. Fainall___Mirabell.contradiction_type = "Factual" ∧ Foible.label = "Person" → Mirabell.name != "Mirabell")
+Q[Mrs. Fainall,Mrs. Fainall] (Mirabell.name = "Mirabell" ∧ None_ML(Mirabell.attrs, Foible.attrs) ∧ Mrs. Fainall.status = "property owner" ∧ Mrs. Fainall.label != "Person" → Mrs. Fainall___Mirabell.contradiction_type != Mrs. Fainall___Foible.contradiction_type)
+Q[Mrs. Fainall,Mrs. Fainall] (Mrs. Fainall.status != "property owner" ∧ Mrs. Fainall___Foible.relationship = "Mrs. Fainall informs Foible about her previous affair with Mirabell being public knowledge" ∧ Mrs. Fainall___Mirabell.relationship != Mrs. Fainall___Foible.relationship ∧ Mirabell.label != "Person" ∧ Foible.name = "Foible" ∧ None_ML(Mrs. Fainall___Foible.attrs, Mrs. Fainall___Mirabell.attrs) → Mrs. Fainall___Foible.contradiction_type = "Causal")
+Q[Mrs. Fainall,Mrs. Fainall] (Mrs. Fainall.name != "Mrs. Fainall" ∧ Mrs. Fainall___Foible.contradiction_type = "Causal" ∧ Foible.label = "Person" ∧ Mrs. Fainall___Foible.relationship = "Mrs. Fainall informs Foible about her previous affair with Mirabell being public knowledge" ∧ Mrs. Fainall___Mirabell.contradiction_type != Mrs. Fainall___Foible.contradiction_type → Mrs. Fainall.label = "Person")
+Q[Mrs. Fainall,Mrs. Fainall] (Mrs. Fainall.name != "Mrs. Fainall" ∧ Mirabell.name = "Mirabell" ∧ Foible.name = "Foible" → Foible.name != "Foible")
+Q[Mrs. Fainall,Mrs. Fainall] (Mirabell.name = "Mirabell" ∧ Mrs. Fainall.name != Mirabell.name ∧ Mrs. Fainall___Mirabell.contradiction_type = "Factual" ∧ Mirabell.label = "Person" ∧ Mrs. Fainall.status != "property owner" ∧ Mrs. Fainall___Mirabell.relationship != Mrs. Fainall___Foible.relationship → Mrs. Fainall___Foible.relationship = "Mrs. Fainall informs Foible about her previous affair with Mirabell being public knowledge")
+Q[Mrs. Fainall,Mrs. Fainall] (None_ML(Mirabell.attrs, Foible.attrs) ∧ Mrs. Fainall.status = "property owner" ∧ Mrs. Fainall___Foible.source_id = "3488771860_4" ∧ Mirabell.label != "Person" → Mrs. Fainall___Mirabell.relationship != Mrs. Fainall___Foible.relationship)
+Q[Mrs. Fainall,Mrs. Fainall] (Mrs. Fainall___Mirabell.contradiction_type != Mrs. Fainall___Foible.contradiction_type ∧ Foible.label != "Person" ∧ Mrs. Fainall.status = "property owner" ∧ Mrs. Fainall.label != "Person" ∧ Mrs. Fainall___Foible.contradiction_type = "Causal" → Foible.label = "Person")
+Q[Mrs. Fainall,Mrs. Fainall] (None_ML(Mrs. Fainall___Foible.attrs, Mrs. Fainall___Mirabell.attrs) ∧ Mrs. Fainall.name != "Mrs. Fainall" → Mrs. Fainall___Mirabell.relationship = "Mrs. Fainall gives all her property to Mirabell.")

@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 179)
+S1: Three people show off their fish.
+S2: A man and two girls show off a fish while holding fishing poles in front of a body of water.
+
+Predicates:
+1. Person_1.type: man
+2. Person_2.type: girl
+3. Person_3.type: girl
+4. Fish_1.ownership: Person_1
+5. Fish_1.ownership: Person_2
+6. Fish_1.ownership: Person_3
+7. FishingPole_1.ownership: Person_1
+8. FishingPole_2.ownership: Person_2
+9. FishingPole_3.ownership: Person_3
+10. BodyOfWater.location: unspecified
+11. ShowOff.activity: Fish_1
+12. ShowOff.participant: Person_1
+13. ShowOff.participant: Person_2
+14. ShowOff.participant: Person_3
+15. ShowOff.location: BodyOfWater
+16. Composition.total: 3
+17. Composition.type: specific
+18. Composition.type: general
+19. M_NLI(S1, S2): true
+20. Numeric(3, 3): equal
+21. Numeric(3, 2): not_equal
+22. Violate(3, 2): true
+23. FishingActivity.participant: Person_1
+24. FishingActivity.participant: Person_2
+25. FishingActivity.participant: Person_3
+26. FishingActivity.location: BodyOfWater
+27. Fish_1.type: unspecified
+28. FishingPole_1.type: standard
+29. FishingPole_2.type: standard
+30. FishingPole_3.type: standard
+
+Rules:
+1. Q[Three, Person_1.type == "man", Person_2.type == "girl"](S1 → Numeric(3, 3))
+2. Q[Three, Person_1.type == "man", Person_3.type == "girl"](S1 → Numeric(3, 3))
+3. Q[Three, Person_2.type == "girl", Person_3.type == "girl"](S1 → Numeric(3, 3))
+4. Q[Three, Composition.type == "specific", Composition.total == 3](S2 → Numeric(3, 3))
+5. Q[Three, Composition.type == "general", Composition.total == 3](S1 → Numeric(3, 3))
+6. Q[Three, Fish_1.ownership == Person_1](S2 → Numeric(3, 3))
+7. Q[Three, Fish_1.ownership == Person_2](S2 → Numeric(3, 3))
+8. Q[Three, Fish_1.ownership == Person_3](S2 → Numeric(3, 3))
+9. Q[Three, FishingPole_1.ownership == Person_1](S2 → Numeric(3, 3))
+10. Q[Three, FishingPole_2.ownership == Person_2](S2 → Numeric(3, 3))
+11. Q[Three, FishingPole_3.ownership == Person_3](S2 → Numeric(3, 3))
+12. Q[Three, ShowOff.participant == Person_1](S2 → Numeric(3, 3))
+13. Q[Three, ShowOff.participant == Person_2](S2 → Numeric(3, 3))
+14. Q[Three, ShowOff.participant == Person_3](S2 → Numeric(3, 3))
+15. Q[Three, FishingActivity.participant == Person_1](S2 → Numeric(3, 3))
+16. Q[Three, FishingActivity.participant == Person_2](S2 → Numeric(3, 3))
+17. Q[Three, FishingActivity.participant == Person_3](S2 → Numeric(3, 3))
+18. Q[Three, FishingActivity.location == BodyOfWater](S2 → Numeric(3, 3))
+19. Q[Three, ShowOff.location == BodyOfWater](S2 → Numeric(3, 3))
+20. Q[Three, M_NLI(S1, S2) == true](S1 → Numeric(3, 3))
+21. Q[Three, Composition.type == "specific"](S2 → Numeric(3, 2))
+22. Q[Three, Composition.type == "general"](S1 → Numeric(3, 2))
+23. Q[Three, Violate(3, 2) == true](S1 → Numeric(3, 2))
+24. Q[Three, Numeric(3, 3) == equal](S1 → Numeric(3, 3))
+25. Q[Three, Numeric(3, 2) == not_equal](S2 → Numeric(3, 2))
+26. Q[Three, Fish_1.type == unspecified](S1 → Numeric(3, 3))
+27. Q[Three, FishingPole_1.type == standard](S2 → Numeric(3, 3))
+28. Q[Three, FishingPole_2.type == standard](S2 → Numeric(3, 3))
+29. Q[Three, FishingPole_3.type == standard](S2 → Numeric(3, 3))
+30. Q[Three, BodyOfWater.location == unspecified](S1 → Numeric(3, 3))

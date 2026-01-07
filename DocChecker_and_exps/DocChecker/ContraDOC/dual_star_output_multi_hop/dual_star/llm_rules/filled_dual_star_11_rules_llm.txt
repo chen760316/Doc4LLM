@@ -1,0 +1,134 @@
+Predicates:
+1. lucrative mining claims.status = "fraudulent disputes"
+2. lucrative mining claims.status != "valid claims"
+3. lucrative mining claims.status < "legitimate"
+4. lucrative mining claims.status > "disputed"
+5. lucrative mining claims.status <= "questionable"
+6. lucrative mining claims.status >= "unverified"
+7. "fraudulent disputes".status = "active"
+8. "fraudulent disputes".status != "resolved"
+9. "fraudulent disputes".status < "settled"
+10. "fraudulent disputes".status > "pending"
+11. "fraudulent disputes".status <= "under review"
+12. "fraudulent disputes".status >= "escalated"
+13. M_NLI(lucrative mining claims.status, fraudulent disputes.status)
+14. M_NLU(lucrative mining claims.status, fraudulent disputes.status)
+15. M_TEM(lucrative mining claims.status, fraudulent disputes.status)
+16. contra("lucrative mining claims", "fraudulent disputes")
+17. S(lucrative mining claims, "lucrative mining claims")
+18. S(fraudulent disputes, "fraudulent disputes")
+19. T("fraudulent disputes", "valid claims", Factual)
+20. T("lucrative mining claims", "legitimate", Content)
+21. tau(lucrative mining claims.status, fraudulent disputes.status)
+22. tau("fraudulent disputes".status, "resolved")
+23. lucrative mining claims.value > 100000
+24. lucrative mining claims.value < 500000
+25. lucrative mining claims.value >= 250000
+26. lucrative mining claims.value <= 300000
+27. "fraudulent disputes".value = 150000
+28. "fraudulent disputes".value != 200000
+29. "fraudulent disputes".value < 175000
+30. "fraudulent disputes".value > 100000
+31. M_NLI(lucrative mining claims.value, fraudulent disputes.value)
+32. M_NLU(lucrative mining claims.value, fraudulent disputes.value)
+33. M_TEM(lucrative mining claims.value, fraudulent disputes.value)
+34. contra("value of claims", "value of disputes")
+35. S(lucrative mining claims, "value of claims")
+36. S(fraudulent disputes, "value of disputes")
+37. T("value of claims", "value of disputes", Numeric)
+38. tau(lucrative mining claims.value, fraudulent disputes.value)
+39. tau("lucrative mining claims".status, "fraudulent disputes".status)
+40. lucrative mining claims.owner = "John Doe"
+41. lucrative mining claims.owner != "Jane Smith"
+42. lucrative mining claims.owner < "Zachary"
+43. lucrative mining claims.owner > "Alice"
+44. lucrative mining claims.owner <= "Michael"
+45. lucrative mining claims.owner >= "Emily"
+46. "fraudulent disputes".owner = "Company A"
+47. "fraudulent disputes".owner != "Company B"
+48. "fraudulent disputes".owner < "Company C"
+49. "fraudulent disputes".owner > "Company D"
+50. "fraudulent disputes".owner <= "Company E"
+51. "fraudulent disputes".owner >= "Company F"
+52. M_NLI(lucrative mining claims.owner, fraudulent disputes.owner)
+53. M_NLU(lucrative mining claims.owner, fraudulent disputes.owner)
+54. M_TEM(lucrative mining claims.owner, fraudulent disputes.owner)
+55. contra("owner of claims", "owner of disputes")
+56. S(lucrative mining claims, "owner of claims")
+57. S(fraudulent disputes, "owner of disputes")
+58. T("owner of claims", "owner of disputes", Relational)
+59. tau(lucrative mining claims.owner, fraudulent disputes.owner)
+60. lucrative mining claims.date_created > "2020-01-01"
+61. lucrative mining claims.date_created < "2023-01-01"
+62. lucrative mining claims.date_created >= "2021-06-15"
+63. lucrative mining claims.date_created <= "2022-12-31"
+64. "fraudulent disputes".date_created = "2022-05-01"
+65. "fraudulent disputes".date_created != "2023-01-15"
+66. "fraudulent disputes".date_created < "2022-06-01"
+67. "fraudulent disputes".date_created > "2021-12-31"
+68. M_NLI(lucrative mining claims.date_created, fraudulent disputes.date_created)
+69. M_NLU(lucrative mining claims.date_created, fraudulent disputes.date_created)
+70. M_TEM(lucrative mining claims.date_created, fraudulent disputes.date_created)
+71. contra("creation date of claims", "creation date of disputes")
+72. S(lucrative mining claims, "creation date of claims")
+73. S(fraudulent disputes, "creation date of disputes")
+74. T("creation date of claims", "creation date of disputes", Temporal)
+75. tau(lucrative mining claims.date_created, fraudulent disputes.date_created)
+76. lucrative mining claims.location = "Nevada"
+77. lucrative mining claims.location != "California"
+78. lucrative mining claims.location < "Wyoming"
+79. lucrative mining claims.location > "Texas"
+80. lucrative mining claims.location <= "Oregon"
+81. lucrative mining claims.location >= "Arizona"
+82. "fraudulent disputes".location = "New York"
+83. "fraudulent disputes".location != "Florida"
+84. "fraudulent disputes".location < "Illinois"
+85. "fraudulent disputes".location > "Ohio"
+86. "fraudulent disputes".location <= "Georgia"
+87. "fraudulent disputes".location >= "Alabama"
+88. M_NLI(lucrative mining claims.location, fraudulent disputes.location)
+89. M_NLU(lucrative mining claims.location, fraudulent disputes.location)
+90. M_TEM(lucrative mining claims.location, fraudulent disputes.location)
+91. contra("location of claims", "location of disputes")
+92. S(lucrative mining claims, "location of claims")
+93. S(fraudulent disputes, "location of disputes")
+94. T("location of claims", "location of disputes", Relational)
+95. tau(lucrative mining claims.location, fraudulent disputes.location)
+96. lucrative mining claims.investment > 10000
+97. lucrative mining claims.investment < 50000
+98. lucrative mining claims.investment >= 20000
+99. lucrative mining claims.investment <= 30000
+100. "fraudulent disputes".investment = 25000
+
+Rules:
+Rules:
+1. Q[x0, y0](lucrative mining claims.status = "fraudulent disputes" ∧ lucrative mining claims.value < 250000 → lucrative mining claims.status != "valid claims")
+2. Q[x0, y0](lucrative mining claims.status != "valid claims" ∧ lucrative mining claims.value >= 250000 → lucrative mining claims.status < "legitimate")
+3. Q[x0, y0](lucrative mining claims.status > "disputed" ∧ lucrative mining claims.value <= 300000 → lucrative mining claims.status <= "questionable")
+4. Q[x0, y0](lucrative mining claims.value > 100000 ∧ lucrative mining claims.value < 500000 → lucrative mining claims.value >= 250000)
+5. Q[x0, y0](lucrative mining claims.value < 500000 ∧ lucrative mining claims.value >= 250000 ∧ lucrative mining claims.status < "legitimate" → lucrative mining claims.status != "valid claims")
+6. Q[x0, y0](lucrative mining claims.value <= 300000 ∧ lucrative mining claims.value > 100000 ∧ lucrative mining claims.status >= "unverified" → lucrative mining claims.status <= "questionable")
+7. Q[x0, y0](lucrative mining claims.owner = "John Doe" ∧ lucrative mining claims.owner != "Jane Smith" ∧ lucrative mining claims.owner < "Zachary" → lucrative mining claims.owner > "Alice")
+8. Q[x0, y0](lucrative mining claims.owner > "Alice" ∧ lucrative mining claims.owner <= "Michael" → lucrative mining claims.owner != "Jane Smith")
+9. Q[x0, y0](lucrative mining claims.owner >= "Emily" ∧ lucrative mining claims.owner < "Zachary" ∧ lucrative mining claims.owner != "John Doe" → lucrative mining claims.owner > "Alice")
+10. Q[x0, y0](lucrative mining claims.owner < "Zachary" ∧ lucrative mining claims.owner > "Alice" ∧ lucrative mining claims.owner != "Jane Smith" → lucrative mining claims.owner <= "Michael")
+11. Q[x0, y0](lucrative mining claims.date_created > "2020-01-01" ∧ lucrative mining claims.date_created < "2023-01-01" → lucrative mining claims.date_created >= "2021-06-15")
+12. Q[x0, y0](lucrative mining claims.date_created <= "2022-12-31" ∧ lucrative mining claims.date_created > "2021-12-31" → lucrative mining claims.date_created < "2023-01-01")
+13. Q[x0, y0](lucrative mining claims.date_created < "2023-01-01" ∧ lucrative mining claims.date_created >= "2021-06-15" ∧ lucrative mining claims.date_created > "2020-01-01" → lucrative mining claims.date_created <= "2022-12-31")
+14. Q[x0, y0](lucrative mining claims.date_created >= "2021-06-15" ∧ lucrative mining claims.date_created < "2022-12-31" ∧ lucrative mining claims.date_created > "2020-01-01" → lucrative mining claims.date_created < "2023-01-01")
+15. Q[x0, y0](lucrative mining claims.location = "Nevada" ∧ lucrative mining claims.location != "California" → lucrative mining claims.location < "Wyoming")
+16. Q[x0, y0](lucrative mining claims.location > "Texas" ∧ lucrative mining claims.location <= "Oregon" → lucrative mining claims.location >= "Arizona")
+17. Q[x0, y0](lucrative mining claims.location < "Wyoming" ∧ lucrative mining claims.location > "Texas" ∧ lucrative mining claims.location != "California" → lucrative mining claims.location <= "Oregon")
+18. Q[x0, y0](lucrative mining claims.location >= "Arizona" ∧ lucrative mining claims.location < "Illinois" ∧ lucrative mining claims.location != "California" → lucrative mining claims.location > "Texas")
+19. Q[x0, y0](lucrative mining claims.investment > 10000 ∧ lucrative mining claims.investment < 50000 → lucrative mining claims.investment >= 20000)
+20. Q[x0, y0](lucrative mining claims.investment <= 30000 ∧ lucrative mining claims.investment >= 20000 → lucrative mining claims.investment < 50000)
+21. Q[x0, y0](lucrative mining claims.investment < 50000 ∧ lucrative mining claims.investment > 10000 ∧ lucrative mining claims.investment != 25000 → lucrative mining claims.investment >= 20000)
+22. Q[x0, y0](lucrative mining claims.investment >= 20000 ∧ lucrative mining claims.investment <= 30000 ∧ lucrative mining claims.investment != 25000 → lucrative mining claims.investment < 50000)
+23. Q[x0, y0](lucrative mining claims.status = "fraudulent disputes" ∧ lucrative mining claims.value < 250000 ∧ lucrative mining claims.owner != "John Doe" → lucrative mining claims.status != "valid claims")
+24. Q[x0, y0](lucrative mining claims.status != "valid claims" ∧ lucrative mining claims.value >= 250000 ∧ lucrative mining claims.date_created < "2023-01-01" → lucrative mining claims.status < "legitimate")
+25. Q[x0, y0](lucrative mining claims.value < 500000 ∧ lucrative mining claims.value >= 250000 ∧ lucrative mining claims.status > "disputed" → lucrative mining claims.status <= "questionable")
+26. Q[x0, y0](lucrative mining claims.owner < "Zachary" ∧ lucrative mining claims.owner > "Alice" ∧ lucrative mining claims.date_created >= "2021-06-15" → lucrative mining claims.owner != "Jane Smith")
+27. Q[x0, y0](lucrative mining claims.date_created > "2020-01-01" ∧ lucrative mining claims.date_created < "2023-01-01" ∧ lucrative mining claims.location != "California" → lucrative mining claims.date_created <= "2022-12-31")
+28. Q[x0, y0](lucrative mining claims.location < "Wyoming" ∧ lucrative mining claims.location > "Texas" ∧ lucrative mining claims.investment < 50000 → lucrative mining claims.location <= "Oregon")
+29. Q[x0, y0](lucrative mining claims.investment > 10000 ∧ lucrative mining claims.investment < 50000 ∧ lucrative mining claims.status = "fraudulent disputes" → lucrative mining claims.investment >= 20000)
+30. Q[x0, y0](lucrative mining claims.value

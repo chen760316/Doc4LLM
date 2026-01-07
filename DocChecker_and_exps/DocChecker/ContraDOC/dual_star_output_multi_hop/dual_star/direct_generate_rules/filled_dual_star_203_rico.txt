@@ -1,0 +1,33 @@
+Predicates:
+Mirabell.label != "Character"
+Mirabell.label = "Character"
+Mirabell.name != "Mirabell"
+Mirabell.name = "Mirabell"
+Mirabell.occupation != "nobleman"
+Mirabell.occupation = "nobleman"
+Mirabell.relationship_status != "in love with Millamant"
+Mirabell.relationship_status = "in love with Millamant"
+Mrs. Fainall.label != "Character"
+Mrs. Fainall.label = "Character"
+Mrs. Fainall.name != "Mrs. Fainall"
+Mrs. Fainall.name != Mirabell.name
+Mrs. Fainall.name = "Mrs. Fainall"
+Mrs. Fainall.relationship_status != "married to Fainall"
+Mrs. Fainall.relationship_status != Mirabell.relationship_status
+Mrs. Fainall.relationship_status = "married to Fainall"
+Mrs. Fainall___Mirabell.doc_id = "3488771860_3"
+Mrs. Fainall___Mirabell.relationship = "Mrs. Fainall gives all her property to Mirabell."
+Mrs. Fainall___Mirabell.time = "before the marriage of the Fainalls"
+None_ML(Mrs. Fainall.attrs, Mirabell.attrs)
+
+Rules:
+Q[Mrs. Fainall,Mrs. Fainall] (Mirabell.occupation != "nobleman" ∧ Mirabell.name = "Mirabell" ∧ Mrs. Fainall.relationship_status != Mirabell.relationship_status ∧ Mrs. Fainall.relationship_status != "married to Fainall" ∧ Mrs. Fainall.label != "Character" ∧ Mrs. Fainall.label = "Character" → Mirabell.label != "Character")
+Q[Mrs. Fainall,Mrs. Fainall] (Mirabell.occupation = "nobleman" ∧ Mrs. Fainall___Mirabell.doc_id = "3488771860_3" ∧ Mirabell.name = "Mirabell" ∧ Mrs. Fainall.name != Mirabell.name → Mrs. Fainall.relationship_status != Mirabell.relationship_status)
+Q[Mrs. Fainall,Mrs. Fainall] (Mrs. Fainall.label = "Character" ∧ Mrs. Fainall___Mirabell.doc_id = "3488771860_3" → Mrs. Fainall___Mirabell.relationship = "Mrs. Fainall gives all her property to Mirabell.")
+Q[Mrs. Fainall,Mrs. Fainall] (Mirabell.occupation != "nobleman" ∧ Mrs. Fainall___Mirabell.relationship = "Mrs. Fainall gives all her property to Mirabell." ∧ Mirabell.name != "Mirabell" → Mirabell.occupation = "nobleman")
+Q[Mrs. Fainall,Mrs. Fainall] (Mrs. Fainall.relationship_status != Mirabell.relationship_status ∧ Mrs. Fainall.relationship_status = "married to Fainall" ∧ Mrs. Fainall.name = "Mrs. Fainall" ∧ None_ML(Mrs. Fainall.attrs, Mirabell.attrs) ∧ Mrs. Fainall___Mirabell.time = "before the marriage of the Fainalls" → Mrs. Fainall.relationship_status != "married to Fainall")
+Q[Mrs. Fainall,Mrs. Fainall] (Mrs. Fainall___Mirabell.doc_id = "3488771860_3" ∧ Mrs. Fainall___Mirabell.relationship = "Mrs. Fainall gives all her property to Mirabell." ∧ Mrs. Fainall.name != Mirabell.name → Mrs. Fainall.name != "Mrs. Fainall")
+Q[Mrs. Fainall,Mrs. Fainall] (Mrs. Fainall___Mirabell.time = "before the marriage of the Fainalls" ∧ Mirabell.name = "Mirabell" ∧ Mirabell.occupation != "nobleman" ∧ Mrs. Fainall.label = "Character" ∧ Mrs. Fainall.relationship_status != Mirabell.relationship_status ∧ Mrs. Fainall___Mirabell.relationship = "Mrs. Fainall gives all her property to Mirabell." → Mrs. Fainall.relationship_status = "married to Fainall")
+Q[Mrs. Fainall,Mrs. Fainall] (Mrs. Fainall___Mirabell.doc_id = "3488771860_3" ∧ Mrs. Fainall.name = "Mrs. Fainall" ∧ Mrs. Fainall.name != Mirabell.name ∧ Mrs. Fainall___Mirabell.time = "before the marriage of the Fainalls" ∧ Mrs. Fainall.name != "Mrs. Fainall" → Mrs. Fainall.label != "Character")
+Q[Mrs. Fainall,Mrs. Fainall] (Mirabell.relationship_status != "in love with Millamant" ∧ Mirabell.label = "Character" ∧ Mrs. Fainall.name != Mirabell.name ∧ Mrs. Fainall___Mirabell.relationship = "Mrs. Fainall gives all her property to Mirabell." → Mirabell.name != "Mirabell")
+Q[Mrs. Fainall,Mrs. Fainall] (Mrs. Fainall___Mirabell.doc_id = "3488771860_3" ∧ Mirabell.label != "Character" → Mirabell.occupation != "nobleman")

@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 1018)
+S1: no non e of the three clinical trials (Gentillelo's with trauma patients, his own with adolescents, and Longabaugh's in the ED) used physicians or ED staff to conduct interventions.
+S2: Physicians were not used to conduct interventions.
+
+Predicates:
+1. ClinicalTrial_1.usedPhysicians = false
+2. ClinicalTrial_2.usedPhysicians = false
+3. ClinicalTrial_3.usedPhysicians = false
+4. GentilleloTrial.usedPhysicians = false
+5. GentilleloTrial.usedEDStaff = false
+6. AdolescentsTrial.usedPhysicians = false
+7. AdolescentsTrial.usedEDStaff = false
+8. LongabaughTrial.usedPhysicians = false
+9. LongabaughTrial.usedEDStaff = false
+10. InterventionConductedByPhysicians = false
+11. InterventionConductedByEDStaff = false
+12. TrialParticipants.traumaPatients = true
+13. TrialParticipants.adolescents = true
+14. TrialParticipants.EDPatients = true
+15. Physicians.involvedInTrials = false
+16. EDStaff.involvedInTrials = false
+17. M_NLI(S1, S2) = true
+18. Negation(S1, S2) = true
+19. violate(S1, S2) = true
+20. ClinicalTrials.count = 3
+21. ClinicalTrials.involvePhysicians = false
+22. ClinicalTrials.involveEDStaff = false
+23. GentilleloTrial.participants = traumaPatients
+24. AdolescentsTrial.participants = adolescents
+25. LongabaughTrial.participants = EDPatients
+26. Physicians.conductInterventions = false
+27. EDStaff.conductInterventions = false
+28. TrialResults.showPhysiciansNotInvolved = true
+29. TrialResults.showEDStaffNotInvolved = true
+30. Interventions.conductedWithoutPhysicians = true
+
+Rules:
+1. Q[non, ClinicalTrials.involvePhysicians == false, Physicians.involvedInTrials == false](ClinicalTrial_1.usedPhysicians = false ∧ ClinicalTrial_2.usedPhysicians = false ∧ ClinicalTrial_3.usedPhysicians = false → Negation(non, ClinicalTrials.involvePhysicians))
+2. Q[non, GentilleloTrial.usedPhysicians == false, Physicians.involvedInTrials == false](GentilleloTrial.usedPhysicians = false → Negation(non, GentilleloTrial.usedPhysicians))
+3. Q[non, AdolescentsTrial.usedPhysicians == false, Physicians.involvedInTrials == false](AdolescentsTrial.usedPhysicians = false → Negation(non, AdolescentsTrial.usedPhysicians))
+4. Q[non, LongabaughTrial.usedPhysicians == false, Physicians.involvedInTrials == false](LongabaughTrial.usedPhysicians = false → Negation(non, LongabaughTrial.usedPhysicians))
+5. Q[non, ClinicalTrials.count == 3, ClinicalTrials.involvePhysicians == false](ClinicalTrials.count = 3 → Negation(non, ClinicalTrials.involvePhysicians))
+6. Q[non, InterventionConductedByPhysicians == false, Physicians.conductInterventions == false](InterventionConductedByPhysicians = false → Negation(non, InterventionConductedByPhysicians))
+7. Q[non, TrialResults.showPhysiciansNotInvolved == true, Physicians.involvedInTrials == false](TrialResults.showPhysiciansNotInvolved = true → Negation(non, TrialResults.showPhysiciansNotInvolved))
+8. Q[non, ClinicalTrial_1.usedEDStaff == false, EDStaff.involvedInTrials == false](ClinicalTrial_1.usedEDStaff = false → Negation(non, ClinicalTrial_1.usedEDStaff))
+9. Q[non, ClinicalTrial_2.usedEDStaff == false, EDStaff.involvedInTrials == false](ClinicalTrial_2.usedEDStaff = false → Negation(non, ClinicalTrial_2.usedEDStaff))
+10. Q[non, ClinicalTrial_3.usedEDStaff == false, EDStaff.involvedInTrials == false](ClinicalTrial_3.usedEDStaff = false → Negation(non, ClinicalTrial_3.usedEDStaff))
+11. Q[non, GentilleloTrial.usedEDStaff == false, EDStaff.involvedInTrials == false](GentilleloTrial.usedEDStaff = false → Negation(non, GentilleloTrial.usedEDStaff))
+12. Q[non, AdolescentsTrial.usedEDStaff == false, EDStaff.involvedInTrials == false](AdolescentsTrial.usedEDStaff = false → Negation(non, AdolescentsTrial.usedEDStaff))
+13. Q[non, LongabaughTrial.usedEDStaff == false, EDStaff.involvedInTrials == false](LongabaughTrial.usedEDStaff = false → Negation(non, LongabaughTrial.usedEDStaff))
+14. Q[non, ClinicalTrials.involveEDStaff == false, EDStaff.involvedInTrials == false](ClinicalTrials.involveEDStaff = false → Negation(non, ClinicalTrials.involveEDStaff))
+15. Q[non, TrialResults.showEDStaffNotInvolved == true, EDStaff.involvedInTrials == false](TrialResults.showEDStaffNotInvolved = true → Negation(non, TrialResults.showEDStaffNotInvolved))
+16. Q[non, Interventions.conductedWithoutPhysicians == true, Physicians.conductInterventions == false](Interventions.conductedWithoutPhysicians = true → Negation(non, Interventions.conductedWithoutPhysicians))
+17. Q[non, ClinicalTrials.involvePhysicians == false, Physicians.conductInterventions == false](ClinicalTrials.involvePhysicians = false → Negation(non, ClinicalTrials.involvePhysicians))
+18. Q[non, ClinicalTrials.involveEDStaff == false, EDStaff.conductInterventions == false](ClinicalTrials.involveEDStaff = false → Negation(non, ClinicalTrials.involveEDStaff))
+19. Q[non, TrialParticipants.traumaPatients == true, GentilleloTrial.usedPhysicians == false](TrialParticipants.traumaPatients = true → Negation(non, GentilleloTrial.usedPhysicians))
+20. Q[non, TrialParticipants.adolescents == true, AdolescentsTrial.usedPhysicians == false](TrialParticipants.adolescents = true → Negation(non, AdolescentsTrial.usedPhysicians))
+21. Q[non, TrialParticipants.EDPatients == true, LongabaughTrial.usedPhysicians == false](TrialParticipants.EDPatients = true → Negation(non, LongabaughTrial.usedPhysicians))
+22. Q[non, ClinicalTrials.count == 3, ClinicalTrials.involveEDStaff == false](ClinicalTrials.count = 3 → Negation(non, ClinicalTrials.involveEDStaff))
+23. Q[non, InterventionConductedByEDStaff == false, EDStaff.conductInterventions == false](InterventionConductedByEDStaff = false → Negation(non, InterventionConductedByEDStaff))
+24. Q[non, TrialResults.showPhysiciansNotInvolved == true, ClinicalTrials.involvePhysicians == false](TrialResults.showPhysiciansNotInvolved = true → Negation(non, TrialResults.showPhysiciansNotInvolved))
+25. Q[non, TrialResults.showEDStaffNotInvolved == true, ClinicalTrials.involveEDStaff == false](TrialResults.showEDStaffNotInvolved = true → Negation(non, TrialResults.showEDStaffNotInvolved))
+26. Q[non, GentilleloTrial.participants == traumaPatients, GentilleloTrial.usedPhysicians == false](GentilleloTrial.participants = traumaPatients → Negation(non, GentilleloTrial.usedPhysicians))
+27. Q[non, AdolescentsTrial.participants == adolescents, AdolescentsTrial.usedPhysicians == false](AdolescentsTrial.participants = adolescents → Negation(non, AdolescentsTrial.usedPhysicians))
+28. Q[non, LongabaughTrial.participants == EDPatients, LongabaughTrial.usedPhysicians == false](LongabaughTrial.participants = EDPatients → Negation(non, LongabaughTrial.usedPhysicians))
+29. Q[non, ClinicalTrials.involvePhysicians == false, InterventionConductedByPhysicians == false](ClinicalTrials.involvePhysicians = false → Negation(non, ClinicalTrials.involvePhysicians))
+30. Q[non, ClinicalTrials.involveEDStaff == false, InterventionConductedByEDStaff == false](ClinicalTrials.involveEDStaff = false → Negation(non, ClinicalTrials.involveEDStaff))

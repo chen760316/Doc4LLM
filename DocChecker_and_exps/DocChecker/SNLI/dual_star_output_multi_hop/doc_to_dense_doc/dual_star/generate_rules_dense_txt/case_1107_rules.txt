@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 1107)
+S1: Two women sit in chairs while a child in the street gets the attention of the camera.
+S2: Two sisters are sitting in recliners while their younger brother is in the street waving to the camera.
+
+Predicates:
+1. S1.women.count
+2. S1.child.location
+3. S1.camera.attention
+4. S2.sisters.count
+5. S2.brother.age
+6. S2.brother.location
+7. S2.camera.attention
+8. S1.women.sitting
+9. S2.sisters.sitting
+10. S1.child.activity
+11. S2.brother.activity
+12. S1.chairs.type
+13. S2.recliners.type
+14. S1.street.location
+15. S2.street.location
+16. S1.camera.type
+17. S2.camera.type
+18. S1.women.relationship
+19. S2.sisters.relationship
+20. S1.child.gender
+21. S2.brother.gender
+22. S1.women.age
+23. S2.sisters.age
+24. S1.child.attention
+25. S2.brother.attention
+26. M_NLI(S1, S2)
+27. Relation(S1.women, S2.sisters)
+28. violate(S1.women, S2.sisters)
+29. S1.chairs.material
+30. S2.recliners.material
+
+Rules:
+1. Q[Two, S1.women.count == 2](Premise → Relation(S1.women, S2.sisters))
+2. Q[Two, S2.sisters.count == 2](Premise → Relation(S1.women, S2.sisters))
+3. Q[Two, S1.women.sitting == true](Premise → Relation(S1.women, S2.sisters))
+4. Q[Two, S2.sisters.sitting == true](Premise → Relation(S1.women, S2.sisters))
+5. Q[Two, S1.child.location == S1.street.location](Premise → Relation(S1.women, S2.sisters))
+6. Q[Two, S2.brother.location == S2.street.location](Premise → Relation(S1.women, S2.sisters))
+7. Q[Two, S1.camera.attention == true](Premise → Relation(S1.women, S2.sisters))
+8. Q[Two, S2.camera.attention == true](Premise → Relation(S1.women, S2.sisters))
+9. Q[Two, S1.child.activity == "getting attention"](Premise → Relation(S1.women, S2.sisters))
+10. Q[Two, S2.brother.activity == "waving"](Premise → Relation(S1.women, S2.sisters))
+11. Q[Two, S1.women.relationship != "sisters"](Premise → Relation(S1.women, S2.sisters))
+12. Q[Two, S2.sisters.relationship == "sisters"](Premise → Relation(S1.women, S2.sisters))
+13. Q[Two, S1.women.age != S2.sisters.age](Premise → Relation(S1.women, S2.sisters))
+14. Q[Two, S1.child.gender == S2.brother.gender](Premise → Relation(S1.women, S2.sisters))
+15. Q[Two, S1.child.attention == true](Premise → Relation(S1.women, S2.sisters))
+16. Q[Two, S2.brother.attention == true](Premise → Relation(S1.women, S2.sisters))
+17. Q[Two, S1.chairs.type == "chairs"](Premise → Relation(S1.women, S2.sisters))
+18. Q[Two, S2.recliners.type == "recliners"](Premise → Relation(S1.women, S2.sisters))
+19. Q[Two, S1.street.location == S2.street.location](Premise → Relation(S1.women, S2.sisters))
+20. Q[Two, S1.camera.type == S2.camera.type](Premise → Relation(S1.women, S2.sisters))
+21. Q[Two, S1.women.count == 2](Premise → violate(S1.women, S2.sisters))
+22. Q[Two, S2.sisters.count == 2](Premise → violate(S1.women, S2.sisters))
+23. Q[Two, S1.women.sitting == true](Premise → violate(S1.women, S2.sisters))
+24. Q[Two, S2.sisters.sitting == true](Premise → violate(S1.women, S2.sisters))
+25. Q[Two, S1.child.activity == "getting attention"](Premise → violate(S1.women, S2.sisters))
+26. Q[Two, S2.brother.activity == "waving"](Premise → violate(S1.women, S2.sisters))
+27. Q[Two, S1.women.relationship != "sisters"](Premise → violate(S1.women, S2.sisters))
+28. Q[Two, S2.sisters.relationship == "sisters"](Premise → violate(S1.women, S2.sisters))
+29. Q[Two, S1.women.age != S2.sisters.age](Premise → violate(S1.women, S2.sisters))
+30. Q[Two, S1.child.gender != S2.brother.gender](Premise → violate(S1.women, S2.sisters))

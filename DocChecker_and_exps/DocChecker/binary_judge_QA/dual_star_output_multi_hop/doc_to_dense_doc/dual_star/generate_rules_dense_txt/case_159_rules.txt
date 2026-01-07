@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 159)
+S1: T h e s c u t e s c a n b e b r i g h t l y c o l o r e d i n s o m e s p e c i e s , b u t t h e b a s a l c o l o r i s a g r e y t o d a r k b r o w n c o l o r d o r s a l l y ;
+S2: t h e p l a s t r a l s c u t e s a r e o f t e n w h i t e t o y e l l o w i n b a s e c o l o r.
+
+Predicates:
+1. Species.basal_color = gray_to_dark_brown
+2. Species.plastral_scutes_color = white_to_yellow
+3. Species.has_basal_color = true
+4. Species.has_plastral_scutes_color = true
+5. Scutes.can_be_colored = brightly
+6. Scutes.has_color_variation = true
+7. Scutes.color_variation.species = some
+8. Scutes.basal_color = gray_to_dark_brown
+9. Plastral_scutes.color = white_to_yellow
+10. Plastral_scutes.has_color_variation = true
+11. Color.basal = gray_to_dark_brown
+12. Color.plastral = white_to_yellow
+13. Color.is_brightly_colored = true
+14. Color.is_consistent = false
+15. Species.has_contradictory_colors = true
+16. Species.color_variation.exists = true
+17. Species.has_basal_color_variation = true
+18. Species.has_plastral_color_variation = true
+19. Relationship.contradiction.exists = true
+20. Relationship.basal_vs_plastral = contradiction
+21. M_NLI(s1, s2) = true
+22. Content(s1, s2) = true
+23. violate(s1, s2) = true
+24. Scutes.color = gray_to_dark_brown
+25. Scutes.color = white_to_yellow
+26. Species.color = inconsistent
+27. Species.color = variable
+28. Species.has_basal_color = gray_to_dark_brown
+29. Species.has_plastral_color = white_to_yellow
+30. Color.difference.exists = true
+
+Rules:
+1. Q[Scutes, Species.basal_color, Species.plastral_scutes_color](Species.has_basal_color == true ∧ Species.basal_color = gray_to_dark_brown → Content(Species.basal_color, Species.plastral_scutes_color))
+2. Q[Scutes, Species.plastral_scutes_color, Species.basal_color](Species.has_plastral_scutes_color == true ∧ Species.plastral_scutes_color = white_to_yellow → Content(Species.plastral_scutes_color, Species.basal_color))
+3. Q[Scutes, Species.has_basal_color, Species.has_plastral_color](Species.has_basal_color == true ∧ Species.has_plastral_color == true → Content(Species.has_basal_color, Species.has_plastral_color))
+4. Q[Scutes, Scutes.color, Scutes.color](Scutes.color = gray_to_dark_brown ∧ Scutes.color = white_to_yellow → Content(Scutes.color, Scutes.color))
+5. Q[Scutes, Color.basal, Color.plastral](Color.basal = gray_to_dark_brown ∧ Color.plastral = white_to_yellow → Content(Color.basal, Color.plastral))
+6. Q[Scutes, Species.color, Species.color](Species.color = inconsistent → Content(Species.color, Species.color))
+7. Q[Scutes, Species.has_basal_color_variation, Species.has_plastral_color_variation](Species.has_basal_color_variation == true ∧ Species.has_plastral_color_variation == true → Content(Species.has_basal_color_variation, Species.has_plastral_color_variation))
+8. Q[Scutes, Relationship.basal_vs_plastral, Relationship.contradiction](Relationship.basal_vs_plastral = contradiction → Content(Relationship.basal_vs_plastral, Relationship.contradiction))
+9. Q[Scutes, Color.is_consistent, Color.is_brightly_colored](Color.is_consistent = false ∧ Color.is_brightly_colored = true → Content(Color.is_consistent, Color.is_brightly_colored))
+10. Q[Scutes, Species.has_contradictory_colors, Species.color_variation.exists](Species.has_contradictory_colors == true ∧ Species.color_variation.exists == true → Content(Species.has_contradictory_colors, Species.color_variation.exists))
+11. Q[Scutes, Scutes.can_be_colored, Scutes.has_color_variation](Scutes.can_be_colored = brightly ∧ Scutes.has_color_variation = true → Content(Scutes.can_be_colored, Scutes.has_color_variation))
+12. Q[Scutes, Color.difference.exists, Species.color](Color.difference.exists = true ∧ Species.color = variable → Content(Color.difference.exists, Species.color))
+13. Q[Scutes, Species.basal_color, Species.has_basal_color](Species.basal_color = gray_to_dark_brown ∧ Species.has_basal_color == true → Content(Species.basal_color, Species.has_basal_color))
+14. Q[Scutes, Species.plastral_scutes_color, Species.has_plastral_color](Species.plastral_scutes_color = white_to_yellow ∧ Species.has_plastral_color == true → Content(Species.plastral_scutes_color, Species.has_plastral_color))
+15. Q[Scutes, Scutes.color_variation.species, Scutes.color](Scutes.color_variation.species = some ∧ Scutes.color = gray_to_dark_brown → Content(Scutes.color_variation.species, Scutes.color))
+16. Q[Scutes, Color.is_brightly_colored, Color.plastral](Color.is_brightly_colored = true ∧ Color.plastral = white_to_yellow → Content(Color.is_brightly_colored, Color.plastral))
+17. Q[Scutes, Species.color, Species.has_basal_color](Species.color = inconsistent ∧ Species.has_basal_color = gray_to_dark_brown → Content(Species.color, Species.has_basal_color))
+18. Q[Scutes, Species.color, Species.has_plastral_color](Species.color = inconsistent ∧ Species.has_plastral_color = white_to_yellow → Content(Species.color, Species.has_plastral_color))
+19. Q[Scutes, Relationship.contradiction.exists, Species.has_basal_color](Relationship.contradiction.exists = true ∧ Species.has_basal_color = gray_to_dark_brown → Content(Relationship.contradiction.exists, Species.has_basal_color))
+20. Q[Scutes, Relationship.contradiction.exists, Species.has_plastral_color](Relationship.contradiction.exists = true ∧ Species.has_plastral_color = white_to_yellow → Content(Relationship.contradiction.exists, Species.has_plastral_color))
+21. Q[Scutes, Species.color_variation.exists, Species.has_basal_color](Species.color_variation.exists = true ∧ Species.has_basal_color = gray_to_dark_brown → Content(Species.color_variation.exists, Species.has_basal_color))
+22. Q[Scutes, Species.color_variation.exists, Species.has_plastral_color](Species.color_variation.exists = true ∧ Species.has_plastral_color = white_to_yellow → Content(Species.color_variation.exists, Species.has_plastral_color))
+23. Q[Scutes, Scutes.color, Color.basal](Scutes.color = gray_to_dark_brown ∧ Color.basal = gray_to_dark_brown → Content(Scutes.color, Color.basal))
+24. Q[Scutes, Scutes.color, Color.plastral](Scutes.color = white_to_yellow ∧ Color.plastral = white_to_yellow → Content(Scutes.color, Color.plastral))
+25. Q[Scutes, Species.has_basal_color_variation, Species.has_plastral_color_variation](Species.has_basal_color_variation == true ∧ Species.has_plastral_color_variation == true → Content(Species.has_basal_color_variation, Species.has_plastral_color_variation))
+26. Q[Scutes, Color.is_consistent, Species.color](Color.is_consistent = false ∧ Species.color = inconsistent → Content(Color.is_consistent, Species.color))
+27. Q[Scutes, Species.has_contradictory_colors, Color.difference.exists](Species.has_contradictory_colors == true ∧ Color.difference.exists = true → Content(Species.has_contradictory_colors, Color.difference.exists))
+28. Q[Scutes, Scutes.color_variation.species, Species.color](Scutes.color_variation.species = some ∧ Species.color = variable → Content(Scutes.color_variation.species, Species.color))
+29. Q[Scutes, Color.is_brightly_colored, Species.color](Color.is_brightly_colored = true ∧ Species.color = inconsistent → Content(Color.is_brightly_colored, Species.color))
+30. Q[Scutes, Relationship.basal_vs_plastral,

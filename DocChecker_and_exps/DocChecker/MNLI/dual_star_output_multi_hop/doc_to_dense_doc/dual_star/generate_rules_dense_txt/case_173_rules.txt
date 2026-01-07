@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 173)
+S1: T h e r e w a s a w a l l f u l l o f w i n d o w s.
+S2: T h e n h e r e a l i z e d t h a t t h e r e w a s n o w i n d o w.
+
+Predicates:
+1. Wall.has_windows
+2. Wall.full_of_windows
+3. Wall.has_no_windows
+4. Realization.is_true
+5. Realization.is_false
+6. Windows.exist
+7. Windows.does_not_exist
+8. Wall.is_present
+9. Wall.is_absent
+10. Sentence1.describes_wall
+11. Sentence2.describes_wall
+12. Sentence1.asserts_existence
+13. Sentence2.asserts_nonexistence
+14. Existence.is_contradictory
+15. Negation.is_present
+16. Violation.is_detected
+17. Wall.is_full
+18. Wall.is_empty
+19. Windows.are_visible
+20. Windows.are_invisible
+21. Realization.conflicts_with_sentence1
+22. Realization.conflicts_with_sentence2
+23. Sentence1.contains_assertion
+24. Sentence2.contains_negation
+25. Wall.has_attributes
+26. Windows.have_attributes
+27. Existence.is_affirmed
+28. Existence.is_denied
+29. Sentence1.and_sentence2.are_inconsistent
+30. Wall.is_described_by_sentence1
+
+Rules:
+1. Q[Wall, Wall.has_windows, Wall.has_no_windows](Wall.has_windows == true → Negation(Wall.has_windows, Wall.has_no_windows))
+2. Q[Wall, Wall.full_of_windows, Wall.has_no_windows](Wall.full_of_windows == true → Negation(Wall.full_of_windows, Wall.has_no_windows))
+3. Q[Wall, Wall.is_present, Wall.has_no_windows](Wall.is_present == true → Negation(Wall.is_present, Wall.has_no_windows))
+4. Q[Wall, Wall.full_of_windows, Windows.does_not_exist](Wall.full_of_windows == true → Negation(Wall.full_of_windows, Windows.does_not_exist))
+5. Q[Realization, Realization.is_true, Realization.is_false](Realization.is_true == true → Negation(Realization.is_true, Realization.is_false))
+6. Q[Sentence1, Sentence1.asserts_existence, Sentence2.asserts_nonexistence](Sentence1.asserts_existence == true → Negation(Sentence1.asserts_existence, Sentence2.asserts_nonexistence))
+7. Q[Windows, Windows.exist, Windows.does_not_exist](Windows.exist == true → Negation(Windows.exist, Windows.does_not_exist))
+8. Q[Wall, Wall.is_full, Wall.is_empty](Wall.is_full == true → Negation(Wall.is_full, Wall.is_empty))
+9. Q[Sentence1, Sentence1.contains_assertion, Sentence2.contains_negation](Sentence1.contains_assertion == true → Negation(Sentence1.contains_assertion, Sentence2.contains_negation))
+10. Q[Wall, Wall.has_attributes, Wall.has_no_windows](Wall.has_attributes == true → Negation(Wall.has_attributes, Wall.has_no_windows))
+11. Q[Windows, Windows.are_visible, Windows.are_invisible](Windows.are_visible == true → Negation(Windows.are_visible, Windows.are_invisible))
+12. Q[Existence, Existence.is_affirmed, Existence.is_denied](Existence.is_affirmed == true → Negation(Existence.is_affirmed, Existence.is_denied))
+13. Q[Wall, Wall.is_described_by_sentence1, Wall.has_no_windows](Wall.is_described_by_sentence1 == true → Negation(Wall.is_described_by_sentence1, Wall.has_no_windows))
+14. Q[Realization, Realization.conflicts_with_sentence1, Realization.is_false](Realization.conflicts_with_sentence1 == true → Negation(Realization.conflicts_with_sentence1, Realization.is_false))
+15. Q[Sentence1, Sentence1.describes_wall, Sentence2.describes_wall](Sentence1.describes_wall == true → Negation(Sentence1.describes_wall, Sentence2.describes_wall))
+16. Q[Wall, Wall.is_present, Windows.does_not_exist](Wall.is_present == true → Negation(Wall.is_present, Windows.does_not_exist))
+17. Q[Wall, Wall.is_full, Windows.does_not_exist](Wall.is_full == true → Negation(Wall.is_full, Windows.does_not_exist))
+18. Q[Sentence1, Sentence1.asserts_existence, Wall.has_no_windows](Sentence1.asserts_existence == true → Negation(Sentence1.asserts_existence, Wall.has_no_windows))
+19. Q[Realization, Realization.is_true, Wall.has_no_windows](Realization.is_true == true → Negation(Realization.is_true, Wall.has_no_windows))
+20. Q[Windows, Windows.exist, Wall.has_no_windows](Windows.exist == true → Negation(Windows.exist, Wall.has_no_windows))
+21. Q[Wall, Wall.is_empty, Windows.exist](Wall.is_empty == true → Negation(Wall.is_empty, Windows.exist))
+22. Q[Sentence2, Sentence2.contains_negation, Wall.has_windows](Sentence2.contains_negation == true → Negation(Sentence2.contains_negation, Wall.has_windows))
+23. Q[Wall, Wall.is_present, Wall.is_empty](Wall.is_present == true → Negation(Wall.is_present, Wall.is_empty))
+24. Q[Wall, Wall.has_windows, Wall.is_empty](Wall.has_windows == true → Negation(Wall.has_windows, Wall.is_empty))
+25. Q[Realization, Realization.conflicts_with_sentence2, Realization.is_true](Realization.conflicts_with_sentence2 == true → Negation(Realization.conflicts_with_sentence2, Realization.is_true))
+26. Q[Sentence1, Sentence1.asserts_existence, Realization.is_false](Sentence1.asserts_existence == true → Negation(Sentence1.asserts_existence, Realization.is_false))
+27. Q[Wall, Wall.full_of_windows, Wall.is_empty](Wall.full_of_windows == true → Negation(Wall.full_of_windows, Wall.is_empty))
+28. Q[Windows, Windows.does_not_exist, Wall.is_present](Windows.does_not_exist == true → Negation(Windows.does_not_exist, Wall.is_present))
+29. Q[Wall, Wall.has_no_windows, Windows.exist](Wall.has_no_windows == true → Negation(Wall.has_no_windows, Windows.exist))
+30. Q[Sentence1, Sentence1.and_sentence2.are_inconsistent, Wall.has_windows](Sentence1.and_sentence2.are_inconsistent == true → Negation(Sentence1.and_sentence2.are_inconsistent, Wall.has_windows))

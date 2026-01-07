@@ -1,0 +1,59 @@
+Predicates:
+Big Bang.description != "the scientific theory said to explain the creation of the universe"
+Big Bang.description = "the scientific theory said to explain the creation of the universe"
+Big Bang.label != "Event"
+Big Bang.label = "Event"
+Big Bang.name != "Big Bang"
+Big Bang.name = "Big Bang"
+Large Hadron Collider.label != "Machine"
+Large Hadron Collider.label != Big Bang.label
+Large Hadron Collider.label != particles.label
+Large Hadron Collider.label != proton.label
+Large Hadron Collider.label = "Machine"
+Large Hadron Collider.name != "Large Hadron Collider"
+Large Hadron Collider.name != Big Bang.name
+Large Hadron Collider.name != particles.name
+Large Hadron Collider.name != proton.name
+Large Hadron Collider.name = "Large Hadron Collider"
+Large Hadron Collider___Big Bang.doc_id = "3489738256_7"
+Large Hadron Collider___Big Bang.purpose = "to uncover how the universe evolved"
+Large Hadron Collider___Big Bang.relationship = "The LHC aims to replicate conditions from the Big Bang."
+Large Hadron Collider___particles.beam_duration = "10 hours"
+Large Hadron Collider___particles.doc_id = "3489738256_7"
+Large Hadron Collider___particles.rate = "600 million particles per second"
+Large Hadron Collider___particles.relationship != Large Hadron Collider___Big Bang.relationship
+Large Hadron Collider___particles.relationship = "The LHC generates particles."
+Large Hadron Collider___proton.circuits_per_second != 11245
+Large Hadron Collider___proton.circuits_per_second = 11245
+Large Hadron Collider___proton.doc_id = "3489738256_7"
+Large Hadron Collider___proton.relationship != Large Hadron Collider___Big Bang.relationship
+Large Hadron Collider___proton.relationship != Large Hadron Collider___particles.relationship
+Large Hadron Collider___proton.relationship = "The LHC accelerates protons."
+Large Hadron Collider___proton.speed = "near light-speed"
+None_ML(Large Hadron Collider.attrs, particles.attrs)
+None_ML(Large Hadron Collider___proton.attrs, Large Hadron Collider___Big Bang.attrs)
+particles.label != "Particle"
+particles.label != Big Bang.label
+particles.label = "Particle"
+particles.name != "particles"
+particles.name != Big Bang.name
+particles.name = "particles"
+proton.label != "Particle"
+proton.label != Big Bang.label
+proton.label = "Particle"
+proton.name != "proton"
+proton.name != Big Bang.name
+proton.name != particles.name
+proton.name = "proton"
+
+Rules:
+Q[Large Hadron Collider,Large Hadron Collider] (Large Hadron Collider.label != proton.label ∧ None_ML(Large Hadron Collider.attrs, particles.attrs) ∧ Large Hadron Collider___proton.doc_id = "3489738256_7" ∧ Large Hadron Collider.label != "Machine" ∧ Large Hadron Collider___Big Bang.relationship = "The LHC aims to replicate conditions from the Big Bang." → Large Hadron Collider.name != particles.name)
+Q[Large Hadron Collider,Large Hadron Collider] (Large Hadron Collider___particles.doc_id = "3489738256_7" ∧ Large Hadron Collider.name != particles.name ∧ proton.label = "Particle" → Large Hadron Collider.name != proton.name)
+Q[Large Hadron Collider,Large Hadron Collider] (Big Bang.label != "Event" ∧ Large Hadron Collider.label = "Machine" → Big Bang.label = "Event")
+Q[Large Hadron Collider,Large Hadron Collider] (Large Hadron Collider___proton.relationship != Large Hadron Collider___particles.relationship ∧ Large Hadron Collider.name != "Large Hadron Collider" ∧ proton.name != particles.name ∧ Large Hadron Collider.name != Big Bang.name ∧ proton.label != Big Bang.label ∧ Large Hadron Collider.label != particles.label → particles.label != Big Bang.label)
+Q[Large Hadron Collider,Large Hadron Collider] (Large Hadron Collider.label != particles.label ∧ proton.name = "proton" ∧ Large Hadron Collider___proton.relationship != Large Hadron Collider___particles.relationship ∧ Large Hadron Collider___Big Bang.purpose = "to uncover how the universe evolved" → Big Bang.label != "Event")
+Q[Large Hadron Collider,Large Hadron Collider] (Large Hadron Collider___proton.speed = "near light-speed" ∧ Large Hadron Collider___proton.circuits_per_second = 11245 ∧ Big Bang.name = "Big Bang" ∧ Large Hadron Collider___particles.rate = "600 million particles per second" ∧ Large Hadron Collider.name != Big Bang.name → Large Hadron Collider.label = "Machine")
+Q[Large Hadron Collider,Large Hadron Collider] (Large Hadron Collider.label != proton.label ∧ Large Hadron Collider.label != Big Bang.label → Large Hadron Collider.label != particles.label)
+Q[Large Hadron Collider,Large Hadron Collider] (Large Hadron Collider___particles.relationship = "The LHC generates particles." ∧ Large Hadron Collider___proton.doc_id = "3489738256_7" ∧ Big Bang.description != "the scientific theory said to explain the creation of the universe" ∧ proton.label = "Particle" → proton.label != "Particle")
+Q[Large Hadron Collider,Large Hadron Collider] (Large Hadron Collider.label != particles.label ∧ Large Hadron Collider___proton.relationship = "The LHC accelerates protons." ∧ particles.name = "particles" → None_ML(Large Hadron Collider.attrs, particles.attrs))
+Q[Large Hadron Collider,Large Hadron Collider] (Large Hadron Collider.label = "Machine" ∧ Big Bang.label != "Event" ∧ Large Hadron Collider___particles.beam_duration = "10 hours" ∧ Large Hadron Collider.name != proton.name ∧ Large Hadron Collider___particles.relationship = "The LHC generates particles." ∧ Large Hadron Collider___proton.speed = "near light-speed" → Large Hadron Collider.name != "Large Hadron Collider")

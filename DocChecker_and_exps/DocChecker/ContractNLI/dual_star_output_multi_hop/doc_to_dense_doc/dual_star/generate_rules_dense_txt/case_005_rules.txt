@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 5)
+S1: You shall only use the Confidential Information for the purpose of considering and implementing the Possible Transaction.
+S2: Receiving Party shall not use any Confidential Information for any purpose other than the purposes stated in Agreement.
+
+Predicates:
+1. ConfidentialInformation.purpose
+2. PossibleTransaction.consideration
+3. PossibleTransaction.implementation
+4. ReceivingParty.use
+5. Agreement.purpose
+6. ConfidentialInformation.restriction
+7. ConfidentialInformation.allowedUse
+8. Agreement.includesPossibleTransaction
+9. Agreement.excludesPossibleTransaction
+10. ReceivingParty.restriction
+11. ConfidentialInformation.usageLimit
+12. PossibleTransaction.allowedUse
+13. Agreement.restriction
+14. ConfidentialInformation.usagePurpose
+15. ReceivingParty.purpose
+16. M_NLI(S1, S2)
+17. Causal(ConfidentialInformation, PossibleTransaction)
+18. violate(ReceivingParty, Agreement)
+19. ConfidentialInformation.implementation
+20. PossibleTransaction.restriction
+21. ReceivingParty.implementation
+22. Agreement.implementation
+23. ConfidentialInformation.usageScope
+24. PossibleTransaction.scope
+25. ReceivingParty.consideration
+26. Agreement.usageLimit
+27. ConfidentialInformation.usagePolicy
+28. PossibleTransaction.policy
+29. ReceivingParty.policy
+30. Agreement.allowedUse
+
+Rules:
+1. Q[You, ConfidentialInformation.purpose, PossibleTransaction.consideration](ConfidentialInformation.purpose == "considering and implementing the Possible Transaction" → Causal(ConfidentialInformation, PossibleTransaction))
+2. Q[ReceivingParty, ReceivingParty.use, Agreement.purpose](ReceivingParty.use == "only for purposes stated in Agreement" → Causal(ReceivingParty, Agreement))
+3. Q[You, ConfidentialInformation.allowedUse, PossibleTransaction.implementation](ConfidentialInformation.allowedUse == "for Possible Transaction" → Causal(ConfidentialInformation, PossibleTransaction))
+4. Q[ReceivingParty, ReceivingParty.restriction, Agreement.includesPossibleTransaction](ReceivingParty.restriction == "not using for purposes outside Agreement" → Causal(ReceivingParty, Agreement))
+5. Q[You, ConfidentialInformation.usageLimit, Agreement.excludesPossibleTransaction](ConfidentialInformation.usageLimit == "limited to Agreement purposes" → Causal(ConfidentialInformation, Agreement))
+6. Q[You, ConfidentialInformation.usagePurpose, PossibleTransaction.allowedUse](ConfidentialInformation.usagePurpose == "considering Possible Transaction" → Causal(ConfidentialInformation, PossibleTransaction))
+7. Q[ReceivingParty, ReceivingParty.purpose, Agreement.restriction](ReceivingParty.purpose == "restricted to Agreement" → Causal(ReceivingParty, Agreement))
+8. Q[You, ConfidentialInformation.implementation, PossibleTransaction.restriction](ConfidentialInformation.implementation == "for Possible Transaction" → Causal(ConfidentialInformation, PossibleTransaction))
+9. Q[ReceivingParty, ReceivingParty.consideration, Agreement.implementation](ReceivingParty.consideration == "only as per Agreement" → Causal(ReceivingParty, Agreement))
+10. Q[You, ConfidentialInformation.usageScope, Agreement.allowedUse](ConfidentialInformation.usageScope == "limited to Agreement" → Causal(ConfidentialInformation, Agreement))
+11. Q[ReceivingParty, ReceivingParty.policy, Agreement.usageLimit](ReceivingParty.policy == "must adhere to Agreement limits" → Causal(ReceivingParty, Agreement))
+12. Q[You, ConfidentialInformation.restriction, PossibleTransaction.policy](ConfidentialInformation.restriction == "not for other purposes" → Causal(ConfidentialInformation, PossibleTransaction))
+13. Q[ReceivingParty, ReceivingParty.implementation, Agreement.excludesPossibleTransaction](ReceivingParty.implementation == "only as per Agreement" → Causal(ReceivingParty, Agreement))
+14. Q[You, ConfidentialInformation.usagePolicy, PossibleTransaction.scope](ConfidentialInformation.usagePolicy == "for Possible Transaction" → Causal(ConfidentialInformation, PossibleTransaction))
+15. Q[ReceivingParty, ReceivingParty.restriction, Agreement.includesPossibleTransaction](ReceivingParty.restriction == "not using outside Agreement" → Causal(ReceivingParty, Agreement))
+16. Q[You, ConfidentialInformation.usageLimit, PossibleTransaction.consideration](ConfidentialInformation.usageLimit == "for Possible Transaction only" → Causal(ConfidentialInformation, PossibleTransaction))
+17. Q[ReceivingParty, ReceivingParty.use, Agreement.allowedUse](ReceivingParty.use == "only for Agreement purposes" → Causal(ReceivingParty, Agreement))
+18. Q[You, ConfidentialInformation.allowedUse, Agreement.restriction](ConfidentialInformation.allowedUse == "restricted to Agreement" → Causal(ConfidentialInformation, Agreement))
+19. Q[ReceivingParty, ReceivingParty.purpose, PossibleTransaction.restriction](ReceivingParty.purpose == "limited to Agreement" → Causal(ReceivingParty, PossibleTransaction))
+20. Q[You, ConfidentialInformation.implementation, Agreement.includesPossibleTransaction](ConfidentialInformation.implementation == "for Possible Transaction" → Causal(ConfidentialInformation, Agreement))
+21. Q[ReceivingParty, ReceivingParty.consideration, Agreement.usageLimit](ReceivingParty.consideration == "must follow Agreement" → Causal(ReceivingParty, Agreement))
+22. Q[You, ConfidentialInformation.usageScope, PossibleTransaction.policy](ConfidentialInformation.usageScope == "for Possible Transaction" → Causal(ConfidentialInformation, PossibleTransaction))
+23. Q[ReceivingParty, ReceivingParty.policy, Agreement.restriction](ReceivingParty.policy == "must comply with Agreement" → Causal(ReceivingParty, Agreement))
+24. Q[You, ConfidentialInformation.restriction, PossibleTransaction.allowedUse](ConfidentialInformation.restriction == "not for other uses" → Causal(ConfidentialInformation, PossibleTransaction))
+25. Q[ReceivingParty, ReceivingParty.implementation, Agreement.allowedUse](ReceivingParty.implementation == "only as per Agreement" → Causal(ReceivingParty, Agreement))
+26. Q[You, ConfidentialInformation.usagePolicy, Agreement.excludesPossibleTransaction](ConfidentialInformation.usagePolicy == "limited to Agreement" → Causal(ConfidentialInformation, Agreement))
+27. Q[ReceivingParty, ReceivingParty.restriction, PossibleTransaction.scope](ReceivingParty.restriction == "not using for other purposes" → Causal(ReceivingParty, PossibleTransaction))
+28. Q[You, ConfidentialInformation.usageLimit, Agreement.includesPossibleTransaction](ConfidentialInformation.usageLimit == "for Possible Transaction" → Causal(ConfidentialInformation, Agreement))
+29. Q[ReceivingParty, ReceivingParty.use, PossibleTransaction.restriction](ReceivingParty.use == "only for Agreement purposes" → Causal(ReceivingParty, PossibleTransaction))
+30. Q[You, ConfidentialInformation.allowedUse, Agreement.restriction](ConfidentialInformation.allowedUse == "restricted to Agreement" → Causal(ConfidentialInformation, Agreement))

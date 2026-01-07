@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 101)
+S1: I don't think you can win it,
+S2: we are winning, and we will win.
+
+Predicates:
+1. S1.doubt
+2. S2.assertion
+3. S2.winning
+4. S2.future_win
+5. S1.negation
+6. S1.opinion
+7. S2.current_state
+8. S2.continuation
+9. M_NLI(S1, S2)
+10. Content(Opinion, S1)
+11. Content(Assertion, S2)
+12. violate(S1, S2)
+13. S1.expresses_doubt
+14. S2.confirms_success
+15. S1.lacks_confidence
+16. S2.proclaims_victory
+17. S1.uncertainty
+18. S2.certainty
+19. S1.negative_sentiment
+20. S2.positive_sentiment
+21. S1.refutes_possibility
+22. S2.supports_possibility
+23. S1.pessimism
+24. S2.optimism
+25. S1.conditional
+26. S2.unconditional
+27. S1.subjective
+28. S2.objective
+29. S1.temporary_state
+30. S2.permanent_state
+
+Rules:
+1. Q[don, x0, y0](S1.doubt == true → Content(Opinion, S1))
+2. Q[winning, x0, y0](S2.winning == true → Content(Assertion, S2))
+3. Q[win, x0, y0](S1.expresses_doubt == true → Content(Opinion, S1))
+4. Q[win, x0, y0](S2.assertion == true → Content(Assertion, S2))
+5. Q[winning, x0, y0](S2.current_state == true → Content(Assertion, S2))
+6. Q[win, x0, y0](S1.lacks_confidence == true → Content(Opinion, S1))
+7. Q[win, x0, y0](S2.certainty == true → Content(Assertion, S2))
+8. Q[win, x0, y0](S1.negative_sentiment == true → Content(Opinion, S1))
+9. Q[win, x0, y0](S2.positive_sentiment == true → Content(Assertion, S2))
+10. Q[win, x0, y0](S1.pessimism == true → Content(Opinion, S1))
+11. Q[win, x0, y0](S2.optimism == true → Content(Assertion, S2))
+12. Q[win, x0, y0](S1.refutes_possibility == true → Content(Opinion, S1))
+13. Q[win, x0, y0](S2.supports_possibility == true → Content(Assertion, S2))
+14. Q[win, x0, y0](S1.conditional == true → Content(Opinion, S1))
+15. Q[win, x0, y0](S2.unconditional == true → Content(Assertion, S2))
+16. Q[win, x0, y0](S1.temporary_state == true → Content(Opinion, S1))
+17. Q[win, x0, y0](S2.permanent_state == true → Content(Assertion, S2))
+18. Q[win, x0, y0](S1.uncertainty == true → Content(Opinion, S1))
+19. Q[win, x0, y0](S2.confirms_success == true → Content(Assertion, S2))
+20. Q[win, x0, y0](S1.negation == true → Content(Opinion, S1))
+21. Q[win, x0, y0](S2.proclaims_victory == true → Content(Assertion, S2))
+22. Q[win, x0, y0](S1.subjective == true → Content(Opinion, S1))
+23. Q[win, x0, y0](S2.objective == true → Content(Assertion, S2))
+24. Q[win, x0, y0](S1.doubt == true ∧ S2.assertion == true → violate(S1, S2))
+25. Q[win, x0, y0](S1.expresses_doubt == true ∧ S2.winning == true → violate(S1, S2))
+26. Q[win, x0, y0](S1.lacks_confidence == true ∧ S2.future_win == true → violate(S1, S2))
+27. Q[win, x0, y0](S1.negative_sentiment == true ∧ S2.current_state == true → violate(S1, S2))
+28. Q[win, x0, y0](S1.pessimism == true ∧ S2.continuation == true → violate(S1, S2))
+29. Q[win, x0, y0](S1.refutes_possibility == true ∧ S2.assertion == true → violate(S1, S2))
+30. Q[win, x0, y0](S1.conditional == true ∧ S2.unconditional == true → violate(S1, S2))

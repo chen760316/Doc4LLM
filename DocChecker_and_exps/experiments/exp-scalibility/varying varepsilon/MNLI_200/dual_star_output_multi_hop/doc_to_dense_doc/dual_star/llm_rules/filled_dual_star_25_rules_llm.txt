@@ -1,0 +1,133 @@
+Predicates:
+1. entity.name = "Howard"
+2. entity.age = "35"
+3. entity.location = "New York"
+4. entity.occupation = "Store Owner"
+5. entity.relationship_status = "Married"
+6. entity.spouse = "Sheila"
+7. entity.child = "Emma"
+8. entity.store_name = "Howard's Boutique"
+9. entity.sales_count = "29"
+10. entity.opening_year = "2020"
+11. entity.product_type = "High Heels"
+12. entity.event_date = "2025-06-15"
+13. entity.video_title = "David's YouTube Video"
+14. entity.video_year = "2024"
+15. entity.award_name = "Nobel Prize"
+16. entity.award_year = "1901"
+17. entity.research_topic = "Nitroglycerin"
+18. entity.belief_year = "1860"
+19. entity.researcher_name = "Alfred Nobel"
+20. entity.researcher_contribution = "Heart Disease Treatment"
+21. "has".relation_type = "ownership"
+22. "is east of".relation_type = "geographical"
+23. "is located along".relation_type = "spatial"
+24. "is located back in".relation_type = "temporal"
+25. "is more of a".relation_type = "categorical"
+26. M_NLI(entity1.name, entity2.name)
+27. T("Howard is married to Sheila", "Howard is married to Emma", tau)
+28. tau(entity.relationship_status, entity.spouse)
+29. violate(entity1, entity2)
+30. Factual(entity1, entity2)
+31. Causal(entity1, entity2)
+32. Numeric(entity1, entity2)
+33. Temporal(entity1, entity2)
+34. Content(entity1, entity2)
+35. Negation(entity1, entity2)
+36. Relation(entity1, entity2)
+37. "has".doc_index = "22"
+38. "is east of".doc_index = "22"
+39. "is located along".doc_index = "22"
+40. "is located back in".doc_index = "22"
+41. "is more of a".doc_index = "22"
+42. entity.store_sales = "0"
+43. entity.video_status = "removed"
+44. entity.video_year_accessed = "2025"
+45. entity.belief_change = "effective"
+46. entity.award_recipient = "Hinton"
+47. entity.award_year_received = "2024"
+48. entity.nobel_honor = "Alfred Nobel"
+49. entity.nobel_misattribution = "Shannon"
+50. "has".label_text = "ownership"
+51. "is east of".label_text = "geographical"
+52. "is located along".label_text = "spatial"
+53. "is located back in".label_text = "temporal"
+54. "is more of a".label_text = "categorical"
+55. T("Howard's store sold 29 pairs", "Howard's store had no sales", tau)
+56. tau(entity.sales_count, entity.store_sales)
+57. T("Nobel Prize established in 1901", "Nobel Prize established in 1901 to honor Shannon", tau)
+58. tau(entity.award_year, entity.nobel_misattribution)
+59. T("Video removed in 2024", "Video available in 2025", tau)
+60. tau(entity.video_year, entity.video_year_accessed)
+61. T("Nitroglycerin ineffective in 1860", "Nitroglycerin effective after Nobel's death", tau)
+62. tau(entity.belief_year, entity.belief_change)
+63. Factual(entity.video_title, entity.video_year)
+64. Causal(entity.video_status, entity.video_year_accessed)
+65. Numeric(entity.sales_count, entity.store_sales)
+66. Temporal(entity.belief_year, entity.belief_change)
+67. Content(entity.award_recipient, entity.nobel_misattribution)
+68. Negation(entity.store_sales, entity.sales_count)
+69. Relation(entity.spouse, entity.child)
+70. "has".relation_type = "conflict"
+71. "is east of".relation_type = "disputed"
+72. "is located along".relation_type = "contested"
+73. "is located back in".relation_type = "discrepancy"
+74. "is more of a".relation_type = "debate"
+75. M_NLI(entity1.occupation, entity2.occupation)
+76. T("Howard is a store owner", "Howard is a teacher", tau)
+77. tau(entity.occupation, entity.occupation)
+78. violate(entity1, entity2)
+79. Factual(entity.store_name, entity.store_name)
+80. Causal(entity.sales_count, entity.store_sales)
+81. Numeric(entity.sales_count, entity.sales_count)
+82. Temporal(entity.opening_year, entity.opening_year)
+83. Content(entity.child, entity.child)
+84. Negation(entity.relationship_status, entity.relationship_status)
+85. Relation(entity.spouse, entity.spouse)
+86. "has".doc_index = "23"
+87. "is east of".doc_index = "23"
+88. "is located along".doc_index = "23"
+89. "is located back in".doc_index = "23"
+90. "is more of a".doc_index = "23"
+91. T("Howard's store sold 29 pairs", "Howard's store sold 30 pairs", tau)
+92. tau(entity.sales_count, entity.sales_count)
+93. T("Nobel Prize awarded in 2024", "Nobel Prize awarded in 1901", tau)
+94. tau(entity.award_year_received, entity.award_year)
+95. T("Video removed in 2024", "Video still available in 2024", tau)
+96. tau(entity.video_year, entity.video_year_accessed)
+97. T("Nitroglycerin believed ineffective", "Nitroglycerin believed effective", tau)
+98. tau(entity.belief_year, entity.belief_change)
+99. violate(entity1, entity2)
+100. Factual(entity1, entity2)
+violate(x0, y0)
+
+Rules:
+1. Q[Howard, Sheila](entity.name = "Howard" ∧ entity.relationship_status = "Married" → violate(Howard, Sheila))
+2. Q[Howard, Emma](entity.name = "Howard" ∧ entity.spouse = "Sheila" ∧ entity.child = "Emma" → violate(Howard, Emma))
+3. Q[Howard, Store](entity.occupation = "Store Owner" ∧ entity.store_name = "Howard's Boutique" ∧ entity.sales_count = "29" → violate(Howard, Store))
+4. Q[Howard, Nobel Prize](entity.name = "Howard" ∧ entity.age = "35" ∧ entity.award_year = "1901" → violate(Howard, Nobel Prize))
+5. Q[Howard, 2025](entity.location = "New York" ∧ entity.event_date = "2025-06-15" ∧ entity.age = "35" ∧ entity.occupation = "Store Owner" → violate(Howard, 2025))
+6. Q[Howard, 0](entity.store_sales = "0" ∧ entity.sales_count = "29" ∧ entity.store_name = "Howard's Boutique" ∧ entity.opening_year = "2020" ∧ entity.product_type = "High Heels" → violate(Howard, 0))
+7. Q[Howard, Nobel Prize](entity.name = "Howard" ∧ entity.award_year = "2024" ∧ entity.award_name = "Nobel Prize" → violate(Howard, Nobel Prize))
+8. Q[Howard, 2024](entity.video_year = "2024" ∧ entity.video_status = "removed" ∧ entity.video_year_accessed = "2025" → violate(Howard, 2024))
+9. Q[Howard, 1860](entity.belief_year = "1860" ∧ entity.research_topic = "Nitroglycerin" ∧ entity.researcher_name = "Alfred Nobel" → violate(Howard, 1860))
+10. Q[Howard, 29](entity.sales_count = "29" ∧ entity.store_sales = "0" ∧ entity.store_name = "Howard's Boutique" → violate(Howard, 29))
+11. Q[Howard, 1901](entity.award_year = "1901" ∧ entity.nobel_honor = "Alfred Nobel" ∧ entity.award_recipient = "Hinton" → violate(Howard, 1901))
+12. Q[Howard, 2025](entity.video_year = "2024" ∧ entity.video_year_accessed = "2025" ∧ entity.video_status = "removed" ∧ entity.name = "Howard" → violate(Howard, 2025))
+13. Q[Howard, Sheila](entity.relationship_status = "Married" ∧ entity.spouse = "Sheila" ∧ entity.child = "Emma" ∧ entity.age = "35" → violate(Howard, Sheila))
+14. Q[Howard, 30](entity.sales_count = "29" ∧ entity.store_sales = "0" ∧ entity.store_name = "Howard's Boutique" ∧ entity.opening_year = "2020" ∧ entity.product_type = "High Heels" → violate(Howard, 30))
+15. Q[Howard, 2024](entity.video_year = "2024" ∧ entity.video_status = "removed" ∧ entity.video_year_accessed = "2024" → violate(Howard, 2024))
+16. Q[Howard, 1901](entity.award_year = "1901" ∧ entity.nobel_misattribution = "Shannon" ∧ entity.award_name = "Nobel Prize" → violate(Howard, 1901))
+17. Q[Howard, 2025](entity.event_date = "2025-06-15" ∧ entity.location = "New York" ∧ entity.age = "35" ∧ entity.occupation = "Store Owner" → violate(Howard, 2025))
+18. Q[Howard, 0](entity.store_sales = "0" ∧ entity.sales_count = "29" ∧ entity.store_name = "Howard's Boutique" ∧ entity.opening_year = "2020" ∧ entity.product_type = "High Heels" → violate(Howard, 0))
+19. Q[Howard, 2024](entity.video_year = "2024" ∧ entity.video_status = "removed" ∧ entity.video_year_accessed = "2025" ∧ entity.name = "Howard" → violate(Howard, 2024))
+20. Q[Howard, 1860](entity.belief_year = "1860" ∧ entity.research_topic = "Nitroglycerin" ∧ entity.researcher_name = "Alfred Nobel" ∧ entity.researcher_contribution = "Heart Disease Treatment" → violate(Howard, 1860))
+21. Q[Howard, 29](entity.sales_count = "29" ∧ entity.store_sales = "0" ∧ entity.store_name = "Howard's Boutique" ∧ entity.opening_year = "2020" → violate(Howard, 29))
+22. Q[Howard, 1901](entity.award_year = "1901" ∧ entity.nobel_honor = "Alfred Nobel" ∧ entity.award_recipient = "Hinton" ∧ entity.award_year_received = "2024" → violate(Howard, 1901))
+23. Q[Howard, 2025](entity.video_year = "2024" ∧ entity.video_year_accessed = "2025" ∧ entity.video_status = "removed" ∧ entity.name = "Howard" → violate(Howard, 2025))
+24. Q[Howard, Sheila](entity.relationship_status = "Married" ∧ entity.spouse = "Sheila" ∧ entity.child = "Emma" ∧ entity.age = "35" → violate(Howard, Sheila))
+25. Q[Howard, 30](entity.sales_count = "29" ∧ entity.store_sales = "0" ∧ entity.store_name = "Howard's Boutique" ∧ entity.opening_year = "2020" ∧ entity.product_type = "High Heels" → violate(Howard, 30))
+26. Q[Howard, 2024](entity.video_year = "2024" ∧ entity.video_status = "removed" ∧ entity.video_year_accessed = "2024" → violate(Howard, 2024))
+27. Q[Howard, 1901](entity.award_year = "1901" ∧ entity.nobel_misattribution = "Shannon" ∧ entity.award_name = "Nobel Prize" → violate(Howard, 1901))
+28. Q[Howard, 2025](entity.event_date = "2025-06-15" ∧ entity.location = "New York" ∧ entity.age = "35" ∧ entity.occupation = "Store Owner" → violate(Howard, 2025))
+29. Q[

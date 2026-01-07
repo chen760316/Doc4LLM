@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 866)
+S1: We are honest folks, you know.
+S2: You know, we are honest peoples!
+
+Predicates:
+1. S1.sentence_type = statement
+2. S2.sentence_type = statement
+3. S1.honesty = true
+4. S2.honesty = true
+5. S1.tonality = positive
+6. S2.tonality = positive
+7. S1.language = English
+8. S2.language = English
+9. S1.conflict = true
+10. S2.conflict = true
+11. S1.phrase_structure = simple
+12. S2.phrase_structure = complex
+13. S1.sentiment = agreement
+14. S2.sentiment = agreement
+15. S1.audience = general
+16. S2.audience = general
+17. S1.context = informal
+18. S2.context = informal
+19. S1.emotion = sincerity
+20. S2.emotion = sincerity
+21. M_NLI(S1, S2) = contradiction
+22. Content(Opinion)(S1, S2) = shared
+23. Content(Emotion)(S1, S2) = aligned
+24. violate(S1, S2) = true
+25. S1.intent = convey honesty
+26. S2.intent = convey honesty
+27. S1.repetition = false
+28. S2.repetition = false
+29. S1.clarity = clear
+30. S2.clarity = clear
+
+Rules:
+1. Q[are, S1.honesty, S2.honesty](S1.sentence_type = statement ∧ S2.sentence_type = statement → Content (Opinion/Emotion)(S1, S2))
+2. Q[are, S1.tonality, S2.tonality](S1.honesty = true ∧ S2.honesty = true → Content (Opinion/Emotion)(S1, S2))
+3. Q[are, S1.language, S2.language](S1.tonality = positive ∧ S2.tonality = positive → Content (Opinion/Emotion)(S1, S2))
+4. Q[are, S1.conflict, S2.conflict](S1.language = English ∧ S2.language = English → Content (Opinion/Emotion)(S1, S2))
+5. Q[are, S1.phrase_structure, S2.phrase_structure](S1.conflict = true ∧ S2.conflict = true → Content (Opinion/Emotion)(S1, S2))
+6. Q[are, S1.sentiment, S2.sentiment](S1.phrase_structure = simple ∧ S2.phrase_structure = complex → Content (Opinion/Emotion)(S1, S2))
+7. Q[are, S1.audience, S2.audience](S1.sentiment = agreement ∧ S2.sentiment = agreement → Content (Opinion/Emotion)(S1, S2))
+8. Q[are, S1.context, S2.context](S1.audience = general ∧ S2.audience = general → Content (Opinion/Emotion)(S1, S2))
+9. Q[are, S1.emotion, S2.emotion](S1.context = informal ∧ S2.context = informal → Content (Opinion/Emotion)(S1, S2))
+10. Q[are, S1.intent, S2.intent](S1.emotion = sincerity ∧ S2.emotion = sincerity → Content (Opinion/Emotion)(S1, S2))
+11. Q[are, M_NLI(S1, S2), violate(S1, S2)](S1.intent = convey honesty ∧ S2.intent = convey honesty → Content (Opinion/Emotion)(S1, S2))
+12. Q[are, S1.repetition, S2.repetition](M_NLI(S1, S2) = contradiction ∧ S1.repetition = false ∧ S2.repetition = false → Content (Opinion/Emotion)(S1, S2))
+13. Q[are, S1.clarity, S2.clarity](S1.clarity = clear ∧ S2.clarity = clear → Content (Opinion/Emotion)(S1, S2))
+14. Q[are, S1.honesty, S2.honesty](S1.honesty = true ∧ S2.honesty = true ∧ S1.conflict = true → Content (Opinion/Emotion)(S1, S2))
+15. Q[are, S1.tonality, S2.tonality](S1.tonality = positive ∧ S2.tonality = positive ∧ S1.phrase_structure = simple → Content (Opinion/Emotion)(S1, S2))
+16. Q[are, S1.language, S2.language](S1.language = English ∧ S2.language = English ∧ S1.sentiment = agreement → Content (Opinion/Emotion)(S1, S2))
+17. Q[are, S1.audience, S2.audience](S1.audience = general ∧ S2.audience = general ∧ S1.context = informal → Content (Opinion/Emotion)(S1, S2))
+18. Q[are, S1.emotion, S2.emotion](S1.emotion = sincerity ∧ S2.emotion = sincerity ∧ S1.intent = convey honesty → Content (Opinion/Emotion)(S1, S2))
+19. Q[are, S1.conflict, S2.conflict](S1.conflict = true ∧ S2.conflict = true ∧ M_NLI(S1, S2) = contradiction → Content (Opinion/Emotion)(S1, S2))
+20. Q[are, S1.sentiment, S2.sentiment](S1.sentiment = agreement ∧ S2.sentiment = agreement ∧ S1.repetition = false → Content (Opinion/Emotion)(S1, S2))
+21. Q[are, S1.context, S2.context](S1.context = informal ∧ S2.context = informal ∧ S1.clarity = clear → Content (Opinion/Emotion)(S1, S2))
+22. Q[are, S1.honesty, S2.honesty](S1.honesty = true ∧ S2.honesty = true ∧ S1.tonality = positive → Content (Opinion/Emotion)(S1, S2))
+23. Q[are, S1.phrase_structure, S2.phrase_structure](S1.phrase_structure = simple ∧ S2.phrase_structure = complex ∧ S1.sentiment = agreement → Content (Opinion/Emotion)(S1, S2))
+24. Q[are, S1.audience, S2.audience](S1.audience = general ∧ S2.audience = general ∧ S1.intent = convey honesty → Content (Opinion/Emotion)(S1, S2))
+25. Q[are, S1.emotion, S2.emotion](S1.emotion = sincerity ∧ S2.emotion = sincerity ∧ S1.conflict = true → Content (Opinion/Emotion)(S1, S2))
+26. Q[are, S1.intent, S2.intent](S1.intent = convey honesty ∧ S2.intent = convey honesty ∧ S1.repetition = false → Content (Opinion/Emotion)(S1, S2))
+27. Q[are, S1.clarity, S2.clarity](S1.clarity = clear ∧ S2.clarity = clear ∧ M_NLI(S1, S2) = contradiction → Content (Opinion/Emotion)(S1, S2))
+28. Q[are, S1.honesty, S2.honesty](S1.honesty = true ∧ S2.honesty = true ∧ S1.tonality = positive → Content (Opinion/Emotion)(S1, S2))
+29. Q[are, S1.sentiment, S2.sentiment](S1.sentiment = agreement ∧ S2.sentiment = agreement ∧ S1.context = informal → Content (Opinion/Emotion)(S1, S2))
+30. Q[are, S1.conflict, S2.conflict](S1.conflict = true ∧ S2.conflict = true ∧ S1.phrase_structure = simple → Content (Opinion/Emotion)(S1, S2))

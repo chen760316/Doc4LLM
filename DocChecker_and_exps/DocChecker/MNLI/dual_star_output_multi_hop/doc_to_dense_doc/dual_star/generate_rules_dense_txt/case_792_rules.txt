@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 792)
+S1: Private firms are allowed to deliver parcels and periodicals.
+S2: The Private Express Statutes in the United States do not prevent private firms from delivering parcels, periodicals, catalogs over 24 pages, or saturation mail.
+
+Predicates:
+1. PrivateFirms.allowed_to_deliver.parcels
+2. PrivateFirms.allowed_to_deliver.periodicals
+3. PrivateExpressStatutes.prevents.private_firms.delivery.parcels
+4. PrivateExpressStatutes.prevents.private_firms.delivery.periodicals
+5. PrivateExpressStatutes.prevents.private_firms.delivery.catalogs_over_24_pages
+6. PrivateExpressStatutes.prevents.private_firms.delivery.saturation_mail
+7. PrivateFirms.deliver.parcels
+8. PrivateFirms.deliver.periodicals
+9. PrivateFirms.deliver.catalogs_over_24_pages
+10. PrivateFirms.deliver.saturation_mail
+11. PrivateExpressStatutes.does_not_prevent.private_firms.delivery.parcels
+12. PrivateExpressStatutes.does_not_prevent.private_firms.delivery.periodicals
+13. PrivateExpressStatutes.does_not_prevent.private_firms.delivery.catalogs_over_24_pages
+14. PrivateExpressStatutes.does_not_prevent.private_firms.delivery.saturation_mail
+15. Permission.exists.for.PrivateFirms.delivery.parcels
+16. Permission.exists.for.PrivateFirms.delivery.periodicals
+17. Permission.exists.for.PrivateFirms.delivery.catalogs_over_24_pages
+18. Permission.exists.for.PrivateFirms.delivery.saturation_mail
+19. Relation.PrivateFirms.delivery.parcels
+20. Relation.PrivateFirms.delivery.periodicals
+21. Relation.PrivateFirms.delivery.catalogs_over_24_pages
+22. Relation.PrivateFirms.delivery.saturation_mail
+23. M_NLI.PrivateFirms.allowed_to_deliver.parcels
+24. M_NLI.PrivateFirms.allowed_to_deliver.periodicals
+25. violate.PrivateExpressStatutes.prevents.private_firms.delivery.parcels
+26. violate.PrivateExpressStatutes.prevents.private_firms.delivery.periodicals
+27. violate.PrivateExpressStatutes.prevents.private_firms.delivery.catalogs_over_24_pages
+28. violate.PrivateExpressStatutes.prevents.private_firms.delivery.saturation_mail
+29. PrivateFirms.delivery.is_permitted.by.PrivateExpressStatutes
+30. PrivateExpressStatutes.is_nonrestrictive.towards.PrivateFirms.delivery
+
+Rules:
+1. Q[Private, PrivateFirms.allowed_to_deliver.parcels == true → Relation(PrivateFirms.delivery.parcels, PrivateExpressStatutes.prevents.private_firms.delivery.parcels)]
+2. Q[Private, PrivateFirms.allowed_to_deliver.periodicals == true → Relation(PrivateFirms.delivery.periodicals, PrivateExpressStatutes.prevents.private_firms.delivery.periodicals)]
+3. Q[Private, PrivateExpressStatutes.does_not_prevent.private_firms.delivery.parcels == true → Relation(PrivateFirms.delivery.parcels, PrivateExpressStatutes.prevents.private_firms.delivery.parcels)]
+4. Q[Private, PrivateExpressStatutes.does_not_prevent.private_firms.delivery.periodicals == true → Relation(PrivateFirms.delivery.periodicals, PrivateExpressStatutes.prevents.private_firms.delivery.periodicals)]
+5. Q[Private, PrivateFirms.deliver.parcels == true → Relation(PrivateFirms.delivery.parcels, PrivateExpressStatutes.prevents.private_firms.delivery.parcels)]
+6. Q[Private, PrivateFirms.deliver.periodicals == true → Relation(PrivateFirms.delivery.periodicals, PrivateExpressStatutes.prevents.private_firms.delivery.periodicals)]
+7. Q[Private, PrivateExpressStatutes.is_nonrestrictive.towards.PrivateFirms.delivery == true → Relation(PrivateFirms.delivery.parcels, PrivateExpressStatutes.prevents.private_firms.delivery.parcels)]
+8. Q[Private, PrivateExpressStatutes.is_nonrestrictive.towards.PrivateFirms.delivery == true → Relation(PrivateFirms.delivery.periodicals, PrivateExpressStatutes.prevents.private_firms.delivery.periodicals)]
+9. Q[Private, Permission.exists.for.PrivateFirms.delivery.parcels == true → Relation(PrivateFirms.delivery.parcels, PrivateExpressStatutes.prevents.private_firms.delivery.parcels)]
+10. Q[Private, Permission.exists.for.PrivateFirms.delivery.periodicals == true → Relation(PrivateFirms.delivery.periodicals, PrivateExpressStatutes.prevents.private_firms.delivery.periodicals)]
+11. Q[Private, PrivateFirms.deliver.catalogs_over_24_pages == true → Relation(PrivateFirms.delivery.catalogs_over_24_pages, PrivateExpressStatutes.prevents.private_firms.delivery.catalogs_over_24_pages)]
+12. Q[Private, PrivateFirms.deliver.saturation_mail == true → Relation(PrivateFirms.delivery.saturation_mail, PrivateExpressStatutes.prevents.private_firms.delivery.saturation_mail)]
+13. Q[Private, PrivateExpressStatutes.does_not_prevent.private_firms.delivery.catalogs_over_24_pages == true → Relation(PrivateFirms.delivery.catalogs_over_24_pages, PrivateExpressStatutes.prevents.private_firms.delivery.catalogs_over_24_pages)]
+14. Q[Private, PrivateExpressStatutes.does_not_prevent.private_firms.delivery.saturation_mail == true → Relation(PrivateFirms.delivery.saturation_mail, PrivateExpressStatutes.prevents.private_firms.delivery.saturation_mail)]
+15. Q[Private, PrivateFirms.allowed_to_deliver.parcels == true → Relation(PrivateFirms.delivery.parcels, PrivateExpressStatutes.does_not_prevent.private_firms.delivery.parcels)]
+16. Q[Private, PrivateFirms.allowed_to_deliver.periodicals == true → Relation(PrivateFirms.delivery.periodicals, PrivateExpressStatutes.does_not_prevent.private_firms.delivery.periodicals)]
+17. Q[Private, Permission.exists.for.PrivateFirms.delivery.catalogs_over_24_pages == true → Relation(PrivateFirms.delivery.catalogs_over_24_pages, PrivateExpressStatutes.prevents.private_firms.delivery.catalogs_over_24_pages)]
+18. Q[Private, Permission.exists.for.PrivateFirms.delivery.saturation_mail == true → Relation(PrivateFirms.delivery.saturation_mail, PrivateExpressStatutes.prevents.private_firms.delivery.saturation_mail)]
+19. Q[Private, PrivateExpressStatutes.prevents.private_firms.delivery.parcels == false → Relation(PrivateFirms.delivery.parcels, PrivateExpressStatutes.prevents.private_firms.delivery.parcels)]
+20. Q[Private, PrivateExpressStatutes.prevents.private_firms.delivery.periodicals == false → Relation(PrivateFirms.delivery.periodicals, PrivateExpressStatutes.prevents.private_firms.delivery.periodicals)]
+21. Q[Private, PrivateExpressStatutes.prevents.private_firms.delivery.catalogs_over_24_pages == false → Relation(PrivateFirms.delivery.catalogs_over_24_pages, PrivateExpressStatutes.prevents.private_firms.delivery.catalogs_over_24_pages)]
+22. Q[Private, PrivateExpressStatutes.prevents.private_firms.delivery.saturation_mail == false → Relation(PrivateFirms.delivery.saturation_mail, PrivateExpressStatutes.prevents.private_firms.delivery.saturation_mail)]
+23. Q[Private, PrivateFirms.allowed_to_deliver.parcels == true AND PrivateExpressStatutes.prevents.private_firms.delivery.parcels == true → Relation(PrivateFirms.delivery.parcels, PrivateExpressStatutes.prevents.private_firms.delivery.parcels)]
+24. Q[Private, PrivateFirms.allowed_to_deliver.periodicals == true AND PrivateExpressStatutes.prevents.private_firms.delivery.periodicals == true → Relation(PrivateFirms.delivery.periodicals, PrivateExpressStatutes.prevents.private_firms.delivery.periodicals)]
+25. Q[Private, PrivateExpressStatutes.does_not_prevent.private_firms.delivery.parcels == true AND PrivateExpressStatutes.prevents.private_firms.delivery.parcels == true → Relation(PrivateFirms.delivery.parcels, PrivateExpressStatutes.prevents.private_firms.delivery.parcels)]
+26. Q[Private, PrivateExpressStatutes.does_not_prevent.private_firms.delivery.periodicals == true AND PrivateExpressStatutes.prevents.private_firms.delivery.periodicals == true → Relation(PrivateFirms.delivery.periodicals, PrivateExpressStatutes.prevents.private_firms.delivery.periodicals)]
+27. Q[Private, PrivateFirms.deliver.catalogs_over_24_pages == true AND PrivateExpressStatutes.prevents.private_firms.delivery.catalogs_over_24_pages == true → Relation(PrivateFirms.delivery.catalogs_over_24_pages, PrivateExpressStatutes.prevents.private_firms.delivery.catalogs_over_24_pages)]
+28. Q[Private, PrivateFirms.deliver.saturation_mail == true AND PrivateExpressStatutes.prevents.private_firms.delivery.saturation_mail == true → Relation(PrivateFirms.delivery.saturation_mail, PrivateExpressStatutes.prevents.private_firms.delivery.saturation_mail)]
+29. Q[Private, PrivateExpressStatutes.is_nonrestrictive.towards.PrivateFirms.delivery == true AND PrivateExpressStatutes.prevents.private_firms.delivery.parcels == true → Relation(PrivateFirms.delivery.parcels, PrivateExpressStatutes.prevents.private_firms.delivery.parcels)]
+30. Q[Private, PrivateExpressStatutes.is_nonrestrictive.towards.PrivateFirms.delivery == true AND PrivateExpressStatutes.prevents.private_firms.delivery.periodicals == true → Relation(PrivateFirms.delivery.periodicals, Private

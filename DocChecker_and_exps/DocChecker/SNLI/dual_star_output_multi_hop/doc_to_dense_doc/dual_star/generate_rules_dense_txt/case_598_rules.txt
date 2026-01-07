@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 598)
+S1: A girl sits on the side of building with hat and ipod.
+S2: A girl wearing a hat and holding an ipod sits on the side of a building.
+
+Predicates:
+1. Girl.wearing_hat
+2. Girl.holding_ipod
+3. Girl.sitting
+4. Building.side
+5. Building.has_side
+6. Scene.describes_same
+7. Sentence1.sits_on_side_of_building
+8. Sentence2.sits_on_side_of_a_building
+9. Location.specificity
+10. Location.implies_contradiction
+11. A_girl.sits
+12. A_girl.wearing_hat
+13. A_girl.holding_ipod
+14. Side_of_building.has_girl
+15. Side_of_a_building.has_girl
+16. Scene.is_identical
+17. Sentence1.includes_hat
+18. Sentence2.includes_hat
+19. Sentence1.includes_ipod
+20. Sentence2.includes_ipod
+21. Building.has_girl_sitting
+22. Building.has_girl_wearing_hat
+23. Building.has_girl_holding_ipod
+24. Scene.is_different
+25. Sentence1.is_specific
+26. Sentence2.is_specific
+27. Negation(sits_on_side_of_building, sits_on_side_of_a_building)
+28. Violate(specificity, contradiction)
+29. M_NLI(S1, S2)
+30. M_NLI(S2, S1)
+
+Rules:
+1. Q[girl, Girl.wearing_hat == true, Girl.holding_ipod == true](Sentence1.includes_hat ∧ Sentence1.includes_ipod → Negation(x0, y0))
+2. Q[girl, Girl.sitting == true, Building.side == true](Sentence1.sits_on_side_of_building → Negation(x0, y0))
+3. Q[girl, Girl.wearing_hat == true, Building.has_side == true](Sentence2.sits_on_side_of_a_building → Negation(x0, y0))
+4. Q[girl, Scene.describes_same == false, Location.specificity == true](Sentence1.is_specific ∧ Sentence2.is_specific → Negation(x0, y0))
+5. Q[girl, Girl.holding_ipod == true, Building.has_girl_holding_ipod == true](Sentence1.includes_ipod → Negation(x0, y0))
+6. Q[girl, Girl.sitting == true, Side_of_building.has_girl == true](Sentence1.sits_on_side_of_building → Negation(x0, y0))
+7. Q[girl, Girl.wearing_hat == true, Side_of_a_building.has_girl == true](Sentence2.sits_on_side_of_a_building → Negation(x0, y0))
+8. Q[girl, Scene.is_identical == false, Location.implies_contradiction == true](Sentence1.sits_on_side_of_building ∧ Sentence2.sits_on_side_of_a_building → Negation(x0, y0))
+9. Q[girl, Building.has_girl_sitting == true, Scene.is_different == true](Sentence1.is_specific ∧ Sentence2.is_specific → Negation(x0, y0))
+10. Q[girl, Girl.wearing_hat == true, Sentence1.includes_hat == true](Sentence1.includes_hat → Negation(x0, y0))
+11. Q[girl, Girl.holding_ipod == true, Sentence2.includes_ipod == true](Sentence2.includes_ipod → Negation(x0, y0))
+12. Q[girl, Building.has_girl_wearing_hat == true, Sentence1.includes_hat == true](Sentence1.includes_hat → Negation(x0, y0))
+13. Q[girl, Building.has_girl_holding_ipod == true, Sentence2.includes_ipod == true](Sentence2.includes_ipod → Negation(x0, y0))
+14. Q[girl, Location.specificity == true, Sentence1.is_specific == true](Sentence1.is_specific → Negation(x0, y0))
+15. Q[girl, Location.specificity == true, Sentence2.is_specific == true](Sentence2.is_specific → Negation(x0, y0))
+16. Q[girl, Scene.is_identical == false, Sentence1.is_specific == true](Sentence1.is_specific ∧ Scene.is_identical → Negation(x0, y0))
+17. Q[girl, Scene.is_identical == false, Sentence2.is_specific == true](Sentence2.is_specific ∧ Scene.is_identical → Negation(x0, y0))
+18. Q[girl, Building.has_girl_sitting == true, Sentence1.sits_on_side_of_building == true](Sentence1.sits_on_side_of_building → Negation(x0, y0))
+19. Q[girl, Building.has_girl_wearing_hat == true, Sentence2.sits_on_side_of_a_building == true](Sentence2.sits_on_side_of_a_building → Negation(x0, y0))
+20. Q[girl, Scene.is_different == true, Sentence1.sits_on_side_of_building == true](Sentence1.sits_on_side_of_building ∧ Scene.is_different → Negation(x0, y0))
+21. Q[girl, Scene.is_different == true, Sentence2.sits_on_side_of_a_building == true](Sentence2.sits_on_side_of_a_building ∧ Scene.is_different → Negation(x0, y0))
+22. Q[girl, Location.implies_contradiction == true, Sentence1.sits_on_side_of_building == true](Sentence1.sits_on_side_of_building ∧ Location.implies_contradiction → Negation(x0, y0))
+23. Q[girl, Location.implies_contradiction == true, Sentence2.sits_on_side_of_a_building == true](Sentence2.sits_on_side_of_a_building ∧ Location.implies_contradiction → Negation(x0, y0))
+24. Q[girl, Sentence1.is_specific == true, Sentence2.is_specific == false](Sentence1.is_specific ∧ Sentence2.is_specific → Negation(x0, y0))
+25. Q[girl, Sentence1.includes_hat == true, Sentence2.includes_hat == false](Sentence1.includes_hat ∧ Sentence2.includes_hat → Negation(x0, y0))
+26. Q[girl, Sentence1.includes_ipod == true, Sentence2.includes_ipod == false](Sentence1.includes_ipod ∧ Sentence2.includes_ipod → Negation(x0, y0))
+27. Q[girl, Sentence1.sits_on_side_of_building == true, Sentence2.sits_on_side_of_a_building == false](Sentence1.sits_on_side_of_building ∧ Sentence2.sits_on_side_of_a_building → Negation(x0, y0))
+28. Q[girl, Sentence1.sits_on_side_of_building == false, Sentence2.sits_on_side_of_a_building == true](Sentence1.sits_on_side_of_building ∧ Sentence2.sits_on_side_of_a_building → Negation(x0, y0))
+29. Q[girl, Scene.is_identical == false, Sentence1.sits_on_side_of_building == true](Sentence1.sits_on_side_of_building ∧ Scene.is_identical → Negation(x0, y0))
+30. Q[girl, Scene.is_identical == false, Sentence2.sits_on_side_of_a_building == true](Sentence2.sits_on_side_of_a_building ∧ Scene.is_identical → Negation(x0, y0))

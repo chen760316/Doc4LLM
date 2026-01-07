@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 17)
+S1: A soldier is detaining a civilian in a practice situation.
+S2: A person is being arrested in a demonstration.
+
+Predicates:
+1. Soldier.detaining
+2. Civilian.practice_situation
+3. Person.arrested
+4. Demonstration.context
+5. Detaining.context
+6. Arresting.context
+7. Soldier.action
+8. Civilian.status
+9. Person.action
+10. Demonstration.event
+11. Practice_situation.type
+12. Arresting.method
+13. Detaining.method
+14. Soldier.role
+15. Civilian.role
+16. Person.role
+17. Demonstration.purpose
+18. Detaining.circumstance
+19. Arresting.circumstance
+20. Soldier.intent
+21. Civilian.response
+22. Person.intent
+23. Demonstration.participants
+24. Practice_situation.outcome
+25. Arresting.outcome
+26. Detaining.outcome
+27. Soldier.location
+28. Civilian.location
+29. Person.location
+30. Demonstration.impact
+
+Rules:
+1. Q[soldier, Soldier.detaining == true, Person.arrested == true](Detaining.context == "practice situation" → Causal(Soldier.detaining, Person.arrested))
+2. Q[civilian, Civilian.practice_situation == true, Demonstration.context == true](Detaining.context == "practice situation" → Causal(Civilian.practice_situation, Demonstration.context))
+3. Q[person, Person.action == "arrested", Demonstration.event == true](Arresting.context == "demonstration" → Causal(Person.action, Demonstration.event))
+4. Q[soldier, Soldier.action == "detaining", Civilian.status == "detained"](Detaining.method == "military practice" → Causal(Soldier.action, Civilian.status))
+5. Q[civilian, Civilian.role == "non-combatant", Person.role == "protester"](Detaining.circumstance == "military exercise" → Causal(Civilian.role, Person.role))
+6. Q[person, Person.intent == "protest", Demonstration.purpose == "advocacy"](Arresting.method == "law enforcement" → Causal(Person.intent, Demonstration.purpose))
+7. Q[soldier, Soldier.role == "military", Civilian.role == "civilian"](Detaining.outcome == "training" → Causal(Soldier.role, Civilian.role))
+8. Q[civilian, Civilian.practice_situation == true, Demonstration.impact == "none"](Detaining.circumstance == "training exercise" → Causal(Civilian.practice_situation, Demonstration.impact))
+9. Q[person, Person.action == "arrested", Arresting.outcome == "detention"](Arresting.context == "demonstration" → Causal(Person.action, Arresting.outcome))
+10. Q[soldier, Soldier.intent == "training", Civilian.response == "cooperative"](Detaining.method == "practice" → Causal(Soldier.intent, Civilian.response))
+11. Q[civilian, Civilian.status == "detained", Demonstration.participants == "protesters"](Detaining.context == "military training" → Causal(Civilian.status, Demonstration.participants))
+12. Q[person, Person.role == "arrested", Demonstration.purpose == "protest"](Arresting.circumstance == "public demonstration" → Causal(Person.role, Demonstration.purpose))
+13. Q[soldier, Soldier.location == "training ground", Civilian.location == "public space"](Detaining.context == "military exercise" → Causal(Soldier.location, Civilian.location))
+14. Q[civilian, Civilian.practice_situation == true, Arresting.circumstance == "demonstration"](Detaining.method == "military drill" → Causal(Civilian.practice_situation, Arresting.circumstance))
+15. Q[person, Person.intent == "demonstrate", Demonstration.event == "protest"](Arresting.method == "law enforcement" → Causal(Person.intent, Demonstration.event))
+16. Q[soldier, Soldier.action == "detaining", Civilian.status == "not arrested"](Detaining.context == "practice situation" → Causal(Soldier.action, Civilian.status))
+17. Q[civilian, Civilian.role == "bystander", Person.role == "arrested"](Detaining.circumstance == "military training" → Causal(Civilian.role, Person.role))
+18. Q[person, Person.action == "protest", Demonstration.impact == "social change"](Arresting.context == "public demonstration" → Causal(Person.action, Demonstration.impact))
+19. Q[soldier, Soldier.intent == "simulate", Civilian.response == "passive"](Detaining.method == "training" → Causal(Soldier.intent, Civilian.response))
+20. Q[civilian, Civilian.practice_situation == true, Person.action == "arrested"](Detaining.context == "military exercise" → Causal(Civilian.practice_situation, Person.action))
+21. Q[person, Person.role == "protester", Demonstration.purpose == "advocacy"](Arresting.method == "police action" → Causal(Person.role, Demonstration.purpose))
+22. Q[soldier, Soldier.location == "training area", Civilian.location == "demonstration site"](Detaining.context == "practice" → Causal(Soldier.location, Civilian.location))
+23. Q[civilian, Civilian.status == "not arrested", Demonstration.participants == "activists"](Detaining.circumstance == "military drill" → Causal(Civilian.status, Demonstration.participants))
+24. Q[person, Person.intent == "protest", Arresting.outcome == "detention"](Arresting.context == "demonstration" → Causal(Person.intent, Arresting.outcome))
+25. Q[soldier, Soldier.role == "trainee", Civilian.role == "observer"](Detaining.method == "practice" → Causal(Soldier.role, Civilian.role))
+26. Q[civilian, Civilian.practice_situation == true, Demonstration.impact == "none"](Detaining.context == "military training" → Causal(Civilian.practice_situation, Demonstration.impact))
+27. Q[person, Person.action == "arrested", Demonstration.event == "protest"](Arresting.circumstance == "public demonstration" → Causal(Person.action, Demonstration.event))
+28. Q[soldier, Soldier.intent == "train", Civilian.response == "compliant"](Detaining.method == "military exercise" → Causal(Soldier.intent, Civilian.response))
+29. Q[civilian, Civilian.status == "detained", Person.role == "protester"](Detaining.context == "military training" → Causal(Civilian.status, Person.role))
+30. Q[person, Person.intent == "demonstrate", Demonstration.purpose == "social justice"](Arresting.method == "law enforcement" → Causal(Person.intent, Demonstration.purpose))

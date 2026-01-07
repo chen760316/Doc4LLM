@@ -1,0 +1,64 @@
+Source: dense_text.txt (Index 688)
+S1: A dollar of saving actually buys less investment goods now because of inflation.
+S2: A dollar of saving buys more investment goods now than in the past because the price of investment goods has decreased relative to other goods in recent years.
+
+Predicates:
+1. Inflation.effect_on.saving
+2. Investment_goods.price_trend
+3. Saving.value_now
+4. Saving.value_past
+5. Price_of_investment_goods.relative_to_other_goods
+6. Decreased_prices.effect_on.saving
+7. Inflation.decrease_in.purchasing_power
+8. Investment_goods.purchasing_power_now
+9. Investment_goods.purchasing_power_past
+10. Saving.buys_investment_goods_now
+11. Saving.buys_investment_goods_past
+12. Price_trend.investment_goods
+13. Price_trend.other_goods
+14. Relative_price_change.investment_goods
+15. Relative_price_change.other_goods
+16. Inflation_rate.current
+17. Inflation_rate.past
+18. Economic_condition.inflationary
+19. Economic_condition.deflationary
+20. Saving.investment_goods_ratio_now
+21. Saving.investment_goods_ratio_past
+22. Price_change.investment_goods
+23. Price_change.other_goods
+24. Purchasing_power.comparison_now_past
+25. Economic_impact.inflation_on_saving
+26. Economic_impact.price_decrease_on_saving
+27. Saving.investment_goods_value_now
+28. Saving.investment_goods_value_past
+29. Inflation.impact_on.investment_goods
+30. Price_decrease.impact_on.investment_goods
+
+Rules:
+1. Q[dollar, Saving.value_now, Investment_goods.purchasing_power_now](Saving.value_now == "less" ∧ Inflation.effect_on.saving == "true" → Factual(Saving.value_now, Investment_goods.purchasing_power_now))
+2. Q[dollar, Saving.value_now, Investment_goods.purchasing_power_now](Saving.value_now == "more" ∧ Investment_goods.price_trend == "decreased" → Factual(Saving.value_now, Investment_goods.purchasing_power_now))
+3. Q[dollar, Saving.value_now, Investment_goods.purchasing_power_now](Inflation.decrease_in.purchasing_power == "true" ∧ Saving.buys_investment_goods_now == "less" → Factual(Saving.value_now, Investment_goods.purchasing_power_now))
+4. Q[dollar, Saving.value_now, Investment_goods.purchasing_power_now](Price_of_investment_goods.relative_to_other_goods == "decreased" ∧ Saving.buys_investment_goods_now == "more" → Factual(Saving.value_now, Investment_goods.purchasing_power_now))
+5. Q[dollar, Saving.value_now, Investment_goods.purchasing_power_now](Economic_condition.inflationary == "true" ∧ Inflation.effect_on.saving == "true" → Factual(Saving.value_now, Investment_goods.purchasing_power_now))
+6. Q[dollar, Saving.value_now, Investment_goods.purchasing_power_now](Economic_condition.deflationary == "true" ∧ Decreased_prices.effect_on.saving == "true" → Factual(Saving.value_now, Investment_goods.purchasing_power_now))
+7. Q[dollar, Saving.value_now, Investment_goods.purchasing_power_now](Saving.value_now == "less" ∧ Inflation.impact_on.investment_goods == "negative" → Factual(Saving.value_now, Investment_goods.purchasing_power_now))
+8. Q[dollar, Saving.value_now, Investment_goods.purchasing_power_now](Saving.value_now == "more" ∧ Price_change.investment_goods == "decreased" → Factual(Saving.value_now, Investment_goods.purchasing_power_now))
+9. Q[dollar, Saving.value_now, Investment_goods.purchasing_power_now](Saving.buys_investment_goods_now == "less" ∧ Inflation_rate.current > Inflation_rate.past → Factual(Saving.value_now, Investment_goods.purchasing_power_now))
+10. Q[dollar, Saving.value_now, Investment_goods.purchasing_power_now](Saving.buys_investment_goods_now == "more" ∧ Price_trend.investment_goods == "decreased" → Factual(Saving.value_now, Investment_goods.purchasing_power_now))
+11. Q[dollar, Saving.value_now, Investment_goods.purchasing_power_now](Inflation.effect_on.saving == "true" ∧ Saving.value_now == "less" → Factual(Saving.value_now, Investment_goods.purchasing_power_now))
+12. Q[dollar, Saving.value_now, Investment_goods.purchasing_power_now](Decreased_prices.effect_on.saving == "true" ∧ Saving.value_now == "more" → Factual(Saving.value_now, Investment_goods.purchasing_power_now))
+13. Q[dollar, Saving.value_now, Investment_goods.purchasing_power_now](Saving.value_now == "less" ∧ Saving.buys_investment_goods_now == "less" → Factual(Saving.value_now, Investment_goods.purchasing_power_now))
+14. Q[dollar, Saving.value_now, Investment_goods.purchasing_power_now](Saving.value_now == "more" ∧ Saving.buys_investment_goods_now == "more" → Factual(Saving.value_now, Investment_goods.purchasing_power_now))
+15. Q[dollar, Saving.value_now, Investment_goods.purchasing_power_now](Inflation_rate.current > Inflation_rate.past ∧ Saving.value_now == "less" → Factual(Saving.value_now, Investment_goods.purchasing_power_now))
+16. Q[dollar, Saving.value_now, Investment_goods.purchasing_power_now](Price_change.investment_goods == "decreased" ∧ Saving.value_now == "more" → Factual(Saving.value_now, Investment_goods.purchasing_power_now))
+17. Q[dollar, Saving.value_now, Investment_goods.purchasing_power_now](Economic_impact.inflation_on_saving == "negative" ∧ Saving.value_now == "less" → Factual(Saving.value_now, Investment_goods.purchasing_power_now))
+18. Q[dollar, Saving.value_now, Investment_goods.purchasing_power_now](Economic_impact.price_decrease_on_saving == "positive" ∧ Saving.value_now == "more" → Factual(Saving.value_now, Investment_goods.purchasing_power_now))
+19. Q[dollar, Saving.value_now, Investment_goods.purchasing_power_now](Saving.value_now == "less" ∧ Inflation_rate.current > 0 → Factual(Saving.value_now, Investment_goods.purchasing_power_now))
+20. Q[dollar, Saving.value_now, Investment_goods.purchasing_power_now](Saving.value_now == "more" ∧ Price_of_investment_goods.relative_to_other_goods == "decreased" → Factual(Saving.value_now, Investment_goods.purchasing_power_now))
+21. Q[dollar, Saving.value_now, Investment_goods.purchasing_power_now](Saving.buys_investment_goods_now == "less" ∧ Inflation.effect_on.saving == "true" → Factual(Saving.value_now, Investment_goods.purchasing_power_now))
+22. Q[dollar, Saving.value_now, Investment_goods.purchasing_power_now](Saving.buys_investment_goods_now == "more" ∧ Decreased_prices.effect_on.saving == "true" → Factual(Saving.value_now, Investment_goods.purchasing_power_now))
+23. Q[dollar, Saving.value_now, Investment_goods.purchasing_power_now](Saving.value_now == "less" ∧ Inflation_rate.current > Inflation_rate.past → Factual(Saving.value_now, Investment_goods.purchasing_power_now))
+24. Q[dollar, Saving.value_now, Investment_goods.purchasing_power_now](Saving.value_now == "more" ∧ Price_change.investment_goods == "decreased" → Factual(Saving.value_now, Investment_goods.purchasing_power_now))
+25. Q[dollar, Saving.value_now, Investment_goods.purchasing_power_now](Inflation.impact_on.investment_goods == "negative" ∧ Saving.value_now == "less" → Factual(Saving.value_now, Investment_goods.purchasing_power_now))
+26. Q[dollar, Saving.value_now, Investment_goods.purchasing_power_now](Price_decrease.impact_on.investment_goods == "positive" ∧ Saving.value_now == "more" → Factual(Saving.value_now, Investment_goods.purchasing_power_now))
+27. Q[dollar, Saving.value_now, Investment_goods.purchasing_power_now](Saving.value_now == "less" ∧ Saving.buys_investment_goods_now == "

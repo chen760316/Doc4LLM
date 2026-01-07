@@ -1,0 +1,29 @@
+Predicates:
+Eastern Orthodox Christians.label != "Religious Group"
+Eastern Orthodox Christians.label = "Religious Group"
+Eastern Orthodox Christians.name != "Eastern Orthodox Christians"
+Eastern Orthodox Christians.name = "Eastern Orthodox Christians"
+Holy Land.label != "Location"
+Holy Land.label != Eastern Orthodox Christians.label
+Holy Land.label = "Location"
+Holy Land.name != "Holy Land"
+Holy Land.name != Eastern Orthodox Christians.name
+Holy Land.name = "Holy Land"
+Holy Land___Eastern Orthodox Christians.contradiction_type = "Temporal"
+Holy Land___Eastern Orthodox Christians.relationship = "Eastern Orthodox Christians are located in the Holy Land."
+Holy Land___Eastern Orthodox Christians.source_id = "3489738288_4"
+Holy Land___Eastern Orthodox Christians.status = "not quite Easter yet"
+Holy Land___Eastern Orthodox Christians.time = "not quite Easter yet"
+None_ML(Holy Land.attrs, Eastern Orthodox Christians.attrs)
+
+Rules:
+Q[Holy Land,Holy Land] (Holy Land.label = "Location" ∧ None_ML(Holy Land.attrs, Eastern Orthodox Christians.attrs) ∧ Holy Land.label != "Location" ∧ Holy Land.label != Eastern Orthodox Christians.label → Holy Land___Eastern Orthodox Christians.time = "not quite Easter yet")
+Q[Holy Land,Holy Land] (Holy Land.name = "Holy Land" ∧ Eastern Orthodox Christians.label != "Religious Group" ∧ Holy Land___Eastern Orthodox Christians.relationship = "Eastern Orthodox Christians are located in the Holy Land." ∧ Holy Land.label != "Location" ∧ Holy Land___Eastern Orthodox Christians.time = "not quite Easter yet" ∧ Eastern Orthodox Christians.label = "Religious Group" → Holy Land___Eastern Orthodox Christians.status = "not quite Easter yet")
+Q[Holy Land,Holy Land] (Eastern Orthodox Christians.label != "Religious Group" ∧ Holy Land.name != "Holy Land" → Holy Land.label != "Location")
+Q[Holy Land,Holy Land] (Holy Land___Eastern Orthodox Christians.status = "not quite Easter yet" ∧ Holy Land.label = "Location" ∧ Holy Land___Eastern Orthodox Christians.contradiction_type = "Temporal" ∧ Holy Land.name = "Holy Land" ∧ Holy Land___Eastern Orthodox Christians.source_id = "3489738288_4" → Eastern Orthodox Christians.label != "Religious Group")
+Q[Holy Land,Holy Land] (Holy Land.label != "Location" ∧ Holy Land.name != "Holy Land" ∧ Holy Land.name = "Holy Land" → Holy Land___Eastern Orthodox Christians.contradiction_type = "Temporal")
+Q[Holy Land,Holy Land] (Holy Land.name != Eastern Orthodox Christians.name ∧ Holy Land.name = "Holy Land" ∧ Holy Land.label != Eastern Orthodox Christians.label ∧ Eastern Orthodox Christians.name != "Eastern Orthodox Christians" ∧ Holy Land.name != "Holy Land" → Holy Land.label = "Location")
+Q[Holy Land,Holy Land] (Holy Land.label != Eastern Orthodox Christians.label ∧ Holy Land.name != Eastern Orthodox Christians.name ∧ Eastern Orthodox Christians.label = "Religious Group" → Holy Land.name = "Holy Land")
+Q[Holy Land,Holy Land] (Holy Land___Eastern Orthodox Christians.contradiction_type = "Temporal" ∧ Eastern Orthodox Christians.name != "Eastern Orthodox Christians" → Holy Land.label != Eastern Orthodox Christians.label)
+Q[Holy Land,Holy Land] (Holy Land.label != "Location" ∧ Eastern Orthodox Christians.name = "Eastern Orthodox Christians" ∧ Holy Land.name != "Holy Land" ∧ Eastern Orthodox Christians.label = "Religious Group" → Holy Land.name != Eastern Orthodox Christians.name)
+Q[Holy Land,Holy Land] (Holy Land.name != Eastern Orthodox Christians.name ∧ Eastern Orthodox Christians.name = "Eastern Orthodox Christians" ∧ Holy Land___Eastern Orthodox Christians.relationship = "Eastern Orthodox Christians are located in the Holy Land." ∧ Holy Land.label != Eastern Orthodox Christians.label ∧ Holy Land___Eastern Orthodox Christians.time = "not quite Easter yet" ∧ None_ML(Holy Land.attrs, Eastern Orthodox Christians.attrs) → Holy Land.name != "Holy Land")

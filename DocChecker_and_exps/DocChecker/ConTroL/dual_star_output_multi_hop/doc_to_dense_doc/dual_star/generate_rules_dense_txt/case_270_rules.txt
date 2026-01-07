@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 270)
+S1: Most products seen as unhealthy declined confectionery by 3.1%/bagged snacks by 1.2%, and carbonated soft drinks by 1.7% while those seen as healthy boomed.
+S2: Most of the foods produced by Northern Foods are healthy.
+
+Predicates:
+1. Product.unhealthy.decline
+2. Product.confectionery.decline_rate
+3. Product.bagged_snacks.decline_rate
+4. Product.carbonated_soft_drinks.decline_rate
+5. Product.healthy.boom
+6. FoodProducer.NorthernFoods.products
+7. FoodProducer.NorthernFoods.healthy_products
+8. FoodProducer.NorthernFoods.product_healthiness
+9. Product.decline.percentage
+10. Product.seen_as.unhealthy
+11. Product.seen_as.healthy
+12. Consumer.perception.unhealthy
+13. Consumer.perception.healthy
+14. Market.trend.unhealthy_products
+15. Market.trend.healthy_products
+16. FoodCategory.confectionery
+17. FoodCategory.bagged_snacks
+18. FoodCategory.carbonated_soft_drinks
+19. FoodCategory.healthy_foods
+20. Sales.decline.confectionery
+21. Sales.decline.bagged_snacks
+22. Sales.decline.carbonated_soft_drinks
+23. Sales.increase.healthy_foods
+24. Product.category.unhealthy
+25. Product.category.healthy
+26. Market.decline.rate
+27. Market.boom.rate
+28. FoodProducer.product_healthiness_ratio
+29. Consumer.trend.perception
+30. Reason.contradiction.unhealthy_prevalence
+
+Rules:
+1. Q[Most, Product.seen_as.unhealthy, Product.decline.percentage](Product.unhealthy.decline → Factual(Product.seen_as.unhealthy, Product.decline.percentage))
+2. Q[Most, Product.confectionery.decline_rate, Product.decline.percentage](Product.confectionery.decline_rate == 3.1% → Factual(Product.confectionery.decline_rate, Product.decline.percentage))
+3. Q[Most, Product.bagged_snacks.decline_rate, Product.decline.percentage](Product.bagged_snacks.decline_rate == 1.2% → Factual(Product.bagged_snacks.decline_rate, Product.decline.percentage))
+4. Q[Most, Product.carbonated_soft_drinks.decline_rate, Product.decline.percentage](Product.carbonated_soft_drinks.decline_rate == 1.7% → Factual(Product.carbonated_soft_drinks.decline_rate, Product.decline.percentage))
+5. Q[Most, Product.healthy.boom, Product.seen_as.healthy](Product.healthy.boom → Factual(Product.healthy.boom, Product.seen_as.healthy))
+6. Q[Most, FoodProducer.NorthernFoods.products, FoodProducer.NorthernFoods.healthy_products](FoodProducer.NorthernFoods.products → Factual(FoodProducer.NorthernFoods.products, FoodProducer.NorthernFoods.healthy_products))
+7. Q[Most, FoodProducer.NorthernFoods.product_healthiness, Product.category.healthy](FoodProducer.NorthernFoods.product_healthiness == "healthy" → Factual(FoodProducer.NorthernFoods.product_healthiness, Product.category.healthy))
+8. Q[Most, Consumer.perception.unhealthy, Market.trend.unhealthy_products](Consumer.perception.unhealthy → Factual(Consumer.perception.unhealthy, Market.trend.unhealthy_products))
+9. Q[Most, Consumer.perception.healthy, Market.trend.healthy_products](Consumer.perception.healthy → Factual(Consumer.perception.healthy, Market.trend.healthy_products))
+10. Q[Most, FoodCategory.confectionery, Product.category.unhealthy](FoodCategory.confectionery → Factual(FoodCategory.confectionery, Product.category.unhealthy))
+11. Q[Most, FoodCategory.bagged_snacks, Product.category.unhealthy](FoodCategory.bagged_snacks → Factual(FoodCategory.bagged_snacks, Product.category.unhealthy))
+12. Q[Most, FoodCategory.carbonated_soft_drinks, Product.category.unhealthy](FoodCategory.carbonated_soft_drinks → Factual(FoodCategory.carbonated_soft_drinks, Product.category.unhealthy))
+13. Q[Most, Sales.decline.confectionery, Product.unhealthy.decline](Sales.decline.confectionery → Factual(Sales.decline.confectionery, Product.unhealthy.decline))
+14. Q[Most, Sales.decline.bagged_snacks, Product.unhealthy.decline](Sales.decline.bagged_snacks → Factual(Sales.decline.bagged_snacks, Product.unhealthy.decline))
+15. Q[Most, Sales.decline.carbonated_soft_drinks, Product.unhealthy.decline](Sales.decline.carbonated_soft_drinks → Factual(Sales.decline.carbonated_soft_drinks, Product.unhealthy.decline))
+16. Q[Most, Sales.increase.healthy_foods, Product.healthy.boom](Sales.increase.healthy_foods → Factual(Sales.increase.healthy_foods, Product.healthy.boom))
+17. Q[Most, FoodProducer.NorthernFoods.healthy_products, Product.seen_as.healthy](FoodProducer.NorthernFoods.healthy_products → Factual(FoodProducer.NorthernFoods.healthy_products, Product.seen_as.healthy))
+18. Q[Most, Market.trend.unhealthy_products, Product.seen_as.unhealthy](Market.trend.unhealthy_products → Factual(Market.trend.unhealthy_products, Product.seen_as.unhealthy))
+19. Q[Most, Market.trend.healthy_products, Product.seen_as.healthy](Market.trend.healthy_products → Factual(Market.trend.healthy_products, Product.seen_as.healthy))
+20. Q[Most, FoodProducer.product_healthiness_ratio, FoodProducer.NorthernFoods.healthy_products](FoodProducer.product_healthiness_ratio > 0.5 → Factual(FoodProducer.product_healthiness_ratio, FoodProducer.NorthernFoods.healthy_products))
+21. Q[Most, Product.category.healthy, FoodProducer.NorthernFoods.products](Product.category.healthy → Factual(Product.category.healthy, FoodProducer.NorthernFoods.products))
+22. Q[Most, Product.category.unhealthy, FoodProducer.NorthernFoods.products](Product.category.unhealthy → Factual(Product.category.unhealthy, FoodProducer.NorthernFoods.products))
+23. Q[Most, Consumer.trend.perception, Product.seen_as.unhealthy](Consumer.trend.perception == "unhealthy" → Factual(Consumer.trend.perception, Product.seen_as.unhealthy))
+24. Q[Most, Consumer.trend.perception, Product.seen_as.healthy](Consumer.trend.perception == "healthy" → Factual(Consumer.trend.perception, Product.seen_as.healthy))
+25. Q[Most, Reason.contradiction.unhealthy_prevalence, Product.seen_as.unhealthy](Reason.contradiction.unhealthy_prevalence → Factual(Reason.contradiction.unhealthy_prevalence, Product.seen_as.unhealthy))
+26. Q[Most, Product.decline.percentage, Product.unhealthy.decline](Product.decline.percentage > 0 → Factual(Product.decline.percentage, Product.unhealthy.decline))
+27. Q[Most, Product.seen_as.unhealthy, FoodProducer.NorthernFoods.healthy_products](Product.seen_as.unhealthy → Factual(Product.seen_as.unhealthy, FoodProducer.NorthernFoods.healthy_products))
+28. Q[Most, Product.seen_as.healthy, FoodProducer.NorthernFoods.products](Product.seen_as.healthy → Factual(Product.seen_as.healthy, FoodProducer.NorthernFoods.products))
+29. Q[Most, Market.decline.rate, Product.unhealthy.decline](Market.decline.rate > 0 → Factual(Market.decline.rate, Product.unhealthy.decline))
+30. Q[Most, Market.boom.rate, Product.healthy.boom](Market.boom.rate > 0 → Factual(Market.boom.rate, Product.healthy.boom))

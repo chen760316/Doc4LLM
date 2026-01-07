@@ -1,0 +1,65 @@
+Predicates:
+Bay Area Youth Innovation League.label != "Workshop"
+Bay Area Youth Innovation League.label != Prize for app development.label
+Bay Area Youth Innovation League.label = "Workshop"
+Bay Area Youth Innovation League.name != "Bay Area Youth Innovation League"
+Bay Area Youth Innovation League.name != Prize for app development.name
+Bay Area Youth Innovation League.name = "Bay Area Youth Innovation League"
+Lily.label != "Child"
+Lily.label != Bay Area Youth Innovation League.label
+Lily.label != Prize for app development.label
+Lily.label = "Child"
+Lily.name != "Lily"
+Lily.name != Bay Area Youth Innovation League.name
+Lily.name != Prize for app development.name
+Lily.name = "Lily"
+M_NLI(('Max', 'Lily').attrs, ('Max', 'Bay Area Youth Innovation League').attrs)
+M_NLI(Max.attrs, Lily.attrs)
+M_NLU(('Max', 'Bay Area Youth Innovation League').attrs, ('Max', 'Prize for app development').attrs)
+M_NLU(('Max', 'Lily').attrs, ('Max', 'Prize for app development').attrs)
+M_NLU(Bay Area Youth Innovation League.attrs, Prize for app development.attrs)
+M_NLU(Lily and Max are siblings..attrs, ('Max', 'Bay Area Youth Innovation League').attrs)
+M_NLU(Lily and Max are siblings..attrs, ('Max', 'Prize for app development').attrs)
+M_NLU(Lily.attrs, Prize for app development.attrs)
+M_NLU(Max.attrs, Prize for app development.attrs)
+M_TEM(Max.attrs, Bay Area Youth Innovation League.attrs)
+Max.label != "Child"
+Max.label != Bay Area Youth Innovation League.label
+Max.label != Lily.label
+Max.label != Prize for app development.label
+Max.label = "Child"
+Max.name != "Max"
+Max.name != Bay Area Youth Innovation League.name
+Max.name != Lily.name
+Max.name != Prize for app development.name
+Max.name = "Max"
+Max_Bay Area Youth Innovation League.text_span != Max_Prize for app development.text_span
+Max___Bay Area Youth Innovation League.relationship != "Lily enrolled in coding workshops hosted by the Bay Area Youth Innovation League."
+Max___Bay Area Youth Innovation League.relationship != Max_Prize for app development.relationship
+Max___Bay Area Youth Innovation League.relationship = "Lily enrolled in coding workshops hosted by the Bay Area Youth Innovation League."
+Max___Lily.relationship != "Lily and Max are siblings."
+Max___Lily.relationship != Max_Bay Area Youth Innovation League.relationship
+Max___Lily.relationship != Max_Prize for app development.relationship
+Max___Lily.relationship = "Lily and Max are siblings."
+Max___Prize for app development.app_purpose != "helps children manage their screen time"
+Max___Prize for app development.app_purpose = "helps children manage their screen time"
+Max___Prize for app development.relationship != "Lily won a prize for developing an app."
+Max___Prize for app development.relationship = "Lily won a prize for developing an app."
+None_ML(('Max', 'Lily').attrs, Lily and Max are siblings..attrs)
+None_ML(Lily.attrs, Bay Area Youth Innovation League.attrs)
+Prize for app development.label != "Achievement"
+Prize for app development.label = "Achievement"
+Prize for app development.name != "Prize for app development"
+Prize for app development.name = "Prize for app development"
+
+Rules:
+Q[Max,Max] (Max.name != Lily.name ∧ Max.name != Prize for app development.name → Max.name != Prize for app development.name)
+Q[Max,Max] (Max___Bay Area Youth Innovation League.relationship != Max_Prize for app development.relationship ∧ M_TEM(Max.attrs, Bay Area Youth Innovation League.attrs) → M_TEM(Max.attrs, Bay Area Youth Innovation League.attrs))
+Q[Max,Max] (Max___Prize for app development.app_purpose = "helps children manage their screen time" ∧ Max.name != "Max" → Max.name != "Max")
+Q[Max,Max] (Prize for app development.label != "Achievement" ∧ Max___Lily.relationship != "Lily and Max are siblings." → Max___Lily.relationship != "Lily and Max are siblings.")
+Q[Max,Max] (Max.label != "Child" ∧ M_NLI(Max.attrs, Lily.attrs) → M_NLI(Max.attrs, Lily.attrs))
+Q[Max,Max] (M_NLU(Lily and Max are siblings..attrs, ('Max', 'Bay Area Youth Innovation League').attrs) ∧ Max___Prize for app development.relationship = "Lily won a prize for developing an app." → Max___Prize for app development.relationship = "Lily won a prize for developing an app.")
+Q[Max,Max] (None_ML(Lily.attrs, Bay Area Youth Innovation League.attrs) ∧ Max___Prize for app development.relationship != "Lily won a prize for developing an app." → Max___Prize for app development.relationship != "Lily won a prize for developing an app.")
+Q[Max,Max] (None_ML(('Max', 'Lily').attrs, Lily and Max are siblings..attrs) ∧ Max___Lily.relationship = "Lily and Max are siblings." → Max___Lily.relationship = "Lily and Max are siblings.")
+Q[Max,Max] (Bay Area Youth Innovation League.label = "Workshop" ∧ Max.label != Lily.label → Bay Area Youth Innovation League.label = "Workshop")
+Q[Max,Max] (Max.label != "Child" ∧ Bay Area Youth Innovation League.label != Prize for app development.label → Max.label != "Child")

@@ -1,0 +1,40 @@
+Predicates:
+Culverton Smith.label != "Person"
+Culverton Smith.label = "Person"
+Culverton Smith.name != "Culverton Smith"
+Culverton Smith.name != Sherlock Holmes.name
+Culverton Smith.name = "Culverton Smith"
+Morton.label != "Person"
+Morton.label = "Person"
+Morton.name != "Morton"
+Morton.name != Culverton Smith.name
+Morton.name != Sherlock Holmes.name
+Morton.name = "Morton"
+Morton___Culverton Smith.contradiction_type = "Causal"
+Morton___Culverton Smith.reason != Morton___Sherlock Holmes.reason
+Morton___Culverton Smith.reason = "murder of his nephew"
+Morton___Culverton Smith.relationship != Morton___Sherlock Holmes.relationship
+Morton___Culverton Smith.relationship = "Morton is instructed to arrest Culverton Smith for the murder of his nephew"
+Morton___Culverton Smith.source_id = "3488771839_11"
+Morton___Sherlock Holmes.contradiction_type = "Causal"
+Morton___Sherlock Holmes.reason = "attempted murder of Sherlock Holmes"
+Morton___Sherlock Holmes.relationship = "Morton is instructed to consider arresting Culverton Smith for the attempted murder of Sherlock Holmes"
+Morton___Sherlock Holmes.source_id = "3488771839_11"
+None_ML(Morton.attrs, Sherlock Holmes.attrs)
+None_ML(Morton___Sherlock Holmes.attrs, Morton___Culverton Smith.attrs)
+Sherlock Holmes.label != "Person"
+Sherlock Holmes.label = "Person"
+Sherlock Holmes.name != "Sherlock Holmes"
+Sherlock Holmes.name = "Sherlock Holmes"
+
+Rules:
+Q[Morton,Morton] (None_ML(Morton___Sherlock Holmes.attrs, Morton___Culverton Smith.attrs) ∧ Morton___Culverton Smith.relationship != Morton___Sherlock Holmes.relationship ∧ Morton___Culverton Smith.reason = "murder of his nephew" ∧ Morton.label = "Person" ∧ Sherlock Holmes.name = "Sherlock Holmes" → Culverton Smith.name != Sherlock Holmes.name)
+Q[Morton,Morton] (Culverton Smith.label = "Person" ∧ None_ML(Morton.attrs, Sherlock Holmes.attrs) ∧ Morton.name != Sherlock Holmes.name → Morton___Culverton Smith.relationship != Morton___Sherlock Holmes.relationship)
+Q[Morton,Morton] (Sherlock Holmes.label = "Person" ∧ Morton.label != "Person" ∧ Culverton Smith.label = "Person" ∧ Morton.name != Culverton Smith.name → Morton___Culverton Smith.relationship = "Morton is instructed to arrest Culverton Smith for the murder of his nephew")
+Q[Morton,Morton] (Culverton Smith.name = "Culverton Smith" ∧ Morton___Culverton Smith.source_id = "3488771839_11" → Morton___Culverton Smith.contradiction_type = "Causal")
+Q[Morton,Morton] (Morton___Culverton Smith.relationship = "Morton is instructed to arrest Culverton Smith for the murder of his nephew" ∧ Morton.name != Culverton Smith.name ∧ Morton.name != "Morton" ∧ Sherlock Holmes.label = "Person" ∧ Morton___Sherlock Holmes.source_id = "3488771839_11" ∧ Morton___Culverton Smith.reason != Morton___Sherlock Holmes.reason → Culverton Smith.name != "Culverton Smith")
+Q[Morton,Morton] (Morton___Culverton Smith.relationship = "Morton is instructed to arrest Culverton Smith for the murder of his nephew" ∧ Morton___Culverton Smith.contradiction_type = "Causal" ∧ Morton.label = "Person" → Morton___Sherlock Holmes.source_id = "3488771839_11")
+Q[Morton,Morton] (Morton___Sherlock Holmes.relationship = "Morton is instructed to consider arresting Culverton Smith for the attempted murder of Sherlock Holmes" ∧ Culverton Smith.label != "Person" ∧ Morton.name != Sherlock Holmes.name ∧ Culverton Smith.name != "Culverton Smith" ∧ Morton.name = "Morton" ∧ Culverton Smith.label = "Person" → Sherlock Holmes.name != "Sherlock Holmes")
+Q[Morton,Morton] (Morton.name != "Morton" ∧ Morton___Sherlock Holmes.relationship = "Morton is instructed to consider arresting Culverton Smith for the attempted murder of Sherlock Holmes" ∧ Sherlock Holmes.name != "Sherlock Holmes" ∧ None_ML(Morton.attrs, Sherlock Holmes.attrs) → Morton.label != "Person")
+Q[Morton,Morton] (None_ML(Morton.attrs, Sherlock Holmes.attrs) ∧ Morton___Sherlock Holmes.reason = "attempted murder of Sherlock Holmes" ∧ Culverton Smith.label = "Person" ∧ Culverton Smith.name != Sherlock Holmes.name ∧ Morton___Sherlock Holmes.relationship = "Morton is instructed to consider arresting Culverton Smith for the attempted murder of Sherlock Holmes" → Morton.name != Culverton Smith.name)
+Q[Morton,Morton] (Sherlock Holmes.name = "Sherlock Holmes" ∧ Morton.name = "Morton" → Morton___Sherlock Holmes.relationship = "Morton is instructed to consider arresting Culverton Smith for the attempted murder of Sherlock Holmes")

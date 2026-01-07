@@ -1,0 +1,37 @@
+Predicates:
+M_NLI(('Missing Boy', 'Rescue Team').attrs, The rescue team searched for the missing boy..attrs)
+M_NLI(('missing boy', 'rescue team').attrs, The rescue team searched for the missing boy..attrs)
+M_NLU(('missing boy', 'rescue team').attrs, ('Missing Boy', 'Rescue Team').attrs)
+M_NLU(Missing Boy.attrs, Rescue Team.attrs)
+M_NLU(The rescue team searched anxiously for the missing boy..attrs, ('Missing Boy', 'Rescue Team').attrs)
+M_NLU(The rescue team searched anxiously for the missing boy..attrs, The rescue team searched for the missing boy..attrs)
+M_NLU(missing boy.attrs, Missing Boy.attrs)
+M_NLU(missing boy.attrs, Rescue Team.attrs)
+Missing Boy.label != "Child"
+Missing Boy.label != Rescue Team.label
+Missing Boy.label = "Child"
+Missing Boy.name != "Missing Boy"
+Missing Boy.name != Rescue Team.name
+Missing Boy.name = "Missing Boy"
+Missing Boy___Rescue Team.relationship != "The rescue team searched for the missing boy."
+Missing Boy___Rescue Team.relationship = "The rescue team searched for the missing boy."
+None_ML(('missing boy', 'rescue team').attrs, The rescue team searched anxiously for the missing boy..attrs)
+Rescue Team.label != "Rescue Team"
+Rescue Team.label = "Rescue Team"
+Rescue Team.name != "Rescue Team"
+Rescue Team.name = "Rescue Team"
+missing boy___rescue team.relationship != "The rescue team searched anxiously for the missing boy."
+missing boy___rescue team.relationship != Missing Boy_Rescue Team.relationship
+missing boy___rescue team.relationship = "The rescue team searched anxiously for the missing boy."
+
+Rules:
+Q[missing boy,Missing Boy] (missing boy___rescue team.relationship = "The rescue team searched anxiously for the missing boy." ∧ M_NLU(missing boy.attrs, Missing Boy.attrs) → M_NLU(missing boy.attrs, Missing Boy.attrs))
+Q[missing boy,Missing Boy] (Missing Boy.name != Rescue Team.name ∧ Missing Boy.label = "Child" → Missing Boy.name != Rescue Team.name)
+Q[missing boy,Missing Boy] (Missing Boy___Rescue Team.relationship = "The rescue team searched for the missing boy." ∧ Missing Boy.label = "Child" → Missing Boy___Rescue Team.relationship = "The rescue team searched for the missing boy.")
+Q[missing boy,Missing Boy] (M_NLU(('missing boy', 'rescue team').attrs, ('Missing Boy', 'Rescue Team').attrs) ∧ M_NLU(The rescue team searched anxiously for the missing boy..attrs, The rescue team searched for the missing boy..attrs) → M_NLU(The rescue team searched anxiously for the missing boy..attrs, The rescue team searched for the missing boy..attrs))
+Q[missing boy,Missing Boy] (M_NLU(('missing boy', 'rescue team').attrs, ('Missing Boy', 'Rescue Team').attrs) ∧ missing boy___rescue team.relationship != Missing Boy_Rescue Team.relationship → missing boy___rescue team.relationship != Missing Boy_Rescue Team.relationship)
+Q[missing boy,Missing Boy] (Missing Boy___Rescue Team.relationship = "The rescue team searched for the missing boy." ∧ M_NLU(('missing boy', 'rescue team').attrs, ('Missing Boy', 'Rescue Team').attrs) → M_NLU(('missing boy', 'rescue team').attrs, ('Missing Boy', 'Rescue Team').attrs))
+Q[missing boy,Missing Boy] (missing boy___rescue team.relationship = "The rescue team searched anxiously for the missing boy." ∧ Missing Boy___Rescue Team.relationship != "The rescue team searched for the missing boy." → missing boy___rescue team.relationship = "The rescue team searched anxiously for the missing boy.")
+Q[missing boy,Missing Boy] (Rescue Team.name = "Rescue Team" ∧ M_NLU(missing boy.attrs, Rescue Team.attrs) → M_NLU(missing boy.attrs, Rescue Team.attrs))
+Q[missing boy,Missing Boy] (Rescue Team.name = "Rescue Team" ∧ missing boy___rescue team.relationship != "The rescue team searched anxiously for the missing boy." → Rescue Team.name = "Rescue Team")
+Q[missing boy,Missing Boy] (M_NLU(missing boy.attrs, Rescue Team.attrs) ∧ M_NLU(The rescue team searched anxiously for the missing boy..attrs, ('Missing Boy', 'Rescue Team').attrs) → M_NLU(The rescue team searched anxiously for the missing boy..attrs, ('Missing Boy', 'Rescue Team').attrs))

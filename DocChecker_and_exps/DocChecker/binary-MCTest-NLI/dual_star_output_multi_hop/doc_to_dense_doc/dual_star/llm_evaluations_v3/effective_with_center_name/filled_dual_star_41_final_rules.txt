@@ -1,0 +1,13 @@
+### Entity Mapping ###
+x0: "Larry"
+y0: "Larry"
+
+### Rules with Substituted Entities ###
+Rule: Q[Larry, cake](Larry.favorite_food = "cake" ∧ Larry.favorite_flavor = "chocolate" → violate(Larry.favorite_flavor, "vanilla"))
+
+Rule: Q[Larry, party](Causal("Larry tried to have fun at the party.", "Larry left the party early.") ∧ "Larry tried to have fun at the party.".result = "disliked the party" → violate(Larry.favorite_food, "ice cream"))
+
+Rule: Q[Larry, party](Causal("Larry had a great time at the party.", "Larry was bored at the party.") ∧ "Larry tried to have fun at the party.".result = "liked the party" ∧ party.atmosphere = "fun" → violate(Larry.favorite_food, "cookies"))
+
+Rule: Q[Larry, party](Causal("Larry enjoyed the cake.", "Larry found the cake disgusting.") ∧ "Larry tried to have fun at the party.".result = "disliked the party" ∧ party.atmosphere = "fun" → violate(Larry.favorite_food, "ice cream"))
+

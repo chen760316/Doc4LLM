@@ -1,0 +1,124 @@
+Predicates:
+1. newspapers.type = "classified ads"
+2. coffee shops.type = "public space"
+3. libraries.type = "public space"
+4. waiting rooms.type = "public space"
+5. "newspapers are widely available in coffee shops".doc_index = "19"
+6. "newspapers are widely available in libraries".doc_index = "19"
+7. "newspapers are widely available in waiting rooms".doc_index = "19"
+8. "newspapers are widely available in coffee shops".source_domain = "N/A"
+9. "newspapers are widely available in libraries".source_domain = "N/A"
+10. "newspapers are widely available in waiting rooms".source_domain = "N/A"
+11. "newspapers are widely available in coffee shops".source_id = "Index_19"
+12. "newspapers are widely available in libraries".source_id = "Index_19"
+13. "newspapers are widely available in waiting rooms".source_id = "Index_19"
+14. M_NLI(coffee shops.type, libraries.type)
+15. M_NLI(newspapers.type, waiting rooms.type)
+16. M_NLI(newspapers.type, coffee shops.type)
+17. T("newspapers are widely available in coffee shops", "newspapers are not available in coffee shops", Negation)
+18. T("newspapers are widely available in libraries", "newspapers are not available in libraries", Negation)
+19. T("newspapers are widely available in waiting rooms", "newspapers are not available in waiting rooms", Negation)
+20. tau(coffee shops.type, waiting rooms.type)
+21. tau(libraries.type, waiting rooms.type)
+22. tau(newspapers.type, coffee shops.type)
+23. violate(x0, y0)
+24. Factual(x0, y0)
+25. Content(x0, y0)
+26. Causal(x0, y0)
+27. Negation(x0, y0)
+28. Relation(x0, y0)
+29. Numeric(x0, y0)
+30. Temporal(x0, y0)
+31. "newspapers are widely available in coffee shops".source_id = "Index_19"
+32. "newspapers are widely available in libraries".source_id = "Index_19"
+33. "newspapers are widely available in waiting rooms".source_id = "Index_19"
+34. M_NLI(libraries.type, coffee shops.type)
+35. T("newspapers are widely available in libraries", "newspapers are scarce in libraries", Content)
+36. T("newspapers are widely available in waiting rooms", "newspapers are not found in waiting rooms", Negation)
+37. tau(newspapers.type, libraries.type)
+38. violate(coffee shops, libraries)
+39. Factual(coffee shops, waiting rooms)
+40. Content(libraries, waiting rooms)
+41. Causal(coffee shops, libraries)
+42. Negation(coffee shops, libraries)
+43. Relation(coffee shops, waiting rooms)
+44. Numeric(coffee shops, libraries)
+45. Temporal(coffee shops, libraries)
+46. "newspapers are not available in coffee shops".doc_index = "20"
+47. "newspapers are not available in libraries".doc_index = "20"
+48. "newspapers are not available in waiting rooms".doc_index = "20"
+49. M_NLI("newspapers are widely available in coffee shops", "newspapers are not available in coffee shops")
+50. M_NLI("newspapers are widely available in libraries", "newspapers are not available in libraries")
+51. M_NLI("newspapers are widely available in waiting rooms", "newspapers are not available in waiting rooms")
+52. T("newspapers are widely available in coffee shops", "newspapers are available in coffee shops", Factual)
+53. T("newspapers are widely available in libraries", "newspapers are available in libraries", Factual)
+54. T("newspapers are widely available in waiting rooms", "newspapers are available in waiting rooms", Factual)
+55. tau("newspapers are widely available in coffee shops", "newspapers are not available in coffee shops")
+56. tau("newspapers are widely available in libraries", "newspapers are not available in libraries")
+57. tau("newspapers are widely available in waiting rooms", "newspapers are not available in waiting rooms")
+58. violate(libraries, waiting rooms)
+59. Factual(libraries, waiting rooms)
+60. Content(coffee shops, waiting rooms)
+61. Causal(libraries, coffee shops)
+62. Negation(libraries, coffee shops)
+63. Relation(libraries, coffee shops)
+64. Numeric(libraries, coffee shops)
+65. Temporal(libraries, coffee shops)
+66. "newspapers are available in coffee shops".doc_index = "21"
+67. "newspapers are available in libraries".doc_index = "21"
+68. "newspapers are available in waiting rooms".doc_index = "21"
+69. M_NLI("newspapers are available in coffee shops", "newspapers are not available in coffee shops")
+70. M_NLI("newspapers are available in libraries", "newspapers are not available in libraries")
+71. M_NLI("newspapers are available in waiting rooms", "newspapers are not available in waiting rooms")
+72. T("newspapers are available in coffee shops", "newspapers are widely available in coffee shops", Content)
+73. T("newspapers are available in libraries", "newspapers are widely available in libraries", Content)
+74. T("newspapers are available in waiting rooms", "newspapers are widely available in waiting rooms", Content)
+75. tau("newspapers are available in coffee shops", "newspapers are not available in coffee shops")
+76. tau("newspapers are available in libraries", "newspapers are not available in libraries")
+77. tau("newspapers are available in waiting rooms", "newspapers are not available in waiting rooms")
+78. violate(waiting rooms, coffee shops)
+79. Factual(waiting rooms, coffee shops)
+80. Content(waiting rooms, libraries)
+81. Causal(waiting rooms, libraries)
+82. Negation(waiting rooms, libraries)
+83. Relation(waiting rooms, libraries)
+84. Numeric(waiting rooms, libraries)
+85. Temporal(waiting rooms, libraries)
+86. "newspapers are not available in coffee shops".source_id = "Index_20"
+87. "newspapers are not available in libraries".source_id = "Index_20"
+88. "newspapers are not available in waiting rooms".source_id = "Index_20"
+89. M_NLI("newspapers are not available in coffee shops", "newspapers are widely available in coffee shops")
+90. M_NLI("newspapers are not available in libraries", "newspapers are widely available in libraries")
+91. M_NLI("newspapers are not available in waiting rooms", "newspapers are widely available in waiting rooms")
+92. T("newspapers are not available in coffee shops", "newspapers are scarce in coffee shops", Content)
+93. T("newspapers are not available in libraries", "newspapers are scarce in libraries", Content)
+94. T("newspapers are not available in waiting rooms
+violate(x0, y0)
+
+Rules:
+1. Q[coffee shops, libraries](coffee shops.type = "public space" ∧ newspapers.type = "classified ads" → violate(coffee shops, libraries))
+2. Q[libraries, waiting rooms](libraries.type = "public space" ∧ "newspapers are widely available in libraries".doc_index = "19" → violate(libraries, waiting rooms))
+3. Q[waiting rooms, coffee shops](waiting rooms.type = "public space" ∧ "newspapers are widely available in waiting rooms".source_domain = "N/A" → violate(waiting rooms, coffee shops))
+4. Q[coffee shops, waiting rooms](M_NLI(coffee shops.type, waiting rooms.type) ∧ "newspapers are widely available in coffee shops".source_id = "Index_19" → violate(coffee shops, waiting rooms))
+5. Q[libraries, coffee shops](M_NLI(newspapers.type, coffee shops.type) ∧ "newspapers are widely available in libraries".source_id = "Index_19" ∧ "newspapers are widely available in coffee shops".source_id = "Index_19" → violate(libraries, coffee shops))
+6. Q[waiting rooms, libraries](tau(libraries.type, waiting rooms.type) ∧ "newspapers are widely available in waiting rooms".doc_index = "19" ∧ "newspapers are widely available in libraries".doc_index = "19" → violate(waiting rooms, libraries))
+7. Q[coffee shops, libraries](tau(newspapers.type, libraries.type) ∧ "newspapers are not available in coffee shops".doc_index = "20" ∧ "newspapers are widely available in libraries".source_domain = "N/A" → violate(coffee shops, libraries))
+8. Q[libraries, waiting rooms](T("newspapers are widely available in libraries", "newspapers are not available in libraries", Negation) ∧ "newspapers are widely available in waiting rooms".source_id = "Index_19" → violate(libraries, waiting rooms))
+9. Q[waiting rooms, coffee shops](T("newspapers are widely available in waiting rooms", "newspapers are not found in waiting rooms", Negation) ∧ "newspapers are widely available in coffee shops".source_id = "Index_19" → violate(waiting rooms, coffee shops))
+10. Q[coffee shops, libraries](Factual(coffee shops, libraries) ∧ "newspapers are widely available in coffee shops".doc_index = "19" ∧ "newspapers are not available in libraries".doc_index = "20" → violate(coffee shops, libraries))
+11. Q[libraries, waiting rooms](Causal(coffee shops, libraries) ∧ "newspapers are widely available in libraries".source_id = "Index_19" ∧ "newspapers are not available in waiting rooms".doc_index = "20" → violate(libraries, waiting rooms))
+12. Q[waiting rooms, coffee shops](Negation(coffee shops, libraries) ∧ "newspapers are widely available in waiting rooms".source_domain = "N/A" ∧ "newspapers are not available in coffee shops".doc_index = "20" → violate(waiting rooms, coffee shops))
+13. Q[coffee shops, waiting rooms](Relation(coffee shops, waiting rooms) ∧ "newspapers are widely available in coffee shops".source_id = "Index_19" ∧ "newspapers are not available in waiting rooms".doc_index = "20" → violate(coffee shops, waiting rooms))
+14. Q[libraries, coffee shops](Numeric(libraries, coffee shops) ∧ "newspapers are widely available in libraries".source_id = "Index_19" ∧ "newspapers are not available in coffee shops".doc_index = "20" → violate(libraries, coffee shops))
+15. Q[waiting rooms, libraries](Temporal(waiting rooms, libraries) ∧ "newspapers are widely available in waiting rooms".source_id = "Index_19" ∧ "newspapers are not available in libraries".doc_index = "20" → violate(waiting rooms, libraries))
+16. Q[coffee shops, libraries](M_NLI("newspapers are widely available in coffee shops", "newspapers are not available in coffee shops") ∧ "newspapers are widely available in libraries".doc_index = "19" → violate(coffee shops, libraries))
+17. Q[libraries, waiting rooms](M_NLI("newspapers are widely available in libraries", "newspapers are not available in libraries") ∧ "newspapers are widely available in waiting rooms".doc_index = "19" → violate(libraries, waiting rooms))
+18. Q[waiting rooms, coffee shops](M_NLI("newspapers are widely available in waiting rooms", "newspapers are not available in waiting rooms") ∧ "newspapers are widely available in coffee shops".doc_index = "19" → violate(waiting rooms, coffee shops))
+19. Q[coffee shops, libraries](tau("newspapers are widely available in coffee shops", "newspapers are not available in coffee shops") ∧ "newspapers are widely available in libraries".source_id = "Index_19" → violate(coffee shops, libraries))
+20. Q[libraries, waiting rooms](tau("newspapers are widely available in libraries", "newspapers are not available in libraries") ∧ "newspapers are widely available in waiting rooms".source_id = "Index_19" → violate(libraries, waiting rooms))
+21. Q[waiting rooms, coffee shops](tau("newspapers are widely available in waiting rooms", "newspapers are not available in waiting rooms") ∧ "newspapers are widely available in coffee shops".source_id = "Index_19" → violate(waiting rooms, coffee shops))
+22. Q[coffee shops, libraries](Causal(coffee shops, libraries) ∧ "newspapers are widely available in coffee shops".source_id = "Index_19" ∧ "newspapers are not available in libraries".doc_index = "20" → violate(coffee shops, libraries))
+23. Q[libraries, waiting rooms](Causal(libraries, waiting rooms) ∧ "newspapers are widely available in libraries".source_id = "Index_19" ∧ "newspapers are not available in waiting rooms".doc_index = "20" → violate(libraries, waiting rooms))
+24. Q[waiting rooms, coffee shops](Causal(waiting rooms, coffee shops) ∧ "newspapers are widely available in waiting rooms".source_id = "Index_19" ∧ "newspapers are not available in coffee shops".doc_index = "20" → violate(waiting rooms, coffee shops))
+25. Q[coffee shops, libraries](Negation(coffee shops, libraries) ∧ "newspapers are widely available in coffee shops".source_id = "Index_19" ∧ "newspapers are not available in libraries".doc_index = "20" → violate(coffee shops, libraries))
+26. Q[libraries, waiting rooms](Negation(libraries, waiting rooms) ∧ "newspapers are widely available in libraries".source_id = "Index_19" ∧ "newspapers are not available in waiting

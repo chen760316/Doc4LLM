@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 776)
+S1: Only mundane and cookie cutter skills will be accessible to consultants.
+S2: In the case of unique or unusual facilities, consultants may have limited access to unique skills, potentially resulting in naive and inappropriate technical solutions.
+
+Predicates:
+1. Consultants.accessible_skills = mundane_skills
+2. Consultants.accessible_skills = cookie_cutter_skills
+3. Consultants.limited_access = unique_skills
+4. Unique_facilities.has_limited_access = consultants
+5. Unique_skills.result_in = naive_solutions
+6. Unique_skills.result_in = inappropriate_solutions
+7. Consultants.may_access = unique_skills
+8. Unique_skills.condition = unique_facilities
+9. Mundane_skills.is_available_to = consultants
+10. Cookie_cutter_skills.is_available_to = consultants
+11. Consultants.technical_solutions = naive_solutions
+12. Consultants.technical_solutions = inappropriate_solutions
+13. Unique_facilities.condition_for_access = consultants
+14. Unique_skills.accessibility = conditional
+15. Consultants.skills_type = basic_skills
+16. Basic_skills.is_accessible_to = consultants
+17. Unique_skills.accessibility = limited
+18. Consultants.skills_availability = restricted
+19. Unique_facilities.allow_access = unique_skills
+20. Consultants.technical_solutions = basic_solutions
+21. Unique_skills = not_always_accessible
+22. Consultants.may_produce = naive_technical_solutions
+23. Consultants.may_produce = inappropriate_technical_solutions
+24. Unique_facilities.enable_access = unique_skills
+25. Consultants.skills = mundane_or_cookie_cutter
+26. Unique_skills = not_standard
+27. Consultants.access = dependent_on = unique_facilities
+28. Unique_skills = exceptional
+29. Consultants.skills = limited_to_basic
+30. Unique_facilities = special_conditions
+
+Rules:
+1. Q[Only, Consultants.accessible_skills, mundane_skills](Consultants.skills_type == "basic_skills" → Content(Consultants.accessible_skills, mundane_skills))
+2. Q[Only, Consultants.accessible_skills, cookie_cutter_skills](Consultants.skills_type == "basic_skills" → Content(Consultants.accessible_skills, cookie_cutter_skills))
+3. Q[Only, Unique_skills, naive_solutions](Consultants.may_produce == naive_solutions → Content(Unique_skills, naive_solutions))
+4. Q[Only, Unique_skills, inappropriate_solutions](Consultants.may_produce == inappropriate_solutions → Content(Unique_skills, inappropriate_solutions))
+5. Q[Only, Unique_facilities, consultants](Unique_facilities.has_limited_access == consultants → Content(Unique_facilities, consultants))
+6. Q[Only, Unique_skills, unique_facilities](Unique_skills.condition == unique_facilities → Content(Unique_skills, unique_facilities))
+7. Q[Only, Unique_skills, consultants](Consultants.limited_access == unique_skills → Content(Unique_skills, consultants))
+8. Q[Only, Unique_skills, unique_facilities](Unique_skills.accessibility == limited → Content(Unique_skills, unique_facilities))
+9. Q[Only, Unique_skills, basic_solutions](Consultants.technical_solutions == basic_solutions → Content(Unique_skills, basic_solutions))
+10. Q[Only, Unique_skills, basic_skills](Consultants.skills = limited_to_basic → Content(Unique_skills, basic_skills))
+11. Q[Only, Unique_facilities, unique_skills](Unique_facilities.allow_access == unique_skills → Content(Unique_facilities, unique_skills))
+12. Q[Only, Unique_skills, consultants](Consultants.may_access == unique_skills → Content(Unique_skills, consultants))
+13. Q[Only, Unique_skills, inappropriate_solutions](Unique_skills.result_in == inappropriate_solutions → Content(Unique_skills, inappropriate_solutions))
+14. Q[Only, Unique_skills, naive_solutions](Unique_skills.result_in == naive_solutions → Content(Unique_skills, naive_solutions))
+15. Q[Only, Unique_facilities, consultants](Unique_facilities.condition_for_access == consultants → Content(Unique_facilities, consultants))
+16. Q[Only, Unique_skills, conditional](Unique_skills.accessibility == conditional → Content(Unique_skills, conditional))
+17. Q[Only, Unique_skills, consultants](Consultants.access = dependent_on = unique_facilities → Content(Unique_skills, consultants))
+18. Q[Only, Unique_skills, exceptional](Unique_skills = exceptional → Content(Unique_skills, exceptional))
+19. Q[Only, Unique_skills, not_standard](Unique_skills = not_standard → Content(Unique_skills, not_standard))
+20. Q[Only, Unique_skills, limited](Unique_skills.accessibility == limited → Content(Unique_skills, limited))
+21. Q[Only, Unique_facilities, unique_skills](Unique_facilities.enable_access == unique_skills → Content(Unique_facilities, unique_skills))
+22. Q[Only, Unique_skills, consultants](Consultants.skills_availability == restricted → Content(Unique_skills, consultants))
+23. Q[Only, Unique_skills, basic_skills](Consultants.skills = mundane_or_cookie_cutter → Content(Unique_skills, basic_skills))
+24. Q[Only, Unique_skills, consultants](Consultants.accessible_skills = mundane_skills → Content(Unique_skills, consultants))
+25. Q[Only, Unique_skills, consultants](Consultants.accessible_skills = cookie_cutter_skills → Content(Unique_skills, consultants))
+26. Q[Only, Unique_skills, naive_solutions](Consultants.technical_solutions = naive_solutions → Content(Unique_skills, naive_solutions))
+27. Q[Only, Unique_skills, inappropriate_solutions](Consultants.technical_solutions = inappropriate_solutions → Content(Unique_skills, inappropriate_solutions))
+28. Q[Only, Unique_facilities, unique_skills](Unique_facilities.allow_access = unique_skills → Content(Unique_facilities, unique_skills))
+29. Q[Only, Unique_skills, consultants](Consultants.limited_access = unique_skills → Content(Unique_skills, consultants))
+30. Q[Only, Unique_skills, unique_facilities](Unique_skills.condition = unique_facilities → Content(Unique_skills, unique_facilities))

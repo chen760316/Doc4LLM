@@ -1,0 +1,27 @@
+Predicates:
+Indiana.label != "State"
+Indiana.label = "State"
+Indiana.name != "Indiana"
+Indiana.name = "Indiana"
+NASCAR.label != "Company"
+NASCAR.label != Indiana.label
+NASCAR.label = "Company"
+NASCAR.name != "NASCAR"
+NASCAR.name != Indiana.name
+NASCAR.name = "NASCAR"
+NASCAR___Indiana.context = "business response to legislation"
+NASCAR___Indiana.doc_id = "3489825766_2"
+NASCAR___Indiana.relationship = "NASCAR spoke out against Indiana's religious freedom law."
+None_ML(NASCAR.attrs, Indiana.attrs)
+
+Rules:
+Q[NASCAR,NASCAR] (Indiana.name = "Indiana" ∧ NASCAR.label != "Company" ∧ NASCAR___Indiana.relationship = "NASCAR spoke out against Indiana's religious freedom law." ∧ Indiana.name != "Indiana" → NASCAR___Indiana.doc_id = "3489825766_2")
+Q[NASCAR,NASCAR] (NASCAR___Indiana.context = "business response to legislation" ∧ NASCAR.label = "Company" ∧ NASCAR.name != Indiana.name → Indiana.name != "Indiana")
+Q[NASCAR,NASCAR] (Indiana.label = "State" ∧ NASCAR.name != "NASCAR" ∧ Indiana.name != "Indiana" ∧ NASCAR.label != Indiana.label ∧ Indiana.name = "Indiana" ∧ Indiana.label != "State" → NASCAR___Indiana.relationship = "NASCAR spoke out against Indiana's religious freedom law.")
+Q[NASCAR,NASCAR] (Indiana.name = "Indiana" ∧ NASCAR.name != "NASCAR" → NASCAR.name != Indiana.name)
+Q[NASCAR,NASCAR] (Indiana.name = "Indiana" ∧ Indiana.name != "Indiana" ∧ NASCAR.name != Indiana.name ∧ NASCAR.name != "NASCAR" ∧ NASCAR___Indiana.relationship = "NASCAR spoke out against Indiana's religious freedom law." → Indiana.label = "State")
+Q[NASCAR,NASCAR] (NASCAR.name = "NASCAR" ∧ NASCAR.label = "Company" ∧ Indiana.label != "State" ∧ Indiana.name != "Indiana" ∧ Indiana.name = "Indiana" ∧ NASCAR___Indiana.doc_id = "3489825766_2" → NASCAR___Indiana.context = "business response to legislation")
+Q[NASCAR,NASCAR] (NASCAR.name = "NASCAR" ∧ None_ML(NASCAR.attrs, Indiana.attrs) ∧ NASCAR.label != "Company" ∧ NASCAR.name != "NASCAR" ∧ Indiana.name != "Indiana" → NASCAR.label = "Company")
+Q[NASCAR,NASCAR] (NASCAR.name = "NASCAR" ∧ NASCAR___Indiana.doc_id = "3489825766_2" ∧ NASCAR___Indiana.relationship = "NASCAR spoke out against Indiana's religious freedom law." → Indiana.name = "Indiana")
+Q[NASCAR,NASCAR] (NASCAR.name != Indiana.name ∧ NASCAR.name = "NASCAR" ∧ NASCAR.label != "Company" ∧ Indiana.name = "Indiana" → Indiana.label != "State")
+Q[NASCAR,NASCAR] (None_ML(NASCAR.attrs, Indiana.attrs) ∧ Indiana.label = "State" → NASCAR.name = "NASCAR")

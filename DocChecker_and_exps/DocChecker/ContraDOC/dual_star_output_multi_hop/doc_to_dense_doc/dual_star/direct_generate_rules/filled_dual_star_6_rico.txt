@@ -1,0 +1,44 @@
+Predicates:
+America.label != "Country"
+America.label != Rand Paul.label
+America.label != attention span.label
+America.label = "Country"
+America.name != "America"
+America.name != Rand Paul.name
+America.name != attention span.name
+America.name = "America"
+America___Rand Paul.contradiction_type = "Factual"
+America___Rand Paul.relationship = "Rand Paul disagrees with the principle that more democracy solves more problems in America."
+America___Rand Paul.source_id = "3489738272_4"
+America___attention span.contradiction_type != America___Rand Paul.contradiction_type
+America___attention span.contradiction_type = "Relation"
+America___attention span.relationship != America___Rand Paul.relationship
+America___attention span.relationship = "America has a short attention span."
+America___attention span.source_id != America___Rand Paul.source_id
+America___attention span.source_id = "3489738271_2"
+None_ML(America.attrs, Rand Paul.attrs)
+None_ML(America___Rand Paul.attrs, America___attention span.attrs)
+Rand Paul.label != "Person"
+Rand Paul.label = "Person"
+Rand Paul.name != "Rand Paul"
+Rand Paul.name = "Rand Paul"
+attention span.description != "short"
+attention span.description = "short"
+attention span.label != "Concept"
+attention span.label != Rand Paul.label
+attention span.label = "Concept"
+attention span.name != "attention span"
+attention span.name != Rand Paul.name
+attention span.name = "attention span"
+
+Rules:
+Q[America,America] (attention span.name = "attention span" ∧ America___attention span.source_id = "3489738271_2" ∧ attention span.label != "Concept" ∧ America___attention span.relationship = "America has a short attention span." ∧ America.label != attention span.label ∧ America___Rand Paul.relationship = "Rand Paul disagrees with the principle that more democracy solves more problems in America." → attention span.name != Rand Paul.name)
+Q[America,America] (America___Rand Paul.contradiction_type = "Factual" ∧ Rand Paul.name = "Rand Paul" ∧ attention span.description != "short" → America___attention span.source_id != America___Rand Paul.source_id)
+Q[America,America] (America___attention span.relationship != America___Rand Paul.relationship ∧ attention span.description = "short" ∧ America.label != attention span.label ∧ None_ML(America___Rand Paul.attrs, America___attention span.attrs) ∧ America___attention span.source_id != America___Rand Paul.source_id → attention span.label = "Concept")
+Q[America,America] (attention span.label != "Concept" ∧ America.label != attention span.label ∧ America___attention span.source_id != America___Rand Paul.source_id ∧ Rand Paul.label != "Person" → attention span.description != "short")
+Q[America,America] (None_ML(America___Rand Paul.attrs, America___attention span.attrs) ∧ attention span.name != "attention span" → America___Rand Paul.contradiction_type = "Factual")
+Q[America,America] (attention span.label = "Concept" ∧ America.name = "America" ∧ America___attention span.relationship != America___Rand Paul.relationship ∧ America___attention span.relationship = "America has a short attention span." ∧ America.name != "America" → None_ML(America___Rand Paul.attrs, America___attention span.attrs))
+Q[America,America] (America.label != Rand Paul.label ∧ None_ML(America___Rand Paul.attrs, America___attention span.attrs) → Rand Paul.label = "Person")
+Q[America,America] (America___Rand Paul.contradiction_type = "Factual" ∧ Rand Paul.name = "Rand Paul" ∧ attention span.name != "attention span" → America.name = "America")
+Q[America,America] (America___Rand Paul.contradiction_type = "Factual" ∧ attention span.label != "Concept" ∧ None_ML(America.attrs, Rand Paul.attrs) ∧ attention span.name != "attention span" → Rand Paul.name != "Rand Paul")
+Q[America,America] (America.label != Rand Paul.label ∧ attention span.description != "short" ∧ America___attention span.relationship != America___Rand Paul.relationship ∧ attention span.name != Rand Paul.name ∧ America___Rand Paul.contradiction_type = "Factual" ∧ attention span.description = "short" → attention span.label != Rand Paul.label)

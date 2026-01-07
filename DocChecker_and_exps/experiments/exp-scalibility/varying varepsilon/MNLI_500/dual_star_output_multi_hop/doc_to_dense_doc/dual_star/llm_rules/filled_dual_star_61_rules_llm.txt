@@ -1,0 +1,134 @@
+Predicates:
+1. voter.preference = "consistently votes for"
+2. voter.preference = "will never vote for"
+3. voter.preference = "will probably vote for"
+4. candidate.name = "Alice"
+5. candidate.name = "Bob"
+6. candidate.policy = "supports environmental regulations"
+7. candidate.policy = "opposes environmental regulations"
+8. candidate.policy = "supports healthcare reform"
+9. candidate.policy = "opposes healthcare reform"
+10. election.year = "2024"
+11. election.year = "2025"
+12. election.type = "presidential"
+13. election.type = "midterm"
+14. voter.age = 30
+15. voter.age = 45
+16. voter.location = "urban"
+17. voter.location = "rural"
+18. voter.education = "college"
+19. voter.education = "high school"
+20. voter.income = 50000
+21. voter.income = 75000
+22. voter.party_affiliation = "Democrat"
+23. voter.party_affiliation = "Republican"
+24. voter.motivation = "environmental concerns"
+25. voter.motivation = "economic growth"
+26. voter.vote_decision = "will vote for Alice"
+27. voter.vote_decision = "will vote for Bob"
+28. voter.vote_decision = "will abstain"
+29. voter.vote_decision = "will not vote"
+30. candidate.support = "strongly supports"
+31. candidate.support = "strongly opposes"
+32. candidate.support = "neutral"
+33. candidate.endorsement = "endorsed by environmental groups"
+34. candidate.endorsement = "endorsed by business groups"
+35. candidate.endorsement = "not endorsed by any group"
+36. candidate.popularity = 70
+37. candidate.popularity = 30
+38. candidate.debate_performance = "excellent"
+39. candidate.debate_performance = "poor"
+40. candidate.campaign_strategy = "aggressive"
+41. candidate.campaign_strategy = "passive"
+42. candidate.funding = 1000000
+43. candidate.funding = 500000
+44. candidate.issues_addressed = "climate change"
+45. candidate.issues_addressed = "tax reform"
+46. candidate.issues_addressed = "healthcare"
+47. candidate.issues_addressed = "immigration"
+48. voter.satisfaction = "very satisfied"
+49. voter.satisfaction = "very dissatisfied"
+50. voter.engagement = "high"
+51. voter.engagement = "low"
+52. voter.feedback = "positive"
+53. voter.feedback = "negative"
+54. voter.trust_in_candidate = "high"
+55. voter.trust_in_candidate = "low"
+56. voter.experience = "first-time voter"
+57. voter.experience = "experienced voter"
+58. voter.attitude = "optimistic"
+59. voter.attitude = "pessimistic"
+60. voter.influence = "high"
+61. voter.influence = "low"
+62. candidate.history = "previously held office"
+63. candidate.history = "first-time candidate"
+64. candidate.scandal = "involved in controversy"
+65. candidate.scandal = "no scandals"
+66. candidate.vision = "progressive"
+67. candidate.vision = "conservative"
+68. candidate.vision = "moderate"
+69. candidate.vision = "radical"
+70. candidate.legacy = "positive"
+71. candidate.legacy = "negative"
+72. candidate.legacy = "mixed"
+73. candidate.legacy = "unknown"
+74. candidate.impact = "significant"
+75. candidate.impact = "minimal"
+76. candidate.impact = "debatable"
+77. candidate.impact = "unmeasurable"
+78. candidate.credibility = "high"
+79. candidate.credibility = "low"
+80. candidate.credibility = "questionable"
+81. candidate.credibility = "unproven"
+82. candidate.vision_statement = "focused on unity"
+83. candidate.vision_statement = "focused on division"
+84. candidate.vision_statement = "focused on progress"
+85. candidate.vision_statement = "focused on tradition"
+86. candidate.vision_statement = "focused on innovation"
+87. candidate.vision_statement = "focused on stability"
+88. candidate.vision_statement = "focused on change"
+89. candidate.vision_statement = "focused on continuity"
+90. M_NLI(voter.preference, candidate.policy)
+91. T(voter.vote_decision, candidate.name, tau)
+92. tau(voter.motivation, candidate.support)
+93. violate(voter.age, candidate.popularity)
+94. Factual(voter.location, candidate.policy)
+95. Causal(voter.engagement, candidate.debate_performance)
+96. Numeric(voter.income, candidate.funding)
+97. Temporal(voter.experience, election.year)
+98. Relation(voter.party_affiliation, candidate.name)
+99. Negation(voter.satisfaction, candidate.legacy)
+100. Content(voter.feedback, candidate.vision)
+violate(x0, y0)
+
+Rules:
+1. Q[x0, y0](voter.preference = "consistently votes for" ∧ candidate.name = "Alice" → violate(x0, y0))
+2. Q[x0, y0](voter.preference = "will never vote for" ∧ candidate.name = "Bob" → violate(x0, y0))
+3. Q[x0, y0](voter.age = 30 ∧ voter.location = "urban" → violate(x0, y0))
+4. Q[x0, y0](voter.party_affiliation = "Democrat" ∧ candidate.policy = "opposes healthcare reform" → violate(x0, y0))
+5. Q[x0, y0](voter.motivation = "economic growth" ∧ candidate.policy = "supports environmental regulations" → violate(x0, y0))
+6. Q[x0, y0](voter.vote_decision = "will vote for Bob" ∧ candidate.name = "Alice" → violate(x0, y0))
+7. Q[x0, y0](voter.preference = "will probably vote for" ∧ candidate.policy = "opposes environmental regulations" ∧ voter.age = 45 → violate(x0, y0))
+8. Q[x0, y0](voter.location = "rural" ∧ candidate.name = "Bob" ∧ candidate.policy = "supports healthcare reform" → violate(x0, y0))
+9. Q[x0, y0](voter.education = "high school" ∧ voter.income = 50000 ∧ candidate.popularity = 30 → violate(x0, y0))
+10. Q[x0, y0](voter.satisfaction = "very dissatisfied" ∧ candidate.legacy = "positive" ∧ voter.engagement = "low" → violate(x0, y0))
+11. Q[x0, y0](voter.feedback = "negative" ∧ candidate.scandal = "involved in controversy" ∧ voter.trust_in_candidate = "high" → violate(x0, y0))
+12. Q[x0, y0](voter.preference = "will never vote for" ∧ candidate.support = "strongly opposes" ∧ voter.age = 30 ∧ candidate.name = "Alice" → violate(x0, y0))
+13. Q[x0, y0](voter.motivation = "environmental concerns" ∧ candidate.policy = "opposes environmental regulations" ∧ voter.party_affiliation = "Republican" → violate(x0, y0))
+14. Q[x0, y0](voter.vote_decision = "will abstain" ∧ election.year = "2024" ∧ candidate.name = "Bob" → violate(x0, y0))
+15. Q[x0, y0](voter.influence = "low" ∧ candidate.debate_performance = "poor" ∧ voter.age = 45 ∧ candidate.name = "Alice" → violate(x0, y0))
+16. Q[x0, y0](voter.preference = "consistently votes for" ∧ candidate.policy = "opposes healthcare reform" ∧ voter.location = "urban" ∧ candidate.name = "Bob" → violate(x0, y0))
+17. Q[x0, y0](voter.age = 30 ∧ candidate.history = "first-time candidate" ∧ candidate.popularity = 70 ∧ voter.party_affiliation = "Democrat" → violate(x0, y0))
+18. Q[x0, y0](voter.satisfaction = "very satisfied" ∧ candidate.legacy = "negative" ∧ voter.engagement = "high" ∧ candidate.name = "Alice" → violate(x0, y0))
+19. Q[x0, y0](voter.feedback = "positive" ∧ candidate.scandal = "no scandals" ∧ voter.trust_in_candidate = "low" ∧ candidate.name = "Bob" → violate(x0, y0))
+20. Q[x0, y0](voter.preference = "will probably vote for" ∧ candidate.policy = "supports environmental regulations" ∧ voter.age = 45 ∧ candidate.name = "Alice" → violate(x0, y0))
+21. Q[x0, y0](voter.location = "rural" ∧ candidate.policy = "supports healthcare reform" ∧ voter.motivation = "economic growth" ∧ candidate.name = "Bob" → violate(x0, y0))
+22. Q[x0, y0](voter.education = "college" ∧ voter.income = 75000 ∧ candidate.popularity = 30 ∧ candidate.name = "Alice" → violate(x0, y0))
+23. Q[x0, y0](voter.satisfaction = "very dissatisfied" ∧ candidate.legacy = "positive" ∧ voter.engagement = "low" ∧ candidate.name = "Bob" → violate(x0, y0))
+24. Q[x0, y0](voter.feedback = "negative" ∧ candidate.scandal = "involved in controversy" ∧ voter.trust_in_candidate = "high" ∧ candidate.name = "Alice" → violate(x0, y0))
+25. Q[x0, y0](voter.preference = "will never vote for" ∧ candidate.support = "strongly opposes" ∧ voter.age = 30 ∧ candidate.name = "Bob" → violate(x0, y0))
+26. Q[x0, y0](voter.motivation = "environmental concerns" ∧ candidate.policy = "opposes environmental regulations" ∧ voter.party_affiliation = "Republican" ∧ candidate.name = "Alice" → violate(x0, y0))
+27. Q[x0, y0](voter.vote_decision = "will abstain" ∧ election.year = "2025" ∧ candidate.name = "Bob" ∧ voter.age = 45 → violate(x0, y0))
+28. Q[x0, y0](voter.influence = "low" ∧ candidate.debate_performance = "poor" ∧ voter.age = 30 ∧ candidate.name = "Alice" → violate(x0, y0))
+29. Q[x0, y0](voter.preference = "consistently votes for" ∧ candidate.policy = "opposes healthcare reform" ∧ voter.location = "urban" ∧ candidate.name = "Bob" ∧ voter.age = 45 → violate(x0, y0))
+30. Q[x0, y0](voter.age = 30 ∧ candidate.history = "first-time candidate" ∧ candidate.popularity = 70 ∧ voter.party_affiliation = "Democrat" ∧ voter.motivation = "economic growth" → violate(x0, y0))

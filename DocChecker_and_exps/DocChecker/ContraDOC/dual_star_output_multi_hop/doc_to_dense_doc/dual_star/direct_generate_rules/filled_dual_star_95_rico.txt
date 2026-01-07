@@ -1,0 +1,49 @@
+Predicates:
+FBI.label != "Organization"
+FBI.label = "Organization"
+FBI.name != "FBI"
+FBI.name != Philippine security forces.name
+FBI.name = "FBI"
+FBI.status != "active"
+FBI.status = "active"
+Marwan.label != "Person"
+Marwan.label != FBI.label
+Marwan.label != Philippine security forces.label
+Marwan.label = "Person"
+Marwan.name != "Marwan"
+Marwan.name != FBI.name
+Marwan.name != Philippine security forces.name
+Marwan.name = "Marwan"
+Marwan___FBI.contradiction_type = "Factual"
+Marwan___FBI.date != Marwan___Philippine security forces.date
+Marwan___FBI.date = "January"
+Marwan___FBI.event = "raid"
+Marwan___FBI.location = "Philippines"
+Marwan___FBI.relationship != Marwan___Philippine security forces.relationship
+Marwan___FBI.relationship = "The FBI confirmed the death of Marwan."
+Marwan___FBI.source_id = "3489738282_7"
+Marwan___Philippine security forces.contradiction_type = "Factual"
+Marwan___Philippine security forces.date = "2012"
+Marwan___Philippine security forces.event = "raid"
+Marwan___Philippine security forces.relationship = "Marwan was falsely reported dead after a raid."
+Marwan___Philippine security forces.source_id = "3489738282_7"
+None_ML(Marwan___FBI.attrs, Marwan___Philippine security forces.attrs)
+None_ML(Philippine security forces.attrs, FBI.attrs)
+Philippine security forces.label != "Organization"
+Philippine security forces.label = "Organization"
+Philippine security forces.name != "Philippine security forces"
+Philippine security forces.name = "Philippine security forces"
+Philippine security forces.status != "active"
+Philippine security forces.status = "active"
+
+Rules:
+Q[Marwan,Marwan] (Marwan___Philippine security forces.relationship = "Marwan was falsely reported dead after a raid." ∧ None_ML(Marwan___FBI.attrs, Marwan___Philippine security forces.attrs) ∧ Marwan.label != FBI.label ∧ Marwan.label != "Person" → Marwan___Philippine security forces.contradiction_type = "Factual")
+Q[Marwan,Marwan] (FBI.status != "active" ∧ Marwan.name != "Marwan" ∧ FBI.status = "active" → Philippine security forces.status = "active")
+Q[Marwan,Marwan] (Marwan___FBI.date != Marwan___Philippine security forces.date ∧ Marwan.label != "Person" ∧ None_ML(Marwan___FBI.attrs, Marwan___Philippine security forces.attrs) ∧ Marwan.name = "Marwan" ∧ Marwan___Philippine security forces.source_id = "3489738282_7" → FBI.name = "FBI")
+Q[Marwan,Marwan] (None_ML(Marwan___FBI.attrs, Marwan___Philippine security forces.attrs) ∧ Marwan___FBI.contradiction_type = "Factual" → Marwan.label != FBI.label)
+Q[Marwan,Marwan] (Philippine security forces.name = "Philippine security forces" ∧ Philippine security forces.label != "Organization" ∧ FBI.name = "FBI" ∧ Marwan___FBI.date != Marwan___Philippine security forces.date ∧ Marwan___FBI.date = "January" ∧ Philippine security forces.status = "active" → Marwan.label = "Person")
+Q[Marwan,Marwan] (Philippine security forces.name = "Philippine security forces" ∧ Marwan___FBI.date != Marwan___Philippine security forces.date ∧ Marwan.label != "Person" ∧ FBI.status != "active" ∧ Philippine security forces.name != "Philippine security forces" → Philippine security forces.status != "active")
+Q[Marwan,Marwan] (Marwan___FBI.event = "raid" ∧ Marwan___Philippine security forces.source_id = "3489738282_7" ∧ Marwan___FBI.source_id = "3489738282_7" → Marwan___FBI.relationship = "The FBI confirmed the death of Marwan.")
+Q[Marwan,Marwan] (Marwan___FBI.date = "January" ∧ Marwan.label != FBI.label ∧ Marwan___Philippine security forces.source_id = "3489738282_7" ∧ Marwan.label != Philippine security forces.label → Marwan___FBI.event = "raid")
+Q[Marwan,Marwan] (Philippine security forces.status != "active" ∧ Marwan___FBI.source_id = "3489738282_7" → Marwan___Philippine security forces.relationship = "Marwan was falsely reported dead after a raid.")
+Q[Marwan,Marwan] (Marwan.name != Philippine security forces.name ∧ Marwan.label = "Person" ∧ Marwan___FBI.location = "Philippines" ∧ Philippine security forces.name != "Philippine security forces" ∧ Marwan___Philippine security forces.relationship = "Marwan was falsely reported dead after a raid." ∧ Marwan___Philippine security forces.contradiction_type = "Factual" → Marwan___FBI.source_id = "3489738282_7")

@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 1602)
+S1: A man is sleeping.
+S2: The man is walking.
+
+Predicates:
+1. Man.sleeping
+2. Man.walking
+3. M_NLI(S1, S2)
+4. Factual(A_man, sleeping)
+5. Factual(The_man, walking)
+6. violate(A_man, The_man)
+7. Person.sleeping
+8. Person.walking
+9. M_NLI(S2, S1)
+10. Factual(A_person, sleeping)
+11. Factual(A_person, walking)
+12. violate(A_person, A_person)
+13. Human.sleeping
+14. Human.walking
+15. M_NLI(S1, S1)
+16. Factual(A_human, sleeping)
+17. Factual(A_human, walking)
+18. violate(A_human, A_human)
+19. Individual.sleeping
+20. Individual.walking
+21. M_NLI(S2, S2)
+22. Factual(A_individual, sleeping)
+23. Factual(A_individual, walking)
+24. violate(A_individual, A_individual)
+25. Entity.sleeping
+26. Entity.walking
+27. M_NLI(S1, S2)
+28. Factual(A_entity, sleeping)
+29. Factual(A_entity, walking)
+30. violate(A_entity, A_entity)
+
+Rules:
+1. Q[man, x0, y0](Man.sleeping == true → Factual(x0, y0))
+2. Q[man, x0, y0](Man.walking == true → Factual(x0, y0))
+3. Q[man, x0, y0](Man.sleeping == true ∧ Man.walking == true → violate(A_man, The_man))
+4. Q[man, x0, y0](Factual(A_man, sleeping) ∧ Factual(The_man, walking) → violate(A_man, The_man))
+5. Q[man, x0, y0](M_NLI(S1, S2) → violate(A_man, The_man))
+6. Q[man, x0, y0](Person.sleeping == true → Factual(x0, y0))
+7. Q[man, x0, y0](Person.walking == true → Factual(x0, y0))
+8. Q[man, x0, y0](Person.sleeping == true ∧ Person.walking == true → violate(A_person, A_person))
+9. Q[man, x0, y0](Factual(A_person, sleeping) ∧ Factual(A_person, walking) → violate(A_person, A_person))
+10. Q[man, x0, y0](M_NLI(S2, S1) → violate(A_person, A_person))
+11. Q[man, x0, y0](Human.sleeping == true → Factual(x0, y0))
+12. Q[man, x0, y0](Human.walking == true → Factual(x0, y0))
+13. Q[man, x0, y0](Human.sleeping == true ∧ Human.walking == true → violate(A_human, A_human))
+14. Q[man, x0, y0](Factual(A_human, sleeping) ∧ Factual(A_human, walking) → violate(A_human, A_human))
+15. Q[man, x0, y0](M_NLI(S1, S2) → violate(A_human, A_human))
+16. Q[man, x0, y0](Individual.sleeping == true → Factual(x0, y0))
+17. Q[man, x0, y0](Individual.walking == true → Factual(x0, y0))
+18. Q[man, x0, y0](Individual.sleeping == true ∧ Individual.walking == true → violate(A_individual, A_individual))
+19. Q[man, x0, y0](Factual(A_individual, sleeping) ∧ Factual(A_individual, walking) → violate(A_individual, A_individual))
+20. Q[man, x0, y0](M_NLI(S2, S1) → violate(A_individual, A_individual))
+21. Q[man, x0, y0](Entity.sleeping == true → Factual(x0, y0))
+22. Q[man, x0, y0](Entity.walking == true → Factual(x0, y0))
+23. Q[man, x0, y0](Entity.sleeping == true ∧ Entity.walking == true → violate(A_entity, A_entity))
+24. Q[man, x0, y0](Factual(A_entity, sleeping) ∧ Factual(A_entity, walking) → violate(A_entity, A_entity))
+25. Q[man, x0, y0](M_NLI(S1, S2) → violate(A_entity, A_entity))
+26. Q[man, x0, y0](Man.sleeping == true → Man.walking == false)
+27. Q[man, x0, y0](Man.walking == true → Man.sleeping == false)
+28. Q[man, x0, y0](Factual(A_man, sleeping) → Factual(A_man, walking) == false)
+29. Q[man, x0, y0](Factual(A_man, walking) → Factual(A_man, sleeping) == false)
+30. Q[man, x0, y0](M_NLI(S1, S2) → Factual(x0, y0))

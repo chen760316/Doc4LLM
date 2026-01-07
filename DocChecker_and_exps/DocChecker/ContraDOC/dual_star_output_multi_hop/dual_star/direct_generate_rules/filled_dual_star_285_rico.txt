@@ -1,0 +1,87 @@
+Predicates:
+Bonnie Stiernberg.label != "Critic"
+Bonnie Stiernberg.label != Deangelo Vickers.label
+Bonnie Stiernberg.label = "Critic"
+Bonnie Stiernberg.name != "Bonnie Stiernberg"
+Bonnie Stiernberg.name != Deangelo Vickers.name
+Bonnie Stiernberg.name = "Bonnie Stiernberg"
+Bonnie Stiernberg.publication != "Paste"
+Bonnie Stiernberg.publication = "Paste"
+Cindy White.label != "Critic"
+Cindy White.label != Deangelo Vickers.label
+Cindy White.label = "Critic"
+Cindy White.name != "Cindy White"
+Cindy White.name != Bonnie Stiernberg.name
+Cindy White.name != Deangelo Vickers.name
+Cindy White.name != Myles McNutt.name
+Cindy White.name = "Cindy White"
+Cindy White.publication != "IGN"
+Cindy White.publication != Bonnie Stiernberg.publication
+Cindy White.publication != Myles McNutt.publication
+Cindy White.publication = "IGN"
+Deangelo Vickers.actor != "Will Ferrell"
+Deangelo Vickers.actor = "Will Ferrell"
+Deangelo Vickers.label != "Character"
+Deangelo Vickers.label = "Character"
+Deangelo Vickers.name != "Deangelo Vickers"
+Deangelo Vickers.name = "Deangelo Vickers"
+Deangelo Vickers.role != "new manager"
+Deangelo Vickers.role = "new manager"
+Myles McNutt.label != "Critic"
+Myles McNutt.label != Deangelo Vickers.label
+Myles McNutt.label = "Critic"
+Myles McNutt.name != "Myles McNutt"
+Myles McNutt.name != Bonnie Stiernberg.name
+Myles McNutt.name != Deangelo Vickers.name
+Myles McNutt.name = "Myles McNutt"
+Myles McNutt.publication != "A.V. Club"
+Myles McNutt.publication != Bonnie Stiernberg.publication
+Myles McNutt.publication = "A.V. Club"
+None_ML(Deangelo Vickers.attrs, Training Day.attrs)
+None_ML(Training Day___Cindy White.attrs, Training Day___Bonnie Stiernberg.attrs)
+Training Day.episode_number != 20
+Training Day.episode_number < 25
+Training Day.episode_number = 20
+Training Day.episode_number > 15
+Training Day.label != "Episode"
+Training Day.label != Bonnie Stiernberg.label
+Training Day.label != Cindy White.label
+Training Day.label != Deangelo Vickers.label
+Training Day.label != Myles McNutt.label
+Training Day.label = "Episode"
+Training Day.name != "Training Day"
+Training Day.name != Bonnie Stiernberg.name
+Training Day.name != Cindy White.name
+Training Day.name != Deangelo Vickers.name
+Training Day.name != Myles McNutt.name
+Training Day.name = "Training Day"
+Training Day.season != 7
+Training Day.season < 12
+Training Day.season = 7
+Training Day.season > 2
+Training Day___Bonnie Stiernberg.doc_id = "3502252174_3"
+Training Day___Bonnie Stiernberg.relationship != Training Day___Deangelo Vickers.relationship
+Training Day___Bonnie Stiernberg.relationship = "Bonnie Stiernberg from Paste rated the episode 8.7 out of 10."
+Training Day___Cindy White.doc_id = "3502252174_3"
+Training Day___Cindy White.relationship != Training Day___Bonnie Stiernberg.relationship
+Training Day___Cindy White.relationship != Training Day___Deangelo Vickers.relationship
+Training Day___Cindy White.relationship != Training Day___Myles McNutt.relationship
+Training Day___Cindy White.relationship = "Cindy White from IGN gave the episode a rating of 7.5 out of 10."
+Training Day___Deangelo Vickers.doc_id = "3502252174_3"
+Training Day___Deangelo Vickers.relationship = "Deangelo Vickers is introduced as Michael Scott's replacement in the office."
+Training Day___Myles McNutt.doc_id = "3502252174_3"
+Training Day___Myles McNutt.relationship != Training Day___Bonnie Stiernberg.relationship
+Training Day___Myles McNutt.relationship != Training Day___Deangelo Vickers.relationship
+Training Day___Myles McNutt.relationship = "Myles McNutt from A.V. Club gave the episode a C+ rating."
+
+Rules:
+Q[Training Day,Training Day] (Myles McNutt.label != "Critic" ∧ None_ML(Training Day___Cindy White.attrs, Training Day___Bonnie Stiernberg.attrs) ∧ Bonnie Stiernberg.label != "Critic" ∧ Training Day.episode_number < 25 ∧ Training Day.label = "Episode" → Cindy White.name != Myles McNutt.name)
+Q[Training Day,Training Day] (None_ML(Deangelo Vickers.attrs, Training Day.attrs) ∧ Cindy White.label != "Critic" ∧ Cindy White.name != "Cindy White" ∧ Training Day.name != Myles McNutt.name → Training Day___Cindy White.relationship != Training Day___Myles McNutt.relationship)
+Q[Training Day,Training Day] (Myles McNutt.name != "Myles McNutt" ∧ Training Day.label != Myles McNutt.label → Myles McNutt.label != "Critic")
+Q[Training Day,Training Day] (Training Day___Cindy White.doc_id = "3502252174_3" ∧ Training Day___Cindy White.relationship != Training Day___Bonnie Stiernberg.relationship ∧ Deangelo Vickers.name != "Deangelo Vickers" ∧ Training Day___Cindy White.relationship = "Cindy White from IGN gave the episode a rating of 7.5 out of 10." ∧ Training Day.name = "Training Day" ∧ Myles McNutt.publication = "A.V. Club" → Myles McNutt.name != Deangelo Vickers.name)
+Q[Training Day,Training Day] (Myles McNutt.publication = "A.V. Club" ∧ Training Day.label != Deangelo Vickers.label ∧ Myles McNutt.label != "Critic" → Training Day___Cindy White.relationship != Training Day___Deangelo Vickers.relationship)
+Q[Training Day,Training Day] (Cindy White.label != "Critic" ∧ Training Day.episode_number != 20 ∧ Training Day.label != Bonnie Stiernberg.label ∧ Training Day.label != Myles McNutt.label → Training Day.season > 2)
+Q[Training Day,Training Day] (Deangelo Vickers.actor != "Will Ferrell" ∧ Training Day___Deangelo Vickers.doc_id = "3502252174_3" → Cindy White.label != "Critic")
+Q[Training Day,Training Day] (Cindy White.name = "Cindy White" ∧ Training Day.season = 7 ∧ Myles McNutt.name != Bonnie Stiernberg.name → Training Day___Bonnie Stiernberg.doc_id = "3502252174_3")
+Q[Training Day,Training Day] (Myles McNutt.name != Deangelo Vickers.name ∧ Training Day.name != Myles McNutt.name ∧ Training Day___Cindy White.relationship != Training Day___Bonnie Stiernberg.relationship ∧ Myles McNutt.name != Bonnie Stiernberg.name ∧ Training Day.season != 7 ∧ Training Day___Myles McNutt.relationship != Training Day___Deangelo Vickers.relationship → Training Day.episode_number = 20)
+Q[Training Day,Training Day] (Myles McNutt.name != "Myles McNutt" ∧ Myles McNutt.label != "Critic" ∧ Cindy White.publication != "IGN" ∧ Training Day___Cindy White.doc_id = "3502252174_3" ∧ Cindy White.publication != Myles McNutt.publication → Deangelo Vickers.label = "Character")

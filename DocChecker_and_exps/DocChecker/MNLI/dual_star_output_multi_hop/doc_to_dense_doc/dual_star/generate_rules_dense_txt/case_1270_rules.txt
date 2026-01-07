@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 1270)
+S1: This mail is insignificant, except for FY 1987, the first year the study was conducted.
+S2: The study has changed a lot over the past few years.
+
+Predicates:
+1. Mail.significance = insignificant
+2. Mail.year = 1987
+3. Study.year = 1987
+4. Study.significance = significant
+5. Study.evolution = changed
+6. Study.timeframe = past few years
+7. Study.change = lot
+8. Study.year_range = 1987 to present
+9. Study.insignificance = except for 1987
+10. Study.evolution_status = ongoing
+11. Study.relevance = variable
+12. Study.year_of_conduct = 1987
+13. Study.insignificance_year = 1987
+14. Study.change_period = past few years
+15. Study.significance_change = true
+16. Study.insignificance_period = before 1987
+17. Study.evolution_type = significant change
+18. Study.insignificance_exclusion = 1987
+19. Study.impact = variable over time
+20. Study.research_period = ongoing
+21. Study.insignificance_status = true for years other than 1987
+22. Study.research_significance = fluctuating
+23. Study.year_of_first_conduct = 1987
+24. Study.insignificance_explanation = only in 1987
+25. Study.change_frequency = high
+26. Study.insignificance_explanation_year = 1987
+27. Study.evolutionary_significance = increased
+28. Study.temporal_change = true
+29. Study.research_evolution = significant over time
+30. Study.insignificance_criteria = only in 1987
+
+Rules:
+1. Q[This, Mail.significance, Study.year](Mail.significance == insignificant → Temporal(Mail.year, Study.year))
+2. Q[This, Mail.year, Study.year](Mail.year == 1987 → Temporal(Mail.year, Study.year))
+3. Q[This, Study.insignificance, Study.year](Study.insignificance == true for years other than 1987 → Temporal(Study.year, Study.year_of_first_conduct))
+4. Q[This, Study.insignificance_explanation, Study.year](Study.insignificance_explanation == only in 1987 → Temporal(Study.year, Study.year_of_first_conduct))
+5. Q[This, Study.year_range, Study.evolution](Study.year_range == 1987 to present → Temporal(Study.year_range, Study.evolution))
+6. Q[This, Study.change, Study.evolution](Study.change == lot → Temporal(Study.change, Study.evolution))
+7. Q[This, Study.evolution_status, Study.timeframe](Study.evolution_status == ongoing → Temporal(Study.evolution_status, Study.timeframe))
+8. Q[This, Study.research_period, Study.evolution](Study.research_period == ongoing → Temporal(Study.research_period, Study.evolution))
+9. Q[This, Study.insignificance_status, Study.year](Study.insignificance_status == true for years other than 1987 → Temporal(Study.insignificance_status, Study.year))
+10. Q[This, Study.research_significance, Study.evolution](Study.research_significance == fluctuating → Temporal(Study.research_significance, Study.evolution))
+11. Q[This, Study.insignificance_criteria, Study.year](Study.insignificance_criteria == only in 1987 → Temporal(Study.insignificance_criteria, Study.year))
+12. Q[This, Study.impact, Study.timeframe](Study.impact == variable over time → Temporal(Study.impact, Study.timeframe))
+13. Q[This, Study.evolution_type, Study.change](Study.evolution_type == significant change → Temporal(Study.evolution_type, Study.change))
+14. Q[This, Study.significance_change, Study.year](Study.significance_change == true → Temporal(Study.significance_change, Study.year))
+15. Q[This, Study.year_of_conduct, Study.insignificance](Study.year_of_conduct == 1987 → Temporal(Study.year_of_conduct, Study.insignificance))
+16. Q[This, Study.insignificance_explanation_year, Study.year](Study.insignificance_explanation_year == 1987 → Temporal(Study.insignificance_explanation_year, Study.year))
+17. Q[This, Study.evolutionary_significance, Study.change](Study.evolutionary_significance == increased → Temporal(Study.evolutionary_significance, Study.change))
+18. Q[This, Study.temporal_change, Study.evolution](Study.temporal_change == true → Temporal(Study.temporal_change, Study.evolution))
+19. Q[This, Study.change_frequency, Study.evolution](Study.change_frequency == high → Temporal(Study.change_frequency, Study.evolution))
+20. Q[This, Study.year_of_first_conduct, Study.insignificance](Study.year_of_first_conduct == 1987 → Temporal(Study.year_of_first_conduct, Study.insignificance))
+21. Q[This, Study.year, Study.insignificance](Study.year == 1987 → Temporal(Study.year, Study.insignificance))
+22. Q[This, Study.evolution, Study.change](Study.evolution == significant over time → Temporal(Study.evolution, Study.change))
+23. Q[This, Study.relevance, Study.timeframe](Study.relevance == variable → Temporal(Study.relevance, Study.timeframe))
+24. Q[This, Study.insignificance_period, Study.year](Study.insignificance_period == before 1987 → Temporal(Study.insignificance_period, Study.year))
+25. Q[This, Study.year_range, Study.insignificance](Study.year_range == 1987 to present → Temporal(Study.year_range, Study.insignificance))
+26. Q[This, Study.change_period, Study.evolution](Study.change_period == past few years → Temporal(Study.change_period, Study.evolution))
+27. Q[This, Study.insignificance, Study.evolution](Study.insignificance == except for 1987 → Temporal(Study.insignificance, Study.evolution))
+28. Q[This, Study.year_of_first_conduct, Study.change](Study.year_of_first_conduct == 1987 → Temporal(Study.year_of_first_conduct, Study.change))
+29. Q[This, Study.insignificance_exclusion, Study.year](Study.insignificance_exclusion == 1987 → Temporal(Study.insignificance_exclusion, Study.year))
+30. Q[This, Study.evolution, Study.research_significance](Study.evolution == significant over time → Temporal(Study.evolution, Study.research_significance))

@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 234)
+S1: Bush and his wife, Laura, left the White House on Thursday evening to spend four days in the wooded presidential withdrawal of rustic cabins in the mountains of Maryland.
+S2: Bush and his wife, Laura, departed the White House on Thursday afternoon to spend four days at the wooded presidential retreat of rustic cabins in the Maryland mountains.
+
+Predicates:
+1. Bush.and_his_wife.departure_time = Thursday_evening
+2. Bush.and_his_wife.departure_time = Thursday_afternoon
+3. Bush.and_his_wife.destination = wooded_presidential_retreat
+4. Bush.and_his_wife.duration_of_stay = four_days
+5. Bush.and_his_wife.location = Maryland_mountains
+6. Bush.and_his_wife.activity = spending_time
+7. Bush.and_his_wife.type_of_accommodation = rustic_cabins
+8. White_House.departure_time = Thursday_evening
+9. White_House.departure_time = Thursday_afternoon
+10. wooded_presidential_retreat.type_of_accommodation = rustic_cabins
+11. wooded_presidential_retreat.location = Maryland
+12. Maryland_mountains.type_of_environment = wooded
+13. Thursday_evening.is_before = Thursday_afternoon
+14. Thursday_afternoon.is_after = Thursday_evening
+15. M_NLI(S1, S2).result = contradiction
+16. Temporal(Bush.and_his_wife.departure_time, Thursday_evening)
+17. Temporal(Bush.and_his_wife.departure_time, Thursday_afternoon)
+18. violate(Bush.and_his_wife.departure_time, Thursday_evening)
+19. violate(Bush.and_his_wife.departure_time, Thursday_afternoon)
+20. Bush.and_his_wife.activity = retreat
+21. Bush.and_his_wife.trip_type = presidential
+22. rustic_cabins.environment = natural
+23. rustic_cabins.location = Maryland
+24. Maryland_mountains.activity = retreat
+25. Thursday_evening.is_after = Thursday
+26. Thursday_afternoon.is_before = Thursday
+27. Bush.and_his_wife.departure_location = White_House
+28. Bush.and_his_wife.return_time = not_specified
+29. Bush.and_his_wife.trip_duration = four_days
+30. M_NLI(S1, S2).type = temporal_contradiction
+
+Rules:
+1. Q[Bush, Bush.and_his_wife.departure_time, Thursday_evening](Bush.and_his_wife.departure_time = Thursday_evening → Temporal(Bush.and_his_wife.departure_time, Thursday_evening))
+2. Q[Bush, Bush.and_his_wife.departure_time, Thursday_afternoon](Bush.and_his_wife.departure_time = Thursday_afternoon → Temporal(Bush.and_his_wife.departure_time, Thursday_afternoon))
+3. Q[Bush, White_House.departure_time, Thursday_evening](White_House.departure_time = Thursday_evening → Temporal(Bush.and_his_wife.departure_time, Thursday_evening))
+4. Q[Bush, White_House.departure_time, Thursday_afternoon](White_House.departure_time = Thursday_afternoon → Temporal(Bush.and_his_wife.departure_time, Thursday_afternoon))
+5. Q[Bush, M_NLI(S1, S2).result, contradiction](M_NLI(S1, S2).result = contradiction → Temporal(Bush.and_his_wife.departure_time, Thursday_evening))
+6. Q[Bush, M_NLI(S1, S2).result, contradiction](M_NLI(S1, S2).result = contradiction → Temporal(Bush.and_his_wife.departure_time, Thursday_afternoon))
+7. Q[Bush, Thursday_evening.is_before, Thursday_afternoon](Thursday_evening.is_before = Thursday_afternoon → Temporal(Bush.and_his_wife.departure_time, Thursday_evening))
+8. Q[Bush, Thursday_afternoon.is_after, Thursday_evening](Thursday_afternoon.is_after = Thursday_evening → Temporal(Bush.and_his_wife.departure_time, Thursday_afternoon))
+9. Q[Bush, Bush.and_his_wife.destination, wooded_presidential_retreat](Bush.and_his_wife.destination = wooded_presidential_retreat → Temporal(Bush.and_his_wife.departure_time, Thursday_evening))
+10. Q[Bush, Bush.and_his_wife.duration_of_stay, four_days](Bush.and_his_wife.duration_of_stay = four_days → Temporal(Bush.and_his_wife.departure_time, Thursday_evening))
+11. Q[Bush, Bush.and_his_wife.location, Maryland_mountains](Bush.and_his_wife.location = Maryland_mountains → Temporal(Bush.and_his_wife.departure_time, Thursday_evening))
+12. Q[Bush, Bush.and_his_wife.activity, spending_time](Bush.and_his_wife.activity = spending_time → Temporal(Bush.and_his_wife.departure_time, Thursday_evening))
+13. Q[Bush, Bush.and_his_wife.type_of_accommodation, rustic_cabins](Bush.and_his_wife.type_of_accommodation = rustic_cabins → Temporal(Bush.and_his_wife.departure_time, Thursday_evening))
+14. Q[Bush, wooded_presidential_retreat.type_of_accommodation, rustic_cabins](wooded_presidential_retreat.type_of_accommodation = rustic_cabins → Temporal(Bush.and_his_wife.departure_time, Thursday_evening))
+15. Q[Bush, wooded_presidential_retreat.location, Maryland](wooded_presidential_retreat.location = Maryland → Temporal(Bush.and_his_wife.departure_time, Thursday_evening))
+16. Q[Bush, Maryland_mountains.type_of_environment, wooded](Maryland_mountains.type_of_environment = wooded → Temporal(Bush.and_his_wife.departure_time, Thursday_evening))
+17. Q[Bush, Thursday_evening.is_after, Thursday](Thursday_evening.is_after = Thursday → Temporal(Bush.and_his_wife.departure_time, Thursday_evening))
+18. Q[Bush, Thursday_afternoon.is_before, Thursday](Thursday_afternoon.is_before = Thursday → Temporal(Bush.and_his_wife.departure_time, Thursday_evening))
+19. Q[Bush, violate(Bush.and_his_wife.departure_time, Thursday_evening), True](violate(Bush.and_his_wife.departure_time, Thursday_evening) → Temporal(Bush.and_his_wife.departure_time, Thursday_afternoon))
+20. Q[Bush, violate(Bush.and_his_wife.departure_time, Thursday_afternoon), True](violate(Bush.and_his_wife.departure_time, Thursday_afternoon) → Temporal(Bush.and_his_wife.departure_time, Thursday_evening))
+21. Q[Bush, Bush.and_his_wife.trip_type, presidential](Bush.and_his_wife.trip_type = presidential → Temporal(Bush.and_his_wife.departure_time, Thursday_evening))
+22. Q[Bush, rustic_cabins.environment, natural](rustic_cabins.environment = natural → Temporal(Bush.and_his_wife.departure_time, Thursday_evening))
+23. Q[Bush, rustic_cabins.location, Maryland](rustic_cabins.location = Maryland → Temporal(Bush.and_his_wife.departure_time, Thursday_evening))
+24. Q[Bush, Maryland_mountains.activity, retreat](Maryland_mountains.activity = retreat → Temporal(Bush.and_his_wife.departure_time, Thursday_evening))
+25. Q[Bush, Bush.and_his_wife.return_time, not_specified](Bush.and_his_wife.return_time = not_specified → Temporal(Bush.and_his_wife.departure_time, Thursday_evening))
+26. Q[Bush, Bush.and_his_wife.trip_duration, four_days](Bush.and_his_wife.trip_duration = four_days → Temporal(Bush.and_his_wife.departure_time, Thursday_evening))
+27. Q[Bush, M_NLI(S1, S2).type, temporal_contradiction](M_NLI(S1, S2).type = temporal_contradiction → Temporal(Bush.and_his_wife.departure_time, Thursday_evening))
+28. Q[Bush, Bush.and_his_wife.activity, retreat](Bush.and_his_wife.activity = retreat → Temporal(Bush.and_his_wife.departure_time, Thursday_afternoon))
+29. Q[Bush, Bush.and_his_wife.departure_location, White_House](Bush.and_his_wife.departure_location = White_House → Temporal(Bush.and_his_wife.departure_time, Thursday_evening))
+30. Q[Bush, Bush.and_his_wife.activity, spending_time](Bush.and_his_wife.activity = spending_time → Temporal(Bush.and_his_wife.departure_time, Thursday_afternoon))

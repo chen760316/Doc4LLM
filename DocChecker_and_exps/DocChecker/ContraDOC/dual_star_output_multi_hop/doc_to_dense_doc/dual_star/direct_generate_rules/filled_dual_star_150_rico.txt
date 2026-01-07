@@ -1,0 +1,46 @@
+Predicates:
+None_ML(The Duke's two sons.attrs, The Duke.attrs)
+None_ML(The Duke___The Duke's two sons.attrs, The Duke___The Duke's children.attrs)
+The Duke's children.label != "Person"
+The Duke's children.label = "Person"
+The Duke's children.name != "The Duke's children"
+The Duke's children.name != The Duke's two sons.name
+The Duke's children.name = "The Duke's children"
+The Duke's children.status != "grownup"
+The Duke's children.status != The Duke's two sons.status
+The Duke's children.status = "grownup"
+The Duke's two sons.label != "Person"
+The Duke's two sons.label = "Person"
+The Duke's two sons.name != "The Duke's two sons"
+The Duke's two sons.name = "The Duke's two sons"
+The Duke's two sons.status != "burdensome"
+The Duke's two sons.status = "burdensome"
+The Duke.label != "Person"
+The Duke.label = "Person"
+The Duke.name != "The Duke"
+The Duke.name != The Duke's children.name
+The Duke.name != The Duke's two sons.name
+The Duke.name = "The Duke"
+The Duke.status != "parent"
+The Duke.status != The Duke's children.status
+The Duke.status != The Duke's two sons.status
+The Duke.status = "parent"
+The Duke___The Duke's children.contradiction_type = "Content"
+The Duke___The Duke's children.relationship != The Duke___The Duke's two sons.relationship
+The Duke___The Duke's children.relationship = "The Duke has a close relationship with his grownup children."
+The Duke___The Duke's children.source_id = "3488771911_1"
+The Duke___The Duke's two sons.contradiction_type = "Content"
+The Duke___The Duke's two sons.relationship = "The Duke's two sons prove to be burdensome."
+The Duke___The Duke's two sons.source_id = "3488771911_1"
+
+Rules:
+Q[The Duke,The Duke] (The Duke.label = "Person" ∧ The Duke.label != "Person" ∧ The Duke's children.status = "grownup" ∧ The Duke.status != "parent" → The Duke___The Duke's two sons.relationship = "The Duke's two sons prove to be burdensome.")
+Q[The Duke,The Duke] (The Duke's children.name = "The Duke's children" ∧ The Duke's two sons.label != "Person" ∧ The Duke.name != The Duke's two sons.name ∧ The Duke.name = "The Duke" ∧ The Duke's children.label != "Person" ∧ The Duke.label != "Person" → The Duke's two sons.name != "The Duke's two sons")
+Q[The Duke,The Duke] (The Duke's children.label = "Person" ∧ The Duke's children.name = "The Duke's children" ∧ The Duke.name != The Duke's two sons.name ∧ The Duke___The Duke's two sons.source_id = "3488771911_1" ∧ The Duke's two sons.status != "burdensome" → The Duke.name != "The Duke")
+Q[The Duke,The Duke] (The Duke's two sons.label = "Person" ∧ The Duke's two sons.name != "The Duke's two sons" → The Duke___The Duke's children.relationship != The Duke___The Duke's two sons.relationship)
+Q[The Duke,The Duke] (The Duke's two sons.label != "Person" ∧ The Duke___The Duke's children.contradiction_type = "Content" ∧ The Duke___The Duke's two sons.relationship = "The Duke's two sons prove to be burdensome." → The Duke's two sons.status = "burdensome")
+Q[The Duke,The Duke] (The Duke's two sons.status = "burdensome" ∧ The Duke's two sons.name = "The Duke's two sons" → The Duke's children.status != The Duke's two sons.status)
+Q[The Duke,The Duke] (The Duke.name != "The Duke" ∧ The Duke.name != The Duke's two sons.name ∧ The Duke___The Duke's children.contradiction_type = "Content" ∧ The Duke.status = "parent" ∧ The Duke's children.name = "The Duke's children" ∧ The Duke's children.status != The Duke's two sons.status → The Duke___The Duke's two sons.source_id = "3488771911_1")
+Q[The Duke,The Duke] (The Duke.status != The Duke's children.status ∧ The Duke's children.name != "The Duke's children" ∧ The Duke's two sons.status != "burdensome" ∧ The Duke's children.name = "The Duke's children" ∧ The Duke's two sons.name != "The Duke's two sons" → The Duke.label != "Person")
+Q[The Duke,The Duke] (None_ML(The Duke___The Duke's two sons.attrs, The Duke___The Duke's children.attrs) ∧ The Duke's children.label = "Person" ∧ The Duke's children.label != "Person" → The Duke's children.status = "grownup")
+Q[The Duke,The Duke] (The Duke___The Duke's two sons.contradiction_type = "Content" ∧ The Duke.label != "Person" ∧ The Duke.label = "Person" ∧ None_ML(The Duke's two sons.attrs, The Duke.attrs) → The Duke's two sons.status != "burdensome")

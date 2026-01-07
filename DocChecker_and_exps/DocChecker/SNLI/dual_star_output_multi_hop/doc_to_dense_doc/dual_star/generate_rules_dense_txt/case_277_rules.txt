@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 277)
+S1: A man is resting on a post.
+S2: A man is talking.
+
+Predicates:
+1. Man.resting
+2. Man.talking
+3. Resting.activity_level
+4. Talking.activity_level
+5. Resting.implies(lack_of_activity)
+6. Talking.implies(active_engagement)
+7. Man.has_activity(resting)
+8. Man.has_activity(talking)
+9. Resting.is_opposite_of(talking)
+10. Talking.is_opposite_of(resting)
+11. Activity.lack_of_activity
+12. Activity.active_engagement
+13. Resting.occurs_on(post)
+14. Talking.occurs_in(conversation)
+15. Post.supports(entity)
+16. Conversation.involves(entity)
+17. Man.engaged_in(activity)
+18. Activity.is_state_of(entity)
+19. Resting.is_a(state)
+20. Talking.is_a(state)
+21. State.has_duration
+22. Duration.is_short_for(talking)
+23. Duration.is_long_for(resting)
+24. Man.is_in(state(resting))
+25. Man.is_in(state(talking))
+26. State.resting.has_effect(on(activity)
+27. State.talking.has_effect(on(activity)
+28. Resting.is_affected_by(environment)
+29. Talking.is_affected_by(environment)
+30. Environment.supports(activity)
+
+Rules:
+1. Q[man, Man.resting, Man.talking](Man.resting == true → Causal(Man.resting, Man.talking))
+2. Q[man, Man.resting, Man.talking](Man.has_activity(resting) == true → Causal(Man.resting, Man.talking))
+3. Q[man, Resting.activity_level, Talking.activity_level](Resting.activity_level == "low" → Causal(Resting.activity_level, Talking.activity_level))
+4. Q[man, Resting.implies(lack_of_activity), Talking.implies(active_engagement)](Resting.implies(lack_of_activity) == true → Causal(Resting.implies(lack_of_activity), Talking.implies(active_engagement)))
+5. Q[man, Resting.is_opposite_of(talking), Talking.is_opposite_of(resting)](Resting.is_opposite_of(talking) == true → Causal(Resting.is_opposite_of(talking), Talking.is_opposite_of(resting)))
+6. Q[man, Man.is_in(state(resting)), Man.is_in(state(talking)](Man.is_in(state(resting)) == true → Causal(Man.is_in(state(resting)), Man.is_in(state(talking))))
+7. Q[man, Resting.occurs_on(post), Talking.occurs_in(conversation)](Resting.occurs_on(post) == true → Causal(Resting.occurs_on(post), Talking.occurs_in(conversation)))
+8. Q[man, Activity.lack_of_activity, Activity.active_engagement](Activity.lack_of_activity == true → Causal(Activity.lack_of_activity, Activity.active_engagement))
+9. Q[man, State.resting.has_effect(on(activity)), State.talking.has_effect(on(activity))](State.resting.has_effect(on(activity)) == true → Causal(State.resting.has_effect(on(activity)), State.talking.has_effect(on(activity))))
+10. Q[man, Duration.is_long_for(resting), Duration.is_short_for(talking)](Duration.is_long_for(resting) == true → Causal(Duration.is_long_for(resting), Duration.is_short_for(talking)))
+11. Q[man, Man.engaged_in(activity), Man.has_activity(talking)](Man.engaged_in(activity) == true → Causal(Man.engaged_in(activity), Man.has_activity(talking)))
+12. Q[man, Resting.is_a(state), Talking.is_a(state)](Resting.is_a(state) == true → Causal(Resting.is_a(state), Talking.is_a(state)))
+13. Q[man, Resting.activity_level, Talking.activity_level](Resting.activity_level == "inactive" → Causal(Resting.activity_level, Talking.activity_level))
+14. Q[man, Man.resting, Man.has_activity(talking)](Man.resting == true → Causal(Man.resting, Man.has_activity(talking)))
+15. Q[man, Resting.implies(lack_of_activity), Man.talking](Resting.implies(lack_of_activity) == true → Causal(Resting.implies(lack_of_activity), Man.talking))
+16. Q[man, Resting.is_affected_by(environment), Talking.is_affected_by(environment)](Resting.is_affected_by(environment) == true → Causal(Resting.is_affected_by(environment), Talking.is_affected_by(environment)))
+17. Q[man, Man.is_in(state(resting)), Resting.is_a(state)](Man.is_in(state(resting)) == true → Causal(Man.is_in(state(resting)), Resting.is_a(state)))
+18. Q[man, Man.has_activity(resting), Man.has_activity(talking)](Man.has_activity(resting) == true → Causal(Man.has_activity(resting), Man.has_activity(talking)))
+19. Q[man, Resting.occurs_on(post), Man.resting](Resting.occurs_on(post) == true → Causal(Resting.occurs_on(post), Man.resting))
+20. Q[man, Talking.is_opposite_of(resting), Resting.is_opposite_of(talking)](Talking.is_opposite_of(resting) == true → Causal(Talking.is_opposite_of(resting), Resting.is_opposite_of(talking)))
+21. Q[man, Activity.active_engagement, Man.talking](Activity.active_engagement == true → Causal(Activity.active_engagement, Man.talking))
+22. Q[man, Resting.is_affected_by(environment), Talking.is_affected_by(environment)](Resting.is_affected_by(environment) == true → Causal(Resting.is_affected_by(environment), Talking.is_affected_by(environment)))
+23. Q[man, Duration.is_short_for(talking), Duration.is_long_for(resting)](Duration.is_short_for(talking) == true → Causal(Duration.is_short_for(talking), Duration.is_long_for(resting)))
+24. Q[man, Man.engaged_in(activity), Resting.activity_level](Man.engaged_in(activity) == true → Causal(Man.engaged_in(activity), Resting.activity_level))
+25. Q[man, Man.resting, Talking.is_a(state)](Man.resting == true → Causal(Man.resting, Talking.is_a(state)))
+26. Q[man, Resting.implies(lack_of_activity), Resting.activity_level](Resting.implies(lack_of_activity) == true → Causal(Resting.implies(lack_of_activity), Resting.activity_level))
+27. Q[man, Man.has_activity(talking), Talking.activity_level](Man.has_activity(talking) == true → Causal(Man.has_activity(talking), Talking.activity_level))
+28. Q[man, Resting.is_opposite_of(talking), Man.talking](Resting.is_opposite_of(talking) == true → Causal(Resting.is_opposite_of(talking), Man.talking))
+29. Q[man, Man.is_in(state(talking)), Talking.is_a(state)](Man.is_in(state(talking)) == true → Causal(Man.is_in(state(talking)), Talking.is_a(state)))
+30. Q[man, Activity.lack_of_activity, Resting.implies(lack_of_activity)](Activity.lack_of_activity == true → Causal(Activity.lack_of_activity, Resting.implies(lack_of_activity)))

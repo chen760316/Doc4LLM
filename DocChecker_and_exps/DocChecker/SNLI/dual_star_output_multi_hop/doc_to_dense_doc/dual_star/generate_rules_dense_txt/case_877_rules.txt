@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 877)
+S1: In this picture I see two children in gis doing karate.
+S2: Two children are competing in a karate competition.
+
+Predicates:
+1. Picture.children_count
+2. Picture.activity_type
+3. Children.age
+4. Children.clothing_type
+5. Competition.type
+6. Competition.participants_count
+7. Competition.location
+8. Karate.skill_level
+9. Karate.event_type
+10. Children.gender
+11. Children.emotion
+12. Children.position
+13. Event.time
+14. Event.date
+15. Event.duration
+16. Event.spectators_count
+17. Spectator.emotion
+18. Spectator.age
+19. Spectator.gender
+20. Karate.belt_color
+21. Karate.technique_used
+22. Karate.score
+23. Karate.referee
+24. Referee.experience_level
+25. Referee.gender
+26. Referee.decision
+27. Training.session_count
+28. Training.duration
+29. Training.location
+30. Training.coach_name
+
+Rules:
+1. Q[this, Picture.activity_type, Competition.type](Picture.children_count == 2 → Causal(this, Competition.type))
+2. Q[this, Picture.children_count, Competition.participants_count](Picture.activity_type == "karate" → Causal(this, Competition.participants_count))
+3. Q[this, Picture.activity_type, Karate.event_type](Picture.activity_type == "karate" → Causal(this, Karate.event_type))
+4. Q[this, Picture.children_count, Competition.location](Picture.children_count == 2 → Causal(this, Competition.location))
+5. Q[this, Children.age, Karate.skill_level](Picture.activity_type == "karate" → Causal(this, Karate.skill_level))
+6. Q[this, Children.clothing_type, Karate.belt_color](Picture.activity_type == "karate" → Causal(this, Karate.belt_color))
+7. Q[this, Children.gender, Competition.participants_count](Picture.children_count == 2 → Causal(this, Competition.participants_count))
+8. Q[this, Children.emotion, Spectator.emotion](Picture.activity_type == "karate" → Causal(this, Spectator.emotion))
+9. Q[this, Children.position, Competition.location](Picture.activity_type == "karate" → Causal(this, Competition.location))
+10. Q[this, Event.time, Event.date](Picture.activity_type == "karate" → Causal(this, Event.date))
+11. Q[this, Event.duration, Competition.type](Picture.activity_type == "karate" → Causal(this, Competition.type))
+12. Q[this, Event.spectators_count, Competition.participants_count](Picture.activity_type == "karate" → Causal(this, Competition.participants_count))
+13. Q[this, Karate.technique_used, Karate.skill_level](Picture.activity_type == "karate" → Causal(this, Karate.skill_level))
+14. Q[this, Karate.score, Competition.type](Picture.activity_type == "karate" → Causal(this, Competition.type))
+15. Q[this, Referee.experience_level, Competition.type](Picture.activity_type == "karate" → Causal(this, Competition.type))
+16. Q[this, Referee.gender, Competition.participants_count](Picture.activity_type == "karate" → Causal(this, Competition.participants_count))
+17. Q[this, Referee.decision, Karate.score](Picture.activity_type == "karate" → Causal(this, Karate.score))
+18. Q[this, Training.session_count, Karate.skill_level](Picture.activity_type == "karate" → Causal(this, Karate.skill_level))
+19. Q[this, Training.duration, Karate.event_type](Picture.activity_type == "karate" → Causal(this, Karate.event_type))
+20. Q[this, Training.location, Competition.location](Picture.activity_type == "karate" → Causal(this, Competition.location))
+21. Q[this, Training.coach_name, Karate.skill_level](Picture.activity_type == "karate" → Causal(this, Karate.skill_level))
+22. Q[this, Children.position, Karate.event_type](Picture.activity_type == "karate" → Causal(this, Karate.event_type))
+23. Q[this, Children.emotion, Karate.score](Picture.activity_type == "karate" → Causal(this, Karate.score))
+24. Q[this, Children.gender, Karate.belt_color](Picture.activity_type == "karate" → Causal(this, Karate.belt_color))
+25. Q[this, Children.age, Children.position](Picture.activity_type == "karate" → Causal(this, Children.position))
+26. Q[this, Event.spectators_count, Event.time](Picture.activity_type == "karate" → Causal(this, Event.time))
+27. Q[this, Event.date, Competition.type](Picture.activity_type == "karate" → Causal(this, Competition.type))
+28. Q[this, Karate.technique_used, Karate.belt_color](Picture.activity_type == "karate" → Causal(this, Karate.belt_color))
+29. Q[this, Karate.score, Referee.decision](Picture.activity_type == "karate" → Causal(this, Referee.decision))
+30. Q[this, Competition.participants_count, Event.duration](Picture.activity_type == "karate" → Causal(this, Event.duration))

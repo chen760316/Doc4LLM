@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 382)
+S1: A king can move one square in any direction (horizontally, vertically, or diagonally) unless the square is already occupied by a friendly piece or the move would place the king in check.
+S2: The king can indeed take the king in chess.
+
+Predicates:
+1. King.move_direction.horizontal
+2. King.move_direction.vertical
+3. King.move_direction.diagonal
+4. King.move_condition.occupied_square
+5. King.move_condition.check
+6. King.can_take.opponent_king
+7. King.cannot_move.to_check_square
+8. King.move_limit.one_square
+9. King.friendly_piece.occupied_square
+10. King.in_check.state
+11. King.move.validity
+12. King.move.illegal
+13. King.capture.opponent_piece
+14. King.position.current
+15. King.position.target
+16. King.check_condition
+17. King.move_restriction
+18. King.move_ability
+19. King.game_state
+20. King.checkmate_condition
+21. King.cannot_capture.friendly_piece
+22. King.move_effect.on_game
+23. King.move_outcome
+24. King.strategy.defensive
+25. King.strategy.offensive
+26. King.legal_move
+27. King.illegal_move
+28. King.check_situation
+29. King.capture_condition
+30. King.move_analysis
+
+Rules:
+1. Q[king, x0, y0](King.move_condition.check == true → Factual(x0, y0))
+2. Q[king, x0, y0](King.cannot_move.to_check_square == true → Factual(x0, y0))
+3. Q[king, x0, y0](King.can_take.opponent_king == true ∧ King.in_check.state == true → Factual(x0, y0))
+4. Q[king, x0, y0](King.move_limit.one_square == true ∧ King.move_condition.check == true → Factual(x0, y0))
+5. Q[king, x0, y0](King.move_direction.horizontal == true ∧ King.move_condition.check == true → Factual(x0, y0))
+6. Q[king, x0, y0](King.move_direction.vertical == true ∧ King.move_condition.check == true → Factual(x0, y0))
+7. Q[king, x0, y0](King.move_direction.diagonal == true ∧ King.move_condition.check == true → Factual(x0, y0))
+8. Q[king, x0, y0](King.friendly_piece.occupied_square == true ∧ King.move_condition.check == true → Factual(x0, y0))
+9. Q[king, x0, y0](King.move.validity == false ∧ King.move_condition.check == true → Factual(x0, y0))
+10. Q[king, x0, y0](King.move.illegal == true ∧ King.move_condition.check == true → Factual(x0, y0))
+11. Q[king, x0, y0](King.check_condition == true ∧ King.can_take.opponent_king == true → Factual(x0, y0))
+12. Q[king, x0, y0](King.move_restriction == true ∧ King.can_take.opponent_king == true → Factual(x0, y0))
+13. Q[king, x0, y0](King.move_ability == false ∧ King.can_take.opponent_king == true → Factual(x0, y0))
+14. Q[king, x0, y0](King.check_situation == true ∧ King.can_take.opponent_king == true → Factual(x0, y0))
+15. Q[king, x0, y0](King.capture.condition == true ∧ King.move_condition.check == true → Factual(x0, y0))
+16. Q[king, x0, y0](King.move_effect.on_game == true ∧ King.can_take.opponent_king == true → Factual(x0, y0))
+17. Q[king, x0, y0](King.move_outcome == illegal ∧ King.can_take.opponent_king == true → Factual(x0, y0))
+18. Q[king, x0, y0](King.strategy.defensive == true ∧ King.can_take.opponent_king == true → Factual(x0, y0))
+19. Q[king, x0, y0](King.strategy.offensive == true ∧ King.can_take.opponent_king == true → Factual(x0, y0))
+20. Q[king, x0, y0](King.position.current == King.position.target ∧ King.move_condition.check == true → Factual(x0, y0))
+21. Q[king, x0, y0](King.move.validity == false ∧ King.move_limit.one_square == true → Factual(x0, y0))
+22. Q[king, x0, y0](King.move_analysis == illegal ∧ King.can_take.opponent_king == true → Factual(x0, y0))
+23. Q[king, x0, y0](King.checkmate_condition == true ∧ King.can_take.opponent_king == true → Factual(x0, y0))
+24. Q[king, x0, y0](King.move_condition.occupied_square == true ∧ King.can_take.opponent_king == true → Factual(x0, y0))
+25. Q[king, x0, y0](King.move.validity == false ∧ King.check_condition == true → Factual(x0, y0))
+26. Q[king, x0, y0](King.move_restriction == true ∧ King.move_condition.check == true → Factual(x0, y0))
+27. Q[king, x0, y0](King.in_check.state == true ∧ King.move_condition.check == true → Factual(x0, y0))
+28. Q[king, x0, y0](King.cannot_capture.friendly_piece == true ∧ King.can_take.opponent_king == true → Factual(x0, y0))
+29. Q[king, x0, y0](King.move_limit.one_square == true ∧ King.move_condition.check == true → Factual(x0, y0))
+30. Q[king, x0, y0](King.move_effect.on_game == true ∧ King.move_condition.check == true → Factual(x0, y0))

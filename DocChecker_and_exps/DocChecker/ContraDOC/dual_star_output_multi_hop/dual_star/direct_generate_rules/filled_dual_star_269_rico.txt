@@ -1,0 +1,62 @@
+Predicates:
+Augustus Stavely.label != "Person"
+Augustus Stavely.label != writing.label
+Augustus Stavely.label = "Person"
+Augustus Stavely.name != "Augustus Stavely"
+Augustus Stavely.name != Lucius Mason.name
+Augustus Stavely.name != writing.name
+Augustus Stavely.name = "Augustus Stavely"
+Augustus Stavely.status != "brief relationship"
+Augustus Stavely.status != Lucius Mason.status
+Augustus Stavely.status = "brief relationship"
+Lucius Mason.label != "Person"
+Lucius Mason.label != writing.label
+Lucius Mason.label = "Person"
+Lucius Mason.name != "Lucius Mason"
+Lucius Mason.name != writing.name
+Lucius Mason.name = "Lucius Mason"
+Lucius Mason.status != "brief engagement"
+Lucius Mason.status = "brief engagement"
+None_ML(Augustus Stavely.attrs, Lucius Mason.attrs)
+None_ML(Sophia Furnival___writing.attrs, Sophia Furnival___Augustus Stavely.attrs)
+Sophia Furnival.label != "Person"
+Sophia Furnival.label != writing.label
+Sophia Furnival.label = "Person"
+Sophia Furnival.name != "Sophia Furnival"
+Sophia Furnival.name != Augustus Stavely.name
+Sophia Furnival.name != Lucius Mason.name
+Sophia Furnival.name != writing.name
+Sophia Furnival.name = "Sophia Furnival"
+Sophia Furnival.status != "intelligent"
+Sophia Furnival.status != Augustus Stavely.status
+Sophia Furnival.status != Lucius Mason.status
+Sophia Furnival.status = "intelligent"
+Sophia Furnival___Augustus Stavely.doc_id = "story_train_3585"
+Sophia Furnival___Augustus Stavely.relationship != Sophia Furnival___Lucius Mason.relationship
+Sophia Furnival___Augustus Stavely.relationship != Sophia Furnival___writing.relationship
+Sophia Furnival___Augustus Stavely.relationship = "Sophia has a brief relationship with Augustus Stavely."
+Sophia Furnival___Augustus Stavely.relationship_duration = "brief"
+Sophia Furnival___Lucius Mason.doc_id = "story_train_3585"
+Sophia Furnival___Lucius Mason.engagement_duration = "brief"
+Sophia Furnival___Lucius Mason.relationship != Sophia Furnival___writing.relationship
+Sophia Furnival___Lucius Mason.relationship = "Sophia has a brief engagement to Lucius Mason."
+Sophia Furnival___writing.doc_id = "story_train_3585"
+Sophia Furnival___writing.relationship = "Sophia is portrayed as an intelligent woman who writes comically skilful letters."
+writing.description != "comically skilful letters"
+writing.description = "comically skilful letters"
+writing.label != "Skill"
+writing.label = "Skill"
+writing.name != "writing"
+writing.name = "writing"
+
+Rules:
+Q[Sophia Furnival,Sophia Furnival] (Sophia Furnival___Lucius Mason.relationship != Sophia Furnival___writing.relationship ∧ Sophia Furnival___Augustus Stavely.relationship = "Sophia has a brief relationship with Augustus Stavely." → Augustus Stavely.label = "Person")
+Q[Sophia Furnival,Sophia Furnival] (Augustus Stavely.label != writing.label ∧ Sophia Furnival.status = "intelligent" ∧ Lucius Mason.status != "brief engagement" ∧ Sophia Furnival.label != writing.label → Augustus Stavely.name = "Augustus Stavely")
+Q[Sophia Furnival,Sophia Furnival] (Sophia Furnival.status != Augustus Stavely.status ∧ Lucius Mason.label = "Person" ∧ Sophia Furnival___Augustus Stavely.relationship_duration = "brief" ∧ writing.name = "writing" ∧ Sophia Furnival.name != Lucius Mason.name → None_ML(Augustus Stavely.attrs, Lucius Mason.attrs))
+Q[Sophia Furnival,Sophia Furnival] (Augustus Stavely.status != Lucius Mason.status ∧ Sophia Furnival.name != writing.name ∧ writing.name = "writing" ∧ Sophia Furnival.name = "Sophia Furnival" ∧ Sophia Furnival.status != "intelligent" ∧ None_ML(Sophia Furnival___writing.attrs, Sophia Furnival___Augustus Stavely.attrs) → writing.description = "comically skilful letters")
+Q[Sophia Furnival,Sophia Furnival] (Lucius Mason.label != writing.label ∧ Sophia Furnival___Augustus Stavely.relationship != Sophia Furnival___Lucius Mason.relationship ∧ Augustus Stavely.label != writing.label → Augustus Stavely.name != "Augustus Stavely")
+Q[Sophia Furnival,Sophia Furnival] (Sophia Furnival.label = "Person" ∧ Lucius Mason.name != "Lucius Mason" ∧ Sophia Furnival___writing.relationship = "Sophia is portrayed as an intelligent woman who writes comically skilful letters." → None_ML(Sophia Furnival___writing.attrs, Sophia Furnival___Augustus Stavely.attrs))
+Q[Sophia Furnival,Sophia Furnival] (writing.description != "comically skilful letters" ∧ Sophia Furnival___Augustus Stavely.doc_id = "story_train_3585" ∧ Lucius Mason.status != "brief engagement" ∧ Sophia Furnival.label = "Person" ∧ Augustus Stavely.name != "Augustus Stavely" → Sophia Furnival___writing.relationship = "Sophia is portrayed as an intelligent woman who writes comically skilful letters.")
+Q[Sophia Furnival,Sophia Furnival] (Sophia Furnival___Lucius Mason.doc_id = "story_train_3585" ∧ None_ML(Sophia Furnival___writing.attrs, Sophia Furnival___Augustus Stavely.attrs) ∧ Sophia Furnival.status = "intelligent" ∧ Augustus Stavely.status = "brief relationship" ∧ Lucius Mason.name != writing.name ∧ Augustus Stavely.label = "Person" → Augustus Stavely.status != Lucius Mason.status)
+Q[Sophia Furnival,Sophia Furnival] (Sophia Furnival.status != "intelligent" ∧ None_ML(Sophia Furnival___writing.attrs, Sophia Furnival___Augustus Stavely.attrs) → Lucius Mason.label != "Person")
+Q[Sophia Furnival,Sophia Furnival] (Sophia Furnival.name = "Sophia Furnival" ∧ Lucius Mason.label = "Person" ∧ Sophia Furnival.label != writing.label ∧ Sophia Furnival.status != Augustus Stavely.status → Sophia Furnival___Lucius Mason.relationship = "Sophia has a brief engagement to Lucius Mason.")

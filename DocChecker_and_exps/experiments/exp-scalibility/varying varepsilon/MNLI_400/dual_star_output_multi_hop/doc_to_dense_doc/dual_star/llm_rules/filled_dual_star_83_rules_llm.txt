@@ -1,0 +1,132 @@
+Predicates:
+1. entity1.name = "Entity A"
+2. entity1.type = "Organization"
+3. entity1.status = "Active"
+4. entity1.location = "Location X"
+5. entity1.founded_year = 2000
+6. entity1.employees_count = 150
+7. entity1.revenue = 5000000
+8. entity1.industry = "Technology"
+9. entity1.leadership = "John Doe"
+10. entity1.mission = "Innovate solutions"
+11. entity2.name = "Entity B"
+12. entity2.type = "Organization"
+13. entity2.status = "Inactive"
+14. entity2.location = "Location Y"
+15. entity2.founded_year = 1995
+16. entity2.employees_count = 0
+17. entity2.revenue = 0
+18. entity2.industry = "Healthcare"
+19. entity2.leadership = "Jane Smith"
+20. entity2.mission = "Improve health"
+21. "were involved in internal strife with".description = "Conflict between organizations"
+22. "were involved in internal strife with".source = "Internal Reports"
+23. "were involved in internal strife with".date = "2023-10-01"
+24. "were involved in internal strife with".severity = "High"
+25. "were involved in internal strife with".resolution_status = "Unresolved"
+26. M_NLI(entity1.mission, entity2.mission)
+27. T("Entity A is thriving", "Entity A is failing", tau)
+28. tau(entity1.status, entity2.status)
+29. violate(entity1, entity2)
+30. Factual(entity1, entity2)
+31. Content(entity1, entity2)
+32. Causal(entity1, entity2)
+33. Negation(entity1, entity2)
+34. Relation(entity1, entity2)
+35. Numeric(entity1.employees_count, entity2.employees_count)
+36. Temporal(entity1.founded_year, entity2.founded_year)
+37. M_NLI(entity1.location, entity2.location)
+38. T("Entity A has a strong leadership", "Entity A has weak leadership", tau)
+39. tau(entity1.revenue, entity2.revenue)
+40. violate(entity2, entity1)
+41. Factual(entity2, entity1)
+42. Content(entity2, entity1)
+43. Causal(entity2, entity1)
+44. Negation(entity2, entity1)
+45. Relation(entity2, entity1)
+46. Numeric(entity2.employees_count, entity1.employees_count)
+47. Temporal(entity2.founded_year, entity1.founded_year)
+48. M_NLI(entity1.industry, entity2.industry)
+49. T("Entity A is a leader in tech", "Entity A is a follower in tech", tau)
+50. tau(entity1.leadership, entity2.leadership)
+51. violate(entity1, entity1)
+52. Factual(entity1, entity1)
+53. Content(entity1, entity1)
+54. Causal(entity1, entity1)
+55. Negation(entity1, entity1)
+56. Relation(entity1, entity1)
+57. Numeric(entity1.revenue, entity1.revenue)
+58. Temporal(entity1.founded_year, entity1.founded_year)
+59. M_NLI(entity1.status, entity1.status)
+60. T("Entity A is expanding", "Entity A is contracting", tau)
+61. tau(entity1.mission, entity1.mission)
+62. violate(entity2, entity2)
+63. Factual(entity2, entity2)
+64. Content(entity2, entity2)
+65. Causal(entity2, entity2)
+66. Negation(entity2, entity2)
+67. Relation(entity2, entity2)
+68. Numeric(entity2.revenue, entity2.revenue)
+69. Temporal(entity2.founded_year, entity2.founded_year)
+70. M_NLI(entity1.employees_count, entity2.employees_count)
+71. T("Entity A has 150 employees", "Entity A has no employees", tau)
+72. tau(entity1.location, entity2.location)
+73. violate(entity1, entity2)
+74. Factual(entity1, entity2)
+75. Content(entity1, entity2)
+76. Causal(entity1, entity2)
+77. Negation(entity1, entity2)
+78. Relation(entity1, entity2)
+79. Numeric(entity1.revenue, entity2.revenue)
+80. Temporal(entity1.founded_year, entity2.founded_year)
+81. M_NLI(entity2.industry, entity1.industry)
+82. T("Entity B is in healthcare", "Entity B is in technology", tau)
+83. tau(entity2.leadership, entity1.leadership)
+84. violate(entity2, entity1)
+85. Factual(entity2, entity1)
+86. Content(entity2, entity1)
+87. Causal(entity2, entity1)
+88. Negation(entity2, entity1)
+89. Relation(entity2, entity1)
+90. Numeric(entity2.employees_count, entity1.employees_count)
+91. Temporal(entity2.founded_year, entity1.founded_year)
+92. M_NLI(entity1.mission, entity2.mission)
+93. T("Entity A's mission is to innovate", "Entity A's mission is to stagnate", tau)
+94. tau(entity1.status, entity2.status)
+95. violate(entity1, entity2)
+96. Factual(entity1, entity2)
+97. Content(entity1, entity2)
+98. Causal(entity1, entity2)
+99. Negation(entity1, entity2)
+100. Relation(entity1, entity2)
+violate(x0, y0)
+
+Rules:
+1. Q[x0, y0](entity1.status = "Active" ∧ entity2.status = "Inactive" → violate(x0, y0))
+2. Q[x0, y0](entity1.type = "Organization" ∧ entity2.type = "Organization" → violate(x0, y0))
+3. Q[x0, y0](entity1.employees_count = 150 ∧ entity2.employees_count = 0 → violate(x0, y0))
+4. Q[x0, y0](entity1.revenue = 5000000 ∧ entity2.revenue = 0 → violate(x0, y0))
+5. Q[x0, y0](entity1.location = "Location X" ∧ entity2.location = "Location Y" → violate(x0, y0))
+6. Q[x0, y0](entity1.founded_year = 2000 ∧ entity2.founded_year = 1995 → violate(x0, y0))
+7. Q[x0, y0](entity1.status = "Active" ∧ entity1.type = "Organization" ∧ entity2.status = "Inactive" → violate(x0, y0))
+8. Q[x0, y0](entity1.employees_count = 150 ∧ entity1.revenue = 5000000 ∧ entity2.employees_count = 0 → violate(x0, y0))
+9. Q[x0, y0](entity1.industry = "Technology" ∧ entity2.industry = "Healthcare" ∧ entity1.status = "Active" → violate(x0, y0))
+10. Q[x0, y0](entity1.location = "Location X" ∧ entity2.location = "Location Y" ∧ entity1.founded_year = 2000 → violate(x0, y0))
+11. Q[x0, y0](entity1.name = "Entity A" ∧ entity1.type = "Organization" ∧ entity1.status = "Active" ∧ entity2.status = "Inactive" → violate(x0, y0))
+12. Q[x0, y0](entity1.name = "Entity A" ∧ entity1.employees_count = 150 ∧ entity1.revenue = 5000000 ∧ entity2.employees_count = 0 ∧ entity2.revenue = 0 → violate(x0, y0))
+13. Q[x0, y0](entity1.leadership = "John Doe" ∧ entity2.leadership = "Jane Smith" ∧ entity1.status = "Active" ∧ entity2.status = "Inactive" → violate(x0, y0))
+14. Q[x0, y0](entity1.mission = "Innovate solutions" ∧ entity2.mission = "Improve health" ∧ entity1.status = "Active" ∧ entity2.status = "Inactive" → violate(x0, y0))
+15. Q[x0, y0](entity1.type = "Organization" ∧ entity1.industry = "Technology" ∧ entity2.type = "Organization" ∧ entity2.industry = "Healthcare" → violate(x0, y0))
+16. Q[x0, y0](entity1.status = "Active" ∧ entity1.location = "Location X" ∧ entity2.status = "Inactive" ∧ entity2.location = "Location Y" ∧ entity1.founded_year = 2000 → violate(x0, y0))
+17. Q[x0, y0](entity1.employees_count = 150 ∧ entity1.revenue = 5000000 ∧ entity1.status = "Active" ∧ entity2.employees_count = 0 ∧ entity2.revenue = 0 ∧ entity2.status = "Inactive" → violate(x0, y0))
+18. Q[x0, y0](entity1.name = "Entity A" ∧ entity1.type = "Organization" ∧ entity1.status = "Active" ∧ entity1.industry = "Technology" ∧ entity2.status = "Inactive" → violate(x0, y0))
+19. Q[x0, y0](entity1.location = "Location X" ∧ entity1.founded_year = 2000 ∧ entity2.location = "Location Y" ∧ entity2.founded_year = 1995 ∧ entity2.status = "Inactive" → violate(x0, y0))
+20. Q[x0, y0](entity1.name = "Entity A" ∧ entity1.leadership = "John Doe" ∧ entity1.status = "Active" ∧ entity2.leadership = "Jane Smith" ∧ entity2.status = "Inactive" → violate(x0, y0))
+21. Q[x0, y0](entity1.mission = "Innovate solutions" ∧ entity1.type = "Organization" ∧ entity2.mission = "Improve health" ∧ entity2.type = "Organization" ∧ entity2.status = "Inactive" → violate(x0, y0))
+22. Q[x0, y0](entity1.employees_count = 150 ∧ entity1.revenue = 5000000 ∧ entity1.industry = "Technology" ∧ entity2.employees_count = 0 ∧ entity2.revenue = 0 ∧ entity2.industry = "Healthcare" → violate(x0, y0))
+23. Q[x0, y0](entity1.status = "Active" ∧ entity1.location = "Location X" ∧ entity1.founded_year = 2000 ∧ entity2.status = "Inactive" ∧ entity2.location = "Location Y" ∧ entity2.founded_year = 1995 → violate(x0, y0))
+24. Q[x0, y0](entity1.name = "Entity A" ∧ entity1.type = "Organization" ∧ entity1.status = "Active" ∧ entity1.employees_count = 150 ∧ entity2.status = "Inactive" → violate(x0, y0))
+25. Q[x0, y0](entity1.revenue = 5000000 ∧ entity1.industry = "Technology" ∧ entity2.revenue = 0 ∧ entity2.industry = "Healthcare" ∧ entity2.status = "Inactive" → violate(x0, y0))
+26. Q[x0, y0](entity1.leadership = "John Doe" ∧ entity1.mission = "Innovate solutions" ∧ entity2.leadership = "Jane Smith" ∧ entity2.mission = "Improve health" ∧ entity2.status = "Inactive" → violate(x0, y0))
+27. Q[x0, y0](entity1.name = "Entity A" ∧ entity1.type = "Organization" ∧ entity1.status = "Active" ∧ entity1.location = "Location X" ∧ entity2.status = "Inactive" ∧ entity2.location = "Location Y" → violate(x0, y0))
+28. Q[x0, y0](entity1.employees_count =

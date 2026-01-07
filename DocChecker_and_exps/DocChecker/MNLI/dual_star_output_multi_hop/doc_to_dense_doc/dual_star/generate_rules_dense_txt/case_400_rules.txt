@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 400)
+S1: You are completely stupid.
+S2: You're a clever girl.
+
+Predicates:
+1. Person.intelligence
+2. Person.gender
+3. Opinion.negative
+4. Opinion.positive
+5. Emotion.negative
+6. Emotion.positive
+7. M_NLI(S1, S2)
+8. Content(Opinion, S1)
+9. Content(Opinion, S2)
+10. violate(S1, S2)
+11. Person.intelligence.negative
+12. Person.intelligence.positive
+13. Relationship.opinion
+14. Relationship.emotion
+15. Person.cleverness
+16. Person.stupidity
+17. Opinion.comparison
+18. Emotion.comparison
+19. M_NLI(S1, S2).valid
+20. Content(Opinion, S1).negative
+21. Content(Opinion, S2).positive
+22. violate(S1, S2).true
+23. Person.intelligence.negative.opinion
+24. Person.intelligence.positive.opinion
+25. Relationship.negative
+26. Relationship.positive
+27. Emotion.negative.opinion
+28. Emotion.positive.opinion
+29. Person.cleverness.positive
+30. Person.stupidity.negative
+
+Rules:
+1. Q[You, Person.intelligence.negative, Person.intelligence.positive](You.intelligence == "stupid" → Content(Opinion, S1).negative)
+2. Q[You, Person.intelligence.positive, Person.intelligence.negative](You.intelligence == "clever" → Content(Opinion, S2).positive)
+3. Q[You, Opinion.negative, Opinion.positive](You.opinion == "stupid" → Content(Opinion, S1).negative)
+4. Q[You, Opinion.positive, Opinion.negative](You.opinion == "clever" → Content(Opinion, S2).positive)
+5. Q[You, Emotion.negative, Emotion.positive](You.emotion == "stupid" → Content(Opinion, S1).negative)
+6. Q[You, Emotion.positive, Emotion.negative](You.emotion == "clever" → Content(Opinion, S2).positive)
+7. Q[You, Person.stupidity, Person.cleverness](You.stupidity == true → Content(Opinion, S1).negative)
+8. Q[You, Person.cleverness, Person.stupidity](You.cleverness == true → Content(Opinion, S2).positive)
+9. Q[You, Person.intelligence.negative, Person.intelligence.positive](You.intelligence.negative == true → Content(Opinion, S1).negative)
+10. Q[You, Person.intelligence.positive, Person.intelligence.negative](You.intelligence.positive == true → Content(Opinion, S2).positive)
+11. Q[You, Opinion.comparison, Opinion.comparison](You.opinion.comparison == "stupid vs clever" → Content(Opinion, S1).negative)
+12. Q[You, Emotion.comparison, Emotion.comparison](You.emotion.comparison == "stupid vs clever" → Content(Opinion, S2).positive)
+13. Q[You, violate(S1, S2).true, violate(S1, S2).true](You.violate(S1, S2) == true → Content(Opinion, S1).negative)
+14. Q[You, Content(Opinion, S1).negative, Content(Opinion, S2).positive](You.content(S1) == "negative" → Content(Opinion, S1).negative)
+15. Q[You, Content(Opinion, S2).positive, Content(Opinion, S1).negative](You.content(S2) == "positive" → Content(Opinion, S2).positive)
+16. Q[You, Person.intelligence.negative.opinion, Person.intelligence.positive.opinion](You.intelligence.negative.opinion == true → Content(Opinion, S1).negative)
+17. Q[You, Person.intelligence.positive.opinion, Person.intelligence.negative.opinion](You.intelligence.positive.opinion == true → Content(Opinion, S2).positive)
+18. Q[You, Relationship.negative, Relationship.positive](You.relationship == "negative" → Content(Opinion, S1).negative)
+19. Q[You, Relationship.positive, Relationship.negative](You.relationship == "positive" → Content(Opinion, S2).positive)
+20. Q[You, Emotion.negative.opinion, Emotion.positive.opinion](You.emotion.negative.opinion == true → Content(Opinion, S1).negative)
+21. Q[You, Emotion.positive.opinion, Emotion.negative.opinion](You.emotion.positive.opinion == true → Content(Opinion, S2).positive)
+22. Q[You, Person.intelligence.negative, Person.intelligence.positive](You.intelligence == "stupid" → Content(Opinion, S1).negative)
+23. Q[You, Person.intelligence.positive, Person.intelligence.negative](You.intelligence == "clever" → Content(Opinion, S2).positive)
+24. Q[You, Person.stupidity.negative, Person.cleverness.positive](You.stupidity.negative == true → Content(Opinion, S1).negative)
+25. Q[You, Person.cleverness.positive, Person.stupidity.negative](You.cleverness.positive == true → Content(Opinion, S2).positive)
+26. Q[You, Opinion.negative, Opinion.positive](You.opinion == "negative" → Content(Opinion, S1).negative)
+27. Q[You, Opinion.positive, Opinion.negative](You.opinion == "positive" → Content(Opinion, S2).positive)
+28. Q[You, Emotion.negative, Emotion.positive](You.emotion == "negative" → Content(Opinion, S1).negative)
+29. Q[You, Emotion.positive, Emotion.negative](You.emotion == "positive" → Content(Opinion, S2).positive)
+30. Q[You, violate(S1, S2).true, violate(S1, S2).true](You.violate(S1, S2) == true → Content(Opinion, S1).negative)

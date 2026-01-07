@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 349)
+S1: O u t o f s e v e n e x p e d i t i o n s w e r e a u t h o r i z e d t o u p l o a d K a n g c h e n j u n g a 8 5 8 6 - m e t e r h i g h M o n t e s u c c e e d e d a n o n l y a c l i m b e r i n t h e U n i t e d S t a t e s .
+S2: O u t o f t h e s e v e n e x p e d i t i o n s w h o w e r e p e r m i t t e d t o c l i m b t h e 8 5 8 6 - m e t e r h i g h M t . K a n c h e n j u n g a , o n l y o n e c l i m b e r f r o m t h e U n i t e d S t a t e s s u c c e e d e d .
+
+Predicates:
+1. Expedition_1.authorized
+2. Expedition_2.authorized
+3. Expedition_3.authorized
+4. Expedition_4.authorized
+5. Expedition_5.authorized
+6. Expedition_6.authorized
+7. Expedition_7.authorized
+8. Climber_1.succeeded
+9. Climber_2.succeeded
+10. Climber_3.succeeded
+11. Climber_4.succeeded
+12. Climber_5.succeeded
+13. Climber_6.succeeded
+14. Climber_7.succeeded
+15. Climber_USA.succeeded
+16. Kangchenjunga.height
+17. Kangchenjunga.expeditions
+18. Climber_USA.expeditions
+19. Climber_USA.success_count
+20. Expedition.success_count
+21. Expedition.total_count
+22. Climber.successful_expeditions
+23. Climber.failed_expeditions
+24. Expedition.permitted
+25. Climber.nationality
+26. Climber.success_rate
+27. Expedition.location
+28. Expedition.climber_count
+29. M_NLI(S1, S2)
+30. Negation(Climber_1.succeeded, Climber_2.succeeded)
+
+Rules:
+1. Q[authorized, Expedition_1.authorized, Climber_USA.succeeded](Expedition_1.authorized == true → Negation(Expedition_1.authorized, Climber_USA.succeeded))
+2. Q[authorized, Expedition_2.authorized, Climber_USA.succeeded](Expedition_2.authorized == true → Negation(Expedition_2.authorized, Climber_USA.succeeded))
+3. Q[authorized, Expedition_3.authorized, Climber_USA.succeeded](Expedition_3.authorized == true → Negation(Expedition_3.authorized, Climber_USA.succeeded))
+4. Q[authorized, Expedition_4.authorized, Climber_USA.succeeded](Expedition_4.authorized == true → Negation(Expedition_4.authorized, Climber_USA.succeeded))
+5. Q[authorized, Expedition_5.authorized, Climber_USA.succeeded](Expedition_5.authorized == true → Negation(Expedition_5.authorized, Climber_USA.succeeded))
+6. Q[authorized, Expedition_6.authorized, Climber_USA.succeeded](Expedition_6.authorized == true → Negation(Expedition_6.authorized, Climber_USA.succeeded))
+7. Q[authorized, Expedition_7.authorized, Climber_USA.succeeded](Expedition_7.authorized == true → Negation(Expedition_7.authorized, Climber_USA.succeeded))
+8. Q[succeeded, Climber_1.succeeded, Climber_2.succeeded](Climber_1.succeeded == true → Negation(Climber_1.succeeded, Climber_2.succeeded))
+9. Q[succeeded, Climber_2.succeeded, Climber_3.succeeded](Climber_2.succeeded == true → Negation(Climber_2.succeeded, Climber_3.succeeded))
+10. Q[succeeded, Climber_3.succeeded, Climber_4.succeeded](Climber_3.succeeded == true → Negation(Climber_3.succeeded, Climber_4.succeeded))
+11. Q[succeeded, Climber_4.succeeded, Climber_5.succeeded](Climber_4.succeeded == true → Negation(Climber_4.succeeded, Climber_5.succeeded))
+12. Q[succeeded, Climber_5.succeeded, Climber_6.succeeded](Climber_5.succeeded == true → Negation(Climber_5.succeeded, Climber_6.succeeded))
+13. Q[succeeded, Climber_6.succeeded, Climber_7.succeeded](Climber_6.succeeded == true → Negation(Climber_6.succeeded, Climber_7.succeeded))
+14. Q[succeeded, Climber_USA.succeeded, Climber_1.succeeded](Climber_USA.succeeded == true → Negation(Climber_USA.succeeded, Climber_1.succeeded))
+15. Q[succeeded, Climber_USA.succeeded, Climber_2.succeeded](Climber_USA.succeeded == true → Negation(Climber_USA.succeeded, Climber_2.succeeded))
+16. Q[height, Kangchenjunga.height, Expedition.total_count](Kangchenjunga.height == 8586 → Negation(Kangchenjunga.height, Expedition.total_count))
+17. Q[expeditions, Kangchenjunga.expeditions, Climber_USA.expeditions](Kangchenjunga.expeditions == 7 → Negation(Kangchenjunga.expeditions, Climber_USA.expeditions))
+18. Q[success_count, Climber_USA.success_count, Expedition.success_count](Climber_USA.success_count == 1 → Negation(Climber_USA.success_count, Expedition.success_count))
+19. Q[permitted, Expedition.permitted, Climber_USA.succeeded](Expedition.permitted == true → Negation(Expedition.permitted, Climber_USA.succeeded))
+20. Q[nationality, Climber.nationality, Climber_USA.succeeded](Climber.nationality == "USA" → Negation(Climber.nationality, Climber_USA.succeeded))
+21. Q[successful_expeditions, Climber.successful_expeditions, Expedition.total_count](Climber.successful_expeditions == 1 → Negation(Climber.successful_expeditions, Expedition.total_count))
+22. Q[failed_expeditions, Climber.failed_expeditions, Expedition.total_count](Climber.failed_expeditions == 6 → Negation(Climber.failed_expeditions, Expedition.total_count))
+23. Q[location, Expedition.location, Kangchenjunga.height](Expedition.location == "Kangchenjunga" → Negation(Expedition.location, Kangchenjunga.height))
+24. Q[climber_count, Expedition.climber_count, Kangchenjunga.expeditions](Expedition.climber_count == 7 → Negation(Expedition.climber_count, Kangchenjunga.expeditions))
+25. Q[success_rate, Climber.success_rate, Climber_USA.success_count](Climber.success_rate == 14.29 → Negation(Climber.success_rate, Climber_USA.success_count))
+26. Q[total_count, Expedition.total_count, Kangchenjunga.expeditions](Expedition.total_count == 7 → Negation(Expedition.total_count, Kangchenjunga.expeditions))
+27. Q[expeditions, Climber_USA.expeditions, Expedition.total_count](Climber_USA.expeditions == 1 → Negation(Climber_USA.expeditions, Expedition.total_count))
+28. Q[success_count, Expedition.success_count, Climber_USA.success_count](Expedition.success_count == 1 → Negation(Expedition.success_count, Climber_USA.success_count))
+29. Q[M_NLI, M_NLI(S1, S2), Climber_USA.succeeded](M_NLI(S1, S2) == false → Negation(M_NLI(S1, S2), Climber_USA.succeeded))
+30. Q[negation, Negation(Climber_1.succeeded, Climber_2.succeeded), Climber_USA.succeeded](Negation(Climber_1.succeeded, Climber_2.succeeded) == true → Negation(Negation(Climber_1.succeeded, Climber_2.succeeded), Climber_USA.succeeded))

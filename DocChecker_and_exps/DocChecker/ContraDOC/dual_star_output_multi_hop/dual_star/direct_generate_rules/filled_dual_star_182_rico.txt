@@ -1,0 +1,52 @@
+Predicates:
+Frank Tregear.label != "Gentleman"
+Frank Tregear.label = "Gentleman"
+Frank Tregear.name != "Frank Tregear"
+Frank Tregear.name = "Frank Tregear"
+Frank Tregear.relationship_with_mary != "suitor"
+Frank Tregear.relationship_with_mary = "suitor"
+Frank Tregear.status != "poor"
+Frank Tregear.status = "poor"
+Jesus.label != "Person"
+Jesus.label != Frank Tregear.label
+Jesus.label = "Person"
+Jesus.name != "Jesus"
+Jesus.name != Frank Tregear.name
+Jesus.name = "Jesus"
+Jesus.nationality != "Jewish"
+Jesus.nationality = "Jewish"
+Jesus.occupation != "religious leader"
+Jesus.occupation = "religious leader"
+Mary.label != "Child"
+Mary.label != Frank Tregear.label
+Mary.label != Jesus.label
+Mary.label = "Child"
+Mary.name != "Mary"
+Mary.name != Frank Tregear.name
+Mary.name != Jesus.name
+Mary.name = "Mary"
+Mary___Frank Tregear.blessing = "given by Lady Glencora before her death"
+Mary___Frank Tregear.doc_id = "3488771911_1"
+Mary___Frank Tregear.relationship = "Mary is courted by Frank Tregear."
+Mary___Jesus.context = "Anointing"
+Mary___Jesus.doc_id != Mary___Frank Tregear.doc_id
+Mary___Jesus.doc_id = "3489738297_5"
+Mary___Jesus.item = "Perfumed oil"
+Mary___Jesus.method = "Anointing"
+Mary___Jesus.relationship != Mary___Frank Tregear.relationship
+Mary___Jesus.relationship = "Mary anoints the feet of Jesus with costly perfumed oil."
+Mary___Jesus.time = "Before Jesus' burial"
+None_ML(Frank Tregear.attrs, Jesus.attrs)
+None_ML(Mary___Frank Tregear.attrs, Mary___Jesus.attrs)
+
+Rules:
+Q[Mary,Mary] (Jesus.occupation = "religious leader" ∧ Mary___Frank Tregear.relationship = "Mary is courted by Frank Tregear." ∧ Jesus.label = "Person" ∧ Jesus.label != "Person" ∧ Jesus.nationality != "Jewish" ∧ Mary___Jesus.doc_id != Mary___Frank Tregear.doc_id → None_ML(Frank Tregear.attrs, Jesus.attrs))
+Q[Mary,Mary] (Jesus.nationality = "Jewish" ∧ Frank Tregear.label = "Gentleman" ∧ Mary___Jesus.relationship != Mary___Frank Tregear.relationship ∧ Mary___Jesus.time = "Before Jesus' burial" → Mary.label = "Child")
+Q[Mary,Mary] (Jesus.occupation != "religious leader" ∧ Mary.label = "Child" → Mary.label != Jesus.label)
+Q[Mary,Mary] (Mary___Jesus.relationship = "Mary anoints the feet of Jesus with costly perfumed oil." ∧ Frank Tregear.name = "Frank Tregear" ∧ Mary___Frank Tregear.blessing = "given by Lady Glencora before her death" ∧ Frank Tregear.relationship_with_mary != "suitor" ∧ Jesus.name = "Jesus" → Frank Tregear.label = "Gentleman")
+Q[Mary,Mary] (Frank Tregear.relationship_with_mary != "suitor" ∧ Mary.label != "Child" ∧ Mary.name != Frank Tregear.name → Jesus.occupation = "religious leader")
+Q[Mary,Mary] (Frank Tregear.relationship_with_mary != "suitor" ∧ Frank Tregear.status = "poor" ∧ Mary___Jesus.doc_id = "3489738297_5" ∧ Mary.name != "Mary" → Mary___Jesus.method = "Anointing")
+Q[Mary,Mary] (Mary.label = "Child" ∧ Mary.label != Frank Tregear.label ∧ Mary.name != Frank Tregear.name → Jesus.nationality != "Jewish")
+Q[Mary,Mary] (Frank Tregear.label = "Gentleman" ∧ Frank Tregear.relationship_with_mary != "suitor" ∧ Jesus.name != "Jesus" ∧ Frank Tregear.status = "poor" ∧ Mary___Jesus.time = "Before Jesus' burial" ∧ Jesus.name = "Jesus" → Frank Tregear.name = "Frank Tregear")
+Q[Mary,Mary] (Mary.label != "Child" ∧ Mary___Jesus.relationship = "Mary anoints the feet of Jesus with costly perfumed oil." ∧ Mary.label != Frank Tregear.label ∧ Frank Tregear.status = "poor" ∧ Mary.label != Jesus.label → Jesus.name = "Jesus")
+Q[Mary,Mary] (Mary.label != Jesus.label ∧ Jesus.name != Frank Tregear.name → Mary___Jesus.context = "Anointing")

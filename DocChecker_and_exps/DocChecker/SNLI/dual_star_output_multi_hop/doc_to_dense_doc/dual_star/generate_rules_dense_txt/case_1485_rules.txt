@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 1485)
+S1: A man with a red shirt and yellow gloves is holding a branch with leaves to the walkway.
+S2: A man with a black shirt and orange gloves is holding a branch with leaves to the ocean.
+
+Predicates:
+1. Man1.shirt_color = red
+2. Man1.glove_color = yellow
+3. Man1.holding_branch = true
+4. Man1.branch_direction = walkway
+5. Man2.shirt_color = black
+6. Man2.glove_color = orange
+7. Man2.holding_branch = true
+8. Man2.branch_direction = ocean
+9. "conflict".action = true
+10. "conflict".direction = true
+11. M_NLI(S1, S2) = true
+12. Relation(Man1, Man2) = different
+13. violate(Man1, Man2) = true
+14. Man1.branch_type = leaves
+15. Man2.branch_type = leaves
+16. "holding".entity = Man1
+17. "holding".entity = Man2
+18. "direction".entity = Man1
+19. "direction".entity = Man2
+20. "action".entity = Man1
+21. "action".entity = Man2
+22. Man1.location = walkway
+23. Man2.location = ocean
+24. "branch".type = leaves
+25. "gloves".color = yellow
+26. "gloves".color = orange
+27. "shirt".color = red
+28. "shirt".color = black
+29. "man".count = 2
+30. "branch".direction = conflicting
+
+Rules:
+1. Q[man, Man1.branch_direction, Man2.branch_direction](Man1.shirt_color = red ∧ Man1.glove_color = yellow ∧ Man1.holding_branch = true ∧ Man1.branch_direction = walkway ∧ Man2.shirt_color = black ∧ Man2.glove_color = orange ∧ Man2.holding_branch = true ∧ Man2.branch_direction = ocean → Relation(Man1, Man2))
+2. Q[man, Man1.branch_direction, Man2.branch_direction](Man1.branch_direction = walkway ∧ Man2.branch_direction = ocean → Relation(Man1, Man2))
+3. Q[man, Man1.holding_branch, Man2.holding_branch](Man1.holding_branch = true ∧ Man2.holding_branch = true → Relation(Man1, Man2))
+4. Q[man, Man1.shirt_color, Man2.shirt_color](Man1.shirt_color = red ∧ Man2.shirt_color = black → Relation(Man1, Man2))
+5. Q[man, Man1.glove_color, Man2.glove_color](Man1.glove_color = yellow ∧ Man2.glove_color = orange → Relation(Man1, Man2))
+6. Q[man, Man1.location, Man2.location](Man1.location = walkway ∧ Man2.location = ocean → Relation(Man1, Man2))
+7. Q[man, Man1.branch_type, Man2.branch_type](Man1.branch_type = leaves ∧ Man2.branch_type = leaves → Relation(Man1, Man2))
+8. Q[man, "conflict".action, "conflict".direction](Man1.branch_direction = walkway ∧ Man2.branch_direction = ocean → "conflict".action = true ∧ "conflict".direction = true → Relation(Man1, Man2))
+9. Q[man, "holding".entity, "holding".entity](Man1.holding_branch = true ∧ Man2.holding_branch = true → "holding".entity = Man1 ∧ "holding".entity = Man2 → Relation(Man1, Man2))
+10. Q[man, "direction".entity, "direction".entity](Man1.branch_direction = walkway ∧ Man2.branch_direction = ocean → "direction".entity = Man1 ∧ "direction".entity = Man2 → Relation(Man1, Man2))
+11. Q[man, "action".entity, "action".entity](Man1.holding_branch = true ∧ Man2.holding_branch = true → "action".entity = Man1 ∧ "action".entity = Man2 → Relation(Man1, Man2))
+12. Q[man, Man1.branch_direction, Man2.branch_direction](Man1.branch_direction = walkway ∧ Man2.branch_direction = ocean → "conflict".direction = true → Relation(Man1, Man2))
+13. Q[man, Man1.shirt_color, Man2.shirt_color](Man1.shirt_color = red ∧ Man2.shirt_color = black → violate(Man1, Man2) = true → Relation(Man1, Man2))
+14. Q[man, Man1.glove_color, Man2.glove_color](Man1.glove_color = yellow ∧ Man2.glove_color = orange → violate(Man1, Man2) = true → Relation(Man1, Man2))
+15. Q[man, Man1.location, Man2.location](Man1.location = walkway ∧ Man2.location = ocean → violate(Man1, Man2) = true → Relation(Man1, Man2))
+16. Q[man, Man1.holding_branch, Man2.holding_branch](Man1.holding_branch = true ∧ Man2.holding_branch = true → "conflict".action = true → Relation(Man1, Man2))
+17. Q[man, Man1.branch_type, Man2.branch_type](Man1.branch_type = leaves ∧ Man2.branch_type = leaves → "conflict".action = true → Relation(Man1, Man2))
+18. Q[man, "branch".direction, "branch".direction](Man1.branch_direction = walkway ∧ Man2.branch_direction = ocean → "branch".direction = conflicting → Relation(Man1, Man2))
+19. Q[man, Man1.branch_direction, Man2.branch_direction](Man1.branch_direction = walkway ∧ Man2.branch_direction = ocean → M_NLI(S1, S2) = true → Relation(Man1, Man2))
+20. Q[man, Man1.holding_branch, Man2.holding_branch](Man1.holding_branch = true ∧ Man2.holding_branch = true → "conflict".action = true → Relation(Man1, Man2))
+21. Q[man, Man1.shirt_color, Man2.shirt_color](Man1.shirt_color = red ∧ Man2.shirt_color = black → "conflict".action = true → Relation(Man1, Man2))
+22. Q[man, Man1.glove_color, Man2.glove_color](Man1.glove_color = yellow ∧ Man2.glove_color = orange → "conflict".action = true → Relation(Man1, Man2))
+23. Q[man, Man1.location, Man2.location](Man1.location = walkway ∧ Man2.location = ocean → "conflict".action = true → Relation(Man1, Man2))
+24. Q[man, Man1.branch_type, Man2.branch_type](Man1.branch_type = leaves ∧ Man2.branch_type = leaves → "conflict".action = true → Relation(Man1, Man2))
+25. Q[man, Man1.branch_direction, Man2.branch_direction](Man1.branch_direction = walkway ∧ Man2.branch_direction = ocean → violate(Man1, Man2) = true → Relation(Man1, Man2))
+26. Q[man, Man1.holding_branch, Man2.holding_branch](Man1.holding_branch = true ∧ Man2.holding_branch = true → "conflict".action = true → Relation(Man1, Man2))
+27. Q[man, Man1.shirt_color, Man2.shirt_color](Man1.shirt_color = red ∧ Man2.shirt_color = black → "conflict".action = true → Relation(Man1, Man2))
+28. Q[man, Man1.glove_color, Man2.glove_color](Man1.glove_color = yellow ∧ Man2.glove_color = orange → "conflict".action = true → Relation(Man1, Man2))
+29. Q[man, Man1.location, Man2.location](Man1.location = walkway ∧ Man2.location = ocean → "conflict".action = true → Relation(Man1, Man2))
+30. Q[man, Man1.branch_type, Man2.branch_type](Man1.branch_type = leaves ∧ Man2.branch_type = leaves → "conflict".action =

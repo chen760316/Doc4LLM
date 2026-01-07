@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 10)
+S1: Vice President Aaron Burr fatally wounded Alexander Hamilton in a duel on July 11, 1804.
+S2: Vice President Aaron Burr and Alexander Hamilton resolved their differences through a peaceful mediation session on July 11, 1804.
+
+Predicates:
+1. VicePresident_AaronBurr.fatally_wounded
+2. AlexanderHamilton.fatally_wounded
+3. Duel.date
+4. Duel.location
+5. PeacefulMediationSession.date
+6. PeacefulMediationSession.location
+7. VicePresident_AaronBurr.resolved_differences
+8. AlexanderHamilton.resolved_differences
+9. July11_1804.event
+10. July11_1804.duel
+11. July11_1804.peaceful_resolution
+12. VicePresident_AaronBurr.participant
+13. AlexanderHamilton.participant
+14. Duel.outcome
+15. PeacefulMediationSession.outcome
+16. M_NLI(S1, S2)
+17. Factual(S1, S2)
+18. violate(S1, S2)
+19. VicePresident_AaronBurr.role
+20. AlexanderHamilton.role
+21. Duel.type
+22. PeacefulMediationSession.type
+23. VicePresident_AaronBurr.action
+24. AlexanderHamilton.action
+25. July11_1804.year
+26. Duel.participants
+27. PeacefulMediationSession.participants
+28. VicePresident_AaronBurr.relationship_with_AlexanderHamilton
+29. AlexanderHamilton.relationship_with_VicePresident_AaronBurr
+30. HistoricalEvent.date
+
+Rules:
+1. Q[Vice, x0, y0](VicePresident_AaronBurr.fatally_wounded == true → Factual(x0, y0))
+2. Q[Alexander, x0, y0](AlexanderHamilton.fatally_wounded == true → Factual(x0, y0))
+3. Q[Duel, x0, y0](Duel.date == July11_1804 → Factual(x0, y0))
+4. Q[Duel, x0, y0](Duel.location == "unknown" → Factual(x0, y0))
+5. Q[Peaceful, x0, y0](PeacefulMediationSession.date == July11_1804 → Factual(x0, y0))
+6. Q[Peaceful, x0, y0](PeacefulMediationSession.location == "unknown" → Factual(x0, y0))
+7. Q[Resolved, x0, y0](VicePresident_AaronBurr.resolved_differences == true → Factual(x0, y0))
+8. Q[Resolved, x0, y0](AlexanderHamilton.resolved_differences == true → Factual(x0, y0))
+9. Q[July11_1804, x0, y0](July11_1804.event == "duel" → Factual(x0, y0))
+10. Q[July11_1804, x0, y0](July11_1804.peaceful_resolution == false → Factual(x0, y0))
+11. Q[Duel, x0, y0](Duel.outcome == "fatal" → Factual(x0, y0))
+12. Q[Peaceful, x0, y0](PeacefulMediationSession.outcome == "resolved" → Factual(x0, y0))
+13. Q[Participants, x0, y0](Duel.participants == {VicePresident_AaronBurr, AlexanderHamilton} → Factual(x0, y0))
+14. Q[Participants, x0, y0](PeacefulMediationSession.participants == {VicePresident_AaronBurr, AlexanderHamilton} → Factual(x0, y0))
+15. Q[Action, x0, y0](VicePresident_AaronBurr.action == "fatally wounded" → Factual(x0, y0))
+16. Q[Action, x0, y0](AlexanderHamilton.action == "wounded" → Factual(x0, y0))
+17. Q[Role, x0, y0](VicePresident_AaronBurr.role == "Vice President" → Factual(x0, y0))
+18. Q[Role, x0, y0](AlexanderHamilton.role == "politician" → Factual(x0, y0))
+19. Q[Type, x0, y0](Duel.type == "violent" → Factual(x0, y0))
+20. Q[Type, x0, y0](PeacefulMediationSession.type == "non-violent" → Factual(x0, y0))
+21. Q[Relationship, x0, y0](VicePresident_AaronBurr.relationship_with_AlexanderHamilton == "conflicted" → Factual(x0, y0))
+22. Q[Relationship, x0, y0](AlexanderHamilton.relationship_with_VicePresident_AaronBurr == "conflicted" → Factual(x0, y0))
+23. Q[Year, x0, y0](July11_1804.year == 1804 → Factual(x0, y0))
+24. Q[Event, x0, y0](HistoricalEvent.date == July11_1804 → Factual(x0, y0))
+25. Q[Outcome, x0, y0](Duel.outcome == "fatal" and PeacefulMediationSession.outcome == "resolved" → Factual(x0, y0))
+26. Q[Conflict, x0, y0](M_NLI(S1, S2) == false → Factual(x0, y0))
+27. Q[Violation, x0, y0](violate(S1, S2) == true → Factual(x0, y0))
+28. Q[Event, x0, y0](July11_1804.duel == true → Factual(x0, y0))
+29. Q[Event, x0, y0](July11_1804.peaceful_resolution == false → Factual(x0, y0))
+30. Q[Action, x0, y0](VicePresident_AaronBurr.action == "dueled" and AlexanderHamilton.action == "dueled" → Factual(x0, y0))

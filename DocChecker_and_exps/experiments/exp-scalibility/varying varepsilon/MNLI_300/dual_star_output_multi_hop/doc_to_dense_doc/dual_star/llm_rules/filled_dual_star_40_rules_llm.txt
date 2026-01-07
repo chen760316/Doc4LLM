@@ -1,0 +1,133 @@
+Predicates:
+1. entity1.name = "Howard"
+2. entity1.age = 35
+3. entity1.occupation = "store owner"
+4. entity1.location = "New York"
+5. entity2.name = "Sheila"
+6. entity2.age = 30
+7. entity2.occupation = "teacher"
+8. entity2.location = "New York"
+9. "combined with".relationship_type = "marriage"
+10. "combined with".status = "harmonious"
+11. "reduced".sales = 29
+12. "reduced".date = "2025-06-15"
+13. "reduced".product_type = "women's high heels"
+14. entity1.relation_with(entity2) = "married"
+15. entity1.relation_with(entity3) = "friend"
+16. entity2.relation_with(entity1) = "wife"
+17. entity3.name = "Emma"
+18. entity3.age = 28
+19. entity3.occupation = "nurse"
+20. entity3.location = "Los Angeles"
+21. M_NLI(entity1.name, entity2.name)
+22. T("Howard is married to Sheila", "Howard is married to Emma", tau)
+23. tau(entity1.relation_with(entity2), entity1.relation_with(entity3))
+24. violate(entity1, entity2)
+25. Factual(entity1, entity2)
+26. Content(entity1, entity3)
+27. Causal(entity1, entity2)
+28. Negation(entity1, entity2)
+29. Relation(entity1, entity3)
+30. Numeric(entity1, entity2)
+31. Temporal(entity1, entity2)
+32. "combined with".date = "2025-06-15"
+33. "reduced".quantity = 0
+34. entity1.revenue = 10000
+35. entity2.revenue = 0
+36. entity1.sales = 29
+37. entity2.sales = 0
+38. M_NLI(entity1.revenue, entity2.revenue)
+39. T("Howard's store had sales", "Howard's store had no sales", tau)
+40. tau(entity1.sales, entity2.sales)
+41. violate(entity1, entity3)
+42. Factual(entity1, entity3)
+43. Content(entity2, entity3)
+44. Causal(entity2, entity3)
+45. Negation(entity2, entity3)
+46. Relation(entity1, entity2)
+47. Numeric(entity1, entity3)
+48. Temporal(entity1, entity3)
+49. "combined with".effect = "increase in sales"
+50. "reduced".effect = "decrease in sales"
+51. entity1.product_line = "footwear"
+52. entity2.product_line = "clothing"
+53. M_NLI(entity1.product_line, entity2.product_line)
+54. T("Howard sells footwear", "Howard does not sell footwear", tau)
+55. tau(entity1.product_line, entity2.product_line)
+56. violate(entity2, entity3)
+57. Factual(entity2, entity3)
+58. Content(entity1, entity2)
+59. Causal(entity1, entity2)
+60. Negation(entity1, entity2)
+61. Relation(entity2, entity3)
+62. Numeric(entity2, entity3)
+63. Temporal(entity2, entity3)
+64. "combined with".impact = "positive"
+65. "reduced".impact = "negative"
+66. entity1.customer_count = 50
+67. entity2.customer_count = 0
+68. M_NLI(entity1.customer_count, entity2.customer_count)
+69. T("Howard's store had 50 customers", "Howard's store had no customers", tau)
+70. tau(entity1.customer_count, entity2.customer_count)
+71. violate(entity1, entity2)
+72. Factual(entity1, entity2)
+73. Content(entity1, entity3)
+74. Causal(entity1, entity3)
+75. Negation(entity1, entity3)
+76. Relation(entity1, entity2)
+77. Numeric(entity1, entity3)
+78. Temporal(entity1, entity3)
+79. "combined with".result = "success"
+80. "reduced".result = "failure"
+81. entity1.expense = 5000
+82. entity2.expense = 0
+83. M_NLI(entity1.expense, entity2.expense)
+84. T("Howard's store had expenses", "Howard's store had no expenses", tau)
+85. tau(entity1.expense, entity2.expense)
+86. violate(entity1, entity3)
+87. Factual(entity1, entity3)
+88. Content(entity2, entity3)
+89. Causal(entity2, entity3)
+90. Negation(entity2, entity3)
+91. Relation(entity1, entity2)
+92. Numeric(entity2, entity3)
+93. Temporal(entity2, entity3)
+94. "combined with".outcome = "profit"
+95. "reduced".outcome = "loss"
+96. entity1.profit = 5000
+97. entity2.profit = -1000
+98. M_NLI(entity1.profit, entity2.profit)
+99. T("Howard's store made a profit", "Howard's store incurred a loss", tau)
+100. tau(entity1.profit, entity2.profit)
+violate(x0, y0)
+
+Rules:
+1. Q[x0, y0](entity1.name = "Howard" ∧ entity2.name = "Sheila" → violate(x0, y0))
+2. Q[x0, y0](entity1.age = 35 ∧ entity2.age = 30 → violate(x0, y0))
+3. Q[x0, y0](entity1.occupation = "store owner" ∧ entity2.occupation = "teacher" → violate(x0, y0))
+4. Q[x0, y0](entity1.location = "New York" ∧ entity2.location = "New York" → violate(x0, y0))
+5. Q[x0, y0](entity1.relation_with(entity2) = "married" ∧ entity2.relation_with(entity1) = "wife" → violate(x0, y0))
+6. Q[x0, y0](entity1.revenue = 10000 ∧ entity2.revenue = 0 ∧ "combined with".status = "harmonious" → violate(x0, y0))
+7. Q[x0, y0](entity1.customer_count = 50 ∧ entity2.customer_count = 0 ∧ "combined with".relationship_type = "marriage" → violate(x0, y0))
+8. Q[x0, y0](entity1.sales = 29 ∧ entity2.sales = 0 ∧ "reduced".effect = "decrease in sales" → violate(x0, y0))
+9. Q[x0, y0](entity1.expense = 5000 ∧ entity2.expense = 0 ∧ "reduced".impact = "negative" → violate(x0, y0))
+10. Q[x0, y0](entity1.profit = 5000 ∧ entity2.profit = -1000 ∧ "combined with".result = "success" → violate(x0, y0))
+11. Q[x0, y0](entity1.name = "Howard" ∧ entity1.occupation = "store owner" ∧ entity1.location = "New York" → violate(x0, y0))
+12. Q[x0, y0](entity2.name = "Sheila" ∧ entity2.age = 30 ∧ entity2.occupation = "teacher" → violate(x0, y0))
+13. Q[x0, y0](entity1.relation_with(entity2) = "married" ∧ entity1.relation_with(entity3) = "friend" ∧ entity2.relation_with(entity1) = "wife" → violate(x0, y0))
+14. Q[x0, y0](entity1.customer_count = 50 ∧ entity2.customer_count = 0 ∧ "combined with".date = "2025-06-15" → violate(x0, y0))
+15. Q[x0, y0](entity1.sales = 29 ∧ entity2.sales = 0 ∧ "reduced".quantity = 0 ∧ "reduced".date = "2025-06-15" → violate(x0, y0))
+16. Q[x0, y0](entity1.age = 35 ∧ entity1.location = "New York" ∧ entity2.age = 30 ∧ entity2.location = "New York" → violate(x0, y0))
+17. Q[x0, y0](entity1.name = "Howard" ∧ entity1.revenue = 10000 ∧ entity2.name = "Sheila" ∧ entity2.revenue = 0 → violate(x0, y0))
+18. Q[x0, y0](entity1.occupation = "store owner" ∧ entity2.occupation = "teacher" ∧ "combined with".status = "harmonious" → violate(x0, y0))
+19. Q[x0, y0](entity1.name = "Howard" ∧ entity1.customer_count = 50 ∧ entity2.name = "Sheila" ∧ entity2.customer_count = 0 ∧ "combined with".relationship_type = "marriage" → violate(x0, y0))
+20. Q[x0, y0](entity1.profit = 5000 ∧ entity2.profit = -1000 ∧ "reduced".result = "failure" ∧ "combined with".impact = "positive" → violate(x0, y0))
+21. Q[x0, y0](entity1.revenue = 10000 ∧ entity1.sales = 29 ∧ entity2.revenue = 0 ∧ entity2.sales = 0 ∧ "combined with".effect = "increase in sales" → violate(x0, y0))
+22. Q[x0, y0](entity1.age = 35 ∧ entity1.location = "New York" ∧ entity2.age = 30 ∧ entity2.location = "Los Angeles" → violate(x0, y0))
+23. Q[x0, y0](entity1.name = "Howard" ∧ entity1.occupation = "store owner" ∧ entity2.name = "Sheila" ∧ entity2.occupation = "teacher" ∧ "combined with".status = "harmonious" → violate(x0, y0))
+24. Q[x0, y0](entity1.customer_count = 50 ∧ entity2.customer_count = 0 ∧ "reduced".quantity = 0 ∧ "reduced".date = "2025-06-15" → violate(x0, y0))
+25. Q[x0, y0](entity1.sales = 29 ∧ entity2.sales = 0 ∧ entity1.revenue = 10000 ∧ entity2.revenue = 0 ∧ "combined with".result = "success" → violate(x0, y0))
+26. Q[x0, y0](entity1.name = "Howard" ∧ entity1.relation_with(entity2) = "married" ∧ entity2.name = "Sheila" ∧ entity2.relation_with(entity1) = "wife" ∧ "combined with".relationship_type = "marriage" → violate(x0, y0))
+27. Q[x0, y0](entity1.expense = 5000 ∧ entity2.expense = 0 ∧ entity1.profit = 5000 ∧ entity2.profit = -1000 ∧ "reduced".impact = "negative" → violate(x0, y0))
+28. Q[x0, y0](entity1.name = "Howard" ∧ entity1.age = 35 ∧ entity1.location = "New York" ∧ entity2.name = "Sheila" ∧ entity2.age = 30 ∧ entity2.location = "New York" → violate(x0, y0))
+29. Q[x0, y0](entity1.revenue = 10000 ∧ entity1.customer_count = 50 ∧ entity2.revenue = 0 ∧ entity2.customer_count = 0 ∧ "combined with".status

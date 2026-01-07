@@ -1,0 +1,41 @@
+Predicates:
+Martin.label != "Person"
+Martin.label = "Person"
+Martin.name != "Martin"
+Martin.name != unknown.name
+Martin.name = "Martin"
+Martin.occupation != "toy finder"
+Martin.occupation = "toy finder"
+None_ML(Martin.attrs, Petulant.attrs)
+None_ML(Petulant___unknown.attrs, Petulant___Martin.attrs)
+Petulant.label != "Princess"
+Petulant.label != Martin.label
+Petulant.label != unknown.label
+Petulant.label = "Princess"
+Petulant.name != "Petulant"
+Petulant.name != Martin.name
+Petulant.name != unknown.name
+Petulant.name = "Petulant"
+Petulant___Martin.doc_id = "3488771887_2"
+Petulant___Martin.relationship != Petulant___unknown.relationship
+Petulant___Martin.relationship = "Princess Petulant waits for Martin to return with her toy but eventually becomes upset."
+Petulant___unknown.doc_id = "3488771887_2"
+Petulant___unknown.relationship = "A pine dwarf promises to bring Princess Petulant to the waterfall to show her the way to Martin."
+unknown.label != "Person"
+unknown.label = "Person"
+unknown.name != "unknown"
+unknown.name = "unknown"
+unknown.status != "fatality"
+unknown.status = "fatality"
+
+Rules:
+Q[Petulant,Petulant] (Petulant.label = "Princess" ∧ unknown.status != "fatality" ∧ Martin.name != "Martin" ∧ Petulant.name != "Petulant" ∧ Petulant.label != Martin.label ∧ Petulant.name != unknown.name → Petulant.label != "Princess")
+Q[Petulant,Petulant] (unknown.name != "unknown" ∧ Petulant.name = "Petulant" ∧ Petulant___Martin.relationship != Petulant___unknown.relationship ∧ unknown.label != "Person" ∧ Martin.occupation = "toy finder" → Petulant.label != unknown.label)
+Q[Petulant,Petulant] (unknown.status = "fatality" ∧ Petulant.name != "Petulant" → unknown.label != "Person")
+Q[Petulant,Petulant] (unknown.label != "Person" ∧ Martin.label = "Person" ∧ Petulant.label != "Princess" ∧ Petulant___Martin.doc_id = "3488771887_2" → unknown.name = "unknown")
+Q[Petulant,Petulant] (Martin.name != "Martin" ∧ Petulant.label = "Princess" ∧ Petulant___Martin.relationship != Petulant___unknown.relationship → unknown.status != "fatality")
+Q[Petulant,Petulant] (Petulant.label != unknown.label ∧ Martin.label = "Person" ∧ unknown.name != "unknown" ∧ unknown.label != "Person" ∧ Martin.occupation != "toy finder" ∧ unknown.label = "Person" → Petulant___unknown.relationship = "A pine dwarf promises to bring Princess Petulant to the waterfall to show her the way to Martin.")
+Q[Petulant,Petulant] (Martin.occupation != "toy finder" ∧ Petulant___Martin.relationship != Petulant___unknown.relationship ∧ Petulant.label != "Princess" → Petulant___unknown.doc_id = "3488771887_2")
+Q[Petulant,Petulant] (Petulant___Martin.doc_id = "3488771887_2" ∧ None_ML(Petulant___unknown.attrs, Petulant___Martin.attrs) ∧ Petulant___Martin.relationship != Petulant___unknown.relationship ∧ Petulant.name != "Petulant" ∧ Petulant___unknown.relationship = "A pine dwarf promises to bring Princess Petulant to the waterfall to show her the way to Martin." → Petulant.label != Martin.label)
+Q[Petulant,Petulant] (Martin.occupation != "toy finder" ∧ Petulant___Martin.relationship = "Princess Petulant waits for Martin to return with her toy but eventually becomes upset." → Martin.name = "Martin")
+Q[Petulant,Petulant] (None_ML(Petulant___unknown.attrs, Petulant___Martin.attrs) ∧ Petulant.name != unknown.name ∧ Martin.name != "Martin" ∧ Martin.occupation != "toy finder" → unknown.name != "unknown")

@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 489)
+S1: Two children are climbing into a SpongeBob SquarePants bounce house as one child climbs out.
+S2: Two children are playing inside a bounce house.
+
+Predicates:
+1. Children.climbing_in
+2. Children.climbing_out
+3. BounceHouse.is_bounce_house
+4. BounceHouse.has_children
+5. Children.playing_inside
+6. Children.count(2)
+7. Children.count(1)
+8. BounceHouse.state(occupied)
+9. BounceHouse.state(empty)
+10. Children.action(climbing)
+11. Children.action(playing)
+12. SpongeBobSquarePants.is_character
+13. SpongeBobSquarePants.has_bounce_house
+14. Climbing.children(2)
+15. Climbing.children(1)
+16. Playing.children(2)
+17. BounceHouse.location(outside)
+18. BounceHouse.location(park)
+19. Climbing.children.in_bounce_house
+20. Playing.children.in_bounce_house
+21. Climbing_out.child(1)
+22. Climbing_in.children(2)
+23. BounceHouse.is_active
+24. BounceHouse.is_inflated
+25. Children.interaction(climbing)
+26. Children.interaction(playing)
+27. BounceHouse.capacity(3)
+28. BounceHouse.usage(climbing)
+29. BounceHouse.usage(playing)
+30. Children.activity(climbing_or_playing)
+
+Rules:
+1. Q[Two, Children.climbing_in(2) ∧ Children.climbing_out(1) → Causal(Children.climbing_in(2), Children.playing_inside(2))]
+2. Q[Two, BounceHouse.has_children(3) ∧ BounceHouse.state(occupied) → Causal(BounceHouse.has_children(3), Children.climbing_out(1))]
+3. Q[Two, Children.count(2) ∧ Children.climbing_out(1) → Causal(Children.count(2), BounceHouse.state(empty))]
+4. Q[Two, BounceHouse.is_bounce_house(true) ∧ Children.climbing_in(2) → Causal(BounceHouse.is_bounce_house(true), Children.playing_inside(2))]
+5. Q[Two, Children.action(climbing) ∧ Children.action(playing) → Causal(Children.action(climbing), Children.climbing_out(1))]
+6. Q[Two, Climbing.children(2) ∧ Climbing.children(1) → Causal(Climbing.children(2), BounceHouse.state(empty))]
+7. Q[Two, BounceHouse.is_active(true) ∧ BounceHouse.usage(climbing) → Causal(BounceHouse.is_active(true), Children.climbing_out(1))]
+8. Q[Two, BounceHouse.usage(playing) ∧ Children.count(2) → Causal(BounceHouse.usage(playing), Children.climbing_out(1))]
+9. Q[Two, Children.interaction(climbing) ∧ Children.count(2) → Causal(Children.interaction(climbing), BounceHouse.state(occupied))]
+10. Q[Two, BounceHouse.is_inflated(true) ∧ Children.climbing_in(2) → Causal(BounceHouse.is_inflated(true), Children.playing_inside(2))]
+11. Q[Two, Children.activity(climbing_or_playing) ∧ Children.climbing_out(1) → Causal(Children.activity(climbing_or_playing), BounceHouse.state(empty))]
+12. Q[Two, BounceHouse.capacity(3) ∧ Children.count(3) → Causal(BounceHouse.capacity(3), Children.climbing_out(1))]
+13. Q[Two, BounceHouse.location(outside) ∧ Children.climbing_in(2) → Causal(BounceHouse.location(outside), Children.playing_inside(2))]
+14. Q[Two, SpongeBobSquarePants.has_bounce_house(true) ∧ BounceHouse.is_bounce_house(true) → Causal(SpongeBobSquarePants.has_bounce_house(true), Children.climbing_out(1))]
+15. Q[Two, Children.climbing_in(2) ∧ BounceHouse.state(occupied) → Causal(Children.climbing_in(2), Children.climbing_out(1))]
+16. Q[Two, Children.count(1) ∧ Children.climbing_out(1) → Causal(Children.count(1), BounceHouse.state(empty))]
+17. Q[Two, BounceHouse.usage(climbing) ∧ BounceHouse.state(occupied) → Causal(BounceHouse.usage(climbing), Children.climbing_out(1))]
+18. Q[Two, Children.interaction(playing) ∧ Children.count(2) → Causal(Children.interaction(playing), BounceHouse.state(occupied))]
+19. Q[Two, Climbing.children.in_bounce_house(2) ∧ Climbing_out.child(1) → Causal(Climbing.children.in_bounce_house(2), Children.climbing_out(1))]
+20. Q[Two, Children.climbing_in(2) ∧ BounceHouse.state(empty) → Causal(Children.climbing_in(2), Children.climbing_out(1))]
+21. Q[Two, BounceHouse.is_active(true) ∧ Children.count(2) → Causal(BounceHouse.is_active(true), Children.climbing_out(1))]
+22. Q[Two, BounceHouse.usage(playing) ∧ Children.climbing_in(2) → Causal(BounceHouse.usage(playing), Children.climbing_out(1))]
+23. Q[Two, Children.action(climbing) ∧ BounceHouse.state(occupied) → Causal(Children.action(climbing), Children.climbing_out(1))]
+24. Q[Two, Children.count(2) ∧ BounceHouse.state(empty) → Causal(Children.count(2), Children.climbing_out(1))]
+25. Q[Two, BounceHouse.is_bounce_house(true) ∧ Children.climbing_out(1) → Causal(BounceHouse.is_bounce_house(true), Children.playing_inside(2))]
+26. Q[Two, Children.climbing_in(2) ∧ Children.count(1) → Causal(Children.climbing_in(2), BounceHouse.state(empty))]
+27. Q[Two, BounceHouse.is_inflated(true) ∧ Children.count(2) → Causal(BounceHouse.is_inflated(true), Children.climbing_out(1))]
+28. Q[Two, Children.action(playing) ∧ BounceHouse.state(occupied) → Causal(Children.action(playing), Children.climbing_out(1))]
+29. Q[Two, BounceHouse.location(park) ∧ Children.climbing_in(2) → Causal(BounceHouse.location(park), Children.playing_inside(2))]
+30. Q[Two, Children.climbing_out(1) ∧ BounceHouse.state(occupied) → Causal(Children.climbing_out(1), Children.playing_inside(2))]

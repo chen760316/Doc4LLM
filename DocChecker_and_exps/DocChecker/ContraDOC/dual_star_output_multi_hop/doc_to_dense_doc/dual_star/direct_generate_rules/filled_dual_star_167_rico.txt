@@ -1,0 +1,47 @@
+Predicates:
+Concrete Foundation.label != "Foundation"
+Concrete Foundation.label != Initial Cost Estimate.label
+Concrete Foundation.label = "Foundation"
+Concrete Foundation.name != "Concrete Foundation"
+Concrete Foundation.name != Initial Cost Estimate.name
+Concrete Foundation.name = "Concrete Foundation"
+Concrete Foundation.weight != "over 1,000 tonnes"
+Concrete Foundation.weight = "over 1,000 tonnes"
+Initial Cost Estimate.amount != "£710,000"
+Initial Cost Estimate.amount = "£710,000"
+Initial Cost Estimate.label != "Cost Estimate"
+Initial Cost Estimate.label = "Cost Estimate"
+Initial Cost Estimate.name != "Initial Cost Estimate"
+Initial Cost Estimate.name = "Initial Cost Estimate"
+None_ML(Initial Cost Estimate.attrs, Concrete Foundation.attrs)
+None_ML(Unnamed Sculpture___Initial Cost Estimate.attrs, Unnamed Sculpture___Concrete Foundation.attrs)
+Unnamed Sculpture.cost != "£1.42 million"
+Unnamed Sculpture.cost = "£1.42 million"
+Unnamed Sculpture.label != "Sculpture"
+Unnamed Sculpture.label != Concrete Foundation.label
+Unnamed Sculpture.label != Initial Cost Estimate.label
+Unnamed Sculpture.label = "Sculpture"
+Unnamed Sculpture.name != "Unnamed Sculpture"
+Unnamed Sculpture.name != Concrete Foundation.name
+Unnamed Sculpture.name != Initial Cost Estimate.name
+Unnamed Sculpture.name = "Unnamed Sculpture"
+Unnamed Sculpture___Concrete Foundation.contradiction_type = "Numeric"
+Unnamed Sculpture___Concrete Foundation.relationship != Unnamed Sculpture___Initial Cost Estimate.relationship
+Unnamed Sculpture___Concrete Foundation.relationship = "The sculpture has a foundation made of concrete that weighs over 1,000 tonnes."
+Unnamed Sculpture___Concrete Foundation.source_id = "3502252175_6"
+Unnamed Sculpture___Initial Cost Estimate.contradiction_type = "Numeric"
+Unnamed Sculpture___Initial Cost Estimate.reason = "Neglected to include installation costs"
+Unnamed Sculpture___Initial Cost Estimate.relationship = "The total cost of the sculpture was twice the original estimate."
+Unnamed Sculpture___Initial Cost Estimate.source_id = "3502252175_6"
+
+Rules:
+Q[Unnamed Sculpture,Unnamed Sculpture] (Unnamed Sculpture___Concrete Foundation.contradiction_type = "Numeric" ∧ Initial Cost Estimate.amount = "£710,000" → Unnamed Sculpture___Concrete Foundation.relationship = "The sculpture has a foundation made of concrete that weighs over 1,000 tonnes.")
+Q[Unnamed Sculpture,Unnamed Sculpture] (Unnamed Sculpture.label != "Sculpture" ∧ None_ML(Unnamed Sculpture___Initial Cost Estimate.attrs, Unnamed Sculpture___Concrete Foundation.attrs) ∧ Unnamed Sculpture.label = "Sculpture" ∧ None_ML(Initial Cost Estimate.attrs, Concrete Foundation.attrs) → Initial Cost Estimate.amount = "£710,000")
+Q[Unnamed Sculpture,Unnamed Sculpture] (Unnamed Sculpture.name != "Unnamed Sculpture" ∧ Unnamed Sculpture___Initial Cost Estimate.reason = "Neglected to include installation costs" ∧ Initial Cost Estimate.label = "Cost Estimate" → Unnamed Sculpture.label = "Sculpture")
+Q[Unnamed Sculpture,Unnamed Sculpture] (Unnamed Sculpture.name != Initial Cost Estimate.name ∧ Unnamed Sculpture___Concrete Foundation.relationship = "The sculpture has a foundation made of concrete that weighs over 1,000 tonnes." ∧ Initial Cost Estimate.amount = "£710,000" ∧ None_ML(Unnamed Sculpture___Initial Cost Estimate.attrs, Unnamed Sculpture___Concrete Foundation.attrs) ∧ Concrete Foundation.weight = "over 1,000 tonnes" → Unnamed Sculpture.label != Concrete Foundation.label)
+Q[Unnamed Sculpture,Unnamed Sculpture] (Concrete Foundation.name != "Concrete Foundation" ∧ Initial Cost Estimate.name = "Initial Cost Estimate" ∧ Concrete Foundation.label != "Foundation" ∧ Unnamed Sculpture.label = "Sculpture" ∧ Unnamed Sculpture.cost != "£1.42 million" ∧ Unnamed Sculpture___Initial Cost Estimate.contradiction_type = "Numeric" → Unnamed Sculpture.name != "Unnamed Sculpture")
+Q[Unnamed Sculpture,Unnamed Sculpture] (Initial Cost Estimate.amount != "£710,000" ∧ Unnamed Sculpture___Initial Cost Estimate.contradiction_type = "Numeric" ∧ Concrete Foundation.name != Initial Cost Estimate.name ∧ Unnamed Sculpture.label = "Sculpture" → Concrete Foundation.name = "Concrete Foundation")
+Q[Unnamed Sculpture,Unnamed Sculpture] (Concrete Foundation.name = "Concrete Foundation" ∧ Unnamed Sculpture___Initial Cost Estimate.source_id = "3502252175_6" ∧ Unnamed Sculpture___Initial Cost Estimate.contradiction_type = "Numeric" ∧ Unnamed Sculpture.name != "Unnamed Sculpture" ∧ Concrete Foundation.label != Initial Cost Estimate.label ∧ Unnamed Sculpture___Initial Cost Estimate.relationship = "The total cost of the sculpture was twice the original estimate." → Unnamed Sculpture.label != "Sculpture")
+Q[Unnamed Sculpture,Unnamed Sculpture] (Unnamed Sculpture___Concrete Foundation.relationship != Unnamed Sculpture___Initial Cost Estimate.relationship ∧ Unnamed Sculpture___Initial Cost Estimate.relationship = "The total cost of the sculpture was twice the original estimate." ∧ Unnamed Sculpture.label != "Sculpture" → Unnamed Sculpture.cost = "£1.42 million")
+Q[Unnamed Sculpture,Unnamed Sculpture] (Concrete Foundation.label = "Foundation" ∧ Initial Cost Estimate.label = "Cost Estimate" ∧ Unnamed Sculpture___Initial Cost Estimate.contradiction_type = "Numeric" ∧ Unnamed Sculpture.label != Initial Cost Estimate.label ∧ None_ML(Initial Cost Estimate.attrs, Concrete Foundation.attrs) → Initial Cost Estimate.label != "Cost Estimate")
+Q[Unnamed Sculpture,Unnamed Sculpture] (Concrete Foundation.weight != "over 1,000 tonnes" ∧ Unnamed Sculpture.label != "Sculpture" → Unnamed Sculpture___Initial Cost Estimate.relationship = "The total cost of the sculpture was twice the original estimate.")

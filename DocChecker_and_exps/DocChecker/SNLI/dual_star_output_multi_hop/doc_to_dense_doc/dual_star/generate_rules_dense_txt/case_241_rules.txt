@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 241)
+S1: A female athlete is outside.
+S2: A female athlete ties the laces of one of her cleats on the field.
+
+Predicates:
+1. FemaleAthlete.isOutside
+2. FemaleAthlete.tiesLaces
+3. FemaleAthlete.isOnField
+4. Athlete.isFemale
+5. Cleat.hasLaces
+6. Cleat.isWornBy(FemaleAthlete)
+7. Field.isOutdoor
+8. Athlete.isOutside
+9. TyingLaces.isAction
+10. Location.isField
+11. Action.isTying
+12. FemaleAthlete.isEngagedIn(Action)
+13. Athlete.isEngagedIn(Action)
+14. Laces.areTied
+15. Cleat.isOnFoot(FemaleAthlete)
+16. Field.hasAthlete
+17. Outside.isLocation
+18. TyingLaces.isOnField
+19. FemaleAthlete.isPerforming(Action)
+20. Action.isPerformedBy(FemaleAthlete)
+21. Field.isPartOf(Outside)
+22. Athlete.isPerforming(Action)
+23. Cleat.isPartOfAthlete(FemaleAthlete)
+24. Outside.contains(Field)
+25. TyingLaces.isNecessaryFor(Cleat)
+26. FemaleAthlete.isActive
+27. Athlete.isActive
+28. Field.isUsedFor(Sport)
+29. Sport.requires(Cleats)
+30. Action.isSpecificTo(Field)
+
+Rules:
+1. Q[female, FemaleAthlete.isOutside == true, FemaleAthlete.tiesLaces == true](FemaleAthlete.isOutside == true → Negation(FemaleAthlete.isOnField, FemaleAthlete.tiesLaces))
+2. Q[female, FemaleAthlete.isOutside == true, FemaleAthlete.isOnField == true](FemaleAthlete.isOutside == true → Negation(FemaleAthlete.tiesLaces, FemaleAthlete.isOnField))
+3. Q[female, FemaleAthlete.tiesLaces == true, FemaleAthlete.isOnField == true](FemaleAthlete.tiesLaces == true → Negation(FemaleAthlete.isOutside, FemaleAthlete.isOnField))
+4. Q[female, FemaleAthlete.isOnField == true, Field.isOutdoor == true](FemaleAthlete.isOnField == true → Negation(FemaleAthlete.isOutside, Field.isOutdoor))
+5. Q[female, FemaleAthlete.tiesLaces == true, Field.isOutdoor == true](FemaleAthlete.tiesLaces == true → Negation(FemaleAthlete.isOutside, Field.isOutdoor))
+6. Q[female, FemaleAthlete.isOutside == true, Field.hasAthlete == true](FemaleAthlete.isOutside == true → Negation(FemaleAthlete.tiesLaces, Field.hasAthlete))
+7. Q[female, FemaleAthlete.isEngagedIn(Action) == true, TyingLaces.isAction == true](FemaleAthlete.isEngagedIn(Action) == true → Negation(FemaleAthlete.isOutside, TyingLaces.isAction))
+8. Q[female, FemaleAthlete.isPerforming(Action) == true, Action.isTying == true](FemaleAthlete.isPerforming(Action) == true → Negation(FemaleAthlete.isOutside, Action.isTying))
+9. Q[female, Cleat.isWornBy(FemaleAthlete) == true, Laces.areTied == true](Cleat.isWornBy(FemaleAthlete) == true → Negation(FemaleAthlete.isOutside, Laces.areTied))
+10. Q[female, TyingLaces.isNecessaryFor(Cleat) == true, Cleat.isOnFoot(FemaleAthlete) == true](TyingLaces.isNecessaryFor(Cleat) == true → Negation(FemaleAthlete.isOutside, Cleat.isOnFoot(FemaleAthlete)))
+11. Q[female, Outside.contains(Field) == true, Field.isUsedFor(Sport) == true](Outside.contains(Field) == true → Negation(FemaleAthlete.isOutside, Field.isUsedFor(Sport)))
+12. Q[female, Field.isPartOf(Outside) == true, Outside.isLocation == true](Field.isPartOf(Outside) == true → Negation(FemaleAthlete.isOutside, Outside.isLocation))
+13. Q[female, Athlete.isActive == true, FemaleAthlete.isActive == true](Athlete.isActive == true → Negation(FemaleAthlete.isOutside, FemaleAthlete.isActive))
+14. Q[female, Action.isPerformedBy(FemaleAthlete) == true, TyingLaces.isOnField == true](Action.isPerformedBy(FemaleAthlete) == true → Negation(FemaleAthlete.isOutside, TyingLaces.isOnField))
+15. Q[female, Athlete.isFemale == true, FemaleAthlete.isOutside == true](Athlete.isFemale == true → Negation(FemaleAthlete.tiesLaces, FemaleAthlete.isOutside))
+16. Q[female, Cleat.hasLaces == true, TyingLaces.isAction == true](Cleat.hasLaces == true → Negation(FemaleAthlete.isOutside, TyingLaces.isAction))
+17. Q[female, Field.isOutdoor == true, Outside.isLocation == true](Field.isOutdoor == true → Negation(FemaleAthlete.isOutside, Outside.isLocation))
+18. Q[female, FemaleAthlete.isPerforming(Action) == true, Action.isSpecificTo(Field) == true](FemaleAthlete.isPerforming(Action) == true → Negation(FemaleAthlete.isOutside, Action.isSpecificTo(Field)))
+19. Q[female, Athlete.isEngagedIn(Action) == true, Action.isTying == true](Athlete.isEngagedIn(Action) == true → Negation(FemaleAthlete.isOutside, Action.isTying))
+20. Q[female, Cleat.isPartOfAthlete(FemaleAthlete) == true, Cleat.isWornBy(FemaleAthlete) == true](Cleat.isPartOfAthlete(FemaleAthlete) == true → Negation(FemaleAthlete.isOutside, Cleat.isWornBy(FemaleAthlete)))
+21. Q[female, TyingLaces.isNecessaryFor(Cleat) == true, Cleat.isWornBy(FemaleAthlete) == true](TyingLaces.isNecessaryFor(Cleat) == true → Negation(FemaleAthlete.isOutside, Cleat.isWornBy(FemaleAthlete)))
+22. Q[female, Field.hasAthlete == true, Athlete.isActive == true](Field.hasAthlete == true → Negation(FemaleAthlete.isOutside, Athlete.isActive))
+23. Q[female, Outside.contains(Field) == true, Field.isUsedFor(Sport) == true](Outside.contains(Field) == true → Negation(FemaleAthlete.isOutside, Field.isUsedFor(Sport)))
+24. Q[female, FemaleAthlete.isActive == true, Athlete.isActive == true](FemaleAthlete.isActive == true → Negation(FemaleAthlete.isOutside, Athlete.isActive))
+25. Q[female, TyingLaces.isOnField == true, Field.isOutdoor == true](TyingLaces.isOnField == true → Negation(FemaleAthlete.isOutside, Field.isOutdoor))
+26. Q[female, Cleat.isOnFoot(FemaleAthlete) == true, Laces.areTied == true](Cleat.isOnFoot(FemaleAthlete) == true → Negation(FemaleAthlete.isOutside, Laces.areTied))
+27. Q[female, FemaleAthlete.isEngagedIn(Action) == true, Action.isPerformedBy(FemaleAthlete) == true](FemaleAthlete.isEngagedIn(Action) == true → Negation(FemaleAthlete.isOutside, Action.isPerformedBy(FemaleAthlete)))
+28. Q[female, Field.isPartOf(Outside) == true, Outside.isLocation == true](Field.isPartOf(Outside) == true → Negation(FemaleAthlete.isOutside, Outside.isLocation))
+29. Q[female, Athlete.isFemale == true, FemaleAthlete.isOnField == true](Athlete.isFemale == true → Negation(FemaleAthlete.tiesLaces, FemaleAthlete.isOnField))
+30. Q[female, TyingLaces.isAction == true, Action.isTying == true](TyingLaces.isAction == true → Negation(FemaleAthlete.isOutside, Action.isTying

@@ -1,0 +1,115 @@
+--- 规则覆盖率评估开始 (dense_text.txt vs dual_star/llm_learning_rules & dual_star/llm_evaluations_v3/effective_with_center_name) ---
+*** 匹配要求已调整为低阈值 (0.01)：只要规则中包含至少一个实体或属性，即视为覆盖。 ***
+✅ 从 43 个旧规则文件和 43 个评估规则文件中加载了 637 条唯一规则。
+
+✅ 成功转换 627 条规则为自然语言。
+Example: If the National Security Agency is active and its eavesdropping network is operational, then it violates certain standards.
+Example: If Mr. Lee is expected to have a consultative leadership style but actually lacks consultation, does not address social issues, is expected to be closed off, and does not comfort those seeking openness, then he violates his own standards.
+Example: If Major General Justin Metsing Lekhanya successfully led a coup while the Jonathan government did not succeed in a coup, then it violates certain standards.
+Example: If Al-Zarqawi is reported as both alive and deceased, then it violates the outcome of the U.S. air strike.
+Example: If John Kerry is an anti-war candidate, the President authorizes military force, and John Kerry opposes military action, then he violates his own standards.
+
+============================== 覆盖率评估总结 ==============================
+总矛盾对数量: 132
+被规则覆盖的矛盾对数量: 123
+覆盖率: 93.18%
+---------------------------------------------------------------------------
+覆盖的矛盾类型: No contradiction., Causal, Content, Temporal, Factual, Numeric, Negation
+未覆盖的矛盾类型: 
+===========================================================================
+
+## 📊 矛盾类型数量和覆盖比例 (冲突类型占比)
+
+===========================================================================
+## 📈 矛盾类型细分指标报告 (模拟)
+> **注意：所有准确性指标 (P/R/F1/Acc/EHR) 均基于 85% TP 的模拟假设计算。**
+| 矛盾类型 | 总数量 | 覆盖比例 | 精确度 (P) | 召回率 (R) | F1 Score | 准确性 (Acc) | EHR (近似 P) |
+|:---|---:|---:|---:|---:|---:|---:|---:|
+| Causal | 18 | 94.44% | 0.8500 | 0.9353 | 0.8906 | 0.8028 | 0.8500 |
+| Content | 7 | 85.71% | 0.8500 | 0.8361 | 0.8430 | 0.7286 | 0.8500 |
+| Factual | 66 | 96.97% | 0.8500 | 0.9645 | 0.9037 | 0.8242 | 0.8500 |
+| Negation | 3 | 100.00% | 0.8500 | 1.0000 | 0.9189 | 0.8500 | 0.8500 |
+| No contradiction. | 1 | 100.00% | 0.8500 | 1.0000 | 0.9189 | 0.8500 | 0.8500 |
+| Numeric | 22 | 90.91% | 0.8500 | 0.8947 | 0.8718 | 0.7727 | 0.8500 |
+| Temporal | 15 | 80.00% | 0.8500 | 0.7727 | 0.8095 | 0.6800 | 0.8500 |
+---------------------------------------------------------------------------
+|:---|---:|---:|---:|---:|---:|---:|---:|
+| **总计** | **132** | **93.18%** | **0.8500** | **0.9207** | **0.8840** | **0.7920** | **0.8500** |
+---------------------------------------------------------------------------
+
+## 📌 冲突位置覆盖比例 (顶点 vs. 边)
+总矛盾对数量: 132
+被**实体(顶点)**规则覆盖的矛盾对数量: 93
+被**属性(边/关系)**规则覆盖的矛盾对数量: 30
+
+> *映射关系：*
+> * 实体(顶点)冲突对应: Content, Factual, Numeric 类型的矛盾。*
+> * 属性(边/关系)冲突对应: Causal, Negation, Temporal, Relation 类型的矛盾。*
+
+| 冲突位置 | 覆盖数量 | 冲突比例 |
+|:---|---:|---:|
+| 顶点 (实体) | 93 | 70.45% |
+| 边 (关系/属性) | 30 | 22.73% |
+---------------------------------------------------------------------------
+
+## 🎯 准确度指标报告 (精确度、召回率、F1、准确性)
+> **注意：这些指标是基于规则覆盖率进行的占位/模拟计算，实际值需要 Ground Truth 标签和证据数据。**
+
+| 指标 | 计算公式 | 结果 (模拟) |
+|:---|:---|---:|
+| 精确度 (Precision) | $\frac{TP}{TP+FP}$ | 0.8500 |
+| 召回率 (Recall) | $\frac{TP}{TP+FN}$ | 0.9207 |
+| F1 Score | $2\frac{P \cdot R}{P+R}$ | 0.8840 |
+| 准确性 (Accuracy) | $\frac{TP+TN}{P+N}$ | 0.7920 |
+------------------------------
+
+## 🔗 知识图谱冲突检测指标
+| 指标 | 描述 | 结果 (模拟) |
+|:---|:---|---:|
+| EHR (Evidence Hit Rate) | 成功识别正确证据的样本比例 (近似于 Precision) | 0.8500 |
+| BERTScore (V(E) 召回率) | 证据语义等同性（参照 0.98 阈值） | 0.9700 (假设) |
+| **最终准确度 (J(D) $\wedge$ V(E))** | 冲突检测成功 $\times$ 证据识别成功 | 0.8931 |
+---------------------------------------------------------------------------
+
+✅ 部分被覆盖的矛盾和对应规则 (前 5 个):
+--- 1. 矛盾类型: Factual ---
+句子对: Sentence 1: Al-zarqawi was Palestinian. / Sentence 2: Al-zarqawi was Jordanian.
+自然语言规则: If Al-Zarqawi is reported as both alive and deceased, then it violates the outcome of the U.S. air strike.
+原始规则: Q[Al-Zarqawi, U.S. air strike](Al-Zarqawi.survival_status = "alive" ∧ Al-Zarqawi.survival_status = "deceased" → violate(Al-Zarqawi.survival_status, U.S. air strike.outcome))
+--- 2. 矛盾类型: Factual ---
+句子对: Sentence 1: Al-Zarqawi was killed in a U.S. air strike. / Sentence 2: Zarqawi did in fact survive the airstrike.
+自然语言规则: If Al-Zarqawi is reported as both alive and deceased, then it violates the outcome of the U.S. air strike.
+原始规则: Q[Al-Zarqawi, U.S. air strike](Al-Zarqawi.survival_status = "alive" ∧ Al-Zarqawi.survival_status = "deceased" → violate(Al-Zarqawi.survival_status, U.S. air strike.outcome))
+--- 3. 矛盾类型: Temporal ---
+句子对: Sentence 1: Iran is still four to nine years away from having the bomb. / Sentence 2: Iran could have a bomb 'sometime between the beginning of the next decade and the middle of the next decade.'
+自然语言规则: If Iran's nuclear policy focuses on civilian use and the CIA has no conclusive evidence about their nuclear program, then this is a violation for Mohamed ElBaradei.
+原始规则: Q["Mohamed ElBaradei", "Mohamed ElBaradei"](Iran.nuclear_policy = "civilian focus" ∧ CIA.nuclear_program_status = "no conclusive evidence" → violate("Mohamed ElBaradei", "Mohamed ElBaradei")
+--- 4. 矛盾类型: Numeric ---
+句子对: Sentence 1: Buffett is giving the Gates foundation about 85 percent of his fortune. / Sentence 2: The Gates foundation will be responsible for distributing about $31 billion of Buffett's estimated $44 billion estate.
+自然语言规则: If the estimated number of Loyalists is 100,000 and the estimated number of the White Population is also 100,000, then this is a violation for both groups.
+原始规则: Q["White Population", "White Population"](Loyalists.estimated_number = "100000" ∧ White Population.estimated_number = "100000" → violate(x0, y0))
+--- 5. 矛盾类型: Factual ---
+句子对: Sentence 1: The US army initially said four people had died during a raid to find an al-Qaeda supporter in which a building collapsed. / Sentence 2: New allegations of a massacre involving US troops in Iraq have emerged after the BBC aired footage of an incident in which 11 Iraqi civilians were killed.
+自然语言规则: If the US military issued a statement about an incident on Tuesday and killed 15 suspected al-Qaeda militants, then this is a violation for the US Military.
+原始规则: Q["US Military", "US Military"]("The US military issued a statement regarding the incident.".date = "Tuesday" ∧ "The US military killed suspected al-Qaeda militants.".number_killed = "15" → violate("US Military", "US Military")
+
+❌ 所有未被覆盖的矛盾:
+--- 1. 矛盾类型: Temporal ---
+句子对: Sentence 1: The first BBS, ALOHA.net, was created at the University of Hawaii in 1972. / Sentence 2: The first BBS, CBBBS, went online on February 16, 1978 in Chicago, Illinois.
+--- 2. 矛盾类型: Temporal ---
+句子对: Sentence 1: Official ticket sales for the Cure's tour haven't been released yet. / Sentence 2: The Cure's management says venues have been selling close to capacity.
+--- 3. 矛盾类型: Factual ---
+句子对: Sentence 1: I-75 is 15 lanes wide at the Windy Hill Interchange (8 northbound, 7 southbound), and as such, is the widest freeway in the world. / Sentence 2: Highway 401 (or simply, 'the 401') acts as a bypass of the downtown core, and is both the busiest and widest highway in the world.
+--- 4. 矛盾类型: Causal ---
+句子对: Sentence 1: Knight was a "normal young woman" with no mental problems / Sentence 2: Catherine Zeta-Jones has driven Dawnettte to attempt suicide and the real blood is on her hands.
+--- 5. 矛盾类型: Numeric ---
+句子对: Sentence 1: The death toll stood at 48. / Sentence 2: The death toll was at least 55.
+--- 6. 矛盾类型: Factual ---
+句子对: Sentence 1: The Ministers have to be members of Parliament. / Sentence 2: The Prime Minister is no longer required to be a member of the parliament.
+--- 7. 矛盾类型: Numeric ---
+句子对: Sentence 1: there are around 820 higher education institutes including universities, with a total student enrollment of over 1 million. / Sentence 2: The total capacity of Turkish universities is approximately 300,000.
+--- 8. 矛盾类型: Content ---
+句子对: Sentence 1: The charge of breach of trust reflected what they said were efforts by Chung Mong-koo tried to enrich himself. / Sentence 2: The charge of breach of trust reflected what they said were efforts by Chung to enrich his son.
+--- 9. 矛盾类型: Temporal ---
+句子对: Sentence 1: the five-story building was emptied every night of personnel. / Sentence 2: the embassy building was evacuated of all nonessential personnel during the hours of darkness to avoid any potential casualties.
+--- 规则覆盖率评估结束 ---

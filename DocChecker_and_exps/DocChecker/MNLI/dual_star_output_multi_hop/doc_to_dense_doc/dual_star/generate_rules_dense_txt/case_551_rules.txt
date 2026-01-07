@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 551)
+S1: He never came today.
+S2: It was the first really warm weather we've had and he came out and cut the yard and trimmed the hedges and all that.
+
+Predicates:
+1. S1.he.came_today = false
+2. S2.he.came_today = true
+3. S2.weather.is_warm = true
+4. S2.weather.first_occurrence = true
+5. S2.he.cut_yard = true
+6. S2.he.trimmed_hedges = true
+7. S1.he.did_not_come = true
+8. S2.he.did_come = true
+9. S2.activities.included_cutting = true
+10. S2.activities.included_trimming = true
+11. S1.time.is_today = true
+12. S2.time.is_today = true
+13. S1.event.is_absent = true
+14. S2.event.is_present = true
+15. S1.he.is_absent = true
+16. S2.he.is_present = true
+17. S1.weather.is_not_warm = true
+18. S2.weather.is_first_warm_day = true
+19. S1.he.action = "not_come"
+20. S2.he.action = "came_out"
+21. S2.he.action = "cut_yard"
+22. S2.he.action = "trim_hedges"
+23. S1.event.is_not_happening = true
+24. S2.event.is_happening = true
+25. S1.he.presence = "absent"
+26. S2.he.presence = "present"
+27. S1.weather.condition = "not_warm"
+28. S2.weather.condition = "warm"
+29. M_NLI(S1, S2) = true
+30. violate(S1, S2) = true
+
+Rules:
+1. Q[never, S1.he.came_today == false, S2.he.came_today == true](S1.he.came_today == false → Temporal(S1.time.is_today, S2.time.is_today))
+2. Q[never, S1.he.did_not_come == true, S2.he.did_come == true](S1.he.did_not_come == true → Temporal(S1.time.is_today, S2.time.is_today))
+3. Q[never, S1.event.is_absent == true, S2.event.is_present == true](S1.event.is_absent == true → Temporal(S1.time.is_today, S2.time.is_today))
+4. Q[never, S1.he.is_absent == true, S2.he.is_present == true](S1.he.is_absent == true → Temporal(S1.time.is_today, S2.time.is_today))
+5. Q[never, S1.weather.is_not_warm == true, S2.weather.is_warm == true](S1.weather.is_not_warm == true → Temporal(S1.time.is_today, S2.time.is_today))
+6. Q[never, S1.he.action == "not_come", S2.he.action == "came_out"](S1.he.action == "not_come" → Temporal(S1.time.is_today, S2.time.is_today))
+7. Q[never, S1.event.is_not_happening == true, S2.event.is_happening == true](S1.event.is_not_happening == true → Temporal(S1.time.is_today, S2.time.is_today))
+8. Q[never, S1.he.presence == "absent", S2.he.presence == "present"](S1.he.presence == "absent" → Temporal(S1.time.is_today, S2.time.is_today))
+9. Q[never, S1.weather.condition == "not_warm", S2.weather.condition == "warm"](S1.weather.condition == "not_warm" → Temporal(S1.time.is_today, S2.time.is_today))
+10. Q[never, S1.he.came_today == false, S2.weather.first_occurrence == true](S1.he.came_today == false → Temporal(S1.time.is_today, S2.weather.first_occurrence))
+11. Q[never, S1.he.did_not_come == true, S2.weather.first_occurrence == true](S1.he.did_not_come == true → Temporal(S1.time.is_today, S2.weather.first_occurrence))
+12. Q[never, S1.event.is_absent == true, S2.weather.first_occurrence == true](S1.event.is_absent == true → Temporal(S1.time.is_today, S2.weather.first_occurrence))
+13. Q[never, S1.he.is_absent == true, S2.weather.first_occurrence == true](S1.he.is_absent == true → Temporal(S1.time.is_today, S2.weather.first_occurrence))
+14. Q[never, S1.weather.is_not_warm == true, S2.weather.first_occurrence == true](S1.weather.is_not_warm == true → Temporal(S1.time.is_today, S2.weather.first_occurrence))
+15. Q[never, S1.he.action == "not_come", S2.weather.first_occurrence == true](S1.he.action == "not_come" → Temporal(S1.time.is_today, S2.weather.first_occurrence))
+16. Q[never, S1.event.is_not_happening == true, S2.weather.first_occurrence == true](S1.event.is_not_happening == true → Temporal(S1.time.is_today, S2.weather.first_occurrence))
+17. Q[never, S1.he.presence == "absent", S2.weather.first_occurrence == true](S1.he.presence == "absent" → Temporal(S1.time.is_today, S2.weather.first_occurrence))
+18. Q[never, S1.weather.condition == "not_warm", S2.weather.first_occurrence == true](S1.weather.condition == "not_warm" → Temporal(S1.time.is_today, S2.weather.first_occurrence))
+19. Q[never, S1.he.came_today == false, S2.he.cut_yard == true](S1.he.came_today == false → Temporal(S1.time.is_today, S2.he.cut_yard))
+20. Q[never, S1.he.did_not_come == true, S2.he.cut_yard == true](S1.he.did_not_come == true → Temporal(S1.time.is_today, S2.he.cut_yard))
+21. Q[never, S1.event.is_absent == true, S2.he.cut_yard == true](S1.event.is_absent == true → Temporal(S1.time.is_today, S2.he.cut_yard))
+22. Q[never, S1.he.is_absent == true, S2.he.cut_yard == true](S1.he.is_absent == true → Temporal(S1.time.is_today, S2.he.cut_yard))
+23. Q[never, S1.weather.is_not_warm == true, S2.he.cut_yard == true](S1.weather.is_not_warm == true → Temporal(S1.time.is_today, S2.he.cut_yard))
+24. Q[never, S1.he.action == "not_come", S2.he.cut_yard == true](S1.he.action == "not_come" → Temporal(S1.time.is_today, S2.he.cut_yard))
+25. Q[never, S1.event.is_not_happening == true, S2.he.cut_yard == true](S1.event.is_not_happening == true → Temporal(S1.time.is_today, S2.he.cut_yard))
+26. Q[never, S1.he.presence == "absent", S2.he.cut_yard == true](S1.he.presence == "absent" → Temporal(S1.time.is_today, S2.he.cut_yard))
+27. Q[never, S1.weather.condition == "not_warm", S2.he.cut_yard == true](S1.weather.condition == "not_warm" → Temporal(S1.time.is_today, S2.he.cut_yard))
+28. Q[never, S1.he.came_today == false, S2.he.trimmed_hedges == true](S1.he.came_today == false → Temporal(S1.time.is_today, S2.he.trimmed_hedges))
+29. Q[never, S1.he.did_not_come == true, S2.he.trimmed_hedges == true](S1.he.did_not_come == true → Temporal(S1.time.is_today, S2.he.trimmed_hedges))
+30. Q[never, S1.event.is_absent == true, S2.he.trimmed_hedges == true](S1.event.is_absent == true → Temporal(S1.time.is_today, S2.he.trimmed_hedges))

@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 21)
+S1: such Party will not, directly or indirectly, solicit for employment or hire any employee of the other Party or any of the other Party's subsidiaries with whom such Party has had contact or who became known to such Party in connection with its consideration of the Possible Transaction;
+S2: provided, however, that the foregoing provision will not prevent a Party from employing any employee of the other Party who contacts the prospective employer Party on his or her own initiative without any direct or indirect solicitation by or encouragement from the prospective employer Party, or prevent a general solicitation conducted in the ordinary course of business and not directed specifically at the employees of the other Party.
+
+Predicates:
+1. Party1.solicit_employee → False
+2. Party2.solicit_employee → False
+3. Party1.hire_employee → False
+4. Party2.hire_employee → False
+5. Employee1.contact_initiative → True
+6. Employee2.contact_initiative → True
+7. Party1.general_solicitation → True
+8. Party2.general_solicitation → True
+9. Employee1.employed_by_Party1 → True
+10. Employee2.employed_by_Party2 → True
+11. Party1.contact_employee → True
+12. Party2.contact_employee → True
+13. Employee1.known_to_Party1 → True
+14. Employee2.known_to_Party2 → True
+15. Possible_Transaction.considered_by_Party1 → True
+16. Possible_Transaction.considered_by_Party2 → True
+17. Party1.encouragement → False
+18. Party2.encouragement → False
+19. Employee1.solicited → False
+20. Employee2.solicited → False
+21. Party1.subsidiary_contact → True
+22. Party2.subsidiary_contact → True
+23. Party1.ordinary_business → True
+24. Party2.ordinary_business → True
+25. Employee1.initiative_contact → True
+26. Employee2.initiative_contact → True
+27. Party1.violate_solicitation → False
+28. Party2.violate_solicitation → False
+29. Party1.hire_without_solicitation → True
+30. Party2.hire_without_solicitation → True
+
+Rules:
+1. Q[such, Party1.solicit_employee == False](Party1.solicit_employee → Causal(Party1, Party2))
+2. Q[such, Party2.solicit_employee == False](Party2.solicit_employee → Causal(Party2, Party1))
+3. Q[such, Party1.hire_employee == False](Party1.hire_employee → Causal(Party1, Party2))
+4. Q[such, Party2.hire_employee == False](Party2.hire_employee → Causal(Party2, Party1))
+5. Q[such, Employee1.contact_initiative == True](Employee1.contact_initiative → Causal(Employee1, Party1))
+6. Q[such, Employee2.contact_initiative == True](Employee2.contact_initiative → Causal(Employee2, Party2))
+7. Q[such, Party1.general_solicitation == True](Party1.general_solicitation → Causal(Party1, Party2))
+8. Q[such, Party2.general_solicitation == True](Party2.general_solicitation → Causal(Party2, Party1))
+9. Q[such, Employee1.known_to_Party1 == True](Employee1.known_to_Party1 → Causal(Employee1, Party1))
+10. Q[such, Employee2.known_to_Party2 == True](Employee2.known_to_Party2 → Causal(Employee2, Party2))
+11. Q[such, Possible_Transaction.considered_by_Party1 == True](Possible_Transaction.considered_by_Party1 → Causal(Possible_Transaction, Party1))
+12. Q[such, Possible_Transaction.considered_by_Party2 == True](Possible_Transaction.considered_by_Party2 → Causal(Possible_Transaction, Party2))
+13. Q[such, Party1.contact_employee == True](Party1.contact_employee → Causal(Party1, Employee1))
+14. Q[such, Party2.contact_employee == True](Party2.contact_employee → Causal(Party2, Employee2))
+15. Q[such, Party1.subsidiary_contact == True](Party1.subsidiary_contact → Causal(Party1, Party2))
+16. Q[such, Party2.subsidiary_contact == True](Party2.subsidiary_contact → Causal(Party2, Party1))
+17. Q[such, Party1.encouragement == False](Party1.encouragement → Causal(Party1, Employee1))
+18. Q[such, Party2.encouragement == False](Party2.encouragement → Causal(Party2, Employee2))
+19. Q[such, Employee1.solicited == False](Employee1.solicited → Causal(Employee1, Party1))
+20. Q[such, Employee2.solicited == False](Employee2.solicited → Causal(Employee2, Party2))
+21. Q[such, Party1.violate_solicitation == False](Party1.violate_solicitation → Causal(Party1, Employee1))
+22. Q[such, Party2.violate_solicitation == False](Party2.violate_solicitation → Causal(Party2, Employee2))
+23. Q[such, Party1.hire_without_solicitation == True](Party1.hire_without_solicitation → Causal(Party1, Employee1))
+24. Q[such, Party2.hire_without_solicitation == True](Party2.hire_without_solicitation → Causal(Party2, Employee2))
+25. Q[such, Employee1.initiative_contact == True](Employee1.initiative_contact → Causal(Employee1, Party1))
+26. Q[such, Employee2.initiative_contact == True](Employee2.initiative_contact → Causal(Employee2, Party2))
+27. Q[such, Party1.ordinary_business == True](Party1.ordinary_business → Causal(Party1, Employee1))
+28. Q[such, Party2.ordinary_business == True](Party2.ordinary_business → Causal(Party2, Employee2))
+29. Q[such, Employee1.employed_by_Party1 == True](Employee1.employed_by_Party1 → Causal(Employee1, Party1))
+30. Q[such, Employee2.employed_by_Party2 == True](Employee2.employed_by_Party2 → Causal(Employee2, Party2))

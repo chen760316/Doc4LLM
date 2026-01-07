@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 658)
+S1: T h e g i r l i s w a l k i n g .
+S2: A y o u n g g i r l w a l k i n g o n t h e s i d e w a l k .
+
+Predicates:
+1. Girl.isWalking
+2. YoungGirl.isWalking
+3. Girl.isNotSameAs(YoungGirl)
+4. Girl.onSidewalk
+5. YoungGirl.onSidewalk
+6. Walking.isAction
+7. Girl.hasAttribute(Age)
+8. YoungGirl.hasAttribute(Age)
+9. Girl.isEntity
+10. YoungGirl.isEntity
+11. Action.isWalking
+12. Entity.hasAttribute(Girl)
+13. Entity.hasAttribute(YoungGirl)
+14. Relationship.isDifferent
+15. Negation(Girl, YoungGirl)
+16. M_NLI(S1, S2)
+17. Violate(Girl, YoungGirl)
+18. Walking.hasLocation(Sidewalk)
+19. Girl.isPresent
+20. YoungGirl.isPresent
+21. Sidewalk.isLocation
+22. Girl.hasAction(Walking)
+23. YoungGirl.hasAction(Walking)
+24. Girl.isSubject
+25. YoungGirl.isSubject
+26. Walking.isPresentIn(Sidewalk)
+27. Girl.isWalkingIn(Sidewalk)
+28. YoungGirl.isWalkingIn(Sidewalk)
+29. Action.hasSubject(Girl)
+30. Action.hasSubject(YoungGirl)
+
+Rules:
+1. Q[walking, Girl.isWalking, YoungGirl.isWalking](Girl.isWalking == true → Negation(Girl, YoungGirl))
+2. Q[young, Girl.hasAttribute(Age), YoungGirl.hasAttribute(Age)](Girl.hasAttribute(Age) == "unknown" → Negation(Girl, YoungGirl))
+3. Q[sidewalk, Girl.onSidewalk, YoungGirl.onSidewalk](Girl.onSidewalk == true → Negation(Girl, YoungGirl))
+4. Q[walking, Girl.isNotSameAs(YoungGirl), YoungGirl.isNotSameAs(Girl)](Girl.isNotSameAs(YoungGirl) == true → Negation(Girl, YoungGirl))
+5. Q[walking, Girl.isPresent, YoungGirl.isPresent](Girl.isPresent == true → Negation(Girl, YoungGirl))
+6. Q[walking, Girl.hasAction(Walking), YoungGirl.hasAction(Walking)](Girl.hasAction(Walking) == true → Negation(Girl, YoungGirl))
+7. Q[young, Girl.hasAttribute(Age), YoungGirl.hasAttribute(Age)](YoungGirl.hasAttribute(Age) == "young" → Negation(Girl, YoungGirl))
+8. Q[sidewalk, Girl.isWalkingIn(Sidewalk), YoungGirl.isWalkingIn(Sidewalk)](Girl.isWalkingIn(Sidewalk) == true → Negation(Girl, YoungGirl))
+9. Q[walking, Action.hasSubject(Girl), Action.hasSubject(YoungGirl)](Action.hasSubject(Girl) == true → Negation(Girl, YoungGirl))
+10. Q[walking, Walking.isAction, Action.isWalking](Walking.isAction == true → Negation(Girl, YoungGirl))
+11. Q[sidewalk, Walking.hasLocation(Sidewalk), YoungGirl.onSidewalk](Walking.hasLocation(Sidewalk) == true → Negation(Girl, YoungGirl))
+12. Q[young, Girl.isEntity, YoungGirl.isEntity](Girl.isEntity == true → Negation(Girl, YoungGirl))
+13. Q[walking, Relationship.isDifferent, Girl.isNotSameAs(YoungGirl)](Relationship.isDifferent == true → Negation(Girl, YoungGirl))
+14. Q[walking, Girl.isSubject, YoungGirl.isSubject](Girl.isSubject == true → Negation(Girl, YoungGirl))
+15. Q[walking, Action.isWalking, YoungGirl.hasAction(Walking)](Action.isWalking == true → Negation(Girl, YoungGirl))
+16. Q[sidewalk, Walking.isPresentIn(Sidewalk), YoungGirl.isWalkingIn(Sidewalk)](Walking.isPresentIn(Sidewalk) == true → Negation(Girl, YoungGirl))
+17. Q[walking, Girl.isWalking, YoungGirl.isWalking](Girl.isWalking == true → Negation(Girl, YoungGirl))
+18. Q[young, Girl.hasAttribute(Age), YoungGirl.hasAttribute(Age)](YoungGirl.hasAttribute(Age) == "young" → Negation(Girl, YoungGirl))
+19. Q[sidewalk, Girl.onSidewalk, YoungGirl.onSidewalk](YoungGirl.onSidewalk == true → Negation(Girl, YoungGirl))
+20. Q[walking, Girl.isPresent, YoungGirl.isPresent](YoungGirl.isPresent == true → Negation(Girl, YoungGirl))
+21. Q[walking, Girl.hasAction(Walking), YoungGirl.hasAction(Walking)](YoungGirl.hasAction(Walking) == true → Negation(Girl, YoungGirl))
+22. Q[young, Girl.isEntity, YoungGirl.isEntity](YoungGirl.isEntity == true → Negation(Girl, YoungGirl))
+23. Q[walking, Action.hasSubject(Girl), Action.hasSubject(YoungGirl)](Action.hasSubject(YoungGirl) == true → Negation(Girl, YoungGirl))
+24. Q[walking, Girl.isWalkingIn(Sidewalk), YoungGirl.isWalkingIn(Sidewalk)](YoungGirl.isWalkingIn(Sidewalk) == true → Negation(Girl, YoungGirl))
+25. Q[walking, Girl.isNotSameAs(YoungGirl), YoungGirl.isNotSameAs(Girl)](Girl.isNotSameAs(YoungGirl) == true → Negation(Girl, YoungGirl))
+26. Q[sidewalk, Walking.hasLocation(Sidewalk), Girl.onSidewalk](Walking.hasLocation(Sidewalk) == true → Negation(Girl, YoungGirl))
+27. Q[walking, Girl.isWalking, YoungGirl.isWalking](YoungGirl.isWalking == true → Negation(Girl, YoungGirl))
+28. Q[young, Girl.hasAttribute(Age), YoungGirl.hasAttribute(Age)](Girl.hasAttribute(Age) == "unknown" → Negation(Girl, YoungGirl))
+29. Q[sidewalk, Girl.onSidewalk, YoungGirl.onSidewalk](Girl.onSidewalk == true → Negation(Girl, YoungGirl))
+30. Q[walking, Girl.isPresent, YoungGirl.isPresent](Girl.isPresent == true → Negation(Girl, YoungGirl))

@@ -1,0 +1,65 @@
+Source: dense_text.txt (Index 138)
+S1: That went very well, and we are expanding it.
+S2: But that didn't work out too well so now we're trying to build it back up.
+
+Predicates:
+1. Event.successful.attribute
+2. Event.expansion.attribute
+3. Event.failure.attribute
+4. Event.rebuilding.attribute
+5. Action.attempting.attribute
+6. Action.expanding.attribute
+7. Action.rebuilding.attribute
+8. Outcome.positive.attribute
+9. Outcome.negative.attribute
+10. Situation.ongoing.attribute
+11. Situation.challenging.attribute
+12. Reasoning.causal.attribute
+13. Reasoning.contradictory.attribute
+14. Entity.project.attribute
+15. Entity.progress.attribute
+16. Entity.evaluation.attribute
+17. Relationship.success.failure.attribute
+18. Relationship.attempt.success.attribute
+19. Meta.NLI.s1.s2
+20. Meta.Causal.s1.s2
+21. Meta.violate.s1.s2
+22. Context.positive_outcome.attribute
+23. Context.negative_outcome.attribute
+24. Context.expansion_attempt.attribute
+25. Context.rebuilding_attempt.attribute
+26. Status.expanded.attribute
+27. Status.not_working.attribute
+28. Status.under_construction.attribute
+29. Status.successful.attribute
+30. Status.failed.attribute
+
+Rules:
+1. Q[That, Event.successful.attribute == "true", Event.expansion.attribute == "true"](Event.successful.attribute == "true" ∧ Event.expansion.attribute == "true" → Causal(Event.successful.attribute, Event.expansion.attribute))
+2. Q[That, Event.failure.attribute == "true", Event.rebuilding.attribute == "true"](Event.failure.attribute == "true" ∧ Event.rebuilding.attribute == "true" → Causal(Event.failure.attribute, Event.rebuilding.attribute))
+3. Q[That, Outcome.positive.attribute == "true", Outcome.negative.attribute == "true"](Outcome.positive.attribute == "true" ∧ Outcome.negative.attribute == "true" → Causal(Outcome.positive.attribute, Outcome.negative.attribute))
+4. Q[That, Action.attempting.attribute == "true", Action.rebuilding.attribute == "true"](Action.attempting.attribute == "true" ∧ Action.rebuilding.attribute == "true" → Causal(Action.attempting.attribute, Action.rebuilding.attribute))
+5. Q[That, Situation.ongoing.attribute == "true", Situation.challenging.attribute == "true"](Situation.ongoing.attribute == "true" ∧ Situation.challenging.attribute == "true" → Causal(Situation.ongoing.attribute, Situation.challenging.attribute))
+6. Q[That, Relationship.success.failure.attribute == "true", Relationship.attempt.success.attribute == "true"](Relationship.success.failure.attribute == "true" ∧ Relationship.attempt.success.attribute == "true" → Causal(Relationship.success.failure.attribute, Relationship.attempt.success.attribute))
+7. Q[That, Context.positive_outcome.attribute == "true", Context.negative_outcome.attribute == "true"](Context.positive_outcome.attribute == "true" ∧ Context.negative_outcome.attribute == "true" → Causal(Context.positive_outcome.attribute, Context.negative_outcome.attribute))
+8. Q[That, Status.successful.attribute == "true", Status.failed.attribute == "true"](Status.successful.attribute == "true" ∧ Status.failed.attribute == "true" → Causal(Status.successful.attribute, Status.failed.attribute))
+9. Q[That, Entity.project.attribute == "successful", Entity.progress.attribute == "failing"](Entity.project.attribute == "successful" ∧ Entity.progress.attribute == "failing" → Causal(Entity.project.attribute, Entity.progress.attribute))
+10. Q[That, Event.expansion.attribute == "true", Event.failure.attribute == "true"](Event.expansion.attribute == "true" ∧ Event.failure.attribute == "true" → Causal(Event.expansion.attribute, Event.failure.attribute))
+11. Q[That, Action.expanding.attribute == "true", Action.rebuilding.attribute == "true"](Action.expanding.attribute == "true" ∧ Action.rebuilding.attribute == "true" → Causal(Action.expanding.attribute, Action.rebuilding.attribute))
+12. Q[That, Outcome.positive.attribute == "true", Outcome.negative.attribute == "true"](Outcome.positive.attribute == "true" ∧ Outcome.negative.attribute == "true" → Causal(Outcome.positive.attribute, Outcome.negative.attribute))
+13. Q[That, Context.expansion_attempt.attribute == "true", Context.rebuilding_attempt.attribute == "true"](Context.expansion_attempt.attribute == "true" ∧ Context.rebuilding_attempt.attribute == "true" → Causal(Context.expansion_attempt.attribute, Context.rebuilding_attempt.attribute))
+14. Q[That, Status.expanded.attribute == "true", Status.not_working.attribute == "true"](Status.expanded.attribute == "true" ∧ Status.not_working.attribute == "true" → Causal(Status.expanded.attribute, Status.not_working.attribute))
+15. Q[That, Entity.evaluation.attribute == "positive", Entity.evaluation.attribute == "negative"](Entity.evaluation.attribute == "positive" ∧ Entity.evaluation.attribute == "negative" → Causal(Entity.evaluation.attribute, Entity.evaluation.attribute))
+16. Q[That, Reasoning.causal.attribute == "true", Reasoning.contradictory.attribute == "true"](Reasoning.causal.attribute == "true" ∧ Reasoning.contradictory.attribute == "true" → Causal(Reasoning.causal.attribute, Reasoning.contradictory.attribute))
+17. Q[That, Event.successful.attribute == "true", Event.failure.attribute == "true"](Event.successful.attribute == "true" ∧ Event.failure.attribute == "true" → Causal(Event.successful.attribute, Event.failure.attribute))
+18. Q[That, Action.attempting.attribute == "true", Action.expanding.attribute == "true"](Action.attempting.attribute == "true" ∧ Action.expanding.attribute == "true" → Causal(Action.attempting.attribute, Action.expanding.attribute))
+19. Q[That, Situation.ongoing.attribute == "true", Situation.challenging.attribute == "true"](Situation.ongoing.attribute == "true" ∧ Situation.challenging.attribute == "true" → Causal(Situation.ongoing.attribute, Situation.challenging.attribute))
+20. Q[That, Outcome.positive.attribute == "true", Outcome.negative.attribute == "true"](Outcome.positive.attribute == "true" ∧ Outcome.negative.attribute == "true" → Causal(Outcome.positive.attribute, Outcome.negative.attribute))
+21. Q[That, Context.expansion_attempt.attribute == "true", Context.rebuilding_attempt.attribute == "true"](Context.expansion_attempt.attribute == "true" ∧ Context.rebuilding_attempt.attribute == "true" → Causal(Context.expansion_attempt.attribute, Context.rebuilding_attempt.attribute))
+22. Q[That, Status.successful.attribute == "true", Status.failed.attribute == "true"](Status.successful.attribute == "true" ∧ Status.failed.attribute == "true" → Causal(Status.successful.attribute, Status.failed.attribute))
+23. Q[That, Entity.project.attribute == "successful", Entity.progress.attribute == "failing"](Entity.project.attribute == "successful" ∧ Entity.progress.attribute == "failing" → Causal(Entity.project.attribute, Entity.progress.attribute))
+24. Q[That, Event.expansion.attribute == "true", Event.failure.attribute == "true"](Event.expansion.attribute == "true" ∧ Event.failure.attribute == "true" → Causal(Event.expansion.attribute, Event.failure.attribute))
+25. Q[That, Action.expanding.attribute == "true", Action.rebuilding.attribute == "true"](Action.expanding.attribute == "true" ∧ Action.rebuilding.attribute == "true" → Causal(Action.expanding.attribute, Action.rebuilding.attribute))
+26. Q[That, Outcome.positive.attribute == "true", Outcome.negative.attribute == "true"](Outcome.positive.attribute == "true" ∧ Outcome.negative.attribute == "true" → Causal(Outcome.positive.attribute, Outcome.negative.attribute))
+27. Q[That, Context.expansion_attempt.attribute == "true", Context.rebuilding_attempt.attribute == "true"](Context.expansion_attempt.attribute == "true" ∧ Context.rebuilding_attempt.attribute == "true" → Causal(Context.expansion_attempt.attribute, Context.rebuilding_attempt.attribute))
+28. Q[That, Status.exp

@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 13)
+S1: The capital of British Columbia remains Victoria, the fifteenth-largest metropolitan region in Canada, named for the Queen who created the original European colonies.
+S2: Toronto is the capital of British Columbia.
+
+Predicates:
+1. British_Columbia.capital = Victoria
+2. Victoria.size = fifteenth-largest
+3. Victoria.region = metropolitan
+4. Canada.region = metropolitan
+5. Victoria.named_for = Queen
+6. Queen.created = original_European_colonies
+7. Toronto.capital_of = British_Columbia
+8. M_NLI(S1, S2)
+9. Factual(Victoria, British_Columbia)
+10. Factual(Toronto, British_Columbia)
+11. violate(Toronto, British_Columbia)
+12. Victoria.is_capital_of = British_Columbia
+13. Toronto.is_capital_of = British_Columbia
+14. British_Columbia.has_capital = Victoria
+15. British_Columbia.has_capital = Toronto
+16. Victoria.is_metropolitan_region = true
+17. Toronto.is_metropolitan_region = true
+18. Canada.has_metropolitan_region = Victoria
+19. Canada.has_metropolitan_region = Toronto
+20. Victoria.is_named_after = Queen
+21. Queen.is_creator_of = original_European_colonies
+22. Victoria.is_in = British_Columbia
+23. Toronto.is_in = British_Columbia
+24. British_Columbia.has_metropolitan_region = Victoria
+25. British_Columbia.has_metropolitan_region = Toronto
+26. Victoria.is_fifteenth_largest = true
+27. Toronto.is_fifteenth_largest = false
+28. Victoria.is_capital = true
+29. Toronto.is_capital = false
+30. M_NLI(Victoria, Toronto)
+
+Rules:
+1. Q[British_Columbia, Victoria, Toronto](British_Columbia.capital = Victoria → Factual(Victoria, British_Columbia))
+2. Q[Victoria, Victoria, Toronto](Victoria.is_capital_of = British_Columbia → Factual(Victoria, British_Columbia))
+3. Q[The, Victoria, Toronto](British_Columbia.has_capital = Victoria → Factual(Victoria, British_Columbia))
+4. Q[The, Toronto, Victoria](Toronto.capital_of = British_Columbia → Factual(Toronto, British_Columbia))
+5. Q[The, Toronto, Victoria](British_Columbia.has_capital = Toronto → Factual(Toronto, British_Columbia))
+6. Q[The, Victoria, Toronto](Victoria.is_capital = true → Factual(Victoria, British_Columbia))
+7. Q[The, Toronto, Victoria](Toronto.is_capital = false → Factual(Toronto, British_Columbia))
+8. Q[The, Victoria, Toronto](Victoria.size = fifteenth-largest → Factual(Victoria, British_Columbia))
+9. Q[The, Toronto, Victoria](Toronto.is_metropolitan_region = true → Factual(Toronto, British_Columbia))
+10. Q[The, Victoria, Toronto](Victoria.is_metropolitan_region = true → Factual(Victoria, British_Columbia))
+11. Q[The, Victoria, Toronto](Victoria.named_for = Queen → Factual(Victoria, British_Columbia))
+12. Q[The, Toronto, Victoria](Toronto.is_in = British_Columbia → Factual(Toronto, British_Columbia))
+13. Q[The, Victoria, Toronto](Victoria.is_in = British_Columbia → Factual(Victoria, British_Columbia))
+14. Q[The, Toronto, Victoria](British_Columbia.has_metropolitan_region = Toronto → Factual(Toronto, British_Columbia))
+15. Q[The, Victoria, Toronto](British_Columbia.has_metropolitan_region = Victoria → Factual(Victoria, British_Columbia))
+16. Q[The, Victoria, Toronto](M_NLI(S1, S2) → Factual(Victoria, Toronto))
+17. Q[The, Toronto, Victoria](M_NLI(Victoria, Toronto) → Factual(Toronto, Victoria))
+18. Q[The, Victoria, Toronto](Victoria.is_fifteenth_largest = true → Factual(Victoria, British_Columbia))
+19. Q[The, Toronto, Victoria](Toronto.is_fifteenth_largest = false → Factual(Toronto, British_Columbia))
+20. Q[The, Victoria, Toronto](Queen.created = original_European_colonies → Factual(Victoria, British_Columbia))
+21. Q[The, Toronto, Victoria](British_Columbia.has_capital = Toronto → Factual(Toronto, British_Columbia))
+22. Q[The, Victoria, Toronto](Victoria.is_named_after = Queen → Factual(Victoria, British_Columbia))
+23. Q[The, Toronto, Victoria](Toronto.is_capital_of = British_Columbia → Factual(Toronto, British_Columbia))
+24. Q[The, Victoria, Toronto](Canada.has_metropolitan_region = Victoria → Factual(Victoria, British_Columbia))
+25. Q[The, Toronto, Victoria](Canada.has_metropolitan_region = Toronto → Factual(Toronto, British_Columbia))
+26. Q[The, Victoria, Toronto](Victoria.is_capital = true → Factual(Victoria, British_Columbia))
+27. Q[The, Toronto, Victoria](Toronto.is_capital = false → Factual(Toronto, British_Columbia))
+28. Q[The, Victoria, Toronto](British_Columbia.capital = Victoria → Factual(Victoria, British_Columbia))
+29. Q[The, Toronto, Victoria](British_Columbia.capital = Toronto → Factual(Toronto, British_Columbia))
+30. Q[The, Victoria, Toronto](Factual(Victoria, British_Columbia) ∧ Factual(Toronto, British_Columbia) → Factual(Victoria, Toronto))

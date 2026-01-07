@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 201)
+S1: They had nothing to refer to for professional development.
+S2: Other strategies for business/technology learning include informal activities such as newsletters, presentations, reports, and service-level results placed in common areas to communicate the effectiveness of their CIO organizations.
+
+Predicates:
+1. ProfessionalDevelopment.resources = nothing
+2. BusinessLearning.strategies = informalActivities
+3. InformalActivities.type = newsletters
+4. InformalActivities.type = presentations
+5. InformalActivities.type = reports
+6. InformalActivities.type = serviceLevelResults
+7. ServiceLevelResults.location = commonAreas
+8. CIOOrganizations.effectiveness = communicated
+9. ProfessionalDevelopment.lackOfResources = true
+10. BusinessLearning.informationSource = strategies
+11. Strategies.include = informalActivities
+12. InformalActivities.effectiveness = measured
+13. ProfessionalDevelopment.requires = resources
+14. LearningStrategies.include = newsletters
+15. LearningStrategies.include = presentations
+16. LearningStrategies.include = reports
+17. LearningStrategies.include = serviceLevelResults
+18. Communication.method = commonAreas
+19. CIOOrganizations.resources = available
+20. ProfessionalDevelopment.isDependentOn = resources
+21. InformalActivities.contributeTo = learning
+22. LearningOutcomes.areCommunicated = effectiveness
+23. ProfessionalDevelopment.isLacking = resources
+24. BusinessLearning.isEnhancedBy = informalActivities
+25. Strategies.forLearning = businessTechnology
+26. ProfessionalDevelopment.isSupportedBy = strategies
+27. InformalActivities.support = professionalDevelopment
+28. CIOOrganizations.performance = assessed
+29. LearningStrategies.areEffective = true
+30. ProfessionalDevelopment.needs = strategies
+
+Rules:
+1. Q[They, ProfessionalDevelopment.resources, nothing](ProfessionalDevelopment.lackOfResources == true → Factual(ProfessionalDevelopment.resources, nothing))
+2. Q[They, ProfessionalDevelopment.lackOfResources, true](ProfessionalDevelopment.resources == nothing → Factual(ProfessionalDevelopment.lackOfResources, true))
+3. Q[They, BusinessLearning.strategies, informalActivities](BusinessLearning.informationSource == strategies → Factual(BusinessLearning.strategies, informalActivities))
+4. Q[They, InformalActivities.type, newsletters](LearningStrategies.include == newsletters → Factual(InformalActivities.type, newsletters))
+5. Q[They, InformalActivities.type, presentations](LearningStrategies.include == presentations → Factual(InformalActivities.type, presentations))
+6. Q[They, InformalActivities.type, reports](LearningStrategies.include == reports → Factual(InformalActivities.type, reports))
+7. Q[They, InformalActivities.type, serviceLevelResults](LearningStrategies.include == serviceLevelResults → Factual(InformalActivities.type, serviceLevelResults))
+8. Q[They, ServiceLevelResults.location, commonAreas](Communication.method == commonAreas → Factual(ServiceLevelResults.location, commonAreas))
+9. Q[They, CIOOrganizations.effectiveness, communicated](CIOOrganizations.resources == available → Factual(CIOOrganizations.effectiveness, communicated))
+10. Q[They, ProfessionalDevelopment.requires, resources](ProfessionalDevelopment.isDependentOn == resources → Factual(ProfessionalDevelopment.requires, resources))
+11. Q[They, BusinessLearning.informationSource, strategies](Strategies.include == informalActivities → Factual(BusinessLearning.informationSource, strategies))
+12. Q[They, InformalActivities.effectiveness, measured](InformalActivities.contributeTo == learning → Factual(InformalActivities.effectiveness, measured))
+13. Q[They, ProfessionalDevelopment.isDependentOn, resources](ProfessionalDevelopment.needs == strategies → Factual(ProfessionalDevelopment.isDependentOn, resources))
+14. Q[They, ProfessionalDevelopment.isLacking, resources](ProfessionalDevelopment.resources == nothing → Factual(ProfessionalDevelopment.isLacking, resources))
+15. Q[They, BusinessLearning.isEnhancedBy, informalActivities](BusinessLearning.strategies == informalActivities → Factual(BusinessLearning.isEnhancedBy, informalActivities))
+16. Q[They, Strategies.forLearning, businessTechnology](BusinessLearning.strategies == informalActivities → Factual(Strategies.forLearning, businessTechnology))
+17. Q[They, ProfessionalDevelopment.isSupportedBy, strategies](ProfessionalDevelopment.requires == resources → Factual(ProfessionalDevelopment.isSupportedBy, strategies))
+18. Q[They, InformalActivities.support, professionalDevelopment](InformalActivities.contributeTo == learning → Factual(InformalActivities.support, professionalDevelopment))
+19. Q[They, CIOOrganizations.performance, assessed](CIOOrganizations.effectiveness == communicated → Factual(CIOOrganizations.performance, assessed))
+20. Q[They, LearningStrategies.areEffective, true](InformalActivities.effectiveness == measured → Factual(LearningStrategies.areEffective, true))
+21. Q[They, ProfessionalDevelopment.needs, strategies](ProfessionalDevelopment.isSupportedBy == strategies → Factual(ProfessionalDevelopment.needs, strategies))
+22. Q[They, ProfessionalDevelopment.isLacking, resources](ProfessionalDevelopment.resources == nothing → Factual(ProfessionalDevelopment.isLacking, resources))
+23. Q[They, BusinessLearning.strategies, informalActivities](BusinessLearning.isEnhancedBy == informalActivities → Factual(BusinessLearning.strategies, informalActivities))
+24. Q[They, InformalActivities.contributeTo, learning](InformalActivities.type == newsletters → Factual(InformalActivities.contributeTo, learning))
+25. Q[They, LearningStrategies.include, newsletters](LearningStrategies.include == newsletters → Factual(LearningStrategies.include, newsletters))
+26. Q[They, LearningStrategies.include, presentations](LearningStrategies.include == presentations → Factual(LearningStrategies.include, presentations))
+27. Q[They, LearningStrategies.include, reports](LearningStrategies.include == reports → Factual(LearningStrategies.include, reports))
+28. Q[They, LearningStrategies.include, serviceLevelResults](LearningStrategies.include == serviceLevelResults → Factual(LearningStrategies.include, serviceLevelResults))
+29. Q[They, Communication.method, commonAreas](ServiceLevelResults.location == commonAreas → Factual(Communication.method, commonAreas))
+30. Q[They, CIOOrganizations.resources, available](CIOOrganizations.effectiveness == communicated → Factual(CIOOrganizations.resources, available))

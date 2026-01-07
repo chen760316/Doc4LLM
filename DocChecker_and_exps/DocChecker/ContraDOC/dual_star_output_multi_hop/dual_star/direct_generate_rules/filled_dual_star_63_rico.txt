@@ -1,0 +1,87 @@
+Predicates:
+None_ML(defamation.attrs, other fraternities on campus.attrs)
+None_ML(defamation___members of Greek life.attrs, defamation___other fraternities on campus.attrs)
+University of Virginia.label != "Organization"
+University of Virginia.label = "Organization"
+University of Virginia.name != "University of Virginia"
+University of Virginia.name = "University of Virginia"
+University of Virginia.status != "under investigation"
+University of Virginia.status = "under investigation"
+defamation.label != "Legal Concept"
+defamation.label != University of Virginia.label
+defamation.label != individual members of Phi Kappa Psi.label
+defamation.label != members of Greek life.label
+defamation.label != other fraternities on campus.label
+defamation.label = "Legal Concept"
+defamation.name != "defamation"
+defamation.name != University of Virginia.name
+defamation.name != individual members of Phi Kappa Psi.name
+defamation.name != members of Greek life.name
+defamation.name != other fraternities on campus.name
+defamation.name = "defamation"
+defamation.type != "legal term"
+defamation.type != individual members of Phi Kappa Psi.type
+defamation.type != members of Greek life.type
+defamation.type != other fraternities on campus.type
+defamation.type = "legal term"
+defamation___University of Virginia.doc_id = "3489825751_5"
+defamation___University of Virginia.relationship = "The University of Virginia cannot sue for defamation as it is a governmental entity."
+defamation___individual members of Phi Kappa Psi.doc_id != defamation___other fraternities on campus.doc_id
+defamation___individual members of Phi Kappa Psi.doc_id = "3489825751_5"
+defamation___individual members of Phi Kappa Psi.relationship != defamation___University of Virginia.relationship
+defamation___individual members of Phi Kappa Psi.relationship != defamation___members of Greek life.relationship
+defamation___individual members of Phi Kappa Psi.relationship != defamation___other fraternities on campus.relationship
+defamation___individual members of Phi Kappa Psi.relationship = "Individual members of Phi Kappa Psi may pursue defamation claims."
+defamation___members of Greek life.doc_id = "3489825751_5"
+defamation___members of Greek life.relationship != defamation___University of Virginia.relationship
+defamation___members of Greek life.relationship = "Members of Greek life generally will have a harder time bringing a defamation lawsuit."
+defamation___other fraternities on campus.context = "Challenges faced by larger groups in defamation cases"
+defamation___other fraternities on campus.doc_id != defamation___University of Virginia.doc_id
+defamation___other fraternities on campus.doc_id != defamation___members of Greek life.doc_id
+defamation___other fraternities on campus.doc_id = "3489825751_3"
+defamation___other fraternities on campus.relationship != defamation___University of Virginia.relationship
+defamation___other fraternities on campus.relationship != defamation___members of Greek life.relationship
+defamation___other fraternities on campus.relationship = "Other fraternities on campus may have a harder time bringing a defamation lawsuit."
+individual members of Phi Kappa Psi.label != "Person"
+individual members of Phi Kappa Psi.label != University of Virginia.label
+individual members of Phi Kappa Psi.label != other fraternities on campus.label
+individual members of Phi Kappa Psi.label = "Person"
+individual members of Phi Kappa Psi.name != "individual members of Phi Kappa Psi"
+individual members of Phi Kappa Psi.name != University of Virginia.name
+individual members of Phi Kappa Psi.name != members of Greek life.name
+individual members of Phi Kappa Psi.name != other fraternities on campus.name
+individual members of Phi Kappa Psi.name = "individual members of Phi Kappa Psi"
+individual members of Phi Kappa Psi.type != "private individuals"
+individual members of Phi Kappa Psi.type != other fraternities on campus.type
+individual members of Phi Kappa Psi.type = "private individuals"
+members of Greek life.label != "Person"
+members of Greek life.label != University of Virginia.label
+members of Greek life.label = "Person"
+members of Greek life.name != "members of Greek life"
+members of Greek life.name != University of Virginia.name
+members of Greek life.name = "members of Greek life"
+members of Greek life.type != "private individuals"
+members of Greek life.type = "private individuals"
+other fraternities on campus.label != "Fraternity"
+other fraternities on campus.label != University of Virginia.label
+other fraternities on campus.label != members of Greek life.label
+other fraternities on campus.label = "Fraternity"
+other fraternities on campus.name != "other fraternities on campus"
+other fraternities on campus.name != University of Virginia.name
+other fraternities on campus.name != members of Greek life.name
+other fraternities on campus.name = "other fraternities on campus"
+other fraternities on campus.type != "fraternity"
+other fraternities on campus.type != members of Greek life.type
+other fraternities on campus.type = "fraternity"
+
+Rules:
+Q[defamation,defamation] (other fraternities on campus.type != "fraternity" ∧ other fraternities on campus.label != members of Greek life.label ∧ individual members of Phi Kappa Psi.label != "Person" ∧ other fraternities on campus.label = "Fraternity" ∧ individual members of Phi Kappa Psi.name = "individual members of Phi Kappa Psi" → defamation.type != other fraternities on campus.type)
+Q[defamation,defamation] (defamation.name != "defamation" ∧ defamation.type != individual members of Phi Kappa Psi.type → individual members of Phi Kappa Psi.type != other fraternities on campus.type)
+Q[defamation,defamation] (individual members of Phi Kappa Psi.name != University of Virginia.name ∧ other fraternities on campus.name = "other fraternities on campus" ∧ defamation.label != "Legal Concept" ∧ members of Greek life.type != "private individuals" ∧ other fraternities on campus.name != University of Virginia.name ∧ defamation___individual members of Phi Kappa Psi.doc_id != defamation___other fraternities on campus.doc_id → individual members of Phi Kappa Psi.label != other fraternities on campus.label)
+Q[defamation,defamation] (defamation___other fraternities on campus.doc_id != defamation___members of Greek life.doc_id ∧ individual members of Phi Kappa Psi.type != other fraternities on campus.type ∧ members of Greek life.type != "private individuals" ∧ University of Virginia.status != "under investigation" → defamation.name != "defamation")
+Q[defamation,defamation] (defamation.name != individual members of Phi Kappa Psi.name ∧ individual members of Phi Kappa Psi.name != members of Greek life.name ∧ individual members of Phi Kappa Psi.name != University of Virginia.name → defamation.type = "legal term")
+Q[defamation,defamation] (members of Greek life.type = "private individuals" ∧ members of Greek life.name = "members of Greek life" → defamation___individual members of Phi Kappa Psi.relationship != defamation___University of Virginia.relationship)
+Q[defamation,defamation] (University of Virginia.name = "University of Virginia" ∧ defamation___members of Greek life.relationship = "Members of Greek life generally will have a harder time bringing a defamation lawsuit." ∧ other fraternities on campus.name != University of Virginia.name ∧ defamation.name != members of Greek life.name → other fraternities on campus.type != "fraternity")
+Q[defamation,defamation] (defamation___other fraternities on campus.relationship != defamation___University of Virginia.relationship ∧ defamation.name != members of Greek life.name ∧ defamation.label != individual members of Phi Kappa Psi.label → members of Greek life.type = "private individuals")
+Q[defamation,defamation] (individual members of Phi Kappa Psi.type != other fraternities on campus.type ∧ None_ML(defamation___members of Greek life.attrs, defamation___other fraternities on campus.attrs) ∧ defamation.name != individual members of Phi Kappa Psi.name ∧ defamation___other fraternities on campus.relationship = "Other fraternities on campus may have a harder time bringing a defamation lawsuit." ∧ defamation___other fraternities on campus.doc_id != defamation___University of Virginia.doc_id ∧ defamation.type != "legal term" → defamation___individual members of Phi Kappa Psi.relationship != defamation___other fraternities on campus.relationship)
+Q[defamation,defamation] (members of Greek life.type != "private individuals" ∧ None_ML(defamation.attrs, other fraternities on campus.attrs) ∧ individual members of Phi Kappa Psi.name != members of Greek life.name ∧ defamation___individual members of Phi Kappa Psi.doc_id = "3489825751_5" ∧ defamation.type != members of Greek life.type → individual members of Phi Kappa Psi.label = "Person")

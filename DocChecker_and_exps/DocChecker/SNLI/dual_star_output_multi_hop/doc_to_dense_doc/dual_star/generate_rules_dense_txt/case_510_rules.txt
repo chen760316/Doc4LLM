@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 510)
+S1: A man carrying a white sweatshirt waits to cross the street.
+S2: A person carrying a garment is planning to cross a road.
+
+Predicates:
+1. Man.carrying_sweatshirt
+2. Sweatshirt.color
+3. Person.carrying_garment
+4. Garment.type
+5. Man.waiting_to_cross
+6. Person.planning_to_cross
+7. Street.type
+8. Road.type
+9. Sweatshirt.type
+10. Man.location
+11. Person.location
+12. Man.action
+13. Person.action
+14. Crosswalk.exists
+15. Traffic_signal.state
+16. Vehicle.approaching
+17. Sidewalk.width
+18. Pedestrian.safety
+19. Man.intention
+20. Person.intention
+21. Wait_time.duration
+22. Cross_time.duration
+23. Weather.condition
+24. Time_of_day
+25. Man.urgency
+26. Person.urgency
+27. Garment.color
+28. Road.condition
+29. Street.name
+30. M_NLI(S1, S2)
+
+Rules:
+1. Q[man, Man.carrying_sweatshirt, Person.carrying_garment](Man.carrying_sweatshirt == true → Content(Man.carrying_sweatshirt, Person.carrying_garment))
+2. Q[man, Sweatshirt.color, Garment.color](Sweatshirt.color == "white" → Content(Sweatshirt.color, Garment.color))
+3. Q[man, Man.waiting_to_cross, Person.planning_to_cross](Man.waiting_to_cross == true → Content(Man.waiting_to_cross, Person.planning_to_cross))
+4. Q[man, Sweatshirt.type, Garment.type](Sweatshirt.type == "sweatshirt" → Content(Sweatshirt.type, Garment.type))
+5. Q[man, Man.location, Person.location](Man.location == Person.location → Content(Man.location, Person.location))
+6. Q[man, Man.action, Person.action](Man.action == "waiting" → Content(Man.action, Person.action))
+7. Q[man, Man.intention, Person.intention](Man.intention == "cross" → Content(Man.intention, Person.intention))
+8. Q[man, Man.urgency, Person.urgency](Man.urgency == "high" → Content(Man.urgency, Person.urgency))
+9. Q[man, Street.type, Road.type](Street.type == "public" → Content(Street.type, Road.type))
+10. Q[man, Wait_time.duration, Cross_time.duration](Wait_time.duration < Cross_time.duration → Content(Wait_time.duration, Cross_time.duration))
+11. Q[man, Traffic_signal.state, Vehicle.approaching](Traffic_signal.state == "red" → Content(Traffic_signal.state, Vehicle.approaching))
+12. Q[man, Sidewalk.width, Pedestrian.safety](Sidewalk.width < 3 → Content(Sidewalk.width, Pedestrian.safety))
+13. Q[man, Weather.condition, Time_of_day](Weather.condition == "clear" → Content(Weather.condition, Time_of_day))
+14. Q[man, Road.condition, Street.name](Road.condition == "good" → Content(Road.condition, Street.name))
+15. Q[man, M_NLI(S1, S2), Content](M_NLI(S1, S2) == "contradiction" → Content(M_NLI(S1, S2), Content))
+16. Q[man, Sweatshirt.color, Garment.color](Sweatshirt.color != Garment.color → Content(Sweatshirt.color, Garment.color))
+17. Q[man, Man.carrying_sweatshirt, Person.planning_to_cross](Man.carrying_sweatshirt == true → Content(Man.carrying_sweatshirt, Person.planning_to_cross))
+18. Q[man, Man.waiting_to_cross, Person.action](Man.waiting_to_cross == true → Content(Man.waiting_to_cross, Person.action))
+19. Q[man, Man.intention, Person.carrying_garment](Man.intention == "cross" → Content(Man.intention, Person.carrying_garment))
+20. Q[man, Sweatshirt.type, Garment.type](Sweatshirt.type != Garment.type → Content(Sweatshirt.type, Garment.type))
+21. Q[man, Man.location, Person.planning_to_cross](Man.location == Person.location → Content(Man.location, Person.planning_to_cross))
+22. Q[man, Man.action, Person.planning_to_cross](Man.action == "waiting" → Content(Man.action, Person.planning_to_cross))
+23. Q[man, Man.urgency, Person.intention](Man.urgency == "high" → Content(Man.urgency, Person.intention))
+24. Q[man, Street.type, Road.type](Street.type != Road.type → Content(Street.type, Road.type))
+25. Q[man, Wait_time.duration, Traffic_signal.state](Wait_time.duration > 5 → Content(Wait_time.duration, Traffic_signal.state))
+26. Q[man, Weather.condition, Pedestrian.safety](Weather.condition == "rainy" → Content(Weather.condition, Pedestrian.safety))
+27. Q[man, Road.condition, Vehicle.approaching](Road.condition == "poor" → Content(Road.condition, Vehicle.approaching))
+28. Q[man, M_NLI(S1, S2), Content](M_NLI(S1, S2) == "contradiction" → Content(M_NLI(S1, S2), Content))
+29. Q[man, Sweatshirt.color, Garment.color](Sweatshirt.color == "white" → Content(Sweatshirt.color, Garment.color))
+30. Q[man, Man.carrying_sweatshirt, Person.carrying_garment](Man.carrying_sweatshirt == true → Content(Man.carrying_sweatshirt, Person.carrying_garment))

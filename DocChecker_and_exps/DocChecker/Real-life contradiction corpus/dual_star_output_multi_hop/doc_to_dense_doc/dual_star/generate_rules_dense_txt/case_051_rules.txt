@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 51)
+S1: Seligmann was arrested.
+S2: Seligmann was released.
+
+Predicates:
+1. Seligmann.arrested
+2. Seligmann.released
+3. Arrested.time
+4. Released.time
+5. Arrested.location
+6. Released.location
+7. Seligmann.detained
+8. Seligmann.detainee
+9. Detention.start_time
+10. Detention.end_time
+11. "implies".detention
+12. "indicates".release
+13. "creates".contradiction
+14. Seligmann.status
+15. "violates".sequence_of_events
+16. "causal".arrested_released
+17. "contradicts".detained_released
+18. Detention.duration
+19. Release.reason
+20. "causal".detention_release
+21. Seligmann.legal_status
+22. "implies".legal_detainment
+23. "indicates".legal_release
+24. Arrested.reason
+25. Released.reason
+26. "affects".Seligmann.status
+27. "results_in".detention_ended
+28. "conflicts_with".arrested_status
+29. "follows".release_event
+30. "precedes".arrest_event
+
+Rules:
+1. Q[Seligmann, Seligmann.arrested, Seligmann.released](Seligmann.arrested == true → Causal(Seligmann.arrested, Seligmann.released))
+2. Q[Seligmann, Seligmann.released, Seligmann.arrested](Seligmann.released == true → Causal(Seligmann.released, Seligmann.arrested))
+3. Q[Seligmann, Seligmann.detained, Seligmann.released](Seligmann.detained == true → Causal(Seligmann.detained, Seligmann.released))
+4. Q[Seligmann, Seligmann.released, Seligmann.detained](Seligmann.released == true → Causal(Seligmann.released, Seligmann.detained))
+5. Q[Seligmann, Arrested.time, Released.time](Arrested.time < Released.time → Causal(Arrested.time, Released.time))
+6. Q[Seligmann, Detention.start_time, Detention.end_time](Detention.start_time < Detention.end_time → Causal(Detention.start_time, Detention.end_time))
+7. Q[Seligmann, "implies".detention, "indicates".release](Seligmann.arrested == true → Causal("implies".detention, "indicates".release))
+8. Q[Seligmann, "creates".contradiction, Seligmann.status](Seligmann.arrested == true ∧ Seligmann.released == true → Causal("creates".contradiction, Seligmann.status))
+9. Q[Seligmann, "violates".sequence_of_events, Seligmann.status](Seligmann.arrested == true ∧ Seligmann.released == true → Causal("violates".sequence_of_events, Seligmann.status))
+10. Q[Seligmann, "contradicts".detained_released, Seligmann.status](Seligmann.detained == true ∧ Seligmann.released == true → Causal("contradicts".detained_released, Seligmann.status))
+11. Q[Seligmann, "causal".arrested_released, Seligmann.status](Seligmann.arrested == true ∧ Seligmann.released == true → Causal("causal".arrested_released, Seligmann.status))
+12. Q[Seligmann, "causal".detention_release, Seligmann.status](Seligmann.detained == true ∧ Seligmann.released == true → Causal("causal".detention_release, Seligmann.status))
+13. Q[Seligmann, Arrested.reason, Released.reason](Seligmann.arrested == true → Causal(Arrested.reason, Released.reason))
+14. Q[Seligmann, "affects".Seligmann.status, Seligmann.released](Seligmann.arrested == true → Causal("affects".Seligmann.status, Seligmann.released))
+15. Q[Seligmann, "results_in".detention_ended, Seligmann.released](Seligmann.released == true → Causal("results_in".detention_ended, Seligmann.released))
+16. Q[Seligmann, "conflicts_with".arrested_status, Seligmann.released](Seligmann.arrested == true ∧ Seligmann.released == true → Causal("conflicts_with".arrested_status, Seligmann.released))
+17. Q[Seligmann, "follows".release_event, Seligmann.arrested](Seligmann.released == true → Causal("follows".release_event, Seligmann.arrested))
+18. Q[Seligmann, "precedes".arrest_event, Seligmann.released](Seligmann.arrested == true → Causal("precedes".arrest_event, Seligmann.released))
+19. Q[Seligmann, Seligmann.status, Seligmann.released](Seligmann.status == "detained" → Causal(Seligmann.status, Seligmann.released))
+20. Q[Seligmann, Seligmann.status, Seligmann.detained](Seligmann.status == "released" → Causal(Seligmann.status, Seligmann.detained))
+21. Q[Seligmann, Detention.duration, Seligmann.released](Seligmann.detained == true → Causal(Detention.duration, Seligmann.released))
+22. Q[Seligmann, "indicates".legal_release, Seligmann.status](Seligmann.released == true → Causal("indicates".legal_release, Seligmann.status))
+23. Q[Seligmann, "implies".legal_detainment, Seligmann.status](Seligmann.arrested == true → Causal("implies".legal_detainment, Seligmann.status))
+24. Q[Seligmann, Seligmann.detainee, Seligmann.released](Seligmann.detainee == true → Causal(Seligmann.detainee, Seligmann.released))
+25. Q[Seligmann, Seligmann.legal_status, Seligmann.released](Seligmann.released == true → Causal(Seligmann.legal_status, Seligmann.released))
+26. Q[Seligmann, Seligmann.arrested, Seligmann.detained](Seligmann.arrested == true → Causal(Seligmann.arrested, Seligmann.detained))
+27. Q[Seligmann, Seligmann.released, Seligmann.detained](Seligmann.released == true → Causal(Seligmann.released, Seligmann.detained))
+28. Q[Seligmann, "results_in".detention_ended, Seligmann.status](Seligmann.released == true → Causal("results_in".detention_ended, Seligmann.status))
+29. Q[Seligmann, "conflicts_with".arrested_status, Seligmann.detained](Seligmann.arrested == true ∧ Seligmann.detained == true → Causal("conflicts_with".arrested_status, Seligmann.detained))
+30. Q[Seligmann, "creates".contradiction, Seligmann.released](Seligmann.arrested == true ∧ Seligmann.released == true → Causal("creates".contradiction, Seligmann.released))

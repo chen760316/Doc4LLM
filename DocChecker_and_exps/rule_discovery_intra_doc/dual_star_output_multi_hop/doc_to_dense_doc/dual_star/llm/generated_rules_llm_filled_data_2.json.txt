@@ -1,0 +1,74 @@
+Predicates:
+John.label = "Person"
+John.label != "Person"
+John.name = "John"
+John.name != "John"
+John.emotion = "dreading"
+John.emotion != "dreading"
+John.label = "Person"
+John.label != "Person"
+John.name = "John"
+John.name != "John"
+John.emotion = "dreading"
+John.emotion != "dreading"
+presentation.label = "Event"
+presentation.label != "Event"
+presentation.name = "presentation"
+presentation.name != "presentation"
+presentation.time = "tomorrow"
+presentation.time != "tomorrow"
+M_NLI(John(label=Person, name=John, emotion=dreading), presentation(label=Event, name=presentation, time=tomorrow))
+M_NLU(John(label=Person, name=John, emotion=dreading), presentation(label=Event, name=presentation, time=tomorrow))
+M_TEM(John(label=Person, name=John, emotion=dreading), presentation(label=Event, name=presentation, time=tomorrow))
+M_NLI(presentation(label=Event, name=presentation, time=tomorrow), John(label=Person, name=John, emotion=dreading))
+M_NLU(presentation(label=Event, name=presentation, time=tomorrow), John(label=Person, name=John, emotion=dreading))
+M_TEM(presentation(label=Event, name=presentation, time=tomorrow), John(label=Person, name=John, emotion=dreading))
+S(John, "d To (label=Person name=John emotion=dreading)")
+S(John feels very excited about the upcoming presentation., "rk.
+I slam the door.
+John feels very excited about the upcoming presentation.
+Jane and Tom are sibli")
+S(John, "John (label=Person name=John emotion=dreading)")
+S(presentation, "presentation (label=Event name=presentation time=tomorrow)")
+S(John is dreading the presentation scheduled for tomorrow., " located in California.
+After I do that, the door opens.
+John is dreading the presentation tomorrow.")
+T(John (label=Person name=John emotion=dreading), rk.
+I slam the door.
+John feels very excited about the upcoming presentation.
+Jane and Tom are sibli, No Contradiction)
+No Contradiction(John., John feels very excited about the upcoming presentation..)
+T(John (label=Person name=John emotion=dreading), presentation (label=Event name=presentation time=tomorrow), No Contradiction)
+No Contradiction(John., presentation.)
+T(presentation (label=Event name=presentation time=tomorrow), John (label=Person name=John emotion=dreading), No Contradiction)
+No Contradiction(presentation., John.)
+T(John (label=Person name=John emotion=dreading),  located in California.
+After I do that, the door opens.
+John is dreading the presentation tomorrow., No Contradiction)
+No Contradiction(John., John is dreading the presentation scheduled for tomorrow..)
+T(presentation (label=Event name=presentation time=tomorrow),  located in California.
+After I do that, the door opens.
+John is dreading the presentation tomorrow., No Contradiction)
+No Contradiction(presentation., John is dreading the presentation scheduled for tomorrow..)
+
+Rules:
+Q[x0, y0](John.label = "Person" ∧ John.name = "John" → No Contradiction(John., John feels very excited about the upcoming presentation.))
+Q[x0, y0](presentation.label = "Event" ∧ presentation.name = "presentation" → No Contradiction(presentation., John is dreading the presentation scheduled for tomorrow.))
+Q[x0, y0](John.emotion = "dreading" ∧ presentation.time = "tomorrow" → M_NLI(John(label=Person, name=John, emotion=dreading), presentation(label=Event, name=presentation, time=tomorrow)))
+Q[x0, y0](John.label = "Person" ∧ John.emotion != "dreading" → No Contradiction(John., John feels very excited about the upcoming presentation.))
+Q[x0, y0](presentation.label = "Event" ∧ presentation.time != "tomorrow" → No Contradiction(presentation., John is dreading the presentation scheduled for tomorrow.))
+Q[x0, y0](John.label = "Person" ∧ John.name = "John" ∧ John.emotion = "dreading" → M_TEM(John(label=Person, name=John, emotion=dreading), presentation(label=Event, name=presentation, time=tomorrow)))
+Q[x0, y0](presentation.label = "Event" ∧ presentation.name = "presentation" ∧ presentation.time = "tomorrow" → M_NLU(presentation(label=Event, name=presentation, time=tomorrow), John(label=Person, name=John, emotion=dreading)))
+Q[x0, y0](John.label = "Person" ∧ John.name != "John" ∧ John.emotion = "dreading" → No Contradiction(John., John is dreading the presentation scheduled for tomorrow.))
+Q[x0, y0](John.label != "Person" ∧ presentation.label = "Event" ∧ presentation.time = "tomorrow" → No Contradiction(presentation., John feels very excited about the upcoming presentation.))
+Q[x0, y0](John.name = "John" ∧ John.emotion != "dreading" ∧ presentation.name = "presentation" → No Contradiction(John., presentation.))
+Q[x0, y0](John.label = "Person" ∧ John.name = "John" ∧ John.emotion = "dreading" ∧ presentation.label = "Event" → M_NLI(presentation(label=Event, name=presentation, time=tomorrow), John(label=Person, name=John, emotion=dreading)))
+Q[x0, y0](John.label = "Person" ∧ John.name = "John" ∧ presentation.name = "presentation" ∧ presentation.time = "tomorrow" → M_TEM(John(label=Person, name=John, emotion=dreading), presentation(label=Event, name=presentation, time=tomorrow)))
+Q[x0, y0](John.emotion = "dreading" ∧ presentation.label = "Event" ∧ presentation.name != "presentation" ∧ presentation.time = "tomorrow" → No Contradiction(John., presentation.))
+Q[x0, y0](John.label != "Person" ∧ John.name = "John" ∧ presentation.label = "Event" ∧ presentation.time != "tomorrow" → No Contradiction(presentation., John.))
+Q[x0, y0](John.label = "Person" ∧ John.emotion != "dreading" ∧ presentation.name = "presentation" ∧ presentation.time = "tomorrow" → No Contradiction(John., presentation.))
+Q[x0, y0](John.label = "Person" ∧ John.name = "John" ∧ John.emotion = "dreading" ∧ presentation.label = "Event" ∧ presentation.name = "presentation" → M_NLU(John(label=Person, name=John, emotion=dreading), presentation(label=Event, name=presentation, time=tomorrow)))
+Q[x0, y0](John.label = "Person" ∧ John.name != "John" ∧ John.emotion != "dreading" ∧ presentation.label = "Event" ∧ presentation.time = "tomorrow" → No Contradiction(John., presentation.))
+Q[x0, y0](John.label = "Person" ∧ John.name = "John" ∧ John.emotion = "dreading" ∧ presentation.label = "Event" ∧ presentation.time != "tomorrow" → No Contradiction(John., presentation.))
+Q[x0, y0](John.label != "Person" ∧ John.name != "John" ∧ John.emotion != "dreading" ∧ presentation.label = "Event" ∧ presentation.name = "presentation" → No Contradiction(presentation., John.))
+Q[x0, y0](John.label = "Person" ∧ John.name = "John" ∧ John.emotion = "dreading" ∧ presentation.label = "Event" ∧ presentation.name = "presentation" ∧ presentation.time = "tomorrow" → M_NLI(John(label=Person, name=John, emotion=dreading), presentation(label=Event, name=presentation, time=tomorrow)))

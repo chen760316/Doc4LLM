@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 1258)
+S1: A man is sleeping.
+S2: A man is dancing on stage.
+
+Predicates:
+1. Man.state
+2. Man.activity
+3. Man.sleeping
+4. Man.dancing
+5. Stage.location
+6. Stage.activity
+7. Activity.type
+8. Activity.state
+9. Time.current
+10. Time.simultaneous
+11. Reason.contradiction
+12. Reason.inference
+13. Reason.occurrence
+14. Entity.man
+15. Entity.stage
+16. Entity.activity
+17. M_NLI(S1, S2)
+18. Negation(sleeping, dancing)
+19. Negation(dancing, sleeping)
+20. violate(sleeping, dancing)
+21. violate(dancing, sleeping)
+22. Man.isPresent
+23. Man.isActive
+24. Activity.isPhysical
+25. Activity.isStatic
+26. Stage.isOccupied
+27. Stage.isActive
+28. Time.isNow
+29. Time.isPast
+30. Reason.isValid
+
+Rules:
+1. Q[man, Man.state, Man.activity](Man.sleeping == true → Negation(sleeping, dancing))
+2. Q[man, Man.activity, Man.sleeping](Man.dancing == true → Negation(dancing, sleeping))
+3. Q[man, Man.sleeping, Man.dancing](Man.sleeping == true ∧ Man.dancing == true → Negation(sleeping, dancing))
+4. Q[man, Man.isActive, Man.sleeping](Man.isActive == true → Negation(sleeping, dancing))
+5. Q[man, Man.isPresent, Man.dancing](Man.isPresent == true ∧ Man.dancing == true → Negation(dancing, sleeping))
+6. Q[man, Activity.type, Man.sleeping](Activity.type == "dancing" ∧ Man.sleeping == true → Negation(sleeping, dancing))
+7. Q[man, Activity.state, Man.dancing](Activity.state == "active" ∧ Man.dancing == true → Negation(dancing, sleeping))
+8. Q[man, Time.current, Man.sleeping](Time.isNow == true ∧ Man.sleeping == true → Negation(sleeping, dancing))
+9. Q[man, Time.simultaneous, Man.dancing](Time.simultaneous == true ∧ Man.dancing == true → Negation(dancing, sleeping))
+10. Q[man, Reason.contradiction, Man.sleeping](Reason.contradiction == true ∧ Man.sleeping == true → Negation(sleeping, dancing))
+11. Q[man, Reason.inference, Man.dancing](Reason.inference == true ∧ Man.dancing == true → Negation(dancing, sleeping))
+12. Q[man, Reason.occurrence, Man.sleeping](Reason.occurrence == true ∧ Man.sleeping == true → Negation(sleeping, dancing))
+13. Q[man, Entity.activity, Man.dancing](Entity.activity == "dancing" ∧ Man.dancing == true → Negation(dancing, sleeping))
+14. Q[man, Stage.activity, Man.sleeping](Stage.activity == "dancing" ∧ Man.sleeping == true → Negation(sleeping, dancing))
+15. Q[man, Stage.isActive, Man.dancing](Stage.isActive == true ∧ Man.dancing == true → Negation(dancing, sleeping))
+16. Q[man, Activity.isPhysical, Man.sleeping](Activity.isPhysical == true ∧ Man.sleeping == true → Negation(sleeping, dancing))
+17. Q[man, Activity.isStatic, Man.dancing](Activity.isStatic == true ∧ Man.dancing == true → Negation(dancing, sleeping))
+18. Q[man, Stage.isOccupied, Man.sleeping](Stage.isOccupied == true ∧ Man.sleeping == true → Negation(sleeping, dancing))
+19. Q[man, Time.isPast, Man.dancing](Time.isPast == true ∧ Man.dancing == true → Negation(dancing, sleeping))
+20. Q[man, Entity.man, Man.sleeping](Entity.man == "man" ∧ Man.sleeping == true → Negation(sleeping, dancing))
+21. Q[man, Entity.stage, Man.dancing](Entity.stage == "stage" ∧ Man.dancing == true → Negation(dancing, sleeping))
+22. Q[man, violate(sleeping, dancing), Man.sleeping](violate(sleeping, dancing) == true ∧ Man.sleeping == true → Negation(sleeping, dancing))
+23. Q[man, violate(dancing, sleeping), Man.dancing](violate(dancing, sleeping) == true ∧ Man.dancing == true → Negation(dancing, sleeping))
+24. Q[man, Man.isActive, Man.sleeping](Man.isActive == false ∧ Man.sleeping == true → Negation(sleeping, dancing))
+25. Q[man, Man.isPresent, Man.sleeping](Man.isPresent == true ∧ Man.sleeping == true → Negation(sleeping, dancing))
+26. Q[man, Time.current, Man.dancing](Time.isNow == true ∧ Man.dancing == true → Negation(dancing, sleeping))
+27. Q[man, Time.simultaneous, Man.sleeping](Time.simultaneous == true ∧ Man.sleeping == true → Negation(sleeping, dancing))
+28. Q[man, Reason.isValid, Man.dancing](Reason.isValid == true ∧ Man.dancing == true → Negation(dancing, sleeping))
+29. Q[man, Activity.state, Man.sleeping](Activity.state == "static" ∧ Man.sleeping == true → Negation(sleeping, dancing))
+30. Q[man, Activity.type, Man.dancing](Activity.type == "static" ∧ Man.dancing == true → Negation(dancing, sleeping))

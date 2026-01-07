@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 646)
+S1: Ebola Epidemic breaks out in Zaire.
+S2: The first Ebola Zaire epidemic breaks out.
+
+Predicates:
+1. Ebola_Epidemic.location
+2. Ebola_Epidemic.type
+3. Ebola_Zaire_Epidemic.instance
+4. Ebola_Zaire_Epidemic.first_occurrence
+5. Zaire.outbreaks
+6. Zaire.Ebola_cases
+7. Ebola_Epidemic.severity
+8. Ebola_Epidemic.date
+9. Ebola_Epidemic.response
+10. Ebola_Zaire_Epidemic.date
+11. Ebola_Zaire_Epidemic.severity
+12. outbreak.in_Zaire
+13. outbreak.type
+14. outbreak.first_instance
+15. outbreak.severity
+16. outbreak.date
+17. M_NLI(S1, S2)
+18. Temporal(Ebola_Epidemic.start_date, Ebola_Epidemic.end_date)
+19. violate(Ebola_Epidemic, Ebola_Zaire_Epidemic)
+20. Zaire.health_response
+21. Zaire.infection_rate
+22. Zaire.public_health_measures
+23. Ebola_Epidemic.impact
+24. Ebola_Zaire_Epidemic.impact
+25. Ebola_Epidemic.transmission_rate
+26. Ebola_Zaire_Epidemic.transmission_rate
+27. outbreak.response
+28. outbreak.impact
+29. outbreak.transmission
+30. outbreak.public_health_response
+
+Rules:
+1. Q[Ebola, Ebola_Epidemic.type, Ebola_Zaire_Epidemic.first_occurrence](Ebola_Epidemic.type == "general" → Temporal(Ebola_Epidemic.start_date, Ebola_Zaire_Epidemic.date))
+2. Q[Ebola, Ebola_Epidemic.location, Zaire.outbreaks](Ebola_Epidemic.location == "Zaire" → Temporal(Ebola_Epidemic.start_date, Ebola_Zaire_Epidemic.date))
+3. Q[Ebola, Ebola_Epidemic.severity, Ebola_Zaire_Epidemic.severity](Ebola_Epidemic.severity == "variable" → Temporal(Ebola_Epidemic.start_date, Ebola_Zaire_Epidemic.date))
+4. Q[Ebola, outbreak.type, Ebola_Zaire_Epidemic.first_occurrence](outbreak.type == "Ebola" → Temporal(outbreak.date, Ebola_Zaire_Epidemic.date))
+5. Q[Ebola, outbreak.first_instance, Ebola_Zaire_Epidemic.first_occurrence](outbreak.first_instance == "not_first" → Temporal(outbreak.date, Ebola_Zaire_Epidemic.date))
+6. Q[Ebola, Zaire.Ebola_cases, Ebola_Zaire_Epidemic.first_occurrence](Zaire.Ebola_cases > 0 → Temporal(Zaire.Ebola_cases, Ebola_Zaire_Epidemic.date))
+7. Q[Ebola, outbreak.severity, Ebola_Zaire_Epidemic.severity](outbreak.severity == "high" → Temporal(outbreak.date, Ebola_Zaire_Epidemic.date))
+8. Q[Ebola, outbreak.date, Ebola_Zaire_Epidemic.date](outbreak.date < Ebola_Zaire_Epidemic.date → Temporal(outbreak.date, Ebola_Zaire_Epidemic.date))
+9. Q[Ebola, Ebola_Epidemic.date, Ebola_Zaire_Epidemic.date](Ebola_Epidemic.date < Ebola_Zaire_Epidemic.date → Temporal(Ebola_Epidemic.date, Ebola_Zaire_Epidemic.date))
+10. Q[Ebola, outbreak.response, Ebola_Zaire_Epidemic.first_occurrence](outbreak.response == "delayed" → Temporal(outbreak.date, Ebola_Zaire_Epidemic.date))
+11. Q[Ebola, Zaire.health_response, Ebola_Zaire_Epidemic.first_occurrence](Zaire.health_response == "insufficient" → Temporal(Zaire.health_response, Ebola_Zaire_Epidemic.date))
+12. Q[Ebola, Zaire.infection_rate, Ebola_Zaire_Epidemic.first_occurrence](Zaire.infection_rate > 0 → Temporal(Zaire.infection_rate, Ebola_Zaire_Epidemic.date))
+13. Q[Ebola, outbreak.impact, Ebola_Zaire_Epidemic.impact](outbreak.impact == "significant" → Temporal(outbreak.date, Ebola_Zaire_Epidemic.date))
+14. Q[Ebola, outbreak.transmission, Ebola_Zaire_Epidemic.transmission_rate](outbreak.transmission == "rapid" → Temporal(outbreak.date, Ebola_Zaire_Epidemic.date))
+15. Q[Ebola, outbreak.public_health_response, Ebola_Zaire_Epidemic.first_occurrence](outbreak.public_health_response == "ineffective" → Temporal(outbreak.date, Ebola_Zaire_Epidemic.date))
+16. Q[Ebola, Ebola_Epidemic.impact, Ebola_Zaire_Epidemic.impact](Ebola_Epidemic.impact == "widespread" → Temporal(Ebola_Epidemic.start_date, Ebola_Zaire_Epidemic.date))
+17. Q[Ebola, Ebola_Epidemic.transmission_rate, Ebola_Zaire_Epidemic.transmission_rate](Ebola_Epidemic.transmission_rate > Ebola_Zaire_Epidemic.transmission_rate → Temporal(Ebola_Epidemic.start_date, Ebola_Zaire_Epidemic.date))
+18. Q[Ebola, outbreak.date, Ebola_Zaire_Epidemic.date](outbreak.date == "before" → Temporal(outbreak.date, Ebola_Zaire_Epidemic.date))
+19. Q[Ebola, Ebola_Zaire_Epidemic.date, outbreak.date](Ebola_Zaire_Epidemic.date > outbreak.date → Temporal(Ebola_Zaire_Epidemic.date, outbreak.date))
+20. Q[Ebola, Ebola_Zaire_Epidemic.instance, outbreak.first_instance](Ebola_Zaire_Epidemic.instance == "first" → Temporal(Ebola_Zaire_Epidemic.date, outbreak.date))
+21. Q[Ebola, outbreak.severity, Ebola_Zaire_Epidemic.severity](outbreak.severity == "low" → Temporal(outbreak.date, Ebola_Zaire_Epidemic.date))
+22. Q[Ebola, Zaire.public_health_measures, Ebola_Zaire_Epidemic.first_occurrence](Zaire.public_health_measures == "lacking" → Temporal(Zaire.public_health_measures, Ebola_Zaire_Epidemic.date))
+23. Q[Ebola, Ebola_Epidemic.date, outbreak.date](Ebola_Epidemic.date < outbreak.date → Temporal(Ebola_Epidemic.date, outbreak.date))
+24. Q[Ebola, outbreak.impact, Ebola_Zaire_Epidemic.impact](outbreak.impact == "minimal" → Temporal(outbreak.date, Ebola_Zaire_Epidemic.date))
+25. Q[Ebola, outbreak.first_instance, Ebola_Zaire_Epidemic.first_occurrence](outbreak.first_instance == "not_first" → Temporal(outbreak.date, Ebola_Zaire_Epidemic.date))
+26. Q[Ebola, Ebola_Zaire_Epidemic.first_occurrence, outbreak.first_instance](Ebola_Zaire_Epidemic.first_occurrence == "true" → Temporal(Ebola_Zaire_Epidemic.date, outbreak.date))
+27. Q[Ebola, Zaire.Ebola_cases, outbreak.first_instance](Zaire.Ebola_cases == 0 → Temporal(Zaire.Ebola_cases, outbreak.date))
+28. Q[Ebola, outbreak.response, Ebola_Zaire_Epidemic.first_occurrence](outbreak.response == "proactive" → Temporal(outbreak.date, Ebola_Zaire_Epidemic.date))
+29. Q[Ebola, outbreak.date, Ebola_Zaire_Epidemic.date](outbreak.date == "earlier" → Temporal(outbreak.date, Ebola_Zaire_Epidemic.date))
+30. Q[Ebola, Ebola_Zaire_Epidemic.first_occurrence, outbreak.first_instance](Ebola_Zaire_Epidemic.first_occurrence == "first" → Temporal(Ebola_Zaire_Epidemic.date, outbreak.date))

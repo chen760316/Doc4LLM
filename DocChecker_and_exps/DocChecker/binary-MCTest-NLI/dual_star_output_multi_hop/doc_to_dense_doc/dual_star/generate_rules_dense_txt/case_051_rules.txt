@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 51)
+S1: They did not use green or orange paint.
+S2: They painted the inside of the tree house blue.
+
+Predicates:
+1. Paint.color_not_used
+2. Paint.color_used
+3. TreeHouse.inside_painted
+4. Paint.color.green
+5. Paint.color.orange
+6. Paint.color.blue
+7. TreeHouse.has_paint
+8. Paint.is_not_green_or_orange
+9. TreeHouse.is_inside_painted_blue
+10. Paint.color.is_blue
+11. TreeHouse.is_not_painted_green
+12. TreeHouse.is_not_painted_orange
+13. Paint.color_used.implies.not_green
+14. Paint.color_used.implies.not_orange
+15. TreeHouse.painting_status
+16. Paint.color.blue.implies.not_green
+17. Paint.color.blue.implies.not_orange
+18. TreeHouse.painting_completed
+19. Paint.color.green.is_not_used
+20. Paint.color.orange.is_not_used
+21. TreeHouse.has_no_green_or_orange_paint
+22. Paint.color.blue.is_used
+23. TreeHouse.is_painted
+24. Paint.color_used.is_blue
+25. TreeHouse.inside.is_painted
+26. Paint.color.blue.is_not_green
+27. Paint.color.blue.is_not_orange
+28. TreeHouse.painting_method
+29. Paint.color.green.is_excluded
+30. Paint.color.orange.is_excluded
+
+Rules:
+1. Q[They, Paint.color.green.is_not_used, Paint.color.blue.is_used](Paint.color_not_used == "green" → Content(They, Paint.color.blue.is_used))
+2. Q[They, Paint.color.orange.is_not_used, Paint.color.blue.is_used](Paint.color_not_used == "orange" → Content(They, Paint.color.blue.is_used))
+3. Q[They, TreeHouse.is_not_painted_green, TreeHouse.is_inside_painted_blue](TreeHouse.has_no_green_or_orange_paint == true → Content(They, TreeHouse.is_inside_painted_blue))
+4. Q[They, TreeHouse.is_not_painted_orange, TreeHouse.is_inside_painted_blue](TreeHouse.has_no_green_or_orange_paint == true → Content(They, TreeHouse.is_inside_painted_blue))
+5. Q[They, Paint.color.blue.is_not_green, Paint.color.blue.is_used](Paint.color.blue.implies.not_green == true → Content(They, Paint.color.blue.is_used))
+6. Q[They, Paint.color.blue.is_not_orange, Paint.color.blue.is_used](Paint.color.blue.implies.not_orange == true → Content(They, Paint.color.blue.is_used))
+7. Q[They, TreeHouse.painting_completed, TreeHouse.is_inside_painted_blue](TreeHouse.painting_status == "completed" → Content(They, TreeHouse.is_inside_painted_blue))
+8. Q[They, Paint.color_used.implies.not_green, Paint.color.blue.is_used](Paint.color_used == "blue" → Content(They, Paint.color.blue.is_used))
+9. Q[They, Paint.color_used.implies.not_orange, Paint.color.blue.is_used](Paint.color_used == "blue" → Content(They, Paint.color.blue.is_used))
+10. Q[They, TreeHouse.has_paint, TreeHouse.is_inside_painted_blue](TreeHouse.has_paint == true → Content(They, TreeHouse.is_inside_painted_blue))
+11. Q[They, Paint.color.blue.is_used, TreeHouse.is_inside_painted_blue](Paint.color.blue.is_used == true → Content(They, TreeHouse.is_inside_painted_blue))
+12. Q[They, Paint.color.blue, Paint.color_used](Paint.color.blue.is_used == true → Content(They, Paint.color_used))
+13. Q[They, TreeHouse.is_painted, TreeHouse.is_inside_painted_blue](TreeHouse.painting_status == "painted" → Content(They, TreeHouse.is_inside_painted_blue))
+14. Q[They, Paint.color.green.is_excluded, Paint.color.blue.is_used](Paint.color.green.is_not_used == true → Content(They, Paint.color.blue.is_used))
+15. Q[They, Paint.color.orange.is_excluded, Paint.color.blue.is_used](Paint.color.orange.is_not_used == true → Content(They, Paint.color.blue.is_used))
+16. Q[They, TreeHouse.inside.is_painted, TreeHouse.is_inside_painted_blue](TreeHouse.inside_painted == "blue" → Content(They, TreeHouse.is_inside_painted_blue))
+17. Q[They, Paint.color.blue, Paint.color_used](Paint.color.blue.is_used == true → Content(They, Paint.color_used))
+18. Q[They, TreeHouse.has_no_green_or_orange_paint, TreeHouse.is_inside_painted_blue](TreeHouse.has_no_green_or_orange_paint == true → Content(They, TreeHouse.is_inside_painted_blue))
+19. Q[They, Paint.color.blue.is_not_green, Paint.color.blue.is_used](Paint.color.blue.is_not_green == true → Content(They, Paint.color.blue.is_used))
+20. Q[They, Paint.color.blue.is_not_orange, Paint.color.blue.is_used](Paint.color.blue.is_not_orange == true → Content(They, Paint.color.blue.is_used))
+21. Q[They, TreeHouse.painting_method, TreeHouse.is_inside_painted_blue](TreeHouse.painting_method == "completed" → Content(They, TreeHouse.is_inside_painted_blue))
+22. Q[They, Paint.color.blue, Paint.color.green.is_not_used](Paint.color.blue.is_used == true → Content(They, Paint.color.green.is_not_used))
+23. Q[They, Paint.color.blue, Paint.color.orange.is_not_used](Paint.color.blue.is_used == true → Content(They, Paint.color.orange.is_not_used))
+24. Q[They, TreeHouse.is_painted, TreeHouse.is_inside_painted_blue](TreeHouse.is_painted == true → Content(They, TreeHouse.is_inside_painted_blue))
+25. Q[They, Paint.color.blue.is_used, Paint.color.green.is_not_used](Paint.color.blue.is_used == true → Content(They, Paint.color.green.is_not_used))
+26. Q[They, Paint.color.blue.is_used, Paint.color.orange.is_not_used](Paint.color.blue.is_used == true → Content(They, Paint.color.orange.is_not_used))
+27. Q[They, TreeHouse.inside_painted, TreeHouse.is_inside_painted_blue](TreeHouse.inside_painted == "blue" → Content(They, TreeHouse.is_inside_painted_blue))
+28. Q[They, Paint.color.blue.is_used, TreeHouse.is_inside_painted_blue](Paint.color.blue.is_used == true → Content(They, TreeHouse.is_inside_painted_blue))
+29. Q[They, Paint.color.blue, TreeHouse.is_inside_painted_blue](Paint.color.blue.is_used == true → Content(They, TreeHouse.is_inside_painted_blue))
+30. Q[They, TreeHouse.is_not_painted_green, Paint.color.blue.is_used](TreeHouse.is_not_painted_green == true → Content(They, Paint.color.blue.is_used))

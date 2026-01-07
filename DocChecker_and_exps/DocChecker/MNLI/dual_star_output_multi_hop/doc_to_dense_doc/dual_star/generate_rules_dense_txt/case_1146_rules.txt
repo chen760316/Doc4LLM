@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 1146)
+S1: N o t h i n g a t a l l , o r j u s t e n o u g h t o m a k e t h e m d a n g e r o u s .
+S2: N o t h i n g a t a l l , o r j u s t e n o u g h t o m a k e t h e m f a t a l .
+
+Predicates:
+1. Nothing.dangerous
+2. Nothing.fatal
+3. M_NLI(S1, S2)
+4. Causal(Nothing, dangerous)
+5. Causal(Nothing, fatal)
+6. violate(Nothing, dangerous)
+7. violate(Nothing, fatal)
+8. dangerous.outcome
+9. fatal.outcome
+10. Nothing.at_all
+11. just_enough.to_make(dangerous)
+12. just_enough.to_make(fatal)
+13. Nothing.implies(dangerous)
+14. Nothing.implies(fatal)
+15. dangerous.is_not(Nothing)
+16. fatal.is_not(Nothing)
+17. dangerous.contradicts(fatal)
+18. fatal.contradicts(dangerous)
+19. outcome.dangerous
+20. outcome.fatal
+21. dangerous.condition
+22. fatal.condition
+23. Nothing.is_a(dangerous)
+24. Nothing.is_a(fatal)
+25. dangerous.negative_impact
+26. fatal.negative_impact
+27. M_NLI(Nothing, dangerous)
+28. M_NLI(Nothing, fatal)
+29. Causal(Nothing, outcome)
+30. violate(Nothing, outcome)
+
+Rules:
+1. Q[N o t h i n g, Nothing.dangerous, Nothing.fatal](Nothing.dangerous == false → Causal(Nothing, fatal))
+2. Q[N o t h i n g, Nothing.fatal, Nothing.dangerous](Nothing.fatal == false → Causal(Nothing, dangerous))
+3. Q[N o t h i n g, Nothing.at_all, dangerous.outcome](Nothing.at_all == true → Causal(Nothing, dangerous))
+4. Q[N o t h i n g, Nothing.at_all, fatal.outcome](Nothing.at_all == true → Causal(Nothing, fatal))
+5. Q[N o t h i n g, just_enough.to_make(dangerous), Nothing.fatal](just_enough.to_make(dangerous) == true → Causal(Nothing, fatal))
+6. Q[N o t h i n g, just_enough.to_make(fatal), Nothing.dangerous](just_enough.to_make(fatal) == true → Causal(Nothing, dangerous))
+7. Q[N o t h i n g, Nothing.implies(dangerous), Nothing.fatal](Nothing.implies(dangerous) == false → Causal(Nothing, fatal))
+8. Q[N o t h i n g, Nothing.implies(fatal), Nothing.dangerous](Nothing.implies(fatal) == false → Causal(Nothing, dangerous))
+9. Q[N o t h i n g, dangerous.is_not(Nothing), fatal.outcome](dangerous.is_not(Nothing) == true → Causal(Nothing, fatal))
+10. Q[N o t h i n g, fatal.is_not(Nothing), dangerous.outcome](fatal.is_not(Nothing) == true → Causal(Nothing, dangerous))
+11. Q[N o t h i n g, dangerous.contradicts(fatal), Nothing.at_all](dangerous.contradicts(fatal) == true → Causal(Nothing, outcome))
+12. Q[N o t h i n g, fatal.contradicts(dangerous), Nothing.at_all](fatal.contradicts(dangerous) == true → Causal(Nothing, outcome))
+13. Q[N o t h i n g, violate(Nothing, dangerous), Nothing.fatal](violate(Nothing, dangerous) == true → Causal(Nothing, fatal))
+14. Q[N o t h i n g, violate(Nothing, fatal), Nothing.dangerous](violate(Nothing, fatal) == true → Causal(Nothing, dangerous))
+15. Q[N o t h i n g, dangerous.condition, Nothing.fatal](dangerous.condition == true → Causal(Nothing, fatal))
+16. Q[N o t h i n g, fatal.condition, Nothing.dangerous](fatal.condition == true → Causal(Nothing, dangerous))
+17. Q[N o t h i n g, M_NLI(S1, S2), Nothing.dangerous](M_NLI(S1, S2) == true → Causal(Nothing, dangerous))
+18. Q[N o t h i n g, M_NLI(S1, S2), Nothing.fatal](M_NLI(S1, S2) == true → Causal(Nothing, fatal))
+19. Q[N o t h i n g, dangerous.negative_impact, Nothing.fatal](dangerous.negative_impact == true → Causal(Nothing, fatal))
+20. Q[N o t h i n g, fatal.negative_impact, Nothing.dangerous](fatal.negative_impact == true → Causal(Nothing, dangerous))
+21. Q[N o t h i n g, Nothing.is_a(dangerous), Nothing.fatal](Nothing.is_a(dangerous) == false → Causal(Nothing, fatal))
+22. Q[N o t h i n g, Nothing.is_a(fatal), Nothing.dangerous](Nothing.is_a(fatal) == false → Causal(Nothing, dangerous))
+23. Q[N o t h i n g, Causal(Nothing, dangerous), Nothing.fatal](Causal(Nothing, dangerous) == true → Causal(Nothing, fatal))
+24. Q[N o t h i n g, Causal(Nothing, fatal), Nothing.dangerous](Causal(Nothing, fatal) == true → Causal(Nothing, dangerous))
+25. Q[N o t h i n g, outcome.dangerous, Nothing.fatal](outcome.dangerous == true → Causal(Nothing, fatal))
+26. Q[N o t h i n g, outcome.fatal, Nothing.dangerous](outcome.fatal == true → Causal(Nothing, dangerous))
+27. Q[N o t h i n g, Causal(Nothing, outcome), Nothing.dangerous](Causal(Nothing, outcome) == true → Causal(Nothing, dangerous))
+28. Q[N o t h i n g, Causal(Nothing, outcome), Nothing.fatal](Causal(Nothing, outcome) == true → Causal(Nothing, fatal))
+29. Q[N o t h i n g, M_NLI(Nothing, dangerous), Nothing.fatal](M_NLI(Nothing, dangerous) == true → Causal(Nothing, fatal))
+30. Q[N o t h i n g, M_NLI(Nothing, fatal), Nothing.dangerous](M_NLI(Nothing, fatal) == true → Causal(Nothing, dangerous))

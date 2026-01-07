@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 1396)
+S1: t h e y d i d n ' t m e e t t h e r e q u i r e m e n t s s o t h e y c o u l d n ' t p l a y t h i s y e a r s o f o u r o f t h e m t h e y h a d f o u r p e o p l e
+S2: t h e y m a y p l a y n e x t y e a r i f t h e y m e e t t h e r e q u i r e m e n t s .
+
+Predicates:
+1. Team.requirements_met = false
+2. Team.play_this_year = false
+3. Team.players_count = 4
+4. Team.may_play_next_year = true
+5. Team.requirements_met_next_year = true
+6. Team.current_year = 2023
+7. Team.next_year = 2024
+8. Team.requirements = "not met"
+9. Team.future_action = "may play"
+10. Team.condition_for_play = "meet requirements"
+11. Team.previous_play_status = "did not play"
+12. Team.future_play_status = "potential"
+13. Team.requirements_status = "pending"
+14. Team.play_status = "conditional"
+15. Team.eligibility = "not eligible this year"
+16. Team.future_eligibility = "eligible next year"
+17. Team.players = ["player1", "player2", "player3", "player4"]
+18. Team.requirements_list = ["requirement1", "requirement2"]
+19. Team.play_decision = "based on requirements"
+20. Team.season = "2023"
+21. Team.next_season = "2024"
+22. Team.requirements_check = "to be determined"
+23. Team.play_opportunity = "conditional on requirements"
+24. Team.previous_year_play = "not applicable"
+25. Team.future_play_opportunity = "if requirements met"
+26. Team.current_status = "unable to play"
+27. Team.next_year_status = "may play"
+28. Team.requirements_met_status = "false"
+29. Team.playing_ability = "dependent on requirements"
+30. Team.future_action_status = "uncertain"
+
+Rules:
+1. Q[they, Team.requirements_met == false, Team.play_this_year == false](Team.requirements_met == false → Causal(Team.requirements_met, Team.play_this_year))
+2. Q[they, Team.play_this_year == false, Team.may_play_next_year == true](Team.play_this_year == false → Causal(Team.play_this_year, Team.may_play_next_year))
+3. Q[they, Team.players_count == 4, Team.requirements_met == false](Team.players_count == 4 → Causal(Team.players_count, Team.requirements_met))
+4. Q[they, Team.requirements_met_next_year == true, Team.may_play_next_year == true](Team.requirements_met_next_year == true → Causal(Team.requirements_met_next_year, Team.may_play_next_year))
+5. Q[they, Team.current_year == 2023, Team.play_this_year == false](Team.current_year == 2023 → Causal(Team.current_year, Team.play_this_year))
+6. Q[they, Team.next_year == 2024, Team.may_play_next_year == true](Team.next_year == 2024 → Causal(Team.next_year, Team.may_play_next_year))
+7. Q[they, Team.requirements == "not met", Team.eligibility == "not eligible this year"](Team.requirements == "not met" → Causal(Team.requirements, Team.eligibility))
+8. Q[they, Team.condition_for_play == "meet requirements", Team.play_status == "conditional"](Team.condition_for_play == "meet requirements" → Causal(Team.condition_for_play, Team.play_status))
+9. Q[they, Team.previous_play_status == "did not play", Team.play_this_year == false](Team.previous_play_status == "did not play" → Causal(Team.previous_play_status, Team.play_this_year))
+10. Q[they, Team.future_play_status == "potential", Team.may_play_next_year == true](Team.future_play_status == "potential" → Causal(Team.future_play_status, Team.may_play_next_year))
+11. Q[they, Team.requirements_status == "pending", Team.play_opportunity == "conditional on requirements"](Team.requirements_status == "pending" → Causal(Team.requirements_status, Team.play_opportunity))
+12. Q[they, Team.play_decision == "based on requirements", Team.requirements_met == false](Team.play_decision == "based on requirements" → Causal(Team.play_decision, Team.requirements_met))
+13. Q[they, Team.season == "2023", Team.current_status == "unable to play"](Team.season == "2023" → Causal(Team.season, Team.current_status))
+14. Q[they, Team.next_season == "2024", Team.future_play_opportunity == "if requirements met"](Team.next_season == "2024" → Causal(Team.next_season, Team.future_play_opportunity))
+15. Q[they, Team.previous_year_play == "not applicable", Team.play_this_year == false](Team.previous_year_play == "not applicable" → Causal(Team.previous_year_play, Team.play_this_year))
+16. Q[they, Team.future_eligibility == "eligible next year", Team.may_play_next_year == true](Team.future_eligibility == "eligible next year" → Causal(Team.future_eligibility, Team.may_play_next_year))
+17. Q[they, Team.players == ["player1", "player2", "player3", "player4"], Team.players_count == 4](Team.players == ["player1", "player2", "player3", "player4"] → Causal(Team.players, Team.players_count))
+18. Q[they, Team.requirements_list == ["requirement1", "requirement2"], Team.requirements_met == false](Team.requirements_list == ["requirement1", "requirement2"] → Causal(Team.requirements_list, Team.requirements_met))
+19. Q[they, Team.playing_ability == "dependent on requirements", Team.requirements_met == false](Team.playing_ability == "dependent on requirements" → Causal(Team.playing_ability, Team.requirements_met))
+20. Q[they, Team.future_action == "may play", Team.may_play_next_year == true](Team.future_action == "may play" → Causal(Team.future_action, Team.may_play_next_year))
+21. Q[they, Team.future_action_status == "uncertain", Team.may_play_next_year == true](Team.future_action_status == "uncertain" → Causal(Team.future_action_status, Team.may_play_next_year))
+22. Q[they, Team.requirements_met_status == "false", Team.play_this_year == false](Team.requirements_met_status == "false" → Causal(Team.requirements_met_status, Team.play_this_year))
+23. Q[they, Team.requirements_check == "to be determined", Team.play_opportunity == "conditional on requirements"](Team.requirements_check == "to be determined" → Causal(Team.requirements_check, Team.play_opportunity))
+24. Q[they, Team.current_status == "unable to play", Team.eligibility == "not eligible this year"](Team.current_status == "unable to play" → Causal(Team.current_status, Team.eligibility))
+25. Q[they, Team.future_play_status == "potential", Team.requirements_met_next_year == true](Team.future_play_status == "potential" → Causal(Team.future_play_status, Team.requirements_met_next_year))
+26. Q[they, Team.requirements_met == false, Team.future_action == "may play"](Team.requirements_met == false → Causal(Team.requirements_met, Team.future_action))
+27. Q[they, Team.play_status == "conditional", Team.requirements_met_next_year == true](Team.play_status == "conditional" → Causal(Team.play_status, Team.requirements_met_next_year))
+28. Q[they, Team.eligibility == "not eligible this year", Team.play_this_year == false](Team.eligibility == "not eligible this year" → Causal(Team.eligibility, Team.play_this_year))
+29. Q[they, Team.future_play_opportunity == "if requirements met", Team.requirements_met_next_year == true](Team.future_play_opportunity == "if requirements met" → Causal(Team.future_play_opportunity, Team.requirements_met_next_year))
+30. Q[they, Team.condition_for_play == "meet requirements", Team.requirements_met == false](Team.condition_for_play == "meet requirements" → Causal(Team.condition_for_play, Team.requirements_met))

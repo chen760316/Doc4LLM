@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 448)
+S1: He always maintained control no matter how much stress he experienced.
+S2: Then he lost control with too much tension or fatigue.
+
+Predicates:
+1. He.control
+2. He.stress
+3. He.tension
+4. He.fatigue
+5. He.lost_control
+6. He.maintained_control
+7. He.experienced_stress
+8. He.experienced_tension
+9. He.experienced_fatigue
+10. control.stress
+11. control.tension
+12. control.fatigue
+13. stress.level
+14. tension.level
+15. fatigue.level
+16. control.state
+17. maintained_control.condition
+18. lost_control.condition
+19. stress.impact
+20. tension.impact
+21. fatigue.impact
+22. M_NLI(S1, S2)
+23. Factual(He, maintained_control)
+24. Factual(He, lost_control)
+25. violate(maintained_control, lost_control)
+26. stress.negative_impact
+27. tension.negative_impact
+28. fatigue.negative_impact
+29. control.positive_state
+30. control.negative_state
+
+Rules:
+1. Q[always, He.control, He.lost_control](He.maintained_control == true → Factual(He, lost_control))
+2. Q[always, He.control, He.lost_control](He.experienced_stress == true → Factual(He, lost_control))
+3. Q[always, He.control, He.lost_control](He.experienced_tension == true → Factual(He, lost_control))
+4. Q[always, He.control, He.lost_control](He.experienced_fatigue == true → Factual(He, lost_control))
+5. Q[always, He.control, He.lost_control](control.state == "positive" → Factual(He, lost_control))
+6. Q[always, He.control, He.lost_control](control.state == "negative" → Factual(He, maintained_control))
+7. Q[always, He.control, He.lost_control](He.maintained_control == true → Factual(He, lost_control))
+8. Q[always, He.control, He.lost_control](stress.level > 0 → Factual(He, lost_control))
+9. Q[always, He.control, He.lost_control](tension.level > 0 → Factual(He, lost_control))
+10. Q[always, He.control, He.lost_control](fatigue.level > 0 → Factual(He, lost_control))
+11. Q[always, He.control, He.lost_control](He.control == "maintained" → Factual(He, lost_control))
+12. Q[always, He.control, He.lost_control](He.control == "lost" → Factual(He, maintained_control))
+13. Q[always, He.control, He.lost_control](stress.impact == "negative" → Factual(He, lost_control))
+14. Q[always, He.control, He.lost_control](tension.impact == "negative" → Factual(He, lost_control))
+15. Q[always, He.control, He.lost_control](fatigue.impact == "negative" → Factual(He, lost_control))
+16. Q[always, He.control, He.lost_control](He.lost_control == true → Factual(He, maintained_control))
+17. Q[always, He.control, He.lost_control](He.maintained_control == false → Factual(He, lost_control))
+18. Q[always, He.control, He.lost_control](He.tension > 0 → Factual(He, lost_control))
+19. Q[always, He.control, He.lost_control](He.fatigue > 0 → Factual(He, lost_control))
+20. Q[always, He.control, He.lost_control](He.stress > 0 → Factual(He, lost_control))
+21. Q[always, He.control, He.lost_control](control.negative_state == true → Factual(He, maintained_control))
+22. Q[always, He.control, He.lost_control](control.positive_state == true → Factual(He, lost_control))
+23. Q[always, He.control, He.lost_control](He.experienced_stress == true ∧ He.experienced_tension == true → Factual(He, lost_control))
+24. Q[always, He.control, He.lost_control](He.experienced_stress == true ∧ He.experienced_fatigue == true → Factual(He, lost_control))
+25. Q[always, He.control, He.lost_control](He.experienced_tension == true ∧ He.experienced_fatigue == true → Factual(He, lost_control))
+26. Q[always, He.control, He.lost_control](He.control == "lost" ∧ He.maintained_control == false → Factual(He, lost_control))
+27. Q[always, He.control, He.lost_control](He.control == "maintained" ∧ He.lost_control == false → Factual(He, lost_control))
+28. Q[always, He.control, He.lost_control](He.lost_control == true ∧ He.experienced_stress == true → Factual(He, maintained_control))
+29. Q[always, He.control, He.lost_control](He.lost_control == true ∧ He.experienced_tension == true → Factual(He, maintained_control))
+30. Q[always, He.control, He.lost_control](He.lost_control == true ∧ He.experienced_fatigue == true → Factual(He, maintained_control))

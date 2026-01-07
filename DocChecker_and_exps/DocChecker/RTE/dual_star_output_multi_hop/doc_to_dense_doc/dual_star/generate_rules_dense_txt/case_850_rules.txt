@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 850)
+S1: The Amsterdam police said on Wednesday that they have recovered stolen lithographs by the late U.S. pop artist Andy Warhol worth more than $1 million.
+S2: Police had recovered 81 lithographs of Andy Warhol.
+
+Predicates:
+1. Amsterdam_police.recovery_status
+2. Amsterdam_police.date
+3. lithographs.artist
+4. lithographs.value
+5. lithographs.number_recovered
+6. lithographs.condition
+7. lithographs.type
+8. Andy_Warhol.art_style
+9. Andy_Warhol.nationality
+10. stolen_lithographs.recovery_date
+11. stolen_lithographs.value_estimate
+12. stolen_lithographs.number
+13. police.department.location
+14. police.department.statement_date
+15. police.department.recovery_method
+16. recovery_event.type
+17. recovery_event.value
+18. recovery_event.number_of_items
+19. recovery_event.date
+20. valuation_report.artwork_value
+21. valuation_report.artwork_type
+22. valuation_report.artist
+23. valuation_report.date
+24. ambiguity.issue
+25. ambiguity.type
+26. ambiguity.source
+27. lithographs.recovery_source
+28. lithographs.recovery_method
+29. police.statement.content
+30. police.statement.clarity
+
+Rules:
+1. Q[The, lithographs.value, stolen_lithographs.value_estimate](Amsterdam_police.recovery_status == "successful" → Numeric(1, 1000000))
+2. Q[The, lithographs.number_recovered, stolen_lithographs.number](Amsterdam_police.recovery_status == "successful" → Numeric(81, 81))
+3. Q[The, lithographs.value, recovery_event.value](Amsterdam_police.date == "Wednesday" → Numeric(1000000, 1000000))
+4. Q[The, lithographs.number_recovered, recovery_event.number_of_items](Amsterdam_police.date == "Wednesday" → Numeric(81, 81))
+5. Q[The, lithographs.value, ambiguity.issue](lithographs.value == "unknown" → Numeric(1000000, 0))
+6. Q[The, lithographs.number_recovered, ambiguity.issue](lithographs.number_recovered == 81 → Numeric(81, 0))
+7. Q[The, lithographs.value, valuation_report.artwork_value](valuation_report.artist == "Andy Warhol" → Numeric(1000000, 1000000))
+8. Q[The, lithographs.number_recovered, valuation_report.artwork_type](valuation_report.artwork_type == "lithographs" → Numeric(81, 81))
+9. Q[The, lithographs.value, police.statement.clarity](police.statement.content == "recovered lithographs worth more than $1 million" → Numeric(1000000, 1000000))
+10. Q[The, lithographs.number_recovered, police.statement.clarity](police.statement.content == "81 lithographs recovered" → Numeric(81, 81))
+11. Q[The, lithographs.value, lithographs.recovery_source](lithographs.recovery_source == "police" → Numeric(1000000, 1000000))
+12. Q[The, lithographs.number_recovered, lithographs.recovery_source](lithographs.recovery_source == "police" → Numeric(81, 81))
+13. Q[The, lithographs.value, stolen_lithographs.value_estimate](stolen_lithographs.number == 81 → Numeric(1000000, 1000000))
+14. Q[The, lithographs.number_recovered, stolen_lithographs.number](stolen_lithographs.value_estimate == "over $1 million" → Numeric(81, 81))
+15. Q[The, lithographs.value, ambiguity.source](ambiguity.source == "police statement" → Numeric(1000000, 0))
+16. Q[The, lithographs.number_recovered, ambiguity.source](ambiguity.source == "police statement" → Numeric(81, 0))
+17. Q[The, lithographs.value, recovery_event.value](recovery_event.type == "theft recovery" → Numeric(1000000, 1000000))
+18. Q[The, lithographs.number_recovered, recovery_event.number_of_items](recovery_event.type == "theft recovery" → Numeric(81, 81))
+19. Q[The, lithographs.value, lithographs.condition](lithographs.condition == "good" → Numeric(1000000, 1000000))
+20. Q[The, lithographs.number_recovered, lithographs.condition](lithographs.condition == "good" → Numeric(81, 81))
+21. Q[The, lithographs.value, police.department.statement_date](police.department.statement_date == "Wednesday" → Numeric(1000000, 1000000))
+22. Q[The, lithographs.number_recovered, police.department.statement_date](police.department.statement_date == "Wednesday" → Numeric(81, 81))
+23. Q[The, lithographs.value, Andy_Warhol.art_style](Andy_Warhol.art_style == "pop art" → Numeric(1000000, 1000000))
+24. Q[The, lithographs.number_recovered, Andy_Warhol.art_style](Andy_Warhol.art_style == "pop art" → Numeric(81, 81))
+25. Q[The, lithographs.value, police.department.location](police.department.location == "Amsterdam" → Numeric(1000000, 1000000))
+26. Q[The, lithographs.number_recovered, police.department.location](police.department.location == "Amsterdam" → Numeric(81, 81))
+27. Q[The, lithographs.value, lithographs.type](lithographs.type == "lithographs" → Numeric(1000000, 1000000))
+28. Q[The, lithographs.number_recovered, lithographs.type](lithographs.type == "lithographs" → Numeric(81, 81))
+29. Q[The, lithographs.value, stolen_lithographs.number](stolen_lithographs.number == 81 → Numeric(1000000, 0))
+30. Q[The, lithographs.number_recovered, stolen_lithographs.value_estimate](stolen_lithographs.value_estimate == "over $1 million" → Numeric(81, 0))

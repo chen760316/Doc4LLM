@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 40)
+S1: A man is sitting on the curb.
+S2: A man is walking outdoors.
+
+Predicates:
+1. Man.sitting
+2. Man.walking
+3. Curb.location
+4. Outdoors.location
+5. Sitting.on(Man, Curb)
+6. Walking.in(Man, Outdoors)
+7. Implication.sitting_not_walking(Man)
+8. Causal(sitting, not_walking)
+9. Violate(sitting, walking)
+10. Man.is_on(Curb)
+11. Man.is_in(Outdoors)
+12. Curb.is_on(street)
+13. Outdoors.is_outside
+14. Sitting.is_static(Man)
+15. Walking.is_dynamic(Man)
+16. Curb.is_a(location)
+17. Outdoors.is_a(location)
+18. Man.is_a(human)
+19. Sitting.requires(Man)
+20. Walking.requires(Man)
+21. Curb.supports(Man)
+22. Outdoors.contains(Man)
+23. Man.is_not(walking) when sitting
+24. Curb.is_not(outdoors)
+25. Walking.is_not(sitting)
+26. Man.has_activity(sitting)
+27. Man.has_activity(walking)
+28. Curb.is_not(occupied_by(walking))
+29. Outdoors.is_not(occupied_by(sitting))
+30. Relationship.sitting_to_walking(Man)
+
+Rules:
+1. Q[man, Man.sitting == true, Man.walking == false](Sitting.on(Man, Curb) → Causal(sitting, not_walking))
+2. Q[man, Man.is_on(Curb) == true, Man.is_in(Outdoors) == false](Curb.is_on(street) → Causal(sitting, not_walking))
+3. Q[man, Man.sitting == true, Man.walking == false](Sitting.is_static(Man) → Causal(sitting, not_walking))
+4. Q[man, Man.is_a(human) == true, Man.walking == false](Walking.is_dynamic(Man) → Causal(sitting, not_walking))
+5. Q[man, Man.has_activity(sitting) == true, Man.has_activity(walking) == false](Implication.sitting_not_walking(Man) → Causal(sitting, not_walking))
+6. Q[man, Man.is_on(Curb) == true, Man.walking == false](Curb.is_not(outdoors) → Causal(sitting, not_walking))
+7. Q[man, Man.sitting == true, Man.is_in(Outdoors) == false](Outdoors.is_not(occupied_by(sitting)) → Causal(sitting, not_walking))
+8. Q[man, Man.sitting == true, Man.walking == false](Walking.requires(Man) → Causal(sitting, not_walking))
+9. Q[man, Man.is_on(Curb) == true, Man.walking == false](Curb.supports(Man) → Causal(sitting, not_walking))
+10. Q[man, Man.sitting == true, Man.walking == false](Violate(sitting, walking) → Causal(sitting, not_walking))
+11. Q[man, Man.sitting == true, Man.walking == false](Curb.is_not(occupied_by(walking)) → Causal(sitting, not_walking))
+12. Q[man, Man.sitting == true, Man.walking == false](Sitting.requires(Man) → Causal(sitting, not_walking))
+13. Q[man, Man.is_on(Curb) == true, Man.walking == false](Curb.is_a(location) → Causal(sitting, not_walking))
+14. Q[man, Man.sitting == true, Man.walking == false](Outdoors.is_a(location) → Causal(sitting, not_walking))
+15. Q[man, Man.sitting == true, Man.walking == false](Sitting.on(Man, Curb) → Causal(sitting, not_walking))
+16. Q[man, Man.sitting == true, Man.walking == false](Walking.is_not(sitting) → Causal(sitting, not_walking))
+17. Q[man, Man.sitting == true, Man.walking == false](Man.is_not(walking) when sitting → Causal(sitting, not_walking))
+18. Q[man, Man.sitting == true, Man.walking == false](Curb.is_not(outdoors) → Causal(sitting, not_walking))
+19. Q[man, Man.sitting == true, Man.walking == false](Outdoors.contains(Man) → Causal(sitting, not_walking))
+20. Q[man, Man.sitting == true, Man.walking == false](Walking.in(Man, Outdoors) → Causal(sitting, not_walking))
+21. Q[man, Man.sitting == true, Man.walking == false](Curb.is_on(street) → Causal(sitting, not_walking))
+22. Q[man, Man.sitting == true, Man.walking == false](Sitting.is_static(Man) → Causal(sitting, not_walking))
+23. Q[man, Man.sitting == true, Man.walking == false](Man.has_activity(sitting) → Causal(sitting, not_walking))
+24. Q[man, Man.sitting == true, Man.walking == false](Curb.is_not(occupied_by(walking)) → Causal(sitting, not_walking))
+25. Q[man, Man.sitting == true, Man.walking == false](Outdoors.is_not(occupied_by(sitting)) → Causal(sitting, not_walking))
+26. Q[man, Man.sitting == true, Man.walking == false](Walking.requires(Man) → Causal(sitting, not_walking))
+27. Q[man, Man.sitting == true, Man.walking == false](Curb.is_not(outdoors) → Causal(sitting, not_walking))
+28. Q[man, Man.sitting == true, Man.walking == false](Man.is_on(Curb) → Causal(sitting, not_walking))
+29. Q[man, Man.sitting == true, Man.walking == false](Curb.supports(Man) → Causal(sitting, not_walking))
+30. Q[man, Man.sitting == true, Man.walking == false](Relationship.sitting_to_walking(Man) → Causal(sitting, not_walking))

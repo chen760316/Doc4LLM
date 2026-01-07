@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 1586)
+S1: W h e n h e h a d f i r s t t r i e d t o f i n d p r o t e c t o r s f o r h i s v i l l a g e h e h a d f o u n d n o n e w h o w o u l d h e l p .
+S2: E v e r y o n e r e f u s e d t o p r o t e c t t h e v i l l a g e .
+
+Predicates:
+1. Protector.available = false
+2. Protector.refusal = true
+3. Village.protection_needed = true
+4. Villager.refusal = true
+5. Villager.count = everyone
+6. Protector.count = none
+7. Protector.willing_to_help = false
+8. Villager.willing_to_help = false
+9. Event.first_attempt = true
+10. Event.refusal_occurred = true
+11. Event.protection_attempted = true
+12. Village.status = unprotected
+13. Villager.role = protector
+14. Protector.identity = unknown
+15. Villager.identity = known
+16. Event.time = first_attempt
+17. Event.outcome = failure
+18. Village.needs_protection = true
+19. Protector.refusal_reason = unspecified
+20. Villager.refusal_reason = unspecified
+21. Event.context = village_protection
+22. Protector.action = refusal
+23. Villager.action = refusal
+24. Event.participants = villagers
+25. Event.participants_count = total
+26. Protector.intent = help
+27. Villager.intent = refuse
+28. Event.consequence = no_protection
+29. Causal.refusal_leads_to = no_protection
+30. M_NLI(s1, s2) = true
+
+Rules:
+1. Q[Anchor, Protector.available, Villager.refusal](Protector.available == false → Causal(Protector.available, Villager.refusal))
+2. Q[Anchor, Protector.count, Villager.count](Protector.count == none → Causal(Protector.count, Villager.count))
+3. Q[Anchor, Protector.willing_to_help, Villager.willing_to_help](Protector.willing_to_help == false → Causal(Protector.willing_to_help, Villager.willing_to_help))
+4. Q[Anchor, Village.protection_needed, Event.first_attempt](Village.protection_needed == true → Causal(Village.protection_needed, Event.first_attempt))
+5. Q[Anchor, Event.refusal_occurred, Village.status](Event.refusal_occurred == true → Causal(Event.refusal_occurred, Village.status))
+6. Q[Anchor, Villager.refusal, Event.protection_attempted](Villager.refusal == true → Causal(Villager.refusal, Event.protection_attempted))
+7. Q[Anchor, Event.time, Event.outcome](Event.time == first_attempt → Causal(Event.time, Event.outcome))
+8. Q[Anchor, Village.status, Event.consequence](Village.status == unprotected → Causal(Village.status, Event.consequence))
+9. Q[Anchor, Villager.role, Protector.intent](Villager.role == protector → Causal(Villager.role, Protector.intent))
+10. Q[Anchor, Villager.refusal_reason, Protector.refusal_reason](Villager.refusal_reason == unspecified → Causal(Villager.refusal_reason, Protector.refusal_reason))
+11. Q[Anchor, Event.participants, Event.participants_count](Event.participants == villagers → Causal(Event.participants, Event.participants_count))
+12. Q[Anchor, Event.context, Village.needs_protection](Event.context == village_protection → Causal(Event.context, Village.needs_protection))
+13. Q[Anchor, Protector.action, Villager.action](Protector.action == refusal → Causal(Protector.action, Villager.action))
+14. Q[Anchor, Event.consequence, Protector.refusal](Event.consequence == no_protection → Causal(Event.consequence, Protector.refusal))
+15. Q[Anchor, Villager.intent, Protector.action](Villager.intent == refuse → Causal(Villager.intent, Protector.action))
+16. Q[Anchor, Protector.refusal, Event.outcome](Protector.refusal == true → Causal(Protector.refusal, Event.outcome))
+17. Q[Anchor, Villager.count, Village.needs_protection](Villager.count == everyone → Causal(Villager.count, Village.needs_protection))
+18. Q[Anchor, Event.participants_count, Protector.count](Event.participants_count == total → Causal(Event.participants_count, Protector.count))
+19. Q[Anchor, Event.first_attempt, Event.protection_attempted](Event.first_attempt == true → Causal(Event.first_attempt, Event.protection_attempted))
+20. Q[Anchor, Protector.identity, Villager.identity](Protector.identity == unknown → Causal(Protector.identity, Villager.identity))
+21. Q[Anchor, Event.outcome, Village.status](Event.outcome == failure → Causal(Event.outcome, Village.status))
+22. Q[Anchor, Villager.refusal, Protector.intent](Villager.refusal == true → Causal(Villager.refusal, Protector.intent))
+23. Q[Anchor, Protector.refusal_reason, Event.refusal_occurred](Protector.refusal_reason == unspecified → Causal(Protector.refusal_reason, Event.refusal_occurred))
+24. Q[Anchor, Village.needs_protection, Event.consequence](Village.needs_protection == true → Causal(Village.needs_protection, Event.consequence))
+25. Q[Anchor, Villager.role, Event.participants](Villager.role == protector → Causal(Villager.role, Event.participants))
+26. Q[Anchor, Protector.intent, Villager.willing_to_help](Protector.intent == help → Causal(Protector.intent, Villager.willing_to_help))
+27. Q[Anchor, Event.context, Protector.action](Event.context == village_protection → Causal(Event.context, Protector.action))
+28. Q[Anchor, Villager.refusal_reason, Event.consequence](Villager.refusal_reason == unspecified → Causal(Villager.refusal_reason, Event.consequence))
+29. Q[Anchor, Event.participants, Village.status](Event.participants == villagers → Causal(Event.participants, Village.status))
+30. Q[Anchor, M_NLI(s1, s2), Event.refusal_occurred](M_NLI(s1, s2) == true → Causal(M_NLI(s1, s2), Event.refusal_occurred))

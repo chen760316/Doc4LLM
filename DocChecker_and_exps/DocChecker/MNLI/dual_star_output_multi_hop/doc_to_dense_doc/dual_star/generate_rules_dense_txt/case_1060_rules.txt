@@ -1,0 +1,66 @@
+Source: dense_text.txt (Index 1060)
+S1: The board is bipartisan and can only legally have at most six members of the same political party.
+S2: By law, the board is bipartisan and no more than six members may be of the same political party.
+
+Predicates:
+1. Board.is_bipartisan
+2. Board.max_members_per_party = 6
+3. Law.is_bipartisan
+4. Law.max_members_per_party = 6
+5. Board.has_members_of_same_party <= 6
+6. Law.allows_max_six_members_per_party
+7. Board.composition.is_bipartisan
+8. Board.legal_limit.max_members_per_party = 6
+9. Board.members_of_same_party.count <= 6
+10. Law.requires_board_to_be_bipartisan
+11. Board.members.count <= 12
+12. Board.political_party_count <= 2
+13. Board.member_party_distribution.is_balanced
+14. Law.enforces_bipartisan_composition
+15. Board.member_limit.is_enforced
+16. Board.political_affiliation.is_diverse
+17. Law.prohibits_more_than_six_members_per_party
+18. Board.members_of_party_A.count <= 6
+19. Board.members_of_party_B.count <= 6
+20. Board.political_party_limit.is_legal
+21. Law.applies_to_board_composition
+22. Board.member_count.is_within_limits
+23. Board.political_party_representation.is_equal
+24. Law.defines_board_structure
+25. Board.member_distribution.is_legal
+26. Board.political_party_diversity.is_required
+27. Law.regulates_board_membership
+28. Board.political_party_limit.is_respected
+29. Board.membership.is_legal
+30. Law.ensures_bipartisan_representation
+
+Rules:
+1. Q[The, Board.is_bipartisan, Law.is_bipartisan](Board.is_bipartisan == true → Negation(Board.max_members_per_party = 6, Law.max_members_per_party = 6))
+2. Q[The, Board.max_members_per_party, Law.max_members_per_party](Board.max_members_per_party = 6 → Negation(Board.has_members_of_same_party <= 6, Law.allows_max_six_members_per_party))
+3. Q[The, Board.has_members_of_same_party, Law.requires_board_to_be_bipartisan](Board.has_members_of_same_party <= 6 → Negation(Board.composition.is_bipartisan, Law.enforces_bipartisan_composition))
+4. Q[The, Board.composition.is_bipartisan, Law.prohibits_more_than_six_members_per_party](Board.composition.is_bipartisan == true → Negation(Board.members_of_same_party.count <= 6, Law.max_members_per_party = 6))
+5. Q[The, Board.member_count.is_within_limits, Law.applies_to_board_composition](Board.member_count.is_within_limits == true → Negation(Board.political_party_count <= 2, Law.requires_board_to_be_bipartisan))
+6. Q[The, Board.political_party_count, Law.defines_board_structure](Board.political_party_count <= 2 → Negation(Board.member_distribution.is_legal, Law.max_members_per_party = 6))
+7. Q[The, Board.member_distribution.is_legal, Law.ensures_bipartisan_representation](Board.member_distribution.is_legal == true → Negation(Board.political_party_limit.is_legal, Law.allows_max_six_members_per_party))
+8. Q[The, Board.political_party_limit.is_legal, Law.regulates_board_membership](Board.political_party_limit.is_legal == true → Negation(Board.members_of_party_A.count <= 6, Law.prohibits_more_than_six_members_per_party))
+9. Q[The, Board.members_of_party_A.count, Law.requires_board_to_be_bipartisan](Board.members_of_party_A.count <= 6 → Negation(Board.members_of_party_B.count <= 6, Law.max_members_per_party = 6))
+10. Q[The, Board.members_of_party_B.count, Law.enforces_bipartisan_composition](Board.members_of_party_B.count <= 6 → Negation(Board.member_limit.is_enforced, Law.allows_max_six_members_per_party))
+11. Q[The, Board.member_limit.is_enforced, Law.applies_to_board_composition](Board.member_limit.is_enforced == true → Negation(Board.political_affiliation.is_diverse, Law.requires_board_to_be_bipartisan))
+12. Q[The, Board.political_affiliation.is_diverse, Law.defines_board_structure](Board.political_affiliation.is_diverse == true → Negation(Board.membership.is_legal, Law.max_members_per_party = 6))
+13. Q[The, Board.membership.is_legal, Law.ensures_bipartisan_representation](Board.membership.is_legal == true → Negation(Board.political_party_diversity.is_required, Law.prohibits_more_than_six_members_per_party))
+14. Q[The, Board.political_party_diversity.is_required, Law.regulates_board_membership](Board.political_party_diversity.is_required == true → Negation(Board.member_count.is_within_limits, Law.max_members_per_party = 6))
+15. Q[The, Board.member_count.is_within_limits, Law.enforces_bipartisan_composition](Board.member_count.is_within_limits == true → Negation(Board.political_party_limit.is_respected, Law.requires_board_to_be_bipartisan))
+16. Q[The, Board.political_party_limit.is_respected, Law.applies_to_board_composition](Board.political_party_limit.is_respected == true → Negation(Board.members_of_same_party.count <= 6, Law.allows_max_six_members_per_party))
+17. Q[The, Board.members_of_same_party.count, Law.prohibits_more_than_six_members_per_party](Board.members_of_same_party.count <= 6 → Negation(Board.max_members_per_party = 6, Law.max_members_per_party = 6))
+18. Q[The, Board.max_members_per_party, Law.ensures_bipartisan_representation](Board.max_members_per_party = 6 → Negation(Board.has_members_of_same_party <= 6, Law.allows_max_six_members_per_party))
+19. Q[The, Board.has_members_of_same_party, Law.enforces_bipartisan_composition](Board.has_members_of_same_party <= 6 → Negation(Board.composition.is_bipartisan, Law.requires_board_to_be_bipartisan))
+20. Q[The, Board.composition.is_bipartisan, Law.max_members_per_party](Board.composition.is_bipartisan == true → Negation(Board.member_distribution.is_legal, Law.prohibits_more_than_six_members_per_party))
+21. Q[The, Board.member_distribution.is_legal, Law.applies_to_board_composition](Board.member_distribution.is_legal == true → Negation(Board.political_party_count <= 2, Law.max_members_per_party = 6))
+22. Q[The, Board.political_party_count, Law.defines_board_structure](Board.political_party_count <= 2 → Negation(Board.member_count.is_within_limits, Law.requires_board_to_be_bipartisan))
+23. Q[The, Board.member_count.is_within_limits, Law.ensures_bipartisan_representation](Board.member_count.is_within_limits == true → Negation(Board.political_affiliation.is_diverse, Law.max_members_per_party = 6))
+24. Q[The, Board.political_affiliation.is_diverse, Law.regulates_board_membership](Board.political_affiliation.is_diverse == true → Negation(Board.membership.is_legal, Law.prohibits_more_than_six_members_per_party))
+25. Q[The, Board.membership.is_legal, Law.requires_board_to_be_bipartisan](Board.membership.is_legal == true → Negation(Board.political_party_diversity.is_required, Law.max_members_per_party = 6))
+26. Q[The, Board.political_party_diversity.is_required, Law.enforces_bipartisan_composition](Board.political_party_diversity.is_required == true → Negation(Board.member_limit.is_enforced, Law.allows_max_six_members_per_party))
+27. Q[The, Board.member_limit.is_enforced, Law.applies_to_board_composition](Board.member_limit.is_enforced == true → Negation(Board.political_party_limit.is_legal, Law.requires_board_to_be_bipartisan))
+28. Q[The, Board.political_party_limit.is_legal, Law.defines_board_structure](Board.political_party_limit.is_legal == true → Negation(Board.members_of_party_A.count <= 6, Law.prohibits_more_than_six_members_per_party))
+29. Q[The, Board.members_of_party_A.count, Law.ensures_bipartisan_representation](Board

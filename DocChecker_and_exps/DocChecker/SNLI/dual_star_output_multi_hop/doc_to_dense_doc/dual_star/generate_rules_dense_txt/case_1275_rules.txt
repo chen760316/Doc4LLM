@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 1275)
+S1: A brown and white dog is paddling through deep water in a blue container.
+S2: A brown and white dog naps on the floor.
+
+Predicates:
+1. Dog.color
+2. Dog.activity
+3. Dog.location
+4. Dog.container
+5. Water.depth
+6. Container.color
+7. Dog.state
+8. Dog.napping
+9. Dog.paddling
+10. Floor.type
+11. Floor.state
+12. Time.active
+13. Time.inactive
+14. Relationship.active_in
+15. Relationship.naps_on
+16. Relationship.paddles_through
+17. Relationship.is_in
+18. Relationship.is_on
+19. M_NLI(S1, S2)
+20. Factual(Dog, Water)
+21. Factual(Dog, Floor)
+22. violate(Dog.activity, Dog.state)
+23. violate(Dog.location, Dog.state)
+24. Dog.breed
+25. Container.size
+26. Water.state
+27. Dog.energy_level
+28. Time.of_day
+29. Relationship.is_active
+30. Relationship.is_inactive
+
+Rules:
+1. Q[brown, x0, y0](Dog.color == "brown" ∧ Dog.activity == "paddling" → Factual(x0, y0))
+2. Q[white, x0, y0](Dog.color == "white" ∧ Dog.activity == "paddling" → Factual(x0, y0))
+3. Q[dog, x0, y0](Dog.activity == "paddling" ∧ Dog.state == "active" → Factual(x0, y0))
+4. Q[dog, x0, y0](Dog.activity == "napping" ∧ Dog.state == "inactive" → Factual(x0, y0))
+5. Q[water, x0, y0](Water.depth == "deep" ∧ Dog.activity == "paddling" → Factual(x0, y0))
+6. Q[container, x0, y0](Container.color == "blue" ∧ Dog.activity == "paddling" → Factual(x0, y0))
+7. Q[dog, x0, y0](Dog.activity == "napping" ∧ Dog.location == "floor" → Factual(x0, y0))
+8. Q[dog, x0, y0](Dog.state == "active" ∧ Dog.activity == "paddling" → Factual(x0, y0))
+9. Q[dog, x0, y0](Dog.state == "inactive" ∧ Dog.activity == "napping" → Factual(x0, y0))
+10. Q[dog, x0, y0](Dog.activity == "paddling" ∧ Relationship.is_in(Dog, Water) → Factual(x0, y0))
+11. Q[dog, x0, y0](Dog.activity == "napping" ∧ Relationship.is_on(Dog, Floor) → Factual(x0, y0))
+12. Q[dog, x0, y0](Dog.activity == "paddling" ∧ Time.active == true → Factual(x0, y0))
+13. Q[dog, x0, y0](Dog.activity == "napping" ∧ Time.inactive == true → Factual(x0, y0))
+14. Q[dog, x0, y0](Dog.activity == "paddling" ∧ violate(Dog.activity, Dog.state) → Factual(x0, y0))
+15. Q[dog, x0, y0](Dog.activity == "napping" ∧ violate(Dog.activity, Dog.state) → Factual(x0, y0))
+16. Q[dog, x0, y0](Dog.activity == "paddling" ∧ Dog.location == "container" → Factual(x0, y0))
+17. Q[dog, x0, y0](Dog.activity == "napping" ∧ Dog.location == "floor" → Factual(x0, y0))
+18. Q[dog, x0, y0](Dog.activity == "paddling" ∧ Relationship.is_active(Dog) → Factual(x0, y0))
+19. Q[dog, x0, y0](Dog.activity == "napping" ∧ Relationship.is_inactive(Dog) → Factual(x0, y0))
+20. Q[dog, x0, y0](Dog.activity == "paddling" ∧ Dog.energy_level > 0 → Factual(x0, y0))
+21. Q[dog, x0, y0](Dog.activity == "napping" ∧ Dog.energy_level == 0 → Factual(x0, y0))
+22. Q[dog, x0, y0](Dog.activity == "paddling" ∧ Dog.state == "active" ∧ Dog.location == "water" → Factual(x0, y0))
+23. Q[dog, x0, y0](Dog.activity == "napping" ∧ Dog.state == "inactive" ∧ Dog.location == "floor" → Factual(x0, y0))
+24. Q[dog, x0, y0](Dog.activity == "paddling" ∧ Water.state == "active" → Factual(x0, y0))
+25. Q[dog, x0, y0](Dog.activity == "napping" ∧ Floor.state == "inactive" → Factual(x0, y0))
+26. Q[dog, x0, y0](Dog.activity == "paddling" ∧ Relationship.paddles_through(Dog, Water) → Factual(x0, y0))
+27. Q[dog, x0, y0](Dog.activity == "napping" ∧ Relationship.naps_on(Dog, Floor) → Factual(x0, y0))
+28. Q[dog, x0, y0](Dog.activity == "paddling" ∧ Dog.container == "blue" → Factual(x0, y0))
+29. Q[dog, x0, y0](Dog.activity == "napping" ∧ Dog.container == "floor" → Factual(x0, y0))
+30. Q[dog, x0, y0](Dog.activity == "paddling" ∧ Dog.location == "deep water" → Factual(x0, y0))

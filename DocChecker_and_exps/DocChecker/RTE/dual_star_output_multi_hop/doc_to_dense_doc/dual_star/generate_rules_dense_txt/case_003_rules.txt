@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 3)
+S1: A leading human rights group on Wednesday had identified as Poland and Romania locations probably secret prisons abroad.
+S2: A leading human rights group on Wednesday identified Poland and Romania as the likely locations in eastern Europe of secret prisons where al-Qaeda suspects are interrogated by the Central Intelligence Agency.
+
+Predicates:
+1. HumanRightsGroup.date
+2. HumanRightsGroup.location
+3. Poland.isLocation
+4. Romania.isLocation
+5. Poland.secretPrison
+6. Romania.secretPrison
+7. SecretPrison.isLocatedIn
+8. AlQaedaSuspects.interrogated
+9. CIA.interrogates
+10. EasternEurope.contains
+11. HumanRightsGroup.identifies
+12. SecretPrison.probability
+13. SecretPrison.certainty
+14. HumanRightsGroup.reportDate
+15. Poland.isInEasternEurope
+16. Romania.isInEasternEurope
+17. Interrogation.location
+18. Interrogation.agency
+19. Agency.isCIA
+20. Agency.involvesAlQaeda
+21. HumanRightsGroup.findings
+22. Findings.location
+23. Findings.certaintyLevel
+24. Findings.probabilityLevel
+25. SecretPrison.locationType
+26. SecretPrison.abroad
+27. HumanRightsGroup.evidence
+28. Evidence.supportsFindings
+29. Findings.relationToCIA
+30. Interrogation.method
+
+Rules:
+1. Q[leading, HumanRightsGroup.date, Poland.secretPrison](HumanRightsGroup.date == "Wednesday" → Factual(HumanRightsGroup.date, Poland.secretPrison))
+2. Q[leading, HumanRightsGroup.date, Romania.secretPrison](HumanRightsGroup.date == "Wednesday" → Factual(HumanRightsGroup.date, Romania.secretPrison))
+3. Q[leading, HumanRightsGroup.location, Poland.isLocation](HumanRightsGroup.location == "Poland" → Factual(HumanRightsGroup.location, Poland.isLocation))
+4. Q[leading, HumanRightsGroup.location, Romania.isLocation](HumanRightsGroup.location == "Romania" → Factual(HumanRightsGroup.location, Romania.isLocation))
+5. Q[leading, HumanRightsGroup.identifies, Poland.secretPrison](HumanRightsGroup.identifies == "Poland" → Factual(HumanRightsGroup.identifies, Poland.secretPrison))
+6. Q[leading, HumanRightsGroup.identifies, Romania.secretPrison](HumanRightsGroup.identifies == "Romania" → Factual(HumanRightsGroup.identifies, Romania.secretPrison))
+7. Q[leading, SecretPrison.probability, Poland.secretPrison](SecretPrison.probability == "probably" → Factual(SecretPrison.probability, Poland.secretPrison))
+8. Q[leading, SecretPrison.probability, Romania.secretPrison](SecretPrison.probability == "probably" → Factual(SecretPrison.probability, Romania.secretPrison))
+9. Q[leading, SecretPrison.certainty, Poland.secretPrison](SecretPrison.certainty == "likely" → Factual(SecretPrison.certainty, Poland.secretPrison))
+10. Q[leading, SecretPrison.certainty, Romania.secretPrison](SecretPrison.certainty == "likely" → Factual(SecretPrison.certainty, Romania.secretPrison))
+11. Q[leading, Poland.isInEasternEurope, Poland.secretPrison](Poland.isInEasternEurope == true → Factual(Poland.isInEasternEurope, Poland.secretPrison))
+12. Q[leading, Romania.isInEasternEurope, Romania.secretPrison](Romania.isInEasternEurope == true → Factual(Romania.isInEasternEurope, Romania.secretPrison))
+13. Q[leading, EasternEurope.contains, Poland.isLocation](EasternEurope.contains == "Poland" → Factual(EasternEurope.contains, Poland.isLocation))
+14. Q[leading, EasternEurope.contains, Romania.isLocation](EasternEurope.contains == "Romania" → Factual(EasternEurope.contains, Romania.isLocation))
+15. Q[leading, CIA.interrogates, AlQaedaSuspects.interrogated](CIA.interrogates == true → Factual(CIA.interrogates, AlQaedaSuspects.interrogated))
+16. Q[leading, Interrogation.agency, CIA.interrogates](Interrogation.agency == "CIA" → Factual(Interrogation.agency, CIA.interrogates))
+17. Q[leading, Findings.certaintyLevel, Poland.secretPrison](Findings.certaintyLevel == "likely" → Factual(Findings.certaintyLevel, Poland.secretPrison))
+18. Q[leading, Findings.certaintyLevel, Romania.secretPrison](Findings.certaintyLevel == "likely" → Factual(Findings.certaintyLevel, Romania.secretPrison))
+19. Q[leading, Findings.probabilityLevel, Poland.secretPrison](Findings.probabilityLevel == "probably" → Factual(Findings.probabilityLevel, Poland.secretPrison))
+20. Q[leading, Findings.probabilityLevel, Romania.secretPrison](Findings.probabilityLevel == "probably" → Factual(Findings.probabilityLevel, Romania.secretPrison))
+21. Q[leading, HumanRightsGroup.findings, Poland.secretPrison](HumanRightsGroup.findings == "Poland" → Factual(HumanRightsGroup.findings, Poland.secretPrison))
+22. Q[leading, HumanRightsGroup.findings, Romania.secretPrison](HumanRightsGroup.findings == "Romania" → Factual(HumanRightsGroup.findings, Romania.secretPrison))
+23. Q[leading, Evidence.supportsFindings, Poland.secretPrison](Evidence.supportsFindings == true → Factual(Evidence.supportsFindings, Poland.secretPrison))
+24. Q[leading, Evidence.supportsFindings, Romania.secretPrison](Evidence.supportsFindings == true → Factual(Evidence.supportsFindings, Romania.secretPrison))
+25. Q[leading, SecretPrison.isLocatedIn, Poland.isLocation](SecretPrison.isLocatedIn == "Poland" → Factual(SecretPrison.isLocatedIn, Poland.isLocation))
+26. Q[leading, SecretPrison.isLocatedIn, Romania.isLocation](SecretPrison.isLocatedIn == "Romania" → Factual(SecretPrison.isLocatedIn, Romania.isLocation))
+27. Q[leading, Interrogation.location, Poland.secretPrison](Interrogation.location == "Poland" → Factual(Interrogation.location, Poland.secretPrison))
+28. Q[leading, Interrogation.location, Romania.secretPrison](Interrogation.location == "Romania" → Factual(Interrogation.location, Romania.secretPrison))
+29. Q[leading, Agency.involvesAlQaeda, CIA.interrogates](Agency.involvesAlQaeda == true → Factual(Agency.involvesAlQaeda, CIA.interrogates))
+30. Q[leading, HumanRightsGroup.reportDate, Poland.secretPrison](HumanRightsGroup.reportDate == "Wednesday" → Factual(HumanRightsGroup.reportDate, Poland.secretPrison))

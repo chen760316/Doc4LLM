@@ -1,0 +1,133 @@
+Predicates:
+1. writer.name = "Alice"
+2. writer.name = "Bob"
+3. writer.genre = "Fiction"
+4. writer.genre = "Non-Fiction"
+5. writer.nationality = "American"
+6. writer.nationality = "British"
+7. writer.birth_year = 1980
+8. writer.birth_year = 1990
+9. writer.awards = "Pulitzer Prize"
+10. writer.awards = "Nobel Prize"
+11. book.title = "The Great Adventure"
+12. book.title = "The Lost World"
+13. book.genre = "Adventure"
+14. book.genre = "Science Fiction"
+15. book.publication_year = 2020
+16. book.publication_year = 2021
+17. book.pages = 300
+18. book.pages = 400
+19. book.rating = 4.5
+20. book.rating = 3.0
+21. "considers among favorite writers".source = "interview"
+22. "considers among favorite writers".context = "literary discussion"
+23. "hates".source = "review"
+24. "hates".context = "personal opinion"
+25. M_NLI(writer.name, book.title)
+26. M_NLI(writer.genre, book.genre)
+27. T("Alice loves Bob", "Alice hates Bob", tau)
+28. T("Bob is a favorite writer", "Bob is not a favorite writer", tau)
+29. tau(writer.nationality, book.genre)
+30. tau(writer.birth_year, book.publication_year)
+31. violate(writer.name, book.title)
+32. Factual(writer.name, book.title)
+33. Causal(writer.genre, book.publication_year)
+34. Numeric(writer.birth_year, book.pages)
+35. Temporal(writer.awards, book.publication_year)
+36. Content(writer.nationality, book.rating)
+37. Negation(writer.name, book.title)
+38. Relation(writer.genre, book.title)
+39. Numeric(writer.birth_year, book.rating)
+40. Temporal(book.publication_year, writer.awards)
+41. "hates".label_text = "negative sentiment"
+42. "considers among favorite writers".label_text = "positive sentiment"
+43. M_NLI(writer.awards, book.rating)
+44. T("Alice considers Bob a favorite", "Alice does not consider Bob a favorite", tau)
+45. tau(writer.genre, book.pages)
+46. violate(writer.genre, book.title)
+47. Factual(writer.birth_year, book.pages)
+48. Causal(book.rating, writer.awards)
+49. Numeric(book.pages, writer.birth_year)
+50. Temporal(writer.nationality, book.publication_year)
+51. Content(writer.name, book.title)
+52. Negation(writer.awards, book.rating)
+53. Relation(writer.nationality, book.genre)
+54. "hates".context = "literary critique"
+55. "considers among favorite writers".context = "book club"
+56. M_NLI(writer.name, writer.nationality)
+57. T("Bob is a renowned author", "Bob is an unknown author", tau)
+58. tau(writer.awards, book.pages)
+59. violate(writer.nationality, book.genre)
+60. Factual(writer.birth_year, book.rating)
+61. Causal(book.publication_year, writer.name)
+62. Numeric(writer.birth_year, book.pages)
+63. Temporal(writer.awards, book.title)
+64. Content(writer.genre, book.rating)
+65. Negation(writer.name, book.awards)
+66. Relation(writer.nationality, book.publication_year)
+67. "hates".source = "social media"
+68. "considers among favorite writers".source = "literary review"
+69. M_NLI(book.title, book.genre)
+70. T("Alice loves fiction", "Alice hates fiction", tau)
+71. tau(writer.name, book.rating)
+72. violate(writer.awards, book.genre)
+73. Factual(book.pages, writer.nationality)
+74. Causal(writer.birth_year, book.title)
+75. Numeric(book.rating, writer.birth_year)
+76. Temporal(writer.nationality, book.publication_year)
+77. Content(book.title, writer.genre)
+78. Negation(book.pages, writer.rating)
+79. Relation(book.publication_year, writer.awards)
+80. "hates".label_text = "dislike"
+81. "considers among favorite writers".label_text = "admiration"
+82. M_NLI(writer.name, writer.awards)
+83. T("Bob is a favorite writer", "Bob is a disliked writer", tau)
+84. tau(writer.genre, book.title)
+85. violate(writer.name, book.rating)
+86. Factual(book.publication_year, writer.genre)
+87. Causal(writer.nationality, book.pages)
+88. Numeric(writer.birth_year, book.rating)
+89. Temporal(book.title, writer.awards)
+90. Content(writer.awards, book.genre)
+91. Negation(writer.name, book.title)
+92. Relation(writer.nationality, book.publication_year)
+93. "hates".context = "personal review"
+94. "considers among favorite writers".context = "author interview"
+95. M_NLI(book.rating, writer.genre)
+96. T("Alice enjoys reading", "Alice dislikes reading", tau)
+97. tau(writer.name, book.pages)
+98. violate(writer.genre, book.title)
+99. Factual(writer.birth_year, book.rating)
+100. Causal(book.publication_year, writer.name)
+violate(x0, y0)
+
+Rules:
+1. Q[x0, y0](writer.name = "Alice" ∧ writer.genre = "Fiction" → violate(x0, y0))
+2. Q[x0, y0](writer.name = "Bob" ∧ writer.nationality = "British" → violate(x0, y0))
+3. Q[x0, y0](writer.genre = "Non-Fiction" ∧ book.genre = "Adventure" ∧ writer.nationality = "American" → violate(x0, y0))
+4. Q[x0, y0](writer.birth_year = 1980 ∧ book.publication_year = 2021 ∧ writer.awards = "Nobel Prize" → violate(x0, y0))
+5. Q[x0, y0](writer.name = "Alice" ∧ writer.nationality = "American" ∧ book.title = "The Great Adventure" ∧ book.rating = 4.5 → violate(x0, y0))
+6. Q[x0, y0](writer.genre = "Fiction" ∧ book.pages = 300 ∧ writer.birth_year = 1990 ∧ book.publication_year = 2020 → violate(x0, y0))
+7. Q[x0, y0](writer.name = "Bob" ∧ writer.awards = "Pulitzer Prize" ∧ book.title = "The Lost World" ∧ book.genre = "Science Fiction" ∧ book.rating = 3.0 → violate(x0, y0))
+8. Q[x0, y0](writer.nationality = "British" ∧ writer.birth_year = 1980 ∧ book.pages = 400 ∧ book.publication_year = 2021 ∧ writer.genre = "Non-Fiction" → violate(x0, y0))
+9. Q[x0, y0](writer.name = "Alice" ∧ writer.genre = "Fiction" ∧ writer.nationality = "American" ∧ writer.birth_year = 1990 ∧ book.rating = 4.5 ∧ book.title = "The Great Adventure" → violate(x0, y0))
+10. Q[x0, y0](writer.name = "Bob" ∧ writer.nationality = "British" ∧ writer.awards = "Nobel Prize" ∧ book.pages = 300 ∧ book.publication_year = 2020 ∧ book.genre = "Adventure" → violate(x0, y0))
+11. Q[x0, y0](writer.genre = "Fiction" ∧ book.title = "The Lost World" → Factual(x0, y0))
+12. Q[x0, y0](writer.nationality = "American" ∧ book.rating = 3.0 → Factual(x0, y0))
+13. Q[x0, y0](writer.birth_year = 1980 ∧ writer.awards = "Pulitzer Prize" ∧ book.publication_year = 2021 → violate(x0, y0))
+14. Q[x0, y0](writer.name = "Alice" ∧ writer.genre = "Non-Fiction" ∧ book.pages = 400 → violate(x0, y0))
+15. Q[x0, y0](writer.nationality = "British" ∧ writer.birth_year = 1990 ∧ book.title = "The Great Adventure" ∧ book.rating = 4.5 ∧ book.publication_year = 2020 → violate(x0, y0))
+16. Q[x0, y0](writer.name = "Bob" ∧ writer.genre = "Fiction" ∧ writer.awards = "Nobel Prize" ∧ book.pages = 300 ∧ book.rating = 3.0 → violate(x0, y0))
+17. Q[x0, y0](writer.name = "Alice" ∧ writer.nationality = "American" ∧ book.title = "The Lost World" ∧ book.genre = "Science Fiction" ∧ book.publication_year = 2021 ∧ writer.birth_year = 1980 → violate(x0, y0))
+18. Q[x0, y0](writer.genre = "Non-Fiction" ∧ book.rating = 4.5 ∧ writer.birth_year = 1990 ∧ book.pages = 400 ∧ writer.awards = "Pulitzer Prize" → violate(x0, y0))
+19. Q[x0, y0](writer.name = "Bob" ∧ writer.nationality = "British" ∧ book.title = "The Great Adventure" ∧ book.genre = "Adventure" ∧ book.publication_year = 2020 ∧ writer.birth_year = 1980 → violate(x0, y0))
+20. Q[x0, y0](writer.genre = "Fiction" ∧ writer.awards = "Nobel Prize" ∧ book.pages = 300 ∧ book.rating = 3.0 ∧ book.title = "The Lost World" → violate(x0, y0))
+21. Q[x0, y0](writer.name = "Alice" ∧ writer.birth_year = 1990 ∧ book.publication_year = 2021 → violate(x0, y0))
+22. Q[x0, y0](writer.nationality = "American" ∧ writer.genre = "Non-Fiction" ∧ book.rating = 4.5 → violate(x0, y0))
+23. Q[x0, y0](writer.name = "Bob" ∧ writer.birth_year = 1980 ∧ book.title = "The Lost World" ∧ book.genre = "Science Fiction" ∧ book.publication_year = 2020 → violate(x0, y0))
+24. Q[x0, y0](writer.genre = "Fiction" ∧ writer.nationality = "British" ∧ book.pages = 400 ∧ book.rating = 3.0 → violate(x0, y0))
+25. Q[x0, y0](writer.name = "Alice" ∧ writer.awards = "Pulitzer Prize" ∧ book.title = "The Great Adventure" ∧ book.genre = "Adventure" ∧ book.publication_year = 2021 ∧ writer.birth_year = 1990 → violate(x0, y0))
+26. Q[x0, y0](writer.nationality = "British" ∧ writer.birth_year = 1980 ∧ book.rating = 4.5 ∧ book.pages = 300 ∧ book.title = "The Lost World" → violate(x0, y0))
+27. Q[x0, y0](writer.name = "Bob" ∧ writer.genre = "Non-Fiction" ∧ book.publication_year = 2021 → violate(x0, y0))
+28. Q[x0, y0](writer.birth_year = 1990 ∧ book.title = "The Great Adventure" ∧ book.rating = 3.0 → violate(x0, y0))
+29. Q[x0, y0](writer.nationality = "American" ∧ writer.awards = "Nobel Prize"

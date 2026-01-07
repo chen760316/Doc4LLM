@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 252)
+S1: A man and a woman are on a road looking at a red vehicle.
+S2: Two men are fighting in a ring while another man watches.
+
+Predicates:
+1. Man1.location
+2. Woman1.location
+3. Vehicle1.color
+4. Man2.location
+5. Man3.location
+6. Man2.activity
+7. Man3.activity
+8. Man1.gaze
+9. Woman1.gaze
+10. Vehicle1.type
+11. Ring1.location
+12. Man2.participant
+13. Man3.participant
+14. Man1.observer
+15. Woman1.observer
+16. Fight1.type
+17. Fight1.participants
+18. Watcher1.activity
+19. Road1.type
+20. Vehicle1.status
+21. Man1.gender
+22. Woman1.gender
+23. Man2.gender
+24. Man3.gender
+25. Ring1.type
+26. Observer1.role
+27. Fight1.outcome
+28. Vehicle1.size
+29. Road1.condition
+30. Observer1.attention
+
+Rules:
+1. Q[man, Man1.location, Vehicle1.color](Man1.gender == "male" ∧ Woman1.gender == "female" ∧ Man1.gaze == "vehicle" → Relation(Man1, Vehicle1))
+2. Q[woman, Woman1.location, Vehicle1.color](Woman1.gender == "female" ∧ Man1.gaze == "vehicle" → Relation(Woman1, Vehicle1))
+3. Q[man, Man2.activity, Man3.activity](Man2.gender == "male" ∧ Man3.gender == "male" ∧ Man2.activity == "fighting" ∧ Man3.activity == "fighting" → Relation(Man2, Man3))
+4. Q[man, Man2.participant, Man3.participant](Man2.participant == "fighting" ∧ Man3.participant == "fighting" → Relation(Man2, Man3))
+5. Q[man, Man1.observer, Man2.activity](Man1.gender == "male" ∧ Man1.observer == "watching" ∧ Man2.activity == "fighting" → Relation(Man1, Man2))
+6. Q[woman, Woman1.observer, Man2.activity](Woman1.gender == "female" ∧ Woman1.observer == "watching" ∧ Man2.activity == "fighting" → Relation(Woman1, Man2))
+7. Q[man, Man2.location, Ring1.location](Man2.gender == "male" ∧ Man2.location == "ring" ∧ Ring1.type == "fighting" → Relation(Man2, Ring1))
+8. Q[man, Man3.location, Ring1.location](Man3.gender == "male" ∧ Man3.location == "ring" ∧ Ring1.type == "fighting" → Relation(Man3, Ring1))
+9. Q[man, Man1.gaze, Vehicle1.type](Man1.gender == "male" ∧ Man1.gaze == "vehicle" ∧ Vehicle1.type == "red" → Relation(Man1, Vehicle1))
+10. Q[woman, Woman1.gaze, Vehicle1.type](Woman1.gender == "female" ∧ Woman1.gaze == "vehicle" ∧ Vehicle1.type == "red" → Relation(Woman1, Vehicle1))
+11. Q[man, Man2.gender, Man3.gender](Man2.gender == "male" ∧ Man3.gender == "male" ∧ Man2.activity == "fighting" ∧ Man3.activity == "fighting" → Relation(Man2, Man3))
+12. Q[man, Man1.location, Road1.type](Man1.gender == "male" ∧ Man1.location == "road" ∧ Road1.type == "public" → Relation(Man1, Road1))
+13. Q[woman, Woman1.location, Road1.type](Woman1.gender == "female" ∧ Woman1.location == "road" ∧ Road1.type == "public" → Relation(Woman1, Road1))
+14. Q[man, Man2.activity, Watcher1.activity](Man2.gender == "male" ∧ Man2.activity == "fighting" ∧ Watcher1.activity == "watching" → Relation(Man2, Watcher1))
+15. Q[man, Man3.activity, Watcher1.activity](Man3.gender == "male" ∧ Man3.activity == "fighting" ∧ Watcher1.activity == "watching" → Relation(Man3, Watcher1))
+16. Q[man, Man1.observer, Fight1.type](Man1.gender == "male" ∧ Man1.observer == "watching" ∧ Fight1.type == "boxing" → Relation(Man1, Fight1))
+17. Q[woman, Woman1.observer, Fight1.type](Woman1.gender == "female" ∧ Woman1.observer == "watching" ∧ Fight1.type == "boxing" → Relation(Woman1, Fight1))
+18. Q[man, Man2.participant, Fight1.participants](Man2.gender == "male" ∧ Man2.participant == "fighting" ∧ Fight1.participants == "two" → Relation(Man2, Fight1))
+19. Q[man, Man3.participant, Fight1.participants](Man3.gender == "male" ∧ Man3.participant == "fighting" ∧ Fight1.participants == "two" → Relation(Man3, Fight1))
+20. Q[man, Man1.location, Vehicle1.status](Man1.gender == "male" ∧ Man1.location == "road" ∧ Vehicle1.status == "stopped" → Relation(Man1, Vehicle1))
+21. Q[woman, Woman1.location, Vehicle1.status](Woman1.gender == "female" ∧ Woman1.location == "road" ∧ Vehicle1.status == "stopped" → Relation(Woman1, Vehicle1))
+22. Q[man, Man2.activity, Fight1.outcome](Man2.gender == "male" ∧ Man2.activity == "fighting" ∧ Fight1.outcome == "undecided" → Relation(Man2, Fight1))
+23. Q[man, Man3.activity, Fight1.outcome](Man3.gender == "male" ∧ Man3.activity == "fighting" ∧ Fight1.outcome == "undecided" → Relation(Man3, Fight1))
+24. Q[man, Man1.gaze, Observer1.attention](Man1.gender == "male" ∧ Man1.gaze == "vehicle" ∧ Observer1.attention == "focused" → Relation(Man1, Observer1))
+25. Q[woman, Woman1.gaze, Observer1.attention](Woman1.gender == "female" ∧ Woman1.gaze == "vehicle" ∧ Observer1.attention == "focused" → Relation(Woman1, Observer1))
+26. Q[man, Man2.location, Ring1.type](Man2.gender == "male" ∧ Man2.location == "ring" ∧ Ring1.type == "boxing" → Relation(Man2, Ring1))
+27. Q[man, Man3.location, Ring1.type](Man3.gender == "male" ∧ Man3.location == "ring" ∧ Ring1.type == "boxing" → Relation(Man3, Ring1))
+28. Q[man, Man1.observer, Vehicle1.color](Man1.gender == "male" ∧ Man1.observer == "watching" ∧ Vehicle1.color == "red" → Relation(Man1, Vehicle1))
+29. Q[woman, Woman1.observer, Vehicle1.color](Woman1.gender == "female" ∧ Woman1.observer == "watching" ∧ Vehicle1.color == "red" → Relation(Woman1, Vehicle1))
+30. Q[man, Man2.activity, Man3.activity](Man2.gender

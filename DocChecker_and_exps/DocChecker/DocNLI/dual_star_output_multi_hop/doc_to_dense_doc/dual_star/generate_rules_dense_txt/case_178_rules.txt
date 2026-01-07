@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 178)
+S1: She was transferred to Boston Medical Center, where she died shortly afterward.
+S2: 26-year-old died after collapsing at Boston hotel on Tuesday.
+
+Predicates:
+1. Patient.age
+2. Patient.location
+3. Patient.condition
+4. Hospital.name
+5. Hospital.location
+6. Event.time
+7. Event.type
+8. Event.outcome
+9. Patient.status
+10. Patient.transfer_status
+11. Incident.location
+12. Incident.time
+13. Incident.cause
+14. Medical_center.name
+15. Medical_center.type
+16. Medical_center.city
+17. Medical_center.state
+18. Patient.age_at_event
+19. Patient.collapse_time
+20. Patient.death_time
+21. "transferred_to".status
+22. "died_at".location
+23. "collapsed_at".location
+24. "hospital_admission".time
+25. "hospital_discharge".time
+26. "incident_reported".time
+27. "patient_treatment".type
+28. "patient_outcome".status
+29. M_NLI(S1, S2)
+30. violate(S1, S2)
+
+Rules:
+1. Q[She, Patient.age, Patient.death_time](Patient.age == 26 → Temporal(Patient.age, Patient.death_time))
+2. Q[She, Patient.location, Incident.location](Patient.location == "Boston Medical Center" → Temporal(Patient.location, Incident.location))
+3. Q[She, Patient.condition, Patient.status](Patient.condition == "collapsed" → Temporal(Patient.condition, Patient.status))
+4. Q[She, Hospital.name, Medical_center.name](Hospital.name == "Boston Medical Center" → Temporal(Hospital.name, Medical_center.name))
+5. Q[She, Hospital.location, Medical_center.city](Hospital.location == "Boston" → Temporal(Hospital.location, Medical_center.city))
+6. Q[She, Event.time, Patient.collapse_time](Event.time == "Tuesday" → Temporal(Event.time, Patient.collapse_time))
+7. Q[She, Event.type, Incident.cause](Event.type == "collapse" → Temporal(Event.type, Incident.cause))
+8. Q[She, Event.outcome, Patient.status](Event.outcome == "died" → Temporal(Event.outcome, Patient.status))
+9. Q[She, Patient.transfer_status, "transferred_to".status](Patient.transfer_status == "transferred" → Temporal(Patient.transfer_status, "transferred_to".status))
+10. Q[She, Incident.location, "collapsed_at".location](Incident.location == "Boston hotel" → Temporal(Incident.location, "collapsed_at".location))
+11. Q[She, Incident.time, "hospital_admission".time](Incident.time == "Tuesday" → Temporal(Incident.time, "hospital_admission".time))
+12. Q[She, Patient.death_time, "hospital_discharge".time](Patient.death_time == "shortly afterward" → Temporal(Patient.death_time, "hospital_discharge".time))
+13. Q[She, Patient.age_at_event, Patient.collapse_time](Patient.age_at_event == 26 → Temporal(Patient.age_at_event, Patient.collapse_time))
+14. Q[She, Medical_center.type, Hospital.name](Medical_center.type == "hospital" → Temporal(Medical_center.type, Hospital.name))
+15. Q[She, Medical_center.city, Hospital.location](Medical_center.city == "Boston" → Temporal(Medical_center.city, Hospital.location))
+16. Q[She, Patient.status, Patient.condition](Patient.status == "deceased" → Temporal(Patient.status, Patient.condition))
+17. Q[She, Patient.transfer_status, Patient.status](Patient.transfer_status == "transferred" → Temporal(Patient.transfer_status, Patient.status))
+18. Q[She, Incident.cause, Patient.condition](Incident.cause == "collapse" → Temporal(Incident.cause, Patient.condition))
+19. Q[She, Event.time, Patient.death_time](Event.time == "Tuesday" → Temporal(Event.time, Patient.death_time))
+20. Q[She, "died_at".location, Hospital.name]( "died_at".location == "Boston Medical Center" → Temporal("died_at".location, Hospital.name))
+21. Q[She, "collapsed_at".location, Incident.location]( "collapsed_at".location == "Boston hotel" → Temporal("collapsed_at".location, Incident.location))
+22. Q[She, Patient.collapse_time, Patient.death_time](Patient.collapse_time == "Tuesday" → Temporal(Patient.collapse_time, Patient.death_time))
+23. Q[She, Patient.age, Patient.age_at_event](Patient.age == 26 → Temporal(Patient.age, Patient.age_at_event))
+24. Q[She, Medical_center.state, Hospital.location](Medical_center.state == "MA" → Temporal(Medical_center.state, Hospital.location))
+25. Q[She, Patient.status, Event.outcome](Patient.status == "deceased" → Temporal(Patient.status, Event.outcome))
+26. Q[She, Patient.transfer_status, "hospital_admission".time](Patient.transfer_status == "transferred" → Temporal(Patient.transfer_status, "hospital_admission".time))
+27. Q[She, Incident.time, "incident_reported".time](Incident.time == "Tuesday" → Temporal(Incident.time, "incident_reported".time))
+28. Q[She, Patient.death_time, "hospital_discharge".time](Patient.death_time == "shortly afterward" → Temporal(Patient.death_time, "hospital_discharge".time))
+29. Q[She, Event.type, Patient.condition](Event.type == "collapse" → Temporal(Event.type, Patient.condition))
+30. Q[She, M_NLI(S1, S2), violate(S1, S2)](M_NLI(S1, S2) == true → Temporal(M_NLI(S1, S2), violate(S1, S2)))

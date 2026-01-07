@@ -1,0 +1,131 @@
+Predicates:
+1. entity1.name = "David"
+2. entity1.age = 30
+3. entity1.occupation = "scientist"
+4. entity2.name = "Taylor"
+5. entity2.age = 25
+6. entity2.occupation = "engineer"
+7. entity1.location = "New York"
+8. entity2.location = "Los Angeles"
+9. entity1.publication_year = 2024
+10. entity2.publication_year = 2025
+11. "has no effect on".source = "David's research"
+12. "has no effect on".target = "public health"
+13. "reduced".source = "carbon emissions"
+14. "reduced".target = "global warming"
+15. M_NLI(entity1.occupation, entity2.occupation)
+16. M_NLI(entity1.location, entity2.location)
+17. T("David published a paper", "David did not publish a paper", tau)
+18. tau(entity1.age, entity2.age)
+19. violate(entity1.name, entity2.name)
+20. Factual(entity1.publication_year, entity2.publication_year)
+21. Causal(entity1.location, entity2.location)
+22. Numeric(entity1.age, entity2.age)
+23. Temporal(entity1.publication_year, entity2.publication_year)
+24. Content(entity1.occupation, entity2.occupation)
+25. "has no effect on".label_text = "contradiction"
+26. "reduced".label_text = "contradiction"
+27. Factual(entity1.location, entity2.location)
+28. Causal(entity1.age, entity2.age)
+29. Numeric(entity1.publication_year, entity2.publication_year)
+30. Temporal(entity1.name, entity2.name)
+31. Content(entity1.name, entity2.name)
+32. violate(entity1.occupation, entity2.occupation)
+33. Factual(entity1.age, entity2.age)
+34. Causal(entity1.publication_year, entity2.publication_year)
+35. Numeric(entity1.location, entity2.location)
+36. Temporal(entity1.occupation, entity2.occupation)
+37. Content(entity1.publication_year, entity2.publication_year)
+38. "has no effect on".effect = "none"
+39. "reduced".effect = "lowered"
+40. M_NLI(entity1.age, entity2.age)
+41. T("Taylor is an engineer", "Taylor is not an engineer", tau)
+42. tau(entity1.location, entity2.location)
+43. violate(entity1.publication_year, entity2.publication_year)
+44. Factual(entity1.name, entity2.name)
+45. Causal(entity1.occupation, entity2.occupation)
+46. Numeric(entity1.age, entity2.age)
+47. Temporal(entity1.location, entity2.location)
+48. Content(entity1.publication_year, entity2.publication_year)
+49. "has no effect on".context = "research impact"
+50. "reduced".context = "environmental impact"
+51. Factual(entity1.effect, entity2.effect)
+52. Causal(entity1.context, entity2.context)
+53. Numeric(entity1.effect, entity2.effect)
+54. Temporal(entity1.context, entity2.context)
+55. Content(entity1.effect, entity2.effect)
+56. violate(entity1.context, entity2.context)
+57. Factual(entity1.name, entity2.occupation)
+58. Causal(entity1.age, entity2.publication_year)
+59. Numeric(entity1.location, entity2.age)
+60. Temporal(entity1.occupation, entity2.name)
+61. Content(entity1.publication_year, entity2.age)
+62. "has no effect on".subject = "climate change"
+63. "reduced".subject = "pollution levels"
+64. M_NLI(entity1.effect, entity2.effect)
+65. T("David's research is impactful", "David's research is not impactful", tau)
+66. tau(entity1.subject, entity2.subject)
+67. violate(entity1.subject, entity2.subject)
+68. Factual(entity1.occupation, entity2.age)
+69. Causal(entity1.name, entity2.location)
+70. Numeric(entity1.publication_year, entity2.age)
+71. Temporal(entity1.effect, entity2.effect)
+72. Content(entity1.subject, entity2.subject)
+73. "has no effect on".result = "no change"
+74. "reduced".result = "decrease"
+75. Factual(entity1.result, entity2.result)
+76. Causal(entity1.result, entity2.result)
+77. Numeric(entity1.result, entity2.result)
+78. Temporal(entity1.result, entity2.result)
+79. Content(entity1.result, entity2.result)
+80. violate(entity1.result, entity2.result)
+81. Factual(entity1.age, entity2.location)
+82. Causal(entity1.occupation, entity2.name)
+83. Numeric(entity1.publication_year, entity2.publication_year)
+84. Temporal(entity1.effect, entity2.effect)
+85. Content(entity1.subject, entity2.occupation)
+86. "has no effect on".impact = "none"
+87. "reduced".impact = "significant"
+88. M_NLI(entity1.result, entity2.result)
+89. T("Taylor's work is recognized", "Taylor's work is not recognized", tau)
+90. tau(entity1.impact, entity2.impact)
+91. violate(entity1.impact, entity2.impact)
+92. Factual(entity1.subject, entity2.subject)
+93. Causal(entity1.age, entity2.age)
+94. Numeric(entity1.location, entity2.location)
+95. Temporal(entity1.occupation, entity2.occupation)
+96. Content(entity1.name, entity2.name)
+97. "has no effect on".outcome = "no effect"
+98. "reduced".outcome = "lowered"
+99. Factual(entity1.outcome, entity2.outcome)
+100. violate(entity1, entity2)
+violate(x0, y0)
+
+Rules:
+1. Q[x0, y0](entity1.name = "David" ∧ entity2.name = "Taylor" → violate(x0, y0))
+2. Q[x0, y0](entity1.age = 30 ∧ entity2.age = 25 → violate(x0, y0))
+3. Q[x0, y0](entity1.occupation = "scientist" ∧ entity2.occupation = "engineer" → violate(x0, y0))
+4. Q[x0, y0](entity1.location = "New York" ∧ entity2.location = "Los Angeles" → violate(x0, y0))
+5. Q[x0, y0](entity1.publication_year = 2024 ∧ entity2.publication_year = 2025 → violate(x0, y0))
+6. Q[x0, y0](entity1.age = 30 ∧ entity2.age = 25 ∧ entity1.location = "New York" → violate(x0, y0))
+7. Q[x0, y0](entity1.occupation = "scientist" ∧ entity2.occupation = "engineer" ∧ entity1.publication_year = 2024 → violate(x0, y0))
+8. Q[x0, y0](entity1.name = "David" ∧ entity2.name = "Taylor" ∧ entity1.age = 30 → violate(x0, y0))
+9. Q[x0, y0](entity1.location = "New York" ∧ entity2.location = "Los Angeles" ∧ entity1.occupation = "scientist" → violate(x0, y0))
+10. Q[x0, y0](entity1.publication_year = 2024 ∧ entity2.publication_year = 2025 ∧ entity1.age = 30 → violate(x0, y0))
+11. Q[x0, y0](entity1.name = "David" ∧ entity2.name = "Taylor" ∧ entity1.age = 30 ∧ entity1.occupation = "scientist" → violate(x0, y0))
+12. Q[x0, y0](entity1.location = "New York" ∧ entity2.location = "Los Angeles" ∧ entity1.publication_year = 2024 ∧ entity2.publication_year = 2025 → violate(x0, y0))
+13. Q[x0, y0](entity1.age = 30 ∧ entity2.age = 25 ∧ entity1.occupation = "scientist" ∧ entity2.occupation = "engineer" → violate(x0, y0))
+14. Q[x0, y0](entity1.name = "David" ∧ entity2.name = "Taylor" ∧ entity1.age = 30 ∧ entity1.location = "New York" ∧ entity2.location = "Los Angeles" → violate(x0, y0))
+15. Q[x0, y0](entity1.publication_year = 2024 ∧ entity2.publication_year = 2025 ∧ entity1.age = 30 ∧ entity2.age = 25 ∧ entity1.occupation = "scientist" → violate(x0, y0))
+16. Q[x0, y0](entity1.name = "David" ∧ entity1.age = 30 ∧ entity1.occupation = "scientist" ∧ entity1.location = "New York" ∧ entity1.publication_year = 2024 ∧ entity2.name = "Taylor" → violate(x0, y0))
+17. Q[x0, y0](entity1.age = 30 ∧ entity2.age = 25 ∧ entity1.location = "New York" ∧ entity2.location = "Los Angeles" ∧ entity1.occupation = "scientist" ∧ entity2.occupation = "engineer" → violate(x0, y0))
+18. Q[x0, y0](entity1.publication_year = 2024 ∧ entity2.publication_year = 2025 ∧ entity1.name = "David" ∧ entity2.name = "Taylor" ∧ entity1.age = 30 ∧ entity2.age = 25 → violate(x0, y0))
+19. Q[x0, y0](entity1.occupation = "scientist" ∧ entity2.occupation = "engineer" ∧ entity1.location = "New York" ∧ entity2.location = "Los Angeles" ∧ entity1.publication_year = 2024 ∧ entity2.publication_year = 2025 → violate(x0, y0))
+20. Q[x0, y0](entity1.name = "David" ∧ entity1.age = 30 ∧ entity1.occupation = "scientist" ∧ entity1.location = "New York" ∧ entity2.name = "Taylor" ∧ entity2.age = 25 → violate(x0, y0))
+21. Q[x0, y0](entity1.age = 30 ∧ entity2.age = 25 ∧ entity1.occupation = "scientist" ∧ entity2.occupation = "engineer" ∧ entity1.location = "New York" ∧ entity2.location = "Los Angeles" → violate(x0, y0))
+22. Q[x0, y0](entity1.publication_year = 2024 ∧ entity2.publication_year = 2025 ∧ entity1.name = "David" ∧ entity2.name = "Taylor" ∧ entity1.age = 30 ∧ entity2.age = 25 → violate(x0, y0))
+23. Q[x0, y0](entity1.name = "David" ∧ entity1.age = 30 ∧ entity1.occupation = "scientist" ∧ entity1.location = "New York" ∧ entity1.publication_year = 2024 ∧ entity2.name = "Taylor" ∧ entity2.age = 25 → violate(x0, y0))
+24. Q[x0, y0](entity1.age = 30 ∧ entity2.age = 25 ∧ entity1.occupation = "scientist" ∧ entity2.occupation = "engineer" ∧ entity1.location = "New York" ∧ entity2.location = "Los Angeles" → violate(x0, y0))
+25. Q[x0, y0](entity1.publication_year = 2024 ∧ entity2.publication_year = 2025 ∧ entity1.name = "David" ∧ entity2.name = "Taylor" ∧ entity1.age = 30 ∧ entity2.age = 25 → violate(x0, y0))
+26. Q[x0, y0](entity1.name = "David" ∧ entity1.age = 30 ∧ entity1.occupation = "scientist" ∧ entity1.location = "New York" ∧ entity1.publication_year = 2024 ∧ entity2.name = "Taylor" ∧ entity2.age = 25 → violate(x0, y0))
+27. Q

@@ -1,0 +1,97 @@
+Predicates:
+Balance.label != "Person"
+Balance.label = "Person"
+Balance.name != "Balance"
+Balance.name = "Balance"
+Balance.relationship != "father"
+Balance.relationship = "father"
+Melinda.label != "Person"
+Melinda.label != Shrewsbury.label
+Melinda.label = "Person"
+Melinda.name != "Melinda"
+Melinda.name != Balance.name
+Melinda.name != Shrewsbury.name
+Melinda.name = "Melinda"
+Melinda.occupation != "unknown"
+Melinda.occupation = "unknown"
+Melinda.status != "unmarried"
+Melinda.status = "unmarried"
+None_ML(Shrewsbury.attrs, Owen.attrs)
+None_ML(Sylvia___Owen.attrs, Sylvia___Melinda.attrs)
+Owen.label != "Person"
+Owen.label != Shrewsbury.label
+Owen.label = "Person"
+Owen.name != "Owen"
+Owen.name != Balance.name
+Owen.name != Melinda.name
+Owen.name != Shrewsbury.name
+Owen.name = "Owen"
+Owen.relationship != "brother"
+Owen.relationship != Balance.relationship
+Owen.relationship = "brother"
+Owen.status != "deceased"
+Owen.status != Melinda.status
+Owen.status = "deceased"
+Shrewsbury.label != "Location"
+Shrewsbury.label != Balance.label
+Shrewsbury.label = "Location"
+Shrewsbury.name != "Shrewsbury"
+Shrewsbury.name != Balance.name
+Shrewsbury.name = "Shrewsbury"
+Sylvia.alias != "Jack Wilful"
+Sylvia.alias = "Jack Wilful"
+Sylvia.label != "Person"
+Sylvia.label != Shrewsbury.label
+Sylvia.label = "Person"
+Sylvia.name != "Sylvia"
+Sylvia.name != Balance.name
+Sylvia.name != Melinda.name
+Sylvia.name != Owen.name
+Sylvia.name != Shrewsbury.name
+Sylvia.name = "Sylvia"
+Sylvia.relationship != "disguised"
+Sylvia.relationship != Balance.relationship
+Sylvia.relationship != Owen.relationship
+Sylvia.relationship = "disguised"
+Sylvia___Balance.contradiction_type = "Causal"
+Sylvia___Balance.location = "Welsh countryside"
+Sylvia___Balance.relationship = "Sylvia tells her father Balance she is going to the Welsh countryside"
+Sylvia___Balance.source_id = "3488771854_8"
+Sylvia___Melinda.contradiction_type != Sylvia___Balance.contradiction_type
+Sylvia___Melinda.contradiction_type != Sylvia___Shrewsbury.contradiction_type
+Sylvia___Melinda.contradiction_type = "Content (Opinion/Emotion)"
+Sylvia___Melinda.relationship != Sylvia___Balance.relationship
+Sylvia___Melinda.relationship != Sylvia___Shrewsbury.relationship
+Sylvia___Melinda.relationship = "Sylvia is infuriated by Melinda's haughty behaviour."
+Sylvia___Melinda.source_id != Sylvia___Balance.source_id
+Sylvia___Melinda.source_id != Sylvia___Shrewsbury.source_id
+Sylvia___Melinda.source_id = "3488771854_1"
+Sylvia___Owen.action = "leaving"
+Sylvia___Owen.contradiction_type != Sylvia___Melinda.contradiction_type
+Sylvia___Owen.contradiction_type = "Causal"
+Sylvia___Owen.reason = "mourning"
+Sylvia___Owen.relationship != Sylvia___Balance.relationship
+Sylvia___Owen.relationship != Sylvia___Melinda.relationship
+Sylvia___Owen.relationship != Sylvia___Shrewsbury.relationship
+Sylvia___Owen.relationship = "Sylvia has a brother named Owen who has died."
+Sylvia___Owen.source_id != Sylvia___Balance.source_id
+Sylvia___Owen.source_id != Sylvia___Melinda.source_id
+Sylvia___Owen.source_id != Sylvia___Shrewsbury.source_id
+Sylvia___Owen.source_id = "3488771854_6"
+Sylvia___Shrewsbury.contradiction_type = "Causal"
+Sylvia___Shrewsbury.disguise = "man"
+Sylvia___Shrewsbury.relationship != Sylvia___Balance.relationship
+Sylvia___Shrewsbury.relationship = "Sylvia goes into Shrewsbury dressed as a man"
+Sylvia___Shrewsbury.source_id = "3488771854_8"
+
+Rules:
+Q[Sylvia,Sylvia] (Sylvia___Owen.source_id != Sylvia___Shrewsbury.source_id ∧ Sylvia.alias = "Jack Wilful" ∧ Owen.name != Melinda.name ∧ Melinda.occupation = "unknown" ∧ Sylvia___Shrewsbury.contradiction_type = "Causal" ∧ Sylvia___Shrewsbury.relationship != Sylvia___Balance.relationship → Sylvia___Melinda.contradiction_type != Sylvia___Shrewsbury.contradiction_type)
+Q[Sylvia,Sylvia] (Sylvia.name != "Sylvia" ∧ Owen.status = "deceased" → Balance.relationship != "father")
+Q[Sylvia,Sylvia] (Sylvia___Shrewsbury.relationship != Sylvia___Balance.relationship ∧ Sylvia___Shrewsbury.source_id = "3488771854_8" ∧ Sylvia___Owen.source_id != Sylvia___Shrewsbury.source_id ∧ Sylvia.name != Melinda.name → Owen.status != Melinda.status)
+Q[Sylvia,Sylvia] (Melinda.name != "Melinda" ∧ Sylvia___Balance.relationship = "Sylvia tells her father Balance she is going to the Welsh countryside" ∧ Balance.label != "Person" → Sylvia.name != Melinda.name)
+Q[Sylvia,Sylvia] (Sylvia___Shrewsbury.source_id = "3488771854_8" ∧ Owen.relationship = "brother" ∧ Sylvia.relationship = "disguised" ∧ Sylvia___Balance.location = "Welsh countryside" ∧ Sylvia.label != "Person" → Balance.label = "Person")
+Q[Sylvia,Sylvia] (Melinda.status = "unmarried" ∧ Balance.label != "Person" ∧ Sylvia___Shrewsbury.relationship = "Sylvia goes into Shrewsbury dressed as a man" ∧ Sylvia___Balance.location = "Welsh countryside" → Sylvia___Balance.contradiction_type = "Causal")
+Q[Sylvia,Sylvia] (Sylvia.label != Shrewsbury.label ∧ Sylvia___Melinda.contradiction_type = "Content (Opinion/Emotion)" ∧ Sylvia___Melinda.source_id = "3488771854_1" ∧ Sylvia___Owen.reason = "mourning" ∧ Owen.relationship != "brother" ∧ Balance.name != "Balance" → Sylvia___Melinda.source_id != Sylvia___Balance.source_id)
+Q[Sylvia,Sylvia] (Sylvia___Owen.contradiction_type != Sylvia___Melinda.contradiction_type ∧ Sylvia.label != "Person" → Shrewsbury.label != Balance.label)
+Q[Sylvia,Sylvia] (Owen.label != "Person" ∧ Sylvia___Owen.relationship != Sylvia___Melinda.relationship ∧ Sylvia.name = "Sylvia" ∧ Sylvia.alias = "Jack Wilful" ∧ Shrewsbury.label != "Location" → None_ML(Sylvia___Owen.attrs, Sylvia___Melinda.attrs))
+Q[Sylvia,Sylvia] (Sylvia___Balance.contradiction_type = "Causal" ∧ Shrewsbury.label != "Location" ∧ Sylvia___Owen.action = "leaving" → Sylvia___Owen.relationship != Sylvia___Melinda.relationship)

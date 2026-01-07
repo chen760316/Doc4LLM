@@ -1,0 +1,123 @@
+Predicates:
+1. Frank Black.occupation = "FBI agent"
+2. Emma Hollis.occupation = "FBI agent"
+3. Mark Bianco.occupation != "FBI agent"
+4. Frank Black.occupation != "method actor"
+5. Emma Hollis.location = "Travelers Rest, South Carolina"
+6. Frank Black.location = "Travelers Rest, South Carolina"
+7. "Relationship".location = "Travelers Rest, South Carolina"
+8. "Relationship".location != "New York"
+9. Frank Black.occupation >= "FBI agent"
+10. Emma Hollis.occupation <= "FBI agent"
+11. Mark Bianco.occupation < "FBI agent"
+12. Frank Black.occupation > "method actor"
+13. "Relationship".attribute = "investigating"
+14. "Relationship".attribute != "solving"
+15. "Relationship".attribute < "solving"
+16. "Relationship".attribute > "observing"
+17. "Relationship".attribute <= "investigating"
+18. "Relationship".attribute >= "analyzing"
+19. M_NLI(Frank Black.occupation, Emma Hollis.occupation)
+20. M_NLU(Frank Black.location, Emma Hollis.location)
+21. M_TEM(Frank Black.occupation, Mark Bianco.occupation)
+22. contra("FBI agent", "method actor")
+23. S(Frank Black, "Frank Black and Emma Hollis are both FBI agents investigating a series of murders.")
+24. S(Emma Hollis, "Emma Hollis is an FBI agent.")
+25. S("Relationship", "Frank Black and Emma Hollis are both FBI agents investigating a series of murders.")
+26. T("FBI agent", "method actor", Factual)
+27. tau(Frank Black.occupation, Mark Bianco.occupation)
+28. tau("Relationship".location, "Travelers Rest, South Carolina")
+29. Frank Black.location != "Los Angeles"
+30. Emma Hollis.location != "Chicago"
+31. Mark Bianco.occupation >= "method actor"
+32. Frank Black.occupation < "detective"
+33. Emma Hollis.occupation > "trainee"
+34. "Relationship".attribute >= "investigating"
+35. "Relationship".attribute < "arresting"
+36. "Relationship".location != "Los Angeles"
+37. M_NLI(Emma Hollis.location, Frank Black.location)
+38. M_NLU(Mark Bianco.occupation, Frank Black.occupation)
+39. M_TEM(Emma Hollis.occupation, Mark Bianco.occupation)
+40. contra("FBI agents", "method actor")
+41. S(Mark Bianco, "Mark Bianco is a method actor.")
+42. S(Frank Black, "Frank Black is investigating murders.")
+43. S("Relationship", "FBI agents investigating murders.")
+44. T("FBI agent", "actor", Content)
+45. tau(Emma Hollis.location, Frank Black.location)
+46. Frank Black.location >= "South Carolina"
+47. Emma Hollis.occupation != "private investigator"
+48. Mark Bianco.occupation < "FBI agent"
+49. "Relationship".attribute > "investigating"
+50. "Relationship".location >= "South Carolina"
+51. Frank Black.occupation != "police officer"
+52. Emma Hollis.occupation < "senior agent"
+53. "Relationship".attribute <= "investigating"
+54. "Relationship".attribute != "witnessing"
+55. M_NLI(Frank Black.location, Mark Bianco.occupation)
+56. M_NLU(Emma Hollis.occupation, Mark Bianco.occupation)
+57. M_TEM(Frank Black.location, Emma Hollis.location)
+58. contra("FBI agents", "theater actor")
+59. S(Emma Hollis, "Emma Hollis is an FBI agent.")
+60. S(Frank Black, "Frank Black is an FBI agent.")
+61. S("Relationship", "FBI agents investigating a series of murders.")
+62. T("FBI agent", "theater actor", Relational)
+63. tau(Frank Black.occupation, Emma Hollis.occupation)
+64. Frank Black.location < "New York"
+65. Emma Hollis.location > "Georgia"
+66. Mark Bianco.occupation >= "actor"
+67. Frank Black.occupation <= "agent"
+68. Emma Hollis.occupation != "detective"
+69. "Relationship".attribute < "solving"
+70. "Relationship".location != "Miami"
+71. Frank Black.occupation > "junior agent"
+72. Emma Hollis.occupation < "lead agent"
+73. "Relationship".attribute >= "investigating"
+74. "Relationship".attribute != "interrogating"
+75. M_NLI(Emma Hollis.location, Frank Black.location)
+76. M_NLU(Frank Black.occupation, Mark Bianco.occupation)
+77. M_TEM(Emma Hollis.occupation, Frank Black.occupation)
+78. contra("FBI agent", "theater performer")
+79. S(Mark Bianco, "Mark Bianco is a method actor.")
+80. S(Frank Black, "Frank Black is an FBI agent.")
+81. S("Relationship", "FBI agents investigating a series of murders.")
+82. T("FBI agent", "actor", Numeric)
+83. tau(Emma Hollis.location, Frank Black.location)
+84. Frank Black.location >= "South Carolina"
+85. Emma Hollis.occupation != "security guard"
+86. Mark Bianco.occupation < "FBI agent"
+87. "Relationship".attribute > "investigating"
+88. "Relationship".location >= "South Carolina"
+89. Frank Black.occupation != "security officer"
+90. Emma Hollis.occupation < "senior agent"
+91. "Relationship".attribute <= "investigating"
+92. "Relationship".attribute != "observing"
+93. M_NLI(Frank Black.location, Mark Bianco.occupation)
+94. M_NLU(Emma Hollis.occupation, Mark Bianco.occupation)
+95. M_TEM(Frank Black.location, Emma Hollis.location)
+96. contra("FBI agents", "film actor")
+97. S(Emma Hollis, "Emma Hollis is an FBI agent.")
+98. S(Frank Black, "Frank Black is an FBI agent.")
+99. S("Relationship", "FBI agents investigating a series of murders.")
+100. T("FBI agent", "theater actor", Temporal)
+
+Rules:
+1. Q[1, 2](Frank Black.occupation = "FBI agent" ∧ Emma Hollis.occupation = "FBI agent" → Mark Bianco.occupation != "FBI agent")
+2. Q[3, 4](Frank Black.location = "Travelers Rest, South Carolina" ∧ Emma Hollis.location = "Travelers Rest, South Carolina" → Mark Bianco.occupation != "FBI agent")
+3. Q[5, 6](Frank Black.occupation != "method actor" ∧ Emma Hollis.occupation != "method actor" → "Relationship".attribute != "solving")
+4. Q[7, 8](Frank Black.occupation < "detective" ∧ Emma Hollis.occupation > "trainee" → Mark Bianco.occupation < "FBI agent")
+5. Q[9, 10, 11](Frank Black.occupation >= "FBI agent" ∧ Emma Hollis.occupation <= "FBI agent" ∧ Mark Bianco.occupation < "FBI agent" → "Relationship".attribute < "arresting")
+6. Q[12, 13, 14](Frank Black.occupation > "method actor" ∧ "Relationship".attribute = "investigating" ∧ "Relationship".attribute != "solving" → "Relationship".location != "Los Angeles")
+7. Q[15, 16, 17](Frank Black.location != "Los Angeles" ∧ Emma Hollis.location != "Chicago" ∧ "Relationship".attribute > "observing" → "Relationship".attribute < "solving")
+8. Q[18, 19, 20](Frank Black.occupation != "police officer" ∧ Emma Hollis.occupation < "senior agent" ∧ "Relationship".attribute >= "analyzing" → "Relationship".location >= "South Carolina")
+9. Q[21, 22, 23, 24](Frank Black.occupation != "security officer" ∧ Emma Hollis.occupation != "private investigator" ∧ Mark Bianco.occupation < "FBI agent" ∧ "Relationship".attribute <= "investigating" → "Relationship".attribute != "interrogating")
+10. Q[25, 26, 27, 28](Frank Black.location < "New York" ∧ Emma Hollis.location > "Georgia" ∧ Mark Bianco.occupation >= "actor" ∧ "Relationship".location != "Miami" → "Relationship".attribute > "investigating")
+11. Q[29, 30, 31, 32, 33](Frank Black.occupation > "junior agent" ∧ Emma Hollis.occupation < "lead agent" ∧ Mark Bianco.occupation < "FBI agent" ∧ "Relationship".attribute >= "investigating" ∧ "Relationship".attribute != "observing" → "Relationship".location >= "South Carolina")
+12. Q[34, 35, 36, 37, 38](Frank Black.location >= "South Carolina" ∧ Emma Hollis.occupation != "security guard" ∧ Mark Bianco.occupation < "FBI agent" ∧ "Relationship".attribute > "investigating" ∧ "Relationship".location != "Los Angeles" → "Relationship".attribute < "solving")
+13. Q[39, 40, 41, 42, 43, 44](Frank Black.occupation != "theater actor" ∧ Emma Hollis.occupation != "theater actor" ∧ Mark Bianco.occupation < "FBI agent" ∧ "Relationship".attribute < "solving" ∧ "Relationship".location != "Miami" ∧ "Relationship".attribute != "witnessing" → "Relationship".attribute >= "investigating")
+14. Q[45, 46, 47, 48, 49, 50](Frank Black.location < "New York" ∧ Emma Hollis.location > "Georgia" ∧ Mark Bianco.occupation >= "actor" ∧ Frank Black.occupation < "detective" ∧ Emma Hollis.occupation > "trainee" ∧ "Relationship".location >= "South Carolina" → "Relationship".attribute != "interrogating")
+15. Q[51, 52, 53, 54, 55](Frank Black.occupation != "security officer" ∧ Emma Hollis.occupation < "senior agent" ∧ "Relationship".attribute <= "investigating" ∧ "Relationship".attribute != "observing" ∧ "Relationship".location != "Miami" → "Relationship".attribute < "solving")
+16. Q[56, 57, 58, 59, 60](Frank Black.location >= "South Carolina" ∧ Emma Hollis.occupation != "security guard" ∧ Mark Bianco.occupation < "FBI agent" ∧ "Relationship".attribute > "investigating" ∧ "Relationship".location != "Los Angeles" → "Relationship".attribute < "solving")
+17. Q[61, 62, 63, 64, 65, 66](Frank Black.occupation != "theater actor" ∧ Emma Hollis.occupation != "theater actor" ∧ Mark Bianco.occupation < "FBI agent" ∧ "Relationship".attribute < "solving" ∧ "Relationship".location != "Miami" ∧ "Relationship".attribute != "witnessing" → "Relationship".attribute >= "investigating")
+18. Q[67, 68, 69, 70, 71, 72](Frank Black.location < "New York" ∧ Emma Hollis.location > "Georgia" ∧ Mark Bianco.occupation >= "actor" ∧ Frank Black.occupation < "detective" ∧ Emma Hollis.occupation > "trainee" ∧ "Relationship".location >= "South Carolina" → "Relationship".attribute != "interrogating")
+19. Q[73, 74, 75, 76, 77](Frank Black.occupation != "security officer" ∧ Emma Hollis.occupation < "senior agent" ∧ "Relationship".attribute <= "investigating" ∧ "Relationship".attribute != "observing" ∧ "Relationship".location != "Miami" → "Relationship".attribute < "solving")
+20. Q[78, 79, 80, 81, 82](Frank Black.location >= "South Carolina" ∧ Emma Hollis.occupation != "security guard" ∧ Mark Bianco.occupation < "FBI agent" ∧ "Relationship".attribute > "investigating" ∧ "Relationship".location != "Los Angeles" → "Relationship".attribute < "solving")

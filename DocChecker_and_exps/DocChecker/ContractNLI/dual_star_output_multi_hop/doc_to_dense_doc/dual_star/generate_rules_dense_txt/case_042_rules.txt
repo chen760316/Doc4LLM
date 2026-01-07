@@ -1,0 +1,66 @@
+Source: dense_text.txt (Index 42)
+S1: The obligations of the above paragraph '2' shall not apply to any information which: (a) is available to the public through no breach of this Agreement by the Receiving Party;
+S2: Receiving Party shall not disclose the fact that Agreement was agreed or negotiated.
+
+Predicates:
+1. Agreement.hasObligations
+2. ReceivingParty.canDisclosePublicInformation
+3. Information.isPublic
+4. ReceivingParty.cannotDiscloseAgreementFact
+5. Agreement.isNegotiated
+6. Agreement.isAgreed
+7. ReceivingParty.breachesAgreement
+8. Information.isNotPublic
+9. Obligations.applyToInformation
+10. ReceivingParty.hasConfidentialityObligation
+11. PublicInformation.isAvailable
+12. Agreement.includesExistence
+13. ReceivingParty.violatesConfidentiality
+14. Information.isExemptFromObligations
+15. Agreement.hasTerms
+16. ReceivingParty.isBoundByAgreement
+17. Disclosure.isPermitted
+18. Agreement.isConfidential
+19. ReceivingParty.hasAccessToInformation
+20. Information.isSubjectToObligations
+21. Agreement.pertainsToNegotiation
+22. ReceivingParty.isInCompliance
+23. PublicInformation.isNotConfidential
+24. Obligations.doNotApplyToPublicInformation
+25. Agreement.hasDisclosureRestrictions
+26. ReceivingParty.mayDisclosePublicInformation
+27. Information.isConfidential
+28. Agreement.hasNonDisclosureClause
+29. ReceivingParty.isRestrictedFromDisclosure
+30. Information.isProtectedByAgreement
+
+Rules:
+1. Q[The, ReceivingParty.canDisclosePublicInformation, ReceivingParty.cannotDiscloseAgreementFact](Agreement.hasObligations ∧ Information.isPublic → Causal(ReceivingParty.canDisclosePublicInformation, ReceivingParty.cannotDiscloseAgreementFact))
+2. Q[The, Information.isPublic, ReceivingParty.cannotDiscloseAgreementFact](ReceivingParty.canDisclosePublicInformation ∧ Agreement.isAgreed → Causal(Information.isPublic, ReceivingParty.cannotDiscloseAgreementFact))
+3. Q[The, Obligations.applyToInformation, ReceivingParty.cannotDiscloseAgreementFact](Agreement.hasObligations ∧ Information.isNotPublic → Causal(Obligations.applyToInformation, ReceivingParty.cannotDiscloseAgreementFact))
+4. Q[The, ReceivingParty.breachesAgreement, ReceivingParty.cannotDiscloseAgreementFact](ReceivingParty.hasConfidentialityObligation ∧ Agreement.isConfidential → Causal(ReceivingParty.breachesAgreement, ReceivingParty.cannotDiscloseAgreementFact))
+5. Q[The, Information.isExemptFromObligations, ReceivingParty.cannotDiscloseAgreementFact](Obligations.doNotApplyToPublicInformation ∧ Information.isPublic → Causal(Information.isExemptFromObligations, ReceivingParty.cannotDiscloseAgreementFact))
+6. Q[The, Agreement.includesExistence, ReceivingParty.cannotDiscloseAgreementFact](Agreement.hasTerms ∧ Agreement.isNegotiated → Causal(Agreement.includesExistence, ReceivingParty.cannotDiscloseAgreementFact))
+7. Q[The, ReceivingParty.isBoundByAgreement, ReceivingParty.cannotDiscloseAgreementFact](Agreement.hasNonDisclosureClause ∧ ReceivingParty.isInCompliance → Causal(ReceivingParty.isBoundByAgreement, ReceivingParty.cannotDiscloseAgreementFact))
+8. Q[The, PublicInformation.isAvailable, ReceivingParty.cannotDiscloseAgreementFact](Information.isPublic ∧ ReceivingParty.mayDisclosePublicInformation → Causal(PublicInformation.isAvailable, ReceivingParty.cannotDiscloseAgreementFact))
+9. Q[The, Information.isConfidential, ReceivingParty.cannotDiscloseAgreementFact](Agreement.isConfidential ∧ ReceivingParty.violatesConfidentiality → Causal(Information.isConfidential, ReceivingParty.cannotDiscloseAgreementFact))
+10. Q[The, ReceivingParty.hasAccessToInformation, ReceivingParty.cannotDiscloseAgreementFact](Agreement.hasDisclosureRestrictions ∧ Information.isProtectedByAgreement → Causal(ReceivingParty.hasAccessToInformation, ReceivingParty.cannotDiscloseAgreementFact))
+11. Q[The, Agreement.hasDisclosureRestrictions, ReceivingParty.cannotDiscloseAgreementFact](ReceivingParty.isRestrictedFromDisclosure ∧ Agreement.isAgreed → Causal(Agreement.hasDisclosureRestrictions, ReceivingParty.cannotDiscloseAgreementFact))
+12. Q[The, Information.isSubjectToObligations, ReceivingParty.cannotDiscloseAgreementFact](Obligations.applyToInformation ∧ Information.isNotPublic → Causal(Information.isSubjectToObligations, ReceivingParty.cannotDiscloseAgreementFact))
+13. Q[The, ReceivingParty.violatesConfidentiality, ReceivingParty.cannotDiscloseAgreementFact](ReceivingParty.breachesAgreement ∧ Agreement.hasNonDisclosureClause → Causal(ReceivingParty.violatesConfidentiality, ReceivingParty.cannotDiscloseAgreementFact))
+14. Q[The, Agreement.hasTerms, ReceivingParty.cannotDiscloseAgreementFact](Agreement.isNegotiated ∧ Agreement.isConfidential → Causal(Agreement.hasTerms, ReceivingParty.cannotDiscloseAgreementFact))
+15. Q[The, Information.isProtectedByAgreement, ReceivingParty.cannotDiscloseAgreementFact](Agreement.hasObligations ∧ Information.isConfidential → Causal(Information.isProtectedByAgreement, ReceivingParty.cannotDiscloseAgreementFact))
+16. Q[The, ReceivingParty.isInCompliance, ReceivingParty.cannotDiscloseAgreementFact](ReceivingParty.hasConfidentialityObligation ∧ Agreement.isAgreed → Causal(ReceivingParty.isInCompliance, ReceivingParty.cannotDiscloseAgreementFact))
+17. Q[The, ReceivingParty.mayDisclosePublicInformation, ReceivingParty.cannotDiscloseAgreementFact](PublicInformation.isAvailable ∧ Information.isPublic → Causal(ReceivingParty.mayDisclosePublicInformation, ReceivingParty.cannotDiscloseAgreementFact))
+18. Q[The, Information.isNotPublic, ReceivingParty.cannotDiscloseAgreementFact](Obligations.applyToInformation ∧ ReceivingParty.breachesAgreement → Causal(Information.isNotPublic, ReceivingParty.cannotDiscloseAgreementFact))
+19. Q[The, Agreement.isConfidential, ReceivingParty.cannotDiscloseAgreementFact](Agreement.hasNonDisclosureClause ∧ ReceivingParty.isBoundByAgreement → Causal(Agreement.isConfidential, ReceivingParty.cannotDiscloseAgreementFact))
+20. Q[The, ReceivingParty.hasConfidentialityObligation, ReceivingParty.cannotDiscloseAgreementFact](Agreement.hasTerms ∧ Agreement.isNegotiated → Causal(ReceivingParty.hasConfidentialityObligation, ReceivingParty.cannotDiscloseAgreementFact))
+21. Q[The, Information.isPublic, ReceivingParty.cannotDiscloseAgreementFact](PublicInformation.isAvailable ∧ Obligations.doNotApplyToPublicInformation → Causal(Information.isPublic, ReceivingParty.cannotDiscloseAgreementFact))
+22. Q[The, ReceivingParty.isRestrictedFromDisclosure, ReceivingParty.cannotDiscloseAgreementFact](Agreement.hasDisclosureRestrictions ∧ Agreement.isConfidential → Causal(ReceivingParty.isRestrictedFromDisclosure, ReceivingParty.cannotDiscloseAgreementFact))
+23. Q[The, Agreement.isNegotiated, ReceivingParty.cannotDiscloseAgreementFact](Agreement.hasTerms ∧ ReceivingParty.isInCompliance → Causal(Agreement.isNegotiated, ReceivingParty.cannotDiscloseAgreementFact))
+24. Q[The, Information.isConfidential, ReceivingParty.cannotDiscloseAgreementFact](ReceivingParty.violatesConfidentiality ∧ Agreement.isAgreed → Causal(Information.isConfidential, ReceivingParty.cannotDiscloseAgreementFact))
+25. Q[The, ReceivingParty.hasAccessToInformation, ReceivingParty.cannotDiscloseAgreementFact](Agreement.isConfidential ∧ Information.isProtectedByAgreement → Causal(ReceivingParty.hasAccessToInformation, ReceivingParty.cannotDiscloseAgreementFact))
+26. Q[The, PublicInformation.isNotConfidential, ReceivingParty.cannotDiscloseAgreementFact](Information.isPublic ∧ Obligations.doNotApplyToPublicInformation → Causal(PublicInformation.isNotConfidential, ReceivingParty.cannotDiscloseAgreementFact))
+27. Q[The, Agreement.hasNonDisclosureClause, ReceivingParty.cannotDiscloseAgreementFact](ReceivingParty.isBoundByAgreement ∧ Agreement.isConfidential → Causal(Agreement.hasNonDisclosureClause, ReceivingParty.cannotDiscloseAgreementFact))
+28. Q[The, ReceivingParty.isInCompliance, ReceivingParty.cannotDiscloseAgreementFact](Agreement.hasObligations ∧ Information.isNotPublic → Causal(ReceivingParty.isInCompliance, ReceivingParty.cannotDiscloseAgreementFact))
+29. Q[The, Information.isSubjectToObligations, ReceivingParty.c

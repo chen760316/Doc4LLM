@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 122)
+S1: The only thing an executive order can accomplish is to ban it in federal law enforcement agencies,
+S2: I would also support a law in the Congress that would have the effect of doing the same thing.
+
+Predicates:
+1. ExecutiveOrder.accomplish = "ban in federal law enforcement agencies"
+2. LawInCongress.support = true
+3. ExecutiveOrder.isOnlyMeans = true
+4. LawInCongress.effect = "same thing"
+5. ExecutiveOrder.relationship = "means to achieve ban"
+6. LawInCongress.relationship = "means to achieve ban"
+7. ExecutiveOrder.violates = "federal law enforcement agencies"
+8. LawInCongress.achieves = "same effect"
+9. ExecutiveOrder.type = "order"
+10. LawInCongress.type = "law"
+11. ExecutiveOrder.entity = "federal law enforcement agencies"
+12. LawInCongress.entity = "federal law enforcement agencies"
+13. ExecutiveOrder.implies = "only means"
+14. LawInCongress.implies = "alternative means"
+15. ExecutiveOrder.canAccomplish = true
+16. LawInCongress.canAccomplish = true
+17. ExecutiveOrder.achieves = "ban"
+18. LawInCongress.achieves = "ban"
+19. ExecutiveOrder.isLegitimate = true
+20. LawInCongress.isLegitimate = true
+21. ExecutiveOrder.scope = "federal"
+22. LawInCongress.scope = "federal"
+23. ExecutiveOrder.impact = "federal law enforcement"
+24. LawInCongress.impact = "federal law enforcement"
+25. ExecutiveOrder.supportedBy = "executive"
+26. LawInCongress.supportedBy = "Congress"
+27. ExecutiveOrder.isEnforceable = true
+28. LawInCongress.isEnforceable = true
+29. ExecutiveOrder.hasEffectOn = "law enforcement"
+30. LawInCongress.hasEffectOn = "law enforcement"
+
+Rules:
+1. Q[The, ExecutiveOrder.isOnlyMeans == true, LawInCongress.effect == "same thing"](ExecutiveOrder.accomplish == "ban in federal law enforcement agencies" → Causal(ExecutiveOrder, LawInCongress))
+2. Q[The, ExecutiveOrder.relationship == "means to achieve ban", LawInCongress.relationship == "means to achieve ban"](ExecutiveOrder.canAccomplish == true → Causal(ExecutiveOrder, LawInCongress))
+3. Q[The, ExecutiveOrder.implies == "only means", LawInCongress.implies == "alternative means"](ExecutiveOrder.achieves == "ban" → Causal(ExecutiveOrder, LawInCongress))
+4. Q[The, ExecutiveOrder.violates == "federal law enforcement agencies", LawInCongress.achieves == "same effect"](LawInCongress.support == true → Causal(ExecutiveOrder, LawInCongress))
+5. Q[The, ExecutiveOrder.type == "order", LawInCongress.type == "law"](ExecutiveOrder.isLegitimate == true → Causal(ExecutiveOrder, LawInCongress))
+6. Q[The, ExecutiveOrder.scope == "federal", LawInCongress.scope == "federal"](LawInCongress.isEnforceable == true → Causal(ExecutiveOrder, LawInCongress))
+7. Q[The, ExecutiveOrder.impact == "federal law enforcement", LawInCongress.impact == "federal law enforcement"](ExecutiveOrder.hasEffectOn == "law enforcement" → Causal(ExecutiveOrder, LawInCongress))
+8. Q[The, ExecutiveOrder.supportedBy == "executive", LawInCongress.supportedBy == "Congress"](LawInCongress.effect == "same thing" → Causal(ExecutiveOrder, LawInCongress))
+9. Q[The, ExecutiveOrder.canAccomplish == true, LawInCongress.canAccomplish == true](ExecutiveOrder.accomplish == "ban in federal law enforcement agencies" → Causal(ExecutiveOrder, LawInCongress))
+10. Q[The, ExecutiveOrder.achieves == "ban", LawInCongress.achieves == "ban"](ExecutiveOrder.relationship == "means to achieve ban" → Causal(ExecutiveOrder, LawInCongress))
+11. Q[The, ExecutiveOrder.isLegitimate == true, LawInCongress.isLegitimate == true](ExecutiveOrder.type == "order" → Causal(ExecutiveOrder, LawInCongress))
+12. Q[The, ExecutiveOrder.scope == "federal", LawInCongress.scope == "federal"](ExecutiveOrder.impact == "federal law enforcement" → Causal(ExecutiveOrder, LawInCongress))
+13. Q[The, ExecutiveOrder.supportedBy == "executive", LawInCongress.supportedBy == "Congress"](LawInCongress.relationship == "means to achieve ban" → Causal(ExecutiveOrder, LawInCongress))
+14. Q[The, ExecutiveOrder.violates == "federal law enforcement agencies", LawInCongress.effect == "same thing"](ExecutiveOrder.isOnlyMeans == true → Causal(ExecutiveOrder, LawInCongress))
+15. Q[The, ExecutiveOrder.canAccomplish == true, LawInCongress.support == true](LawInCongress.achieves == "same effect" → Causal(ExecutiveOrder, LawInCongress))
+16. Q[The, ExecutiveOrder.relationship == "means to achieve ban", LawInCongress.relationship == "means to achieve ban"](ExecutiveOrder.implies == "only means" → Causal(ExecutiveOrder, LawInCongress))
+17. Q[The, ExecutiveOrder.type == "order", LawInCongress.type == "law"](LawInCongress.canAccomplish == true → Causal(ExecutiveOrder, LawInCongress))
+18. Q[The, ExecutiveOrder.scope == "federal", LawInCongress.scope == "federal"](ExecutiveOrder.isEnforceable == true → Causal(ExecutiveOrder, LawInCongress))
+19. Q[The, ExecutiveOrder.impact == "federal law enforcement", LawInCongress.impact == "federal law enforcement"](LawInCongress.hasEffectOn == "law enforcement" → Causal(ExecutiveOrder, LawInCongress))
+20. Q[The, ExecutiveOrder.supportedBy == "executive", LawInCongress.supportedBy == "Congress"](ExecutiveOrder.achieves == "ban" → Causal(ExecutiveOrder, LawInCongress))
+21. Q[The, ExecutiveOrder.canAccomplish == true, LawInCongress.achieves == "ban"](ExecutiveOrder.relationship == "means to achieve ban" → Causal(ExecutiveOrder, LawInCongress))
+22. Q[The, ExecutiveOrder.isLegitimate == true, LawInCongress.isLegitimate == true](LawInCongress.effect == "same thing" → Causal(ExecutiveOrder, LawInCongress))
+23. Q[The, ExecutiveOrder.scope == "federal", LawInCongress.scope == "federal"](ExecutiveOrder.impact == "federal law enforcement" → Causal(ExecutiveOrder, LawInCongress))
+24. Q[The, ExecutiveOrder.supportedBy == "executive", LawInCongress.supportedBy == "Congress"](LawInCongress.canAccomplish == true → Causal(ExecutiveOrder, LawInCongress))
+25. Q[The, ExecutiveOrder.violates == "federal law enforcement agencies", LawInCongress.achieves == "same effect"](ExecutiveOrder.isOnlyMeans == true → Causal(ExecutiveOrder, LawInCongress))
+26. Q[The, ExecutiveOrder.canAccomplish == true, LawInCongress.support == true](LawInCongress.relationship == "means to achieve ban" → Causal(ExecutiveOrder, LawInCongress))
+27. Q[The, ExecutiveOrder.relationship == "means to achieve ban", LawInCongress.relationship == "means to achieve ban"](ExecutiveOrder.implies == "only means" → Causal(ExecutiveOrder, LawInCongress))
+28. Q[The, ExecutiveOrder.type == "order", LawInCongress.type == "law"](LawInCongress.achieves == "ban" → Causal(ExecutiveOrder, LawInCongress))
+29. Q[The, ExecutiveOrder.scope == "federal", LawInCongress.scope == "federal"](ExecutiveOrder.isEnforceable == true → Causal(ExecutiveOrder, LawInCongress))
+30. Q[The, ExecutiveOrder.impact == "federal law enforcement", LawInCongress.impact == "federal law enforcement"](LawInCongress.hasEffectOn == "law enforcement" → Causal(ExecutiveOrder, LawInCongress))

@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 1144)
+S1: A man does not go rock climbing because it is too strenuous for his fitness levels.
+S2: A rock climber, climbing an extremely steep rust-colored rock wall, and he is wearing a bright orange hard hat.
+
+Predicates:
+1. Man.fitness_level
+2. Man.activity
+3. RockClimber.climbing
+4. RockWall.color
+5. RockWall.steepness
+6. HardHat.color
+7. HardHat.type
+8. Man.decision
+9. FitnessLevel.strenuous
+10. RockClimbing.activity
+11. Man.physical_condition
+12. RockWall.material
+13. ClimbingGear.type
+14. ClimbingGear.color
+15. Man.location
+16. RockWall.height
+17. RockWall.difficulty
+18. ClimbingEvent.time
+19. ClimbingEvent.participant
+20. ClimbingEvent.location
+21. Man.equipment
+22. Man.skill_level
+23. RockWall.texture
+24. HardHat.safety_rating
+25. Man.experience_level
+26. ClimbingTechnique.type
+27. ClimbingTechnique.difficulty
+28. Man.motivation
+29. RockWall.challenge
+30. ClimbingEvent.outcome
+
+Rules:
+1. Q[man, Man.fitness_level == "low"](Man.decision == "not go rock climbing" → Causal(man, rock climbing))
+2. Q[man, Man.activity == "not climbing"](Man.decision == "not go rock climbing" → Causal(man, rock climbing))
+3. Q[man, Man.fitness_level == "low"](Man.activity == "not climbing" → Causal(man, rock climbing))
+4. Q[man, Man.physical_condition == "poor"](Man.decision == "not go rock climbing" → Causal(man, rock climbing))
+5. Q[man, Man.motivation == "low"](Man.decision == "not go rock climbing" → Causal(man, rock climbing))
+6. Q[man, Man.skill_level == "beginner"](Man.decision == "not go rock climbing" → Causal(man, rock climbing))
+7. Q[man, Man.experience_level == "none"](Man.decision == "not go rock climbing" → Causal(man, rock climbing))
+8. Q[man, Man.fitness_level == "strenuous"](Man.activity == "not climbing" → Causal(man, rock climbing))
+9. Q[rock climber, RockClimber.climbing == "true"](Man.decision == "not go rock climbing" → Causal(rock climber, rock climbing))
+10. Q[rock climber, RockWall.steepness == "extreme"](RockClimber.climbing == "true" → Causal(rock climber, rock climbing))
+11. Q[rock climber, RockWall.color == "rust-colored"](RockClimber.climbing == "true" → Causal(rock climber, rock climbing))
+12. Q[rock climber, HardHat.color == "orange"](RockClimber.climbing == "true" → Causal(rock climber, rock climbing))
+13. Q[rock climber, HardHat.type == "hard hat"](RockClimber.climbing == "true" → Causal(rock climber, rock climbing))
+14. Q[rock climber, RockWall.difficulty == "high"](RockClimber.climbing == "true" → Causal(rock climber, rock climbing))
+15. Q[rock climber, RockWall.height == "tall"](RockClimber.climbing == "true" → Causal(rock climber, rock climbing))
+16. Q[rock climber, RockWall.challenge == "significant"](RockClimber.climbing == "true" → Causal(rock climber, rock climbing))
+17. Q[rock climber, ClimbingGear.type == "standard"](RockClimber.climbing == "true" → Causal(rock climber, rock climbing))
+18. Q[rock climber, ClimbingGear.color == "bright"](RockClimber.climbing == "true" → Causal(rock climber, rock climbing))
+19. Q[man, Man.decision == "not go rock climbing"](RockClimber.climbing == "true" → Causal(man, rock climbing))
+20. Q[man, Man.activity == "not climbing"](RockClimber.climbing == "true" → Causal(man, rock climbing))
+21. Q[man, Man.fitness_level == "inadequate"](RockClimber.climbing == "true" → Causal(man, rock climbing))
+22. Q[man, Man.physical_condition == "unfit"](RockClimber.climbing == "true" → Causal(man, rock climbing))
+23. Q[man, Man.motivation == "absent"](RockClimber.climbing == "true" → Causal(man, rock climbing))
+24. Q[man, Man.skill_level == "low"](RockClimber.climbing == "true" → Causal(man, rock climbing))
+25. Q[man, Man.experience_level == "lacking"](RockClimber.climbing == "true" → Causal(man, rock climbing))
+26. Q[man, Man.decision == "not go rock climbing"](RockWall.difficulty == "high" → Causal(man, rock climbing))
+27. Q[man, Man.fitness_level == "not sufficient"](RockWall.steepness == "extreme" → Causal(man, rock climbing))
+28. Q[man, Man.activity == "inactive"](RockWall.color == "rust-colored" → Causal(man, rock climbing))
+29. Q[man, Man.physical_condition == "poor"](HardHat.color == "orange" → Causal(man, rock climbing))
+30. Q[man, Man.motivation == "low"](HardHat.type == "hard hat" → Causal(man, rock climbing))

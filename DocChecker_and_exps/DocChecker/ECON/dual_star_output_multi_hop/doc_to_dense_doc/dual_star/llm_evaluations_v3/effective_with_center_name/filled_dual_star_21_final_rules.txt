@@ -1,0 +1,17 @@
+### Entity Mapping ###
+x0: "BYU Researchers"
+y0: "BYU Researchers"
+
+### Rules with Substituted Entities ###
+Rule: 1. Q[BYU_researchers, Robotic_Forceps](BYU_researchers.status = "created" ∧ Robotic_Forceps.size = "3 millimeters" → violate(BYU_researchers.failed, BYU_researchers.created))
+
+Rule: 2. Q[Robotic_Forceps, BYU_researchers](Robotic_Forceps.size = "3 millimeters" ∧ BYU_researchers.status = "failed" → violate(BYU_researchers.created, BYU_researchers.failed))
+
+Rule: 3. Q[BYU_researchers, Robotic_Forceps](BYU_researchers.status = "created" ∧ Robotic_Forceps.size = "3 millimeters" ∧ "BYU researchers created robotic forceps that can pass through a hole about 3 millimeters in size.".doc_index = "109" → violate(BYU_researchers.failed, BYU_researchers.created))
+
+Rule: 4. Q[Robotic_Forceps, BYU_researchers](Robotic_Forceps.size = "3 millimeters" ∧ BYU_researchers.status = "failed" ∧ "BYU researchers failed to create robotic forceps that can pass through a hole about 3 millimeters in size.".doc_index = "109" → violate(BYU_researchers.created, BYU_researchers.failed))
+
+Rule: 11. Q[BYU_researchers, Robotic_Forceps](M_NLI("BYU researchers created robotic forceps that can pass through a hole about 3 millimeters in size.", "BYU researchers failed to create robotic forceps that can pass through a hole about 3 millimeters in size.") ∧ BYU_researchers.status = "created" → violate(BYU_researchers.failed, BYU_researchers.created))
+
+Rule: 12. Q[Robotic_Forceps, BYU_researchers](M_NLI("Robotic forceps can pass through a hole about 3 millimeters in size.", "Robotic forceps cannot pass through a hole about 3 millimeters in size.") ∧ Robotic_Forceps.size = "3 millimeters" → violate(BYU_researchers.created, BYU_researchers.failed))
+

@@ -1,0 +1,84 @@
+Predicates:
+Death.age_at_death != 20
+Death.age_at_death < 25
+Death.age_at_death = 20
+Death.age_at_death > 15
+Death.label != "Event"
+Death.label = "Event"
+Death.name != "Death"
+Death.name = "Death"
+Ellen.label != "Person"
+Ellen.label != Death.label
+Ellen.label != Town.label
+Ellen.label = "Person"
+Ellen.name != "Ellen"
+Ellen.name != Death.name
+Ellen.name != Old Woman.name
+Ellen.name != Town.name
+Ellen.name = "Ellen"
+Fanshawe.label != "Person"
+Fanshawe.label != Death.label
+Fanshawe.label != Town.label
+Fanshawe.label = "Person"
+Fanshawe.name != "Fanshawe"
+Fanshawe.name != Death.name
+Fanshawe.name != Ellen.name
+Fanshawe.name != Old Woman.name
+Fanshawe.name != Town.name
+Fanshawe.name = "Fanshawe"
+Fanshawe___Death.contradiction_type = "Causal"
+Fanshawe___Death.relationship = "Fanshawe dies"
+Fanshawe___Death.source_id = "3488771908_8"
+Fanshawe___Death.time = "at 20"
+Fanshawe___Ellen.action = "awakens"
+Fanshawe___Ellen.contradiction_type = "Causal"
+Fanshawe___Ellen.location = "unspecified"
+Fanshawe___Ellen.method = "physical assistance"
+Fanshawe___Ellen.relationship != Fanshawe___Death.relationship
+Fanshawe___Ellen.relationship != Fanshawe___Old Woman.relationship
+Fanshawe___Ellen.relationship != Fanshawe___Town.relationship
+Fanshawe___Ellen.relationship = "Fanshawe loves Ellen"
+Fanshawe___Ellen.source_id != Fanshawe___Town.source_id
+Fanshawe___Ellen.source_id = "3488771908_8"
+Fanshawe___Old Woman.context = "search"
+Fanshawe___Old Woman.contradiction_type = "Causal"
+Fanshawe___Old Woman.reason = "to assist in search"
+Fanshawe___Old Woman.relationship != Fanshawe___Death.relationship
+Fanshawe___Old Woman.relationship != Fanshawe___Town.relationship
+Fanshawe___Old Woman.relationship = "Fanshawe receives information from the old woman"
+Fanshawe___Old Woman.source_id != Fanshawe___Town.source_id
+Fanshawe___Old Woman.source_id = "3488771908_8"
+Fanshawe___Town.companion = "Ellen"
+Fanshawe___Town.contradiction_type = "Causal"
+Fanshawe___Town.relationship != Fanshawe___Death.relationship
+Fanshawe___Town.relationship = "Fanshawe travels back to town"
+Fanshawe___Town.source_id != Fanshawe___Death.source_id
+Fanshawe___Town.source_id = "3488771908_5"
+None_ML(Ellen.attrs, Old Woman.attrs)
+None_ML(Fanshawe___Old Woman.attrs, Fanshawe___Ellen.attrs)
+Old Woman.label != "Person"
+Old Woman.label != Death.label
+Old Woman.label != Town.label
+Old Woman.label = "Person"
+Old Woman.name != "Old Woman"
+Old Woman.name != Death.name
+Old Woman.name != Town.name
+Old Woman.name = "Old Woman"
+Town.label != "Location"
+Town.label != Death.label
+Town.label = "Location"
+Town.name != "Town"
+Town.name != Death.name
+Town.name = "Town"
+
+Rules:
+Q[Fanshawe,Fanshawe] (Ellen.name != Death.name ∧ Ellen.label != Town.label ∧ Fanshawe___Ellen.relationship != Fanshawe___Death.relationship → Ellen.label != Death.label)
+Q[Fanshawe,Fanshawe] (Ellen.name != Town.name ∧ Fanshawe___Death.relationship = "Fanshawe dies" ∧ Fanshawe___Ellen.source_id != Fanshawe___Town.source_id ∧ Town.name != "Town" ∧ Ellen.label != Death.label ∧ Fanshawe___Town.companion = "Ellen" → Old Woman.label = "Person")
+Q[Fanshawe,Fanshawe] (Fanshawe___Town.source_id = "3488771908_5" ∧ Ellen.label != Town.label ∧ Fanshawe.name != Death.name ∧ Fanshawe.name != Old Woman.name → Old Woman.label != Death.label)
+Q[Fanshawe,Fanshawe] (Ellen.name != "Ellen" ∧ Old Woman.label != "Person" ∧ Fanshawe.name != Old Woman.name ∧ Fanshawe___Ellen.location = "unspecified" ∧ Fanshawe___Old Woman.relationship = "Fanshawe receives information from the old woman" → Death.name = "Death")
+Q[Fanshawe,Fanshawe] (Fanshawe___Town.relationship = "Fanshawe travels back to town" ∧ Death.label != "Event" → Fanshawe___Town.companion = "Ellen")
+Q[Fanshawe,Fanshawe] (Ellen.label != Death.label ∧ Fanshawe___Town.companion = "Ellen" ∧ Death.name != "Death" ∧ Old Woman.label != Town.label → Fanshawe___Ellen.relationship != Fanshawe___Old Woman.relationship)
+Q[Fanshawe,Fanshawe] (Fanshawe___Town.contradiction_type = "Causal" ∧ Fanshawe___Old Woman.relationship = "Fanshawe receives information from the old woman" ∧ Ellen.label != "Person" → Fanshawe.name != Old Woman.name)
+Q[Fanshawe,Fanshawe] (Fanshawe.name != Death.name ∧ Fanshawe.name != "Fanshawe" → Fanshawe___Town.source_id != Fanshawe___Death.source_id)
+Q[Fanshawe,Fanshawe] (Death.label = "Event" ∧ Fanshawe___Ellen.relationship != Fanshawe___Town.relationship ∧ Town.name = "Town" ∧ Old Woman.label != Death.label ∧ Fanshawe___Death.relationship = "Fanshawe dies" ∧ Fanshawe.name != Ellen.name → Fanshawe___Old Woman.context = "search")
+Q[Fanshawe,Fanshawe] (Death.age_at_death != 20 ∧ Town.name != Death.name ∧ Death.age_at_death = 20 ∧ Fanshawe___Old Woman.reason = "to assist in search" ∧ Town.name = "Town" → Fanshawe___Ellen.location = "unspecified")

@@ -1,0 +1,67 @@
+Source: dense_text.txt (Index 1664)
+S1: Four elementary-aged children, two boys and two girls, play on a green lawn with a tree and a building in the background.
+S2: 4 kids are inside their house, reading a book in front of the fireplace.
+
+Predicates:
+1. Children.playing_outside
+2. Children.number(4)
+3. Children.gender(boys, 2)
+4. Children.gender(girls, 2)
+5. Location.green_lawn
+6. Location.tree_present
+7. Location.building_present
+8. Kids.inside_house
+9. Kids.reading_book
+10. Kids.number(4)
+11. Kids.activity(reading)
+12. Kids.location(inside)
+13. Kids.in_front_of(fireplace)
+14. Activity.playing
+15. Activity.reading
+16. Time.day
+17. Environment.outside
+18. Environment.inside
+19. Relationship.children_playing
+20. Relationship.children_reading
+21. Factual(S1, S2)
+22. M_NLI(S1, S2)
+23. Violate(S1, S2)
+24. Kids.age(elementary)
+25. Kids.gender_ratio(boys_to_girls, 1:1)
+26. Location.indoor
+27. Location.outdoor
+28. Kids.activity_ratio(playing_to_reading, 1:1)
+29. Kids.location_ratio(outside_to_inside, 1:1)
+30. Environment.green_lawn_present
+
+Rules:
+1. Q[Four, Kids.number(4) == true](Children.playing_outside → Factual(x0, y0))
+2. Q[Four, Kids.number(4) == true](Kids.inside_house → Factual(x0, y0))
+3. Q[Four, Kids.activity(reading) == true](Kids.reading_book → Factual(x0, y0))
+4. Q[Four, Kids.location(inside) == true](Kids.inside_house → Factual(x0, y0))
+5. Q[Four, Children.gender(boys, 2) == true](Kids.number(4) → Factual(x0, y0))
+6. Q[Four, Children.gender(girls, 2) == true](Kids.number(4) → Factual(x0, y0))
+7. Q[Four, Kids.age(elementary) == true](Children.number(4) → Factual(x0, y0))
+8. Q[Four, Environment.outside == true](Children.playing_outside → Factual(x0, y0))
+9. Q[Four, Environment.inside == true](Kids.inside_house → Factual(x0, y0))
+10. Q[Four, Kids.activity(playing) == true](Children.playing_outside → Factual(x0, y0))
+11. Q[Four, Kids.activity(reading) == true](Kids.reading_book → Factual(x0, y0))
+12. Q[Four, Kids.location_ratio(outside_to_inside, 1:1) == true](Children.playing_outside → Factual(x0, y0))
+13. Q[Four, Kids.location_ratio(outside_to_inside, 1:1) == true](Kids.inside_house → Factual(x0, y0))
+14. Q[Four, Relationship.children_playing == true](Children.playing_outside → Factual(x0, y0))
+15. Q[Four, Relationship.children_reading == true](Kids.reading_book → Factual(x0, y0))
+16. Q[Four, Location.green_lawn_present == true](Children.playing_outside → Factual(x0, y0))
+17. Q[Four, Location.indoor == true](Kids.inside_house → Factual(x0, y0))
+18. Q[Four, Location.outdoor == true](Children.playing_outside → Factual(x0, y0))
+19. Q[Four, Activity.playing == true](Children.playing_outside → Factual(x0, y0))
+20. Q[Four, Activity.reading == true](Kids.reading_book → Factual(x0, y0))
+21. Q[Four, Time.day == true](Children.playing_outside → Factual(x0, y0))
+22. Q[Four, Kids.in_front_of(fireplace) == true](Kids.reading_book → Factual(x0, y0))
+23. Q[Four, Kids.activity_ratio(playing_to_reading, 1:1) == true](Children.playing_outside → Factual(x0, y0))
+24. Q[Four, Kids.activity_ratio(playing_to_reading, 1:1) == true](Kids.inside_house → Factual(x0, y0))
+25. Q[Four, Kids.gender_ratio(boys_to_girls, 1:1) == true](Kids.number(4) → Factual(x0, y0))
+26. Q[Four, Kids.number(4) == true](Kids.activity(reading) → Factual(x0, y0))
+27. Q[Four, Kids.number(4) == true](Kids.activity(playing) → Factual(x0, y0))
+28. Q[Four, Kids.location(inside) == true](Kids.activity(reading) → Factual(x0, y0))
+29. Q[Four, Kids.location(outside) == true](Kids.activity(playing) → Factual(x0, y0))
+30. Q[Four, Violate(S1, S2) == true](Children.playing_outside → Factual(x0, y0))
