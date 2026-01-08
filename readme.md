@@ -1,3 +1,5 @@
+The file titled **`Detecting Contradictions Within and Across Documents (full version).pdf`** serves as the extended version of our submission (**`Detecting Contradictions Within and Across Documents.pdf`** ) on CMT. It provides the full content referred to as **Reference [1] in the submitted version** on CMT.
+
 **`datasets/`** Contains the source data for all datasets used in this paper.
 
 **`doc_to_triplets/`** Introduces a simple and practical method for extracting **triplets** (excluding attributes) from documents. If your work does not require the granularity of **Attribute Graphs**, you can refer to the artifacts here for converting documents into **RDF graphs**.
