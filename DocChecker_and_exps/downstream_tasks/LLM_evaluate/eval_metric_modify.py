@@ -48,7 +48,7 @@ try:
 
     # 实际配置可能更复杂，此处仅为占位符
     llm = OpenAIClient(
-        model="gpt-4.1-mini",
+        model="gpt-5.2",
         temperature=0.1,
         max_tokens=20  # 只需要 yes/no，可以非常少
     )

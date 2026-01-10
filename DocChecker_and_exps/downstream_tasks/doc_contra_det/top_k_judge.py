@@ -20,12 +20,11 @@ from datetime import datetime
 # 保持 LLM 配置不变
 load_dotenv()
 os.environ["OPENAI_API_KEY"] = os.getenv("OPENAI_API_KEY")
-os.environ["OPENAI_BASE_URL"] = os.getenv("OPENAI_BASE_URL", None)
 
 try:
     # 增加 max_tokens 以便模型有空间返回 k 个证据文本和解释
     llm = OpenAIClient(
-        model="gpt-4.1-mini",
+        model="gpt-5.2",
         temperature=0.1,
         top_p=0.9,
         max_tokens=1500  # 恢复到 1500，确保输出空间

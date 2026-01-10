@@ -17,7 +17,6 @@ import sys # 引入 sys 用于输出重定向模拟
 # --- 1. 配置和 LLM 客户端 (保持不变) ---
 load_dotenv()
 os.environ["OPENAI_API_KEY"] = os.getenv("OPENAI_API_KEY")
-os.environ["OPENAI_BASE_URL"] = os.getenv("OPENAI_BASE_URL", None)
 
 OPENAI_MODEL_NAME = "gpt-5.2-chat-latest" # <--- 定义当前运行的模型名称
 

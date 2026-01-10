@@ -9,7 +9,7 @@ if __name__ == "__main__":
     # Load environment variables
     load_dotenv()
     # Initialize KGGen
-    kg = KGGen(api_key=os.getenv("OPENAI_API_KEY"), api_base=os.getenv("OPENAI_BASE_URL"))
+    kg = KGGen(api_key=os.getenv("OPENAI_API_KEY"))
 
     # Initialize client
     client = OpenAI(
@@ -39,18 +39,18 @@ if __name__ == "__main__":
     # Generate individual graphs
     graph1 = kg.generate(
         input_data=text1,
-        model="openai/gpt-4o-mini"
+        model="openai/gpt-5.2"
     )
 
     graph2 = kg.generate(
         input_data=text2,
-        model="openai/gpt-4o-mini"
+        model="openai/gpt-5.2"
     )
 
     # Cluster the combined graph
     # clustered_graph = kg.cluster(
     #     combined_graph,
-    #     model="openai/gpt-4o-mini",
+    #     model="openai/gpt-5.2",
     # )
 
     # Print results

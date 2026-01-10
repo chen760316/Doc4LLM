@@ -40,7 +40,7 @@ load_dotenv()
 try:
     # 建议使用性能更高的模型进行事实核查
     llm = OpenAIClient(
-        model="gpt-4.1-mini",
+        model="gpt-5.2",
         temperature=0.0,  # 事实核查应使用较低温度
         max_tokens=256
     )

@@ -17,25 +17,17 @@ load_dotenv()
 
 # 使用 Llama 3/Groq 相关的环境变量
 GROQ_API_KEY = os.getenv("Llama_API_KEY")
-GROQ_BASE_URL = os.getenv("Llama_BASE_URL", None)
 LLAMA3_MODEL = "llama-3-70b"  # Groq 支持的模型
 
-if not GROQ_API_KEY or not GROQ_BASE_URL:
-    # 注意：如果 BASE_URL 为 None 且 API 密钥是 Groq 官方的，OpenAI 客户端可能会自动使用默认 Groq URL。
-    # 但为保证通过中转站的兼容性，我们要求 BASE_URL 存在。
-    print("❌ 错误: Llama_API_KEY 或 Llama_BASE_URL 未在环境中设置！")
-    exit()
 
 print(f"✅ 找到 API Key (长度: {len(GROQ_API_KEY)})")
-print(f"✅ 找到 Base URL: {GROQ_BASE_URL}")
 print(f"✅ 使用模型: {LLAMA3_MODEL}")
 
 # LLM 客户端初始化，使用 OpenAI 兼容客户端
 try:
     # 初始化 OpenAI Client，连接到 Groq/中转站
     client = OpenAI(
-        api_key=GROQ_API_KEY,
-        base_url=GROQ_BASE_URL
+        api_key=GROQ_API_KEY
     )
     print("✅ Llama 3 Client (通过 OpenAI 兼容接口) 初始化成功")
 except Exception as e:

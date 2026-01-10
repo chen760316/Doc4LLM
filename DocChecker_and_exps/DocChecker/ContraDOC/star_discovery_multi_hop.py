@@ -21,11 +21,10 @@ import matplotlib.pyplot as plt
 # 加载环境变量
 load_dotenv()
 os.environ["OPENAI_API_KEY"] = os.getenv("OPENAI_API_KEY")
-os.environ["OPENAI_BASE_URL"] = os.getenv("OPENAI_BASE_URL", None)
 
 # LLM 客户端只用于简化边标签，如果数据中没有需要简化的边，可以注释掉
 llm = OpenAIClient(
-    model="gpt-4.1-mini",
+    model="gpt-5.2",
     temperature=0.1,
     top_p=0.9,
     max_tokens=1500

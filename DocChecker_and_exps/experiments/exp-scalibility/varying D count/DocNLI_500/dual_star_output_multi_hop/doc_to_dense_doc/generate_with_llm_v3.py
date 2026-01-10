@@ -25,14 +25,7 @@ MAX_WORKERS = 10 # 线程池最大工作线程数
 load_dotenv()
 
 os.environ["OPENAI_API_KEY"] = os.getenv("OPENAI_API_KEY")
-os.environ["OPENAI_BASE_URL"] = os.getenv("OPENAI_BASE_URL", None)
 
-# 升级到 gpt-4o-mini
-llm = OpenAIClient(
-    model="gpt-4o-mini",
-    temperature=0.1,
-    top_p=0.9
-)
 
 # --- 配置 ---
 INPUT_FILE = "dense_text.json" # 假设输入文件名为 sampled_data.json

@@ -52,17 +52,12 @@ load_dotenv()
 
 # 使用 Gemini 相关的环境变量
 api_key = os.getenv("GEMINI_API_KEY")
-base_url = os.getenv("GEMINI_BASE_URL", None)
 
 if not api_key:
     print("❌ 错误: GEMINI_API_KEY 未在 .env 文件或环境变量中找到！")
     exit()
 
 print(f"✅ API Key 加载成功 (长度: {len(api_key)})")
-if base_url:
-    print(f"✅ Base URL: {base_url}")
-else:
-    print("✅ 正在使用默认 Gemini API Base URL")
 
 # --- 2. 初始化 Gemini Client ---
 GEMINI_MODEL = "gemini-2.5-pro"  # 使用一个标准模型进行测试
@@ -70,9 +65,6 @@ print(f"\n--- 2. 正在初始化 Gemini Client ---")
 
 try:
     http_options = None
-    if base_url:
-        # 使用自定义 Base URL
-        http_options = types.HttpOptions(base_url=base_url)
 
     # 初始化客户端，API Key 会自动从环境变量获取或通过参数传入
     llm_client = genai.Client(

@@ -11,14 +11,14 @@ from datetime import datetime
 # === 初始化环境 ===
 load_dotenv()
 os.environ["OPENAI_API_KEY"] = os.getenv("OPENAI_API_KEY")
-os.environ["OPENAI_BASE_URL"] = os.getenv("OPENAI_BASE_URL", None)
+
 DENSE_TEXT_PATH = "dense_text.txt"
 RULES_DIR = "dual_star/llm_rules_dense_txt"
 EVAL_OUTPUT_DIR = "dual_star/evaluation_results"
 os.makedirs(EVAL_OUTPUT_DIR, exist_ok=True)
 
 llm = OpenAIClient(
-    model="gpt-4o-mini",
+    model="gpt-5.2",
     temperature=0.1,
     top_p=0.9,
     max_tokens=1500

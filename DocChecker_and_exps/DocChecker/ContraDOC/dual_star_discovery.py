@@ -28,11 +28,10 @@ import os
 load_dotenv()
 
 os.environ["OPENAI_API_KEY"] = os.getenv("OPENAI_API_KEY")
-os.environ["OPENAI_BASE_URL"] = os.getenv("OPENAI_BASE_URL", None)
 
 # LLM 客户端不再用于简化边标签，但仍需定义以避免知识图谱客户端依赖问题
 llm = OpenAIClient(
-    model="gpt-4o-mini",
+    model="gpt-5.2",
     temperature=0.1,
     top_p=0.9,
     max_tokens=1500

@@ -22,13 +22,12 @@ REPORT_FILE_PATH = os.path.join(REPORT_DIR, "ContraDOC_gpt_report.txt")
 load_dotenv()
 
 os.environ["OPENAI_API_KEY"] = os.getenv("OPENAI_API_KEY")
-os.environ["OPENAI_BASE_URL"] = os.getenv("OPENAI_BASE_URL", None)
 
 try:
     # 尝试初始化 LLM 客户端
     # ⚠️ 注意：如果 knowledge_graph_maker 无法导入，请确保环境正确或使用模拟客户端。
     llm = OpenAIClient(
-        model="gpt-4.1-mini",
+        model="gpt-4o",
         temperature=0.1,
         top_p=0.9,
         max_tokens=500

@@ -24,7 +24,6 @@ load_dotenv()
 
 # 确保环境变量设置
 os.environ["OPENAI_API_KEY"] = os.getenv("OPENAI_API_KEY")
-os.environ["OPENAI_BASE_URL"] = os.getenv("OPENAI_BASE_URL", None)
 
 if not os.getenv("OPENAI_API_KEY"):
     # 警告：在实际运行环境中，这会阻止代码执行。这里只是为了展示完整代码。

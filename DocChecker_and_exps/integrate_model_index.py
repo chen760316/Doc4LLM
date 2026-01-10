@@ -14,7 +14,7 @@ def locate_entities(text: str, entity: str) -> List[Tuple[int, int]]:
 if __name__ == "__main__":
     # Load environment variables
     load_dotenv()
-    kg = KGGen(api_key=os.getenv("OPENAI_API_KEY"), api_base=os.getenv("OPENAI_BASE_URL"))
+    kg = KGGen(api_key=os.getenv("OPENAI_API_KEY"))
 
     # 读取文本
     with open("split1.txt", "r", encoding="utf-8") as file:
@@ -23,8 +23,8 @@ if __name__ == "__main__":
         text2 = file.read()
 
     # 生成图谱
-    graph1 = kg.generate(input_data=text1, model="openai/gpt-4o-mini", context="Family relationships")
-    graph2 = kg.generate(input_data=text2, model="openai/gpt-4o-mini", context="Family relationships")
+    graph1 = kg.generate(input_data=text1, model="openai/gpt-5.2", context="Family relationships")
+    graph2 = kg.generate(input_data=text2, model="openai/gpt-5.2", context="Family relationships")
 
     print("*"*100)
 
@@ -84,7 +84,7 @@ if __name__ == "__main__":
     # clustered_graph = kg.cluster(
     #     combined_graph,
     #     context="Family relationships",
-    #     model="openai/gpt-4o-mini",
+    #     model="openai/gpt-5.2",
     #     api_key=os.getenv("OPENAI_API_KEY")
     # )
     visualize(combined_graph, "E:/Document cleaning/kg-gen/tests/test_basic_2.html")

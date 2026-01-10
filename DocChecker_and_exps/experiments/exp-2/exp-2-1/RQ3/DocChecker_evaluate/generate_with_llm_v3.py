@@ -17,14 +17,13 @@ INPUT_FILE = "../dense_text.json"  # 输入文件路径
 # 加载环境变量
 load_dotenv()
 os.environ["OPENAI_API_KEY"] = os.getenv("OPENAI_API_KEY")
-os.environ["OPENAI_BASE_URL"] = os.getenv("OPENAI_BASE_URL", None)
 
 if not os.getenv("OPENAI_API_KEY"):
     raise ValueError("OPENAI_API_KEY 环境变量未设置。")
 
 # 初始化 LLM
 llm = OpenAIClient(
-    model="gpt-4o-mini",
+    model="gpt-5.2",
     temperature=0.1,
     top_p=0.9
 )

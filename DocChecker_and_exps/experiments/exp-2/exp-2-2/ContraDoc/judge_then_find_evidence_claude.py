@@ -22,24 +22,17 @@ load_dotenv()
 
 # Claude 配置
 API_KEY = os.getenv("CLAUDE_API_KEY")
-BASE_URL = os.getenv("CLAUDE_BASE_URL", None)
 CLAUDE_MODEL_NAME = "claude-3-7-sonnet-20250219"  # 使用最新的 Claude Sonnet 3.5 模型名
 MODEL_NAME = CLAUDE_MODEL_NAME
 
-if not API_KEY or not BASE_URL:
-    print("❌ 错误: CLAUDE_API_KEY 或 CLAUDE_BASE_URL 未在环境中设置！")
-    exit()
-
 print(f"✅ 找到 API Key (长度: {len(API_KEY)})")
-print(f"✅ 找到 Base URL: {BASE_URL}")
 print(f"✅ 使用模型: {MODEL_NAME}")
 
 # LLM 客户端初始化，使用 OpenAI 兼容客户端
 try:
     # 关键：使用 Claude 的 Key 和中转站 Base URL 初始化 OpenAI Client
     client = OpenAI(
-        api_key=API_KEY,
-        base_url=BASE_URL
+        api_key=API_KEY
     )
     print(f"✅ Claude Client (通过 OpenAI 兼容接口) 初始化成功")
 except Exception as e:

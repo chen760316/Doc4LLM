@@ -71,13 +71,12 @@ load_dotenv()
 
 # 确保环境变量设置
 os.environ["OPENAI_API_KEY"] = os.getenv("OPENAI_API_KEY")
-os.environ["OPENAI_BASE_URL"] = os.getenv("OPENAI_BASE_URL", None)
 
 # 检查 API Key 是否存在
 if not os.getenv("OPENAI_API_KEY"):
     raise ValueError("OPENAI_API_KEY 环境变量未设置。")
 
-# 升级到 gpt-4o-mini
+# 升级到 gpt-5.2
 llm = OpenAIClient(
     model="gpt-4o",
     temperature=0.1,

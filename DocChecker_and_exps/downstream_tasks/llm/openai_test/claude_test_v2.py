@@ -17,7 +17,6 @@ load_dotenv()
 # API_KEY = "sk-wkw4pjYrgJnI0dJTtiOcCSST20BBXnZAflWAsJvatGxLbkOD"
 # BASE_URL = "https://api.vectorengine.ai/v1"
 API_KEY = os.getenv("CLAUDE_API_KEY")
-BASE_URL = os.getenv("CLAUDE_BASE_URL", None)
 CLAUDE_MODEL_NAME = "claude-3-7-sonnet-20250219"
 
 if not API_KEY:

@@ -10,7 +10,7 @@ MAX_TOKENS = 512
 STRIDE = 64
 
 
-def split_text_by_token_limit(text, max_tokens=512, stride=64, model_name="gpt-4o-mini"):
+def split_text_by_token_limit(text, max_tokens=512, stride=64, model_name="gpt-5.2"):
     """Split text into chunks with token limits and overlap."""
     try:
         encoding = tiktoken.encoding_for_model(model_name)
@@ -66,7 +66,7 @@ if __name__ == "__main__":
         print(f"\nProcessing chunk {i + 1}/{len(chunks)}...")
 
         try:
-            graph = kg.generate(input_data=chunk, model="gpt-4o-mini")
+            graph = kg.generate(input_data=chunk, model="gpt-5.2")
             if not hasattr(graph, 'relations'):
                 continue
 

@@ -27,7 +27,7 @@ load_dotenv()
 # 🚨 注意：这里会打印 API Key 相关的警告，但代码功能不受影响。
 try:
     llm = OpenAIClient(
-        model="gpt-4o-mini",
+        model="gpt-5.2",
         temperature=0.1,
         top_p=0.9,
         max_tokens=1500

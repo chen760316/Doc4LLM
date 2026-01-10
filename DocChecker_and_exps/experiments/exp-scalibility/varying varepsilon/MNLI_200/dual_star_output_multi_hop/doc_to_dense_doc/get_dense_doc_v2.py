@@ -23,14 +23,13 @@ from typing import Dict, Any, List, Union
 # -------------------------
 load_dotenv()
 os.environ["OPENAI_API_KEY"] = os.getenv("OPENAI_API_KEY")
-os.environ["OPENAI_BASE_URL"] = os.getenv("OPENAI_BASE_URL", None)
 
 MAX_WORKERS = 10
 INPUT_FILE_PATH = "../../sampled_data.json"
 OUTPUT_FILE_PATH = "dense_text.json"
 
 llm = OpenAIClient(
-    model="gpt-4o-mini",
+    model="gpt-5.2",
     temperature=0.2,
     top_p=0.9,
     max_tokens=4000

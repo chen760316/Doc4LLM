@@ -27,10 +27,9 @@ MAX_RETRIES = 3
 # ... [环境变量加载与初始化保持不变] ...
 load_dotenv()
 os.environ["OPENAI_API_KEY"] = os.getenv("OPENAI_API_KEY")
-os.environ["OPENAI_BASE_URL"] = os.getenv("OPENAI_BASE_URL", None)
 
 llm = OpenAIClient(
-    model="gpt-4o-mini",
+    model="gpt-5.2",
     temperature=0.2,
     top_p=0.9,
     max_tokens=4000

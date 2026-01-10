@@ -27,9 +27,9 @@ load_dotenv()
 os.environ["OPENAI_API_KEY"] = os.getenv("OPENAI_API_KEY")
 os.environ["OPENAI_BASE_URL"] = os.getenv("OPENAI_BASE_URL", None)
 
-# 升级到 gpt-4o-mini
+# 升级到 gpt-5.2
 llm = OpenAIClient(
-    model="gpt-4o-mini",
+    model="gpt-5.2",
     temperature=0.1,
     top_p=0.9
 )

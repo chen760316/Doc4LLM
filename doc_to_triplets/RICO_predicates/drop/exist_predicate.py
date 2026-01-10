@@ -13,10 +13,9 @@ import random
 load_dotenv()
 
 os.environ["OPENAI_API_KEY"] = os.getenv("OPENAI_API_KEY")
-os.environ["OPENAI_BASE_URL"] = os.getenv("OPENAI_BASE_URL", None)
 
 llm = OpenAIClient(
-    model="gpt-4o-mini",
+    model="gpt-5.2",
     temperature=0.1,
     top_p=0.9,
     max_tokens=1500
@@ -96,7 +95,7 @@ Text:
 def main():
     print("*"*100)
 
-    # 假设 llm 是你的 OpenAIClient/gpt-4o-mini 实例
+    # 假设 llm 是你的 OpenAIClient/gpt-5.2 实例
     entities = extract_named_entities(text, llm)
 
     # 打印提取到的实体

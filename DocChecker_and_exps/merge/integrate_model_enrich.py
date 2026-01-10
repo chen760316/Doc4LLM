@@ -73,8 +73,7 @@ def find_matched_entities(entities1: List[str], entities2: List[str]) -> List[Tu
 if __name__ == "__main__":
     # Load environment and initialize KGGen
     load_dotenv()
-    kg = KGGen(api_key=os.getenv("OPENAI_API_KEY"),
-               api_base=os.getenv("OPENAI_BASE_URL"))
+    kg = KGGen(api_key=os.getenv("OPENAI_API_KEY"))
 
     # Read input texts
     with open("split1.txt", "r", encoding="utf-8") as f:
@@ -83,8 +82,8 @@ if __name__ == "__main__":
         text2 = f.read()
 
     # Generate knowledge graphs
-    graph1 = kg.generate(text1, model="openai/gpt-4o-mini", context="Family relationships")
-    graph2 = kg.generate(text2, model="openai/gpt-4o-mini", context="Family relationships")
+    graph1 = kg.generate(text1, model="openai/gpt-5.2", context="Family relationships")
+    graph2 = kg.generate(text2, model="openai/gpt-5.2", context="Family relationships")
 
     # Combine graphs
     combined_graph = kg.aggregate([graph1, graph2])

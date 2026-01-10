@@ -15,7 +15,6 @@ load_dotenv()
 # 这里我们仅作检查和设置：
 try:
     api_key = os.getenv("OPENAI_API_KEY_2")
-    base_url = os.getenv("OPENAI_BASE_URL_2", None)
     if not api_key:
         print("❌ 错误: OPENAI_API_KEY 未在 .env 文件或环境变量中找到！")
         exit()

@@ -31,7 +31,7 @@ load_dotenv()
 os.environ["OPENAI_API_KEY"] = os.getenv("OPENAI_API_KEY")
 os.environ["OPENAI_BASE_URL"] = os.getenv("OPENAI_BASE_URL", None)
 
-llm = OpenAIClient(model="gpt-4o-mini", temperature=0.1, top_p=0.9)
+llm = OpenAIClient(model="gpt-5.2", temperature=0.1, top_p=0.9)
 
 # --- 全局状态管理 ---
 data_lock = threading.Lock()

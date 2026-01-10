@@ -20,18 +20,16 @@ STRIDE = 64
 # 初始化 OpenAI 客户端
 load_dotenv()
 client = OpenAI(
-    api_key=os.getenv("OPENAI_API_KEY"),
-    base_url=os.getenv("OPENAI_BASE_URL", "https://api.openai.com/v1")
+    api_key=os.getenv("OPENAI_API_KEY")
 )
 
 # 初始化 KGGen 实体关系抽取模型
 kg = KGGen(
-    api_key=os.getenv("OPENAI_API_KEY"),
-    api_base=os.getenv("OPENAI_BASE_URL")
+    api_key=os.getenv("OPENAI_API_KEY")
 )
 
 
-def split_text_by_token_limit(text, max_tokens=512, stride=64, model_name="gpt-4o-mini"):
+def split_text_by_token_limit(text, max_tokens=512, stride=64, model_name="gpt-5.2"):
     """分割文本（带滑动窗口）"""
     try:
         encoding = tiktoken.encoding_for_model(model_name)
@@ -75,7 +73,7 @@ Triples:
 
     try:
         response = client.chat.completions.create(
-            model="gpt-4o-mini",
+            model="gpt-5.2",
             messages=[
                 {"role": "system", "content": "You are a helpful assistant."},
                 {"role": "user", "content": prompt}
@@ -103,7 +101,7 @@ if __name__ == "__main__":
         print(f"🔍 Extracting triples from chunk {i + 1}/{len(chunks)}...")
 
         try:
-            graph = kg.generate(input_data=chunk, model="gpt-4o-mini")
+            graph = kg.generate(input_data=chunk, model="gpt-5.2")
             if graph and hasattr(graph, 'relations') and graph.relations:
                 all_relations.extend(graph.relations)
                 triples = graph.relations

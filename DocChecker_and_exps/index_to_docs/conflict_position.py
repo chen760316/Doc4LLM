@@ -42,7 +42,7 @@ def save_full_contexts_to_file(all_relations, full_text, filepath="entity_full_c
                 f.write(sent.strip() + "\n")
             f.write("\n" + "="*60 + "\n\n")
 
-def split_text_by_token_limit(text, max_tokens=MAX_TOKENS, stride=STRIDE, model_name="gpt-4o-mini"):
+def split_text_by_token_limit(text, max_tokens=MAX_TOKENS, stride=STRIDE, model_name="gpt-5.2"):
     """分块处理长文本"""
     try:
         encoding = tiktoken.encoding_for_model(model_name)
@@ -104,7 +104,7 @@ if __name__ == "__main__":
     for i, chunk in enumerate(chunks):
         print(f"\nProcessing chunk {i + 1}/{len(chunks)}...")
         try:
-            graph = kg.generate(input_data=chunk, model="gpt-4o-mini")
+            graph = kg.generate(input_data=chunk, model="gpt-5.2")
             if graph and hasattr(graph, 'relations'):
                 # 应用筛选条件
                 filtered = filter_triples(graph.relations, target_entities)

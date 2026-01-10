@@ -18,7 +18,6 @@ OUTPUT_FILE_PATH = "dense_text.json"  # 修改输出文件名以反映嵌套结�
 # -------------------------
 load_dotenv()
 os.environ["OPENAI_API_KEY"] = os.getenv("OPENAI_API_KEY")
-os.environ["OPENAI_BASE_URL"] = os.getenv("OPENAI_BASE_URL", None)
 
 # -------------------------
 # 初始化 LLM (保持不变)
@@ -27,7 +26,7 @@ if not os.getenv("OPENAI_API_KEY"):
     raise ValueError("OPENAI_API_KEY 环境变量未设置。")
 
 llm = OpenAIClient(
-    model="gpt-4o-mini",
+    model="gpt-5.2",
     temperature=0.2,
     top_p=0.9,
     max_tokens=4000

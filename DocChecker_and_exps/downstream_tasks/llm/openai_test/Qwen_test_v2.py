@@ -8,19 +8,15 @@ load_dotenv()
 # QWEN_API_KEY = "sk-FWBZgZHIb9oq8EeI9XPXgJGW1D9szMLftDRoKhnvc4u2VDre"
 # QWEN_OPENAI_BASE_URL = "https://api.vectorengine.ai/v1"
 QWEN_API_KEY = os.getenv("QWEN_API_KEY")
-QWEN_OPENAI_BASE_URL = os.getenv("QWEN_BASE_URL", None)
 QWEN_MODEL = "qwen-max"
 
 print(f"✅ API Key 加载成功 (长度: {len(QWEN_API_KEY)})")
-print(f"✅ Base URL 加载成功: {QWEN_OPENAI_BASE_URL}")
 
 print(f"\n--- 2. 正在配置 OpenAI 库 ---")
 print(f"目标模型: {QWEN_MODEL}")
-print(f"Base URL: {QWEN_OPENAI_BASE_URL}")
 
 client = openai.OpenAI(
-    api_key=QWEN_API_KEY,
-    base_url=QWEN_OPENAI_BASE_URL
+    api_key=QWEN_API_KEY
 )
 
 print("✅ OpenAI 库配置成功")

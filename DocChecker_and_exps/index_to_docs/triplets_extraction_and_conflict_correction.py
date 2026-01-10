@@ -21,8 +21,7 @@ STRIDE = 64
 # 初始化 OpenAI 客户端
 load_dotenv()
 client = OpenAI(
-    api_key=os.getenv("OPENAI_API_KEY"),
-    base_url=os.getenv("OPENAI_BASE_URL", "https://api.openai.com/v1")
+    api_key=os.getenv("OPENAI_API_KEY")
 )
 
 
@@ -119,7 +118,7 @@ class TextPositionFinder:
         return results
 
 
-def split_text_by_token_limit(text, max_tokens=512, stride=64, model_name="gpt-4o-mini"):
+def split_text_by_token_limit(text, max_tokens=512, stride=64, model_name="gpt-5.2"):
     """Split text into chunks with token limits and overlap."""
     try:
         encoding = tiktoken.encoding_for_model(model_name)
@@ -162,7 +161,7 @@ Triples:
 
     try:
         response = client.chat.completions.create(
-            model="gpt-4o-mini",
+            model="gpt-5.2",
             messages=[
                 {"role": "system", "content": "You are a helpful assistant."},
                 {"role": "user", "content": prompt}

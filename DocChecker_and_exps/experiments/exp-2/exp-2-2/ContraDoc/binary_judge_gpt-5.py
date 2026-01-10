@@ -12,7 +12,6 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 # --- 1. 初始化和配置 ---
 load_dotenv()
 os.environ["OPENAI_API_KEY"] = os.getenv("OPENAI_API_KEY")
-os.environ["OPENAI_BASE_URL"] = os.getenv("OPENAI_BASE_URL", None)
 
 # 建议使用 GPT-5 时保持 temperature 为 0 以获得最高稳定性
 llm = OpenAIClient(

@@ -15,7 +15,6 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 # 保持 LLM 配置不变
 load_dotenv()
 os.environ["OPENAI_API_KEY"] = os.getenv("OPENAI_API_KEY")
-os.environ["OPENAI_BASE_URL"] = os.getenv("OPENAI_BASE_URL", None)
 
 try:
     # 假设 gpt-4.1-mini 是一个有效的模型名称，如果不是，请替换为 gpt-4o 或 gpt-4

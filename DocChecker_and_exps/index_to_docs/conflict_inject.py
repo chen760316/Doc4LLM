@@ -11,8 +11,7 @@ from dotenv import load_dotenv
 load_dotenv()
 # 初始化 OpenAI 客户端（新版接口）
 client = OpenAI(
-    api_key=os.getenv("OPENAI_API_KEY"),
-    base_url=os.getenv("OPENAI_BASE_URL")
+    api_key=os.getenv("OPENAI_API_KEY")
 )
 
 def parse_triples_and_context(filepath):
@@ -77,7 +76,7 @@ In other words, the new text should express something opposite or inconsistent w
 Please output only the conflicting English paragraph. Do NOT include any explanations, instructions, or Chinese text.
 """
     response = client.chat.completions.create(
-        model="gpt-4o-mini",
+        model="gpt-5.2",
         messages=[{"role": "user", "content": prompt}],
         temperature=0.8,
         max_tokens=100,

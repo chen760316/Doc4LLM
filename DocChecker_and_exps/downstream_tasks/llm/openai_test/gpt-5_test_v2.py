@@ -15,7 +15,6 @@ load_dotenv()
 # 这里我们仅作检查和设置：
 try:
     api_key = os.getenv("OPENAI_API_KEY")
-    base_url = os.getenv("OPENAI_BASE_URL", None)
     if not api_key:
         print("❌ 错误: OPENAI_API_KEY 未在 .env 文件或环境变量中找到！")
         exit()
@@ -24,10 +23,6 @@ except Exception as e:
     exit()
 
 print(f"✅ API Key 加载成功 (长度: {len(api_key)})")
-if base_url:
-    print(f"✅ Base URL: {base_url}")
-else:
-    print("✅ 正在使用默认 OpenAI API Base URL")
 
 # --- 2. 初始化 LLM 客户端 ---
 print("\n--- 2. 正在初始化 OpenAIClient ---")
@@ -35,7 +30,7 @@ try:
     # 注意: 模型名称 "gpt-4.1-mini" 可能是自定义或占位的，
     # 实际测试中请使用有效的模型，例如 "gpt-3.5-turbo" 或 "gpt-4o-mini"
     llm = OpenAIClient(
-        model="gpt-5",
+        model="gpt-5.2",
         temperature=0.1,
         top_p=0.9,
         max_tokens=500  # 减少 token 数量，只需要简短的 JSON 响应

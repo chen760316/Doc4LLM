@@ -45,14 +45,9 @@ load_dotenv()
 
 # 使用 Qwen-Max 相关的环境变量
 API_KEY = os.getenv("QWEN_API_KEY")  # 使用 QWEN_API_KEY
-BASE_URL = os.getenv("QWEN_BASE_URL", None)
 MODEL_NAME = "qwen-max"  # 指定使用的 Qwen 模型
 
-if not API_KEY or not BASE_URL:
-    print("❌ 错误: QWEN_API_KEY 或 QWEN_BASE_URL 未在环境中设置！")
-    exit()
 
-print(f"✅ 找到 API Key (长度: {len(API_KEY)})")
 print(f"✅ 找到 Base URL: {BASE_URL}")
 print(f"✅ 使用模型: {MODEL_NAME}")
 
@@ -60,8 +55,7 @@ print(f"✅ 使用模型: {MODEL_NAME}")
 try:
     # 初始化 OpenAI Client，连接到 Qwen Endpoint
     client = OpenAI(
-        api_key=API_KEY,
-        base_url=BASE_URL
+        api_key=API_KEY
     )
     print(f"✅ Qwen-Max Client (通过 OpenAI 兼容接口) 初始化成功")
 except Exception as e:

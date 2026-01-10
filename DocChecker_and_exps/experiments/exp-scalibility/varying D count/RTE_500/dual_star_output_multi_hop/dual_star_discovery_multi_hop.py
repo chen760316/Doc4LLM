@@ -23,7 +23,7 @@ import time
 load_dotenv()
 # LLM 客户端定义 (虽然未被使用，但保留了环境初始化)
 llm = OpenAIClient(
-    model="gpt-4o-mini",
+    model="gpt-5.2",
     temperature=0.1,
     top_p=0.9,
     max_tokens=1500

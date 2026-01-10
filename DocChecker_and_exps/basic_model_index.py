@@ -82,7 +82,7 @@ if __name__ == "__main__":
     # 汇总所有片段抽取的三元组
     all_graphs = []
     for chunk in chunks:
-        graph = kg.generate(input_data=chunk, model="openai/gpt-4o-mini")
+        graph = kg.generate(input_data=chunk, model="openai/gpt-5.2")
         all_graphs.append(graph)
 
     # 你可以根据 kg.generate 返回的具体数据结构，汇总或合并这些图谱
@@ -90,7 +90,7 @@ if __name__ == "__main__":
     # 汇总所有片段抽取的三元组
     all_triples = []
     for chunk in chunks:
-        graph = kg.generate(input_data=chunk["text"], model="openai/gpt-4o-mini")
+        graph = kg.generate(input_data=chunk["text"], model="openai/gpt-5.2")
 
         if hasattr(graph, "relations"):
             for head, relation, tail in graph.relations:

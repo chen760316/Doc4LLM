@@ -71,7 +71,6 @@ MAX_WORKERS = 10  # 并发线程数
 load_dotenv()
 
 os.environ["OPENAI_API_KEY"] = os.getenv("OPENAI_API_KEY")
-os.environ["OPENAI_BASE_URL"] = os.getenv("OPENAI_BASE_URL", None)
 
 llm = OpenAIClient(
     model="gpt-5.2-chat-latest",

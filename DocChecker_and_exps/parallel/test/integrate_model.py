@@ -41,17 +41,17 @@ if __name__ == "__main__":
     # Generate individual graphs
     graph1 = kg.generate(
         input_data=text1,
-        model="openai/gpt-4o-mini"
+        model="openai/gpt-5.2"
     )
 
     graph2 = kg.generate(
         input_data=text2,
-        model="openai/gpt-4o-mini"
+        model="openai/gpt-5.2"
     )
 
     graph3 = kg.generate(
         input_data=text3,
-        model="openai/gpt-4o-mini"
+        model="openai/gpt-5.2"
     )
 
     # Print results

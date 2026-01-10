@@ -17,22 +17,15 @@ load_dotenv()
 
 # 使用 Gemini 相关的环境变量
 API_KEY = os.getenv("GEMINI_API_KEY")
-BASE_URL = os.getenv("GEMINI_BASE_URL", None)
 MODEL_NAME = "gemini-2.5-pro"  # 指定使用的 Gemini 模型名称
 
-if not API_KEY or not BASE_URL:
-    print("❌ 错误: GEMINI_API_KEY 或 GEMINI_BASE_URL 未在环境中设置！")
-    exit()
-
 print(f"✅ 找到 API Key (长度: {len(API_KEY)})")
-print(f"✅ 找到 Base URL: {BASE_URL}")
 print(f"✅ 使用模型: {MODEL_NAME}")
 
 # LLM 客户端初始化，使用 OpenAI 兼容客户端
 try:
     # 关键：使用中转站的 Base URL 和 Key 初始化 OpenAI Client
     client = OpenAI(
-        base_url=BASE_URL,
         api_key=API_KEY
     )
     print(f"✅ Gemini Client (通过 OpenAI 兼容接口) 初始化成功")

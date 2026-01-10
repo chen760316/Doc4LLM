@@ -13,17 +13,12 @@ load_dotenv()
 # CLAUDE_API_KEY = os.getenv("ANTHROPIC_API_KEY")
 # CLAUDE_BASE_URL = os.getenv("ANTHROPIC_BASE_URL", None) # 用于自定义中转站或端点
 CLAUDE_API_KEY = "sk-LUEnFoNtoPojwa4gUZj5MyA4ahyFlzY7KrboSBUQL8gqAoPn"
-CLAUDE_BASE_URL = "https://api.vectorengine.ai/v1"
 
 if not CLAUDE_API_KEY:
     print("❌ 错误: ANTHROPIC_API_KEY 未在 .env 文件或环境变量中找到！")
     exit()
 
 print(f"✅ API Key 加载成功 (长度: {len(CLAUDE_API_KEY)})")
-if CLAUDE_BASE_URL:
-    print(f"✅ Base URL: {CLAUDE_BASE_URL}")
-else:
-    print("✅ 正在使用默认 Claude API Base URL")
 
 # --- 2. 初始化 Anthropic Client ---
 CLAUDE_MODEL = "claude-3-5-sonnet-20240620"
@@ -32,8 +27,7 @@ print(f"\n--- 2. 正在初始化 Anthropic Client ---")
 try:
     # 原始方式初始化客户端
     client = Anthropic(
-        api_key=CLAUDE_API_KEY,
-        base_url=CLAUDE_BASE_URL  # 如果 base_url 为 None，则使用默认端点
+        api_key=CLAUDE_API_KEY
     )
     print(f"✅ Anthropic Client 初始化成功 (模型: {CLAUDE_MODEL})")
 

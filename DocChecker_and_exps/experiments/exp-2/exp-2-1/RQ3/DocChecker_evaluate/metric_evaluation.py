@@ -49,10 +49,9 @@ EHR_BASE_OFFSET = 0.05  # EHR 基础偏移量，使其略低于 P_target
 # 初始化环境 (保持不变)
 load_dotenv()
 os.environ["OPENAI_API_KEY"] = os.getenv("OPENAI_API_KEY")
-os.environ["OPENAI_BASE_URL"] = os.getenv("OPENAI_BASE_URL", None)
 
 llm = OpenAIClient(
-    model="gpt-4o-mini",
+    model="gpt-5.2",
     temperature=0.1,
     top_p=0.9,
     max_tokens=3000

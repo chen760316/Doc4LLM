@@ -55,8 +55,8 @@ def main():
     with open(input_txt, "r", encoding="utf-8") as f:
         text = f.read()
 
-    kg = KGGen(api_key=os.getenv("OPENAI_API_KEY"), api_base=os.getenv("OPENAI_BASE_URL"))
-    graph = kg.generate(text, model="openai/gpt-4o-mini", context="Family relationships")
+    kg = KGGen(api_key=os.getenv("OPENAI_API_KEY"))
+    graph = kg.generate(text, model="openai/gpt-5.2", context="Family relationships")
 
     # 可以选择在 worker 层提前 enrich
     top_entities = set(sorted(graph.entities)[:3])  # 示例前3实体

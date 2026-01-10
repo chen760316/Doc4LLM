@@ -32,7 +32,7 @@ if os.getenv("OPENAI_API_KEY") is None:
     print("⚠️ 警告: OPENAI_API_KEY 未设置。LLMClient 初始化将失败，但文件处理可继续。")
 
 llm = OpenAIClient(
-    model="gpt-4o-mini",
+    model="gpt-5.2",
     temperature=0.1,
     top_p=0.9,
     max_tokens=3000

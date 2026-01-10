@@ -15,12 +15,11 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 # 保持 LLM 配置不变
 load_dotenv()
 os.environ["OPENAI_API_KEY"] = os.getenv("OPENAI_API_KEY")
-os.environ["OPENAI_BASE_URL"] = os.getenv("OPENAI_BASE_URL", None)
 
 try:
     # 假设 gpt-4.1-mini 是一个有效的模型名称，如果不是，请替换为 gpt-4o 或 gpt-4
     llm = OpenAIClient(
-        model="gpt-4.1-mini",
+        model="gpt-5.2",
         temperature=0.1,
         top_p=0.9,
         max_tokens=1500

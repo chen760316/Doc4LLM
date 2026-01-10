@@ -36,8 +36,7 @@ load_dotenv()
 
 
 # 请确保您的 .env 文件配置正确 (此处仅为示例，实际运行请确保环境变量已设置)
-# os.environ["OPENAI_API_KEY"] = os.getenv("OPENAI_API_KEY")
-# os.environ["OPENAI_BASE_URL"] = os.getenv("OPENAI_BASE_URL", None)
+os.environ["OPENAI_API_KEY"] = os.getenv("OPENAI_API_KEY")
 
 # --- 关键修改点：将 MockLLMClient 定义移到顶层 ---
 class MockLLMClient:
@@ -52,7 +51,7 @@ class MockLLMClient:
 # 初始化 LLM 客户端
 try:
     llm = OpenAIClient(
-        model="gpt-4.1-mini",  # 假设这是一个可用且便宜的模型
+        model="gpt-5.2",  # 假设这是一个可用且便宜的模型
         temperature=0.1,
         top_p=0.9,
         max_tokens=100  # 只需要 JSON 输出，可以更少

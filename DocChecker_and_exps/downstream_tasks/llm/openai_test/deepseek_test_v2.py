@@ -10,7 +10,6 @@ load_dotenv()
 # DEEPSEEK_API_KEY = "sk-FWBZgZHIb9oq8EeI9XPXgJGW1D9szMLftDRoKhnvc4u2VDre"
 # DEEPSEEK_BASE_URL = "https://api.vectorengine.ai/v1"
 DEEPSEEK_API_KEY = os.getenv("DEEPSEEK_API_KEY")
-DEEPSEEK_BASE_URL = os.getenv("DEEPSEEK_BASE_URL", None)
 DEEPSEEK_MODEL = "deepseek-chat"  # 或 deepseek-coder、deepseek-llm-67b 等
 
 if not DEEPSEEK_API_KEY:
@@ -23,8 +22,7 @@ print(f"✅ Base URL 加载成功: {DEEPSEEK_BASE_URL}")
 # --- 2. 初始化 OpenAI Client (DeepSeek Endpoint) ---
 try:
     client = OpenAI(
-        api_key=DEEPSEEK_API_KEY,
-        base_url=DEEPSEEK_BASE_URL
+        api_key=DEEPSEEK_API_KEY
     )
     print("✅ OpenAI Client 初始化成功")
 except Exception as e:

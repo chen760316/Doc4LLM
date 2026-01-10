@@ -10,7 +10,6 @@ load_dotenv()
 # GROQ_API_KEY = "sk-Zu7OAYiAH1sEEXoAi6hyzH3oMjvlEtXFCvwRcSOHZNQQd2Wk"
 # GROQ_BASE_URL = "https://api.groq.com/openai/v1"
 GROQ_API_KEY = os.getenv("Llama_API_KEY")
-GROQ_BASE_URL = os.getenv("Llama_BASE_URL", None)
 LLAMA3_MODEL = "llama-2-70b"  # Groq支持的模型
 
 if not GROQ_API_KEY:
@@ -18,13 +17,11 @@ if not GROQ_API_KEY:
     exit()
 
 print(f"✅ API Key 加载成功 (长度: {len(GROQ_API_KEY)})")
-print(f"✅ Base URL 加载成功: {GROQ_BASE_URL}")
 
 # --- 2. 初始化 OpenAI Client (Groq Endpoint) ---
 try:
     client = OpenAI(
-        api_key=GROQ_API_KEY,
-        base_url=GROQ_BASE_URL
+        api_key=GROQ_API_KEY
     )
     print("✅ OpenAI Client 初始化成功")
 except Exception as e:

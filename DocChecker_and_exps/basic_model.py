@@ -24,7 +24,7 @@ def chunk_text_by_tokens(text, tokenizer, max_tokens=MAX_TOKENS, stride=STRIDE):
 if __name__ == "__main__":
     load_dotenv()
 
-    kg = KGGen(api_key=os.getenv("OPENAI_API_KEY"), api_base=os.getenv("OPENAI_BASE_URL"))
+    kg = KGGen(api_key=os.getenv("OPENAI_API_KEY"))
 
     # 这里假设你已经有一个 tokenizer 实例，比如 transformers 的 tokenizer
     # tokenizer = AutoTokenizer.from_pretrained("bert-base-uncased")  # 示例，请根据实际替换
@@ -39,7 +39,7 @@ if __name__ == "__main__":
     # 汇总所有片段抽取的三元组
     all_graphs = []
     for chunk in chunks:
-        graph = kg.generate(input_data=chunk, model="openai/gpt-4o-mini")
+        graph = kg.generate(input_data=chunk, model="openai/gpt-5.2")
         all_graphs.append(graph)
 
     # 你可以根据 kg.generate 返回的具体数据结构，汇总或合并这些图谱

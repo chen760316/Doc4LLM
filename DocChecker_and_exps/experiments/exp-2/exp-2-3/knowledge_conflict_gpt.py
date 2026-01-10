@@ -26,11 +26,10 @@ LIMIT = 100  # 限制样本数量，如果为 None 或 0 则使用全部
 load_dotenv()
 
 os.environ["OPENAI_API_KEY"] = os.getenv("OPENAI_API_KEY")
-os.environ["OPENAI_BASE_URL"] = os.getenv("OPENAI_BASE_URL", None)
 
 try:
     llm = OpenAIClient(
-        model="gpt-4.1-mini",
+        model="gpt-5.2",
         temperature=0.1,
         top_p=0.9,
         max_tokens=500

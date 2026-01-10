@@ -18,11 +18,10 @@ load_dotenv()
 
 # 请替换为您实际的 API 密钥和 Base URL 配置
 os.environ["OPENAI_API_KEY"] = os.getenv("OPENAI_API_KEY")
-os.environ["OPENAI_BASE_URL"] = os.getenv("OPENAI_BASE_URL", None)
 
 # 初始化 LLM 客户端
 llm = OpenAIClient(
-    model="gpt-4.1-mini",
+    model="gpt-5.2",
     temperature=0.1,
     top_p=0.9,
     max_tokens=500  # 减少 token 数量，只需要简短的 JSON 响应

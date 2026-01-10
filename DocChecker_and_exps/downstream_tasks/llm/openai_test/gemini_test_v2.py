@@ -14,7 +14,6 @@ load_dotenv()
 # API_KEY = "sk-g85vPvIOYqokrjMW7kaRVhmLzHPwmkF7q2CSaKdxv8IepaiU"
 # BASE_URL = "https://api.vectorengine.ai/v1"
 API_KEY = os.getenv("GEMINI_API_KEY")
-BASE_URL = os.getenv("GEMINI_BASE_URL", None)
 
 if not API_KEY:
     print("❌ 错误: OPENAI_API_KEY 未在环境中设置！")
@@ -35,7 +34,6 @@ print(f"\n--- 2. 正在初始化 OpenAI Client (目标模型: {MODEL_NAME}) ---"
 try:
     # 初始化 OpenAI Client，连接到中转站
     client = OpenAI(
-        base_url=BASE_URL,
         api_key=API_KEY
     )
     print("✅ OpenAI Client 初始化成功")

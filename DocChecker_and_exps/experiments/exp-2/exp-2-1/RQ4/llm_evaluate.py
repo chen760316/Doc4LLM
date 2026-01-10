@@ -23,7 +23,6 @@ load_dotenv()
 
 # 确保环境变量设置
 os.environ["OPENAI_API_KEY"] = os.getenv("OPENAI_API_KEY")
-os.environ["OPENAI_BASE_URL"] = os.getenv("OPENAI_BASE_URL", None)
 
 if not os.getenv("OPENAI_API_KEY"):
     # 警告：在实际运行环境中，这会阻止代码执行。这里只是为了展示完整代码。
@@ -33,7 +32,7 @@ if not os.getenv("OPENAI_API_KEY"):
 # 实例化 LLM 客户端
 try:
     llm = OpenAIClient(
-        model="gpt-4o-mini",
+        model="gpt-5.2",
         temperature=0.1,
         top_p=0.9
     )
