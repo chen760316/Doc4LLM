@@ -9,6 +9,7 @@ The repository is released primarily as an **available artifact**. It allows rea
 ```text
 code-for-Doc4LLM/
 ├── datasets/
+├── docker/
 ├── doc_to_triplets/
 ├── DocChecker_and_exps/
 ├── requirements.txt
@@ -20,6 +21,10 @@ code-for-Doc4LLM/
 Contains information about the 15 datasets used in the paper. The datasets can be obtained from their original publications or repositories such as Hugging Face. Please follow the licenses and terms of the original dataset providers.
 
 See `datasets/readme.txt` for the complete dataset list and corresponding references.
+
+### `docker/`
+
+Contains the Dockerfile, detailed container instructions, and the exported `docchecker-sigmod26-ari.tar` image archive when it has been built. See the Docker quick start below or `docker/README.md` for build, load, and execution commands.
 
 ### `doc_to_triplets/`
 
@@ -79,13 +84,43 @@ The exact filenames and scripts differ between datasets, but the main stages are
 5. Generate RICO predicates and contradiction rules.
 6. Apply or evaluate the generated rules on the target dataset.
 
-## Environment setup
+## Docker quick start
+
+The recommended way to run the artifact is the provided Docker image. It includes the source code and intermediate artifacts already present in the repository, with the CPU build of PyTorch 2.7.1. No NVIDIA GPU is required.
+
+Docker image (1,519,215,104 bytes):
+
+<https://github.com/chen760316/Doc4LLM/releases/download/sigmod26-ari/docchecker-sigmod26-ari.tar>
+
+From the repository root, build the image:
+
+```bash
+docker build -f docker/Dockerfile -t docchecker:sigmod26-ari .
+```
+
+Or load the exported image from `docker/docchecker-sigmod26-ari.tar` when the archive is available:
+
+```bash
+docker load -i docker/docchecker-sigmod26-ari.tar
+```
+
+Start an interactive container:
+
+```bash
+docker run --rm -it docchecker:sigmod26-ari
+```
+
+The project is located at `/workspace` inside the container. Pass LLM credentials at runtime, for example with `-e OPENAI_API_KEY`; never bake them into the image. To keep generated files after the container exits, bind-mount the host checkout at `/workspace`.
+
+For output persistence, an offline ContractNLI smoke workflow, and image export instructions, see `docker/README.md`.
+
+## Native environment setup
 
 ### 1. Requirements
 
-The project is implemented in Python. A recent 64-bit Python 3 environment is recommended. Some experimental scripts use PyTorch, TensorFlow, CUDA, or external LLM services; the required hardware depends on the selected experiment.
+The project is implemented in Python. Python 3.11 is recommended for consistency with the Docker build. Some experimental scripts use PyTorch, TensorFlow, CUDA, or external LLM services; the required hardware depends on the selected experiment.
 
-The supplied `requirements.txt` records the original broad research environment. It contains Windows-specific and CUDA-specific packages, so installing the entire file may require a compatible Windows/CUDA setup.
+The supplied `requirements.txt` contains the pinned runtime dependencies used by `DocChecker_and_exps/` and `doc_to_triplets/`. Native GPU setup remains platform-specific; use the appropriate PyTorch installation source if the default package index does not provide the desired CUDA build.
 
 ### 2. Create a virtual environment
 
@@ -100,19 +135,11 @@ python -m pip install --upgrade pip
 
 ### 3. Install dependencies
 
-To install the recorded full environment:
-
 ```powershell
 pip install -r requirements.txt
 ```
 
-If the full installation fails because of CUDA, TensorFlow, or Windows-specific packages, install the dependencies required by the selected pipeline first. The core graph and LLM scripts mainly use packages such as:
-
-```powershell
-pip install numpy pandas scikit-learn networkx aiohttp requests python-dotenv openai knowledge-graph-maker
-```
-
-Install PyTorch, TensorFlow, Transformers, and GPU support separately when running experiments that require local neural models.
+NLTK-based predicate scripts download the `punkt` tokenizer data on first use. The Docker image preinstalls both `punkt` and `punkt_tab`. Pretrained Hugging Face models and external datasets must be obtained separately when required by the selected experiment.
 
 ### 4. Configure the LLM API
 
