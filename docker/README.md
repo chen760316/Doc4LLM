@@ -23,6 +23,10 @@ The same command works in PowerShell. The build requires network access to Docke
 
 ## Load a previously exported image
 
+Docker image (1,519,215,104 bytes):
+
+<https://github.com/chen760316/Doc4LLM/releases/download/sigmod26-ari/docchecker-sigmod26-ari.tar>
+
 If `docchecker-sigmod26-ari.tar` is present in this directory, build tools are not needed. From the repository root, verify the archive when its SHA-256 file is available, then load it:
 
 ```bash
